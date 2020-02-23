@@ -163,7 +163,7 @@ commandes ou scénarios voulus :
 -   **Scenario** : soit directement sur la page de scénario, soit sur la
     page de résumé des scénarios pour le faire en "masse"
 
--   **Commande** : soit dans la configuration avancée de la commande,
+-   **orden** : soit dans la configuration avancée de la commande,
     soit dans la configuration de l'historique pour le faire en "masse"
 
 > **punta**
@@ -182,13 +182,13 @@ scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
 Les cartes sur la timeline affichent :
 
--   **Commande action** : en fond rouge, une icône à droite vous permet
+-   **orden action** : en fond rouge, une icône à droite vous permet
     d'afficher la fenêtre de configuration avancée de la commande
 
--   **Commande info** : en fond bleu, une icône à droite vous permet
+-   **orden info** : en fond bleu, une icône à droite vous permet
     d'afficher la fenêtre de configuration avancée de la commande
 
--   **Scénario** : en fond gris, vous avez 2 icônes : une pour afficher
+-   **guión** : en fond gris, vous avez 2 icônes : une pour afficher
     le log du scénario et une pour aller sur le scénario
 
 

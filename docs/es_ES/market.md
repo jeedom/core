@@ -1,16 +1,16 @@
 Doc un peu particulière car elle va traiter uniquement de votre page
-profil du Market.
+perfil du Market.
 
-Disponible en allant sur votre nom d'utilisateur puis profil à partir du
+Disponible en allant sur votre nom d'utilisateur puis perfil à partir du
 Market (un peu comme sur Jeedom).
 
 Celle-ci se décompose en plusieurs parties :
 
-Mon profil 
+Mon perfil 
 ==========
 
 C'est ici que vous allez pouvoir régler différents paramètres de votre
-profil :
+perfil :
 
 -   **Profil**
 
@@ -50,7 +50,7 @@ Pour les pros :
 
     -   **CGU**
 
--   **Utilisateur** : conditions générales d'utilisation (attention à
+-   **usuario** : conditions générales d'utilisation (attention à
     bien les lire car elles vous engage)
 
 -   **Développeur** : conditions générales d'utilisation pour les
@@ -77,7 +77,7 @@ Pour les pros :
 >
 > N'oubliez pas de sauvegarder
 
-Mes Jeedoms 
+Mis jeedoms 
 ===========
 
 -   **Niveau**
@@ -100,7 +100,7 @@ Mes Jeedoms
 > vos clefs d'installation, c'est normal, il suffit de suivre ce qu'il
 > vous demande
 
--   **Mes Jeedoms** : c'est ici que sont listés tous vos Jeedom
+-   **Mis jeedoms** : c'est ici que sont listés tous vos Jeedom
 
     -   **apellido** : le nom que vous voulez donner à votre Jeedom (se
         retrouve dans le nom du backup si vous avez l'abonnement de

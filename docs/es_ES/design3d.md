@@ -8,17 +8,17 @@ Elle est accessible par Acceuil → Dashboard
 
 # Importation du modèle 3D
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > Vous ne pouvez pas créer votre modèle 3D directement dans Jeedom, il faut le faire en passant par un logiciel tiers. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Une fois votre model 3D créé il faut l'exporter au format OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3D" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générés et les mettre dans un fichier zip (il peut y avoir beaucoup de fichiers dû aux textures).
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > Les fichiers doivent etre à la racine du zip est pas dans un sous-dossier
 
-> **ATTENTION**
+> **ATENCIÓN**
 >
 > Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est gros plus long sera le temps de rendu dans Jeedom.
 
@@ -35,11 +35,11 @@ Vous pouvez à partir de cette écran :
 
 Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre fichier zip
 
-> **ATTENTION**
+> **ATENCIÓN**
 >
 > Jeedom autorise l'import d'un fichier de 150mo maximum !
 
-> **ATTENTION**
+> **ATENCIÓN**
 >
 > Il faut obligatoirement un fichier au format zip
 
@@ -50,7 +50,7 @@ Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre
 
 # Configuration des éléments
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > La configuration ne peut se faire qu'en mode édition
 
@@ -71,7 +71,7 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
 - Taille du texte
 - Couleur du texte
 - Transparence du texte : de 0 (invisible) à 1 (visible)
-- Couleur de fond
+- Color de fondo
 - Transparence du fond : de 0 (invisible) à 1 (visible)
 - Couleur de la bordure
 - Transparence de la bordure : de 0 (invisible) à 1 (visible)

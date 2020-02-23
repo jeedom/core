@@ -30,14 +30,14 @@ En haut à droite, quelques boutons :
 -   **Documentation** : Permet d'accéder directement à la page de
     documentation du plugin
 
--   **Changelog** : permet de voir le changelog du plugin si il existe
+-   **cambios** : permet de voir le changelog du plugin si il existe
 
 -   **Envoyer sur le Market** : permet d'envoyer le plugin sur le Market
     (uniquement disponible si vous en êtes l'auteur)
 
 -   **Détails** : permet de retrouver la page du plugin sur le market
 
--   **Supprimer** : Supprime le plugin de votre Jeedom. Attention, cela
+-   **remove** : Supprime le plugin de votre Jeedom. Attention, cela
     supprime également définitivement tous les équipements de ce plugin
 
 En dessous à gauche, on retrouve une zone état avec :
@@ -59,7 +59,7 @@ En dessous à gauche, on retrouve une zone état avec :
 A droite, on retrouve la zone Log qui permet de définir 
 
 -   le niveau de logs spécifique au plugin (on retrouve cette même possibilité dans
-Administation → Configuration sur l'onglet logs, en bas de page)
+Administation → configuración sur l'onglet logs, en bas de page)
 
 -   de voir les logs du plugin
 
@@ -89,7 +89,7 @@ Démon :
 
 -   **Statut** : vous dira si le démon est OK ou KO
 
--   **Configuration** : sera OK si tous les critères pour que le démon
+-   **configuración** : sera OK si tous les critères pour que le démon
     tourne sont réunis ou donnera la cause du blocage
 
 -   **(Re)Démarrer** : permet de lancer ou relancer le démon
@@ -148,7 +148,7 @@ chargement, vous obtiendrez la page.
 > **punta**
 >
 > Vous devez avoir saisi les informations de votre compte du Market dans
-> l'administration (Configuration→Mises à jour→Onglet market) afin de
+> l'administration (configuración→Mises à jour→Onglet market) afin de
 > retrouver les plugins que vous avez déjà achetés par exemple.
 
 En haut de la fenêtre, vous avez des filtres :
@@ -165,7 +165,7 @@ En haut de la fenêtre, vous avez des filtres :
 -   **Menu déroulant Catégorie** : permet d'afficher uniquement
     certaines catégories de plugins
 
--   **Rechercher** : permet de rechercher un plugin (dans le nom ou la
+-   **Buscar** : permet de rechercher un plugin (dans le nom ou la
     description de celui-ci)
 
 -   **nombre del usuario** : affiche le nom d'utilisateur utilisé pour la
@@ -193,7 +193,7 @@ d'informations sur le plugin, notamment :
     -   **Installer pro** : permet d'installer la version pro (très
         peu utilisé)
 
-    -   **Supprimer** : si le plugin est actuellement installé, ce
+    -   **remove** : si le plugin est actuellement installé, ce
         bouton permet de le supprimer
 
 En dessous, vous retrouvez la description du plugin, la compatibilité
@@ -201,7 +201,7 @@ En dessous, vous retrouvez la description du plugin, la compatibilité
 sur le plugin (vous pouvez ici le noter) et des informations
 complémentaires (l'auteur, la personne ayant fait la dernière mise à
 jour, un lien vers la doc, le nombre de téléchargements). Sur la droite
-vous retrouvez un bouton "Changelog" qui vous permet d'avoir tout
+vous retrouvez un bouton "cambios" qui vous permet d'avoir tout
 l'historique des modifications, un bouton "Documentation" qui renvoie
 vers la documentation du plugin. Ensuite vous avez la langue disponible
 et les diverses informations sur la date de la dernière version stable.

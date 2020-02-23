@@ -2,7 +2,7 @@ C'est ici que l'on va pouvoir définir la liste des utilisateurs
 autorisés à se connecter à Jeedom, mais également leurs droits
 d'administrateur
 
-Accessible par Réglages → Système → Utilisateurs.
+Accessible par Réglages → Système → usuarios.
 
 En haut à droite vous avez un bouton pour ajouter un utilisateur, un
 pour sauvegarder et un bouton pour ouvrir un accès au support.
@@ -20,12 +20,12 @@ En dessous vous avez un tableau :
 
     -   **Administrateur** : obtient tous les droits sur Jeedom
 
-    -   **Utilisateur** : peut voir le dashboard, les vues, les
+    -   **usuario** : peut voir le dashboard, les vues, les
         design, etc. et agir sur les équipements/commandes. En revanche,
         il n'aura pas accès à la configuration des commandes/équipements
         ni à la configuration de Jeedom.
 
-    -   **Utilisateur limité** : l'utilisateur ne voit que les
+    -   **usuario limité** : l'utilisateur ne voit que les
         équipements autorisés (configurable avec le bouton "Gérer
         les droits")
 
@@ -42,7 +42,7 @@ En dessous vous avez un tableau :
 -   **Changer le mot de passe** : permet de changer le mot de passe de
     l'utilisateur
 
--   **Supprimer** : permet de supprimer l'utilisateur
+-   **remove** : permet de supprimer l'utilisateur
 
 -   **Régénérer clef API** : régénère la clef API de l'utilisateur
 

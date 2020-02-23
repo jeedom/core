@@ -6,18 +6,18 @@ Elle est accessible par Acceuil → Design
 
 > **punta**
 >
-> Il est possible d'aller directement sur un design grâce au sous-menu.
+> Il est possible d'aller directement sur un diseño grâce au sous-menu.
 
 > **importante**
 >
 > Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le design. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d'être sur le design).
+> à bien le faire dans le diseño. Lors de la création, il faut donc le
+> faire au milieu de la page (pour être sûr d'être sur le diseño).
 
 Dans le menu (clic droit donc), nous retrouvons les
 actions suivantes :
 
--   **Designs** : Affiche la liste de vos designs et permet d'y accéder
+-   **Designs** : Affiche la liste de vos diseños et permet d'y accéder
 
 -   **Edition** : Permet de passer en mode édition
 
@@ -35,151 +35,151 @@ actions suivantes :
 
     -   **Vers une vue** : Permet d'ajouter un lien vers une vue
 
-    -   **Vers un design** : Permet d'ajouter un lien vers un autre
-        design
+    -   **Vers un diseño** : Agregar un enlace a otro
+        diseño
 
--   **Ajouter équipement** : Permet d'ajouter un équipement
+-   **Agregar equipo** : Agrega equipo
 
--   **Ajouter commande** : Permet d'ajouter une commande
+-   **Añadir pedido** : Agregar un pedido
 
--   **Ajouter image/caméra** : Permet d'ajouter une image ou le flux
-    d'une caméra
+-   **Añadir imagen / cámara** : Le permite agregar una imagen o transmisión
+    de una camara
 
--   **Ajouter zone** : Permet d'ajouter une zone transparente cliquable
-    qui pourra exécuter une série d'actions lors d'un clic (en fonction
-    ou non de l'état d'une autre commande)
+-   **Agregar área** : Agregar un área transparente en la que se pueda hacer clic
+    quién puede ejecutar una serie de acciones con un clic (dependiendo
+    o no el estado de otro pedido)
 
--   **Ajouter résumé** : Ajoute les informations d'un résumé d'objet ou
-    général
+-   **Agregar resumen** : Agrega información de un resumen de objeto o
+    general
 
--   **Affichage**
+-   **Viendo**
 
-    -   **Aucune** : N'affiche aucune grille
+    -   **no** : No muestra ninguna cuadrícula
 
-    -   **10x10** : Affiche une grille de 10 par 10
+    -   **10x10** : Muestra una cuadrícula de 10 por 10
 
-    -   **15x15** : Affiche une grille de 15 par 15
+    -   **15x15** : Muestra una cuadrícula de 15 por 15
 
-    -   **20x20** : Affiche une grille de 20 par 20
+    -   **20x20** : Muestra una cuadrícula de 20 por 20
 
-    -   **Aimanter les éléments** : Ajoute une aimantation entre les
-        éléments pour permettre de les coller plus facilement
+    -   **Magnetizar los elementos** : Añadir una magnetización entre
+        elementos para que sea más fácil pegarlos
 
-    -   **Aimanter à la grille** : Ajoute une aimantation des éléments à
-        la grille (attention : en fonction du zoom de l'élément cette
-        fonctionalité peut plus ou moins fonctionner)
+    -   **Imán en la rejilla** : Agregue una magnetización de los elementos a
+        la cuadrícula (atención : dependiendo del zoom del artículo esto
+        la funcionalidad puede funcionar más o menos)
 
-    -   **Masquer la surbrillance des éléments** : Masque la
-        surbrillance autour des éléments
+    -   **Ocultar elemento resaltado** : Ocultarlo
+        resaltar alrededor de elementos
 
--   **Supprimer le design** : supprime le design
+-   **Eliminar diseño** : eliminar diseño
 
--   **Créer un design** : permet d'ajouter un nouveau design
+-   **Crea un diseño** : permite agregar un nuevo diseño
 
--   **Dupliquer le design** : duplique le design courant
+-   **Diseño duplicado** : duplicar el diseño actual
 
--   **Configurer le design** : accès à la configuration du design
+-   **Configura el diseño** : acceso a la configuración de diseño
 
--   **Sauvegarder** : permet de sauvegarder le design (attention, il y a
-    aussi des sauvegardes automatiques lors de certaines actions)
+-   **Guardar** : permite guardar el diseño (atención, hay
+    también copias de seguridad automáticas durante ciertas acciones)
 
 > **importante**
 >
-> La configuration des éléments du design se fait par un clic sur
-> ceux-ci.
+> La configuración de los elementos de diseño se realiza haciendo clic en
+> estos.
 
-Configuration du design 
+Configuración de diseño 
 =======================
 
-On retrouve ici :
+Encontrado aquí :
 
 -   **general**
 
-    -   **apellido** : Le nom de votre design
+    -   **apellido** : El nombre de su diseño
 
-    -   **Fond transparent** : rend le fond transparent. Attention si la
-        case est cochée, la couleur de fond n'est pas utilisée
+    -   **Fondo transparente** : hace que el fondo sea transparente. Tenga cuidado si el
+        la casilla está marcada, no se utiliza el color de fondo
 
-    -   **Couleur de fond** : couleur de fond du design (blanc
-        par défaut)
+    -   **Color de fondo** : diseño de color de fondo (blanco
+        por defecto)
 
-    -   **Code** : Code d'accès à votre design (si vide, aucun code
-        n'est demandé)
+    -   **código** : Código de acceso a su diseño (si está vacío, sin código
+        no es solicitado)
 
-    -   **Icône** : Une icône pour celui-ci (apparaît dans le menu de
-        choix de design)
+    -   **icono** : Un icono para ello (aparece en el menú
+        elección de diseño)
 
-    -   **Image**
+    -   **imagen**
 
-        -   **Envoyer** : permet d'ajouter une image de fond au design
+        -   **enviar a** : permite agregar una imagen de fondo al diseño
 
-        -   **Supprimer l'image** : permet de supprimer l'image
+        -   **Eliminar imagen** : borrar imagen
 
--   **Tailles**
+-   **tamaños**
 
-    -   **Taille (LxH)** : Permet de fixer la taille de votre design
-        (cadre gris en mode édition)
+    -   **Tamaño (WxH)** : Le permite fijar el tamaño de su diseño.
+        (marco gris en modo edición)
 
-Configuration générale des éléments 
+Configuración general de elementos. 
 ===================================
 
 > **nota**
 >
-> En fonction du type de l'élément, les options peuvent changer.
+> Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
 > **nota**
 >
-> L'élément sélectionné apparaît en surbrillance rouge (au lieu de vert
-> pour tous les autres).
+> El elemento seleccionado se resalta en rojo (en lugar de verde
+> para todos los demás).
 
-Paramètre d'affichage 
+Ajuste de la pantalla 
 ---------------------
 
--   **Profondeur** : permet de choisir le niveau de la profondeur
+-   **profundidad** : permite elegir el nivel de profundidad
 
--   **Position X (%)** :
+-   **Posición X (%)** :
 
--   **Position Y (%)** :
+-   **Posición Y (%)** :
 
--   **Largeur (px)** :
+-   **Ancho (px)** :
 
--   **Hauteur (px)** :
+-   **Altura (px)** :
 
-Supprimer 
+remove 
 ---------
 
-Permet de supprimer l'élément
+Eliminar elemento
 
-Dupliquer 
+duplicado 
 ---------
 
-Permet de dupliquer l'élément
+Le permite duplicar el elemento.
 
-Verrouiller 
+cerradura 
 -----------
 
-Permet de verrouiller l'élément pour qu'il ne soit plus déplaçable ou
-redimensionnable.
+Bloquea el elemento para que ya no sea móvil o
+de tamaño variable.
 
-Graphique 
+gráfico 
 =========
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
--   **período** : permet de choisir la période d'affichage
+-   **período** : le permite elegir el período de visualización
 
--   **Afficher la légende** : affiche la légende
+-   **Mostrar subtítulo** : mostrar leyenda
 
--   **Afficher le navigateur** : affiche le navigateur (deuxième graph
-    plus léger en dessous du premier)
+-   **Mostrar navegador** : mostrar el navegador (segundo gráfico
+    más claro debajo del primero)
 
 -   **Afficher le sélecteur de période** : affiche le sélecteur de
     période en haut à gauche
 
 -   **Afficher la barre de défilement** : affiche la barre de défilement
 
--   **Fond transparent** : rend le fond transparent
+-   **Fondo transparente** : hace que el fondo sea transparente
 
 -   **Bordure** : permet d'ajouter une bordure, attention la syntaxe est
     HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
@@ -195,7 +195,7 @@ Text/html
 
 -   **icono** : icono à afficher devant
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
+-   **Color de fondo** : permet de changer la couleur de fond ou de le
     mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
 -   **Couleur du texte** : permet de changer la couleur des icônes et
@@ -222,13 +222,13 @@ Text/html
 >
 > Si vous mettez du code HTML (en particulier du Javascript), attention
 > à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter complètement le design et
+> ou si il écrase un composant Jeedom planter complètement le diseño et
 > il ne restera plus qu'à le supprimer directement en base de données
 
-Scénario 
+guión 
 ========
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
 Aucun paramètre spécifique d'affichage
@@ -236,14 +236,14 @@ Aucun paramètre spécifique d'affichage
 Lien 
 ====
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
 -   **apellido** : apellido du lien (texte affiché)
 
--   **Lien** : Lien vers le design ou la vue en question
+-   **Lien** : Lien vers le diseño ou la vue en question
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
+-   **Color de fondo** : permet de changer la couleur de fond ou de le
     mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
 -   **Couleur du texte** : permet de changer la couleur des icônes et
@@ -263,10 +263,10 @@ Paramètres d'affichage
 
 -   **Gras** : met le texte en gras
 
-Equipement 
+equipo 
 ==========
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
 Aucun paramètre spécifique d'affichage
@@ -277,10 +277,10 @@ Configuration avancée
 Affiche la fenêtre de configuration avancée de l'équipement (voir
 documentation Résumé domotique ("display"))
 
-Commande 
+orden 
 ========
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
 Aucun paramètre spécifique d'affichage
@@ -291,16 +291,16 @@ Configuration avancée
 Affiche la fenêtre de configuration avancée de la commande (voir
 documentation Résumé domotique ("display"))
 
-Image/Caméra 
+imagen/Caméra 
 ============
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
 -   **Afficher** : définit ce que vous voulez afficher, image fixe ou
-    flux d'une caméra
+    flux de una camara
 
--   **Image** : permet d'envoyer l'image en question (si vous avez
+-   **imagen** : permet d'envoyer l'image en question (si vous avez
     choisi une image)
 
 -   **Caméra** : caméra à afficher (si vous avez choisi caméra)
@@ -308,7 +308,7 @@ Paramètres d'affichage
 Zone 
 ====
 
-Paramètres d'affichage 
+Configuraciones de pantalla 
 ---------------------
 
 -   **Type de zone** : C'est ici que vous choisissez le type de la zone :
@@ -328,7 +328,7 @@ fonction de l'état de la commande que vous donnez. Ex : si la commande
 vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
 la ou les actions Off
 
--   **Information binaire** : Commande donnant l'état à vérifier pour
+-   **Information binaire** : orden donnant l'état à vérifier pour
     décider de l'action à faire (On ou Off)
 
 Il vous suffit en dessous de mettre les actions à faire pour le On et
@@ -339,7 +339,7 @@ pour le Off
 Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous
 afficherez le widget en question
 
--   **Equipement** : widget à afficher lors du survol ou du clic
+-   **equipo** : widget à afficher lors du survol ou du clic
 
 -   **Afficher au survol** : si coché, affiche le widget au survol
 
@@ -355,7 +355,7 @@ Résumé
 -   **Lien** : Permet d'indiquer le résumé à afficher (general pour le
     global sinon indiquer l'objet)
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
+-   **Color de fondo** : permet de changer la couleur de fond ou de le
     mettre transparent, ne pas oublier de passer "Défaut" sur NON
 
 -   **Couleur du texte** : permet de changer la couleur des icônes et
@@ -376,10 +376,10 @@ Résumé
 FAQ 
 ======
 
->**Je n'arrive plus à éditer mon design**
+>**Je n'arrive plus à éditer mon diseño**
 >
->Si vous avez mis un widget ou une image qui prend quasiment la totalité du design, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+>Si vous avez mis un widget ou une image qui prend quasiment la totalité du diseño, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
 
->**Supprimer un design qui ne marche plus**
+>**remove un diseño qui ne marche plus**
 >
->Dans la partie administration puis OS/DB, faire "select * from planHeader", récuperer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précedemment.
+>Dans la partie administration puis OS/DB, faire "select * from planHeader", récuperer l'id du diseño en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du diseño trouvé précedemment.

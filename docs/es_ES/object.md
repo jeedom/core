@@ -2,7 +2,7 @@ la **objetos** permettent de définir l'arborescence de votre domotique.
 Tous les équipements que vous créerez devront appartenir à un objet et
 pourront ainsi être plus facilement repérables. On dit alors que l'objet
 est le **parent** de l'équipement. La gestion des objetos est accessible
-à partir du menu **Outils → Objets**.
+à partir du menu **Outils → objetos**.
 
 Pour laisser libre choix à la personnalisation, vous pouvez nommer ces
 objetos comme vous le voulez. Usuellement, on y définira les différentes
@@ -24,7 +24,7 @@ Mes objetos
 
 Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
-Onglet Objet 
+Onglet objeto 
 ------------
 
 En cliquant sur un objet, vous accédez à sa page de configuration. Quels
@@ -47,7 +47,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
     liste, ce qui permet de l'afficher, mais uniquement de
     manière explicite.
 
--   **Icône** : Permet de choisir une icône pour votre objet.
+-   **icono** : Permet de choisir une icône pour votre objet.
 
 -   **Couleur du tag** : Permet de choisir la couleur de l'objet et des
     équipements qui lui sont rattachés.
@@ -62,7 +62,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
     seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
     objetos qui se suivent, ils seront également côte à côte.
     
--   **Image** : Vous avez la possibilité de télécharger une image ou la
+-   **imagen** : Vous avez la possibilité de télécharger une image ou la
     supprimer. Au format jpeg cette image sera l'image de fond de l'objet
     quand vous l'afficherez sur le dashboard.
 
@@ -127,7 +127,7 @@ Jeedom, ainsi que leur configuration :
 
 -   **ID** : ID de l'objet.
 
--   **Objet** : Nom de l'objet.
+-   **objeto** : Nom de l'objet.
 
 -   **Père** : Nom de l'objet parent.
 

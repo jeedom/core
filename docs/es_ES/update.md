@@ -82,7 +82,7 @@ chaque élément :
 
 -   **Réinstaller** : Force la réinstallation.
 
--   **Supprimer** : Permet de le désinstaller.
+-   **remove** : Permet de le désinstaller.
 
 -   **Vérifier** : Interroge la source des mises à jour pour savoir si
     une nouvelle mise à jour est disponible.
@@ -90,7 +90,7 @@ chaque élément :
 -   **Mettre à jour** : Permet de mettre à jour l'élément (si celui-ci a
     une mise à jour).
 
--   **Changelog** : Permet d'accéder à la liste des changements de la
+-   **cambios** : Permet d'accéder à la liste des changements de la
     mise à jour.
 
 > **importante**

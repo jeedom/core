@@ -9,10 +9,10 @@ General
 Dans cet onglet on retrouve des informations générales sur Jeedom :
 
 -   **Name de deine Freiheit** : Permet d'identifier deine Freiheit,
-    notamment dans le Markt. Il peut être réutilisé dans les scénarios
+    notamment dans der Markt. Il peut être réutilisé dans les scénarios
     ou permettre d'identifier une sauvegarde.
 
--   **Langue** : Langue utilisée dans deine Freiheit.
+-   **Sprache** : Sprache utilisée dans deine Freiheit.
 
 -   **Système** : Type de matériel sur lequel est installé le système où
     deine Freiheit tourne.
@@ -37,20 +37,20 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 
 -   **Système** : Indique le type de matériel sur lequel Jeedom est installé.   
 
--   **Clef d'installation** : Clef matérielle de deine Freiheit sur
-    le Markt. Si deine Freiheit n'apparaît pas dans la liste de vos
-    Jeedom sur le Markt, il est conseillé de cliquer sur le bouton
+-   **Installationsschlüssel** : Clef matérielle de deine Freiheit sur
+    der Markt. Si deine Freiheit n'apparaît pas dans la liste de vos
+    Jeedom sur der Markt, il est conseillé de cliquer sur le bouton
     **Remise à zéro**.
 
 -   **Dernière date connue** : Date enregistrée par Jeedom, utilisée après
     un redémarrage pour des systèmes n'ayant pas de pile RTC.
 
-Interface
+Schnittstelle
 =========
 
 Sie trouverez dans cet onglet les paramètres de personnalisation de l'affichage.
 
-Thèmes
+Themen
 ------
 
 -   **Desktop clair et sombre** : Sie lass uns choisir un thème clair
@@ -66,7 +66,7 @@ Thèmes
     generic extra sensor dans chrome, page chrome://flags
 
 -   **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve
-    dans les pages scénarios, objets, interactions, etc.
+    dans les pages scénarios, Objekte, interactions, etc.
 
 Tuiles
 ------
@@ -84,7 +84,7 @@ Réseaux
 =======
 
 Il faut absolument configurer correctement cette partie importante de
-Jeedom sinon beaucoup de plugins risquent de ne pas fonctionner. Il
+Jeedom sinon beaucoup de Plugins risquent de ne pas fonctionner. Il
 est possible d'accéder à Jeedom de deux manières différentes : L'**accès
 interne** (depuis le même réseau local que Jeedom) et l'**accès
 externe** (depuis un autre réseau notamment depuis Internet).
@@ -112,7 +112,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
     -   **Adresse URLs ou IP** : IP von Jeedom à renseigner
 
     -   **Port** : le port de l'interface web von Jeedom, en général 80.
-        Attention changer le port ici ne change pas le port réel de
+        Aufmerksamkeit changer le port ici ne change pas le port réel de
         Jeedom qui restera le même
 
     -   **Complément** : le fragment d'URLs complémentaire (zBemple
@@ -143,13 +143,13 @@ externe** (depuis un autre réseau notamment depuis Internet).
 
     - **Login** : Renseigner le login du proxy,
 
-    - **Mot de passe** : Renseigner le mot de passe.
+    - **Passwort** : Renseigner le mot de passe.
 
 > **Spitze**
 >
 > Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le
 > port est le 80 (par défaut). Pour utiliser HTTPS depuis l'extérieur,
-> un plugin letsencrypt est maintenant disponible sur le market.
+> un Plugin letsencrypt est maintenant disponible sur le market.
 
 > **Spitze**
 >
@@ -158,7 +158,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
 > votre navigateur Internet, si vous devez ajouter /jeedom (ou autre
 > chose) après l'IP.
 
--   **Gestion avancée** : Cette partie peut ne pas apparaitre, en
+-   **Management avancée** : Cette partie peut ne pas apparaitre, en
     fonction de la compatibilité avec votre matériel. Sie y trouverez
     la liste de vos interfaces réseaux. Sie pourrez indiquer à Jeedom
     de ne pas monitorer le réseau en cliquant sur **désactiver la
@@ -174,7 +174,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
 
     -   **Statut DNS** : statut du DNS HTTP
 
-    -   **Gestion** : permet d'arrêter et relancer le service DNS Jeedom
+    -   **Management** : permet d'arrêter et relancer le service DNS Jeedom
 
 > **wichtig**
 >
@@ -184,7 +184,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
 -   **Durée de vie des sessions (heure)** : durée de vie des sessions
     PHP, il est déconseillé de toucher à ce paramètre.
 
-Logs
+logs
 ====
 
 Timeline
@@ -199,14 +199,14 @@ Timeline
 Messages
 --------
 
--   **Ajouter un Nachricht à chaque erreur dans les logs** : si un plugin
+-   **Ajouter un Nachricht à chaque erreur dans les logs** : si un Plugin
     ou Jeedom écrit un Nachricht d'erreur dans un log, Jeedom ajoute
     automatiquement un Nachricht dans le centre des Nachrichts (au moins
     vous êtes sûr de ne pas le manquer).
 
 -   **Action sur Nachricht** : Permet de faire une action lors de l'ajout d'un Nachricht dans le centre des Nachrichts. Sie avez 2 tags pour ces actions :
         - #subject# : Nachricht en question
-        - #plugin# : plugin qui a déclenché le Nachricht
+        - #Plugin# : Plugin qui a déclenché le Nachricht
 
 Alertes
 -------
@@ -243,13 +243,13 @@ Alertes
 -   **Commande sur Danger** : Commande de type **Nachricht** à utiliser si
     une commande passe en alerte **Gefahr**.
 
-Logs
+logs
 ----
 
 -   **Moteur de log** : Permet de changer le moteur de log pour, par
     exemple, les envoyer à un demon syslog(d).
 
--   **Format des logs** : Format de log à utiliser (Attention : ça
+-   **Format des logs** : Format de log à utiliser (Aufmerksamkeit : ça
     n'affecte pas les logs des démons).
 
 -   **Anzahl de lignes maximum dans un fichier de log** : Définit le
@@ -264,9 +264,9 @@ Logs
 
 En dessous vous retrouvez un tableau permettant de gérer finement le
 niveau de log des éléments essentiels von Jeedom ainsi que celui des
-plugins.
+Plugins.
 
-Commandes
+Befehle
 =========
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans
@@ -338,9 +338,9 @@ commande, **\#humanname\#** pour le nom complet de la commande (zB :
 Résumés
 =======
 
-Permet d'ajouter des résumés d'objets. Cette information est affichée
+Permet d'ajouter des résumés d'Objekte. Cette information est affichée
 tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des
-objets :
+Objekte :
 
 -   **Clef** : Clé du résumé, à ne surtout pas toucher.
 
@@ -403,15 +403,15 @@ Verbindungen
 =====
 
 Permet de configurer les graphiques de liens. Ces liens permettent de
-voir, sous forme d'un graphique, les relations entre les objets, les
-équipements, les objets, etc.
+voir, sous forme d'un graphique, les relations entre les Objekte, les
+équipements, les Objekte, etc.
 
 -   **Profondeur pour les scénarios** : Permet de définir, lors de
     l'affichage d'un graphique de liens d'un scénario, le nombre
     d'éléments maximum à afficher (plus il y a d'éléments plus le
     graphique sera lent à générer et plus il sera difficile à lire).
 
--   **Profondeur pour les objets** : Idem pour les objets.
+-   **Profondeur pour les Objekte** : Idem pour les Objekte.
 
 -   **Profondeur pour Ausrüstung** : Idem pour Ausrüstung.
 
@@ -433,8 +433,8 @@ interactions que vous trouverez dans Outils→Wechselwirkungen.
 > **Spitze**
 >
 > Pour activer le log des interactions, il faut aller dans l'onglet
-> Administration→Configuration→Logs, puis cocher **Debug** dans la liste
-> du bas. Attention : les logs seront alors très verbeux !
+> Administration→Configuration→logs, puis cocher **Debug** dans la liste
+> du bas. Aufmerksamkeit : les logs seront alors très verbeux !
 
 General
 -------
@@ -472,12 +472,12 @@ Sie avez ici trois paramètres :
 Interaction automatique, contextuelle & avertissement
 -----------------------------------------------------
 
--   Les **interactions automatiques** permettent à Jeedom de tenter de
+-   die **interactions automatiques** permettent à Jeedom de tenter de
     comprendre une demande d'interaction même si il n'y en a aucune
     de définie. Il va alors chercher un nom d'objet et/ou d'équipement
     et/ou de commande pour essayer de répondre au mieux.
 
--   Les **interactions contextuelles** vous permettent d'enchainer
+-   die **interactions contextuelles** vous permettent d'enchainer
     plusieurs demandes sans tout répéter, par exemple :
 
     -   *Jeedom gardant le contexte :*
@@ -496,7 +496,7 @@ Interaction automatique, contextuelle & avertissement
 
         -   *Jeedom* : Température 23.6 °C, Température 27.2 °C
 
--   Les interactions de type **Préviens-moi** permettent de demander à
+-   die interactions de type **Préviens-moi** permettent de demander à
     Jeedom de vous prévenir si une commande dépasse/descend ou vaut une
     certaine valeur.
 
@@ -578,7 +578,7 @@ LDAP
 -   **Benutzername** : Benutzername für Jeedom zu
     Verbindung zu AD herstellen
 
--   **Mot de passe** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen
+-   **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen
 
 -   **Benutzersuchfelder** : Suchfelder von
     Benutzer Login. Normalerweise uid für LDAP, SamAccountName für
@@ -654,18 +654,18 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 ### Markt
 
 Eine Kaution, die verwendet wird, um Jeedom mit dem Markt zu verbinden, wird dringend empfohlen
-um dieses Repository zu verwenden. Attention : Jede Supportanfrage kann sein
+um dieses Repository zu verwenden. Aufmerksamkeit : Jede Supportanfrage kann sein
 abgelehnt, wenn Sie eine andere Einzahlung als diese verwenden.
 
 -   **Adresse** : Marktadresse (Https://www.jeedom.com/market)
 
 -   **Benutzername** : Ihr Benutzername auf dem Markt.
 
--   **Mot de passe** : Ihr Marktpasswort.
+-   **Passwort** : Ihr Marktpasswort.
 
 -   **[Backup cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes besteht)
 
--   **[Backup cloud] Mot de passe** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
+-   **[Backup cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
 
 -   **[Backup cloud] Fréquence backup full** : Häufigkeit der vollständigen Cloud-Sicherung. Eine vollständige Sicherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun
 
@@ -678,7 +678,7 @@ eine Samba-Aktie (z : NAS-Synologie).
 
 -   **\ [Backup \] Benutzer** : Benutzername für die Anmeldung
     (anonyme Verbindungen sind nicht möglich). Es muss geben
-    dass der Benutzer Lese- und Schreibrechte an der hat
+    dass der Benutzer diee- und Schreibrechte an der hat
     Zielverzeichnis.
 
 -   **\ [Backup \] Passwort** : Benutzerpasswort.
@@ -814,5 +814,5 @@ Auf dieser Registerkarte befinden sich zwei Teile, die Experten vorbehalten sind
     -   **Benutzer** : Benutzername von Jeedom in
         die Datenbank,
 
-    -   **Mot de passe** : Datenbankzugriffskennwort
+    -   **Passwort** : Datenbankzugriffskennwort
         von Jeedom verwendet.

@@ -86,7 +86,7 @@ En SSH faites :
 ``` {.bash}
 sudo su -
 chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+chown -R www-Daten:www-data / var / www / html
 ```
 
 Où se trouvent les sauvegardes de Jeedom ?
@@ -103,7 +103,7 @@ En SSH faites :
 sudo su -
 php /var/www/html/install/update.php
 chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+chown -R www-Daten:www-data / var / www / html
 ```
 
 La Webapp est-elle compatible Symbian ?

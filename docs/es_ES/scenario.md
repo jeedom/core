@@ -2,14 +2,14 @@ Voici la partie la plus importante dans la domotique : les scénarios.
 Véritable cerveau de la domotique, c'est ce qui permet d'interagir avec
 le monde réel de manière "intelligente".
 
-La page de gestion des Scénarios
+La page de gestion des guións
 ================================
 
 administración
 -------
 
 Pour y accéder, rien de plus simple, il suffit d'aller sur Outils ->
-Scénarios. Vous y trouverez la liste des scénarios de votre Jeedom ainsi
+guións. Vous y trouverez la liste des scénarios de votre Jeedom ainsi
 que des fonctions pour les gérer au mieux :
 
 -   **Ajouter** : Permet de créer un scénario. La procédure est décrite
@@ -64,9 +64,9 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
     pas de sauvegarder au préalable !). la déclencheurs ne sont donc
     pas pris en compte.
 
--   **Supprimer** : Permet de supprimer le scénario.
+-   **remove** : Permet de supprimer le scénario.
 
--   **Sauvegarder** : Permet de sauvegarder les changements effectués.
+-   **Guardar** : Permet de sauvegarder les changements effectués.
 
 -   **Template** : Permet d'accéder aux templates et d'en appliquer un
     au scénario depuis le market. (por ejemplo,pliqué en bas de page).
@@ -75,7 +75,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 -   **Log** : Permet d'afficher les logs du scénario.
 
--   **Dupliquer** : Permet de copier le scénario pour en créer un
+-   **duplicado** : Permet de copier le scénario pour en créer un
     nouveau avec un autre nom.
 
 -   **Vínculos** : Permet de visualiser le graphique des éléments en lien
@@ -87,7 +87,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 > **punta**
 >
-> Un Ctrl+Shift+z ou Ctrl+Shift+y vous permet d'annuler ou de refaire une modification (ajout d'action, de bloc...)
+> Un Ctrl+Shift+z ou Ctrl+Shift+y vous permet d'annuler ou de refaire une modification (ajout d'acción, de bloc...)
 
 Onglet general
 --------------
@@ -134,16 +134,16 @@ notre scénario :
 > Atención : vous pouvez avoir au maximum 28
 > déclencheurs/programmations pour un scénario.
 
-Onglet Scénario
+Onglet guión
 ---------------
 
 C'est ici que vous allez construire votre scénario. Il faut commencer
 par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc
-créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
+créé, vous pourrez y ajouter un autre **bloc** ou une **acción**.
 
 > **punta**
 >
-> Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
+> Dans les conditions et accións, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
 >
 > Pour éviter la confirmation de suppression d'un bloc, faites Ctrl+Click
 
@@ -151,26 +151,26 @@ créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
 
 Voici les différents types de blocs disponibles :
 
--   **Si/Alors/Sinon** : Permet de réaliser des actions
+-   **Si/Alors/Sinon** : Permet de réaliser des accións
     sous condition(s).
 
--   **Action** : Permet de lancer des actions simples sans
+-   **Action** : Permet de lancer des accións simples sans
     aucune condition.
 
--   **Boucle** : Permet de réaliser des actions de manière répétitive de
+-   **Boucle** : Permet de réaliser des accións de manière répétitive de
     1 jusqu'à un nombre défini (ou même la valeur d'un capteur, ou un
     nombre aléatoire…​).
 
--   **Dans** : Permet de lancer une action dans X minute(s) (0 est une
-    valeur possible). La particularité est que les actions sont lancées
+-   **Dans** : Permet de lancer une acción dans X minute(s) (0 est une
+    valeur possible). La particularité est que les accións sont lancées
     en arrière-plan, elles ne bloquent donc pas la suite du scénario.
     C'est donc un bloc non bloquant.
 
--   **A** : Permet de dire à Jeedom de lancer les actions du bloc à une
+-   **A** : Permet de dire à Jeedom de lancer les accións du bloc à une
     heure donnée (sous la forme hhmm). Ce bloc est non bloquant. Ex :
     0030 pour 00h30, ou 0146 pour 1h46 et 1050 pour 10h50.
 
--   **Code** : Permet d'écrire directement en code PHP (demande
+-   **código** : Permet d'écrire directement en code PHP (demande
     certaines connaissances et peut être risqué mais permet de n'avoir
     aucune contrainte).
 
@@ -188,9 +188,9 @@ Chacun de ces blocs a ses options pour mieux les manipuler :
 
 > **punta**
 >
-> Possibilité de condenser les blocs.
-> L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
-> Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur coller remplace le bloc par le bloc copié.
+> Capacidad para condensar bloques.
+> La acción &#39;Agregar bloque&#39; cambia a la pestaña Escenario si es necesario.
+> Nuevas funciones de copiar / pegar en bloque. Ctrl+Click sur coller remplace le bloc par le bloc copié.
 > Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous aviez cliqué.
 
 #### Blocs Si/Alors/Sinon , Boucle, Dans et A
@@ -199,7 +199,7 @@ Chacun de ces blocs a ses options pour mieux les manipuler :
 >
 > Sur les blocs de type Si/Alors/Sinon, des flèches circulaires situées
 > à gauche du champ de condition permettent d'activer ou non la
-> répétition des actions si l'évaluation de la condition donne le même
+> répétition des accións si l'évaluation de la condition donne le même
 > résultat que la précedente évaluation.
 
 Pour les conditions, Jeedom essaye de faire en sorte qu'on puisse les
@@ -207,7 +207,7 @@ Pour les conditions, Jeedom essaye de faire en sorte qu'on puisse les
 boutons sont disponibles sur la droite de ce type de bloc pour
 sélectionner un élément à tester :
 
--   **Rechercher une commande** : Permet de chercher une commande dans
+-   **Buscar une commande** : Permet de chercher une commande dans
     toutes celles disponibles dans Jeedom. Une fois la commande trouvée,
     Jeedom ouvre une fenêtre pour vous demander quel test vous souhaitez
     effectuer sur celle-ci. Si vous choisissez de **Ne rien mettre**,
@@ -215,10 +215,10 @@ sélectionner un élément à tester :
     choisir **et** ou **ou** devant **Ensuite** pour enchaîner des tests
     sur différents équipements.
 
--   **Rechercher un scénario** : Permet de chercher un scénario
+-   **Buscar un scénario** : Permet de chercher un scénario
     à tester.
 
--   **Rechercher un équipement** : Idem pour un équipement.
+-   **Buscar un équipement** : Idem pour un équipement.
 
 > **punta**
 >
@@ -229,19 +229,19 @@ sélectionner un élément à tester :
 
 Une fois la condition renseignée, vous devez utiliser le bouton
 "ajouter", à gauche, afin d'ajouter un nouveau **bloc** ou une
-**action** dans le bloc actuel.
+**acción** dans le bloc actuel.
 
 > **punta**
 >
 > Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seules les parenthèses () sont possibles
 
-#### Bloc Code
+#### Bloc código
 
 > **importante**
 >
 > Atención, les tags ne sont pas disponibles dans un bloc de type code.
 
-Commandes (capteurs et actionneurs):
+Commandes (capteurs et acciónneurs):
 -   cmd::byString($string); : Retourne l'objet commande correspondant.
   -   $string : Lien vers la commande voulue : #[objet][equipement][commande]# (por ejemplo, : #[Appartement][Alarme][Actif]#)
 -   cmd::byId($id); : Retourne l'objet commande correspondant.
@@ -258,7 +258,7 @@ Log :
   -   level : [debug], [info], [error], [event].
   -   mensaje : Message à écrire dans les logs.
 
-Scénario :
+guión :
 -   $scenario->getName(); : Retourne le nom du scénario courant.
 -   $scenario->getGroup(); : Retourne le groupe du scénario.
 -   $scenario->getIsActive(); : Retourne l'état du scénario.
@@ -278,11 +278,11 @@ Scénario :
 
 > **punta**
 >
-> Ajout d'une fonction recherche dans le bloc Code : Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
+> Ajout d'une fonction recherche dans le bloc código : Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 
 ### la Actions
 
-la actions ajoutées dans les blocs ont plusieurs options. Dans l'ordre :
+la accións ajoutées dans les blocs ont plusieurs options. Dans l'ordre :
 
 -   Une case **parallèle** pour que cette commande se lance en parallèle
     des autres commandes également sélectionnées.
@@ -290,15 +290,15 @@ la actions ajoutées dans les blocs ont plusieurs options. Dans l'ordre :
 -   Une case **activée** pour que cette commande soit bien prise en
     compte dans le scénario.
 
--   Une **double-flèche verticale** pour déplacer l'action. Il suffit de
+-   Une **double-flèche verticale** pour déplacer l'acción. Il suffit de
     la glisser/déposer à partir de là.
 
--   Un bouton pour supprimer l'action.
+-   Un bouton pour supprimer l'acción.
 
--   Un bouton pour les actions spécifiques, avec à chaque fois la
-    description de cette action.
+-   Un bouton pour les accións spécifiques, avec à chaque fois la
+    description de cette acción.
 
--   Un bouton pour rechercher une commande d'action.
+-   Un bouton pour rechercher une commande d'acción.
 
 > **punta**
 >
@@ -424,16 +424,16 @@ pouvez utiliser les tags suivants :
 - #trigger_value# : Pour la valeur de la commande ayant déclenché le scénario
 
 Vous avez aussi les tags suivants en plus si votre scénario a été
-déclenché par une interaction :
+déclenché par une interacción :
 
--   #query# : interaction ayant déclenché le scénario,
+-   #pregunta# : interacción ayant déclenché le scénario,
 
--   #profil# : profil de l'utilisateur ayant déclenché le scénario
+-   #perfil# : perfil de l'utilisateur ayant déclenché le scénario
     (peut être vide).
 
 > **importante**
 >
-> Lorsqu'un scénario est déclenché par une interaction, celui-ci est
+> Lorsqu'un scénario est déclenché par une interacción, celui-ci est
 > forcément exécuté en mode rapide.
 
 la fonctions de calcul
@@ -694,20 +694,20 @@ Et les exemples pratiques :
 la commandes spécifiques
 =========================
 
-En plus des commandes domotiques, vous avez accès aux actions suivantes :
+En plus des commandes domotiques, vous avez accès aux accións suivantes :
 
 -   **Pause** (sleep) : Pause de x seconde(s).
 
 -   **variable** (variable) : Création/modification d'une variable ou de la valeur
     d'une variable.
 
--   **Supprimer variable** (delete_variable) : Permet de supprimer une variable
+-   **remove variable** (delete_variable) : Permet de supprimer une variable
 
--   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
+-   **guión** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d'envoyer des tags au scénario, ex : montag=2 (attention il
     ne faut utiliser que des lettre de a à z. Pas de majuscules, pas
     d'accents et pas de caractères spéciaux). On récupère le tag dans le
-    scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans)
+    scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des accións d'un "SI" si on passe pour la 2ème fois consécutive dedans)
 
 -   **Stop** (stop) : Arrête le scénario.
 
@@ -736,9 +736,9 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s'éteindre.
 
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
-    pour une interaction par exemple.
+    pour une interacción par exemple.
 
--   **Icône** (icon) : Permet de changer l'icône de représentation du scénario.
+-   **icono** (icon) : Permet de changer l'icône de représentation du scénario.
 
 -   **Alerte** (alert) : Permet d'afficher un petit mensaje d'alerte sur tous
     les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
@@ -752,7 +752,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
     Atención, si votre accès Internet est en HTTPS non-signé, cette
     fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
--   **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
+-   **remove bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
 -   **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de manière arbitraire
@@ -795,7 +795,7 @@ En haut, vous pouvez :
 
 -   **Partager** : partager le template sur le Market,
 
--   **Supprimer** : supprimer le template,
+-   **remove** : supprimer le template,
 
 -   **Télécharger** : récupérer le template sous forme de fichier JSON
     pour le renvoyer sur un autre Jeedom par exemple.
@@ -812,7 +812,7 @@ correspondance des commandes puis de faire appliquer.
 Ajout de fonction php
 ====================
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > L'ajout de fonction PHP est reservé aux utilisateurs avancés. La moindre erreur peut faire planter votre Jeedom
 
@@ -824,6 +824,6 @@ Allez dans le dossier data puis php et cliquez sur le fichier user.function.clas
 
 C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique.
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php

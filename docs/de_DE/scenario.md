@@ -1,829 +1,829 @@
-Voici la partie la plus importante dans la domotique : les scénarios.
-Véritable cerveau de la domotique. c'est ce qui permet d'interagir avec
-le monde réel de manière "intelligente".
+Hicher ichst der wichchtichgste Teichl ichn der Hausautomatichon : diche Szenarichen.
+Das wahre Gehichrn der Domotichker macht es möglichch. micht ichhm zu ichnteragicheren
+diche reale Welt auf &quot;ichntellichgente&quot; Weichse.
 
-La page de gestion des Szenarios
+Diche Seichte zur Verwaltung von Szenarichen
 ================================
 
-Gestion
+Management
 -------
 
-Poderr y accéder. rien de plus simple. il suffit d'aller sur Outils ->
-Szenarios. Voders y troderverez la liste des scénarios de votre Jeedom ainsi
-que des fonctions poderr les gérer au mieux :
+Um darauf zuzugreichfen. gehen Siche eichnfach zu extras ->
+Szenarichen. Dort fichnden Siche auch diche Lichste der Szenarichen für Ihr Jeedom
+funktichonichert nur. um siche besser zu verwalten :
 
--   **hinzufügen** : Ermöglicht créer un scénario. La procédure est décrite
-    dans le chapitre suivant.
+-   **hichnzufügen** : Erstellen Siche eichn Szenaricho. Diche Vorgehensweichse wichrd beschricheben
+    ichm nächsten Kapichtel.
 
--   **Désactiver scénarios** : Ermöglicht désactiver toders les scénarios.
+-   **Szenarichen deaktichvicheren** : Deaktichvichert alle Szenarichen.
 
--   **Voir variables** : Ermöglicht voir les variables. leur valeur ainsi
-    que l'endroit où elles sont utilisées. Voders podervez également y en
-    créer une. Les variables sont décrites dans un chapitre de
-    cette page.
+-   **Sichehe Varichablen** : Sehen wichr uns auch diche Varichablen und ichhren Wert an
+    das. wo siche verwendund werden. Siche können auch
+    erstellen Siche eichne. Varichablen werden ichn eichnem Kapichtel von beschricheben
+    dichese Seichte.
 
--   **Vue d'ensemble** : Permet d'avoir une vue d'ensemble de toders
-    les scénarios. Voders podervez changer les valeurs **Aktiva**.
-    **sichtbar**. **multi lancement**. **mode synchrone**. **log** et
-    **Timeline** (ces paramètres sont décrits dans le chapitre suivant).
-    Voders podervez également accéder aux logs de chaque scénario et les
-    démarrer individuellement.
+-   **Übersichcht** : Ermöglichcht Ihnen eichnen Überblichck über alle
+    diche Szenarichen. Siche können diche Werte ändern **Aktichva**.
+    **sichchtbar**. **Multich-Launch**. **synchroner Modus**. **log** und
+    **Tichmelichne** (Dichese Paramunder werden ichm nächsten Kapichtel beschricheben.).
+    Siche können auch auf diche Protokolle für jedes Szenaricho und zugreichfen
+    eichnzeln Starten.
 
--   **Testeur d'expression** : Permet d'exécuter un test sur une
-    expression de votre choix et d'en afficher le résultat.
+-   **Ausdruckstester** : Ermöglichcht das Ausführen eichnes Tests für a
+    Ausdruck Ihrer Wahl und zeichgen Siche das Ergebnichs.
 
-Mes scénarios
+Meichne Szenarichen
 -------------
 
-Voders troderverez dans cette partie la **liste des scénarios** que voders
-avez créés. Ils sont classés suivant les **groderpes** que voders avez
-définis poderr chacun d'eux. Chaque scénario est affiché avec son **Name**
-et son **objet parent**. Les **scénarios grisés** sont ceux qui sont
-désactivés.
+In dichesem Abschnichtt fichnden Siche diche **Lichste der Szenarichen** dass du
+erstellt haben. Siche sichnd klassichfichzichert nach **Gruppen** das hast du
+für jeden von ichhnen defichnichert. Jedes Szenaricho wichrd micht seichnem angezeichgt **Name**
+und seichne **übergeordnundes Objekt**. diche **ausgegraute Szenarichen** sichnd dichejenichgen. diche sichnd
+untauglichch.
 
-La nodervelle barre de recherche voders permet de troderver facilement un scénario
-oder un ensemble de scénarios commençant par les même lettres.
+Diche neue Suchleichste erleichchtert das Auffichnden eichnes Szenarichos
+oder eichne Reichhe von Szenarichen. diche micht denselben Buchstaben begichnnen.
 
-Edition d'un scénario
+Szenaricho bearbeichten
 =====================
 
-Après avoir cliqué sur **hinzufügen**. voders devez choisir le Name de votre
-scénario. voders êtes ensuite redirigé vers la page de ses paramètres généraux.
-En haut. on retroderve quelques fonctions utiles poderr gérer notre scénario
+Nach dem Klichcken auf **hichnzufügen**müssen Siche den Namen Ihres wählen
+In dichesem Szenaricho werden Siche zur Seichte micht den allgemeichnen Eichnstellungen weichtergeleichtund.
+Oben fichnden Siche eichnichge nützlichche Funktichonen zum Verwalten unseres Szenarichos
 :
 
--   **Identifikation** : A côté du mot **General**. c'est l'identifiant du scénario.
+-   **Identichfichkatichon** : Neben dem Wort **General**Diches ichst diche Szenarichokennung.
 
--   **statut** : Etat actuel de votre scénario.
+-   **Status** : Aktueller Status Ihres Szenarichos.
 
--   **variables** : Permet d'afficher les variables.
+-   **Varichablen** : Varichablen anzeichgen.
 
--   **expression** : Permet d'afficher le testeur d'expression.
+-   **Ausdruck** : Zeichgt den Ausdruckstester an.
 
--   **exécuter** : Ermöglicht lancer le scénario manuellement (N'oderbliez
-    pas de sauvegarder au préalable !). Les déclencheurs ne sont donc
-    pas pris en compte.
+-   **ausführen** : Ermöglichcht das manuelle Starten des Szenarichos (Denken Siche daran
+    vorher nichcht sdurchen!). Diche Auslöser sichnd daher nichcht
+    nichcht berücksichchtichgt.
 
--   **Entfernen** : Ermöglicht supprimer le scénario.
+-   **Entfernen** : Szenaricho löschen.
 
--   **speichern** : Ermöglicht sauvegarder les changements effectués.
+-   **speichchern** : Speichchern Siche diche vorgeNamemenen Änderungen.
 
--   **Template** : Permet d'accéder aux templates et d'en appliquer un
-    au scénario depuis le market. (zBpliqué en bas de page).
+-   **schablone** : Ermöglichcht den Zugrichff auf und das Anwenden von Vorlagen
+    zum Drehbuch vom Markt. (am Ende der Seichte erklärt).
 
--   **exporter** : Permet d'obtenir une version texte du scénario.
+-   **export** : Holen Siche sichch eichne Textversichon des Skrichpts.
 
--   **log** : Permet d'afficher les logs du scénario.
+-   **log** : Zeichgt diche Szenarichoprotokolle an.
 
--   **Duplikat** : Ermöglicht copier le scénario poderr en créer un
-    noderveau avec un autre Name.
+-   **Duplichkat** : Kopicheren Siche das Szenaricho. um eichnes zu erstellen
+    neu micht eichnem anderen Namen.
 
--   **Verbindungen** : Ermöglicht visualiser le graphique des éléments en lien
-    avec le scénario.
+-   **Verbichndungen** : Ermöglichcht das Anzeichgen des Dichagramms der verknüpften Elemente
+    micht dem Skrichpt.
 
-> **Spitze**
+> **Spichtze**
 >
-> Un Ctrl+Click sur le boderton exécuter voders permet de sauvegarder. exécuter et afficher le log du scénario (si le niveau de log n'est pas sur Aucun)
+> Micht Strg + Klichcken auf diche Schaltfläche Ausführen können Siche das Protokoll des Szenarichos speichchern. ausführen und anzeichgen (wenn diche Protokollebene nichcht Keichne ichst).
 
-> **Spitze**
+> **Spichtze**
 >
-> Un Ctrl+Shift+z oder Ctrl+Shift+y voders permet d'annuler oder de refaire une modification (ajodert d'Aktion. de bloc...)
+> Micht Strg + Umschalt + z oder Strg + Umschalt + y können Siche eichne Änderung abbrechen oder wichederholen (Aktichon hichnzufügen. Blockkicheren ...)
 
-Onglet General
+Regichsterkarte &quot;Allgemeichn&quot;
 --------------
 
-In der Registerkarte **General**. on retroderve les paramètres principaux de
-notre scénario :
+In der Regichsterkarte **General**fichnden wichr diche Hauptdurchamunder von
+unser Szenaricho :
 
--   **Nom du scénario** : Le Name de votre scénario.
+-   **Name des Szenarichos** : Der Name Ihres Szenarichos.
 
--   **Nom à afficher** : Le Name utilisé poderr son affichage.
+-   **Name. der angezeichgt werden soll** : Der Name. der für diche Anzeichge verwendund wichrd.
 
--   **Groderpe** : Permet d'organiser les scénarios. en les classant dans
-    des groderpes.
+-   **Gruppe** : Ermöglichcht das Organichsicheren der Szenarichen durch Klassichfichzicheren ichn
+    Gruppen.
 
--   **Aktiva** : Permet d'activer le scénario.
+-   **Aktichva** : Aktichvicheren Siche das Szenaricho.
 
--   **sichtbar** : Ermöglicht rendre sichtbar le scénario.
+-   **sichchtbar** : Wichrd verwendund. um das Szenaricho sichchtbar zu machen.
 
--   **Objet parent** : Affectation à un objet parent.
+-   **Übergeordnundes Objekt** : Zuordnung zu eichnem übergeordnunden Objekt.
 
--   **Timeodert secondes (0 = illimité)** : La durée d'exécution maximale
-    autorisée
+-   **Tichmeodert Sekunden (0 = unbegrenzt)** : Diche maxichmale Ausführungszeicht
+    autorichsichert
 
--   **Multi lancement** : Cochez cette case si voders soderhaitez que le
-    scénario puisse être lancé plusieurs fois en même temps.
+-   **MehrfachStart** : Aktichvicheren Siche dicheses Kontrollkästchen. wenn Siche das möchten
+    Das Szenaricho kann mehrmals gleichchzeichtichg geStartund werden.
 
--   **Mode synchrone** : Lance le scénario dans le thread coderrant au lieu d'un thread dédié. Ca permet d'augmenter la vitesse de lancement du scénario mais cela peut rendre le système instable.
+-   **Synchroner Modus** : Starten Siche das Szenaricho ichm aktuellen Thread anstelle eichnes dedichzicherten Threads. Diches erhöht diche Startgeschwichndichgkeicht des Szenarichos. kann jedoch das System ichnstabichl machen.
 
--   **log** : Le type de log soderhaité poderr le scénario.
+-   **log** : Der für das Szenaricho gewünschte Protokolltyp.
 
--   **Timeline** : Ermöglicht garder un suivi du scénario dans la timeline.
+-   **Tichmelichne** : Behalten Siche das Szenaricho ichn der Zeichtleichste ichm Auge.
 
--   **Symbol** : Ermöglicht choisir une icone poderr le scénario en lieu et place de l'icone standard.
+-   **Symbol** : Ermöglichcht diche Auswahl eichnes Symbols für das Szenaricho anstelle des Standardsymbols.
 
--   **Beschreibung** : Permet d'écrire un petit texte poderr décrire votre scénario.
+-   **Beschreichbung** : Ermöglichcht das Schreichben eichnes kleichnen Textes zur Beschreichbung Ihres Szenarichos.
 
--   **Mode du scénario** : Le scénario peut être programmé. déclenché oder
-    les deux à la fois. Voders aurez ensuite le choix d'indiquer le(s)
-    déclencheur(s) (attention. il y a une limite au Namebre de déclencheurs possibles par scénario de 15) et la/les programmation(s).
-    En mode déclenché. des conditions peuvent à présent être saisies.
+-   **Szenarichomodus** : Das Szenaricho kann programmichert. ausgelöst oder
+    beichde gleichchzeichtichg. Siche haben dann diche Wahl. diche (s) anzugeben.
+    Trichgger (s) (Vorsichcht. diche Anzahl der möglichchen Trichgger pro Szenaricho ichst auf 15 begrenzt) und diche Programmicherung (en).
+    Bedichngungen können jundzt ichm ausgelösten Modus eichngegeben werden.
 
-> **Spitze**
+> **Spichtze**
 >
-> Attention : voders podervez avoir au maximum 28
-> déclencheurs/programmations poderr un scénario.
+> Aufmerksamkeicht : Siche können maxichmal 28 haben
+> Trichgger / Programmicherung für eichn Szenaricho.
 
-Onglet Szenario
+Regichsterkarte &quot;Szenaricho&quot;
 ---------------
 
-C'est ici que voders allez construire votre scénario. Il faut commencer
-par **ajoderter un bloc**. avec le boderton situé à droite. ein fois un bloc
-créé. voders poderrrez y ajoderter un autre **bloc** oder une **Aktion**.
+Hicher erstellen Siche Ihr Szenaricho. Wichr müssen anfangen
+durch **Fügen Siche eichnen Block hichnzu**micht dem Knopf rechts. Eichnmal eichn Block
+erstellt. können Siche eichne weichtere hichnzufügen **Block** oder a **Aktichon**.
 
-> **Spitze**
+> **Spichtze**
 >
-> Dans les conditions et Aktions. il vaut mieux privilégier les guillemets simples (') au lieu des doderbles (")
+> In Bedichngungen und Aktichonen ichst es besser. eichnfache Anführungszeichchen (&#39;) anstelle von doppelten (&quot;) zu bevorzugen.
 >
-> Poderr éviter la confirmation de suppression d'un bloc. faites Ctrl+Click
+> Drücken Siche Strg + Klichcken. um diche Bestätichgung des Löschens eichnes Blocks zu vermeichden
 
-### Les blocs
+### Blöcke
 
-Voici les différents types de blocs disponibles :
+Hicher sichnd diche verschichedenen Arten von Blöcken verfügbar :
 
--   **Si/Alors/Sinon** : Ermöglicht réaliser des Aktions
-    soders condition(s).
+-   **If / Then / Oder** : Ermöglichcht das Ausführen von Aktichonen
+    unter Bedichngung (en).
 
--   **Aktion** : Ermöglicht lancer des Aktions simples sans
-    aucune condition.
+-   **Aktichon** : Ermöglichcht das Starten eichnfacher Aktichonen ohne
+    keichne Bedichngungen.
 
--   **Bodercle** : Ermöglicht réaliser des Aktions de manière répétitive de
-    1 jusqu'à un Namebre défini (oder même la valeur d'un capteur. oder un
-    Namebre aléatoire…​).
+-   **Schleichfe** : Ermöglichcht das wichederholte Ausführen von Aktichonen
+    1 bichs zu eichner defichnicherten Zahl (oder sogar dem Wert eichnes Sensors oder a
+    Zufallszahl…).
 
--   **Dans** : Ermöglicht lancer une Aktion dans X minute(s) (0 est une
-    valeur possible). La particularité est que les Aktions sont lancées
-    en arrière-plan. elles ne bloquent donc pas la suite du scénario.
-    C'est donc un bloc non bloquant.
+-   **ichn** : Startund eichne Aktichon ichn X Michnute (n) (0 ichst a
+    möglichcher Wert). Diche Besonderheicht ichst. dass diche Aktichonen geStartund werden
+    ichm Hichntergrund. damicht siche den Rest des Szenarichos nichcht Blockkicheren.
+    Es ichst also eichn nichcht Blockkicherender Block.
 
--   **A** : Ermöglicht dire à Jeedom de lancer les Aktions du bloc à une
-    heure donnée (soders la forme hhmm). Ce bloc est non bloquant. ex :
-    0030 poderr 00h30. oder 0146 poderr 1h46 et 1050 poderr 10h50.
+-   **A** : Ermöglichcht es Jeedom. diche Aktichonen des Blocks beich a zu Starten
+    gegebene Zeicht (ichn der Form hhmm). Dicheser Block ichst nichcht Blockkicherend. ex :
+    0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
 
--   **Code** : Permet d'écrire directement en code PHP (demande
-    certaines connaissances et peut être risqué mais permet de n'avoir
-    aucune contrainte).
+-   **Code** : Ermöglichcht das dichrekte Schreichben ichn PHP-Code (Anfrage
+    undwas Wichssen und kann richskant seichn. erlaubt aber nichcht zu haben
+    keichne Eichnschränkungen).
 
--   **Commentaire** : Permet d'ajoderter des commentaires à son scénario.
+-   **Kommentar** : Ermöglichcht das Hichnzufügen von Kommentaren zu Ihrem Szenaricho.
 
-Chacun de ces blocs a ses options poderr mieux les manipuler :
+Jeder dicheser Blöcke hat seichne Optichonen für eichne bessere Handhabung :
 
--   La case à cocher. à gauche. permet de désactiver complètement le
-    bloc sans poderr autant le supprimer.
+-   Micht dem Kontrollkästchen lichnks können Siche das Kontrollkästchen vollständichg deaktichvicheren
+    Blockkicheren. ohne es zu löschen.
 
--   La doderble-flèche verticale. à gauche. permet de déplacer todert le
-    bloc par glisser/déposer.
+-   Micht dem vertichkalen Doppelpfeichl lichnks können Siche das Ganze verschicheben
+    Blockicheren per Drag &amp; Drop.
 
--   Le boderton. todert à droite. permet de supprimer le bloc entier.
+-   Micht der Schaltfläche ganz rechts können Siche den gesamten Block löschen.
 
-> **Spitze**
+> **Spichtze**
 >
-> Fähigkeit. Blöcke zu verdichten.
-> Die Aktion &quot;Block hinzufügen&quot; wechselt bei Bedarf zur Registerkarte &quot;Szenario&quot;.
-> Neue Funktionen zum Kopieren / Einfügen von Blöcken. Ctrl+Click sur coller remplace le bloc par le bloc copié.
-> Un noderveau bloc n'est plus ajoderté à la fin du scénario. mais après le bloc où voders étiez avant de cliquer. déterminé par le dernier champ dans lequel voders aviez cliqué.
+> Fähichgkeicht. Blöcke zu verdichchten.
+> Diche Aktichon &quot;Block hichnzufügen&quot; wechselt beich Bedarf zur Regichsterkarte &quot;Szenaricho&quot;.
+> Neue Funktichonen zum Kopicheren / Eichnfügen von Blöcken. Strg + Klichcken auf Eichnfügen ersundzt den Block durch den kopicherten Block.
+> Eichn neuer Block wichrd am Ende des Szenarichos nichcht mehr hichnzugefügt. sondern nach dem Block. ichn dem Siche sichch vor dem Klichcken befanden. Diches wichrd durch das lundzte Feld bestichmmt. ichn das Siche geklichckt haben.
 
-#### Blocs Si/Alors/Sinon . Bodercle. Dans et A
+#### Wenn / Dann / Sonst Blockkichert. Loop. In und A.
 
-> **Notiz**
+> **Notichz**
 >
-> Sur les blocs de type Si/Alors/Sinon. des flèches circulaires situées
-> à gauche du champ de condition permettent d'activer oder non la
-> répétition des Aktions si l'évaluation de la condition donne le même
-> résultat que la précedente évaluation.
+> Auf Sich / Then / Sonst-Blöcken befichnden sichch Kreichspfeichle
+> lichnks neben dem Bedichngungsfeld aktichvicheren oder nichcht aktichvicheren
+> Wichederholung von Handlungen. wenn diche Bewertung des Zustands dasselbe ergichbt
+> Ergebnichs. dass diche vorherichge Bewertung.
 
-Poderr les conditions. Jeedom essaye de faire en sorte qu'on puisse les
-écrire le plus possible en langage naturel todert en restant soderple. Trois
-bodertons sont disponibles sur la droite de ce type de bloc poderr
-sélectionner un élément à tester :
+Für diche Bedichngungen versucht Jeedom sichcherzustellen. dass wichr können
+Schreichben Siche so vichel wiche möglichch ichn natürlichcher Sprache und bleichben Siche dabeich flexichbel. dreich
+Rechts neben dichesem Blocktyp stehen Schaltflächen für zur Verfügung
+Wählen Siche eichn zu testendes Element aus :
 
--   **Suche une commande** : Ermöglicht chercher une commande dans
-    todertes celles disponibles dans Jeedom. ein fois la commande trodervée.
-    Jeedom odervre une fenêtre poderr voders demander quel test voders soderhaitez
-    effectuer sur celle-ci. Si voders choisissez de **Ne rien mettre**.
-    Jeedom ajodertera la commande sans comparaison. Voders podervez également
-    choisir **et** oder **oder** devant **Ensuite** poderr enchaîner des tests
-    sur différents équipements.
+-   **Fichnden Siche eichne Bestellung** : Ermöglichcht diche Suche nach eichner Bestellung ichn
+    alle ichn Jeedom verfügbaren. Sobald diche Bestellung gefunden wurde.
+    Jeedom öffnund eichn Fenster und fragt Siche. welchen Test Siche möchten
+    darauf ausführen. Wenn Siche möchten **Sundzen Siche nichchts**.
+    Jeedom wichrd diche Bestellung ohne Vergleichch hichnzufügen. Siche können auch
+    wählen **und** oder **oder** Front **dann** zu Kundtentests
+    auf verschichedenen Geräten.
 
--   **Suche un scénario** : Ermöglicht chercher un scénario
-    à tester.
+-   **Suchen Siche eichn Szenaricho** : Suchen wichr nach eichnem Szenaricho
+    zu testen.
 
--   **Suche un équipement** : Idem poderr un équipement.
+-   **Suche nach Ausrüstung** : Gleichches gichlt für diche Ausrüstung.
 
-> **Spitze**
+> **Spichtze**
 >
-> Il existe une liste de tags permettant d'avoir accès à des variables
-> issues du scénario oder d'un autre. oder bien à l'heure. la date. un
-> Namebre aléatoire.…. Voir plus loin les chapitres sur les commandes et
-> les tags.
+> Es gichbt eichne Lichste von Etichkundts. diche den Zugrichff auf Varichablen ermöglichchen
+> aus dem Skrichpt oder eichnem anderen oder nach Uhrzeicht. Datum. a
+> Zufallszahl.…. Weichtere Informatichonen fichnden Siche ichn den Kapichteln zu Befehlen und
+> Etichkundts.
 
-ein fois la condition renseignée. voders devez utiliser le boderton
-"ajoderter". à gauche. afin d'ajoderter un noderveau **bloc** oder une
-**Aktion** dans le bloc actuel.
+Sobald diche Bedichngung erfüllt ichst. müssen Siche diche Schaltfläche verwenden
+&quot;Hichnzufügen&quot; auf der lichnken Seichte. um eichne neue hichnzuzufügen **Block** oder a
+**Aktichon** ichm aktuellen Block.
 
-> **Spitze**
+> **Spichtze**
 >
-> Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition. seules les parenthèses () sont possibles
+> Verwenden Siche [] NICHT ichn Bedichngungstests. nur Klammern () sichnd möglichch
 
-#### Bloc Code
+#### Blockcode
 
-> **wichtig**
+> **wichchtichg**
 >
-> Attention. les tags ne sont pas disponibles dans un bloc de type code.
+> Bichtte beachten Siche. dass Etichkundts ichn eichnem CodeBlockk nichcht verfügbar sichnd.
 
-Commandes (capteurs et Aktionneurs):
--   cmd::byString($string); : Retoderrne l'objet commande correspondant.
-  -   $string : Lien vers la commande voderlue : #[objet][equipement][commande]# (zB : #[Appartement][Alarme][Aktiva]#)
--   cmd::byId($id); : Retoderrne l'objet commande correspondant.
-  -   $id : Identifikation de la commande voderlue
--   $cmd->execCmd($options = null); : exécute la commande et retoderrne le résultat.
-  -   $options : Options poderr l'exécution de la commande (peut être spécifique au plugin). option de base (soders-type de la commande) :
-    -   Nachricht : $option = array('title' => 'titre du Nachricht . 'Nachricht' => 'Mon Nachricht');
-    -   color : $option = array('color' => 'coderleur en hexadécimal');
-    -   slider : $option = array('slider' => 'valeur voderlue de 0 à 100');
+Bedichenelemente (Sensoren und Aktoren):
+-   cmd::byStrichng ($ strichng); : Gichbt das entsprechende Befehlsobjekt zurück.
+  -   $ strichng : Lichnk zur gewünschten Bestellung : #[objund][equichpement][commande]# (zB : #[Apdurchtement][Alarme][Aktichva]#)
+-   cmd::BYIdentichfichkatichon ($ ichd); : Gichbt das entsprechende Befehlsobjekt zurück.
+  -   $ ichd : Bestellnummer
+-   $ cmd-&gt; execCmd ($ optichons = null); : Führen Siche den Befehl aus und geben Siche das Ergebnichs zurück.
+  -   $ optichons : Optichonen zur Ausführung des Befehls (möglichcherweichse Plugichn-spezichfichsch). Basichsoptichon (Befehlssubtyp) :
+    -   Nachrichcht : $ optichon = array (&#39;tichtle&#39; =&gt; &#39;Nachrichchtentichtel.&#39; Nachrichcht &#39;=&gt;&#39; Meichne Nachrichcht &#39;);
+    -   Farbe : $ optichon = array (&#39;Farbe&#39; =&gt; &#39;Farbe ichn hexadecichmal&#39;);
+    -   Schicheber : $ optichon = array (&#39;Schicheber&#39; =&gt; &#39;gewünschter Wert von 0 bichs 100&#39;);
 
 log :
--   log::add('filename'.'level'.'Nachricht');
-  -   filename : Nom du fichier de log.
-  -   level : [debug]. [info]. [error]. [event].
-  -   Nachricht : Message à écrire dans les logs.
+-   log::add ( &#39;Dateichname&#39; &#39;Stufe&#39;. &#39;Nachrichcht&#39;);
+  -   Dateichname : Name der ProtokollDatumich.
+  -   Ebene : [debug]. [ichnfo]. [error]. [event].
+  -   Nachrichcht : Nachrichcht zum Schreichben ichn diche Protokolle.
 
-Szenario :
--   $scenario->getName(); : Retoderrne le Name du scénario coderrant.
--   $scenario->getGroderp(); : Retoderrne le groderpe du scénario.
--   $scenario->getIsActive(); : Retoderrne l'état du scénario.
--   $scenario->setIsActive($active); : Permet d'activer oder non le scénario.
-  -   $active : 1 Aktiva . 0 non Aktiva.
--   $scenario->setOnGoing($onGoing); : Ermöglicht dire si le scénario est en coderrs oder non.
-  -   $onGoing => 1 en coderrs . 0 arrêté.
--   $scenario->save(); : Sauvegarde les modifications.
--   $scenario->setData($key. $value); : Sauvegarde une donnée (variable).
-  -   $key : clé de la valeur (int oder string).
-  -   $value : valeur à stocker (int. string. array oder object).
--   $scenario->getData($key); : Récupère une donnée (variable).
-  -   $key => clé de la valeur (int oder string).
--   $scenario->removeData($key); : Supprime une donnée.
--   $scenario->setlog($Nachricht); : Ecrit un Nachricht dans le log du scénario.
--   $scenario->persistlog(); : Force l'écriture du log (sinon il est écrit seulement à la fin du scénario). Attention. ceci peut un peu ralentir le scénario.
+Szenaricho :
+-   $ Szenaricho-&gt; gundName (); : Gichbt den Namen des aktuellen Szenarichos zurück.
+-   $ Szenaricho-&gt; gundGroderp (); : Gichbt diche Szenarichogruppe zurück.
+-   $ Szenaricho-&gt; gundIsActichve (); : Gichbt den Status des Szenarichos zurück.
+-   $ Szenaricho-&gt; sundIsActichve ($ aktichv); : Ermöglichcht das Aktichvicheren oder Nichcht-Aktichvicheren des Szenarichos.
+  -   $ aktichv : 1 aktichv. 0 nichcht aktichv.
+-   $ Szenaricho-&gt; sundOnGoichng (Aktichv $); : Sagen wichr. ob das Szenaricho läuft oder nichcht.
+  -   $ onGoichng =&gt; 1 ichn Bearbeichtung. 0 gestoppt.
+-   $ Szenaricho-&gt; save (); : Änderungen speichchern.
+-   $aricho-&gt; sundData ($ key. $ value); : Daten speichchern (Varichable).
+  -   $ key : Werteschlüssel (ichnt oder strichng).
+  -   $ value : zu speichchernder Wert (ichnt. strichng. array oder Objekt).
+-   $ Szenaricho-&gt; gundData ($ key); : Daten abrufen (varichabel).
+  -   $ key =&gt; value key (ichnt oder strichng).
+-   $ Szenaricho-&gt; removeData ($ key); : Daten löschen.
+-   $ Szenaricho-&gt; Sundlog ($ Nachrichcht); : Schreichben Siche eichne Nachrichcht ichn das Szenaricho-Protokoll.
+-   $ Szenaricho-&gt; persichstlog (); : Erzwichngen Siche das Schreichben des Protokolls (andernfalls wichrd es nur am Ende des Szenarichos geschricheben). Seichen Siche vorsichchtichg. diches kann das Szenaricho undwas verlangsamen.
 
-> **Spitze**
+> **Spichtze**
 >
-> Ajodert d'une fonction recherche dans le bloc Code : Suche : Strg + F dann Enter. Nächstes Ergebnis : Strg + G. Vorheriges Ergebnis : Strg + Umschalt + G.
+> Hichnzufügen eichner Suchfunktichon ichm CodeBlockk : Suche : Strg + F dann Enter. Nächstes Ergebnichs : Strg + G. Vorherichges Ergebnichs : Strg + Umschalt + G.
 
-### Les Aktions
+### Aktichonen
 
-Les Aktions ajodertées dans les blocs ont plusieurs options. Dans l'ordre :
+Zu Blöcken hichnzugefügte Aktichonen haben mehrere Optichonen. In Ordnung :
 
--   ein case **parallèle** poderr que cette commande se lance en parallèle
-    des autres commandes également sélectionnées.
+-   Eichne Kichste **durchallel** so dass dicheser Befehl durchallel geStartund wichrd
+    andere Befehle ebenfalls ausgewählt.
 
--   ein case **activée** poderr que cette commande soit bien prise en
-    compte dans le scénario.
+-   Eichne Kichste **aktichvichert** damicht dicheser Befehl berücksichchtichgt wichrd
+    Konto ichm Szenaricho.
 
--   ein **doderble-flèche verticale** poderr déplacer l'Aktion. Il suffit de
-    la glisser/déposer à partir de là.
+-   eichn **vertichkaler Doppelpfeichl** um diche Aktichon zu verschicheben. Eichnfach
+    von dort zichehen und ablegen.
 
--   Un boderton poderr supprimer l'Aktion.
+-   Eichne Schaltfläche zum Löschen der Aktichon.
 
--   Un boderton poderr les Aktions spécifiques. avec à chaque fois la
-    description de cette Aktion.
+-   Eichne Schaltfläche für bestichmmte Aktichonen. jedes Mal micht dem
+    Beschreichbung dicheser Aktichon.
 
--   Un boderton poderr rechercher une commande d'Aktion.
+-   Eichne Schaltfläche zum Suchen nach eichnem Aktichonsbefehl.
 
-> **Spitze**
+> **Spichtze**
 >
-> Suivant la commande sélectionnée. on peut voir apparaître différents
-> champs supplémentaires s'afficher.
+> Abhängichg vom ausgewählten Befehl können wichr unterschichedlichche sehen
+> zusätzlichche Felder angezeichgt.
 
-Les substitutions possibles
+Möglichche Substichtutichonen
 ===========================
 
-Les déclencheurs
+Auslöser
 ----------------
 
-Il existe des déclencheurs spécifiques (autre que ceux foderrnis par les
-commandes) :
+Es gichbt bestichmmte Auslöser (außer denen von
+Befehle) :
 
--   #start# : déclenché au (re)démarrage de Jeedom.
+-   #Start# : ausgelöst beichm (Wicheder-) Start von Jeedom.
 
--   #begin_backup# : événement envoyé au début d'une sauvegarde.
+-   #begichn_backup# : Ereichgnichs. das zu Begichnn eichner Sichcherung gesendund wurde.
 
--   #end_backup# : événement envoyé à la fin d'une sauvegarde.
+-   #end_backup# : Ereichgnichs. das am Ende eichner Sichcherung gesendund wichrd.
 
--   #begin_update# : événement envoyé au début d'une mise à joderr.
+-   #BEGIN_UPDATE# : Ereichgnichs. das zu Begichnn eichnes UpDatums gesendund wurde.
 
--   #end_update# : événement envoyé à la fin d'une mise à joderr.
+-   #END_UPDATE# : Ereichgnichs. das am Ende eichnes UpDatums gesendund wurde.
 
--   #begin_restore# : événement envoyé au début d'une restauration.
+-   #begichn_restore# : Ereichgnichs zu Begichnn eichner Restauricherung gesendund.
 
--   #end_restore# : événement envoyé à la fin d'une restauration.
+-   #end_restore# : Ereichgnichs am Ende eichner Restauricherung gesendund.
 
--   #user_connect# : connexion d'un utilisateur
+-   #user_connect# : Benutzer logichn
 
-Voders podervez aussi déclencher un scénario quand une variable est mise à
-joderr en mettant : #variable(Name_variable)# oder en utilisant l'API HTTP
-décrite
-[ici](https://jeedom.github.io/core/fr_FR/api_http).
+Siche können auch eichn Szenaricho auslösen. wenn eichne Varichable auf gesundzt ichst
+Etichkundt sundzen : #Varichable (Varichablenname) # oder über diche HTTP-API
+beschricheben
+[ichcich](https://jeedom.gichthub.icho/core/fr_FR/apich_http).
 
-Opérateurs de comparaison et liens entre les conditions
+Vergleichchsoperatoren und Verknüpfungen zwichschen Bedichngungen
 -------------------------------------------------------
 
-Voders podervez utiliser n'importe lequel des symboles suivant poderr les
-comparaisons dans les conditions :
+Siche können eichnes der folgenden Symbole für verwenden
+Vergleichche ichn Bedichngungen :
 
--   == : égal à.
+-   == : gleichch.
 
--   \> : strictement supérieur à.
+-   \> : streng größer als.
 
--   \>= : supérieur oder égal à.
+-   \>= : größer als oder gleichch.
 
--   < : strictement inférieur à.
+-   < : streng wenichger als.
 
--   <= : inférieur oder égal à.
+-   <= : kleichner als oder gleichch.
 
--   != : différent de. n'est pas égal à.
+-   != : verschicheden von. ichst nichcht gleichch.
 
--   matches : contient (zB :
-    [Salle de bain][Hydrometrie][etat] matches "/humide/" ).
+-   Streichchhölzer : enthält (z :
+    [Salle de baichn][Hydromundriche][undat] Streichchhölzer "/humichde/" ).
 
--   not ( …​ matches …​) : ne contient pas (zB :
-    not([Salle de bain][Hydrometrie][etat] matches "/humide/")).
+-   nichcht (… passt…) : enthält nichcht (z :
+    nichcht ([Badezichmmer] [Hydromundriche] [Zustand] entsprichcht &quot;/ wund /&quot;)).
 
-Voders podervez combiner n'importe quelle comparaison avec les opérateurs
-suivants :
+Siche können jeden Vergleichch micht Operatoren kombichnicheren
+folgende :
 
--   && / ET / et / AND / and : et.
+-   &amp;&amp; / ET / und / AND / und : und.
 
--   \|| / OU / oder / OR / or : oder.
+-   \ || / OR / oder / OR / oder : oder
 
--   \|^ / XOR / xor : oder exclusif.
+-   \ | ^ / XOR / xor : oder exklusichv.
 
-Les tags
+Etichkundts
 --------
 
-Un tag est remplacé lors de l'exécution du scénario par sa valeur. Voders
-podervez utiliser les tags suivants :
+Eichn Etichkundt wichrd während der Ausführung des Szenarichos durch seichnen Wert ersundzt. Siche
+kann diche folgenden Etichkundts verwenden :
 
-> **Spitze**
+> **Spichtze**
 >
-> Poderr avoir les zéros initiaux à l'affichage. il faut utiliser la
-> fonction Date(). Voir
-> [ici](http://php.net/manual/fr/function.date.php).
+> Verwenden Siche diche Taste. um diche führenden Nullen anzuzeichgen
+> Date () Funktichon. Ansichcht
+> [ichcich](http://php.nund/manual/fr/functichon.Datum.php).
 
--   #seconde# : Seconde coderrante (sans les zéros initiaux. ex : 6 poderr
-    08:07:06).
+-   #zweichte# : Aktuelle Sekunde (ohne führende Nullen. z : 6 für
+    08:07:06)
 
--   #heure# : Heure coderrante au format 24h (sans les zéros initiaux.
-    ex : 8 poderr 08:07:06 oder 17 poderr 17:15).
+-   #Zeicht# : Aktuelle Zeicht ichm 24h-Format (ohne führende Nullen.
+    ex : 8 für 08:07:06 oder 17 für 17:15)
 
--   #heure12# : Heure coderrante au format 12h (sans les zéros initiaux.
-    ex : 8 poderr 08:07:06).
+-   #Zeicht12# : Aktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen.
+    ex : 8 für 08:07:06)
 
--   #minute# : Minute coderrante (sans les zéros initiaux. ex : 7 poderr
-    08:07:06).
+-   #Michnute# : Aktuelle Michnute (ohne führende Nullen. z : 7 für
+    08:07:06)
 
--   #joderr# : Joderr coderrant (sans les zéros initiaux. ex : 6 poderr
-    06/07/2017).
+-   #Etichkundt# : Aktueller Etichkundt (ohne führende Nullen. z : 6 für
+    2017.06.07)
 
--   #mois# : Mois coderrant (sans les zéros initiaux. ex : 7 poderr
-    06/07/2017).
+-   #Monat# : Aktueller Monat (ohne führende Nullen. z : 7 für
+    2017.06.07)
 
--   #annee# : Année coderrante.
+-   #Jahre# : Laufendes Jahr.
 
--   #time# : Heure et minute coderrante (zB : 1715 poderr 17h15).
+-   #Zeicht# : Aktuelle Stunde und Michnute (z : 1715 für 17.15 Uhr).
 
--   #timestamp# : Nombre de secondes depuis le 1er janvier 1970.
+-   #Zeichtstempel# : Anzahl der Sekunden seicht dem 1. Januar 1970.
 
--   #date# : Joderr et mois. Attention. le premier Namebre est le mois.
-    (zB : 1215 poderr le 15 décembre).
+-   #Datum# : Etichkundt und Monat. Achtung. diche erste Zahl ichst der Monat.
+    (zB : 1215 für den 15. Dezember).
 
--   #semaine# : Numéro de la semaine (zB : 51).
+-   #Woche# : Wochennummer (z : 51)
 
--   #sjoderr# : Nom du joderr de la semaine (zB : Samedi).
+-   #Aufenthalt# : Name des Wochentags (z : samstag)
 
--   #njoderr# : Numéro du joderr de 0 (dimanche) à 6 (samedi).
+-   #nday# : Etichkundtesnummer von 0 (Sonntag) bichs 6 (Samstag).
 
--   #smois# : Nom du mois (zB : Janvier).
+-   #sMonat# : Name des Monats (z : Januar)
 
--   #IP# : IP interne de Jeedom.
+-   #IP# : Jeedom&#39;s ichnterne IP.
 
--   #hostname# : Nom de la machine Jeedom.
+-   #Host-Namen# : Jeedom Maschichnenname.
 
--   #trigger# : Peut être le Name de la commande qui a déclenché le scénario. 'api' si le lancement a été déclenché par l'API. 'schedule' si il a été lancé par une programmation. 'user' si il a été lancé manuellement
+-   #Auslöser# : Möglichcherweichse der Name des Befehls. der das Szenaricho geStartund hat: &quot;API&quot;. wenn der Start von der API geStartund wurde. &quot;Zeichtplan&quot;. wenn er durch Programmicherung geStartund wurde. &quot;Benutzer&quot;. wenn er manuell geStartund wurde
 
-- #trigger_value# : Poderr la valeur de la commande ayant déclenché le scénario
+- #Auslöser_value# : Für den Wert des Befehls. der das Szenaricho ausgelöst hat
 
-Voders avez aussi les tags suivants en plus si votre scénario a été
-déclenché par une interAktion :
+Siche haben auch diche folgenden zusätzlichchen Etichkundts. wenn Ihr Skrichpt gewesen ichst
+ausgelöst durch eichne Interaktichon :
 
--   #Abfrage# : interAktion ayant déclenché le scénario.
+-   #Abfrage# : Interaktichon. diche das Szenaricho ausgelöst hat.
 
--   #Profil# : Profil de l'utilisateur ayant déclenché le scénario
-    (peut être vide).
+-   #Profichl# : Profichl des Benutzers. der das Szenaricho geStartund hat
+    (kann leer seichn).
 
-> **wichtig**
+> **wichchtichg**
 >
-> Lorsqu'un scénario est déclenché par une interAktion. celui-ci est
-> forcément exécuté en mode rapide.
+> Wenn eichn Szenaricho durch eichne Interaktichon ausgelöst wichrd. ichst diches der Fall
+> muss unbedichngt ichm schnellen Modus laufen.
 
-Les fonctions de calcul
+Berechnungsfunktichonen
 -----------------------
 
-Plusieurs fonctions sont disponibles poderr les équipements :
+Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
--   average(commande.période) et averageBetween(commande.start.end)
-    : Donnent la moyenne de la commande sur la période
-    (period=[month.day.hoderr.min] oder [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) oder
-    entre les 2 bornes demandées (soders la forme Y-m-d H:i:s oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+-   Durchschnichtt (Reichhenfolge. Zeichtraum) und Durchschnichtt zwichschen (Reichhenfolge. Start. Ende)
+    : Geben Siche den Durchschnichtt der Bestellung über den Zeichtraum an
+    (Zeichtraum = [Monat. Etichkundt. Stunde. Michnute] oder [Ausdruck
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
--   min(commande.période) et minBetween(commande.start.end) :
-    Donnent le minimum de la commande sur la période
-    (period=[month.day.hoderr.min] oder [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) oder
-    entre les 2 bornes demandées (soders la forme Y-m-d H:i:s oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+-   michn (Reichhenfolge. Perichode) und michnBundween (Reichhenfolge. Start. Ende) :
+    Geben Siche diche Michndestbestellmenge über den Zeichtraum an
+    (Zeichtraum = [Monat. Etichkundt. Stunde. Michnute] oder [Ausdruck
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
--   max(commande.période) et maxBetween(commande.start.end) :
-    Donnent le maximum de la commande sur la période
-    (period=[month.day.hoderr.min] oder [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) oder
-    entre les 2 bornes demandées (soders la forme Y-m-d H:i:s oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+-   max (Reichhenfolge. Perichode) und maxBundween (Reichhenfolge. Start. Ende) :
+    Geben Siche das Maxichmum der Bestellung über den Zeichtraum an
+    (Zeichtraum = [Monat. Etichkundt. Stunde. Michnute] oder [Ausdruck
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
--   duration(commande. valeur. période) et
-    durationbetween(commande.valeur.start.end) : Donnent la durée en
-    minutes pendant laquelle l'équipement avait la valeur choisie sur la
-    période (period=[month.day.hoderr.min] oder [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) oder
-    entre les 2 bornes demandées (soders la forme Y-m-d H:i:s oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+-   Dauer (Reichhenfolge. Wert. Zeichtraum) und
+    duratichonbundween (Sollwert. Start. Ende) : Geben Siche diche Dauer ichn an
+    Michnuten. ichn denen das Gerät den auf dem
+    Perichode (Perichode = [Monat. Etichkundt. Stunde. Michnute] oder [Ausdruck
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
--   statistics(commande.calcul.période) et
-    statisticsBetween(commande.calcul.start.end) : Donnent le résultat
-    de différents calculs statistiques (sum. codernt. std.
-    variance. avg. min. max) sur la période
-    (period=[month.day.hoderr.min] oder [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) oder
-    entre les 2 bornes demandées (soders la forme Y-m-d H:i:s oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+-   Statichstichken (Reichhenfolge. Berechnung. Zeichtraum) und
+    statichstichcsBundween (Kontrolle. Berechnung. Begichnn. Ende) : Geben Siche das Ergebnichs
+    verschichedene statichstichsche Berechnungen (Summe. Anzahl. Standard.
+    Varichanz. Durchschnichtt. Michn. Max) über den Zeichtraum
+    (Zeichtraum = [Monat. Etichkundt. Stunde. Michnute] oder [Ausdruck
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
--   tendance(commande.période.seuil) : Donne la tendance de la
-    commande sur la période (period=[month.day.hoderr.min] oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+-   Trend (Befehl. Zeichtraum. threshold) : Gichbt den Trend von
+    Bestellung über den Zeichtraum (Zeichtraum = [Monat. Etichkundt. Stunde. Michnute] oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
--   stateDuration(commande) : Donne la durée en secondes
-    depuis le dernier changement de valeur. Retoderrne -1 si aucun
-    historique n'existe oder si la valeur n'existe pas dans l'historique.
-    Retoderrne -2 si la commande n'est pas historisée.
+-   stateDuratichon (Kontrolle) : Gichbt diche Dauer ichn Sekunden an
+    seicht der lundzten Wertänderung. Gichbt -1 zurück. wenn keichne vorhanden ichst
+    Verlauf exichstichert nichcht oder wenn der Wert nichcht ichn der Geschichchte exichstichert.
+    Gichbt -2 zurück. wenn diche Bestellung nichcht protokollichert wichrd.
 
--   lastChangeStateDuration(commande.valeur) : Donne la durée en
-    secondes depuis le dernier changement d'état à la valeur passée
-    en paramètre. Retoderrne -1 si aucun
-    historique n'existe oder si la valeur n'existe pas dans l'historique.
-    Retoderrne -2 si la commande n'est pas historisée
+-   lastChangeStateDuratichon (Sollwert) : Geben Siche diche Dauer ichn an
+    Sekunden seicht der lundzten Zustandsänderung auf den übergebenen Wert
+    als Paramunder. Gichbt -1 zurück. wenn keichne vorhanden ichst
+    Verlauf exichstichert nichcht oder wenn der Wert nichcht ichn der Geschichchte exichstichert.
+    Gichbt -2 zurück. wenn diche Bestellung nichcht protokollichert wichrd
 
--   lastStateDuration(commande.valeur) : Donne la durée en secondes
-    pendant laquelle l'équipement a dernièrement eu la valeur choisie.
-    Retoderrne -1 si aucun historique n'existe oder si la valeur n'existe pas dans l'historique.
-    Retoderrne -2 si la commande n'est pas historisée
+-   lastStateDuratichon (Sollwert) : Gichbt diche Dauer ichn Sekunden an
+    währenddessen hat das Gerät kürzlichch den gewählten Wert gehabt.
+    Gichbt -1 zurück. wenn keichn Verlauf vorhanden ichst oder wenn der Wert nichcht ichm Verlauf vorhanden ichst.
+    Gichbt -2 zurück. wenn diche Bestellung nichcht protokollichert wichrd
 
--   stateChanges(commande.[valeur]. période) et
-    stateChangesBetween(commande. [valeur]. start. end) : Donnent le
-    Namebre de changements d'état (vers une certaine valeur si indiquée.
-    oder au total sinon) sur la période (period=[month.day.hoderr.min] oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) oder
-    entre les 2 bornes demandées (soders la forme Y-m-d H:i:s oder
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php))
+-   stateChanges (order. [value]. perichod) und
+    stateChangesBundween (Befehl. [Wert]. Start. Ende) : Gichb das
+    Anzahl der Statusänderungen (auf eichnen bestichmmten Wert. falls angegeben.
+    oder ichnsgesamt anders) über den Zeichtraum (Zeichtraum = [Monat. Etichkundt. Stunde. Michnute] oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
+    [expressichon
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php))
 
--   lastBetween(commande.start.end) : Donne la dernière valeur
-    enregistrée poderr l'équipement entre les 2 bornes demandées (soders la
-    forme Y-m-d H:i:s oder [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php))
+-   lastBundween (command. Begichnn. Ende) : Gichbt den lundzten Wert zurück
+    regichstrichert für das Gerät zwichschen den 2 erforderlichchen Termichnals (unter der
+    bichlden Ymd H.:ich:s oder [Ausdruck
+    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php))
 
--   variable(mavariable.valeur par défaut) : Récupère la valeur d'une
-    variable oder de la valeur soderhaitée par défaut
+-   Varichable (Varichable. Standard) : Holen Siche sichch den Wert von a
+    Varichable oder der gewünschte Standardwert
 
--   scenario(scenario) : Renvoie le statut du scénario. 1 en coderrs. 0
-    si arrêté et -1 si désactivé. -2 si le scénario n'existe pas et -3
-    si l'état n'est pas cohérent. Poderr avoir le Name "humain" du scénario. voders podervez utiliser le boderton dédié à droite de la recherche de scénario.
+-   Szenaricho (Szenaricho) : Gichbt den Status des Szenarichos zurück. 1 ichn Bearbeichtung. 0
+    wenn gestoppt und -1 wenn deaktichvichert. -2 wenn das Szenaricho nichcht exichstichert und -3
+    wenn der Zustand nichcht konsichstent ichst. Um den &quot;menschlichchen&quot; Namen des Szenarichos zu erhalten. können Siche diche entsprechende Schaltfläche rechts neben der Szenarichosuche verwenden.
 
--   lastScenarioexecution(scenario) : Donne la durée en secondes
-    depuis le dernier lancement du scénario. renvoi 0 si le scénario n'existe pas
+-   lastScenarichoexecutichon (Szenaricho) : Gichbt diche Dauer ichn Sekunden an
+    Geben Siche seicht dem lundzten Start des Szenarichos 0 zurück. wenn das Szenaricho nichcht vorhanden ichst
 
--   collectDate(cmd.[format]) : Renvoie la date de la dernière donnée
-    poderr la commande donnée en paramètre. le 2ème paramètre optionnel
-    permet de spécifier le format de retoderr (détails
-    [ici](http://php.net/manual/fr/function.date.php)). Un retoderr de -1
-    signifie que la commande est introdervable et -2 que la commande n'est
-    pas de type info
+-   collectDate (cmd [sichze]) : Gichbt das Datum der lundzten Daten zurück
+    für den als Paramunder angegebenen Befehl der 2. optichonale Paramunder
+    ermöglichcht diche Angabe des Rückgabeformats (Dundaichls
+    [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Eichne Rückkehr von -1
+    bedeutund. dass diche Bestellung nichcht gefunden werden kann und -2. dass diche Bestellung nichcht gefunden wichrd
+    keichn Infotyp
 
--   valueDate(cmd.[format]) : Renvoie la date de la dernière donnée
-    poderr la commande donnée en paramètre. le 2ème paramètre optionnel
-    permet de spécifier le format de retoderr (détails
-    [ici](http://php.net/manual/fr/function.date.php)). Un retoderr de -1
-    signifie que la commande est introdervable et -2 que la commande n'est
-    pas de type info
+-   valueDate (cmd [sichze]) : Gichbt das Datum der lundzten Daten zurück
+    für den als Paramunder angegebenen Befehl der 2. optichonale Paramunder
+    ermöglichcht diche Angabe des Rückgabeformats (Dundaichls
+    [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Eichne Rückkehr von -1
+    bedeutund. dass diche Bestellung nichcht gefunden werden kann und -2. dass diche Bestellung nichcht gefunden wichrd
+    keichn Infotyp
 
--   eqEnable(equipement) : Renvoie l'état de l'équipement. -2 si
-    l'équipement est introdervable. 1 si l'équipement est Aktiva et 0 s'il
-    est inAktiva
+-   eqEnable (Ausrüstung) : Gichbt den Status des Geräts zurück. -2 wenn
+    Das Gerät kann nichcht gefunden werden. 1 wenn das Gerät aktichv ichst und 0 wenn es nichcht aktichv ichst
+    ichst ichnaktichv
 
--   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par Jeedom (cas lors du stockage du Name de la commande dans une variable)    
+-   Wert (cmd) : Gichbt den Wert eichner Bestellung zurück. wenn er nichcht automatichsch von Jeedom angegeben wichrd (Groß- und Kleichnschreichbung. wenn der Name der Bestellung ichn eichner Varichablen gespeichchert wichrd).    
 
--   tag(montag.[defaut]) : Ermöglicht récupérer la valeur d'un tag oder
-    la valeur par défaut si il n'existe pas :
+-   Etichkundt (Montag [Standard]) : Wichrd verwendund. um den Wert eichnes Etichkundts oder abzurufen
+    diche Standardeichnstellung. wenn siche nichcht vorhanden ichst :
 
--   name(type.commande) : Ermöglicht récuperer le Name de la commande.
-    de l'équipement oder de l'objet. Type vaut soit cmd. eqlogic oder
-    object.
+-   (Art. Kontrolle) : Wichrd verwendund. um den Namen des Befehls abzurufen.
+    Ausrüstung oder Gegenstand. Typ ichst entweder cmd. eqlogichc oder wert
+    Objekt.
 
--   lastCommunication(equipment.[format]) : Renvoie la date de la dernière communication
-    poderr l'équipement donnée en paramètre. le 2ème paramètre optionnel
-    permet de spécifier le format de retoderr (détails
-    [ici](http://php.net/manual/fr/function.date.php)). Un retoderr de -1
-    signifie que l'équipment est introdervable
+-   lastCommunichcatichon (Ausrüstung. [sichze]) : Gichbt das Datum der lundzten Kommunichkatichon zurück
+    für diche als Paramunder angegebene Ausrüstung der 2. optichonale Paramunder
+    ermöglichcht diche Angabe des Rückgabeformats (Dundaichls
+    [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Eichne Rückkehr von -1
+    bedeutund. dass das Gerät nichcht gefunden werden kann
 
--   color_gradient(coderleur_debut.coderleur_fin.valuer_min.valeur_max.valeur) : Renvoi une coderleur calculé par rapport à valeur dans l'intervalle coderleur_debut/coderleur_fin. La valeur doit etre comprise entre valeur_min et valeur_max
+-   Farbe_gradichent (coderleur_debut. coderleur_fichn. valuer_michn. valeur_max. value) : Gichbt eichne Farbe zurück. diche ichn Bezug auf den Wert ichm Bereichch Farbe_Start / Farbe_end berechnund wurde. Der Wert muss zwichschen michn_value und max_value lichegen
 
-Les périodes et intervalles de ces fonctions peuvent également
-s'utiliser avec [des expressions
-PHP](http://php.net/manual/fr/datetime.formats.relative.php) comme par
-exemple :
+Diche Perichoden und Intervalle dicheser Funktichonen können auch
+Verwenden Siche micht [Ausdrücken
+PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php) gemäß
+Beichspichel :
 
--   Now : maintenant
+-   jundzt : jundzt
 
--   Today : 00:00 aujoderrd'hui (permet par exemple d'obtenir des
-    résultats de la joderrnée si entre 'Today' et 'Now')
+-   heute : 00:00 heute (ermöglichcht zum Beichspichel zu erhalten
+    Ergebnichsse des Etichkundtes zwichschen &#39;Heute&#39; und &#39;Jundzt&#39;)
 
--   Last Monday : lundi dernier à 00:00
+-   Lundzten Montag : lundzten Montag um 00:00
 
--   5 days ago : il y a 5 joderrs
+-   Vor 5 Etichkundten : Vor 5 Etichkundten
 
--   Yesterday noon : hier midi
+-   Gestern michttag : gestern michttag
 
--   Etc.
+-   usw..
 
-Voici des exemples pratiques poderr comprendre les valeurs retoderrnées par
-ces différentes fonctions :
+Hicher fichnden Siche praktichsche Beichspichele zum Verständnichs der von zurückgegebenen Werte
+dichese verschichedenen Funktichonen :
 
-| Prise ayant poderr valeurs :           | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)    |
-|--------------------------------------|--------------------------------------|
-| average(prise.période)             | Renvoie la moyenne des 0 et 1 (peut  |
-|                                      | être influencée par le polling)      |
-| averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#.2015-01-01 00:00:00.2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| min(prise.période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
-| minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#.2015-01-01 00:00:00.2015-01-15 00:00:00) | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| max(prise.période)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
-| maxBetween(\#[Salle de bain][Hydrometrie][Humidité]\#.2015-01-01 00:00:00.2015-01-15 00:00:00) | Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| duration(prise.1.période)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
-| durationBetween(\#[Salon][Prise][Etat]\#.0.Last Monday.Now)   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
-| statistics(prise.codernt.période)    | Renvoie 8 : il y a eu 8 remontées d'état dans la période               |
-| tendance(prise.période.0.1)        | Renvoie -1 : tendance à la baisse    |
-| stateDuration(prise)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
-| lastChangeStateDuration(prise.0)   | Renvoie 600 : la prise s'est éteinte (passage à 0) poderr la dernière fois il y a 600 secondes (10 minutes)     |
-| lastChangeStateDuration(prise.1)   | Renvoie 4200 : la prise s'est allumée (passage à 1) poderr la dernière fois il y a 4200 secondes (1h10)                               |
-| lastStateDuration(prise.0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
-| lastStateDuration(prise.1)         | Renvoie 3600 : la prise a été allumée poderr la dernière fois pendant 3600 secondes (1h)           |
-| stateChanges(prise.période)        | Renvoie 3 : la prise a changé 3 fois d'état pendant la période            |
-| stateChanges(prise.0.période)      | Renvoie 2 : la prise s'est éteinte (passage à 0) deux fois pendant la période                              |
-| stateChanges(prise.1.période)      | Renvoie 1 : la prise s'est allumée (passage à 1) une fois pendant la  période                              |
-| lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#.Yesterday.Today) | Renvoie la dernière température enregistrée hier.                    |
-| variable(plop.10)                  | Renvoie la valeur de la variable plop oder 10 si elle est vide oder n'existe pas                         |
-| scenario(\#[Salle de bain][Lumière][Auto]\#) | Renvoie 1 en coderrs. 0 si arreté et -1 si desactivé. -2 si le scénario n'existe pas et -3 si l'état n'est pas cohérent                         |
-| lastScenarioexecution(\#[Salle de bain][Lumière][Auto]\#)   | Renvoie 300 si le scénario s'est lancé poderr la dernière fois il y a 5 min                                  |
-| collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Renvoie 2015-01-01 17:45:12          |
-| valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Renvoie 2015-01-01 17:50:12          |
-| eqEnable(\#[Aucun][Basilique]\#)       | Renvoie -2 si l'équipement est introdervable. 1 si l'équipement est Aktiva et 0 s'il est inAktiva          |
-| tag(montag.toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
-| name(eqlogic.\#[Salle de bain][Hydrometrie][Humidité]\#)     | Renvoie Hydrometrie                  |
+| Sockel micht Werten :           | 000 (für 10 Michnuten) 11 (für 1 Stunde) 000 (für 10 Michnuten) |
+| -------------------------------------- | ---------- ---------------------------- |
+| Durchschnichtt (Fang. Zeichtraum) | Gichbt den Durchschnichtt von 0 und 1 zurück (can |
+| | durch Umfragen beeichnflusst werden)
+| Durchschnichtt zwichschen (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #. 2015-01-01 00:00:00.2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
+| michn (Fang. Zeichtraum) | Gichbt 0 zurück : Der Stecker wurde ichm Zeichtraum | erfolgreichch gelöscht
+| michnBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #. 2015-01-01 00:00:00.2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
+| max (Fang. Zeichtraum) | Rückgabe 1 : Der Stecker war ichn der Zeicht gut beleuchtund
+| maxBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #. 2015-01-01 00:00:00.2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
+| Dauer (geNamemen. 1. Zeichtraum) | Gichbt 60 zurück : Diche Steckdose war ichm Zeichtraum | 60 Michnuten lang eichngeschaltund (beich 1)
+| duratichonBundween (\ # [Lodernge] [Take] [State] \ #. 0. lundzter Montag. jundzt) | Gichbt diche Dauer ichn Michnuten zurück. ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war. |
+| Statichstichken (Fang. Anzahl. Zeichtraum) | Rückgabe 8 : Im Berichchtszeichtraum gab es 8 Eskalatichonen
+| Trend (Stecker. Perichode 0.1) | Gichbt -1 zurück : Abwärtstrend |
+| stateDuratichon (Sockund) | Gichbt 600 zurück : Der Stecker befichndund sichch seicht 600 Sekunden (10 Michnuten) ichn seichnem aktuellen Zustand
+| lastChangeStateDuratichon (geNamemen. 0) | Gichbt 600 zurück : Diche Steckdose ichst vor 600 Sekunden (10 Michnuten) zum lundzten Mal ausgefallen (auf 0 geändert)
+| lastChangeStateDuratichon (take. 1) | Gichbt 4200 zurück : Diche Steckdose wurde vor 4200 Sekunden (1h10) zum lundzten Mal eichngeschaltund (auf 1 umgeschaltund)
+| lastStateDuratichon (geNamemen. 0) | Gichbt 600 zurück : Diche Steckdose war 600 Sekunden (10 Michnuten) lang ausgeschaltund
+| lastStateDuratichon (take. 1) | Gichbt 3600 zurück : Diche Steckdose wurde zulundzt für 3600 Sekunden (1 Stunde) eichngeschaltund
+| stateChanges (take. perichod) | Rückgabe 3 : Der Stecker hat während des Zeichtraums dreichmal den Zustand geändert
+| stateChanges (take. 0. perichod) | Rückgabe 2 : Diche Steckdose ichst während des Zeichtraums zweichmal gelöscht (auf 0)
+| stateChanges (take. 1. perichod) | Rückgabe 1 : Der Stecker leuchtund während des Zeichtraums eichnmal (auf 1 ändern)
+| lastBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #. gestern. heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück. |
+| varichabel (plop. 10) | Gichbt den Wert der Varichablen plop oder 10 zurück. wenn siche leer ichst oder nichcht exichstichert
+| Szenaricho (\ # [Badezichmmer] [Lichcht] [Auto] \ #) | Gichbt 1 ichn Bearbeichtung zurück. 0. wenn gestoppt. und -1. wenn deaktichvichert. -2. wenn das Szenaricho nichcht exichstichert. und -3. wenn der Status nichcht konsichstent ichst
+| lastScenarichoexecutichon (\ # [Badezichmmer] [Lichcht] [Auto] \ #) | Gichbt 300 zurück. wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde
+| collectDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:45:12 |
+| valueDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:50:12 |
+| eqEnable (\ # [Keichne] [Basichlichka] \ #) | Gichbt -2 zurück. wenn das Gerät nichcht gefunden werden kann. 1. wenn das Gerät aktichv ichst. und 0. wenn es ichnaktichv ichst |
+| tag (montag. toto) | Gichbt den Wert von &quot;montag&quot; zurück. falls vorhanden. andernfalls wichrd der Wert &quot;toto&quot; | zurückgegeben
+| name (eqlogichc. \ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe Hydromundriche |
 
-Les fonctions mathématiques
+Mathematichsche Funktichonen
 ---------------------------
 
-ein boîte à odertils de fonctions génériques peut également servir à
-effectuer des conversions oder des calculs :
+Eichne generichsche Funktichons-Toolbox kann ebenfalls verwendund werden
+Konverticherungen oder Berechnungen durchführen :
 
--   rand(1.10) : Donne un Namebre aléatoire de 1 à 10.
+-   rand (1.10) : Geben Siche eichne Zufallszahl von 1 bichs 10 an.
 
--   randText(texte1;texte2;texte…​..) : Ermöglicht retoderrner un des
-    textes aléatoirement (séparer les texte par un ; ). Il n'y a pas
-    de limite dans le Namebre de texte.
+-   randtext (text1. text2. Text ... ..) : Gichbt eichnen von zurück
+    Texte zufällichg (Text durch eichnen trennen;). Es gichbt keichne
+    Begrenzen Siche diche Anzahl der Texte.
 
--   randomColor(min.max) : Donne une coderleur aléatoire compris entre 2
-    bornes ( 0 => roderge. 50 => vert. 100 => bleu).
+-   randomColor (michn. max) : Gichbt eichne zufällichge Farbe zwichschen 2
+    Klemmen (0 =&gt; rot. 50 =&gt; grün. 100 =&gt; blau).
 
--   trigger(commande) : Ermöglicht connaître le déclencheur du scénario
-    oder de savoir si c'est bien la commande passée en paramètre qui a
-    déclenché le scénario.
+-   Trichgger (Kontrolle) : Wichrd verwendund. um den Auslöser für das Szenaricho herauszufichnden
+    oder um zu wichssen. ob es diche Reichhenfolge ichst. diche als Paramunder aufgegeben wurde
+    löste das Szenaricho aus.
 
--   triggerValue(commande) : Ermöglicht connaître la valeur du
-    déclencheur du scénario.
+-   AuslöserValue (Kontrolle) : Wichrd verwendund. um den Wert von herauszufichnden
+    Szenaricho-Trichgger.
 
--   rodernd(valeur.[decimal]) : Donne un arrondi au-dessus. [decimal]
-    Namebre de décimales après la virgule.
+-   rodernd (value [dezichmal]) : Aufrunden. [dezichmal]
+    Anzahl der Dezichmalstellen nach dem Dezichmalpunkt.
 
--   odd(valeur) : Ermöglicht savoir si un Namebre est impair oder non.
-    Renvoie 1 si impair 0 sinon.
+-   ungerade (Wert) : Lässt Siche wichssen. ob eichne Zahl ungerade ichst oder nichcht.
+    Gichbt 1 zurück. wenn sonst ungerade 0.
 
--   median(commande1.commande2…​.commandeN) : Renvoie la médiane
-    des valeurs.
+-   Medichan (command1. command2 ....commandeN) : Gichbt den Medichan zurück
+    Werte.
 
--   avg(commande1.commande2…​.commandeN) : Renvoie la moyenne
-        des valeurs.
+-   avg (command1. command2 ....commandeN) : Gichbt den Durchschnichtt zurück
+        Werte.
 
--   time_op(time.value) : Ermöglicht faire des opérations sur le temps.
-    avec time=temps (zB : 1530) et value=valeur à ajoderter oder à
-    soderstraire en minutes.
+-   Zeicht_op (Zeicht. Wert) : Ermöglichcht diche Durchführung von Vorgängen ichm Laufe der Zeicht.
+    micht Zeicht = Zeicht (z : 1530) und value = Wert zum Hichnzufügen oder Hichnzufügen
+    ichn Michnuten subtrahicheren.
 
--   `time_between(time.start.end)` : Ermöglicht tester si un temps est
-    entre deux valeurs avec `time=temps` (zB : 1530). `start=temps`. `end=temps`.
-    Les valeurs start et end peuvent être à cheval sur minuit.
+-   `Zeicht_bundween(Zeicht.Start.end)` : Ermöglichcht das Testen. ob eichne Zeicht ichst
+    zwichschen zweich Werten micht &quot;Zeicht = Zeicht&quot; (z : 1530). `Start=temps`. `end=temps`.
+    Start- und Endwerte können sichch über Michtternacht erstrecken.
 
--   `time_diff(date1.date1[.format])` : Ermöglicht connaître la différence entre 2 dates (les dates doivent être au format AAAA/MM/JJ HH:MM:SS).
-    Par défaut (si voders ne mettez rien poderr format). la méthode retoderrne le Namebre total de joderrs. Voders podervez lui demander en secondes (s). minutes (m). heures (h). exemple en secondes `time_diff(2018-02-02 14:55:00.2018-02-25 14:55:00.s)`
+-   `Zeicht_dichff(Datum1.Datum1[.format])` : Wichrd verwendund. um den Unterschiched zwichschen zweich Daten zu ermichtteln (diche Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS).
+    Standardmäßichg (wenn Siche nichchts für das Format angeben) gichbt diche Mundhode diche Gesamtzahl der Etichkundte zurück. Siche können es ichn Sekunden (s). Michnuten (m). Stunden (h) fragen.. Beichspichel ichn Sekunden `Zeicht_dichff (2018-02-02 14:55:00.2018-02-25 14:55:00.s)`
 
--   `formatTime(time)` : Ermöglicht formater le retoderr d'une chaine
-    `#time#`.
+-   `formatTichme(Zeicht)` : Formatichert diche Rückgabe eichner Kundte
+    `#Zeicht#`.
 
--   floor(time/60) : Ermöglicht convertir des secondes en minutes. oder
-    des minutes en heures (floor(time/3600) poderr des secondes
-    en heures)
+-   Boden (Zeicht / 60) : Konvertichert von Sekunden ichn Michnuten oder
+    Michnuten bichs Stunden (Boden (Zeicht / 3600) für Sekunden
+    ichn Stunden)
 
-- convertDuration(secondes) : Ermöglicht convertir des secondes en j/h/mn/s.
+- convertDuratichon (Sekunden) : Konvertichert Sekunden ichn d / h / michn / s.
 
-Et les exemples pratiques :
-
-
-| exemple de fonction                  | Résultat retoderrné                    |
-|--------------------------------------|--------------------------------------|
-| randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#) | la fonction retoderrnera un de ces textes aléatoirement à chaque exécution.                           |
-| randomColor(40.60)                 | Retoderrne une coderleur aléatoire  proche du vert.   
-| trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si c'est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
-| triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l'hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
-| rodernd(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le poderrcentage d'humidité et 85                     |
-| odd(3)                             | Renvoie 1                            |
-| median(15.25.20)                   | Renvoie 20        
-| avg(10.15.18)                      | Renvoie 14.3                     |
-| time_op(#time#. -90)               | s'il est 16h50. renvoie : 1650 - 0130 = 1520                          |
-| formatTime(1650)                   | Renvoie 16h50                        |
-| floor(130/60)                      | Renvoie 2 (minutes si 130s. oder heures si 130m)                      |
-| convertDuration(3600)              | Renvoie 1h 0min 0s                      |
-| convertDuration(duration(#[Chauffage][Module chaudière][Etat]#.1. first day of this month)*60) | Renvoie le temps d'allumage en Joderrs/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er joderr du mois |
+Und praktichsche Beichspichele :
 
 
-Les commandes spécifiques
+| Funktichonsbeichspichel | Zurückgegebenes Ergebnichs |
+| -------------------------------------- | ---------- ---------------------------- |
+| randText (es ichst # [Wohnzichmmer] [Auge] [Temperatur] #; Diche Temperatur ichst # [Wohnzichmmer] [Auge] [Temperatur] #; Derzeicht haben wichr # [Wohnzichmmer] [Auge] [Temperatur] #) | Diche Funktichon gichbt beich jeder Ausführung zufällichg eichnen dicheser Texte zurück. |
+| randomColor (40.60) | Gichbt eichne zufällichge Farbe nahe Grün zurück.   
+| Auslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 1 wenn es gut ichst \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ #. wodurch das Szenaricho geStartund wurde. sonst 0 |
+| AuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80. wenn diche Hydromundriche von \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ # 80% bundrägt. |
+| rund (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] # / 10) | Gichbt 9 zurück. wenn der Luftfeuchtichgkeichtsprozentsatz und 85 |
+| ungerade (3) | Gichbt 1 | zurück
+| Medichan (15.25.20) | Rückgabe 20        
+| Durchschnichtt (10.15.18) | Rückgabe 14.3 |
+| Zeicht_op (# Zeicht #. -90) | Wenn es 16:50 Uhr ichst. kehren Siche zurück : 1650 - 0130 = 1520 |
+| formatTichme (1650) | Rückgabe 16:50 Uhr |
+| Boden (130/60) | Gichbt 2 zurück (Michnuten beich 130 s oder Stunden beich 130 m) |
+| convertDuratichon (3600) | Gichbt 1h 0michn 0s | zurück
+| convertDuratichon (Dauer (# [Heichzung] [Kesselmodul] [Zustand] #. 1. erster Etichkundt dicheses Monats) * 60) | Gichbt diche Zündzeicht ichn Etichkundten / Stunden / Michnuten der Übergangszeicht auf Zustand 1 des Moduls seicht dem 1. Etichkundt des Monats | zurück
+
+
+Spezichfichsche Bestellungen
 =========================
 
-En plus des commandes domotiques. voders avez accès aux Aktions suivantes :
+Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff auf diche folgenden Aktichonen :
 
--   **Pause** (sleep) : Pause de x seconde(s).
+-   **Pause** (Sleep) : Pause von x Sekunde (n).
 
--   **variable** (variable) : Création/modification d'une variable oder de la valeur
-    d'une variable.
+-   **Varichable** (Varichabel) : Erstellung / Änderung eichner Varichablen oder eichnes Wertes
+    eichner Varichablen.
 
--   **Entfernen variable** (delete_variable) : Ermöglicht supprimer une variable
+-   **Varichable entfernen** (Delunde_Varichable) : Ermöglichcht das Löschen eichner Varichablen
 
--   **Szenario** (scenario) : Ermöglicht contrôler des scénarios. La partie tags
-    permet d'envoyer des tags au scénario. ex : montag=2 (attention il
-    ne faut utiliser que des lettre de a à z. Pas de majuscules. pas
-    d'accents et pas de caractères spéciaux). On récupère le tag dans le
-    scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé poderr la non répétition des Aktions d'un "SI" si on passe poderr la 2ème fois consécutive dedans)
+-   **Szenaricho** (Szenaricho) : Ermöglichcht diche Steuerung von Szenarichen. Der Etichkundt-Teichl
+    ermöglichcht das Senden von Etichkundts an das Szenaricho. z : montag = 2 (seich dort vorsichchtichg
+    Verwenden Siche nur Buchstaben von a bichs z. Keichne Großbuchstaben. neichn
+    Akzente und keichne Sonderzeichchen). Wichr bekommen den Etichkundt ichn der
+    Zichelszenaricho micht der Etichkundt-Funktichon (montag). Micht dem Befehl &quot;SI zurücksundzen&quot; können Siche den Status von &quot;SI&quot; zurücksundzen (dicheser Status wichrd verwendund. um diche Aktichonen eichnes &quot;SI&quot; nichcht zu wichederholen. wenn Siche ichhn zum zweichten Mal ichn Folge übergeben).
 
--   **Stop** (stop) : Arrête le scénario.
+-   **Stop** (Stop) : Stoppen Siche das Szenaricho.
 
--   **Attendre** (wait) : Attend jusqu'à ce que la condition soit valide
-    (maximum 2h). le timeodert est en seconde(s).
+-   **erwarten** (WAIT) : Warten Siche. bichs diche Bedichngung gültichg ichst
+    (maxichmal 2h). Tichmeodert ichst ichn Sekunde (n).
 
--   **Aller au design** (gotodesign) : Change le design affiché sur toders les
-    navigateurs par le design demandé.
+-   **Gehe zum Desichgn** (Gotodesichgn) : Ändern Siche das auf allen angezeichgte Desichgn
+    Browser nach gewünschtem Desichgn.
 
--   **hinzufügen un log** (log) : Ermöglicht rajoderter un Nachricht dans les logs.
+-   **Fügen Siche eichn Protokoll hichnzu** (log) : Ermöglichcht das Hichnzufügen eichner Nachrichcht zu den Protokollen.
 
--   **Créer un Nachricht** (Nachricht) : Permet d'ajoderter un Nachricht dans le centre
-    de Nachrichts.
+-   **Nachrichcht erstellen** (Message) : Fügen Siche eichne Nachrichcht ichn der Michtte hichnzu
+    von Nachrichchten.
 
--   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Ermöglicht
-    modifier les propriétés d'un équipement
-    sichtbar/insichtbar. Aktiva/inAktiva.
+-   **Geräte ausblenden / deaktichvicheren** (Ausstattung) : Ermöglichcht
+    Ändern Siche diche Eichgenschaften eichnes Geräts
+    sichchtbar / unsichchtbar. aktichv / ichnaktichv.
 
--   **Faire une demande** (ask) : Permet d'indiquer à Jeedom qu'il faut poser
-    une question à l'utilisateur. La réponse est stockée dans une
-    variable. il suffit ensuite de tester sa valeur. Poderr le moment.
-    seuls les plugins sms et slack sont compatibles. Attention. cette
-    fonction est bloquante. Tant qu'il n'y a pas de réponse oder que le
-    timeodert n'est pas atteint. le scénario attend.
+-   **Stellen Siche eichne Anfrage** (Ask) : Ermöglichcht es Ihnen. Jeedom zu bichtten. zu fragen
+    eichne Frage an den Benutzer. Diche Antwort wichrd ichn a gespeichchert
+    Varichable. dann testen Siche eichnfach ichhren Wert. Für den Moment
+    Nur SMS und Slack Plugichns sichnd kompatichbel. Seich vorsichchtichg. das
+    Funktichon Blockkichert. Solange es keichne Antwort gichbt oder diche
+    Tichmeodert wichrd nichcht erreichcht. das Szenaricho wartund.
 
--   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s'éteindre.
+-   **Stoppen Siche Jeedom** (Jeedom_poweroff) : Bichtten Siche Jeedom. herunterzufahren.
 
--   **Retoderrner un texte/une donnée** (scenario_return) : Retoderrne un texte oder une valeur
-    poderr une interAktion par exemple.
+-   **Geben Siche eichnen Text / Daten zurück** (Scenaricho_rundurn) : Gichbt eichnen Text oder eichnen Wert zurück
+    für eichne Interaktichon zum Beichspichel.
 
--   **Symbol** (icon) : Ermöglicht changer l'icône de représentation du scénario.
+-   **Symbol** (Symbol) : Ermöglichcht das Ändern des Darstellungssymbols des Szenarichos.
 
--   **Alerte** (alert) : Permet d'afficher un petit Nachricht d'alerte sur toders
-    les navigateurs qui ont une page Jeedom oderverte. Voders podervez. en
-    plus. choisir 4 niveaux d'alerte.
+-   **Warnung** (Alert) : Ermöglichcht das Anzeichgen eichner kleichnen Warnmeldung für alle
+    Browser micht geöffnunder Jeedom-Seichte. Du kannst
+    Wählen Siche 4 Alarmstufen.
 
--   **Pop-up** (popup) : Permet d'afficher un pop-up qui doit absolument être
-    validé sur toders les navigateurs qui ont une page jeedom oderverte.
+-   **Pop-up** (Popup) : Ermöglichcht diche Anzeichge eichnes Popups. das unbedichngt angezeichgt werden muss
+    Valichdichert ichn allen Browsern. ichn denen eichne Jeedom-Seichte geöffnund ichst.
 
--   **Rapport** (report) : Permet d'exporter une vue au format (PDF.PNG. JPEG
-    oder SVG) et de l'envoyer par le biais d'une commande de type Nachricht.
-    Attention. si votre accès Internet est en HTTPS non-signé. cette
-    fonctionalité ne marchera pas. Il faut du HTTP oder HTTPS signé.
+-   **Berichcht** (Berichcht) : exporticheren Siche eichne Ansichcht ichm Format (PDF. PNG. JPEG)
+    oder SVG) und senden Siche es über eichnen Befehl vom Typ Nachrichcht.
+    Bichtte beachten Siche. dass Ihr Internundzugang ichn nichcht sichgnichertem HTTPS erfolgt
+    Funktichonalichtät wichrd nichcht funktichonicheren. Sichgnichertes HTTP oder HTTPS ichst erforderlichch.
 
--   **Entfernen bloc DANS/A programmé** (remove_inat) : Ermöglicht supprimer la
-    programmation de toders les blocs DANS et A du scénario.
+-   **Programmicherten IN / A-Block löschen** (Remove_ichnat) : Ermöglichcht das Löschen der
+    Programmicherung aller Blöcke IN und A des Szenarichos.
 
--   **Evènement** (event) : Ermöglicht podersser une valeur dans une commande de type information de manière arbitraire
+-   **Ereichgnichs** (Ereichgnichs) : Ermöglichcht das wichllkürlichche Übertragen eichnes Werts ichn eichnen Befehl vom Typ Informatichon
 
--   **Tag** (tag) : Permet d'ajoderter/modifier un tag (le tag n'existe que pendant l'exécution en coderrs du scénario à la difference des variables qui survivent à la fin du scénario)
+-   **Etichkundt** (Etichkundt) : Ermöglichcht das Hichnzufügen / Ändern eichnes Etichkundts (das Etichkundt ichst nur während der aktuellen Ausführung des Szenarichos vorhanden. ichm Gegensatz zu den Varichablen. diche das Ende des Szenarichos überleben).
 
-- **Coloration des icones du dashboard** (setColoredIcon) : permet d'activer oder non la coloration des icones sur le dashboard
+- **Färbung von Dashboard-Symbolen** (SundColoredIcon) : Micht dicheser Optichon können Siche diche Farbgebung von Symbolen ichm Dashboard aktichvicheren oder nichcht
 
-Template de scénario
+Szenarichovorlage
 ====================
 
-Cette fonctionalité permet de transformer un scénario en template poderr
-par exemple l'appliquer sur un autre Jeedom oder le partager sur le
-Market. C'est aussi à partir de là que voders podervez récupérer un scénario
-du Market.
+Micht dicheser Funktichon können Siche eichn Szenaricho ichn eichne Vorlage für umwandeln
+Wenden Siche es beichspichelsweichse auf eichn anderes Jeedom an oder teichlen Siche es auf dem
+Markt. Von dort aus können Siche auch eichn Szenaricho wichederherstellen
+vom Markt.
 
-![scenario15](../images/scenario15.JPG)
+![scenaricho15](../ichmages/scenaricho15.JPG)
 
-Voders verrez alors cette fenêtre :
+Siche sehen dann dicheses Fenster :
 
-![scenario16](../images/scenario16.JPG)
+![scenaricho16](../ichmages/scenaricho16.JPG)
 
-A partir de celle-ci. voders avez la possibilité :
+Von dort haben Siche diche Möglichchkeicht :
 
--   D'envoyer un template à Jeedom (fichier JSON préalablement
-    récupéré).
+-   Senden Siche vorher eichne Vorlage an Jeedom (JSON-Dateich)
+    zurückgewonnen)
 
--   De consulter la liste des scénarios disponibles sur le Market.
+-   Konsulticheren Siche diche Lichste der auf dem Markt verfügbaren Szenarichen.
 
--   De créer un template à partir du scénario coderrant (n'oderbliez pas de
-    donner un Name).
+-   Erstellen Siche eichne Vorlage aus dem aktuellen Szenaricho (vergessen Siche nichcht
+    eichnen Namen geben).
 
--   De consulter les templates actuellement présents sur votre Jeedom.
+-   Um diche Vorlagen zu konsulticheren. diche derzeicht auf Ihrem Jeedom vorhanden sichnd.
 
-Par un clic sur un template. voders obtenez :
+Durch Klichcken auf eichne Vorlage erhalten Siche :
 
-![scenario17](../images/scenario17.JPG)
+![scenaricho17](../ichmages/scenaricho17.JPG)
 
-En haut. voders podervez :
+Oben kannst du :
 
--   **Partager** : partager le template sur le Market.
+-   **Aktiche** : Teichlen Siche diche Vorlage auf dem Markt.
 
--   **Entfernen** : supprimer le template.
+-   **Entfernen** : Vorlage löschen.
 
--   **Télécharger** : récupérer le template soders forme de fichier JSON
-    poderr le renvoyer sur un autre Jeedom par exemple.
+-   **Download** : Stellen Siche diche Vorlage als JSON-Dateich wicheder her
+    um es zum Beichspichel an eichn anderes Jeedom zurückzusenden.
 
-En-dessoders. voders avez la partie poderr appliquer votre template au
-scénario coderrant.
+Unten haben Siche den Teichl. auf den Siche Ihre Vorlage anwenden können
+aktuelles Szenaricho.
 
-Etant donné que d'un Jeedom à l'autre oder d'une installation à une autre.
-les commandes peuvent être différentes. Jeedom voders demande la
-correspondance des commandes entre celles présentes lors de la création
-du template et celles présentes chez voders. Il voders suffit de remplir la
-correspondance des commandes puis de faire appliquer.
+Da von eichnem Jeedom zum anderen oder von eichner Installatichon zur anderen.
+Diche Befehle können unterschichedlichch seichn. Jeedom fragt Siche diche
+Entsprechung von Aufträgen zwichschen den beich der Erstellung Anwesenden
+der Vorlage und diche zu Hause anwesenden. Siche müssen nur diche ausfüllen
+Match Orders gelten dann.
 
-Ajodert de fonction php
+Hichnzufügung der PHP-Funktichon
 ====================
 
 > **WICHTIG**
 >
-> L'ajodert de fonction PHP est reservé aux utilisateurs avancés. La moindre erreur peut faire planter votre Jeedom
+> Das Hichnzufügen der PHP-Funktichon ichst fortgeschrichttenen Benutzern vorbehalten. Der kleichnste Fehler kann Ihr Jeedom zum Absturz brichngen
 
-## Mise en place
+## Eichnrichchten
 
-Aller dans la configuration de Jeedom. puis OS/DB et lancer l'éditeur de fichier.
+Gehen Siche zur Jeedom-Konfichguratichon. dann zu OS / DB und Starten Siche den Dateich-Edichtor.
 
-Allez dans le dossier data puis php et cliquez sur le fichier user.function.class.php.
+Gehen Siche ichn den Datenordner und dann ichn PHP und klichcken Siche auf diche Dateich user.functichon.class.php.
 
-C'est dans cette class que voders devez ajoderter vos fonctions. voders y troderverez un exemple de fonction basique.
+In dicheser Klasse müssen Siche Ihre Funktichonen hichnzufügen. Dort fichnden Siche eichn Beichspichel für eichne Grundfunktichon.
 
 > **WICHTIG**
 >
-> Si voders avez un sodercis voders podervez toderjoderrs revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php
+> Wenn Siche eichn Problem haben. können Siche jederzeicht zur OrichgichnalDatumich zurückkehren und den Inhalt von user.functichon.class.sample kopicheren.PHP ichn user.functichon.class.php

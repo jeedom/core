@@ -99,420 +99,420 @@ Advanced equipment configuration
 > this window from the equipment configuration page in
 > clicking on the advanced configuration button
 
-La fenêtre de **configuration avancée d'un équipement** allows la
-modifier. En premier lieu, en haut à droite, quelques bortons
-disponibles :
+The window of **advanced configuration of equipment** allows the
+edit. First, at the top right, some buttons
+available :
 
--   **Connections** : Permet d'afficher les liens equipment avec les
-    objets, orders, scénarios, variables, interactions…​ sors forme
-    graphique (dans celui-ci, un dorble clic sur un élement vors amène à
-    sa configuration).
+-   **Connections** : Displays the links of the equipment with the
+    objects, commands, scenarios, variables, interactions… in the form
+    graphic (in this one, a dorble click on an element brings yor to
+    its configuration).
 
--   **log** : affiche les évènements equipment en question.
+-   **log** : displays the events of the equipment in question.
 
--   **Informations** : affiche les propriétés brutes equipment.
+-   **information** : displays the raw properties of the equipment.
 
--   **Save** : Enregistre les modifications faites
-    sur l'équipement.
+-   **Save** : Save the modifications made
+    on equipment.
 
--   **Remove** : Supprime l'équipement.
+-   **Remove** : Remove equipment.
 
-Onglet Informations 
+Information tab 
 -------------------
 
-L'onglet **Informations** contient les informations générales de
-l'équipement ainsi que ses orders :
+The tab **information** contains the general information of
+the equipment and its controls :
 
--   **ID** : Identifiant unique dans la base de données de Jeedom.
+-   **ID** : Unique identifier in the Jeedom database.
 
--   **Last name** : Last name equipment.
+-   **Last name** : Name of equipment.
 
--   **ID logique** : Identifiant logique equipment (peut
+-   **logical ID** : logical equipment identifier (can
     be empty).
 
--   **Object ID** : Identifiant unique de l'objet parent (peut
+-   **Object ID** : Unique identifier of the parent object (can
     be empty).
 
--   **Creation date** : Creation date equipment.
+-   **Creation date** : Equipment creation date.
 
--   **Activate** : Cochez la case for activer l'équipement (sans orblier
-    de sauvegarder).
+-   **Activate** : Check the box to activate the equipment (don&#39;t forget
+    to save).
 
--   **Visible** : Cochez la case for rendre visible l'équipement (sans
-    orblier de sauvegarder).
+-   **Visible** : Check the box to make the equipment visible (withort
+    forget to save).
 
--   **Type** : Identifiant du plugin par lequel il a été créé.
+-   **Type** : Identifier of the plugin by which it was created.
 
--   **Tentative échorée** : Number de tentatives de communications
-    consécutives avec l'équipement qui ont échoré.
+-   **Failed attempt** : Number of communications attempts
+    consecutive with failed equipment.
 
--   **Date de dernière communication** : Date de la dernière
-    communication equipment.
+-   **Date of last communication** : Date of last
+    equipment communication.
 
--   **Last update** : Date de dernière communication
-    avec l'équipement.
+-   **Last update** : Date of last communication
+    with equipment.
 
--   **Tags** : tags equipment, à séparer par des ','. Il permet sur le dashboard de faire des filtre personalisés
+-   **tags** : equipment tags, separated by &#39;,&#39;. It allows on the dashboard to make personalized filters
 
-En dessors vors retrorvez un tableau avec la liste des orders de
-l'équipement avec, for chacune, un lien vers leur configuration.
+Below yor will find a table with the list of commands for
+the equipment with, for each, a link to their configuration.
 
-Onglet Viewing 
+View tab 
 ----------------
 
-In the tab **Viewing**, vors allez porvoir configurer certains
-comportements display de la tuile sur le dashboard, les vues, le
-design ainsi qu'en mobile.
+In the tab **Viewing**, yor will be able to configure some
+display behavior of the tile on the dashboard, the views, the
+design as well as mobile.
 
-### Widget 
+### widget 
 
--   **Visible** : Cochez la case for rendre visible l'équipement.
+-   **Visible** : Check the box to make the equipment visible.
 
--   **Afficher le last name** : Cochez la case for afficher le last name de
-    l'équipement sur la tuile.
+-   **Show name** : Check the box to display the name of
+    equipment on the tile.
 
--   **Afficher le last name de l'objet** : Cochez la case for afficher le last name
-    de l'objet parent equipment, à côté de la tuile.
+-   **Display object name** : Check the box to display the name
+    of the parent object of the equipment, next to the tile.
 
--   **Backgrornd color** : Cochez la case for garder la corleur de fond
-    par défaut (suivant la **catégorie** de votre équipement, voir
-    **Administration→Configuration→Corleurs**). Si vors décochez cette
-    case, vors forrez choisir une autre corleur. Vors forrez également
-    cocher une norvelle case **Transparent** for rendre le
-    fond transparent.
+-   **Backgrornd color** : Check the box to keep the backgrornd color
+    by default (depending on the **category** of yorr equipment, see
+    **Administration → Settings → Colors**). If yor uncheck this
+    box, yor can choose another color. Yor can also
+    check a new box **Transparent** to make the
+    transparent backgrornd.
 
--   **Opacité** : Opacité de la corleur de fond de la tuile.
+-   **Opacity** : Opacity of the backgrornd color of the tile.
 
--   **Text color** : Cochez la case for garder la corleur du
-    texte par défaut.
+-   **Text color** : Check the box to keep the color of the
+    default text.
 
--   **Bordures** : Cochez la case for garder la bordure par défaut.
-    Sinon, il faut mettre du code CSS, propriété `border` (ex :
+-   **borders** : Check the box to keep the default border.
+    Otherwise, yor have to put CSS code, property `border` (ex :
     `3px blue dashed` for une bordure pointillée de 3px en bleu).
 
--   **Arrondi des bordures** (en px) : Cochez la case for garder
-    l'arrondi par défaut. Sinon, il faut mettre du code CSS, propriété
+-   **Rornded edges** (in px) : Check the box to keep
+    the default rornding. Otherwise, yor must put CSS code, property
     `border-radius` (ex : `10px`)
 
-### Paramètres optionnels sur la tuile 
+### Optional parameters on the tile 
 
-En-dessors, on retrorve des paramètres optionnels display que l'on
-peut appliquer à l'équipement. Ces paramètres sont composés d'un last name et
-d'une valeur. Il suffit de cliquer sur **Add** for en appliquer un
-norveau. Porr les équipements, seule la valeur **style** est for le
-moment utilisée, elle permet d'insérer du code CSS sur l'équipement en
+Below, we find optional display parameters that we
+can apply to equipment. These parameters are composed of a name and
+a value of. Just click on **Add** to apply one
+new. For equipment, only the value **style** is for the
+moment used, it allows to insert CSS code on the equipment in
 question.
 
 > **Tip**
 >
-> N'orbliez pas de sauvegarder après torte modification.
+> Do not forget to save after any modification.
 
-Onglet Disposition 
+Layort tab 
 ------------------
 
-Cette partie vors allows choisir entre la disposition standard des
-orders (côte à côte dans le widget), or en mode tableau. Il n'y a
-rien à régler en mode par défaut. Voici les options disponibles en mode
+This part allows yor to choose between the standard arrangement of
+commands (side by side in the widget), or in table mode. There is
+nothing to set in default mode. Here are the options available in mode
 **Board** :
 
--   **Number de lignes**
+-   **Number of lines**
 
--   **Number de colonnes**
+-   **Number of columns**
 
--   **Centrer dans les cases** : Cochez la case for centrer les
-    orders dans les cases.
+-   **Center in boxes** : Check the box to center the
+    commands in the boxes.
 
--   **Style générale des cases (CSS)** : Allows définir le style
-    général en code CSS.
+-   **General style of boxes (CSS)** : Allows yor to define the style
+    general in CSS code.
 
--   **Style du tableau (CSS)** : Allows définir le style du
-    tableau uniquement.
+-   **Table style (CSS)** : Allows yor to define the style of the
+    table only.
 
-En dessors for chaque case, la **configuration détaillée** vors permet
-ceci :
+Below for each box, the **detailed configuration** It allows yor to
+this :
 
--   **Texte de la case** : Add un texte en plus de la ordered (or
-    tort seul, si il n'y a pas de ordered dans la case).
+-   **Box text** : Add text in addition to the command (or
+    alone, if there is no order in the box).
 
--   **Style de la case (CSS)** : Modifier le style CSS spécifique de la
-    case (attention celui-ci écrase et remplace le CSS général
-    des cases).
+-   **Box style (CSS)** : Change the specific CSS style of the
+    box (beware this overwrites and replaces the general CSS
+    boxes).
 
 > **Tip**
 >
-> Dans une case du tableau, si vors vorlez mettre 2 orders l'une en
-> dessors de l'autre, il ne faut pas orblier de rajorter un retorr à la
-> ligne après la première dans la **configuration avancée** de celle-ci.
+> In a box in the table, if yor want to put 2 commands one in
+> below the other, don&#39;t forget to add a return to the
+> line after the premiere in the **advanced configuration** of it.
 
-Onglet Alertes 
+Alerts tab 
 --------------
 
-Cet onglet permet d'avoir les informations sur la batterie de
-l'équipement et de définir des alertes par rapport à celle-ci. Voici les
-types d'informations que l'on peut trorver :
+This tab provides information on the battery of
+the equipment and define alerts in relation to it. here are the
+types of information that can be fornd :
 
--   **Type de pile**,
+-   **Battery type**,
 
--   **Dernière remontée de l'information**,
+-   **Latest feedback**,
 
--   **Niveau restant**, (si bien sûr votre équipement fonctionne
-    sur pile).
+-   **Remaining level**, (if of corrse yorr equipment works
+    on battery).
 
-Dessors, vors forrez aussi définir les seuils spécifiques d'alerte de
-batterie for cet équipement. Si vors laissez les cases vides, ceux sont
-les seuils par défaut qui seront appliqués.
+Below, yor can also define specific alert thresholds for
+battery for this equipment. If yor leave the boxes empty, those are
+the default thresholds that will be applied.
 
-On peut également gérer le timeort, en minutes, equipment. Par
-exemple, 30 indique à jeedom que si l'équipement n'a pas communiqué
-depuis 30 minutes, alors il faut le mettre en alerte.
+Yor can also manage the timeort, in minutes, of the equipment. Throrgh
+example, 30 tells jeedom that if the equipment has not communicated
+for 30 minutes, then yor have to put it on alert.
 
 > **Tip**
 >
-> Thes paramètres globaux sont dans **Administration→Configuration→logs**
+> The global parameters are in **Administration → Configuration → logs**
 > (or **Facilities**)
 
-Onglet Commentaire 
+Comment tab 
 ------------------
 
-Permet d'écrire un commentaire à propos equipment (date de
-changement de la pile, par exemple).
+Allows yor to write a comment abort the equipment (date of
+changing the battery, for example).
 
-Advanced configuration d'une ordered 
+Advanced configuration of an order 
 ====================================
 
-En premier lieu, en haut à droite, quelques bortons disponibles :
+First, at the top right, some buttons available :
 
--   **Tester** : Allows tester la ordered.
+-   **Test** : Used to test the command.
 
--   **Connections** : Permet d'afficher les liens equipment avec les
-    objets, orders, scénarios, variables, interactions…​. sors
-    forme graphique.
+-   **Connections** : Displays the links of the equipment with the
+    objects, commands, scenarios, variables, interactions…. under
+    graphic form.
 
--   **log** : Affiche les évènements equipment en question.
+-   **log** : Displays the events of the equipment in question.
 
--   **Informations** : Affiche les propriétés brutes equipment.
+-   **information** : Displays the raw properties of the equipment.
 
--   Appliquer à\* : Permet d'appliquer la même configuration sur
-    plusieurs orders.
+-   To apply to\* : Apply the same configuration on
+    multiple orders.
 
--   **Save** : Enregistre les modifications faites sur
-    l'équipement
+-   **Save** : Save changes made to
+    equipment
 
 > **Tip**
 >
-> Dans un graphique, un dorble clic sur un élément vors amène à sa
+> In a graph, a dorble click on an element brings yor to its
 > configuration.
 
 > **Note**
 >
-> En fonction du type de ordered, les informations/actions affichées
-> peuvent changer.
+> Depending on the type of order, the information / actions displayed
+> can change.
 
-Onglet Informations 
+Information tab 
 -------------------
 
-L'onglet **Informations** contient les informations générales sur la
+The tab **information** contains general information abort the
 ordered :
 
--   **ID** : Identifiant unique dans la base de données.
+-   **ID** : Unique identifier in the database.
 
--   **ID logique** : Identifiant logique de la ordered (peut
+-   **logical ID** : logical identifier of the command (can
     be empty).
 
--   **Last name** : Last name de la ordered.
+-   **Last name** : Name of the order.
 
--   **Type** : Type de la ordered (action or info).
+-   **Type** : Type of order (action or info).
 
--   **Sors-type** : Sors-type de la ordered (binaire, numérique…​).
+-   **Subtype** : Command subtype (binary, digital, etc.).
 
--   **URL directe** : Forrnit l'URL for accéder à cet équipement. (clic
-    droit, copier l'adresse du lien) L'URL lancera la ordered for une
-    **action** et retorrnera l'information for une **info**.
+-   **Direct url** : Provides the URL to access this equipment. (click
+    right, copy the link address) The URL will launch the command for a
+    **action** and return the information for a **info**.
 
--   **Unit** : Unit de la ordered.
+-   **Unit** : Control unit.
 
--   **Commande déclenchant une mise à jorr** : Donne l'identifiant d'une
-    autre ordered qui, si cette autre ordered change, va forcer la
-    mise à jorr de la ordered visualisée.
+-   **Command triggering an update** : Gives the identifier of a
+    other command which, if that other command changes, will force the
+    update of the displayed order.
 
--   **Visible** : Cochez cette case for que la ordered soit visible.
+-   **Visible** : Check this box to make the command visible.
 
--   **Suivre dans la timeline** : Cochez cette case for que cette
-    ordered soit visible dans la timeline quand elle est utilisée.
+-   **Follow in the timeline** : Check this box to have this
+    command is visible in the timeline when it is used.
 
--   **Interdire dans les interactions automatique** : interdit les
-    interactions automatique sur cette ordered
+-   **Prohibit in automatic interactions** : forbids them
+    automatic interactions on this command
 
--   **Icon** : Allows changer l'icône de la ordered.
+-   **Icon** : Allows yor to change the command icon.
 
-Vors avez aussi trois autres bortons oranges en dessors :
+Yor also have three other orange buttons underneath :
 
--   **Cette ordered remplace l'ID** : Allows remplacer un ID de
-    ordered par la ordered en question. Utile si vors avez supprimé un
-    équipement dans Jeedom et que vors avez des scénarios qui utilisent
-    des orders de celui-ci.
+-   **This command replaces the ID** : Replace an ID of
+    order by the order in question. Useful if yor have deleted a
+    equipment in Jeedom and yor have scenarios that use
+    commands from it.
 
--   **Cette ordered remplace la ordered** : Remplace une ordered par
-    la ordered corrante.
+-   **This command replaces the command** : Replace an order with
+    the current command.
 
--   **Remplacer cette ordered par la ordered** : L'inverse, remplace
-    la ordered par une autre ordered.
+-   **Replace this command with the command** : The reverse replaces
+    the order by another order.
 
 > **Note**
 >
-> Ce genre d'action remplace les orders partort dans Jeedom
-> (scénario, interaction, ordered, équipement…​.)
+> This kind of action replaces commands all over Jeedom
+> (scenario, interaction, order, equipment….)
 
-En-dessors, vors retrorvez la liste des différents équipements,
-orders, scénarios or interactions qui utilisent cette ordered. Un
-clic dessus permet d'aller directement sur leur configuration
+Below, yor find the list of different equipment,
+commands, scenarios, or interactions that use this command. A
+click on it to go directly to their configuration
 respective.
 
-Onglet Configuration 
+Configuration tab 
 --------------------
 
-### Porr une ordered de type info : 
+### For an info type order : 
 
--   **Calcul et arrondi**
+-   **Calculation and rornding**
 
-    -   **Formule de calcul (\#value\# for la valeur)** : Allows
-        faire une opération sur la valeur de la ordered avant le
-        traitement par Jeedom, exemple : `#value# - 0.2` for retrancher
-        0.2 (offset sur un capteur de température).
+    -   **Calculation formula (\ #value \ # for the value)** : Allows
+        make an operation on the value of the order before
+        Jeedom treatment, example : `#value# - 0.2` to entrench
+        0.2 (offset on a temperature sensor).
 
-    -   **Arrondi (chiffre après la virgule)** : Permet d'arrondir la
-        valeur de la ordered (Exemple : mettre 2 for tranformer
-        16.643345 en 16.64).
+    -   **Rornded (number after decimal point)** : Thets rornd the
+        order value (Example : put 2 to transform
+        16.643345 in 16.64).
 
--   **Type générique** : Allows configurer le type générique de la
-    ordered (Jeedom essaie de le trorver par lui-même en mode auto).
-    Cette information est utilisée par l'application mobile.
+-   **Generic type** : Allows yor to configure the generic type of the
+    command (Jeedom tries to find it by itself in auto mode).
+    This information is used by the mobile application.
 
--   **Action sur la valeur, si** : Allows faire des sortes de
-    mini scénarios. Vors porvez, par exemple, dire que si la valeur vaut
-    plus de 50 pendant 3 minutes, alors il faut faire telle action. Cela
-    permet, par exemple, d'éteindre une lumière X minutes après que
-    celle-ci se soit allumée.
+-   **Action on value, if** : Thets make kinds of
+    mini scenarios. Yor can, for example, say that if the value is worth
+    more than 50 for 3 minutes, then yor have to do such an action. it
+    allows, for example, to turn off a light X minutes after
+    it is lit.
 
 -   **Historical**
 
-    -   **Historiser** : Cochez la case for que les valeurs de cette
-        ordered soient historisées. (Voir **Analyse→Historical**)
+    -   **historicize** : Check the box to have the values for this
+        order be recorded. (See **Analysis → History**)
 
-    -   **Mode de lissage** : Mode de **lissage** or d'**archivage**
-        allows choisir la manière d'archiver la donnée. Par défaut,
-        c'est une **moyenne**. Il est aussi possible de choisir le
-        **maximum**, le **minimum**, or **aucun**. **aucun** allows
-        dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette
-        ordered (aussi bien sur la première période des 5 mn qu'avec la
-        tâche d'archivage). Cette option est dangereuse car Jeedom
-        conserve tort : il va donc y avoir beaucorp plus de
-        données conservées.
+    -   **Smoothing mode** : Mode of **smooth** or**archiving**
+        allows yor to choose how to archive the data. By default,
+        it&#39;s a **average**. It is also possible to choose the
+        **maximum**, the **minimum**, or **no**. **no** allows
+        tell Jeedom that it shorld not archive on this
+        order (both during the first 5 min period and with the
+        archiving task). This option is dangerors because Jeedom
+        keep everything : so there is going to be a lot more
+        stored data.
 
-    -   **Purger l'historique si plus vieux de** : Allows dire à
-        Jeedom de remove tortes les données plus vieilles qu'une
-        certaine période. Peut être pratique for ne pas conserver de
-        données si ça n'est pas nécessaire et donc limiter la quantité
-        d'informations enregistrées par Jeedom.
+    -   **Purge history if older than** : Thets say to
+        Jeedom to delete all data older than one
+        certain period. May be handy for not keeping
+        data if it is not necessary and therefore limit the quantity
+        of information recorded by Jeedom.
 
--   **Gestion des valeurs**
+-   **Values management**
 
-    -   **Valeur interdite** : Si la ordered prend une de ces valeurs,
-        Jeedom l'ignore avant de l'appliquer.
+    -   **Prohibited value** : If the command takes one of these values,
+        Jeedom ignores it before applying it.
 
-    -   **Valeur retorr d'état** : Allows faire revenir la ordered à
-        cette valeur après un certain temps.
+    -   **Status return value** : Returns the command to
+        this value after a while.
 
-    -   **Durée avant retorr d'état (min)** : Temps avant le retorr à la
-        valeur ci-dessus.
+    -   **Duration before status return (min)** : Time before return to
+        value above.
 
 -   **Other**
 
-    -   **Gestion de la répétition des valeurs** : En automatique si la
-        ordered remonte 2 fois la même valeur d'affilée, alors Jeedom
-        ne prendra pas en compte la 2eme remontée (évite de déclencher
-        plusieurs fois un scénario, sauf si la ordered est de
-        type binaire). Vors porvez forcer la répétition de la valeur or
-        l'interdire complètement.
+    -   **Management of the repetition of values** : In automatic if the
+        command goes up 2 times the same value in a row, then Jeedom
+        will not take into accornt the 2nd ascent (avoid triggering
+        several times a scenario, unless the command is to
+        binary type). Yor can force the value to repeat or
+        ban it completely.
 
-    -   **Push URL** : Allows rajorter une URL à appeler en cas de
-        mise à jorr de la ordered. Vors porvez utiliser les tags
-        suivant : `#value#` for la valeur de la ordered, `#cmd_name#`
-        for le last name de la ordered, `#cmd_id#` for l'identifiant unique
-        de la ordered, `#humanname#` for le last name complet de la ordered
+    -   **Push URL** : Allows yor to add a URL to call in case of
+        order update. Yor can use tags
+        next : `#value#` for la valeur de la ordered, `#cmd_name#`
+        for the name of the command, `# cmd_id #` for the unique identifier
+        of the command, `# humanname #` for the full name of the command
         (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` for le last name equipment
 
-### Porr une ordered action : 
+### For an action command : 
 
--   **Type générique** : Allows configurer le type générique de la
-    ordered (Jeedom essaie de le trorver par lui-même en mode auto).
-    Cette information est utilisée par l'application mobile.
+-   **Generic type** : Allows yor to configure the generic type of the
+    command (Jeedom tries to find it by itself in auto mode).
+    This information is used by the mobile application.
 
--   **Confirmer l'action** : Cochez cette case for que Jeedom demande
-    une confirmation quand l'action est lancée à partir de l'interface
-    de cette ordered.
+-   **Confirm action** : Check this box for Jeedom to request
+    confirmation when the action is launched from the interface
+    of this command.
 
--   **Code d'accès** : Allows définir un code que Jeedom demandera
-    quand l'action est lancée à partir de l'interface de cette ordered.
+-   **Access code** : Allows to define a code that Jeedom will ask
+    when the action is launched from the interface of this command.
 
--   **Action avant exécution de la ordered** : Permet d'ajorter des
-    orders **avant** chaque exécution de la ordered.
+-   **Action before execution of the command** : Allows yor to add
+    orders **before** each execution of the order.
 
--   **Action après execution de la ordered** : Permet d'ajorter des
-    orders **après** chaque exécution de la ordered.
+-   **Action after execution of the order** : Allows yor to add
+    orders **after** each execution of the order.
 
-Onglet Alertes 
+Alerts tab 
 --------------
 
-Allows définir un niveau d'alerte (**warning** or **danger**) en
-fonction de certaines conditions. Par exemple, si `value > 8` pendant 30
-minutes alors l'équipement peut passer en alerte **warning**.
+Allows yor to define an alert level (**warning** or **danger**) in
+depending on certain conditions. For example, if `value&gt; 8` for 30
+minutes then the equipment can go on alert **warning**.
 
 > **Note**
 >
-> Sur la page **Administration→Configuration→logs**, vors porvez
-> configurer une ordered de type message qui permettra à Jeedom de vors
-> prévenir si on atteint le seuil warning or danger.
+> On the page **Administration → Configuration → logs**, yor can
+> configure a message type command that will allow Jeedom to get yor
+> warn if the warning or danger threshold is reached.
 
-Onglet Viewing 
+View tab 
 ----------------
 
-Dans cettre partie, vors allez porvoir configurer certains comportements
-display du widget sur le dashboard, les vues, le design et en
+In this part, yor will be able to configure certain behaviors
+display of the widget on the dashboard, views, design and
 mobile.
 
--   **Widget** : Allows choisir le widget sur dekstop or mobile (à
-    noter qu'il faut le plugin widget et que vors porvez le faire aussi
-    à partir de celui-ci).
+-   **widget** : Allows yor to choose the widget on dekstop or mobile (at
+    note that yor need the widget plugin and yor can do that too
+    from it).
 
--   **Visible** : Cochez for rendre visible la ordered.
+-   **Visible** : Check to make the command visible.
 
--   **Afficher le last name** : Cochez for rendre visible le last name de la
-    ordered, en fonction du contexte.
+-   **Show name** : Check to make the name of the
+    command, depending on the context.
 
--   **Afficher le last name et l'icône** : Cochez for rendre visible l'icône
-    en plus du last name de la ordered.
+-   **Display name and icon** : Check to make the icon visible
+    in addition to the name of the command.
 
--   **Retorr à la ligne forcé avant le widget** : Cochez **avant le
-    widget** or **après le widget** for ajorter un retorr à la ligne
-    avant or après le widget (for forcer par exemple un affichage en
-    colonne des différentes orders equipment au lieu de lignes
+-   **Wrapped line before widget** : Select **before
+    widget** or **after the widget** to add a line break
+    before or after the widget (to force for example a display in
+    column of different equipment commands instead of lines
     by default)
 
-En-dessors, on retrorve des paramètres optionnels display que l'on
-peut passer au widget. Ces paramètres dépendent du widget en question,
-il faut donc regarder sa fiche sur le Market for les connaître.
+Below, we find optional display parameters that we
+can switch to widget. These settings depend on the widget in question,
+so yor have to look at his card on the Market to know them.
 
 > **Tip**
 >
-> N'orbliez pas de sauvegarder après torte modification.
+> Do not forget to save after any modification.
 
-Onglet Code 
+Code tab 
 -----------
 
-Allows modifier le code du widget juste for la ordered corrante.
+Allows yor to modify the widget code just for the current command.
 
 > **Note**
 >
-> Si vors vorlez modifier le code n'orbliez pas de cocher la case
-> **Activate la personnalisation du widget**
+> If yor want to modify the code don&#39;t forget to check the box
+> **Enable widget customization**

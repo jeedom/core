@@ -60,7 +60,7 @@ Sur chaque zone vous avez les options générales suivantes :
 
 -   **Editer** : permet de changer le nom de la zone
 
--   **Supprimer** : permet de supprimer la zone
+-   **remove** : permet de supprimer la zone
 
 Zone de type widget 
 -------------------

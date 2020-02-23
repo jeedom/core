@@ -11,7 +11,7 @@ La page de troncos est assez simple, en haut à gauche une liste déroulante
 permettant le choix du log à regarder, en haut à droite vous avez 5
 boutons :
 
--   **Rechercher** : permet de filtrer l'affiche de log
+-   **Buscar** : permet de filtrer l'affiche de log
 
 -   **Pause/Reprendre** : permet de mettre en pause/reprendre la mise à
     jour en temps réel des logs
@@ -20,10 +20,10 @@ boutons :
 
 -   **Vider** : permet de vider le log actuel,
 
--   **Supprimer** : permet de supprimer le log actuel, si Jeedom en a
+-   **remove** : permet de supprimer le log actuel, si Jeedom en a
     besoin il le recréera automatiquement,
 
--   **Supprimer tous les logs** : supprime tous les logs présents.
+-   **remove tous les logs** : supprime tous les logs présents.
 
 > **punta**
 >

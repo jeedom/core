@@ -1,36 +1,36 @@
-Voici une documentation sur les méthodes de l'API. Tout d'abord voici
-les spécifications (JSON RPC 2.0) :
+Here is documentation on API methods. First here is
+the specifications (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-L'accès à l'API se fait par l'url : *URL\_JEEDOM*/core/api/jeeApi.php
+Access to the API is via the url : *URL \ _JEEDOM * / core / api / jeeApi.php
 
-Divers
+Various
 ======
 
 ping
 ----
 
-Retourne pong, permet de tester la communication avec Jeedom
+Return pong, test communication with Jeedom
 
 version
 -------
 
-Retourne la version de Jeedom
+Returns the version of Jeedom
 
 datetime
 --------
 
-Retourne le datetime de Jeedom en microsecondes
+Returns the Jeedom datetime in microseconds
 
-API config
+Config API
 ==========
 
 config::byKey
 -------------
 
-Retourne une value de configuration.
+Returns a configuration value.
 
-Paramètres :
+Settings :
 
 -   string key : configuration value key to return
 
@@ -44,7 +44,7 @@ config::save
 
 Saves a configuration value
 
-Paramètres :
+Settings :
 
 -   string value : value to record
 
@@ -63,7 +63,7 @@ Returns the list of exchange since the datetime notsed in parameter
 (must be in microseconds). You will also have in the answer the
 Jeedom&#39;s current datetime (to be reused for the next query)
 
-Paramètres :
+Settings :
 
 -   int datetime
 
@@ -75,7 +75,7 @@ plugin::listPlugin
 
 Returns the list of all plugins
 
-Paramètres :
+Settings :
 
 -   int activateOnly = 0 (only returns the list of activated plugins)
 
@@ -104,7 +104,7 @@ Returns an object with all its equipment and for each equipment
 all its commands as well as their states (for
 info type commands)
 
-Paramètres :
+Settings :
 
 -   int id
 
@@ -113,7 +113,7 @@ jeeObject::BYID
 
 Returns the specified object
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -129,7 +129,7 @@ jeeObject::save
 
 Returns the specified object
 
-Paramètres:
+Settings:
 
 -   int id (empty if it is a creation)
 
@@ -153,7 +153,7 @@ summary::global
 
 Return the global summary for the key notsed in parameter
 
-Paramètres:
+Settings:
 
 -   string key : (optional), key of the desired summary, if empty then Jeedom
     sends you the summary for all the keys
@@ -163,7 +163,7 @@ summary::BYID
 
 Returns the summary for the object id
 
-Paramètres:
+Settings:
 
 -   int id : object id
 
@@ -184,7 +184,7 @@ eqLogic::fullById
 Returns equipment and its commands as well as their states
 (for info type orders)
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -193,7 +193,7 @@ eqLogic::BYID
 
 Returns the specified equipment
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -202,7 +202,7 @@ eqLogic::byType
 
 Returns all equipment belonging to the specified type (plugin)
 
-Paramètres:
+Settings:
 
 -   string type
 
@@ -211,7 +211,7 @@ eqLogic::byObjectId
 
 Returns all equipment belonging to the specified object
 
-Paramètres:
+Settings:
 
 -   int object \ _id
 
@@ -224,7 +224,7 @@ array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; �
 array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ array (….)), id2 ⇒ array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 Array (....)) ..)
 
-Paramètres:
+Settings:
 
 -   string \ [\] eqType = table of the types of equipment required
 
@@ -235,7 +235,7 @@ eqLogic::save
 
 Returns the registered / created equipment
 
-Paramètres:
+Settings:
 
 -   int id (empty if it is a creation)
 
@@ -272,7 +272,7 @@ cmd::BYID
 
 Returns the specified command
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -281,7 +281,7 @@ cmd::byEqLogicId
 
 Returns all orders belonging to the specified equipment
 
-Paramètres:
+Settings:
 
 -   int eqLogic \ _id
 
@@ -290,7 +290,7 @@ cmd::ExecCmd
 
 Execute the specified command
 
-Paramètres:
+Settings:
 
 -   int id : id of a command or id array if you want to execute
     multiple orders at once
@@ -304,7 +304,7 @@ cmd::getStatistique
 Returns statistics on the order (only works on
 info and historical commands)
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -318,7 +318,7 @@ cmd::getTendance
 Returns the trend on the command (only works on the commands of
 info and historical type)
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -332,7 +332,7 @@ cmd::getHistory
 Returns the command history (only works on the commands of
 info and historical type)
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -345,7 +345,7 @@ cmd::save
 
 Returns the specified object
 
-Paramètres:
+Settings:
 
 -   int id (empty if it is a creation)
 
@@ -386,7 +386,7 @@ cmd::event
 
 Allows you to send a value to an order
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -407,7 +407,7 @@ scenario::BYID
 
 Returns the specified scenario
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -416,7 +416,7 @@ scenario::export
 
 Returns the export of the scenario as well as the human name of the scenario
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -425,7 +425,7 @@ scenario::import
 
 Allows you to import a scenario.
 
-Paramètres:
+Settings:
 
 -   int id : id of the scenario in which to import (empty if creation)
 
@@ -438,7 +438,7 @@ scenario::ChangeState
 
 Changes the state of the specified scenario.
 
-Paramètres:
+Settings:
 
 -   int id
 
@@ -452,7 +452,7 @@ log::get
 
 Allows you to recover a log
 
-Paramètres:
+Settings:
 
 -   string log : name of the log to recover
 
@@ -465,7 +465,7 @@ log::add
 
 Allows to write in a log
 
-Paramètres:
+Settings:
 
 -   string log : name of the log to recover
 
@@ -481,7 +481,7 @@ log::list
 
 Get the Jeedom logs list
 
-Paramètres:
+Settings:
 
 -   string filter : (optional) filter on the name of the logs to recover
 
@@ -490,7 +490,7 @@ log::empty
 
 Empty a log
 
-Paramètres:
+Settings:
 
 -   string log : name of the log to empty
 
@@ -499,7 +499,7 @@ log::remove
 
 Allows you to delete a log
 
-Paramètres:
+Settings:
 
 -   string log : log name to delete
 
@@ -511,7 +511,7 @@ datastore::byTypeLinkIdKey
 
 Get the value of a variable stored in the datastore
 
-Paramètres:
+Settings:
 
 -   string type : type of stored value (for scenarios
     it&#39;s scenario)
@@ -526,7 +526,7 @@ datastore::save
 
 Stores the value of a variable in the datastore
 
-Paramètres:
+Settings:
 
 -   string type : type of stored value (for scenarios
     it&#39;s scenario)
@@ -551,7 +551,7 @@ message::add
 
 Allows to write in a log
 
-Paramètres:
+Settings:
 
 -   string type : log type (debug, info, warning, error)
 
@@ -575,7 +575,7 @@ interact::tryToReply
 Try to match a request with an interaction, execute
 action and responds accordingly
 
-Paramètres:
+Settings:
 
 -   query (request phrase)
 
@@ -628,7 +628,7 @@ plugin::install
 
 Installation / Update of a given plugin
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -638,7 +638,7 @@ plugin::remove
 
 Deletion of a given plugin
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -648,7 +648,7 @@ plugin::dependancyInfo
 
 Returns information on the status of plugin dependencies
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -658,7 +658,7 @@ plugin::dependancyInstall
 
 Force installation of plugin dependencies
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -668,7 +668,7 @@ plugin::deamonInfo
 
 Returns information about the status of the plugin daemon
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -678,7 +678,7 @@ plugin::deamonStart
 
 Force the demon to start
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -688,7 +688,7 @@ plugin::deamonStop
 
 Force demon stop
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -698,7 +698,7 @@ plugin::deamonChangeAutoMode
 
 Change the management mode of the daemon
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
@@ -726,7 +726,7 @@ Allows you to update Jeedom and all plugins
 update::DoUpdate
 --------------
 
-Paramètres:
+Settings:
 
 -   int plugin \ _id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)

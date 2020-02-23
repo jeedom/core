@@ -54,7 +54,7 @@ l'interaction n'est pas liée à une action mais une information ou si on
 souhaite réaliser une action particulière après celle-ci (il est aussi
 possible d'exécuter un scénario, de contrôler plusieurs commandes…​).
 
-Configuration 
+configuración 
 =============
 
 La page de configuration est constituée de plusieurs onglets et de
@@ -65,9 +65,9 @@ boutons :
 
 -   **Enregistrer** : enregistre l'interaction courante
 
--   **Supprimer** : supprime l'interaction courante
+-   **remove** : supprime l'interaction courante
 
--   **Dupliquer** : duplique l'interaction courante
+-   **duplicado** : duplique l'interaction courante
 
 general 
 =======
@@ -330,7 +330,7 @@ On a 2 endroits pour appliquer une Regexp :
 
 -   dans l'interaction même dans le champ "Exclusión de expresiones regulares".
 
--   Dans le menu Administration→Configuration→interacciones→champ "Regexp
+-   Dans le menu Administration→configuración→interacciones→champ "Regexp
     général d'exclusion pour les interactions".
 
 Pour le champ "Regex général d'exclusion pour les interactions", cette
@@ -613,8 +613,8 @@ Voilà l'interaction à faire :
 
 Jusque là rien de bien compliqué, il faut en revanche avoir configuré
 les couleurs dans Jeedom pour que cela fonctionne; rendez-vous dans le
-menu → Configuration (en haut à droite) puis dans la partie
-"Configuration des interactions" :
+menu → configuración (en haut à droite) puis dans la partie
+"configuración des interactions" :
 
 ![interact024](../images/interact024.png)
 

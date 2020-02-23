@@ -39,7 +39,7 @@ En esa pesaña encontramos información general sobre Jeedom :
 
 -   **Clave de instalación** : Llave de hardware de su Jeedom en
     el mercado. si su Jeedom no aparece en la lista de su
-    Jeedom on the Market, es recomendable hacer clic en el botón
+    Jeedom on the mercado, es recomendable hacer clic en el botón
     **Resablecer**.
 
 -   **Última fecha conocida** : Fecha registrada por Jeedom, utilizada después
@@ -647,172 +647,172 @@ Depósito utilizado para conectar Jeedom a Github.
 -   **Usuario u organización del repositorio principal de Jeedom** : apellido
     el usuario o la organización en github para el núcleo.
 
--   **número del repositorio para el núcleo Jeedom** : apellido du dépôt para el core.
+-   **número del repositorio para el núcleo Jeedom** : número del repositorio para core.
 
--   **Branche para el core Jeedom** : Branche du dépôt para el core.
+-   **Industria central de Jeedom** : Rama del repositorio central.
 
-### Market
+### mercado
 
-Dépôt servant para relier Jeedom au market, il es vivement conseillé
-d'utiliser ce dépôt. Atención : toute demande de apoyo pourra être
-refusée si vous utilisez un autre dépôt que celui-ci.
+Depósito utilizado para conectar Jeedom al mercado, es muy recomendable
+para usar ese repositorio. Atención : cualquier solicitud de soporte puede ser
+rechazado si utiliza un depósito diferente a ese.
 
--   **Adresse** : Adresse du Market.(https://www.jeedom.com/market)
+-   **dirección** : Dirección del mercado. (Https://www.jeedom.com/market)
 
--   **nombre del usuario** : Votre nom d'utilisateur sur el mercado.
+-   **nombre del usuario** : Su nombre de usuario en el mercado.
 
--   **Contraseña** : Votre mot de passe du Market.
+-   **Contraseña** : Tu contraseña de mercado.
 
--   **[Backup cloud] apellido** : apellido de votre backup cloud (attention doit etre unique pour chaque Jeedom sous risque qu'il s'écrase entre eux)
+-   **[Backup cloud] apellido** : número de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos)
 
--   **[Backup cloud] Contraseña** : Contraseña du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le récuperer. Sans celui-ci vous ne pourrez plus resaurer votre Jeedom.
+-   **[Backup cloud] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. sin ella, ya no podrás resaurar tu Jeedom.
 
--   **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full es plus long qu'un incrémental (qui n'envoie que les différences). Se recomienda d'en faire 1 par mois
+-   **[Backup cloud] Fréquence backup full** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes
 
-### Samba
+### samba
 
-Dépôt permettant d'envoyer automatiquement une sauvegarde de Jeedom sur
-un partage Samba (por ejemplo, : NAS Synology).
+Deposite para enviar automáticamente una copia de seguridad de Jeedom a
+una parte de samba (por ejemplo, : NAS Synology).
 
--   **\[Backup\] IP** : IP du serveur Samba.
+-   **\ [Copia de seguridad \] IP** : IP del servidor samba.
 
--   **\[Backup\] Utilisateur** : nombre del usuario pour la connexion
-    (les connexions anonymes ne sont pas possibles). Il faut forcément
-    que l'utilisateur ait les droits en lecture ET en écriture sur le
-    répertoire de desination.
+-   **\ [Copia de seguridad \] Usuario** : número de usuario para iniciar sesión
+    (las conexiones anónimas no son posibles). Debe haber
+    que el usuario tiene derechos de lectura y escritura en el
+    directorio de desino.
 
--   **\[Backup\] Contraseña** : Contraseña de l'utilisateur.
+-   **\ [Copia de seguridad \] Contraseña** : Contraseña de usuario.
 
--   **\[Backup\] Partage** : Chemin du partage (attention para bien
-    s'arrêter au niveau du partage).
+-   **\ [Copia de seguridad \] Compartir** : Forma de compartir (ten cuidado
+    detenerse en el nivel de compartir).
 
--   **\[Backup\] Chemin** : Chemin dans le partage (para mettre en
-    relatif), celui-ci doit exister.
-
-> **nota**
->
-> si le chemin d'acceso para votre dossier de sauvegarde samba es :
-> \\\\192.168.0.1\\Sauvegardes\\Domotique\\Jeedom Alors IP = 192.168.0.1
-> , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+-   **\ [Copia de seguridad \] Ruta** : Ruta en compartir (para esablecer
+    relativo), debe existir.
 
 > **nota**
 >
-> Lors de la validation du partage Samba, tel que décrit précédemment,
-> une nouvelle forme de sauvegarde apparait dans la partie
-> Administration→Sauvegardes de Jeedom. En l'activant, Jeedom procèdera
-> para son envoi automatique lors de la prochaine sauvegarde. Un tes es
-> possible en effectuant une sauvegarde manuelle.
+> si la ruta a su carpeta de copia de seguridad samba es :
+> \\\\ 192.168.0.1 \\ Copias de seguridad \\ Automatización del hogar \\ Jeedom Entonces IP = 192.168.0.1
+> , Sharing = //192.168.0.1 / Copias de seguridad, Ruta = Domótica / Jeedom
+
+> **nota**
+>
+> Al validar el recurso compartido samba, como se describió anteriormente,
+> aparece una nueva forma de respaldo en la sección
+> Administración → copias de seguridad de Jeedom. Al activarlo, Jeedom procederá
+> cuando se envía automáticamente en la próxima copia de seguridad. Una prueba es
+> posible realizando una copia de seguridad manual.
 
 > **importante**
 >
-> Il vous faudra peut-être installer le package smbclient pour que le
-> dépôt fonctionne.
+> Es posible que deba instalar el paquete smbclient para
+> obras de depósito.
 
 > **importante**
 >
-> Le protocole Samba comporte plusieurs versions, la v1 es compromise niveau
-> sécurité et sur certains NAS vous pouvez obliger le client a utilizar la v2
-> ou la v3 pour se connecter. Donc si vous avez une erreur protocol negotiation
-> failed: NT_STATUS_INVAID_NETWORK_RESPONSE il y a de forte chance que coté NAS
-> la resriction soit en place. Vosotras devez alors modifier sur l'OS de votre Jeedom
-> le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
-> client max protocol = SMB3
-> client min protocol = SMB2
-> Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement
-> SMB3. A vous donc d'adapter en fonction des resrictions côté NAS ou autre serveur Samba
+> El protocolo samba tiene varias versiones, el v1 esá comprometido a nivel
+> seguridad y en algunos NAS puede obligar al cliente a usar v2
+> o v3 para conectar. Entonces, si tiene un error de negociación de protocolo
+> fracasado: NT_STATUS_INVAID_NETWORK_RESPONSE hay una buena posibilidad de que aparezca NAS
+> la resricción esé en su lugar. Luego debe modificar el sistema operativo de su Jeedom
+> el archivo / etc / samba / smb.conf y agregue esas dos líneas :
+> protocolo max del cliente = SMB3
+> protocolo min del cliente = SMB2
+> El smbclient del lado de Jeedom usará v2 donde v3 y al poner SMB3 en ambos
+> SMB3. Entonces, depende de usted adaptarse según las resricciones en el NAS u otro servidor samba
 
 > **importante**
 >
-> Jeedom doit être le seul para écrire dans ce dossier et il doit être vide
-> por defecto (c'es-para-dire qu'avant la configuration et l'envoi de la
-> première sauvegarde, le dossier ne doit contenir aucun fichier ou
-> dossier).
+> Jeedom debería ser el único en escribir en esa carpeta y debería esar vacío
+> de forma predeterminada (es decir, antes de configurar y enviar el
+> primera copia de seguridad, la carpeta no debe contener ningún archivo o
+> carpetas).
 
 ### URL
 
--   **URL core Jeedom**
+-   **URL central de Jeedom**
 
--   **URL version core Jeedom**
+-   **URL de la versión principal de Jeedom**
 
-Cache
+cubierta
 =====
 
-Permet de surveiller et d'agir sur le cache de Jeedom :
+Permite monitorear y actuar en el caché Jeedom :
 
--   **Statistiques** : número d'objetos actuellement en cache
+-   **esadística** : Número de objetos actualmente en caché
 
--   **Nettoyer le cache** : Force la suppression des objetos qui ne sont
-    plus utiles. Jeedom le fait automatiquement toutes les nuits.
+-   **Limpiar la tapa** : Forzar la eliminación de objetos que no son
+    mas util. Jeedom hace eso automáticamente todas las noches.
 
--   **Vider toutes les données en cache** : Vide complètement le cache.
-    Atención cela peut faire perdre des données !
+-   **Borrar todos los datos en caché** : Vacíe la tapa completamente.
+    Tenga en cuenta que eso puede causar pérdida de datos !
 
--   **Vider le cache des widgets** : Vide le cache dédié aux widgets
+-   **Borrar el caché del widget** : Borrar el caché dedicado a los widgets
 
--   **Désactiver le cache des widgets** : Cocher la case pour désactiver
-    le caches des widgets
+-   **Deshabilitar caché de widgets** : Marque la casilla para desactivar
+    el widget cubre
 
--   **Temps de pause para el long polling** : Fréquence para laquelle
-    Jeedom vérifie si il y a des événements en attente para els clients
-    (interface web, application mobile…​). Plus ce temps es court, plus
-    l'interface se mettra para jour rapidement, en contre partie cela
-    utilise plus de ressources et peut donc ralentir Jeedom.
+-   **Tiempo de pausa para encuesas largas** : Con que frecuencia
+    Jeedom comprueba si hay eventos pendientes para los clientes.
+    (interfaz web, aplicación móvil, etc.). Cuanto más corto esa vez, más
+    la interfaz se actualizará rápidamente, a cambio eso
+    usa más recursos y por lo tanto puede ralentizar.
 
 API
 ===
 
-Vosotras trouvez ici la liste des différentes clés API disponibles dans
-votre Jeedom. De base, le core a deux clés API :
+Aquí esá la lista de las diferentes claves API disponibles en
+tu libertad. Core tiene dos claves API :
 
--   une générale : autant que possible, il faut éviter de l'utiliser,
+-   un general : tanto como sea posible, evite usarlo,
 
--   et une autre para els professionnels : utilisée pour la gesion
-    de parc. Elle peut être vide.
+-   y otro para profesionales : utilizado para la gesión
+    del parque. Puede esar vacio.
 
--   Puis, vous trouverez une clé API par plugin en ayant besoin.
+-   Luego encontrará una clave API por complemento que la necesita.
 
-Pour chaque clé API de plugin, ainsi que para els APIs HTTP, JsonRPC et
-TTS, vous pouvez définir leur portée :
+Para cada clave API de complemento, así como para HTTP, JsonRPC y API
+TTS, puedes definir su alcance :
 
--   **Désactivée** : la clé API ne peut être utilisée,
+-   **discapacitado** : la clave API no se puede usar,
 
--   **IP blanche** : seule une liste d'IPs es autorisée (voir
-    Administration→Configuration→redes),
+-   **IP blanca** : solo se autoriza una lista de IP (ver
+    Administración → Configuración → Redes)
 
--   **Localhost** : seules les requêtes venant du système sur lequel es
-    installé Jeedom sont autorisées,
+-   **localhost** : solo solicitudes del sistema en el que esá
+    Jeedom instalado esá permitido,
 
--   **Activé** : aucune resriction, n'importe quel système ayant acceso
-    para votre Jeedom pourra accéder para cette API.
+-   **activado** : sin resricciones, cualquier sistema con acceso
+    su Jeedom podrá acceder a esa API.
 
-&gt;\_OS/DB
+&gt;\ _OS / DB
 ===========
 
-Deux parties réservées aux experts sont présentes dans cet pesaña.
+Dos partes reservadas para expertos esán presentes en esa pesaña.
 
 > **importante**
 >
-> ATTENTION : si vous modifiez Jeedom avec l'une de ces deux solutions,
-> le apoyo peut refuser de vous aider.
+> ATENCIÓN : si modifica Jeedom con una de esas dos soluciones,
+> el apoyo puede negarse a ayudarlo.
 
--   **&gt;\_sistema** : Permet d'accéder para une interface
-    d'administration système. C'es une sorte de console shell dans
-    laquelle vous pouvez lancer las órdenes les plus utiles, notamment
-    pour obtenir des informations sur le système.
+-   **&gt;\ _SYSTEM** : Permite el acceso a una interfaz
+    administración del sistema. Es una especie de consola de shell en
+    que puede ejecutar los comandos más útiles, incluidos
+    para obtener información sobre el sistema.
 
--   **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
-    d'exploitation et de les éditer ou supprimer ou d'en créer.
+-   **Editor de archivos** : Permite el acceso a diferentes archivos del sistema
+    y editarlos, eliminarlos o crearlos.
 
--   **Base de données** : Administration / Lancer : Permet d'accéder para la base de données
-    de Jeedom. Usted puede alors lancer des commandes dans le champs
-    du haut.
-    Vérification / Lancer : Permet de lancer une vérification sur la base de données
-    de Jeedom et de corriger si nécessaire les erreurs
+-   **Base de datos** : Administración / Lanzamiento : Permite el acceso a la base de datos.
+    de Jeedom. Luego puede ejecutar comandos en el campo
+    desde lo alto.
+    Verificar / Lanzar : Le permite iniciar una verificación en la base de datos
+    Libertad y errores correctos si es necesario
 
-    Deux paramètres s'affichent, en dessous, pour information :
+    A continuación se muesran dos parámetros para obtener información. :
 
-    -   **Utilisateur** : apellido de l'utilisateur utilisé par Jeedom dans
-        la base de données,
+    -   **usuario** : número de usuario utilizado por Jeedom en
+        la base de datos
 
-    -   **Contraseña** : mot de passe d'acceso para la base de données
-        utilisé par Jeedom.
+    -   **Contraseña** : contraseña de acceso a la base de datos
+        utilizado por Jeedom.

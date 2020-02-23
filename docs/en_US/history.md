@@ -1,194 +1,194 @@
-Partie importante dans un logiciel : la partie historisation, véritable
-mémoire de celui-ci. Il est possible dans Jeedom d'historiser n'importe
-quelle commande de type information (binaire ou numérique). Cela vous
-permettra donc par exemple d'historiser une courbe de température, de
-consommation ou les ouvertures d'une porte, etc.​
+Important part in software : the historization part, real
+memory of it. It is possible in Jeedom to historize any
+which information type command (binary or digital). this will
+will therefore allow for example to historicize a temperature curve,
+consumption or door openings, etc.
 
-Principe 
+Principle 
 ========
 
-Ici est décrit le principe d'historisation de Jeedom. Il n'est
-nécessaire de le comprendre que si vous rencontrez des soucis
-d'historisation ou que vous voulez modifier les réglages de
-l'historisation. Les réglages par défaut conviennent dans la plupart des
-cas.
+Here is described the principle of historicization of Jeedom. It is not
+necessary to understand that if you have any concerns
+or want to change the settings for
+historicization. The default settings are suitable for most
+case.
 
-Archivage 
+archiving 
 ---------
 
-L'archivage de données permet à Jeedom de réduire la quantité de données
-conservées en mémoire. Cela permet de ne pas utiliser trop de place et
-de ne pas ralentir le système. En effet, si vous conservez toutes les
-mesures, cela fait d'autant plus de points à afficher et donc peut
-considérablement allonger les temps pour rendre un graphique. En cas
-d'un nombre trop important de points, cela peut même faire planter
-l'affichage du graphique.
+Data archiving allows Jeedom to reduce the amount of data
+kept in memory. This allows not to use too much space and
+not to slow down the system. Indeed, if you keep all the
+measures, this makes all the more points to display and therefore can
+dramatically lengthen times to make a graph. In casee
+too many points, it can even crash
+graph display.
 
-L'archivage est une tâche qui se lance dans la nuit et compacte les
-données récupérées dans la journée. Par défaut Jeedom récupère toutes
-les données plus vieilles de 2h et en fait des paquets de 1h (soit une
-moyenne, un minimum ou un maximum en fonction des réglages). On a donc
-ici 2 paramètres, un pour la taille des paquets et un autre pour savoir
-à partir de quand en faire (pour rappel par défaut ce sont des paquets
-de 1h avec des données qui ont plus de 2h d'ancienneté).
+Archiving is a task that starts at night and compacts
+data recovered during the day. By default Jeedom recovers all
+2h older data and makes 1h packets (one
+average, minimum or maximum depending on the settings). So we have
+here 2 parameters, one for packet size and another for knowing
+when to do it (by default, these are packages
+1 hour with data that has more than 2 hours of seniority).
 
 > **Tip**
 >
-> Si vous avez bien suivi vous devriez avoir une haute précision sur les
-> 2 dernières heures seulement. Pourtant quand je me connecte à 17h,
-> j'ai une précision sur les 17 dernières heures. Pourquoi ? En fait,
-> pour éviter de consommer des ressources inutilement, la tâche qui fait
-> l'archivage ne se déroule qu'une fois par jour, le soir.
+> If you have followed well you should have a high precision on the
+> Last 2 hours only. Yet when I log in at 5 p.m.,
+> I have a clarification on the last 17 hours. Why ? In fact,
+> to avoid consuming resources unnecessarily, the task that makes
+> archiving takes place only once a day, in the evening.
 
 > **Important**
 >
-> Bien sûr, ce principe d'archivage ne s'applique qu'aux commandes de
-> type numérique ; sur les commandes de type binaire, Jeedom ne conserve
-> que les dates de changement d'état.
+> Of course, this archiving principle only applies to orders from
+> digital type; on binary type commands, Jeedom does not keep
+> that the dates of change of state.
 
-Affichage d'un graphique 
+Viewing a graph 
 ========================
 
-Il existe plusieurs moyens d'accéder à l'historique :
+There are several ways to access the history :
 
--   en mettant une zone graphe dans une vue (voir plus bas),
+-   by putting a graph area in a view (see below),
 
--   en cliquant sur la commande voulue dans un widget,
+-   by clicking on the desired command in a widget,
 
--   en allant dans la page historique qui permet de superposer
-    différentes courbes et de combiner les styles (aire, courbe, barre)
+-   by going to the history page which allows to superimpose
+    different curves and combine styles (area, curve, bar)
 
--   en mobile en restant appuyé sur le widget en question
+-   on mobile while remaining pressed on the widget in question
 
-Si vous affichez un graphique par la page historique ou en cliquant sur
-le widget, vous avez accès à plusieurs options d'affichage :
+If you display a graph by the historical page or by clicking on
+the widget, you have access to several display options :
 
-On retrouve en haut à droite la période d'affichage (ici sur la dernière
-semaine car, par défaut je veux que ça soit seulement une semaine - voir
-2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
-(ces paramètres sont gardés d'un affichage à l'autre ; vous n'avez donc
-qu'à les configurer une seule fois).
+We find at the top right the display period (here on the last
+week because by default I want it to be only one week - see
+2 paragraphs above), then come the parameters of the curve
+(these parameters are kept from one display to another; you therefore
+only configure them once).
 
--   **Staircase** : permet d'afficher la courbe sous la forme d'un
-    escalier ou d'un affichage continu.
+-   **Staircasee** : displays the curve as a
+    staircasee or continuous display.
 
--   **Variation** : affiche la différence de valeur par rapport au
-    point précédent.
+-   **Variation** : displays the difference in value from
+    previous point.
 
--   **Ligne** : affiche le graphique sous forme de lignes.
+-   **Line** : displays the graph as lines.
 
--   **Aire** : affiche le graphique sous forme d'une aire.
+-   **Area** : displays the graph as an area.
 
--   **Colonne**\* : affiche le graphique sous forme de barres.
+-   **Column**\* : displays the graph as bars.
 
-Graphique sur les vues et les designs 
+Graphic on views and designs 
 =====================================
 
-Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici
-les options de configuration et non comment faire, pour cela il faut se
-rendre sur la documention des vues ou des designs en fonction). Voici
-les options :
+You can also display the graphs on the views (we will see here
+the configuration options and not how to do it, for that you have to
+render views or designs based on the documentation). here is
+the options :
 
-Une fois une donnée activée, vous pouvez choisir :
+Once a data is activated, you can choose :
 
--   **Color** : la couleur de la courbe.
+-   **Color** : the color of the curve.
 
--   **Type** : le type de graphique (aire, ligne ou colonne).
+-   **Type** : the type of graph (area, line or column).
 
--   **Ladder** : vu que vous pouvez mettre plusieurs courbes (données)
-    sur le même graphique, il est possible de distinguer les échelles
-    (droite ou gauche).
+-   **Ladder** : since you can put several curves (data)
+    on the same graph, it is possible to distinguish the scales
+    (right or left).
 
--   **Staircase** : permet d'afficher la courbe sous la forme d'un
-    escalier ou d'un affichage continu
+-   **Staircasee** : displays the curve as a
+    staircasee or continuous display
 
--   **Stack** : permet d'empiler les valeurs des courbes (voir en
-    dessous pour le résultat).
+-   **Stack** : allows to stack the values of the curves (see in
+    below for the result).
 
--   **Variation** : affiche la différence de valeur par rapport au
-    point précédent.
+-   **Variation** : displays the difference in value from
+    previous point.
 
-Option sur la page d'historique 
+Option on the history page 
 ===============================
 
-La page d'historique donne accès à quelques options supplémentaires
+The history page gives access to some additional options
 
-Historique calculé 
+Calculated history 
 ------------------
 
-Permet d'afficher une courbe en fonction d'un calcul sur plusieurs
-commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
-documentation PHP pour certaines fonctions). Ex :
-abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
-vie\]\[Hygrométrie\]\[Température\]*)
+Allows to display a curve according to a calculation on several
+command (you can do almost everything, + - / \ * absolute value… see
+PHP documentation for certain functions). Ex :
+abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Space of
+Life \] \ [Humidity \] \ [Temperature \] *)
 
-Vous avez aussi accès à un gestion de formules de calcul qui vous permet
-de les sauvegarder pour les réafficher plus facilement
+You also have access to a management of calculation formulas which allows you
+save them for easier viewing
 
 > **Tip**
 >
-> Il suffit de cliquer sur le nom de l'objet pour le déplier ;
-> apparaissent les commandes historisées qui peuvent être graphées.
+> Just click on the name of the object to unfold it;
+> appear the historical commands which can be graphed.
 
-Historique de commande 
+Order history 
 ----------------------
 
-Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
+In front of each data that can be graphed, you will find two icons :
 
--   **Trash can** : permet de supprimer les données enregistrées ; lors
-    du clic, Jeedom demande s'il faut supprimer les données avant une
-    certaine date ou toutes les données.
+-   **Trash can** : allows to delete the recorded data; then
+    of the click, Jeedom asks if it is necessary to delete the data before a
+    certain date or all data.
 
--   **Flèche** : permet d'avoir un export CSV des données historisées.
+-   **Arrow** : allows to have a CSV export of historical data.
 
-Suppression de valeur incohérente 
+Inconsistent value removal 
 =================================
 
-Parfois, il se peut que vous ayez des valeurs incohérentes sur les
-graphiques. Cela est souvent dû à un souci d'interprétation de la
-valeur. Il est possible de supprimer ou changer la valeur du point en
-question, en cliquant sur celui-ci directement sur le graphique ; de
-plus, vous pouvez régler le minimum et le maximum autorisés afin
-d'éviter des problèmes futurs.
+Sometimes you may have inconsistent values on the
+graphics. This is often due to a concern with the interpretation of the
+value. It is possible to delete or change the point value by
+question, by clicking on it directly on the graph; of
+more, you can set the minimum and maximum allowed so
+avoid future problems.
 
 timeline 
 ========
 
-La timeline affiche certains événements de votre domotique sous forme
-chronologique.
+The timeline displays certain events in your home automation in the form
+chronological.
 
-Pour les voir, il vous faut d'abord activer le suivi sur la timeline des
-commandes ou scénarios voulus :
+To see them, you must first activate the tracking on the timeline of
+desired commands or scenarios :
 
--   **Scenario** : soit directement sur la page de scénario, soit sur la
-    page de résumé des scénarios pour le faire en "masse"
+-   **Scenario** : either directly on the scenario page, or on the
+    scenario summary page to do it &quot;en masse&quot;
 
--   **Ordered** : soit dans la configuration avancée de la commande,
-    soit dans la configuration de l'historique pour le faire en "masse"
+-   **Ordered** : either in the advanced configuration of the command,
+    either in the configuration of the history to do it in &quot;mass&quot;
 
 > **Tip**
 >
-> Vous avez accès aux fenêtres de résumé des scénarios ou de la
-> configuration de l'historique directement à partir de la page de
+> You have access to the summary windows of the scenarios or the
+> configuration of the history directly from the page
 > timeline.
 
-Une fois que vous avez activé le suivi dans la timeline des commandes et
-scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
+Once you&#39;ve enabled tracking in the order timeline and
+desired scenarios, you can see them appear on the timeline.
 
 > **Important**
 >
-> Il faut attendre de nouveaux événements après avoir activé le suivi
-> sur la timeline avant de les voir apparaître.
+> You have to wait for new events after activating tracking
+> on the timeline before seeing them appear.
 
-Les cartes sur la timeline affichent :
+The cards on the timeline display :
 
--   **Ordered action** : en fond rouge, une icône à droite vous permet
-    d'afficher la fenêtre de configuration avancée de la commande
+-   **Action command** : in red background, an icon on the right allows you
+    display the advanced configuration window of the command
 
--   **Ordered info** : en fond bleu, une icône à droite vous permet
-    d'afficher la fenêtre de configuration avancée de la commande
+-   **Info command** : in blue background, an icon on the right allows you
+    display the advanced configuration window of the command
 
--   **Scenario** : en fond gris, vous avez 2 icônes : une pour afficher
-    le log du scénario et une pour aller sur le scénario
+-   **Scenario** : in gray background, you have 2 icons : one to display
+    the scenario log and one to go to the scenario
 
 

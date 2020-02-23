@@ -23,7 +23,7 @@ Le panneau thèmes vous permet de régler des paramètres d'interface :
 -   **Graphique Mobile** : permet de définir le thème par défaut des
     graphiques en mode mobile
 
--   **Opacité par des widgets Dashboard** : permet de donner l'opacité
+-   **Opacité par des widgets salpicadero** : permet de donner l'opacité
     (entre 0 et 1) des widgets sur le dashboard
 
 -   **Opacité par des widgets Design** : permet de donner l'opacité
@@ -62,7 +62,7 @@ Vous permet de définir certains comportements de l'interface :
     -   **Plein écran** : affichage par défaut en plein écran lors de
         l'arrivée sur les designs
 
--   **Dashboard**
+-   **salpicadero**
 
     -   **Déplier le panneau des scénarii** : permet de rendre visible
         par défaut le menu des scénarii (à droite) sur le dashboard

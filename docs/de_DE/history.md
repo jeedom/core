@@ -102,7 +102,7 @@ Sobald eine Daten aktiviert sind, können Sie auswählen :
 -   **Treppe** : zeigt die Kurve als an
     Treppe oder kontinuierliche Anzeige
 
--   **Empiler** : permet d'empiler les valeurs des courbes (voir en
+-   **Stapel** : permet d'empiler les valeurs des courbes (voir en
     dessous pour le résultat).
 
 -   **Veränderung** : zeigt die Wertdifferenz von an
@@ -135,7 +135,7 @@ Historique de commande
 
 Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
 
--   **Poubelle** : permet de supprimer les données enregistrées ; lors
+-   **Mülleimer** : permet de supprimer les données enregistrées ; lors
     du clic, Jeedom demande s'il faut supprimer les données avant une
     certaine date ou toutes les données.
 

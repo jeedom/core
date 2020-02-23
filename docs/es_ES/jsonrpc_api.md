@@ -557,7 +557,7 @@ Paramètres:
 
 -   string mensaje : mensaje
 
--   string action : action
+-   string acción : acción
 
 -   string logicalId : logicalId
 
@@ -566,14 +566,14 @@ mensaje::removeAll
 
 Supprime tous les mensajes
 
-API JSON Interaction
+API JSON Interacción
 ====================
 
 interact::tryToReply
 --------------------
 
-Essaie de faire correspondre une demande avec une interaction, exécute
-l'action et répond en conséquence
+Essaie de faire correspondre une demande avec une interacción, exécute
+l'acción et répond en conséquence
 
 Paramètres:
 
@@ -585,7 +585,7 @@ Paramètres:
 interactQuery::all
 ------------------
 
-Renvoi la liste complete de toute les interactions
+Renvoi la liste complete de toute les interaccións
 
 API JSON System
 ===============
