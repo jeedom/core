@@ -372,21 +372,21 @@ cambios
 - Para el bloque A, posibilidad de poner una hora entre las 12:01 a.m. y las 12:59 a.m. simplemente poniendo los minutos (ex 30 para las 12:30 a.m.)
 - Agregar sesiones activas y dispositivos registrados a la página de perfil de usuario y a la página de administración de usuarios
 - JEED-284 : la conexión permanente ahora depende de un usuario único y una clave periférica (y ya no ese usuario)
-- JEED-283 : ajout d'un mode *rescue* à jeedom en rajoutant &rescue=1 dans l'url
-- JEED-8 : ajout du nom du scénario sur le titre de la page lors de l'édition
-- Optimisation des modifications d'organisation (taille des widgets, position des équipements, position des commandes) sur le dashboard et les vue. Attention maintenant les modifications ne sont sauvegardées que lorsque l'on quitte le mode édition.
-- JEED-18 : Ajout des logs lors de l'ouverture d'un ticket au support
-- JEED-181 : ajout d'une commande name dans les scénarios pour avoir le nom de la commande ou de l'équipement ou de l'objet
-- JEED-15 : Ajout des batterie et alerte sur la webapp
-- Correction du bugs de déplacement des objets du design sous Firefox
-- JEED-19 : Lors d'une mise à jour il est maintenant possible de mettre à jour le script d'update avant la mise à jour
-- JEED-125 : ajout d'un lien vers la documentation de réinitialisation de mot de passe
-- JEED-2 : Amélioration de la gestion de l'heure lors d'un redémarrage
-- JEED-77 : Ajout de la gestion des variables dans l'API http
-- JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de \#montag\# à tag(montag)
-- JEED-124 : Corriger la gestion des timeouts des scénarios
+- JEED-283 : agregando un modo * rescue * a jeedom agregando &amp; rescue = 1 en la url
+- JEED-8 : adición del nombre del escenario en el título de la página durante la edición
+- Optimización de los cambios organizacionales (tamaño de los widgets, posición del equipo, posición de los comandos) en el tablero y las vistas. Tenga en cuenta ahora que las modificaciones solo se guardan al salir del modo de edición.
+- JEED-18 : Agregar registros al abrir un ticket para admitir
+- JEED-181 : adición de un comando de nombre en los escenarios para tener el nombre del comando o del equipo u objeto
+- JEED-15 : Agregue batería y alerta en la aplicación web
+- Corrección de errores para mover objetos de diseño en Firefox
+- JEED-19 : Durante una actualización, ahora es posible actualizar el script de actualización antes de la actualización
+- JEED-125 : enlace agregado a la documentación de restablecimiento de contraseña
+- JEED-2 : Gestión del tiempo mejorada durante un reinicio
+- JEED-77 : Adición de gestión de variables en la API http
+- JEED-78 : adición de la función de etiqueta para escenarios. Tenga en cuenta que en escenarios que usan etiquetas, cambie de \ #montag \ # a etiqueta (montag)
+- JEED-124 : Corregir la gestión de los tiempos de espera del escenario.
 - Correcciones de errores
-- Possibilité de désactiver une interaction
+- Capacidad para desactivar una interacción.
 - Agregar un editor de archivos (reservado para usuarios experimentados)
 - Adición de genéricos Tipos &quot;Luz de estado&quot; (binario), &quot;Temperatura de color de luz&quot; (Información), &quot;Temperatura de color de luz&quot; (Acción)
 - Capacidad para hacer que las palabras sean obligatorias en una interacción.

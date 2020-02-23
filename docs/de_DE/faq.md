@@ -272,45 +272,45 @@ Jeedom kann das Gateway nicht finden oder nicht anpingen. Im Allgemeinen passier
 
 Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist. &quot;
 =========================================
-Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann.. Es gibt leider keinen Wunderbefehl zu korrigieren. Le mieux est de lancer un backup et d'analyser le log de celui-ci. Dans les cas connus de soucis nous avons:
+Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann.. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir:
 
-- une table de la base corrompue => là c'est mal parti il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous êtes sur carte SD c'est le bon moment pour la changer)
-- pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
+- eine beschädigte Basistabelle =&gt; dort ist es ein schlechter Start, wir müssen sehen, um zu versuchen, zu reparieren, und wenn es nicht von der letzten guten Sicherung startet (wenn Sie auf SD-Karte sind, ist es der richtige Zeitpunkt, es zu ändern)
+- Nicht genügend Speicherplatz im Dateisystem =&gt; Schauen Sie sich die Gesundheitsseite an, die Sie darüber informieren können
 
 
-Je n'arrive plus à me connecter à mon Jeedom
+Ich kann mich nicht mehr mit meinem Jeedom verbinden
 =========================================
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les ip sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto/how to)
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Dies wird in der Administration des Jeedom-Sicherheitsteils dann &quot;weiße&quot; IP konfiguriert. Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
 
-J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent être manquant ou j'ai une page blanche
+Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
 =========================================
-C'est une erreur assez grave le plus simple est de faire
+Es ist ein ziemlich schwerwiegender Fehler, der am einfachsten zu machen ist
 
 ```
-mkdir -p /root/tmp/
-cd /root/tmp
+mkdir -p / root / tmp /
+cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
-unzip master.zip
-cp -R /root/tmp/core-master/* /var/www/html
-rm -rf /root/tmp/core-master
+entpacke master.zip
+cp -R / root / tmp / core-master / * / var / www / html
+rm -rf / root / tmp / core-master
 ```
 
-J'ai l'erreurs dans scenario_execution MYSQL_ATTR_INIT_COMMAND
+Ich habe die Fehler in Szenario_Ausführung MYSQL_ATTR_INIT_COMMAND
 =========================================
-Dans l'administration de Jeedom partie OS/DB puis dans la console systeme il faut faire :
+Bei der Verwaltung des Jeedom-Teils OS / DB muss dann in der Systemkonsole vorgenommen werden :
 
 ```
-yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2
 ```
 
-# Je n'arrive pas a installer les dépendances d'un plugin j'ai une erreur du type : "E: dpkg a été interrompu. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock /var/lib/dpkg/lock"
+# Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : „E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou „E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden &quot;
 
-Il faut :
+Du musst :
 
-- redemarrer Jeedom
-- aller dans l'administration de celui-ci (bouton roue cranté en haut a droite puis configuration en v3 ou Réglage -> Système -> Configuration en v4)
-- aller dans l'onglet OS/DB
-- lancer l'administration Système
-- cliquer sur Dpkg configure
-- attendre 10min
-- relancer les dépendances du plugins qui bloque
+- Jeedom neu starten
+- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4).
+- Wechseln Sie zur Registerkarte OS / DB
+- Starten Sie die Systemadministration
+- Klicken Sie auf Dpkg konfigurieren
+- Warten Sie 10 Minuten
+- Starten Sie die Abhängigkeiten der blockierenden Plugins neu

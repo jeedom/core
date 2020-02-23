@@ -97,90 +97,90 @@ Sobald eine Daten aktiviert sind, können Sie auswählen :
 
 -   **Maßstab** : da kann man mehrere kurven (daten) setzen
     Im selben Diagramm ist es möglich, die Skalen zu unterscheiden
-    (droite ou gauche).
+    (rechts oder links).
 
 -   **Treppe** : zeigt die Kurve als an
     Treppe oder kontinuierliche Anzeige
 
--   **Stapel** : permet d'empiler les valeurs des courbes (voir en
-    dessous pour le résultat).
+-   **Stapel** : ermöglicht das Stapeln der Kurvenwerte (siehe in
+    unten für das Ergebnis).
 
 -   **Veränderung** : zeigt die Wertdifferenz von an
     vorheriger Punkt.
 
-Option sur la page d'historique 
+Option auf der Verlaufsseite 
 ===============================
 
-La page d'historique donne accès à quelques options supplémentaires
+Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
-Historique calculé 
+Berechnete Geschichte 
 ------------------
 
-Permet d'afficher une courbe en fonction d'un calcul sur plusieurs
-commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
-documentation PHP pour certaines fonctions). ex :
-abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
-vie\]\[Hygrométrie\]\[Température\]*)
+Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung für mehrere
+Befehl (Sie können fast alles tun, + - / \ * absoluter Wert ... siehe
+PHP-Dokumentation für bestimmte Funktionen). ex :
+abs (* \ [Garten \] \ [Hygrometrie \] \ [Temperatur \] * - * \ [Raum von
+Das Leben \] \ [Luftfeuchtigkeit \] \ [Temperatur \] *)
 
-Vous avez aussi accès à un gestion de formules de calcul qui vous permet
-de les sauvegarder pour les réafficher plus facilement
+Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht
+Speichern Sie sie zur einfacheren Anzeige
 
 > **Spitze**
 >
-> Il suffit de cliquer sur le nom de l'objet pour le déplier ;
-> apparaissent les commandes historisées qui peuvent être graphées.
+> Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten.
+> erscheinen die historischen Befehle, die grafisch dargestellt werden können.
 
-Historique de commande 
+Bestellhistorie 
 ----------------------
 
-Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
+Vor allen Daten, die grafisch dargestellt werden können, befinden sich zwei Symbole :
 
--   **Mülleimer** : permet de supprimer les données enregistrées ; lors
-    du clic, Jeedom demande s'il faut supprimer les données avant une
-    certaine date ou toutes les données.
+-   **Mülleimer** : ermöglicht das Löschen der aufgezeichneten Daten; dann
+    Jeedom fragt, ob die Daten vor a gelöscht werden müssen
+    bestimmtes Datum oder alle Daten.
 
--   **Flèche** : permet d'avoir un export CSV des données historisées.
+-   **Pfeil** : Ermöglicht einen CSV-export historischer Daten.
 
-Suppression de valeur incohérente 
+Inkonsistente Wertentfernung 
 =================================
 
-Parfois, il se peut que vous ayez des valeurs incohérentes sur les
-graphiques. Cela est souvent dû à un souci d'interprétation de la
-valeur. Il est possible de supprimer ou changer la valeur du point en
-question, en cliquant sur celui-ci directement sur le graphique ; de
-plus, vous pouvez régler le minimum et le maximum autorisés afin
-d'éviter des problèmes futurs.
+Manchmal haben Sie möglicherweise inkonsistente Werte auf dem
+Grafiken. Dies ist häufig auf Bedenken hinsichtlich der Auslegung des
+Wert. Es ist möglich, den Punktwert um zu löschen oder zu ändern
+Frage, indem Sie direkt in der Grafik darauf klicken; von
+Darüber hinaus können Sie das zulässige Minimum und Maximum festlegen
+Vermeiden Sie zukünftige Probleme.
 
 Timeline 
 ========
 
-La timeline affiche certains événements de votre domotique sous forme
-chronologique.
+In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation im Formular angezeigt
+chronologisch.
 
-Pour les voir, il vous faut d'abord activer le suivi sur la timeline des
-commandes ou scénarios voulus :
+Um sie zu sehen, müssen Sie zuerst das Tracking auf der Timeline von aktivieren
+gewünschte Befehle oder Szenarien :
 
--   **Scenario** : soit directement sur la page de scénario, soit sur la
-    page de résumé des scénarios pour le faire en "masse"
+-   **Szenario** : entweder direkt auf der Szenarioseite oder auf der
+    Szenario-Zusammenfassungsseite, um es &quot;en masse&quot; zu tun
 
--   **bestellen** : soit dans la configuration avancée de la commande,
-    soit dans la configuration de l'historique pour le faire en "masse"
+-   **bestellen** : entweder in der erweiterten Konfiguration des Befehls,
+    entweder in der Konfiguration der Geschichte, um es in &quot;Masse&quot; zu tun
 
 > **Spitze**
 >
-> Vous avez accès aux fenêtres de résumé des scénarios ou de la
-> configuration de l'historique directement à partir de la page de
-> timeline.
+> Sie haben Zugriff auf die Zusammenfassungsfenster der Szenarien oder der
+> Konfiguration des Verlaufs direkt von der Seite
+> Timeline.
 
-Une fois que vous avez activé le suivi dans la timeline des commandes et
-scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
+Sobald Sie die Nachverfolgung in der Bestellzeitleiste aktiviert haben und
+gewünschten Szenarien können Sie sie auf der Timeline sehen.
 
 > **wichtig**
 >
-> Il faut attendre de nouveaux événements après avoir activé le suivi
-> sur la timeline avant de les voir apparaître.
+> Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
+> auf der Timeline, bevor sie angezeigt werden.
 
-Les cartes sur la timeline affichent :
+Die Karten auf der Timeline werden angezeigt :
 
 -   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
     Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an

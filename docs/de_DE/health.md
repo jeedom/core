@@ -1,18 +1,18 @@
-La page Santé de Jeedom vous permet d'avoir un aperçu rapide de
-l'état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l'utilisent) l'état de santé par plugin.
+Auf der Jeedom Health-Seite erhalten Sie einen schnellen Überblick über
+der Gesundheitszustand Ihres Jeedom. Es zeigt auch an (ob die Plugins
+benutze es) Gesundheitszustand per Plugin.
 
-La page est accessible par Analyse → Santé
+Die Seite ist über Analyse → Gesundheit zugänglich
 
 > **Notiz**
 >
-> Un clic sur l'icône en haut à droite permet d'accéder au benchmark de votre
+> Ein Klick auf das Symbol oben rechts ermöglicht den Zugriff auf den Benchmark Ihres
 > Jeedom.
 
-La page santé de Jeedom se présente sous la forme d'un tableau. La 1ère
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n'est pas OK.
+Die Gesundheitsseite von Jeedom wird in Form einer Tabelle dargestellt. Der 1 ..
+In der Spalte finden Sie eine Beschreibung dessen, was Jeedom überprüft und wessen Status
+wird in der 2. Spalte angezeigt. Endlich kann die letzte Spalte
+Geben Sie einen Lösungshinweis, wenn die Überprüfung nicht in Ordnung ist.
 
 Unten finden Sie den Zustand für jedes Plugin, klicken Sie auf
 Der Name des Plugins gibt das Gesundheitsdetail an. Richtig du

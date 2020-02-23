@@ -120,130 +120,130 @@ Filter
 -   **Beschränkung auf Kategorie** : begrenzt die Erzeugung auf eins
     ovonr mehr Kategorien.
 
--   **Beschränkung auf Ausrüstung** : ermöglicht die Begrenzung vonr génération à un
-    seul équipement/module (Jeedom crée la liste automatiquement à
-    partir vons équipements/modules que vous avez).
+-   **Beschränkung auf Ausrüstung** : begrenzt die Erzeugung auf eins
+    Einzelausrüstung / Modul (Jeedom erstellt die Liste automatisch unter
+    von vonn Geräten / Modulen. die Sie haben).
 
 Aktion 
 ======
 
-A utiliser si vous voulez cibler une ou Mehrfachbestellungen spécifiques
-ou passer vons paramètres particuliers.
+Verwenvonn Sie diese Option. wenn Sie einen ovonr mehrere bestimmte Befehle als Ziel festlegen möchten
+ovonr bestimmte Paramunvonr übergeben.
 
-Beispiels 
+Beispiele 
 ========
 
 > **Notiz**
 >
-> Les captures d'écran peuvent être différentes au vue vons évolutions.
+> Die Screenshots können im Hinblick auf Entwicklungen unterschiedlich sein.
 
-Interaction simple 
+Einfache Interaktion 
 ------------------
 
-La façon la plus simple von configurer une interaction. c'est von lui
-donner un Movonll générateur rigivon. sans variation possible. Cundte
-méthovon ciblera très précisément une commanvon ou un scénario.
+Der einfachste Weg. eine Interaktion einzurichten. besteht darin. sie zu verwenvonn
+Geben Sie ein starres Generatormovonll ohne mögliche Abweichungen an. diese
+Die Mundhovon zielt sehr genau auf einen Befehl ovonr ein Szenario ab.
 
-Dans l'exemple qui suit. on peut voir dans le champ "Anwendung" la phrase
-exacte à fournir pour déclencher l'interaction. Ici. pour allumer le
-plafonnier du salon.
+Im folgenvonn Beispiel sehen wir im Feld &quot;Request&quot; vonn Satz
+genau bereitzustellen. um Interaktion auszulösen. Hier. um das einzuschalten
+Wohnzimmer Deckenleuchte.
 
 ![interact004](../images/interact004.png)
 
-Wir können voir. sur cundte capture. la configuration pour avoir une
-interaction liée à une action spécifique. Cundte action est définie dans
-la partie "Aktion" von la page.
+Wir können auf dieser Aufnahme die Konfiguration sehen. um eine zu haben
+Interaktion mit einer bestimmten Aktion verbunvonn. Diese Aktion ist in vonfiniert
+vonr &quot;Aktion&quot; Teil vonr Seite.
 
-Wir können très bien imaginer faire von même avec plusieurs actions pour
-allumer plusieurs lampes dans le salon comme l'exemple qui suit :
+Wir können uns sehr gut vorstellen. dasselbe mit mehreren Aktionen zu tun
+Schalten Sie im folgenvonn Beispiel mehrere Lampen im Wohnzimmer ein :
 
 ![interact005](../images/interact005.png)
 
-Dans les 2 exemples ci-vonssus. la phrase Movonll est ivonntique mais les
-actions qui en découlent changent en fonction von ce qui est configuré
-dans la partie "Aktion". on peut donc déjà avec une interaction simple à
-phrase unique imaginer vons actions combinées entre diverses commanvons und
-divers scénarios (wir peut aussi déclencher vons scénarios dans la partie
-action vons interactions).
+In vonn beivonn obigen Beispielen ist vonr Movonllsatz ivonntisch. aber vonr
+Die resultierenvonn Aktionen änvonrn sich je nach Konfiguration
+Im &quot;Aktion&quot; Teil können wir daher schon mit einer einfachen Interaktion auf
+einzelner Satz stellen sich kombinierte Aktionen zwischen verschievonnen Befehlen und vor
+verschievonne Szenarien (wir können auch Szenarien im Spiel auslösen
+Interaktionsaktion).
 
 > **Spitze**
 >
-> Pour ajouter un scénario. créer une nouvelle action. écrire "scenario"
-> sans accent. appuyer sur la touche tabulation von votre clavier pour
-> faire apparaitre le sélecteur von scénario.
+> Um ein Szenario hinzuzufügen. erstellen Sie eine neue Aktion und schreiben Sie &quot;Szenario&quot;.
+> Drücken Sie ohne Akzent die Tabulatortaste auf Ihrer Tastatur. um
+> Rufen Sie vonn Szenario-Selektor auf.
 
-Interaction multiple commanvons 
+Interaktion mit mehreren Befehlen 
 ------------------------------
 
-Nous allons ici voir tout l'intérêt und toute la puissance vons
-interactions. avec une phrase Movonll nous allons pouvoir générer vons
-phrases pour tout un groupe von commanvons.
+Hier wervonn wir all das Interesse und die ganze Kraft von sehen
+Interaktionen mit einem Movonllsatz. vonn wir generieren können
+Sätze für eine ganze Gruppe von Befehlen.
 
-On va reprendre ce qui a été fait plus haut. supprimer les actions que
-l'on avait ajoutées. und à la place von la phrase fixe. dans "Anwendung".
-nous allons utiliser les tags **\#commanvon\#** und **\#equipement\#**.
-Jeedom va donc remplacer ces tags par le nom Bestellungen und le nom von
-l'équipement (wir peut voir l'importance d'avoir vons noms von
-commanvon/équipement cohérents).
+Wir wervonn das oben Gesagte fortsundzen und die Aktionen löschen. die
+wir hatten hinzugefügt und anstelle vons festen Satzes in &quot;Anfrage&quot;.
+Wir wervonn die Tags verwenvonn **\ #Commanvon \#** und **\ #Equipement \#**.
+Jeedom ersundzt diese Tags durch vonn Namen vonr Befehle und vonn Namen von
+Ausrüstung (wir können sehen. wie wichtig es ist. Namen von zu haben
+konsequente Kontrolle / Ausrüstung).
 
 ![interact006](../images/interact006.png)
 
-Wir können donc constater ici que Jeedom a généré 152 phrases à partir von
-notre Movonll. Toutefois. elles ne sont pas très bien construites und l'on
-a un peu von tout.
+Wir können hier also sehen. dass Jeedom 152 Sätze daraus generiert hat
+unser Movonll. Sie sind jedoch nicht sehr gut gebaut und wir
+hat ein bisschen von allem.
 
-Pour faire von l'ordre dans tout cela. on va utiliser les filtres (partie
-droite von notre page von configuration). Dans cund exemple. on veut
-générer vons phrases pour allumer vons lumières. Wir können donc décocher le
-type von commanvon info (si je sauve. il ne me reste plus que 95 phrases
-générées). puis. dans les sous-types. on peut ne garvonr coché que
-"défaut" qui correspond au bouton d'action (ne reste donc plus que 16
-phrases).
+Um Ordnung in all vonm zu schaffen. wervonn wir die Filter (Teil) verwenvonn
+rechts von unserer Konfigurationsseite). In diesem Beispiel wollen wir
+Sätze generieren. um Lichter einzuschalten. So können wir das vonaktivieren
+Befehlstyp info (wenn ich speichere. habe ich nur noch 95 Sätze übrig
+generiert). dann können wir in vonn Untertypen nur überprüft bleiben
+&quot;vonfault&quot; entspricht vonr Aktionsschaltfläche (bleibt also nur 16
+Sätze).
 
 ![interact007](../images/interact007.png)
 
-C'est mieux. mais on peut faire encore plus naturel. Si je prends
-l'exemple généré "On entrée". il serait bien von pouvoir transformer
-cundte phrase en "allume l'entrée" ou en "allumer l'entrée". Pour faire
-cela. Jeedom dispose. sous le champ vonmanvon. d'un champ synonyme qui va
-nous permundtre von nommer différemment le nom Bestellungen dans nos
-phrases "générées". ici c'est "on". j'ai même vons "on2" dans les modules
-qui peuvent contrôler 2 sorties.
+Es ist besser. aber wir können es noch natürlicher machen. Wenn ich nehme
+Im generierten Beispiel &quot;Bei Eingabe&quot; wäre es schön. transformieren zu können
+dieser Satz in &quot;Eintrag einschalten&quot; ovonr &quot;Eintrag einschalten&quot;. Zu tun
+Jeedom hat unter vonm Anforvonrungsfeld auch ein Feld. das dies tun wird
+Erlauben Sie uns. Bestellungen in unserem anvonrs zu benennen
+&quot;generierte&quot; Sätze. hier ist es &quot;on&quot;. ich habe sogar &quot;on2&quot; in vonn Modulen
+welches 2 Ausgänge steuern kann.
 
-Dans les synonymes. on va donc indiquer le nom von la commanvon und le(s)
-synonyme(s) à utiliser :
+In vonn synonymn geben wir daher vonn Namen vons Befehls und die (s) an.
+zu verwenvonnvon synonym :
 
 ![interact008](../images/interact008.png)
 
-Wir können voir ici une syntaxe un peu nouvelle pour les synonymes. Un nom
-von commanvon peut avoir plusieurs synonymes. ici "on" a comme synonyme
-"allume" und "allumer". La syntaxe est donc "*nom von la commanvon*"
-***=*** "*synonyme 1*"***.*** "*synonyme 2*" (wir peut mundtre autant von
-synonyme que l'on veut). Puis. pour ajouter vons synonymes pour un autre
-nom von commanvon. il suffit d'ajouter après le vonrnier synonyme une barre
-verticale "*|*" à la suite von laquel vous pouvez à nouveau nommer la
-commanvon qui va avoir vons synonymes comme pour la première partie. undc.
+Wir können hier eine undwas neue Syntax für synonym sehen. Ein Name
+kann mehrere synonym haben. hier hat &quot;on&quot; als Synonym
+&quot;einschalten&quot; und &quot;einschalten&quot;. Die Syntax lautund daher &quot;* Befehlsname *&quot;.
+***=*** &quot;* Synonym 1 *&quot;***.*** &quot;* synonym 2 *&quot; (Sie können so viele sundzen
+Synonym wollen wir). Fügen Sie dann synonym für ein anvonres hinzu
+Befehlsname. fügen Sie einfach nach vonm lundzten Synonym einen Balken hinzu
+vertikal &quot;* | *&quot;. nach vonm Sie die erneut benennen können
+Befehl. vonr synonym wie für vonn ersten Teil usw. hat..
 
-C'est déjà mieux. mais il manque encore pour la commanvon "on" "entrée"
-le "l' " und pour d'autres le "la" ou "le" ou "un". undc. On pourrait
-modifier le nom von l'équipement pour l'ajouter. ce serait une solution.
-sinon on peut utiliser les variations dans la vonmanvon. Cela consiste à
-lister une série von mots possibles à un emplacement von la phrase. Jeedom
-va donc générer vons phrases avec ces variations.
+Es ist schon besser. aber es fehlt immer noch für vonn Befehl &quot;on&quot; &quot;input&quot;
+das &quot;l&quot; und für anvonre das &quot;das&quot; ovonr &quot;das&quot; ovonr &quot;a&quot; usw.. Wir könnten
+Das Änvonrn vons Namens vons Geräts. um es hinzuzufügen. wäre eine Lösung.
+Anvonrnfalls können wir Nachfrageschwankungen verwenvonn. Es besteht aus
+Listen Sie eine Reihe möglicher Wörter an einer Stelle im Satz Jeedom auf
+erzeugt Sätze mit diesen Variationen.
 
 ![interact009](../images/interact009.png)
 
-On a maintenant vons phrases un peu plus correctes avec vons phrases qui
-ne sont pas justes. pour notre exemple "on" "entrée". on trouve donc
-"Allume entrée". "Allume un entrée". "Allume une entrée". "Allume
-l'entrée" undc. On a donc toutes les variantes possibles avec ce que l'on
-a ajouté entre les "\[ \]" und ceci pour chaque synonyme. ce qui génère
-rapivonment beaucoup von phrases (ici 168).
+Wir haben jundzt undwas korrektere Sätze mit Sätzen. die
+sind nicht fair. für unser Beispiel &quot;on&quot; &quot;entry&quot;. so finvonn wir
+&quot;Eintrag einschalten&quot;. &quot;Eintrag einschalten&quot;. &quot;Eintrag einschalten&quot;. &quot;Einschalten
+vonr Eintrag &quot;undc.. Wir haben also alle möglichen Varianten mit vonm. was wir haben
+hinzugefügt zwischen &quot;\ [\]&quot; und diesem für jevons Synonym. das generiert
+schnell viele Sätze (hier 168).
 
-Afin d'affiner und von ne pas avoir vons choses improbables telles que
-"allume l'télé". on peut autoriser Jeedom à supprimer les vonmanvons
-syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné
-von la syntaxe réelle d'une phrase. Dans notre cas. on passe von 168
+Um zu verfeinern und keine unwahrscheinlichen Dinge wie zu haben
+&quot;Schalten Sie vonn Fernseher ein&quot;. können wir Jeedom autorisieren. Anfragen zu löschen
+syntaktisch falsch. Es wird also gelöscht. was zu weit entfernt ist
+die tatsächliche Syntax eines Satzes. In unserem Fall gehen wir von 168
 130 Satzsätze.
 
 ![interact010](../images/interact010.png)
@@ -599,7 +599,7 @@ Ergebnis vonr Interaktion :
 
 ![interact034](../images/interact034.png)
 
-Wir können sehen. dass das Tag **\#equipement\#** welches nicht verwendund wird
+Wir können sehen. dass das Tag **\ #Equipement \#** welches nicht verwendund wird
 in vonr Anfrage ist in vonr Antwort gut abgeschlossen.
 
 Steuern Sie die Farbe eines LED-Streifens 
