@@ -1,191 +1,245 @@
-# widgets
-**Outils → widgets**
+# Home Automation Summary
+**Analysis → Home automation summary**
 
-La page widgets It allows yor to de créer des widgets personnalisés porr votre Jeedom.
+This page allows yor to gather on a single page the different elements configured on yorr Jeedom. It also gives access to functions for organizing equipment and controls, to their advanced configuration and to display configuration possibilities..
 
-Il y a deux types de widgets personnalisés :
+## information
 
-- Thes widgets basés sur un template (gérés par le Core de Jeedom).
-- Thes widgets basés sur du code utilisateur.
+On the top of the page, we find :
+- **Number of objects** : Total number of objects configured in orr Jeedom, including inactive elements.
+- **Number of equipments** : Same for the equipment.
+- **Number of orders** : Same for orders.
+- **Inactive** : Check this box if yor want inactive items to be displayed on this page.
+- **Search** : Search for a particular item. It can be the name of a device, an order or the name of the plugin by which the device was created.
+- **CSV export** : Allows yor to export all objects, equipment and their commands to a CSV file.
 
-> **Note**
->
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a no moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+Yor also have a tab **Historical**, displaying the history of orders, equipment, objects, views, design, 3d design, scenarios and deleted users.
 
-## Gestion
+## Object frames
 
-Quatre options s'offrent à vors :
-- **Add** : Permet de créer un norveau widget.
-- **Importer** : Permet d'importer un widget sors forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tort les équipements l'utilisant.
+Below there is one frame per object. In each frame, we find the list of equipment that have this object as parent.
+The first frame **No** represents devices that have no assigned parent.
 
-## Mes widgets
-
-A fois que vors avez créé un widget, il apparaîtra dans cette partie.
+For each object, next to its label, two buttons are available.
+- The first is used to open the object configuration page in a new tab.
+- The second provides some information on the object,
 
 > **Tip**
 >
-> Vors porvez orvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic or Clic Centre porr l'orvrir dans un norvel onglet du navigateur.
+> The backgrornd color of the object frames depends on the color chosen in the configuration of the object.
 
-Vors disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La torche Echap annule la recherche.
-A droite du champ de recherche, trois bortons que l'on retrorve à plusieurs endroits de Jeedom:
-- La croix porr annuler la recherche.
-- The dossier orvert porr déplier tort les panneaux et afficher torts les widget.
-- The dossier fermé porr replier tort les panneaux.
+> **Tip**
+>
+> With a click and drop on objects or equipment, yor can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
 
-A fois sur la configuration d'un widget, vors disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vors porvez également utiliser un Ctrl Clic or Clic Centre porr orvrir directement un autre widget dans un norvel onglet du navigateur.
+## The equipments
 
+On each equipment we find :
 
-## Principe
+- A **check box** to select the equipment (yor can select several). If at least one device is selected, yor have action buttons that appear in the upper left to **remove**, return **visible**/**invisible**,  **active**/**inactive** selected equipment.
+- The**id** equipment.
+- The **type** equipment : Identifier of the plugin to which it belongs.
+- The **last name** equipment.
+- **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
+- **Invisible** (crossed ort eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
-Mais c'est quoi un template ?
-Porr faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+If the equipment plugin is disabled, the two icons on the right do not appear:
+- **External link** (square with arrow) : Allows to open in a new tab the equipment configuration page.
+- **Advanced configuration** (toothed wheel) : opens the advanced equipment configuration window.
 
-Suivant le type de widget, vors porvez généralement personnaliser des icônes or mettre des images de votre choix.
+> By clicking on the line containing the name of the equipment, yor will display all the commands for this equipment. By clicking on an order, yor will access the order configuration window.
 
-## Thes templates
+## Advanced equipment configuration
 
-Il y a deux types de template :
+> **Tip**
+>
+> It is possible to access (if the plugin supports it) directly to this window from the equipment configuration page by clicking on the advanced configuration button
 
-- Thes "**simples**" : Type une icône/image porr le "on" et une icône/image porr le "off"
-- Thes "**multistates**" : Cela permet de définir par exemple une image si la commande a porr valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+The window of **advanced configuration of equipment** allows to modify it. First, at the top right, some buttons available :
 
-## Création d'un widget
+- **information** : displays the raw properties of the equipment.
+- **Connections** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a dorble click on an element will take yor to its configuration).
+- **log** : displays the events of the equipment in question.
+- **Save** : Save the modifications made on the equipment.
+- **Remove** : Remove equipment.
 
-A fois sur la page Outils -> widget il vors faut cliquer sur "Add" et donner un last name à votre norveau widget.
+### Information tab
 
-Ensuite :
-- Vors choisissez s'il s'applique sur une commande de type action or info.
-- En fonction de votre choix précèdent, vors allez devoir choisir le sors type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nors envisageons de porr vors mettre des exemples de rendus porr chaque template).
-- A fois le template choisi, Jeedom vors donne les possibilités de configuration de celui-ci.
+The tab **information** contains general information abort the equipment and its controls :
 
-### Remplacement
+- **ID** : Unique identifier in the Jeedom database.
+- **Last name** : Name of equipment.
+- **logical ID** : logical equipment identifier (can be empty).
+- **Object ID** : Unique identifier of the parent object (can be empty).
+- **Creation date** : Equipment creation date.
+- **Activate** : Check the box to activate the equipment (don&#39;t forget to save).
+- **Visible** : Check the box to make the equipment visible (don&#39;t forget to save).
+- **Type** : Identifier of the plugin by which it was created.
+- **Failed attempt** : Number of failed consecutive communications attempts with the equipment.
+- **Date of last communication** : Date of the last communication of the equipment.
+- **Last update** : Date of last communication with the equipment.
+- **tags** : equipment tags, separated by &#39;,&#39;. It allows on the Dashboard to make custom filters
 
-C'est ce que l'on appelle un widget simple, ici vors avez juste à dire que le "on" correspond à telle icône/image (avec le borton choisir), the "off" est celui-là etc. Ensuite en fonction du template, il peut vors être proposé la largeur (width) et la hauteur (height). Ce n'est valable que porr les images.
+Below yor will find a table with the list of equipment commands with, for each, a link to their configuration.
 
->**Note**
->Nors sommes désolés porr les last names en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien porr vors que porr nors. Nors n'avons pas eu le choix
+### View tab
 
->**TIPS**
->Porr les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vors mettez comme valeur #width# (attention à bien mettre les # autorr) au lieu d'un chiffre, dans "Paramètres optionnels widget" vors porvez ajorter width (sans les #) et donner la valeur. Cela It allows yor to de changer la taille de l'image en fonction de la commande et donc vors évite de faire un widget différent par taille d'image que vors vorlez
+In the tab **Viewing**, yor will be able to configure certain tile display behaviors on the Dashboard or on mobile.
 
-### Test
+#### widget
 
-C'est ce que l'on appelle la partie multistates, vors avez sorvent comme porr les widgets simples le choix de la "hauteur"/"largeur" porr les images uniquement puis en dessors la partie test.
+-  **Visible** : Check the box to make the equipment visible.
+- **Show name** : Check the box to display the name of the equipment on the tile.
+- **Display object name** : Check the box to display the name of the parent object of the equipment, next to the tile.
 
-C'est assez simple. Au lieu de mettre une image porr le "on" et/or porr le "off" comme dans le cas précèdent, vors allez before donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+### Optional parameters on the tile
 
-Thes tests sont sors la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vors porvez aussi faire par exemple :
+Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **Add** to apply one
+new. For equipment, only the value **style** is currently used, it allows to insert CSS code on the equipment in question.
 
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
+> **Tip**
+>
+> Do not forget to save after any modification.
 
->**Note**
->Il est important de noter les ' autorr du texte à comparer si la valeur est un texte
+### Layort tab
 
->**Note**
->Porr les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+This part allows yor to choose between the standard layort of the commands (side by side in the widget), or in table mode. Nothing to set in default mode. Here are the options available in mode
+**Board** :
+- **Number of lines**
+- **Number of columns**
+- **Center in boxes** : Check the box to center the orders in the boxes.
+- **General style of boxes (CSS)** : Allows yor to define the general style in CSS code.
+- **Table style (CSS)** : Allows yor to define the style of the table only.
 
->**Note**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+Below for each box, the **detailed configuration** It allows yor to
+this :
+- **Box text** : Add text in addition to the command (or on its own, if there is no command in the box).
+- **Box style (CSS)** : Modify the specific CSS style of the box (note that it overwrites and replaces the general CSS of the boxes).
 
-## Description de widgets
+> **Tip**
+>
+> In a box in the table, if yor want to put 2 commands one below the other, don&#39;t forget to add a line break after the first in the **advanced configuration** of it.
 
-Nors allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+### Alerts tab
 
-### Paramètres fréquents
+This tab allows yor to have information on the battery of the equipment and to define alerts in relation to it. Here are the types of information that can be fornd :
 
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vors est demandé, Jeedom calculera la hauteur porr ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vors est demandé, Jeedom calculera la hauteur porr ne pas déformer l'image.
+- **Battery type**,
+- **Latest feedback**,
+- **Remaining level**, (if of corrse yorr equipment works on battery).
 
-### HygroThermographe
+Below, yor can also define the specific battery alert thresholds for this equipment. If yor leave the boxes empty, those are the default thresholds that will be applied.
 
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+Yor can also manage the timeort, in minutes, of the equipment. For example, 30 tells jeedom that if the equipment has not communicated for 30 minutes, then it must be put on alert.
 
-Porr le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+> **Tip**
+>
+> The global parameters are in **→ Settings → System Configuration : logs** or **Facilities**
 
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+### Comment tab
 
-The widget a un paramètre optionnel : scale qui It allows yor to de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+Allows yor to write a comment abort the equipment.
 
->**NOTE**
-> Attention sur un design il ne faut surtort pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+## Advanced configuration of an order
 
-### Multiline
+First, at the top right, some buttons available :
 
-- Parametre maxHeight porr definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+- **Test** : Used to test the command.
+- **Connections** : Allows to display the links of the equipment with objects, commands, scenarios, variables, interactions…. in graphic form.
+- **log** : Displays the events of the equipment in question.
+- **information** : Displays the raw properties of the equipment.
+-  **To apply to** : Allows the same configuration to be applied to several commands.
+- **Save** : Save the modifications made on the equipment.
 
-### Slider Button
+> **Tip**
+>
+> In a graphic, a dorble click on an element brings yor to its configuration.
 
-- step : permet de régler le pas d'une action sur un borton (0.5 par défaut)
+> **Note**
+>
+> Depending on the type of order, the information / actions displayed may change.
 
-## widget code
+### Information tab
 
-### Thes tags
+The tab **information** contains general information abort the order :
 
-En mode code vors avez accès a différent tag porr les commandes, en voici une liste (pas forcement exhaustives) :
+- **ID** : Unique identifier in the database.
+- **logical ID** : logical identifier of the order (can be empty).
+- **Last name** : Name of the order.
+- **Type** : Type of order (action or info).
+- **Subtype** : Command subtype (binary, digital, etc.).
+- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **info**.
+- **Unit** : Control unit.
+- **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
+- **Visible** : Check this box to make the command visible.
+- **Follow in the timeline** : Check this box to make this command visible in the timeline when it is used. Yor can specify a specific timeline in the field that appears if the option is checked.
+- **Prohibit in automatic interactions** : prohibits automatic interactions on this command
+- **Icon** : Allows yor to change the command icon.
 
-- #name# : last name de la commande
-- #valueName# : last name de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide or hidden si l'utilisateur a demandé a masquer le last name du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide porr une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique porr cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertThevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) porr la liste)
-- #hide_history# : si l'historique (valeur max, min, average, tendance) doit être masqué or non. Comme porr le #hide_name# il vaut vide or hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trorvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur average sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class porr icône : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
+Yor also have three other orange buttons underneath :
 
-### Mise à jorr des valeurs
+- **This command replaces the ID** : Allows yor to replace an order ID with the order in question. Useful if yor have deleted an equipment in Jeedom and yor have scenarios that use commands from it.
+- **This command replaces the command** : Replace command with current command.
+- **Replace this command with the command** : Conversely, replace the command with another command.
 
-Lors d'une norvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si ori il l'appel avec un unique argument qui est un objet sors la forme :
+> **Note**
+>
+> This kind of action replaces the commands everywhere in Jeedom (scenario, interaction, command, equipment….).
 
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertThevel:'#alertThevel#'}
-```
+Below, yor will find the list of the different equipment, commands, scenarios or interactions that use this command. Click on it to go directly to their respective configuration.
 
-Voila un exemple simple de code javascript a mettre dans votre widget :
+### Configuration tab
 
-```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertThevel:'#alertThevel#'});
-</script>
-```
+#### For an info type order :
 
-Ici deux choses importantes :
+- **Calculation and rornding**
+    - **Calculation formula (\ #value \ # for the value)** : Allows yor to make an operation on the value of the order before processing by Jeedom, example : `#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
+    - **Rornded (number after decimal point)** : Used to rornd the value of the command (Example : put 2 to transform 16.643 345 in 16.64).
+- **Generic type** : Allows yor to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
+- **Action on value, if** : Thets do some sort of mini scenarios. Yor can, for example, say that if the value is worth more than 50 for 3 minutes, then yor have to do such action. This allows, for example, to turn off a light X minutes after it has turned on.
 
-```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jorr du widget. Elle met alors à jorr le code html du widget_template.
+- **Historical**
+    - **historicize** : Check the box so that the values of this command are logged. (See **Analysis → History**)
+    - **Smoothing mode** : Mode of **smooth** or**archiving** allows yor to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, the **minimum**, or **no**. **no** lets tell Jeedom that it shorld not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerors because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Purge history if older than** : Thets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amornt of information recorded by Jeedom.
 
-```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertThevel:'#alertThevel#'});
- ```
- Theappel a cette fonction porr l'initialisation du widget.
+- **Values management**
+    - **Prohibited value** : If the command takes one of these values, Jeedom ignores it before applying it.
+    - **Status return value** : Returns the command to this value after a certain time.
+    - **Duration before status return (min)** : Time before return to the above value.
 
- Vors trorverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+- **Other**
+    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into accornt the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). Yor can force the repetition of the value or prohibit it completely.
+    - **Push URL** : Allows to add a URL to call in case of update of the order. Yor can use the following tags : `#value#` porr la valeur de la commande, `#cmd_name#` porr le last name de la commande, `#cmd_id#` porr l'identifiant unique de la commande, `#humanname#` porr le last name complet de la commande       (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` porr le last name equipment.
+
+#### For an action command :
+
+-  **Generic type** : Allows yor to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
+- **Confirm action** : Check this box to have Jeedom request confirmation when the action is launched from the interface of this command.
+- **Access code** : Allows to define a code that Jeedom will ask when the action is launched from the interface of this command.
+- **Action before execution of the command** : Add commands **before** each execution of the order.
+- **Action after execution of the command** : Add commands **after** each execution of the order.
+
+### Alerts tab
+
+Allows yor to define an alert level (**warning** or **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
+
+> **Note**
+>
+> On the page **→ Settings → System Configuration : logs**, yor can configure a message type command that will allow Jeedom to notify yor if the warning or danger threshold is reached.
+
+### View tab
+
+In this part, yor will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile..
+
+- **widget** : Allows yor to choose the widget on dekstop or mobile (note that yor need the widget plugin and that yor can also do it from there).
+- **Visible** : Check to make the command visible.
+- **Show name** : Check to make the name of the command visible, depending on the context.
+- **Display name and icon** : Check to make the icon visible in addition to the command name.
+- **Wrapped line before widget** : Select **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a display in column of the variors commands of the equipment instead of lines by default)
+
+Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so yor have to look at its file on the Market to know them.
+
+> **Tip**
+>
+> Do not forget to save after any modification.

@@ -1,191 +1,407 @@
-# Widgets
-**Outils → Widgets**
+# configuración
+**Preferencias → Sistema → Configuración**
 
-La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
+Aquí es donde se encuentran la mayoría de los parámetros de configuración..
+Aunque muchos, la mayoría están preconfigurados por defecto.
 
-Il y a deux types de widgets personnalisés :
 
-- Les widgets basés sur un template (gérés par le Core de Jeedom).
-- Les widgets basés sur du code utilisateur.
+## Pestaña General
 
-> **nota**
+En esta pestaña encontramos información general sobre Jeedom :
+
+- **apellidobre de tu Jeedom** : Identifica tu Jeedom, especialmente en el mercado. Se puede reutilizar en escenarios o para identificar una copia de seguridad.
+- **Lengua** : Lenguaje usado en tu Jeedom.
+- **sistema** : puntao de hardware en el que está instalado el sistema donde se ejecuta su Jeedom.
+- **Generar traducciones** : Genere traducciones, tenga cuidado, esto puede ralentizar su sistema. Opción especialmente útil para desarrolladores.
+- **Fecha y hora** : Elige tu zona horaria. Puedes hacer clic en **Forzar sincronización de tiempo** para restaurar la hora incorrecta que se muestra en la esquina superior derecha.
+- **Servidor horario opcional** : Indica qué servidor horario debe usarse si hace clic en **Forzar sincronización de tiempo** (para reservar para expertos).
+- **Omitir verificación de tiempo** : le dice a Jeedom que no verifique si el tiempo es consistente entre sí mismo y el sistema en el que se ejecuta. Puede ser útil, por ejemplo, si no conecta Jeedom a Internet y no tiene una batería PSTN en el equipo utilizado.
+- **sistema** : Indica el tipo de hardware en el que está instalado Jeedom.
+- **Clave de instalación** : Llave de hardware de su Jeedom en el mercado. Si su Jeedom no aparece en la lista de su Jeedom en el mercado, es recomendable hacer clic en el botón. **Restablecer**.
+- **Última fecha conocida** : Fecha registrada por Jeedom, utilizada después de un reinicio para sistemas sin batería PSTN.
+
+## Pestaña interfaz
+
+En esta pestaña encontrará los parámetros de personalización de la pantalla..
+
+### temas
+
+- **Escritorio claro y oscuro** : Le permite elegir un tema claro y oscuro para el escritorio.
+- **Móvil claro y oscuro** : igual que el anterior para la versión móvil.
+- **Borrar tema de / a** : Le permite definir un período de tiempo durante el cual se utilizará el tema claro previamente elegido. Sin embargo, marque la opción **Cambiar el tema según el tiempo**.
+- **Sensor de brillo**   : Solo en la interfaz móvil, requiere activar * sensor adicional genérico * en Chrome, página de Chrome:// banderas.
+- **Ocultar imágenes de fondo** : Le permite ocultar las imágenes de fondo encontradas en los escenarios, objetos, páginas de interacciones, etc..
+
+### embaldosado
+
+- **Azulejos no horizontales** : Restringe el ancho de los mosaicos cada x píxeles.
+- **Azulejos no verticales** : Restringe la altura de los mosaicos cada x píxeles.
+- **Azulejos de margen** : Espacio vertical y horizontal entre mosaicos, en píxeles..
+
+### personalización
+
+- **Activar** : Active el uso de las siguientes opciones.
+- **transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia.. 1 : totalmente opaco, 0 : totalmente transparente.
+- **ronda** : Muestra elementos de la interfaz con ángulos redondeados.. 0 : sin redondeo, 1 : redondeo máximo.
+- **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz..
+
+
+
+## Pestaña Redes
+
+Es absolutamente necesario configurar correctamente esta parte importante de Jeedom, de lo contrario, muchos complementos pueden no funcionar. Hay dos formas de acceder a Jeedom : la**acceso interno** (de la misma red local que Jeedom) y**acceso externo** (desde otra red, en particular desde Internet).
+
+> **importante**
 >
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+> Esta parte está ahí para explicarle a Jeedom su entorno. :
+> cambiar el puerto o IP en esta pestaña no cambiará el puerto o IP de Jeedom en realidad. Para hacer esto, conéctese a SSH y edite el archivo / etc / network / interfaces para IP y los archivos etc / apache2 / sites-available / default y etc / apache2 / sites-available / default \ _ssl (para HTTPS ).
+> Sin embargo, en caso de manejo inadecuado de su Jeedom, el equipo de Jeedom no se hace responsable y puede rechazar cualquier solicitud de soporte..
 
-## administración
+- **Acceso interno** : información para unirse a Jeedom desde equipos en la misma red que Jeedom (LAN)
+    - **OK / NOK** : indica si la configuración de la red interna es correcta.
+    - **protocolo** : el protocolo a usar, a menudo HTTP.
+    - **URL o dirección IP** : Jeedom IP para entrar.
+    - **puerto** : el puerto de la interfaz web de Jeedom, generalmente 80.
+        Tenga en cuenta que cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo..
+    - **complementar** : el fragmento de URL adicional (ejemplo : / Jeedom) para acceder a Jeedom.
 
-Quatre options s'offrent à vous :
-- **Ajouter** : Permet de créer un nouveau widget.
-- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+- **Acceso externo** : información para llegar a Jeedom desde fuera de la red local. Para completar solo si no está utilizando Jeedom DNS.
+    - **OK / NOK** : indica si la configuración de red externa es correcta.
+    - **protocolo** : protocolo utilizado para acceso al exterior.
+    - **URL o dirección IP** : IP externa, si está fija. De lo contrario, proporcione la URL que apunta a la dirección IP externa de su red.
+    - **complementar** : el fragmento de URL adicional (ejemplo : / Jeedom) para acceder a Jeedom.
 
-## Mes widgets
-
-Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+- **Proxy para el mercado** : activación proxy.
+    - Marque la casilla habilitar proxy.
+    - **Dirección proxy** : Ingrese la dirección del proxy,
+    - **Puerto proxy** : Ingrese el puerto proxy,
+    - **login** : Ingrese el inicio de sesión proxy,
+    - **Contraseña** : Ingrese la contraseña.
 
 > **punta**
 >
-> Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> Si está en HTTPS, el puerto es 443 (por defecto) y en HTTP el puerto es 80 (por defecto). Para usar HTTPS desde el exterior, ahora está disponible en el mercado un complemento de letencrypt.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
-A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
-- La croix pour annuler la recherche.
-- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- Le dossier fermé pour replier tout les panneaux.
+> **punta**
+>
+> Para saber si necesita establecer un valor en el campo **complementar**mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (u otra cosa) después de la IP.
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+- **Gestión avanzada** : Esta parte puede no aparecer, dependiendo de la compatibilidad con su hardware.
+    Allí encontrará la lista de sus interfaces de red.. Puede decirle a Jeedom que no monitoree la red haciendo clic en **deshabilitar la administración de la red Jeedom** (verifique si Jeedom no está conectado a ninguna red). También puede especificar el rango de ip local en la forma 192.168.1.* (para usarse solo en instalaciones de tipo acoplable).
+- **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
+    - **Usando Jeedom DNS** : activar Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio).
+    - **Estado DNS** : Estado HTTP HTTP.
+    - **administración** : permite detener y reiniciar el servicio DNS de Jeedom.
 
+> **importante**
+>
+> Si no puede hacer que funcione Jeedom DNS, mire la configuración del firewall y el filtro parental de su caja de Internet (en livebox necesita, por ejemplo, el firewall a nivel medio).
+- **Duración de las sesiones (hora)** : duración de las sesiones PHP, no se recomienda tocar este parámetro.
 
-## Principe
+## Pestaña Registros
 
-Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+### línea de tiempo
 
-Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+- **Numero maximo de eventos** : Define el número máximo de eventos para mostrar en la línea de tiempo.
+- **Eliminar todos los eventos** : Vaciar la línea de tiempo de todos sus eventos grabados..
 
-## Les templates
+### mensajes
 
-Il y a deux types de template :
+- **Agregue un mensaje a cada error en los registros** : si un complemento o Jeedom escribe un mensaje de error en un registro, Jeedom agrega automáticamente un mensaje en el centro de mensajes (al menos está seguro de que no se lo perderá).
+- **Acción sobre mensaje** : Le permite realizar una acción al agregar un mensaje al centro de mensajes. Tienes 2 etiquetas para estas acciones :
+        - #sujeto# : mensaje en cuestión.
+        - #plugin# : complemento que activó el mensaje.
 
-- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+### Notificaciones
 
-## Création d'un widget
+- **Agregar un mensaje a cada tiempo de espera** : Agregue un mensaje en el centro de mensajes si cae un dispositivo **tiempo de espera**.
+- **Orden de tiempo de espera** : Comando de tipo **mensaje** para ser usado si un equipo está en **tiempo de espera**.
+- **Agregue un mensaje a cada batería en Advertencia** : Agregue un mensaje en el centro de mensajes si un dispositivo tiene el nivel de batería en **advertencia**.
+- **Comando de batería en Advertencia** : Comando de tipo **mensaje** para ser usado si el equipo tiene el nivel de batería **advertencia**.
+- **Agregue un mensaje a cada batería en peligro** : Agregue un mensaje en el centro de mensajes si un dispositivo tiene el nivel de batería **peligro**.
+- **Comando con batería en peligro** : Comando de tipo **mensaje** para ser usado si el equipo tiene el nivel de batería **peligro**.
+- **Agregue un mensaje a cada Advertencia** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **advertencia**.
+- **Comando de advertencia** : Comando de tipo **mensaje** para usar si un pedido entra en alerta **advertencia**.
+- **Agregue un mensaje a cada peligro** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **peligro**.
+- **Comando en peligro** : Comando de tipo **mensaje** para usar si un pedido entra en alerta **peligro**.
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+### troncos
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info.
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
-- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+- **Motor de registro** : Le permite cambiar el motor de registro para, por ejemplo, enviarlos a un demonio syslog (d).
+- **Formato de registro** : Formato de registro a utilizar (Precaución : no afecta los registros de demonios).
+- **Número máximo de líneas en un archivo de registro** : Define el número máximo de líneas en un archivo de registro. Se recomienda no tocar este valor, ya que un valor demasiado grande podría llenar el sistema de archivos y / o hacer que Jeedom no pueda mostrar el registro..
+- **Nivel de registro predeterminado** : Cuando selecciona &quot;Predeterminado&quot;, para el nivel de un registro en Jeedom, se utilizará.
 
-### Remplacement
+A continuación encontrará una tabla para administrar con precisión el nivel de registro de los elementos esenciales de Jeedom, así como el de los complementos.
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+## Pestaña de pedidos
 
->**nota**
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obtiene gráficos que representan su uso. Esta pestaña le permite establecer parámetros globales para el registro de comandos.
 
->**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+### histórico
 
-### Test
+- **Ver estadísticas de widgets** : Ver estadísticas sobre widgets. El widget debe ser compatible, que es el caso para la mayoría. El comando también debe ser de tipo numérico.
+- **Período de cálculo para min, max, promedio (en horas)** : Periodo de cálculo de estadísticas (24h por defecto). No es posible tomar menos de una hora..
+- **Periodo de cálculo de la tendencia (en horas)** : Periodo de cálculo de tendencia (2h por defecto). No es posible tomar menos de una hora..
+- **Retraso antes de archivar (en horas)** : Indica el retraso antes de que Jeedom archive datos (24 horas por defecto). Es decir que los datos históricos deben tener más de 24 horas para ser archivados (como recordatorio, el archivo será promedio o tomará el máximo o mínimo de los datos durante un período que corresponde al tamaño de los paquetes ).
+- **Archivar por paquete desde (en horas)** : Este parámetro proporciona el tamaño de los paquetes (1 hora por defecto). Esto significa, por ejemplo, que Jeedom tomará períodos de 1 hora, promedio y almacenará el nuevo valor calculado eliminando los valores promediados.
+- **Umbral de cálculo de tendencia baja** : Este valor indica el valor desde el cual Jeedom indica que la tendencia es descendente. Debe ser negativo (predeterminado -0.1).
+- **Alto umbral de cálculo de tendencia** : Lo mismo para el ascenso.
+- **Período predeterminado de visualización de gráficos** : Período que se usa de forma predeterminada cuando desea mostrar el historial de un pedido. Cuanto más corto sea el período, más rápido Jeedom mostrará el gráfico solicitado.
 
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+> **nota**
+>
+> El primer parámetro **Ver estadísticas de widgets** es posible pero está deshabilitado de manera predeterminada porque extiende significativamente el tiempo de visualización del tablero. Si activa esta opción, de manera predeterminada, Jeedom se basa en los datos de las últimas 24 horas para calcular estas estadísticas..
+> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí] (https://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) para más detalles).
 
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+### empuje
 
-Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+- **URL de inserción global** : le permite agregar una URL para llamar en caso de una actualización del pedido. Puedes usar las siguientes etiquetas :
+**\ #Value \#** por el valor del pedido, **\ #Cmd \ _name \#** para el nombre del comando,
+**\ #Cmd \ _id \#** para el identificador único de la orden,
+**\ #Humanname \#** para el nombre completo de la orden (ej. : \ # \ [Baño \] \ [Hidrometría \] \ [Humedad \] \ #),
+**\ #Eq_name \#** para el nombre del equipo
 
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
+## Pestaña Resúmenes
 
->**nota**
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+Agregar resúmenes de objetos. Esta información se muestra en la parte superior derecha de la barra de menú de Jeedom, o al lado de los objetos. :
 
->**nota**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+- **clave** : Clave para el resumen, especialmente para no tocar.
+- **apellido** : apellidobre abstracto.
+- **cálculo** : Método de cálculo, puede ser de tipo :
+    - **suma** : suma los diferentes valores,
+    - **promedio** : promedia los valores,
+    - **texto** : mostrar el valor literalmente (especialmente para los de tipo cadena).
+- **icono** : Ícono de resumen.
+- **unidad** : Unidad de resumen.
+- **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
+- **Mostrar si el valor es 0** : Marque esta casilla para mostrar el valor, incluso cuando sea 0.
+- **Enlace a un virtual** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen..
+- **Eliminar resumen** : El último botón, en el extremo derecho, elimina el resumen de la línea..
 
->**nota**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+## Pestaña del equipo
 
-## Description de widgets
+- **Número de fallas antes de la desactivación del equipo.** : Número de fallas de comunicación con el equipo antes de la desactivación del equipo (un mensaje le avisará si esto sucede).
+- **Umbrales de la batería** : Le permite administrar los umbrales de alerta global en las pilas.
 
-Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+## Pestaña Informes
 
-### Paramètres fréquents
+Configurar la generación y gestión de informes.
 
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- **Tiempo de espera después de la generación de la página (en ms)** : Tiempo de espera después de cargar el informe para tomar la &quot;foto&quot;, para cambiar si su informe está incompleto, por ejemplo.
+- **Limpiar informes anteriores de (días)** : Define el número de días antes de eliminar un informe (los informes ocupan un poco de espacio, así que tenga cuidado de no poner demasiada conservación).
 
-### HygroThermographe
+## Pestaña Enlaces
 
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráfico, las relaciones entre objetos, equipos, objetos, etc..
 
-Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+- **Profundidad para escenarios** : Permite definir, al mostrar un gráfico de enlaces de un escenario, el número máximo de elementos para mostrar (cuanto más elementos haya, más lento será el gráfico para generar y más difícil será leerlo ).
+- **Profundidad para objetos** : Lo mismo para los objetos..
+- **Profundidad para equipamiento** : Lo mismo para el equipo..
+- **Profundidad para controles** : Lo mismo para pedidos.
+- **Profundidad para variables** : Lo mismo para las variables..
+- **Parámetro de prerender** : Le permite actuar sobre el diseño del gráfico..
+- **Parámetro de procesamiento** : ídem.
 
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+## Pestaña interacciones
 
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+Esta pestaña le permite establecer parámetros globales relacionados con las interacciones que encontrará en Herramientas → Interacciones.
 
->**NOTE**
-> Atención sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+> **punta**
+>
+> Para activar el registro de interacción, vaya a la pestaña Configuración → Sistema → Configuración. : Registros, luego verifique **depurar** en la lista de abajo. Atención : los registros serán muy detallados !
 
-### Multiline
+### general
 
-- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+Aquí tienes tres parámetros :
 
-### Slider Button
+- **sensibilidad** : Hay 4 niveles de correspondencia (la sensibilidad va de 1 (corresponde exactamente) a 99)
+    -   por 1 palabra : nivel de coincidencia para interacciones de una sola palabra.
+    -   2 palabras : el nivel de coincidencia para interacciones de dos palabras.
+    -   3 palabras : el nivel de coincidencia para interacciones de tres palabras.
+    -   más de 3 palabras : nivel de coincidencia para interacciones de más de tres palabras.
+- **No responda si no se entiende la interacción.** : de manera predeterminada, Jeedom responde &quot;No entendí&quot; si no hay interacción. Es posible desactivar esta operación para que Jeedom no responda. Marque la casilla para deshabilitar la respuesta.
+- **Regex de exclusión general para interacciones** : permite definir una expresión regular que, si corresponde a una interacción, eliminará automáticamente esta oración de la generación (reservada para expertos). Para más información ver explicaciones en el capítulo **Exclusión de expresiones regulares** documentación sobre interacciones.
 
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+### Interacción automática, contextual y advertencia
 
-## Widget code
+-   la **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible..
 
-### Les tags
+-   la **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
+    - *Jeedom manteniendo el contexto :*
+        - *Vosotras* : Cuanto esta el en el cuarto ?
+        - *Jeedom* : Temperatura 25.2 ° C
+        - *Vosotras* : y en la sala de estar ?
+        - *Jeedom* : Temperatura 27.2 ° C
+    - *Haz dos preguntas en una :*
+        - *Vosotras* : ¿Cómo es en el dormitorio y en la sala de estar? ?
+        - *Jeedom* : Temperatura 23.6 ° C, temperatura 27.2 ° C
+-   Interacciones de tipo **Avísame** permita pedirle a Jeedom que le avise si un pedido excede / cae o vale un cierto valor.
+    - *Vosotras* : Notificarme si la temperatura de la sala supera los 25 ° C ?
+    - *Jeedom* : OK (* Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, solo una vez *)
 
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+> **nota**
+>
+> De manera predeterminada, Jeedom le responderá por el mismo canal que utilizó para pedirle que le notifique. Si no encuentra uno, utilizará el comando predeterminado especificado en esta pestaña. : **Comando de retorno predeterminado**.
 
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Atención la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+Aquí están las diferentes opciones disponibles. :
 
-### Mise à jour des valeurs
+- **Habilitar interacciones automáticas** : Marque para habilitar las interacciones automáticas.
+- **Habilitar respuestas contextuales** : Marque para habilitar las interacciones contextuales.
+- **Respuesta contextual prioritaria si la oración comienza con** : Si la oración comienza con la palabra que complete aquí, Jeedom priorizará una respuesta contextual (puede poner varias palabras separadas por **;** ).
+- **Cortar una interacción a la mitad si contiene** : Lo mismo para la división de una interacción que contiene varias preguntas. Aquí das las palabras que separan las diferentes preguntas.
+- **Activa las interacciones &quot;Notificarme&quot;** : Marque para habilitar las interacciones de tipo **Avísame**.
+- **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la oración comienza con esta (s) palabra (s) entonces Jeedom buscará hacer una interacción del tipo **Avísame** (puedes poner varias palabras separadas por **;** ).
+- **Comando de retorno predeterminado** : Comando de retorno predeterminado para la interacción de tipo **Avísame** (utilizado, en particular, si ha programado la alerta a través de la interfaz móvil)
+- **Sinónimo de objetos** : Lista de sinónimos para objetos (ej. : planta baja | planta baja | sótano | planta baja; baño | baño).
+- **Sinónimo de equipamiento** : Lista de sinónimos para equipos.
+- **Sinónimo de pedidos** : Lista de sinónimos para comandos.
+- **Sinónimo de resúmenes** : Lista de sinónimos para resúmenes.
+- **Sinónimo de comando de control deslizante máximo** : Sinónimo de colocar un comando de tipo deslizador al máximo (por ejemplo, se abre para abrir el obturador del dormitorio ⇒ obturador del dormitorio al 100%).
+- **Sinónimo de comando mínimo de control deslizante** : Sinónimo de colocar un comando de tipo deslizador como mínimo (por ejemplo, se cierra para cerrar el obturador del dormitorio ⇒ obturador del dormitorio al 0%).
 
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+## Pestaña de seguridad
 
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-```
+### LDAP
 
-Voila un exemple simple de code javascript a mettre dans votre widget :
+- **Habilitar autenticación LDAP** : habilita la autenticación a través de un AD (LDAP).
+- **anfitrión** : servidor que aloja el AD.
+- **dominio** : dominio de su AD.
+- **DN base** : DN base de su AD.
+- **nombre del usuario** : nombre de usuario para que Jeedom inicie sesión en AD.
+- **Contraseña** : contraseña para que Jeedom se conecte a AD.
+- **Campos de busqueda de usuario** : campos de búsqueda de inicio de sesión de usuario. Por lo general, uid para LDAP, SamAccountName para Windows AD.
+- **Filtro (opcional)** : filtro en el AD (por ejemplo, para la gestión de grupos).
+- **Permitir REMOTO \ _USER** : Active REMOTE \ _USER (usado en SSO por ejemplo).
 
-```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
-```
+### acceder
 
-Ici deux choses importantes :
+- **Número de fallas toleradas** : define el número de intentos sucesivos permitidos antes de prohibir la IP
+- **Tiempo máximo entre fallas (en segundos)** : tiempo máximo para 2 intentos para ser considerado sucesivo
+- **Duración del destierro (en segundos), -1 por infinito** : Tiempo de prohibición de IP
+- **IP &quot;blanco&quot;** : lista de IP que nunca se pueden prohibir
+- **Eliminar IP prohibidas** : Borrar la lista de IP actualmente prohibidas
 
-```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+La lista de IP prohibidas se encuentra al final de esta página.. Encontrará la IP, la fecha de prohibición y la fecha de finalización de la prohibición programada.
 
-```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
- ```
- L'appel a cette fonction pour l'initialisation du widget.
+## Actualización / Pestaña mercado
 
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+### Actualización de Jeedom
+
+- **Fuente de actualización** : Elija la fuente de actualización principal de Jeedom.
+- **Versión Core** : Versión principal para recuperar.
+- **Buscar actualizaciones automáticamente** : Indique si debe verificar automáticamente si hay nuevas actualizaciones (tenga cuidado de evitar sobrecargar el mercado, el tiempo de verificación puede cambiar).
+
+### Depósitos
+
+Los repositorios son espacios de almacenamiento (y servicio) para poder mover copias de seguridad, recuperar complementos, recuperar el núcleo de Jeedom, etc..
+
+### expediente
+
+Depósito utilizado para activar el envío de complementos por archivos.
+
+#### Github
+
+Depósito utilizado para conectar Jeedom a Github.
+
+- **simbólico** : simbólico para acceder al depósito privado.
+- **Usuario u organización del repositorio principal de Jeedom** : apellidobre de usuario u organización en github para el núcleo.
+- **apellidobre del repositorio para el núcleo Jeedom** : apellidobre del repositorio para core.
+- **Industria central de Jeedom** : Rama del repositorio central.
+
+#### mercado
+
+Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
+
+- **dirección** : Dirección del mercado. (Https://www.Jeedom.com/market).
+- **nombre del usuario** : Su nombre de usuario en el mercado.
+- **Contraseña** : Tu contraseña de mercado.
+- **[Backup cloud] apellido** : apellidobre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos).
+- **[Backup cloud] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella, ya no podrás restaurar tu Jeedom.
+- **[Backup cloud] Fréquence backup full** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes.
+
+#### samba
+
+Depósito que permite enviar automáticamente una copia de seguridad de Jeedom en un recurso compartido de samba (ex : NAS Synology).
+
+- **\ [Copia de seguridad \] IP** : IP del servidor samba.
+- **\ [Copia de seguridad \] Usuario** : apellidobre de usuario para la conexión (las conexiones anónimas no son posibles). El usuario debe tener derechos de lectura Y escritura en el directorio de destino.
+- **\ [Copia de seguridad \] Contraseña** : Contraseña de usuario.
+- **\ [Copia de seguridad \] Compartir** : Ruta para compartir (tenga cuidado de detenerse en el nivel de compartir).
+- **\ [Copia de seguridad \] Ruta** : Ruta en el intercambio (para poner en relativo), esto debe existir.
+
+> **nota**
+>
+> Si la ruta a su carpeta de copia de seguridad samba es :
+> \\\\ 192.168.0.1 \\ Copias de seguridad \\ Automatización del hogar \\ Jeedom Then IP = 192.168.0.1, Compartir = //192.168.0.1 / Copias de seguridad, Ruta = Domótica / Jeedom
+
+> **nota**
+>
+> Al validar el uso compartido de samba, como se describió anteriormente, aparece una nueva forma de respaldo en la sección Configuración → Sistema → Copias de respaldo de Jeedom. Al activarlo, Jeedom lo enviará automáticamente durante la próxima copia de seguridad.. Una prueba es posible realizando una copia de seguridad manual.
+
+> **importante**
+>
+> Es posible que deba instalar el paquete smbclient para que funcione el repositorio.
+
+> **importante**
+>
+> El protocolo samba tiene varias versiones, el v1 tiene un nivel de seguridad comprometido y en algunos NAS puede obligar al cliente a usar v2 o v3 para conectarse. Entonces, si tiene un error * la negociación del protocolo falló: NT_STATUS_INVAID_NETWORK_RESPONSE * existe una buena posibilidad de que en el lado del NAS la restricción esté en su lugar. Luego debe modificar el archivo / etc / samba / smb en su sistema operativo Jeedom.conf y agregue estas dos líneas :
+> protocolo max del cliente = SMB3
+> protocolo min del cliente = SMB2
+> El smbclient del lado de Jeedom usará v2 donde v3 y al poner SMB3 en ambos solo SMB3. Entonces, depende de usted adaptarse según las restricciones en el NAS u otro servidor samba
+
+> **importante**
+>
+> Jeedom debe ser el único en escribir en esta carpeta y debe estar vacío por defecto (es decir, antes de la configuración y el envío de la primera copia de seguridad, la carpeta no debe contener ningún archivo o carpeta).
+
+#### URL
+
+- **URL central de Jeedom**
+- **URL de la versión principal de Jeedom**
+
+## Pestaña Caché
+
+Permite monitorear y actuar en el caché Jeedom :
+
+- **estadística** : Número de objetos actualmente en caché.
+- **Limpiar la tapa** : Forzar la eliminación de objetos que ya no son útiles. Jeedom hace esto automáticamente todas las noches.
+- **Borrar todos los datos en caché** : Vacíe la tapa completamente.
+    Tenga en cuenta que esto puede causar pérdida de datos !
+- **Borrar el caché del widget** : Borrar el caché dedicado a los widgets.
+- **Deshabilitar caché de widgets** : Marque la casilla para deshabilitar las cachés de widgets.
+- **Tiempo de pausa para encuestas largas** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, sin embargo, utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
+
+## Pestaña API
+
+Aquí encontrará la lista de las diferentes claves API disponibles en su Jeedom. Core tiene dos claves API :
+
+-   un general : tanto como sea posible, evite usarlo,
+-   y otro para profesionales : utilizado para la gestión de flotas. Puede estar vacio.
+-   Luego encontrará una clave API por complemento que la necesita.
+
+Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, puede definir su alcance :
+
+- **discapacitado** : la clave API no se puede usar,
+- **IP blanca** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : redes)
+- **localhost** : solo se autorizan las solicitudes del sistema en el que está instalado Jeedom,
+- **activado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
+
+## Onglet &gt;\_OS/DB
+
+> **importante**
+>
+> Esta pestaña está reservada para expertos.
+> Si modifica Jeedom con una de estas dos soluciones, el soporte puede negarse a ayudarlo.
+
+- **general** :
+    - **Verificación general** : Vamos a lanzar la prueba de consistencia Jeedom.
+- **&gt;\ _SYSTEM** :
+    - **administración** : Proporciona acceso a una interfaz de administración del sistema.. Es un tipo de consola de shell en la que puede iniciar los comandos más útiles, en particular para obtener información sobre el sistema.
+    - Restablecimiento de derechos : Le permite volver a aplicar los derechos correctos a los directorios y archivos de Jeedom Core.
+- **Editor de archivos** : Permite el acceso a varios archivos del sistema operativo y editarlos, eliminarlos o crearlos.
+- **Base de datos** :
+    - **administración** : Permite el acceso a la base de datos Jeedom. Luego puede ejecutar comandos en el campo superior.
+    - **verificación** : Permite iniciar una verificación en la base de datos Jeedom y corregir errores si es necesario
+    - **limpieza** : Inicia una verificación de la base de datos y limpia las entradas no utilizadas.
+    - **usuario** : apellidobre de usuario utilizado por Jeedom en la base de datos,
+    - **Contraseña** : contraseña para acceder a la base de datos utilizada por Jeedom.

@@ -1,191 +1,94 @@
-# Widgets
-**Outils → Widgets**
+# objetos
+**Outils → objetos**
 
-La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
+la **objets** permettent de définir l'arborescence de votre domotique.
+Tous les équipements que vous créerez devront appartenir à un objet et pourront ainsi être plus facilement repérables. On dit alors que l'objet est le **parent** equipo.
 
-Il y a deux types de widgets personnalisés :
-
-- Les widgets basés sur un template (gérés par le Core de Jeedom).
-- Les widgets basés sur du code utilisateur.
-
-> **Note**
->
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Usuellement, on y définira les différentes parties de sa maison, comme le nom des pièces (c'est d'ailleurs la configuration recommandée).
 
 ## administración
 
-Quatre options s'offrent à vous :
-- **añadir** : Permet de créer un nouveau widget.
-- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+Deux options s'offrent à vous :
+- **añadir** : Permet de créer un nouvel objet.
+- **Vue d'ensemble** : Permet d'afficher la liste des objets créés ainsi que leur configuration.
 
-## Mes widgets
+## Mes objets
 
-Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
 > **punta**
 >
-> Vous pouvez ouvrir un widget en faisant :
+> Vous pouvez ouvrir un objet en faisant :
 > - Haga clic en uno de ellos..
 > - Ctrl Clic o Clic Center para abrirlo en una nueva pestaña del navegador.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La tecla Escape cancela la búsqueda..
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des objets. La tecla Escape cancela la búsqueda..
 A la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom:
 - La cruz para cancelar la búsqueda..
-- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les objets.
 - La carpeta cerrada para doblar todos los paneles.
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+Une fois sur la configuration d'un objet, vous disposez d'un menu contextuel au Clic Droit sur les onglets de l'objet. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre objet dans un nouvel onglet du navigateur.
 
+## Onglet objeto
 
-## Principe
+En cliquant sur un objet, vous accédez à sa page de configuration.
+Quels que soient les changements effectués, n'oubliez pas de le sauvegarder.
 
-Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+Voici donc les différentes caractéristiques pour configurer un objet :
 
-Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+- **Nom de l'objet** : Le nom de votre objet.
+- **Père** : Indique le parent de l'objet courant, cela permet de définir une hiérarchie entre les objets. Par exemple : Le salon a pour parent l'appartement. Un objet ne peut avoir qu'un seul parent mais plusieurs objets peuvent avoir le même parent.
+- **visible** : Cochez cette case pour rendre visible cet objet.
+- **Masquer sur le Dashboard** : Cochez cette case pour masquer l'objet sur le Dashboard. Il est tout de même conservé dans la liste, ce qui permet de l'afficher, mais uniquement de manière explicite.
+- **Masquer sur la synthèse'** : Cochez cette case pour masquer l'objet sur la synthèse'. Il est tout de même conservé dans la liste, ce qui permet de l'afficher, mais uniquement de manière explicite.
+- **icono** : Permet de choisir une icône pour votre objet.
+- **Couleurs personnalisées** : Active la prise en compte des deux paramètres de couleurs optionnels.
+- **Couleur du tag** : Permet de choisir la couleur de l'objet et des équipements qui lui sont rattachés.
+- **Couleur du texte du tag** : Permet de choisir la couleur du texte de l'objet. Ce texte sera par dessus la **couleur du tag**. A vous de choisir une couleur pour rendre le texte lisible.
+- **imagen** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard.
 
-## Les templates
+> **punta**
+>
+> Vous pouvez modifier l'ordre d'affichage des objets dans le Dashboard. Dans la vue d'ensemble, sélectionnez votre objet à la souris et en glisser/déposer pour lui donner une nouvelle place.
 
-Il y a deux types de template :
+> **punta**
+>
+> Vous pouvez voir un graphique représentant tous les éléments de Jeedom rattachés à cet objet en cliquant sur le bouton **Vínculos**, en haut à droite.
 
-- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+> **punta**
+>
+> Quand un équipement est créé et qu'aucun parent n'a été défini, il aura comme parent : **no**.
 
-## Création d'un widget
+## Onglet Résumé
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "añadir" et donner un nom à votre nouveau widget.
+la résumés sont des informations globales, affectées à un objet, qui s'affichent notamment sur le Dashboard à côté du nom de ce dernier.
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info.
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
-- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+### Tableau d'affichage
 
-### Remplacement
+la colonnes représentent les résumés affectés à l'objet courant. Trois lignes vous sont proposées :
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+- **Remonter dans le résumé global** : Cochez la case si vous souhaitez que le résumé soit affiché dans la barre de menu de Jeedom.
+- **Masquer en desktop** : Cochez la case si vous ne souhaitez pas que le résumé s'affiche à côté du nom de l'objet sur le Dashboard.
+- **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que le résumé s'affiche quand vous l'affichez depuis un mobile.
 
->**Note**
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+### comandos
 
->**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+Chaque onglet représente un type de résumé défini dans la configuration de Jeedom. Cliquez sur **añadir une commande** pour que celle-ci soit prise en compte dans le résumé. Vous avez le choix de sélectionner la commande de n'importe quel équipement de Jeedom, même s'il n'a pas pour parent cet objet.
 
-### Test
+> **punta**
+>
+> Si vous souhaitez ajouter un type de résumé ou pour configurer la méthode de calcul du résultat, l'unité, l'icône et le nom d'un résumé, vous devez aller dans la configuration générale de Jeedom : **Preferencias → Sistema → Configuración : Pestaña Resúmenes**.
 
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+## Vue d'ensemble
 
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+La vue d'ensemble vous permet de visualiser l'ensemble des objets dans Jeedom, ainsi que leur configuration :
 
-Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
-
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
-
->**Note**
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
-
->**Note**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
-
->**Note**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
-
-## Description de widgets
-
-Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
-
-### Paramètres fréquents
-
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-
-### HygroThermographe
-
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
-
-Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
-
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
-
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
-
->**NOTE**
-> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
-
-### Multiline
-
-- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
-
-### Slider Button
-
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
-
-## Widget code
-
-### Les tags
-
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
-
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
-
-### Mise à jour des valeurs
-
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
-
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-```
-
-Voila un exemple simple de code javascript a mettre dans votre widget :
-
-```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
-```
-
-Ici deux choses importantes :
-
-```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
-
-```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
- ```
- L'appel a cette fonction pour l'initialisation du widget.
-
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+- **identificación** : identificación de objeto.
+- **objeto** : Nom de l'objet.
+- **Père** : Nom de l'objet parent.
+- **visible** : Visibilité de l'objet.
+- **Masqué** : Indique si l'objet est masqué sur le Dashboard.
+- **Résumé Défini** : Indique le nombre de commandes par résumé. Ce qui est en bleu est pris en compte dans le résumé global.
+- **Résumé Dashboard Masqué** : Indique les résumés masqués sur le Dashboard.
+- **Résumé Mobile Masqué** : Indique les résumés masqués sur le mobile.

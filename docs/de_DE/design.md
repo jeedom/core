@@ -1,191 +1,232 @@
-# Widgets
-**Outils → Widgets**
+# Design
+**Accueil → Design**
 
-La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
-
-Il y a deux types de widgets personnalisés :
-
-- Les widgets basés sur un template (gérés par le Core de Jeedom).
-- Les widgets basés sur du code utilisateur.
-
-> **Notiz**
->
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
-
-## Gestion
-
-Quatre options s'offrent à vous :
-- **Ajouter** : Permet de créer un nouveau widget.
-- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
-
-## Mes widgets
-
-Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+Cette page permet de configurer l'affichage de toute votre domotique de manière très fine.
+Celle-ci demande du temps mais sa seule limite est votre imagination.
 
 > **Spitze**
 >
-> Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> Il est possible d'aller directement sur un design grâce au sous-menu.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
-A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
-- La croix pour annuler la recherche.
-- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- Le dossier fermé pour replier tout les panneaux.
+> **wichtig**
+>
+> Toutes les actions se font par un clic droit sur cette page, attention à bien le faire dans le design. Lors de la création, il faut donc le faire au milieu de la page (pour être sûr d'être sur le design).
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+Dans le menu (clic droit), nous retrouvons les actions suivantes :
 
+- **Designs** : Affiche la liste de vos designs et permet d'y accéder.
+- **Edition** : Permet de passer en mode édition.
+- **Plein écran** : Permet d'utiliser toute la page Internet, ce qui enlèvera le menu de Jeedom du haut.
+- **Ajouter graphique** : Permet d'ajouter un graphique.
+- **Ajouter texte/html** : Permet d'ajouter du texte ou du code html/JavaScript.
+- **Ajouter scénario** : Permet d'ajouter un scénario.
+- **Ajouter lien**
+    - **Vers une vue** : Permet d'ajouter un lien vers une vue.
+    - **Vers un design** : Permet d'ajouter un lien vers un autre design.
+- **Ajouter équipement** : Permet d'ajouter un équipement.
+- **Ajouter commande** : Permet d'ajouter une commande.
+- **Ajouter image/caméra** : Permet d'ajouter une image ou le flux d'une caméra.
+- **Ajouter zone** : Permet d'ajouter une zone transparente cliquable qui pourra exécuter une série d'actions lors d'un clic (en fonction ou non de l'état d'une autre commande).
+- **Ajouter résumé** : Ajoute les informations d'un résumé d'objet ou général.
+- **Anzeigen**
+    - **Aucune** : N'affiche aucune grille.
+    - **10x10** : Affiche une grille de 10 par 10.
+    - **15x15** : Affiche une grille de 15 par 15.
+    - **20x20** : Affiche une grille de 20 par 20.
+    - **Aimanter les éléments** : Ajoute une aimantation entre les éléments pour permettre de les coller plus facilement.
+    - **Aimanter à la grille** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Je nach Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren..
+    - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
+- **Design löschen** : Design entfernen.
+- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
+- **Doppeltes Design** : Dupliziert das aktuelle Design.
+- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
+- **speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden)..
 
-## Principe
+> **wichtig**
+>
+> Die Konfiguration der Designelemente erfolgt durch Klicken.
 
-Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+## Designkonfiguration
 
-Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+Hier gefunden :
 
-## Les templates
+- **General**
+    - **Name** : Der Name Ihres Designs.
+    - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
+    - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
+    - **Hintergrundfarbe** : Design Hintergrundfarbe.
+    - **Zugangscode* : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
+    - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
+    - **Bild**
+        - **send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
+        - **Bild löschen** : Bild löschen.
+- **Größen**
+    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
 
-Il y a deux types de template :
+## Allgemeine Konfiguration der Elemente
 
-- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+> **Notiz**
+>
+> Je nach Art des Elements können sich die Optionen ändern.
 
-## Création d'un widget
+### Allgemeine Anzeigeeinstellungen
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+- **Tiefe** : Ermöglicht die Auswahl der Tiefenstufe
+- **Position X (%)** : Horizontale Koordinate des Elements.
+- **Position Y (%)** : Vertikale Koordinate des Elements.
+- **Breite (px)** : Elementbreite in Pixel.
+- **Höhe (px)** : Elementhöhe in Pixel.
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info.
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
-- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+### Entfernen
 
-### Remplacement
+Gegenstand entfernen
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+### Duplikat
 
->**Notiz**
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+Ermöglicht das Duplizieren des Elements
 
->**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+### Schloss
 
-### Test
+Ermöglicht das Sperren des Elements, sodass es nicht mehr beweglich oder in der Größe veränderbar ist.
 
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+## Grafik
 
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+### Spezifische Anzeigeeinstellungen
 
-Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+- **Zeit** : Hier können Sie den Anzeigezeitraum auswählen
+- **Bildunterschrift anzeigen** : Zeigt die Legende an.
+- **Browser anzeigen** : Zeigt den Browser an (zweite hellere Grafik unter der ersten).
+- **Periodenauswahl anzeigen** : Zeigt den Periodenwähler oben links an.
+- **Bildlaufleiste anzeigen** : Zeigt die Bildlaufleiste an.
+- **Transparenter Hintergrund** : Macht den Hintergrund transparent.
+- **Grenze** : Ermöglicht das Hinzufügen eines Rahmens. Achten Sie darauf, dass die Syntax HTML ist (seien Sie vorsichtig, Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
 
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
+### Erweiterte Konfiguration
 
->**Notiz**
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
->**Notiz**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+## Text / html
 
->**Notiz**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+### Spezifische Anzeigeeinstellungen
 
-## Description de widgets
+- **Symbol** : Symbol vor dem Designnamen.
+- **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Textn ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)...
+- **Rund um die Winkel** : erlaubt das Abrunden der Winkel (vergessen Sie nicht,%, ex 50% zu setzen).
+- **Grenze** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
+- **Schriftgröße** : ermöglicht es Ihnen, die Schriftgröße zu ändern (ab 50% müssen Sie das% -Zeichen setzen).
+- **Textausrichtung** : ermöglicht die Auswahl der Ausrichtung des Texts (links / rechts / zentriert).
+- **Fett** : fetter Text.
+- **Text** : Text im HTML-Code, der sich im Element befindet.
 
-Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+> **wichtig**
+>
+> Wenn Sie HTML-Code (insbesondere Javascript) einfügen, überprüfen Sie diesen sorgfältig, da dies möglich ist, wenn ein Fehler vorliegt oder wenn eine Jeedom-Komponente überschrieben wird, das Design vollständig abstürzt und nur gelöscht werden muss direkt in die Datenbank.
 
-### Paramètres fréquents
+## Szenario
 
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). wichtig seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). wichtig seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+*Keine spezifischen Anzeigeeinstellungen*
 
-### HygroThermographe
+## Link
 
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+### Spezifische Anzeigeeinstellungen
 
-Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+- **Name** : Name des Links (angezeigter Text).
+- **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht.
+- **Hintergrundfarbe** : Ermöglicht es Ihnen, die Hintergrundfarbe zu ändern oder transparent zu machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
+- **Textfarbe** : Permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non).
+- **Rund um die Winkel (ne pas oublier de mettre %, ex 50%)** : Permet d'arrondir les angles, ne pas oublier de mettre le %.
+- **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Permet d'ajouter une bordure, attention la syntaxe est HTML.
+- **Schriftgröße (ex 50%, il faut bien mettre le signe %)** : Permet de modifier la taille de la police.
+- **Textausrichtung** : Permet de choisir l'alignement du texte (gauche/droit/centré).
+- **Fett** : Met le texte en gras.
 
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+## Ausrüstung
 
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+### Spezifische Anzeigeeinstellungen
 
->**NOTE**
-> Aufmerksamkeit sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+- **Afficher le nom de l'objet** : Cocher pour afficher le nom de l'objet parent de l'équipement.
+- **Masquer le nom** : Cocher pour masquer le nom de l'équipement.
+- **Hintergrundfarbe** : Permet de choisir une couleur de fond personnalisée, ou d'afficher l'équipement avec un fond transparent, ou d'utiliser la couleur par défaut.
+- **Textfarbe** : Permet de choisir une couleur de fond personnalisée, ou d'utiliser la couleur par défaut.
+- **Arrondis** : Valeur en pixels de l'arrondis des angles de la tuile de l'équipement.
+- **Grenze** : Définition CSS d'une bordure de la tuile de l'équipement. ex : 1px solid black.
+- **Opacité** : Opacité de la tuile de l'équipement, entre 0 et 1. Aufmerksamkeit : une couleur de fond doit être définie.
+- **CSS personnalisé** : Règles CSS à appliquer sur l'équipement.
+- **Appliqué le css personnalisé sur** : Sélecteur CSS sur lequel appliquer le CSS personnalisé.
 
-### Multiline
+### Befehle
 
-- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+La liste des commandes présentes sur l'équipement vous permet, pour chaque commande, de:
+- Masquer le nom de la commande.
+- Masquer la commande.
+- Afficher la commande avec une fond transparent.
 
-### Slider Button
+### Erweiterte Konfiguration
 
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+Affiche la fenêtre de configuration avancée de l'équipement (voir documentation **Zusammenfassung der Hausautomation**).
 
-## Widget code
+## bestellen
 
-### Les tags
+*Keine spezifischen Anzeigeeinstellungen*
 
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+### Erweiterte Konfiguration
 
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Aufmerksamkeit la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+Affiche la fenêtre de configuration avancée de l'équipement (voir documentation **Zusammenfassung der Hausautomation**).
 
-### Mise à jour des valeurs
+## Bild/Caméra
 
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+### Spezifische Anzeigeeinstellungen
 
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-```
+- **Afficher** : Définit ce que vous voulez afficher, image fixe ou flux d'une caméra.
+- **Bild** : Permet d'envoyer l'image en question (si vous avez choisi une image).
+- **Caméra** : Caméra à afficher (si vous avez choisi caméra).
 
-Voila un exemple simple de code javascript a mettre dans votre widget :
+## Zone
 
-```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
-```
+### Spezifische Anzeigeeinstellungen
 
-Ici deux choses importantes :
+- **Type de zone** : C'est ici que vous choisissez le type de la zone : Macro simple, Macro Binaire ou Widget au survol.
 
-```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+### Macro simple
 
-```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
- ```
- L'appel a cette fonction pour l'initialisation du widget.
+Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
 
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+Il vous suffit ici d'indiquer la liste des actions à faire lors du clic sur la zone.
+
+### Macro binaire
+
+Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en fonction de l'état de la commande que vous donnez. ex : si la commande vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera la ou les actions Off
+
+- **Information binaire** : bestellen donnant l'état à vérifier pour décider de l'action à faire (On ou Off).
+
+Il vous suffit en dessous de mettre les actions à faire pour le On et pour le Off.
+
+### Widget au survol
+
+Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous afficherez le widget en question.
+
+- **Ausrüstung** : Widget à afficher lors du survol ou du clic.
+- **Afficher au survol** : Si coché, affiche le widget au survol.
+- **Afficher sur un clic** : Si coché, alors le widget est affiché au clic.
+- **Position** : Permet de choisir l'emplacement d'apparition du widget (par défaut bas droite).
+
+## Zusammenfassung
+
+### Spezifische Anzeigeeinstellungen
+
+- **Link** : Permet d'indiquer le résumé à afficher (General pour le global sinon indiquer l'objet).
+- **Hintergrundfarbe** : Ermöglicht es Ihnen, die Hintergrundfarbe zu ändern oder transparent zu machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
+- **Textfarbe** : Permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non).
+- **Rund um die Winkel (ne pas oublier de mettre %, ex 50%)** : Permet d'arrondir les angles, ne pas oublier de mettre le %.
+- **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Permet d'ajouter une bordure, attention la syntaxe est HTML.
+- **Schriftgröße (ex 50%, il faut bien mettre le signe %)** : Permet de modifier la taille de la police.
+- **Fett** : Met le texte en gras.
+
+## FAQ
+
+>**Je n'arrive plus à éditer mon design**
+>Si vous avez mis un widget ou une image qui prend quasiment la totalité du design, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+
+>**Entfernen un design qui ne marche plus**
+>Dans la partie administration puis OS/DB, faire "select * from planHeader", récupérer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précédemment.

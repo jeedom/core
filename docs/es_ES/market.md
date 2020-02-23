@@ -1,191 +1,93 @@
-# Widgets
-**Outils → Widgets**
+# Market Jeedom
 
-La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Il y a deux types de widgets personnalisés :
+Doc un peu particulière car elle va traiter uniquement de votre page profil du Market.
+Disponible en allant sur votre nom d'utilisateur puis profil à partir du Market (un peu comme sur Jeedom).
 
-- Les widgets basés sur un template (gérés par le Core de Jeedom).
-- Les widgets basés sur du code utilisateur.
+Celle-ci se décompose en plusieurs parties :
 
-> **Note**
->
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+## Mon profil
 
-## Gestion
+C'est ici que vous allez pouvoir régler différents paramètres de votre profil :
 
-Quatre options s'offrent à vous :
-- **Ajouter** : Permet de créer un nouveau widget.
-- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+- **perfil**
+    - **login** : Votre login sur le Market, il ne peut être changé.
+    - **apellido** : Votre nom (cette information n'est utile que pour rendre les emails plus sympa).
+    - **Prénom** : Votre prénom (cette information n'est utile que pour rendre les emails plus sympa).
+    - **apellido d'utilisateur sur le forum** : Votre pseudo sur le forum.
+    - **Email** : Votre email.
+    - **Lengua** : Votre langue.
+    - **Mot de passe && Confirmer le mot de passe** : Permet de changer votre mot passe.
 
-## Mes widgets
+Pour les développeurs :
+- **apellido d'utilisateur sur le forum** : Votre pseudo sur le forum.
+- **Email public** : Votre email pour recevoir des éventuelles communications de notre part.
+- **Compte paypal** : Votre email de compte Paypal (uniquement utilisé pour payer les développeurs).
 
-Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+Pour les pros :
+- **Compte email installateur** : Votre email de contact pro.
+- **Destinataire des demandes de support** : savoir qui recevra les emails de support (client final, installateur ou les deux).
+    - **CGU**
+- **usuario** : conditions générales d'utilisation (attention à bien les lire car elles vous engage).
+- **Développeur** : conditions générales d'utilisation pour les développeurs.
+    - **Tickets**
+- **apellidobre de tickets** : apellidobre de tickets pour le mois en cours ainsi que votre limite.
+- **Support** : Bouton pour envoyer une demande de support (accessible aussi par le point d'exclamation en haut à droite sur le Market ou sur votre Jeedom).
+    - **Accès aux betas**
+- **Activer l'accès aux plugins beta** : Permet d'activer l'accès aux plugins betas (attention cela vous interdira tout accès au support).
+    - **resumen** Ici vous retrouverez un résumé de vos différents droits et services.
 
 > **punta**
 >
-> Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> N'oubliez pas de sauvegarder.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
-A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
-- La croix pour annuler la recherche.
-- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- Le dossier fermé pour replier tout les panneaux.
+## Mis jeedoms
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+- **Niveau**
+    - **Jeedom** : Votre niveau de service pack.
+    - **Entrer un numéro de service pack** : Permet d'entrer votre numéro de service pack (il se trouve dans le mail envoyé par Jeedom lors de votre commande).
+- **Clave de instalación**
+    - **apellidobre de clefs d'installation** : Affiche le nombre d'installations Jeedom actuellement liées à votre compte ainsi que la limite autorisée.
 
+> **punta**
+>
+> Il est possible que le Market vous demande parfois de remettre à zéro vos clefs d'installation, c'est normal, il suffit de suivre ce qu'il vous demande.
 
-## Principe
+- **Mis jeedoms** : C'est ici que sont listés tous vos Jeedom
+    - **apellido** : Le nom que vous voulez donner à votre Jeedom (se retrouve dans le nom du backup si vous avez l'abonnement de sauvegarde cloud).
+    - **estado** : Permet de voir l'état du Jeedom en question.
+    - **IP locale / distante** : IP ou adresse de ce Jeedom, se configure dans Jeedom, si vous ne mettez rien ça sera la dernière IP connue.
+    - **DNS** : Permet de personnaliser le nom de votre DNS.
+    - **URL** : Liste les différentes URL d'accès au Jeedom.
+    - **Serveur DNS** : Vous indique le serveur DNS auquel vous êtes rattachés.
+    - **Statut du DNS** : Permet de voir le statut du DNS.
+    - **Fecha de creación** : Fecha de creación de ce Jeedom sur votre compte Market (pour rappel cela se fait automatiquement lorsque vous le liez au Market).
+    - **última actualización** : Dernière communication du Jeedom avec le Market.
+    - **Hardware** : apellido du hardware du Jeedom.
+    - **versión** : La version de Jeedom installée.
 
-Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+> **punta**
+>
+> N'oubliez pas de sauvegarder.
 
-Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+## Mes backups
 
-## Les templates
+Sur cette onglet vous pouvez consulter les backups présents sur le Market et en télécharger un. En dessous vous avez accès au lien pour acheter 1,3,6 ou 12 mois d'abonnement à la sauvegarde cloud.
 
-Il y a deux types de template :
+## Mes SMS/Appels
 
-- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+Sur cette onglet vous pouvez consulter votre solde SMS/Appels (utilisable avec le plugin Phone market). En dessous vous avez les différentes options permettant d'acheter du solde supplémentaire.
 
-## Création d'un widget
+## Mes achats/promos/dons
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de reçu.
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info.
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
-- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+> **importante**
+>
+> Si vous achetez un plugin officiel vous recevrez une facture. En revanche pour un plugin tiers c'est un reçu, pour la facture il faut la demander au développeur.
 
-### Remplacement
+Vous pouvez aussi à partir de cet onglet entrer un code promo (un code pour un plugin par exemple que le développeur a pu vous transmettre) et faire un don.
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+## Mes développements
 
->**Note**
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
-
->**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
-
-### Test
-
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
-
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
-
-Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
-
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
-
->**Note**
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
-
->**Note**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
-
->**Note**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
-
-## Description de widgets
-
-Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
-
-### Paramètres fréquents
-
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-
-### HygroThermographe
-
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
-
-Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
-
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
-
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
-
->**NOTE**
-> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
-
-### Multiline
-
-- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
-
-### Slider Button
-
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
-
-## Widget code
-
-### Les tags
-
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
-
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
-
-### Mise à jour des valeurs
-
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
-
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-```
-
-Voila un exemple simple de code javascript a mettre dans votre widget :
-
-```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
-```
-
-Ici deux choses importantes :
-
-```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
-
-```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
- ```
- L'appel a cette fonction pour l'initialisation du widget.
-
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+Si vous êtes développeur vous retrouvez ici la liste de toutes vos ventes sur une période, la liste de vos versements ainsi qu'un résumé du nombre de téléchargements, du nombre de ventes…​

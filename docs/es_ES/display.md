@@ -1,191 +1,245 @@
-# Widentificacióngets
-**Outils → Widentificacióngets**
+# Resumen de automatización del hogar
+**Análisis → Resumen de domótica**
 
-La page widentificacióngets vos permet de créer des widentificacióngets personnalisés por votre Jeedom.
+Esta página le permite reunir en una sola página los diferentes elementos configurados en su Jeedom. También da acceso a funciones para organizar equipos y controles, a su configuración avanzada y para mostrar las posibilidentificaciónades de configuración..
 
-Il y a deux types de widentificacióngets personnalisés :
+## información
 
-- las widentificacióngets basés sur un template (gérés par le Core de Jeedom).
-- las widentificacióngets basés sur du code utilisateur.
+En la parte superior de la página, encontramos :
+- **Numero de objetos** : Número total de objetos configurados en nuestro Jeedom, incluidentificaciónos elementos inactivos.
+- **Numero de equipos** : Lo mismo para el equipo..
+- **Numero de ordenes** : Lo mismo para pedidentificaciónos.
+- **inactivo** : Marque esta casilla si desea que se muestren elementos inactivos en esta página.
+- **Buscar** : Buscar un artículo en particular. Puede ser el apellidentificaciónobre de un dispositivo, un pedidentificacióno o el apellidentificaciónobre del complemento por el cual se creó el dispositivo.
+- **Exportación CSV** : la permite exportar todos los objetos, equipos y sus comandos a un archivo CSV.
 
-> **nota**
->
-> Si les widentificacióngets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widentificacióngets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+También tienes una pestaña **histórico**, muestra el historial de pedidentificaciónos, equipos, objetos, vistas, diseño, diseño 3D, escenarios y usuarios eliminados.
 
-## Gestion
+## Marcos de objetos
 
-Quatre options s'offrent à vos :
-- **añadir** : Permet de créer un noveau widentificaciónget.
-- **Importer** : Permet d'importer un widentificaciónget sos forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widentificaciónget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widentificaciónget par un autre sur tot les équipements l'utilisant.
+Debajo hay un cuadro por objeto. En cada cuadro, encontramos la lista de equipos que tienen este objeto como padre.
+El primer cuadro **no** representa dispositivos que no tienen padre asignado.
 
-## Mes widentificacióngets
-
-Une fois que vos avez créé un widentificaciónget, il apparaîtra dans cette partie.
+Para cada objeto, junto a su etiqueta, hay dos botones disponibles..
+- El primero se usa para abrir la página de configuración de objetos en una pestaña nueva.
+- El segundo proporciona información sobre el objeto,
 
 > **punta**
 >
-> Vos povez ovrir un widentificaciónget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic o Clic Centre por l'ovrir dans un novel onglet du navigateur.
+> El color de fondo de los marcos del objeto depende del color elegidentificacióno en la configuración del objeto..
 
-Vos disposez d'un moteur de recherche permettant de filtrer l'affichage des widentificaciónget. La toche Echap annule la recherche.
-A droite du champ de recherche, trois botons que l'on retrove à plusieurs endroits de Jeedom:
-- La croix por annuler la recherche.
-- la dossier overt por déplier tot les panneaux et afficher tots les widentificaciónget.
-- la dossier fermé por replier tot les panneaux.
+> **punta**
+>
+> Con un clic y soltar objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden establecidentificacióno en esta página que se calcula la visualización del Tablero.
 
-Une fois sur la configuration d'un widentificaciónget, vos disposez d'un menu contextuel au Clic Droit sur les onglets du widentificaciónget. Vos povez également utiliser un Ctrl Clic o Clic Centre por ovrir directement un autre widentificaciónget dans un novel onglet du navigateur.
+## Los equipos
 
+En cada equipo encontramos :
 
-## Principe
+- una **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **remove**hacer **visible**/**invisible**,  **bienes**/**inactivo** equipo seleccionado.
+- la**identificación** equipo.
+- la **tipo** equipo : Identificador del complemento al que pertenece.
+- la **apellidentificacióno** equipo.
+- **inactivo** (cruz pequeña) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
+- **invisible** (ojo tachado) : Significa que el equipo es invisible (si no está allí, el equipo es visible).
 
-Mais c'est quoi un template ?
-Por faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+Si el complemento del equipo está desactivado, los dos íconos a la derecha no aparecen:
+- **Enlace externo** (cuadrado con flecha) : Permite abrir en una nueva pestaña la página de configuración del equipo.
+- **Configuración avanzada** (rueda dentada) : abre la ventana de configuración avanzada del equipo.
 
-Suivant le type de widentificaciónget, vos povez généralement personnaliser des icônes o mettre des images de votre choix.
+> Al hacer clic en la línea que contiene el apellidentificaciónobre del equipo, mostrará todos los comandos para este equipo. Al hacer clic en un pedidentificacióno, accederá a la ventana de configuración del pedidentificacióno.
 
-## las templates
+## Configuración avanzada de equipos
 
-Il y a deux types de template :
+> **punta**
+>
+> Es posible acceder (si el complemento lo admite) directamente a esta ventana desde la página de configuración del equipo haciendo clic en el botón de configuración avanzada
 
-- las "**simples**" : tipo une icône/image por le "on" et une icône/image por le "off"
-- las "**multistates**" : Cela permet de définir par exemple une image si la commande a por valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+La ventana de **configuración avanzada de equipos** permite modificarlo. Primero, en la parte superior derecha, algunos botones disponibles :
 
-## Création d'un widentificaciónget
+- **información** : muestra las propiedades en bruto del equipo.
+- **Vínculos** : la permite mostrar los enlaces del equipo con los objetos, comandos, escenarios, variables, interacciones ... en forma gráfica (en este caso, un doble clic en un elemento lo llevará a su configuración).
+- **registro** : muestra los eventos del equipo en cuestión.
+- **Guardar** : Guarde las modificaciones realizadas en el equipo..
+- **remove** : Retirar equipo.
 
-Une fois sur la page Outils -> Widentificaciónget il vos faut cliquer sur "añadir" et donner un nom à votre noveau widentificaciónget.
+### Pestaña de información
 
-Ensuite :
-- Vos choisissez s'il s'applique sur une commande de type acción o info.
-- En fonction de votre choix précèdent, vos allez devoir choisir le sos type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nos envisageons de por vos mettre des exemples de rendus por chaque template).
-- Une fois le template choisi, Jeedom vos donne les possibilités de configuration de celui-ci.
+la pestaña **información** contiene información general sobre el equipo y sus controles :
 
-### Remplacement
+- **identificación** : Identificador único en la base de datos Jeedom.
+- **apellidentificacióno** : apellidentificaciónobre del equipo.
+- **identificación lógica** : Identificador de equipo lógico (puede estar vacío).
+- **identificación de objeto** : Identificador único del objeto padre (puede estar vacío).
+- **Fecha de creación** : Fecha de creación del equipo.
+- **Activar** : Marque la casilla para activar el equipo (no olvidentificacióne guardar).
+- **visible** : Marque la casilla para hacer visible el equipo (no olvidentificacióne guardar).
+- **tipo** : Identificador del complemento por el cual fue creado.
+- **Intento fallidentificacióno** : Número de intentos fallidentificaciónos de comunicaciones consecutivas con el equipo.
+- **Fecha de la última comunicación** : Fecha de la última comunicación del equipo..
+- **última actualización** : Fecha de la última comunicación con el equipo..
+- **etiquetas** : etiquetas de equipo, separadas por &#39;,&#39;. Permite en el tablero hacer filtros personalizados
 
-C'est ce que l'on appelle un widentificaciónget simple, ici vos avez juste à dire que le "on" correspond à telle icône/image (avec le boton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vos être proposé la largeur (widentificaciónth) et la hauteur (height). Ce n'est valable que por les images.
+A continuación encontrará una tabla con la lista de comandos de equipos con, para cada uno, un enlace a su configuración.
 
->**nota**
->Nos sommes désolés por les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidentificaciónité et efficacité, aussi bien por vos que por nos. Nos n'avons pas eu le choix
+### Ver pestaña
 
->**TIPS**
->Por les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widentificaciónget". Par exemple si dans widentificaciónth vos mettez comme valeur #widentificaciónth# (attention à bien mettre les # autor) au lieu d'un chiffre, dans "Paramètres optionnels widentificaciónget" vos povez ajoter widentificaciónth (sans les #) et donner la valeur. Cela vos permet de changer la taille de l'image en fonction de la commande et donc vos évite de faire un widentificaciónget différent par taille d'image que vos volez
+En la pestaña **Viendo**, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
 
-### Test
+#### Reproductor
 
-C'est ce que l'on appelle la partie multistates, vos avez sovent comme por les widentificacióngets simples le choix de la "hauteur"/"largeur" por les images uniquement puis en dessos la partie test.
+-  **visible** : Marque la casilla para hacer visible el equipo.
+- **Mostrar apellidentificaciónobre** : Marque la casilla para mostrar el apellidentificaciónobre del equipo en el mosaico.
+- **Mostrar apellidentificaciónobre de objeto** : Marque la casilla para mostrar el apellidentificaciónobre del objeto principal del equipo, junto al mosaico.
 
-C'est assez simple. Au lieu de mettre une image por le "on" et/o por le "off" comme dans le cas précèdent, vos allez avant donner un test à faire. Si celui-ci est vrai alors le widentificaciónget affichera l'icône/l'image en question.
+### Parámetros opcionales en el mosaico
 
-las tests sont sos la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vos povez aussi faire par exemple :
+A continuación, hay parámetros de visualización opcionales que se pueden aplicar al equipo.. Estos parámetros están compuestos de un apellidentificaciónobre y un valor.. Il suffit de cliquer sur **añadir** por en appliquer un
+noveau. Por les équipements, seule la valeur **style** est por le moment utilisée, elle permet d'insérer du code CSS sur l'équipement en question.
 
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
+> **punta**
+>
+> N'obliez pas de sauvegarder après tote modification.
 
->**nota**
->Il est important de noter les ' autor du texte à comparer si la valeur est un texte
+### Onglet Disposition
 
->**nota**
->Por les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+Cette partie vos permet de choisir entre la disposition standard des commandes (côte à côte dans le widentificaciónget), o en mode tableau. Il n'y a rien à régler en mode par défaut. Voici les options disponibles en mode
+**mesa** :
+- **apellidentificaciónobre de lignes**
+- **apellidentificaciónobre de colonnes**
+- **Centrer dans les cases** : Cochez la case por centrer les commandes dans les cases.
+- **Style générale des cases (CSS)** : Permet de définir le style général en code CSS.
+- **Style du tableau (CSS)** : Permet de définir le style du tableau uniquement.
 
->**nota**
->Il est possible d'afficher la valeur de la commande dans le widentificaciónget en mettant par exemple a coté du code HTML de l'icône #value#
+En dessos por chaque case, la **configuration détaillée** vos permet
+ceci :
+- **Texte de la case** : añadir un texte en plus de la commande (o tot seul, si il n'y a pas de commande dans la case).
+- **Style de la case (CSS)** : Modifier le style CSS spécifique de la case (attention celui-ci écrase et remplace le CSS général des cases).
 
-## Description de widentificacióngets
+> **punta**
+>
+> Dans une case du tableau, si vos volez mettre 2 commandes l'une en dessos de l'autre, il ne faut pas oblier de rajoter un retor à la ligne après la première dans la **configuration avancée** de celle-ci.
 
-Nos allons ici décrire certain widentificaciónget qui ont un fonctionnement un peu particulier.
+### Onglet Alertes
 
-### Paramètres fréquents
+Cet onglet permet d'avoir les informations sur la batterie equipo et de définir des alertes par rapport à celle-ci. Voici les tipos d'informations que l'on peut trover :
 
-- Time widentificaciónget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si videntificacióne alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si videntificacióne alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si videntificacióne alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si videntificacióne alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vos est demandé, Jeedom calculera la hauteur por ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vos est demandé, Jeedom calculera la hauteur por ne pas déformer l'image.
+- **tipo de pile**,
+- **Dernière remontée de l'information**,
+- **Niveau restant**, (si bien sûr votre équipement fonctionne sur pile).
 
-### HygroThermographe
+Dessos, vos porrez aussi définir les seuils spécifiques d'alerte de batterie por cet équipement. Si vos laissez les cases videntificaciónes, ceux sont les seuils par défaut qui seront appliqués.
 
-Ce widentificaciónget est un peu particulier car c'est un widentificaciónget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidentificaciónité.
+On peut également gérer le timeot, en minutes, equipo. Par exemple, 30 indique à jeedom que si l'équipement n'a pas communiqué depuis 30 minutes, alors il faut le mettre en alerte.
 
-Por le configurer c'est assez simple il faut affecter le widentificaciónget a la commande température de votre équipement et à la commande humidentificaciónité.
+> **punta**
+>
+> las paramètres globaux sont dans **Réglages→Système→Configuration : troncos** o **Equipements**
 
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidentificaciónité sur la commande humidentificaciónité (cela se configure dans la configuration avancé de la commande onglet configuration).
+### Onglet Commentaire
 
-la widentificaciónget a un paramètre optionnel : scale qui vos permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+Permet d'écrire un commentaire à propos equipo.
 
->**NOTE**
-> Attention sur un design il ne faut surtot pas mettre une commande seul avec ce widentificaciónget cela ne marchera pas vu que c'est un widentificaciónget utilisant la valeur de plusieurs commande il faut absolument mettre le widentificaciónget complet
+## Configuración avanzada d'une commande
 
-### Multiline
+Primero, en la parte superior derecha, algunos botones disponibles :
 
-- Parametre maxHeight por definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+- **Tester** : Permet de tester la commande.
+- **Vínculos** : Permet d'afficher les liens equipo avec les objets, commandes, scénarios, variables, interaccións…​. sos forme graphique.
+- **registro** : Affiche les évènements equipo en question.
+- **información** : Affiche les propriétés brutes equipo.
+-  **Appliquer à** : Permet d'appliquer la même configuration sur plusieurs commandes.
+- **Guardar** : Guarde las modificaciones realizadas en el equipo..
 
-### Slidentificacióner Button
+> **punta**
+>
+> Dans un graphique, un doble clic sur un élément vos amène à sa configuration.
 
-- step : permet de régler le pas d'une acción sur un boton (0.5 par défaut)
+> **nota**
+>
+> En fonction du tipo de commande, les informations/accións affichées peuvent changer.
 
-## Widentificaciónget code
+### Pestaña de información
 
-### las tags
+la pestaña **información** contient les informations générales sur la commande :
 
-En mode code vos avez accès a différent tag por les commandes, en voici une liste (pas forcement exhaustives) :
+- **identificación** : Identifiant unique dans la base de données.
+- **identificación lógica** : Identifiant logique de la commande (peut être videntificacióne).
+- **apellidentificacióno** : apellidentificacióno de la commande.
+- **tipo** : tipo de la commande (acción o info).
+- **Sos-tipo** : Sos-tipo de la commande (binaire, numérique…​).
+- **URL directe** : Fornit l'URL por accéder à cet équipement. (clic droit, copier l'adresse du lien) laURL lancera la commande por une **acción** et retornera l'information por une **info**.
+- **unidentificaciónad** : unidentificaciónad de la commande.
+- **Commande déclenchant une mise à jor** : Donne l'identificaciónentifiant d'une  autre commande qui, si cette autre commande change, va forcer la mise à jor de la commande visualisée.
+- **visible** : Cochez cette case por que la commande soit visible.
+- **Suivre dans la timeline** : Cochez cette case por que cette commande soit visible dans la timeline quand elle est utilisée. Vos povez préciser une timeline en particulier dans le champ qui s'affiche si l'option est cochée.
+- **Interdire dans les interaccións automatique** : interdit les interaccións automatique sur cette commande
+- **icono** : Permet de changer l'icône de la commande.
 
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hidentificacióne_name# : videntificacióne o hidentificaciónden si l'utilisateur a demandé a masquer le nom du widentificaciónget, a mettre directement dans une balise class
-- #identificación# : identificación de la commande
-- #state# : valeur de la commande, videntificacióne por une commande de type acción si elle n'est pas a liée a une commande d'état
-- #uidentificación# : identificaciónentifiant unique por cette génération du widentificaciónget (si il y a plusieurs fois la même commande, cas des designs seule cette identificaciónentifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertlavel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) por la liste)
-- #hidentificacióne_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué o non. Comme por le #hidentificacióne_name# il vaut videntificacióne o hidentificaciónden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trové sur votre widentificaciónget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class por icône : fas fa-arrow-up, fas fa-arrow-down o fas fa-minus
+Vos avez aussi trois autres botons oranges en dessos :
 
-### Mise à jor des valeurs
+- **Cette commande remplace l'identificación** : Permet de remplacer un identificación de commande par la commande en question. Utile si vos avez supprimé un équipement dans Jeedom et que vos avez des scénarios qui utilisent des commandes de celui-ci.
+- **Cette commande remplace la commande** : Remplace une commande par la commande corante.
+- **Remplacer cette commande par la commande** : lainverse, remplace la commande par une autre commande.
 
-Lors d'une novelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oi il l'appel avec un unique argument qui est un objet sos la forme :
+> **nota**
+>
+> Ce genre d'acción remplace les commandes partot dans Jeedom (scénario, interacción, commande, équipement…​.).
 
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertlavel:'#alertlavel#'}
-```
+En-dessos, vos retrovez la liste des différents équipements, commandes, scénarios o interaccións qui utilisent cette commande. Un clic dessus permet d'aller directement sur leur configuration respective.
 
-Voila un exemple simple de code javascript a mettre dans votre widentificaciónget :
+### Onglet Configuration
 
-```
-<script>
-    Jeedom.cmd.update['#identificación#'] = function(_options){
-      $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_identificación=#identificación#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#identificación#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertlavel:'#alertlavel#'});
-</script>
-```
+#### Por une commande de tipo info :
 
-Ici deux choses importantes :
+- **Calcul et arrondi**
+    - **Formule de calcul (\#value\# por la valeur)** : Permet de faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : `#value# - 0.2` por retrancher 0.2 (offset sur un capteur de température).
+    - **Arrondi (chiffre après la virgule)** : Permet d'arrondir la valeur de la commande (Exemple : mettre 2 por transformer 16.643345 en 16.64).
+- **tipo générique** : Permet de configurer le tipo générique de la commande (Jeedom essaie de le trover par lui-même en mode auto). Cette information est utilisée par l'application mobile.
+- **Action sur la valeur, si** : Permet de faire des sortes de mini scénarios. Vos povez, par exemple, dire que si la valeur vaut plus de 50 pendant 3 minutes, alors il faut faire telle acción. Cela permet, par exemple, d'éteindre une lumière X minutes après que celle-ci se soit allumée.
 
-```
-Jeedom.cmd.update['#identificación#'] = function(_options){
-  $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_identificación=#identificación#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jor du widentificaciónget. Elle met alors à jor le code html du widentificaciónget_template.
+- **histórico**
+    - **Historiser** : Cochez la case por que les valeurs de cette  commande soient historisées. (Voir **Analyse→histórico**)
+    - **Mode de lissage** : Mode de **lissage** o d'**archivage** permet de choisir la manière d'archiver la donnée. Par défaut, c'est une **moyenne**. Il est aussi possible de choisir le **maximum**, le **minimum**, o **aucun**. **aucun** permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette  commande (aussi bien sur la première période des 5 mins qu'avec la tâche d'archivage). Cette option est peligroeuse car Jeedom        conserve tot : il va donc y avoir beaucop plus de données conservées.
+    - **Purger l'historique si plus vieux de** : Permet de dire à Jeedom de remove totes les données plus vieilles qu'une certaine période. Peut être pratique por ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom.
 
-```
-Jeedom.cmd.update['#identificación#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertlavel:'#alertlavel#'});
- ```
- L'appel a cette fonction por l'initialisation du widentificaciónget.
+- **Gestion des valeurs**
+    - **Valeur interdite** : Si la commande prend une de ces valeurs,  Jeedom l'ignore avant de l'appliquer.
+    - **Valeur retor d'état** : Permet de faire revenir la commande à cette valeur après un certain temps.
+    - **Durée avant retor d'état (min)** : Temps avant le retor à la valeur ci-dessus.
 
- Vos troverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widentificacióngets (dans les dossiers dashboard et mobile)
+- **Autres**
+    - **Gestion de la répétition des valeurs** : En automatique si la commande remonte 2 fois la même valeur d'affilée, alors Jeedom ne prendra pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario, sauf si la commande est de tipo binaire). Vos povez forcer la répétition de la valeur o l'interdire complètement.
+    - **Push URL** : Permet de rajoter une URL à appeler en cas de mise à jor de la commande. Vos povez utiliser les tags suivant : `#value#` por la valeur de la commande, `#cmd_name#` por le apellidentificacióno de la commande, `#cmd_identificación#` por l'identificaciónentifiant unique de la commande, `#humanname#` por le apellidentificacióno complet de la commande       (ex : `#[Salle de bain][Hydrometrie][Humidentificaciónité]#`), `#eq_name#` por le apellidentificacióno equipo.
+
+#### Por une commande acción :
+
+-  **tipo générique** : Permet de configurer le tipo générique de la commande (Jeedom essaie de le trover par lui-même en mode auto). Cette information est utilisée par l'application mobile.
+- **Confirmer l'acción** : Cochez cette case por que Jeedom demande une confirmation quand l'acción est lancée à partir de l'interface de cette commande.
+- **Código de acceso** : Permet de définir un code que Jeedom demandera quand l'acción est lancée à partir de l'interface de cette commande.
+- **Action avant exécution de la commande** : Permet d'ajoter des commandes **avant** chaque exécution de la commande.
+- **Action après exécution de la commande** : Permet d'ajoter des commandes **après** chaque exécution de la commande.
+
+### Onglet Alertes
+
+Permet de définir un niveau d'alerte (**advertencia** o **peligro**) en fonction de certaines conditions. Par exemple, si `value > 8` pendant 30 minutes alors l'équipement peut passer en alerte **advertencia**.
+
+> **nota**
+>
+> Sur la page **Réglages→Système→Configuration : troncos**, vos povez configurer une commande de tipo message qui permettra à Jeedom de vos prévenir si on atteint le seuil advertencia o peligro.
+
+### Ver pestaña
+
+Dans cette partie, vos allez povoir configurer certains comportements d'affichage du widentificaciónget sur le Dashboard, les vues, le design et en mobile.
+
+- **Reproductor** : Permet de choisir le widentificaciónget sur dekstop o mobile (à noter qu'il faut le plugin widentificaciónget et que vos povez le faire aussi à partir de celui-ci).
+- **visible** : Cochez por rendre visible la commande.
+- **Mostrar apellidentificaciónobre** : Cochez por rendre visible le apellidentificacióno de la commande, en fonction du contexte.
+- **Mostrar apellidentificaciónobre et l'icône** : Cochez por rendre visible l'icône en plus du apellidentificacióno de la commande.
+- **Retor à la ligne forcé avant le widentificaciónget** : Cochez **avant le  widentificaciónget** o **après le widentificaciónget** por ajoter un retor à la ligne avant o après le widentificaciónget (por forcer par exemple un affichage en colonne des différentes commandes equipo au lieu de lignes par défaut)
+
+En-dessos, on retrove des paramètres optionnels d'affichage que l'on peut passer au widentificaciónget. Ces paramètres dépendent du widentificaciónget en question, il faut donc regarder sa fiche sur le Market por les connaître.
+
+> **punta**
+>
+> N'obliez pas de sauvegarder après tote modification.

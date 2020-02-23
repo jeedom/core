@@ -1,191 +1,94 @@
-# Widgets
-**Outils → Widgets**
+# Objects
+**Tools → Objects**
 
-La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
+The **objects** allow you to define the tree structure of your home automation.
+All the equipment that you create must belong to an object and can thus be more easily located. We then say that the object is the **relative** equipment.
 
-Il y a deux types de widgets personnalisés :
-
-- The widgets basés sur un template (gérés par le Core de Jeedom).
-- The widgets basés sur du code utilisateur.
-
-> **Note**
->
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the names of the rooms (this is the recommended configuration, by the way).
 
 ## Management
 
-Quatre options s'offrent à vous :
-- **Add** : Permet de créer un nouveau widget.
-- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+You have two options :
+- **Add** : Create a new object.
+- **Overview** : Displays the list of objects created and their configuration.
 
-## Mes widgets
+## My objects
 
-Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+Once you have created an object, it will appear in this part.
 
 > **Tip**
 >
-> Vous pouvez ouvrir un widget en faisant :
+> You can open an object by doing :
 > - Click on one of them.
 > - Ctrl Clic or Clic Center to open it in a new browser tab.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. The Escape key cancels the search.
+You have a search engine to filter the display of objects. The Escape key cancels the search.
 To the right of the search field, three buttons found in several places in Jeedom:
 - The cross to cancel the search.
-- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- The open folder to unfold all the panels and display all the objects.
 - The closed folder to fold all the panels.
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+Once on the configuration of an object, you have a contextual menu with the Right Click on the tabs of the object. You can also use a Ctrl Click or Center Click to directly open another object in a new browser tab.
 
+## Object tab
 
-## Principe
+By clicking on an object, you access its configuration page.
+Whatever changes you make, don&#39;t forget to save it.
 
-Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+Here are the different characteristics to configure an object :
 
-Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+- **Object name** : The name of your object.
+- **Dad** : Indicates the relative of the current object, this makes it possible to define a hierarchy between the objects. for example : The living room is related to the apartment. An object can have only one relative but several objects can have the same relative.
+- **Visible** : Check this box to make this object visible.
+- **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly..
+- **Hide on summary &#39;** : Check this box to hide the object on the summary &#39;&#39;. It is still kept in the list, which allows it to be displayed, but only explicitly..
+- **Icon** : Allows you to choose an icon for your object.
+- **Custom colors** : Activates the consideration of the two optional color parameters.
+- **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
+- **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **color of the tag**. You choose a color to make the text readable.
+- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard.
 
-## The templates
+> **Tip**
+>
+> You can change the display order of objects in the Dashboard. In the overview, select your object with the mouse and drag and drop it to give it a new place.
 
-Il y a deux types de template :
+> **Tip**
+>
+> You can see a graph representing all the elements of Jeedom attached to this object by clicking on the button **Connections**, top right.
 
-- The "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- The "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+> **Tip**
+>
+> When a device is created and no relative has been defined, it will have as relative : **No**.
 
-## Création d'un widget
+## Summary tab
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Add" et donner un nom à votre nouveau widget.
+Summaries are global information, assigned to an object, which are displayed in particular on the Dashboard next to its name..
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info.
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
-- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+### Bulletin board
 
-### Remplacement
+The columns represent the summaries assigned to the current object. Three lines are proposed to you :
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+- **Go up in the global summary** : Check the box if you want the summary to be displayed in the Jeedom menu bar.
+- **Hide on desktop** : Check the box if you do not want the summary to appear next to the object name on the Dashboard.
+- **Hide on mobile** : Check the box if you do not want the summary to appear when you view it from a mobile.
 
->**Note**
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+### Orders
 
->**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". for example si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add an order** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as relative.
 
-### Test
+> **Tip**
+>
+> If you want to add a type of summary or to configure the calculation method of the result, the unit, the icon and the name of a summary, you must go to the general configuration of Jeedom : **Settings → System → Configuration : Summaries tab**.
 
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+## Overview
 
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+The overview allows you to view all the objects in Jeedom, as well as their configuration :
 
-The tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
-
-- #value# > 1
-- #value# >= 1 && #value# <= 5
-- #value# == 'toto'
-
->**Note**
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
-
->**Note**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
-
->**Note**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
-
-## Description de widgets
-
-Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
-
-### Paramètres fréquents
-
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-
-### HygroThermographe
-
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
-
-Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
-
->**IMPORTANT**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
-
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
-
->**NOTE**
-> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
-
-### Multiline
-
-- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
-
-### Slider Button
-
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
-
-## Widget code
-
-### The tags
-
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
-
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
-
-### Mise à jour des valeurs
-
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
-
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-```
-
-Voila un exemple simple de code javascript a mettre dans votre widget :
-
-```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-    }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
-```
-
-Ici deux choses importantes :
-
-```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
-}
-```
-La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
-
-```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
- ```
- L'appel a cette fonction pour l'initialisation du widget.
-
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+- **ID** : Object ID.
+- **Object** : Object name.
+- **Dad** : Name of relative object.
+- **Visible** : Object visibility.
+- **Mask** : Indicates if the object is hidden on the Dashboard.
+- **Summary Defined** : Indicates the number of orders per summary. What is in blue is taken into account in the global summary.
+- **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
+- **Hidden Mobile Summary** : Show hidden summaries on mobile.
