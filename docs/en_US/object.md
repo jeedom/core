@@ -27,14 +27,14 @@ Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 > **Tip**
 >
 > Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> - Click on one of them.
+> - Ctrl Clic or Clic Center to open it in a new browser tab.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
-A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
-- La croix pour annuler la recherche.
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. The Escape key cancels the search.
+To the right of the search field, three buttons found in several places in Jeedom:
+- The cross to cancel the search.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- Le dossier fermé pour replier tout les panneaux.
+- The closed folder to fold all the panels.
 
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
@@ -71,7 +71,7 @@ C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". for example si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
 ### Test
 

@@ -186,6 +186,6 @@ La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour l
 ```
 Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
  ```
- L'appel a cette fonction pour l'initialisation du widget.
+ Theappel a cette fonction pour l'initialisation du widget.
 
  You trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
