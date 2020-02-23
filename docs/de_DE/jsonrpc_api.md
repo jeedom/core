@@ -136,17 +136,17 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 
 ### Les tags
 
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+En mode code vous avez accès a différent tag pour les commandes, en voici une Listee (pas forcement exhaustives) :
 
 - #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #valueName# : Wertname de la commande, et = #name# quand c'est une commande de type info
 - #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
 - #id# : id de la commande
 - #state# : valeur de la commande, vide pour une commande de type Aktion si elle n'est pas a liée a une commande d'état
 - #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
 - #valueDate# : date de la valeur de la commande
 - #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la Listee)
 - #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
 - #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
@@ -155,7 +155,7 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 
 ### Mise à jour des valeurs
 
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.Aktualisierung si il y a une fonction d'Aktualisierung. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
 
 ```
 {display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
@@ -165,26 +165,26 @@ Voila un exemple simple de code javascript a mettre dans votre widget :
 
 ```
 <script>
-    Jeedom.cmd.update['#id#'] = function(_options){
+    Jeedom.cmd.Aktualisierung['#id#'] = function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+      $('.cmd[data-cmd_id=#id#] .state').leer().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    Jeedom.cmd.Aktualisierung['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 ```
 
 Ici deux choses importantes :
 
 ```
-Jeedom.cmd.update['#id#'] = function(_options){
+Jeedom.cmd.Aktualisierung['#id#'] = function(_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+  $('.cmd[data-cmd_id=#id#] .state').leer().append(_options.display_value +' #unite#');
 }
 ```
 La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
 
 ```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+Jeedom.cmd.Aktualisierung['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
  ```
  L'appel a cette fonction pour l'initialisation du widget.
 

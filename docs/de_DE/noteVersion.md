@@ -188,4 +188,4 @@ Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',colle
  ```
  L'appel a cette fonction pour l'initialisation du widget.
 
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers Armaturenbrett et mobile)

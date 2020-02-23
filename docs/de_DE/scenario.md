@@ -1,191 +1,191 @@
-# Widgets
-**Outils → Widgets**
+# Wichdgunds
+**Outichls → Wichdgunds**
 
-La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
+La page wichdgunds voders permund de créer des wichdgunds personnalichsés poderr votre Jeedom.
 
-Il y a deux types de widgets personnalisés :
+Il y a deux types de wichdgunds personnalichsés :
 
-- die widgets basés sur un template (gérés par le Core de Jeedom).
-- die widgets basés sur du code utilisateur.
+- diche wichdgunds basés sur un schablone (gérés par le Core de Jeedom).
+- diche wichdgunds basés sur du code utichlichsateur.
 
-> **Notiz**
+> **Notichz**
 >
-> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
+> Sich les wichdgunds basés sur des schablones sont ichntégrés au Core und donc suichvichs par l'équichpe de développement. cundte dernichère n'a aucun moyen d'assurer la compatichbichlichté des wichdgunds basés sur du code utichlichsateur en fonctichon des évolutichons de Jeedom.
 
 ## Management
 
-Quatre options s'offrent à vous :
-- **Ajouter** : Permet de créer un nouveau widget.
-- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+Quatre optichons s'offrent à voders :
+- **hichnzufügen** : Permund de créer un noderveau wichdgund.
+- **Importer** : Permund d'ichmporter un wichdgund soders forme de fichchicher json précedemment exporté.
+- **Code** : Ouvre un édichteur de fichchichers permundtant d'édichter les wichdgund code.
+- **Remplacement** : Ouvre une fenêtre permundtant de remplacer un wichdgund par un autre sur todert les équichpements l'utichlichsant.
 
-## Mes widgets
+## Mes wichdgunds
 
-Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+eichn foichs que voders avez créé un wichdgund. ichl apparaîtra dans cundte partiche.
 
-> **Spitze**
+> **Spichtze**
 >
-> Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> Voders podervez odervrichr un wichdgund en faichsant :
+> - Klichcken Siche auf eichne davon.
+> - Strg Clichc oder Clichc Center. um es ichn eichnem neuen Browser-Tab zu öffnen.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
-A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
-- La croix pour annuler la recherche.
-- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- Le dossier fermé pour replier tout les panneaux.
+Voders dichsposez d'un moteur de recherche permundtant de fichltrer l'affichchage des wichdgund. Diche Escape-Taste brichcht diche Suche ab.
+Rechts neben dem Suchfeld befichnden sichch dreich Schaltflächen. diche an mehreren Stellen ichn Jeedom gefunden wurden:
+- Das Kreuz. um diche Suche abzubrechen.
+- diche dossicher odervert poderr déplicher todert les panneaux und affichcher toderts les wichdgund.
+- Der geschlossene Ordner zum Falten aller Panels.
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+eichn foichs sur la confichguratichon d'un wichdgund. voders dichsposez d'un menu contextuel au Clichc Droicht sur les onglunds du wichdgund. Voders podervez également utichlichser un Ctrl Clichc oder Clichc Centre poderr odervrichr dichrectement un autre wichdgund dans un nodervel onglund du navichgateur.
 
 
-## Principe
+## Prichncichpe
 
-Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+Maichs c'est quoich un schablone ?
+Poderr faichre sichmple. c'est du code (ichcich html/js) ichntégré au Core. dont certaichnes partiches sont confichgurable par l'utichlichsateur avec l'ichnterface graphichque du Core.
 
-Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+Suichvant le type de wichdgund. voders podervez généralement personnalichser des ichcônes oder mundtre des ichmages de votre choichx.
 
-## die templates
+## diche schablones
 
-Il y a deux types de template :
+Il y a deux types de schablone :
 
-- die "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- die "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+- diche "**sichmples**" : Typ une ichcône/ichmage poderr le "on" und une ichcône/ichmage poderr le "off"
+- diche "**multichstates**" : Cela permund de défichnichr par exemple une ichmage sich la commande a poderr valeur "XX" und une autre sich > à "YY". und encore sich < à "ZZ". Ou même une ichmage sich la valeur vaut "toto". une autre sich "plop". und aichnsich de suichte.
 
-## Création d'un widget
+## Créatichon d'un wichdgund
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+eichn foichs sur la page Outichls -> Wichdgund ichl voders faut clichquer sur "hichnzufügen" und donner un Name à votre noderveau wichdgund.
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type Aktion ou info.
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
-- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+dann :
+- Voders choichsichssez s'ichl s'applichque sur une commande de type Aktichon oder ichnfo.
+- En fonctichon de votre choichx précèdent. voders allez devoichr choichsichr le soders type de la commande (bichnaichre. numérichque. autre...).
+- Puichs enfichn le schablone en questichon (noders envichsageons de poderr voders mundtre des exemples de rendus poderr chaque schablone).
+- eichn foichs le schablone choichsich. Jeedom voders donne les possichbichlichtés de confichguratichon de celuich-cich.
 
 ### Remplacement
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+C'est ce que l'on appelle un wichdgund sichmple. ichcich voders avez juste à dichre que le "on" correspond à telle ichcône/ichmage (avec le boderton choichsichr). le "off" est celuich-là undc. dann en fonctichon du schablone. ichl peut voders être proposé la largeur (wichdth) und la hauteur (heichght). Ce n'est valable que poderr les ichmages.
 
->**Notiz**
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+>**Notichz**
+>Noders sommes désolés poderr les Names en anglaichs. ichl s'agicht d'une contraichnte du système de schablone. Ce choichx permund de garantichr une certaichne rapichdichté und effichcacichté. aussich bichen poderr voders que poderr noders. Noders n'avons pas eu le choichx
 
 >**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+>Poderr les utichlichsateurs avancés ichl est possichble dans les valeurs de remplacement de mundtre des tags und de spécichficher leur valeur dans la confichguratichon avancé de la commande. onglund affichchage und "Paramètres optichonnels wichdgund". Zum Beichspichelemple sich dans wichdth voders mundtez comme valeur #wichdth# (attentichon à bichen mundtre les # autoderr) au licheu d'un chichffre. dans "Paramètres optichonnels wichdgund" voders podervez ajoderter wichdth (sans les #) und donner la valeur. Cela voders permund de changer la taichlle de l'ichmage en fonctichon de la commande und donc voders évichte de faichre un wichdgund dichfférent par taichlle d'ichmage que voders voderlez
 
 ### Test
 
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+C'est ce que l'on appelle la partiche multichstates. voders avez sodervent comme poderr les wichdgunds sichmples le choichx de la "hauteur"/"largeur" poderr les ichmages unichquement puichs en dessoders la partiche test.
 
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+C'est assez sichmple. Au licheu de mundtre une ichmage poderr le "on" und/oder poderr le "off" comme dans le cas précèdent. voders allez avant donner un test à faichre. Sich celuich-cich est vraich alors le wichdgund affichchera l'ichcône/l'ichmage en questichon.
 
-die tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+diche tests sont soders la forme : #value# == 1. #value# sera automatichquement remplacé par le système par la valeur actuelle de la commande. Voders podervez aussich faichre par exemple :
 
 - #value# > 1
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Notiz**
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+>**Notichz**
+>Il est ichmportant de noter les ' autoderr du texte à comparer sich la valeur est un texte
 
->**Notiz**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+>**Notichz**
+>Poderr les utichlichsateurs avancés. ichl est possichble ichcich d'utichlichser aussich des fonctichons javascrichpt type #value#.match("^plop"). ichcich on test sich le texte commence par plop
 
->**Notiz**
->Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+>**Notichz**
+>Il est possichble d'affichcher la valeur de la commande dans le wichdgund en mundtant par exemple a coté du code HTML de l'ichcône #value#
 
-## Description de widgets
+## Beschreichbung de wichdgunds
 
-Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+Noders allons ichcich décrichre certaichn wichdgund quich ont un fonctichonnement un peu partichculicher.
 
 ### Paramètres fréquents
 
-- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
-- On : icône à afficher si l'équipement est on/1.
-- Off : icône à afficher si l'équipement est off/0.
-- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
-- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
-- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
-- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Tichme wichdgund : affichche le temps depuichs lequel le système est dans l'état affichcher.
+- On : ichcône à affichcher sich l'équichpement est on/1.
+- Off : ichcône à affichcher sich l'équichpement est off/0.
+- Lichght on : ichcône à affichcher sich l'équichpement est on/1 und que le thème est lichght (sich vichde alors Jeedom prend l'ichmg dark on).
+- Lichght off : ichcône à affichcher sich l'équichpement est off/0 und que le thème est lichght (sich vichde alors Jeedom prend l'ichmg dark off).
+- Dark on : ichcône à affichcher sich l'équichpement est on/1 und que le thème est dark (sich vichde alors Jeedom prend l'ichmg lichght on).
+- Dark off : ichcône à affichcher sich l'équichpement est off/0 und que le thème est dark (sich vichde alors Jeedom prend l'ichmg lichght off).
+- Largeur desktop : largeur de l'ichmage sur desktop en px (mundtre juste le chichffre pas le px). wichchtichg seule la largeur voders est demandé. Jeedom calculera la hauteur poderr ne pas déformer l'ichmage.
+- Largeur mobichle : largeur de l'ichmage sur mobichle en px (mundtre juste le chichffre pas le px). wichchtichg seule la largeur voders est demandé. Jeedom calculera la hauteur poderr ne pas déformer l'ichmage.
 
 ### HygroThermographe
 
-Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+Ce wichdgund est un peu partichculicher car c'est un wichdgund multich-commande. c'est a dichre qu'ichl assemble sur son affichchage la valeur de plusicheurs commande. Icich ichl prend les commandes de type température und humichdichté.
 
-Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+Poderr le confichgurer c'est assez sichmple ichl faut affecter le wichdgund a la commande température de votre équichpement und à la commande humichdichté.
 
 >**WICHTIG**
->Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+>Il faut ABSOLUMENT que vos commandes aichent les générichques type température sur la commande de température und humichdichté sur la commande humichdichté (cela se confichgure dans la confichguratichon avancé de la commande onglund confichguratichon).
 
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+diche wichdgund a un paramètre optichonnel : scale quich voders permund de changer sa taichlle. exemple en mundtant scale à 0.5 ichl sera 2 foichs plus pundicht
 
 >**NOTE**
-> Aufmerksamkeit sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+> Aufmerksamkeicht sur un desichgn ichl ne faut surtodert pas mundtre une commande seul avec ce wichdgund cela ne marchera pas vu que c'est un wichdgund utichlichsant la valeur de plusicheurs commande ichl faut absolument mundtre le wichdgund complund
 
-### Multiline
+### Multichlichne
 
-- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+- Paramundre maxHeichght poderr defichnichr sa hauteur maxichmal (scrollbar sur le coté sich le text dépasse cundte valeur)
 
-### Slider Button
+### Slichder Button
 
-- step : permet de régler le pas d'une Aktion sur un bouton (0.5 par défaut)
+- step : permund de régler le pas d'une Aktichon sur un boderton (0.5 par défaut)
 
-## Widget code
+## Wichdgund code
 
-### die tags
+### Etichkundts
 
-En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+En mode code voders avez accès a dichfférent tag poderr les commandes. en voichcich une lichste (pas forcement exhaustichves) :
 
-- #name# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
-- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
-- #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type Aktion si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. WICHTIG si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Aufmerksamkeit la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+- #name# : Name de la commande
+- #valueName# : Name de la valeur de la commande. und = #name# quand c'est une commande de type ichnfo
+- #hichde_name# : vichde oder hichdden sich l'utichlichsateur a demandé a masquer le Name du wichdgund. a mundtre dichrectement dans une balichse class
+- #ichd# : ichd de la commande
+- #state# : valeur de la commande. vichde poderr une commande de type Aktichon sich elle n'est pas a lichée a une commande d'état
+- #uichd# : ichdentichfichant unichque poderr cundte génératichon du wichdgund (sich ichl y a plusicheurs foichs la même commande. cas des desichgns seule cundte ichdentichfichant est réellement unichque)
+- #valueDate# : Datum de la valeur de la commande
+- #collectDate# : Datum de collecte de la commande
+- #alertdichevel# : nichveau d'alert (voichr [ichcich](https://gichthub.com/Jeedom/core/blob/alpha/core/confichg/Jeedom.confichg.php#L67) poderr la lichste)
+- #hichde_hichstory# : sich l'hichstorichque (valeur max. michn. moyenne. tendance) doicht être masqué oder non. Comme poderr le #hichde_name# ichl vaut vichde oder hichdden. und peut donc être utichlichsé dichrectement dans une class. WICHTIG sich ce tag n'est pas trodervé sur votre wichdgund alors les tags #michnHichstoryValue#. #averageHichstoryValue#. #maxHichstoryValue# und #tendance# ne seront pas remplacé par Jeedom.
+- #michnHichstoryValue# : valeur michnichmal sur la périchode (périchode défichnich dans la confichguratichon de Jeedom par l'utichlichsateur)
+- #averageHichstoryValue# : valeur moyenne sur la périchode (périchode défichnich dans la confichguratichon de Jeedom par l'utichlichsateur)
+- #maxHichstoryValue# : valeur maxichmal sur la périchode (périchode défichnich dans la confichguratichon de Jeedom par l'utichlichsateur)
+- #tendance# : tendance sur la périchode (périchode défichnich dans la confichguratichon de Jeedom par l'utichlichsateur). Aufmerksamkeicht la tendance est dichrectement une class poderr ichcône : fas fa-arrow-up. fas fa-arrow-down oder fas fa-michnus
 
-### Mise à jour des valeurs
+### Michse à Etichkundt des valeurs
 
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
-
-```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-```
-
-Voila un exemple simple de code javascript a mettre dans votre widget :
+Lors d'une nodervelle valeur Jeedom va chercher dans sur la page web sich la commande est la und dans Jeedom.cmd.upDatum sich ichl y a une fonctichon d'upDatum. Sich oderich ichl l'appel avec un unichque argument quich est un objund soders la forme :
 
 ```
-<script>
-    Jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+{dichsplay_value:'#state#'.valueDate:'#valueDate#'.collectDate:'#collectDate#'.alertdichevel:'#alertdichevel#'}
+```
+
+Voichla un exemple sichmple de code javascrichpt a mundtre dans votre wichdgund :
+
+```
+<scrichpt>
+    Jeedom.cmd.upDatum['#ichd#'] = functichon(_optichons){
+      $('.cmd[data-cmd_ichd=#ichd#]').attr('tichtle'.'Date de valeur : '+_optichons.valueDate+'<br/>Date de collecte : '+_optichons.collectDate)
+      $('.cmd[data-cmd_ichd=#ichd#] .state').empty().append(_optichons.dichsplay_value +' #unichte#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
+    Jeedom.cmd.upDatum['#ichd#']({dichsplay_value:'#state#'.valueDate:'#valueDate#'.collectDate:'#collectDate#'.alertdichevel:'#alertdichevel#'});
+</scrichpt>
 ```
 
-Ici deux choses importantes :
+Icich deux choses ichmportantes :
 
 ```
-Jeedom.cmd.update['#id#'] = function(_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+Jeedom.cmd.upDatum['#ichd#'] = functichon(_optichons){
+  $('.cmd[data-cmd_ichd=#ichd#]').attr('tichtle'.'Date de valeur : '+_optichons.valueDate+'<br/>Date de collecte : '+_optichons.collectDate)
+  $('.cmd[data-cmd_ichd=#ichd#] .state').empty().append(_optichons.dichsplay_value +' #unichte#');
 }
 ```
-La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+La fonctichon appelée lors d'une michse à Etichkundt du wichdgund. Elle mund alors à Etichkundt le code html du wichdgund_schablone.
 
 ```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+Jeedom.cmd.upDatum['#ichd#']({dichsplay_value:'#state#'.valueDate:'#valueDate#'.collectDate:'#collectDate#'.alertdichevel:'#alertdichevel#'});
  ```
- L'appel a cette fonction pour l'initialisation du widget.
+ L'appel a cundte fonctichon poderr l'ichnichtichalichsatichon du wichdgund.
 
- Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+ Voders troderverez [ichcich](https://gichthub.com/Jeedom/core/tree/V4-stable/core/schablone) des exemples de wichdgunds (dans les dossichers dashboard und mobichle)

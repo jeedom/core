@@ -15,7 +15,7 @@ Il y a deux types de widgets personnalisés :
 ## Management
 
 Quatre options s'offrent à vous :
-- **Ajouter** : Permet de créer un nouveau widget.
+- **hinzufügen** : Permet de créer un nouveau widget.
 - **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
 - **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
 - **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
@@ -27,14 +27,14 @@ Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 > **Spitze**
 >
 > Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> - Klicken Sie auf eine davon.
+> - Strg Clic oder Clic Center, um es in einem neuen Browser-Tab zu öffnen.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
-A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
-- La croix pour annuler la recherche.
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. Die Escape-Taste bricht die Suche ab.
+Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden:
+- Das Kreuz, um die Suche abzubrechen.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- Le dossier fermé pour replier tout les panneaux.
+- Der geschlossene Ordner zum Falten aller Panels.
 
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
@@ -55,7 +55,7 @@ Il y a deux types de template :
 
 ## Création d'un widget
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "hinzufügen" et donner un nom à votre nouveau widget.
 
 Ensuite :
 - Vous choisissez s'il s'applique sur une commande de type action ou info.
@@ -71,7 +71,7 @@ C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Zum Beispiel si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
 ### Test
 
