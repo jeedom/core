@@ -1,73 +1,73 @@
-# Analyse équipements
-**Analyse → Equipements**
+# Análisis de equipos
+**Análisis → Equipo**
 
-La page Analyse d'équipements vous permet de voir de nombreuses infos relatives aux équipements de manière centralisée :
+La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada. :
 
-- L'état de vos piles
-- Les modules en alertes
-- Les actions définies
-- Les alertes définies
-- Les commandes orphelines
+- El estado de tus baterías
+- Módulos en alerta
+- Acciones definidas
+- Alertas definidas
+- Órdenes huérfanas
 
-## Onglet Batteries
+## Pestaña Baterías
 
 
-Vous pouvez voir sur cet onglet la liste de vos modules sur batterie, leur niveau restant (la couleur de la tuile dépend de ce niveau), le type et le nombre de piles qu'il faut mettre dans le module, le type du module ainsi que la date à laquelle l'information du niveau de batterie a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été établi pour le module en particulier (représenté par une main)
-
-> **punta**
->
-> Les seuils d'alerte/warning sur les niveaux des batteries sont configurables de manière globale dans la configuration de Jeedom (Réglages→Systèmes→Configuration : Equipements), ou par équipement sur la page de configuration avancée de ceux-ci dans l'onglet alertes.
-
-## Onglet Modules en alerte
-
-Sur cet onglet vous verrez en temps réel les modules en alerte. Les alertes peuvent être de différents types :
-
-- Timeout (configuré dans l'onglet alertes définies).
-- Batterie en warning ou en danger.
-- Commande en warning ou danger (paramétrable dans les paramètres avancées des commandes).
-
-D'autres types d'alertes pourront éventuellement se retrouver ici.
-Chaque alerte sera représentée par la couleur de la tuile (le niveau d'alerte) et un logo en haut à gauche (le type d'alerte).
+Puede ver en esta pestaña la lista de sus módulos de batería, su nivel restante (el color del mosaico depende de este nivel), el tipo y la cantidad de baterías que deben colocarse en el módulo, el tipo de módulo también que la fecha en que se actualizó la información del nivel de batería. También puede ver si se ha establecido un umbral específico para el módulo en particular (representado por una mano)
 
 > **punta**
 >
-> Ici seront affichés tous les modules en alerte même ceux configurés en "non visible". Il est toutefois intéressant de noter que si le module est en "visible" l'alerte sera aussi visible sur le dashboard (dans l'objet concerné).
+> Los umbrales de alerta / advertencia en los niveles de batería se pueden configurar globalmente en la configuración de Jeedom (Configuración → Sistemas → Configuración : Equipo), o por equipo en la página de configuración avanzada de estos en la pestaña de alertas.
 
-## Onglet Actions définies
+## Módulos en la pestaña de alerta
 
-Cet onglet permet de visualiser les actions définies directement sur une commande. En effet, on peut en mettre sur différentes commandes et il peut être difficile de se rappeler de toutes. Cet onglet est là pour ça et synthétise plusieurs choses :
+En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos. :
 
-- Les actions sur état (que l'on retrouve dans les paramètres avancées des commandes infos et permettant de réaliser une ou plusieurs actions sur la valeur d'une commande - de manière immédiate ou après un délai).
-- Les confirmations d'actions (configurable au même endroit sur une commande info et permettant de demander une confirmation pour exécuter une action).
-- Les confirmations avec code (même chose que précédemment mais avec la saisie d'un code).
-- Les actions pre et post (configurables toujours au même endroit sur une commande action et permettant d'exécuter une ou plusieurs autres actions avant ou après l'action en question).
+- Tiempo de espera (configurado en la pestaña de alertas definidas).
+- Batería en advertencia o en peligro.
+- Comando de advertencia o peligro (configurable en los parámetros del comando avanzado).
 
-> **punta**
->
-> Le tableau permet de voir de manière très textuelle les actions définies. D'autres types d'actions définies pourront être rajoutées.
-
-## Onglet Alertes définies
-
-Cet onglet permet de voir l'ensemble des alertes définies, vous y retrouverez dans un tableau les infos suivantes si elles existent :
-
-- Les alertes sur délai de communication.
-- Les seuils spécifiques de batterie définis sur un équipement.
-- Les différentes alertes danger et warning des commandes.
-
-## Onglet Commandes orphelines
-
-Cet onglet vous permet de voir en un coup d'œil si vous avez des commandes orphelines utilisées au travers de Jeedom. Une commande orpheline est une commande utilisée quelque part mais qui n'existe plus. On retrouvera ici l'ensemble de ces commandes, comme par exemple :
-
-- Les commandes orphelines utilisée dans le corps d'un scenario.
-- celles utilisées en déclencheur d'un scénario.
-
-Et utilisées à plein d'autres endroits comme (non exhaustif) :
-- Les interactions.
-- Les configurations de Jeedom.
-- En pre ou post action d'une commande.
-- En action sur état d'une commande.
-- Dans certains plugins.
+Otros tipos de alertas se pueden encontrar aquí.
+Cada alerta estará representada por el color del mosaico (el nivel de alerta) y un logotipo en la parte superior izquierda (el tipo de alerta).
 
 > **punta**
 >
-> Le tableau permet de voir de manière très textuelle les commandes orphelines. Son but est de pouvoir identifier rapidement toutes les commandes "orphelines" au travers de tout Jeedom et des plugins. Il se peut que certaines zones ne soient pas analysées, le tableau se verra être de plus en plus exhaustif avec le temps.
+> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en &quot;no visible&quot;. Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
+
+## Pestaña Acciones definidas
+
+Esta pestaña le permite ver las acciones definidas directamente en un pedido. De hecho, podemos poner diferentes comandos y puede ser difícil recordar todos. Esta pestaña está ahí para eso y sintetiza varias cosas :
+
+- Acciones en estado (se encuentran en los parámetros avanzados de los comandos de información y permiten realizar una o más acciones sobre el valor de un pedido, inmediatamente o después de un retraso).
+- Confirmaciones de acciones (configurables en el mismo lugar en un comando de información y permitiendo solicitar una confirmación para ejecutar una acción).
+- Confirmaciones con código (igual que el anterior pero con la introducción de un código).
+- Acciones previas y posteriores (siempre configurables en el mismo lugar en un comando de acción y permitiendo ejecutar una o más acciones antes o después de la acción en cuestión).
+
+> **punta**
+>
+> La tabla proporciona una vista muy textual de las acciones definidas.. Se pueden agregar otros tipos de acciones definidas.
+
+## Pestaña Alertas definidas
+
+Esta pestaña le permite ver todas las alertas definidas, encontrará en una tabla la siguiente información si existen :
+
+- Alertas de retraso de comunicación.
+- Los umbrales de batería específicos definidos en un dispositivo.
+- Las diversas alertas de peligro y comandos de advertencia.
+
+## Pestaña Orphan Orders
+
+Esta pestaña le permite ver de un vistazo si ha utilizado comandos huérfanos a través de Jeedom. Un comando huérfano es un comando utilizado en algún lugar pero que ya no existe. Encontraremos aquí todos estos comandos, como por ejemplo :
+
+- Comandos huérfanos utilizados en el cuerpo de un escenario.
+- los utilizados para desencadenar un escenario.
+
+Y se usa en muchos otros lugares como (no exhaustivo) :
+- Interacciones.
+- Configuraciones de Jeedom.
+- En pre o post acción de un pedido.
+- En acción sobre el estado del pedido.
+- En algunos complementos.
+
+> **punta**
+>
+> La tabla proporciona una vista muy textual de los comandos huérfanos.. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.

@@ -1,35 +1,35 @@
-# Market Jeedom
+# Jeedom Markt
 
 
-Doc un peu particulière car elle va traiter uniquement de votre page profil du Market.
-Disponible en allant sur votre nom d'utilisateur puis profil à partir du Market (un peu comme sur Jeedom).
+Doc etwas Besonderes, da es sich nur um Ihre Marktprofilseite handelt.
+Verfügbar, indem Sie zu Ihrem Benutzernamen und dann zu Ihrem Profil vom Markt gehen (ein bisschen wie bei Jeedom)..
 
-Celle-ci se décompose en plusieurs parties :
+Dies ist in mehrere Teile gegliedert :
 
-## Mon profil
+## Mein Profil
 
-C'est ici que vous allez pouvoir régler différents paramètres de votre profil :
+Hier können Sie verschiedene Parameter Ihres Profils anpassen :
 
 - **Profil**
-    - **Login** : Votre login sur le Market, il ne peut être changé.
-    - **Name** : Votre nom (cette information n'est utile que pour rendre les emails plus sympa).
-    - **Prénom** : Votre prénom (cette information n'est utile que pour rendre les emails plus sympa).
-    - **Name d'utilisateur sur le forum** : Votre pseudo sur le forum.
-    - **Email** : Votre email.
-    - **Langue** : Votre langue.
-    - **Mot de passe && Confirmer le mot de passe** : Permet de changer votre mot passe.
+    - **Login** : Ihr Login auf dem Markt kann nicht geändert werden.
+    - **Name** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
+    - **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
+    - **Benutzername im Forum** : Dein Benutzername im Forum.
+    - **E-Mail** : Ihre E-Mail.
+    - **Sprache** : Deine Sprache.
+    - **Passwort &amp;&amp; Passwort bestätigen** : Ermöglicht das Ändern Ihres Passworts.
 
-Pour les développeurs :
-- **Name d'utilisateur sur le forum** : Votre pseudo sur le forum.
-- **Email public** : Votre email pour recevoir des éventuelles communications de notre part.
-- **Compte paypal** : Votre email de compte Paypal (uniquement utilisé pour payer les développeurs).
+Für Entwickler :
+- **Benutzername im Forum** : Dein Benutzername im Forum.
+- **Öffentliche E-Mail** : Ihre E-Mail, um Mitteilungen von uns zu erhalten.
+- **Paypal-Konto** : Ihre Paypal-Konto-E-Mail-Adresse (wird nur zur Bezahlung von Entwicklern verwendet).
 
-Pour les pros :
-- **Compte email installateur** : Votre email de contact pro.
-- **Destinataire des demandes de support** : savoir qui recevra les emails de support (client final, installateur ou les deux).
-    - **CGU**
-- **Benutzer** : conditions générales d'utilisation (attention à bien les lire car elles vous engage).
-- **Développeur** : conditions générales d'utilisation pour les développeurs.
+Für die Profis :
+- **Installer-E-Mail-Konto** : Ihre professionelle Kontakt-E-Mail.
+- **Unterstützunganfragen Empfänger** : wissen, wer Unterstützung-E-Mails erhält (Endkunde, Installateur oder beides).
+    - **TOS**
+- **Benutzer** : Allgemeine Nutzungsbedingungen (lesen Sie sie sorgfältig durch, da sie Sie binden).
+- **Entwickler** : Nutzungsbedingungen für Entwickler.
     - **Tickets**
 - **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat und Ihr Limit.
 - **Unterstützung** : Schaltfläche zum Senden einer Unterstützunganfrage (auch über das Ausrufezeichen oben rechts auf dem Markt oder auf Ihrem Jeedom zugänglich).

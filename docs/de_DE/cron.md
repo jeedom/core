@@ -1,55 +1,55 @@
 # Task-Engine
-**Réglages → Système → Task-Engine**
+**Einstellungen → System → Task Engine**
 
-Cette page informe de toutes les tâches applicatives Jeedom qui tournent sur le serveur.
-Cette page est à utiliser en connaissance de cause ou à la demande du support technique.
+Diese Seite informiert über alle Jeedom-Anwendungsaufgaben, die auf dem Server ausgeführt werden.
+Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwenden.
 
 > **wichtig**
 >
-> En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
+> Im Falle eines Missbrauchs auf dieser Seite kann jede Anfrage nach Unterstützung abgelehnt werden.
 
-## Onglet Cron
+## Cron-Registerkarte
 
-En haut, à droite, vous avez :
+Oben rechts haben Sie :
 
-- **Désactiver le système cron** : un bouton pour désactiver ou réactiver toutes les tâches (si vous les désactivez toutes, plus rien ne sera fonctionnel sur votre Jeedom).
-- **Rafraîchir** : Rafraîchit la table des tâches.
-- **hinzufügen** : Permet d'ajouter une tâche cron manuellement.
-- **speichern** : Sauvegarde vos modifications.
+- **Cron-System deaktivieren** : eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
+- **cool** : Aktualisiert die Aufgabentabelle.
+- **hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
+- **speichern** : Speichern Sie Ihre Änderungen.
 
-En-dessous, vous avez le tableau de toutes les tâches existantes (attention, certaines tâches peuvent lancer des sous-tâches, il est donc vivement recommandé de ne jamais modifier d'informations sur cette page).
+Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern.).
 
-Dans ce tableau, on retrouve :
+In dieser Tabelle finden wir :
 
-- **\#** : ID de la tâche, utile pour faire le lien entre un processus qui tourne et ce qu'il fait vraiment.
-- **Aktiva** : Indique si la tâche est active (peut être lancée par Jeedom) ou non.
-- **PID** : Indique le process ID actuel.
-- **Dämon** : Si cette case est à "oui" alors la tâche doit toujours être en cours. A côté, vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer.
-- **Unique** : Si c'est à "oui" alors la tâche se lancera une fois puis se supprimera.
-- **Classe** : Classe PHP appelée pour exécuter la tâche (peut être vide).
-- **Fonction** : Fonction PHP appelée dans la classe appelée (ou non si la classe est vide).
-- **Programmation** : Programmation de la tâche au format CRON.
-- **Timeout** : Durée maximale de fonctionnement de la tâche. Si la tâche est un démon alors elle sera automatiquement arrêtée et redémarrée à la fin du timeout.
-- **Letzter Start** : Date de dernier lancement de la tâche.
-- **Dernière durée** : Dernière durée d'exécution de la tâche (un démon sera toujours à 0s, il ne faut pas s'inquiéter d'autres tâches peuvent être à 0s).
-- **Status** : État actuel de la tâche (pour rappel, une tâche démon est toujours à "run").
+- **\#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
+- **Aktiva** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
+- **PID** : Zeigt die aktuelle Prozess-ID an.
+- **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Als nächstes finden Sie die Häufigkeit des Dämons. Es ist ratsam, diesen Wert niemals zu berühren und insbesondere niemals zu verringern.
+- **Single** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
+- **Klasse** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (kann leer sein).
+- **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
+- **Programmierung** : Programmierung der Aufgabe im CRON-Format.
+- **Timeout** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
+- **Letzter Start** : Datum des letzten Taskstarts.
+- **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
+- **Status** : Aktueller Status der Aufgabe (zur Erinnerung, eine Daemon-Aufgabe wird immer &quot;ausgeführt&quot;).
 
 - **Aktion** :
-    - **Details** : Voir le cron dans le détail (tel que stocké en base).
-    - **Démarrer / Arrêter** : Lancer ou arrêter la tâche (en fonction de son statut).
-    - **Suppression** : Permet de supprimer la tâche.
+    - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert).
+    - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status)..
+    - **Unterdrückung** : Aufgabe löschen.
 
 
-## Onglet Listener
+## Registerkarte &quot;Listener&quot;
 
-Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évènement (mise à jour d'une commande...).
+Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei einem Ereignis aufgerufenen Funktionen zu sehen (Aktualisierung eines Befehls ...).
 
-## Onglet Dämon
+## Registerkarte Dämon
 
-Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de
-- Démarrer / Redémarrer un démon.
-- Arrêter un démon si la gestion automatique est désactiver.
-- Activer / désactiver la gestion automatique d'un démon.
+Übersichtstabelle der Dämonen mit ihrem Zustand, dem Datum des letzten Starts sowie der Möglichkeit von
+- Starten / Starten Sie einen Daemon neu.
+- Stoppen Sie einen Daemon, wenn die automatische Verwaltung deaktiviert ist.
+- Aktivieren / Deaktivieren der automatischen Verwaltung eines Daemons.
 
 > Spitze
-> Les démons des plugins désactivés n'apparaissent pas sur cette page.
+> Dämonen deaktivierter Plugins werden auf dieser Seite nicht angezeigt.

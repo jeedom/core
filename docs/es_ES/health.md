@@ -1,31 +1,31 @@
-# Santé
-**Analyse → Santé**
+# salud
+**Análisis → Salud**
 
-La page Santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de santé de votre Jeedom.
-Elle indique aussi (si les plugins l'utilisent) l'état de santé par plugin.
-
-> **nota**
->
-> Un clic sur l'icône en haut à droite permet d'accéder au benchmark de votre Jeedom.
-
-La page santé de Jeedom se présente sous la forme d'un double tableau.
-La 1ère colonne vous donne une description de ce que Jeedom vérifie, le statut est affiché dans la 2ème colonne.
-Des tooltips peuvent vous donner des conseils de résolution si la vérification n'est pas OK.
-
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le nom du plugin donne le détail de santé de celui-ci.
-
-A droite vous retrouvez les icônes :
-
--   Port d'accès au matériel du plugin (type clef Zwave).
--   Mode du démon.
--   Affichage de la page de santé des équipements du plugin.
--   Affichage de la page de configuration du plugin.
--   Etat global du plugin.
+La página de Jeedom Health le permite tener una visión general rápida del estado de salud de su Jeedom.
+También indica (si los complementos lo usan) el estado de salud por complemento.
 
 > **nota**
 >
-> Les icônes peuvent varier en fonction du plugin.
+> Haga clic en el icono en la parte superior derecha para acceder al punto de referencia de su Jeedom.
+
+La página de salud de Jeedom se presenta en forma de una tabla doble.
+La primera columna le da una descripción de lo que Jeedom comprueba, el estado se muestra en la segunda columna.
+La información sobre herramientas puede darle consejos de resolución si la verificación no es correcta.
+
+A continuación encontrará el estado de cada complemento, un clic en el nombre del complemento le da detalles de estado..
+
+A la derecha encontrarás los íconos :
+
+-   Puerto de acceso para hardware de complemento (tipo de clave Zwave).
+-   Modo demonio.
+-   Visualización de la página de estado del equipo del complemento..
+-   Visualización de la página de configuración del complemento.
+-   Estado general del complemento.
 
 > **nota**
 >
-> De manière générale quand la ligne est verte c'est que tout va bien et quand c'est rouge, c'est qu'il y a un souci.
+> Los iconos pueden variar según el complemento.
+
+> **nota**
+>
+> Generalmente cuando la línea es verde, todo está bien y cuando es rojo, hay un problema.

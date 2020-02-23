@@ -94,152 +94,152 @@ En la pestaña **Viendo**, podrá configurar ciertos comportamientos de visualiz
 
 ### Parámetros opcionales en el mosaico
 
-A continuación, hay parámetros de visualización opcionales que se pueden aplicar al equipo.. Estos parámetros están compuestos de un apellidentificaciónobre y un valor.. Il suffit de cliquer sur **añadir** por en appliquer un
-noveau. Por les équipements, seule la valeur **style** est por le moment utilisée, elle permet d'insérer du code CSS sur l'équipement en question.
+A continuación, hay parámetros de visualización opcionales que se pueden aplicar al equipo.. Estos parámetros están compuestos de un apellidentificaciónobre y un valor.. Solo haz clic en **añadir** aplicar uno
+de nuevo. Para equipos, solo el valor **estilo** actualmente se usa, permite insertar código CSS en el equipo en cuestión.
 
 > **punta**
 >
-> N'obliez pas de sauvegarder après tote modification.
+> No olvidentificacióne guardar después de cualquier modificación..
 
-### Onglet Disposition
+### Pestaña Diseño
 
-Cette partie vos permet de choisir entre la disposition standard des commandes (côte à côte dans le widentificaciónget), o en mode tableau. Il n'y a rien à régler en mode par défaut. Voici les options disponibles en mode
+Esta parte le permite elegir entre el diseño estándar de los comandos (uno al lado del otro en el widentificaciónget) o en modo de tabla. Nada que configurar en modo predeterminado. Aquí están las opciones disponibles en modo
 **mesa** :
-- **apellidentificaciónobre de lignes**
-- **apellidentificaciónobre de colonnes**
-- **Centrer dans les cases** : Cochez la case por centrer les commandes dans les cases.
-- **Style générale des cases (CSS)** : Permet de définir le style général en code CSS.
-- **Style du tableau (CSS)** : Permet de définir le style du tableau uniquement.
+- **Numero de lineas**
+- **Numero de columnas**
+- **Centro en cajas** : Marque la casilla para centrar los pedidentificaciónos en las casillas.
+- **Estilo general de cuadros (CSS)** : la permite definir el estilo general en código CSS.
+- **Estilo de tabla (CSS)** : la permite definir solo el estilo de la tabla.
 
-En dessos por chaque case, la **configuration détaillée** vos permet
-ceci :
-- **Texte de la case** : añadir un texte en plus de la commande (o tot seul, si il n'y a pas de commande dans la case).
-- **Style de la case (CSS)** : Modifier le style CSS spécifique de la case (attention celui-ci écrase et remplace le CSS général des cases).
-
-> **punta**
->
-> Dans une case du tableau, si vos volez mettre 2 commandes l'une en dessos de l'autre, il ne faut pas oblier de rajoter un retor à la ligne après la première dans la **configuration avancée** de celle-ci.
-
-### Onglet Alertes
-
-Cet onglet permet d'avoir les informations sur la batterie equipo et de définir des alertes par rapport à celle-ci. Voici les tipos d'informations que l'on peut trover :
-
-- **tipo de pile**,
-- **Dernière remontée de l'information**,
-- **Niveau restant**, (si bien sûr votre équipement fonctionne sur pile).
-
-Dessos, vos porrez aussi définir les seuils spécifiques d'alerte de batterie por cet équipement. Si vos laissez les cases videntificaciónes, ceux sont les seuils par défaut qui seront appliqués.
-
-On peut également gérer le timeot, en minutes, equipo. Par exemple, 30 indique à jeedom que si l'équipement n'a pas communiqué depuis 30 minutes, alors il faut le mettre en alerte.
+A continuación para cada cuadro, el **configuración detallada** te permite
+este :
+- **Cuadro de texto** : Agregue texto además del comando (o solo, si no hay un comando en el cuadro).
+- **Estilo de caja (CSS)** : Modifique el estilo CSS específico del cuadro (tenga en cuenta que sobrescribe y reemplaza el CSS general de los cuadros).
 
 > **punta**
 >
-> las paramètres globaux sont dans **Réglages→Système→Configuration : troncos** o **Equipements**
+> En un cuadro de la tabla, si desea colocar 2 comandos uno debajo del otro, no olvidentificacióne agregar un salto de línea después del primero en el **configuración avanzada** del mismo.
 
-### Onglet Commentaire
+### Pestaña Alertas
 
-Permet d'écrire un commentaire à propos equipo.
+Esta pestaña le permite tener información sobre la batería del equipo y definir alertas en relación con él.. Estos son los tipos de información que se pueden encontrar. :
 
-## Configuración avanzada d'une commande
+- **puntao de batería**,
+- **Últimos comentarios**,
+- **Nivel restante**, (si por supuesto su equipo funciona con batería).
+
+A continuación, también puede definir los umbrales de alerta de batería específicos para este equipo. Si deja las casillas vacías, esos son los umbrales predeterminados que se aplicarán.
+
+También puede administrar el tiempo de espera, en minutos, del equipo. Por ejemplo, 30 le dice a Jeedom que si el equipo no se ha comunicado durante 30 minutos, entonces debe ponerse en alerta..
+
+> **punta**
+>
+> Los parámetros globales están en **→ Configuración → Configuración del Sistema : troncos** o **comodidentificaciónades**
+
+### Pestaña de comentarios
+
+la permite escribir un comentario sobre el equipo..
+
+## Configuración avanzada de un pedidentificacióno
 
 Primero, en la parte superior derecha, algunos botones disponibles :
 
-- **Tester** : Permet de tester la commande.
-- **Vínculos** : Permet d'afficher les liens equipo avec les objets, commandes, scénarios, variables, interaccións…​. sos forme graphique.
-- **registro** : Affiche les évènements equipo en question.
-- **información** : Affiche les propriétés brutes equipo.
--  **Appliquer à** : Permet d'appliquer la même configuration sur plusieurs commandes.
+- **prueba** : Se usa para probar el comando.
+- **Vínculos** : Permite visualizar los enlaces del equipo con objetos, comandos, escenarios, variables, interacciones .... en forma gráfica.
+- **registro** : Muestra los eventos del equipo en cuestión..
+- **información** : Muestra las propiedades en bruto del equipo..
+-  **Aplicar a** : Permite que la misma configuración se aplique a varios comandos.
 - **Guardar** : Guarde las modificaciones realizadas en el equipo..
 
 > **punta**
 >
-> Dans un graphique, un doble clic sur un élément vos amène à sa configuration.
+> En un gráfico, un doble clic en un elemento lo lleva a su configuración.
 
 > **nota**
 >
-> En fonction du tipo de commande, les informations/accións affichées peuvent changer.
+> Dependiendo del tipo de orden, la información / acciones mostradas pueden cambiar.
 
 ### Pestaña de información
 
-la pestaña **información** contient les informations générales sur la commande :
+la pestaña **información** contiene información general sobre el pedidentificacióno :
 
-- **identificación** : Identifiant unique dans la base de données.
-- **identificación lógica** : Identifiant logique de la commande (peut être videntificacióne).
-- **apellidentificacióno** : apellidentificacióno de la commande.
-- **tipo** : tipo de la commande (acción o info).
-- **Sos-tipo** : Sos-tipo de la commande (binaire, numérique…​).
-- **URL directe** : Fornit l'URL por accéder à cet équipement. (clic droit, copier l'adresse du lien) laURL lancera la commande por une **acción** et retornera l'information por une **info**.
-- **unidentificaciónad** : unidentificaciónad de la commande.
-- **Commande déclenchant une mise à jor** : Donne l'identificaciónentifiant d'une  autre commande qui, si cette autre commande change, va forcer la mise à jor de la commande visualisée.
-- **visible** : Cochez cette case por que la commande soit visible.
-- **Suivre dans la timeline** : Cochez cette case por que cette commande soit visible dans la timeline quand elle est utilisée. Vos povez préciser une timeline en particulier dans le champ qui s'affiche si l'option est cochée.
-- **Interdire dans les interaccións automatique** : interdit les interaccións automatique sur cette commande
-- **icono** : Permet de changer l'icône de la commande.
+- **identificación** : Identificador único en la base de datos..
+- **identificación lógica** : Identificador lógico del pedidentificacióno (puede estar vacío).
+- **apellidentificacióno** : apellidentificaciónobre de la orden.
+- **tipo** : puntao de orden (acción o información).
+- **subtipo** : Subtipo de comando (binario, digital, etc.).
+- **URL directa** : Proporciona la URL para acceder a este equipo.. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **acción** y devolver la información para un **info**.
+- **unidentificaciónad** : Unidentificaciónad de control.
+- **Comando que desencadena una actualización** : Da el identificaciónentificador de otro comando que, si este otro comando cambia, forzará la actualización del comando mostrado.
+- **visible** : Marque esta casilla para hacer visible el comando.
+- **Sigue en la línea de tiempo** : Marque esta casilla para hacer que este comando sea visible en la línea de tiempo cuando se use. Puede especificar una línea de tiempo específica en el campo que aparece si la opción está marcada.
+- **Prohibir en interacciones automáticas** : prohíbe las interacciones automáticas en este comando
+- **icono** : la permite cambiar el ícono de comando.
 
-Vos avez aussi trois autres botons oranges en dessos :
+También tienes otros tres botones naranjas debajo :
 
-- **Cette commande remplace l'identificación** : Permet de remplacer un identificación de commande par la commande en question. Utile si vos avez supprimé un équipement dans Jeedom et que vos avez des scénarios qui utilisent des commandes de celui-ci.
-- **Cette commande remplace la commande** : Remplace une commande par la commande corante.
-- **Remplacer cette commande par la commande** : lainverse, remplace la commande par une autre commande.
+- **Este comando reemplaza la identificación** : la permite reemplazar un identificación de pedidentificacióno con el pedidentificacióno en cuestión. Útil si ha eliminado un equipo en Jeedom y tiene escenarios que usan comandos de él.
+- **Este comando reemplaza el comando** : Reemplazar comando con comando actual.
+- **Reemplace este comando con el comando** : Por el contrario, reemplace el comando con otro comando.
 
 > **nota**
 >
-> Ce genre d'acción remplace les commandes partot dans Jeedom (scénario, interacción, commande, équipement…​.).
+> Este tipo de acción reemplaza los comandos en todas partes en Jeedom (escenario, interacción, comando, equipo ...).
 
-En-dessos, vos retrovez la liste des différents équipements, commandes, scénarios o interaccións qui utilisent cette commande. Un clic dessus permet d'aller directement sur leur configuration respective.
+A continuación, encontrará la lista de los diferentes equipos, comandos, escenarios o interacciones que utilizan este comando.. Haga clic en él para ir directamente a su configuración respectiva.
 
-### Onglet Configuration
+### Pestaña de configuración
 
-#### Por une commande de tipo info :
+#### Para una orden de tipo de información :
 
-- **Calcul et arrondi**
-    - **Formule de calcul (\#value\# por la valeur)** : Permet de faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : `#value# - 0.2` por retrancher 0.2 (offset sur un capteur de température).
-    - **Arrondi (chiffre après la virgule)** : Permet d'arrondir la valeur de la commande (Exemple : mettre 2 por transformer 16.643345 en 16.64).
-- **tipo générique** : Permet de configurer le tipo générique de la commande (Jeedom essaie de le trover par lui-même en mode auto). Cette information est utilisée par l'application mobile.
-- **Action sur la valeur, si** : Permet de faire des sortes de mini scénarios. Vos povez, par exemple, dire que si la valeur vaut plus de 50 pendant 3 minutes, alors il faut faire telle acción. Cela permet, par exemple, d'éteindre une lumière X minutes après que celle-ci se soit allumée.
+- **Cálculo y redondeo.**
+    - **Fórmula de cálculo (\ #valor \ # para el valor)** : la permite realizar una operación sobre el valor del pedidentificacióno antes de procesarlo por Jeedom, ejemplo : `#value# - 0.2` para restar 0.2 (desplazamiento en un sensor de temperatura).
+    - **Redondeado (número después del punto decimal)** : Se usa para redondear el valor del comando (Ejemplo : pon 2 para transformar 16.643 345 en 16.64).
+- **puntao genérico** : la permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil..
+- **Acción sobre el valor, si** : Hagamos algún tipo de mini escenarios. Puede, por ejemplo, decir que si el valor vale más de 50 por 3 minutos, entonces tiene que hacer tal acción. Esto permite, por ejemplo, apagar una luz X minutos después de encenderse.
 
 - **histórico**
-    - **Historiser** : Cochez la case por que les valeurs de cette  commande soient historisées. (Voir **Analyse→histórico**)
-    - **Mode de lissage** : Mode de **lissage** o d'**archivage** permet de choisir la manière d'archiver la donnée. Par défaut, c'est une **moyenne**. Il est aussi possible de choisir le **maximum**, le **minimum**, o **aucun**. **aucun** permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette  commande (aussi bien sur la première période des 5 mins qu'avec la tâche d'archivage). Cette option est peligroeuse car Jeedom        conserve tot : il va donc y avoir beaucop plus de données conservées.
-    - **Purger l'historique si plus vieux de** : Permet de dire à Jeedom de remove totes les données plus vieilles qu'une certaine période. Peut être pratique por ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom.
+    - **historizar** : Marque la casilla para que se registren los valores de este comando. (Ver **Análisis → Historia**)
+    - **Modo de suavizado** : Modo de **alisar** o**archivado** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**el **mínimo**o **no**. **no** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidentificaciónad de información registrada por Jeedom.
 
-- **Gestion des valeurs**
-    - **Valeur interdite** : Si la commande prend une de ces valeurs,  Jeedom l'ignore avant de l'appliquer.
-    - **Valeur retor d'état** : Permet de faire revenir la commande à cette valeur après un certain temps.
-    - **Durée avant retor d'état (min)** : Temps avant le retor à la valeur ci-dessus.
+- **Gestión de valores**
+    - **Valor prohibidentificacióno** : Si el comando toma uno de estos valores, Jeedom lo ignora antes de aplicarlo.
+    - **Valor de retorno de estado** : Devuelve el comando a este valor después de cierto tiempo.
+    - **Duración antes del retorno de estado (min)** : Tiempo antes de volver al valor anterior.
 
-- **Autres**
-    - **Gestion de la répétition des valeurs** : En automatique si la commande remonte 2 fois la même valeur d'affilée, alors Jeedom ne prendra pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario, sauf si la commande est de tipo binaire). Vos povez forcer la répétition de la valeur o l'interdire complètement.
-    - **Push URL** : Permet de rajoter une URL à appeler en cas de mise à jor de la commande. Vos povez utiliser les tags suivant : `#value#` por la valeur de la commande, `#cmd_name#` por le apellidentificacióno de la commande, `#cmd_identificación#` por l'identificaciónentifiant unique de la commande, `#humanname#` por le apellidentificacióno complet de la commande       (ex : `#[Salle de bain][Hydrometrie][Humidentificaciónité]#`), `#eq_name#` por le apellidentificacióno equipo.
+- **otro**
+    - **Gestión de la repetición de valores.** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario). Puede forzar la repetición del valor o prohibirlo por completo.
+    - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedidentificacióno. Puedes usar las siguientes etiquetas : `#value#` por la valeur de la commande, `#cmd_name#` por le apellidentificacióno de la commande, `#cmd_identificación#` por l'identificaciónentifiant unique de la commande, `#humanname#` por le apellidentificacióno complet de la commande       (ex : `#[Salle de bain][Hydrometrie][Humidentificaciónité]#`), `#eq_name#` por le apellidentificacióno equipo.
 
-#### Por une commande acción :
+#### Para un comando de acción :
 
--  **tipo générique** : Permet de configurer le tipo générique de la commande (Jeedom essaie de le trover par lui-même en mode auto). Cette information est utilisée par l'application mobile.
-- **Confirmer l'acción** : Cochez cette case por que Jeedom demande une confirmation quand l'acción est lancée à partir de l'interface de cette commande.
-- **Código de acceso** : Permet de définir un code que Jeedom demandera quand l'acción est lancée à partir de l'interface de cette commande.
-- **Action avant exécution de la commande** : Permet d'ajoter des commandes **avant** chaque exécution de la commande.
-- **Action après exécution de la commande** : Permet d'ajoter des commandes **après** chaque exécution de la commande.
+-  **puntao genérico** : la permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil..
+- **Confirmar acción** : Marque esta casilla para que Jeedom solicite confirmación cuando la acción se inicie desde la interfaz de este comando.
+- **Código de acceso** : Permite definir un código que Jeedom preguntará cuando la acción se inicie desde la interfaz de este comando.
+- **Acción antes de la ejecución del comando** : Agregar comandos **antes** cada ejecución de la orden.
+- **Acción después de la ejecución del comando.** : Agregar comandos **después** cada ejecución de la orden.
 
-### Onglet Alertes
+### Pestaña Alertas
 
-Permet de définir un niveau d'alerte (**advertencia** o **peligro**) en fonction de certaines conditions. Par exemple, si `value > 8` pendant 30 minutes alors l'équipement peut passer en alerte **advertencia**.
+la permite definir un nivel de alerta (**advertencia** o **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **advertencia**.
 
 > **nota**
 >
-> Sur la page **Réglages→Système→Configuration : troncos**, vos povez configurer une commande de tipo message qui permettra à Jeedom de vos prévenir si on atteint le seuil advertencia o peligro.
+> En la página **→ Configuración → Configuración del Sistema : troncos**, puede configurar un comando de tipo de mensaje que permitirá que Jeedom le notifique si se alcanza el umbral de advertencia o peligro.
 
 ### Ver pestaña
 
-Dans cette partie, vos allez povoir configurer certains comportements d'affichage du widentificaciónget sur le Dashboard, les vues, le design et en mobile.
+En esta parte, podrá configurar ciertos comportamientos de visualización de widentificacióngets en el Panel de control, vistas, diseño y en dispositivos móviles..
 
-- **Reproductor** : Permet de choisir le widentificaciónget sur dekstop o mobile (à noter qu'il faut le plugin widentificaciónget et que vos povez le faire aussi à partir de celui-ci).
-- **visible** : Cochez por rendre visible la commande.
-- **Mostrar apellidentificaciónobre** : Cochez por rendre visible le apellidentificacióno de la commande, en fonction du contexte.
-- **Mostrar apellidentificaciónobre et l'icône** : Cochez por rendre visible l'icône en plus du apellidentificacióno de la commande.
-- **Retor à la ligne forcé avant le widentificaciónget** : Cochez **avant le  widentificaciónget** o **après le widentificaciónget** por ajoter un retor à la ligne avant o après le widentificaciónget (por forcer par exemple un affichage en colonne des différentes commandes equipo au lieu de lignes par défaut)
+- **Reproductor** : la permite elegir el widentificaciónget en el escritorio o en el dispositivo móvil (tenga en cuenta que necesita el complemento del widentificaciónget y que también puede hacerlo desde allí).
+- **visible** : Marque para hacer visible el comando.
+- **Mostrar apellidentificaciónobre** : Marque para hacer visible el apellidentificaciónobre del comando, dependiendo del contexto.
+- **Mostrar apellidentificaciónobre e icono** : Marque para que el icono sea visible además del apellidentificaciónobre del comando.
+- **Línea envuelta antes del widentificaciónget** : seleccionar **antes del widentificaciónget** o **después del widentificaciónget** para agregar un salto de línea antes o después del widentificaciónget (para forzar, por ejemplo, una visualización en la columna de los diversos comandos del equipo en lugar de líneas por defecto)
 
-En-dessos, on retrove des paramètres optionnels d'affichage que l'on peut passer au widentificaciónget. Ces paramètres dépendent du widentificaciónget en question, il faut donc regarder sa fiche sur le Market por les connaître.
+A continuación, hay parámetros de visualización opcionales que se pueden pasar al widentificaciónget. Estos parámetros dependen del widentificaciónget en cuestión, por lo que debe consultar su archivo en Market para conocerlos..
 
 > **punta**
 >
-> N'obliez pas de sauvegarder après tote modification.
+> No olvidentificacióne guardar después de cualquier modificación..

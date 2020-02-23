@@ -1,73 +1,73 @@
-# Analyse équipements
-**Analyse → Equipements**
+# Geräteanalyse
+**Analyse → Ausrüstung**
 
-La page Analyse d'équipements vous permet de voir de nombreuses infos relatives aux équipements de manière centralisée :
+Auf der Seite Geräteanalyse können Sie viele Informationen zu Geräten zentral anzeigen :
 
-- L'état de vos piles
-- Les modules en alertes
-- Les actions définies
-- Les alertes définies
-- Les commandes orphelines
+- Der Zustand Ihrer Batterien
+- Module in Alarmbereitschaft
+- Definierte Aktionen
+- Definierte Warnungen
+- Orphan Orders
 
-## Onglet Batteries
+## Registerkarte &quot;Batterien&quot;
 
 
-Vous pouvez voir sur cet onglet la liste de vos modules sur batterie, leur niveau restant (la couleur de la tuile dépend de ce niveau), le type et le nombre de piles qu'il faut mettre dans le module, le type du module ainsi que la date à laquelle l'information du niveau de batterie a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été établi pour le module en particulier (représenté par une main)
-
-> **Spitze**
->
-> Les seuils d'alerte/warning sur les niveaux des batteries sont configurables de manière globale dans la configuration de Jeedom (Réglages→Systèmes→Configuration : Equipements), ou par équipement sur la page de configuration avancée de ceux-ci dans l'onglet alertes.
-
-## Onglet Modules en alerte
-
-Sur cet onglet vous verrez en temps réel les modules en alerte. Les alertes peuvent être de différents types :
-
-- Timeout (configuré dans l'onglet alertes définies).
-- Batterie en warning ou en danger.
-- Commande en warning ou danger (paramétrable dans les paramètres avancées des commandes).
-
-D'autres types d'alertes pourront éventuellement se retrouver ici.
-Chaque alerte sera représentée par la couleur de la tuile (le niveau d'alerte) et un logo en haut à gauche (le type d'alerte).
+Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand).
 
 > **Spitze**
 >
-> Ici seront affichés tous les modules en alerte même ceux configurés en "non visible". Il est toutefois intéressant de noter que si le module est en "visible" l'alerte sera aussi visible sur le dashboard (dans l'objet concerné).
+> Die Alarm- / Warnschwellenwerte für die Batteriestände können global in der Jeedom-Konfiguration (Einstellungen → Systeme → Konfiguration) konfiguriert werden : Ausrüstung) oder nach Ausrüstung auf der Seite für die erweiterte Konfiguration auf der Registerkarte Warnungen.
 
-## Onglet Actions définies
+## Module auf der Registerkarte &quot;Warnung&quot;
 
-Cet onglet permet de visualiser les actions définies directement sur une commande. En effet, on peut en mettre sur différentes commandes et il peut être difficile de se rappeler de toutes. Cet onglet est là pour ça et synthétise plusieurs choses :
+Auf dieser Registerkarte sehen Sie in Echtzeit die Module in Alarmbereitschaft. Die Warnungen können unterschiedlicher Art sein :
 
-- Les actions sur état (que l'on retrouve dans les paramètres avancées des commandes infos et permettant de réaliser une ou plusieurs actions sur la valeur d'une commande - de manière immédiate ou après un délai).
-- Les confirmations d'actions (configurable au même endroit sur une commande info et permettant de demander une confirmation pour exécuter une action).
-- Les confirmations avec code (même chose que précédemment mais avec la saisie d'un code).
-- Les actions pre et post (configurables toujours au même endroit sur une commande action et permettant d'exécuter une ou plusieurs autres actions avant ou après l'action en question).
+- Zeitüberschreitung (konfiguriert auf der Registerkarte &quot;Definierte Warnungen&quot;).
+- Batterie in Warnung oder in Gefahr.
+- Warn- oder Gefahrenbefehl (konfigurierbar in den erweiterten Befehlsparametern).
 
-> **Spitze**
->
-> Le tableau permet de voir de manière très textuelle les actions définies. D'autres types d'actions définies pourront être rajoutées.
-
-## Onglet Alertes définies
-
-Cet onglet permet de voir l'ensemble des alertes définies, vous y retrouverez dans un tableau les infos suivantes si elles existent :
-
-- Les alertes sur délai de communication.
-- Les seuils spécifiques de batterie définis sur un équipement.
-- Les différentes alertes danger et warning des commandes.
-
-## Onglet Commandes orphelines
-
-Cet onglet vous permet de voir en un coup d'œil si vous avez des commandes orphelines utilisées au travers de Jeedom. Une commande orpheline est une commande utilisée quelque part mais qui n'existe plus. On retrouvera ici l'ensemble de ces commandes, comme par exemple :
-
-- Les commandes orphelines utilisée dans le corps d'un scenario.
-- celles utilisées en déclencheur d'un scénario.
-
-Et utilisées à plein d'autres endroits comme (non exhaustif) :
-- Les interactions.
-- Les configurations de Jeedom.
-- En pre ou post action d'une commande.
-- En action sur état d'une commande.
-- Dans certains plugins.
+Andere Arten von Warnungen finden Sie hier.
+Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt..
 
 > **Spitze**
 >
-> Le tableau permet de voir de manière très textuelle les commandes orphelines. Son but est de pouvoir identifier rapidement toutes les commandes "orphelines" au travers de tout Jeedom et des plugins. Il se peut que certaines zones ne soient pas analysées, le tableau se verra être de plus en plus exhaustif avec le temps.
+> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter &quot;nicht sichtbar&quot; konfigurierten.. Es ist jedoch interessant festzustellen, dass, wenn das Modul &quot;sichtbar&quot; ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist..
+
+## Registerkarte &quot;Definierte Aktionen&quot;
+
+Auf dieser Registerkarte können Sie die Aktionen anzeigen, die direkt in einem Auftrag definiert sind. In der Tat können wir verschiedene Befehle eingeben und es kann schwierig sein, sich an alle zu erinnern. Diese Registerkarte ist dafür da und fasst verschiedene Dinge zusammen :
+
+- Aktionen zum Status (in den erweiterten Parametern von Info-Befehlen enthalten und Ermöglichen, dass eine oder mehrere Aktionen für den Wert einer Bestellung ausgeführt werden - sofort oder nach einer Verzögerung).
+- Bestätigungen von Aktionen (konfigurierbar an derselben Stelle in einem Info-Befehl und Ermöglichen des Anforderns einer Bestätigung zum Ausführen einer Aktion).
+- Bestätigungen mit Code (wie oben, jedoch mit Eingabe eines Codes).
+- Vor- und Nachaktionen (immer konfigurierbar an derselben Stelle in einem Aktionsbefehl und Ermöglichen der Ausführung einer oder mehrerer anderer Aktionen vor oder nach der betreffenden Aktion).
+
+> **Spitze**
+>
+> Die Tabelle bietet eine sehr textuelle Ansicht der definierten Aktionen. Andere Arten definierter Aktionen können hinzugefügt werden.
+
+## Registerkarte &quot;Definierte Warnungen&quot;
+
+Auf dieser Registerkarte können Sie alle definierten Warnungen anzeigen. In einer Tabelle finden Sie die folgenden Informationen, falls vorhanden :
+
+- Warnungen zu Kommunikationsverzögerungen.
+- Die spezifischen Batterieschwellenwerte, die auf einem Gerät definiert sind.
+- Die verschiedenen Warn- und Warnbefehle.
+
+## Registerkarte &quot;Orphan Orders&quot;
+
+Auf dieser Registerkarte können Sie auf einen Blick sehen, ob Sie verwaiste Befehle haben, die über Jeedom verwendet werden. Ein Orphan-Befehl ist ein Befehl, der irgendwo verwendet wird, aber nicht mehr existiert. Wir finden hier alle diese Befehle, wie zum Beispiel :
+
+- Verwaiste Befehle, die im Hauptteil eines Szenarios verwendet werden.
+- diejenigen, die zum Auslösen eines Szenarios verwendet werden.
+
+Und an vielen anderen Orten verwendet wie (nicht erschöpfend) :
+- Interaktionen.
+- Jeedom-Konfigurationen.
+- In Vor- oder Nachbearbeitung einer Bestellung.
+- In Aktion zum Bestellstatus.
+- In einigen Plugins.
+
+> **Spitze**
+>
+> Die Tabelle bietet eine sehr textuelle Ansicht der verwaisten Befehle. Ziel ist es, alle &quot;Orphan&quot; -Bestellungen über alle Jeedom und Plugins schnell identifizieren zu können. Es kann sein, dass einige Bereiche nicht analysiert werden und die Tabelle mit der Zeit immer umfassender wird.

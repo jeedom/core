@@ -1,86 +1,86 @@
 # Konfiguration
 **Einstellungen → System → Konfiguration**
 
-C'est sur cette page que se trouvent la plupart des paramètres de configuration.
-Bien que nombreux, une majorité sont pré-configurés par défaut.
+Hier befinden sich die meisten Konfigurationsparameter..
+Obwohl viele, ist eine Mehrheit standardmäßig vorkonfiguriert.
 
 
 ## Registerkarte &quot;Allgemein&quot;
 
-Dans cet onglet on retrouve des informations générales sur Jeedom :
+Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 
-- **Name de votre Jeedom** : Permet d'identifier votre Jeedom, notamment dans le Markt. Il peut être réutilisé dans les scénarios ou permettre d'identifier une sauvegarde.
-- **Langue** : Langue utilisée dans votre Jeedom.
-- **Système** : Type de matériel sur lequel est installé le système où votre Jeedom tourne.
-- **Générer les traductions** : Permet de générer les traductions, attention, cela peut ralentir votre système. Option surtout utile pour les développeurs.
-- **Date et heure** : Choix de votre fuseau horaire. Sie pouvez cliquer sur **Forcer la synchronisation de l'heure** pour rétablir une mauvaise heure affichée en haut à droite.
-- **Serveur de temps optionnel** : Indique quel serveur de temps doit être utilisé si vous cliquez sur **Forcer la synchronisation de l'heure** (à réserver aux experts).
-- **Ignorer la vérification de l'heure** : indique à Jeedom de ne pas vérifier si l'heure est cohérente entre lui-même et le système sur lequel il tourne. Peut être utile par exemple, si vous ne connectez pas Jeedom à Internet et qu'il n'a pas de pile RTC sur le matériel utilisé.
-- **Système** : Indique le type de matériel sur lequel Jeedom est installé.
-- **Installationsschlüssel** : Schlüssel matérielle de votre Jeedom sur le Markt. Si votre Jeedom n'apparaît pas dans la liste de vos Jeedom sur le Markt, il est conseillé de cliquer sur le bouton **Remise à zéro**.
-- **Dernière date connue** : Date enregistrée par Jeedom, utilisée après un redémarrage pour des systèmes n'ayant pas de pile RTC.
+- **Name deines Jeedom** : Identifizieren Sie Ihre Freiheit, besonders auf dem Markt. Es kann in Szenarien oder zur Identifizierung eines Backups wiederverwendet werden.
+- **Sprache** : Sprache, die in Ihrem Jeedom verwendet wird.
+- **System** : Art der Hardware, auf der das System installiert ist, auf dem Ihr Jeedom ausgeführt wird.
+- **Übersetzungen generieren** : Generieren Sie Übersetzungen, Vorsicht, dies kann Ihr System verlangsamen. Option besonders nützlich für Entwickler.
+- **Datum und Uhrzeit** : Wählen Sie Ihre Zeitzone. Sie können auf klicken **Zeitsynchronisation erzwingen** um die oben rechts angezeigte falsche Zeit wiederherzustellen.
+- **Optionaler Zeitserver** : Gibt an, welcher Zeitserver verwendet werden soll, wenn Sie auf klicken **Zeitsynchronisation erzwingen** (für Experten reserviert).
+- **Zeitprüfung überspringen** : weist Jeedom an, nicht zu überprüfen, ob die Zeit zwischen sich und dem System, auf dem es ausgeführt wird, konsistent ist. Dies kann beispielsweise nützlich sein, wenn Sie Jeedom nicht mit dem Internet verbinden und das verwendete Gerät keine PSTN-Batterie enthält.
+- **System** : Gibt den Hardwaretyp an, auf dem Jeedom installiert ist.
+- **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom on the Markt. Wenn Ihr Jeedom nicht in der Liste Ihres Jeedom auf dem Markt erscheint, ist es ratsam, auf die Schaltfläche zu klicken. **Zurücksetzen**.
+- **Letztes bekanntes Datum** : Von Jeedom aufgezeichnetes Datum, das nach einem Neustart für Systeme ohne PSTN-Batterie verwendet wird.
 
-## Onglet Interface
+## Registerkarte &quot;Schnittstelle&quot;
 
-Sie trouverez dans cet onglet les paramètres de personnalisation de l'affichage.
+Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige.
 
-### Thèmes
+### Themen
 
-- **Desktop clair et sombre** : Sie permet de choisir un thème clair et un sombre pour le Desktop.
-- **Mobile clair et sombre** : idem que précédemment pour la version Mobile.
-- **Thème clair de / à** : Sie permet de définir une plage horaire durant laquelle le thème clair choisit précédemment sera utilisé. Il faut cependant cocher l'option **Bascule du thème en fonction de l'heure**.
-- **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags.
-- **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve dans les pages scénarios, objets, interactions, etc.
+- **Heller und dunkler Desktop** : Hier können Sie ein helles und ein dunkles Thema für den Desktop auswählen.
+- **Helles und dunkles Handy** : Gleich wie oben für die Mobile-Version.
+- **Klares Thema von / bis** : Hier können Sie einen Zeitraum definieren, in dem das zuvor ausgewählte klare Thema verwendet wird. Aktivieren Sie jedoch die Option **Thema basierend auf der Zeit umschalten**.
+- **Helligkeitssensor**   : Nur in der mobilen Schnittstelle, erfordert die Aktivierung * generischer zusätzlicher Sensor * in Chrom, Chrom Seite:// flags.
+- **Hintergrundbilder ausblenden** : Ermöglicht das Ausblenden der Hintergrundbilder in den Szenarien, Objekten, Interaktionsseiten usw..
 
-### Tuiles
+### Fliesen
 
-- **Tuiles Pas horizontal** : Contraint la largeur des tuiles tous les x pixels.
-- **Tuiles Pas vertical** : Contraint la hauteur des tuiles tous les x pixels.
-- **Tuiles Marge** : Espace vertical et horizontal entre les tuiles, en pixels.
+- **Fliesen nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
+- **Fliesen Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
+- **Randfliesen** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 
-### Personnalisation
+### Personalisierung
 
-- **Activer** : Active l'utilisation des options en dessous.
-- **Transparence** : Affiche les tuiles du Dashboard et certains contenu avec une transparence. 1 : totalement opaque, 0 : totalement transparent.
-- **Arrondi** : Affiche les éléments de l'interface avec des angles arrondis. 0 : aucun arrondi, 1 : arrondi maximal.
-- **Désactiver les ombres** : Désactive les ombres des tuiles sur le Dashboard, des menus, et de certains éléments de l'interface.
+- **activate** : Aktivieren Sie die Verwendung der folgenden Optionen.
+- **Transparenz** : Zeigt Dashboard-Kacheln und einige Inhalte transparent an. 1 : völlig undurchsichtig, 0 : total transparent.
+- **Runde** : Zeigt Schnittstellenelemente mit abgerundeten Winkeln an. 0 : keine Rundung, 1 : maximale Rundung.
+- **Schatten deaktivieren** : Deaktiviert Schatten von Kacheln im Dashboard, in Menüs und bestimmten Oberflächenelementen.
 
 
 
-## Onglet Réseaux
+## Registerkarte &quot;Netzwerke&quot;
 
-Il faut absolument configurer correctement cette partie importante de Jeedom sinon beaucoup de Plugins risquent de ne pas fonctionner. Il est possible d'accéder à Jeedom de deux manières différentes : L'**accès interne** (depuis le même réseau local que Jeedom) et l'**accès externe** (depuis un autre réseau notamment depuis Internet).
+Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfigurieren, da sonst viele Plugins möglicherweise nicht funktionieren. Es gibt zwei Möglichkeiten, auf Jeedom zuzugreifen : die**interner Zugang** (aus demselben lokalen Netzwerk wie Jeedom) und**externer Zugang** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
 > **wichtig**
 >
-> Cette partie est juste là pour expliquer à Jeedom son environnement :
-> une modification du port ou de l'IP dans cet onglet ne changera pas le port ou l'IP de Jeedom réellement. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/apache2/sites-available/default et etc/apache2/sites-available/default\_ssl (pour le HTTPS).
-> Cependant, en cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.
+> Dieser Teil ist nur dazu da, Jeedom seine Umgebung zu erklären :
+> Durch Ändern des Hafens oder der IP auf dieser Registerkarte wird der Hafen oder die IP von Jeedom nicht geändert. Stellen Sie dazu eine Verbindung zu SSH her und bearbeiten Sie die Datei / etc / network / interfaces für IP und die Dateien etc / apache2 / sites-available / default und etc / apache2 / sites-available / default \ _ssl (für HTTPS) ).
+> Im Falle eines unsachgemäßen Umgangs mit Ihrem Jeedom kann das Jeedom-Team jedoch nicht zur Verantwortung gezogen werden und kann jede Bitte um Unterstützung ablehnen.
 
-- **Accès interne** : informations pour joindre Jeedom à partir d'un équipement du même réseau que Jeedom (LAN)
-    - **OK/NOK** : indique si la configuration réseau interne est correcte.
-    - **Protocole** : le protocole à utiliser, souvent HTTP.
-    - **Adresse URLs ou IP** : IP de Jeedom à renseigner.
-    - **Port** : le port de l'interface web de Jeedom, en général 80.
-        Aufmerksamkeit changer le port ici ne change pas le port réel de Jeedom qui restera le même.
-    - **Complément** : le fragment d'URLs ergänzenaire (exemple : /Jeedom) pour accéder à Jeedom.
+- **Interner Zugang** : Informationen zum Beitritt zu Jeedom von Geräten im selben Netzwerk wie Jeedom (LAN)
+    - **OK / NOK** : Gibt an, ob die interne Netzwerkkonfiguration korrekt ist.
+    - **Protokoll** : das zu verwendende Protokoll, oft HTTP.
+    - **URLs oder IP-Adresse** : Jeedom IP eingeben.
+    - **Hafen** : der Hafen der Jeedom-Weboberfläche, in der Regel 80.
+        Bitte beachten Sie, dass durch Ändern des Hafens hier nicht der tatsächliche Jeedom-Hafen geändert wird, der gleich bleibt.
+    - **ergänzen** : das Fragment einer zusätzlichen URLs (Beispiel : / Jeedom), um auf Jeedom zuzugreifen.
 
-- **Accès externe** : Informationen, um Jeedom von außerhalb des lokalen Netzwerks zu erreichen. Nur auszufüllen, wenn Sie Jeedom DNS nicht verwenden.
-    - **OK/NOK** : Gibt an, ob die externe Netzwerkkonfiguration korrekt ist.
-    - **Protocole** : Protokoll für den Zugang im Freien.
-    - **Adresse URLs ou IP** : Externe IP, falls behoben. Andernfalls geben Sie die URLs an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
-    - **Complément** : le fragment d'URLs ergänzenaire (exemple : /Jeedom) pour accéder à Jeedom.
+- **Externer Zugang** : Informationen, um Jeedom von außerhalb des lokalen Netzwerks zu erreichen. Nur auszufüllen, wenn Sie Jeedom DNS nicht verwenden.
+    - **OK / NOK** : Gibt an, ob die externe Netzwerkkonfiguration korrekt ist.
+    - **Protokoll** : Protokoll für den Zugang im Freien.
+    - **URLs oder IP-Adresse** : Externe IP, falls behoben. Andernfalls geben Sie die URLs an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
+    - **ergänzen** : das Fragment einer zusätzlichen URLs (Beispiel : / Jeedom), um auf Jeedom zuzugreifen.
 
 - **Proxy für den Markt** : Proxy-Aktivierung.
     - Aktivieren Sie das Kontrollkästchen Proxy aktivieren.
     - **Proxy-Adresse** : Geben Sie die Proxy-Adresse ein.
-    - **Proxy-Port** : Geben Sie den Proxy-Port ein.
+    - **Proxy-Hafen** : Geben Sie den Proxy-Hafen ein.
     - **Login** : Geben Sie den Proxy-Login ein.
     - **Passwort** : Geben Sie das Passwort ein.
 
 > **Spitze**
 >
-> Wenn Sie sich in HTTPS befinden, ist der Port 443 (standardmäßig) und in HTTP ist der Port 80 (standardmäßig).. Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
+> Wenn Sie sich in HTTPS befinden, ist der Hafen 443 (standardmäßig) und in HTTP ist der Hafen 80 (standardmäßig).. Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
 
 > **Spitze**
 >
@@ -88,7 +88,7 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 
 - **Erweiterte Verwaltung** : Dieser Teil wird je nach Kompatibilität mit Ihrer Hardware möglicherweise nicht angezeigt.
     Dort finden Sie die Liste Ihrer Netzwerkschnittstellen. Sie können Jeedom anweisen, das Netzwerk nicht zu überwachen, indem Sie auf klicken **Deaktivieren Sie die Jeedom-Netzwerkverwaltung** (Überprüfen Sie, ob Jeedom mit keinem Netzwerk verbunden ist.). Sie können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (nur für Docker-Installationen zu verwenden).
-- **Proxy-Markt** : Ermöglicht den Fernzugriff auf Ihr Jeedom, ohne dass ein DNS oder eine feste IP erforderlich ist oder die Ports Ihrer Internetbox geöffnet werden müssen.
+- **Proxy-Markt** : Ermöglicht den Fernzugriff auf Ihr Jeedom, ohne dass ein DNS oder eine feste IP erforderlich ist oder die Hafens Ihrer Internetbox geöffnet werden müssen.
     - **Verwenden von Jeedom DNS** : Jeedom DNS aktivieren (beachten Sie, dass hierfür mindestens ein Service Pack erforderlich ist).
     - **DNS-Status** : DNS-HTTP-Status.
     - **Management** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes.

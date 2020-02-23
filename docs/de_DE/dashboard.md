@@ -1,76 +1,76 @@
 # Armaturenbrett
-**Accueil → Armaturenbrett**
+**Home → Armaturenbrett**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique.
-Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom, et comprend l'ensemble des objets visibles et leurs équipements.
+Auf einer der Hauptseiten von Jeedom wird ein Bericht über Ihre gesamte Hausautomation angezeigt.
+Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst erstellt und enthält alle sichtbaren Objekte und deren Ausrüstung.
 
 > **Spitze**
 >
-> L'ordre d'affichage des objets sur le Armaturenbrett est celui visible dans **Analyse → Zusammenfassung der Hausautomation**. Vous pouvez sur cette page modifier cet ordre par glissé - déposé.
+> Die Anzeigereihenfolge der Objekte im Armaturenbrett ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge ändern, indem Sie auf diese Seite ziehen und dort ablegen.
 
-Pour qu'un équipement apparaisse sur le Armaturenbrett, il doit :
-- Être actif.
-- Être visible.
-- Avoir comme objet parent un objet visible sur le Armaturenbrett.
+Damit Geräte im Armaturenbrett angezeigt werden, muss dies der Fall sein :
+- Sei aktiv.
+- Sei sichtbar.
+- Haben Sie als übergeordnetes Objekt ein Objekt im Armaturenbrett sichtbar.
 
-A la première apparition de l'équipement sur le Armaturenbrett, Jeedom essaye de dimensionner correctement sa tuile pour afficher l'ensemble des commandes et leurs widgets.
-Afin de conserver un Armaturenbrett équilibré, vous pouvez passer en mode Édition avec le crayon en haut à droite de la barre de recherche, afin de redimensionner et/ou réordonner les tuiles des équipements.
+Beim ersten Erscheinen der Ausrüstung im Armaturenbrett versucht Jeedom, die Größe der Kachel korrekt anzupassen, um alle Befehle und ihre Widgets anzuzeigen.
+Um ein ausgewogenes Armaturenbrett zu erhalten, können Sie mit dem Stift oben rechts in der Suchleiste in den Bearbeitungsmodus wechseln, um die Größe der Gerätekacheln zu ändern und / oder sie neu zu ordnen.
 
-En passant la souris sur une commande, un repère de couleur appairait en bas à gauche de la tuile:
-- Bleu pour une commande info. Si elle est historisée, un clic dessus ouvre la fenêtre d'historique.
-- Orange pour une commande action. Un clic déclenchera donc l'action.
+Wenn Sie mit der Maus über eine Bestellung fahren, wird unten links auf der Kachel eine farbige Markierung angezeigt:
+- Blau für eine Info-Bestellung. Wenn es protokolliert ist, öffnet ein Klick darauf das Protokollfenster.
+- Orange für einen Aktionsbefehl. Ein Klick löst die Aktion aus.
 
-De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) pour ouvrir directement la page de configuration de cet équipement.
-
-> **Spitze**
->
-> Il est possible d'aller directement sur un seul objet de votre domotique, par le menu **Accueil → Armaturenbrett → Nom de l'objet**.
-> Cela permet de n'avoir que les équipements qui vous intéressent, et de charger la page plus rapidement.
-
-- Vous avez en haut à gauche une petite icône pour faire afficher/masquer l'arbre des objets.
-- La deuxième icône à gauche permet d'afficher seulement les informations des résumés des objets.
-- Au milieu, un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
-- A droite, un bouton permet de passer en mode édition, pour modifier l'ordre des tuiles (cliqué - déposé sur le widget), ou les redimensionner. Vous pouvez également dans une tuile, réorganiser l'ordre des commandes.
-- En cliquant sur un résumé d'objet, vous filtrez pour n'afficher que les équipements ayant pour parent cet objet et qui concernent ce résumé d'objet.
-- Un clic sur une commande de type information permet d'afficher l'historique de la commande (si elle est historisée).
+Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um die Konfigurationsseite dieses Geräts direkt zu öffnen.
 
 > **Spitze**
 >
-> Il est possible, à partir de votre profil, de configurer Jeedom pour que l'arbre des objets et/ou les scénarios soient visibles par défaut lorsque vous arrivez sur le Armaturenbrett.
+> Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Armaturenbrett → Objektname**.
+> Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
+
+- Oben links befindet sich ein kleines Symbol zum Ein- und Ausblenden des Objektbaums.
+- Mit dem zweiten Symbol links können nur die Informationen der Zusammenfassungen der Objekte angezeigt werden.
+- In der Mitte können Sie in einem Suchfeld nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen..
+- Auf der rechten Seite können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (geklickt - im Widget abgelegt) oder ihre Größe ändern. Sie können auch in einer Kachel die Reihenfolge der Bestellungen neu anordnen.
+- Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
+- Ein Klick auf einen Auftrag vom Informationstyp zeigt den Verlauf des Auftrags an (falls er historisch ist)..
 
 > **Spitze**
 >
-> En mobile, un appui sur une commande de type info permet d'afficher un menu vous proposant soit d'afficher l'historique de la commande, ou de mettre une alerte sur celle-ci pour que Jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
+> In Ihrem Profil können Sie Jeedom so konfigurieren, dass der Baum der Objekte und / oder die Szenarien standardmäßig sichtbar sind, wenn Sie im Armaturenbrett ankommen.
+
+> **Spitze**
+>
+> Wenn Sie auf Mobilgeräten einen Befehl vom Typ &quot;Info&quot; drücken, wird ein Menü angezeigt, in dem Sie entweder den Verlauf der Bestellung anzeigen oder eine Warnung darauf setzen können, damit Jeedom Sie (einmal) benachrichtigt, sobald dass der Wert einen bestimmten Schwellenwert überschreitet.
 
 
-## Mode édition
+## Bearbeitungsmodus
 
-En mode édition (*le crayon tout en haut à droite*), vous pouvez changer la taille des tuiles et leur disposition sur le Armaturenbrett.
+Im Bearbeitungsmodus (* der Stift oben rechts *) können Sie die Größe der Kacheln und ihre Anordnung im Armaturenbrett ändern.
 
-Vous pouvez aussi éditer la disposition interne des commandes sur la tuile :
+Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten :
 
-- Soit les réorganiser par glissé - déposé.
-- Soit en faisant un clic droit sur le widget. Vous accédez alors à :
-    - **Erweiterte Konfiguration** : permet d'accéder à la configuration avancée de la commande.
-    - **Standard** : disposition par défaut, tout est en automatique avec juste la possibilité de réorganiser l'ordre des commandes.
-    - **Tableau** : permet de mettre les commandes dans un tableau : les colonnes et les lignes s'ajoutent et se suppriment par clic droit, ensuite il suffit de déplacer les commandes dans les cases voulues. Vous pouvez mettre plusieurs commandes par case
-    - **Spalte hinzufügen** : ajoute une colonne au tableau (accessible uniquement si vous êtes en disposition tableau)
-    - **Zeile hinzufügen** : ajoute une ligne au tableau (accessible uniquement si vous êtes en disposition tableau)
-    - **Supprimer colonne** : supprime une colonne au tableau (accessible uniquement si vous êtes en disposition tableau)
-    - **Supprimer ligne** : supprime une ligne au tableau (accessible uniquement si vous êtes en disposition tableau)
+- Ordnen Sie sie entweder durch Ziehen und Ablegen neu an.
+- Entweder durch Klicken mit der rechten Maustaste auf das Widget. Sie greifen dann zu :
+    - **Erweiterte Konfiguration** : Ermöglicht den Zugriff auf die erweiterte Konfiguration des Befehls.
+    - **Standard** : Standardlayout, alles ist automatisch mit nur der Möglichkeit, die Reihenfolge der Bestellungen neu zu ordnen.
+    - **Tabelle** : ermöglicht das Einfügen der Befehle in eine Tabelle : Spalten und Zeilen werden durch Klicken mit der rechten Maustaste hinzugefügt und gelöscht. Verschieben Sie dann einfach die Befehle in die gewünschten Felder. Sie können mehrere Bestellungen pro Box aufgeben
+    - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
+    - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
+    - **Säule entfernen** : Entfernen Sie eine Spalte aus der Tabelle (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
+    - **Zeile löschen** : Löschen Sie eine Zeile in der Tabelle (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
 
-A droite de chaque objet, une icône permet de :
+Rechts von jedem Objekt können Sie ein Symbol verwenden :
 
-- Clic : Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la plus haute.
-- Ctrl Clic : Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la moins haute.
+- klicken : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der höchsten Kachel entspricht.
+- Strg Klicken Sie auf : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der niedrigsten Kachel entspricht.
 
-## Barre de menu de Jeedom
+## Jeedom Menüleiste
 
 > **Spitze**
 >
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-> - Klicken Sie auf den Namen des Jeedom (Menüleiste) : Ouvre Réglages → Système → Configuration.
+> - Klicken Sie auf den Namen des Jeedom (Menüleiste) : Öffnet Einstellungen → System → Konfiguration.
 > - Klicken Sie auf ? (Menüleiste) : Öffnet die Hilfe auf der aktuellen Seite.
 > - Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.

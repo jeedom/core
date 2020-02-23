@@ -22,10 +22,10 @@ En haut à droite 5 boutons :
 >
 > A noter que le log http.error ne peut être supprimé. Il est essentiel si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer le système.
 
-## Temps réel
+## Echtzeit
 
-Le log "Event" est un peu particulier. Tout d'abord pour qu'il fonctionne, il faut qu'il soit en niveau info ou debug, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut soit aller sur la page de log soit dans Analyse → Temps réel.
+Das &quot;Ereignis&quot; -Protokoll ist etwas Besonderes. Damit es funktioniert, muss es sich zunächst auf Info- oder Debug-Ebene befinden und anschließend alle Ereignisse oder Aktionen auflisten, die bei der Heimautomation auftreten. Um darauf zuzugreifen, müssen Sie entweder zur Protokollseite oder unter Analyse → Echtzeit gehen.
 
-Une fois que vous avez cliqué dessus, vous obtenez une fenêtre qui se met à jour en temps réel et vous affiche tous les évènements de votre domotique.
+Sobald Sie darauf klicken, erhalten Sie ein Fenster, das in Echtzeit aktualisiert wird und Ihnen alle Ereignisse Ihrer Hausautomation anzeigt.
 
-En haut à droite vous avez un champ recherche (ne marche que si vous n'êtes pas en pause) et un bouton pour mettre en pause (utile pour faire un copier/coller par exemple).
+Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie nicht pausieren) und eine Schaltfläche zum Pausieren (nützlich zum Kopieren / Einfügen zum Beispiel)..

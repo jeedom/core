@@ -1,71 +1,71 @@
-Voici une documentation sur les méthodes de l'API. Tout d'abord voici
-les spécifications (JSON RPC 2.0) :
+Hier finden Sie eine Dokumentation zu API-Methoden. Zuerst ist hier
+die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-L'accès à l'API se fait par l'url : *URL\_JEEDOM*/core/api/jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL \ _JEEDOM * / core / api / jeeApi.php
 
-Divers
+verschiedene
 ======
 
-ping
+Klingeln
 ----
 
-Retourne pong, permet de tester la communication avec Jeedom
+Pong zurückgeben, Kommunikation mit Jeedom testen
 
 Version
 -------
 
-Retourne la Version de Jeedom
+Gibt die Version von Jeedom zurück
 
-datetime
+Datetime
 --------
 
-Retourne le datetime de Jeedom en microsecondes
+Gibt die Jeedom-Datumszeit in Mikrosekunden zurück
 
-API config
+Konfigurations-API
 ==========
 
-config::byKey
+Config::byKey
 -------------
 
-Retourne une valeur de configuration.
+Gibt einen Konfigurationswert zurück.
 
-Paramètres :
+Einstellungen :
 
--   string key : clef de la valeur de configuration à retourner
+-   String-Schlüssel : Konfigurationswertschlüssel, der zurückgegeben werden soll
 
--   string Plugin : (optionnel), Plugin de la valeur de configuration
+-   String Plugin : (optional), Konfigurationswert-Plugin
 
--   string default : (optionnel), valeur à retourner si la clef n'existe
-    pas
+-   Zeichenfolge Standard : (optional), Wert, der zurückgegeben werden soll, wenn der Schlüssel nicht vorhanden ist
+    nicht
 
-config::save
+Config::speichern
 ------------
 
-Enregistre une valeur de configuration
+Speichert einen Konfigurationswert
 
-Paramètres :
+Einstellungen :
 
--   string value : valeur à enregistrer
+-   Zeichenfolgenwert : Wert aufzuzeichnen
 
--   string key : clef de la valeur de configuration à enregistrer
+-   String-Schlüssel : Konfigurationswertschlüssel zum Speichern
 
--   string Plugin : (optionnel), Plugin de la valeur de configuration à
-    enregistrer
+-   String Plugin : (optional), Plugin des Konfigurationswertes zu
+    Rekord
 
-API JSON Event
+JSON-Ereignis-API
 ==============
 
-event::changes
+Ereignis::Austausch
 --------------
 
-Retourne la Listee des changements depuis le datetime passé en paramètre
-(doit être en microsecondes). Vous aurez aussi dans la réponse le
-datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
+Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück
+(muss in Mikrosekunden sein). Sie haben auch in der Antwort die
+Jeedom&#39;s aktuelle Datumszeit (zur Wiederverwendung für die nächste Abfrage)
 
-Paramètres :
+Einstellungen :
 
--   int datetime
+-   int Datetime
 
 API JSON Plugin
 ===============
@@ -75,7 +75,7 @@ Plugin::ListePlugin
 
 Retourne la Listee de tous les Plugins
 
-Paramètres :
+Einstellungen :
 
 -   int activateOnly = 0 (ne retourne que la Listee des Plugins activés)
 
@@ -104,7 +104,7 @@ Retourne un objet avec tous ses équipements et pour chaque équipement
 toutes ses commandes ainsi que les états de celles-ci (pour les
 commandes de type info)
 
-Paramètres :
+Einstellungen :
 
 -   int id
 
@@ -113,7 +113,7 @@ jeeObject::byId
 
 Retourne l'objet spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -124,12 +124,12 @@ Retourne un objet, ses équipements et pour chaque équipement toutes ses
 commandes ainsi que les états de cellse-ci (pour les commandes de type
 info)
 
-jeeObject::save
+jeeObject::speichern
 ------------
 
 Retourne l'objet spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int id (vide si c'est une création)
 
@@ -141,7 +141,7 @@ Paramètres:
 
 -   int position
 
--   array configuration
+-   array Configuration
 
 -   array display
 
@@ -151,11 +151,11 @@ API JSON Summary
 summary::global
 ---------------
 
-Retour le résumé global pour la clef passée en paramètre
+Retour le résumé global pour la clef nichtsée en paramètre
 
-Paramètres:
+Einstellungen:
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
+-   String-Schlüssel : (optionnel), clef du résumé voulu, si vide alors Jeedom
     vous renvoi le résumé pour toute les clefs
 
 summary::byId
@@ -163,11 +163,11 @@ summary::byId
 
 Retourne le résumé pour l'objet id
 
-Paramètres:
+Einstellungen:
 
 -   int id : id de l'objet
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
+-   String-Schlüssel : (optionnel), clef du résumé voulu, si vide alors Jeedom
     vous renvoi le résumé pour toute les clefs
 
 API JSON EqLogic
@@ -184,7 +184,7 @@ eqLogic::fullById
 Retourne un équipement et ses commandes ainsi que les états de celles-ci
 (pour les commandes de type info)
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -193,7 +193,7 @@ eqLogic::byId
 
 Retourne l'équipement spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -202,7 +202,7 @@ eqLogic::byType
 
 Retourne tous les équipements appartenant au type (Plugin) spécifié
 
-Paramètres:
+Einstellungen:
 
 -   string type
 
@@ -211,7 +211,7 @@ eqLogic::byObjectId
 
 Retourne tous les équipements appartenant à l'objet spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int object\_id
 
@@ -224,18 +224,18 @@ array(…​.)),'eqType2' ⇒array( 'id'⇒…​,'cmds' ⇒ array(…​.))…�
 array( 'id'⇒…​,'cmds' ⇒ array(…​.)),id2 ⇒ array( 'id'⇒…​,'cmds' ⇒
 array(…​.))..)
 
-Paramètres:
+Einstellungen:
 
 -   string\[\] eqType = tableau des types d'équipements voulus
 
 -   int\[\] id = tableau des ID d'équipements personnalisés voulus
 
-eqLogic::save
+eqLogic::speichern
 -------------
 
 Retourne l'équipement enregistré/créé
 
-Paramètres:
+Einstellungen:
 
 -   int id (vide si c'est une création)
 
@@ -253,7 +253,7 @@ Paramètres:
 
 -   int isEnable = 0
 
--   array configuration
+-   array Configuration
 
 -   int timeout
 
@@ -272,7 +272,7 @@ cmd::byId
 
 Retourne la commande spécifiée
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -281,7 +281,7 @@ cmd::byEqLogicId
 
 Retourne toutes les commandes appartenant à l'équipement spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int eqLogic\_id
 
@@ -290,7 +290,7 @@ cmd::execCmd
 
 Exécute la commande spécifiée
 
-Paramètres:
+Einstellungen:
 
 -   int id : id d'une commande ou tableau d'id si vous voulez executer
     plusieurs commande d'un coup
@@ -304,7 +304,7 @@ cmd::getStatistique
 Retourne les statistiques sur la commande (ne marche que sur les
 commandes de type info et historisées)
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -318,7 +318,7 @@ cmd::getTendance
 Retourne la tendance sur la commande (ne marche que sur les commandes de
 type info et historisées)
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -332,7 +332,7 @@ cmd::getHistory
 Retourne l'historique de la commande (ne marche que sur les commandes de
 type info et historisées)
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -340,12 +340,12 @@ Paramètres:
 
 -   string endTime : date de fin de l'historique
 
-cmd::save
+cmd::speichern
 ---------
 
 Retourne l'objet spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int id (vide si c'est une création)
 
@@ -367,7 +367,7 @@ Paramètres:
 
 -   string unite = ''
 
--   array configuration
+-   array Configuration
 
 -   array template
 
@@ -381,18 +381,18 @@ Paramètres:
 
 -   array alert
 
-cmd::event
+cmd::Ereignis
 -------------------
 
 Permet d'envoyer une valeur à une commande
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
--   string value : valeur
+-   Zeichenfolgenwert : valeur
 
--   string datetime : (optionnel) datetime de la valeur
+-   string Datetime : (optionnel) Datetime de la valeur
 
 API JSON Scenario
 =================
@@ -407,7 +407,7 @@ scenario::byId
 
 Retourne le scénario spécifié
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -416,7 +416,7 @@ scenario::export
 
 Retourne l'export du scénario ainsi que le nom humain du scénario
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -425,7 +425,7 @@ scenario::import
 
 Permet d'importer un scénario.
 
-Paramètres:
+Einstellungen:
 
 -   int id : ID des Szenarios, in das importiert werden soll (leer, wenn erstellt)
 
@@ -438,7 +438,7 @@ scenario::Change
 
 Ändert den Status des angegebenen Szenarios.
 
-Paramètres:
+Einstellungen:
 
 -   int id
 
@@ -452,7 +452,7 @@ log::get
 
 Ermöglicht das Wiederherstellen eines Protokolls
 
-Paramètres:
+Einstellungen:
 
 -   Zeichenfolgenprotokoll : Name des wiederherzustellenden Protokolls
 
@@ -465,7 +465,7 @@ log::hinzufügen
 
 Ermöglicht das Schreiben in ein Protokoll
 
-Paramètres:
+Einstellungen:
 
 -   Zeichenfolgenprotokoll : Name des wiederherzustellenden Protokolls
 
@@ -481,7 +481,7 @@ log::Liste
 
 Holen Sie sich die Jeedom-ProtokollListee
 
-Paramètres:
+Einstellungen:
 
 -   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle
 
@@ -490,7 +490,7 @@ log::leer
 
 Leeren Sie ein Protokoll
 
-Paramètres:
+Einstellungen:
 
 -   Zeichenfolgenprotokoll : Name des zu leeren Protokolls
 
@@ -499,7 +499,7 @@ log::Entfernen
 
 Ermöglicht das Löschen eines Protokolls
 
-Paramètres:
+Einstellungen:
 
 -   Zeichenfolgenprotokoll : Protokollname zum Löschen
 
@@ -511,7 +511,7 @@ Datenspeicher::byTypeLinkIdKey
 
 Ruft den Wert einer im Datenspeicher gespeicherten Variablen ab
 
-Paramètres:
+Einstellungen:
 
 -   string type : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
@@ -519,14 +519,14 @@ Paramètres:
 -   id linkId : -1 für das globale (Wert für die Standardszenarien,
     oder die Szenario-ID)
 
--   string key : Wertname
+-   String-Schlüssel : Wertname
 
-Datenspeicher::save
+Datenspeicher::speichern
 ---------------
 
 Speichert den Wert einer Variablen im Datenspeicher
 
-Paramètres:
+Einstellungen:
 
 -   string type : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
@@ -534,9 +534,9 @@ Paramètres:
 -   id linkId : -1 für das globale (Wert für die Standardszenarien,
     oder die Szenario-ID)
 
--   string key : Wertname
+-   String-Schlüssel : Wertname
 
--   gemischter Wert : valeur à enregistrer
+-   gemischter Wert : Wert aufzuzeichnen
 
 JSON-Nachrichten-API
 ================
@@ -551,7 +551,7 @@ Nachricht::hinzufügen
 
 Ermöglicht das Schreiben in ein Protokoll
 
-Paramètres:
+Einstellungen:
 
 -   string type : Protokolltyp (Debug, Info, Warnung, Fehler)
 
@@ -575,7 +575,7 @@ interact::tryToReply
 Versuchen Sie, eine Anforderung mit einer Interaktion abzugleichen, und führen Sie sie aus
 Aktion und reagiert entsprechend
 
-Paramètres:
+Einstellungen:
 
 -   Abfrage (Anforderungsphrase)
 
@@ -615,7 +615,7 @@ jeedom::Sicherungskopie
 
 Ermöglicht das Starten eines Backups von Jeedom
 
-jeedom::getUsbMapping
+jeedom::getUsbMapKlingeln
 ---------------------
 
 Liste der USB-Anschlüsse und Namen der daran angeschlossenen USB-Sticks
@@ -628,7 +628,7 @@ Plugin::installieren
 
 Installation / Update eines bestimmten Plugins
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -638,7 +638,7 @@ Plugin::Entfernen
 
 Löschen eines bestimmten Plugins
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -648,7 +648,7 @@ Plugin::dependancyInfo
 
 Gibt Informationen zum Status von Plugin-Abhängigkeiten zurück
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -658,7 +658,7 @@ Plugin::dependancyInstall
 
 Erzwingen Sie die Installation von Plugin-Abhängigkeiten
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -668,7 +668,7 @@ Plugin::deamonInfo
 
 Gibt Informationen zum Status des Plugin-Daemons zurück
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -678,7 +678,7 @@ Plugin::deamonStart
 
 Zwinge den Dämon zu starten
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -688,7 +688,7 @@ Plugin::deamonStop
 
 Dämonenstopp erzwingen
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -698,7 +698,7 @@ Plugin::deamonChangeAutoMode
 
 Ändern Sie den Verwaltungsmodus des Dämons
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
@@ -726,7 +726,7 @@ Permet de mettre à jour Jeedom et tous les Plugins
 Aktualisierung::doUpdate
 --------------
 
-Paramètres:
+Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)

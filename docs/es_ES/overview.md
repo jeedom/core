@@ -1,43 +1,43 @@
 # síntesis
 **Inicio → Resumen**
 
-La page *síntesis* vous propose une synthèse visuelle et rapide de vos objets et de leurs résumés.
+La página * Synthesis * ofrece una síntesis rápida y visual de sus objetos y sus resúmenes..
 
-Vous pouvez la configurer comme page par default dans **Réglages → Préférences**, en desktop et/ou mobile.
+Puede configurarlo como página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
 ## Viendo
 
-Sur chaque objet, son image de fond et ses résumés sont affichés (en fonction de la clé du résumé, visible dans **Réglages → Système → Configuration / Résumés**):
-- En haut à gauche : Le nom de l'objet.
-- En haut à droite : La température (*temperature*) et l'humidité (*humidity*).
-- Sous le titre : Alerte (*security*) et Mouvement (*motion*), colorés en vert ou en rouge suivant si il y a une ou des alertes / mouvement en cours.
-- En bas : Tous les autres résumés de l'objet.
+En cada objeto, se muestran su imagen de fondo y sus resúmenes (dependiendo de la clave del resumen, visible en **Preferencias → Sistema → Configuración / Resúmenes**):
+- Arriba a la izquierda : El nombre del objeto..
+- Arriba a la derecha : Temperatura (* temperatura *) y humedad (* humedad *).
+- Bajo el título : Alerta (* seguridad *) y Movimiento (* movimiento *), de color verde o rojo, dependiendo de si hay una o más alertas / movimiento en progreso.
+- Abajo : Todos los otros resúmenes de materias.
 
-La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
-- Son nom.
-- Si il est visible. Vous pouvez toutefois conserver un Objet visible y compris sur le Dashboard, mais cocher *Masquer sur la synthèse*.
-- Son image de fond.
-- Les éléments de ses résumés.
+La configuración de la visualización del objeto se realiza en **Herramientas → Objetos** :
+- Su nombre.
+- Si es visible. Sin embargo, puede mantener un Objeto visible incluso en el Tablero, pero marque * Ocultar en resumen*.
+- Su imagen de fondo.
+- Elementos de sus resúmenes..
 
 > **punta**
 >
-> L'ordre d'affichage des objets est celui du *résumé domotique*, que vous pouvez réordonner (Analyse → Résumé domotique).
+> El orden de visualización de los objetos es el del * resumen de automatización del hogar *, que puede reordenar (Análisis → Resumen de automatización del hogar).
 
 > **nota**
 >
-> Si un objet n'a pas résumé défini, un bouton s'affiche en haut à droite pour accéder à la configuration / résumés de l'objet.
+> Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto..
 
-## Fonctions
+## funciones
 
-Pour chaque objet, vous pouvez cliquer :
-- Sur l'image, pour ouvrir la page des équipements de cet objet (également accessible par le menu *Accueil → Dashboard → Objet*).
-- Sur un élément de résumé pour afficher les éléments de cet objet, de ce type.
-- Sur l'icône en bas à gauche de l'objet pour ouvrir la configuration de cet objet (Disponible seulement en Desktop).
+Para cada objeto, puede hacer clic :
+- En la imagen, para abrir la página del equipo de este objeto (también accesible a través del menú * Inicio → Panel de control → Objeto *).
+- En un elemento de resumen para mostrar los elementos de este objeto, de este tipo.
+- En el icono en la parte inferior izquierda del objeto para abrir la configuración de este objeto (disponible solo en el escritorio).
 
 > **punta**
 >
-> Ctrl Clic ou Clic Centre sur l'objet ou un élément de résumé ouvre un autre onglet de votre navigateur.
+> Ctrl Click o Center Click en el objeto o un elemento de resumen abre otra pestaña de su navegador.
 
-Quand vous cliquez sur un objet à partir de la synthèse, les deux boutons à gauche de la barre de recherche sont remplacés par un bouton permettant de revenir à la synthèse.
+Cuando hace clic en un objeto del resumen, los dos botones a la izquierda de la barra de búsqueda se reemplazan por un botón que permite volver al resumen.
 
-De plus, les objets enfants ne sont pas affichés.
+Además, los objetos secundarios no se muestran.

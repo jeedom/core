@@ -1,45 +1,45 @@
 # Design
-**Accueil → Design**
+**Startseite → Design**
 
-Cette page permet de configurer l'affichage de toute votre domotique de manière très fine.
-Celle-ci demande du temps mais sa seule limite est votre imagination.
+Auf dieser Seite können Sie die Anzeige Ihrer gesamten Hausautomation auf sehr feine Weise konfigurieren.
+Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
 > **Spitze**
 >
-> Il est possible d'aller directement sur un design grâce au sous-menu.
+> Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
 > **wichtig**
 >
-> Toutes les actions se font par un clic droit sur cette page, attention à bien le faire dans le design. Lors de la création, il faut donc le faire au milieu de la page (pour être sûr d'être sur le design).
+> Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken. Achten Sie darauf, dass dies im Design gut funktioniert. Beim Erstellen müssen Sie dies in der Mitte der Seite tun (um sicherzugehen, dass Sie sich im Design befinden)..
 
-Dans le menu (clic droit), nous retrouvons les actions suivantes :
+Im Menü (Rechtsklick) finden wir folgende Aktionen :
 
-- **Designs** : Affiche la liste de vos designs et permet d'y accéder.
-- **Edition** : Permet de passer en mode édition.
-- **Plein écran** : Permet d'utiliser toute la page Internet, ce qui enlèvera le menu de Jeedom du haut.
-- **Ajouter graphique** : Permet d'ajouter un graphique.
-- **Ajouter texte/html** : Permet d'ajouter du texte ou du code html/JavaScript.
-- **Ajouter scénario** : Permet d'ajouter un scénario.
-- **Ajouter lien**
-    - **Vers une vue** : Permet d'ajouter un lien vers une vue.
-    - **Vers un design** : Permet d'ajouter un lien vers un autre design.
-- **Ajouter équipement** : Permet d'ajouter un équipement.
-- **Ajouter commande** : Permet d'ajouter une commande.
-- **Ajouter image/caméra** : Permet d'ajouter une image ou le flux d'une caméra.
-- **Ajouter zone** : Permet d'ajouter une zone transparente cliquable qui pourra exécuter une série d'actions lors d'un clic (en fonction ou non de l'état d'une autre commande).
-- **Ajouter résumé** : Ajoute les informations d'un résumé d'objet ou général.
+- **Design** : Zeigt die Liste Ihrer Design an und ermöglicht Ihnen den Zugriff darauf.
+- **Ausgabe** : Wechseln Sie in den Bearbeitungsmodus.
+- **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite, wodurch das Jeedom-Menü von oben entfernt wird.
+- **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu.
+- **Fügen Sie Text / HTML hinzu** : Ermöglicht das Hinzufügen von Text oder HTML / JavaScript-Code.
+- **Szenario hinzufügen** : Fügen Sie ein Szenario hinzu.
+- **Link hinzufügen**
+    - **Auf dem Weg zu einer Aussicht** : Fügen Sie einer Ansicht einen Link hinzu.
+    - **Auf dem Weg zu einem Design** : Fügen Sie einen Link zu einem anderen Design hinzu.
+- **Ausrüstung hinzufügen** : Fügt Ausrüstung hinzu.
+- **Bestellung hinzufügen** : Bestellung hinzufügen.
+- **Bild / Kamera hinzufügen** : Ermöglicht das Hinzufügen eines Bildes oder eines Streams von einer Kamera.
+- **Bereich hinzufügen** : Ermöglicht das Hinzufügen eines anklickbaren transparenten Bereichs, der beim Klicken eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht)..
+- **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
 - **Anzeigen**
-    - **Aucune** : N'affiche aucune grille.
-    - **10x10** : Affiche une grille de 10 par 10.
-    - **15x15** : Affiche une grille de 15 par 15.
-    - **20x20** : Affiche une grille de 20 par 20.
-    - **Aimanter les éléments** : Ajoute une aimantation entre les éléments pour permettre de les coller plus facilement.
-    - **Aimanter à la grille** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Je nach Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren..
+    - **keine** : Zeigt kein Raster an.
+    - **10x10** : Zeigt ein 10 x 10-Raster an.
+    - **15x15** : Zeigt ein Raster von 15 mal 15 an.
+    - **20x20** : Zeigt ein 20 x 20-Raster an.
+    - **Magnetisieren Sie die Elemente** : Fügt eine Magnetisierung zwischen den Elementen hinzu, um das Aufkleben zu erleichtern.
+    - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Je nach Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren..
     - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
 - **Design löschen** : Design entfernen.
-- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
+- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Design.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
-- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
+- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Design.
 - **speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden)..
 
 > **wichtig**
@@ -51,8 +51,8 @@ Dans le menu (clic droit), nous retrouvons les actions suivantes :
 Hier gefunden :
 
 - **General**
-    - **Name** : Der Name Ihres Designs.
-    - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
+    - **Name** : Der Name Ihres Design.
+    - **Position** : Die Position des Design im Menü. Ermöglicht die Bestellung der Design.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode* : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
@@ -61,7 +61,7 @@ Hier gefunden :
         - **send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Größen**
-    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
+    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Design in Pixel.
 
 ## Allgemeine Konfiguration der Elemente
 
@@ -134,37 +134,37 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Name** : Name des Links (angezeigter Text).
 - **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Ermöglicht es Ihnen, die Hintergrundfarbe zu ändern oder transparent zu machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non).
-- **Rund um die Winkel (ne pas oublier de mettre %, ex 50%)** : Permet d'arrondir les angles, ne pas oublier de mettre le %.
-- **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Permet d'ajouter une bordure, attention la syntaxe est HTML.
-- **Schriftgröße (ex 50%, il faut bien mettre le signe %)** : Permet de modifier la taille de la police.
-- **Textausrichtung** : Permet de choisir l'alignement du texte (gauche/droit/centré).
-- **Fett** : Met le texte en gras.
+- **Textfarbe** : Ermöglicht das Ändern der Farbe von Symbolen und Textn (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
+- **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
+- **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
+- **Textausrichtung** : Ermöglicht die Auswahl der Ausrichtung des Texts (links / rechts / zentriert).
+- **Fett** : Fettgedruckter Text.
 
 ## Ausrüstung
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Afficher le nom de l'objet** : Cocher pour afficher le nom de l'objet parent de l'équipement.
-- **Masquer le nom** : Cocher pour masquer le nom de l'équipement.
-- **Hintergrundfarbe** : Permet de choisir une couleur de fond personnalisée, ou d'afficher l'équipement avec un fond transparent, ou d'utiliser la couleur par défaut.
-- **Textfarbe** : Permet de choisir une couleur de fond personnalisée, ou d'utiliser la couleur par défaut.
-- **Arrondis** : Valeur en pixels de l'arrondis des angles de la tuile de l'équipement.
-- **Grenze** : Définition CSS d'une bordure de la tuile de l'équipement. ex : 1px solid black.
-- **Opacité** : Opacité de la tuile de l'équipement, entre 0 et 1. Aufmerksamkeit : une couleur de fond doit être définie.
-- **CSS personnalisé** : Règles CSS à appliquer sur l'équipement.
-- **Appliqué le css personnalisé sur** : Sélecteur CSS sur lequel appliquer le CSS personnalisé.
+- **Objektnamen anzeigen** : Aktivieren Sie diese Option, um den Namen des übergeordneten Objekts des Geräts anzuzeigen.
+- **Name verstecken** : Überprüfen Sie, ob der Name des Geräts ausgeblendet ist.
+- **Hintergrundfarbe** : Ermöglicht die Auswahl einer benutzerdefinierten Hintergrundfarbe oder die Anzeige des Geräts mit transparentem Hintergrund oder die Verwendung der Standardfarbe.
+- **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
+- **gerundet** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
+- **Grenze** : CSS-Definition einer Gerätekachelgrenze. ex : 1px festes Schwarz.
+- **Opazität** : Deckkraft der Gerätekachel zwischen 0 und 1. Aufmerksamkeit : Es muss eine Hintergrundfarbe definiert werden.
+- **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
+- **Angewandte benutzerdefinierte CSS auf** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
 ### Befehle
 
-La liste des commandes présentes sur l'équipement vous permet, pour chaque commande, de:
-- Masquer le nom de la commande.
-- Masquer la commande.
-- Afficher la commande avec une fond transparent.
+Die Liste der auf dem Gerät vorhandenen Befehle ermöglicht es Ihnen, für jeden Befehl Folgendes zu tun:
+- Befehlsname ausblenden.
+- Befehl ausblenden.
+- Zeigen Sie die Bestellung mit einem transparenten Hintergrund an.
 
 ### Erweiterte Konfiguration
 
-Affiche la fenêtre de configuration avancée de l'équipement (voir documentation **Zusammenfassung der Hausautomation**).
+Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation **Zusammenfassung der Hausautomation**).
 
 ## bestellen
 
@@ -172,61 +172,61 @@ Affiche la fenêtre de configuration avancée de l'équipement (voir documentati
 
 ### Erweiterte Konfiguration
 
-Affiche la fenêtre de configuration avancée de l'équipement (voir documentation **Zusammenfassung der Hausautomation**).
+Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation **Zusammenfassung der Hausautomation**).
 
-## Bild/Caméra
+## Bild / Kamera
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Afficher** : Définit ce que vous voulez afficher, image fixe ou flux d'une caméra.
-- **Bild** : Permet d'envoyer l'image en question (si vous avez choisi une image).
-- **Caméra** : Caméra à afficher (si vous avez choisi caméra).
+- **Anzeige** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
+- **Bild** : Ermöglicht das Senden des betreffenden Bildes (wenn Sie ein Bild ausgewählt haben).
+- **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 
 ## Zone
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Type de zone** : C'est ici que vous choisissez le type de la zone : Macro simple, Macro Binaire ou Widget au survol.
+- **Art der Zone** : Hier wählen Sie die Art des Bereichs : Einfaches Makro, Binärmakro oder Widget beim Hover.
 
-### Macro simple
+### Einzelne Makro
 
-Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
+In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus.
 
-Il vous suffit ici d'indiquer la liste des actions à faire lors du clic sur la zone.
+Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
 
-### Macro binaire
+### Binäres Makro
 
-Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en fonction de l'état de la commande que vous donnez. ex : si la commande vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera la ou les actions Off
+In diesem Modus führt Jeedom je nach Status des von Ihnen erteilten Befehls die Ein- oder Ausschaltaktion (en) aus. ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
 
-- **Information binaire** : bestellen donnant l'état à vérifier pour décider de l'action à faire (On ou Off).
+- **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus).
 
-Il vous suffit en dessous de mettre les actions à faire pour le On et pour le Off.
+Sie müssen nur die Aktionen ausführen, die für das Ein und das Aus ausgeführt werden sollen.
 
-### Widget au survol
+### Hover-Widget
 
-Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous afficherez le widget en question.
+In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende Widget angezeigt.
 
-- **Ausrüstung** : Widget à afficher lors du survol ou du clic.
-- **Afficher au survol** : Si coché, affiche le widget au survol.
-- **Afficher sur un clic** : Si coché, alors le widget est affiché au clic.
-- **Position** : Permet de choisir l'emplacement d'apparition du widget (par défaut bas droite).
+- **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird.
+- **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
+- **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
+- **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (Standard unten rechts)..
 
 ## Zusammenfassung
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Link** : Permet d'indiquer le résumé à afficher (General pour le global sinon indiquer l'objet).
+- **Link** : Ermöglicht die Angabe der anzuzeigenden Zusammenfassung (Allgemein für die globale Angabe andernfalls das Thema).
 - **Hintergrundfarbe** : Ermöglicht es Ihnen, die Hintergrundfarbe zu ändern oder transparent zu machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non).
-- **Rund um die Winkel (ne pas oublier de mettre %, ex 50%)** : Permet d'arrondir les angles, ne pas oublier de mettre le %.
-- **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Permet d'ajouter une bordure, attention la syntaxe est HTML.
-- **Schriftgröße (ex 50%, il faut bien mettre le signe %)** : Permet de modifier la taille de la police.
-- **Fett** : Met le texte en gras.
+- **Textfarbe** : Ermöglicht das Ändern der Farbe von Symbolen und Textn (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
+- **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
+- **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
+- **Fett** : Fettgedruckter Text.
 
 ## FAQ
 
->**Je n'arrive plus à éditer mon design**
->Si vous avez mis un widget ou une image qui prend quasiment la totalité du design, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+>**Ich kann mein Design nicht mehr bearbeiten**
+>Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
->**Entfernen un design qui ne marche plus**
->Dans la partie administration puis OS/DB, faire "select * from planHeader", récupérer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précédemment.
+>**Löschen Sie ein Design, das nicht mehr funktioniert**
+>Machen Sie im Administrationsteil dann OS / DB &quot;select * from planHeader&quot;, stellen Sie die ID des betreffenden Design wieder her und führen Sie &quot;delete from planHeader where id = # TODO #&quot; und &quot;delete from plan where planHeader_id = # todo #&quot; aus. &quot;durch Ersetzen von # TODO # durch die zuvor gefundene Design-ID.

@@ -1,245 +1,245 @@
-# Résumé Domotique
+# Zusammenfassung der Hausautomation
 **Analyse → Zusammenfassung der Hausautomation**
 
-Cette page permet de rassembler sur une seule page les différents éléments configurés sur son Jeedom. Elle donne également l'accès à des fonctions d'organisation des équipements et des commandes. à leur configuration avancée ainsi qu'à des possibilités de configuration d'affichage.
+Auf dieser Seite können Sie die verschiedenen Elemente. die in Ihrem Jeedom konfiguriert sind. auf einer einzigen Seite zusammenfassen. Es bietet auch Zugriff auf Funktionen zum Organisieren von Geräten und Steuerungen. auf deren erweiterte Konfiguration und zum Anzeigen von Konfigurationsmöglichkeiten..
 
-## Informations
+## Informationen
 
-Sur le haut de la page. on retroderve :
-- **Namebre d'objets** : Namebre total d'objets configurés dans notre Jeedom. en comptant les éléments inAktivas.
-- **Namebre d'équipements** : Gleiches gilt für die Ausrüstung.
-- **Namebre de commandes** : Gleiches gilt für Bestellungen.
-- **InAktiva** : Cochez cette case si voders voderlez que les éléments inAktivas soient bien affichés sur cette page.
-- **Suche** : Permet de rechercher un élément particulier. Ce peut être le Name d'un équipement. d'une commande oder le Name du plugin par lequel a été créé l'équipement.
-- **Export CSV** : Permet d'exporter toders les objets. équipements et leurs commandes dans un fichier CSV.
+Oben auf der Seite finden wir :
+- **Anzahl der Objekte** : Gesamtzahl der in unserem Jeedom konfigurierten Objekte. einschließlich inaktiver Elemente.
+- **Anzahl der Ausrüstungen** : Gleiches gilt für die Ausrüstung.
+- **Anzahl der Bestellungen** : Gleiches gilt für Bestellungen.
+- **inaktiv** : Aktivieren Sie dieses Kontrollkästchen. wenn inaktive Elemente auf dieser Seite angezeigt werden sollen.
+- **Suche** : Suchen Sie nach einem bestimmten Artikel. Dies kann der Name eines Geräts. eine Bestellung oder der Name des Plugins sein. mit dem das Gerät erstellt wurde.
+- **CSV-Export** : Ermöglicht das Exportieren aller Objekte. Geräte und ihrer Befehle in eine CSV-Datei.
 
-Voders avez aussi un onglet **historisch**. affichant l'historique des commandes. équipements. objets. vues. design. design 3d. scénarios et utilisateurs supprimés.
+Sie haben auch eine Registerkarte **historisch**Anzeigen des Verlaufs von Aufträgen. Geräten. Objekten. Ansichten. Design. 3D-Design. Szenarien und gelöschten Benutzern.
 
-## dies cadres objet
+## Objektrahmen
 
-En dessoders on retroderve un cadre par objet. Dans chaque cadre. on troderve la liste des équipements  qui ont poderr parent cet objet.
-die premier cadre **keine** représente les équipements qui n'ont pas de parent affecté.
+Darunter befindet sich ein Frame pro Objekt. In jedem Frame finden wir die Liste der Geräte. die dieses Objekt als übergeordnetes Objekt haben.
+Der erste Frame **keine** repräsentiert Geräte. denen kein übergeordnetes Element zugewiesen ist.
 
-Poderr chaque objet. à côté de son libellé. deux bodertons sont disponibles.
-- die premier sert à odervrir la page de configuration de l'objet dans un nodervel onglet.
-- die deuxième apporte quelques informations sur l'objet.
-
-> **Spitze**
->
-> La coderleur de fond des cadres objets dépend de la coderleur choisie dans la configuration de l'objet.
+Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verfügung.
+- Die erste wird verwendet. um die Objektkonfigurationsseite in einer neuen Registerkarte zu öffnen.
+- Die zweite enthält einige Informationen zum Objekt.
 
 > **Spitze**
 >
-> Avec un cliqué-déposé sur les objets oder équipements. voders podervez changer leur ordre oder même les affecter à un autre objet. C'est à partir de l'ordre établi dans cette page que l'affichage du Dashboard est calculé.
+> Die Hintergrundfarbe der Objektrahmen hängt von der Farbe ab. die in der Konfiguration des Objekts ausgewählt wurde.
 
-## dies équipements
+> **Spitze**
+>
+> Mit einem Klick auf Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
 
-Sur chaque équipement on retroderve :
+## Die Ausrüstungen
 
-- ein **case à cocher** poderr sélectionner l'équipement (voders podervez en sélectionner plusieurs). Si au moins un équipement est sélectionné. voders avez des bodertons d'Aktion qui apparaissent en haut à gauche  poderr **Entfernen**. rendre **sichtbar**/**insichtbar**.  **Aktiva**/**inAktiva** les équipements sélectionnés.
-- L'**Identifikation** Ausrüstung.
-- die **type** d'équipement : Identifiant du plugin auquel il appartient.
+Auf jeder Ausrüstung finden wir :
+
+- ein **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist. haben Sie Aktionsschaltflächen. die oben links zu angezeigt werden **Entfernen**machen **sichtbar**/**unsichtbar**.  **Aktiva**/**inaktiv** ausgewählte Ausrüstung.
+- die**Identifikation** Ausrüstung.
+- die **Typ** Ausrüstung : Kennung des Plugins. zu dem es gehört.
 - die **Name** Ausrüstung.
-- **InAktiva** (petite croix) : Signifie que l'équipement est inAktiva (si elle n'y est pas. l'équipement est Aktiva).
-- **Insichtbar** (œil barré) : Signifie que l'équipement est insichtbar (s'il n'y est pas. l'équipement est sichtbar).
+- **inaktiv** (kleines Kreuz) : Bedeutet. dass das Gerät inaktiv ist (wenn es nicht vorhanden ist. ist das Gerät aktiv).
+- **unsichtbar** (durchgestrichenes Auge) : Bedeutet. dass das Gerät unsichtbar ist (wenn es nicht vorhanden ist. ist das Gerät sichtbar).
 
-Si le plugin Ausrüstung est désactivé. les deux icône à droite n'apparaissent pas:
-- **Lien externe** (carré avec une flèche) : Permet d'odervrir dans un nodervel onglet la page de configuration Ausrüstung.
-- **Erweiterte Konfiguration** (rodere crantée) : permet d'odervrir la fenêtre de configuration avancée Ausrüstung.
+Wenn das Geräte-Plugin deaktiviert ist. werden die beIdentifikationen Symbole rechts nicht angezeigt:
+- **Externer Link** (Quadrat mit Pfeil) : Ermöglicht das Öffnen der Gerätekonfigurationsseite in einer neuen Registerkarte.
+- **Erweiterte Konfiguration** (Zahnrad) : öffnet das Fenster zur erweiterten Gerätekonfiguration.
 
-> En cliquant sur la ligne contenant le Name Ausrüstung. voders afficherez todertes les commandes de cet équipement. En cliquant alors sur une commande. voders accéderez à la fenêtre de configuration de la commande.
+> Durch Klicken auf die Zeile mit dem Namen des Geräts werden alle Befehle für dieses Gerät angezeigt. Durch Klicken auf eine Bestellung gelangen Sie zum Bestellkonfigurationsfenster.
 
-## Erweiterte Konfiguration d'un équipement
+## Erweiterte Gerätekonfiguration
 
 > **Spitze**
 >
-> Il est possible d'accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration Ausrüstung en cliquant sur le boderton configuration avancée
+> Sie können (sofern das Plugin dies unterstützt) direkt von der Gerätekonfigurationsseite auf dieses Fenster zugreifen. indem Sie auf die Schaltfläche Erweiterte Konfiguration klicken
 
-La fenêtre de **configuration avancée d'un équipement** permet de la modifier. En premier lieu. en haut à droite. quelques bodertons disponibles :
+Das Fenster von **erweiterte Konfiguration der Ausrüstung** erlaubt es zu ändern. Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
-- **Informations** : affiche les propriétés brutes Ausrüstung.
-- **Verbindungen** : Permet d'afficher les liens Ausrüstung avec les objets. commandes. scénarios. variables. interAktions…​ soders forme graphique (dans celui-ci. un doderble clic sur un élément voders amène à sa configuration).
-- **log** : affiche les évènements Ausrüstung en question.
-- **speichern** : Sauvegarde les modifications faites sur l'équipement.
-- **Entfernen** : Supprime l'équipement.
+- **Informationen** : Zeigt die Roheigenschaften des Geräts an.
+- **Verbindungen** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit den Objekten. Befehlen. Szenarien. Variablen. Interaktionen usw. in grafischer Form (in diesem Fall führt ein Doppelklick auf ein Element zu seiner Konfiguration)..
+- **log** : Zeigt die Ereignisse des betreffenden Geräts an.
+- **speichern** : Speichern Sie die am Gerät vorgeNamemenen Änderungen.
+- **Entfernen** : Ausrüstung entfernen.
 
 ### Registerkarte Informationen
 
-L'onglet **Informations** contient les informations générales Ausrüstung ainsi que ses commandes :
+die Registerkarte **Informationen** enthält allgemeine Informationen über das Gerät und seine Bedienelemente :
 
-- **Identifikation** : Identifiant unique dans la base de données de Jeedom.
-- **Name** : Name Ausrüstung.
-- **Identifikation logique** : Identifiant logique Ausrüstung (peut être vIdentifikatione).
-- **Objekt-Identifikation** : Identifiant unique de l'objet parent (peut être vIdentifikatione).
-- **Erstellungsdatum** : Erstellungsdatum Ausrüstung.
-- **Activer** : Cochez la case poderr activer l'équipement (sans oderblier de sauvegarder).
-- **sichtbar** : Cochez la case poderr rendre sichtbar l'équipement (sans oderblier de sauvegarder).
-- **Typ** : Identifiant du plugin par lequel il a été créé.
-- **Tentative échoderée** : Namebre de tentatives de communications consécutives avec l'équipement qui ont échoderé.
-- **Date de dernière communication** : Date de la dernière communication Ausrüstung.
-- **dietztes Update** : Date de dernière communication avec l'équipement.
-- **Tags** : tags Ausrüstung. à séparer par des '.'. Il permet sur le Dashboard de faire des filtres personnalisés
+- **Identifikation** : Eindeutige Kennung in der Jeedom-Datenbank.
+- **Name** : Name der Ausrüstung.
+- **logische Identifikation** : Kennung der logischen Ausrüstung (kann leer sein).
+- **Objekt-Identifikation** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
+- **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
+- **activate** : Aktivieren Sie das Kontrollkästchen. um das Gerät zu aktivieren (vergessen Sie nicht. es zu speichern)..
+- **sichtbar** : Aktivieren Sie das Kontrollkästchen. um das Gerät sichtbar zu machen (vergessen Sie nicht. es zu speichern)..
+- **Typ** : Kennung des Plugins. mit dem es erstellt wurde.
+- **Versuch fehlgeschlagen** : Anzahl fehlgeschlagener aufeinanderfolgender Kommunikationsversuche mit dem Gerät.
+- **Datum der letzten Mitteilung** : Datum der letzten Mitteilung des Geräts.
+- **dietztes Update** : Datum der letzten Kommunikation mit dem Gerät.
+- **Tags** : Geräte-Tags. getrennt durch &#39;.&#39;. Im Dashboard können benutzerdefinierte Filter erstellt werden
 
-En dessoders voders retrodervez un tableau avec la liste des commandes Ausrüstung avec. poderr chacune. un lien vers leur configuration.
+Unten finden Sie eine Tabelle mit der Liste der Gerätebefehle mit jeweils einem Link zu deren Konfiguration.
 
-### Onglet Anzeigen
+### Registerkarte &quot;Ansicht&quot;
 
-In der Registerkarte **Anzeigen**. voders allez podervoir configurer certains comportements d'affichage de la tuile sur le Dashboard oder en mobile.
+In der Registerkarte **Anzeigen**können Sie bestimmte Verhaltensweisen bei der Anzeige von Kacheln im Dashboard oder auf Mobilgeräten konfigurieren.
 
 #### WIdentifikationget
 
--  **sichtbar** : Cochez la case poderr rendre sichtbar l'équipement.
-- **Afficher le Name** : Cochez la case poderr afficher le Name Ausrüstung sur la tuile.
-- **Afficher le Name de l'objet** : Cochez la case poderr afficher le Name de l'objet parent Ausrüstung. à côté de la tuile.
+-  **sichtbar** : Aktivieren Sie das Kontrollkästchen. um das Gerät sichtbar zu machen.
+- **Name anzeigen** : Aktivieren Sie das Kontrollkästchen. um den Namen des Geräts auf der Kachel anzuzeigen.
+- **Objektnamen anzeigen** : Aktivieren Sie das Kontrollkästchen. um den Namen des übergeordneten Objekts des Geräts neben der Kachel anzuzeigen.
 
-### Paramètres optionnels sur la tuile
+### Optionale Parameter auf der Kachel
 
-En-dessoders. on retroderve des paramètres optionnels d'affichage que l'on peut appliquer à l'équipement. Ces paramètres sont composés d'un Name et d'une valeur. Il suffit de cliquer sur **hinzufügen** poderr en appliquer un
-noderveau. Poderr les équipements. seule la valeur **style** est poderr le moment utilisée. elle permet d'insérer du code CSS sur l'équipement en question.
-
-> **Spitze**
->
-> N'oderbliez pas de sauvegarder après toderte modification.
-
-### Onglet Disposition
-
-Cette partie voders permet de choisir entre la disposition standard des commandes (côte à côte dans le wIdentifikationget). oder en mode tableau. Il n'y a rien à régler en mode par défaut. Voici les options disponibles en mode
-**Tableau** :
-- **Namebre de lignes**
-- **Namebre de colonnes**
-- **Centrer dans les cases** : Cochez la case poderr centrer les commandes dans les cases.
-- **Style générale des cases (CSS)** : Permet de définir le style général en code CSS.
-- **Style du tableau (CSS)** : Permet de définir le style du tableau uniquement.
-
-En dessoders poderr chaque case. la **configuration détaillée** voders permet
-ceci :
-- **Texte de la case** : hinzufügen un texte en plus de la commande (oder todert seul. si il n'y a pas de commande dans la case).
-- **Style de la case (CSS)** : Modifier le style CSS spécifique de la case (attention celui-ci écrase et remplace le CSS général des cases).
+Unten finden Sie optionale Anzeigeparameter. die auf das Gerät angewendet werden können. Diese Parameter bestehen aus einem Namen und einem Wert. Klicken Sie einfach auf **hinzufügen** einen anwenden
+wieder. Für Geräte nur den Wert **Stil** Wird derzeit verwendet. kann CSS-Code in das betreffende Gerät eingefügt werden.
 
 > **Spitze**
 >
-> Dans une case du tableau. si voders voderlez mettre 2 commandes l'une en dessoders de l'autre. il ne faut pas oderblier de rajoderter un retoderr à la ligne après la première dans la **configuration avancée** de celle-ci.
+> Vergessen Sie nicht. nach jeder Änderung zu speichern.
 
-### Onglet Alertes
+### Registerkarte Layodert
 
-Cet onglet permet d'avoir les informations sur la batterie Ausrüstung et de définir des alertes par rapport à celle-ci. Voici les types d'informations que l'on peut troderver :
+In diesem Teil können Sie zwischen dem Standardlayodert der Befehle (nebeneinander im WIdentifikationget) oder im Tabellenmodus wählen. Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
+**Tabelle** :
+- **Anzahl der Zeilen**
+- **Anzahl der Spalten**
+- **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen. um die Bestellungen in den Kontrollkästchen zu zentrieren.
+- **Allgemeiner Boxstil (CSS)** : Ermöglicht das Definieren des allgemeinen Stils im CSS-Code.
+- **Tabellenstil (CSS)** : Hier können Sie nur den Stil der Tabelle definieren.
 
-- **Typ de pile**.
-- **Dernière remontée de l'information**.
-- **Niveau restant**. (si bien sûr votre équipement fonctionne sur pile).
-
-Dessoders. voders poderrrez aussi définir les seuils spécifiques d'alerte de batterie poderr cet équipement. Si voders laissez les cases vIdentifikationes. ceux sont les seuils par défaut qui seront appliqués.
-
-On peut également gérer le timeodert. en minutes. Ausrüstung. Par exemple. 30 indique à jeedom que si l'équipement n'a pas communiqué depuis 30 minutes. alors il faut le mettre en alerte.
-
-> **Spitze**
->
-> dies paramètres globaux sont dans **Réglages→Système→Configuration : logs** oder **Equipements**
-
-### Onglet Commentaire
-
-Permet d'écrire un commentaire à propos Ausrüstung.
-
-## Erweiterte Konfiguration d'une commande
-
-En premier lieu. en haut à droite. quelques bodertons disponibles :
-
-- **Tester** : Permet de tester la commande.
-- **Verbindungen** : Permet d'afficher les liens Ausrüstung avec les objets. commandes. scénarios. variables. interAktions…​. soders forme graphique.
-- **log** : Affiche les évènements Ausrüstung en question.
-- **Informations** : Affiche les propriétés brutes Ausrüstung.
--  **Appliquer à** : Permet d'appliquer la même configuration sur plusieurs commandes.
-- **speichern** : Sauvegarde les modifications faites sur l'équipement.
+Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
+diese :
+- **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder allein. wenn das Feld keinen Befehl enthält)..
+- **Box-Stil (CSS)** : Ändern Sie den spezifischen CSS-Stil der Box (beachten Sie. dass das allgemeine CSS der Boxen überschrieben und ersetzt wird)..
 
 > **Spitze**
 >
-> Dans un graphique. un doderble clic sur un élément voders amène à sa configuration.
+> Wenn Sie in einem Feld in der Tabelle zwei Befehle untereinander setzen möchten. vergessen Sie nicht. nach dem ersten in der Tabelle einen Zeilenumbruch hinzuzufügen **erweiterte Konfiguration** davon.
+
+### Registerkarte &quot;Warnungen&quot;
+
+Auf dieser Registerkarte können Sie Informationen zur Batterie des Geräts abrufen und entsprechende Warnungen definieren. Hier sind die Arten von Informationen. die gefunden werden können :
+
+- **Batterietyp**.
+- **Neuestes Feedback**.
+- **Verbleibendes Niveau**. (wenn Ihre Ausrüstung natürlich mit Batterie arbeitet).
+
+Im Folgenden können Sie auch die spezifischen Batteriewarnschwellen für dieses Gerät definieren. Wenn Sie die Felder leer lassen. werden diese Standardschwellenwerte angewendet.
+
+Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispiel sagt 30 jeedom. dass wenn das Gerät 30 Minuten lang nicht kommuniziert hat. es in Alarmbereitschaft versetzt werden muss.
+
+> **Spitze**
+>
+> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : logs** oder **Einrichtungen**
+
+### Registerkarte &quot;Kommentar&quot;
+
+Ermöglicht das Schreiben eines Kommentars zur Ausrüstung.
+
+## Erweiterte Konfiguration einer Bestellung
+
+Zunächst sind oben rechts einige Schaltflächen verfügbar :
+
+- **Test** : Wird zum Testen des Befehls verwendet.
+- **Verbindungen** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit Objekten. Befehlen. Szenarien. Variablen. Interaktionen…. in grafischer Form.
+- **log** : Zeigt die Ereignisse des betreffenden Geräts an.
+- **Informationen** : Zeigt die Roheigenschaften des Geräts an.
+-  **Bewerben Sie sich bei** : Ermöglicht die Anwendung derselben Konfiguration auf mehrere Befehle.
+- **speichern** : Speichern Sie die am Gerät vorgeNamemenen Änderungen.
+
+> **Spitze**
+>
+> In einer Grafik bringt Sie ein Doppelklick auf ein Element zu seiner Konfiguration.
 
 > **Notiz**
 >
-> En fonction du type de commande. les informations/Aktions affichées peuvent changer.
+> Abhängig von der Art der Bestellung können sich die angezeigten Informationen / Aktionen ändern.
 
 ### Registerkarte Informationen
 
-L'onglet **Informations** contient les informations générales sur la commande :
+die Registerkarte **Informationen** enthält allgemeine Informationen zur Bestellung :
 
-- **Identifikation** : Identifiant unique dans la base de données.
-- **Identifikation logique** : Identifiant logique de la commande (peut être vIdentifikatione).
-- **Name** : Name de la commande.
-- **Typ** : Typ de la commande (Aktion oder info).
-- **Soders-type** : Soders-type de la commande (binaire. numérique…​).
-- **URL directe** : Foderrnit l'URL poderr accéder à cet équipement. (clic droit. copier l'adresse du lien) L'URL lancera la commande poderr une **Aktion** et retoderrnera l'information poderr une **info**.
-- **Einheit** : Einheit de la commande.
-- **Commande déclenchant une mise à joderr** : Donne l'Identifikationentifiant d'une  autre commande qui. si cette autre commande change. va forcer la mise à joderr de la commande visualisée.
-- **sichtbar** : Cochez cette case poderr que la commande soit sichtbar.
-- **Suivre dans la timeline** : Cochez cette case poderr que cette commande soit sichtbar dans la timeline quand elle est utilisée. Voders podervez préciser une timeline en particulier dans le champ qui s'affiche si l'option est cochée.
-- **Interdire dans les interAktions automatique** : interdit les interAktions automatique sur cette commande
-- **Symbol** : Permet de changer l'icône de la commande.
+- **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
+- **logische Identifikation** : logische Kennung der Bestellung (kann leer sein).
+- **Name** : Name der Bestellung.
+- **Typ** : Art der Bestellung (Aktion oder Info).
+- **Unterart** : Befehlssubtyp (binär. digital usw.).
+- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick. kopieren Sie die Linkadresse) Die URL startet den Befehl für a **Aktion** und geben Sie die Informationen für a zurück **Info**.
+- **Einheit** : Steuereinheit.
+- **Befehl. der ein Update auslöst** : Gibt die Kennung eines anderen Befehls an. der bei Änderung dieses anderen Befehls die Aktualisierung des angezeigten Befehls erzwingt.
+- **sichtbar** : Aktivieren Sie dieses Kontrollkästchen. um den Befehl sichtbar zu machen.
+- **Folgen Sie der Zeitleiste** : Aktivieren Sie dieses Kontrollkästchen. um diesen Befehl bei Verwendung in der Zeitleiste sichtbar zu machen. Sie können eine bestimmte Zeitleiste in dem Feld angeben. das angezeigt wird. wenn die Option aktiviert ist.
+- **In automatischen Interaktionen verbieten** : verbietet automatische Interaktionen mit diesem Befehl
+- **Symbol** : Ermöglicht das Ändern des Befehlssymbols.
 
-Voders avez aussi trois autres bodertons oranges en dessoders :
+Sie haben auch drei andere orangefarbene Knöpfe darunter :
 
-- **Cette commande remplace l'Identifikation** : Permet de remplacer un Identifikation de commande par la commande en question. Utile si voders avez supprimé un équipement dans Jeedom et que voders avez des scénarios qui utilisent des commandes de celui-ci.
-- **Cette commande remplace la commande** : Remplace une commande par la commande coderrante.
-- **Remplacer cette commande par la commande** : L'inverse. remplace la commande par une autre commande.
+- **Dieser Befehl ersetzt die Identifikation** : Ermöglicht das Ersetzen einer Bestellnummer durch die betreffende Bestellung. Nützlich. wenn Sie ein Gerät in Jeedom gelöscht haben und Szenarien haben. in denen Befehle verwendet werden.
+- **Dieser Befehl ersetzt den Befehl** : Befehl durch aktuellen Befehl ersetzen.
+- **Ersetzen Sie diesen Befehl durch den Befehl** : Ersetzen Sie umgekehrt den Befehl durch einen anderen Befehl.
 
 > **Notiz**
 >
-> Ce genre d'Aktion remplace les commandes partodert dans Jeedom (scénario. interAktion. commande. équipement…​.).
+> Diese Art von Aktion ersetzt die Befehle überall in Jeedom (Szenario. Interaktion. Befehl. Ausrüstung…)..
 
-En-dessoders. voders retrodervez la liste des différents équipements. commandes. scénarios oder interAktions qui utilisent cette commande. Un clic dessus permet d'aller directement sur leur configuration respective.
+Unten finden Sie eine Liste der verschiedenen Geräte. Befehle. Szenarien oder Interaktionen. die diesen Befehl verwenden. Klicken Sie darauf. um direkt zur jeweiligen Konfiguration zu gelangen.
 
-### Onglet Configuration
+### Registerkarte Konfiguration
 
-#### Poderr une commande de type info :
+#### Für eine Info-Bestellung :
 
-- **Calcul et arrondi**
-    - **Formule de calcul (\#value\# poderr la valeur)** : Permet de faire une opération sur la valeur de la commande avant le traitement par Jeedom. exemple : `#value# - 0.2` poderr retrancher 0.2 (offset sur un capteur de température).
-    - **Arrondi (chiffre après la virgule)** : Permet d'arrondir la valeur de la commande (Exemple : mettre 2 poderr transformer 16.643345 en 16.64).
-- **Typ générique** : Permet de configurer le type générique de la commande (Jeedom essaie de le troderver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
-- **Action sur la valeur. si** : Permet de faire des sortes de mini scénarios. Voders podervez. par exemple. dire que si la valeur vaut plus de 50 pendant 3 minutes. alors il faut faire telle Aktion. Cela permet. par exemple. d'éteindre une lumière X minutes après que celle-ci se soit allumée.
+- **Berechnung und Rundung**
+    - **Berechnungsformel (\ #Wert \ # für den Wert)** : Ermöglicht es Ihnen. den Wert der Bestellung vor der Verarbeitung durch Jeedom zu bearbeiten : `#value# - 0.2` um 0 zu subtrahieren.2 (Versatz an einem Temperatursensor).
+    - **Abgerundet (Zahl nach Dezimalpunkt)** : Wird verwendet. um den Wert des Befehls zu runden (Beispiel : Setze 2. um 16 zu transformieren.643 345 in 16.64).
+- **Generischer Typ** : Ermöglicht das Konfigurieren des generischen Befehlstyps (Jeedom versucht. ihn im automatischen Modus selbst zu finden).. Diese Informationen werden von der mobilen Anwendung verwendet.
+- **Aktion auf Wert. wenn** : Machen wir eine Art Miniszenario. Sie können beispielsweise sagen. dass Sie eine solche Aktion ausführen müssen. wenn der Wert 3 Minuten lang mehr als 50 wert ist. So kann beispielsweise ein Licht X Minuten nach dem Einschalten ausgeschaltet werden.
 
 - **historisch**
-    - **Historiser** : Cochez la case poderr que les valeurs de cette  commande soient historisées. (Voir **Analyse→historisch**)
-    - **Mode de lissage** : Mode de **lissage** oder d'**archivage** permet de choisir la manière d'archiver la donnée. Par défaut. c'est une **moyenne**. Il est aussi possible de choisir le **maximum**. le **minimum**. oder **aucun**. **aucun** permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette  commande (aussi bien sur la première période des 5 mins qu'avec la tâche d'archivage). Cette option est Gefahreuse car Jeedom        conserve todert : il va donc y avoir beaucoderp plus de données conservées.
-    - **Purger l'historique si plus vieux de** : Permet de dire à Jeedom de Entfernen todertes les données plus vieilles qu'une certaine période. Peut être pratique poderr ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom.
+    - **historisieren** : Aktivieren Sie das Kontrollkästchen. damit die Werte dieses Befehls protokolliert werden. (Siehe **Analyse → Geschichte**)
+    - **Glättungsmodus** : Modus von **glätten** oder**Archivierung** Hier können Sie auswählen. wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **Durchschnitt**. Es ist auch möglich. die zu wählen **Maximum**. die **Minimum**oder **keine**. **keine** Lassen Sie uns Jeedom mitteilen. dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch mit der Archivierungsaufgabe).. Diese Option ist gefährlich. weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
+    - **Verlauf löschen. wenn älter als** : Sagen wir Jeedom. dass alle Daten gelöscht werden sollen. die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein. keine Daten zu speichern. wenn dies nicht erforderlich ist. und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
-- **Gestion des valeurs**
-    - **Valeur interdite** : Si la commande prend une de ces valeurs.  Jeedom l'ignore avant de l'appliquer.
-    - **Valeur retoderr d'état** : Permet de faire revenir la commande à cette valeur après un certain temps.
-    - **Durée avant retoderr d'état (min)** : Temps avant le retoderr à la valeur ci-dessus.
+- **Werteverwaltung**
+    - **Verbotener Wert** : Wenn der Befehl einen dieser Werte annimmt. ignoriert Jeedom ihn. bevor er angewendet wird.
+    - **Statusrückgabewert** : Setzt den Befehl nach einer bestimmten Zeit auf diesen Wert zurück.
+    - **Dauer vor Statusrückgabe (min)** : Zeit vor der Rückkehr zum obigen Wert.
 
-- **Autres**
-    - **Gestion de la répétition des valeurs** : En automatique si la commande remonte 2 fois la même valeur d'affilée. alors Jeedom ne prendra pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario. sauf si la commande est de type binaire). Voders podervez forcer la répétition de la valeur oder l'interdire complètement.
-    - **Push URL** : Permet de rajoderter une URL à appeler en cas de mise à joderr de la commande. Voders podervez utiliser les tags suivant : `#value#` poderr la valeur de la commande. `#cmd_name#` poderr le Name de la commande. `#cmd_Identifikation#` poderr l'Identifikationentifiant unique de la commande. `#humanname#` poderr le Name complet de la commande       (ex : `#[Salle de bain][Hydrometrie][HumIdentifikationité]#`). `#eq_name#` poderr le Name Ausrüstung.
+- **andere**
+    - **Management der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird. berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeIdentifikationet das mehrfache Auslösen eines Szenarios. es sei denn. der Befehl ist vom binären Typ).. Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
+    - **URL drücken** : Ermöglicht das Hinzufügen einer URL. die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : `#value#` poderr la valeur de la commande. `#cmd_name#` poderr le Name de la commande. `#cmd_Identifikation#` poderr l'Identifikationentifiant unique de la commande. `#humanname#` poderr le Name complet de la commande       (ex : `#[Salle de bain][Hydrometrie][HumIdentifikationité]#`). `#eq_name#` poderr le Name Ausrüstung.
 
-#### Poderr une commande Aktion :
+#### Für einen Aktionsbefehl :
 
--  **Typ générique** : Permet de configurer le type générique de la commande (Jeedom essaie de le troderver par lui-même en mode auto). Cette information est utilisée par l'application mobile.
-- **Confirmer l'Aktion** : Cochez cette case poderr que Jeedom demande une confirmation quand l'Aktion est lancée à partir de l'interface de cette commande.
-- **Zugangscode** : Permet de définir un code que Jeedom demandera quand l'Aktion est lancée à partir de l'interface de cette commande.
-- **Action avant exécution de la commande** : Permet d'ajoderter des commandes **avant** chaque exécution de la commande.
-- **Action après exécution de la commande** : Permet d'ajoderter des commandes **après** chaque exécution de la commande.
+-  **Generischer Typ** : Ermöglicht das Konfigurieren des generischen Befehlstyps (Jeedom versucht. ihn im automatischen Modus selbst zu finden).. Diese Informationen werden von der mobilen Anwendung verwendet.
+- **Aktion bestätigen** : Aktivieren Sie dieses Kontrollkästchen. um eine Bestätigung der Jeedom-Anforderung zu erhalten. wenn die Aktion über die Schnittstelle dieses Befehls gestartet wird.
+- **Zugangscode** : Ermöglicht das Definieren eines Codes. den Jeedom beim Starten der Aktion über die Schnittstelle dieses Befehls abfragt.
+- **Aktion vor Ausführung des Befehls** : Befehle hinzufügen **vor** jede Ausführung des Auftrags.
+- **Aktion nach Ausführung des Befehls** : Befehle hinzufügen **nach** jede Ausführung des Auftrags.
 
-### Onglet Alertes
+### Registerkarte &quot;Warnungen&quot;
 
-Permet de définir un niveau d'alerte (**Warnung** oder **Gefahr**) en fonction de certaines conditions. Par exemple. si `value > 8` pendant 30 minutes alors l'équipement peut passer en alerte **Warnung**.
+Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Gefahr**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird. kann das Gerät in Alarmbereitschaft versetzt werden **Warnung**.
 
 > **Notiz**
 >
-> Sur la page **Réglages→Système→Configuration : logs**. voders podervez configurer une commande de type message qui permettra à Jeedom de voders prévenir si on atteint le seuil Warnung oder Gefahr.
+> Auf der Seite **→ Einstellungen → Systemkonfiguration : logs**können Sie einen Befehl vom Typ Nachricht konfigurieren. mit dem Jeedom Sie benachrichtigt. wenn der Warn- oder Gefahrenschwellenwert erreicht ist.
 
-### Onglet Anzeigen
+### Registerkarte &quot;Ansicht&quot;
 
-Dans cette partie. voders allez podervoir configurer certains comportements d'affichage du wIdentifikationget sur le Dashboard. les vues. le design et en mobile.
+In diesem Teil können Sie bestimmte WIdentifikationget-Anzeigeverhalten im Dashboard. in Ansichten. im Design und auf Mobilgeräten konfigurieren..
 
-- **WIdentifikationget** : Permet de choisir le wIdentifikationget sur dekstop oder mobile (à noter qu'il faut le plugin wIdentifikationget et que voders podervez le faire aussi à partir de celui-ci).
-- **sichtbar** : Cochez poderr rendre sichtbar la commande.
-- **Afficher le Name** : Cochez poderr rendre sichtbar le Name de la commande. en fonction du contexte.
-- **Afficher le Name et l'icône** : Cochez poderr rendre sichtbar l'icône en plus du Name de la commande.
-- **Retoderr à la ligne forcé avant le wIdentifikationget** : Cochez **avant le  wIdentifikationget** oder **après le wIdentifikationget** poderr ajoderter un retoderr à la ligne avant oder après le wIdentifikationget (poderr forcer par exemple un affichage en colonne des différentes commandes Ausrüstung au lieu de lignes par défaut)
+- **WIdentifikationget** : Ermöglicht die Auswahl des WIdentifikationgets auf dekstop oder mobil (beachten Sie. dass Sie das WIdentifikationget-Plugin benötigen und dies auch von dort aus tun können).
+- **sichtbar** : Überprüfen Sie. ob der Befehl sichtbar ist.
+- **Name anzeigen** : Aktivieren Sie diese Option. um den Namen des Befehls je nach Kontext sichtbar zu machen.
+- **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen. um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.
+- **Umbrochene Zeile vor dem WIdentifikationget** : wählen **vor dem WIdentifikationget** oder **nach dem WIdentifikationget** Hinzufügen eines Zeilenumbruchs vor oder nach dem WIdentifikationget (um beispielsweise eine Anzeige in der Spalte der verschiedenen Befehle des Geräts anstelle von Zeilen standardmäßig zu erzwingen)
 
-En-dessoders. on retroderve des paramètres optionnels d'affichage que l'on peut passer au wIdentifikationget. Ces paramètres dépendent du wIdentifikationget en question. il faut donc regarder sa fiche sur le Market poderr les connaître.
+Unten finden Sie optionale Anzeigeparameter. die an das WIdentifikationget übergeben werden können. Diese Parameter hängen vom jeweiligen WIdentifikationget ab. Sie müssen sich daher die Datei auf dem Markt ansehen. um sie zu kennen.
 
 > **Spitze**
 >
-> N'oderbliez pas de sauvegarder après toderte modification.
+> Vergessen Sie nicht. nach jeder Änderung zu speichern.
