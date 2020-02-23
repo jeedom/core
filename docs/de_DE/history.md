@@ -182,13 +182,13 @@ scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
 Les cartes sur la timeline affichent :
 
--   **bestellen action** : en fond rouge, une icône à droite vous permet
-    d'afficher la fenêtre de configuration avancée de la commande
+-   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+    Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
--   **bestellen info** : en fond bleu, une icône à droite vous permet
-    d'afficher la fenêtre de configuration avancée de la commande
+-   **Info Befehl** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+    Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
--   **Szenario** : en fond gris, vous avez 2 icônes : une pour afficher
-    le log du scénario et une pour aller sur le scénario
+-   **Szenario** : In grauem Hintergrund haben Sie 2 Symbole : eine anzuzeigen
+    das Szenario-Protokoll und eines, um zum Szenario zu gelangen
 
 

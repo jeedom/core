@@ -1,156 +1,156 @@
-La page widentificacióngets vous permet de créer des widentificacióngets personnalisés et uniques pour votre Jeedom.
+La página de widentificacióngets le permite crear widentificacióngets personalizados y únicos para su Jeedom.
 
-Il y a 2 possibilités :
+Hay 2 posibilidentificaciónades :
 
-- Soit en cliquant sur le bouton code et directement écrire votre code en html pour votre widentificaciónget (ce n'est pas forcement ce que nous conseillons car lors des mises à jour de jeedom votre code peut devenir incompatible avec jeedom)
-- Soit en faisant un widentificaciónget basé sur un template que l'on fournit
+- O bien haciendo clic en el botón de código y escribiendo directamente su código html para su widentificaciónget (esto no es necesariamente lo que recomendamos porque durante las actualizaciones de jeedom su código puede volverse incompatible con jeedom)
+- Ya sea haciendo un widentificaciónget basado en una plantilla que proporcionamos
 
-# Mais c'est quoi un template ?
+# Pero que es una plantilla ?
 
-Pour faire simple c'est du code (ici html) où l'on a prédéfini certaines parties que vous allez pouvoir configurer comme vous le voulez.
+Para hacerlo simple, es el código (aquí html) donde hemos predefinidentificacióno ciertas partes que podrá configurar como desee.
 
-Dans les cas des widentificacióngets, on vous propose souvent la personnalisation des icônes ou de mettre les images que vous voulez.
+En el caso de los widentificacióngets, a menudo sugerimos personalizar los iconos o colocar las imágenes que desee..
 
-# Les templates
+# Las plantillas
 
-Il y a 2 types de templates :
+Hay 2 tipos de plantillas. :
 
-- Les "simples" : type une icône/image pour le "on" et une icône/image pour le "off"
-- Les "multistates" : cela vous permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY" et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si c'est "plop" et ainsi de suite.
+- El &quot;simple&quot; : escriba un icono / imagen para el &quot;encendidentificacióno&quot; y un icono / imagen para el &quot;apagado&quot;
+- Los &quot;estados múltiples&quot; : esto le permite definir, por ejemplo, una imagen si el comando está configurado en &quot;XX&quot; y otro si&gt; en &quot;YY&quot; y nuevamente si &lt;en &quot;ZZ&quot;. O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot; y así sucesivamente.
 
-# Comment faire ?
+# Como hacer ?
 
-Une fois sur la page Outils -> Widentificaciónget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widentificaciónget.
+Una vez en la página Herramientas -&gt; Widentificaciónget, haga clic en &quot;Agregar&quot; y asigne un nombre a su nuevo widentificaciónget.
 
-Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info
-- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...)
-- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template)
-- Une fois le template choisi, jeedom vous donne les possibilités de configuration de celui-ci
+entonces :
+- Usted elige si se aplica a una acción o tipo de información
+- Dependiendo de su elección anterior, tendrá que elegir el subtipo del comando (binario, digital, otro ...)
+- Luego, finalmente, la plantilla en cuestión (planeamos darle ejemplos de representaciones para cada plantilla)
+- Una vez que se ha elegidentificacióno la plantilla, jeedom le ofrece las opciones para configurarla.
 
-## Remplacement
+## reemplazo
 
-C'est ce que l'on appelle un widentificaciónget simple, ici vous avez juste à dire que le "on" correspond à telle icone/image (avec le bouton choisir), le "off" est celui-là ec. Ensuite en fonction du template, il peut vous être demander aussi la largeur (widentificaciónth) et la hauteur (height). Ce n'est valable que pour les images.
+Esto es lo que llamamos un widentificaciónget simple, aquí solo tiene que decir que el &quot;encendidentificacióno&quot; corresponde a dicho icono / imagen (con el botón elegir), el &quot;apagado&quot; es ese ec. Luego, dependiendo de la plantilla, también se le puede solicitar el ancho y la altura.. Esto solo es válidentificacióno para imágenes.
 
 >**nota**
 >
->Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidentificaciónité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+>Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidentificaciónad y eficiencia, tanto para usted como para nosotros.. No tuvimos otra opción
 
 >**TIPS**
 >
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuraiton avancé de la commande, onglet affichage et "Paramètres optionnels widentificaciónget". Par exemple si dans widentificaciónth vous mettez comme valeur #widentificaciónth# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widentificaciónget" vous pouvez ajouter widentificaciónth (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous evite de faire un widentificaciónget different par taille d'image que vous voulez
+>Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la pestaña de visualización y el &quot;widentificaciónget de configuración opcional&quot;. Por ejemplo, si en el ancho pones como valor # ancho # (ten cUIDado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widentificaciónget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, le evita crear un widentificaciónget diferente para cada tamaño de imagen que desee.
 
-## Test
+## prueba
 
-C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widentificacióngets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+Esto se llama la parte multiestatal, a menudo tiene, como para widentificacióngets simples, la opción de &quot;altura&quot; / &quot;ancho&quot; para las imágenes solo entonces debajo de la parte de prueba.
 
-C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widentificaciónget affichera l'icône/l'image en question.
+Es bastante simple. En lugar de poner una imagen para el &quot;encendidentificacióno&quot; y / o el &quot;apagado&quot; como en el caso anterior, vaya antes de hacer una prueba para hacer. Si esto es cierto, el widentificaciónget mostrará el icono / imagen en cuestión.
 
-Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automáticamente por el sistema con el valor actual de la orden. También puedes hacer por ejemplo :
 
-- #value# > 1
+- #valor #&gt; 1
 - #value# >= 1 && #value# <= 5
-- #value# == 'toto'
+- #valor # == &#39;toto&#39;
 
 >**nota**
 >
->Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+>Es importante tener en cuenta el &quot;alrededor del texto para comparar si el valor es un texto
 
 >**nota**
 >
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+>Para usuarios avanzados, aquí también es posible usar funciones de JavaScript tipo #valor#.match (&quot;^ plop&quot;), aquí probamos si el texto comienza con plop
 
 >**nota**
 >
->Il est possible d'afficher la valeur de la commande dans le widentificaciónget en mettant par exemple a coté du code HTML de l'icone #value#
+>Es posible mostrar el valor del comando en el widentificaciónget colocando, por ejemplo, al lado del código HTML del icono #value#
 
-# Description de widentificacióngets
+# Descripción de widentificacióngets
 
-Nous allons ici décrire certain widentificaciónget qui ont un fonctionnement un peu particulier.
+Vamos a describir aquí algunos widentificacióngets que tienen un funcionamiento bastante particular..
 
-## Paramètres fréquents
+## Configuraciones frecuentes
 
-- Time widentificaciónget : affiche le temps depuis lequel le systeme est dans l'état afficher.
-- On : icone à afficher si l'équipement est on/1
-- Off : icone à afficher si l'équipement est off/0
-- Light on : icone à afficher si l'équipement est on/1 et que le theme est light (si videntificacióne alors jeedom prend l'img dark on)
-- Light off : icone à afficher si l'équipement est off/0 et que le theme est light (si videntificacióne alors jeedom prend l'img dark off)
-- Dark on : icone à afficher si l'équipement est on/1 et que le theme est dark (si videntificacióne alors jeedom prend l'img light on)
-- Dark off : icone à afficher si l'équipement est off/0 et que le theme est dark (si videntificacióne alors jeedom prend l'img light off)
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
+- Widentificaciónget de tiempo : muestra el tiempo desde el cual el sistema ha estado en el estado de visualización.
+- uno : icono para mostrar si el equipo está encendidentificacióno / 1
+- apagado : icono para mostrar si el equipo está apagado / 0
+- Luz encendidentificacióna : ícono para mostrar si el equipo está encendidentificacióno / 1 y el tema es claro (si está vacío, entonces la libertad toma la imagen oscura encendidentificacióna)
+- Luz apagada : icono para mostrar si el equipo está apagado / 0 y el tema es claro (si está vacío, entonces la libertad quita la imagen oscura)
+- Oscuro en : ícono para mostrar si el equipo está encendidentificacióno / 1 y el tema está oscuro (si está vacío, entonces jeedom toma la luz encendidentificacióna)
+- Oscuro apagado : icono para mostrar si el equipo está apagado / 0 y el tema está oscuro (si está vacío, entonces jeedom apaga la luz de imagen)
+- Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se requiere el ancho, jeedom calculará la altura para no distorsionar la imagen
+- Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se requiere el ancho, jeedom calculará la altura para no distorsionar la imagen
 
-## HygroThermographe
+## higrotermógrafo
 
-Ce widentificaciónget est un peu particulier car c'est un widentificaciónget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type temperature et humidentificaciónité.
+Este widentificaciónget es un poco especial porque es un widentificaciónget de comandos múltiples, es decir que reúne en su pantalla el valor de varios comandos. Aquí toma los comandos de temperatura y humedad..
 
-Pour le configurer c'est assez simple il faut affecter le widentificaciónget a la commande température de votre équipement et à la commande humidentificaciónité.
+Para configurarlo es bastante simple, debe asignar el widentificaciónget al control de temperatura de su equipo y al control de humedad.
 
 >**IMPORTANTE**
 >
->Il faut ABSOLUMENT que vos commandes aient les génériques type temperature sur la commande de temperature et humidentificaciónité sur la commande humidentificaciónité (cela se configure dans la configuration avancé de la commande onglet configuration).
+>Es ABSOLUTAMENTE necesario que sus pedidentificaciónos tengan la temperatura de tipo genérico en el control de temperatura y humedad en el control de humedad (esto se configura en la configuración avanzada de la configuración de la pestaña de comandos).
 
-Le widentificaciónget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+El widentificaciónget tiene un parámetro opcional. : escala que le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño
 
->**NOTE**
+>**NOTA**
 >
-> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widentificaciónget cela ne marchera pas vu que c'est un widentificaciónget utilisant la valeur de plusieurs commande il faut absolument mettre le widentificaciónget complet
+> Atención en un diseño es importante no hacer un pedidentificacióno solo con este widentificaciónget, no funcionará ya que es un widentificaciónget que utiliza el valor de varios pedidentificaciónos, es absolutamente necesario poner el widentificaciónget completo
 
-## Slidentificacióner Button
+## Botón deslizante
 
-- step : permet de regler le pas d'une action sur un bouton (0.5 par defaut)
+- paso : permite ajustar el paso de una acción en un botón (0.5 por defecto)
 
-## Compass
+## brújula
 
-- needle : mettre à 1 pour un affichage en mode boussole
+- aguja : configurado en 1 para mostrar en modo brújula
 
-# Widentificaciónget code
+# Widentificaciónget de código
 
-## Les tags
+## yiquetas
 
-En mode code vous avez accès a different tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+En el modo de código tiene acceso a diferentes etiquetas para pedidentificaciónos, aquí hay una lista (no necesariamente exhaustiva) :
 
-- #nombre# : nom de la commande
-- #valueName# : nom de la valeur de la commande, et = #nombre# quand c'est une commande de type info
-- #hidentificacióne_nombre# : videntificacióne ou hidentificaciónden si l'utilisateur a demandé a masquer le nom du widentificaciónget, a mettre directement dans une balise class
-- #identificación# : identificación de la commande
-- #state# : valeur de la commande, videntificacióne pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uidentificación# : identificaciónentifiant unique pour cette génération du widentificaciónget (si il y a plusieurs fois la meme commande, cas des designs seule cette identificaciónentifiant est réelement unique)
-- #valueDate# : date de la valeur de la commande
-- #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php#L67) pour la liste)
-- #hidentificacióne_history# : si l'historique (valeur max, min, moyenne, tendance) doit etre masqué ou non. Comme pour le #hidentificacióne_nombre# il vaut videntificacióne ou hidentificaciónden, et peut donc etre utilisé directement dans une class. IMPORTANTE si ce tag n'est pas trouvé sur votre widentificaciónget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
-- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de jeedom par l'utilisateur)
-- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de jeedom par l'utilisateur)
-- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de jeedom par l'utilisateur). Attention la tendance est directement une class pour icone : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+- #nombre# : nombre del comando
+- #VALUENAME# : nombre del valor del comando y = # nombre # cuando se trata de un comando de tipo de información
+- #hidentificacióne_nombre# : vacío u oculto si el usuario solicitó ocultar el nombre del widentificaciónget, ponerlo directamente en una etiqueta de clase
+- #identificación# : ID de pedidentificacióno
+- #estado# : valor del comando, vacío para un comando de tipo de acción si no está vinculado a un comando de estado
+- #UID# : identificaciónentificador único para esta generación del widentificaciónget (si hay varias veces el mismo comando, en el caso de diseños, solo este identificaciónentificador es realmente único)
+- #ValueDate# : fecha del valor del pedidentificacióno
+- #collectDate# : fecha de recogidentificacióna del pedidentificacióno
+- #alertLevel# : nivel de alerta (ver [aquí] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php # L67) para la lista)
+- #hidentificacióne_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a # hidentificacióne_nombre #, está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTEE si esta etiqueta no se encuentra en su widentificaciónget, entonces las etiquetas # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # y # trend # no serán reemplazadas por Jeedom.
+- #minHistoryValue# : valor mínimo durante el período (período definidentificacióno en la configuración de libertad por el usuario)
+- #averageHistoryValue# : valor promedio durante el período (período definidentificacióno en la configuración de libertad por el usuario)
+- #maxHistoryValue# : valor máximo durante el período (período definidentificacióno en la configuración de libertad por el usuario)
+- #tendencia# : tendencia durante el período (período definidentificacióno en la configuración de libertad por el usuario). Atención, la tendencia es directamente una clase de ícono : fas fa-flecha hacia arriba, fas fa-flecha hacia abajo o fas fa-minus
 
-## Mise à jour des valeurs
+## Actualizar valores
 
-Lors d'une nouvelle valeur jeedom va chercher dans sur la page web si la commande est la et dans jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+Cuando un nuevo valor jeedom se verá en la página web si el comando está allí y en jeedom.cmd.actualizar si hay una función de actualización. En caso afirmativo, lo llama con un solo argumento que es un objeto en la forma :
 
 ```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+{display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
 ```
 
-Voila un exemple simple de code javascript a mettre dans votre widentificaciónget :
+Aquí hay un ejemplo simple de código JavaScript para poner en su widentificaciónget :
 
 ```
 <script>
-    jeedom.cmd.update['#identificación#'] = function(_options){
-      $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : &#39;+ _Options.ValueDate + &#39; <br/> Fecha de recogidentificacióna : &#39;+ _Options.collectDate)
-      $ (&#39;. cmd [data-cmd_identificación = # identificación #] .state&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+    jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options) {
+      $ (&#39;. cmd [data-cmd_identificación = # identificación #]&#39;). attr (&#39;título&#39;, &#39;Fecha de valor : &#39;+ _Options.ValueDate + &#39; <br/> Fecha de recogidentificacióna : &#39;+ _Options.collectDate)
+      $ (&#39;. cmd [data-cmd_identificación = # identificación #] .estado&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
     }
-    jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:&#39;# # AlertLevel&#39;});
+    jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;});
 </script>
 ```
 
 Aquí 2 cosas importantes :
 
 ```
-jeedom.cmd.update['#identificación#'] = function(_options){
-  $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : &#39;+ _Options.ValueDate + &#39; <br/> Fecha de recogidentificacióna : &#39;+ _Options.collectDate)
-  $ (&#39;. cmd [data-cmd_identificación = # identificación #] .state&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options) {
+  $ (&#39;. cmd [data-cmd_identificación = # identificación #]&#39;). attr (&#39;título&#39;, &#39;Fecha de valor : &#39;+ _Options.ValueDate + &#39; <br/> Fecha de recogidentificacióna : &#39;+ _Options.collectDate)
+  $ (&#39;. cmd [data-cmd_identificación = # identificación #] .estado&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
 }
 ```
 
@@ -159,7 +159,7 @@ La función llamada al actualizar el widentificaciónget que se encarga de actua
 y :
 
 ```
-jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:&#39;# # AlertLevel&#39;});
+jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;});
  ```
 
  La llamada a esta función para la inicialización del widentificaciónget.

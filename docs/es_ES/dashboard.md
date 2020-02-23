@@ -1,84 +1,84 @@
-Une des pages principales de Jeedom affiche un compte-rendu de toute
-votre domotique. Ce compte-rendu (contrairement aux vues et design) est
-auto-généré par Jeedom.
+Una de las páginas principales de Jeedom muestra una cuenta de todos
+su domótica. Este informe (a diferencia de las vistas y el diseño) es
+autogenerado por Jeedom.
 
-Il est accessible en cliquant sur **Accueil → Dashboard**
-
-> **punta**
->
-> Il est possible d'aller directement sur un objet de votre domotique.
-> Cela permet de n'avoir que les équipements qui vous intéressent et
-> donc de charger la page plus rapidement
-
--   Vous avez en haut à gauche une petite icône pour faire
-    afficher/masquer l'arbre des objets (celui-ci affiche aussi les
-    informations des résumés d'objet)
-
--   Au milieu, vous pouvez choisir de ne filtrer que sur certains types
-    d'équipements
-
--   A droite, un premier bouton pour passer en mode édition, pour par
-    exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé
-    sur le widget), vous pouvez aussi dans ce mode édition
-    redimensionner certains widgets et réorganiser l'ordre des commandes
-    à l'intérieur de celui-ci
-
--   Un deuxième bouton pour afficher/masquer les scénarios
-
--   En cliquant sur un résumé d'objet, vous filtrez pour n'afficher que
-    les équipements ayant pour parent cet objet et qui concernent ce
-    résumé d'objet.
-
--   Un clic sur une commande de type information permet d'afficher
-    l'historique de la commande (si elle est historisée)
+Se puede acceder haciendo clic en **Inicio → Tablero**
 
 > **punta**
 >
-> Il est possible, à partir de votre profil, de configurer Jeedom pour
-> que l'arbre des objets et/ou les scénarios soient visibles par défaut
-> lorsque vous arrivez sur le Dashboard
+> Es posible ir directamente a un objeto en su domótica.
+> Esto le permite tener solo el equipo que le interesa y
+> así que carga la página más rápido
+
+-   Tienes en la parte superior izquierda un pequeño ícono para hacer
+    muestra / oculta el árbol de objetos (esto también muestra el
+    información de resumen del objeto)
+
+-   En el medio, puede elegir filtrar solo en ciertos tipos
+    equipo
+
+-   A la derecha, un primer botón para cambiar al modo de edición, a la par
+    ejemplo, modifique el orden de los widgets (usando un clic
+    en el widget), también puedes en este modo de edición
+    cambiar el tamaño de algunos widgets y reorganizar el orden de los comandos
+    dentro de ella
+
+-   Un segundo botón para mostrar / ocultar los escenarios.
+
+-   Al hacer clic en un resumen de objeto, filtra para mostrar solo
+    equipos relacionados con este objeto y que se relacionan con este
+    resumen de la asignatura.
+
+-   Se muestra un clic en un comando de tipo de información
+    el historial de pedidos (si es histórico)
 
 > **punta**
 >
-> En mobile un appui long sur une commande de type info permet
-> d'afficher un menu vous proposant soit d'afficher l'historique de la
-> commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
-> prévienne (une seule fois) dès que la valeur passe un certain seuil
+> Es posible, desde su perfil, configurar Jeedom para
+> el árbol de objetos y / o los escenarios son visibles por defecto
+> cuando te subes al tablero
 
-Mode édition 
+> **punta**
+>
+> En dispositivos móviles, una pulsación larga en un comando de tipo de información permite
+> mostrar un menú que ofrezca mostrar el historial de
+> ordene, o ponga una alerta en él para que pueda
+> advertir (solo una vez) tan pronto como el valor pase un cierto umbral
+
+Modo de edición 
 ============
 
-En mode édition, vous pouvez changer la taille des widgets et leur
-disposition sur le dashboard.
+En el modo de edición, puede cambiar el tamaño de los widgets y sus
+diseño en el tablero.
 
-Vous pouvez aussi éditer la disposition interne des commandes du widget
+También puede editar el diseño interno de los controles del widget
 :
 
--   soit les réorganiser par glisser/déposer
+-   reorganícelos arrastrándolos y soltándolos
 
--   soit en faisant un clic droit sur le widget. Vous accédez alors à :
+-   ya sea haciendo clic derecho en el widget. Entonces accedes :
 
-    -   **Configuration avancée** : permet d'accéder à la configuration
-        avancée de la commande
+    -   **Configuración avanzada** : da acceso a la configuración
+        progreso de la orden
 
-    -   **Standard** : disposition par défaut, tout est en automatique
-        avec juste la possibilité de réorganiser l'ordre des commandes
+    -   **estándar** : diseño predeterminado, todo es automático
+        con solo la capacidad de reorganizar el orden de las órdenes
 
-    -   **Tableau** : permet de mettre les commandes dans un tableau :
-        les colonnes et les lignes s'ajoutent et se suppriment par clic
-        droit, ensuite il suffit de déplacer les commandes dans les
-        cases voulues. Vous pouvez mettre plusieurs commandes par case
+    -   **mesa** : permite poner los comandos en una tabla :
+        columnas y filas se agregan y eliminan haciendo clic
+        en ese momento solo mueva los controles dentro
+        cajas deseadas. Puedes poner múltiples pedidos por caja
 
-    -   **Ajouter colonne** : ajoute une colonne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   **Agregar columna** : agregar una columna a la tabla (accesible
+        solo si está en un diseño de tabla)
 
-    -   **Ajouter ligne** : ajoute une ligne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   **Agregar línea** : agregar una fila a la tabla (accesible
+        solo si está en un diseño de tabla)
 
-    -   **Supprimer colonne** : supprime une colonne au tableau
-        (accessible uniquement si vous êtes en disposition tableau)
+    -   **Eliminar columna** : eliminar una columna de la tabla
+        (accesible solo si tiene un diseño de tabla)
 
-    -   **Supprimer ligne** : supprime une ligne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   **Eliminar linea** : eliminar una fila en la tabla (accesible
+        solo si está en un diseño de tabla)
 
 

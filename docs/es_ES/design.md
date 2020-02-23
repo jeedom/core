@@ -1,41 +1,41 @@
-Cette page permet de configurer l'affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+Esta página le permite configurar la visualización de toda su domótica
+muy bien. Lleva tiempo pero su único límite es
+tu imaginación.
 
-Elle est accessible par Acceuil → Design
+Es accesible por Inicio → Diseño
 
 > **punta**
 >
-> Il est possible d'aller directement sur un diseño grâce au sous-menu.
+> Es posible ir directamente a un diseño gracias al submenú.
 
 > **importante**
 >
-> Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le diseño. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d'être sur le diseño).
+> Todas las acciones se realizan haciendo clic derecho en esta página, atención
+> hacerlo bien en diseño. Durante la creación, por lo tanto, es necesario
+> hacer en el medio de la página (para asegurarse de estar en el diseño).
 
-Dans le menu (clic droit donc), nous retrouvons les
-actions suivantes :
+En el menú (clic derecho, por lo tanto), encontramos el
+siguientes acciones :
 
--   **Designs** : Affiche la liste de vos diseños et permet d'y accéder
+-   **diseños** : Muestra la lista de sus diseños y le permite acceder a ellos.
 
--   **Edition** : Permet de passer en mode édition
+-   **edición** : Cambiar al modo de edición
 
--   **Plein ecran** : Permet d'utiliser toute la page Internet, ce qui
-    enlèvera le menu de Jeedom du haut
+-   **Pantalla completa** : Le permite usar toda la página web, que
+    eliminará el menú Jeedom de la parte superior
 
--   **Ajouter graphique** : Permet d'ajouter un graphique
+-   **Añadir gráfico** : Agregar un gráfico
 
--   **Ajouter texte/html** : Permet d'ajouter du texte ou du code
-    html/javascript
+-   **Añadir texto / html** : Le permite agregar texto o código
+    html / javascript
 
--   **Ajouter scénario** : Permet d'ajouter un scénario
+-   **Agregar escenario** : Agregar un escenario
 
--   **Ajouter lien**
+-   **Agregar enlace**
 
-    -   **Vers une vue** : Permet d'ajouter un lien vers une vue
+    -   **Hacia una vista** : Agregar un enlace a una vista
 
-    -   **Vers un diseño** : Agregar un enlace a otro
+    -   **Hacia un diseño** : Agregar un enlace a otro
         diseño
 
 -   **Agregar equipo** : Agrega equipo
@@ -174,56 +174,56 @@ Configuraciones de pantalla
 -   **Mostrar navegador** : mostrar el navegador (segundo gráfico
     más claro debajo del primero)
 
--   **Afficher le sélecteur de période** : affiche le sélecteur de
-    période en haut à gauche
+-   **Mostrar selector de período** : muestra el selector
+    periodo arriba a la izquierda
 
--   **Afficher la barre de défilement** : affiche la barre de défilement
+-   **Mostrar barra de desplazamiento** : muestra la barra de desplazamiento
 
 -   **Fondo transparente** : hace que el fondo sea transparente
 
--   **Bordure** : permet d'ajouter une bordure, attention la syntaxe est
-    HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
-    solid 1px black)
+-   **frontera** : agregue un borde, tenga cuidado con la sintaxis
+    HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo :
+    sólido 1px negro)
 
-Configuration avancée 
+Configuración avanzada 
 ---------------------
 
-Permet de choisir les commandes à grapher
+Le permite elegir los comandos para graficar
 
-Text/html 
+Text / html 
 =========
 
--   **icono** : icono à afficher devant
+-   **icono** : Icono para mostrar en frente
 
--   **Color de fondo** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Color de fondo** : le permite cambiar el color de fondo o
+    poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Color del texto** : le permite cambiar el color de los íconos y
+    textos (tenga cuidado de pasar Predeterminado a No)
 
--   **Arrondir les angles** : permet d'arrondir les angles (ne pas
-    oublier de mettre %, ex 50%)
+-   **Alrededor de los ángulos** : le permite redondear los ángulos (no
+    olvide poner%, ex 50%)
 
--   **Bordure** : permet d'ajouter une bordure, attention la syntaxe est
-    HTML (il faut utiliser une syntaxe CSS, par exemple : solid
-    1px black)
+-   **frontera** : agregue un borde, tenga cuidado con la sintaxis
+    HTML (use la sintaxis CSS, por ejemplo : sólido
+    1px negro)
 
--   **Taille de la police** : permet de modifier la taille de la police
-    (ex 50%, il faut bien mettre le signe %)
+-   **Tamaño de fuente** : le permite cambiar el tamaño de fuente
+    (ex 50%, debe poner el signo%)
 
--   **Alignement du texte** : permet de choisir l'alignement du
-    texte (gauche/droit/centré)
+-   **Alineación de texto** : le permite elegir la alineación de
+    texto (izquierda / derecha / centrado)
 
--   **Gras** : met le texte en gras
+-   **grasa** : texto en negrita
 
--   **texto** : texto au code HTML qui sera dans l'élément
+-   **texto** : Texto en código HTML que estará en el elemento
 
 > **importante**
 >
-> Si vous mettez du code HTML (en particulier du Javascript), attention
-> à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter complètement le diseño et
-> il ne restera plus qu'à le supprimer directement en base de données
+> Si coloca código HTML (especialmente Javascript), tenga cuidado
+> para comprobarlo antes porque puedes hacerlo si hay un error
+> o si sobrescribe un componente de Jeedom que bloquea completamente el diseño y
+> todo lo que tienes que hacer es eliminarlo directamente de la base de datos
 
 guión 
 ========
@@ -231,37 +231,37 @@ guión
 Configuraciones de pantalla 
 ---------------------
 
-Aucun paramètre spécifique d'affichage
+No hay configuraciones de visualización específicas
 
-Lien 
+enlace 
 ====
 
 Configuraciones de pantalla 
 ---------------------
 
--   **apellido** : apellido du lien (texte affiché)
+-   **apellido** : apellidobre del enlace (texto mostrado)
 
--   **Lien** : Lien vers le diseño ou la vue en question
+-   **enlace** : Enlace al diseño o vista en cuestión
 
--   **Color de fondo** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Color de fondo** : le permite cambiar el color de fondo o
+    poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Color del texto** : le permite cambiar el color de los íconos y
+    textos (tenga cuidado de pasar Predeterminado a No)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d'arrondir les angles, ne pas oublier de mettre le %
+-   **Redondee los ángulos (no olvide poner%, ex 50%)** :
+    le permite redondear los ángulos, no olvide poner el%
 
--   **Bordure (attention syntaxe CSS, ex : solid 1px black)** : permet
-    d'ajouter une bordure, attention la syntaxe est HTML
+-   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
+    agregue un borde, tenga cuidado con la sintaxis es HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
+    le permite cambiar el tamaño de fuente
 
--   **Alignement du texte** : permet de choisir l'alignement du
-    texte (gauche/droit/centré)
+-   **Alineación de texto** : le permite elegir la alineación de
+    texto (izquierda / derecha / centrado)
 
--   **Gras** : met le texte en gras
+-   **grasa** : texto en negrita
 
 equipo 
 ==========
@@ -269,13 +269,13 @@ equipo
 Configuraciones de pantalla 
 ---------------------
 
-Aucun paramètre spécifique d'affichage
+No hay configuraciones de visualización específicas
 
-Configuration avancée 
+Configuración avanzada 
 ---------------------
 
-Affiche la fenêtre de configuration avancée de l'équipement (voir
-documentation Résumé domotique ("display"))
+Muestra la ventana de configuración avanzada del equipo (ver
+documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
 
 orden 
 ========
@@ -283,103 +283,103 @@ orden
 Configuraciones de pantalla 
 ---------------------
 
-Aucun paramètre spécifique d'affichage
+No hay configuraciones de visualización específicas
 
-Configuration avancée 
+Configuración avanzada 
 ---------------------
 
-Affiche la fenêtre de configuration avancée de la commande (voir
-documentation Résumé domotique ("display"))
+Muestra la ventana de configuración avanzada del comando (ver
+documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
 
-imagen/Caméra 
+imagenn / Cámara 
 ============
 
 Configuraciones de pantalla 
 ---------------------
 
--   **Afficher** : définit ce que vous voulez afficher, image fixe ou
-    flux de una camara
+-   **visualización** : define lo que desea mostrar, imagen fija o
+    transmitir desde una cámara
 
--   **imagen** : permet d'envoyer l'image en question (si vous avez
-    choisi une image)
+-   **imagen** : le permite enviar la imagen en cuestión (si tiene
+    elige una imagen)
 
--   **Caméra** : caméra à afficher (si vous avez choisi caméra)
+-   **cámara** : cámara para mostrar (si elige cámara)
 
-Zone 
+zona 
 ====
 
 Configuraciones de pantalla 
 ---------------------
 
--   **Type de zone** : C'est ici que vous choisissez le type de la zone :
-    Macro simple, Macro Binaire ou Widget au survol
+-   **puntao de area** : Aquí es donde eliges el tipo de área :
+    Macro individual, macro binaria o widget al pasar el mouse
 
-### Macro simple 
+### Macro individual 
 
-Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
+En este modo, un clic en la zona realiza una o más acciones.
 
-Il vous suffit ici d'indiquer la liste des actions à faire lors du clic
-sur la zone
+Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic
+en la zona
 
-### Macro binaire 
+### Macro binaria 
 
-Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en
-fonction de l'état de la commande que vous donnez. Ex : si la commande
-vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
-la ou les actions Off
+En este modo, Jeedom ejecutará las acciones de encendido o apagado en
+dependiendo del estado del pedido que da. ex : si el pedido
+es 0, entonces Jeedom ejecutará la (s) acción (es) On (s) de lo contrario se ejecutará
+la (s) acción (es) Off
 
--   **Information binaire** : orden donnant l'état à vérifier pour
-    décider de l'action à faire (On ou Off)
+-   **Información binaria** : Comando que da el estado a verificar
+    decidir qué acción tomar (activar o desactivar)
 
-Il vous suffit en dessous de mettre les actions à faire pour le On et
-pour le Off
+Solo tiene que poner las acciones a realizar para
+para el apagado
 
-### Widget au survol 
+### Widget de desplazamiento 
 
-Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous
-afficherez le widget en question
+En este modo, al pasar el mouse o al hacer clic en el área Jeedom, usted
+mostrar el widget en cuestión
 
--   **equipo** : widget à afficher lors du survol ou du clic
+-   **equipo** : widget para mostrar al pasar el mouse o al hacer clic
 
--   **Afficher au survol** : si coché, affiche le widget au survol
+-   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
 
--   **Afficher sur un clic** : si coché, alors le widget est affiché au
+-   **Ver en un clic** : si está marcado, el widget se muestra en
     clic
 
--   **Position** : permet de choisir l'emplacement d'apparition du
-    widget (par défaut bas droite)
+-   **posición** : le permite elegir la ubicación donde
+    widget (predeterminado abajo a la derecha)
 
-Résumé 
+resumen 
 ======
 
--   **Lien** : Permet d'indiquer le résumé à afficher (general pour le
-    global sinon indiquer l'objet)
+-   **enlace** : Se utiliza para indicar el resumen que se mostrará (General para
+    global si no indica el objeto)
 
--   **Color de fondo** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Color de fondo** : le permite cambiar el color de fondo o
+    poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Color del texto** : le permite cambiar el color de los íconos y
+    textos (tenga cuidado de pasar Predeterminado a No)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d'arrondir les angles, ne pas oublier de mettre le %
+-   **Redondee los ángulos (no olvide poner%, ex 50%)** :
+    le permite redondear los ángulos, no olvide poner el%
 
--   **Bordure (attention syntaxe CSS, ex : solid 1px black)** : permet
-    d'ajouter une bordure, attention la syntaxe est HTML
+-   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
+    agregue un borde, tenga cuidado con la sintaxis es HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
+    le permite cambiar el tamaño de fuente
 
--   **Gras** : met le texte en gras
+-   **grasa** : texto en negrita
 
 
-FAQ 
+Preguntas frecuentes 
 ======
 
->**Je n'arrive plus à éditer mon diseño**
+>**Ya no puedo editar mi diseño**
 >
->Si vous avez mis un widget ou une image qui prend quasiment la totalité du diseño, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+>Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
->**remove un diseño qui ne marche plus**
+>**Eliminar un diseño que ya no funciona**
 >
->Dans la partie administration puis OS/DB, faire "select * from planHeader", récuperer l'id du diseño en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du diseño trouvé précedemment.
+>En la parte de administración y luego en OS / DB, &quot;seleccione * de planHeader&quot;, obtenga la identificación del diseño en cuestión y haga una &quot;eliminación de planHeader donde id = # TODO #&quot; y &quot;eliminar del plan donde planHeader_id = # todo # &quot;reemplazando # TODO # con la identificación de diseño encontrada previamente.

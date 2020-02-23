@@ -1,38 +1,38 @@
-La page Santé de Jeedom vous permet d'avoir un aperçu rapide de
-l'état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l'utilisent) l'état de santé par plugin.
+La página de Jeedom Health le brinda una visión general rápida de
+El estado de salud de su Jeedom. También indica (si los complementos
+usarlo) estado de salud por complemento.
 
-La page est accessible par Analyse → Santé
+La página es accesible por Análisis → Salud
 
 > **nota**
 >
-> Un clic sur l'icône en haut à droite permet d'accéder au benchmark de votre
+> Un clic en el icono en la esquina superior derecha le da acceso al punto de referencia de su
 > Jeedom.
 
-La page santé de Jeedom se présente sous la forme d'un tableau. La 1ère
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n'est pas OK.
+La página de salud de Jeedom se presenta en forma de tabla.. El 1er
+La columna le da una descripción de lo que Jeedom comprueba y el estado de quién
+se muestra en la segunda columna. Finalmente la última columna puede
+dar consejos de resolución si la verificación no está bien.
 
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
-nom du plugin donne le détail de santé de celui-ci. A droite vous
-retrouvez les icônes :
+A continuación encontrará el estado de cada complemento, haga clic en el
+el nombre del complemento proporciona detalles de salud. Derecho usted
+encuentra los iconos :
 
--   Port d'accès au matériel du plugin (type clef Zwave)
+-   Puerto de acceso para hardware de complemento (tipo de clave Zwave)
 
--   Mode du démon
+-   Modo demonio
 
--   Affichage de la page de santé des équipements du plugin
+-   Visualización de la página de estado del equipo del complemento.
 
--   Affichage de la page de configuration du plugin
+-   Visualización de la página de configuración del complemento
 
--   Etat global du plugin
-
-> **nota**
->
-> Les icônes peuvent varier en fonction du plugin
+-   Estado general del complemento
 
 > **nota**
 >
-> De manière générale quand la ligne est verte c'est que tout va bien
-> et quand c'est rouge, c'est qu'il y a un souci.
+> Los iconos pueden variar según el complemento
+
+> **nota**
+>
+> Generalmente cuando la línea es verde, todo está bien
+> y cuando está rojo, hay un problema.
