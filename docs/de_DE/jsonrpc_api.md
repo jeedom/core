@@ -58,7 +58,7 @@ Il y a deux types de template :
 Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
 Ensuite :
-- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- Vous choisissez s'il s'applique sur une commande de type Aktion ou info.
 - En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
 - Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
 - Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
@@ -130,7 +130,7 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 
 ### Slider Button
 
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+- step : permet de régler le pas d'une Aktion sur un bouton (0.5 par défaut)
 
 ## Widget code
 
@@ -142,7 +142,7 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 - #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
 - #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
 - #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #state# : valeur de la commande, vide pour une commande de type Aktion si elle n'est pas a liée a une commande d'état
 - #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
 - #valueDate# : date de la valeur de la commande
 - #collectDate# : date de collecte de la commande

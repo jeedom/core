@@ -8,7 +8,7 @@ Il y a deux types de widgets personnalisés :
 - Les widgets basés sur un template (gérés par le Core de Jeedom).
 - Les widgets basés sur du code utilisateur.
 
-> **Note**
+> **nota**
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
@@ -24,7 +24,7 @@ Quatre options s'offrent à vous :
 
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **Tip**
+> **punta**
 >
 > Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
@@ -67,7 +67,7 @@ Ensuite :
 
 C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**Note**
+>**nota**
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
@@ -85,13 +85,13 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Note**
+>**nota**
 >Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**Note**
+>**nota**
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**Note**
+>**nota**
 >Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
 ## Description de widgets

@@ -8,7 +8,7 @@ Il y a deux types de widgets personnalisés :
 - Les widgets basés sur un template (gérés par le Core de Jeedom).
 - Les widgets basés sur du code utilisateur.
 
-> **Note**
+> **nota**
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
@@ -24,7 +24,7 @@ Quatre options s'offrent à vous :
 
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **Tip**
+> **punta**
 >
 > Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
@@ -67,7 +67,7 @@ Ensuite :
 
 C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**Note**
+>**nota**
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
@@ -85,13 +85,13 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Note**
+>**nota**
 >Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**Note**
+>**nota**
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**Note**
+>**nota**
 >Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
 ## Description de widgets
@@ -107,8 +107,8 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
 - Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
 - Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
 ### HygroThermographe
 
@@ -122,7 +122,7 @@ Pour le configurer c'est assez simple il faut affecter le widget a la commande t
 Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
 >**NOTE**
-> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+> Atención sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
 ### Multiline
 
@@ -151,7 +151,7 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 - #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Atención la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
 
 ### Mise à jour des valeurs
 

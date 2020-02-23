@@ -27,8 +27,8 @@ Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 > **Tip**
 >
 > Vous pouvez ouvrir un widget en faisant :
-> - Clic sur l'un d'entre eux.
-> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
+> - click sur l'un d'entre eux.
+> - Ctrl clickk ou click Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
 Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
@@ -36,7 +36,7 @@ A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs end
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
 - Le dossier fermé pour replier tout les panneaux.
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au click Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl clickk ou click Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
 ## Principe

@@ -15,7 +15,7 @@ Il y a deux types de widgets personnalisés :
 ## Gestion
 
 Quatre options s'offrent à vous :
-- **Ajouter** : Permet de créer un nouveau widget.
+- **añadir** : Permet de créer un nouveau widget.
 - **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
 - **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
 - **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
@@ -24,7 +24,7 @@ Quatre options s'offrent à vous :
 
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **Tip**
+> **punta**
 >
 > Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
@@ -55,7 +55,7 @@ Il y a deux types de template :
 
 ## Création d'un widget
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "añadir" et donner un nom à votre nouveau widget.
 
 Ensuite :
 - Vous choisissez s'il s'applique sur une commande de type action ou info.
@@ -107,8 +107,8 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
 - Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
 - Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
 ### HygroThermographe
 

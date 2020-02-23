@@ -17,8 +17,8 @@ Il y a deux types de widgets personnalisés :
 Quatre options s'offrent à vous :
 - **Ajouter** : Permet de créer un nouveau widget.
 - **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
-- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
-- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+- **Code** : abre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : abre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
 
 ## Mes widgets
 
