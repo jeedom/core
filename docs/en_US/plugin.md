@@ -42,7 +42,7 @@ Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au
 ## Principe
 
 Mais c'est quoi un template ?
-Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur with l'interface graphique du Core.
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
 
 Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
@@ -65,7 +65,7 @@ Ensuite :
 
 ### Remplacement
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (with le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
 >**Note**
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
@@ -100,7 +100,7 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 
 ### Paramètres fréquents
 
-- Time widget : affiche le temps depuis lequel le système est dans l'state afficher.
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
 - On : icône à afficher si l'équipement est on/1.
 - Off : icône à afficher si l'équipement est off/0.
 - Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
@@ -122,7 +122,7 @@ Pour le configurer c'est assez simple il faut affecter le widget a la commande t
 Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
 >**NOTE**
-> Attention sur un design il ne faut surtout pas mettre une commande seul with ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
 ### Multiline
 
@@ -142,7 +142,7 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 - #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
 - #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
 - #id# : id de la commande
-- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'state
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
 - #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
 - #valueDate# : date de la valeur de la commande
 - #collectDate# : date de collecte de la commande
@@ -155,7 +155,7 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 
 ### Mise à jour des valeurs
 
-Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel with un unique argument qui est un objet sous la forme :
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
 
 ```
 {display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}

@@ -117,7 +117,7 @@ Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dir
 Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
 
 >**IMPORTANT**
->It is necessary ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
 
 Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 

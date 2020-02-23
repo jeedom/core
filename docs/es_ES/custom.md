@@ -107,8 +107,8 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
 - Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
 - Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
 ### HygroThermographe
 

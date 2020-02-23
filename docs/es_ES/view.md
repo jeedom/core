@@ -8,7 +8,7 @@ Il y a deux types de widgets personnalisés :
 - Les widgets basés sur un template (gérés par le Core de Jeedom).
 - Les widgets basés sur du code utilisateur.
 
-> **nota**
+> **Note**
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
@@ -24,7 +24,7 @@ Quatre options s'offrent à vous :
 
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **punta**
+> **Tip**
 >
 > Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
@@ -39,7 +39,7 @@ A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs end
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
-## principio
+## Principe
 
 Mais c'est quoi un template ?
 Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
@@ -50,7 +50,7 @@ Suivant le type de widget, vous pouvez généralement personnaliser des icônes 
 
 Il y a deux types de template :
 
-- Les "**simples**" : tipo une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
 - Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
 ## Création d'un widget
@@ -67,7 +67,7 @@ Ensuite :
 
 C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**nota**
+>**Note**
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
@@ -85,13 +85,13 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**nota**
->Il est important de noter les ' autour du texto à comparer si la valeur est un texto
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**nota**
->Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texto commence par plop
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**nota**
+>**Note**
 >Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
 ## Description de widgets
@@ -107,8 +107,8 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
 - Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
 - Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- ancho desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- ancho mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
 ### HygroThermographe
 

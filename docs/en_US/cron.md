@@ -15,7 +15,7 @@ Il y a deux types de widgets personnalisés :
 ## Gestion
 
 Quatre options s'offrent à vous :
-- **Add** : Permet de créer un nouveau widget.
+- **Ajouter** : Permet de créer un nouveau widget.
 - **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
 - **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
 - **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
@@ -55,7 +55,7 @@ Il y a deux types de template :
 
 ## Création d'un widget
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Add" et donner un nom à votre nouveau widget.
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
 Ensuite :
 - Vous choisissez s'il s'applique sur une commande de type action ou info.

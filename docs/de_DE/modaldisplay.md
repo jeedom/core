@@ -1,7 +1,7 @@
 # Widgets
 **Outils → Widgets**
 
-Die Seite widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
 Il y a deux types de widgets personnalisés :
 

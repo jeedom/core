@@ -5,14 +5,14 @@ La page widgets vous permet de créer des widgets personnalisés pour votre Jeed
 
 Il y a deux types de widgets personnalisés :
 
-- die widgets basés sur un template (gérés par le Core de Jeedom).
-- die widgets basés sur du code utilisateur.
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
-> **Notiz**
+> **Note**
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-## Management
+## Gestion
 
 Quatre options s'offrent à vous :
 - **Ajouter** : Permet de créer un nouveau widget.
@@ -24,19 +24,19 @@ Quatre options s'offrent à vous :
 
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **Spitze**
+> **Tip**
 >
-> Sie pouvez ouvrir un widget en faisant :
+> Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
 > - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Sie disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
 - La croix pour annuler la recherche.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
 - Le dossier fermé pour replier tout les panneaux.
 
-Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Sie pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
 ## Principe
@@ -46,19 +46,19 @@ Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines
 
 Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-## die templates
+## Les templates
 
 Il y a deux types de template :
 
-- die "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- die "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
 ## Création d'un widget
 
 Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
 Ensuite :
-- Sie choisissez s'il s'applique sur une commande de type action ou info.
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
 - En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
 - Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
 - Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
@@ -67,7 +67,7 @@ Ensuite :
 
 C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**Notiz**
+>**Note**
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
@@ -79,19 +79,19 @@ C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour le
 
 C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-die tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Sie pouvez aussi faire par exemple :
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
 - #value# > 1
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Notiz**
+>**Note**
 >Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**Notiz**
+>**Note**
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**Notiz**
+>**Note**
 >Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
 ## Description de widgets
@@ -107,8 +107,8 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
 - Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
 - Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). wichtig seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). wichtig seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
 ### HygroThermographe
 
@@ -122,7 +122,7 @@ Pour le configurer c'est assez simple il faut affecter le widget a la commande t
 Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
 >**NOTE**
-> Aufmerksamkeit sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
 ### Multiline
 
@@ -134,7 +134,7 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 
 ## Widget code
 
-### die tags
+### Les tags
 
 En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
 
@@ -151,7 +151,7 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 - #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Aufmerksamkeit la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
 
 ### Mise à jour des valeurs
 
@@ -188,4 +188,4 @@ Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',colle
  ```
  L'appel a cette fonction pour l'initialisation du widget.
 
- Sie trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

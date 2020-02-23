@@ -1,191 +1,191 @@
-# WIdentifikationgets
-**Extras → WIdentifikationgets**
+# Widgets
+**Outils → Widgets**
 
-Auf der WIdentifikationgets-Seite können Sie benutzerdefinierte WIdentifikationgets für Ihr Jeedom erstellen.
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Es gibt zwei Arten von benutzerdefinierten WIdentifikationgets :
+Il y a deux types de widgets personnalisés :
 
-- WIdentifikationgets basierend auf einer Vorlage (verwaltet vom Jeedom Core).
-- WIdentifikationgets basierend auf Benutzercode.
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
-> **Notiz**
+> **Note**
 >
-> Wenn vorlagenbasierte WIdentifikationgets in den Core integriert und daher vom Entwicklungsteam überwacht werden, kann letzteres die Kompatibilität von WIdentifikationgets basierend auf Benutzercode gemäß Jeedom-Entwicklungen nicht sicherstellen.
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-## Management
+## Gestion
 
-Sie haben vier Möglichkeiten :
-- **hinzufügen** : Ermöglicht das Erstellen eines neuen WIdentifikationgets.
-- **Import** : Ermöglicht das Importieren eines WIdentifikationgets als zuvor exportierte JSON-Datei.
-- **Code** : Öffnet einen Datei-Editor zum Bearbeiten von Code-WIdentifikationgets.
-- **Ersatz** : Öffnet ein Fenster, in dem Sie ein WIdentifikationget auf allen Geräten, die es verwenden, durch ein anderes ersetzen können.
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
 
-## Meine WIdentifikationgets
+## Mes widgets
 
-Sobald Sie ein WIdentifikationget erstellt haben, wird es in diesem Teil angezeigt.
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **Spitze**
+> **Tip**
 >
-> Sie können ein WIdentifikationget öffnen, indem Sie dies tun :
-> - Klicken Sie auf eine davon.
-> - Strg Clic oder Clic Center, um es in einem neuen Browser-Tab zu öffnen.
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Sie haben eine Suchmaschine, um die Anzeige von WIdentifikationgets zu filtern. Die Escape-Taste bricht die Suche ab.
-Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden:
-- Das Kreuz, um die Suche abzubrechen.
-- Der geöffnete Ordner zum Entfalten aller Bedienfelder und Anzeigen aller WIdentifikationgets.
-- Der geschlossene Ordner zum Falten aller Panels.
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Sobald Sie ein WIdentifikationget konfiguriert haben, haben Sie ein Kontextmenü mit der rechten Maustaste auf die Registerkarten des WIdentifikationgets. Sie können auch ein Strg-Klick- oder Clic-Center verwenden, um ein anderes WIdentifikationget direkt in einer neuen Browser-Registerkarte zu öffnen.
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
-## Prinzip
+## Principe
 
-Aber was ist eine Vorlage ?
-Einfach ausgedrückt ist es Code (hier html / js), der in den Core integriert ist. Einige Teile davon können vom Benutzer über die grafische Oberfläche des Core konfiguriert werden.
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
 
-Abhängig von der Art des WIdentifikationgets können Sie im Allgemeinen Symbole anpassen oder Bilder Ihrer Wahl einfügen.
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-## Die Vorlagen
+## Les templates
 
-Es gibt zwei Arten von Vorlagen :
+Il y a deux types de template :
 
-- Die &quot;**einfach**&quot; : Geben Sie ein Symbol / Bild für das &quot;Ein&quot; und ein Symbol / Bild für das &quot;Aus&quot; ein.
-- Die &quot;**multiZustands**&quot; : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl den Wert &quot;XX&quot; hat, und ein anderes, wenn&gt; bis &quot;YY&quot; und erneut, wenn &lt;bis &quot;ZZ&quot;.. Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn &quot;plop&quot;, und so weiter.
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
-## WIdentifikationget erstellen
+## Création d'un widget
 
-Klicken Sie auf der Seite Extras -&gt; WIdentifikationget auf &quot;Hinzufügen&quot; und geben Sie Ihrem neuen WIdentifikationget einen Namen.
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
-dann :
-- Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt.
-- Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...)..
-- Dann endlich die fragliche Vorlage (wir planen, Ihnen Beispiele für Renderings für jede Vorlage zu geben).
-- Sobald die Vorlage ausgewählt wurde, bietet Jeedom Ihnen die Optionen zum Konfigurieren.
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
 
-### Ersatz
+### Remplacement
 
-Dies wird als einfaches WIdentifikationget bezeichnet. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist dieses usw.. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**Notiz**
->Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns.. Wir hatten keine Wahl
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
->Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte &quot;Anzeige&quot; und &quot;Optionale WIdentifikationget-Einstellungen&quot; anzugeben.. Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Bildgröße entsprechend der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
 ### Test
 
-Dies wird als mehrstufiger Teil bezeichnet. Bei einfachen WIdentifikationgets haben Sie häufig die Wahl zwischen &quot;Höhe&quot; / &quot;Breite&quot; für die Bilder nur dann unterhalb des Testteils.
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
 
-Es ist ganz einfach. Anstatt wie im vorherigen Fall ein Bild für &quot;Ein&quot; und / oder &quot;Aus&quot; zu setzen, müssen Sie einen Test durchführen. Wenn dies zutrifft, zeigt das WIdentifikationget das betreffende Symbol / Bild an.
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-Die Tests sind in der Form : #Wert # == 1, # Wert # wird vom System automatisch durch den aktuellen Wert der Bestellung ersetzt. Sie können zum Beispiel auch tun :
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
-- #Wert #&gt; 1
+- #value# > 1
 - #value# >= 1 && #value# <= 5
-- #Wert # == &#39;toto&#39;
+- #value# == 'toto'
 
->**Notiz**
->Es ist wichtig, das &#39;um den Text herum zu notieren, um zu vergleichen, ob der Wert ein Text ist
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**Notiz**
->Für fortgeschrittene Benutzer ist es hier möglich, auch Javascript-Funktionen vom Typ #value zu verwenden#.match (&quot;^ plop&quot;), hier testen wir, ob der Text mit plop beginnt
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**Notiz**
->Es ist möglich, den Wert des Befehls im WIdentifikationget anzuzeigen, indem Sie beispielsweise neben den HTML-Code des Symbols #value setzen#
+>**Note**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
-## Beschreibung der WIdentifikationgets
+## Description de widgets
 
-Wir werden hier einige WIdentifikationgets beschreiben, die eine ganz bestimmte Funktion haben.
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
 
-### Häufige Einstellungen
+### Paramètres fréquents
 
-- Zeit-WIdentifikationget : Zeigt die Zeit an, seit sich das System im Anzeigezustand befindet.
-- ein : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1.
-- aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0.
-- Licht an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema hell ist (wenn leer, nimmt Jeedom das dunkle Bild an).
-- Licht aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema hell ist (wenn leer, nimmt Jeedom das dunkle Bild aus).
-- Dunkel an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema dunkel ist (wenn leer, schaltet Jeedom das Bild ein).
-- Dunkel ab : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema dunkel ist (wenn leer, schaltet Jeedom das Licht aus).
-- Desktop-Breite : Breite des Bildes auf dem Desktop in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig, dass nur die Breite erforderlich ist. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
-- Bewegliche Breite : Breite des Bildes auf dem Handy in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig, dass nur die Breite erforderlich ist. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
-### Hygrothermograph
+### HygroThermographe
 
-Dieses WIdentifikationget ist etwas Besonderes, da es sich um ein WIdentifikationget mit mehreren Befehlen handelt, dh, es stellt auf seiner Anzeige den Wert mehrerer Befehle zusammen. Hier nimmt er Temperatur- und Feuchtigkeitsbefehle entgegen.
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
 
-Um es zu konfigurieren, müssen Sie das WIdentifikationget ganz einfach der Temperaturregelung Ihres Geräts und der Feuchtigkeitsregelung zuweisen.
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
 
->**WICHTIG**
->Es ist ABSOLUT erforderlich, dass Ihre Bestellungen die generische Temperatur für die Temperaturregelung und die Luftfeuchtigkeit für die Feuchtigkeitsregelung haben (dies wird in der erweiterten Konfiguration der Befehlsregisterkonfiguration konfiguriert)..
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
 
-Das WIdentifikationget verfügt über einen optionalen Parameter : Skala, mit der Sie die Größe ändern können, indem Sie beispielsweise die Skala auf 0 setzen.5 es wird 2 mal kleiner sein
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
->**HINWEIS**
-> Aufmerksamkeit für ein Design Es ist besonders wichtig, mit diesem WIdentifikationget keine Bestellung aufzugeben, die nicht funktioniert, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Bestellungen verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
-### mehrzeilige
+### Multiline
 
-- MaxHeight-Parameter zum Definieren der maximalen Höhe (Bildlaufleiste an der Seite, wenn der Text diesen Wert überschreitet)
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
 
-### Schieberegler
+### Slider Button
 
-- Schritt : Ermöglicht das Anpassen des Aktionsschritts auf einer Schaltfläche (0).5 standardmäßig)
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
 
-## Code-WIdentifikationget
+## Widget code
 
-### Tags
+### Les tags
 
-Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig). :
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
 
-- #Name# : BefehlsName
-- #valueName# : Name des Befehlswertes und = # Name #, wenn es sich um einen Befehl vom Typ Info handelt
-- #hIdentifikatione_Name# : leer oder ausgeblendet, wenn der Benutzer den Namen des WIdentifikationgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
-- #Identifikation# : Bestellnummer
-- #Zustand# : Wert des Befehls, leer für einen Aktionstypbefehl, wenn er nicht mit einem Statusbefehl verknüpft ist
-- #uIdentifikation# : eindeutige Kennung für diese Generation des WIdentifikationgets (wenn es mehrmals denselben Befehl gibt, ist bei Entwürfen nur diese Kennung wirklich eindeutig)
-- #valueDate# : Datum des Bestellwertes
-- #collectDate# : Datum der Auftragserfassung
-- #alertLevel# : Alarmstufe (siehe [hier] (https:// github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.PHP # L67) für die Liste)
-- #hIdentifikatione_history# : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. # HIdentifikatione_Name # ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem WIdentifikationget gefunden wird, werden die Tags # minHistoryValue #, # durchschnittlichHistoryValue #, # maxHistoryValue # und # trend # nicht durch Jeedom ersetzt.
-- #minHistoryValue# : Mindestwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
-- #averageHistoryValue# : Durchschnittswert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
-- #maxHistoryValue# : Maximalwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
-- #Trend# : Trend über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat). Achtung, der Trend ist direkt eine Klasse für Symbole : fas fa-Pfeil nach oben, fas fa-Pfeil nach unten oder fas fa-minus
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
 
-### Werte aktualisieren
+### Mise à jour des valeurs
 
-Wenn ein neuer Wert Jeedom auf der Webseite angezeigt wird, wenn der Befehl vorhanden ist, und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
 
 ```
-{display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 ```
 
-Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr WIdentifikationget einfügen können :
+Voila un exemple simple de code javascript a mettre dans votre widget :
 
 ```
 <script>
-    Jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options) {
-      $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #]&#39;). attr (&#39;title&#39;, &#39;Wertdatum : ‚+ _Options.valueDate + &#39; <br/> Datum der Abholung : ‚+ _Options.collectDate)
-      $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #] .Zustand&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 ```
 
-Hier sind zwei wichtige Dinge :
+Ici deux choses importantes :
 
 ```
-Jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options) {
-  $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #]&#39;). attr (&#39;title&#39;, &#39;Wertdatum : ‚+ _Options.valueDate + &#39; <br/> Datum der Abholung : ‚+ _Options.collectDate)
-  $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #] .Zustand&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
 ```
-Die Funktion, die beim Aktualisieren des WIdentifikationgets aufgerufen wird. Anschließend wird der HTML-Code der WIdentifikationget-Vorlage aktualisiert.
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
 
 ```
-Jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
  ```
- Der Aufruf dieser Funktion zur Initialisierung des WIdentifikationgets.
+ L'appel a cette fonction pour l'initialisation du widget.
 
- Sie finden [hier] (https:// github.com / Jeedom / core / tree / V4-stabile / core / template) Beispiele für WIdentifikationgets (im Dashboard und in mobilen Ordnern)
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

@@ -5,17 +5,17 @@ La page widgets vous permet de créer des widgets personnalisés pour votre Jeed
 
 Il y a deux types de widgets personnalisés :
 
-- The widgets basés sur un template (gérés par le Core de Jeedom).
-- The widgets basés sur du code utilisateur.
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
 > **Note**
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-## Management
+## Gestion
 
 Quatre options s'offrent à vous :
-- **Add** : Permet de créer un nouveau widget.
+- **Ajouter** : Permet de créer un nouveau widget.
 - **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
 - **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
 - **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
@@ -27,14 +27,14 @@ Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 > **Tip**
 >
 > Vous pouvez ouvrir un widget en faisant :
-> - Click on one of them.
-> - Ctrl Clic or Clic Center to open it in a new browser tab.
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. The Escape key cancels the search.
-To the right of the search field, three buttons found in several places in Jeedom:
-- The cross to cancel the search.
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- The closed folder to fold all the panels.
+- Le dossier fermé pour replier tout les panneaux.
 
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
@@ -46,16 +46,16 @@ Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines
 
 Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-## The templates
+## Les templates
 
 Il y a deux types de template :
 
-- The "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- The "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
 ## Création d'un widget
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Add" et donner un nom à votre nouveau widget.
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
 Ensuite :
 - Vous choisissez s'il s'applique sur une commande de type action ou info.
@@ -71,7 +71,7 @@ C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
->Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". for example si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
 ### Test
 
@@ -79,7 +79,7 @@ C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour le
 
 C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-The tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
 - #value# > 1
 - #value# >= 1 && #value# <= 5
@@ -134,7 +134,7 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 
 ## Widget code
 
-### The tags
+### Les tags
 
 En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
 

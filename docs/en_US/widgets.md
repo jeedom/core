@@ -12,10 +12,10 @@ Il y a deux types de widgets personnalisés :
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-## Management
+## Gestion
 
 Quatre options s'offrent à vous :
-- **Add** : Permet de créer un nouveau widget.
+- **Ajouter** : Permet de créer un nouveau widget.
 - **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
 - **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
 - **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
@@ -27,19 +27,19 @@ Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 > **Tip**
 >
 > Vous pouvez ouvrir un widget en faisant :
-> - Click on one of them.
-> - Ctrl Clic or Clic Center to open it in a new browser tab.
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. The Escape key cancels the search.
-To the right of the search field, three buttons found in several places in Jeedom:
-- The cross to cancel the search.
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- The closed folder to fold all the panels.
+- Le dossier fermé pour replier tout les panneaux.
 
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
-## Principle
+## Principe
 
 Mais c'est quoi un template ?
 Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
@@ -55,7 +55,7 @@ Il y a deux types de template :
 
 ## Création d'un widget
 
-Une fois sur la page Outils -> Widget il vous faut cliquer sur "Add" et donner un nom à votre nouveau widget.
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
 Ensuite :
 - Vous choisissez s'il s'applique sur une commande de type action ou info.
@@ -146,46 +146,46 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 - #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
 - #valueDate# : date de la valeur de la commande
 - #collectDate# : date de collecte de la commande
-- #alertLevel# : niveau d'alert (voir [ici](https:// github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
 - #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
 - #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
-- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention the trend is directly a class for icon : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
 
-### Update values
+### Mise à jour des valeurs
 
-When a new value Jeedom will look in the web page if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
 
 ```
-{display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 ```
 
-Here is a simple example of javascript code to put in your widget :
+Voila un exemple simple de code javascript a mettre dans votre widget :
 
 ```
 <script>
-    Jeedom.cmd.update [&#39;# id #&#39;] = function (_options) {
-      $ (&#39;. cmd [data-cmd_id = # id #]&#39;). attr (&#39;title&#39;, &#39;Value date : &#39;+ _Options.valueDate + &#39; <br/> Date of collection : &#39;+ _Options.collectDate)
-      $ (&#39;. cmd [data-cmd_id = # id #] .state&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 ```
 
-Here are two important things :
+Ici deux choses importantes :
 
 ```
-Jeedom.cmd.update [&#39;# id #&#39;] = function (_options) {
-  $ (&#39;. cmd [data-cmd_id = # id #]&#39;). attr (&#39;title&#39;, &#39;Value date : &#39;+ _Options.valueDate + &#39; <br/> Date of collection : &#39;+ _Options.collectDate)
-  $ (&#39;. cmd [data-cmd_id = # id #] .state&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
 ```
-The function called when updating the widget. It then updates the html code of the widget_template.
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
 
 ```
-Jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
  ```
- The call to this function for the initialization of the widget.
+ L'appel a cette fonction pour l'initialisation du widget.
 
- You will find [here] (https:// github.com / Jeedom / core / tree / V4-stable / core / template) examples of widgets (in the dashboard and mobile folders)
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

@@ -39,7 +39,7 @@ A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs end
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
-## Principle
+## Principe
 
 Mais c'est quoi un template ?
 Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.

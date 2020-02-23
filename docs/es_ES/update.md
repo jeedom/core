@@ -5,10 +5,10 @@ La page widgets vous permet de créer des widgets personnalisés pour votre Jeed
 
 Il y a deux types de widgets personnalisés :
 
-- las widgets basés sur un template (gérés par le Core de Jeedom).
-- las widgets basés sur du code utilisateur.
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
-> **nota**
+> **Note**
 >
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
@@ -24,7 +24,7 @@ Quatre options s'offrent à vous :
 
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-> **punta**
+> **Tip**
 >
 > Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
@@ -33,8 +33,8 @@ Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
 - La croix pour annuler la recherche.
-- la dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
-- la dossier fermé pour replier tout les panneaux.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
 Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
@@ -46,12 +46,12 @@ Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines
 
 Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-## las templates
+## Les templates
 
 Il y a deux types de template :
 
-- las "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
-- las "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
 ## Création d'un widget
 
@@ -67,7 +67,7 @@ Ensuite :
 
 C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**nota**
+>**Note**
 >Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
@@ -79,19 +79,19 @@ C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour le
 
 C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-las tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
 - #value# > 1
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**nota**
+>**Note**
 >Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**nota**
+>**Note**
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**nota**
+>**Note**
 >Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
 ## Description de widgets
@@ -107,8 +107,8 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
 - Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
 - Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
-- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
 ### HygroThermographe
 
@@ -119,7 +119,7 @@ Pour le configurer c'est assez simple il faut affecter le widget a la commande t
 >**IMPORTANT**
 >Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
 
-la widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
 >**NOTE**
 > Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
@@ -134,9 +134,9 @@ la widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 
 ## Widget code
 
-### las tags
+### Les tags
 
-En modo code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
 
 - #name# : nom de la commande
 - #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
@@ -146,7 +146,7 @@ En modo code vous avez accès a différent tag pour les commandes, en voici une 
 - #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
 - #valueDate# : date de la valeur de la commande
 - #collectDate# : date de collecte de la commande
-- #alertlavel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
 - #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
 - #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
@@ -158,7 +158,7 @@ En modo code vous avez accès a différent tag pour les commandes, en voici une 
 Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
 
 ```
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertlavel:'#alertlavel#'}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 ```
 
 Voila un exemple simple de code javascript a mettre dans votre widget :
@@ -169,7 +169,7 @@ Voila un exemple simple de code javascript a mettre dans votre widget :
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertlavel:'#alertlavel#'});
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 ```
 
@@ -184,7 +184,7 @@ Jeedom.cmd.update['#id#'] = function(_options){
 La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
 
 ```
-Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertlavel:'#alertlavel#'});
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
  ```
  L'appel a cette fonction pour l'initialisation du widget.
 
