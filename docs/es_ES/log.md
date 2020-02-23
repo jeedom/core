@@ -1,49 +1,49 @@
-Logs 
+troncos 
 ====
 
-El menú Registros de seguir lo que está pasando en su automatización del hogar. En la
-la mayoría de los casos el registro se utiliza para realizar la depuración y
-resolver los problemas por el equipo de apoyo.
+Le menu troncos permet de suivre ce qui se passe sur sa domotique. Dans la
+plupart des cas les logs ne serviront qu'à effectuer du debuggage et à
+résoudre des problèmes par l'équipe de support.
 
-Para acceder tiene que acceder a Análisis → Registros :
+Pour y accéder il faut aller dans Analyse → troncos :
 
-La página Registros es bastante simple, arriba a la izquierda un combo
-permitiendo la elección del registro que debe buscar en la parte superior derecha tienes 5
-botones:
+La page de troncos est assez simple, en haut à gauche une liste déroulante
+permettant le choix du log à regarder, en haut à droite vous avez 5
+boutons :
 
--   **Buscar**: para filtrar la pantalla de registro
+-   **Rechercher** : permet de filtrer l'affiche de log
 
--   **Pausa / Reanudar**: para hacer una pausa / toma de curriculum vitae
-    en los registros de tiempo real
+-   **Pause/Reprendre** : permet de mettre en pause/reprendre la mise à
+    jour en temps réel des logs
 
--   ** ** Descargar: descarga el registro actual,
+-   **Télécharger** : permet de télécharger le log actuel,
 
--   ** ** vacío: para borrar el registro actual,
+-   **Vider** : permet de vider le log actuel,
 
--   ** ** Eliminar: Eliminar el registro actual, si tiene Jeedom
-    se necesita volver a crear de forma automática,
+-   **Supprimer** : permet de supprimer le log actuel, si Jeedom en a
+    besoin il le recréera automatiquement,
 
--   ** ** Eliminar todos los registros: borra todos los registros actuales.
+-   **Supprimer tous les logs** : supprime tous les logs présents.
 
-> **Tip**
+> **punta**
 >
-> Tenga en cuenta que el registro de http.error no se puede eliminar. Es esencial
->! si se quita el (línea de comandos, por ejemplo) lo hace
-> Para volver a crear no solo, tiene que reiniciar el sistema.
+> A noter que le log http.error ne peut être supprimé. Il est essentiel
+> ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne
+> se recréera pas tout seul, il faut redémarrer le système.
 
-Tiempo real 
+Temps réel 
 ==============
 
-El registro "Evento" es un poco particular. En primer lugar por ella
-las obras, debe ser en información o el nivel de depuración, entonces
-enumera todos los eventos y acciones que suceden en la automatización del hogar.
-Para llegar allí, ya sea ir a la página de ingreso o análisis
-→ Tiempo real
+Le log "Event" est un peu particulier. Tout d'abord pour qu'il
+fonctionne, il faut qu'il soit en niveau info ou debug, ensuite celui-ci
+recense tous les évènements ou actions qui se passent sur la domotique.
+Pour y accéder, il faut soit aller sur la page de log soit dans Analyse
+→ Temps réel
 
-Una vez que haya hecho clic en él, se obtiene una ventana que se
-actualizaciones en tiempo real y muestra todos sus eventos
-domótica.
+Une fois que vous avez cliqué dessus, vous obtenez une fenêtre qui se
+met à jour en temps réel et vous affiche tous les évènements de votre
+domotique.
 
-En la parte superior derecha que tiene un cuadro de búsqueda (sólo funciona si
-no son en pausa) y un botón para hacer una pausa (útil para
-copiar / pegar por ejemplo).
+En haut à droite vous avez un champ recherche (ne marche que si vous
+n'êtes pas en pause) et un bouton pour mettre en pause (utile pour faire
+un copier/coller par exemple).

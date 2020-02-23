@@ -1,194 +1,194 @@
 Partie importante dans un logiciel : la partie historisation, véritable
-mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe
+mémoire de celui-ci. Il est possible dans Jeedom d'historiser n'importe
 quelle commande de type information (binaire ou numérique). Cela vous
-permettra donc par exemple d’historiser une courbe de température, de
-consommation ou les ouvertures d’une porte, etc.​
+permettra donc par exemple d'historiser une courbe de température, de
+consommation ou les ouvertures d'une porte, etc.​
 
-principio
+Principe 
 ========
 
-Aquí se describe el principio de archivado de Jeedom. es
-tienen que entender que si usted está teniendo problemas
-para archivar o quiere cambiar los ajustes
-historización. Los ajustes por defecto son adecuadas en la mayoría
-caso.
+Ici est décrit le principe d'historisation de Jeedom. Il n'est
+nécessaire de le comprendre que si vous rencontrez des soucis
+d'historisation ou que vous voulez modifier les réglages de
+l'historisation. Les réglages par défaut conviennent dans la plupart des
+cas.
 
-archivado
+Archivage 
 ---------
 
-L’archivage de données permet à Jeedom de réduire la quantité de données
+L'archivage de données permet à Jeedom de réduire la quantité de données
 conservées en mémoire. Cela permet de ne pas utiliser trop de place et
 de ne pas ralentir le système. En effet, si vous conservez toutes les
-mesures, cela fait d’autant plus de points à afficher et donc peut
+mesures, cela fait d'autant plus de points à afficher et donc peut
 considérablement allonger les temps pour rendre un graphique. En cas
-d’un nombre trop important de points, cela peut même faire planter
-l’affichage du graphique.
+d'un nombre trop important de points, cela peut même faire planter
+l'affichage du graphique.
 
-El archivo es una tarea que se lanza a la noche y compacta
-Los datos recogidos en el día. Por defecto recupera todos Jeedom
-el 2h de datos más antiguo y hace 1h paquete (una
-medio, mínimo o máximo dependiendo de la configuración). Por lo tanto,
-Aquí dos ajustes, uno para el tamaño del paquete y la otra es saber
-desde la hora de hacer (de aviso predeterminado para este son paquetes
-1 hora con datos que tiene más de 2 horas de edad).
+L'archivage est une tâche qui se lance dans la nuit et compacte les
+données récupérées dans la journée. Par défaut Jeedom récupère toutes
+les données plus vieilles de 2h et en fait des paquets de 1h (soit une
+moyenne, un minimum ou un maximum en fonction des réglages). On a donc
+ici 2 paramètres, un pour la taille des paquets et un autre pour savoir
+à partir de quand en faire (pour rappel par défaut ce sont des paquets
+de 1h avec des données qui ont plus de 2h d'ancienneté).
 
-> **Tip**
+> **punta**
 >
-> Si ha seguido usted debe tener una alta precisión en
-> Última 2 horas. Sin embargo, cuando me conecto a 17h,
-> Tengo una aclaración sobre las últimas 17 horas. Por qué ? De hecho,
-> Para evitar el consumo de recursos innecesariamente, la tarea hecha
-> Archivado lleva a cabo sólo una vez al día, por la tarde.
+> Si vous avez bien suivi vous devriez avoir une haute précision sur les
+> 2 dernières heures seulement. Pourtant quand je me connecte à 17h,
+> j'ai une précision sur les 17 dernières heures. Pourquoi ? En fait,
+> pour éviter de consommer des ressources inutilement, la tâche qui fait
+> l'archivage ne se déroule qu'une fois par jour, le soir.
 
-> **Importante**
+> **importante**
 >
-> Por supuesto, este principio archivado sólo se aplica a las órdenes
-> Tipo numérico; los comandos binarios, no enlatados Jeedom
-> Que los cambios de estado.
+> Bien sûr, ce principe d'archivage ne s'applique qu'aux commandes de
+> type numérique ; sur les commandes de type binaire, Jeedom ne conserve
+> que les dates de changement d'état.
 
-Viendo el gráfico
+Affichage d'un graphique 
 ========================
 
-Hay varias maneras de acceder a la historia:
+Il existe plusieurs moyens d'accéder à l'historique :
 
--   poner un área del gráfico en una vista en planta (véase más adelante),
+-   en mettant une zone graphe dans une vue (voir plus bas),
 
--   haciendo clic en el comando deseado en un widget,
+-   en cliquant sur la commande voulue dans un widget,
 
--   por ir a la página de la historia que puede superponer
-    diferentes curvas y combinan estilos (área, curva, bar)
+-   en allant dans la page historique qui permet de superposer
+    différentes courbes et de combiner les styles (aire, courbe, barre)
 
--   Móviles restantes soportado en el widget en cuestión
+-   en mobile en restant appuyé sur le widget en question
 
-Si ve un gráfico de histórica o haciendo clic
-el widget, usted tiene acceso a múltiples opciones de visualización:
+Si vous affichez un graphique par la page historique ou en cliquant sur
+le widget, vous avez accès à plusieurs options d'affichage :
 
-On retrouve en haut à droite la période d’affichage (ici sur la dernière
+On retrouve en haut à droite la période d'affichage (ici sur la dernière
 semaine car, par défaut je veux que ça soit seulement une semaine - voir
 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
-(ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc
-qu’à les configurer une seule fois).
+(ces paramètres sont gardés d'un affichage à l'autre ; vous n'avez donc
+qu'à les configurer une seule fois).
 
--   Escalera ** **: muestra la curva como una
-    escalera o visualización continua.
+-   **Escalier** : permet d'afficher la courbe sous la forme d'un
+    escalier ou d'un affichage continu.
 
--   ** ** Cambio: muestra la diferencia en valor en comparación con
-    punto anterior.
+-   **Variation** : affiche la différence de valeur par rapport au
+    point précédent.
 
--   ** ** Línea: muestra el gráfico en filas.
+-   **Ligne** : affiche le graphique sous forme de lignes.
 
--   **zona**: muestra la forma gráfica de un área.
+-   **Aire** : affiche le graphique sous forme d'une aire.
 
--   Columna ** ** \ *: muestra el gráfico de barras.
+-   **Colonne**\* : affiche le graphique sous forme de barres.
 
-Gráfico de vistas y diseños
+Graphique sur les vues et les designs 
 =====================================
 
-También puede ver los gráficos en las vistas (veremos aquí
-opciones de configuración y no la forma de hacerlo, por lo que debemos
-Ir a las imágenes o diseños en documention). aquí está
-opciones:
+Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici
+les options de configuration et non comment faire, pour cela il faut se
+rendre sur la documention des vues ou des designs en fonction). Voici
+les options :
 
-Una vez activados los datos, se puede elegir:
+Une fois une donnée activée, vous pouvez choisir :
 
--   ** ** color: el color de la curva.
+-   **Couleur** : la couleur de la courbe.
 
--   **Tipo**: el tipo de gráfico (área, fila o columna).
+-   **Type** : le type de graphique (aire, ligne ou colonne).
 
--   ** ** Escala: porque se puede poner varias curvas (datos)
-    en el mismo gráfico, es posible distinguir las escalas
-    (Derecha o izquierda).
+-   **Echelle** : vu que vous pouvez mettre plusieurs courbes (données)
+    sur le même graphique, il est possible de distinguer les échelles
+    (droite ou gauche).
 
--   Escalera ** **: muestra la curva como una
-    escalera o visualización continua
+-   **Escalier** : permet d'afficher la courbe sous la forme d'un
+    escalier ou d'un affichage continu
 
--   ** ** Pila: puede apilar los valores de las curvas (véase
-    a continuación para los resultados).
+-   **Empiler** : permet d'empiler les valeurs des courbes (voir en
+    dessous pour le résultat).
 
--   ** ** Cambio: muestra la diferencia en valor en comparación con
-    punto anterior.
+-   **Variation** : affiche la différence de valeur par rapport au
+    point précédent.
 
-Opción en la página Historial
+Option sur la page d'historique 
 ===============================
 
-La página de historial proporciona acceso a algunas opciones adicionales
+La page d'historique donne accès à quelques options supplémentaires
 
-historia calculada
+Historique calculé 
 ------------------
 
-Permet d’afficher une courbe en fonction d’un calcul sur plusieurs
+Permet d'afficher une courbe en fonction d'un calcul sur plusieurs
 commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
 documentation PHP pour certaines fonctions). Ex :
 abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
 vie\]\[Hygrométrie\]\[Température\]*)
 
-También tiene acceso a una fórmulas de gestión que le permite
-guardarlos para el remostrado más fácil
+Vous avez aussi accès à un gestion de formules de calcul qui vous permet
+de les sauvegarder pour les réafficher plus facilement
 
-> **Tip**
+> **punta**
 >
-> Basta con hacer clic en el nombre del objeto a desarrollarse;
-> Aparecen los comandos que pueden ser historizar graphées.
+> Il suffit de cliquer sur le nom de l'objet pour le déplier ;
+> apparaissent les commandes historisées qui peuvent être graphées.
 
-historial de pedidos
+Historique de commande 
 ----------------------
 
-Delante de cada dato puede ser graphée, se encuentran dos iconos:
+Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
 
--   ** ** Papelera: Borra los datos grabados; entonces
-    el clic Jeedom pregunta si desea eliminar los datos antes de una
-    fecha determinada o todos los datos.
+-   **Poubelle** : permet de supprimer les données enregistrées ; lors
+    du clic, Jeedom demande s'il faut supprimer les données avant une
+    certaine date ou toutes les données.
 
--   Flecha ** ** permite a un CSV exportación de datos históricos.
+-   **Flèche** : permet d'avoir un export CSV des données historisées.
 
-Eliminación de valor inconsistente
+Suppression de valeur incohérente 
 =================================
 
-A veces puede ser que usted tiene valores inconsistentes en
-gráficos. Esto es a menudo debido a la preocupación por la interpretación de la
-valor. Puede eliminar o cambiar el valor del punto
-cuestión haciendo clic en él directamente en el gráfico; de
-Además, se puede establecer el mínimo y el máximo permitido para
-para evitar problemas futuros.
+Parfois, il se peut que vous ayez des valeurs incohérentes sur les
+graphiques. Cela est souvent dû à un souci d'interprétation de la
+valeur. Il est possible de supprimer ou changer la valeur du point en
+question, en cliquant sur celui-ci directement sur le graphique ; de
+plus, vous pouvez régler le minimum et le maximum autorisés afin
+d'éviter des problèmes futurs.
 
-línea de tiempo
+línea de tiempo 
 ========
 
-La línea de tiempo muestra algunos eventos en su casa como la automatización
-cronológico.
+La timeline affiche certains événements de votre domotique sous forme
+chronologique.
 
-Para verlos, debe habilitar el seguimiento en la línea de tiempo de la primera
-controles o escenarios apropiados:
+Pour les voir, il vous faut d'abord activer le suivi sur la timeline des
+commandes ou scénarios voulus :
 
--   ** ** Escenario: ya sea directamente en la página de la escritura, o en el
+-   **Scenario** : soit directement sur la page de scénario, soit sur la
     page de résumé des scénarios pour le faire en "masse"
 
--   ** ** Orden ya sea en la configuración de control avanzada,
-    ya sea en la historia de configuración para que sea a la "masa"
+-   **Commande** : soit dans la configuration avancée de la commande,
+    soit dans la configuration de l'historique pour le faire en "masse"
 
-> **Tip**
+> **punta**
 >
 > Vous avez accès aux fenêtres de résumé des scénarios ou de la
-> configuration de l’historique directement à partir de la page de
+> configuration de l'historique directement à partir de la page de
 > timeline.
 
 Une fois que vous avez activé le suivi dans la timeline des commandes et
 scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
-> **Importante**
+> **importante**
 >
-> Los nuevos eventos después de la activación de la monitorización debe esperar
-> En la línea de tiempo antes de ver el espectáculo.
+> Il faut attendre de nouveaux événements après avoir activé le suivi
+> sur la timeline avant de les voir apparaître.
 
 Les cartes sur la timeline affichent :
 
--   ** ** cuota de comandos: fondo rojo, un icono de la derecha que permite
-    mostrar la ventana de configuración extendida del control
+-   **Commande action** : en fond rouge, une icône à droite vous permet
+    d'afficher la fenêtre de configuration avancée de la commande
 
--   ** ** Info orden: fondo azul, un icono de la derecha que permite
-    mostrar la ventana de configuración extendida del control
+-   **Commande info** : en fond bleu, une icône à droite vous permet
+    d'afficher la fenêtre de configuration avancée de la commande
 
--   ** ** Escenario: fondo gris, tiene 2 iconos: uno para la pantalla
-    el registro de la escritura y para ir en el guión
+-   **Scénario** : en fond gris, vous avez 2 icônes : une pour afficher
+    le log du scénario et une pour aller sur le scénario
 
 

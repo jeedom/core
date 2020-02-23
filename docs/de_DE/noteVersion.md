@@ -1,23 +1,25 @@
 3.1.6 
 =====
 
-Achtung, dieses Update enthält einen Fehler im Update-Skript.
-Wenn Sie diese Version haben, müssen Sie das Update 2* ausführen.
-Danach haben Sie ein leeres Armaturenbrett, das ist normal, das ist der Cache der geleert wurde, es wird notwendig sein, ein paar Stunden zu warten, bis er nachgefüllt wird.
+Attention cette mise à jour a un bug au niveau du script de mise à jour.
+Si vous avez cette version il vous faudra lancer 2 fois la mise à jour.
+Après cela vous allez avoir un dashboard vide, c'est normal c'est le
+cache qui s'est vidé il faudra attendre quelques heures le temps qu'il
+se reremplisse.
 
 3.1 
 ===
 
--   Achtung, wir haben die Schritte der Widgets geändert, das kann also eine 
-    Auswirkung auf die Lokalisierung Ihrer Widget auf den Designs/Ansichten 
-    und Armaturenbrett haben
+-   Attention nous avons changé les pas des widgets cela peut donc avoir
+    un impact sur le positionement de vos widget sur les designs/vues et
+    dashboard
 
--   Diese Aktualisierung macht eine Änderung im Plugin-Design
-    zwingend erforderlich (empfohlene Änderung in 3.0). Einige Plugins
-     sind in dieser Version möglicherweise erst nach einer Korrektur 
-    durch den Autor verfügbar.
+-   Cette mise à jour rends obligatoire un changement dans la conception
+    des plugins (changement recommandé en 3.0). Certains plugins
+    pourront donc ne plus être disponibles dans cette version jusqu'à
+    correction par l'auteur.
 
--   Sie können die Liste der betreffenden Plugins hier wiederfinden :
+-   Vous pouvez retrouver la liste des plugins en question ici :
     <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

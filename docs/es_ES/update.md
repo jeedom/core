@@ -1,12 +1,12 @@
-descripción
+Description 
 ===========
 
 Le **centre de mise à jour** permet de mettre à jour toutes les
 fonctionnalités de Jeedom, incluant le logiciel de base (core), les
-plugins, les widgets, etc. D’autres fonctions de gestion des extensions
+plugins, les widgets, etc. D'autres fonctions de gestion des extensions
 sont diponibles (supprimer, réinstaller, vérifier, etc.)
 
-Página Centro de Actualización
+La page du Centre de mise à jour 
 ================================
 
 Elle est accessible par le menu **Réglages → Système → Centre de mise à
@@ -21,36 +21,36 @@ sont disponibles (la date de dernière vérification est indiquée en haut
 à gauche de la page). Si vous voulez réaliser une vérification manuelle,
 vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
-Le bouton **Mettre à jour** permet de mettre à jour l’ensemble de
+Le bouton **Mettre à jour** permet de mettre à jour l'ensemble de
 Jeedom. Une fois que vous avez cliqué dessus, on obtient ces différentes
 options :
 -   **Pré-update** : Permet de mettre à jour le script de mise à jour avant
     applicatifs des nouvelles mises à jour.
 
 -   **Sauvegarder avant** : Effectue une sauvegarde de Jeedom avant
-    d’effectuer la mise à jour.
+    d'effectuer la mise à jour.
 
--   **Mettre à jour les plugins** : Permet d’inclure les plugins dans la
+-   **Mettre à jour les plugins** : Permet d'inclure les plugins dans la
     mise à jour.
 
--   **Mettre à jour le core** : Permet d’inclure le noyau de Jeedom dans
+-   **Mettre à jour le core** : Permet d'inclure le noyau de Jeedom dans
     la mise à jour.
 
--   **Mode forcé** : Effectue la mise à jour en mode forcé, c’est-à-dire
-    que, même s’il y a une erreur, Jeedom continue et ne restaurera pas
+-   **Mode forcé** : Effectue la mise à jour en mode forcé, c'est-à-dire
+    que, même s'il y a une erreur, Jeedom continue et ne restaurera pas
     la sauvegarde. (Ce mode désactive la sauvegarde !)
 
 -   **Mise à jour à réappliquer** : Permet de réappliquer une mise
     à jour. (NB : Toutes les mises à jour ne peuvent pas être réappliquées.)
 
-> **Important**
+> **importante**
 >
 > Avant une mise à jour, par défaut, Jeedom va faire une sauvegarde. En
-> cas de souci lors de l’application d’une mise à jour, Jeedom va
+> cas de souci lors de l'application d'une mise à jour, Jeedom va
 > automatiquement restaurer la sauvegarde faite juste avant. Ce principe
-> n’est valable que pour les mises à jour de Jeedom et non des plugins.
+> n'est valable que pour les mises à jour de Jeedom et non des plugins.
 
-> **Tip**
+> **punta**
 >
 > Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous
 > en propose pas.
@@ -66,13 +66,13 @@ Ces deux onglets similaires, se composent d'un tableau :
 -   **Autres** : Contient les widgets, les scripts, etc.
 
 Vous y trouverez les informations suivants : \* **Statut** : OK ou NOK.
-Permet de connaître l’état actuel du plugin. \* **Nom** : Vous y
-trouverez la provenance de l’élément, le type d’élément et son nom. \*
-**Version**: Indique la version précise de l’élément. \***Options** :
+Permet de connaître l'état actuel du plugin. \* **apellido** : Vous y
+trouverez la provenance de l'élément, le type d'élément et son nom. \*
+**Version** : Indique la version précise de l'élément. \* **Options** :
 Cochez cette case si vous ne souhaitez pas que cet élément soit mis à
 jour lors de la mise à jour générale (Bouton **Mettre à jour**).
 
-> **Tip**
+> **punta**
 >
 > Pour chaque tableau, la première ligne permet de filter suivant
 > le nom des éléments présents.
@@ -87,21 +87,21 @@ chaque élément :
 -   **Vérifier** : Interroge la source des mises à jour pour savoir si
     une nouvelle mise à jour est disponible.
 
--   **Mettre à jour** : Permet de mettre à jour l’élément (si celui-ci a
+-   **Mettre à jour** : Permet de mettre à jour l'élément (si celui-ci a
     une mise à jour).
 
--   **Changelog** : Permet d’accéder à la liste des changements de la
+-   **Changelog** : Permet d'accéder à la liste des changements de la
     mise à jour.
 
-> **Important**
+> **importante**
 >
 > Si le changelog est vide mais que vous avez tout de même une mise à
-> jour, cela signifie que c’est la documentation qui a été mise à jour.
-> Il n’est donc pas nécessaire de demander au développeur les
-> changements, vu qu’il n’y en a pas forcément. (c’est souvent une mise
+> jour, cela signifie que c'est la documentation qui a été mise à jour.
+> Il n'est donc pas nécessaire de demander au développeur les
+> changements, vu qu'il n'y en a pas forcément. (c'est souvent une mise
 > à jour de la traduction, de la documentation)
 
-> **Tip**
+> **punta**
 >
 > A noter que "core : jeedom" signifie "la mise à jour du logiciel de
 > base Jeedom".

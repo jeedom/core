@@ -1,153 +1,153 @@
-Las vistas pueden simplemente crear una vista personalizada. este
-no es tan potente como los diseños pero permite alguna
-minutos para tener una vista personalizada.
+Les vues permettent simplement de créer un affichage personnalisé. Ce
+n'est pas aussi puissant que les designs mais cela permet en quelques
+minutes d'avoir un affichage plus personnalisé.
 
-Las vistas son accesibles desde el menú Inicio → Vista:
+Les vues sont accessibles à partir du menu Accueil → Vue :
 
-> **Tip**
+> **punta**
 >
-> Es posible ir directamente a una vista por el submenú.
+> Il est possible d'aller directement sur une vue grâce au sous-menu.
 
-> **Tip**
+> **punta**
 >
-> Se puede elegir un perfil en la vista por defecto cuando se hace clic
-> El menú de vistas.
+> Vous pouvez dans votre profil choisir la vue par défaut lors du clic
+> sur le menu des vues.
 
-los puntos de vista
+Les vues 
 ========
 
-Se puede poner como muchos widgets, los gráficos (que pueden ser
-compuesto de varios datos) o áreas de tabla (que contienen
-órdenes widgets).
+On peut mettre aussi bien des widgets, des graphiques (qui peuvent être
+composés de plusieurs données) ou des zones tableau (qui contiennent les
+widgets des commandes).
 
-En esta página, hay un botón de arriba a la izquierda para mostrar u
-ocultar las vistas de lista y el botón para añadir una
-(Jeedom pregunte por su nombre y le enviará a la página de edición):
+Sur cette page, on retrouve un bouton en haut à gauche pour montrer ou
+masquer la liste des vues ainsi que le bouton pour en ajouter une
+(Jeedom vous demandera son nom et vous enverra sur la page d'édition) :
 
-> **Tip**
+> **punta**
 >
-> Puede editar su perfil de esto a la lista
-> Vistas visibles por defecto.
+> Vous pouvez dans votre profil modifier cette option pour que la liste
+> des vues soit visible par défaut.
 
-Un botón de arriba a la derecha le permite editar la vista actual.
+Un bouton en haut à droite vous permet d'éditer la vue courante.
 
-Añadir puntos de vista / Editar
+Ajout/Edition d'une vue 
 =======================
 
-El principio es muy simple: una vista se compone de zonas (se puede
-poner tantas como desee). Cada zona está gráficamente tipo de widget
-o una tabla, dependiendo del tipo que puede poner los widgets
-equipos, control o gráficos en el mismo.
+Le principe est assez simple : une vue est composée de zones (on peut en
+mettre autant que l'on veut). Chaque zone est de type graphique, widget
+ou tableau, en fonction du type vous pourrez mettre des widgets
+d'équipement, de commande ou des graphiques dans celle-ci.
 
-> **Tip**
+> **punta**
 >
-> Puede moverse por las zonas de arrastrar / soltar.
+> Il est possible de déplacer l'ordre des zones par glisser/déposer.
 
-A la izquierda de la página se encuentra la lista de vistas y una
-botón añadir.
+Sur la gauche de la page on retrouve la liste des vues ainsi qu'un
+bouton d'ajout.
 
-En el centro tiene un botón para cambiar el nombre de una vista, botón de añadir
-zona, un botón para ver el resultado, un botón para guardar y
-un botón para borrar la vista.
+Au centre vous avez un bouton pour renommer une vue, un bouton d'ajout
+de zone, un bouton pour voir le résultat, un bouton pour sauvegarder et
+un bouton pour supprimer la vue.
 
-Después de hacer clic en el botón añadir área Jeedom preguntará
-su nombre y tipo.
+Après avoir cliqué sur le bouton d'ajout de zone, Jeedom vous demandera
+son nom et son type.
 
-En cada zona dispone de las siguientes opciones generales:
+Sur chaque zone vous avez les options générales suivantes :
 
--   ** ** Anchura: establece el ancho de la zona (en el modo de
-    Sólo escritorio)
+-   **Largeur** : définit la largeur de la zone (en mode
+    desktop seulement)
 
--   ** ** Editar: Cambiar el nombre de la zona
+-   **Editer** : permet de changer le nom de la zone
 
--   ** ** Eliminar: Eliminar la zona
+-   **Supprimer** : permet de supprimer la zone
 
-zona tipo de widget
+Zone de type widget 
 -------------------
 
-Un tipo de widget de casilla para añadir widgets:
+Une zone de type widget permet d'ajouter des widgets :
 
--   ** ** Añadir componente: añadir / editar los widgets
-    mostrado en el área
+-   **Ajouter widget** : permet d'ajouter/modifier des widgets à
+    afficher dans la zone
 
-> **Tip**
+> **punta**
 >
-> Puede eliminar un widget directamente haciendo clic en el
-> Basura antes de ella.
+> Vous pouvez supprimer un widget directement en cliquant sur la
+> poubelle devant celui-ci.
 
-> **Tip**
+> **punta**
 >
-> Puede cambiar el orden de los widgets en la zona
-> Arrastrar / soltar.
+> Il est possible de modifier l'ordre des widgets dans la zone par
+> glisser/déposer.
 
-Una vez que el widget botón añadir prisa, se obtiene una ventana
-que le pedirá para agregar el widget
+Une fois le bouton d'ajout de widget pressé, vous obtenez une fenêtre
+qui vous demandera le widget à ajouter
 
-gráfico tipo de zona
+Zone de type graphique 
 ----------------------
 
-Un nuevo cuadro gráfico para añadir gráficos a la vista,
-que tiene las siguientes opciones:
+Une zone de type graphique permet d'ajouter des graphiques à votre vue,
+elle possède les options suivantes :
 
--   ** ** Periodo: Elija periodo pantalla
-    gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año, o todos)
+-   **período** : permet de choisir la période d'affichage des
+    graphiques (30 min, 1 jour, 1 semaine, 1 mois, 1 année ou tout)
 
--   ** ** Añadir curva: añadir / modificar los gráficos
+-   **Ajouter courbe** : permet d'ajouter/modifier des graphiques
 
-Cuando se pulsa las listas "Añadir curva de" botón Jeedom
-de pedidos congelados y se puede elegir la (s) para añadir una
-Una vez hecho esto usted tiene las siguientes opciones:
+Quand vous pressez le bouton "Ajouter courbe" Jeedom affiche la liste
+des commandes historisées et vous pouvez choisir celle(s) à ajouter, une
+fois cela fait vous avez accès aux options suivantes :
 
--   ** ** Papelera: borra el gráfico de control
+-   **Poubelle** : supprime la commande du graphique
 
--   ** ** Nombre: nombre del comando graphée
+-   **apellido** : nom de la commande graphée
 
--   ** ** color: el color de la curva
+-   **Couleur** : couleur de la courbe
 
--   ** ** Tipo: tipo de curva
+-   **Type** : type de la courbe
 
--   ** ** Grupo: le permite agrupar los datos (estándar máximo
-    por día)
+-   **Groupement** : permet de grouper les données (type maximum
+    par jour)
 
--   **Escala**: escala (derecha o izquierda) de la curva
+-   **Echelle** : échelle (droite ou gauche) de la courbe
 
--   ** ** Escalera: muestra la curva de escalera
+-   **Escalier** : affiche la courbe en escalier
 
--   Pila ** **: apilar la curva con el otro tipo de curva
-    montón
+-   **Empiler** : empile la courbe avec les autres courbes de type
+    empiler
 
--   ** ** Variación: gráfico sólo cambia con el valor
-    anterior
+-   **Variation** : graphe seulement les variations avec la valeur
+    précédente
 
-> **Tip**
+> **punta**
 >
-> Es posible cambiar el orden de las cartas en la zona
-> Arrastrar / soltar.
+> Il est possible de modifier l'ordre des graphiques dans la zone par
+> glisser/déposer.
 
-zona de tipo mesa
+Zone de type tableau 
 --------------------
 
-Aquí tienes los botones:
+Vous avez ici les boutons :
 
--   ** ** Añadir Columna: añade una columna a la tabla
+-   **Ajouter colonne** : permet d'ajouter une colonne au tableau
 
--   ** ** Añadir línea: añadir una línea en la tabla
+-   **Ajouter ligne** : permet d'ajouter une ligne au tableau
 
-> **Nota**
+> **nota**
 >
-> Puede régoraniser líneas de arrastrar / soltar, pero no
-> Columnas
+> Il est possible de régoraniser les lignes par glisser/déposer mais pas
+> les colonnes
 
-Una vez que añadir sus líneas / columnas se puede añadir
-información en los cuadros:
+Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter
+des informations dans les cases :
 
--   ** ** texto: acaba de escribir el texto
+-   **texte** : juste du texte à écrire
 
--   Html ** **: todo el código HTML (JavaScript posible, pero
-    desaconseja)
+-   **html** : n'importe quels code html (javascript possible mais
+    fortement déconseillé)
 
--   ** ** Reproductor de control: el botón a la derecha le permite elegir
-    Comando de mostrar (reloj que muestra el widget
-    control)
+-   **widget de commande** : le bouton à droite vous permet de choisir
+    la commande à afficher (attention cela affiche le widget de
+    la commande)
 
 

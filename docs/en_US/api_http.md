@@ -1,12 +1,12 @@
 Jeedom provides developers and users with an API
-complete to be able to drive Jeedom from any object
-logged.
+complete so you can control Jeedom from any object
+connected.
 
-Two APIs are available: a developer-oriented pilot
-JSON RPC 2.0 and another via URL and HTTP request.
+Two APIs are available : a developer oriented pilot
+JSON RPC 2.0 and another via URLs and HTTP request.
 
 This API is very easily used by simple HTTP requests via
-URL.
+URLs.
 
 > **Note**
 >
@@ -19,134 +19,134 @@ URL.
 >
 > For all this documentation, \ #API \ _KEY \ # corresponds to your key
 > API, specific to your installation. To find it, you have to go to
-> the "General" menu → "Configuration" → "General" tab.
+> the &quot;General&quot; menu → &quot;Configuration&quot; → &quot;General&quot; tab.
 
-Scenario
+Scenario 
 ========
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = scenario & id = \ #ID \ # & action = \ #ACTION \ #?] (Http: // # # IP_JEEDOM / core / api / jeeApi.php? apikey aPIKEY = # # & type = scenario & id = # ID # & action = ACTION # #)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
--   **id**: corresponds to the id of your scenario. The ID is on the
-    page of the scenario concerned, in "tools" → "Scenarios", once the
-    selected scenario, next to the name of the "General" tab. Other
-    way to find it: in "Tools" → "Scenarios", click on
-    "Overview".
+-   **id** : matches your scenario id. The ID is on the
+    page of the scenario concerned, in &quot;Tools&quot; → &quot;Scenarios&quot;, once the
+    selected scenario, next to the name of the &quot;General&quot; tab. Other
+    way to find it : in &quot;Tools&quot; → &quot;Scenarios&quot;, click on
+    &quot;Overview&quot;.
 
--   **action**: corresponds to the action you want to apply. The
-    available commands are: "start", "stop", "disable" and
-    "activate" to respectively start, stop, disable or
+-   **action** : corresponds to the action you want to apply. The
+    available orders are : &quot;start&quot;, &quot;stop&quot;, &quot;deactivate&quot; and
+    &quot;activate&quot; to respectively start, stop, deactivate or
     activate the scenario.
 
--   **tags** \ [optional]: if the action is "start", you can pass
-    tags to scenario (see scenario documentation) under
-    the form tags = foo% 3D1%20tata% 3D2 (note that% 20 corresponds to a
+-   **tags** \[optional\] : if the action is &quot;start&quot;, you can skip
+    scenario tags (see scenario documentation) under
+    the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a
     space and% 3D to =)
 
-Info / Action command
+Info / Action command 
 ====================
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = cmd & id = \ #ID \ #?] (Http: // # # IP_JEEDOM / jeedom /core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&id=\#ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
 
--   **id**: is the id of what you want to drive or which
-    you want to receive information
+-   **id** : corresponds to the id of what you want to drive or from which
+    you wish to receive information
 
-The easiest way to get this URL is to go to the Tools page →
-Home Automation Summary, search for the command and open its configuration
-advanced (the "gear" icon) and there you will see a URL that contains
-already all that is needed depending on the type and subtype of the
-command.
+The easiest way to get this URLs is to go to the Tools page →
+Home automation summary, to search for the command then to open its configuration
+advanced (the &quot;gear&quot; icon) and there you will see a URLs that contains
+already all you need depending on the type and subtype of the
+ordered.
 
 > **Note**
 >
-> It is possible for the \ #ID \ # field to pass several commands
-> all of a sudden. For that you have to pass a array in json (ex
->% 5B12,58,23% 5D, note that \ [and \] must be encoded hence the% 5B
-> and% 5D). The return of Jeedom will be a json
+> It is possible for the \ #ID \ # field to place multiple commands
+> at once. To do this, you must pass an array in json (ex
+> % 5B12,58,23% 5D, note that \ [and \] must be encoded, hence the% 5B
+> and% 5D). Jeedom&#39;s return will be a json
 
 > **Note**
 >
 > Parameters must be encoded for url, You can use
 > a tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
 
-Interaction
+Interaction 
 ===========
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = interact & query = \ #QUERY \ #?] (Http: // # # IP_JEEDOM / jeedom /core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
--   **query**: question to ask to Jeedom
+-   **query** : question to ask Jeedom
 
--   **utf8** \ [optional]: tells Jeedom whether to encode query
+-   **utf8** \[optional\] : tells Jeedom whether to encode query
     in utf8 before trying to answer
 
--   **emptyReply** \ [optional]: 0 for Jeedom to answer even if he
+-   **emptyReply** \[optional\] : 0 for Jeedom to respond even if it
     did not understand, 1 otherwise
 
--   **profile** \ [optional]: username of the person
-    triggering the interaction
+-   **profile** \[optional\] : person&#39;s username
+    triggering interaction
 
--   **reply \ _cmd** \ [optional]: ID of the command to use for
+-   **reply \ _cmd** \[optional\] : Command ID to use for
     respond to the request
 
-Message
+Message 
 =======
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = & category = Message \ #category \ # & message = \ #message \ #?] (Http: //#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
--   **category**: category of the message to add to the message center
+-   **category** : message category to add to message center
 
--   **message**: message in question, be careful to think about encoding
-    the message (space becomes% 20, =% 3D ...). You can use a
+-   **message** : message in question, be careful to think about encoding
+    the message (space becomes% 20, =% 3D…). You can use a
     tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
 
-Object
+Object 
 =====
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = object?] (Http: // # # IP_JEEDOM / jeedom / core / api / jeeApi .php? apikey aPIKEY = # # & type = object)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Returns in json the list of all Jeedom objects
 
-Equipment
+Equipment 
 ==========
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = & eqLogic object \ _id = \ #OBJECT \ _ID \ #?] (Http: // # IP_JEEDOM # / jeedom / core / api / jeeApi.php? apikey aPIKEY = # # & type = eqLogic & object_id = # # oBJECT_ID)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object \ _id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
--   **object \ _id**: ID of the object we want to recover
+-   **object \ _id** : ID of the object from which we want to retrieve
     amenities
 
-order
+Ordered 
 ========
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = command & eqLogic \ _id = \ #EQLOGIC \ _ID \ #?] (Http: // # IP_JEEDOM # / jeedom / core / api / jeeApi.php? apikey aPIKEY = # # & type = command & eqLogic_id = # # EQLOGIC_ID)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
--   **eqLogic \ _id**: ID of the equipment we want to recover
+-   **eqLogic \ _id** : ID of the equipment from which we want to recover
     orders
 
-Full Data
+Full Data 
 =========
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = fullData?] (Http: // # # IP_JEEDOM / jeedom / core / api / jeeApi .php? apikey aPIKEY = # # & type = fullData)
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
-Returns all objects, devices, commands (and their value if this
+Returns all objects, equipment, commands (and their value if this
 are infos) in json
 
-Variable
+Variable 
 ========
 
-Here is the URL =
-[Http: // \ #IP \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = & variable name = \ #NAME \ # & value =] (http: // # # IP_JEEDOM /jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
+Here is the URLs =
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 
--   **name**: name of the variable whose value we want (read from
+-   **name** : name of the variable whose value is wanted (reading of
     the value)
 
--   **value** \ [optional]: if "value" is specified then the variable
+-   **value** \[optional\] : if &quot;value&quot; is specified then the variable
     will take this value (writing a value)
 
 

@@ -1,21 +1,22 @@
 Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se trouve à côté de l’heure en haut à droite.
+devez regarder. Il se trouve à côté de l'heure en haut à droite.
 
-Es accesible solamente cuando hay mensajes, haciendo clic en el número de mensajes.
+Il n'est accessible que lorsqu'il y a des messages, en cliquant sur le
+nombre de messages.
 
-Es muy sencillo. Se le muestra la fecha y la hora del mensaje, el
-plugin que lo haya expedido, el mensaje en cuestión. Se puede, pulsando
-botón al principio de la línea de mensaje, borra
-mensaje en cuestión (se devolverá si el problema sigue siendo
-noticias).
+Il est assez simple. Il vous montre la date et l'heure du message, le
+plugin qui l'a émis et le message en question. Vous pouvez, en appuyant
+sur le bouton au tout début de la ligne d'un message, supprimer le
+message en question (il reviendra si le problème est toujours
+d'actualité).
 
-Top incluye un selector para filtrar los mensajes de
-en particular plugin y el botón derecho de todo Borrar todo
-mensajes.
+En haut, on retrouve un sélecteur pour filtrer les messages sur un
+plugin particulier et tout à droite un bouton pour vider tous les
+messages.
 
-> **Tip**
+> **punta**
 >
-> Cuando se tiene un error en el Centro de mensajes, intente
-> Para borrar primero el mensaje y ver si el error viene antes
-> Contactar con el soporte. A veces es sólo debido a la preocupación
-> Conexión de red.
+> Lorsque vous avez une erreur dans le centre des messages, essayez
+> d'abord de supprimer le message puis voir si l'erreur revient avant de
+> contacter le support. Il arrive que ce soit juste dû à un souci de
+> connexion réseau.

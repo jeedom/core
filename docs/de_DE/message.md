@@ -1,22 +1,22 @@
 Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se trouve à côté de l’heure en haut à droite.
+devez regarder. Il se trouve à côté de l'heure en haut à droite.
 
-Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
+Il n'est accessible que lorsqu'il y a des messages, en cliquant sur le
 nombre de messages.
 
-Es ist ziemlich einfach. Es zeigt Ihnen das Datum und die Uhrzeit der
-Nachricht, das Plugin, das es ausgegeben hat und die betreffende Nachricht.
-Sie können die betreffende Nachricht löschen, indem Sie die Schaltfläche
-am Anfang der Nachrichtenzeile drücken. (die Nachricht wird zurückkehren,
-wenn das Problem immer noch relevant ist).
+Il est assez simple. Il vous montre la date et l'heure du message, le
+plugin qui l'a émis et le message en question. Vous pouvez, en appuyant
+sur le bouton au tout début de la ligne d'un message, supprimer le
+message en question (il reviendra si le problème est toujours
+d'actualité).
 
-Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein
-bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu
-löschen.
+En haut, on retrouve un sélecteur pour filtrer les messages sur un
+plugin particulier et tout à droite un bouton pour vider tous les
+messages.
 
-> **Tipp**
+> **Spitze**
 >
-> Wenn Sie einen Fehler in der Nachrichtenzentrale haben, versuchen Sie
-> zunächst die Nachricht zu entfernen und sehen dann ob der Fehler
-> zurückkommt, bevor Sie den Support kontaktieren. Manchmal ist es nur ein
-> Problem mit der Netzwerkverbindung.
+> Lorsque vous avez une erreur dans le centre des messages, essayez
+> d'abord de supprimer le message puis voir si l'erreur revient avant de
+> contacter le support. Il arrive que ce soit juste dû à un souci de
+> connexion réseau.

@@ -1,43 +1,49 @@
 Logs 
 ====
 
-Im Logs-Menü können Sie verfolgen, was in der Home-Automation
-geschieht. In den meisten Fällen wird das Protokoll verwendet, um die
-Fehlersuche und Problemlösung durch das Support-Team durchzuführen.
+Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la
+plupart des cas les logs ne serviront qu'à effectuer du debuggage et à
+résoudre des problèmes par l'équipe de support.
 
 Pour y accéder il faut aller dans Analyse → Logs :
 
-Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass
-die Auswahl der Logs ermöglicht und oberen rechts sind 5 
-Schaltflächen :
+La page de Logs est assez simple, en haut à gauche une liste déroulante
+permettant le choix du log à regarder, en haut à droite vous avez 5
+boutons :
 
--   **Suche** : ermöglicht die angezeigten Protokolle zu  filtern
+-   **Suche** : permet de filtrer l'affiche de log
 
--   **Pause/Fortsetzen** : ermöglicht das Pausieren/Fortsetzen der
-    Echtzeit-Aktualisierung der Protokolle
+-   **Pause/Reprendre** : permet de mettre en pause/reprendre la mise à
+    jour en temps réel des logs
 
--   **Herunterladen** : zum herunterladen des aktuellen Protokolls,
+-   **Télécharger** : permet de télécharger le log actuel,
 
--   **Leeren** : wird verwendet, um das aktuelle Protokoll zu löschen,
+-   **Vider** : permet de vider le log actuel,
 
--   **Löschen** : Löscht das aktuelle Protokoll, wenn Jeedom es benötigt, 
-    wird es automatisch neu erstellt, 
+-   **Entfernen** : permet de supprimer le log actuel, si Jeedom en a
+    besoin il le recréera automatiquement,
 
--   **Alle Protokolle löschen** : Löscht alle vorhandene Protokolle.
+-   **Entfernen tous les logs** : supprime tous les logs présents.
 
-> **Tipp**
+> **Spitze**
 >
-> Man beachte, daß das Protokoll http.error nicht gelöscht werden kann. Es
-> ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der
-> Befehlszeile) wird es nicht neu erstellt, dazu muß das System neu gestartet werden.
+> A noter que le log http.error ne peut être supprimé. Il est essentiel
+> ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne
+> se recréera pas tout seul, il faut redémarrer le système.
 
 Temps réel 
 ==============
 
-Das "Ereignis" Protokoll ist etwas Besonderes. Damit es funktioniert, muss es zuerst in der Info- oder Debug-Ebene sein, dann listet es alle Ereignisse oder Aktionen auf, die in der Hausautomation stattfinden.
+Le log "Event" est un peu particulier. Tout d'abord pour qu'il
+fonctionne, il faut qu'il soit en niveau info ou debug, ensuite celui-ci
+recense tous les évènements ou actions qui se passent sur la domotique.
+Pour y accéder, il faut soit aller sur la page de log soit dans Analyse
+→ Temps réel
 
-Sobald Sie darauf klicken, erhalten Sie ein Fenster, das in
-Echtzeit aktualisiert und alle Ereignisse Ihrer Hausautomation
-anzeigt.
+Une fois que vous avez cliqué dessus, vous obtenez une fenêtre qui se
+met à jour en temps réel et vous affiche tous les évènements de votre
+domotique.
 
-Oben rechts haben sie ein Suchfelder (funktioniert nur, wenn sie nicht angehalten haben) und eine Schaltfläche für die Pause (nützlich zum Beispiel für Kopieren/Einfügen).
+En haut à droite vous avez un champ recherche (ne marche que si vous
+n'êtes pas en pause) et un bouton pour mettre en pause (utile pour faire
+un copier/coller par exemple).

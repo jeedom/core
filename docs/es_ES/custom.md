@@ -1,17 +1,17 @@
-Reservada a los expertos, esta página le permite añadir CSS o script JS
-más en Jeedom, que se ejecutará en cada página.
+Réservée aux experts, cette page permet d'ajouter des script CSS ou JS
+en plus dans Jeedom, qui seront exécutés sur chaque page.
 
 Accessible par **Réglages → Système → Personnalisation avancée**
 
-Por lo que puede de esta página de agregar scripts JS y CSS
-ejecutados a lo largo Jeedom distinguir la versión de escritorio
-Versión móvil.
+Vous pouvez donc à partir de cette page ajouter des scripts JS et CSS
+executés partout dans Jeedom en distinguant la version desktop de la
+version mobile.
 
-Para los incautos que quieren descubrir CSS
-<Http://css.mammouthland.net/premiers-pas-en-css.php>
+Pour les personnes non averties qui veulent découvrir les CSS
+<http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **Importante**
+> **importante**
 >
-> Cualquier error en una de estas secuencias de comandos puede hacer totalmente Jeedom
-> No disponible tendrá que conectar a través de SSH y eliminar
-> Los archivos de personalización con el fin de recuperar
+> Toute erreur dans un des ces scripts peut rendre Jeedom totalement
+> indisponible et il faudra se connecter en SSH et supprimer les
+> fichiers de customisation pour pouvoir le récupérer

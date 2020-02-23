@@ -1,309 +1,309 @@
-descripción
+Description 
 ===========
 
-Esta página reúne en una sola página los diferentes
-elementos configurados en su Jeedom. También da acceso a
-funciones de organización de los equipos y controles, su
-configuración avanzada, así como opciones de configuración
-pantalla.
+Cette page permite rassembler sur une seule page les différents
+éléments configurés sur son Jeedom. Elle donne également l'accès à des
+fonctions d'organisation des équipements et des commandes, à leur
+configuration avancée ainsi qu'à des possibilités de configuration
+d'affichage.
 
 Cette page est accessible par **Analyse → Résumé domotique**.
 
-el Top
+Le haut de la page 
 ------------------
 
-En la parte superior, encontramos: \ * ** ** número de objetos: Número
-objetos totales configurados en nuestra Jeedom, contando los elementos
-Inactivo. \ * ** ** Número de dispositivos: Lo mismo para el equipo. \ *
-**** Número de órdenes: Lo mismo para los pedidos. \ *** ** No:
-Marque esta casilla si desea que los elementos inactivos están bien
-que aparece en esta página. \ * ** ** Buscar: Buscar una
-tema en particular. Este puede ser el nombre de un dispositivo, un control
-o el nombre del plugin mediante el cual se creó el equipo.
+Sur le haut de la page, on retrouve : \* **número d'objets** : número
+total d'objets configurés dans notre Jeedom, en comptant les éléments
+inactifs. \* **número d'équipements** : Idem pour les équipements. \*
+**número de commandes** : Lo mismo para pedidos. \* **Inactif** :
+Cochez cette case si vous voulez que les éléments inactifs soient bien
+affichés sur cette page. \* **Rechercher** : Permet de rechercher un
+élément particulier. Ce peut être le nom d'un équipement, d'une commande
+ou le nom du plugin par lequel a été créé l'équipement.
 
-Vous avez aussi un bouton **Historique des suppressions** : Affiche l'historique
+Vous avez aussi un bouton **histórico des suppressions** : Affiche l'historique
 des commandes, équipements, objets, vues, design, deisgn 3d, scénarios et utilisateurs supprimés.
 
-Marcos de objetos 
+Les cadres objet 
 ----------------
 
-Abajo hay un marco por objeto. En cada cuadro, encontramos
-la lista del dispositivo (en azul) que es padre de este objeto. El
-primer cuadro **Ninguno** representa un equipo que no tiene
-padre asociado. Para cada objeto, junto a su etiqueta, tres botones
-están disponibles. De izquierda a derecha:
+En dessous on retrouve un cadre par objet. Dans chaque cadre, on trouve
+la liste des équipements (en bleu) qui ont pour parent cet objet. Le
+premier cadre **Aucun** représente les équipements qui n'ont pas de
+parent affecté. Pour chaque objet, à côté de son libellé, trois boutons
+sont disponibles. De gauche à droite :
 
--   El primero se utiliza para abrir la página de configuración del objeto en una
-    nueva pestaña,
+-   Le premier sert à ouvrir la page de configuration de l'objet dans un
+    nouvel onglet,
 
--   el segundo proporciona información sobre el objeto,
+-   le deuxième apporte quelques informations sur l'objet,
 
--   el último permite mostrar u ocultar la lista de dispositivos
-    que le son atribuidos. 
+-   le dernier permet d'afficher ou de masquer la liste des équipements
+    qui lui sont attribués.
 
-> **Tip**
+> **punta**
 >
-> El color de fondo de los marcos de los objetos depende del color elegido en
->la configuración del objeto.
+> La couleur de fond des cadres objets dépend de la couleur choisie dans
+> la configuration de l'objet.
 
-> **Tip**
+> **punta**
 >
->Haciendo clic y soltando sobre el dispositivo, usted puede cambiarlos
->o incluso asignarlos a otro objeto. Es de la orden
->establecida en esta página, como se calcula la visualización del Dashborad.
+> En cliquant/déposant sur les équipements, vous pouvez changer leur
+> ordre ou même les affecter à un autre objet. C'est à partir de l'ordre
+> établi dans cette page que l'affichage du dashboard est calculé.
 
-Los dipositivos 
+Les équipements 
 ---------------
 
-En cada dispositivo que encontramos :
+Sur chaque équipement on retrouve :
 
--   Una **casilla de verificación** para seleccionar el dispositivo (puede
-    seleccionar varios). Si se selecciona al menos un equipo
-    tienes botones de acción que aparecen en la parte superior izquierda
-    para **eliminar**, hacer **visible**/**invisible**,
-    **activo**/**inactivo** el dispositivo seleccionado.
+-   Une **case à cocher** pour sélectionner l'équipement (vous pouvez en
+    sélectionner plusieurs). Si au moins un équipement est sélectionné
+    vous avez des boutons d'action qui apparaissent en haut à gauche
+    pour **supprimer**, rendre **visible**/**invisible**,
+    **actif**/**inactif** les équipements sélectionnés.
 
--   El **nombre** del dispositivo
+-   Le **nom** de l'équipement.
 
--   Le **type** d’équipement : Identifiant du plugin auquel
-    pertenece.
+-   Le **type** d'équipement : Identifiant du plugin auquel
+    il appartient.
 
--   **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo.
-    (si no aparece, el dispositivo está activo).
+-   **Inactif** (petite croix) : Signifie que l'équipement est inactif
+    (si elle n'y est pas, l'équipement est actif).
 
--   **Invisible** (ojo cruzado): Significa que el dispositivo es invisible.
-    (si no aparece, el dispositivo es visible).
+-   **Invisible** (oeil barré) : Signifie que l'équipement est invisible
+    (s'il n'y est pas, l'équipement est visible).
 
--   **Enlace externo** (cuadrado con una flecha): Le permite abrir en una
-    nueva pestaña la página de configuración del dispositivo.
+-   **Lien externe** (carré avec une flèche) : Permet d'ouvrir dans un
+    nouvel onglet la page de configuration de l'équipement.
 
--   **Configuración avanzada** (rueda dentada): permite abrir la
-    ventana de configuración avanzada del dispositivo.
+-   **Configuration avancée** (roue crantée) : permet d'ouvrir la
+    fenêtre de configuration avancée de l'équipement.
 
--   **Lista de comandos** (flecha): permite desplegar la lista de
-    comandos (sobre fondo naranja).
+-   **Liste des commandes** (la flèche) : permite déplier la liste des
+    commandes (sur fond orange).
 
-Si despliega la lista de comandos, cada bloque naranja corresponde a
-un comando para su dispositivo (un nuevo clic en la flecha pequeña
-del dispositivo permite enmascararlas).
+Si vous dépliez la liste des commandes, chaque bloc orange correspond à
+une commande de votre équipement (un nouveau clic sur la petite flèche
+de l'équipement permite les masquer).
 
-Si hace doble clic sobre el comando o en el pequeña
-rueda dentada se abrirá la ventana de configuración.
+Si vous double-cliquez sur la commande ou que vous cliquez sur la petite
+roue crantée cela fera apparaitre sa fenêtre de configuration.
 
-Configuración avanzada de dispositivos
- =====================================
+Configuration avancée d'un équipement 
+=====================================
 
-> **Tip**
+> **punta**
 >
->Es posible acceder (si el plugin lo soporta) directamente a
->esta ventana desde la página de configuración del dispositivo en
->Haga clic en el botón de configuración avanzada
+> Il est possible d'accéder (si le plugin le supporte) directement à
+> cette fenêtre à partir de la page de configuration de l'équipement en
+> cliquant sur le bouton configuration avancée
 
-La fenêtre de **configuration avancée d’un équipement** permet de la
+La fenêtre de **configuration avancée d'un équipement** permite la
 modifier. En premier lieu, en haut à droite, quelques boutons
 disponibles :
 
--   **Liens** : Permet d’afficher les liens de l’équipement avec les
+-   **Vínculos** : Permet d'afficher les liens de l'équipement avec les
     objets, commandes, scénarios, variables, interactions…​ sous forme
     graphique (dans celui-ci, un double clic sur un élement vous amène à
-    su configuración).
+    sa configuration).
 
--   **Log** : affiche les évènements de l’équipement en question.
+-   **Log** : affiche les évènements de l'équipement en question.
 
--   **Informations** : affiche les propriétés brutes de l’équipement.
+-   **Informations** : affiche les propriétés brutes de l'équipement.
 
--   **Guardar** : Guarda los cambios realizados
-    en el equipo.
+-   **Enregistrer** : Enregistre les modifications faites
+    sur l'équipement.
 
--   **Supprimer** : Supprime l’équipement.
+-   **Supprimer** : Supprime l'équipement.
 
 Onglet Informations 
 -------------------
 
-L’onglet **Informations** contient les informations générales de
-l’équipement ainsi que ses commandes :
+L'onglet **Informations** contient les informations générales de
+l'équipement ainsi que ses commandes :
 
 -   **ID** : Identifiant unique dans la base de données de Jeedom.
 
--   **Nom** : Nom de l’équipement.
+-   **apellido** : apellido de l'équipement.
 
--   **ID logique** : Identifiant logique de l’équipement (peut
-    estar vacío).
+-   **ID logique** : Identifiant logique de l'équipement (peut
+    être vide).
 
--   **ID de l’objet** : Identifiant unique de l’objet parent (peut
-    estar vacío).
+-   **ID de l'objet** : Identifiant unique de l'objet parent (peut
+    être vide).
 
--   **Date de création** : Date de création de l’équipement.
+-   **Date de création** : Date de création de l'équipement.
 
--   **Activer** : Cochez la case pour activer l’équipement (sans oublier
-    de guardar).
+-   **Activer** : Cochez la case pour activer l'équipement (sans oublier
+    de sauvegarder).
 
--   **Visible** : Cochez la case pour rendre visible l’équipement (sans
-    olvidar de guardar).
+-   **Visible** : Cochez la case pour rendre visible l'équipement (sans
+    oublier de sauvegarder).
 
 -   **Type** : Identifiant du plugin par lequel il a été créé.
 
--   **Tentative échouée** : Nombre de tentatives de communications
-    consécutives avec l’équipement qui ont échoué.
+-   **Tentative échouée** : número de tentatives de communications
+    consécutives avec l'équipement qui ont échoué.
 
 -   **Date de dernière communication** : Date de la dernière
-    communication de l’équipement.
+    communication de l'équipement.
 
 -   **Dernière mise à jour** : Date de dernière communication
-    con el equipo.
+    avec l'équipement.
 
 -   **Tags** : tags de l'équipement, à séparer par des ','. Il permet sur le dashboard de faire des filtre personalisés
 
 En dessous vous retrouvez un tableau avec la liste des commandes de
-l’équipement avec, pour chacune, un lien vers leur configuration.
+l'équipement avec, pour chacune, un lien vers leur configuration.
 
-Pestaña Tablero
+Onglet Affichage 
 ----------------
 
-Dans l’onglet **Affichage**, vous allez pouvoir configurer certains
-comportements d’affichage de la tuile sur le dashboard, les vues, le
-design ainsi qu’en mobile.
+Dans l'onglet **Affichage**, vous allez pouvoir configurer certains
+comportements d'affichage de la tuile sur le dashboard, les vues, le
+design ainsi qu'en mobile.
 
 ### Widget 
 
--   **Visible** : Cochez la case pour rendre visible l’équipement.
+-   **Visible** : Cochez la case pour rendre visible l'équipement.
 
 -   **Afficher le nom** : Cochez la case pour afficher le nom de
-    el equipo en el widget.
+    l'équipement sur la tuile.
 
--   **Afficher le nom de l’objet** : Cochez la case pour afficher le nom
-    de l’objet parent de l’équipement, à côté de la tuile.
+-   **Afficher le nom de l'objet** : Cochez la case pour afficher le nom
+    de l'objet parent de l'équipement, à côté de la tuile.
 
 -   **Couleur de fond** : Cochez la case pour garder la couleur de fond
     par défaut (suivant la **catégorie** de votre équipement, voir
     **Administration→Configuration→Couleurs**). Si vous décochez cette
     case, vous pourrez choisir une autre couleur. Vous pourrez également
     cocher une nouvelle case **Transparent** pour rendre le
-    fondo transparente.
+    fond transparent.
 
 -   **Opacité** : Opacité de la couleur de fond de la tuile.
 
 -   **Couleur du texte** : Cochez la case pour garder la couleur du
-    texto por defecto.
+    texte par défaut.
 
 -   **Bordures** : Cochez la case pour garder la bordure par défaut.
-    Sinon, il faut mettre du code CSS, propriété `border` (ex :
+    Sinon, il faut mettre du code CSS, propriété `border` (por ejemplo, :
     `3px blue dashed` pour une bordure pointillée de 3px en bleu).
 
 -   **Arrondi des bordures** (en px) : Cochez la case pour garder
-    l’arrondi par défaut. Sinon, il faut mettre du code CSS, propriété
-    `border-radius` (ex : `10px`)
+    l'arrondi par défaut. Sinon, il faut mettre du code CSS, propriété
+    `border-radius` (por ejemplo, : `10px`)
 
-### Parámetros opcionales en el widget
+### Paramètres optionnels sur la tuile 
 
-En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
-peut appliquer à l’équipement. Ces paramètres sont composés d’un nom et
-d’une valeur. Il suffit de cliquer sur **Ajouter** pour en appliquer un
+En-dessous, on retrouve des paramètres optionnels d'affichage que l'on
+peut appliquer à l'équipement. Ces paramètres sont composés d'un nom et
+d'une valeur. Il suffit de cliquer sur **Ajouter** pour en appliquer un
 nouveau. Pour les équipements, seule la valeur **style** est pour le
-moment utilisée, elle permet d’insérer du code CSS sur l’équipement en
+moment utilisée, elle permet d'insérer du code CSS sur l'équipement en
 question.
 
-> **Tip**
+> **punta**
 >
-> N’oubliez pas de sauvegarder après toute modification.
+> N'oubliez pas de sauvegarder après toute modification.
 
-Pestaña Disposición
+Onglet Disposition 
 ------------------
 
-Cette partie vous permet de choisir entre la disposition standard des
-commandes (côte à côte dans le widget), ou en mode tableau. Il n’y a
+Cette partie vous permite choisir entre la disposition standard des
+commandes (côte à côte dans le widget), ou en mode tableau. Il n'y a
 rien à régler en mode par défaut. Voici les options disponibles en mode
 **Tableau** :
 
--   **Número de líneas**
+-   **número de lignes**
 
--   **Número de columnas**
+-   **número de colonnes**
 
 -   **Centrer dans les cases** : Cochez la case pour centrer les
-    comandos en las casillas.
+    commandes dans les cases.
 
 -   **Style générale des cases (CSS)** : Permet de définir le style
-    general en código CSS.
+    général en code CSS.
 
 -   **Style du tableau (CSS)** : Permet de définir le style du
-    tablero solamente.
+    tableau uniquement.
 
 En dessous pour chaque case, la **configuration détaillée** vous permet
 ceci :
 
 -   **Texte de la case** : Ajouter un texte en plus de la commande (ou
-    tout seul, si il n’y a pas de commande dans la case).
+    tout seul, si il n'y a pas de commande dans la case).
 
 -   **Style de la case (CSS)** : Modifier le style CSS spécifique de la
     case (attention celui-ci écrase et remplace le CSS général
-    las casillas).
+    des cases).
 
-> **Tip**
+> **punta**
 >
-> Dans une case du tableau, si vous voulez mettre 2 commandes l’une en
-> dessous de l’autre, il ne faut pas oublier de rajouter un retour à la
+> Dans une case du tableau, si vous voulez mettre 2 commandes l'une en
+> dessous de l'autre, il ne faut pas oublier de rajouter un retour à la
 > ligne après la première dans la **configuration avancée** de celle-ci.
 
-Pestaña Alertas 
+Onglet Alertes 
 --------------
 
-Cet onglet permet d’avoir les informations sur la batterie de
-l’équipement et de définir des alertes par rapport à celle-ci. Voici les
-types d’informations que l’on peut trouver :
+Cet onglet permet d'avoir les informations sur la batterie de
+l'équipement et de définir des alertes par rapport à celle-ci. Voici les
+types d'informations que l'on peut trouver :
 
--   **Tipo de pila**,
+-   **Type de pile**,
 
--   **Último feedback de la información**,
+-   **Dernière remontée de l'information**,
 
 -   **Niveau restant**, (si bien sûr votre équipement fonctionne
-    sobre pila).
+    sur pile).
 
-Dessous, vous pourrez aussi définir les seuils spécifiques d’alerte de
+Dessous, vous pourrez aussi définir les seuils spécifiques d'alerte de
 batterie pour cet équipement. Si vous laissez les cases vides, ceux sont
 les seuils par défaut qui seront appliqués.
 
-On peut également gérer le timeout, en minutes, de l’équipement. Par
-exemple, 30 indique à jeedom que si l’équipement n’a pas communiqué
+On peut également gérer le timeout, en minutes, de l'équipement. Par
+exemple, 30 indique à jeedom que si l'équipement n'a pas communiqué
 depuis 30 minutes, alors il faut le mettre en alerte.
 
-> **Tip**
+> **punta**
 >
 > Les paramètres globaux sont dans **Administration→Configuration→Logs**
-> (ou **Equipements**)
+> (ou **comodidades**)
 
-Pestaña Comentario
+Onglet Commentaire 
 ------------------
 
-Permet d’écrire un commentaire à propos de l’équipement (date de
+Permet d'écrire un commentaire à propos de l'équipement (date de
 changement de la pile, par exemple).
 
-Configuration avancée d’une commande 
+Configuration avancée d'une commande 
 ====================================
 
 En premier lieu, en haut à droite, quelques boutons disponibles :
 
--   **Probar**: Permite probar el comando.
+-   **Tester** : Permet de tester la commande.
 
--   **Liens** : Permet d’afficher les liens de l’équipement avec les
+-   **Vínculos** : Permet d'afficher les liens de l'équipement avec les
     objets, commandes, scénarios, variables, interactions…​. sous
-    forma gráfica.
+    forme graphique.
 
--   **Log** : Affiche les évènements de l’équipement en question.
+-   **Log** : Affiche les évènements de l'équipement en question.
 
--   **Informations** : Affiche les propriétés brutes de l’équipement.
+-   **Informations** : Affiche les propriétés brutes de l'équipement.
 
--   Appliquer à\* : Permet d’appliquer la même configuration sur
-    varios comandos.
+-   Appliquer à\* : Permet d'appliquer la même configuration sur
+    plusieurs commandes.
 
 -   **Enregistrer** : Enregistre les modifications faites sur
-    el equipo
+    l'équipement
 
-> **Tip**
+> **punta**
 >
 > Dans un graphique, un double clic sur un élément vous amène à sa
 > configuration.
 
-> **Note**
+> **nota**
 >
 > En fonction du type de commande, les informations/actions affichées
 > peuvent changer.
@@ -311,7 +311,7 @@ En premier lieu, en haut à droite, quelques boutons disponibles :
 Onglet Informations 
 -------------------
 
-L’onglet **Informations** contient les informations générales sur la
+L'onglet **Informations** contient les informations générales sur la
 commande :
 
 -   **ID** : Identifiant unique dans la base de données.
@@ -319,19 +319,19 @@ commande :
 -   **ID logique** : Identifiant logique de la commande (peut
     être vide).
 
--   **Nombre** : Nombre del comando.
+-   **apellido** : apellido de la commande.
 
 -   **Type** : Type de la commande (action ou info).
 
 -   **Sous-type** : Sous-type de la commande (binaire, numérique…​).
 
--   **URL directe** : Fournit l’URL pour accéder à cet équipement. (clic
-    droit, copier l’adresse du lien) L’URL lancera la commande pour une
-    **action**et retournera l’information pour une**info**.
+-   **URL directe** : Fournit l'URL pour accéder à cet équipement. (clic
+    droit, copier l'adresse du lien) L'URL lancera la commande pour une
+    **action** et retournera l'information pour une **info**.
 
--   **Unidad** : Unidad del comando.
+-   **unidad** : unidad de la commande.
 
--   **Commande déclenchant une mise à jour** : Donne l’identifiant d’une
+-   **Commande déclenchant une mise à jour** : Donne l'identifiant d'une
     autre commande qui, si cette autre commande change, va forcer la
     mise à jour de la commande visualisée.
 
@@ -341,178 +341,178 @@ commande :
     commande soit visible dans la timeline quand elle est utilisée.
 
 -   **Interdire dans les interactions automatique** : interdit les
-    interacciones automáticas en este comando
+    interactions automatique sur cette commande
 
--   **Icône** : Permet de changer l’icône de la commande.
+-   **Icône** : Permet de changer l'icône de la commande.
 
 Vous avez aussi trois autres boutons oranges en dessous :
 
--   **Cette commande remplace l’ID** : Permet de remplacer un ID de
+-   **Cette commande remplace l'ID** : Permet de remplacer un ID de
     commande par la commande en question. Utile si vous avez supprimé un
     équipement dans Jeedom et que vous avez des scénarios qui utilisent
-    los comandos de éste.
+    des commandes de celui-ci.
 
 -   **Cette commande remplace la commande** : Remplace une commande par
-    el comando corriente.
+    la commande courante.
 
--   **Remplacer cette commande par la commande** : L’inverse, remplace
-    el comando por otro comando.
+-   **Remplacer cette commande par la commande** : L'inverse, remplace
+    la commande par une autre commande.
 
-> **Note**
+> **nota**
 >
-> Ce genre d’action remplace les commandes partout dans Jeedom
+> Ce genre d'action remplace les commandes partout dans Jeedom
 > (scénario, interaction, commande, équipement…​.)
 
 En-dessous, vous retrouvez la liste des différents équipements,
 commandes, scénarios ou interactions qui utilisent cette commande. Un
-clic dessus permet d’aller directement sur leur configuration
+clic dessus permet d'aller directement sur leur configuration
 respective.
 
 Onglet Configuration 
 --------------------
 
-### Para un comando de tipo info :
+### Pour une commande de type info : 
 
--   **Cálculo y redondeo**
+-   **Calcul et arrondi**
 
     -   **Formule de calcul (\#value\# pour la valeur)** : Permet de
         faire une opération sur la valeur de la commande avant le
         traitement par Jeedom, exemple : `#value# - 0.2` pour retrancher
         0.2 (offset sur un capteur de température).
 
-    -   **Arrondi (chiffre après la virgule)** : Permet d’arrondir la
+    -   **Arrondi (chiffre après la virgule)** : Permet d'arrondir la
         valeur de la commande (Exemple : mettre 2 pour tranformer
         16.643345 en 16.64).
 
 -   **Type générique** : Permet de configurer le type générique de la
     commande (Jeedom essaie de le trouver par lui-même en mode auto).
-    Esta información es utilizada por la aplicación móvil.
+    Cette information est utilisée par l'application mobile.
 
 -   **Action sur la valeur, si** : Permet de faire des sortes de
     mini scénarios. Vous pouvez, par exemple, dire que si la valeur vaut
     plus de 50 pendant 3 minutes, alors il faut faire telle action. Cela
-    permet, par exemple, d’éteindre une lumière X minutes après que
-    ésta se haya encendido.
+    permet, par exemple, d'éteindre une lumière X minutes après que
+    celle-ci se soit allumée.
 
--   **Historial**
+-   **histórico**
 
     -   **Historiser** : Cochez la case pour que les valeurs de cette
-        commande soient historisées. (Voir **Analyse→Historique**)
+        commande soient historisées. (Voir **Analyse→histórico**)
 
-    -   **Mode de lissage**: Mode de**lissage** ou d'**archivage**
-        permet de choisir la manière d’archiver la donnée. Par défaut,
-        c’est une **moyenne**. Il est aussi possible de choisir le
-        **maximum**, le **minimum**, ou **aucun**. **aucun** permet de
-        dire à Jeedom qu’il ne doit pas réaliser d’archivage sur cette
-        commande (aussi bien sur la première période des 5 mn qu’avec la
-        tâche d’archivage). Cette option est dangereuse car Jeedom
+    -   **Mode de lissage** : Mode de **lissage** ou d'**archivage**
+        permite choisir la manière d'archiver la donnée. Par défaut,
+        c'est une **moyenne**. Il est aussi possible de choisir le
+        **maximum**, le **minimum**, ou **aucun**. **aucun** permite
+        dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette
+        commande (aussi bien sur la première période des 5 mn qu'avec la
+        tâche d'archivage). Cette option est peligroeuse car Jeedom
         conserve tout : il va donc y avoir beaucoup plus de
-        datos conservados.
+        données conservées.
 
-    -   **Purger l’historique si plus vieux de** : Permet de dire à
-        Jeedom de supprimer toutes les données plus vieilles qu’une
+    -   **Purger l'historique si plus vieux de** : Permet de dire à
+        Jeedom de supprimer toutes les données plus vieilles qu'une
         certaine période. Peut être pratique pour ne pas conserver de
-        données si ça n’est pas nécessaire et donc limiter la quantité
-        de informaciones guardadas por Jeedom.
+        données si ça n'est pas nécessaire et donc limiter la quantité
+        d'informations enregistrées par Jeedom.
 
--   **Gestión de valores**
+-   **Gestion des valeurs**
 
     -   **Valeur interdite** : Si la commande prend une de ces valeurs,
-        Jeedom lo ignora antes de aplicarlo.
+        Jeedom l'ignore avant de l'appliquer.
 
-    -   **Valeur retour d’état** : Permet de faire revenir la commande à
-        este valor después de un tiempo.
+    -   **Valeur retour d'état** : Permet de faire revenir la commande à
+        cette valeur après un certain temps.
 
-    -   **Durée avant retour d’état (min)** : Temps avant le retour à la
-        valor más arriba.
+    -   **Durée avant retour d'état (min)** : Temps avant le retour à la
+        valeur ci-dessus.
 
--   **Otros** 
+-   **Autres**
 
     -   **Gestion de la répétition des valeurs** : En automatique si la
-        commande remonte 2 fois la même valeur d’affilée, alors Jeedom
+        commande remonte 2 fois la même valeur d'affilée, alors Jeedom
         ne prendra pas en compte la 2eme remontée (évite de déclencher
         plusieurs fois un scénario, sauf si la commande est de
         type binaire). Vous pouvez forcer la répétition de la valeur ou
-        prohibirlo por completo.
+        l'interdire complètement.
 
     -   **Push URL** : Permet de rajouter une URL à appeler en cas de
         mise à jour de la commande. Vous pouvez utiliser les tags
         suivant : `#value#` pour la valeur de la commande, `#cmd_name#`
-        pour le nom de la commande, `#cmd_id#` pour l’identifiant unique
+        pour le nom de la commande, `#cmd_id#` pour l'identifiant unique
         de la commande, `#humanname#` pour le nom complet de la commande
-        (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` pour le nom de l'équipement
+        (por ejemplo, : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` pour le nom de l'équipement
 
-### Para un comando acción :
+### Pour une commande action : 
 
 -   **Type générique** : Permet de configurer le type générique de la
     commande (Jeedom essaie de le trouver par lui-même en mode auto).
-    Cette information est utilisée par l’application mobile.
+    Cette information est utilisée par l'application mobile.
 
--   **Confirmer l’action** : Cochez cette case pour que Jeedom demande
-    une confirmation quand l’action est lancée à partir de l’interface
-    de este comando.
+-   **Confirmer l'action** : Cochez cette case pour que Jeedom demande
+    une confirmation quand l'action est lancée à partir de l'interface
+    de cette commande.
 
--   **Code d’accès** : Permet de définir un code que Jeedom demandera
-    quand l’action est lancée à partir de l’interface de cette commande.
+-   **Code d'accès** : Permet de définir un code que Jeedom demandera
+    quand l'action est lancée à partir de l'interface de cette commande.
 
--   **Action avant exécution de la commande** : Permet d’ajouter des
+-   **Action avant exécution de la commande** : Permet d'ajouter des
     commandes **avant** chaque exécution de la commande.
 
--   **Action après execution de la commande** : Permet d’ajouter des
+-   **Action après execution de la commande** : Permet d'ajouter des
     commandes **après** chaque exécution de la commande.
 
-Pestaña Alertas
+Onglet Alertes 
 --------------
 
-Permet de définir un niveau d’alerte (**warning**ou**danger**) en
+Permet de définir un niveau d'alerte (**advertencia** ou **peligro**) en
 fonction de certaines conditions. Par exemple, si `value > 8` pendant 30
-minutes alors l’équipement peut passer en alerte **warning**.
+minutes alors l'équipement peut passer en alerte **advertencia**.
 
-> **Note**
+> **nota**
 >
 > Sur la page **Administration→Configuration→Logs**, vous pouvez
 > configurer une commande de type message qui permettra à Jeedom de vous
-> prévenir si on atteint le seuil warning ou danger.
+> prévenir si on atteint le seuil advertencia ou peligro.
 
 Onglet Affichage 
 ----------------
 
 Dans cettre partie, vous allez pouvoir configurer certains comportements
-d’affichage du widget sur le dashboard, les vues, le design et en
+d'affichage du widget sur le dashboard, les vues, le design et en
 mobile.
 
 -   **Widget** : Permet de choisir le widget sur dekstop ou mobile (à
-    noter qu’il faut le plugin widget et que vous pouvez le faire aussi
-    a partir de éste).
+    noter qu'il faut le plugin widget et que vous pouvez le faire aussi
+    à partir de celui-ci).
 
 -   **Visible** : Cochez pour rendre visible la commande.
 
 -   **Afficher le nom** : Cochez pour rendre visible le nom de la
-    comando, dependiendo del contexto.
+    commande, en fonction du contexte.
 
--   **Afficher le nom et l’icône** : Cochez pour rendre visible l’icône
-    Además del nombre del comando.
+-   **Afficher le nom et l'icône** : Cochez pour rendre visible l'icône
+    en plus du nom de la commande.
 
--   **Retour à la ligne forcé avant le widget**: Cochez**avant le
-    widget**ou**après le widget** pour ajouter un retour à la ligne
+-   **Retour à la ligne forcé avant le widget** : Cochez **avant le
+    widget** ou **après le widget** pour ajouter un retour à la ligne
     avant ou après le widget (pour forcer par exemple un affichage en
-    colonne des différentes commandes de l’équipement au lieu de lignes
-    por defecto)
+    colonne des différentes commandes de l'équipement au lieu de lignes
+    par défaut)
 
-En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
+En-dessous, on retrouve des paramètres optionnels d'affichage que l'on
 peut passer au widget. Ces paramètres dépendent du widget en question,
 il faut donc regarder sa fiche sur le Market pour les connaître.
 
-> **Tip**
+> **punta**
 >
-> N’oubliez pas de sauvegarder après toute modification.
+> N'oubliez pas de sauvegarder après toute modification.
 
 Onglet Code 
 -----------
 
-Permite cambiar el código del widget solo para el comando actual.
+Permet de modifier le code du widget juste pour la commande courante.
 
-> **Note**
+> **nota**
 >
-> Si vous voulez modifier le code n’oubliez pas de cocher la case
+> Si vous voulez modifier le code n'oubliez pas de cocher la case
 > **Activer la personnalisation du widget**

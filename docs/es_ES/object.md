@@ -1,147 +1,147 @@
-Los **objetos** se utilizan para definir la estructura de su automatización del hogar.
-Todo el equipo que va a crear pertenecerá a un objeto y
-será, pues, visto con mayor facilidad. Se dice entonces que el objeto
-es el padre ** ** equipos. La gestión de objetos está disponible
-desde las Herramientas → Objetos ** ** menú.
+la **objetos** permettent de définir l'arborescence de votre domotique.
+Tous les équipements que vous créerez devront appartenir à un objet et
+pourront ainsi être plus facilement repérables. On dit alors que l'objet
+est le **parent** de l'équipement. La gestion des objetos est accessible
+à partir du menu **Outils → Objets**.
 
-Para dejar libre elección a la personalización, puede nombrar a estos
-objetos como desee. Por lo general hay definir los diferentes
-partes de su casa como nombres de piezas (Esta es también la
-configuración recomendada).
+Pour laisser libre choix à la personnalisation, vous pouvez nommer ces
+objetos comme vous le voulez. Usuellement, on y définira les différentes
+parties de sa maison, comme le nom des pièces (c'est d'ailleurs la
+configuration recommandée).
 
-Gestión
+administración 
 =======
 
-Hay dos opciones disponibles:
+Deux options s'offrent à vous :
 
--   ** ** Añadir: Crea un nuevo objeto.
+-   **Ajouter** : Permet de créer un nouvel objet.
 
--   ** ** Descripción: Muestra una lista de objetos creados
-    y su configuración.
+-   **Vue d'ensemble** : Permet d'afficher la liste des objetos créés
+    ainsi que leur configuration.
 
-mis objetos
+Mes objetos 
 ==========
 
-Una vez que haya creado un objeto, aparecerá en esta sección.
+Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
-Pestaña Objeto
+Onglet Objet 
 ------------
 
-Al hacer clic sobre un objeto, se accede a la página de configuración. ¿Qué
-¿cuáles son los cambios, no se olvide de guardar el
-final.
+En cliquant sur un objet, vous accédez à sa page de configuration. Quels
+que soient les changements effectués, n'oubliez pas de sauvegarder à la
+fin.
 
-Aquí están las diferentes características para configurar un objeto:
+Voici donc les différentes caractéristiques pour configurer un objet :
 
--   ** ** Nombre del objeto: El nombre de su objeto.
+-   **Nom de l'objet** : Le nom de votre objet.
 
--   ** ** Padre: especifica el elemento principal del objeto actual, esto permite
-    definir una jerarquía de objetos. Por ejemplo: El espectáculo
-    apartamento de los padres. Un objeto puede tener sólo un padre
-    pero varios objetos pueden tener el mismo padre.
+-   **Père** : Indique le parent de l'objet courant, cela permet de
+    définir une hiérarchie entre les objetos. Par exemple : Le salon a
+    pour parent l'appartement. Un objet ne peut avoir qu'un seul parent
+    mais plusieurs objetos peuvent avoir le même parent.
 
--   ** ** visible: Marque esta casilla para hacer visible este artículo.
+-   **Visible** : Cochez cette case pour rendre visible cet objet.
 
--   **Ocultar en el dashboard**: Marque esta casilla para ocultar
-    el objeto en el salpicadero. Todavía se mantiene en el
-    lista, que permite la visualización, pero sólo
-    de forma explícita.
+-   **Masquer sur le dashboard** : Cochez cette case pour masquer
+    l'objet sur le dashboard. Il est tout de même conservé dans la
+    liste, ce qui permet de l'afficher, mais uniquement de
+    manière explicite.
 
--   **Icono**: Permite elegir un icono para su objeto.
+-   **Icône** : Permet de choisir une icône pour votre objet.
 
--   **Color de la etiqueta**: Permite elegir el color del objeto y de los
-    equipos que se le atribuye.
+-   **Couleur du tag** : Permet de choisir la couleur de l'objet et des
+    équipements qui lui sont rattachés.
 
--   ** ** color del texto de la etiqueta: Elija el color del texto
-    del objeto. Este texto será sobre el color ** ** etiqueta. A usted
-    elegir un color para que el texto sea legible.
+-   **Couleur du texte du tag** : Permet de choisir la couleur du texte
+    de l'objet. Ce texte sera par dessus la **couleur du tag**. A vous
+    de choisir une couleur pour rendre le texte lisible.
 
 -   **Taille sur le dashboard (1 à 12)** : Permet de définir la largeur
-    de l’affichage de cet objet dans le dashboard. Par exemple : si vous
-    ponga `6` a dos objetos consecutivos en la lista, luego
-    estará lado a lado en el dashboard. Si pones `3` a cuatro
-    objetos que se siguen, también estarán uno al lado del otro.
+    de l'affichage de cet objet dans le dashboard. Par exemple : si vous
+    mettez `6` à deux objetos qui se suivent dans la liste, alors il
+    seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
+    objetos qui se suivent, ils seront également côte à côte.
+    
+-   **Image** : Vous avez la possibilité de télécharger une image ou la
+    supprimer. Au format jpeg cette image sera l'image de fond de l'objet
+    quand vous l'afficherez sur le dashboard.
 
--   **Imagen**: Tienes la opción de subir una imagen o la
-    eliminar. En formato jpeg, esta imagen será la imagen de fondo del objeto
-    cuando lo muestras en el dashboard.
-
-> **Tip**
+> **punta**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le dashboard.
+> Vous pouvez modifier l'ordre d'affichage des objetos dans le dashboard.
 > Dans la vue d'ensemble, sélectionnez votre objet à la souris et 
 > en glisser/déposer pour lui donner une nouvelle place.
 
-> **Tip**
+> **punta**
 >
 > Vous pouvez voir un graphique représentant tous les éléments de Jeedom
-> rattachés à cet objet en cliquant sur le bouton **Liens**, en haut à
+> rattachés à cet objet en cliquant sur le bouton **Vínculos**, en haut à
 > droite.
 
-> **Tip**
+> **punta**
 >
-> Quand un équipement est créé et qu’aucun parent n’a été défini, il
+> Quand un équipement est créé et qu'aucun parent n'a été défini, il
 > aura comme parent : **Aucun** .
 
-Pestaña Resumen 
+Onglet Résumé 
 -------------
 
-Les résumés sont des informations globales, affectées à un objet, qui
-s’affichent notamment sur le dashboard à côté du nom de ce dernier.
+la résumés sont des informations globales, affectées à un objet, qui
+s'affichent notamment sur le dashboard à côté du nom de ce dernier.
 
-### Cuadro de indicadores
+### Tableau d'affichage 
 
-Las columnas representan los resúmenes asignados al objeto actual.
-Se le proponen tres líneas :
+la colonnes représentent les résumés affectés à l'objet courant. Trois
+lignes vous sont proposées :
 
--   **Mostrar en el resumen global**: Marque la casilla si
-    desea que el resumen se muestre en la barra de menú
+-   **Remonter dans le résumé global** : Cochez la case si vous
+    souhaitez que le résumé soit affiché dans la barre de menu
     de Jeedom.
 
--   **Ocultar en el escritorio**: Marque la casilla si no desea que
-    el resumen se muestra al lado del nombre del objeto en el dashboard.
+-   **Masquer en desktop** : Cochez la case si vous ne souhaitez pas que
+    le résumé s'affiche à côté du nom de l'objet sur le dashboard.
 
--   **Ocultar en el móvil**: Marque la casilla si no desea que
-    el resumen se muestra cuando lo ve desde un dispositivo móvil.
+-   **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que
+    le résumé s'affiche quand vous l'affichez depuis un mobile.
 
-### Comandos
+### comandos 
 
 Chaque onglet représente un type de résumé défini dans la configuration
 de Jeedom. Cliquez sur **Ajouter une commande** pour que celle-ci soit
 prise en compte dans le résumé. Vous avez le choix de sélectionner la
-commande de n’importe quel équipement de Jeedom, même s’il n’a pas pour
+commande de n'importe quel équipement de Jeedom, même s'il n'a pas pour
 parent cet objet.
 
-> **Tip**
+> **punta**
 >
-> Si desea agregar un tipo de resumen o para configurar el
-> método de cálculo del resultado, la unidad, el icono y el nombre de un resumen,
-> debe ir a la configuración general de Jeedom :
-> **Administración → Configuración → Pestaña Resumenes**.
+> Si vous souhaitez ajouter un type de résumé ou pour configurer la
+> méthode de calcul du résultat, l'unité, l'icône et le nom d'un résumé,
+> vous devez aller dans la configuration générale de Jeedom :
+> **Administration → Configuration → Onglet Résumés**.
 
-Visión general
+Vue d'ensemble 
 ==============
 
-La vue d’ensemble vous permet de visualiser l’ensemble des objets dans
+La vue d'ensemble vous permet de visualiser l'ensemble des objetos dans
 Jeedom, ainsi que leur configuration :
 
--   **ID** : ID del objeto.
+-   **ID** : ID de l'objet.
 
--   **Objeto**: Nombre del objeto.
+-   **Objet** : Nom de l'objet.
 
--   **Padre**: Nombre del objeto padre.
+-   **Père** : Nom de l'objet parent.
 
--   **Visible** : Visibilidad del objeto.
+-   **Visible** : Visibilité de l'objet.
 
--   **Oculto**: Indica si el objeto está oculto en el dashboard.
+-   **Masqué** : Indique si l'objet est masqué sur le dashboard.
 
 -   **Résumé Défini** : Indique le nombre de commandes par résumé. Ce
     qui est en bleu est pris en compte dans le résumé global.
 
--   **Resumen Dashboard Ocultado **: Indica resúmenes ocultos en
-    el dashboard.
+-   **Résumé Dashboard Masqué** : Indique les résumés masqués sur
+    le dashboard.
 
--   **Resumen Móvil Oculto**: Indica los resúmenes ocultos en
-    el móvil.
+-   **Résumé Mobile Masqué** : Indique les résumés masqués sur
+    le mobile.
 
 

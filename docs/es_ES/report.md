@@ -8,18 +8,18 @@ Vous pouvez le faire sur des vues, design, page de panel....
 
 Elle se déclenche à partir d'un scénario avec la commande report, vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram, etc.)
 
-# Uso
+# Utilisation
 
 Son utilisation est très simple vous sélectionnez si vous voulez voir :
 
--   les rapports des vues
--   les rapports des degins
--   les rapports des panels des plugins
+-	les rapports des vues
+-	les rapports des degins
+-	les rapports des panels des plugins
 - les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module)
 
 Ensuite vous sélectionnez le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
 
-> **Important**
+> **importante**
 >
 > Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours (vous pouvez configurer ce délai dans la configuration de Jeedom)
 

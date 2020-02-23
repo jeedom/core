@@ -23,18 +23,18 @@ Il y a 2 types de templates :
 Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
 Ensuite :
-- Vous choisissez s’il s'applique sur une commande de type action ou info
+- Vous choisissez s'il s'applique sur une commande de type action ou info
 - En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...)
 - Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template)
 - Une fois le template choisi, jeedom vous donne les possibilités de configuration de celui-ci
 
 ## Remplacement
 
-C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icone/image (avec le bouton choisir), le "off" est celui-là ec. Ensuite en fonction du template, il peut vous être demander aussi la largeur (width) et la hauteur (height). Ce n’est valable que pour les images.
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icone/image (avec le bouton choisir), le "off" est celui-là ec. Ensuite en fonction du template, il peut vous être demander aussi la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
->**Note**
+>**nota**
 >
->Nous sommes désolés pour les noms en anglais, il s’agit d’une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
 >**TIPS**
 >
@@ -52,15 +52,15 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Note**
+>**nota**
 >
 >Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
->**Note**
+>**nota**
 >
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
->**Note**
+>**nota**
 >
 >Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icone #value#
 
