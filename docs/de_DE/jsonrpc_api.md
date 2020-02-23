@@ -1,732 +1,191 @@
-Das ist eine Dokumentation der API-Methoden. Zuallererst, sind hier die
-(JSON RPC 2.0) Spezifizierungen :
-<http://www.jsonrpc.org/specification>
+# Widgets
+**Outils → Widgets**
 
-Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Divers
-======
+Il y a deux types de widgets personnalisés :
 
-ping
-----
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
-Gib Ping zurück, um die Kommunikation mit Jeedom zu testen
+> **Note**
+>
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-version
--------
+## Gestion
 
-Gibt die Jeedom Version zurück
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'Importer un widget sous forme de fichier json précedemment Exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
 
-datetime
---------
+## Mes widgets
 
-Gibt das Jeedom-Datum in Mikrosekunden zurück
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-API config
-==========
+> **Tip**
+>
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-config::byKey
--------------
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Gibt einen Konfigurationswert zurück.
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
-Parameter :
 
--   string key : Schlüssel des Konfigurationswerts, der zurückgegeben werden soll
+## Principe
 
--   string plugin : (optional), Plugin Konfigurationswert
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
 
--   string default : (optional), Rückgabewert, wenn der Schlüssel nicht
-    existiert
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-config::save
-------------
+## Les templates
 
-Speichert einen Konfigurationswert
+Il y a deux types de template :
 
-Parameter :
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour Wert "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la Wert vaut "toto", une autre si "plop", et ainsi de suite.
 
--   string value : Wert zum Speichern
+## Création d'un widget
 
--   string key : Schlüssel, des zu speichernden Konfigurationswertes
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
--   string plugin : Plugin, des zu speichernden 
-    Konfigurationswertes
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type Aktion ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
 
-API JSON Event
-==============
+### Remplacement
 
-event::changes
---------------
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
-Gibt eine Liste der Änderungen aus, die als Parameter in datetime übergeben wurde, (muss in Mikrosekunden sein). Sie werden in der Antwort auch das aktuelle Jeedom Datum zurück bekommen (um für die nächste Abfrage wiederverwendet zu werden).
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
-Parameter :
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les Werts de remplacement de mettre des tags et de spécifier leur Wert dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme Wert #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la Wert. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
--   int datetime
+### Test
 
-API JSON Plugin
-===============
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
 
-plugin::listPlugin
-------------------
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-Gibt die Liste aller Plugins zurück
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la Wert actuelle de la commande. Vous pouvez aussi faire par exemple :
 
-Parameter :
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
 
--   int activateOnly = 0 (liefert nur die Liste der aktivierten Plugins)
+>**Note**
+>Il est Important de noter les ' autour du texte à comparer si la Wert est un texte
 
--   int orderByCaterogy = 0 (liefert die Liste der Plugins nach 
-    Kategorie geordnet)
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
-API JSON Objet
-==============
+>**Note**
+>Il est possible d'afficher la Wert de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
-jeeObject::all
------------
+## Description de widgets
 
-Gibt die Liste aller Objekte zurück 
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
 
-jeeObject::full
-------------
+### Paramètres fréquents
 
-Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle
-Befehle von jedem Gerät, sowie die Zustände von diesem
-(für Befehle des Typs Info)
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
-jeeObject::fullById
-----------------
+### HygroThermographe
 
-Gibt ein Objekt mit allen seinen Geräten und für jedes Gerät alle seine
-Befehle sowie deren Zustände zurück (für Befehle des Typs Info)
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la Wert de plusieurs commande. Ici il prend les commandes de type température et humidité.
 
-Parameter :
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
 
--   int id
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
 
-jeeObject::byId
-------------
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
-Gibt das angegebenen Objekt zurück
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la Wert de plusieurs commande il faut absolument mettre le widget complet
 
-Parameter :
+### Multiline
 
--   int id
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette Wert)
 
-jeeObject::fullById
-----------------
+### Slider Button
 
-Gibt ein Objekt, seine Ausrüstung und für jedes Gerät alle seine Befehle
-sowie die Zustände dieses Objekts zurück (für Befehle des Typs Info)
+- step : permet de régler le pas d'une Aktion sur un bouton (0.5 par défaut)
 
-jeeObject::save
-------------
+## Widget code
 
-Gibt das angegebenen Objekt zurück
+### Les tags
 
-Parameter :
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
 
--   int id (leer, wenn es geschaffen wurde)
+- #name# : nom de la commande
+- #valueName# : nom de la Wert de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : Wert de la commande, vide pour une commande de type Aktion si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la Wert de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (Wert max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : Wert minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : Wert moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : Wert maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
 
--   string name
+### Mise à jour des Werts
 
--   int father\_id = null
+Lors d'une nouvelle Wert Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
 
--   int isVisible = 0
-
--   int position
-
--   array configuration
-
--   array display
-
-API JSON Summary
-================
-
-summary::global
----------------
-
-Gibt eine gesamt Zusammenfassung der Parameter des übergebenen Schlüssels zurück
-
-Parameter :
-
--   string key : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann gibt Jeedom
-    die Zusammenfassung für alle Schlüssel zurück
-
-summary::byId
--------------
-
-Gibt die Zusammenfassung für das ID-Objekt zurück
-
-Parameter :
-
--   int id : ID vom Objekt
-
--   string key : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer dann Jeedom
-    die Zusammenfassung für alle Schlüssel zurück
-
-API JSON EqLogic
-================
-
-eqLogic::all
-------------
-
-Gibt die Liste aller Geräte zurück
-
-eqLogic::fullById
------------------
-
-Gibt ein Gerät sowie dessen Befehle und die Zustände zurück
-(für Befehle des Typs Info)
-
-Parameter :
-
--   int id
-
-eqLogic::byId
--------------
-
-Liefert das angegebene Gerät zurück
-
-Parameter :
-
--   int id
-
-eqLogic::byType
----------------
-
-Gibt alle Geräte zurück, die zum angegebenen Typ (Plugin) gehören
-
-Parameter :
-
--   string type
-
-eqLogic::byObjectId
--------------------
-
-Gibt alle zum angegebenen Objekt gehörenden Geräte zurück
-
-Parameter :
-
--   int object\_id
-
-eqLogic::byTypeAndId
---------------------
-
-Giebt eine Tabelle von Geräten gemäß den Parametern zurück. Die Rückgabe erfolgt in Form von Arrays ('eqType1' ⇒array( 'id'⇒…​,'cmds' ⇒
-array(…​.)),'eqType2' ⇒array( 'id'⇒…​,'cmds' ⇒ array(…​.))…​.,id1 ⇒
-array( 'id'⇒…​,'cmds' ⇒ array(…​.)),id2 ⇒ array( 'id'⇒…​,'cmds' ⇒
-array(…​.))..)
-
-Parameter :
-
--   string\[\] eqType = Tabelle der gewünschten Gerätetypen
-
--   int\[\] id = benutzerdefinierte Tabelle der gewünschten Geräte-IDs
-
-eqLogic::save
--------------
-
-Retourne l’équipement enregistré/créé
-
-Paramètres:
-
--   int id (vide si c’est une création)
-
--   string eqType\_name (type de l’équipement script, virtuel…​)
-
--   string name
-
--   string logicalId = ''
-
--   int object\_id = null
-
--   int eqReal\_id = null
-
--   int isVisible = 0
-
--   int isEnable = 0
-
--   array configuration
-
--   int timeout
-
--   array category
-
-API JSON Cmd
-============
-
-cmd::all
---------
-
-Retourne la liste de toutes les commandes
-
-cmd::byId
----------
-
-Retourne la commande spécifiée
-
-Paramètres:
-
--   int id
-
-cmd::byEqLogicId
-----------------
-
-Retourne toutes les commandes appartenant à l’équipement spécifié
-
-Paramètres:
-
--   int eqLogic\_id
-
-cmd::execCmd
-------------
-
-Exécute la commande spécifiée
-
-Paramètres:
-
--   int id : id d’une commande ou tableau d’id si vous voulez executer
-    plusieurs commande d’un coup
-
--   \[options\] Liste des options de la commande (dépend du type et du
-    sous-type de la commande)
-
-cmd::getStatistique
--------------------
-
-Retourne les statistiques sur la commande (ne marche que sur les
-commandes de type info et historisées)
-
-Paramètres:
-
--   int id
-
--   string startTime : date de début de calcul des statistiques
-
--   string endTime : date de fin de calcul des statistiques
-
-cmd::getTendance
-----------------
-
-Retourne la tendance sur la commande (ne marche que sur les commandes de
-type info et historisées)
-
-Paramètres:
-
--   int id
-
--   string startTime : date de début de calcul de la tendance
-
--   string endTime : date de fin de calcul de la tendance
-
-cmd::getHistory
----------------
-
-Retourne l’historique de la commande (ne marche que sur les commandes de
-type info et historisées)
-
-Paramètres:
-
--   int id
-
--   string startTime : date de début de l’historique
-
--   string endTime : date de fin de l’historique
-
-cmd::save
----------
-
-Retourne l’objet spécifié
-
-Paramètres:
-
--   int id (vide si c’est une création)
-
--   string name
-
--   string logicalId
-
--   string eqType
-
--   string order
-
--   string type
-
--   string subType
-
--   int eqLogic\_id
-
--   int isHistorized = 0
-
--   string unite = ''
-
--   array configuration
-
--   array template
-
--   array display
-
--   array html
-
--   int value = null
-
--   int isVisible = 1
-
--   array alert
-
-cmd::event
--------------------
-
-Permet d'envoyer une valeur à une commande
-
-Paramètres:
-
--   int id
-
--   string value : valeur
-
--   string datetime : (optionnel) datetime de la valeur
-
-API JSON Scenario
-=================
-
-scenario::all
--------------
-
-Retourne la liste de tous les scénarios
-
-scenario::byId
---------------
-
-Retourne le scénario spécifié
-
-Paramètres:
-
--   int id
-
-scenario::export
-----------------
-
-Retourne l’export du scénario ainsi que le nom humain du scénario
-
-Paramètres:
-
--   int id
-
-scenario::import
-----------------
-
-Permet d’importer un scénario.
-
-Paramètres:
-
--   int id : id du scénario dans lequel importer (vide si création)
-
--   string humanName : nom humain du scénario (vide si création)
-
--   array import : scénario (issue du champs export de scenario::export)
-
-scenario::changeState
----------------------
-
-Change l’état du scénario spécifié.
-
-Paramètres:
-
--   int id
-
--   string state : \[run,stop,enable,disable\]
-
-API JSON Log
-============
-
-log::get
---------
-
-Permet de récuperer un log
-
-Paramètres:
-
--   string log : nom du log à recuperer
-
--   string start : numéro de ligne sur laquelle commencer la lecture
-
--   string nbLine : nombre de ligne à recuperer
-
-log::list
----------
-
-Permet de récuperer la list des logs de Jeedom
-
-Paramètres:
-
--   string filtre : (optionnel) filtre sur le nom des logs à recuperer
-
-log::empty
-----------
-
-Permet de vider un log
-
-Paramètres:
-
--   string log : nom du log à vider
-
-log::remove
------------
-
-Permet de supprimer un log
-
-Paramètres:
-
--   string log : nom du log a supprimer
-
-API JSON datastore (variable)
-=============================
-
-datastore::byTypeLinkIdKey
---------------------------
-
-Récupère la valeur d’une variable stockée dans le datastore
-
-Paramètres:
-
--   string type : type de la valeur stockée (pour les scénarios
-    c’est scenario)
-
--   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
-    ou l’id du scénario)
-
--   string key : nom de la valeur
-
-datastore::save
----------------
-
-Enregistre la valeur d’une variable dans le datastore
-
-Paramètres:
-
--   string type : type de la valeur stockée (pour les scénarios
-    c’est scenario)
-
--   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
-    ou l’id du scénario)
-
--   string key : nom de la valeur
-
--   mixte value : valeur à enregistrer
-
-API JSON Message
-================
-
-message::all
-------------
-
-Retourne la liste de tous les messages
-
-message::removeAll
-------------------
-
-Supprime tous les messages
-
-API JSON Interaction
-====================
-
-interact::tryToReply
---------------------
-
-Essaie de faire correspondre une demande avec une interaction, exécute
-l’action et répond en conséquence
-
-Paramètres:
-
--   query (phrase de la demande)
-
--   int reply\_cmd = NULL : ID de la commande à utiliser pour répondre,
-    si non préciser alors Jeedom vous renvoi la réponse dans le json
-
-interactQuery::all
-------------------
-
-Renvoi la liste complete de toute les interactions
-
-API JSON System
-===============
-
-jeedom::halt
-------------
-
-Permet d’arrêter Jeedom
-
-jeedom::reboot
---------------
-
-Permet de redémarrer Jeedom
-
-jeedom::isOk
-------------
-
-Permet de savoir si l’état global de Jeedom est OK
-
-jeedom::update
---------------
-
-Permet de lancer un update de Jeedom
-
-jeedom::backup
---------------
-
-Permet de lancer un backup de Jeedom
-
-jeedom::getUsbMapping
----------------------
-
-Liste des ports USB et des noms de clef USB branché dessus
-
-API JSON plugin
-===============
-
-plugin::install
----------------
-
-Installation/Mise à jour d’un plugin donné
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::remove
---------------
-
-Suppression d’un plugin donné
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::dependancyInfo
-----------------------
-
-Renvoi les informations sur le status des dépendances du plugins
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::dependancyInstall
--------------------------
-
-Force l’installation des dépendances du plugin
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::deamonInfo
-------------------
-
-Renvoi les informations sur le status du démon du plugin
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::deamonStart
--------------------
-
-Force le démarrage du démon
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::deamonStop
-------------------
-
-Force l’arret du démon
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
-plugin::deamonChangeAutoMode
-----------------------------
-
-Change le mode de gestion du démon
-
-Paramètres:
-
--   string plugin\_id : nom du plugin (nom logique)
-
--   int mode : 1 pour automatique, 0 pour manuel
-
-API JSON update
-===============
-
-update::all
------------
-
-Retour la liste de tous les composants installés, leur version et les
-informations associées
-
-update::checkUpdate
--------------------
-
-Permet de vérifier les mises à jour
-
-update::update
---------------
-
-Permet de mettre à jour Jeedom et tous les plugins
-
-API JSON network
-================
-
-network::restartDns
--------------------
-
-Force le (re)démarrage du DNS Jeedom
-
-network::stopDns
-----------------
-
-Force l’arret du DNS Jeedom
-
-network::dnsRun
----------------
-
-Renvoi le status du DNS Jeedom
-
-API JSON Exemples
-=================
-
-Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous
-j’utilise [cette class
-php](https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
-qui permet de simplifier l’utilisation de l’api.
-
-Récupération de la liste des objets :
-
-``` {.php}
-$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if($jsonrpc->sendRequest('jeeObject::all', array())){
-    print_r($jsonrpc->getResult());
-}else{
-    echo $jsonrpc->getError();
-}
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 ```
 
-Exécution d’une commande (avec comme option un titre et un message)
+Voila un exemple simple de code javascript a mettre dans votre widget :
 
-``` {.php}
-$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => array('title' => 'Coucou', 'message' => 'Ca marche')))){
-    echo 'OK';
-}else{
-    echo $jsonrpc->getError();
-}
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de Wert : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
 ```
 
-L’API est bien sur utilisable avec d’autres langages (simplement un post
-sur une page) 
+Ici deux choses Importantes :
+
+```
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de Wert : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+
+```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

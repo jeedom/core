@@ -767,7 +767,7 @@
         "Accéder": "Acceso",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "Acaba de declarar un error que se publicará en nuestro Bug Tracker público. <br\/> Puedes seguirlo",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Su ticket ha sido abierto. Se le enviará un correo electrónico",
-        "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)": "TENGA CUIDADO esta solicitud será pública, NO DEBE poner ninguna información personal (correo electrónico, cuenta de mercado, clave API ...)"
+        "ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\\'information personnelle (mail, compte market, clé api...)": "TENGA EN CUENTA: esta solicitud será pública, NO DEBE poner ninguna información personal (correo electrónico, cuenta de mercado, clave API, etc.)"
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1150,8 +1150,11 @@
         "Options": "Opciones",
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "¿Estás seguro de que deseas actualizar este artículo?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "¿Seguro que quieres eliminar este objeto?",
-        "L\\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés": "La operación es exitosa. Haga CTRL + F5 para obtener las últimas noticias.",
         "L\\'opération a échoué": "La operación falló",
+        "Update terminée avec succès.": "Actualización completada con éxito.",
+        "Voulez vous recharger la page maintenant ?": "¿Quieres recargar la página ahora?",
+        "Recharger": "recargar",
+        "Rester sur la page": "Mantente en la página",
         "Dernière mise à jour du core : ": "Última actualización del core :",
         "Ne pas mettre à jour": "No actualizar",
         "Changelog": "cambios",
@@ -1159,7 +1162,7 @@
         "Réinstaller": "Restablecer",
         "Supprimer": "Borrar",
         "Vérifier": "Verificar",
-        "La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)": "La actualización parece estar bloqueada (sin cambios durante 10 minutos. Verifique el registro)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La actualización parece estar bloqueada (sin cambios durante 10 minutos. Verifique el registro)"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Comando de configuración",
@@ -1487,14 +1490,15 @@
         "Visible": "visible",
         "Objet parent": "Objeto padre",
         "Aucun": "Ninguno",
-        "Timeout en secondes (0 = illimité)": "Tiempo de espera en segundos (0 = sin límite)",
         "Log": "Registro",
         "Défaut": "Por defecto",
         "Temps réel": "Tiempo real",
+        "Timeout": "tiempo de espera",
+        "Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.": "Duración más allá de la cual se corta el escenario. 0: sin tiempo de espera.",
         "Multi-lancement": "Multi-lanzamiento",
-        "Le scénario pourra tourner plusieurs fois en même temps": "El script se ejecutará varias veces de forma simultánea",
+        "Le scénario pourra s'éxécuter plusieurs fois en même temps.": "El escenario se puede ejecutar varias veces al mismo tiempo.",
         "Synchrone": "sincrónico",
-        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "El script se encuentra en modo síncrono. Advertencia, esto puede hacer que el sistema inestable",
+        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "El escenario está en modo síncrono. Tenga cuidado, esto puede hacer que el sistema sea inestable.",
         "Timeline": "línea de tiempo",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Las ejecuciones de la secuencia de comandos se pueden ver en la línea de tiempo.",
         "Dossier": "Carpetas",
@@ -3823,12 +3827,12 @@
         "Crons": "cron",
         "Démons": "Demonios",
         "Santé": "Salud",
-        "Synthèse": "síntesis",
         "Basculer le thème": "Alternar tema",
         "Version desktop": "Versión escritorio",
         "Forcer mise à jour": "Forzar actualización",
         "A propos": "A proposito",
         "Déconnexion": "Salir",
+        "Synthèse": "síntesis",
         "Tout": "Todo",
         "Designs": "Diseños",
         "Designs 3D": "Diseños en 3D"

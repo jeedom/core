@@ -1,126 +1,191 @@
-La page Analyse d’équipements accessible depuis le menu Analyse → Equipements vous permet de voir de nombreuses infos
-relatives aux équipements de manière centralisée :
+# Widgets
+**Outils → Widgets**
 
--   el estado de la batería
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
--   las alertas módulos
+Il y a deux types de widgets personnalisés :
 
--   las acciones definidas
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
--   alertas definidas
-
--   órdenes huérfanos
-
-La pestaña Baterías
-====================
-
-Se puede ver en esta pestaña lista de sus módulos de batería
-su nivel restante (el color de la baldosa depende de ese nivel), la
-tipo y cantidad de baterías para poner en el módulo, el tipo de
-módulo y la información de fecha de la carga de la batería
-se ha actualizado. También puede ver si un determinado umbral era
-establecido para el módulo en particular (representado por una mano)
-
-> **Tip**
+> **Note**
 >
-> Los umbrales de alerta / advertencia en los niveles de la batería
-> A nivel mundial configurable en el Jeedom configuración
-> (Pestaña Administración → Instalaciones), o el equipo en la página
-> Configuración avanzada del mismo en la pestaña de alertas.
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-La pestaña Módulos en alerta
-==========================
+## Gestion
 
-En esta pestaña se verá módulos de alerta en tiempo real. la
-Las alertas pueden ser de diferentes tipos:
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
 
--   tiempo de espera (configurado en la pestaña de alertas definido)
+## Mes widgets
 
--   aviso de batería o en peligro de extinción
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
--   advertencia o peligro de comandos (configurable en los ajustes
-    comandos avanzados)
-
-Otros tipos de alertas finalmente va a terminar aquí.
-Cada alerta estará representada por el color de la baldosa (el nivel
-Alerta) y un logotipo en la parte superior izquierda (tipo de aviso)
-
-> **Tip**
+> **punta**
 >
-> A continuación, se publicarán todos alerta incluso los módulos configurados
-> "No visible". Sin embargo, es interesante observar que si el módulo
-> ¿Es "visible" alerta también será visible en el salpicadero (en
-> El objeto en cuestión)
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-La ficha Acciones definido
-=========================
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Este registro le permite ver las acciones definidas directamente en una
-mando. De hecho, se puede poner en diferentes órdenes y
-puede ser difícil recordar todo. Esta ficha es sólo eso
-y sintetiza varias cosas:
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
--   acciones sobre el estado (que se encuentra en la configuración avanzada
-    información y comandos para realizar uno o más
-    acciones sobre el valor de una orden - de forma inmediata o después de
-    un retraso)
 
--   confirmaciones de patrimonio (configurables en el mismo lugar en una
-    controlar la información y para pedir la confirmación
-    realizar una acción)
+## Principe
 
--   confirmaciones con código (igual que antes, pero con
-    introducción de un código)
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
 
--   la acción pre y post (configurable siempre en el mismo lugar de
-    comando de acción y para la realización de uno o varios de los demás
-    acciones antes o después de la acción en cuestión)
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-> **Tip**
->
-> En la tabla le permite ver las acciones tanto de texto
-> Definido. Se pueden añadir otros tipos de acciones definidas.
+## Les templates
 
-La ficha Alertas definido
-=========================
+Il y a deux types de template :
 
-Esta ficha le permite ver todas las alertas definidas, se quiere
-encontrará una tabla con la siguiente información si está disponible:
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
--   el retraso en la comunicación de alertas
+## Création d'un widget
 
--   umbrales específicos de baterías en el equipo
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
--   varias órdenes de alertas de peligro y advertencias
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
 
-El huérfano ficha Comandos
-=============================
+### Remplacement
 
-Esta ficha le permite ver de un vistazo si usted tiene
-comandos huérfanos utilizan a través de Jeedom. Un pedido
-Huérfano es un comando utilizado en alguna parte, pero que ya no existe.
-Aquí encontramos todos estos comandos, tales como:
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
--   huérfanos comandos utilizados en el cuerpo de un escenario
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
--   los utilizados en un escenario de gatillo
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
-Y se utiliza en muchos otros lugares como (no exhaustiva):
+### Test
 
--   interacciones
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
 
--   jeedom configuración
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
--   en la acción pre o post de un control
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
--   acción sobre el estado del pedido
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
 
--   en algunos plugins
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
-> **Tip**
->
-> En la tabla le permite ver los comandos de texto tanto
-> Huérfano. Su objetivo es identificar rápidamente todos
-> órdenes "huérfanos" a través de toda Jeedom y plugins. El se
-> Algunas áreas no pueden ser analizados, la tabla será
-> Ser más amplia en el tiempo.
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+
+>**Note**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+
+## Description de widgets
+
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+
+### Paramètres fréquents
+
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+
+### HygroThermographe
+
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+
+### Multiline
+
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slider Button
+
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+
+## Widget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+```
+
+Voila un exemple simple de code javascript a mettre dans votre widget :
+
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
+```
+
+Ici deux choses importantes :
+
+```
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+
+```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

@@ -1,152 +1,191 @@
-Jeedom ofrece a los desarrolladores y usuarios una API
-Completar la orden de dirigir Jeedom de cualquier objeto
-iniciado sesión.
+# Widentificacióngets
+**Outils → Widentificacióngets**
 
-Dos APIs están disponibles: un desarrollador orientado a que el conductor
-JSON RPC 2.0 y otro a través de URL y petición HTTP.
+La page widentificacióngets vous permet de créer des widentificacióngets personnalisés pour votre Jeedom.
 
-Esta API es fácil de usar con las peticiones HTTP a través de simples
-URL.
+Il y a deux types de widentificacióngets personnalisés :
 
-> **Nota**
+- Les widentificacióngets basés sur un template (gérés par le Core de Jeedom).
+- Les widentificacióngets basés sur du code utilisateur.
+
+> **nota**
 >
-> En esta documentación \ # ip \ _JEEDOM \ # es su URL
-> El acceso a Jeedom. Esto es (a menos que esté conectado a la red
-> Dirección local) de Internet que se utiliza para acceder Jeedom
-> Desde el exterior.
+> Si les widentificacióngets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widentificacióngets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-> **Nota**
+## Gestion
+
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widentificaciónget.
+- **Importer** : Permet d'importer un widentificaciónget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widentificaciónget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widentificaciónget par un autre sur tout les équipements l'utilisant.
+
+## Mes widentificacióngets
+
+Une fois que vous avez créé un widentificaciónget, il apparaîtra dans cette partie.
+
+> **Tip**
 >
-> En esta documentación \ #API \ _key \ # es la clave
-> API específica para su instalación. Para encontrarlo, vaya a
-> Menú "General" → "Ajustes" → pestaña "General".
+> Vous pouvez ouvrir un widentificaciónget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-guión
-========
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widentificaciónget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widentificaciónget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = escenario & id = \ #ID \ # & action = \ #ACTION \ #?] (Http: // # # IP_JEEDOM / core / api / jeeApi.php? apikey apikey = # # & type = & id = escenario # ID # & action = aCCIÓN # #)
-
--   ** ** Identificación: es el ID de su escenario. ID está en la
-    page du scénario concerné, dans "Outils" → "Scénarios", une fois le
-    escenario seleccionado, junto al nombre de la pestaña "General". otro
-    forma de recuperarla: "Herramientas" → "escenarios", haga clic
-    "Información general".
-
--   ** ** Acción: corresponde a la acción que desea aplicar. la
-    Los comandos disponibles son: "Inicio", "stop", "off" y
-    "Activar" para comenzar a detener, respectivamente, desactivar o
-    activar el escenario.
-
--   **etiquetas** \[opcional\] : si la acción es "start", puede pasar
-    des tags au scénario (voir la documentation sur les scénarios) sous
-    la forma etiquetas=toto% 3D1%20tata%3D2 (tenga en cuenta que el 20% corresponde a una
-    El espacio y el% = 3D)
-
-Información / Control de Acción
-====================
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = cmd & id = \ #ID \ #?] (Http: // # # IP_JEEDOM / jeedom /core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
-
--   ** ** Identificación: es el identificador que desea controlar o cual
-    que desea recibir la información
-
-La forma más fácil de obtener esta URL es ir a la página de Herramientas →
-Resumen de domótica, buscar el coamando y abrir su configuración
-(el icono "rueda") y allí verá una URL que contiene
-ya todo lo que se necesita dependiendo del tipo y subtipo de los
-comandos.
-
-> **Nota**
->
-> Es posible que el campo \#ID\# pueda contener varios comandos.
-> repentinamente. Para hacer esto, es necesario pasar una tabla en json (ex
-> %5B12,58,23%5D, tenga en cuenta que \[ y \] debe ser codificado, de ahí el %5B
-> y %5D). El retorno de Jeedom será un json
-
-> **Nota**
->
-> Los parámetros deben estar codificados para la url. Puede utilizar la
-> siguiente herramienta,[aquí](https://meyerweb.com/eric/tools/dencoder/)
-
-interacción
-===========
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = interactuar y consulta = \ #query \ #?] (Http: // # # IP_JEEDOM / jeedom /core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
-
--   ** ** consulta: pregunta a Jeedom
-
--   Utf8 ** ** \ [opcional \]: Indica si Jeedom para codificar consulta
-    UTF-8 antes de tratar de responder
-
--   EmptyReply ** ** \ [opcional \]: 0 para Jeedom responde incluso si él
-    no entender, de lo contrario 1
-
--   ** ** Perfil \ [opcional \] nombre de usuario de la persona
-    la activación de la interacción
-
--   **respuesta \ _cmd** \ [opcional \]: Identificación del comando de
-    satisfacer la demanda
-
-mensaje
-=======
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = Y = categoría de mensaje \ #category \ # & message = \ #message \ #] (Http: //#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
-
--   ** ** categoría: categoría del mensaje para agregar al centro de mensajes
-
--   ** ** mensaje: el mensaje en cuestión, tenga cuidado para pensar en la codificación
-    Mensaje (espacio se convierte en 20%,% = 3D ...). Puede utilizar una
-    herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
-
-objeto
-=====
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = objeto?] (Http: // # # IP_JEEDOM / jeedom / core / api / jeeApi .php? apikey apikey = # # & type = objeto)
-
-Devuelve la lista de todos los objetos JSON de Jeedom
-
-equipo
-==========
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = & eqLogic objeto \ _id = \ #OBJECT \ _ID \ #?] (Http: // # IP_JEEDOM # / jeedom / core / api / jeeApi.php? apikey apikey = # # & type = eqLogic y object_id = # # oBJECT_ID)
-
--   **objeto \ _id**: ID del objeto que se va recuperando
-    comodidades
-
-orden
-========
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = comando y eqLogic \ _id = \ #EQLOGIC \ _ID \ #?] (Http: // # IP_JEEDOM # / jeedom / core / api / jeeApi.php? apikey apikey = # # & type = comando y eqLogic_id = # # eQLOGIC_ID)
-
--   **eqLogic \ _id**: Identificación de equipos que deben ser recuperada
-    comandos
-
-Los datos completa
-=========
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = fullData?] (Http: // # # IP_JEEDOM / jeedom / core / api / jeeApi .php? apikey apikey = # # & type = fullData)
-
-Devuelve todos los objetos, equipos, órdenes (y valor si
-son información) en JSON
-
-variable
-========
-
-Aquí está la URL =
-[Http: // \ # ip \ _JEEDOM \ # / jeedom / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = & nombre de variable = \ #NOMBRE \ # & valor =] (http: // # # IP_JEEDOM /jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
-
--   ** ** Nombre: nombre de la variable que va a ser el valor (lectura
-    el valor)
-
--   ** ** valor \ [opcional \] Si no se especifica el "valor", entonces la variable
-    tomar este valor (valor de escritura)
+Une fois sur la configuration d'un widentificaciónget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widentificaciónget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widentificaciónget dans un nouvel onglet du navigateur.
 
 
+## Principe
+
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+
+Suivant le type de widentificaciónget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+
+## Les templates
+
+Il y a deux types de template :
+
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+
+## Création d'un widentificaciónget
+
+Une fois sur la page Outils -> Widentificaciónget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widentificaciónget.
+
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type acción ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+
+### Remplacement
+
+C'est ce que l'on appelle un widentificaciónget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (widentificaciónth) et la hauteur (height). Ce n'est valable que pour les images.
+
+>**nota**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidentificaciónité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widentificaciónget". Par exemple si dans widentificaciónth vous mettez comme valeur #widentificaciónth# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widentificaciónget" vous pouvez ajouter widentificaciónth (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widentificaciónget différent par taille d'image que vous voulez
+
+### Test
+
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widentificacióngets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widentificaciónget affichera l'icône/l'image en question.
+
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
+
+>**nota**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+
+>**nota**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+
+>**nota**
+>Il est possible d'afficher la valeur de la commande dans le widentificaciónget en mettant par exemple a coté du code HTML de l'icône #value#
+
+## Description de widentificacióngets
+
+Nous allons ici décrire certain widentificaciónget qui ont un fonctionnement un peu particulier.
+
+### Paramètres fréquents
+
+- Time widentificaciónget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si videntificacióne alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si videntificacióne alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si videntificacióne alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si videntificacióne alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+
+### HygroThermographe
+
+Ce widentificaciónget est un peu particulier car c'est un widentificaciónget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidentificaciónité.
+
+Pour le configurer c'est assez simple il faut affecter le widentificaciónget a la commande température de votre équipement et à la commande humidentificaciónité.
+
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidentificaciónité sur la commande humidentificaciónité (cela se configure dans la configuration avancé de la commande onglet configuration).
+
+Le widentificaciónget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widentificaciónget cela ne marchera pas vu que c'est un widentificaciónget utilisant la valeur de plusieurs commande il faut absolument mettre le widentificaciónget complet
+
+### Multiline
+
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slidentificacióner Button
+
+- step : permet de régler le pas d'une acción sur un bouton (0.5 par défaut)
+
+## Widentificaciónget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #nombre# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #nombre# quand c'est une commande de type info
+- #hidentificacióne_nombre# : videntificacióne ou hidentificaciónden si l'utilisateur a demandé a masquer le nom du widentificaciónget, a mettre directement dans une balise class
+- #identificación# : identificación de la commande
+- #state# : valeur de la commande, videntificacióne pour une commande de type acción si elle n'est pas a liée a une commande d'état
+- #uidentificación# : identificaciónentifiant unique pour cette génération du widentificaciónget (si il y a plusieurs fois la même commande, cas des designs seule cette identificaciónentifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hidentificacióne_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hidentificacióne_nombre# il vaut videntificacióne ou hidentificaciónden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widentificaciónget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+```
+
+Voila un exemple simple de code javascript a mettre dans votre widentificaciónget :
+
+```
+<script>
+    Jeedom.cmd.update['#identificación#'] = function(_options){
+      $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_identificación=#identificación#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#identificación#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
+```
+
+Ici deux choses importantes :
+
+```
+Jeedom.cmd.update['#identificación#'] = function(_options){
+  $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_identificación=#identificación#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widentificaciónget. Elle met alors à jour le code html du widentificaciónget_template.
+
+```
+Jeedom.cmd.update['#identificación#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widentificaciónget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widentificacióngets (dans les dossiers dashboard et mobile)

@@ -767,7 +767,7 @@
         "Accéder": "Zugang",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "Sie haben gerade einen Fehler gemeldet, der in unserem öffentlichen Bug Tracker veröffentlicht wird. <br\/> Du kannst ihm folgen",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Ihr Ticket wurde geöffnet. Eine E-Mail wird an Sie gesendet",
-        "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)": "Seien Sie vorsichtig, diese Anfrage wird öffentlich sein. Sie dürfen keine persönlichen Informationen (E-Mail, Marktkonto, API-Schlüssel ...) eingeben."
+        "ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\\'information personnelle (mail, compte market, clé api...)": "BITTE BEACHTEN SIE: Diese Anfrage ist öffentlich. Sie dürfen keine persönlichen Informationen (E-Mail, Marktkonto, API-Schlüssel usw.) eingeben."
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1150,8 +1150,11 @@
         "Options": "Optionen",
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Möchten Sie diesen Artikel wirklich aktualisieren?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "Möchten Sie dieses Objekt wirklich löschen?",
-        "L\\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés": "Die Operation ist erfolgreich. Bitte drücken Sie STRG + F5, um die neuesten Nachrichten zu erhalten",
         "L\\'opération a échoué": "Operation fehlgeschlagen",
+        "Update terminée avec succès.": "Update erfolgreich abgeschlossen.",
+        "Voulez vous recharger la page maintenant ?": "Möchten Sie die Seite jetzt neu laden?",
+        "Recharger": "aufladen",
+        "Rester sur la page": "Bleib auf der Seite",
         "Dernière mise à jour du core : ": "Letztes Kernupdate:",
         "Ne pas mettre à jour": "Nicht aktualisieren",
         "Changelog": "Changelog",
@@ -1159,7 +1162,7 @@
         "Réinstaller": "wieder einstellen",
         "Supprimer": "Löschen",
         "Vérifier": "überprüfen",
-        "La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)": "Das Update scheint blockiert zu sein (keine Änderung für 10 Minuten. Überprüfen Sie das Protokoll)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "Das Update scheint blockiert zu sein (keine Änderung für 10 Minuten. Überprüfen Sie das Protokoll)"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Befehlskonfiguration",
@@ -1487,14 +1490,15 @@
         "Visible": "Sichtbar",
         "Objet parent": "Übergeordnetes Objekt",
         "Aucun": "Ohne",
-        "Timeout en secondes (0 = illimité)": "Zeitüberschreitung in Sekunden (0 = unbegrenzt)",
         "Log": "log",
         "Défaut": "Standard",
         "Temps réel": "Echtzeit",
+        "Timeout": "Timeout",
+        "Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.": "Dauer, ab der das Szenario gekürzt wird. 0: keine Zeitüberschreitung.",
         "Multi-lancement": "Multi-Launch",
-        "Le scénario pourra tourner plusieurs fois en même temps": "Das Szenario kann mehrere Male gleichzeitig gedreht werden",
+        "Le scénario pourra s'éxécuter plusieurs fois en même temps.": "Das Szenario kann mehrmals gleichzeitig ausgeführt werden.",
         "Synchrone": "synchron",
-        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Das Szenario befindet sich im synchronen Modus. Seien Sie vorsichtig, dies kann das System instabil machen",
+        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "Das Szenario befindet sich im synchronen Modus. Seien Sie vorsichtig, dies kann das System instabil machen.",
         "Timeline": "Timeline",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Szenarioausführungen sind in der Timeline zu sehen.",
         "Dossier": "Rekord",
@@ -3823,12 +3827,12 @@
         "Crons": "cron",
         "Démons": "Daemon",
         "Santé": "Gesundheit",
-        "Synthèse": "Synthese",
         "Basculer le thème": "Thema umschalten",
         "Version desktop": "Desktop Version",
         "Forcer mise à jour": "Aktualisierung erzwingen",
         "A propos": "Über",
         "Déconnexion": "Ausloggen",
+        "Synthèse": "Synthese",
         "Tout": "Alles",
         "Designs": "Design",
         "Designs 3D": "3D-Designs"

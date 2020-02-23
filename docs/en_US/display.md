@@ -1,518 +1,191 @@
-Description
-===========
+# Widgets
+**Outils → Widgets**
 
-This page allows to gather on a single page the different
-elements configured on his Jeedom. It also gives access to
-functions of organization of equipment and controls, to their
-advanced configuration as well as configuration possibilities
-display.
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Cette page est accessible par **Analyse → Résumé domotique**.
+Il y a deux types de widgets personnalisés :
 
-The top of the page
-------------------
-
-On the top of the page, we find: \ * **Number of items**: Number
-total of objects configured in our Jeedom, counting the elements
-Inactive. \ * **Number of equipment**: Same for equipment. \ *
-**Number of orders**: Ditto for orders. \ * **Inactive**:
-Check this box if you want inactive items to be
-posted on this page. \ * **Search**: Search for a
-particular element. It can be the name of a piece of equipment, a command
-or the name of the plugin by which the device was created.
-
-Vous avez aussi un bouton **Historique des suppressions** : Affiche l'historique
-des commandes, équipements, objets, vues, design, deisgn 3d, scénarios et utilisateurs supprimés.
-
-Les cadres objet 
-----------------
-
-En dessous on retrouve un cadre par objet. Dans chaque cadre, on trouve
-la liste des équipements (en bleu) qui ont pour parent cet objet. Le
-premier cadre **Aucun** représente les équipements qui n’ont pas de
-parent affecté. Pour chaque objet, à côté de son libellé, trois boutons
-sont disponibles. De gauche à droite :
-
--   Le premier sert à ouvrir la page de configuration de l’objet dans un
-    nouvel onglet,
-
--   le deuxième apporte quelques informations sur l’objet,
-
--   le dernier permet d’afficher ou de masquer la liste des équipements
-    qui lui sont attribués.
-
-> **Tip**
->
-> La couleur de fond des cadres objets dépend de la couleur choisie dans
-> la configuration de l’objet.
-
-> **Tip**
->
-> En cliquant/déposant sur les équipements, vous pouvez changer leur
-> ordre ou même les affecter à un autre objet. C’est à partir de l’ordre
-> établi dans cette page que l’affichage du dashboard est calculé.
-
-Les équipements 
----------------
-
-Sur chaque équipement on retrouve :
-
--   Une **case à cocher** pour sélectionner l’équipement (vous pouvez en
-    sélectionner plusieurs). Si au moins un équipement est sélectionné
-    vous avez des boutons d’action qui apparaissent en haut à gauche
-    pour **supprimer**, rendre **visible**/**invisible**,
-    **actif**/**inactif** les équipements sélectionnés.
-
--   Le **nom** de l’équipement.
-
--   Le **type** d’équipement : Identifiant du plugin auquel
-    il appartient.
-
--   **Inactif** (petite croix) : Signifie que l’équipement est inactif
-    (si elle n’y est pas, l’équipement est actif).
-
--   **Invisible** (oeil barré) : Signifie que l’équipement est invisible
-    (s’il n’y est pas, l’équipement est visible).
-
--   **Lien externe** (carré avec une flèche) : Permet d’ouvrir dans un
-    nouvel onglet la page de configuration de l’équipement.
-
--   **Configuration avancée** (roue crantée) : permet d’ouvrir la
-    fenêtre de configuration avancée de l’équipement.
-
--   **Liste des commandes** (la flèche) : permet de déplier la liste des
-    commandes (sur fond orange).
-
-Si vous dépliez la liste des commandes, chaque bloc orange correspond à
-une commande de votre équipement (un nouveau clic sur la petite flèche
-de l’équipement permet de les masquer).
-
-Si vous double-cliquez sur la commande ou que vous cliquez sur la petite
-roue crantée cela fera apparaitre sa fenêtre de configuration.
-
-Configuration avancée d’un équipement 
-=====================================
-
-> **Tip**
->
-> Il est possible d’accéder (si le plugin le supporte) directement à
-> cette fenêtre à partir de la page de configuration de l’équipement en
-> cliquant sur le bouton configuration avancée
-
-La fenêtre de **configuration avancée d’un équipement** permet de la
-modifier. En premier lieu, en haut à droite, quelques boutons
-disponibles :
-
--   **Liens** : Permet d’afficher les liens de l’équipement avec les
-    objets, commandes, scénarios, variables, interactions…​ sous forme
-    graphique (dans celui-ci, un double clic sur un élement vous amène à
-    sa configuration).
-
--   **Log** : affiche les évènements de l’équipement en question.
-
--   **Informations** : affiche les propriétés brutes de l’équipement.
-
--   **Enregistrer** : Enregistre les modifications faites
-    sur l’équipement.
-
--   **Supprimer** : Supprime l’équipement.
-
-Onglet Informations 
--------------------
-
-L’onglet **Informations** contient les informations générales de
-l’équipement ainsi que ses commandes :
-
--   **ID** : Identifiant unique dans la base de données de Jeedom.
-
--   **Nom** : Nom de l’équipement.
-
--   **ID logique** : Identifiant logique de l’équipement (peut
-    être vide).
-
--   **ID de l’objet** : Identifiant unique de l’objet parent (peut
-    être vide).
-
--   **Date de création** : Date de création de l’équipement.
-
--   **Activer** : Cochez la case pour activer l’équipement (sans oublier
-    de sauvegarder).
-
--   **Visible** : Cochez la case pour rendre visible l’équipement (sans
-    oublier de sauvegarder).
-
--   **Type** : Identifiant du plugin par lequel il a été créé.
-
--   **Tentative échouée** : Nombre de tentatives de communications
-    consécutives avec l’équipement qui ont échoué.
-
--   **Date de dernière communication** : Date de la dernière
-    communication de l’équipement.
-
--   **Dernière mise à jour** : Date de dernière communication
-    avec l’équipement.
-
--   **Tags** : tags de l'équipement, à séparer par des ','. Il permet sur le dashboard de faire des filtre personalisés
-
-En dessous vous retrouvez un tableau avec la liste des commandes de
-l’équipement avec, pour chacune, un lien vers leur configuration.
-
-Onglet Affichage 
-----------------
-
-Dans l’onglet **Affichage**, vous allez pouvoir configurer certains
-comportements d’affichage de la tuile sur le dashboard, les vues, le
-design ainsi qu’en mobile.
-
-### Widget 
-
--   **Visible** : Cochez la case pour rendre visible l’équipement.
-
--   **Afficher le nom** : Cochez la case pour afficher le nom de
-    l’équipement sur la tuile.
-
--   **Afficher le nom de l’objet** : Cochez la case pour afficher le nom
-    de l’objet parent de l’équipement, à côté de la tuile.
-
--   **Couleur de fond** : Cochez la case pour garder la couleur de fond
-    par défaut (suivant la **catégorie** de votre équipement, voir
-    **Administration→Configuration→Couleurs**). Si vous décochez cette
-    case, vous pourrez choisir une autre couleur. Vous pourrez également
-    cocher une nouvelle case **Transparent** pour rendre le
-    fond transparent.
-
--   **Opacité** : Opacité de la couleur de fond de la tuile.
-
--   **Couleur du texte** : Cochez la case pour garder la couleur du
-    texte par défaut.
-
--   **Bordures** : Cochez la case pour garder la bordure par défaut.
-    Sinon, il faut mettre du code CSS, propriété `border` (ex :
-    `3px blue dashed` pour une bordure pointillée de 3px en bleu).
-
--   **Arrondi des bordures** (en px) : Cochez la case pour garder
-    l’arrondi par défaut. Sinon, il faut mettre du code CSS, propriété
-    `border-radius` (ex : `10px`)
-
-### Paramètres optionnels sur la tuile 
-
-En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
-peut appliquer à l’équipement. Ces paramètres sont composés d’un nom et
-d’une valeur. Il suffit de cliquer sur **Ajouter** pour en appliquer un
-nouveau. Pour les équipements, seule la valeur **style** est pour le
-moment utilisée, elle permet d’insérer du code CSS sur l’équipement en
-question.
-
-> **Tip**
->
-> N’oubliez pas de sauvegarder après toute modification.
-
-Onglet Disposition 
-------------------
-
-Cette partie vous permet de choisir entre la disposition standard des
-commandes (côte à côte dans le widget), ou en mode tableau. Il n’y a
-rien à régler en mode par défaut. Voici les options disponibles en mode
-**Tableau** :
-
--   **Nombre de lignes**
-
--   **Nombre de colonnes**
-
--   **Centrer dans les cases** : Cochez la case pour centrer les
-    commandes dans les cases.
-
--   **Style générale des cases (CSS)** : Permet de définir le style
-    général en code CSS.
-
--   **Style du tableau (CSS)** : Permet de définir le style du
-    tableau uniquement.
-
-En dessous pour chaque case, la **configuration détaillée** vous permet
-ceci :
-
--   **Texte de la case** : Ajouter un texte en plus de la commande (ou
-    tout seul, si il n’y a pas de commande dans la case).
-
--   **Style de la case (CSS)** : Modifier le style CSS spécifique de la
-    case (attention celui-ci écrase et remplace le CSS général
-    des cases).
-
-> **Tip**
->
-> Dans une case du tableau, si vous voulez mettre 2 commandes l’une en
-> dessous de l’autre, il ne faut pas oublier de rajouter un retour à la
-> ligne après la première dans la **configuration avancée** de celle-ci.
-
-Onglet Alertes 
---------------
-
-Cet onglet permet d’avoir les informations sur la batterie de
-l’équipement et de définir des alertes par rapport à celle-ci. Voici les
-types d’informations que l’on peut trouver :
-
--   **Type de pile**,
-
--   **Dernière remontée de l’information**,
-
--   **Niveau restant**, (si bien sûr votre équipement fonctionne
-    sur pile).
-
-Dessous, vous pourrez aussi définir les seuils spécifiques d’alerte de
-batterie pour cet équipement. Si vous laissez les cases vides, ceux sont
-les seuils par défaut qui seront appliqués.
-
-On peut également gérer le timeout, en minutes, de l’équipement. Par
-exemple, 30 indique à jeedom que si l’équipement n’a pas communiqué
-depuis 30 minutes, alors il faut le mettre en alerte.
-
-> **Tip**
->
-> Les paramètres globaux sont dans **Administration→Configuration→Logs**
-> (ou **Equipements**)
-
-Onglet Commentaire 
-------------------
-
-Permet d’écrire un commentaire à propos de l’équipement (date de
-changement de la pile, par exemple).
-
-Configuration avancée d’une commande 
-====================================
-
-En premier lieu, en haut à droite, quelques boutons disponibles :
-
--   **Tester** : Permet de tester la commande.
-
--   **Liens** : Permet d’afficher les liens de l’équipement avec les
-    objets, commandes, scénarios, variables, interactions…​. sous
-    forme graphique.
-
--   **Log** : Affiche les évènements de l’équipement en question.
-
--   **Informations** : Affiche les propriétés brutes de l’équipement.
-
--   Appliquer à\* : Permet d’appliquer la même configuration sur
-    plusieurs commandes.
-
--   **Enregistrer** : Enregistre les modifications faites sur
-    l’équipement
-
-> **Tip**
->
-> Dans un graphique, un double clic sur un élément vous amène à sa
-> configuration.
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
 > **Note**
 >
-> En fonction du type de commande, les informations/actions affichées
-> peuvent changer.
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-Onglet Informations 
--------------------
+## Gestion
 
-L’onglet **Informations** contient les informations générales sur la
-commande :
+Quatre options s'offrent à vous :
+- **Add** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
 
--   **ID** : Identifiant unique dans la base de données.
+## Mes widgets
 
--   **ID logique** : Identifiant logique de la commande (peut
-    être vide).
-
--   **Nom** : Nom de la commande.
-
--   **Type** : Type de la commande (action ou info).
-
--   **Sous-type** : Sous-type de la commande (binaire, numérique…​).
-
--   **URL directe** : Fournit l’URL pour accéder à cet équipement. (clic
-    droit, copier l’adresse du lien) L’URL lancera la commande pour une
-    **action**et retournera l’information pour une**info**.
-
--   **Unité** : Unité de la commande.
-
--   **Commande déclenchant une mise à jour** : Donne l’identifiant d’une
-    autre commande qui, si cette autre commande change, va forcer la
-    mise à jour de la commande visualisée.
-
--   **Visible** : Cochez cette case pour que la commande soit visible.
-
--   **Suivre dans la timeline** : Cochez cette case pour que cette
-    commande soit visible dans la timeline quand elle est utilisée.
-
--   **Interdire dans les interactions automatique** : interdit les
-    interactions automatique sur cette commande
-
--   **Icône** : Permet de changer l’icône de la commande.
-
-Vous avez aussi trois autres boutons oranges en dessous :
-
--   **Cette commande remplace l’ID** : Permet de remplacer un ID de
-    commande par la commande en question. Utile si vous avez supprimé un
-    équipement dans Jeedom et que vous avez des scénarios qui utilisent
-    des commandes de celui-ci.
-
--   **Cette commande remplace la commande** : Remplace une commande par
-    la commande courante.
-
--   **Remplacer cette commande par la commande** : L’inverse, remplace
-    la commande par une autre commande.
-
-> **Note**
->
-> Ce genre d’action remplace les commandes partout dans Jeedom
-> (scénario, interaction, commande, équipement…​.)
-
-En-dessous, vous retrouvez la liste des différents équipements,
-commandes, scénarios ou interactions qui utilisent cette commande. Un
-clic dessus permet d’aller directement sur leur configuration
-respective.
-
-Onglet Configuration 
---------------------
-
-### Pour une commande de type info : 
-
--   **Calcul et arrondi**
-
-    -   **Formule de calcul (\#value\# pour la valeur)** : Permet de
-        faire une opération sur la valeur de la commande avant le
-        traitement par Jeedom, exemple : `#value# - 0.2` pour retrancher
-        0.2 (offset sur un capteur de température).
-
-    -   **Arrondi (chiffre après la virgule)** : Permet d’arrondir la
-        valeur de la commande (Exemple : mettre 2 pour tranformer
-        16.643345 en 16.64).
-
--   **Type générique** : Permet de configurer le type générique de la
-    commande (Jeedom essaie de le trouver par lui-même en mode auto).
-    Cette information est utilisée par l’application mobile.
-
--   **Action sur la valeur, si** : Permet de faire des sortes de
-    mini scénarios. Vous pouvez, par exemple, dire que si la valeur vaut
-    plus de 50 pendant 3 minutes, alors il faut faire telle action. Cela
-    permet, par exemple, d’éteindre une lumière X minutes après que
-    celle-ci se soit allumée.
-
--   **Historique**
-
-    -   **Historiser** : Cochez la case pour que les valeurs de cette
-        commande soient historisées. (Voir **Analyse→Historique**)
-
-    -   **Mode de lissage**: Mode de**lissage** ou d'**archivage**
-        permet de choisir la manière d’archiver la donnée. Par défaut,
-        c’est une **moyenne**. Il est aussi possible de choisir le
-        **maximum**, le **minimum**, ou **aucun**. **aucun** permet de
-        dire à Jeedom qu’il ne doit pas réaliser d’archivage sur cette
-        commande (aussi bien sur la première période des 5 mn qu’avec la
-        tâche d’archivage). Cette option est dangereuse car Jeedom
-        conserve tout : il va donc y avoir beaucoup plus de
-        données conservées.
-
-    -   **Purger l’historique si plus vieux de** : Permet de dire à
-        Jeedom de supprimer toutes les données plus vieilles qu’une
-        certaine période. Peut être pratique pour ne pas conserver de
-        données si ça n’est pas nécessaire et donc limiter la quantité
-        d’informations enregistrées par Jeedom.
-
--   **Gestion des valeurs**
-
-    -   **Valeur interdite** : Si la commande prend une de ces valeurs,
-        Jeedom l’ignore avant de l’appliquer.
-
-    -   **Valeur retour d’état** : Permet de faire revenir la commande à
-        cette valeur après un certain temps.
-
-    -   **Durée avant retour d’état (min)** : Temps avant le retour à la
-        valeur ci-dessus.
-
--   **Autres**
-
-    -   **Gestion de la répétition des valeurs** : En automatique si la
-        commande remonte 2 fois la même valeur d’affilée, alors Jeedom
-        ne prendra pas en compte la 2eme remontée (évite de déclencher
-        plusieurs fois un scénario, sauf si la commande est de
-        type binaire). Vous pouvez forcer la répétition de la valeur ou
-        l’interdire complètement.
-
-    -   **Push URL** : Permet de rajouter une URL à appeler en cas de
-        mise à jour de la commande. Vous pouvez utiliser les tags
-        suivant : `#value#` pour la valeur de la commande, `#cmd_name#`
-        pour le nom de la commande, `#cmd_id#` pour l’identifiant unique
-        de la commande, `#humanname#` pour le nom complet de la commande
-        (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` pour le nom de l'équipement
-
-### Pour une commande action : 
-
--   **Type générique** : Permet de configurer le type générique de la
-    commande (Jeedom essaie de le trouver par lui-même en mode auto).
-    Cette information est utilisée par l’application mobile.
-
--   **Confirmer l’action** : Cochez cette case pour que Jeedom demande
-    une confirmation quand l’action est lancée à partir de l’interface
-    de cette commande.
-
--   **Code d’accès** : Permet de définir un code que Jeedom demandera
-    quand l’action est lancée à partir de l’interface de cette commande.
-
--   **Action avant exécution de la commande** : Permet d’ajouter des
-    commandes **avant** chaque exécution de la commande.
-
--   **Action après execution de la commande** : Permet d’ajouter des
-    commandes **après** chaque exécution de la commande.
-
-Onglet Alertes 
---------------
-
-Permet de définir un niveau d’alerte (**warning**ou**danger**) en
-fonction de certaines conditions. Par exemple, si `value > 8` pendant 30
-minutes alors l’équipement peut passer en alerte **warning**.
-
-> **Note**
->
-> Sur la page **Administration→Configuration→Logs**, vous pouvez
-> configurer une commande de type message qui permettra à Jeedom de vous
-> prévenir si on atteint le seuil warning ou danger.
-
-Onglet Affichage 
-----------------
-
-Dans cettre partie, vous allez pouvoir configurer certains comportements
-d’affichage du widget sur le dashboard, les vues, le design et en
-mobile.
-
--   **Widget** : Permet de choisir le widget sur dekstop ou mobile (à
-    noter qu’il faut le plugin widget et que vous pouvez le faire aussi
-    à partir de celui-ci).
-
--   **Visible** : Cochez pour rendre visible la commande.
-
--   **Afficher le nom** : Cochez pour rendre visible le nom de la
-    commande, en fonction du contexte.
-
--   **Afficher le nom et l’icône** : Cochez pour rendre visible l’icône
-    en plus du nom de la commande.
-
--   **Retour à la ligne forcé avant le widget**: Cochez**avant le
-    widget**ou**après le widget** pour ajouter un retour à la ligne
-    avant ou après le widget (pour forcer par exemple un affichage en
-    colonne des différentes commandes de l’équipement au lieu de lignes
-    par défaut)
-
-En-dessous, on retrouve des paramètres optionnels d’affichage que l’on
-peut passer au widget. Ces paramètres dépendent du widget en question,
-il faut donc regarder sa fiche sur le Market pour les connaître.
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
 > **Tip**
 >
-> N’oubliez pas de sauvegarder après toute modification.
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Onglet Code 
------------
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Permet de modifier le code du widget juste pour la commande courante.
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
-> **Note**
->
-> Si vous voulez modifier le code n’oubliez pas de cocher la case
-> **Activer la personnalisation du widget**
+
+## Principe
+
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+
+## Les templates
+
+Il y a deux types de template :
+
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+
+## Création d'un widget
+
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Add" et donner un nom à votre nouveau widget.
+
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+
+### Remplacement
+
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+
+### Test
+
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
+
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+
+>**Note**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+
+## Description de widgets
+
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+
+### Paramètres fréquents
+
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+
+### HygroThermographe
+
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+
+### Multiline
+
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slider Button
+
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+
+## Widget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+```
+
+Voila un exemple simple de code javascript a mettre dans votre widget :
+
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
+```
+
+Ici deux choses importantes :
+
+```
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+
+```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

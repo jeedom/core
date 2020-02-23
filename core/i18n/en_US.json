@@ -767,7 +767,7 @@
         "Accéder": "To access",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "You have just declared a bug which will be published on our public Bug Tracker. <br\/> You can follow him",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Your ticket has been opened. An email will be sent to you",
-        "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)": "BE CAREFUL this request will be public, you MUST NOT put any personal information (email, market account, API key ...)"
+        "ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\\'information personnelle (mail, compte market, clé api...)": "PLEASE NOTE: this request will be public, you MUST NOT put any personal information (email, market account, API key, etc.)"
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1150,8 +1150,11 @@
         "Options": "options",
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Are you sure you want to update this item?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "Are you sure you want to delete this object?",
-        "L\\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés": "The operation is successful. Please do CTRL + F5 to get the latest news",
         "L\\'opération a échoué": "Operation failed",
+        "Update terminée avec succès.": "Update successfully completed.",
+        "Voulez vous recharger la page maintenant ?": "Do you want to reload the page now?",
+        "Recharger": "recharge",
+        "Rester sur la page": "Stay on the page",
         "Dernière mise à jour du core : ": "Latest core update:",
         "Ne pas mettre à jour": "Do not update",
         "Changelog": "Changelog",
@@ -1159,7 +1162,7 @@
         "Réinstaller": "reinstate",
         "Supprimer": "Delete",
         "Vérifier": "Check",
-        "La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)": "The update seems to be blocked (no change for 10min. Check the log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "The update seems to be blocked (no change for 10min. Check the log)"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Command configuration",
@@ -1487,14 +1490,15 @@
         "Visible": "Visible",
         "Objet parent": "Parent object",
         "Aucun": "None",
-        "Timeout en secondes (0 = illimité)": "Timeout in seconds (0 = unlimited)",
         "Log": "log",
         "Défaut": "Default",
         "Temps réel": "Real time",
+        "Timeout": "timeout",
+        "Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.": "Duration beyond which the scenario is cut. 0: no timeout.",
         "Multi-lancement": "Multi-Launch",
-        "Le scénario pourra tourner plusieurs fois en même temps": "The scenario can turn several times at the same time",
+        "Le scénario pourra s'éxécuter plusieurs fois en même temps.": "The scenario can be executed several times at the same time.",
         "Synchrone": "Synchronous",
-        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "The scenario is in synchronous mode. Be careful, this can make the system unstable",
+        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "The scenario is in synchronous mode. Be careful, this can make the system unstable.",
         "Timeline": "timeline",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Scenario executions can be seen in the timeline.",
         "Dossier": "Folder",
@@ -3823,12 +3827,12 @@
         "Crons": "cron",
         "Démons": "Daemons",
         "Santé": "Health",
-        "Synthèse": "Synthesis",
         "Basculer le thème": "Toggle theme",
         "Version desktop": "Desktop version",
         "Forcer mise à jour": "Force update",
         "A propos": "About",
         "Déconnexion": "Disconnect",
+        "Synthèse": "Synthesis",
         "Tout": "All",
         "Designs": "designs",
         "Designs 3D": "3D designs"

@@ -1,232 +1,191 @@
-El submenú Gestión de plugins le permite manipular plugins, para
-poder : descargarlos, actualizarlos y activarlos,....
+# Widgets
+**Outils → Widgets**
 
-Plugin de gestión
-===================
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Puede acceder a la página de complementos de gestión de plugins →
-plugins. Una vez que se hace clic, la lista de encontrar
-plugins en orden alfabético y un enlace para el mercado. plugins
-personas con discapacidad se atenúan.
+Il y a deux types de widgets personnalisés :
 
-> **Tip**
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
+
+> **Note**
 >
-> Al igual que en muchos lugares en Jeedom, poner el ratón mientras la izquierda
-> Para que aparezca un menú de acceso rápido (se puede
-> Su perfil en dejar la siempre visible). A continuación, el menú
-> Para obtener la lista de plugins ordenados por categorías.
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-Al hacer clic en un plugin, puede acceder a su configuración. En la parte superior, usted
-puede buscar el nombre del plugin, luego entre paréntesis, su nombre en Jeedom
-(ID) y finalmente, el tipo de versión instalada (estable, beta).
+## Gestion
 
-> **Importante**
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+
+## Mes widgets
+
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+
+> **punta**
 >
-> Cuando se descarga un plugin, éste esta desactivado de forma predeterminada.
-> Por lo tanto, debe activarlo usted mismo.
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Arriba a la derecha, un par de botones:
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
--   ** ** Documentación: Permite el acceso directo a la página
-    documentación para plugins
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
--   ** ** Cambios: Para ver el plugin si hay cambios
 
--   ** ** Enviar en el mercado: enviar el plugin en el mercado
-    (Sólo está disponible si usted es el autor)
+## Principe
 
--   ** ** Detalles: recupera la página del plugin en el mercado
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur con l'interface graphique du Core.
 
--   **Borrar**: Borra el plugin de tu Jeedom. Atención, este
-    También elimina de forma permanente todas las instalaciones de este plugin
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-Abajo a la izquierda, hay una zona estado con :
+## Les templates
 
--   ** ** Estado: muestra el estado del plugin (activo / inactivo)
+Il y a deux types de template :
 
--   ** ** Versión: la versión del plug-in instalado
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
--   **Autor** : el autor del plugin
+## Création d'un widget
 
--   **Acción** : Permite activar o desactivar el plugin
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
--   **Versión Jeedom** : Indica la versión mínima requerida de Jeedom
-    para el plugin
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
 
--   **Licencia** : Indica la licencia del plugin que generalmente será
-    AGPL
+### Remplacement
 
-A la derecha, encontramos el área de Log que nos permite definir
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (con le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
--   el nivel de registro específico del plugin (encontramos esta misma posibilidad en
-Administration → Configuración en la pestaña registros, en la parte inferior de la página)
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
--   para ver los registros del plugin
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
--   Heartbeat: cada 5 minutos, Jeedom comprueba si al menos un dispositivo del plugin se ha comunicado en los últimos X minutos (si quieres deshabilitar la función, pon 0).
+### Test
 
--   Reiniciar el demonio: si el heartbeat da error, Jeedom reiniciará el demonio.
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
 
-Si el plugin tiene dependencias y/o un demonio, estas zonas
-se muestran debajo de las áreas listadas arriba.
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-Dependencias :
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
--   **Nombre** : normalmente será local
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
 
--   **Estado** : le dirá si el deamon es OK o KO
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
--   **Instalación**: instalará o reinstalará las
-    dependencias (si no lo haces manualmente y esta
-    KO, Jeedom se encargará de ello después de un tiempo)
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
--   **Última instalación** : fecha de la última instalación de las
-    dependencias
+>**Note**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
-Deamon : 
+## Description de widgets
 
--   **Nombre** : normalmente será local
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
 
--   **Estado** : te dirá si el demonio está OK o KO
+### Paramètres fréquents
 
--   **Configuración**: estará OK si todos los criterios para que el demonio
-    corre son correcto o producen la causa del bloqueo
+- Time widget : affiche le temps depuis lequel le système est dans l'estado afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
--   **(Re)Iniciar** : permite iniciar o reiniciar el demonio
+### HygroThermographe
 
--   **Parar**: te permite detener al demonio (Sólo si
-    la gestión automática está desactivada)
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
 
--   **Gestión automática** : permite activar o desactivar la gestión
-    automática (lo que permite a Jeedom gestionar el demonio y el
-    reinicio si es necesario. A menos que se indique lo contrario, es aconsejable
-    dejar la gestión automática activa)
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
 
--   **Último lanzamiento** : fecha del último lanzamiento del demonio
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
 
-> **Tip**
->
-> Algunos plugins tienen una parte de configuración. Si este es el caso,  debe
-> aparecer bajo las dependencias y áreas de demonio descritas anteriormente.
-> En este caso, es necesario consultar la documentación del plugin.
-> pregunta para saber cómo configurarlo.
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
-Debajo, hay un área funcional. Esta le permite ver
-si el plugin utiliza una de las funciones principales de Jeedom, tales como :
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul con ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
--   **Interacción** : interacciones específicas
+### Multiline
 
--   **Cron** : un cron por minuto
-
--   **Cron5** : un cron cada 5 minutos
-
--   **Cron15** : un cron cada 15 minutos
-
--   **Cron30** : un cron cada 30 minutos
-
--   **CronHourly** : un cron cada hora
-
--   **CronDaily** : un cron diario
-
-> **Tip**
->
-> Si el plugin utiliza una de estas funciones, usted puede específicamente
-> prohibirlo desmarcando la casilla "activar", que está
-> presente junto a él.
-
-Por último, hay una sección del Panel que le permitirá activar o desactivar
-la pantalla del panel en el dashboard o en el móvil si lo
-ofrece el plugin.
-
-Installation de un plugin 
-========================
-
-Para instalar un nuevo plugin, simplemente haga clic en el botón
-"Market" (Jeedom debe estar conectado a Internet). Después de un corto período de tiempo de
-cargando, obtendrá la página.
-
-> **Tip**
->
-> Debe haber ingresado la información de su cuenta de Market en
-> administración (Configuration→Actualizaciones→Pestaña market) con el fin de
-> encontrar los plugins que ya ha comprado, por ejemplo.
-
-En la parte superior de la ventana, hay filtros:
-
--   **Gratis/Pago** : permite mostrar solamente los gratis o
-    los de pago.
-
--   **Oficial/Aconsejado** : permite mostrar solamente los plugins
-    oficiales o recomendados
-
--   **Instalado/No instalado** : permite mostrar solamente los plugins
-    instalados o no instalados
-
--   **Menú desplegable de categoría** : le permite mostrar sólo
-    algunas categorías de plugins
-
--   **Buscar** : permite buscar un plugin (por nombre o la
-    descripción de este)
-
--   **Nombre de usuario** : muestra el nombre de usuario utilizado para la
-    conexión al Market así como el estado de la conexión
-
-> **Tip**
->
-> La pequeña cruz le permite reajustar el filtro en cuestión
-
-Una vez que haya encontrado el plugin deseado, simplemente haga clic en
-el para mostrar su ficha. Esta ficha te da mucha
-información sobre el plugin, incluyendo:
-
--   Si es oficial/recomendado u obsoleto (es realmente necesario
-    evitar la instalación de plugins obsoletos)
-
--   4 acciones :
-
-    -   **Instalar estable** : permite instalar el plugin en su
-        versión estable
-
-    -   **Instalar beta**: permite instalar el plugin en su
-        versión beta (solo para betatesters)
-
-    -   **Installer pro**: permite instalar la versión pro (muy
-        poco utilizado)
-
-    -   **Eliminar**: si el plugin está instalado actualmente, este
-        botón permite borrarlo
-
-A continuación, encontrará la descripción del plugin, compatibilidad
-(si Jeedom detecta una incompatibilidad, te lo notificará), los avisos
-en el plugin (puedes verlo aquí) e información
-(el autor, la persona que hizo la última actualización
-, un enlace al manual, el número de descargas). En el lado derecho
-encontrará un botón "Changelog" que le permite ver todo
-el historial de modificaciones, un botón "Documentación" que devuelve
-a la documentación del plugin. Entonces tienes el idioma disponible
-e información diversa sobre la fecha de la última versión estable.
-
-> **Importante**
->
-> Realmente no es recomendable poner un plugin beta en un sistema
-> Jeedom no beta, muchos problemas de funcionamiento pueden ocurrir como
-> resultado.
-
-> **Importante**
->
-> Algunos plugins no son libres, en este caso en la ficha del plugin se
-> le ofrecerá comprarlo. Una vez hecho esto, tienes que esperar a que aparezca el mensaje
-> 10 minutos (tiempo de validación del pago) y, a continuación, devolución
-> en el archivo del plugin para instalarlo normalmente.
-
-> **Tip**
->
-> También puedes añadir un plugin a Jeedom desde un fichero o
-> de un depósito de Github. Para ello, en la configuración de
-> Jeedom, active la función correspondiente en la sección "Actualizaciones y
-> archivos". Entonces será posible, colocando el ratón en la posición
-> a la izquierda, y al abrir el menú de la página del plugin, haga clic en
-> sobre "Añadir de otra fuente". A continuación, puede seleccionar la opción
-> Fuente "Archivo". Atención, en el caso de la adición de un archivo
-> zip, el nombre del zip debe ser el mismo que el ID del plugin y 
-> cuando se abre el ZIP, debe estar presente una carpeta  plugin\_info.
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slider Button
+
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+
+## Widget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'estado
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel con un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+```
+
+Voila un exemple simple de code javascript a mettre dans votre widget :
+
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
+```
+
+Ici deux choses importantes :
+
+```
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+
+```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

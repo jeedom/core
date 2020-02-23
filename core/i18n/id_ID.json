@@ -767,7 +767,7 @@
         "Accéder": "Accéder",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Votre ticket a bien été ouvert. Un mail va vous être envoyé",
-        "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)": "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)"
+        "ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\\'information personnelle (mail, compte market, clé api...)": "ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\\'information personnelle (mail, compte market, clé api...)"
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -1150,8 +1150,11 @@
         "Options": "Options",
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Êtes-vous sûr de vouloir mettre à jour cet objet ?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "Êtes-vous sûr de vouloir supprimer cet objet ?",
-        "L\\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés": "L\\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés",
         "L\\'opération a échoué": "L\\'opération a échoué",
+        "Update terminée avec succès.": "Update terminée avec succès.",
+        "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
+        "Recharger": "Recharger",
+        "Rester sur la page": "Rester sur la page",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core : ",
         "Ne pas mettre à jour": "Ne pas mettre à jour",
         "Changelog": "Changelog",
@@ -1159,7 +1162,7 @@
         "Réinstaller": "Réinstaller",
         "Supprimer": "menghapus",
         "Vérifier": "Vérifier",
-        "La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)": "La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuration commande",
@@ -1487,14 +1490,15 @@
         "Visible": "Terlihat",
         "Objet parent": "Objet parent",
         "Aucun": "Tak ada",
-        "Timeout en secondes (0 = illimité)": "Timeout en secondes (0 = illimité)",
         "Log": "Log",
         "Défaut": "kesalahan",
         "Temps réel": "Real time",
+        "Timeout": "Timeout",
+        "Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.": "Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.",
         "Multi-lancement": "Multi-lancement",
-        "Le scénario pourra tourner plusieurs fois en même temps": "Le scénario pourra tourner plusieurs fois en même temps",
+        "Le scénario pourra s'éxécuter plusieurs fois en même temps.": "Le scénario pourra s'éxécuter plusieurs fois en même temps.",
         "Synchrone": "Synchrone",
-        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable",
+        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.",
         "Timeline": "waktu",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Les exécutions du scénario pourront être vues dans la timeline.",
         "Dossier": "Dossier",
@@ -3823,12 +3827,12 @@
         "Crons": "cron",
         "Démons": "setan",
         "Santé": "Bidang Kesehatan",
-        "Synthèse": "Synthèse",
         "Basculer le thème": "Basculer le thème",
         "Version desktop": "versi desktop",
         "Forcer mise à jour": "Forcer mise à jour",
         "A propos": "A propos",
         "Déconnexion": "Déconnexion",
+        "Synthèse": "Synthèse",
         "Tout": "Semua",
         "Designs": "Designs",
         "Designs 3D": "Designs 3D"

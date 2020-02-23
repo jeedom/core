@@ -1,296 +1,191 @@
-Jeedom que requiere una suscripción?
-=====================================
+# Widgets
+**Outils → Widgets**
 
-No, Jeedom es plenamente utilizable sin necesidad de ningún
-suscripción de ningún tipo. Sin embargo, hay servicios disponibles para
-copias de seguridad o de llamada / SMS, pero sigue siendo muy
-opcional.
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Jeedom que utiliza servidores externos para operar?
-================================================== ============
+Il y a deux types de widgets personnalisés :
 
-No, Jeedom no utiliza este tipo de infraestructura "nube". Todo se hace
-local y no necesita nuestros servidores a su
-La instalación funciona. Sólo los servicios como el mercado, la
-copia de seguridad en línea o DNS Jeedom requieren el uso de nuestra
-servidores.
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
-Podemos cambiar el orden de los equipos?
-==================================================
+> **Note**
+>
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-Sí es posible, basta con arrastrar / soltar los controles de su
-objeto en su configuración.
+## Gestion
 
-Puede editar el estilo de los widgets?
-=====================================
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
 
-Sí es posible, ya sea a través del plugin de flash, o
-utilizando la página de visualización general →
+## Mes widgets
 
-Podemos poner varias veces el mismo equipo en un diseño?
-================================================== ==============
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
-No, esto no es posible, pero se puede duplicar a través
-plug-in virtual.
+> **Tip**
+>
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Cómo cambiar un historial de datos erróneos?
-================================================== ==
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Un poco más de una curva histórico de la orden, haga clic en el
-pregunta punta en. Si deja los campos en blanco, entonces el valor
-serán eliminados.
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
-¿Cuánto tiempo hace una copia de seguridad?
-======================================
 
-No hay una duración estándar, dependiendo del volumen del sistema
-los datos de copia de seguridad, pero puede tomar más de 5 minutos se
-normal.
+## Principe
 
-¿Hay una aplicación móvil dedicado?
-========================================
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
 
-Jeedom tiene una versión móvil para su uso en el móvil y
-tableta. También hay una aplicación nativa para Android y iOS.
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-¿Cuáles son las credenciales para conectar la primera vez?
-================================================== ==============
+## Les templates
 
-Cuando se conecta por primera vez a Jeedom (y más allá si lo hace
-no han cambiado), el nombre de usuario y la contraseña predeterminada
-son admin / admin. En la primera conexión, es fuertemente
-recomendadas para cambiar estos identificadores de seguridad.
+Il y a deux types de template :
 
-Podemos poner Jeedom https?
-================================
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
-Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
+## Création d'un widget
 
-Comment se connecter en SSH ?
-=============================
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
-Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
 
-- Username : "root", password : "Mjeedom96"
-- Username : "jeedom", password : "Mjeedom96"
-- Ou ce que vous avez mis à l'installation si vous êtes en DIY
+### Remplacement
 
-A noter que lorsque vous écrirez le mot de passe vous ne verrez rien s'écrire à l'écran, c'est normal.
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
-Comment remettre à plat les droits ? 
-====================================
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
-En SSH faites :
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
-``` {.bash}
-sudo su -
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+### Test
+
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
+
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+
+>**Note**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+
+## Description de widgets
+
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+
+### Paramètres fréquents
+
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+
+### HygroThermographe
+
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+
+### Multiline
+
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slider Button
+
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+
+## Widget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 ```
 
-Où se trouvent les sauvegardes de Jeedom ? 
-==========================================
+Voila un exemple simple de code javascript a mettre dans votre widget :
 
-Elles sont dans le dossier /var/www/html/backup
-
-Comment mettre à jour Jeedom en SSH ? 
-=====================================
-
-En SSH haz:
-
-``` {.bash}
-sudo su -
-php /var/www/html/install/update.php
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
 ```
 
-¿ La Webapp es compatible con Symbian ?
-=======================================
+Ici deux choses importantes :
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
-
-¿ En qué plataformas puede funcionar Jeedom ?
-================================================== ==
-
-Pour que Jeedom fonctionne, il faut une plateforme linux avec les droits
-root ou un système type docker. Il ne fonctionne donc pas sur une
-plateforme android pure.
-
-Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ? 
-====================================================
-
-Cela peut être dû à plusieurs choses, il faut : 
-
-- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de Jeedom, partie mise à jour vous avez un bouton de test)
-- Vérifier que le compte market a bien acheté le plugin en question
-- Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
-- Comprueba que tu versión de Jeedom sea compatible con el plugin
-
-J’ai une page blanche 
-=====================
-
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
-
-``` {.bash}
-sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 ```
-
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
-
-Vous pouvez aussi regarder le log /var/www/html/log/http.error. Très
-souvent, celui-ci indique le souci.
-
-J’ai un problème d’identifiant BDD 
-==================================
-
-Il faut réinitialiser ceux-ci :
-
-``` {.bash}
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
-cd /usr/share/nginx/www/jeedom
-sudo cp core/config/common.config.sample.php core/config/common.config.php
-sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
-sudo chown www-data:www-data core/config/common.config.php
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
 ```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
 
-J’ai des \{\{…​\}\} partout 
-=======================
-
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
-
-Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
-===========================================================
-
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
-est en stable. Pour voir l’erreur, il faut faire F12 puis console.
-
-Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
-=========================================================================
-
-Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
-
-Mon scénario ne s’arrête plus/pas 
-=================================
-
-Il est conseillé de regarder les commandes exécutées par le scénario,
-souvent cela vient d’une commande qui ne se termine pas.
-
-J’ai des instabilités ou des erreurs 504 
-========================================
-
-Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
-commande est : "sudo dmesg | grep error" .
-
-Je ne vois pas tous mes équipements sur le dashboard 
-====================================================
-
-Souvent cela est dû au fait que les équipements sont affectés à un objet
-qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
-gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
-
-J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
-====================================================================================================================================
-
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
-courants sont :
-
--   Manque de place sur le système de fichiers (peut être vérifié en
-    faisant la commande "df -h", en SSH)
-
--   Problème de corruption de fichier(s), ce qui arrive souvent suite à
-    un arrêt non propre de Jeedom (coupure de courant)
-
--   Soucis mémoire, le systeme manque de mémoire et tue le process le plus consommateur (souvent la base de données). Cela peut se voir dans l'administration de l'OS puis dmesg, vous devez voir un kill par "oom". Si c'est le cas il faut réduire la consommation de jeedom en désactivant des plugins.
-
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
-cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/var/www/html/backup par défaut), de réinstaller Jeedom et
-de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
-veut pas démarrer depuis une console SSH :
-
-``` {.bash}
-sudo su -
-service mysql stop
-mysqld --verbose
 ```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
 
-Ou consulter le log : /var/log/mysql/error.log
-
-Les boutons Eteindre/Redémarrer ne fonctionnent pas 
-===================================================
-
-Sur une installation DIY c’est normal. En SSH, il faut faire la commande
-visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
-NOPASSWD: ALL.
-
-``` {.bash}
-sudo service apache2 restart
-```
-
-Je ne vois pas certains plugins du Market 
-=========================================
-
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
-plugin. En général, une mise à jour de jeedom corrige le souci.
-
-J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
-=========================================
-
-Les alertes sont classées par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
-
-Mon Jeedom affiche en permanance "En cours de démarrage" même après 1h ? 
-=====================================
-
-Si vous êtes en DIY et sous Debian 9 ou plus, vérifiez qu'il n'y a pas eu une mise à jour d'Apache et donc le retour du privateTmp (visible en faisant `ls /tmp` et voir si il y a un dossier private\*Apache). Si c'est le cas il faut faire :
-
-``` 
-mkdir /etc/systemd/system/apache2.service.d
-echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
-echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
-``` 
-
-J'ai un soucis d'heure sur mes historiques
-=========================================
-
-Essayez de vider le cache de chrome, l'affichage des historiques est calculé par rapport à l'heure du navigateur.
-
-J'ai l'erreur "Soucis réseaux detecté, redemarrage du réseaux"
-=========================================
-
-Jeedom ne trouve pas ou n'arrive pas a pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeeodm n'a pas redemarré ou a redemarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connection réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
-
-J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."
-=========================================
-Ca veut dire que Jeedom n'arrive pas a backuper la base de données ce qui peut laisser penser à un soucis de corrumption de base de données et de filesystem. Il n'y a malheureusement pas de commande miracle pour corriger. Le mieux est de lancer un backup et d'analyser le log de celui-ci. Dans les cas connus de soucis nous avons:
-
-- une table de la base corrompue => là c'est mal parti il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous êtes sur carte SD c'est le bon moment pour la changer)
-- pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
-
-
-Je n'arrive plus à me connecter à mon Jeedom
-=========================================
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les ip sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto/how to)
-
-J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent être manquant ou j'ai une page blanche
-=========================================
-C'est une erreur assez grave le plus simple est de faire 
-
-``` 
-mkdir -p /root/tmp/
-cd /root/tmp
-wget https://github.com/jeedom/core/archive/master.zip
-unzip master.zip
-cp -R /root/tmp/core-master/* /var/www/html
-rm -rf /root/tmp/core-master
-```
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

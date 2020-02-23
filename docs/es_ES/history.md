@@ -1,194 +1,191 @@
-Partie importante dans un logiciel : la partie historisation, véritable
-mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe
-quelle commande de type information (binaire ou numérique). Cela vous
-permettra donc par exemple d’historiser une courbe de température, de
-consommation ou les ouvertures d’une porte, etc.​
+# Widgets
+**Outils → Widgets**
 
-principio
-========
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Aquí se describe el principio de archivado de Jeedom. es
-tienen que entender que si usted está teniendo problemas
-para archivar o quiere cambiar los ajustes
-historización. Los ajustes por defecto son adecuadas en la mayoría
-caso.
+Il y a deux types de widgets personnalisés :
 
-archivado
----------
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
 
-L’archivage de données permet à Jeedom de réduire la quantité de données
-conservées en mémoire. Cela permet de ne pas utiliser trop de place et
-de ne pas ralentir le système. En effet, si vous conservez toutes les
-mesures, cela fait d’autant plus de points à afficher et donc peut
-considérablement allonger les temps pour rendre un graphique. En cas
-d’un nombre trop important de points, cela peut même faire planter
-l’affichage du graphique.
-
-El archivo es una tarea que se lanza a la noche y compacta
-Los datos recogidos en el día. Por defecto recupera todos Jeedom
-el 2h de datos más antiguo y hace 1h paquete (una
-medio, mínimo o máximo dependiendo de la configuración). Por lo tanto,
-Aquí dos ajustes, uno para el tamaño del paquete y la otra es saber
-desde la hora de hacer (de aviso predeterminado para este son paquetes
-1 hora con datos que tiene más de 2 horas de edad).
-
-> **Tip**
+> **nota**
 >
-> Si ha seguido usted debe tener una alta precisión en
-> Última 2 horas. Sin embargo, cuando me conecto a 17h,
-> Tengo una aclaración sobre las últimas 17 horas. Por qué ? De hecho,
-> Para evitar el consumo de recursos innecesariamente, la tarea hecha
-> Archivado lleva a cabo sólo una vez al día, por la tarde.
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-> **Importante**
+## Gestion
+
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+
+## Mes widgets
+
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+
+> **punta**
 >
-> Por supuesto, este principio archivado sólo se aplica a las órdenes
-> Tipo numérico; los comandos binarios, no enlatados Jeedom
-> Que los cambios de estado.
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Viendo el gráfico
-========================
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
-Hay varias maneras de acceder a la historia:
-
--   poner un área del gráfico en una vista en planta (véase más adelante),
-
--   haciendo clic en el comando deseado en un widget,
-
--   por ir a la página de la historia que puede superponer
-    diferentes curvas y combinan estilos (área, curva, bar)
-
--   Móviles restantes soportado en el widget en cuestión
-
-Si ve un gráfico de histórica o haciendo clic
-el widget, usted tiene acceso a múltiples opciones de visualización:
-
-On retrouve en haut à droite la période d’affichage (ici sur la dernière
-semaine car, par défaut je veux que ça soit seulement une semaine - voir
-2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
-(ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc
-qu’à les configurer une seule fois).
-
--   Escalera ** **: muestra la curva como una
-    escalera o visualización continua.
-
--   ** ** Cambio: muestra la diferencia en valor en comparación con
-    punto anterior.
-
--   ** ** Línea: muestra el gráfico en filas.
-
--   **zona**: muestra la forma gráfica de un área.
-
--   Columna ** ** \ *: muestra el gráfico de barras.
-
-Gráfico de vistas y diseños
-=====================================
-
-También puede ver los gráficos en las vistas (veremos aquí
-opciones de configuración y no la forma de hacerlo, por lo que debemos
-Ir a las imágenes o diseños en documention). aquí está
-opciones:
-
-Una vez activados los datos, se puede elegir:
-
--   ** ** color: el color de la curva.
-
--   **Tipo**: el tipo de gráfico (área, fila o columna).
-
--   ** ** Escala: porque se puede poner varias curvas (datos)
-    en el mismo gráfico, es posible distinguir las escalas
-    (Derecha o izquierda).
-
--   Escalera ** **: muestra la curva como una
-    escalera o visualización continua
-
--   ** ** Pila: puede apilar los valores de las curvas (véase
-    a continuación para los resultados).
-
--   ** ** Cambio: muestra la diferencia en valor en comparación con
-    punto anterior.
-
-Opción en la página Historial
-===============================
-
-La página de historial proporciona acceso a algunas opciones adicionales
-
-historia calculada
-------------------
-
-Permet d’afficher une courbe en fonction d’un calcul sur plusieurs
-commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
-documentation PHP pour certaines fonctions). Ex :
-abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
-vie\]\[Hygrométrie\]\[Température\]*)
-
-También tiene acceso a una fórmulas de gestión que le permite
-guardarlos para el remostrado más fácil
-
-> **Tip**
->
-> Basta con hacer clic en el nombre del objeto a desarrollarse;
-> Aparecen los comandos que pueden ser historizar graphées.
-
-historial de pedidos
-----------------------
-
-Delante de cada dato puede ser graphée, se encuentran dos iconos:
-
--   ** ** Papelera: Borra los datos grabados; entonces
-    el clic Jeedom pregunta si desea eliminar los datos antes de una
-    fecha determinada o todos los datos.
-
--   Flecha ** ** permite a un CSV exportación de datos históricos.
-
-Eliminación de valor inconsistente
-=================================
-
-A veces puede ser que usted tiene valores inconsistentes en
-gráficos. Esto es a menudo debido a la preocupación por la interpretación de la
-valor. Puede eliminar o cambiar el valor del punto
-cuestión haciendo clic en él directamente en el gráfico; de
-Además, se puede establecer el mínimo y el máximo permitido para
-para evitar problemas futuros.
-
-línea de tiempo
-========
-
-La línea de tiempo muestra algunos eventos en su casa como la automatización
-cronológico.
-
-Para verlos, debe habilitar el seguimiento en la línea de tiempo de la primera
-controles o escenarios apropiados:
-
--   ** ** Escenario: ya sea directamente en la página de la escritura, o en el
-    page de résumé des scénarios pour le faire en "masse"
-
--   ** ** Orden ya sea en la configuración de control avanzada,
-    ya sea en la historia de configuración para que sea a la "masa"
-
-> **Tip**
->
-> Vous avez accès aux fenêtres de résumé des scénarios ou de la
-> configuration de l’historique directement à partir de la page de
-> timeline.
-
-Une fois que vous avez activé le suivi dans la timeline des commandes et
-scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
-
-> **Importante**
->
-> Los nuevos eventos después de la activación de la monitorización debe esperar
-> En la línea de tiempo antes de ver el espectáculo.
-
-Les cartes sur la timeline affichent :
-
--   ** ** cuota de comandos: fondo rojo, un icono de la derecha que permite
-    mostrar la ventana de configuración extendida del control
-
--   ** ** Info orden: fondo azul, un icono de la derecha que permite
-    mostrar la ventana de configuración extendida del control
-
--   ** ** Escenario: fondo gris, tiene 2 iconos: uno para la pantalla
-    el registro de la escritura y para ir en el guión
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
 
+## principio
+
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
+
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
+
+## Les templates
+
+Il y a deux types de template :
+
+- Les "**simples**" : tipo une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
+
+## Création d'un widget
+
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
+
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
+
+### Remplacement
+
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
+
+>**nota**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
+
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
+
+### Test
+
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
+
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
+
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
+
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
+
+>**nota**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
+
+>**nota**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+
+>**nota**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
+
+## Description de widgets
+
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+
+### Paramètres fréquents
+
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). importante seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+
+### HygroThermographe
+
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
+
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+
+### Multiline
+
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slider Button
+
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+
+## Widget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+```
+
+Voila un exemple simple de code javascript a mettre dans votre widget :
+
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
+```
+
+Ici deux choses importantes :
+
+```
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+
+```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)

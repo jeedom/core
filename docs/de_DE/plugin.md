@@ -1,232 +1,191 @@
-Le sous-menu Gestion des plugins permet de manipuler les plugins, à
-savoir : les télécharger, les mettre à jour et les activer,…​
+# Widgets
+**Outils → Widgets**
 
-Gestion des plugins 
-===================
+La page widgets vous permet de créer des widgets personnalisés pour votre Jeedom.
 
-Vous pouvez accéder à la page plugins à partir de Plugins → Gestion des
-plugins. Une fois que l’on clique dessus, on retrouve la liste des
-plugins dans l’ordre alphabétique et un lien vers le market. Les plugins
-désactivés sont grisés.
+Il y a deux types de widgets personnalisés :
 
-> **Tip**
+- Les widgets basés sur un template (gérés par le Core de Jeedom).
+- Les widgets basés sur du code utilisateur.
+
+> **Note**
 >
-> Comme à beaucoup d’endroits sur Jeedom, mettre la souris tout à gauche
-> permet de faire apparaître un menu d’accès rapide (vous pouvez à
-> partir de votre profil le laisser toujours visible). Ici, le menu
-> permet d’avoir la liste des plugins triés par catégories.
+> Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
-En cliquant sur un plugin, vous accédez à sa configuration. En haut, vous
-retrouvez le nom du plugin, puis entre parenthèses, son nom dans Jeedom
-(ID) et enfin, le type de version installée (stable, beta).
+## Gestion
 
-> **Important**
+Quatre options s'offrent à vous :
+- **Ajouter** : Permet de créer un nouveau widget.
+- **Importer** : Permet d'importer un widget sous forme de fichier json précedemment exporté.
+- **Code** : Ouvre un éditeur de fichiers permettant d'éditer les widget code.
+- **Remplacement** : Ouvre une fenêtre permettant de remplacer un widget par un autre sur tout les équipements l'utilisant.
+
+## Mes widgets
+
+Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
+
+> **Spitze**
 >
-> Lors du téléchargement d’un plugin, celui-ci est désactivé par défaut.
-> Il faut donc que vous l’activiez par vous-même.
+> Vous pouvez ouvrir un widget en faisant :
+> - Clic sur l'un d'entre eux.
+> - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
-En haut à droite, quelques boutons :
+Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des widget. La touche Echap annule la recherche.
+A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+- La croix pour annuler la recherche.
+- Le dossier ouvert pour déplier tout les panneaux et afficher touts les widget.
+- Le dossier fermé pour replier tout les panneaux.
 
--   **Documentation** : Permet d’accéder directement à la page de
-    documentation du plugin
+Une fois sur la configuration d'un widget, vous disposez d'un menu contextuel au Clic Droit sur les onglets du widget. Vous pouvez également utiliser un Ctrl Clic ou Clic Centre pour ouvrir directement un autre widget dans un nouvel onglet du navigateur.
 
--   **Changelog** : permet de voir le changelog du plugin si il existe
 
--   **Envoyer sur le Market** : permet d’envoyer le plugin sur le Market
-    (uniquement disponible si vous en êtes l’auteur)
+## Principe
 
--   **Détails** : permet de retrouver la page du plugin sur le market
+Mais c'est quoi un template ?
+Pour faire simple, c'est du code (ici html/js) intégré au Core, dont certaines parties sont configurable par l'utilisateur avec l'interface graphique du Core.
 
--   **Supprimer** : Supprime le plugin de votre Jeedom. Attention, cela
-    supprime également définitivement tous les équipements de ce plugin
+Suivant le type de widget, vous pouvez généralement personnaliser des icônes ou mettre des images de votre choix.
 
-En dessous à gauche, on retrouve une zone état avec :
+## Les templates
 
--   **Statut** : permet de voir le statut du plugin (actif / inactif)
+Il y a deux types de template :
 
--   **Version** : la version du plugin installée
+- Les "**simples**" : Type une icône/image pour le "on" et une icône/image pour le "off"
+- Les "**multistates**" : Cela permet de définir par exemple une image si la commande a pour valeur "XX" et une autre si > à "YY", et encore si < à "ZZ". Ou même une image si la valeur vaut "toto", une autre si "plop", et ainsi de suite.
 
--   **Auteur** : l’auteur du plugin
+## Création d'un widget
 
--   **Action** : Permet d’activer ou désactiver le plugin
+Une fois sur la page Outils -> Widget il vous faut cliquer sur "Ajouter" et donner un nom à votre nouveau widget.
 
--   **Version jeedom** : Indique la version de Jeedom minimum requise
-    pour le plugin
+Ensuite :
+- Vous choisissez s'il s'applique sur une commande de type action ou info.
+- En fonction de votre choix précèdent, vous allez devoir choisir le sous type de la commande (binaire, numérique, autre...).
+- Puis enfin le template en question (nous envisageons de pour vous mettre des exemples de rendus pour chaque template).
+- Une fois le template choisi, Jeedom vous donne les possibilités de configuration de celui-ci.
 
--   **Licence** : Indique la licence du plugin qui sera généralement
-    AGPL
+### Remplacement
 
-A droite, on retrouve la zone Log qui permet de définir 
+C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "on" correspond à telle icône/image (avec le bouton choisir), le "off" est celui-là etc. Ensuite en fonction du template, il peut vous être proposé la largeur (width) et la hauteur (height). Ce n'est valable que pour les images.
 
--   le niveau de logs spécifique au plugin (on retrouve cette même possibilité dans
-Administation → Configuration sur l’onglet logs, en bas de page)
+>**Note**
+>Nous sommes désolés pour les noms en anglais, il s'agit d'une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
--   de voir les logs du plugin
+>**TIPS**
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuration avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous évite de faire un widget différent par taille d'image que vous voulez
 
--   Heartbeat : toute les 5 mins, Jeedom regarde si au moins un équipement du plugin a communiqué dans les X dernières minutes (si vous voulez désactiver la fonctionnalité, il suffit de mettre 0)
+### Test
 
--   Redemarrer démon : si le hertbeat tombe en erreur alors Jeedom va redémarrer le démon
+C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
 
-Si le plugin possède des dépendances et/ou un démon, ces zones
-supplémentaires s’affichent sous les zones citées ci-dessus.
+C'est assez simple. Au lieu de mettre une image pour le "on" et/ou pour le "off" comme dans le cas précèdent, vous allez avant donner un test à faire. Si celui-ci est vrai alors le widget affichera l'icône/l'image en question.
 
-Dépendances :
+Les tests sont sous la forme : #value# == 1, #value# sera automatiquement remplacé par le système par la valeur actuelle de la commande. Vous pouvez aussi faire par exemple :
 
--   **Nom** : généralement sera local
+- #value# > 1
+- #value# >= 1 && #value# <= 5
+- #value# == 'toto'
 
--   **Statut** : vous dira si les dépendances sont OK ou KO
+>**Note**
+>Il est important de noter les ' autour du texte à comparer si la valeur est un texte
 
--   **Installation** : permettra d’installer ou réinstaller les
-    dépendances (si vous ne le faites pas manuellement et qu’elles sont
-    KO, Jeedom s’en chargera de lui-même au bout d’un moment)
+>**Note**
+>Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
--   **Dernière installation** : date de la dernière installation des
-    dépendances
+>**Note**
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icône #value#
 
-Démon :
+## Description de widgets
 
--   **Nom** : généralement sera local
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
 
--   **Statut** : vous dira si le démon est OK ou KO
+### Paramètres fréquents
 
--   **Configuration** : sera OK si tous les critères pour que le démon
-    tourne sont réunis ou donnera la cause du blocage
+- Time widget : affiche le temps depuis lequel le système est dans l'état afficher.
+- On : icône à afficher si l'équipement est on/1.
+- Off : icône à afficher si l'équipement est off/0.
+- Light on : icône à afficher si l'équipement est on/1 et que le thème est light (si vide alors Jeedom prend l'img dark on).
+- Light off : icône à afficher si l'équipement est off/0 et que le thème est light (si vide alors Jeedom prend l'img dark off).
+- Dark on : icône à afficher si l'équipement est on/1 et que le thème est dark (si vide alors Jeedom prend l'img light on).
+- Dark off : icône à afficher si l'équipement est off/0 et que le thème est dark (si vide alors Jeedom prend l'img light off).
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, Jeedom calculera la hauteur pour ne pas déformer l'image.
 
--   **(Re)Démarrer** : permet de lancer ou relancer le démon
+### HygroThermographe
 
--   **Arrêter** : permet d’arrêter le démon (Uniquement dans le cas où
-    la gestion automatique est désactivée)
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type température et humidité.
 
--   **Gestion automatique** : permet d’activer ou désactiver la gestion
-    automatique (ce qui permet à Jeedom de gérer lui même le démon et le
-    relancer si besoin. Sauf contre indication, il est conseillé de
-    laisser la gestion automatique active)
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
 
--   **Dernier lancement** : date du dernier lancement du démon
+>**IMPORTANT**
+>Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
 
-> **Tip**
->
-> Certains plugins ont une partie configuration. Si tel est le cas, elle
-> apparaîtra sous les zones dépendances et démon décrites ci-dessus.
-> Dans ce cas, il faut se référer à la documentation du plugin en
-> question pour savoir comment le configurer.
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
 
-En dessous, on retrouve une zone fonctionnalités. Celle-ci permet de voir
-si le plugin utilise une des fonctions core Jeedom tel que :
+>**NOTE**
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
--   **Interact** : des interactions spécifiques
+### Multiline
 
--   **Cron** : un cron à la minute
-
--   **Cron5** : un cron toutes les 5 minutes
-
--   **Cron15** : un cron toutes les 15 minutes
-
--   **Cron30** : un cron toutes les 30 minutes
-
--   **CronHourly** : un cron toutes les heures
-
--   **CronDaily** : un cron journalier
-
-> **Tip**
->
-> Si le plugin utilise une de ces fonctions, vous pourrez spécifiquement
-> lui interdire de le faire en décochant la case "activer" qui sera
-> présente à côté.
-
-Enfin, on peut retrouver une section Panel qui permettra d’activer ou
-désactiver l’affichage du panel sur le dashboard ou en mobile si le
-plugin en propose un.
-
-Installation d’un plugin 
-========================
-
-Pour installer un nouveau plugin, il suffit de cliquer sur le bouton
-"Market" (et que Jeedom soit relié à Internet). Après un petit temps de
-chargement, vous obtiendrez la page.
-
-> **Tip**
->
-> Vous devez avoir saisi les informations de votre compte du Market dans
-> l’administration (Configuration→Mises à jour→Onglet market) afin de
-> retrouver les plugins que vous avez déjà achetés par exemple.
-
-En haut de la fenêtre, vous avez des filtres :
-
--   **Gratuit/Payant** : permet d’afficher uniquement les gratuits ou
-    les payants.
-
--   **Officiel/Conseillé** : permet d’afficher uniquement les plugins
-    officiels ou les conseillés
-
--   **Installé/Non installé** : permet d’afficher uniquement les plugins
-    installés ou non installés
-
--   **Menu déroulant Catégorie** : permet d’afficher uniquement
-    certaines catégories de plugins
-
--   **Rechercher** : permet de rechercher un plugin (dans le nom ou la
-    description de celui-ci)
-
--   **Nom d’utilisateur** : affiche le nom d’utilisateur utilisé pour la
-    connexion au Market ainsi que le statut de la connexion
-
-> **Tip**
->
-> La petite croix permet de réinitialiser le filtre concerné
-
-Une fois que vous avez trouvé le plugin voulu, il suffit de cliquer sur
-celui-ci pour faire apparaître sa fiche. Cette fiche vous donne beaucoup
-d’informations sur le plugin, notamment :
-
--   S’il est officiel/recommandé ou s’il est obsolète (il faut vraiment
-    éviter d’installer des plugins obsolètes)
-
--   4 actions :
-
-    -   **Installer stable** : permet d’installer le plugin dans sa
-        version stable
-
-    -   **Installer beta** : permet d’installer le plugin dans sa
-        version beta (seulement pour les betatesteurs)
-
-    -   **Installer pro** : permet d’installer la version pro (très
-        peu utilisé)
-
-    -   **Supprimer** : si le plugin est actuellement installé, ce
-        bouton permet de le supprimer
-
-En dessous, vous retrouvez la description du plugin, la compatibilité
-(si Jeedom détecte une incompatibilité, il vous le signalera), les avis
-sur le plugin (vous pouvez ici le noter) et des informations
-complémentaires (l’auteur, la personne ayant fait la dernière mise à
-jour, un lien vers la doc, le nombre de téléchargements). Sur la droite
-vous retrouvez un bouton "Changelog" qui vous permet d’avoir tout
-l’historique des modifications, un bouton "Documentation" qui renvoie
-vers la documentation du plugin. Ensuite vous avez la langue disponible
-et les diverses informations sur la date de la dernière version stable.
-
-> **Important**
->
-> Il n’est vraiment pas recommandé de mettre un plugin beta sur un
-> Jeedom non beta, beaucoup de soucis de fonctionnement peuvent en
-> résulter.
-
-> **Important**
->
-> Certains plugins sont payants, dans ce cas la fiche du plugin vous
-> proposera de l’acheter. Une fois cela fait, il faut attendre une
-> dizaine de minutes (temps de validation du paiement), puis retourner
-> sur la fiche du plugin pour l’installer normalement.
-
-> **Tip**
->
-> Vous pouvez aussi ajouter un plugin à Jeedom à partir d’un fichier ou
-> depuis un dépôt Github. Pour cela, il faut, dans la configuration de
-> Jeedom, activer la fonction adéquate dans la partie "Mises à jour et
-> fichiers". Il sera ensuite possible, en mettant la souris tout à
-> gauche, et en faisant apparaître le menu de la page plugin, de cliquer
-> sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la
-> source "Fichier". Attention, dans le cas de l’ajout par un fichier
-> zip, le nom du zip doit être le même que l’ID du plugin et dès
-> l’ouverture du ZIP un dossier plugin\_info doit être présent.
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
+### Slider Button
+
+- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+
+## Widget code
+
+### Les tags
+
+En mode code vous avez accès a différent tag pour les commandes, en voici une liste (pas forcement exhaustives) :
+
+- #name# : nom de la commande
+- #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
+- #id# : id de la commande
+- #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
+- #valueDate# : date de la valeur de la commande
+- #collectDate# : date de collecte de la commande
+- #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
+- #tendance# : tendance sur la période (période défini dans la configuration de Jeedom par l'utilisateur). Attention la tendance est directement une class pour icône : fas fa-arrow-up, fas fa-arrow-down ou fas fa-minus
+
+### Mise à jour des valeurs
+
+Lors d'une nouvelle valeur Jeedom va chercher dans sur la page web si la commande est la et dans Jeedom.cmd.update si il y a une fonction d'update. Si oui il l'appel avec un unique argument qui est un objet sous la forme :
+
+```
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+```
+
+Voila un exemple simple de code javascript a mettre dans votre widget :
+
+```
+<script>
+    Jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    }
+    Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+</script>
+```
+
+Ici deux choses importantes :
+
+```
+Jeedom.cmd.update['#id#'] = function(_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+}
+```
+La fonction appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
+
+```
+Jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ ```
+ L'appel a cette fonction pour l'initialisation du widget.
+
+ Vous trouverez [ici](https://github.com/Jeedom/core/tree/V4-stable/core/template) des exemples de widgets (dans les dossiers dashboard et mobile)
