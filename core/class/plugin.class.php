@@ -246,17 +246,6 @@ class plugin {
 		return array();
 	}
 	
-	public static function saveTranslation($_plugin, $_language, $_translation) {
-		if(in_array(trim($_plugin),array('','core','fr_FR','.','..'))){
-			return array();
-		}
-		$dir = __DIR__ . '/../../plugins/' . $_plugin . '/core/i18n';
-		if (!file_exists($dir)) {
-			mkdir($dir, 0775, true);
-		}
-		file_put_contents($dir . '/' . $_language . '.json', json_encode($_translation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-	}
-	
 	public static function orderPlugin($a, $b) {
 		$al = strtolower($a->name);
 		$bl = strtolower($b->name);

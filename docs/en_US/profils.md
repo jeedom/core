@@ -1,110 +1,110 @@
-La page Profil vous permet de configurer certains comportements de
-Jeedom spécifiques à l’utilisateur : page d’accueil, thèmes de la
-version desktop, de la version mobile, des graphiques…​ Elle permet
-aussi de changer votre mot de passe.
+The Profile page allows you to configure certain behavior of
+User-specific Jeedom : home page themes of the
+desktop version, mobile version, graphics… It allows
+also to change your password.
 
-You find it at the top right by clicking on the icon man
-then Profile (followed by your login).
+You can find it at the top right by clicking on the snowman icon
+then Profile (followed by your username).
 
-Thèmes
+themes
 ======
 
-The themes panel allows you to adjust interface settings:
+The themes panel allows you to adjust interface parameters :
 
--   **Desktop** : thèmes à utiliser en mode desktop, attention seul le
+-   **Desktop** : themes to use in desktop mode, be careful only the
     default theme is officially supported by Jeedom
 
--   **Mobile color**: allows to choose the color of the interface
+-   **Color mobile** : allows to choose the interface color
     (here everything is supported)
 
--   **Desktop Graphic**: Set the default theme for
+-   **Desktop Graphics** : allows you to define the default theme for
     graphics in desktop mode
 
--   **Mobile Chart**: Set the default theme for
+-   **Mobile Graph** : allows you to define the default theme for
     mobile graphics
 
--   **Opacity with Dashboard widgets**: gives opacity
+-   **Opacity by Dashboard widgets** : allows to give opacity
     (between 0 and 1) widgets on the dashboard
 
--   **Opacity with Design widgets**: gives opacity
-    (between 0 and 1) widgets on the designs
+-   **Opacity by Design widgets** : allows to give opacity
+    (between 0 and 1) widgets on designs
 
--   **Opacity with View widgets**: allows to give the opacity (between
-    0 and 1) widgets on views
+-   **Opacity by View widgets** : allows to give opacity (between
+    0 and 1) widgets on the views
 
--   **Opacity with Mobile widgets**: gives opacity
+-   **Opacity by Mobile widgets** : allows to give opacity
     (between 0 and 1) mobile widgets
 
 Interface
 ---------
 
-Allows you to define certain interface behaviors:
+Allows you to define certain interface behaviors :
 
 -   **General**
 
-    -   **Show menus**: tells Jeedom to display the panel
+    -   **Show menus** : tell Jeedom to display the panel
         left, when it exists, as a reminder this panel is
-        disponible sur la plupart des pages des plugins, ainsi que la
-        page des scénarii, des interactions, des objets…​.
+        available on most plugin pages, as well as
+        page of scenarios, interactions, objects….
 
--   **Page par défaut** : page par défaut à afficher lors de la
-    connexion en desktop/mobile
+-   **Default page** : default page to display when
+    desktop / mobile connection
 
--   **Objet par défaut sur le dashboard** : objet à afficher par défaut
-    lors de l’arrivée sur le dashboard/mobile
+-   **Default object on the dashboard** : default display object
+    upon arrival on the dashboard / mobile
 
--   **Vue par défaut** : vue à afficher par défaut lors de l’arrivée sur
-    le dashboard/mobile
+-   **Default view** : view to display by default when arriving on
+    the dashboard / mobile
 
--   **Design par défaut** : design à afficher par défaut lors de
-    l’arrivée sur le dashboard/mobile
+-   **Default design** : design to display by default when
+    the arrival on the dashboard / mobile
 
-    -   **Plein écran** : affichage par défaut en plein écran lors de
-        l’arrivée sur les designs
+    -   **Full screen** : default display in full screen when
+        the arrival on the designs
 
 -   **Dashboard**
 
-    -   **Déplier le panneau des scénarii** : permet de rendre visible
-        par défaut le menu des scénarii (à droite) sur le dashboard
+    -   **Unfold the scenario panel** : allows to make visible
+        by default the scenario menu (on the right) on the dashboard
 
-    -   **Déplier le panneau des objets** : permet de rendre visible par
-        défaut le menu des objets (à gauche) sur le dashboard
+    -   **Unfold the objects panel** : allows to make visible by
+        default the objects menu (on the left) on the dashboard
 
--   **Vue**
+-   **View**
 
-    -   **Déplier le panneau des vues** : permet de rendre visible par
-        défaut le menu des vues (à gauche) sur les vues
+    -   **Unfold the view panel** : allows to make visible by
+        default views menu (left) on views
 
-Sécurité
+security
 --------
 
--   **Authentification en 2 étapes** : permet de configurer
-    l’authentification en 2 étapes (pour rappel, c’est un code changeant
-    toutes les X secondes qui s’affiche sur une application mobile, type
-    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé. Important si lors de la configuration de la double authentification vous avez une erreur vérifier que jeedom (voir sur la page santé) et votre téléphone sont bien à la meme heure (1 min de difference suffit pour que ca ne marche pas)
+-   **2-step authentication** : allows to configure
+    2-step authentication (as a reminder, this is a changing code
+    displayed every X seconds on a mobile application, type
+    google authentificator). Note that double authentication will only be requested for external connections. For local connection the code will therefore not be requested. Important if during the configuration of the double authentication you have an error check that jeedom (see on the health page) and your phone are at the same time (1 min difference is enough so that it does not work)
 
--   **Mot de passe** : permet de changer votre mot de passe (ne pas
-    oublier de le retaper en dessous)
+-   **Password** : allows you to change your password (do not
+    forget to retype it below)
 
--   **Hash de l’utilisateur** : votre clef API d’utilisateur
+-   **User hash** : your user API key
 
-### Sessions actives
+### Active sessions
 
-Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
-leur IP ainsi que la date de derniere communication. En cliquant sur
-"Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
-un péripherique enregistré cela supprimera églagement l’enregistrement.
+Here you have the list of your currently connected sessions, their ID,
+their IP as well as the date of last communication. Clicking on
+&quot;Logout&quot; will log out the user. Attention if it is on
+a registered device this will delete the recording.
 
-### Péripherique enregistrés
+### Registered device
 
-Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
-connecte sans authentification) à votre Jeedom ainsi que la date de
-derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
-peripherique. Attention cela ne le deconnecte pas mais empechera juste
-sa reconnection automatique.
+Here you find the list of all registered devices (which are
+connect without authentication) to your Jeedom and the date of
+last use. Here you can delete the recording of a
+peripheral. Attention it does not disconnect it but will just prevent
+its automatic reconnection.
 
 Notifications
 -------------
 
--   **Commande de notification utilisateur** : Commande par défaut pour
-    vous joindre (commande de type message)
+-   **User notification command** : Default command for
+    join you (message type command)

@@ -1046,13 +1046,13 @@ class scenarioExpression {
 	
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
 		if ($_scenario == null) {
-			return '"' . $_default . '"';
+			return $_default;
 		}
 		$tags = $_scenario->getTags();
 		if (isset($tags['#' . $_name . '#'])) {
 			return $tags['#' . $_name . '#'];
 		}
-		return '"' . $_default . '"';
+		return $_default;
 	}
 	
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
@@ -1354,7 +1354,7 @@ class scenarioExpression {
 							$tags = array();
 							$args = arg2array($this->getOptions('tags'));
 							foreach ($args as $key => $value) {
-								$tags['#' . trim(trim($key), '#') . '#'] = self::setTags(trim($value), $scenario);
+								$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario),'"');
 							}
 							$actionScenario->setTags($tags);
 						}
@@ -1373,7 +1373,7 @@ class scenarioExpression {
 							$tags = array();
 							$args = arg2array($this->getOptions('tags'));
 							foreach ($args as $key => $value) {
-								$tags['#' . trim(trim($key), '#') . '#'] = self::setTags(trim($value), $scenario);
+								$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario),'"');
 							}
 							$actionScenario->setTags($tags);
 						}
@@ -1398,6 +1398,7 @@ class scenarioExpression {
 						break;
 						case 'activate':
 						$this->setLog($scenario, __('Activation du scénario : ', __FILE__) . $actionScenario->getName());
+						$actionScenario->setLastLaunch(date('Y-m-d H:i:s'));
 						$actionScenario->setIsActive(1);
 						$actionScenario->save();
 						break;

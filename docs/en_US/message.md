@@ -1,22 +1,22 @@
-Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se trouve à côté de l’heure en haut à droite.
+The message center groups all the important posts that you
+must watch. It is next to the time at the top right.
 
-Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
-nombre de messages.
+It is only accessible when there are posts, by clicking on the
+number of posts.
 
 It is quite simple. It shows you the date and time of the message, the
 plugin that issued it and the message in question. You can, by pressing
-on the button at the very beginning of the line of a message, delete the
-message (it will come back if the problem is still
+on the button at the very beginning of a message line, delete the
+message in question (it will come back if the problem is still
 news).
 
-At the top, there is a selector to filter the messages on a
+At the top, there is a selector to filter posts on a
 particular plugin and all right a button to empty all
-messages.
+posts.
 
 > **Tip**
 >
 > When you have an error in the message center, try
-> first delete the message and then see if the error comes back before
-> contact the support. Sometimes it's just due to a concern for
+> first delete the message then see if the error returns before
+> contact support. It may just be due to a concern for
 > network connection.

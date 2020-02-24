@@ -1,171 +1,174 @@
-Doc un peu particulière car elle va traiter uniquement de votre page
-profil du Market.
+Doc etwas Besonderes, weil es nur Ihre Seite behandelt
+MarktProfil.
 
-Disponible en allant sur votre nom d’utilisateur puis profil à partir du
-Market (un peu comme sur Jeedom).
+Verfügbar, indem Sie zu Ihrem Benutzernamen und dann zu Ihrem Profil gehen
+Markt (ein bisschen wie bei Jeedom).
 
-Er besteht aus mehreren Teilen :
+Dies ist in mehrere Teile gegliedert :
 
 Mein Profil 
 ==========
 
-Hier können sie verschiedene Einstellungen Ihres Profiles anpassen :
+Hier können Sie verschiedene Parameter Ihres Geräts anpassen
+Profil :
 
 -   **Profil**
 
-    -   **Login** : Votre login sur le Market, il ne peut être changé
+    -   **Login** : Ihr Login auf dem Markt kann nicht geändert werden
 
-    -   **Name** : Ihr Name (Diese Information ist sinnvoll, um freundliche 
-        rendre les emails plus sympa)
+    -   **Name** : Ihr Name (diese Informationen sind nur nützlich für
+        E-Mails mehr Spaß machen)
 
-    -   **Vorname** : Ihren Vorname (Diese Information ist sinnvoll,
-        pour rendre les emails plus sympa)
+    -   **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich
+        damit E-Mails mehr Spaß machen)
 
-    -   **Benutzername im Forum** : Ihr Nickname im Forum
+    -   **Benutzername im Forum** : Dein Benutzername im Forum
 
-    -   **Email** : Votre email
+    -   **E-Mail** : Ihre E-Mail
 
-    -   **Sprache** : Ihre Sprache
+    -   **Sprache** : Deine Sprache
 
-    -   **Passwort && Passwort bestätigen** : Um ihr
-        Passwort zu ändern.
+    -   **Passwort &amp;&amp; Passwort bestätigen** : lass uns
+        Ändern Sie Ihr Passwort
 
-Für die Entwickler :
+Für Entwickler :
 
--   **Benutzername im Forum** : Ihr Nickname im Forum
+-   **Benutzername im Forum** : Dein Benutzername im Forum
 
--   **Email public** : Votre email pour recevoir des éventuelles
-    uns zu erhalten
+-   **Öffentliche E-Mail** : Ihre E-Mail, um eine zu erhalten
+    Mitteilungen von uns
 
--   **Compte paypal** : Votre email de compte Paypal (uniquement utilisé
-    pour payer les développeurs)
+-   **Paypal-Konto** : Die E-Mail-Adresse Ihres Paypal-Kontos (wird nur verwendet
+    die Entwickler bezahlen)
 
 Für die Profis :
 
--   **Compte email installateur** : Votre email de contact pro
+-   **Installer-E-Mail-Konto** : Ihre professionelle Kontakt-E-Mail
 
--   **Empfänger von Supportanfragen** : Wer erhält Support-E-Mails
-    emails de support (client final, installateur ou les deux)
+-   **Unterstützunganfragen Empfänger** : wissen, wer die erhalten wird
+    Unterstützung-E-Mails (Endkunde, Installer oder beides)
 
-    -   **CGU** AGB allgemeine Geschäftsbedingungen
+    -   **TOS**
 
--   **Benutzer** : Allgemeine Geschäftsbedingungen (Achtung, vor 
-    Benutzung gut durchlesen)
+-   **Benutzer** : Allgemeine Nutzungsbedingungen (beachten Sie
+    lies sie gut, weil sie dich verpflichten)
 
--   **Développeur** : conditions générales d’utilisation pour les
+-   **Entwickler** : Allgemeine Nutzungsbedingungen für
     Entwickler
 
-    -   **Gutscheine**
+    -   **Tickets**
 
--   **Gutschein Anzahl** : Anzahl der Gutscheine für den laufenden Monat, 
+-   **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat
     sowie Ihr Limit
 
--   **Support** : Schaltfläche, um eine Support-Anfrage zu senden (auch
-    aussi par le point d’exclamation en haut à droite sur le Market ou
-    Markt oder auf ihrem Jeedom). 
+-   **Unterstützung** : Schaltfläche zum Senden einer Unterstützunganfrage (zugänglich
+    auch durch das Ausrufezeichen oben rechts auf dem Markt oder
+    auf deinem Jeedom)
 
-    -   **Accès aux betas**
+    -   **Zugang zu Betas**
 
--   **Zugriff auf die Beta-Plugins aktivieren** : Ermöglicht es, den Zugang zu den 
-    Beta Plugins zu aktivieren (Achtung, dadurch wird Ihnen den Zugriff auf den Support verboten)
+-   **Aktivieren Sie den Zugriff auf Beta-Plugins** : ermöglicht den Zugriff auf
+    Beta-Plugins (bitte beachten Sie, dass Sie dadurch nicht auf den Unterstützung zugreifen können)
 
-    -   **Zusammenfassung** : Hier finden Sie eine Zusammenfassung Ihrer
-        verschiedenen Rechte und Dienstleistungen
+    -   **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen
+        Rechte und Dienstleistungen
 
-> **Tipp**
+> **Spitze**
 >
-> Vergessen Sie nicht, zu speichern !
+> Vergiss nicht zu sparen
 
-Meine Jeedoms
+Meine Jeedoms 
 ===========
 
 -   **Ebene**
 
-    -   **Jeedom** : Ihre Service Pack Ebene
+    -   **Jeedom** : Ihr Service Pack
 
-    -   **Geben Sie eine Service-Pack-Nummer ein** : Ermöglicht es ihnen eine
-        Service-Pack-Nummer einzugeben (Sie ist in der E-Mail von Jeedom,
-        die bei der Bestellung versendet wurde)
+    -   **Geben Sie eine Service Pack-Nummer ein** : Lassen Sie uns Ihre eingeben
+        Service Pack-Nummer (diese finden Sie in der E-Mail von
+        Jeedom bei Bestellung)
 
 -   **Installationsschlüssel**
 
-    -   **Anzahl der Installationsschlüssel** : Zeigt die Anzahl
-        der Jeedom-Installationen, die derzeit mit Ihrem Konto verknüpft sind,
-        und die zulässige Anzahl an.
+    -   **Anzahl der Installationsschlüssel** : Anzeigenummer
+        of Jeedom-Installationen, die derzeit ebenfalls mit Ihrem Konto verknüpft sind
+        dass die Grenze erlaubt
 
-> **Tip**
+> **Spitze**
 >
-> Il est possible que le Market vous demande parfois de remettre à zéro
-> vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il
-> vous demande
+> Der Markt fordert Sie manchmal auf, zurückzusetzen
+> Ihre Installationsschlüssel, es ist normal, folgen Sie einfach was es ist
+> frag dich
 
--   **Mein Jeedom** : Hier sind alle Ihre Jeedoms aufgelistet
+-   **Meine Jeedoms** : Hier sind alle deine Jeedoms aufgelistet
 
-    -   **Name** : Der Name, den Sie Ihrem Jeedom geben möchten (wird
-        im Namen des Backups verwendet, wenn Sie das Cloud-Backup-
-        Abonnement haben)
+    -   **Name** : den Namen, den du deinem Jeedom geben willst (
+        im Namen der Sicherung gefunden, wenn Sie das Abonnement von haben
+        Cloud-Backup)
 
-    -   **Zustand** : ermöglicht es Ihnen, den Status der Jeedoms abzufragen
+    -   **Zustand** : ermöglicht es, den Zustand der fraglichen Jeedom zu sehen
 
-    -   **Lokale/Remote IP** : IP oder Adresse von den Jeedoms,
-        ist in Jeedom konfiguriert, wenn Sie nichts festlegen, wird das die
-        letzte bekannt IP sein
+    -   **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom,
+        Konfigurieren Sie in Jeedom, wenn Sie nichts setzen, wird es dort sein
+        letzte bekannte IP
 
-    -   **DNS** : ermöglicht es, den Namen Ihrer DNS anzupassen
+    -   **DNS** : Mit dieser Option können Sie den Namen Ihres DNS anpassen
 
-    -   **URL** : listet die verschiedenen Zugangs-URLs zu Jeedom auf.
+    -   **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLss auf.
 
-    -   **Serveur DNS** : vous indique le serveur DNS auquel vous
-        verbunden sind
+    -   **DNS-Server** : teilt Ihnen den DNS-Server mit, an den Sie sich wenden
+        sind beigefügt
 
-    -   **DNS-Status** : Zeigt den Status des DNS an
+    -   **DNS-Status** : ermöglicht es, den Status des DNS anzuzeigen
 
-    -   **Erstellungsdatum** : Datum der Erstellung des Jeedoms auf Ihrem
-        compte Market (pour rappel cela se fait automatiquement lorsque
-        vous le liez au Market)
+    -   **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem
+        Marktkonto (zur Erinnerung, dies erfolgt automatisch, wenn
+        Sie verknüpfen es mit dem Markt)
 
-    -   **Zuletzt aktualisiert** : die letzte Kommunikation von Jeedom mit 
-        le Market
+    -   **Letztes Update** : Jeedom&#39;s letzte Kommunikation mit
+        der Markt
 
-    -   **Hardware** : Name der Jeedom Hardware
+    -   **Hardware** : Jeedom Hardware-Name
 
-    -   **Version** : installierte Jeedom Version
+    -   **Version** : die Version von Jeedom installiert
 
-> **Tipp**
+> **Spitze**
 >
-> Vergessen Sie nicht, zu speichern !
+> Vergiss nicht zu sparen
 
-Meine Sicherungen
+Meine Backups 
 ===========
 
-Sur cette onglet vous pouvez consulter les backups présents sur le
-Market et en télécharger un. En dessous vous avez accès au lien pour
-acheter 1,3,6 ou 12 mois d’abonnement à la sauvegarde cloud
+Auf dieser Registerkarte können Sie die auf der Website vorhandenen Sicherungen einsehen
+Vermarkten und herunterladen. Unten haben Sie Zugriff auf den Link für
+Kaufen Sie ein Cloud-Backup-Abonnement für 1,3,6 oder 12 Monate
 
-Meine SMS/Anrufe
+Meine SMS / Anrufe 
 ==============
 
-Auf dieser Registerkarte können Sie Ihr SMS/Anruf Guthaben (mit dem Plugin Telefon Markt) abrufen. Im Folgenden haben Sie die verschiedenen Möglichkeiten, zusätzliches Guthaben zu kaufen.
+Auf dieser Registerkarte können Sie Ihren SMS- / Anrufsaldo anzeigen
+(verwendbar mit dem Phone Market Plugin). Unten haben Sie die
+verschiedene Optionen für den Kauf eines zusätzlichen Guthabens.
 
-Meine Einkäufe/Gutscheine/Spenden
+Meine Einkäufe / Aktionen / Spenden 
 ======================
 
-Hier finden sie all ihre Einkäufe und Sie können die Überweisung der E-Mail
-Rechnung oder Quittung anfordern.
+Hier finden Sie alle Ihre Einkäufe und können die Rückgabe der
+Rechnung oder Quittungs-E-Mail
 
-> **Important**
+> **wichtig**
 >
-> Si vous achetez un plugin officiel vous recevrez une facture. En
-> revanche pour un plugin tiers c’est un reçu, pour la facture il faut
-> la demander au développeur
+> Wenn Sie ein offizielles Plugin kaufen, erhalten Sie eine Rechnung. in
+> Für ein Plugin eines Drittanbieters ist es jedoch eine Quittung, für die Rechnung ist es erforderlich
+> Fragen Sie den Entwickler
 
-Sie können auch darin einen Gutscheincode eingeben (zum Beispiel ein
-Code für ein Plugin, dass der Entwickler an sie weitergegeben hat) und eine
-Spende machen.  
+Auf dieser Registerkarte können Sie auch einen Gutscheincode (einen Code) eingeben
+für ein Plugin zum Beispiel, das der Entwickler an Sie senden konnte) und
+eine Spende machen.
 
-Meine Entwicklungen
+Meine Entwicklungen 
 =================
 
-Wenn sie Entwickler sind finden sie hier eine Liste aller Verkäufe über einen
-Zeitraum, die Liste der Zahlungen und eine Übersicht über die Anzahl der
-Downloads, die Zahl der Verkäufe ...
+Wenn Sie ein Entwickler sind, finden Sie hier die Liste aller Ihrer
+Verkäufe über einen Zeitraum, die Liste Ihrer Zahlungen und eine Zusammenfassung der
+Anzahl der Downloads, Anzahl der Verkäufe…

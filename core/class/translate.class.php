@@ -31,7 +31,7 @@ class translate {
 	
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
-			self::$config = config::byKeys(array('language', 'generateTranslation'));
+			self::$config = config::byKeys(array('language'));
 		}
 		if (isset(self::$config[$_key])) {
 			return self::$config[$_key];
@@ -74,7 +74,7 @@ class translate {
 		}
 		$language = self::getLanguage();
 		
-		if ($language == 'fr_FR' && self::getConfig('generateTranslation') != 1) {
+		if ($language == 'fr_FR') {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
 		if (substr($_name, 0, 1) == '/') {
@@ -89,7 +89,6 @@ class translate {
 				}
 			}
 		}
-		$modify = false;
 		$translate = self::getTranslation(self::getPluginFromName($_name));
 		$replace = array();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
@@ -105,7 +104,6 @@ class translate {
 			}
 			if (!isset($replace["{{" . $text . "}}"])) {
 				if (strpos($_name, '#') === false) {
-					$modify = true;
 					if (!isset($translate[$_name])) {
 						$translate[$_name] = array();
 					}
@@ -118,10 +116,6 @@ class translate {
 			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = $text;
 			}
-		}
-		if ($language == 'fr_FR' && $modify) {
-			static::$translation[self::getLanguage()] = $translate;
-			self::saveTranslation($language);
 		}
 		return str_replace(array_keys($replace), $replace, $_content);
 	}
@@ -148,36 +142,6 @@ class translate {
 		}
 		
 		return $return;
-	}
-	
-	public static function saveTranslation() {
-		$core = array();
-		$plugins = array();
-		foreach (self::getTranslation(self::getLanguage()) as $page => $translation) {
-			if (strpos($page, 'plugins/') === false) {
-				$core[$page] = $translation;
-			} else {
-				$plugin = substr($page, strpos($page, 'plugins/') + 8);
-				$plugin = substr($plugin, 0, strpos($plugin, '/'));
-				if(trim($plugin) == '' || trim($plugin) == 'core'){
-					continue;
-				}
-				if (!isset($plugins[$plugin])) {
-					$plugins[$plugin] = array();
-				}
-				$plugins[$plugin][$page] = $translation;
-			}
-		}
-		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-		foreach ($plugins as $plugin_name => $translation) {
-			try {
-				plugin::saveTranslation($plugin_name, self::getLanguage(), $translation);
-			} catch (Exception $e) {
-				
-			} catch (Error $e) {
-				
-			}
-		}
 	}
 	
 	public static function getLanguage() {

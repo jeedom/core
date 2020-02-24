@@ -1,141 +1,141 @@
-descripción
+descripción 
 ===========
 
-Le **centre de mise à jour** permet de mettre à jour toutes les
-fonctionnalités de Jeedom, incluant le logiciel de base (core), les
-plugins, les widgets, etc. D’autres fonctions de gestion des extensions
-sont diponibles (supprimer, réinstaller, vérifier, etc.)
+la **centro de actualizaciones** le permite actualizar todo
+Características de Jeedom, incluido el software central,
+complementos, widgets, etc.. Otras funciones de administración de extensiones
+están disponibles (eliminar, reinstalar, verificar, etc.)
 
-Página Centro de Actualización
+La página del Centro de actualizaciones 
 ================================
 
-Elle est accessible par le menu **Réglages → Système → Centre de mise à
-jour** et se composent de 3 onglets et une partie haute.
+Se puede acceder desde el menú. **Configuración → Sistema → Centro de actualizaciones
+día** y consta de 3 pestañas y una parte superior.
 
-Les fonctions du haut de la page. 
+Funciones en la parte superior de la página.. 
 ---------------------------------
 
-En haut de la page, indépendant de l'onglet, se trouvent les boutons de commande. 
-Jeedom se connecte périodiquement au Market pour voir si des mises à jour
-sont disponibles (la date de dernière vérification est indiquée en haut
-à gauche de la page). Si vous voulez réaliser une vérification manuelle,
-vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+En la parte superior de la página, independientemente de la pestaña, se encuentran los botones de control. 
+Jeedom se conecta periódicamente al mercado para ver si hay actualizaciones
+están disponibles (la fecha de la última verificación se indica en la parte superior
+a la izquierda de la página). Si quieres hacer una verificación manual,
+puedes presionar el botón &quot;Buscar actualizaciones&quot;.
 
-Le bouton **Mettre à jour** permet de mettre à jour l’ensemble de
-Jeedom. Une fois que vous avez cliqué dessus, on obtient ces différentes
-options :
--   **Pré-update** : Permet de mettre à jour le script de mise à jour avant
-    applicatifs des nouvelles mises à jour.
+El botón **Poner al día** permite actualizar el conjunto de
+Jeedom. Una vez que hace clic en él, obtenemos estos diferentes
+opciones :
+-   **Pre-actualización** : la permite actualizar el script de actualización antes
+    aplicaciones de nuevas actualizaciones.
 
--   **Sauvegarder avant** : Effectue une sauvegarde de Jeedom avant
-    d’effectuer la mise à jour.
+-   **Ahorre antes** : Copia de seguridad de Jeedom antes
+    realizar la actualización.
 
--   **Mettre à jour les plugins** : Permet d’inclure les plugins dans la
-    mise à jour.
+-   **Actualizar complementos** : la permite incluir complementos en
+    actualización.
 
--   **Mettre à jour le core** : Permet d’inclure le noyau de Jeedom dans
-    la mise à jour.
+-   **Actualiza el núcleo** : la permite incluir el núcleo Jeedom en
+    la actualización.
 
--   **Mode forcé** : Effectue la mise à jour en mode forcé, c’est-à-dire
-    que, même s’il y a une erreur, Jeedom continue et ne restaurera pas
-    la sauvegarde. (Ce mode désactive la sauvegarde !)
+-   **Modo forzado** : Actualización en modo forzado, es decir
+    que, incluso si hay un error, Jeedom continúa y no restaurará
+    la salvaguardia. (¡Este modo desactiva el guardado!)
 
--   **Mise à jour à réappliquer** : Permet de réappliquer une mise
-    à jour. (NB : Toutes les mises à jour ne peuvent pas être réappliquées.)
+-   **Actualización para volver a aplicar** : la permite volver a aplicar una apuesta.
+    al día. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
-> **Important**
+> **importante**
 >
-> Avant une mise à jour, par défaut, Jeedom va faire une sauvegarde. En
-> cas de souci lors de l’application d’une mise à jour, Jeedom va
-> automatiquement restaurer la sauvegarde faite juste avant. Ce principe
-> n’est valable que pour les mises à jour de Jeedom et non des plugins.
+> Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. en
+> si hay un problema al aplicar una actualización, Jeedom lo hará
+> restaurar automáticamente la copia de seguridad realizada justo antes. Este principio
+> solo es válido para las actualizaciones de Jeedom y no para los complementos.
 
-> **Tip**
+> **punta**
 >
-> Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous
-> en propose pas.
+> Puede forzar una actualización de Jeedom, incluso si no lo hace
+> no ofrezcas ninguna.
 
-Onglets Core et Plugins et l'onglet Autres
+Las pestañas Core y Plugins y la pestaña Otros
 ------------------------------------------
 
-Ces deux onglets similaires, se composent d'un tableau :
+Estas dos pestañas similares consisten en una tabla :
 
--   **Core et Plugins** : Contient le logiciel de base de Jeedom (core) et la
-    liste des plugins installés.
+-   **Núcleo y complementos** : Contiene el software básico de Jeedom (núcleo) y el
+    lista de complementos instalados.
 
--   **Autres** : Contient les widgets, les scripts, etc.
+-   **otro** : Contiene widgets, scripts, etc..
 
-Vous y trouverez les informations suivants : \* **Statut** : OK ou NOK.
-Permet de connaître l’état actuel du plugin. \* **Nom** : Vous y
-trouverez la provenance de l’élément, le type d’élément et son nom. \*
-**Version**: Indique la version précise de l’élément. \***Options** :
-Cochez cette case si vous ne souhaitez pas que cet élément soit mis à
-jour lors de la mise à jour générale (Bouton **Mettre à jour**).
+Encontrará la siguiente información : \* **estatus** : OK o NOK.
+Permite conocer el estado actual del complemento. \* **apellido** : Tu ahi
+encuentre la fuente del elemento, el tipo de elemento y su nombre. \*
+**versión** : Indica la versión específica del artículo.. \* **opciones** :
+Marque esta casilla si no desea que este artículo se actualice.
+día durante la actualización general (Botón **Poner al día**).
 
-> **Tip**
+> **punta**
 >
-> Pour chaque tableau, la première ligne permet de filter suivant
-> le nom des éléments présents.
+> Para cada tabla, la primera línea permite el siguiente filtro
+> el nombre de los elementos presentes.
 
-Sur chaque ligne, vous pouvez utiliser les fonctions suivantes pour
-chaque élément :
+En cada línea, puede usar las siguientes funciones para
+cada elemento :
 
--   **Réinstaller** : Force la réinstallation.
+-   **Restablecer** : Reasentamiento forzado.
 
--   **Supprimer** : Permet de le désinstaller.
+-   **remove** : la permite desinstalarlo.
 
--   **Vérifier** : Interroge la source des mises à jour pour savoir si
-    une nouvelle mise à jour est disponible.
+-   **comprobar** : Consulte la fuente de actualizaciones para averiguar si
+    hay una nueva actualización disponible.
 
--   **Mettre à jour** : Permet de mettre à jour l’élément (si celui-ci a
-    une mise à jour).
+-   **Poner al día** : la permite actualizar el elemento (si tiene
+    una actualización).
 
--   **Changelog** : Permet d’accéder à la liste des changements de la
-    mise à jour.
+-   **cambios** : Acceda a la lista de cambios en el
+    actualización.
 
-> **Important**
+> **importante**
 >
-> Si le changelog est vide mais que vous avez tout de même une mise à
-> jour, cela signifie que c’est la documentation qui a été mise à jour.
-> Il n’est donc pas nécessaire de demander au développeur les
-> changements, vu qu’il n’y en a pas forcément. (c’est souvent une mise
-> à jour de la traduction, de la documentation)
+> Si el registro de cambios está vacío pero aún tiene una actualización
+> actualización significa que la documentación ha sido actualizada.
+> Por lo tanto, no es necesario pedirle al desarrollador
+> cambios, ya que no necesariamente hay. (a menudo es una apuesta
+> traducción, documentación)
 
-> **Tip**
+> **punta**
 >
-> A noter que "core : jeedom" signifie "la mise à jour du logiciel de
-> base Jeedom".
+> Tenga en cuenta que &quot;núcleo : jeedom &quot;significa&quot; actualizar el software
+> Base de la libertad &quot;.
 
-Onglet Logs
+Pestaña Registros
 -----------
 
-Onglet vers lequel vous êtes automatiquement basculé en cas d'installation
-de mise à jour, il vous permet de suivre tout ce qui se passe durant la mise
-à jour du core, comme des plugins.
+Pestaña a la que cambia automáticamente al instalar
+actualización, le permite seguir todo lo que sucede durante la actualización
+actualizado con core, como complementos.
 
 
-Mise à jour en ligne de commande 
+Actualización de línea de comando 
 ================================
 
-Il est possible de faire une mise à jour de Jeedom directement en SSH.
-Une fois connecté, voilà la commande à effectuer :
+Es posible actualizar Jeedom directamente en SSH.
+Una vez conectado, este es el comando para realizar :
 
     sudo php /var/www/html/install/update.php
 
-Les paramètres possibles sont :
+Los posibles parámetros son :
 
--   **`mode`** : `force`, pour lancer une mise à jour en mode forcé (ne
-    tient pas compte des erreurs).
+-   **`mode`** : `force`, pour lancer une actualización en mode forcé (ne
+    ignora los errores).
 
--   **`version`** : suivi du numéro de version, pour réappliquer les
-    changements depuis cette version.
+-   **`version`** : seguido del número de versión, para volver a aplicar el
+    cambios desde esta versión.
 
-Voici un exemple de syntaxe pour faire une mise à jour forcée en
-réappliquant les changements depuis la 3.2.14 :
+Aquí hay un ejemplo de sintaxis para hacer una actualización forzada en
+volver a aplicar los cambios desde 3.2.14 :
 
-    sudo php  /var/www/html/install/update.php mode=force version=3.2.14
+    sudo php / var / www / html / install / update.modo php = versión forzada = 3.2.14
 
-Attention, après une mise à jour en ligne de commande, il faut
-réappliquer les droits sur le dossier Jeedom :
+Atención, después de una actualización en la línea de comando, es necesario
+volver a aplicar los derechos en la carpeta Jeedom :
 
-    chown -R www-data:www-data /var/www/html
+    chown -R www-data:www-data / var / www / html
