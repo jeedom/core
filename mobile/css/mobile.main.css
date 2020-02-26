@@ -253,7 +253,6 @@ a, .ui-link {
   color: var(--sc-lightTxt-color) !important;
   font-size: 16px !important;
   font-weight: 300;
-
 }
 .widget-name {
   padding-right: 22px;
@@ -269,6 +268,11 @@ a, .ui-link {
   font-size: 14px !important;
 }
 
+.scenario-widget .widget-name,
+.scenario-widget .widget-name a {
+  pointer-events: auto;
+  cursor: pointer;
+}
 .scenario-widget.disabled .widget-name {
   background-color: var(--al-warning-color) !important;;
 }
@@ -875,6 +879,9 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   font-size: 14px;
   line-height: 15px;
   font-family: "Roboto";
+  word-break: break-all;
+  word-wrap: break-word;
+  user-select: text;
 }
 #in_globalLogSearch {
   margin-top: 5px;
