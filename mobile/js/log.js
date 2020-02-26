@@ -2,6 +2,7 @@ $('body').attr('data-page', 'log')
 
 
 function initLog(_log) {
+	$('#bt_eraseLogSearch').insertAfter($('#in_globalLogSearch'))
 	$('#pre_globallog').empty()
 	jeedom.log.list({
 		error: function (error) {
@@ -21,8 +22,8 @@ function initLog(_log) {
 		setTimeout(function(){
 			if (_log == "-1") {
                 _log = $('#bottompanel .ui-listview li.ui-first-child > a > span').text().trim()
-            }          	
-          
+            }
+
 			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 40)
 			jeedom.log.autoupdate({
 				log : _log,
@@ -58,6 +59,10 @@ function initLog(_log) {
 			})
 		})
 	}
+
+	$('#bt_eraseLogSearch').off('click').on('click',function() {
+		$('#in_globalLogSearch').val('').keyup()
+	})
 
 	$("#bt_removeAllLog").off('click').on('click', function(event) {
 		var result = confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}")

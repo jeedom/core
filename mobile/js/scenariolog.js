@@ -1,6 +1,7 @@
 $('body').attr('data-page', 'scenariolog')
 
 function initScenariolog(_scenarioId) {
+	$('#bt_eraseLogSearch').insertAfter($('#in_globalLogSearch'))
 	$('#pre_globallog').empty()
 	if (isset(_scenarioId)) {
 		setTimeout(function(){
@@ -32,6 +33,10 @@ function initScenariolog(_scenarioId) {
 		})
 
 	}
+
+	$('#bt_eraseLogSearch').off('click').on('click',function() {
+		$('#in_globalLogSearch').val('').keyup()
+	})
 
 	$(window).on("resize", function (event) {
 		setTimeout(function(){
