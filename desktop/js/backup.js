@@ -264,7 +264,9 @@ function updateRepoListBackup(_repo) {
     repo : _repo,
     global : false,
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      var msg = error.message
+      msg = msg.replace(/"\S+%\S+"/, '"login%password"')
+      $('#div_alert').showAlert({message: msg, level: 'danger'});
     },
     success: function (data) {
       var options = '';
