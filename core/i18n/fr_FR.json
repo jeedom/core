@@ -2981,7 +2981,7 @@
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go": "Le swap libre n\\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go",
         "Inconnue": "Inconnue",
         "Swapiness": "Swapiness",
-        "Pour des performances optimal le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Pour des performances optimal le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire",
+        "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire",
         "Charge": "Charge",
         "Configuration réseau interne": "Configuration réseau interne",
         "Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux": "Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux",
