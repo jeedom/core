@@ -1508,6 +1508,7 @@ user::isBan();
 				<div class="col-sm-6">
 					<form class="form-horizontal">
 						<fieldset>
+							<legend>{{Configuration des dépôts}}</legend>
 							<ul class="nav nav-tabs" role="tablist">
 								<?php
 								foreach ($repos as $key => $value) {
