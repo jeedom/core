@@ -708,7 +708,7 @@ class interactQuery {
 		$reply = array(
 			__('C\'est fait', __FILE__),
 			__('Ok', __FILE__),
-			__('Voila, c\'est fait', __FILE__),
+			__('Voilà, c\'est fait', __FILE__),
 			__('Bien compris', __FILE__),
 		);
 		$random = rand(0, count($reply) - 1);

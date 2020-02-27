@@ -51,7 +51,7 @@ Vous pouvez voir quel utilisateur, son IP, à quelle date, et supprimer l'enregi
 
 > **Note**
 >
-> Un même utilisateur peux avoir enregistré différents périphériques. Par exemple, son ordinateur de bureau, son ordinateur portable, son mobile, etc.
+> Un même utilisateur peut avoir enregistré différents périphériques. Par exemple, son ordinateur de bureau, son ordinateur portable, son mobile, etc.
 
 
 

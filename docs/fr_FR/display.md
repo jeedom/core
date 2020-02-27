@@ -30,7 +30,7 @@ Pour chaque objet, à côté de son libellé, deux boutons sont disponibles.
 
 > **Tip**
 >
-> Avec un cliqué-déposé sur les objets ou équipements, vous pouvez changer leur ordre ou même les affecter à un autre objet. C’est à partir de l’ordre établi dans cette page que l’affichage du Dashboard est calculé.
+> Avec un cliquer-déposer sur les objets ou équipements, vous pouvez changer leur ordre ou même les affecter à un autre objet. C’est à partir de l’ordre établi dans cette page que l’affichage du Dashboard est calculé.
 
 ## Les équipements
 
@@ -232,7 +232,7 @@ Permet de définir un niveau d’alerte (**warning** ou **danger**) en fonction 
 
 Dans cette partie, vous allez pouvoir configurer certains comportements d’affichage du widget sur le Dashboard, les vues, le design et en mobile.
 
-- **Widget** : Permet de choisir le widget sur dekstop ou mobile (à noter qu’il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci).
+- **Widget** : Permet de choisir le widget sur desktop ou mobile (à noter qu’il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci).
 - **Visible** : Cochez pour rendre visible la commande.
 - **Afficher le nom** : Cochez pour rendre visible le nom de la commande, en fonction du contexte.
 - **Afficher le nom et l’icône** : Cochez pour rendre visible l’icône en plus du nom de la commande.

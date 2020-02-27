@@ -165,7 +165,7 @@ echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 ### J'ai un soucis d'heure sur mes historiques
 Essayez de vider le cache de chrome, l'affichage des historiques est calculé par rapport à l'heure du navigateur.
 
-### J'ai l'erreur "Soucis réseaux détecté, redémarrage du réseaux"
+### J'ai l'erreur "Souci réseaux détecté, redémarrage du réseaux"
 Jeedom ne trouve pas ou n'arrive pas a pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeedom n'a pas redémarré ou a redémarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connexion réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
 
 ### J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."

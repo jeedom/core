@@ -3,14 +3,14 @@
 
 La page *Synthèse* vous propose une synthèse visuelle et rapide de vos objets et de leurs résumés.
 
-Vous pouvez la configurer comme page par default dans **Réglages → Préférences**, en desktop et/ou mobile.
+Vous pouvez la configurer comme page par défaut dans **Réglages → Préférences**, en desktop et/ou mobile.
 
 ## Affichage
 
 Sur chaque objet, son image de fond et ses résumés sont affichés (en fonction de la clé du résumé, visible dans **Réglages → Système → Configuration / Résumés**):
 - En haut à gauche : Le nom de l'objet.
 - En haut à droite : La température (*temperature*) et l'humidité (*humidity*).
-- Sous le titre : Alerte (*security*) et Mouvement (*motion*), colorés en vert ou en rouge suivant si il y a une ou des alertes / mouvement en cours.
+- Sous le titre : Alerte (*security*) et Mouvement (*motion*), colorés en vert ou en rouge suivant qu'il y a une ou des alertes / mouvement en cours.
 - En bas : Tous les autres résumés de l'objet.
 
 La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
@@ -32,7 +32,7 @@ La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 Pour chaque objet, vous pouvez cliquer :
 - Sur l'image, pour ouvrir la page des équipements de cet objet (également accessible par le menu *Accueil → Dashboard → Objet*).
 - Sur un élément de résumé pour afficher les éléments de cet objet, de ce type.
-- Sur l’icône en bas à gauche de l'objet pour ouvrir la configuration de cet objet (Disponible seulement en Desktop).
+- Sur l’icône en bas à gauche de l'objet pour ouvrir la configuration de cet objet (disponible seulement en Desktop).
 
 > **Tip**
 >

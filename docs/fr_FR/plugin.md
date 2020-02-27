@@ -41,7 +41,7 @@ En cliquant sur un plugin, vous accédez à sa configuration. En haut, vous retr
 - Le niveau de logs spécifique au plugin (on retrouve cette même possibilité dans Administation → Configuration sur l’onglet logs, en bas de page).
 - Voir les logs du plugin.
 - Heartbeat : Toute les 5 mins, Jeedom regarde si au moins un équipement du plugin a communiqué dans les X dernières minutes (si vous voulez désactiver la fonctionnalité, il suffit de mettre 0).
-- Redemarrer démon : Si le hertbeat tombe en erreur alors Jeedom va redémarrer le démon.
+- Redémarrer démon : Si le hertbeat tombe en erreur alors Jeedom va redémarrer le démon.
 
 Si le plugin possède des dépendances et/ou un démon, ces zones supplémentaires s’affichent sous les zones citées ci-dessus.
 
