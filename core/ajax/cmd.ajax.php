@@ -450,7 +450,7 @@ try {
 				'cmd' => array('cmd' => cmd::deadCmd(),'name' => __('Commande',__FILE__)),
 				'jeeObject' => array('cmd' => jeeObject::deadCmd(),'name' => __('Objet',__FILE__)),
 				'scenario' => array('cmd' => scenario::consystencyCheck(true),'name' => __('Scénario',__FILE__)),
-				'interactDef' => array('cmd' => interactDef::deadCmd(),'name' => __('Intéraction',__FILE__)),
+				'interactDef' => array('cmd' => interactDef::deadCmd(),'name' => __('Interaction',__FILE__)),
 				'user' => array('cmd' => user::deadCmd(),'name' => __('Utilisateur',__FILE__)),
 			);
 			foreach (plugin::listPlugin(true) as $plugin) {
