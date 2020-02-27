@@ -40,6 +40,12 @@ Changelog
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
+- WebApp : Intégration de la nouvelle page Synthèse.
+- WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
+- WebApp : On peux maintenant sélectionner / copier une partie d'un log.
+- WebApp : Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
+- WebApp : Persistence de la bascule de thème (8h).
+- WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
