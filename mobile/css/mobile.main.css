@@ -505,9 +505,9 @@ p.state {
 .ui-header.ui-bar-inherit #summaryglobalContainer {
   position: relative;
   right: 2px !important;
-  text-align: right !important;
   max-height: 24px;
-  overflow-x: scroll;
+  text-align: right !important;
+  overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   margin: 0 8px;
@@ -869,6 +869,12 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 
 
 /* ________________OTHERS */
+[data-page="log"] #page,
+[data-page="scenariolog"] #page {
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
 .ui-table-columntoggle-btn,
 .ui-table,
 #pre_globallog {
@@ -876,16 +882,20 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   background: rgb(var(--bg-color));
 }
 #pre_globallog {
+  width: calc(100% - 8px);
   font-size: 14px;
   line-height: 15px;
   font-family: "Roboto";
   word-break: break-all;
   word-wrap: break-word;
+  white-space: pre-wrap;
   user-select: text;
+  -webkit-user-select: text;
 }
 #in_globalLogSearch {
   margin-top: 5px;
 }
+
 
 #table_timeline {
   font-size: 12px;

@@ -24,7 +24,6 @@ function initLog(_log) {
                 _log = $('#bottompanel .ui-listview li.ui-first-child > a > span').text().trim()
             }
 
-			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 40)
 			jeedom.log.autoupdate({
 				log : _log,
 				display : $('#pre_globallog'),
@@ -76,11 +75,5 @@ function initLog(_log) {
 				}
 			})
 		}
-	})
-
-	$(window).on("resize", function (event) {
-		setTimeout(function(){
-			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 35)
-		}, 100)
 	})
 }

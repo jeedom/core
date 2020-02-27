@@ -5,11 +5,6 @@ function initScenariolog(_scenarioId) {
 	$('#pre_globallog').empty()
 	if (isset(_scenarioId)) {
 		setTimeout(function(){
-			if (_scenarioId == "-1") {
-                _scenarioId = $('#bottompanel .ui-listview li.ui-first-child > a > span').text().trim()
-            }
-
-			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 40)
 			jeedom.log.autoupdate({
 				log : 'scenarioLog/scenario'+_scenarioId+'.log',
 				display : $('#pre_globallog'),
@@ -31,16 +26,9 @@ function initScenariolog(_scenarioId) {
 				}
 			})
 		})
-
 	}
 
 	$('#bt_eraseLogSearch').off('click').on('click',function() {
 		$('#in_globalLogSearch').val('').keyup()
-	})
-
-	$(window).on("resize", function (event) {
-		setTimeout(function(){
-			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 35)
-		}, 100)
 	})
 }
