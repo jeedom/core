@@ -135,7 +135,7 @@ try {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
 		if (trim($planHeader->getConfiguration('accessCode', '')) != '' && $planHeader->getConfiguration('accessCode', '') != sha512(init('code'))) {
-			throw new Exception(__('Code d\'acces invalide', __FILE__), -32005);
+			throw new Exception(__('Code d\'accès invalide', __FILE__), -32005);
 		}
 		$return = utils::o2a($planHeader);
 		$return['image'] = $planHeader->displayImage();
