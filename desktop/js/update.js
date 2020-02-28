@@ -228,7 +228,7 @@ function getJeedomLog(_autoUpdate, _log) {
 
 function promptEndUpdate() {
   bootbox.confirm({
-    title: '<h4><i class="success fas fa-check-circle"></i> {{Update terminée avec succès.}}</h4>',
+    title: '<h4><i class="success fas fa-check-circle"></i> {{Mise(s) à jour terminée(s) avec succès.}}</h4>',
     message: '{{Voulez vous recharger la page maintenant ?}}',
     buttons: {
         confirm: {
