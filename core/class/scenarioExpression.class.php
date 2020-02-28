@@ -903,29 +903,33 @@ class scenarioExpression {
 		return $result;
 	}
 	
-	public static function time_diff($_date1, $_date2, $_format = 'd') {
-		$date1 = new DateTime($_date1);
-		$date2 = new DateTime($_date2);
-		$duree = abs($date2->getTimestamp() - $date1->getTimestamp());
+	public function time_diff($_date1, $_date2, $_format = 'd', $_rnd = 2) {
+		$d1 = self::setTags($_date1);
+		$date1 = new DateTime($d1);
+		$d2 = self::setTags($_date2);
+		$date2 = new DateTime($d2);
+		$duree = $date2->getTimestamp() - $date1->getTimestamp();
+		$dureeAbs = abs($duree);
 		switch( trim($_format )) {
-			case 's': return $duree; // en secondes
-			case 'm': return floor($duree/60); // en minutes
-			case 'mf': return round($duree/60,2); // en minutes décimales
-			case 'h': return floor($duree/3600); // en heures
-			case 'hf': return round($duree/3600,2); // en heures décimales
+			case 's': return $dureeAbs; // en secondes
+			case 'sf': return $duree;   // en secondes avec signe
+			case 'm': return floor($dureeAbs/60); // en minutes
+			case 'mf': return round($duree/60,$_rnd); // en minutes décimales avec signe
+			case 'h': return floor($dureeAbs/3600); // en heures
+			case 'hf': return round($duree/3600,$_rnd); // en heures décimales  avec signe
 			case 'dhms':
-			$j = floor($duree/86400); $duree %= 86400;
-			$h = floor($duree/3600); $duree %= 3600;
-			$m = floor($duree/60); $duree %= 60;
-			$s = $duree;
-			$ret = '';
-			if ($j > 0) $ret .= "${j}j ";
-			if ($h > 0) $ret .= "${h}h ";
-			if ($m > 0) $ret .= "${m}min ";
-			if ($s > 0) $ret .= "${s}s";
-			return(trim($ret));
-			case 'df': return round($duree/86400,2); // en jours decimaux
-			default: return floor($duree/86400); // en jours
+				$j = floor($dureeAbs/86400); $dureeAbs %= 86400;
+				$h = floor($dureeAbs/3600); $dureeAbs %= 3600;
+				$m = floor($dureeAbs/60); $dureeAbs %= 60;
+				$s = $dureeAbs;
+				$ret = '';
+				if ($j > 0) $ret .= "${j}j ";
+				if ($h > 0) $ret .= "${h}h ";
+				if ($m > 0) $ret .= "${m}min ";
+				if ($s > 0) $ret .= "${s}s";
+				return(trim($ret));
+			case 'df': return round($duree/86400,$_rnd); // en jours decimaux avec signe
+			default: return floor($dureeAbs/86400); // en jours
 		}
 	}
 	
