@@ -19,16 +19,19 @@
       }else{
         cmd.find('.timeCmd').remove();
       }
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
+      var maxValue = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
+      var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
       cmd.find('.slider').slider({
-        min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
-        max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
-        value: ('#state#' == '') ? 0 : parseInt(_options.display_value),
+        min: minValue,
+        max: maxValue,
+        value: stateValue,
         slide: function(event, ui) {
           $(".value#uid#").show();
           $(".value#uid#").html(ui.value);
         }
       });
-      if (parseInt(_options.display_value) > 0) {
+      if (stateValue > minValue) {
         cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
       }else {
         cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
@@ -40,7 +43,7 @@
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
         jeedom.cmd.execute({id: '#id#', value: {slider: value}});
       } else {
-        var value = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
+        var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
         jeedom.cmd.execute({id: '#id#', value: {slider: value}});
       }
     });
