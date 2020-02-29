@@ -162,7 +162,8 @@ $('#bt_scenarioTemplateDownload').on('click',function(){
 		$('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'});
 		return;
 	}
-	window.open('core/php/downloadFile.php?pathfile=core/config/scenario/' + $('#ul_scenarioTemplateList li.active').attr('data-template'), "_blank", null);
+	var path = 'data/scenario/' + $('#ul_scenarioTemplateList li.active').attr('data-template')
+	window.open('core/php/downloadFile.php?pathfile=' + path, "_blank", null);
 });
 
 $('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', function () {
