@@ -66,11 +66,11 @@ function refreshScenarioTemplateList() {
 	});
 }
 
-function refreshListAfterMarketObjectInstall(){
-	refreshScenarioTemplateList();
+function refreshListAfterMarketObjectInstall() {
+	refreshScenarioTemplateList()
 }
 
-refreshScenarioTemplateList();
+refreshScenarioTemplateList()
 
 $('#bt_scenarioTemplateConvert').on('click', function () {
 	jeedom.scenario.convertToTemplate({
@@ -104,19 +104,20 @@ $('#bt_scenarioTemplateRemove').on('click', function () {
 });
 
 $('#bt_scenarioTemplateApply').on('click', function () {
-	bootbox.confirm('{{Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario}}', function (result) {
+	bootbox.confirm('{{Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.}}', function (result) {
 		if (result) {
-			var convert = $('.templateScenario').getValues('.templateScenarioAttr');
+			var convert = $('.templateScenario').getValues('.templateScenarioAttr')
 			jeedom.scenario.applyTemplate({
 				template:$('#ul_scenarioTemplateList li.active').attr('data-template'),
 				id: scenario_template_id,
 				convert: json_encode(convert),
 				error: function (error) {
-					$('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
+					$('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
 				},
 				success: function (data) {
-					$('#md_scenarioTemplate').showAlert({message: 'Template appliqué avec succès', level: 'success'});
-					$('.li_scenario[data-scenario_id='+scenario_template_id+']').click();
+					$('#md_modal').dialog('close')
+					printScenario(scenario_template_id)
+					$('#div_alert').showAlert({message: 'Template appliqué avec succès.', level: 'success'})
 				}
 			});
 		}
@@ -154,7 +155,6 @@ $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function 
 			$('#div_scenarioTemplateParametreConfiguration').show();
 		}
 	});
-
 });
 
 $('#bt_scenarioTemplateDownload').on('click',function(){
