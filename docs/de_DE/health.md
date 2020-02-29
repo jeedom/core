@@ -1,38 +1,38 @@
-La page Santé de Jeedom vous permet d’avoir un aperçu rapide de
-l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l’utilisent) l’état de santé par plugin.
+Auf der Jeedom Health-Seite erhalten Sie einen schnellen Überblick über
+der Gesundheitszustand Ihres Jeedom. Es zeigt auch an (ob die Plugins
+benutze es) Gesundheitszustand per Plugin.
 
-Die Seite ist über Analyse → Gesundheit erreichbar.
+Die Seite ist über Analyse → Gesundheit zugänglich
 
-> **Hinweis**
+> **Notiz**
 >
-> Das klicken auf das Symbol oben rechts, ermöglicht einen Benchmark
-> Ihres Jeedom zu starten. 
+> Klicken Sie auf das Symbol rechts, um auf den Benchmark Ihres zuzugreifen
+> Jeedom.
 
-La page santé de Jeedom se présente sous la forme d’un tableau. La 1ere
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n’est pas OK.
+Die Gesundheitsseite von Jeedom wird in Form einer Tabelle dargestellt. Der 1 ..
+In der Spalte finden Sie eine Beschreibung dessen, was Jeedom überprüft und wessen Status
+wird in der 2. Spalte angezeigt. Endlich kann die letzte Spalte
+Geben Sie einen Lösungshinweis, wenn die Überprüfung nicht in Ordnung ist.
 
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
-nom du plugin donne le détail de santé de celui-ci. A droite vous
-retrouvez les icônes :
+Unten finden Sie den Zustand für jedes Plugin, klicken Sie auf
+Der Name des Plugins gibt das Gesundheitsdetail an. Richtig du
+Finde die Symbole :
 
--   Hardware Zugangsport des Plugins (Zwave-Schlüsseltyp)
+-   Zugangsport für Plugin-Hardware (Zwave-Schlüsseltyp)
 
 -   Dämonenmodus
 
--   Zeigt die Gesundheitsseite der Geräte vom Plugin an
+-   Anzeige der Gerätegesundheitsseite des Plugins
 
--   Zeigt die Konfigurationsseite des Plugins an
+-   Anzeige der Plugin-Konfigurationsseite
 
 -   Gesamtzustand des Plugins
 
-> **Note**
+> **Notiz**
 >
-> Les icônes peuvent varier en fonction du plugin
+> Die Symbole können je nach Plugin variieren
 
-> **Note**
+> **Notiz**
 >
-> De manière générale quand la ligne est verte c’est que tout va bien
-> et quand c’est rouge, c’est qu’il y a un souci.
+> Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung
+> und wenn es rot ist, gibt es ein Problem.

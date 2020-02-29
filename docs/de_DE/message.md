@@ -1,22 +1,22 @@
-Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se trouve à côté de l’heure en haut à droite.
+Das Nachrichtenzentrum gruppiert alle wichtigen Nachrichten, die Sie haben
+muss aufpassen. Es ist neben der Zeit oben rechts.
 
-Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
-nombre de messages.
+Sie können nur auf Nachrichten zugreifen, indem Sie auf klicken
+Anzahl der Nachrichten.
 
-Es ist ziemlich einfach. Es zeigt Ihnen das Datum und die Uhrzeit der
-Nachricht, das Plugin, das es ausgegeben hat und die betreffende Nachricht.
-Sie können die betreffende Nachricht löschen, indem Sie die Schaltfläche
-am Anfang der Nachrichtenzeile drücken. (die Nachricht wird zurückkehren,
-wenn das Problem immer noch relevant ist).
+Es ist ganz einfach. Es zeigt Ihnen das Datum und die Uhrzeit der Nachricht, die
+Plugin, das es ausgegeben hat und die betreffende Nachricht. Sie können durch Drücken von
+Löschen Sie auf der Schaltfläche ganz am Anfang einer Nachrichtenzeile die
+Nachricht in Frage (es wird zurückkommen, wenn das Problem immer noch besteht
+news).
 
-Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein
-bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu
-löschen.
+Oben befindet sich ein Selektor zum Filtern von Nachrichten auf einem
+bestimmtes Plugin und alles klar eine Schaltfläche, um alle zu leeren
+Beiträge.
 
-> **Tipp**
+> **Spitze**
 >
-> Wenn Sie einen Fehler in der Nachrichtenzentrale haben, versuchen Sie
-> zunächst die Nachricht zu entfernen und sehen dann ob der Fehler
-> zurückkommt, bevor Sie den Support kontaktieren. Manchmal ist es nur ein
-> Problem mit der Netzwerkverbindung.
+> Wenn im Message Center ein Fehler auftritt, versuchen Sie es
+> Löschen Sie zuerst die Nachricht und prüfen Sie dann, ob der Fehler zuvor erneut auftritt
+> Wenden Sie sich an den Support. Es kann nur an einer Sorge für liegen
+> Netzwerkverbindung.
