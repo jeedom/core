@@ -2148,10 +2148,12 @@ th {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
 }
 
+#logsForms .form-group:nth-child(odd){
+  background-color: rgb(var(--bg-color)) !important;
+}
 :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
   background-color: rgb(var(--bg-color)) !important;
 }
-
 :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
   background-color: var(--bg-modal-color) !important;
 }

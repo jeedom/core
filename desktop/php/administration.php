@@ -827,7 +827,7 @@ user::isBan();
 							</div>
 							<?php
 							$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
-							$div = '';
+							$div = '<div id="logsForms"';
 							foreach ($other_log as $name) {
 								$div .= '<form class="form-horizontal">';
 								$div .= '<div class="form-group">';
@@ -859,6 +859,7 @@ user::isBan();
 									$div .= '</div>';
 									$div .= '</div>';
 								}
+								$div .= '<br></div>';
 								if ($div != '') echo $div;
 							}
 							?>
