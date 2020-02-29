@@ -1,7 +1,7 @@
 # Nachrichtencenter
 **Menüleiste**
 
-Das Message Center enthält alle wichtigen Nachrichten, die Sie sehen müssen. Es befindet sich links von der Uhrzeit rechts in der Jeedom-Menüleiste.
+Das Nachrichtencenter fasst alle wichtigen Nachrichten zusammen, die Sie konsultieren sollten. Es befindet sich links von der Uhrzeit rechts in der Jeedom-Menüleiste.
 
 Sie können nur auf Nachrichten zugreifen, indem Sie auf die Anzahl der Nachrichten klicken.
 

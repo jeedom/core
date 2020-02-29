@@ -2,7 +2,7 @@
 **Preferencias → Sistema → Configuración**
 
 Aquí es donde se encuentran la mayoría de los parámetros de configuración..
-Aunque muchos, la mayoría están preconfigurados por defecto.
+Aunque muchos, la mayoría de los parámetros están configurados por defecto.
 
 
 ## Pestaña General

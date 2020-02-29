@@ -186,7 +186,7 @@
         "Télécharger": "Download",
         "Paramètres du scénario": "Szenarioeinstellungen",
         "Appliquer": "anwenden",
-        "Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Möchten Sie die Vorlage wirklich anwenden? Dadurch wird Ihr Szenario überschrieben",
+        "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Möchten Sie diese Vorlage wirklich anwenden? Dadurch wird Ihr aktuelles Szenario überschrieben.",
         "Template ajouté avec succès": "Vorlage erfolgreich hinzugefügt"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1042,7 +1042,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Fügen Sie danach einen Block ein. <br> Strg + Klicken: Ersetzen Sie diesen Block durch den kopierten Block.",
         "Afficher\/masquer le bloc Sinon": "Block ein- \/ ausblenden Andernfalls",
         "Ajouter": "Hinzufügen",
-        "Action": "Aktion",
+        "Action": "ACTION",
         "Bloc Si\/Alors\/Sinon": "Wenn \/ Dann \/ Sonst blockieren",
         "Bloc Action": "Aktionsblock",
         "Bloc Boucle": "Blockschleife",
@@ -1151,7 +1151,7 @@
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Möchten Sie diesen Artikel wirklich aktualisieren?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "Möchten Sie dieses Objekt wirklich löschen?",
         "L\\'opération a échoué": "Operation fehlgeschlagen",
-        "Update terminée avec succès.": "Update erfolgreich abgeschlossen.",
+        "Mise(s) à jour terminée(s) avec succès.": "Update (s) erfolgreich abgeschlossen.",
         "Voulez vous recharger la page maintenant ?": "Möchten Sie die Seite jetzt neu laden?",
         "Recharger": "aufladen",
         "Rester sur la page": "Bleib auf der Seite",
@@ -1162,6 +1162,7 @@
         "Réinstaller": "wieder einstellen",
         "Supprimer": "Löschen",
         "Vérifier": "überprüfen",
+        "Aucune mise à jour en cours.": "Kein Update läuft.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "Das Update scheint blockiert zu sein (keine Änderung für 10 Minuten. Überprüfen Sie das Protokoll)"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -1999,7 +2000,7 @@
         "Statut démon": "Dämonenstatus",
         ".$result['advice'].": ". $ Ergebnis [ &#39;Beratung&#39;].",
         "erreurs": "Fehler",
-        "en cours": "in Bearbeitung",
+        "en cours": "In Bearbeitung",
         "Santé ": "Gesundheit",
         "Configuration du plugin": "Plugin Konfiguration",
         "Santé de Jeedom": "Jeedom Gesundheit",
@@ -2373,6 +2374,7 @@
         "Beta (Pas de support)": "Beta (keine Unterstützung)",
         "Alpha (Pas de support)": "Alpha (keine Unterstützung)",
         "Vérification automatique des mises à jour": "Automatische Überprüfung der Updates",
+        "Configuration des dépôts": "Konfiguration von Repositorys",
         "Tester\/Synchroniser": "Test \/ Synchronisieren",
         "Tester": "Test",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Achtung : Jede Änderung an der Cache-Engine erfordert einen Neustart von",
@@ -2616,7 +2618,7 @@
     },
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Widgets inconnue - Vérifiez l\\'id": "Unbekannte Widgets - Überprüfen Sie die ID",
+        "Widgets inconnus - Vérifiez l\\'id": "Unbekannte Widgets - Überprüfen Sie die ID",
         "Aucune commande affectée au widget": "Dem Widget ist kein Befehl zugewiesen",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
@@ -2664,7 +2666,7 @@
         "Commande": "Befehl",
         "Objet": "Objekt",
         "Scénario": "Szenario",
-        "Intéraction": "Interaktion",
+        "Interaction": "Interaktion",
         "Utilisateur": "Benutzer",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
@@ -2771,7 +2773,7 @@
         "Aucun plan correspondant": "Kein passender Plan",
         "Objet inconnu. Vérifiez l\\'ID": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "Plan header inconnu. Vérifiez l\\'ID ": "Unbekannter Header-Plan. Überprüfen Sie die ID",
-        "Code d\\'acces invalide": "Ungültiger Zugangscode",
+        "Code d\\'accès invalide": "Ungültiger Zugangscode",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
         "Le fichier est trop gros (maximum 5Mo)": "Die Datei ist zu groß (maximal 5 MB)",
         "Impossible de sauvegarder l\\'image": "Bild kann nicht gespeichert werden",
@@ -2781,9 +2783,9 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucun plan3d correspondant": "Kein entsprechender 3D-Plan",
-        "Objet inconnu verifiez l\\'id": "ID zur Überprüfung unbekannter Objekte",
-        "plan3d header inconnu verifiez l\\'id : ": "Plan3d unbekannte Header-Check-ID:",
-        "Code d\\'acces invalide": "Ungültiger Zugangscode",
+        "Objet inconnu vérifiez l\\'id": "ID zur Überprüfung unbekannter Objekte",
+        "plan3d header inconnu vérifiez l\\'id : ": "Plan3d unbekannte Header-Check-ID:",
+        "Code d\\'accès invalide": "Ungültiger Zugangscode",
         "Objet inconnu. Vérifiez l\\'ID": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
         "Le fichier est trop gros (maximum 150Mo)": "Die Datei ist zu groß (maximal 150 MB)",
@@ -2791,12 +2793,12 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Datei kann nicht hochgeladen werden (Webserver-Limit?)",
         "Impossible de décompresser les fichiers : ": "Dateien können nicht dekomprimiert werden:",
         "Impossible de décompresser l\\'archive zip : ": "Das Zip-Archiv kann nicht dekomprimiert werden:",
-        "Il faut 1 seul et unique fichier .obj": "Es gibt nur eine einzige OBJ-Datei",
-        "Aucune methode correspondante à : ": "Keine Methode entsprechend:"
+        "Il faut un seul et unique fichier .obj": "Eine einzelne OBJ-Datei ist erforderlich",
+        "Aucune méthode correspondant à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Listerner id inconnu": "Listerner ID unbekannt",
+        "Listener id inconnu": "Unbekannte Listener-ID",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/repo\/market.list.repo.php": {
@@ -3214,7 +3216,7 @@
         "Mémoire disponible": "Verfügbarer Speicher",
         "Total ": "gesamt",
         "Mémoire suffisante": "Ausreichend Speicher",
-        "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios": "Anzahl der Prozesse, die von den Kerneln aufgrund von Speichermangel abgebrochen wurden. Ihr System verfügt nicht über genügend Arbeitsspeicher. Versuchen Sie, die Anzahl der Plugins oder Szenarien zu reduzieren",
+        "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios": "Anzahl der vom Kernel wegen Speichermangels getöteten Prozesse. Ihr System verfügt nicht über genügend Arbeitsspeicher. Versuchen Sie, die Anzahl der Plugins oder Szenarien zu reduzieren",
         "Erreur I\/O": "E \/ A-Fehler",
         "Il y a des erreurs disque": "Es liegen Festplattenfehler vor",
         "Swap disponible": "Tausch möglich",
@@ -3399,7 +3401,7 @@
         " je n\\'ai pas compris": "Ich habe es nicht verstanden",
         " je n\\'ai pas compris ta demande": "Ich habe Ihre Anfrage nicht verstanden",
         "Ok": "OK",
-        "Voila": "voila",
+        "Voilà": "hier",
         "Bien compris": "Gut verstanden",
         "La commande vocale ne peut pas être vide": "Der Sprachbefehl darf nicht leer sein",
         "InteractDef_id ne peut pas être vide": "InteractDef_id darf nicht leer sein",
@@ -3420,7 +3422,7 @@
         "Scénario désactivé non lancement de la sous tâche": "Szenario deaktiviert, die Unteraufgabe wird nicht gestartet",
         "************Lancement sous tâche**************": "************ Unter Aufgabe starten **************",
         "Tags : ": "Tags:",
-        "Eléments à lancer on trouvé": "Elemente zum Starten haben wir gefunden",
+        "Eléments à lancer non trouvé": "Zu startende Elemente nicht gefunden",
         "************FIN sous tâche**************": "************ ENDE unter Aufgabe **************",
         "Un déclencheur du scénario : ": "Ein Szenario-Trigger:",
         " est introuvable": "wird nicht gefunden",
@@ -3428,7 +3430,7 @@
         "Aucun": "Ohne",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution": "Die letzte Ausführung des Szenarios wurde nicht gestartet. Überprüfen Sie das Protokoll szenario_ausführung",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "Die letzte Ausführung des Szenarios wurde nicht gestartet. Überprüfen Sie das Szenario-Ausführungsprotokoll auf Ausführung unter",
-        "Trop d\\'appel simultané du scénario": "Zu viel gleichzeitiger Aufruf des Szenarios",
+        "Trop d\\'appels simultanés du scénario": "Zu viele gleichzeitige Anrufe aus dem Szenario",
         "Lancement du scénario en mode synchrone": "Starten des Szenarios im synchronen Modus",
         "Impossible d\\'exécuter le scénario : ": "Szenario kann nicht ausgeführt werden:",
         " sur : ": "am:",
@@ -3565,7 +3567,7 @@
         "Le type de la commande ne peut pas être vide :": "Der Befehlstyp darf nicht leer sein:",
         "Le sous-type de la commande ne peut pas être vide :": "Der Befehlssubtyp darf nicht leer sein:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Sie können keine Bestellung erstellen, ohne sie an ein Gerät anzuhängen",
-        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "Der Mindestwert der Bestellung darf nicht größer als der Höchstwert sein",
+        "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "Der Mindestwert der Bestellung darf nicht größer als der Höchstwert sein",
         "Erreur lors de l\\'exécution de ": "Fehler beim Ausführen",
         ". Sur preExec de la commande": ". Auf PreExec der Bestellung",
         ". Détails : ": ". Details:",
@@ -3755,6 +3757,11 @@
         "Barre": "Balken",
         "Variation": "Wertänderung",
         "Escalier": "Treppe"
+    },
+    "mobile\/html\/scenariolog.html": {
+        "Vider": "Leeren",
+        "Pause": "Pause",
+        "Rechercher": "Suchen nach"
     },
     "mobile\/html\/message.html": {
         "Date": "Datum",

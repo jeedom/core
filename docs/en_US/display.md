@@ -30,7 +30,7 @@ For each object, next to its label, two buttons are available.
 
 > **Tip**
 >
-> With a click and drop on objects or equipment, yor can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
+> With a click and drop on the objects or equipment, yor can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
 
 ## The equipments
 
@@ -232,7 +232,7 @@ Allows yor to define an alert level (**warning** or **danger**) depending on cer
 
 In this part, yor will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile..
 
-- **widget** : Allows yor to choose the widget on dekstop or mobile (note that yor need the widget plugin and that yor can also do it from there).
+- **widget** : Allows yor to choose the widget on desktop or mobile (note that yor need the widget plugin and that yor can also do it from there).
 - **Visible** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.

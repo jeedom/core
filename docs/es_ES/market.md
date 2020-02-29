@@ -51,7 +51,7 @@ Para los profesionales :
 
 > **punta**
 >
-> Es posible que Market a veces le pida que restablezca sus claves de instalación a cero, esto es normal, solo siga lo que le pida.
+> Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
 
 - **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
     - **apellido** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).

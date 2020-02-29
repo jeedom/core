@@ -30,7 +30,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles..
 
 > **punta**
 >
-> Con un clic y soltar objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden establecidentificacióno en esta página que se calcula la visualización del Tablero.
+> Con un clic y soltar sobre los objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden establecidentificacióno en esta página que se calcula la visualización del Tablero.
 
 ## Los equipos
 

@@ -2,7 +2,8 @@
 **Werkzeuge → Objekte**
 
 die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
-Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und können daher leichter lokalisiert werden. Wir sagen dann, dass das Objekt das ist **relativ** Ausrüstung.
+
+Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **relativ** Ausrüstung.
 
 Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihren Wünschen benennen. Normalerweise definieren wir die verschiedenen Teile seines Hauses, wie die Namen der Räume (dies ist übrigens die empfohlene Konfiguration)..
 
@@ -24,6 +25,7 @@ Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
 
 Sie haben eine Suchmaschine, um die Anzeige von Objekten zu filtern. Die Escape-Taste bricht die Suche ab.
 Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden:
+
 - Das Kreuz, um die Suche abzubrechen.
 - Der geöffnete Ordner zum Entfalten aller Bedienfelder und Anzeigen aller Objekte.
 - Der geschlossene Ordner zum Falten aller Panels.
@@ -33,7 +35,8 @@ Sobald Sie ein Objekt konfiguriert haben, haben Sie ein Kontextmenü mit der rec
 ## Registerkarte &quot;Objekt&quot;
 
 Durch Klicken auf ein Objekt gelangen Sie auf dessen Konfigurationsseite.
-Vergessen Sie nicht, die Änderungen zu speichern.
+
+Vergessen Sie nicht, Ihre Änderungen zu speichern, unabhängig davon, welche Änderungen Sie vornehmen.
 
 Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
@@ -50,7 +53,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 > **Spitze**
 >
-> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht Ihr Objekt mit der Maus aus und ziehen Sie es per Drag &amp; Drop, um ihm einen neuen Platz zu geben.
+> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht Ihr Objekt mit der Maus per Drag &amp; Drop aus, um ihm einen neuen Platz zu geben.
 
 > **Spitze**
 >

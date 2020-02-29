@@ -1,7 +1,7 @@
 # Advanced customization
 **Settings → System → Advanced customization**
 
-Reserved for experts, this page allows adding CSS or JS scripts in addition to Jeedom, which will be executed on each page.
+This page, (reserved for experts), allows you to add CSS or JS scripts to Jeedom, which will be executed on each page.
 
 Accessible by **Settings → System → Advanced customization**
 
@@ -12,4 +12,6 @@ For unsophisticated people who want to discover CSS :
 
 > **Important**
 >
-> Any error in one of these scripts can make Jeedom completely unavailable and it will be necessary to connect in SSH and delete the customization files to be able to recover it
+> Any error in one of these scripts can make Jeedom completely inoperative. 
+>
+> To correct this problem, you will need to connect to SSH and delete the customization files to restore normal operation of Jeedom.

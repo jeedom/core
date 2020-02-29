@@ -32,6 +32,7 @@ Sobald Sie ein WIdentifikationget erstellt haben, wird es in diesem Teil angezei
 
 Sie haben eine Suchmaschine, um die Anzeige von WIdentifikationgets zu filtern. Die Escape-Taste bricht die Suche ab.
 Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden:
+
 - Das Kreuz, um die Suche abzubrechen.
 - Der geöffnete Ordner zum Entfalten aller Bedienfelder und Anzeigen aller WIdentifikationgets.
 - Der geschlossene Ordner zum Falten aller Panels.
@@ -60,7 +61,7 @@ Klicken Sie auf der Seite Extras -&gt; WIdentifikationget auf &quot;Hinzufügen&
 dann :
 - Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt.
 - Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...)..
-- Dann endlich die fragliche Vorlage (wir planen, Ihnen Beispiele für Renderings für jede Vorlage zu geben).
+- Dann endlich die fragliche Vorlage (wir planen, Beispiele für Renderings für jede Vorlage zu setzen).
 - Sobald die Vorlage ausgewählt wurde, bietet Jeedom Ihnen die Optionen zum Konfigurieren.
 
 ### Ersatz
@@ -71,7 +72,7 @@ Dies wird als einfaches WIdentifikationget bezeichnet. Hier muss man nur sagen, 
 >Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns.. Wir hatten keine Wahl
 
 >**TIPS**
->Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte &quot;Anzeige&quot; und &quot;Optionale WIdentifikationget-Einstellungen&quot; anzugeben.. Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Bildgröße entsprechend der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen
+>Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte &quot;Anzeige&quot; und &quot;Optionale WIdentifikationgeteinstellungen&quot; anzugeben.. Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Bildgröße entsprechend der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen
 
 ### Test
 
@@ -96,7 +97,7 @@ Die Tests sind in der Form : #Wert # == 1, # Wert # wird vom System automatisch 
 
 ## Beschreibung der WIdentifikationgets
 
-Wir werden hier einige WIdentifikationgets beschreiben, die eine ganz bestimmte Funktion haben.
+Wir werden hier einige WIdentifikationgets beschreiben, die eine etwas bestimmte Funktion haben.
 
 ### Häufige Einstellungen
 
@@ -107,8 +108,8 @@ Wir werden hier einige WIdentifikationgets beschreiben, die eine ganz bestimmte 
 - Licht aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema hell ist (wenn leer, nimmt Jeedom das dunkle Bild aus).
 - Dunkel an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema dunkel ist (wenn leer, schaltet Jeedom das Bild ein).
 - Dunkel ab : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema dunkel ist (wenn leer, schaltet Jeedom das Licht aus).
-- Desktop-Breite : Breite des Bildes auf dem Desktop in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig, dass nur die Breite erforderlich ist. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
-- Bewegliche Breite : Breite des Bildes auf dem Handy in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig, dass nur die Breite erforderlich ist. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
+- Desktop-Breite : Breite des Bildes auf dem Desktop in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig ist, dass nur die Breite angefordert wird. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
+- Bewegliche Breite : Breite des Bildes auf dem Handy in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig ist, dass nur die Breite angefordert wird. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
 
 ### Hygrothermograph
 
@@ -122,7 +123,7 @@ Um es zu konfigurieren, müssen Sie das WIdentifikationget ganz einfach der Temp
 Das WIdentifikationget verfügt über einen optionalen Parameter : Skala, mit der Sie die Größe ändern können, indem Sie beispielsweise die Skala auf 0 setzen.5 es wird 2 mal kleiner sein
 
 >**HINWEIS**
-> Aufmerksamkeit für ein Design Es ist besonders wichtig, mit diesem WIdentifikationget keine Bestellung aufzugeben, die nicht funktioniert, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Bestellungen verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
+> Achtung bei einem Entwurf Es ist wichtig, einen Befehl nicht alleine mit diesem WIdentifikationget zu platzieren. Es funktioniert nicht, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Befehle verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
 
 ### mehrzeilige
 
@@ -143,7 +144,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 - #hIdentifikatione_Name# : leer oder ausgeblendet, wenn der Benutzer den Namen des WIdentifikationgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
 - #Identifikation# : Bestellnummer
 - #Zustand# : Wert des Befehls, leer für einen Aktionstypbefehl, wenn er nicht mit einem Statusbefehl verknüpft ist
-- #uIdentifikation# : eindeutige Kennung für diese Generation des WIdentifikationgets (wenn es mehrmals denselben Befehl gibt, ist bei Entwürfen nur diese Kennung wirklich eindeutig)
+- #uIdentifikation# : eindeutige Kennung für diese Generation des WIdentifikationgets (wenn es mehrmals den gleichen Befehl gibt, bei Entwürfen:  nur diese Kennung ist wirklich eindeutig)
 - #valueDate# : Datum des Bestellwertes
 - #collectDate# : Datum der Auftragserfassung
 - #alertLevel# : Alarmstufe (siehe [hier] (https:// github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.PHP # L67) für die Liste)
@@ -155,7 +156,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 
 ### Werte aktualisieren
 
-Wenn ein neuer Wert Jeedom auf der Webseite angezeigt wird, wenn der Befehl vorhanden ist, und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
+Wenn ein neuer Wert Jeedom auf der HTML-Seite angezeigt wird, wenn der Befehl vorhanden ist und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
 
 ```
 {display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
@@ -185,7 +186,7 @@ Die Funktion, die beim Aktualisieren des WIdentifikationgets aufgerufen wird. An
 
 ```
 Jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
- ```
+```
  Der Aufruf dieser Funktion zur Initialisierung des WIdentifikationgets.
 
  Sie finden [hier] (https:// github.com / Jeedom / core / tree / V4-stabile / core / template) Beispiele für WIdentifikationgets (im Dashboard und in mobilen Ordnern)

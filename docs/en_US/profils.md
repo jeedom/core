@@ -28,8 +28,12 @@ Defines certain interface behaviors
 
 ## Security tab
 
-- **2-step authentication** : allows you to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type * google authentificator *). Note that double authentication will only be requested for external connections. For local connection the code will therefore not be requested. Important if during the configuration of the double authentication you have an error check that Jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work).
+- **2-step authentication** : allows you to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type * google authentificator *). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested..
+
+  **Important** if during the configuration of double authentication you have an error, you must check that Jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work).
+
 - **Password** : Allows you to change your password (don&#39;t forget to type it again below).
+
 - **User hash** : Your user API key.
 
 ### Active sessions
@@ -38,5 +42,5 @@ Here you have the list of your currently connected sessions, their ID, their IP 
 
 ### Registered device
 
-Here you will find the list of all registered devices (which connects without authentication) to your Jeedom as well as the date of last use.
+Here you find the list of all registered devices (which connect without authentication) to your Jeedom as well as the date of last use.
 Here you can delete the registration of a device. Attention it does not disconnect it but will just prevent its automatic reconnection.

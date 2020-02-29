@@ -1,7 +1,7 @@
 # Message Center
 **Toolbar**
 
-Message center has all the important messages you need to watch. It is to the left of the time, on the right of the Jeedom menu bar.
+The message center brings together all the important messages you should consult. It is to the left of the time, on the right of the Jeedom menu bar.
 
 It is only accessible when there are messages, by clicking on the number of messages.
 

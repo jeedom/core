@@ -18,11 +18,11 @@ Once your 3D model has been created, it must be exported in OBJ format. If you u
 
 > **IMPORTANT**
 >
-> The files must be at the root of the zip is not in a subfolder.
+> The files must be at the root of the zip and not in a sub-folder.
 
 > **WARNING**
 >
-> A 3D model is quite impressive (this can represent several hundred Mo). The bigger it is the longer the rendering time in Jeedom.
+> A 3D model is quite impressive (this can represent several hundred Mo). The larger it is, the longer the rendering time in Jeedom.
 
 Once your 3D model has been exported, you must create a new 3D design in Jeedom. For that you have to go into edit mode by clicking on the little pencil on the right, then click on the +, give a name to this new 3D design then validate.
 
@@ -56,11 +56,11 @@ Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and selec
 >
 > Configuration can only be done in edit mode.
 
-To configure an element on the 3D design, double click on the element you want to configure. This will bring up a window where you can :
+To configure an element on the 3D design, double click on the element you want to configure. This will display a window where you can :
 
 - Indicate a type of link (currently only Equipment exists)
-- The link to the item in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
-- The specificity, there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
+- Enter the link to the element in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
+- Define specificity: there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
 
 ### Light
 
@@ -107,7 +107,7 @@ To configure an element on the 3D design, double click on the element you want t
 
 ### Conditional color
 
-Allows to give the chosen color to the element if the condition is valid. You can put as many colors / conditions as you want.
+If the condition is valid, allows to give the chosen color to the element. You can put as many colors / conditions as you want.
 
 > **Tip**
 >

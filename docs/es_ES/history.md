@@ -9,7 +9,7 @@ Aquí se describe el principio de historización de Jeedom. Solo necesita compre
 
 ### archivado
 
-El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite no utilizar demasiado espacio y no ralentiza el sistema.. De hecho, si mantiene todas las mediciones, esto aumenta la cantidad de puntos a mostrar y, por lo tanto, puede alargar considerablemente los tiempos para representar un gráfico. Si hay demasiados puntos, incluso puede hacer que la pantalla del gráfico se bloquee.
+El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite no utilizar demasiado espacio y no ralentiza el sistema.. De hecho, si mantiene todas las mediciones, esto aumenta la cantidad de puntos para mostrar y, por lo tanto, puede alargar considerablemente los tiempos para representar un gráfico. Si hay demasiados puntos, incluso puede hacer que la pantalla del gráfico se bloquee.
 
 El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día.. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y los convierte en paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (de manera predeterminada, estos son paquetes de 1 hora con datos que tienen más de 2 horas).
 

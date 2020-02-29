@@ -32,7 +32,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 Für jedes Objekt können Sie klicken :
 - Auf dem Bild, um die Ausrüstungsseite dieses Objekts zu öffnen (auch über das Menü * Home → Dashboard → Objekt * zugänglich).
 - Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen.
-- Klicken Sie auf das Symbol unten links im Objekt, um die Konfiguration dieses Objekts zu öffnen (nur auf dem Desktop verfügbar)..
+- Klicken Sie auf das Symbol unten links im Objekt, um die Konfiguration dieses Objekts zu öffnen (nur in Desktop verfügbar)..
 
 > **Spitze**
 >

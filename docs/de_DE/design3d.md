@@ -18,7 +18,7 @@ Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. We
 
 > **WICHTIG**
 >
-> Die Dateien müssen sich im Stammverzeichnis der Zip befinden und befinden sich nicht in einem Unterordner.
+> Die Dateien müssen sich im Stammverzeichnis der Zip-Datei befinden und dürfen sich nicht in einem Unterordner befinden.
 
 > **VORSICHT**
 >
@@ -56,11 +56,11 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 >
 > Die Konfiguration kann nur im Bearbeitungsmodus erfolgen.
 
-Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Element im 3D-Design zu konfigurieren. Dies öffnet ein Fenster, in dem Sie können :
+Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Element im 3D-Design zu konfigurieren. Dies zeigt ein Fenster an, in dem Sie können :
 
 - Geben Sie eine Art von Link an (derzeit ist nur Ausrüstung vorhanden).
-- Der Link zu dem betreffenden Artikel. Hier können Sie momentan nur einen Link zu einem Gerät setzen. Dies ermöglicht es beim Klicken auf den Gegenstand, die Ausrüstung aufzurufen
-- Die Spezifität, da gibt es einige, die wir gleich danach sehen werden, ermöglicht es, die Art der Ausrüstung und damit die Anzeige von Informationen zu spezifizieren
+- Geben Sie den Link zu dem betreffenden Element ein. Hier können Sie momentan nur einen Link zu einem Gerät setzen. Dies ermöglicht es beim Klicken auf den Gegenstand, die Ausrüstung aufzurufen
+- Spezifität definieren: Es gibt einige, die wir gleich danach sehen werden. Dies ermöglicht es, den Gerätetyp und damit die Anzeige von Informationen festzulegen
 
 ### Licht
 
@@ -107,7 +107,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 ### Bedingte Farbe
 
-Ermöglicht die Zuweisung der ausgewählten Farbe zum Element, wenn die Bedingung gültig ist. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
+Wenn die Bedingung gültig ist, können Sie dem Element die ausgewählte Farbe geben. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 
 > **Spitze**
 >

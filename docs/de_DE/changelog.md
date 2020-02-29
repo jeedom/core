@@ -40,6 +40,12 @@ Changelog
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
+- WebApp : Integration der neuen Übersichtsseite.
+- WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
+- WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
+- WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
+- WebApp : Persistenz des Themas umschalten (8h).
+- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.

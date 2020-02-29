@@ -18,11 +18,11 @@ Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa Sw
 
 > **IMPORTANTE**
 >
-> Los archivos deben estar en la raíz del zip no está en una subcarpeta.
+> Los archivos deben estar en la raíz del zip y no en una subcarpeta.
 
 > **ATENCIÓN**
 >
-> Un modelo 3D es bastante impresionante (esto puede representar varios cientos de Mo). Cuanto más grande es, mayor es el tiempo de representación en Jeedom.
+> Un modelo 3D es bastante impresionante (esto puede representar varios cientos de Mo). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
 
 Una vez que su modelo 3D ha sido exportado, debe crear un nuevo diseño 3D en Jeedom. Para eso, debe ingresar al modo de edición haciendo clic en el pequeño lápiz a la derecha, luego haga clic en +, asigne un nombre a este nuevo diseño 3D y luego valide.
 
@@ -56,11 +56,11 @@ Haga clic en el botón &quot;enviar&quot; en el nivel &quot;Modelo 3D&quot; y se
 >
 > La configuración solo se puede hacer en modo edición.
 
-Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que desea configurar. Esto abrirá una ventana donde puedes :
+Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que desea configurar. Esto mostrará una ventana donde puedes :
 
 - Indique un tipo de enlace (actualmente solo existe el equipo)
-- El enlace al artículo en cuestión. Aquí solo puede poner un enlace a un dispositivo por el momento. Esto permite al hacer clic en el elemento para que aparezca el equipo
-- La especificidad, hay varios que veremos justo después, esto permite especificar el tipo de equipo y, por lo tanto, la visualización de información
+- Ingrese el enlace al elemento en cuestión. Aquí solo puede poner un enlace a un dispositivo por el momento. Esto permite al hacer clic en el elemento para que aparezca el equipo
+- Definir especificidad: allí hay varios que veremos justo después, esto permite especificar el tipo de equipo y, por lo tanto, la visualización de información
 
 ### luz
 
@@ -107,7 +107,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 ### Color condicional
 
-Permite dar el color elegido al elemento si la condición es válida. Puedes poner tantos colores / condiciones como quieras.
+Si la condición es válida, permite dar el color elegido al elemento.. Puedes poner tantos colores / condiciones como quieras.
 
 > **punta**
 >

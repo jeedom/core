@@ -24,7 +24,7 @@ In dieser Tabelle finden wir :
 - **\#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
 - **Aktiva** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
 - **PID** : Zeigt die aktuelle Prozess-ID an.
-- **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Als nächstes finden Sie die Häufigkeit des Dämons. Es ist ratsam, diesen Wert niemals zu berühren und insbesondere niemals zu verringern.
+- **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
 - **Single** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
 - **Klasse** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (kann leer sein).
 - **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).

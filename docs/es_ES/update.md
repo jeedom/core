@@ -14,7 +14,7 @@ Jeedom se conecta periódicamente al mercado para ver si hay actualizaciones dis
 
 Al abrir la página, si esta verificación tiene más de dos horas, Jeedom rehace automáticamente una verificación.
 También puedes usar el botón **Buscar actualizaciones** Para hacerlo manualmente.
-). Si desea realizar una verificación manual, puede presionar el botón &quot;Buscar actualizaciones&quot;.
+Si desea realizar una verificación manual, puede presionar el botón &quot;Buscar actualizaciones&quot;.
 
 El botón **Guardar** se utilizará cuando cambie las opciones en la tabla a continuación, para especificar que no se actualicen ciertos complementos si es necesario.
 
@@ -22,17 +22,17 @@ El botón **Guardar** se utilizará cuando cambie las opciones en la tabla a con
 
 El botón **Poner al día** le permite actualizar el Core, los complementos o ambos.
 Una vez que haces clic en él, obtienes estas diferentes opciones :
-- **Pre-actualización** : la permite actualizar el script de actualización antes de aplicar las nuevas actualizaciones. Generalmente se usa bajo pedido en soporte.
+- **Pre-actualización** : la permite actualizar el script de actualización antes de aplicar las nuevas actualizaciones. Generalmente se usa a pedido del soporte.
 - **Ahorre antes** : Haga una copia de seguridad de Jeedom antes de actualizar.
 - **Actualizar complementos** : la permite incluir complementos en la actualización.
 - **Actualiza el núcleo** : la permite incluir el núcleo Jeedom (el núcleo) en la actualización.
 
-- **Modo forzado** : Realice la actualización en modo forzado, es decir, incluso si hay un error, Jeedom continúa y no restaurará la copia de seguridad.. (¡Este modo desactiva el guardado!).
+- **Modo forzado** : Realice la actualización en modo forzado, es decir, incluso si hay un error, Jeedom continuará y no restaurará la copia de seguridad.. (¡Este modo desactiva el guardado!).
 - **Actualización para volver a aplicar** : la permite volver a aplicar una actualización. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
 > **importante**
 >
-> Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. En el caso de un problema al aplicar una actualización, Jeedom restaurará automáticamente la copia de seguridad realizada justo antes. Este principio solo es válido para las actualizaciones de Jeedom y no para los complementos.
+> Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. En el caso de un problema al aplicar una actualización, Jeedom restaurará automáticamente la copia de seguridad realizada justo antes. Este principio solo es válido para las actualizaciones de Jeedom y no para actualizar complementos.
 
 > **punta**
 >
@@ -60,7 +60,7 @@ En cada línea, puede usar las siguientes funciones:
 > **importante**
 >
 > Si el registro de cambios está vacío pero aún tiene una actualización, significa que la documentación se ha actualizado.. Por lo tanto, no es necesario solicitar cambios al desarrollador, ya que no necesariamente hay. (a menudo es una actualización de la traducción, de la documentación).
-> El desarrollador del complemento también puede en algunos casos hacer correcciones de errores simples que no necesariamente requieren actualizar el registro de cambios.
+> El desarrollador del complemento también puede en algunos casos hacer correcciones de errores simples, que no necesariamente requieren actualizar el registro de cambios.
 
 > **punta**
 >

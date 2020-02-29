@@ -1,26 +1,26 @@
 # logs
-**Analyse → logs**
+**Analyse → Protokolle**
 
-Les logs sont des fichiers de journaux, permettant de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support.
-
-> **Spitze**
->
-> A l'ouverture de la page, le premier log disponible est affiché.
-
-La page de logs est assez simple :
-Sur la gauche, une liste des logs disponible, avec un champ de recherche pour filtrer le nom des logs.
-En haut à droite 5 boutons :
-
-- **Suche** : Permet de filtrer l'affichage du log actuel.
-- **Pause/Reprendre** : Permet de mettre en pause/reprendre la mise à jour en temps réel du log actuel.
-- **Download** : Permet de télécharger le log actuel.
-- **Vider** : Permet de vider le log actuel.
-- **Entfernen** : Permet de supprimer le log actuel. Si Jeedom en a besoin il le recréera automatiquement.
-- **Entfernen tous les logs** : Supprime tous les logs présents.
+Protokolle sind Protokolldateien, mit denen Sie verfolgen können, was in Ihrer Hausautomation geschieht. In den meisten Fällen werden die Protokolle nur zum Debuggen und Lösen von Problemen durch das Support-Team verwendet.
 
 > **Spitze**
 >
-> A noter que le log http.error ne peut être supprimé. Il est essentiel si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer le système.
+> Wenn die Seite geöffnet wird, wird das erste verfügbare Protokoll angezeigt.
+
+Die Seite Protokolle ist recht einfach :
+Links eine Liste der verfügbaren Protokolle mit einem Suchfeld zum Filtern des Namens der Protokolle.
+Oben rechts 5 Tasten :
+
+- **Suche** : Ermöglicht das Filtern der Anzeige des aktuellen Protokolls.
+- **Pause / Resume** : Unterbrechen / Fortsetzen der Echtzeitaktualisierung des aktuellen Protokolls.
+- **Download** : Laden Sie das aktuelle Protokoll herunter.
+- **leer** : Löschen Sie das aktuelle Protokoll.
+- **Entfernen** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
+- **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
+
+> **Spitze**
+>
+> Beachten Sie, dass das http-Protokoll.Fehler kann nicht gelöscht werden. Wenn Sie es löschen (z. B. in der Befehlszeile), wird es sich nicht selbst neu erstellen. Sie müssen das System neu starten.
 
 ## Echtzeit
 

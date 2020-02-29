@@ -153,7 +153,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Grenze** : CSS-Definition einer Gerätekachelgrenze. ex : 1px festes Schwarz.
 - **Opazität** : Deckkraft der Gerätekachel zwischen 0 und 1. Aufmerksamkeit : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
-- **Angewandte benutzerdefinierte CSS auf** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
+- **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
 ### Befehle
 
@@ -196,7 +196,7 @@ Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden soll
 
 ### Binäres Makro
 
-In diesem Modus führt Jeedom je nach Status des von Ihnen erteilten Befehls die Ein- oder Ausschaltaktion (en) aus. ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
+In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
 
 - **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus).
 
