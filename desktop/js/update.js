@@ -406,7 +406,7 @@ var _pre_updateInfo_clean = null
 var _UpdateObserver_ = null
 $(function () {
   //create a second <pre> for cleaned text to avoid change event infinite loop:
-  var newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>No update started</i></pre>'
+  var newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>{{Aucune mise à jour en cours.}}</i></pre>'
   $('#pre_updateInfo').after($(newLogClean)).hide()
   _pre_updateInfo_clean = $('#pre_updateInfo_clean')
   _pre_updateInfo_clean.show()
