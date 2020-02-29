@@ -134,7 +134,9 @@ try {
 			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
 		}
 		$return = array();
-		foreach (preg_split("/((\r?\n)|(\r\n?))/", file_get_contents($path . '/' . init('template'))) as $line) {
+		$fileContent = file_get_contents($path . '/' . init('template'));
+		$fileLines = preg_split("/((\r?\n)|(\r\n?))/", $fileContent);
+		foreach ($fileLines as $line) {
 			preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
@@ -149,21 +151,23 @@ try {
 
 					}
 				}
-			}
-			preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
-			if (count($matches) > 0) {
-				foreach ($matches as $match) {
-					$return[$match[0]] = '';
-					try {
-						$eqLogic = eqLogic::byString($match[0]);
-						if(is_object($cmd)){
-							$return[$match[0]] = '#' . $eqLogic->getHumanName() . '#';
-						}
-					} catch (Exception $e) {
+			} else {
+				preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
+				if (count($matches) > 0) {
+					foreach ($matches as $match) {
+						$return[$match[0]] = '';
+						try {
+							$eqLogic = eqLogic::byString($match[0]);
+							if(is_object($cmd)){
+								$return[$match[0]] = '#' . $eqLogic->getHumanName() . '#';
+							}
+						} catch (Exception $e) {
 
+						}
 					}
 				}
 			}
+
 			preg_match_all("/variable\((.*?)\)/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
