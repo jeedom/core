@@ -1895,7 +1895,7 @@ function addSubElement(_subElement) {
     }else{
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />';
     }
-    retour += '<legend class="legendHidden">ACTION</legend>';
+    retour += '<legend class="legendHidden">{{ACTION}}</legend>';
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0]
       if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
