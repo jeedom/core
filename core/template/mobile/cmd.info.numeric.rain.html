@@ -16,10 +16,10 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      let cmd = $('.cmd[data-cmd_id=#id#]');
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'mm')
-      cmd.find('.value').empty().append(_options.display_value);
-      cmd.find('.widget-rain-water').delay(0).animate({height:(_options.display_value*2)+"pt"},1000)
+      var cmd_#id# = $('.cmd[data-cmd_id=#id#]');
+      cmd_#id#.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'mm')
+      cmd_#id#.find('.value').empty().append(_options.display_value);
+      cmd_#id#.find('.widget-rain-water').delay(0).animate({height:(_options.display_value*2)+"pt"},1000)
     }
     if('#animate#' == '0') {
       $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('animation','none')
