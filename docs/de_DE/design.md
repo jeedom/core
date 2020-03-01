@@ -8,7 +8,7 @@ Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
-> **wichtig**
+> **Wichtig**
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken. Achten Sie darauf, dass dies im Design gut funktioniert. Beim Erstellen müssen Sie dies in der Mitte der Seite tun (um sicherzugehen, dass Sie sich im Design befinden)..
 
@@ -29,7 +29,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Bereich hinzufügen** : Ermöglicht das Hinzufügen eines anklickbaren transparenten Bereichs, der beim Klicken eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht)..
 - **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
 - **Anzeigen**
-    - **keine** : Zeigt kein Raster an.
+    - **Keine** : Zeigt kein Raster an.
     - **10x10** : Zeigt ein 10 x 10-Raster an.
     - **15x15** : Zeigt ein Raster von 15 mal 15 an.
     - **20x20** : Zeigt ein 20 x 20-Raster an.
@@ -40,9 +40,9 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Design.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
 - **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Design.
-- **speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden)..
+- **Speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden)..
 
-> **wichtig**
+> **Wichtig**
 >
 > Die Konfiguration der Designelemente erfolgt durch Klicken.
 
@@ -58,7 +58,7 @@ Hier gefunden :
     - **Zugangscode* : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
-        - **send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
+        - **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Größen**
     - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Design in Pixel.
@@ -119,7 +119,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Fett** : fetter Text.
 - **Text** : Text im HTML-Code, der sich im Element befindet.
 
-> **wichtig**
+> **Wichtig**
 >
 > Wenn Sie HTML-Code (insbesondere Javascript) einfügen, überprüfen Sie diesen sorgfältig, da dies möglich ist, wenn ein Fehler vorliegt oder wenn eine Jeedom-Komponente überschrieben wird, das Design vollständig abstürzt und nur gelöscht werden muss direkt in die Datenbank.
 
@@ -133,13 +133,13 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 - **Name** : Name des Links (angezeigter Text).
 - **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht.
-- **Hintergrundfarbe** : Ermöglicht es Ihnen, die Hintergrundfarbe zu ändern oder transparent zu machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Ermöglicht das Ändern der Farbe von Symbolen und Textn (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Textn ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
 - **Textausrichtung** : Ermöglicht die Auswahl der Ausrichtung des Texts (links / rechts / zentriert).
-- **Fett** : Fettgedruckter Text.
+- **Fett** : Fetter Text.
 
 ## Ausrüstung
 
@@ -149,8 +149,8 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Name verstecken** : Überprüfen Sie, ob der Name des Geräts ausgeblendet ist.
 - **Hintergrundfarbe** : Ermöglicht die Auswahl einer benutzerdefinierten Hintergrundfarbe oder die Anzeige des Geräts mit transparentem Hintergrund oder die Verwendung der Standardfarbe.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
-- **gerundet** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
-- **Grenze** : CSS-Definition einer Gerätekachelgrenze. ex : 1px festes Schwarz.
+- **Gerundet** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
+- **Grenze** : CSS-Definition einer Gerätekachelgrenze. Ex : 1px festes Schwarz.
 - **Opazität** : Deckkraft der Gerätekachel zwischen 0 und 1. Aufmerksamkeit : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
@@ -166,7 +166,7 @@ Die Liste der auf dem Gerät vorhandenen Befehle ermöglicht es Ihnen, für jede
 
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation **Zusammenfassung der Hausautomation**).
 
-## bestellen
+## Bestellen
 
 *Keine spezifischen Anzeigeeinstellungen*
 
@@ -196,7 +196,7 @@ Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden soll
 
 ### Binäres Makro
 
-In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
+In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. Ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
 
 - **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus).
 
@@ -216,12 +216,12 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 ### Spezifische Anzeigeeinstellungen
 
 - **Link** : Ermöglicht die Angabe der anzuzeigenden Zusammenfassung (Allgemein für die globale Angabe andernfalls das Thema).
-- **Hintergrundfarbe** : Ermöglicht es Ihnen, die Hintergrundfarbe zu ändern oder transparent zu machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Ermöglicht das Ändern der Farbe von Symbolen und Textn (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Textn ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
-- **Fett** : Fettgedruckter Text.
+- **Fett** : Fetter Text.
 
 ## FAQ
 

@@ -1,5 +1,5 @@
 
-Changelog
+Änderungsprotokoll
 =========
 
 4.1.0
@@ -39,7 +39,7 @@ Changelog
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
-- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
+- Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
@@ -138,7 +138,7 @@ Changelog
 
 >**WICHTIG**
 >
->Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden).. Weitere Informationen [hier] (https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+>Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden).. Weitere Informationen [hier] (https://www.jeedom.com/blog/4368-les-widgets-en-v4).
 
 3.3.39
 =====
@@ -416,7 +416,7 @@ Changelog
 
 3.2.2
 =====
-- Entfernung des alten Widget-Update-Systems (veraltet seit Version 3.0). Bitte beachten Sie, dass die Gefahr einer Fehlfunktion besteht, wenn Ihr Widget das neue System nicht verwendet (.Vervielfältigung in diesem Fall). Beispiel-Widget [hier] (https://github.com/Jeedom/core/tree/beta/core/template/Armaturenbrett)
+- Entfernung des alten Widget-Update-Systems (veraltet seit Version 3.0). Bitte beachten Sie, dass die Gefahr einer Fehlfunktion besteht, wenn Ihr Widget das neue System nicht verwendet (.Vervielfältigung in diesem Fall). Beispiel-Widget [hier] (https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 - Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren.
 - Benutzer können jetzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung.
 - Jeed-417 : Hinzufügen einer time_diff-Funktion in den Szenarien.

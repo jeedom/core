@@ -67,7 +67,7 @@ Hier ist die URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#AP
 
 - **Objekt \ _Identifikation** : ID des Objekts, dessen Ausrüstung wir wiederherstellen möchten.
 
-## bestellen
+## Bestellen
 
 Hier ist die URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _Identifikation=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_Identifikation=#EQLOGIC_ID#)
 

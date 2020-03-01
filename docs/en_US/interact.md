@@ -1,5 +1,5 @@
-# interactions
-**Tools → interactions**
+# Interactions
+**Tools → Interactions**
 
 The interaction system in Jeedom allows you to perform actions from text or voice commands.
 
@@ -7,8 +7,8 @@ These orders can be obtained by :
 
 - SMS : send an SMS to launch commands (action) or ask a question (info).
 - Cat : Telegram, Slack, andc.
-- vocal : dictate a phrase with Siri, Google Now, SARAH, andc.. To launch commands (action) or ask a question (info).
-- HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
+- Vocal : dictate a phrase with Siri, Google Now, SARAH, andc.. To launch commands (action) or ask a question (info).
+- D'informations sont indispensables à la bonne compréhension de : launch an D'informations sont indispensables à la bonne compréhension de URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
 
 The value of interactions lies in the simplified integration into other systems such as smartphones, tablands, other home automation boxes, andc..
 
@@ -26,7 +26,7 @@ To the right of the search field, three buttons found in several places in Jeedo
 
 Once on the configuration of an interaction, you have a contextual menu with the Right Click on the tabs of the interaction. You can also use a Ctrl Click or Click Center to directly open another interaction in a new browser tab.
 
-## interactions
+## Interactions
 
 At the top of the page, there are 3 buttons :
 
@@ -46,7 +46,7 @@ We are going to define answers in the same way with a model (this allows Jeedom 
 
 We can also define a command to execute if for example the interaction is not linked to an action but an information or if we wish to carry out a particular action after this one (it is also possible to execute a scenario, to control several orders…).
 
-## Configuration
+## D'actualité
 
 The configuration page consists of several tabs and buttons :
 
@@ -83,7 +83,7 @@ Use if you want to targand one or more specific commands or pass specific parama
 
 #### Examples
 
-> **Note**
+> **NOTE**
 >
 > The screenshots may be different in view of developments.
 
@@ -161,7 +161,7 @@ Binary conversions apply to commands of type info whose subtype is binary (randu
 
 As we can see here, I have kept almost the same structure for the request (it is voluntary to focus on the specifics). Of course, I adapted the synonyms to have somandhing coherent. However, for the answer, it is **imperative** to put only \ #value \ # which represents the 0 or 1 that Jeedom will replace with the following binary conversion.
 
-Field **binary conversion** must contain 2 answers : first the response if the value of the command is 0, then a vertical bar &quot;|&quot; separation and finally the response if the command is worth 1. Here the answers are simply no and yes but we could put a little longer sentence.
+Field **Binary conversion** must contain 2 answers : first the response if the value of the command is 0, then a vertical bar &quot;|&quot; separation and finally the response if the command is worth 1. Here the answers are simply no and yes but we could put a little longer sentence.
 
 > **Warning**
 >
@@ -181,7 +181,7 @@ It is possible to create [Regexp] (https://fr.wikipedia.org / wiki / Expression_
 
 We have 2 places to apply a Regexp :
 - In the interaction itself in the "Regexp exclusion" field".
-- In the Administration → Configuration → interactions menu → "General exclusion regexp for interactions" field".
+- In the Administration → D'actualité → Interactions menu → "General exclusion regexp for interactions" field".
 
 For the &quot;General exclusion regex for interactions&quot; field, this rule will be applied to all interactions, which will be created or saved again later.. If we want to apply it to all existing interactions, we must regenerate the interactions. Generally, it is used to erase incorrectly formed sentences found in most interactions generated.
 
@@ -285,7 +285,7 @@ So we can see a regexp :
 
 This allows you to delande all commands that have one of these words in their sentence
 
-> **Note**
+> **NOTE**
 >
 > The regexp here is a simplified version for easy use. We can therefore either use traditional expressions or use simplified expressions as in this example.
 
@@ -299,9 +299,9 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 As we can see, there is here in the request the tag **\ #Consigne \#** (you can put what you want) which is used in the drive control to apply the desired value. To do this, we have 3 parts : \* Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \ * Action : we put an action on the lamp that we want to drive and in the value we pass our tag * instruction*.
 
-> **Note**
+> **NOTE**
 >
-> We can use any tag except those already used by Jeedom, there can be several to control for example several commands. Note also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in &quot;Execute in foreground&quot;).
+> We can use any tag except those already used by Jeedom, there can be several to control for example several commands. NOTE also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in &quot;Execute in foreground&quot;).
 
 #### Evolution
 
@@ -323,7 +323,7 @@ It is possible to control a color command by the interactions by asking Jeedom f
 
 ![interact023](../images/interact023.png)
 
-So far nothing complicated, however, you must have configured the colors in Jeedom for it to work; go to the menu → Configuration (top right) then in the "Configuration of interactions" section" :
+So far nothing complicated, however, you must have configured the colors in Jeedom for it to work; go to the menu → D'actualité (top right) then in the "D'actualité of interactions" section" :
 
 ![interact024](../images/interact024.png)
 
@@ -346,10 +346,10 @@ This example therefore allows to launch the scenario which is linked in the acti
 
 ### Programming an action with interactions
 
-interactions do a lot of things in particular. You can program an action dynamically. Example : "Turns on the heat at 22 for 2:50 p.m.". For that nothing more simple, it is enough to use the tags \ #time \ # (if one defines a precise hour) or \ #duration \ # (for in X time, example in 1 hour) :
+Interactions do a lot of things in particular. You can program an action dynamically. Example : "Turns on the heat at 22 for 2:50 p.m.". For that nothing more simple, it is enough to use the tags \ #time \ # (if one defines a precise hour) or \ #duration \ # (for in X time, example in 1 hour) :
 
 ![interact23](../images/interact23.JPG)
 
-> **Note**
+> **NOTE**
 >
 > You will notice in the response the tag \ #value \ # this contains in the case of a scheduled interaction the effective programming time

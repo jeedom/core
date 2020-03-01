@@ -1,4 +1,4 @@
-# salpicadero
+# Salpicadero
 **Inicio → Tablero**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -6,7 +6,7 @@
 El tablero de instrumentos es una de las páginas principales de Jeedom, muestra un informe de toda la automatización de su hogar..
 Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jeedom e incluye todos los objetos visibles y sus equipos..
 
-> **punta**
+> **Punta**
 >
 > El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. Puede modificar este orden en esta página arrastrando y soltando.
 
@@ -24,7 +24,7 @@ Al mover el mouse sobre un pedido, aparece un marcador de color en la parte infe
 
 Además, puede hacer clic en el título del mosaico (el nombre del equipo) para abrir directamente la página de configuración de este equipo.
 
-> **punta**
+> **Punta**
 >
 > Es posible ir directamente a un solo objeto en su domótica, a través del menú **Inicio → Panel de control → Nombre del objeto**.
 > Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
@@ -36,11 +36,11 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 - Al hacer clic en el resumen de un objeto, filtra para mostrar solo el equipo relacionado con este objeto y que está relacionado con este resumen de objeto.
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
 
-> **punta**
+> **Punta**
 >
 > Es posible, desde su perfil, configurar Jeedom para que el árbol de objetos y / o los escenarios sean visibles de forma predeterminada cuando llegue al Tablero.
 
-> **punta**
+> **Punta**
 >
 > En dispositivos móviles, al presionar un comando de tipo de información se muestra un menú que le ofrece mostrar el historial del pedido o poner una alerta en él para que Jeedom le avise (una vez) tan pronto como sea posible. que el valor pasa un cierto umbral.
 
@@ -54,8 +54,8 @@ También puede editar el diseño interno de los controles en el mosaico :
 - O bien reorganícelos arrastrando y soltando.
 - Ya sea haciendo clic derecho en el widget. Entonces accedes :
     - **Configuración avanzada** : da acceso a la configuración avanzada del comando.
-    - **estándar** : diseño predeterminado, todo es automático con solo la posibilidad de reorganizar el orden de los pedidos.
-    - **mesa** : permite poner los comandos en una tabla : Las columnas y filas se agregan y eliminan haciendo clic derecho, luego simplemente mueva los comandos en los cuadros deseados. Puedes poner múltiples pedidos por caja
+    - **Estándar** : diseño predeterminado, todo es automático con solo la posibilidad de reorganizar el orden de los pedidos.
+    - **Mesa** : permite poner los comandos en una tabla : Las columnas y filas se agregan y eliminan haciendo clic derecho, luego simplemente mueva los comandos en los cuadros deseados. Puedes poner múltiples pedidos por caja
     - **Agregar columna** : agregar una columna a la tabla (accesible solo si está en el diseño de la tabla)
     - **Agregar línea** : agregar una fila a la tabla (accesible solo si está en el diseño de la tabla)
     - **Eliminar columna** : eliminar una columna de la tabla (accesible solo si está en el diseño de la tabla)
@@ -63,12 +63,12 @@ También puede editar el diseño interno de los controles en el mosaico :
 
 A la derecha de cada objeto, un icono le permite :
 
-- clic : Todas las fichas de este objeto adoptarán una altura igual a la ficha más alta.
-- Ctrl click : Todos los mosaicos de este objeto adoptarán una altura igual al mosaico más bajo..
+- Clic : Todas las fichas de este objeto adoptarán una altura igual a la ficha más alta.
+- Ctrl Click : Todos los mosaicos de este objeto adoptarán una altura igual al mosaico más bajo..
 
 ## Barra de menú Jeedom
 
-> **punta**
+> **Punta**
 >
 > - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 > - Haga clic en el nombre de Jeedom (barra de menú) : Abre Configuración → Sistema → Configuración.

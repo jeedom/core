@@ -1,10 +1,10 @@
-# salud
+# Salud
 **Análisis → Salud**
 
 La página de Jeedom Health le permite tener una visión general rápida del estado de salud de su Jeedom.
 También indica (si los complementos lo usan) el estado de salud por complemento.
 
-> **nota**
+> **Nota**
 >
 > Haga clic en el icono en la parte superior derecha para acceder al punto de referencia de su Jeedom.
 
@@ -22,10 +22,10 @@ A la derecha encontrarás los íconos :
 -   Visualización de la página de configuración del complemento.
 -   Estado general del complemento.
 
-> **nota**
+> **Nota**
 >
 > Los iconos pueden variar según el complemento.
 
-> **nota**
+> **Nota**
 >
 > Generalmente cuando la línea es verde, todo está bien y cuando es rojo, hay un problema.

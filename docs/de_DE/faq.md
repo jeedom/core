@@ -41,7 +41,7 @@ Es gibt keine Standarddauer, dies hängt vom System und dem zu sichernden Datenv
 Sie befinden sich im Ordner / var / www / html / backup
 
 ### Können wir Jeedom in https setzen? ?
-ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
+Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
 Verwenden Sie einfach das [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 ### So verbinden Sie sich in SSH ?
@@ -102,7 +102,7 @@ Diese müssen zurückgesetzt werden :
 bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9&#39; | head -c 15)
 echo &quot;DROP USER &#39;jeedom&#39; @ &#39;localhost&#39;&quot; | mysql -uroot -p
 echo &quot;CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;&quot; | mysql -uroot -p
-echo &quot;GEWÄHRLEISTUNG ALLER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
+echo &quot;GEWÄHRLEISTUNG AlleER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
 sudo sed -i -e &quot;s / # PASSWORT # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -141,8 +141,8 @@ mysqld --verbose
 Oder konsultieren Sie das Protokoll : /var/log/mysql/error.log
 
 ### Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
-Bei einer DIY-Installation ist das normal. In SSH müssen Sie den Befehl visudo ausführen und am Ende der Datei hinzufügen : www-data ALL = (ALL)
-NOPASSWD: ALL.
+Bei einer DIY-Installation ist das normal. In SSH müssen Sie den Befehl visudo ausführen und am Ende der Datei hinzufügen : www-data Alle = (Alle)
+NOPASSWD: Alle.
 
 ``` {.bash}
 sudo service apache2 neu starten

@@ -4,7 +4,7 @@
 This page informs about all Jeedom application tasks running on the server.
 This page is to be used knowingly or at the request of technical support.
 
-> **Important**
+> **IMPORTANT**
 >
 > In case of mishandling on this page, any request for support may be refused.
 
@@ -29,15 +29,15 @@ In this table, we find :
 - **Class** : PHP class called to execute the task (can be empty).
 - **Function** : PHP function called in the called class (or not if the class is empty).
 - **Programming** : Programming of the task in CRON format.
-- **timeout** : Maximum task run time. If the task is a daemon then it will be automatically stopped and restarted at the end of the timeout.
+- **Timeout** : Maximum task run time. If the task is a daemon then it will be automatically stopped and restarted at the end of the timeout.
 - **Last launch** : Date of last task launch.
 - **Last duration** : Last execution time of the task (a daemon will always be at 0s, don&#39;t worry other tasks can be at 0s).
 - **Status** : Current status of the task (as a reminder, a daemon task is always &quot;run&quot;).
 
-- **Action** :
+- **ACTION** :
     - **Details** : See the cron in detail (as stored in base).
     - **Start / Stop** : Start or stop the task (depending on its status).
-    - **suppression** : Delete task.
+    - **Suppression** : Delete task.
 
 
 ## Listener tab
