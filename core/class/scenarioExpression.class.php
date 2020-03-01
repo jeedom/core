@@ -116,7 +116,7 @@ class scenarioExpression {
 				$replace[$value] = '';
 			}
 		}
-		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default');
+		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default.html');
 		return $return;
 	}
 	
