@@ -19,7 +19,7 @@ URL.
 >
 > Para toda esta documentación, \ #API \ _KEY \ # corresponde a su clave
 > API, específica para su instalación. Para encontrarlo, tienes que ir a
-> el menú &quot;General&quot; → &quot;Configuración&quot; → pestaña &quot;General&quot;.
+> el menú "General" → "Configuración" → pestaña "General"".
 
 guión 
 ========
@@ -31,11 +31,11 @@ Aquí está la URL =
     página del escenario en cuestión, en &quot;Herramientas&quot; → &quot;Escenarios&quot;, una vez que
     escenario seleccionado, junto al nombre de la pestaña &quot;General&quot;. otro
     manera de encontrarlo : en &quot;Herramientas&quot; → &quot;Escenarios&quot;, haga clic en
-    &quot;Descripción general&quot;.
+    "Resumen".
 
 -   **acción** : corresponde a la acción que desea aplicar. la
-    los pedidentificaciónos disponibles son : &quot;iniciar&quot;, &quot;detener&quot;, &quot;desactivar&quot; y
-    &quot;activar&quot; para iniciar, detener, desactivar o
+    los pedidentificaciónos disponibles son : "iniciar "," detener "," desactivar "y
+    "activar "para iniciar, detener, desactivar o
     activar el escenario.
 
 -   **etiquetas** \ [Opcional \] : si la acción es &quot;inicio&quot;, puede omitir

@@ -86,7 +86,7 @@ Hier werden Sie aufgefordert, das Widget hinzuzufügen
 Grafiktypbereich 
 ----------------------
 
-In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen.
+In einem grafischen Bereich können Sie Ihrer Ansicht Grafiken hinzufügen,
 Sie hat die folgenden Optionen :
 
 -   **Zeit** : Hier können Sie den Anzeigezeitraum für auswählen

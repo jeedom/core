@@ -142,7 +142,7 @@ Instalación de complementos
 ========================
 
 Para instalar un nuevo complemento, simplemente haga clic en el botón
-&quot;Mercado&quot; (y que Jeedom está conectado a Internet). Después de un corto tiempo de
+"Market "(y que Jeedom está conectado a Internet). Después de un corto tiempo de
 cargando obtendrá la página.
 
 > **punta**
@@ -224,9 +224,9 @@ y la diversa información sobre la fecha de la última versión estable.
 > También puede agregar un complemento a Jeedom desde un archivo o
 > de un repositorio de Github. Esto requiere, en la configuración de
 > Jeedom, active la función apropiada en &quot;Actualizaciones y
-> archivos &quot;. Entonces será posible, colocando el mouse completamente
+> archivos". Entonces será posible, colocando el mouse completamente
 > izquierda, y cuando aparezca el menú de la página de complementos, haga clic en
-> en &quot;Agregar de otra fuente&quot;. Luego puedes elegir el
-> fuente &quot;Archivo&quot;. Atención, en el caso de la adición por un archivo
+> en "Agregar desde otra fuente". Luego puedes elegir el
+> fuente "Archivo". Atención, en el caso de la adición por un archivo
 > zip, el nombre zip debe ser el mismo que el ID del complemento y de
 > abriendo el ZIP debe estar presente una carpeta de plugin \ _info.

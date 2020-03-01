@@ -18,8 +18,8 @@ Functions at the top of the page.
 At the top of the page, independent of the tab, are the control buttons. 
 Jeedom periodically connects to the Market to see if there are any updates
 are available (the date of the last check is indicated at the top
-on the left of the page). If you want to do a manual check,
-you can press the button &quot;Check for updates&quot;.
+on the left of the page). If you want to perform a manual check,
+you can press the button "Check for updates".
 
 The button **Update** allows to update the set of
 Jeedom. Once you click on it, we get these different
@@ -104,7 +104,7 @@ every element :
 > **Tip**
 >
 > Note that &quot;core : jeedom &quot;means&quot; updating the software
-> Jeedom base &quot;.
+> Jeedom base".
 
 Logs tab
 -----------

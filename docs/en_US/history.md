@@ -161,10 +161,10 @@ To see them, you must first activate the tracking on the timeline of
 desired commands or scenarios :
 
 -   **Scenario** : either directly on the scenario page, or on the
-    scenario summary page to do it &quot;en masse&quot;
+    scenario summary page to do it in "mass"
 
 -   **Ordered** : either in the advanced configuration of the command,
-    either in the configuration of the history to do it in &quot;mass&quot;
+    either in the configuration of the history to do it in "mass"
 
 > **Tip**
 >

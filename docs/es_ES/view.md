@@ -86,7 +86,7 @@ que le pedirá el widget para agregar
 Área de tipo gráfico 
 ----------------------
 
-Un área de gráficos le permite agregar gráficos a su vista,
+Un área de tipo gráfico le permite agregar gráficos a su vista,
 ella tiene las siguientes opciones :
 
 -   **período** : le permite elegir el período de visualización para

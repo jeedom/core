@@ -15,8 +15,8 @@ Bei WIdentifikationgets empfehlen wir häufig, die Symbole anzupassen oder die g
 
 Es gibt zwei Arten von Vorlagen :
 
-- Das &quot;einfache&quot; : Geben Sie ein Symbol / Bild für das &quot;Ein&quot; und ein Symbol / Bild für das &quot;Aus&quot; ein.
-- Die &quot;MultiZustands&quot; : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl auf &quot;XX&quot; gesetzt ist, und ein anderes, wenn&gt; auf &quot;YY&quot; und erneut, wenn &lt;auf &quot;ZZ&quot;.. Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn es &quot;plop&quot; ist und so weiter.
+- Das "einfache" : Geben Sie ein Symbol / Bild für das "Ein" und ein Symbol / Bild für das "Aus" ein"
+- Die "MultiZustands" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl den Wert "XX" und ein anderes if> bis "YY" und erneut if <bis "ZZ" hat". Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn es &quot;plop&quot; ist und so weiter.
 
 # Wie es geht ?
 
@@ -38,7 +38,7 @@ Dies ist, was wir ein einfaches WIdentifikationget nennen. Hier muss man nur sag
 
 >**TIPS**
 >
->Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und deren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte &quot;Anzeige&quot; und des WIdentifikationgets &quot;Optionale Einstellungen&quot; anzugeben.. Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen.
+>Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags einzufügen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte "Anzeige" und des WIdentifikationgets "Optionale Einstellungen" anzugeben". Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen.
 
 ## Test
 
@@ -50,7 +50,7 @@ Die Tests sind in der Form : #Wert # == 1, # Wert # wird vom System automatisch 
 
 - #Wert #&gt; 1
 - #value# >= 1 && #value# <= 5
-- #Wert # == &#39;toto&#39;
+- #Wert # == &#39;toto'
 
 >**Notiz**
 >
@@ -130,27 +130,27 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 Wenn ein neuer Wert jeedom auf der Webseite angezeigt wird, wenn der Befehl vorhanden ist, und in jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
 
 ```
-{display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
+{display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel#'}
 ```
 
 Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr WIdentifikationget einfügen können :
 
 ```
 <script>
-    jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options) {
-      $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #]&#39;). attr (&#39;title&#39;, &#39;Wertdatum : ‚+ _Options.valueDate + &#39; <br/> Datum der Abholung : ‚+ _Options.collectDate)
-      $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #] .Zustand&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+    jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
+      $('.cmd[data-cmd_Identifikation=#Identifikation#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_Identifikation=#Identifikation#] .Zustand').empty().append(_options.display_value +' #unite#');
     }
-    jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+    jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});
 </script>
 ```
 
 Hier 2 wichtige Sache :
 
 ```
-jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options) {
-  $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #]&#39;). attr (&#39;title&#39;, &#39;Wertdatum : ‚+ _Options.valueDate + &#39; <br/> Datum der Abholung : ‚+ _Options.collectDate)
-  $ (&#39;. cmd [data-cmd_Identifikation = # Identifikation #] .Zustand&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
+  $('.cmd[data-cmd_Identifikation=#Identifikation#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_Identifikation=#Identifikation#] .Zustand').empty().append(_options.display_value +' #unite#');
 }
 ```
 
@@ -159,7 +159,7 @@ Die Funktion, die beim Aktualisieren des WIdentifikationgets aufgerufen wird und
 und :
 
 ```
-jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});
  ```
 
  Der Aufruf dieser Funktion zur Initialisierung des WIdentifikationgets.

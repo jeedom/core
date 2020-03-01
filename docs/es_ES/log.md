@@ -21,7 +21,7 @@ botones :
 -   **vaciar** : permite vaciar el registro actual,
 
 -   **remove** : eliminar el registro actual, si Jeedom tiene alguna
-    si lo necesita, lo recreará automáticamente
+    necesitarlo lo recreará automáticamente,
 
 -   **Eliminar todos los registros** : eliminar todos los registros presentes.
 

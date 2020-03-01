@@ -1710,7 +1710,7 @@
         "Personnalisation": "Personnalisation",
         "Sauvegarde": "Sauvegarde",
         "Log": "Log",
-        " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
+        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2941,7 +2941,8 @@
         "Activer": "Ativar",
         "Désactiver": "Désactiver",
         "Remise à zero des SI": "Remise à zero des SI",
-        "Tags": "Tags"
+        "Tags": "Tags",
+        "Aucun": "Aucun"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nome",
@@ -3826,10 +3827,9 @@
         "Crons": "cron"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
-        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Démons": "Démons",
+        "Santé": "Santé"
     }
 }

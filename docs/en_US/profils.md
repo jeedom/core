@@ -92,7 +92,7 @@ security
 
 Here you have the list of your currently connected sessions, their ID,
 their IP as well as the date of last communication. Clicking on
-&quot;Logout&quot; will log out the user. Attention if it is on
+"Disconnect "this will disconnect the user. Attention if it is on
 a registered device this will delete the recording.
 
 ### Registered device

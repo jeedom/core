@@ -75,7 +75,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 > **Spitze**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt
-> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Verbindungen**oben bei
+> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Verbindungen**, bis um
 > Recht.
 
 > **Spitze**

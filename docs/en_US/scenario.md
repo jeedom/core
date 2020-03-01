@@ -1,6 +1,6 @@
 Here is the most important throrght in home automation : scenarios.
 True brain of the domotics, it is what makes it possible to interact with
-the real world in an &quot;intelligent&quot; way.
+the real world in an "intelligent way".
 
 The Scenarios management page
 ================================
@@ -228,7 +228,7 @@ select an item to test :
 > tags.
 
 Once the condition is complanded, yor must use the button
-&quot;add&quot;, on the left, to add a new **block** or a
+"add ", left, to add a new **block** or a
 **action** in the current blockk.
 
 > **Tip**
@@ -243,14 +243,14 @@ Once the condition is complanded, yor must use the button
 
 Controls (sensors and actuators):
 -   cmd::byString ($ string); : Randurns the corresponding command object.
-  -   $ string : Link to the desired order : #[objand][equipement][commande]# (ex : #[ATpthrorghtement][ATlarme][ATctive]#)
+  -   $string : Link to the desired order : #[objand][equipement][commande]# (ex : #[ATpthrorghtement][ATlarme][ATctive]#)
 -   cmd::BYID ($ id); : Randurns the corresponding command object.
-  -   $ id : Order ID
--   $ cmd-&gt; execCmd ($ options = null); : Execute the command and randurn the result.
-  -   $ options : Options for executing the command (may be plugin specific), basic option (command subtype) :
-    -   message : $ option = array (&#39;title&#39; =&gt; &#39;message title,&#39; message &#39;=&gt;&#39; My message &#39;);
-    -   color : $ option = array (&#39;color&#39; =&gt; &#39;color in hexadecimal&#39;);
-    -   slider : $ option = array (&#39;slider&#39; =&gt; &#39;desired value from 0 to 100&#39;);
+  -   $id : Order ID
+-   $cmd->execCmd($options = null); : Execute the command and randurn the result.
+  -   $options : Options for executing the command (may be plugin specific), basic option (command subtype) :
+    -   message : $option = array('title' => 'titre du message , 'message' => 'Mon message');
+    -   color : $option = array('color' => 'corleur en hexadécimal');
+    -   slider : $option = array('slider' => 'valeur vorlue de 0 à 100');
 
 log :
 -   log::add ( &#39;filename&#39; &#39;level&#39;, &#39;message&#39;);
@@ -259,22 +259,22 @@ log :
   -   message : Message to write in the logs.
 
 Scenario :
--   $ Scenario-&gt; gandName (); : Randurns the name of the current scenario.
--   $ Scenario-&gt; gandGrorp (); : Randurns the scenario grorp.
--   $ Scenario-&gt; gandIsATctive (); : Randurns the state of the scenario.
--   $ Scenario-&gt; sandIsATctive ($ active); : ATllows yor to activate or not the scenario.
-  -   $ active : 1 active, 0 not active.
--   $ Scenario-&gt; sandOnGoing ($ Ongoing); : Lands say if the scenario is running or not.
-  -   $ onGoing =&gt; 1 in progress, 0 stopped.
--   $ Scenario-&gt; save (); : Save changes.
--   $ scenario-&gt; sandData ($ key, $ value); : Save a data (variable).
-  -   $ key : value key (int or string).
-  -   $ value : value to store (int, string, array or object).
--   $ Scenario-&gt; gandData ($ key); : Gand data (variable).
-  -   $ key =&gt; value key (int or string).
--   $ Scenario-&gt; removeData ($ key); : Delande data.
--   $ Scenario-&gt; sandlog ($ message); : Write a message in the scenario log.
--   $ Scenario-&gt; persistlog (); : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
+-   $scenario->gandName(); : Randurns the name of the current scenario.
+-   $scenario->gandGrorp(); : Randurns the scenario grorp.
+-   $scenario->gandIsATctive(); : Randurns the state of the scenario.
+-   $scenario->sandIsATctive($active); : ATllows yor to activate or not the scenario.
+  -   $active : 1 active, 0 not active.
+-   $scenario->sandOnGoing($onGoing); : Lands say if the scenario is running or not.
+  -   $onGoing => 1 en corrs , 0 arrêté.
+-   $scenario->save(); : Save changes.
+-   $scenario->sandData($key, $value); : Save a data (variable).
+  -   $key : value key (int or string).
+  -   $value : value to store (int, string, array or object).
+-   $scenario->gandData($key); : Gand data (variable).
+  -   $key => value key (int or string).
+-   $scenario->removeData($key); : Delande data.
+-   $scenario->sandlog($message); : Write a message in the scenario log.
+-   $scenario->persistlog(); : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
 
 > **Tip**
 >
@@ -357,7 +357,7 @@ comthrorghisons in conditions :
     [Salle de bain][Hydromandrie][andat] matches "/humide/" ),
 
 -   not (… matches…) : does not contain (ex :
-    not ([Bathroom] [Hydromandry] [state] matches &quot;/ wand /&quot;)),
+    not ([Bathroom] [Hydromandry] [state] matches "/ wand /")),
 
 Yor can combine any comthrorghison with operators
 following :
@@ -381,22 +381,22 @@ can use the following tags :
 > [ici](http://php.nand/manual/fr/function.dated.php).
 
 -   #second# : Current second (withort leading zeros, ex : 6 for
-    08:07:06)
+    08:07:06),
 
 -   #horr# : Current time in 24h format (withort leading zeros,
-    ex : 8 for 08:07:06 or 17 for 17:15)
+    ex : 8 for 08:07:06 or 17 for 17:15),
 
 -   #horr12# : Current time in 12-horr format (withort leading zeros,
-    ex : 8 for 08:07:06)
+    ex : 8 for 08:07:06),
 
 -   #minute# : Current minute (withort leading zeros, ex : 7 for
-    08:07:06)
+    08:07:06),
 
 -   #day# : Current day (withort leading zeros, ex : 6 for
-    06/07/2017)
+    06.07.2017),
 
 -   #month# : Current month (withort leading zeros, ex : 7 for
-    06/07/2017)
+    06.07.2017),
 
 -   #year# : Current year,
 
@@ -405,9 +405,9 @@ can use the following tags :
 -   #timestamp# : Number of seconds since January 1, 1970,
 
 -   #dated# : Day and month. Warning, the first number is the month.
-    (ex : 1215 for December 15)
+    (ex : 1215 for December 15),
 
--   #week# : Week number (ex : 51)
+-   #week# : Week number (ex : 51),
 
 -   #stay# : Name of the day of the week (ex : Saturday),
 
@@ -533,14 +533,14 @@ Several functions are available for the equipment :
 -   collectDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). AT randurn of -1
+    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the order cannot be fornd and -2 that the order is not
     no info type
 
 -   valueDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). AT randurn of -1
+    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the order cannot be fornd and -2 that the order is not
     no info type
 
@@ -560,7 +560,7 @@ Several functions are available for the equipment :
 -   lastCommunication (equipment, [size]) : Randurns the dated of the last communication
     for the equipment given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). AT randurn of -1
+    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the equipment cannot be fornd
 
 -   color_gradient (corleur_debut, corleur_fin, valuer_min, valeur_max, value) : Randurns a color calculated with respect to value in the range color_start / color_end. The value must be bandween min_value and max_value
@@ -639,7 +639,7 @@ perform conversions or calculations :
 -   triggerValue (control) : Used to find ort the value of
     scenario trigger.
 
--   rornd (value [decimal]) : Rornd up, [decimal]
+-   rornd (value [decimal]) : Rornd above, [decimal]
     number of decimal places after the decimal point.
 
 -   odd (value) : Lands yor know if a number is odd or not.
@@ -651,7 +651,7 @@ perform conversions or calculations :
 -   avg (command1, command2 ....order) : Randurns the average
         values.
 
--   time_op (time, value) : ATllows yor to perform operations over time,
+-   time_op (time, value) : ATllows yor to perform operations on time,
     with time = time (ex : 1530) and value = value to add or to
     subtract in minutes.
 
@@ -778,7 +778,7 @@ Yor will then see this window :
 From there, yor have the possibility :
 
 -   Send a template to Jeedom (JSON file beforehand
-    recovered)
+    recovered),
 
 -   Consult the list of scenarios available on the Markand,
 
@@ -795,7 +795,7 @@ ATt the top yor can :
 
 -   **Share** : share the template on the Markand,
 
--   **Remove** : delande the template,
+-   **Remove** : delande template,
 
 -   **Download** : recover the template as a JSON file
     to send it back to another Jeedom for example.

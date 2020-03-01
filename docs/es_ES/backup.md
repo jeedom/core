@@ -129,7 +129,7 @@ mantener el mismo controlador para encontrar sus módulos Zwave.
 > **nota**
 >
 > El sistema en el que está instalado Jeedom no está respaldado. si
-> ha modificado los parámetros de este sistema (especialmente a través de SSH),
+> Ha modificado los parámetros de este sistema (especialmente a través de SSH),
 > depende de usted encontrar una manera de recuperarlos en caso de problemas.
 
 Copia de seguridad en la nube 

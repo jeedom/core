@@ -19,7 +19,7 @@ Am oberen Rand der Seite befinden sich unabhängig von der Registerkarte die Ste
 Jeedom stellt regelmäßig eine Verbindung zum Markt her, um festzustellen, ob Aktualisierungen vorliegen
 verfügbar sind (das Datum der letzten Prüfung ist oben angegeben
 auf der linken Seite). Wenn Sie eine manuelle Überprüfung durchführen möchten,
-Sie können die Schaltfläche &quot;Nach Updates suchen&quot; drücken..
+Sie können die Taste "Nach Updates suchen" drücken".
 
 Die Schaltfläche **Update** ermöglicht das Aktualisieren des Satzes von
 Jeedom. Sobald Sie darauf klicken, erhalten wir diese unterschiedlich
@@ -104,7 +104,7 @@ jedes Element :
 > **Spitze**
 >
 > Beachten Sie, dass &quot;Kern : jeedom &quot;bedeutet&quot; das Aktualisieren der Software
-> Jeedom Basis &quot;.
+> Jeedom Basis".
 
 Registerkarte &quot;Protokolle&quot;
 -----------

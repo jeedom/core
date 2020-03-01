@@ -18,8 +18,8 @@ Funciones en la parte superior de la página..
 En la parte superior de la página, independientemente de la pestaña, se encuentran los botones de control. 
 Jeedom se conecta periódicamente al mercado para ver si hay actualizaciones
 están disponibles (la fecha de la última verificación se indica en la parte superior
-a la izquierda de la página). Si quieres hacer una verificación manual,
-puedes presionar el botón &quot;Buscar actualizaciones&quot;.
+a la izquierda de la página). Si desea realizar una verificación manual,
+puedes presionar el botón "Buscar actualizaciones".
 
 El botón **Poner al día** permite actualizar el conjunto de
 Jeedom. Una vez que hace clic en él, obtenemos estos diferentes
@@ -104,7 +104,7 @@ cada elemento :
 > **punta**
 >
 > Tenga en cuenta que &quot;núcleo : jeedom &quot;significa&quot; actualizar el software
-> Base de la libertad &quot;.
+> Base Jeedom".
 
 Pestaña Registros
 -----------

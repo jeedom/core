@@ -35,8 +35,8 @@ wann es zu tun ist (standardmäßig sind dies Pakete
 > **Spitze**
 >
 > Wenn Sie gut gefolgt sind, sollten Sie eine hohe Präzision auf dem haben
-> Nur die letzten 2 Stunden. Wenn ich mich jedoch um 17 Uhr anmelde,
-> Ich habe eine Klarstellung zu den letzten 17 Stunden. warum ? In der Tat
+> Nur die letzten 2 Stunden. Doch wenn ich mich um 17 Uhr anmelde.,
+> Ich habe eine Klarstellung zu den letzten 17 Stunden. warum ? In der Tat,
 > um unnötigen Ressourcenverbrauch zu vermeiden, ist die Aufgabe, die macht
 > Die Archivierung erfolgt nur einmal am Tag, abends.
 
@@ -161,10 +161,10 @@ Um sie zu sehen, müssen Sie zuerst das Tracking auf der Timeline von aktivieren
 gewünschte Befehle oder Szenarien :
 
 -   **Szenario** : entweder direkt auf der Szenarioseite oder auf der
-    Szenario-Zusammenfassungsseite, um es &quot;en masse&quot; zu tun
+    Szenario-Übersichtsseite, um dies in "Masse" zu tun"
 
 -   **bestellen** : entweder in der erweiterten Konfiguration des Befehls,
-    entweder in der Konfiguration der Geschichte, um es in &quot;Masse&quot; zu tun
+    entweder in der Konfiguration der Geschichte, um es in "Masse" zu tun"
 
 > **Spitze**
 >

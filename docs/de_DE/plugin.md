@@ -142,7 +142,7 @@ Plugin Installation
 ========================
 
 Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche
-&quot;Markt&quot; (und dass Jeedom mit dem Internet verbunden ist). Nach kurzer Zeit von
+"Markt "(und dass Jeedom mit dem Internet verbunden ist). Nach kurzer Zeit von
 Beim Laden erhalten Sie die Seite.
 
 > **Spitze**
@@ -224,9 +224,9 @@ und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 > Sie können Jeedom auch ein Plugin aus einer Datei oder hinzufügen
 > aus einem Github-Repository. Dies erfordert in der Konfiguration von
 > Jeedom, aktiviere die entsprechende Funktion in den &quot;Updates und
-> Dateien &quot;. Dies ist dann möglich, indem Sie die Maus vollständig platzieren
+> Dateien". Dies ist dann möglich, indem Sie die Maus vollständig platzieren
 > Klicken Sie links und rufen Sie das Plugin-Seitenmenü auf
-> auf &quot;Aus einer anderen Quelle hinzufügen&quot;. Sie können dann die auswählen
-> Quelle &quot;Datei&quot;. Achtung, im Falle der Hinzufügung durch eine Datei
+> auf "Aus einer anderen Quelle hinzufügen". Sie können dann die auswählen
+> Quelle "Datei". Achtung, im Falle der Hinzufügung durch eine Datei
 > zip, der zip-Name muss mit der Plugin-ID und von übereinstimmen
 > Beim Öffnen der ZIP-Datei muss ein Plugin \ _info-Ordner vorhanden sein.

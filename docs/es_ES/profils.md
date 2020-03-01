@@ -90,9 +90,9 @@ seguridad
 
 ### Sesiones activas
 
-Aquí tiene la lista de sus sesiones conectadas actualmente, su ID,
+Aquí tienes la lista de tus sesiones conectadas actualmente, su ID,
 su IP, así como la fecha de la última comunicación. Haciendo clic en
-&quot;Cerrar sesión&quot; cerrará la sesión del usuario. Atención si está encendido
+"Desconectar "esto desconectará al usuario. Atención si está encendido
 un dispositivo registrado esto borrará la grabación.
 
 ### Dispositivo registrado

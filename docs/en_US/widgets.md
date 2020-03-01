@@ -15,8 +15,8 @@ In the case of widgets, we often suggest customizing the icons or putting the im
 
 There are 2 types of templates :
 
-- The &quot;simple&quot; : type an icon / image for the &quot;on&quot; and an icon / image for the &quot;off&quot;
-- The &quot;multistates&quot; : this allows you to define for example an image if the command is set to &quot;XX&quot; and another if&gt; to &quot;YY&quot; and again if &lt;to &quot;ZZ&quot;. Or even an image if the value is &quot;toto&quot;, another if it is &quot;plop&quot; and so on.
+- The "simple" : type an icon / image for the "on" and an icon / image for the "off"
+- The "multistates" : this allows you to define for example an image if the command has the value "XX" and another if> to "YY" and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if it is &quot;plop&quot; and so on.
 
 # How to do ?
 
@@ -38,7 +38,7 @@ This is what is called a simple widget, here you just have to say that the &quot
 
 >**TIPS**
 >
->For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, display tab and &quot;Optional widget settings&quot;. For example if in width you put as value # width # (be careful to put the # around) instead of a number, in &quot;Optional widget settings&quot; you can add width (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want.
+>For advanced users it is possible in the replacement values to put tags and specify their value in the advanced configuration of the command, display tab and "Optional settings widget". For example if in width you put as value # width # (be careful to put the # around) instead of a number, in &quot;Optional widget settings&quot; you can add width (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want.
 
 ## Test
 
@@ -50,7 +50,7 @@ The tests are in the form : #value # == 1, # value # will be automatically repla
 
 - #value #&gt; 1
 - #value# >= 1 && #value# <= 5
-- #value # == &#39;toto&#39;
+- #value # == &#39;toto'
 
 >**Note**
 >
@@ -130,27 +130,27 @@ In code mode you have access to different tags for orders, here is a list (not n
 When a new value jeedom will look in the web page if the command is there and in jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
 
 ```
-{display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
+{display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'}
 ```
 
 Here is a simple example of javascript code to put in your widget :
 
 ```
 <script>
-    jeedom.cmd.update [&#39;# id #&#39;] = function (_options) {
-      $ (&#39;. cmd [data-cmd_id = # id #]&#39;). attr (&#39;title&#39;, &#39;Value date : &#39;+ _Options.valueDate + &#39; <br/> Date of collection : &#39;+ _Options.collectDate)
-      $ (&#39;. cmd [data-cmd_id = # id #] .state&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+    jeedom.cmd.update [&#39;# id #&#39;] = function (_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+    jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 </script>
 ```
 
 Here 2 important thing :
 
 ```
-jeedom.cmd.update [&#39;# id #&#39;] = function (_options) {
-  $ (&#39;. cmd [data-cmd_id = # id #]&#39;). attr (&#39;title&#39;, &#39;Value date : &#39;+ _Options.valueDate + &#39; <br/> Date of collection : &#39;+ _Options.collectDate)
-  $ (&#39;. cmd [data-cmd_id = # id #] .state&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+jeedom.cmd.update [&#39;# id #&#39;] = function (_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
 ```
 
@@ -159,7 +159,7 @@ The function called when updating the widget which takes care of updating the ht
 And :
 
 ```
-jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
+jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
  ```
 
  The call to this function for the initialization of the widget.

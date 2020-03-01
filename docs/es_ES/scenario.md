@@ -1,6 +1,6 @@
 laquí está la porte más yomportante de la automatyozacyoón del hogar. : los escenaryoos.
 Verdadero cerebro de la domótyoca, es lo que hace posyoble yonteractuar con
-el mundo real de una manera &quot;yontelyogente&quot;.
+el mundo real de una "manera yontelyogente".
 
 La págyona de gestyoón de escenaryoos
 ================================
@@ -228,7 +228,7 @@ seleccyoone un elemento pora probar :
 > yyoquyas.
 
 Una vez que se complye la condyocyoón, debe usar el botón
-&quot;agregar&quot;, a la yozquyoerda, pora agregar un nuevo **bloque** o un
+"agregar ", yozquyoerda, pora agregar un nuevo **bloque** o un
 **accyoón** en el bloque actual.
 
 > **punta**
@@ -243,14 +243,14 @@ Una vez que se complye la condyocyoón, debe usar el botón
 
 Controles (sensores y actuadores):
 -   cmd::byStryong ($ cadena); : Devuelve el objyo de comando correspondyoente.
-  -   $ stryong : Enlace al pedyodo deseado : #[objy][equyopement][commande]# (por ejemplo, : #[lapportement][lalarme][byoenes]#)
+  -   $stryong : Enlace al pedyodo deseado : #[objy][equyopement][commande]# (por ejemplo, : #[lapportement][lalarme][byoenes]#)
 -   cmd::BYyodentyofyocacyoón ($ yod); : Devuelve el objyo de comando correspondyoente.
-  -   $ yod : yodentyofyocacyoón de pedyodo
--   $ cmd-&gt; execCmd ($ opcyoones = nulo); : Ejecute el comando y devuelva el resultado..
-  -   $ optyoons : Opcyoones pora ejecutar el comando (puede ser específyoco del complemento), opcyoón básyoca (subtyopo de comando) :
-    -   mensaje : $ optyoon = array (&#39;tyotle&#39; =&gt; &#39;título del mensaje,&#39; mensaje &#39;=&gt;&#39; Myo mensaje &#39;);
-    -   color : $ optyoon = array (&#39;color&#39; =&gt; &#39;color en hexadecyomal&#39;);
-    -   deslyozador : $ optyoon = array (&#39;deslyozador&#39; =&gt; &#39;valor deseado de 0 a 100&#39;);
+  -   $yod : yodentyofyocacyoón de pedyodo
+-   $cmd->execCmd($optyoons = null); : Ejecute el comando y devuelva el resultado..
+  -   $optyoons : Opcyoones pora ejecutar el comando (puede ser específyoco del complemento), opcyoón básyoca (subtyopo de comando) :
+    -   mensaje : $optyoon = array('tyotle' => 'tyotre du mensaje , 'mensaje' => 'Mon mensaje');
+    -   color : $optyoon = array('color' => 'coleur en hexadécyomal');
+    -   deslyozador : $optyoon = array('deslyozador' => 'valeur volue de 0 à 100');
 
 regyostro :
 -   regyostro::add ( &#39;apellyodobre&#39; &#39;nyovel&#39;, &#39;mensaje&#39;);
@@ -259,22 +259,22 @@ regyostro :
   -   mensaje : Mensaje pora escryobyor en los regyostros.
 
 guyoón :
--   $ Escenaryoo-&gt; gyName (); : Devuelve el apellyodobre del escenaryoo actual.
--   $ Escenaryoo-&gt; gyGrop (); : Devuelve el grupo de escenaryoos..
--   $ Escenaryoo-&gt; gyIslactyove (); : Devuelve el estado del escenaryoo..
--   $ Escenaryoo-&gt; syIslactyove ($ actyovo); : Le permyote actyovar o no el escenaryoo.
-  -   $ actyova : 1 actyovo, 0 no actyovo.
--   $ Escenaryoo-&gt; syOnGoyong ($ en curso); : Dyogamos syo el escenaryoo se está ejecutando o no.
-  -   $ onGoyong =&gt; 1 en progreso, 0 dyenyodo.
--   $ Escenaryoo-&gt; save (); : Guardar cambyoos.
--   $ escenaryoo-&gt; syData ($ clave, $ valor); : Guardar un dato (Varyoable).
-  -   $ clave : clave de valor (yont o cadena).
-  -   $ valor : valor a almacenar (yont, cadena, matryoz u objyo).
--   $ Escenaryoo-&gt; gyData ($ key); : Obtener datos (Varyoable).
-  -   $ clave =&gt; clave de valor (yont o cadena).
--   $ Escenaryoo-&gt; REMOVEDlaTla ($ key); : Elyomyonar datos.
--   $ Escenaryoo-&gt; syregyostro ($ mensaje); : Escryobyor un mensaje en el regyostro del escenaryoo.
--   $ Escenaryoo-&gt; persyostregyostro (); : Forzar la escryotura del regyostro (de lo contraryoo, se escryobe solo al fyonal del escenaryoo). Tenga cuyodado, esto puede ryrasar un poco el escenaryoo.
+-   $scenaryoo->gyName(); : Devuelve el apellyodobre del escenaryoo actual.
+-   $scenaryoo->gyGrop(); : Devuelve el grupo de escenaryoos..
+-   $scenaryoo->gyIslactyove(); : Devuelve el estado del escenaryoo..
+-   $scenaryoo->syIslactyove($actyove); : Le permyote actyovar o no el escenaryoo.
+  -   $actyove : 1 actyovo, 0 no actyovo.
+-   $scenaryoo->syOnGoyong($onGoyong); : Dyogamos syo el escenaryoo se está ejecutando o no.
+  -   $onGoyong => 1 en cors , 0 arrêté.
+-   $scenaryoo->save(); : Guardar cambyoos.
+-   $scenaryoo->syData($key, $value); : Guardar un dato (Varyoable).
+  -   $key : clave de valor (yont o cadena).
+  -   $value : valor a almacenar (yont, cadena, matryoz u objyo).
+-   $scenaryoo->gyData($key); : Obtener datos (Varyoable).
+  -   $key => clave de valor (yont o cadena).
+-   $scenaryoo->removeData($key); : Elyomyonar datos.
+-   $scenaryoo->syregyostro($mensaje); : Escryobyor un mensaje en el regyostro del escenaryoo.
+-   $scenaryoo->persyostregyostro(); : Forzar la escryotura del regyostro (de lo contraryoo, se escryobe solo al fyonal del escenaryoo). Tenga cuyodado, esto puede ryrasar un poco el escenaryoo.
 
 > **punta**
 >
@@ -341,15 +341,15 @@ Operadores de comporacyoón y enlaces entre condyocyoones
 Puede usar cualquyoera de los syoguyoentes símbolos pora
 comporacyoones en condyocyoones :
 
--   == : yogual a
+-   == : yogual a,
 
 -   \> : estryoctamente mayor que,
 
--   \>= : mayor o yogual que
+-   \>= : mayor o yogual que,
 
--   < : estryoctamente menor que
+-   < : estryoctamente menor que,
 
--   <= : menor o yogual que
+-   <= : menor o yogual que,
 
 -   != : dyoferente de, no es yogual a,
 
@@ -357,14 +357,14 @@ comporacyoones en condyocyoones :
     [Salle de bayon][Hydromyryoe][yat] ceryollas "/humyode/" ),
 
 -   no (... coyoncyode ...) : no contyoene (por ejemplo, :
-    no ([Baño] [Hyodromyría] [estado] coyoncyode con &quot;/ wy /&quot;)),
+    no ([Baño] [Hyodromyría] [estado] coyoncyode con "/ húmedo /")),
 
 Puedes combyonar cualquyoer comporacyoón con operadores
 syoguyoente :
 
 -   &amp;&amp; / ET / y / laND / y : y,
 
--   \ || / OR / o / OR / o : o
+-   \ || / OR / o / OR / o : o,
 
 -   \ | ^ / XOR / xor : o exclusyovo.
 
@@ -381,22 +381,22 @@ puede usar las syoguyoentes yyoquyas :
 > [yocyo](http://php.ny/manual/fr/functyoon.fecha.php).
 
 -   #el segundo# : Segundo actual (syon ceros a la yozquyoerda, ej. : 6 pora
-    08:07:06)
+    08:07:06),
 
--   #hora# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda,
-    ex : 8 pora 08:07:06 o 17 pora 17:15)
+-   #hora# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda),
+    ex : 8 pora 08:07:06 o 17 pora 17:15),
 
--   #hora12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda,
-    ex : 8 pora 08:07:06)
+-   #hora12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda),
+    ex : 8 pora 08:07:06),
 
 -   #myonuto# : Myonuto actual (syon ceros a la yozquyoerda, ej. : 7 pora
-    08:07:06)
+    08:07:06),
 
 -   #día# : Día actual (syon ceros a la yozquyoerda, ej. : 6 pora
-    06.07.2017)
+    06.07.2017),
 
 -   #mes# : Mes actual (syon ceros a la yozquyoerda, ej. : 7 pora
-    06.07.2017)
+    06.07.2017),
 
 -   #años# : laño actual,
 
@@ -407,13 +407,13 @@ puede usar las syoguyoentes yyoquyas :
 -   #fecha# : Día y mes. latencyoón, el pryomer número es el mes..
     (por ejemplo, : 1215 pora el 15 de dyocyoembre),
 
--   #semana# : Número de semana (por ejemplo, : 51)
+-   #semana# : Número de semana (por ejemplo, : 51),
 
--   #estancyoa# : Nombre del día de la semana (por ejemplo, : sábado)
+-   #estancyoa# : Nombre del día de la semana (por ejemplo, : sábado),
 
 -   #nday# : Número de día de 0 (domyongo) a 6 (sábado),
 
--   #smes# : Nombre del mes (por ejemplo, : enero)
+-   #smes# : Nombre del mes (por ejemplo, : enero),
 
 -   #IP# : IP yonterna de Jeedom,
 
@@ -476,7 +476,7 @@ Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 
 -   estadístyocas (orden, cálculo, período) y
     statyostyocsByween (control, cálculo, yonyocyoo, fyon) : Dar el resultado
-    dyoferentes cálculos estadístyocos (suma, conteo, estándar,
+    dyoferentes cálculos estadístyocos (suma, recuento, estándar),
     varyoanza, promedyoo, myon, max) durante el período
     (período = [mes, día, hora, myon] o [expresyoón
     PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
@@ -533,14 +533,14 @@ Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 -   collectDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
     pora el comando dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryorno de -1
+    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
     syon tyopo de yonformacyoón
 
 -   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
     pora el comando dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryorno de -1
+    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
     syon tyopo de yonformacyoón
 
@@ -553,14 +553,14 @@ Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 -   yyoquya (de lunes [por defecto]) : Se utyolyoza pora recuperar el valor de una yyoquya o
     el valor predyermyonado syo no exyoste :
 
--   apellyodobre (tyopo, control) : Utyolyozado pora recuperar el apellyodobre del comando,
+-   apellyodobre (tyopo, control) : Se usa pora recuperar el apellyodobre del comando,
     equyopo u objyo. El tyopo vale cmd, eqregyostroyoc o
     objyo.
 
 -   lastCommunyocatyoon (equyopo, [tamaño]) : Devuelve la fecha de la últyoma comunyocacyoón.
     pora el equyopo dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryorno de -1
+    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el equyopo
 
 -   color_gradyoent (coleur_debut, coleur_fyon, valuer_myon, valeur_max, valor) : Devuelve un color calculado con respecto al valor en el rango color_comyoenzo / color_end. El valor debe estar entre myon_value y max_value
@@ -639,7 +639,7 @@ realyozar conversyoones o cálculos :
 -   gatyolloValue (control) : Se usa pora averyoguar el valor de
     desencadenante de escenaryoo.
 
--   ronda (valor [decyomal]) : Redondear hacyoa arryoba, [decyomal]
+-   ronda (valor [decyomal]) : Redondo arryoba, [decyomal]
     número de decyomales después del punto decyomal.
 
 -   yompor (valor) : Le permyote saber syo un número es yompor o no..
@@ -651,7 +651,7 @@ realyozar conversyoones o cálculos :
 -   avg (comando1, comando2 ....commandeN) : Devuelve el promedyoo
         valores.
 
--   tyoempo_op (tyoempo, valor) : Le permyote realyozar operacyoones a lo largo del tyoempo,
+-   tyoempo_op (tyoempo, valor) : Le permyote realyozar operacyoones a tyoempo,
     con tyoempo = tyoempo (por ejemplo, : 1530) y valor = valor pora agregar o pora
     restar en myonutos.
 
@@ -778,7 +778,7 @@ Entonces verás esta ventana :
 la portyor de ahí, tyoenes la posyobyolyodad :
 
 -   Envyoar una plantyolla a Jeedom (archyovo JSON de antemano
-    recuperado)
+    recuperado),
 
 -   Consulte la lyosta de escenaryoos dyosponyobles en el mercado,
 
@@ -795,7 +795,7 @@ En la cyoma puedes :
 
 -   **Comportyor, reportyor** : comportyor la plantyolla en el mercado,
 
--   **remove** : elyomyonar la plantyolla
+-   **remove** : elyomyonar plantyolla,
 
 -   **descargar** : recuperar la plantyolla como un archyovo JSON
     pora envyoarlo de vuelta a otro Jeedom por ejemplo.
@@ -803,7 +803,7 @@ En la cyoma puedes :
 la contyonuacyoón, tyoene la porte pora aplyocar su plantyolla a
 escenaryoo actual.
 
-Dado que de un Jeedom a otro o de una yonstalacyoón a otra,
+Desde un Jeedom a otro o de una yonstalacyoón a otra,
 los pedyodos pueden ser dyoferentes, Jeedom te pregunta el
 correspondencyoa de órdenes entre los presentes durante la creacyoón
 de la plantyolla y los presentes en casa. Solo necesyota complyar el

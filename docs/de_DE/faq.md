@@ -9,7 +9,7 @@ fakultativ.
 Verwendet Jeedom externe Server zum Ausführen? ?
 ==============================================================
 
-Nein, Jeedom verwendet keine Cloud-Infrastruktur. Alles ist erledigt in
+Nein, Jeedom verwendet keine Cloud-Infrastruktur". Alles ist erledigt in
 lokal und Sie brauchen unsere Server nicht für Ihre
 Installation funktioniert. Nur Dienstleistungen wie der Markt, der
 Online-Backup oder Jeedom DNS erfordern die Verwendung unserer
@@ -70,10 +70,10 @@ Verwenden Sie einfach das [Jeedom DNS] (https://jeedom.github.io/documentation/h
 So verbinden Sie sich in SSH ?
 =============================
 
-Hier ist eine [Dokumentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), Teil &quot;Unter Windows : Putty &quot;. Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
+Hier ist eine [Dokumentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), Teil &quot;Unter Windows : Kitt". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
-- Benutzername : &quot;root&quot;, Passwort : &quot;Mjeedom96&quot;
-- Benutzername : &quot;jeedom&quot;, Passwort : &quot;Mjeedom96&quot;
+- Benutzername : "root ", Passwort : "Mjeedom96"
+- Benutzername : "jeedom ", Passwort : "Mjeedom96"
 - Oder was Sie in die Installation einfügen, wenn Sie in DIY sind
 
 Beachten Sie, dass beim Schreiben des Passworts nichts auf dem Bildschirm angezeigt wird. Dies ist normal.
@@ -118,7 +118,7 @@ Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit den Rechten
 root oder ein Docker-System. Es funktioniert daher nicht auf einem
 reine Android-Plattform.
 
-Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später noch einmal (Größe weniger als 100 Byte) ... &quot; ?
+Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)...." ?
 ====================================================
 
 Dies kann auf verschiedene Dinge zurückzuführen sein: :
@@ -183,14 +183,14 @@ Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die 
 Mein Szenario hört nicht mehr auf
 =================================
 
-Es ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen.
+Es ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen,
 oft kommt dies von einer Bestellung, die nicht endet.
 
 Ich habe Instabilitäten oder Fehler 504
 ========================================
 
 Überprüfen Sie, ob Ihr Dateisystem nicht beschädigt ist
-Befehl ist : &quot;sudo dmesg | grep error&quot; .
+Befehl ist : "sudo dmesg | grep Fehler" .
 
 Ich sehe nicht alle meine Geräte auf dem Armaturenbrett
 ====================================================
@@ -199,7 +199,7 @@ Dies liegt häufig daran, dass das Gerät einem Objekt zugeordnet ist
 Dies ist nicht das untergeordnete Element oder das Objekt selbst des ersten ausgewählten Objekts
 links im Baum (Sie können es in Ihrem Profil konfigurieren).
 
-Ich habe den folgenden Fehler : SQLSTATE \ [HY000 \] \ [2002 \] Über den Socket &#39;/var/run/mysqld/mysqld.sock&#39; kann keine Verbindung zum lokalen MySQL-Server hergestellt werden.
+Ich habe den folgenden Fehler : SQLSTATE \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden'
 ====================================================================================================================================
 
 Dies liegt an MySQL, das gestoppt hat, es ist nicht normal, die Fälle
@@ -211,7 +211,7 @@ Ströme sind :
 -   Problem mit der Beschädigung von Dateien, das häufig aufgrund von
     Jeedoms nicht sauberes Herunterfahren (Stromausfall)
 
-- 	Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank).. Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von &quot;oom&quot; sehen.. Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
+- 	Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank).. Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
 
 Leider gibt es nicht viel Lösung, wenn es die zweite ist
 In diesem Fall ist es am besten, ein Backup wiederherzustellen (verfügbar in
@@ -265,12 +265,12 @@ Ich habe ein zeitliches Problem mit meiner Geschichte
 
 Versuchen Sie, den Chrome-Cache zu löschen. Die Anzeige der Historien wird relativ zur Browserzeit berechnet.
 
-Ich habe den Fehler &quot;Netzwerkprobleme erkannt, Netzwerkneustart&quot;
+Ich habe den Fehler "Netzwerkprobleme erkannt, Netzwerkneustart"
 =========================================
 
 Jeedom kann das Gateway nicht finden oder nicht anpingen. Im Allgemeinen passiert es, wenn die ADSL-Box neu gestartet wird (insbesondere Liveboxen) und Jeeodm nicht neu gestartet wurde oder schneller als die Box neu gestartet wurde. Aus Sicherheitsgründen teilt er Ihnen mit, dass er ein Problem gefunden hat, und startet den Netzwerkverbindungsprozess neu. Sie können diesen Mechanismus deaktivieren, indem Sie zur Jeedom-Konfiguration wechseln und die Netzwerkverwaltung von Jeedom deaktivieren.
 
-Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist. &quot;
+Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist."
 =========================================
 Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann.. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir:
 
@@ -280,7 +280,7 @@ Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem
 
 Ich kann mich nicht mehr mit meinem Jeedom verbinden
 =========================================
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Dies wird in der Administration des Jeedom-Sicherheitsteils dann &quot;weiße&quot; IP konfiguriert. Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
 
 Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
 =========================================
@@ -303,7 +303,7 @@ Bei der Verwaltung des Jeedom-Teils OS / DB muss dann in der Systemkonsole vorge
 ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2
 ```
 
-# Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : „E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou „E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden &quot;
+# Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : "E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden"
 
 Du musst :
 

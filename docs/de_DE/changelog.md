@@ -31,7 +31,7 @@ Changelog
 - Tabellenverbesserungen mit Filter- und Sortieroption.
 - Möglichkeit, einer Interaktion ein Symbol zuzuweisen.
 - Jede Jeedom-Seite hat jetzt einen Titel in der Sprache der Benutzeroberfläche (Registerkarte Browser).
-- Verhinderung des automatischen Ausfüllens der Felder &#39;Zugangscode&#39;.
+- Verhinderung des automatischen Ausfüllens des Zugangscodes von Feldern'.
 - Funktionsverwaltung * Vorherige Seite / Nächste Seite * des Browsers. <br/><br/>
 - Widgets : Neugestaltung des Widget-Systems (Menü Extras / Widgets).
 - Widgets : Möglichkeit, ein Widget bei allen Befehlen, die es verwenden, durch ein anderes zu ersetzen.
@@ -282,7 +282,7 @@ Changelog
 
 3.2.14
 =====
-- Vorbereitung zur Vermeidung eines Fehlers beim Wechsel zu 3.3.X.
+- Vorbereitung zur Vermeidung eines Fehlers beim Umschalten auf 3.3.X
 - Behebung eines Problems beim Anfordern von Support für Plugins von Drittanbietern
 
 3.2.12
@@ -309,7 +309,7 @@ Changelog
 - Behebung eines Fehlers in den Symbolen des Datei-Editors und im Ausdruckstester
 - Fehlerbehebungen bei Listenern
 - Hinzufügen einer Warnung, wenn ein Plugin Cron blockiert
-- Behebung eines Fehlers im Cloud-Überwachungssystem, wenn die Agentenversion niedriger als 3.XX ist
+- Behebung eines Fehlers im Cloud-Überwachungssystem, wenn die Agentenversion kleiner als 3 ist.X.X
 
 3.2.8
 =====
@@ -323,7 +323,7 @@ Changelog
 =====
 - Fehlerbehebungen
 - Docs Update
-- Möglichkeit, die Tags unter den Bedingungen der Blöcke &quot;A&quot; und &quot;IN&quot; zu verwenden
+- Möglichkeit, die Tags unter den Bedingungen der Blöcke "A" und "IN" zu verwenden"
 - Fehlerkorrektur von Marktkategorien für Widgets / Skripte / Szenarien...
 
 3.2.6
@@ -408,7 +408,7 @@ Changelog
 - Durch Doppelklicken auf einen Knoten im Linkdiagramm (mit Ausnahme von Variablen) wird dessen Konfigurationsseite angezeigt
 - Möglichkeit, Text links / rechts / mittig auf Designs für Text / Ansicht / Designelemente zu setzen
 - Hinzufügen von Objektzusammenfassungen im Armaturenbrett (Liste der Objekte links)
-- Hinzufügen von &quot;Prevent-Me-If&quot; -Interaktionen
+- Fügen Sie Interaktionen vom Typ "Benachrichtigen Sie mich-wenn" hinzu"
 - Überprüfung der Szenario-Homepage
 - Hinzufügen eines Befehlsverlaufs für SQL- oder Systembefehle in der Jeedom-Oberfläche
 - Möglichkeit, die Diagramme der Bestellhistorien in der Webanwendung zu haben (durch langes Drücken auf die Bestellung)
@@ -472,7 +472,7 @@ Changelog
 - Ein Klick auf ein Element einer Zusammenfassung der Hausautomation bringt Sie zu einer detaillierten Ansicht
 - Sie können jetzt Textbefehle in die Zusammenfassungen einfügen
 - Änderung des Bootstraps-Schiebereglers in Schieberegler (Korrektur des Fehlers des Doppelschieberegler-Ereignisses)
-- Automatisches Speichern von Ansichten beim Klicken auf die Schaltfläche &quot;Ergebnis anzeigen&quot;
+- Automatisches Speichern von Ansichten beim Klicken auf die Schaltfläche "Ergebnis anzeigen"
 - Möglichkeit, die Dokumente lokal zu haben
 - Entwickler von Drittanbietern können ihr eigenes Ticketverwaltungssystem hinzufügen
 - Neugestaltung der Benutzerrechtskonfiguration (alles befindet sich auf der Benutzerverwaltungsseite)
@@ -505,7 +505,7 @@ Changelog
 - Möglichkeit, bestimmte Werte für eine Bestellung zu verbieten (in der erweiterten Konfiguration)
 - Hinzufügen von Konfigurationsfeldern zur automatischen Statusrückmeldung (z. B. Rückkehr zu 0 nach 4 Minuten) in der erweiterten Konfiguration eines Befehls
 - Hinzufügen einer valueDate-Funktion in Szenarien (siehe Szenariodokumentation)
-- Möglichkeit in den Szenarien, den Wert einer Bestellung mit der Aktion &quot;Ereignis&quot; zu ändern.
+- Möglichkeit in den Szenarien, den Wert einer Bestellung mit dem Ereignis "Aktion" zu ändern"
 - Hinzufügen eines Kommentarfelds zur erweiterten Konfiguration eines Geräts
 - Hinzufügung eines Warnsystems bei Bestellungen mit 2 Ebenen : Alarm und Gefahr. Die Konfiguration erfolgt in der erweiterten Konfiguration von Befehlen (natürlich nur Info-Typ). Sie können die Module in Alarmbereitschaft auf der Seite Analyse → Ausrüstung sehen. Sie können die Alarmaktionen auf der allgemeinen Konfigurationsseite von Jeedom konfigurieren
 - Hinzufügen eines &quot;Tabellen&quot; -Bereichs zu den Ansichten, in dem eine oder mehrere Spalten pro Feld angezeigt werden können. Die Boxen unterstützen auch HTML-Code
@@ -526,7 +526,7 @@ Changelog
 - Auf der Konfigurationsseite der Plugins können Sie die Funktionen dieser Plugins (Interaktion, Cron…) anzeigen und einzeln deaktivieren
 - Automatische Interaktionen können Werte aus Zusammenfassungen zurückgeben
 - Möglichkeit, Synonyme für Objekte, Geräte, Befehle und Zusammenfassungen zu definieren, die in kontextbezogenen Antworten und Zusammenfassungen verwendet werden
-- Jeedom weiß, wie man mehrere verwandte Interaktionen (kontextuell) in einer verwaltet. Sie müssen durch ein Schlüsselwort getrennt werden (standardmäßig und). Beispiel : &quot;Wie viel macht er im Schlafzimmer und im Wohnzimmer?&quot; oder &quot;Mach das Licht in Küche und Schlafzimmer an.&quot;
+- Jeedom weiß, wie man mehrere verwandte Interaktionen (kontextuell) in einer verwaltet. Sie müssen durch ein Schlüsselwort getrennt werden (standardmäßig und). Beispiel : "Wie viel kostet es im Schlafzimmer und im Wohnzimmer? "Oder" Schalten Sie das Licht in der Küche und im Schlafzimmer ein."
 - Der Status der Szenarien auf der Bearbeitungsseite wird jetzt dynamisch aktualisiert
 - Möglichkeit, eine Ansicht in PDF, PNG, SVG oder JPEG mit dem Befehl &quot;report&quot; in einem Szenario zu exportieren
 - Möglichkeit, ein Design in PDF, PNG, SVG oder JPEG mit dem Befehl &quot;report&quot; in einem Szenario zu exportieren
@@ -581,7 +581,7 @@ Changelog
 - Hinzufügen einer Plugin-Kategorie : kommunizierendes Objekt
 - Hinzufügen von GENERIC \ _TYPE
 - Entfernung neuer und Top-Filter auf dem Plugins-Marktpfad
-- Umbenennen der Standardkategorie auf dem Markt Plugins Route zu &quot;Top and new&quot;
+- Umbenennen der Standardkategorie auf dem Markt Plugins Route zu "Top und neu"
 - Korrektur von kostenlosen und kostenpflichtigen Filtern auf dem Marktpfad der Plugins
 - Korrektur eines Fehlers, der zu einer Verdoppelung der Kurven auf der Verlaufsseite führen kann
 - Korrektur eines Fehlers beim Timeout-Wert von Szenarien
@@ -677,7 +677,7 @@ Integration in Protokollierungssysteme (Typ Syslog (d))
 - Möglichkeit für Anwendungen von Drittanbietern, Ereignisse über die API anzufordern
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les reconfigurer suite à la mise à jour)
 - Möglichkeit, einen Block in einem Szenario zu deaktivieren
-- Ergänzung für Entwickler eines Tooltips-Hilfesystems. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Cela permet à Jeedom d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide
+- Ergänzung für Entwickler eines Tooltips-Hilfesystems. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Auf diese Weise kann Jeedom am Ende Ihres Etiketts automatisch ein Symbol hinzufügen « ? » und beim Bewegen des Mauszeigers, um den Hilfetext anzuzeigen
 - Änderung des Kernaktualisierungsprozesses, wir fordern das Archiv nicht mehr vom Markt an, sondern jetzt direkt von Github
 - Hinzufügen eines zentralen Systems zum Installieren von Abhängigkeiten von Plugins
 - Neugestaltung der Plugins-Verwaltungsseite
@@ -713,7 +713,7 @@ Integration in Protokollierungssysteme (Typ Syslog (d))
 - Möglichkeit für Anwendungen von Drittanbietern, Ereignisse über die API anzufordern
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les reconfigurer suite à la mise à jour)
 - Möglichkeit, einen Block in einem Szenario zu deaktivieren
-- Ergänzung für Entwickler eines Tooltips-Hilfesystems. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Cela permet à Jeedom d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide
+- Ergänzung für Entwickler eines Tooltips-Hilfesystems. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Auf diese Weise kann Jeedom am Ende Ihres Etiketts automatisch ein Symbol hinzufügen « ? » und beim Bewegen des Mauszeigers, um den Hilfetext anzuzeigen
 - Änderung des Kernaktualisierungsprozesses, wir fordern das Archiv nicht mehr vom Markt an, sondern jetzt direkt von Github
 - Hinzufügen eines zentralen Systems zum Installieren von Abhängigkeiten von Plugins
 - Neugestaltung der Plugins-Verwaltungsseite
