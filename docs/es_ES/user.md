@@ -9,18 +9,18 @@ para guardar y un botón para abrir un acceso de soporte.
 
 Abajo tienes una mesa :
 
--   **nombre del usuario** : ID de usuario
+-   **Nombre del usuario** : ID de usuario
 
--   **bienes** : permite desactivar la cuenta
+-   **Bienes** : permite desactivar la cuenta
 
 -   **Solo local** : autorizar inicio de sesión de usuario
     solo si está en la red local de Jeedom
 
--   **perfiles** : permite elegir el perfil de usuario :
+-   **Perfiles** : permite elegir el perfil de usuario :
 
-    -   **administrador** : obtiene todos los derechos sobre Jeedom
+    -   **Administrador** : obtiene todos los derechos sobre Jeedom
 
-    -   **usuario** : puede ver el tablero, las vistas,
+    -   **Usuario** : puede ver el tablero, las vistas,
         diseño, etc.. y actuar sobre equipos / controles. En cambio,
         no tendrá acceso a la configuración de controles / equipos
         ni a la configuración de Jeedom.
@@ -42,7 +42,7 @@ Abajo tienes una mesa :
 -   **Cambiar contraseña** : permite cambiar la contraseña de
     usuario
 
--   **remove** : eliminar usuario
+-   **Remove** : eliminar usuario
 
 -   **Regenerar clave API** : regenera la clave API del usuario
 
@@ -57,7 +57,7 @@ Al hacer clic en &quot;Administrar derechos&quot; aparece una ventana que le per
 administrar con precisión los derechos de los usuarios. La primera pestaña muestra
 los diferentes equipos. El segundo presenta los escenarios..
 
-> **importante**
+> **Importante**
 >
 > El perfil debe ser limitado, de lo contrario no se aplicarán restricciones aquí
 > se tendrá en cuenta
@@ -65,9 +65,9 @@ los diferentes equipos. El segundo presenta los escenarios..
 Obtiene una tabla que permite, para cada equipo y cada
 escenario, definir derechos de usuario :
 
--   **no** : el usuario no ve el equipo / escenario
+-   **No** : el usuario no ve el equipo / escenario
 
--   **visualización** : el usuario ve el equipo / escenario pero no ve
+-   **Visualización** : el usuario ve el equipo / escenario pero no ve
     no puedo actuar en consecuencia
 
 -   **Visualización y ejecución** : el usuario ve

@@ -112,14 +112,14 @@ Meine Jeedoms
         Konfigurieren Sie in Jeedom, wenn Sie nichts setzen, wird es dort sein
         letzte bekannte IP
 
-    -   **DNS** : Mit dieser Option können Sie den Namen Ihres DNS anpassen
+    -   **Dns** : Mit dieser Option können Sie den Namen Ihres Dns anpassen
 
     -   **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLss auf.
 
-    -   **DNS-Server** : sagt Ihnen, ob der DNS-Server, zu dem Sie
+    -   **Dns-Server** : sagt Ihnen, ob der Dns-Server, zu dem Sie
         sind beigefügt
 
-    -   **DNS-Status** : ermöglicht es, den Status des DNS anzuzeigen
+    -   **Dns-Status** : ermöglicht es, den Status des Dns anzuzeigen
 
     -   **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem
         Marktkonto (zur Erinnerung, dies erfolgt automatisch, wenn
@@ -156,7 +156,7 @@ Meine Einkäufe / Aktionen / Spenden
 Hier finden Sie alle Ihre Einkäufe und können die Rückgabe der
 Rechnung oder Quittungs-E-Mail
 
-> **wichtig**
+> **Wichtig**
 >
 > Wenn Sie ein offizielles Plugin kaufen, erhalten Sie eine Rechnung. in
 > Für ein Plugin eines Drittanbieters ist es jedoch eine Quittung, für die Rechnung ist es erforderlich

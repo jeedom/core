@@ -2,7 +2,7 @@ Es informiert über alle Jeedom-Anwendungsaufgaben, die auf dem ausgeführt werd
 Server. Dieses Menü ist wissentlich oder am zu verwenden
 Technischen Support anfordern.
 
-> **wichtig**
+> **Wichtig**
 >
 > Im Falle eines Missbrauchs auf dieser Seite jede Anfrage für
 > Unterstützung kann Ihnen verweigert werden.
@@ -10,17 +10,17 @@ Technischen Support anfordern.
 Um darauf zuzugreifen, gehen Sie zu **Administration → Task Engine**
 :
 
-# cron
+# Cron
 
 Oben rechts haben Sie :
 
--   **cron-System deaktivieren** : eine Taste zum Deaktivieren oder
+-   **Cron-System deaktivieren** : eine Taste zum Deaktivieren oder
     Aktivieren Sie alle Aufgaben erneut (wenn Sie alle deaktivieren, mehr
     nichts wird auf deinem Jeedom funktionieren)
 
--   **cool** : eine Schaltfläche zum Aktualisieren der Aufgabentabelle
+-   **Cool** : eine Schaltfläche zum Aktualisieren der Aufgabentabelle
 
--   **hinzufügen** : eine Schaltfläche zum Hinzufügen eines cron-Jobs
+-   **Hinzufügen** : eine Schaltfläche zum Hinzufügen eines Cron-Jobs
 
 -   **Rekord** : eine Schaltfläche zum Speichern Ihrer Änderungen.
 
@@ -33,7 +33,7 @@ Seite). In dieser Tabelle finden wir :
     Prozess, der läuft und was er wirklich tut
 
 -   **Aktion** : eine Schaltfläche zum Starten oder Stoppen der Funktion
-    seinen Status und eine Schaltfläche, um den cron im Detail zu sehen (wie in der Datenbank gespeichert)
+    seinen Status und eine Schaltfläche, um den Cron im Detail zu sehen (wie in der Datenbank gespeichert)
 
 -   **Aktiva** : Gibt an, ob die Aufgabe aktiv ist (kann gestartet werden
     von Jeedom) oder nicht
@@ -56,9 +56,9 @@ Seite). In dieser Tabelle finden wir :
 
 -   **Programmierung** : Programmieren der Aufgabe im CRON-Format
 
--   **Timeout** : maximale Laufzeit der Aufgabe. Wenn die
+-   **Zeitüberschreitung** : maximale Laufzeit der Aufgabe. Wenn die
     Aufgabe ist ein Dämon, dann wird es automatisch gestoppt und
-    am Ende des Timeouts neu gestartet
+    am Ende des Zeitüberschreitungs neu gestartet
 
 -   **Letzter Start** : Datum des letzten Taskstarts
 

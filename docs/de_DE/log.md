@@ -18,7 +18,7 @@ Tasten :
 
 -   **Download** : ermöglicht das Herunterladen des aktuellen Protokolls,
 
--   **leer** : ermöglicht das Leeren des aktuellen Protokolls,
+-   **Leer** : ermöglicht das Leeren des aktuellen Protokolls,
 
 -   **Entfernen** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
     brauche es wird es automatisch neu erstellen,

@@ -12,19 +12,19 @@ Mi perfil
 Aquí es donde podrá ajustar diferentes parámetros de su
 perfil :
 
--   **perfil**
+-   **Perfil**
 
-    -   **login** : Su inicio de sesión en el mercado, no se puede cambiar
+    -   **Login** : Su inicio de sesión en el mercado, no se puede cambiar
 
-    -   **apellido** : Su nombre (esta información solo es útil para
+    -   **Apellido** : Su nombre (esta información solo es útil para
         hacer que los correos electrónicos sean más divertidos)
 
-    -   **primer nombre** : Su nombre (esta información solo es útil
+    -   **Primer nombre** : Su nombre (esta información solo es útil
         para hacer que los correos electrónicos sean más divertidos)
 
-    -   **apellidobre de usuario en el foro** : Tu nombre de usuario en el foro
+    -   **Apellidobre de usuario en el foro** : Tu nombre de usuario en el foro
 
-    -   **e-mail** : Su correo
+    -   **E-mail** : Su correo
 
     -   **Lengua** : Tu idioma
 
@@ -33,7 +33,7 @@ perfil :
 
 Para desarrolladores :
 
--   **apellidobre de usuario en el foro** : Tu nombre de usuario en el foro
+-   **Apellidobre de usuario en el foro** : Tu nombre de usuario en el foro
 
 -   **Correo público** : Su correo electrónico para recibir cualquier
     comunicaciones de nosotros
@@ -50,18 +50,18 @@ Para los profesionales :
 
     -   **TOS**
 
--   **usuario** : condiciones generales de uso (preste atención a
+-   **Usuario** : condiciones generales de uso (preste atención a
     léelos bien porque te comprometen)
 
--   **revelador** : condiciones generales de uso para
+-   **Revelador** : condiciones generales de uso para
     desarrolladores
 
-    -   **entradas**
+    -   **Entradas**
 
 -   **Numero de entradas** : Número de boletos para el mes actual
     así como tu límite
 
--   **apoyo** : botón para enviar una solicitud de soporte (accesible
+-   **Apoyo** : botón para enviar una solicitud de soporte (accesible
     también por el signo de exclamación en la esquina superior derecha del mercado o
     en tu Jeedom)
 
@@ -70,17 +70,17 @@ Para los profesionales :
 -   **Habilitar el acceso a complementos beta** : permite el acceso a
     complementos beta (tenga en cuenta que esto le impedirá acceder al soporte)
 
-    -   **resumen** Aquí encontrarás un resumen de tus diferentes
+    -   **Resumen** Aquí encontrarás un resumen de tus diferentes
         derechos y servicios
 
-> **punta**
+> **Punta**
 >
 > No olvides guardar
 
 Mis jeedoms 
 ===========
 
--   **nivel**
+-   **Nivel**
 
     -   **Jeedom** : su nivel de paquete de servicio
 
@@ -94,7 +94,7 @@ Mis jeedoms
         de las instalaciones de Jeedom actualmente vinculadas a su cuenta también
         que el límite permitido
 
-> **punta**
+> **Punta**
 >
 > A veces el mercado puede pedirle que reinicie
 > sus claves de instalación, es normal, solo siga lo que
@@ -102,24 +102,24 @@ Mis jeedoms
 
 -   **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
 
-    -   **apellido** : el nombre que quieres darle a tu Jeedom (
+    -   **Apellido** : el nombre que quieres darle a tu Jeedom (
         encontrado en el nombre de la copia de seguridad si tiene la suscripción de
         copia de seguridad en la nube)
 
-    -   **estado** : permite ver el estado de la libertad en cuestión
+    -   **Estado** : permite ver el estado de la libertad en cuestión
 
     -   **IP local / remota** : IP o dirección de este Jeedom,
         configurar en Jeedom, si no pones nada estará allí
         última IP conocida
 
-    -   **DNS** : le permite personalizar el nombre de su DNS
+    -   **Dns** : le permite personalizar el nombre de su Dns
 
     -   **URL** : enumerar las diferentes URL de acceso de Jeedom.
 
-    -   **Servidor DNS** : le dice si el servidor DNS al que
+    -   **Servidor Dns** : le dice si el servidor Dns al que
         están adjuntos
 
-    -   **Estado DNS** : permite ver el estado del DNS
+    -   **Estado Dns** : permite ver el estado del Dns
 
     -   **Fecha de creación** : fecha de creación de este Jeedom en su
         cuenta de mercado (como recordatorio, esto se hace automáticamente cuando
@@ -128,11 +128,11 @@ Mis jeedoms
     -   **última actualización** : La última comunicación de Jeedom con
         el mercado
 
-    -   **hardware** : apellidobre de hardware Jeedom
+    -   **Hardware** : Apellidobre de hardware Jeedom
 
-    -   **versión** : la versión de Jeedom instalada
+    -   **Versión** : la versión de Jeedom instalada
 
-> **punta**
+> **Punta**
 >
 > No olvides guardar
 
@@ -156,7 +156,7 @@ Mis compras / promociones / donaciones
 Aquí encontrará todas sus compras y puede solicitar la devolución del
 factura o recibo por correo electrónico
 
-> **importante**
+> **Importante**
 >
 > Si compra un complemento oficial, recibirá una factura. en
 > sin embargo, para un complemento de terceros es un recibo, para la factura es necesario

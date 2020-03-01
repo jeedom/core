@@ -1,7 +1,7 @@
-descripción 
+Descripción 
 ===========
 
-la **centro de actualizaciones** le permite actualizar todo
+La **centro de actualizaciones** le permite actualizar todo
 Características de Jeedom, incluido el software central,
 complementos, widgets, etc.. Otras funciones de administración de extensiones
 están disponibles (eliminar, reinstalar, verificar, etc.)
@@ -13,7 +13,7 @@ Se puede acceder desde el menú. **Administración → Centro de actualización
 día**.
 
 Encontrará, a la izquierda, todas las funcionalidades de
-Jeedom y en la parte correcta **información** quien describe lo que el
+Jeedom y en la parte correcta **Información** quien describe lo que el
 sucedió, cuando lanzaste una actualización.
 
 Funciones en la parte superior de la página.. 
@@ -32,27 +32,27 @@ opciones :
 -   **Ahorre antes** : Copia de seguridad de Jeedom antes
     realizar la actualización.
 
--   **Actualizar complementos** : la permite incluir complementos en
+-   **Actualizar complementos** : La permite incluir complementos en
     actualización.
 
--   **Actualiza el núcleo** : la permite incluir el núcleo Jeedom en
+-   **Actualiza el núcleo** : La permite incluir el núcleo Jeedom en
     la actualización.
 
 -   **Modo forzado** : Actualización en modo forzado, es decir
     que, incluso si hay un error, Jeedom continúa y no restaurará
     la salvaguardia.
 
--   **Actualización para volver a aplicar** : la permite volver a aplicar una apuesta.
+-   **Actualización para volver a aplicar** : La permite volver a aplicar una apuesta.
     al día. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
-> **importante**
+> **Importante**
 >
 > Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. en
 > si hay un problema al aplicar una actualización, Jeedom lo hará
 > restaurar automáticamente la copia de seguridad realizada justo antes. Este principio
 > solo es válido para las actualizaciones de Jeedom y no para los complementos.
 
-> **punta**
+> **Punta**
 >
 > Puede forzar una actualización de Jeedom, incluso si no lo hace
 > no ofrezcas ninguna.
@@ -65,16 +65,16 @@ La tabla consta de dos pestañas. :
 -   **Núcleo y complementos** : Contiene software básico Jeedom y
     lista de complementos instalados.
 
--   **otro** : Contiene widgets, scripts, etc..
+-   **Otro** : Contiene widgets, scripts, etc..
 
-Encontrará la siguiente información : \* **estatus** : OK o NOK.
-Permite conocer el estado actual del complemento. \* **apellido** : Tu ahi
+Encontrará la siguiente información : \* **Estatus** : OK o NOK.
+Permite conocer el estado actual del complemento. \* **Apellido** : Tu ahi
 encuentre la fuente del elemento, el tipo de elemento y su nombre. \*
-**versión** : Indica la versión específica del artículo.. \* **opciones** :
+**Versión** : Indica la versión específica del artículo.. \* **Opciones** :
 Marque esta casilla si no desea que este artículo se actualice.
 día durante la actualización general (Botón **Poner al día**).
 
-> **punta**
+> **Punta**
 >
 > Para cada tabla, la primera línea permite el siguiente filtro
 > El estado, nombre o versión de los elementos presentes..
@@ -84,18 +84,18 @@ cada elemento :
 
 -   **Restablecer** : Reasentamiento forzado.
 
--   **remove** : la permite desinstalarlo.
+-   **Remove** : La permite desinstalarlo.
 
--   **comprobar** : Consulte la fuente de actualizaciones para averiguar si
+-   **Comprobar** : Consulte la fuente de actualizaciones para averiguar si
     hay una nueva actualización disponible.
 
--   **Poner al día** : la permite actualizar el elemento (si tiene
+-   **Poner al día** : La permite actualizar el elemento (si tiene
     una actualización).
 
--   **cambios** : Acceda a la lista de cambios en el
+-   **Cambios** : Acceda a la lista de cambios en el
     actualización.
 
-> **importante**
+> **Importante**
 >
 > Si el registro de cambios está vacío pero aún tiene una actualización
 > actualización significa que la documentación ha sido actualizada.
@@ -103,7 +103,7 @@ cada elemento :
 > cambios, ya que no necesariamente hay. (a menudo es una apuesta
 > traducción de documentación)
 
-> **punta**
+> **Punta**
 >
 > Tenga en cuenta que &quot;núcleo : jeedom &quot;significa&quot; actualizar el software
 > Base Jeedom".

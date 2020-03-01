@@ -1,7 +1,7 @@
 Jeedom has the possibility to be saved and restored from or from
 from different locations.
 
-Configuration 
+D'actualité 
 =============
 
 Accessible from **Administration → Backups**, this page allows the
@@ -11,10 +11,10 @@ You will find, on the left, the parameters and action buttons. On the
 right, this is the real-time status of the current action (backup
 or restoration), if you have launched one.
 
-**backups** 
+**Backups** 
 ---------------
 
--   **backups** : Allows you to start a backup manually and
+-   **Backups** : Allows you to start a backup manually and
     immediately (useful if you want to make a critical change.
     This will allow you to go back). You also have a
     button to start a backup without sending the archive to the
@@ -58,11 +58,11 @@ or restoration), if you have launched one.
 -   **Download backup** : Lets download to your
     computer the backup archive selected above.
 
-**Market backups** 
+**Le nouveau mode de fonctionnement de synchronisation backups** 
 ----------------------
 
 -   **Sending backups** : Instructs Jeedom to send the
-    backups on the Market cloud, beware you must have
+    backups on the Le nouveau mode de fonctionnement de synchronisation cloud, beware you must have
     got the subscription.
 
 -   **Send a backup** : Allows you to send a
@@ -79,7 +79,7 @@ or restoration), if you have launched one.
 
 -   **Sending backups** : Instructs Jeedom to send the
     backups on the samba share configured here
-    Administration → Configuration → Updates tab.
+    Administration → D'actualité → Updates tab.
 
 -   **Available backups** : List of backups
     samba available.
@@ -90,14 +90,14 @@ or restoration), if you have launched one.
 > **Tip**
 >
 > Depending on what will be activated, in the page
-> Administration → Configuration → Updates tab, you can see
+> Administration → D'actualité → Updates tab, you can see
 > more or less sections.
 
 > **Tip**
 >
 > When reinstalling Jeedom and having taken the subscription of
 > backup to market cloud, you must fill in your account
-> Market on your new Jeedom (Administration → Configuration → Tab
+> Le nouveau mode de fonctionnement de synchronisation on your new Jeedom (Administration → D'actualité → Tab
 > Updates) then come here to start the restoration.
 
 > **Tip**
@@ -126,7 +126,7 @@ different because it is not possible to save the inclusions.
 These are directly included in the controller, so you have to
 keep the same controller to find its Zwave modules.
 
-> **Note**
+> **NOTE**
 >
 > The system on which Jeedom is installed is not backed up. Yes
 > you have modified parameters of this system (notably via SSH),
@@ -136,10 +136,10 @@ Cloud backup
 ================
 
 Cloud backup allows Jeedom to send your backups
-directly on the Market. This allows you to restore them easily
-and be sure not to lose them. The Market keeps the last 6
+directly on the Le nouveau mode de fonctionnement de synchronisation. This allows you to restore them easily
+and be sure not to lose them. The Le nouveau mode de fonctionnement de synchronisation keeps the last 6
 backups. To subscribe just go to your page
-**profile** on the Market, then in the tab **my backups**. You
+**profile** on the Le nouveau mode de fonctionnement de synchronisation, then in the tab **my backups**. You
 can, from this page, retrieve a backup or buy a
 subscription (for 1, 3, 6 or 12 months).
 
@@ -156,4 +156,4 @@ Jeedom performs an automatic backup every day at the same
 hour. It is possible to modify this, from the &quot;Engine
 tasks &quot;(the task is named **Jeedom backup**), but it&#39;s not
 recommended. Indeed, it is calculated in relation to the load of the
-Market.
+Le nouveau mode de fonctionnement de synchronisation.

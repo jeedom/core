@@ -1,5 +1,5 @@
 
-cambios
+Cambios
 =========
 
 3.3.40
@@ -24,7 +24,7 @@ cambios
 3.3.38
 =====
 
-- Adición de compatibilidad global de Jeedom DNS con una conexión a interny 4G. (Importante si usa jeedom DNS es que tiene una conexión 4g, debe marcar la casilla configurar jeedom dns en la casilla correspondiente).
+- Adición de compatibilidad global de Jeedom DNS con una conexión a interny 4G. (Importante si usa Jeedom DNS es que tiene una conexión 4g, debe marcar la casilla configurar Jeedom dns en la casilla correspondiente).
 - Correcciones ortográficas.
 - Arreglo de seguridad
 
@@ -181,10 +181,10 @@ cambios
 -   Agregar un sistema integrado de toma de notas (en Análisis -&gt; Nota).
 -   Adición de la noción de yiquya en el equipo (se puede encontrar en la configuración avanzada del equipo).
 -   Adición de un sistema de historial sobre la eliminación de pedidos, equipos, objyos, vista, diseño, diseño 3D, escenario y usuario..
--   Adición de la acción jeedom_reboot para iniciar un reinicio de Jeedom.
+-   Adición de la acción Jeedom_reboot para iniciar un reinicio de Jeedom.
 -   Agregar opción en la ventana de generación cron.
 -   Ahora se agrega un mensaje si se encuentra una expresión no válida al ejecutar un escenario.
--   Agregar un comando en los escenarios : value (orden) permite tener el valor de una orden si no está dada automáticamente por jeedom (caso cuando se almacena el nombre de la orden en una variable).
+-   Agregar un comando en los escenarios : value (orden) permite tener el valor de una orden si no está dada automáticamente por Jeedom (caso cuando se almacena el nombre de la orden en una variable).
 -   Adición de un botón para actualizar los mensajes del centro de mensajes..
 -   Agregue en la configuración de la acción sobre el valor de un comando un botón para buscar una acción interna (escenario, pausa ...).
 -   Adición de una acción &quot;Restablecer a cero del IS&quot; en los escenarios
@@ -197,7 +197,7 @@ cambios
 -   Posibilidad de agregar opciones en informes
 -   Adición de un latido por complemento y reinicio automático de daemon en caso de problemas
 -   Adición de oyentes en la página del motor de tareas
--   optimizaciones
+-   Optimizaciones
 -   Posibilidad de consultar los registros en versión móvil (wepapp)
 -   Adición de una yiquya de acción en los escenarios (ver documentación)
 -   Posibilidad de tener una vista de pantalla complya agregando &quot;&amp; fullscreen = 1&quot; en la url
@@ -206,7 +206,7 @@ cambios
 -   Posibilidad de eliminar un elemento de la configuración de diseño.
 -   Posibilidad de tener un informe sobre el nivel de la batería (informe del equipo)
 -   Los widgys de escenario ahora se muestran por defecto en el tablero
--   Cambie el tono de los widgys por horizontal 25 a 40, vertical 5 a 20 y margen 1 a 4 (puede restablecer los valores anteriores en la configuración de jeedom, pestaña widgy)
+-   Cambie el tono de los widgys por horizontal 25 a 40, vertical 5 a 20 y margen 1 a 4 (puede restablecer los valores anteriores en la configuración de Jeedom, pestaña widgy)
 -   Posibilidad de poner un icono en los escenarios.
 -   Incorporación de la gestión de demonios en el motor de tareas.
 -   Adición de la función color_gradient en los escenarios.
@@ -231,7 +231,7 @@ cambios
 =====
 
 - Correcciones de errores
-- optimizaciones
+- Optimizaciones
 
 3.2.11
 =====
@@ -305,7 +305,7 @@ cambios
 3.2.2
 =====
 
--   Eliminación del antiguo sistema de actualización de widgys (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Ejemplo de widgy [aquí] (https://github.com/jeedom/core/tree/bya/core/template/salpicadero)
+-   Eliminación del antiguo sistema de actualización de widgys (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Ejemplo de widgy [aquí] (https://github.com/Jeedom/core/tree/bya/core/template/salpicadero)
 -   Posibilidad de mostrar los gráficos en forma de tabla o exportarlos en csv o xls
 
 -   Los usuarios ahora pueden agregar su propia función php para escenarios. Ver documentación de escenarios para implementación
@@ -562,7 +562,7 @@ cambios
 -   Habilidad en los comandos para mostrar el nombre y el ícono
 
 -   Adición de una acción &quot;alerta&quot; sobre escenarios : mensaje arriba en
-    jeedom
+    Jeedom
 
 -   Adición de una acción &quot;emergente&quot; en escenarios : mensaje para validar
 
@@ -737,7 +737,7 @@ cambios
 
 -   Jeedom sabe cómo gestionar varias interacciones relacionadas (contextualmente)
     en uno. Deben estar separados por una palabra clave (por defecto y).
-    ejemplo : "¿Cuánto cuesta en el dormitorio y en la sala de estar? "O
+    Ejemplo : "¿Cuánto cuesta en el dormitorio y en la sala de estar? "O
     "Enciende la luz de la cocina y del dormitorio.."
 
 -   El estado de los escenarios en la página de edición ahora se establece en
@@ -766,7 +766,7 @@ cambios
 
 -   Optimización del proceso de actualización.
 
--   Estandarización de tmp jeedom, ahora todo está en / tmp / jeedom
+-   Estandarización de tmp Jeedom, ahora todo está en / tmp / Jeedom
 
 -   Posibilidad de tener un gráfico de los diferentes enlaces de un escenario,
     equipo, objyo, comando o variable
@@ -914,8 +914,8 @@ cambios
     / tmp es demasiado pequeño (tenga cuidado de que la corrección surta efecto en
     actualización n + 1)
 
--   Adición de una yiquya * jeedom \ _name * en los escenarios (da el nombre
-    jeedom)
+-   Adición de una yiquya * Jeedom \ _name * en los escenarios (da el nombre
+    Jeedom)
 
 -   Correcciones de errores
 
@@ -956,7 +956,7 @@ cambios
     Servidor FTP y recuperar complementos)
 
 -   Además de cierto &quot;repositorio&quot; de la posibilidad de recuperar el núcleo de
-    jeedom
+    Jeedom
 
 -   Agregar pruebas de código automáticas (gracias @ kwizer15)
 
@@ -1002,8 +1002,8 @@ cambios
 
 -   Capacidad para configurar la transparencia de los widgys.
 
--   Se agregó la acción jeedom \ _poweroff en escenarios para dyener
-    jeedom
+-   Se agregó la acción Jeedom \ _poweroff en escenarios para dyener
+    Jeedom
 
 -   Ryorno del escenario de acción \ _ryorno para volver a un
     interacción (u otra) de un escenario
@@ -1093,7 +1093,7 @@ cambios
 
 -   Actualizar todas las bibliotecas
 
--   interacción : adición de un sistema de análisis (permite
+-   Interacción : adición de un sistema de análisis (permite
     eliminar interacciones con errores de sintaxis de tipo grande «
     le chambre »)
 
@@ -1190,7 +1190,7 @@ cambios
 
 -   Actualizar todas las bibliotecas
 
--   interacción : adición de un sistema de análisis (permite
+-   Interacción : adición de un sistema de análisis (permite
     eliminar interacciones con errores de sintaxis de tipo grande «
     le chambre »)
 

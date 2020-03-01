@@ -6,7 +6,7 @@ also to change your password.
 You can find it at the top right by clicking on the snowman icon
 then Profile (followed by your username).
 
-themes 
+Themes 
 ======
 
 The themes panel allows you to adjust interface parameters :
@@ -71,7 +71,7 @@ Allows you to define certain interface behaviors :
     -   **Unfold the view panel** : allows to make visible by
         default views menu (left) on views
 
-security 
+Security 
 --------
 
 -   **2-step authentication** : allows to configure

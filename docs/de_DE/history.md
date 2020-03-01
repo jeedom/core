@@ -36,11 +36,11 @@ wann es zu tun ist (standardmäßig sind dies Pakete
 >
 > Wenn Sie gut gefolgt sind, sollten Sie eine hohe Präzision auf dem haben
 > Nur die letzten 2 Stunden. Doch wenn ich mich um 17 Uhr anmelde.,
-> Ich habe eine Klarstellung zu den letzten 17 Stunden. warum ? In der Tat,
+> Ich habe eine Klarstellung zu den letzten 17 Stunden. Warum ? In der Tat,
 > um unnötigen Ressourcenverbrauch zu vermeiden, ist die Aufgabe, die macht
 > Die Archivierung erfolgt nur einmal am Tag, abends.
 
-> **wichtig**
+> **Wichtig**
 >
 > Dieses Archivierungsprinzip gilt natürlich nur für Bestellungen von
 > digitaler Typ; Bei Befehlen vom Typ Binär behält Jeedom nicht bei
@@ -118,7 +118,7 @@ Berechnete Geschichte
 
 Wird verwendet, um eine Kurve anzuzeigen, die auf einer Berechnung für mehrere basiert
 Befehl (Sie können so ziemlich alles tun, + - / \ * absoluter Wert ... siehe
-PHP-Dokumentation für bestimmte Funktionen). ex :
+PHP-Dokumentation für bestimmte Funktionen). Ex :
 abs (* \ [Garten \] \ [Hygrometrie \] \ [Temperatur \] * - * \ [Raum von
 Das Leben \] \ [Luftfeuchtigkeit \] \ [Temperatur \] *)
 
@@ -139,7 +139,7 @@ Vor allen Daten, die grafisch dargestellt werden können, befinden sich zwei Sym
     Jeedom fragt, ob die Daten vor a gelöscht werden müssen
     bestimmtes Datum oder alle Daten.
 
--   **Pfeil** : Ermöglicht einen CSV-export historischer Daten.
+-   **Pfeil** : Ermöglicht einen CSV-Export historischer Daten.
 
 Inkonsistente Wertentfernung 
 =================================
@@ -163,7 +163,7 @@ gewünschte Befehle oder Szenarien :
 -   **Szenario** : entweder direkt auf der Szenarioseite oder auf der
     Szenario-Übersichtsseite, um dies in "Masse" zu tun"
 
--   **bestellen** : entweder in der erweiterten Konfiguration des Befehls,
+-   **Bestellen** : entweder in der erweiterten Konfiguration des Befehls,
     entweder in der Konfiguration der Geschichte, um es in "Masse" zu tun"
 
 > **Spitze**
@@ -175,7 +175,7 @@ gewünschte Befehle oder Szenarien :
 Sobald Sie die Nachverfolgung in der Bestellzeitleiste aktiviert haben und
 gewünschten Szenarien können Sie sie auf der Timeline sehen.
 
-> **wichtig**
+> **Wichtig**
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
 > auf der Timeline, bevor sie angezeigt werden.

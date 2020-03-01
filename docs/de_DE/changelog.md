@@ -1,5 +1,5 @@
 
-Changelog
+Änderungsprotokoll
 =========
 
 3.3.40
@@ -24,7 +24,7 @@ Changelog
 3.3.38
 =====
 
-- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internundverbindung. (Wenn Sie jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen jeedom dns im entsprechenden Feld.).
+- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internundverbindung. (Wenn Sie Jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen Jeedom dns im entsprechenden Feld.).
 - Rechtschreibkorrekturen.
 - Sicherheitsupdate
 
@@ -181,10 +181,10 @@ Changelog
 -   Hinzufügen eines integrierten Notizen-Systems (unter Analyse -&gt; Notiz).
 -   Hinzufügung des Begriffs &quot;Tag&quot; auf Geräten (finden Sie in der erweiterten Konfiguration von Geräten).
 -   Hinzufügen eines Verlaufssystems zum Löschen von Aufträgen, Geräten, Objekten, Ansichten, Designs, 3D-Designs, Szenarien und Benutzern.
--   Hinzufügen der Aktion jeedom_reboot, um einen Neustart von Jeedom zu starten.
+-   Hinzufügen der Aktion Jeedom_reboot, um einen Neustart von Jeedom zu starten.
 -   Option im Cron-Generierungsfenster hinzufügen.
 -   Eine Nachricht wird jundzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
--   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
+-   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von Jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
 -   Hinzufügen einer Schaltfläche zum Aktualisieren der Nachrichten des Nachrichtencenters.
 -   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...)..
 -   Hinzufügen einer Aktion &quot;Auf Null des IS zurücksundzen&quot; in den Szenarien
@@ -206,7 +206,7 @@ Changelog
 -   Möglichkeit, ein Element aus der Entwurfskonfiguration zu löschen
 -   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht)
 -   Szenario-Widgunds werden jundzt standardmäßig im Dashboard angezeigt
--   Ändern Sie die Tonhöhe der Widgunds um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widgund-Registerkarte zurücksundzen).
+-   Ändern Sie die Tonhöhe der Widgunds um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von Jeedom, Widgund-Registerkarte zurücksundzen).
 -   Möglichkeit, den Szenarien ein Symbol hinzuzufügen
 -   Hinzufügen der Daemon-Verwaltung in der Task-Engine
 -   Hinzufügen der Funktion color_gradient in den Szenarien
@@ -305,7 +305,7 @@ Changelog
 3.2.2
 =====
 
--   Entfernung des alten Widgund-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendund, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel-Widgund [hier] (https://github.com/jeedom/core/tree/bunda/core/template/Armaturenbrundt)
+-   Entfernung des alten Widgund-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendund, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel-Widgund [hier] (https://github.com/Jeedom/core/tree/bunda/core/template/Armaturenbrundt)
 -   Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren
 
 -   Benutzer können jundzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
@@ -562,7 +562,7 @@ Changelog
 -   Fähigkeit bei Befehlen, den Namen und das Symbol anzuzeigen
 
 -   Hinzufügen einer &quot;Alarm&quot; -Aktion für Szenarien : Nachricht in
-    jeedom
+    Jeedom
 
 -   Hinzufügen einer &quot;Popup&quot; -Aktion für Szenarien : Nachricht zu validieren
 
@@ -766,7 +766,7 @@ Changelog
 
 -   Optimierung des Update-Prozesses
 
--   Standardisierung der tmp jeedom, jundzt ist alles in / tmp / jeedom
+-   Standardisierung der tmp Jeedom, jundzt ist alles in / tmp / Jeedom
 
 -   Möglichkeit, ein Diagramm der verschiedenen Verknüpfungen eines Szenarios zu erstellen,
     Ausrüstung, Objekt, Befehl oder Variable
@@ -914,8 +914,8 @@ Changelog
     / tmp ist zu klein (Vorsicht, die Korrektur wird bei wirksam
     Update n + 1)
 
--   Hinzufügen eines * jeedom \ _name * -Tags in den Szenarien (gibt den Namen an
-    jeedom)
+-   Hinzufügen eines * Jeedom \ _name * -Tags in den Szenarien (gibt den Namen an
+    Jeedom)
 
 -   Fehlerbehebungen
 
@@ -956,7 +956,7 @@ Changelog
     FTP-Server und Wiederherstellungs-Plugins)
 
 -   Ergänzung für bestimmte &quot;Repo&quot; der Möglichkeit der Wiederherstellung des Kerns von
-    jeedom
+    Jeedom
 
 -   Hinzufügen automatischer Codundests (danke @ kwizer15)
 
@@ -1003,7 +1003,7 @@ Changelog
 -   Möglichkeit zum Konfigurieren der Transparenz von Widgunds
 
 -   Jeedom \ _poweroff-Aktion in Szenarien zum Stoppen hinzugefügt
-    jeedom
+    Jeedom
 
 -   Rückkehr des Aktionsszenarios \ _rundurn, um zu a zurückzukehren
     Interaktion (oder andere) aus einem Szenario

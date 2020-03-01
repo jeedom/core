@@ -8,7 +8,7 @@ Es ist über Home → Design zugänglich
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
-> **wichtig**
+> **Wichtig**
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken
 > um es gut im Design zu machen. Während der Erstellung ist es daher notwendig,
@@ -26,7 +26,7 @@ folgende Aktionen :
 
 -   **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu
 
--   **Fügen Sie Text / HTML hinzu** : Ermöglicht das Hinzufügen von Text oder Code
+-   **Fügen Sie Text / HTML hinzu** : Ermöglicht das Hinzufügen von Text oder CODE
     html / javascript
 
 -   **Szenario hinzufügen** : Fügen Sie ein Szenario hinzu
@@ -54,7 +54,7 @@ folgende Aktionen :
 
 -   **Anzeigen**
 
-    -   **keine** : Zeigt kein Raster an
+    -   **Keine** : Zeigt kein Raster an
 
     -   **10x10** : Zeigt ein 10 x 10-Raster an
 
@@ -80,10 +80,10 @@ folgende Aktionen :
 
 -   **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration
 
--   **speichern** : ermöglicht das Speichern des Design (Aufmerksamkeit gibt es
+-   **Speichern** : ermöglicht das Speichern des Design (Aufmerksamkeit gibt es
     auch automatische Sicherungen bei bestimmten Aktionen)
 
-> **wichtig**
+> **Wichtig**
 >
 > Die Konfiguration der Gestaltungselemente erfolgt durch Klicken auf
 > diese.
@@ -103,7 +103,7 @@ Hier gefunden :
     -   **Hintergrundfarbe** : Design Hintergrundfarbe (weiß
         standardmäßig)
 
-    -   **Code** : Zugriffscode für Ihr Design (falls leer, kein Code
+    -   **CODE** : Zugriffscode für Ihr Design (falls leer, kein CODE
         wird nicht angefordert)
 
     -   **Symbol** : Ein Symbol dafür (erscheint im Menü
@@ -111,7 +111,7 @@ Hier gefunden :
 
     -   **Bild**
 
-        -   **send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
+        -   **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
 
         -   **Bild löschen** : Bild löschen
 
@@ -216,11 +216,11 @@ Text / html
 
 -   **Fett** : fetter Text
 
--   **Text** : Text im HTML-Code, der sich im Element befindet
+-   **Text** : Text im HTML-CODE, der sich im Element befindet
 
-> **wichtig**
+> **Wichtig**
 >
-> Seien Sie vorsichtig, wenn Sie HTML-Code (insbesondere Javascript) eingeben
+> Seien Sie vorsichtig, wenn Sie HTML-CODE (insbesondere Javascript) eingeben
 > um es vorher zu überprüfen, weil Sie können, wenn es einen Fehler darin gibt
 > oder wenn es eine Jeedom-Komponente überschreibt, die das Design vollständig zum Absturz bringt und
 > Alles was Sie tun müssen, ist es direkt aus der Datenbank zu löschen
@@ -277,7 +277,7 @@ Erweiterte Konfiguration
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe
 Dokumentation Zusammenfassung der Hausautomation (&quot;Anzeige&quot;))
 
-bestellen 
+Bestellen 
 ========
 
 Anzeigeeinstellungen 
@@ -324,7 +324,7 @@ auf dem Gebiet
 ### Binäres Makro 
 
 In diesem Modus führt Jeedom die Ein- oder Ausschaltaktion (en) in aus
-abhängig vom Status der Bestellung, die Sie geben. ex : wenn die Bestellung
+abhängig vom Status der Bestellung, die Sie geben. Ex : wenn die Bestellung
 ist 0 wert, dann führt Jeedom die Aktion (en) aus. Andernfalls wird sie ausgeführt
 die Aktion (en) Aus
 

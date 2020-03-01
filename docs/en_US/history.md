@@ -1,6 +1,6 @@
-Important part in software : the historization part, real
+IMPORTANT part in software : the historization part, real
 memory of it. It is possible in Jeedom to historize any
-which information type command (binary or digital). this will
+which information type command (binary or digital). This will
 will therefore allow for example to historicize a temperature curve,
 consumption or door openings…
 
@@ -13,7 +13,7 @@ or want to change the settings for
 historicization. The default settings are suitable for most
 case.
 
-archiving 
+Archiving 
 ---------
 
 Data archiving allows Jeedom to reduce the amount of data
@@ -40,7 +40,7 @@ when to do it (by default, these are packages
 > to avoid consuming resources unnecessarily, the task that makes
 > archiving takes place only once a day, in the evening.
 
-> **Important**
+> **IMPORTANT**
 >
 > Of course, this archiving principle only applies to orders from
 > digital type; on binary type commands, Jeedom does not keep
@@ -93,7 +93,7 @@ Once a data is activated, you can choose :
 
 -   **Color** : the color of the curve.
 
--   **Type** : the type of graph (area, line or column).
+-   **Vérifier dans la page Santé que la configuration réseau interne du** : the type of graph (area, line or column).
 
 -   **Ladder** : since you can put several curves (data)
     on the same graph, it is possible to distinguish the scales
@@ -151,7 +151,7 @@ question, by clicking on it directly on the graph; of
 more, you can set the minimum and maximum allowed so
 avoid future problems.
 
-timeline 
+Timeline 
 ========
 
 The timeline displays certain events in your home automation in the form
@@ -175,7 +175,7 @@ desired commands or scenarios :
 Once you&#39;ve enabled tracking in the order timeline and
 desired scenarios, you can see them appear on the timeline.
 
-> **Important**
+> **IMPORTANT**
 >
 > You have to wait for new events after activating tracking
 > on the timeline before seeing them appear.

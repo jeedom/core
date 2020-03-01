@@ -45,7 +45,7 @@ How long does a backup take ?
 
 There is no standard duration, it depends on the system and the volume of
 data to be backed up, but it may take more than 5 minutes, that’s
-normal.
+Normal.
 
 Is there a dedicated mobile app ? 
 ========================================
@@ -76,7 +76,7 @@ Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-
 - Username : "jeedom ", password : "Mjeedom96"
 - Or what you put in the installation if you are in DIY
 
-Note that when you write the password you will not see anything written on the screen it&#39;s normal.
+Note that when you write the password you will not see anything written on the screen it&#39;s Normal.
 
 How to reset rights ? 
 ====================================
@@ -154,7 +154,7 @@ These must be reset :
 bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9&#39; | head -c 15)
 echo &quot;DROP USER &#39;jeedom&#39; @ &#39;localhost&#39;&quot; | mysql -uroot -p
 echo &quot;CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;&quot; | mysql -uroot -p
-echo &quot;GRANT ALL PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
+echo &quot;GRANT All PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # PASSWORD # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -203,7 +203,7 @@ left in the tree (you can configure it in your profile).
 I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock' 
 ====================================================================================================================================
 
-This is due to MySQL which stopped, it is not normal, the cases
+This is due to MySQL which stopped, it is not Normal, the cases
 currents are :
 
 -   Lack of space on the file system (can be checked by
@@ -231,9 +231,9 @@ Or consult the log : /var/log/mysql/error.log
 The Shutdown / Restart buttons do not work 
 ===================================================
 
-On a DIY installation it&#39;s normal. In SSH, you have to order
-visudo and at the end of the file you have to add : www-data ALL = (ALL)
-NOPASSWD: ALL.
+On a DIY installation it&#39;s Normal. In SSH, you have to order
+visudo and at the end of the file you have to add : www-data All = (All)
+NOPASSWD: All.
 
 ``` {.bash}
 sudo service apache2 restart

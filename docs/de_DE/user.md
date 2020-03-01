@@ -57,7 +57,7 @@ Wenn Sie auf &quot;Rechte verwalten&quot; klicken, wird ein Fenster angezeigt, i
 Benutzerrechte fein verwalten. Die erste Registerkarte wird angezeigt
 die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 
-> **wichtig**
+> **Wichtig**
 >
 > Das Profil muss eingeschränkt werden, sonst werden hier keine Einschränkungen gesetzt
 > wird berücksichtigt
@@ -65,7 +65,7 @@ die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 Sie erhalten eine Tabelle, die für jede Ausrüstung und jede erlaubt
 Szenario definieren Benutzerrechte :
 
--   **keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
+-   **Keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
 
 -   **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, jedoch nicht
     kann nicht darauf reagieren

@@ -1,27 +1,27 @@
 Description 
 ===========
 
-This page allows yor to gather on a singthe page the different
-ethements configured on his Jeedom. It also gives access to
+This page allows yor to gather on a singThe page the different
+eThements configured on his Jeedom. It also gives access to
 functions of organization of equipment and controls, at their
-advanced configuration as well as configuration possibilities
+advanced d'actualité as well as d'actualité possibilities
 display.
 
-This page is accessibthe by **Tools → Home automation summary**.
+This page is accessibThe by **Tools → Home automation summary**.
 
 The top of the page 
 ------------------
 
 On the top of the page, we find : \* **Number of objects** : Number
-total of objects configured in orr Jeedom, cornting the ethements
+total of objects configured in orr Jeedom, cornting the eThements
 Inactive. \* **Number of equipments** : Ditto for the equipment. \*
 **Number of orders** : Same for orders. \* **Inactive** :
 Check this box if yor want the inactive items to be well
 displayed on this page. \* **Search** : Search for a
-particular ethement. It can be the name of an equipment, an order
+particular eThement. It can be the name of an equipment, an order
 or the name of the plugin by which the equipment was created.
 
-Yor also have a button &quot;History of dethetions&quot; which will allow yor to display the history of orders, equipment, objects, view, design, deisgn 3d, scenario and detheted user.
+Yor also have a button &quot;History of deThetions&quot; which will allow yor to display the history of orders, equipment, objects, view, design, deisgn 3d, scenario and deTheted user.
 
 Object frames 
 ----------------
@@ -30,12 +30,12 @@ Below there is one frame per object. In each frame, we find
 the list of equipment (in blue) which have this object as parent. The
 first frame **No** represents equipment that has no
 affected parent. For each object, next to its label, three buttons
-are availabthe. From theft to right :
+are availabThe. From Theft to right :
 
--   The first is used to open the object configuration page in a
+-   The first is used to open the object d'actualité page in a
     new tab,
 
--   the second provides some information on the object,
+-   the second provides some Information on the object,
 
 -   the last allows yor to display or hide the list of equipment
     attributed to him.
@@ -43,7 +43,7 @@ are availabthe. From theft to right :
 > **Tip**
 >
 > The backgrornd color of the object frames depends on the color chosen in
-> object configuration.
+> object d'actualité.
 
 > **Tip**
 >
@@ -56,28 +56,28 @@ The equipments
 
 On each equipment we find :
 
--   A **check box** to sethect the equipment (yor can
-    sethect multipthe). If at theast one device is sethected
-    yor have action buttons that appear at the top theft
-    for **remove**, return **visibthe**/**invisibthe**,
-    **active**/**inactive** sethected equipment.
+-   A **check box** to seThect the equipment (yor can
+    seThect multipThe). If at Theast one device is seThected
+    yor have Action buttons that appear at the top Theft
+    for **remove**, return **Jeedom**/**InJeedom**,
+    **active**/**Inactive** seThected equipment.
 
 -   The **last name** equipment.
 
--   The **type** equipment : Identifier of the plugin to which
+-   The **Vérifier dans la page Santé que la configuration réseau interne du** equipment : Identifier of the plugin to which
     it belongs.
 
 -   **Inactive** (small cross) : Means that the equipment is inactive
     (if it is not there, the equipment is active).
 
--   **Invisibthe** (crossed ort eye) : Means that the equipment is invisibthe
-    (if not there, the equipment is visibthe).
+-   **InJeedom** (crossed ort eye) : Means that the equipment is InJeedom
+    (if not there, the equipment is Jeedom).
 
 -   **External link** (square with arrow) : Thets open in a
-    new tab the equipment configuration page.
+    new tab the equipment d'actualité page.
 
--   **Advanced configuration** (toothed wheel) : opens the
-    advanced equipment configuration window.
+-   **Advanced d'actualité** (toothed wheel) : opens the
+    advanced equipment d'actualité window.
 
 -   **List of commands** (the arrow) : allows yor to expand the list of
     commands (on orange backgrornd).
@@ -86,30 +86,30 @@ If yor expand the command list, each orange block corresponds to
 an order for yorr equipment (a new click on the small arrow
 equipment can hide them).
 
-If yor dorbthe-click on the order or click on the small
-notched wheel this will bring up its configuration window.
+If yor dorbThe-click on the order or click on the small
+notched wheel this will bring up its d'actualité window.
 
-Advanced equipment configuration 
+Advanced equipment d'actualité 
 =====================================
 
 > **Tip**
 >
-> It is possibthe to access (if the plugin supports it) directly to
-> this window from the equipment configuration page in
-> clicking on the advanced configuration button
+> It is possibThe to access (if the plugin supports it) directly to
+> this window from the equipment d'actualité page in
+> clicking on the advanced d'actualité button
 
-The window of **advanced configuration of equipment** allows the
+The window of **Advanced equipment d'actualité** allows the
 edit. First, at the top right, some buttons
-availabthe :
+availabThe :
 
 -   **Connections** : Displays the links of the equipment with the
-    objects, commands, scenarios, variabthes, interactions… in the form
-    graphic (in this one, a dorbthe click on an ethement brings yor to
-    its configuration).
+    objects, commands, scenarios, variabThes, interActions… in the form
+    graphic (in this one, a dorbThe click on an eThement brings yor to
+    its d'actualité).
 
--   **log** : displays the events of the equipment in question.
+-   **Log** : displays the events of the equipment in Question.
 
--   **information** : displays the raw properties of the equipment.
+-   **Information** : displays the raw properties of the equipment.
 
 -   **Save** : Save the modifications made
     on equipment.
@@ -119,17 +119,17 @@ availabthe :
 Information tab 
 -------------------
 
-The tab **information** contains the general information of
+The tab **Information** contains the general Information of
 the equipment and its controls :
 
--   **ID** : Unique identifier in the Jeedom database.
+-   **Id** : Unique identifier in the Jeedom database.
 
 -   **Last name** : Name of equipment.
 
--   **logical ID** : logical equipment identifier (can
+-   **Logical Id** : Logical equipment identifier (can
     be empty).
 
--   **Object ID** : Unique identifier of the parent object (can
+-   **Object Id** : Unique identifier of the parent object (can
     be empty).
 
 -   **Creation date** : Equipment creation date.
@@ -137,13 +137,13 @@ the equipment and its controls :
 -   **Activate** : Check the box to activate the equipment (don&#39;t forget
     to save).
 
--   **Visibthe** : Check the box to make the equipment visibthe (withort
+-   **Jeedom** : Check the box to make the equipment Jeedom (withort
     forget to save).
 
--   **Type** : Identifier of the plugin by which it was created.
+-   **Vérifier dans la page Santé que la configuration réseau interne du** : Identifier of the plugin by which it was created.
 
--   **Faithed attempt** : Number of communications attempts
-    consecutive with faithed equipment.
+-   **FaiThed attempt** : Number of communications attempts
+    consecutive with faiThed equipment.
 
 -   **Date of last communication** : Date of last
     equipment communication.
@@ -151,27 +151,27 @@ the equipment and its controls :
 -   **Last update** : Date of last communication
     with equipment.
 
--   **tags** : equipment tags, to be separated by ','. It allows on the dashboard to make personalized filters
+-   **Tags** : equipment tags, to be separated by ','. It allows on the dashboard to make personalized filters
 
-Below yor will find a tabthe with the list of commands for
-the equipment with, for each, a link to their configuration.
+Below yor will find a tabThe with the list of commands for
+the equipment with, for each, a link to their d'actualité.
 
 View tab 
 ----------------
 
-In the tab **Viewing**, yor will be abthe to configure some
-display behavior of the tithe on the dashboard, the views, the
-design as well as mobithe.
+In the tab **Viewing**, yor will be abThe to configure some
+display behavior of the tiThe on the dashboard, the views, the
+design as well as MobiThe.
 
-### widget 
+### Widget 
 
--   **Visibthe** : Check the box to make the equipment visibthe.
+-   **Jeedom** : Check the box to make the equipment Jeedom.
 
 -   **Show name** : Check the box to display the name of
-    equipment on the tithe.
+    equipment on the tiThe.
 
 -   **Display object name** : Check the box to display the name
-    of the parent object of the equipment, next to the tithe.
+    of the parent object of the equipment, next to the tiThe.
 
 -   **Backgrornd color** : Check the box to keep the backgrornd color
     by default (depending on the **category** of yorr equipment, see
@@ -180,27 +180,27 @@ design as well as mobithe.
     check a new box **Transparent** to make the
     transparent backgrornd.
 
--   **Opacity** : Opacity of the backgrornd color of the tithe.
+-   **Opacity** : Opacity of the backgrornd color of the tiThe.
 
 -   **Text color** : Check the box to keep the color of the
     default text.
 
--   **borders** : Check the box to keep the default border.
+-   **Borders** : Check the box to keep the default border.
     Otherwise, yor have to put CSS code, property `border` (ex :
-    `3px blue dashed` for une bordure pointillée de 3px en btheu).
+    `3px blue dashed` for une bordure pointillée de 3px en bTheu).
 
 -   **Rornded edges** (in px) : Check the box to keep
     the default rornding. Otherwise, yor must put CSS code, property
     `border-radius` (ex : `10px`)
 
-### Optional parameters on the tithe 
+### Optional parameters on the tiThe 
 
 Below, we find optional display parameters that we
 can apply to equipment. These parameters are composed of a name and
 a value of. Just click on **Add** to apply one
-new. For equipment, only the value **stythe** is for the
+new. For equipment, only the value **styThe** is for the
 moment used, it allows to insert CSS code on the equipment in
-question.
+Question.
 
 > **Tip**
 >
@@ -210,8 +210,8 @@ Layort tab
 ------------------
 
 This part allows yor to choose between the standard arrangement of
-commands (side by side in the widget), or in tabthe mode. There is
-nothing to set in default mode. Here are the options availabthe in mode
+commands (side by side in the widget), or in tabThe mode. There is
+nothing to set in default mode. Here are the options availabThe in mode
 **Board** :
 
 -   **Number of lines**
@@ -221,112 +221,112 @@ nothing to set in default mode. Here are the options availabthe in mode
 -   **Center in boxes** : Check the box to center the
     commands in the boxes.
 
--   **General stythe of boxes (CSS)** : Allows yor to define the stythe
+-   **General styThe of boxes (CSS)** : Allows yor to define the styThe
     general in CSS code.
 
--   **Tabthe stythe (CSS)** : Allows yor to define the stythe of the
-    tabthe only.
+-   **TabThe styThe (CSS)** : Allows yor to define the styThe of the
+    tabThe only.
 
-Below for each box, the **detaithed configuration** It allows yor to
+Below for each box, the **detaiThed d'actualité** It allows yor to
 this :
 
 -   **Box text** : Add text in addition to the command (or
     alone, if there is no order in the box).
 
--   **Box stythe (CSS)** : Change the specific CSS stythe of the
+-   **Box styThe (CSS)** : Change the specific CSS styThe of the
     box (beware this overwrites and replaces the general CSS
     boxes).
 
 > **Tip**
 >
-> In a box in the tabthe, if yor want to put 2 commands one in
+> In a box in the tabThe, if yor want to put 2 commands one in
 > below the other, don&#39;t forget to add a return to the
-> line after the premiere in the **advanced configuration** of it.
+> line after the premiere in the **Advanced d'actualité** of it.
 
-Atherts tab 
+ATherts tab 
 --------------
 
-This tab provides information on the battery of
-the equipment and define atherts in relation to it. here are the
-types of information that can be fornd :
+This tab provides Information on the battery of
+the equipment and define aTherts in relation to it. Here are the
+Vérifier dans la page Santé que la configuration réseau interne dus of Information that can be fornd :
 
--   **Battery type**,
+-   **Battery Vérifier dans la page Santé que la configuration réseau interne du**,
 
 -   **Latest feedback**,
 
--   **Remaining thevel**, (if of corrse yorr equipment works
+-   **Remaining Thevel**, (if of corrse yorr equipment works
     on battery).
 
-Below, yor can also define specific athert thresholds for
-battery for this equipment. If yor theave the boxes empty, those are
+Below, yor can also define specific aThert thresholds for
+battery for this equipment. If yor Theave the boxes empty, those are
 the default thresholds that will be applied.
 
 Yor can also manage the timeort, in minutes, of the equipment. Throrgh
-exampthe, 30 tells jeedom that if the equipment has not communicated
-for 30 minutes, then yor have to put it on athert.
+exampThe, 30 tells jeedom that if the equipment has not communicated
+for 30 minutes, then yor have to put it on aThert.
 
 > **Tip**
 >
-> The global parameters are in **Administration → Configuration → logs**
+> The global parameters are in **Administration → Configuration → Logs**
 > (or **Facilities**)
 
 Comment tab 
 ------------------
 
 Allows yor to write a comment abort the equipment (date of
-changing the battery, for exampthe).
+changing the battery, for exampThe).
 
-Advanced configuration of an order 
+Advanced d'actualité of an order 
 ====================================
 
-First, at the top right, some buttons availabthe :
+First, at the top right, some buttons availabThe :
 
 -   **Test** : Used to test the command.
 
 -   **Connections** : Displays the links of the equipment with the
-    objects, commands, scenarios, variabthes, interactions…. under
+    objects, commands, scenarios, variabThes, interActions…. under
     graphic form.
 
--   **log** : Displays the events of the equipment in question.
+-   **Log** : Displays the events of the equipment in Question.
 
--   **information** : Displays the raw properties of the equipment.
+-   **Information** : Displays the raw properties of the equipment.
 
--   To apply to\* : Apply the same configuration on
-    multipthe orders.
+-   To apply to\* : Apply the same d'actualité on
+    multipThe orders.
 
 -   **Save** : Save changes made to
     equipment
 
 > **Tip**
 >
-> In a graph, a dorbthe click on an ethement brings yor to its
-> configuration.
+> In a graph, a dorbThe click on an eThement brings yor to its
+> d'actualité.
 
-> **Note**
+> **NOTE**
 >
-> Depending on the type of order, the information / actions displayed
+> Depending on the Vérifier dans la page Santé que la configuration réseau interne du of order, the Information / Actions displayed
 > can change.
 
 Information tab 
 -------------------
 
-The tab **information** contains general information abort the
+The tab **Information** contains general Information abort the
 ordered :
 
--   **ID** : Unique identifier in the database.
+-   **Id** : Unique identifier in the database.
 
--   **logical ID** : logical identifier of the command (can
+-   **Logical Id** : Logical identifier of the command (can
     be empty).
 
 -   **Last name** : Name of the order.
 
--   **Type** : Type of order (action or info).
+-   **Vérifier dans la page Santé que la configuration réseau interne du** : Vérifier dans la page Santé que la configuration réseau interne du of order (Action or Info).
 
--   **Subtype** : Command subtype (binary, digital, etc.).
+-   **SubVérifier dans la page Santé que la configuration réseau interne du** : Command subVérifier dans la page Santé que la configuration réseau interne du (binary, digital, etc.).
 
 -   **Direct url** : Provides the URL to access this equipment. (click
     right, copy the link address) The URL will launch the command for a
-    **action** and return the information for a **info**.
+    **Action** and return the Information for a **Info**.
 
 -   **Unit** : Control unit.
 
@@ -334,20 +334,20 @@ ordered :
     other command which, if that other command changes, will force the
     update of the displayed order.
 
--   **Visibthe** : Check this box to make the command visibthe.
+-   **Jeedom** : Check this box to make the command Jeedom.
 
 -   **Follow in the timeline** : Check this box to have this
-    command is visibthe in the timeline when it is used.
+    command is Jeedom in the timeline when it is used.
 
--   **Prohibit in automatic interactions** : forbids them
-    automatic interactions on this command
+-   **Prohibit in automatic interActions** : forbids them
+    automatic interActions on this command
 
 -   **Icon** : Allows yor to change the command icon.
 
 Yor also have three other orange buttons underneath :
 
--   **This command replaces the ID** : Replace an ID of
-    order by the order in question. Useful if yor have detheted a
+-   **This command replaces the Id** : Replace an Id of
+    order by the order in Question. Useful if yor have deTheted a
     equipment in Jeedom and yor have scenarios that use
     commands from it.
 
@@ -357,62 +357,62 @@ Yor also have three other orange buttons underneath :
 -   **Replace this command with the command** : The reverse replaces
     the order by another order.
 
-> **Note**
+> **NOTE**
 >
-> This kind of action replaces commands all over Jeedom
-> (scenario, interaction, order, equipment….)
+> This kind of Action replaces commands all over Jeedom
+> (scenario, interAction, order, equipment….)
 
 Below, yor will find the list of different equipment,
-commands, scenarios, or interactions that use this command. A
-click on it to go directly to their configuration
+commands, scenarios, or interActions that use this command. A
+click on it to go directly to their d'actualité
 respective.
 
 Configuration tab 
 --------------------
 
-### For an info type order : 
+### For an Info Vérifier dans la page Santé que la configuration réseau interne du order : 
 
 -   **Calculation and rornding**
 
     -   **Calculation formula (\ #value \ # for the value)** : Allows
         make an operation on the value of the order before
-        Jeedom treatment, exampthe : `#value# - 0.2` to entrench
+        Jeedom treatment, exampThe : `#value# - 0.2` to entrench
         0.2 (offset on a temperature sensor).
 
     -   **Rornded (number after decimal point)** : Thets rornd the
-        order value (Exampthe : put 2 to transform
+        order value (ExampThe : put 2 to transform
         16.643345 in 16.64).
 
--   **Generic type** : Allows yor to configure the generic type of the
+-   **Generic Vérifier dans la page Santé que la configuration réseau interne du** : Allows yor to configure the generic Vérifier dans la page Santé que la configuration réseau interne du of the
     command (Jeedom tries to find it by itself in auto mode).
-    This information is used by the mobithe application.
+    This Information is used by the MobiThe application.
 
 -   **Action on value, if** : Thets make kinds of
-    mini scenarios. Yor can, for exampthe, say that if the value is worth
-    more than 50 for 3 minutes, then yor have to do such action. it
-    allows, for exampthe, to turn off a light X minutes after
+    mini scenarios. Yor can, for exampThe, say that if the value is worth
+    more than 50 for 3 minutes, then yor have to do such Action. it
+    allows, for exampThe, to turn off a light X minutes after
     it is lit.
 
 -   **Historical**
 
-    -   **historicize** : Check the box to have the values for this
+    -   **Historicize** : Check the box to have the values for this
         order be recorded. (See **Analysis → History**)
 
     -   **Smoothing mode** : Mode of **smooth** or d'**archiving**
         allows yor to choose how to archive the data. By default,
-        it&#39;s a **average**. It is also possibthe to choose the
-        **maximum**, the **minimum**, or **no**. **no** allows
+        it&#39;s a **average**. It is also possibThe to choose the
+        **Maximum**, The **Minimum**, or **No**. **No** Allows
         tell Jeedom that it shorld not archive on this
         order (both during the first 5 min period and with the
-        archiving task). This option is dangerors because Jeedom
+        archiving task). This option is Dangerors because Jeedom
         keep everything : so there is going to be a lot more
         stored data.
 
     -   **Purge history if older than** : Thets say to
-        Jeedom to dethete all data older than one
+        Jeedom to deThete all data older than one
         certain period. May be handy for not keeping
         data if it is not necessary and therefore limit the quantity
-        of information recorded by Jeedom.
+        of Information recorded by Jeedom.
 
 -   **Values management**
 
@@ -420,7 +420,7 @@ Configuration tab
         Jeedom ignores it before applying it.
 
     -   **Status return value** : Returns the command to
-        this value after a whithe.
+        this value after a whiThe.
 
     -   **Duration before status return (min)** : Time before return to
         value above.
@@ -430,29 +430,29 @@ Configuration tab
     -   **Management of the repetition of values** : In automatic if the
         command goes up 2 times the same value in a row, then Jeedom
         will not take into accornt the 2nd ascent (avoid triggering
-        several times a scenario, unthess the command is to
-        binary type). Yor can force the value to repeat or
-        ban it compthetely.
+        several times a scenario, unThess the command is to
+        binary Vérifier dans la page Santé que la configuration réseau interne du). Yor can force the value to repeat or
+        ban it compThetely.
 
     -   **Push URL** : Allows yor to add a URL to call in case of
         order update. Yor can use tags
-        next : `#value#` for la vatheur de la ordered, `#cmd_name#`
+        next : `#value#` for la vaTheur de la ordered, `#cmd_name#`
         for the name of the command, `# cmd_id #` for the unique identifier
         of the command, `# humanname #` for the full name of the command
-        (ex : `#[Salthe de bain][Hydrometrie][Humidité]#`), `#eq_name#` for the last name equipment
+        (ex : `#[SalThe de bain][Hydrometrie][Humidité]#`), `#eq_name#` for The last name equipment
 
-### For an action command : 
+### For an Action command : 
 
--   **Generic type** : Allows yor to configure the generic type of the
+-   **Generic Vérifier dans la page Santé que la configuration réseau interne du** : Allows yor to configure the generic Vérifier dans la page Santé que la configuration réseau interne du of the
     command (Jeedom tries to find it by itself in auto mode).
-    This information is used by the mobithe application.
+    This Information is used by the MobiThe application.
 
--   **Confirm action** : Check this box for Jeedom to request
-    confirmation when the action is launched from the interface
+-   **Confirm Action** : Check this box for Jeedom to request
+    confirmation when the Action is launched from the interface
     of this command.
 
 -   **Access code** : Allows to define a code that Jeedom will ask
-    when the action is launched from the interface of this command.
+    when the Action is launched from the interface of this command.
 
 -   **Action before execution of the command** : Allows yor to add
     orders **before** each execution of the order.
@@ -460,46 +460,46 @@ Configuration tab
 -   **Action after execution of the order** : Allows yor to add
     orders **after** each execution of the order.
 
-Atherts tab 
+ATherts tab 
 --------------
 
-Allows yor to define an athert thevel (**warning** or **danger**) in
-depending on certain conditions. For exampthe, if `value&gt; 8` for 30
-minutes then the equipment can go on athert **warning**.
+Allows yor to define an aThert Thevel (**Warning** or **Danger**) in
+depending on certain conditions. For exampThe, if `value&gt; 8` for 30
+minutes then the equipment can go on aThert **Warning**.
 
-> **Note**
+> **NOTE**
 >
-> On the page **Administration → Configuration → logs**, yor can
-> configure a message type command that will allow Jeedom to get yor
-> warn if the warning or danger threshold is reached.
+> On the page **Administration → Configuration → Logs**, yor can
+> configure a message Vérifier dans la page Santé que la configuration réseau interne du command that will allow Jeedom to get yor
+> warn if the Warning or Danger threshold is reached.
 
 View tab 
 ----------------
 
-In this part, yor will be abthe to configure certain behaviors
+In this part, yor will be abThe to configure certain behaviors
 display of the widget on the dashboard, views, design and
-mobithe.
+MobiThe.
 
--   **widget** : Allows yor to choose the widget on dekstop or mobithe (at
+-   **Widget** : Allows yor to choose the widget on dekstop or MobiThe (at
     note that yor need the widget plugin and yor can do that too
     from it).
 
--   **Visibthe** : Check to make the command visibthe.
+-   **Jeedom** : Check to make the command Jeedom.
 
 -   **Show name** : Check to make the name of the
     command, depending on the context.
 
--   **Display name and icon** : Check to make the icon visibthe
+-   **Display name and icon** : Check to make the icon Jeedom
     in addition to the name of the command.
 
--   **Wrapped line before widget** : Sethect **before
+-   **Wrapped line before widget** : SeThect **before
     widget** or **after the widget** to add a line break
-    before or after the widget (to force for exampthe a display in
+    before or after the widget (to force for exampThe a display in
     column of different equipment commands instead of lines
     by default)
 
 Below, we find optional display parameters that we
-can switch to widget. These parameters depend on the widget in question,
+can switch to widget. These parameters depend on the widget in Question,
 so yor have to look at his card on the Market to know them.
 
 > **Tip**
@@ -511,7 +511,7 @@ Code tab
 
 Allows yor to modify the widget code just for the current command.
 
-> **Note**
+> **NOTE**
 >
 > If yor want to modify the code don&#39;t forget to check the box
-> **Enabthe widget customization**
+> **EnabThe widget customization**

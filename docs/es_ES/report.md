@@ -8,7 +8,7 @@ Puede hacer esto en vistas, diseño, página de panel....
 
 Se activa desde una secuencia de comandos con el comando de informe, puede elegir que se le envíe este informe mediante un comando de mensaje (correo electrónico, telegrama, etc.)
 
-# un
+# Un
 
 Su un es muy simple, selecciona si quieres ver :
 
@@ -19,7 +19,7 @@ Su un es muy simple, selecciona si quieres ver :
 
 Luego selecciona el nombre del informe en cuestión y verá todas las fechas de los informes en la memoria
 
-> **importante**
+> **Importante**
 >
 > La eliminación automática se realiza de forma predeterminada para informes de más de 30 días (puede configurar este período en la configuración de Jeedom)
 

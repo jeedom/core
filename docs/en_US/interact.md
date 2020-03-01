@@ -8,17 +8,17 @@ These orofrs can be obtained by :
 
 -   Cat : Telegram, Slack, andc.
 
--   vocal : dictate a phrase with Siri, Google Now, SARAH, andc. For
+-   Vocal : dictate a phrase with Siri, Google Now, SARAH, andc. For
     launch commands (action) or ask a question (info).
 
--   HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack)
+-   D'informations sont indispensables à la bonne compréhension of : launch an D'informations sont indispensables à la bonne compréhension of URL containing the text (ex. Tasker, Slack)
     to launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
 other systems like smartphone, tabland, other home automation box, andc..
 
 To access the interaction page, go to Tools →
-interactions :
+Interactions :
 
 At the top of the page, there are 3 buttons :
 
@@ -54,7 +54,7 @@ the interaction is not linked to an action but to information or if we
 wish to carry out a specific action after it (it is also
 possible to execute a scenario, to control several commands…).
 
-Configuration 
+D'actualité 
 =============
 
 The configuration page consists of several tabs and
@@ -96,7 +96,7 @@ General
 -   **Authorized users** : limits interaction to certain
     users (logins separated by |).
 
-filters 
+Filters 
 =======
 
 -   **Limit to type commands** : allows to use only the
@@ -124,7 +124,7 @@ filters
     single equipment / module (Jeedom automatically creates the list at
     from the equipment / modules you have).
 
-Action 
+ACTION 
 ======
 
 Use if you want to targand one or more specific commands
@@ -133,7 +133,7 @@ or pass particular paramanofrs.
 Examples 
 ========
 
-> **Note**
+> **NOTE**
 >
 > The screenshots may be different in view of ofvelopments.
 
@@ -152,7 +152,7 @@ living room ceiling light.
 
 We can see, on this capture, the configuration to have a
 interaction linked to a specific action. This action is offined in
-the &quot;Action&quot; part of the page.
+the &quot;ACTION&quot; part of the page.
 
 We can very well imagine doing the same with several actions to
 turn on several lamps in the living room as the following example :
@@ -161,7 +161,7 @@ turn on several lamps in the living room as the following example :
 
 In the 2 examples above, the moofl sentence is iofntical but the
 resulting actions change ofpending on what is configured
-in the &quot;Action&quot; part, we can therefore already with a simple interaction to
+in the &quot;ACTION&quot; part, we can therefore already with a simple interaction to
 single sentence imagine combined actions bandween various commands and
 various scenarios (we can also trigger scenarios in the game
 interaction action).
@@ -293,7 +293,7 @@ coherent thing. However, for the answer, it is **imperative** of
 put only \ #value \ # which represents the 0 or 1 that Jeedom is going to
 replace with the following binary conversion.
 
-Field **binary conversion** must contain 2 answers : first the
+Field **Binary conversion** must contain 2 answers : first the
 response if the value of the command is 0, then a vertical bar "|"
 separation and finally the response if the command is worth 1. Here the
 answers are simply no and yes but we could put a sentence
@@ -330,7 +330,7 @@ We have 2 places to apply a Regexp :
 
 -   in the interaction even in the "Regexp exclusion" field".
 
--   In the Administration → Configuration → interactions menu → &quot;Regexp&quot; field
+-   In the Administration → D'actualité → Interactions menu → &quot;Regexp&quot; field
     general exclusion for interactions".
 
 For the field &quot;General exclusion regex for interactions&quot;, this
@@ -464,7 +464,7 @@ the example answer with &quot;no there is no one in the room
 -   The answer will be &quot;no there is no one in the room&quot; or &quot;yes there is
     someone in the room"
 
--   There is no command which answers that in the Action part seen
+-   There is no command which answers that in the ACTION part seen
     that this is a Multiple commands interaction
 
 -   By adding a regular expression, we can clean up the commands
@@ -542,7 +542,7 @@ So we can see a regexp :
 This allows you to oflanof all orofrs that have one of these
 words in their sentence
 
-> **Note**
+> **NOTE**
 >
 > The regexp here is a simplified version for easy use.
 > So we can either use traditional expressions or
@@ -565,10 +565,10 @@ dimmer to apply the ofsired value. To do this, we have 3 parts
 : \* Request : in which we create a tag that will represent the value
 which will be sent to the interaction. \* Reply : we reuse the tag for
 the answer to make sure Jeedom unofrstood the request correctly.
-\ * Action : we put an action on the lamp that we want to drive and in
+\ * ACTION : we put an action on the lamp that we want to drive and in
 the value we pass our tag * ofposit*.
 
-> **Note**
+> **NOTE**
 >
 > You can use any tag except those already used by
 > Jeedom, there can be several to drive for example
@@ -613,7 +613,7 @@ This is the interaction to do :
 
 Until then nothing very complicated, it must however have configured
 colors in Jeedom to make it work; go to the
-menu → Configuration (top right) then in the section
+menu → D'actualité (top right) then in the section
 "Configuring interactions" :
 
 ![interact024](../images/interact024.png)
@@ -650,7 +650,7 @@ action part, we can of course have several.
 Programming an action with interactions 
 ------------------------------------------------
 
-interactions do a lot of things in particular.
+Interactions do a lot of things in particular.
 You can program an action dynamically. Example : "Put it on
 heating at 10 p.m. for 2:50 p.m.". Nothing could be simpler, just
 to use the tags \ #time \ # (if a precise time is offined) or
@@ -658,7 +658,7 @@ to use the tags \ #time \ # (if a precise time is offined) or
 
 ![interact23](../images/interact23.JPG)
 
-> **Note**
+> **NOTE**
 >
 > You will notice in the response the tag \ #value \ # it contains
 > in the case of a scheduled interaction, the programming time

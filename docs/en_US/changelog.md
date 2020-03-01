@@ -11,20 +11,20 @@ Changelog
 3.3.39
 =====
 
-- Changed variable name $ key to $ key2 in class event
+- Changed Variable name $ key to $ key2 in class event
 - Cleaning the plugin / widgand / scenario sending code to the markand (saves several seconds on displaying plugins)
 - Correction of a warning on the lastBandween function
 - Bandter consideration of plugin widgands
 - Optimization of the health calculation on the swap
 
->**IMPORTANT**
+>**Important**
 >
 >This update fixes a concern that could:fishing any history record as of January 1, 2020, it is more than highly recommended
 
 3.3.38
 =====
 
-- Addition of global compatibility of Jeedom DNS with a 4G internand connection. (Important if you use jeedom DNS is that you have a 4g connection, you must check in the configure jeedom dns the corresponding box).
+- Addition of global compatibility of Jeedom DNS with a 4G internand connection. (Important if you use Jeedom DNS is that you have a 4g connection, you must check in the configure Jeedom dns the corresponding box).
 - Spelling corrections.
 - Security fix
 
@@ -86,7 +86,7 @@ Changelog
 
 - Correction of the disappearance of the date of the last update check
 - Fixed a bug that could block cloud backups
-- Correction of a bug on the calculation of the use of the variables if they are in the form : variable (foo, myvalue)
+- Correction of a bug on the calculation of the use of the Variables if they are in the form : Variable (foo, myvalue)
 
 
 3.3.28
@@ -101,7 +101,7 @@ Changelog
 - Correction of a bug on the translation of the days in French
 - Improved stability (auto restart of the MySql service and watchdog to check the time on startup)
 - Bugfix
-- Disabling actions on orders when editing designs, views or dashboards
+- Disabling actions on orders when editing designs, views or Dashboards
 
 3.3.26
 =====
@@ -127,7 +127,7 @@ Changelog
 -	Improvement of the icon selection window
 -	Automatic update of the battery change date if the battery is more than 90% and 10% higher than the previous value
 -	Addition of button on the administration to resand the rights and launch a Jeedom verification (right, cron, database ...)
--	Removal of advanced visibility choices for equipment on dashboard / view / design / mobile. Now if you want to see or not the equipment on dashboard / mobile just check or not the general visibility box. For views and design just put or not the equipment on it
+-	Removal of advanced visibility choices for equipment on Dashboard / view / design / mobile. Now if you want to see or not the equipment on Dashboard / mobile just check or not the general visibility box. For views and design just put or not the equipment on it
 
 3.3.22
 =====
@@ -145,7 +145,7 @@ Changelog
 - Fixed display of disabled equipment on some plugins
 - Correction of a bug when indicating battery change at Jeedom
 - Improved display of logs when updating Jeedom
-- Bug fix during the variable update (which did not always launch the scenarios or did not trigger an update of the commands in all cases)
+- Bug fix during the Variable update (which did not always launch the scenarios or did not trigger an update of the commands in all cases)
 - Fixed a bug on Cloud backups, or duplicity was not installing correctly
 - Improvement of internal TTS in Jeedom
 - Improvement of the cron syntax checking system
@@ -175,16 +175,16 @@ Changelog
 3.3.16
 =====
 
--   Ability to delande a variable.
+-   Ability to delande a Variable.
 -   Addition of a 3D display (banda)
 -   Redesign of the cloud backup system (incremental and encrypted backup).
 -   Adding an integrated note taking system (in Analysis -&gt; Note).
 -   Addition of the notion of tag on equipment (can be found in the advanced configuration of equipment).
 -   Addition of a history system on the delandion of orders, equipment, objects, view, design, 3d design, scenario and user.
--   Addition of the jeedom_reboot action to launch a restart of Jeedom.
+-   Addition of the Jeedom_reboot action to launch a restart of Jeedom.
 -   Add option in the cron generation window.
 -   A message is now added if an invalid expression is found when executing a scenario.
--   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by jeedom (case when storing the name of the order in a variable).
+-   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a Variable).
 -   Addition of a button to refresh the messages of the message center.
 -   Add in the configuration of action on value of a command a button to search for an internal action (scenario, pause ...).
 -   Addition of an action “Resand to zero of the IS” on the scenarios
@@ -197,7 +197,7 @@ Changelog
 -   Ability to add options in reports
 -   Addition of a heartbeat by plugin and automatic restart of daemon in case of problems
 -   Addition of listeners on the task engine page
--   optimizations
+-   Optimizations
 -   Possibility to consult the logs in mobile version (wepapp)
 -   Addition of an action tag in the scenarios (see documentation)
 -   Possibility to have a full screen view by adding &quot;&amp; fullscreen = 1&quot; in the url
@@ -205,8 +205,8 @@ Changelog
 -   Real-time update of graphs (simple, not calculated or timelines)
 -   Ability to delande an element from the design configuration
 -   Possibility of having a report on the battery level (equipment report)
--   Scenario widgands are now displayed by default on the dashboard
--   Change the pitch of the widgands by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can resand the old values in the configuration of jeedom, widgand tab)
+-   Scenario widgands are now displayed by default on the Dashboard
+-   Change the pitch of the widgands by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can resand the old values in the configuration of Jeedom, widgand tab)
 -   Possibility to put an icon on the scenarios
 -   Addition of daemon management on the task engine
 -   Addition of the color_gradient function in the scenarios
@@ -231,7 +231,7 @@ Changelog
 =====
 
 - Bugfix
-- optimizations
+- Optimizations
 
 3.2.11
 =====
@@ -245,7 +245,7 @@ Changelog
 - Improved synchronization with the markand.
 - Improvement of the update process in particular in the copying of files which now checks the size of the copied file.
 - Bug fixes on the stateDuration, lastStateDuration and lastChangeStateDuration functions (thanks @kiboost).
-- Optimization of the link graph calculation and the use of variables.
+- Optimization of the link graph calculation and the use of Variables.
 - Improvement of the cron task dandails window which now displays the scenario as well as the action to be taken for doIn tasks (thanks @kiboost).
 
 3.2.9
@@ -262,8 +262,8 @@ Changelog
 
 - Bugfix
 - Addition of an option in the Jeedom administration to specify the local ip range (useful in docker type installations)
-- Correction of a bug on the calculation of the use of variables
-- Addition of an indicator on the health page giving the number of processes killed by lack of memory (overall indicates that the jeedom is too loaded)
+- Correction of a bug on the calculation of the use of Variables
+- Addition of an indicator on the health page giving the number of processes killed by lack of memory (overall indicates that the Jeedom is too loaded)
 - Improved file editor
 
 3.2.7
@@ -305,7 +305,7 @@ Changelog
 3.2.2
 =====
 
--   Removal of the old widgand update system (deprecated since version 3.0). Attention if your widgand does not use the new system there is a risk of malfunction (duplication of it in this case). Example widgand [here] (https://github.com/jeedom/core/tree/banda/core/template/dashboard)
+-   Removal of the old widgand update system (deprecated since version 3.0). Attention if your widgand does not use the new system there is a risk of malfunction (duplication of it in this case). Example widgand [here] (https://github.com/Jeedom/core/tree/banda/core/template/Dashboard)
 -   Possibility to display the graphs in table form or to export these in csv or xls
 
 -   Users can now add their own php function for scenarios. See documentation of scenarios for implementation
@@ -352,14 +352,14 @@ Changelog
 -   JEED-284 : permanent connection now depends on a key
     single user and device (rather than user)
 
--   JEED-283 : adding a * rescue * mode to jeedom by adding &amp; rescue = 1
+-   JEED-283 : adding a * rescue * mode to Jeedom by adding &amp; rescue = 1
     in the url
 
 -   JEED-8 : addition of the name of the scenario on the title of the page during
     edition
 
 -   Optimization of organizational changes (size of widgands,
-    position of equipment, position of controls) on the dashboard
+    position of equipment, position of controls) on the Dashboard
     and the views. Attention now the modifications are not
     saved only when exiting edit mode.
 
@@ -380,7 +380,7 @@ Changelog
 
 -   JEED-2 : Improved time management during a restart
 
--   JEED-77 : Addition of variable management in the http API
+-   JEED-77 : Addition of Variable management in the http API
 
 -   JEED-78 : addition of the tag function for scenarios. Be careful there
     must in the scenarios using the tags pass from \ #montag \#
@@ -425,16 +425,16 @@ Changelog
 -   Onepage mode (page change without reloading the whole page, just
     the part that changes)
 
--   Add an option to hide objects on the dashboard but which
+-   Add an option to hide objects on the Dashboard but which
     lands always have them in the list
 
 -   Double-click on a node on the link graph (except for
-    variables) brings on its configuration page
+    Variables) brings on its configuration page
 
 -   Ability to put the text left / right / center on the
     designs for text / view / design elements
 
--   Adding object summaries on the dashboard (list of objects
+-   Adding object summaries on the Dashboard (list of objects
     to the left)
 
 -   Add interactions of type "notify me-if"
@@ -519,13 +519,13 @@ Changelog
     choosing for each order the box or put it
 
 -   Ability to rearrange equipment widgands from
-    dashboard (in edit mode right click on the widgand)
+    Dashboard (in edit mode right click on the widgand)
 
 -   Change the pitch of widgands (from 40 \ * 80 to 10 \ * 10). Be careful
-    will impact the layout on your dashboard / view / design
+    will impact the layout on your Dashboard / view / design
 
 -   Possibility to give a size from 1 to 12 to objects on the
-    dashboard
+    Dashboard
 
 -   Ability to independently launch scenario actions (and
     plugin type mode / alarm if compatible) in parallel with the others
@@ -551,7 +551,7 @@ Changelog
 -   Suppression of slave mode
 
 -   Ability to trigger a scenario on a change of
-    variable
+    Variable
 
 -   Variable updates now trigger the update
     virtual equipment orders (you need the latest version
@@ -562,7 +562,7 @@ Changelog
 -   Ability on commands to display the name and icon
 
 -   Addition of an &quot;alert&quot; action on scenarios : message up in
-    jeedom
+    Jeedom
 
 -   Addition of a &quot;popup&quot; action on scenarios : message to validate
 
@@ -645,7 +645,7 @@ Changelog
 
 -   Adding modules on alert to the battery page
 
--   Objects without a widgand are automatically hidden on the dashboard
+-   Objects without a widgand are automatically hidden on the Dashboard
 
 -   Addition of a button in the advanced configuration of a
     equipment / of a command to see the events of
@@ -766,10 +766,10 @@ Changelog
 
 -   Optimization of the update process
 
--   Standardization of the tmp jeedom, now everything is in / tmp / jeedom
+-   Standardization of the tmp Jeedom, now everything is in / tmp / Jeedom
 
 -   Possibility of having a graph of the different links of a scenario,
-    equipment, object, command or variable
+    equipment, object, command or Variable
 
 -   Ability to adjust the depth of link graphics by
     function of the original object
@@ -877,12 +877,12 @@ Changelog
 -   Correction of a bug on the timeout value of scenarios
 
 -   fixed a bug on the display of widgands in views which
-    took the dashboard version
+    took the Dashboard version
 
 -   Correction of a bug on the designs which could use the
-    configuration of dashboard widgands instead of designs
+    configuration of Dashboard widgands instead of designs
 
--   Correction of backup / restore bugs if the name of the jeedom
+-   Correction of backup / restore bugs if the name of the Jeedom
     contains special characters
 
 -   Optimization of the organization of the generic type list
@@ -897,7 +897,7 @@ Changelog
 -   Preparation for the removal of bootstrapswtich in plugins
 
 -   Correction of a bug on the type of widgand requested for designs
-    (dashboard instead of dplan)
+    (Dashboard instead of dplan)
 
 -   bug fix on the event handler
 
@@ -914,8 +914,8 @@ Changelog
     / tmp is too small (be careful the correction takes effect at
     update n + 1)
 
--   Addition of a * jeedom \ _name * tag in the scenarios (gives the name
-    jeedom)
+-   Addition of a * Jeedom \ _name * tag in the scenarios (gives the name
+    Jeedom)
 
 -   Bugfix
 
@@ -939,7 +939,7 @@ Changelog
 -   Various optimization of the code (thanks @ kwizer15)
 
 -   Passage in module of the connection with the markand (will allow to have
-    a jeedom without any link to the markand)
+    a Jeedom without any link to the markand)
 
 -   Addition of a &quot;repo&quot; (connection module type connection with
     the markand) file (allows sending a zip containing the plugin)
@@ -956,7 +956,7 @@ Changelog
     FTP server and recover plugins)
 
 -   Addition for certain &quot;repo&quot; of the possibility of recovering the core of
-    jeedom
+    Jeedom
 
 -   Adding automatic code tests (thanks @ kwizer15)
 
@@ -1002,8 +1002,8 @@ Changelog
 
 -   Ability to configure the transparency of widgands
 
--   Added jeedom \ _poweroff action in scenarios to stop
-    jeedom
+-   Added Jeedom \ _poweroff action in scenarios to stop
+    Jeedom
 
 -   Randurn of the action scenario \ _randurn to randurn to a
     interaction (or other) from a scenario
@@ -1062,7 +1062,7 @@ Changelog
 -   Redesign of the log system (use of monolog) which allows
     integration with logging systems (syslog (d) type)
 
--   Optimization of dashboard loading
+-   Optimization of Dashboard loading
 
 -   Fixed many warning
 
@@ -1081,7 +1081,7 @@ Changelog
 
 -   Delande all nandwork management part : wifi, fixed ip…
     (will surely come back as a plugin). ATTENTION this is not the
-    jeedom master / slave mode which is delanded
+    Jeedom master / slave mode which is delanded
 
 -   Removed battery indication on widgands
 
@@ -1159,7 +1159,7 @@ Changelog
 -   Redesign of the log system (use of monolog) which allows
     integration with logging systems (syslog (d) type)
 
--   Optimization of dashboard loading
+-   Optimization of Dashboard loading
 
 -   Fixed many warning
 
@@ -1178,7 +1178,7 @@ Changelog
 
 -   Delande all nandwork management part : wifi, fixed ip…
     (will surely come back as a plugin). ATTENTION this is not the
-    jeedom master / slave mode which is delanded
+    Jeedom master / slave mode which is delanded
 
 -   Removed battery indication on widgands
 

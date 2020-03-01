@@ -3,26 +3,26 @@
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
     },
     "desktop\/modal\/update.list.php": {
-        "Le dépôt est inactif : ": "Le dépôt est inactif : ",
+        "Le dépôt est inactif : ": "Депозит неактивен:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Mes premiers pas dans": "Mes premiers pas dans",
-        "Bienvenue dans": "Bienvenue dans",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec",
-        "Guide de démarrage": "Guide de démarrage",
-        "Documentation de démarrage": "Documentation de démarrage",
+        "Mes premiers pas dans": "Мои первые шаги в",
+        "Bienvenue dans": "Добро пожаловать в",
+        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": "и спасибо за выбор этого инструмента для подключенного дома. Вот 3 руководства, с которых можно начать",
+        "Guide de démarrage": "Руководство по началу работы",
+        "Documentation de démarrage": "Начало работы с документацией",
         "Documentation": "Документация",
         "Sauvegarde réussie": "Удачная резервная копия"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Source": "Источник",
-        "Attention, il n’y a pas d’assistance de l’équipe ": "Attention, il n’y a pas d’assistance de l’équipe ",
-        " sur les plugins installés depuis une autre source que le Market ": " sur les plugins installés depuis une autre source que le Market ",
-        ".De plus, l’installation d’un plugin depuis une autre source que le Market ": ".De plus, l’installation d’un plugin depuis une autre source que le Market ",
-        " peut dans certains cas entrainer la perte globale d’assistance par l’équipe ": " peut dans certains cas entrainer la perte globale d’assistance par l’équipe ",
+        "Attention, il n’y a pas d’assistance de l’équipe ": "Обратите внимание, что нет помощи команды",
+        " sur les plugins installés depuis une autre source que le Market ": "на плагинах, установленных из источника, отличного от Маркета",
+        ".De plus, l’installation d’un plugin depuis une autre source que le Market ": "Кроме того, установка плагина из источника, отличного от Маркета.",
+        " peut dans certains cas entrainer la perte globale d’assistance par l’équipe ": "в некоторых случаях может привести к полной потере помощи командой",
         "Type de source": "Тип источника",
         "Aucun": "нет",
         "Configuration": "Конфигурация",
@@ -50,23 +50,23 @@
         "Rechercher": "Искать"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
-        "Aucun scénario ne correspondant à : ": "Aucun scénario ne correspondant à : ",
+        "Aucun scénario ne correspondant à : ": "Нет сценария, соответствующего:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Enregistrer": "Запись",
-        "Erreur editeur non défini": "Erreur editeur non défini",
-        "Champs json invalide": "Champs json invalide",
+        "Erreur editeur non défini": "Неопределенная ошибка редактора",
+        "Champs json invalide": "Неверные поля JSON",
         "Sauvegarde réussie": "Удачная резервная копия"
     },
     "desktop\/modal\/icon.selector.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Rechercher": "Искать",
-        " . str_replace('\/', '', $dir) . ": " . str_replace('\/', '', $dir) . ",
+        " . str_replace('\/', '', $dir) . ": ", str_replace (&#39;\/&#39;, &#39;&#39;, $ dir).",
         "Général": "Главная"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Général": "общий",
-        "Composants": "Composants",
+        "Composants": "компоненты",
         "Supprimer": "удаление",
         "Sauvegarder": "экономить",
         "Nom": "имя",
@@ -75,23 +75,23 @@
         "Choisir": "Выбрать",
         "Model 3D": "3D-модель",
         "Envoyer": "Отправить",
-        "Couleur du fond": "Couleur du fond",
-        "Puissance eclairage général (0.4 defaut)": "Puissance eclairage général (0.4 defaut)",
+        "Couleur du fond": "Цвет фона",
+        "Puissance eclairage général (0.4 defaut)": "Общая мощность освещения (0,4 по умолчанию)",
         "ID": "Идентификатор",
-        "Nom object": "Nom object",
+        "Nom object": "Наименование объекта",
         "Type": "Тип",
-        "ID du lien": "ID du lien",
+        "ID du lien": "Идентификатор ссылки",
         "Action": "Действие",
-        "Composant supprimée": "Composant supprimée",
+        "Composant supprimée": "Компонент удален",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Загрузка удалась благодарственной перезагрузить страницу, чтобы увидеть результат"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Scénario introuvable": "Scénario introuvable"
+        "Scénario introuvable": "Сценарий не найден"
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Auteur(s)": "Auteur(s)",
+        "Auteur(s)": "Автор (ы)",
         "Développeurs principaux": "Développeurs principaux",
         "Traducteur(s)": "Traducteur(s)",
         "Designer": "Designer",
@@ -103,7 +103,7 @@
         "Valider": "Применить",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :",
-        "Historisé": "Historisé",
+        "Historisé": "Historized",
         "Timeline": "хронология",
         "Type": "Тип",
         "Nom": "имя",
@@ -123,10 +123,10 @@
         "6 mois": "6 месяцев",
         "1 an": "1 год",
         "Configuration de la commande": "управляющий набор",
-        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès"
+        "Modifications sauvegardées avec succès": "Изменения успешно сохранены"
     },
     "desktop\/modal\/scenario.log.execution.php": {
-        "Aucun scénario ne correspondant à : ": "Aucun scénario ne correspondant à : ",
+        "Aucun scénario ne correspondant à : ": "Нет сценария, соответствующего:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Rechercher": "Искать",
         "Pause": "Пауза",
@@ -141,7 +141,7 @@
         "Père": "Родитель",
         "Visible": "видимый",
         "Masqué": "Masqué",
-        "Résumé Défini": "Résumé Défini",
+        "Résumé Défini": "Сводка определена",
         "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
         "Résumé Mobile Masqué": "Résumé Mobile Masqué",
         "Oui": "да",
@@ -200,24 +200,24 @@
         "Nom": "имя"
     },
     "desktop\/modal\/user.rights.php": {
-        "Impossible de trouver l\\'utilisateur : ": "Impossible de trouver l\\'utilisateur : ",
+        "Impossible de trouver l\\'utilisateur : ": "Невозможно найти пользователя:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer",
+        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Обратите внимание: учетная запись пользователя не имеет профиля «Ограниченный пользователь», поэтому здесь не могут применяться никакие ограничения.",
         "Sauvegarder": "экономить",
         "Equipements": "Оборудование",
         "Scénarios": "Сценарии",
         "Equipement": "Оборудование",
         "Droits": "Права",
         "Aucun": "нет",
-        "Visualisation": "Visualisation",
-        "Visualisation et exécution": "Visualisation et exécution",
+        "Visualisation": "визуализация",
+        "Visualisation et exécution": "Визуализация и исполнение",
         "Scénario": "Сценарий",
         "Sauvegarde effectuée": "Резервное копирование произведено"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Général": "Главная",
-        "Composants": "Composants",
+        "Composants": "компоненты",
         "Sauvegarder": "Сохранить",
         "Nom": "Имя",
         "Fond transparent": "Прозрачный фон",
@@ -232,11 +232,11 @@
         "Taille (LxH)": "Размер (Ш х В)",
         "ID": "Идентификатор",
         "Type": "Тип",
-        "ID du lien": "ID du lien",
+        "ID du lien": "Идентификатор ссылки",
         "Lien": "Ссылка",
         "Action": "Действие",
         "Supprimer": "удаление",
-        "Composant supprimée": "Composant supprimée",
+        "Composant supprimée": "Компонент удален",
         "Image supprimée": "изображение удалено",
         "Design sauvegardé": "дизайн сохранен"
     },
@@ -304,7 +304,7 @@
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Pause": "Пауза",
         "Variable": "Переменная",
-        "Supprimer une variable": "Supprimer une variable",
+        "Supprimer une variable": "Удалить переменную",
         "Scénario": "Сценарий",
         "Stop": "Стоп",
         "Attendre": "Подождать",
@@ -322,36 +322,36 @@
         "Rapport": "доклад",
         "Supprimer bloc DANS\/A programmé": "Удалить блок IN \/ запланированные",
         "Evènement": "Evènement",
-        "Tag": "Tag",
+        "Tag": "тег",
         "Pause de x seconde(s)": "Пауза  (x) секунд",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Ждет, пока условие не правомочно (максимум 2 часа)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Создание \/ изменение переменной или значение переменной",
-        "Suppression d’une variable": "Suppression d’une variable",
+        "Suppression d’une variable": "Удаление переменной",
         "Permet le contrôle des scénarios": "Разрешить контроль сценариев",
         "Arrête le scénario": "Остановить сценарий",
-        "Permet de faire dire un texte à": "Permet de faire dire un texte à",
-        "(ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "(ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
+        "Permet de faire dire un texte à": "Позволяет сделать текст, чтобы сказать",
+        "(ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "(работает только если в браузере открыта вкладка Jeedom)",
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "На всех браузерах, которые показывают конструкцию, заменены одной запрошенной",
         "Permet de rajouter un message dans les logs": "Добавить сообщение в лог",
         "Permet d'ajouter une message dans le centre de message": "Добавляет сообщение в центр сообщений",
         "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Меняет свойство принимать видимый \/ невидимый \/ выключения оборудования",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Действие, которое позволяет Jeedom применять затем сохранить ответ в переменной. Это действие блокирует и заканчивается только тогда, когда Jeedom получает ответ или тайм-аут будет достигнут. На данный момент это действие совместимо только с SMS-плагинов, расслабленные, и Сарра телеграмм.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Отправка заказа на Jeedom исчезновения",
-        "Envoi l'ordre à Jeedom de redémarrer": "Envoi l'ordre à Jeedom de redémarrer",
+        "Envoi l'ordre à Jeedom de redémarrer": "Отправить заказ на Jeedom, чтобы перезагрузить",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Возвращает текст или значение для взаимодействия, например,",
         "Permet d'affecter une icône au scénario": "Позволяет назначить иконку для сценария",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Показывает небольшое предупреждение на всех браузерах, которые имеют страницу открытой Jeedom. Вы также можете выбрать один из четырех уровней тревоги",
-        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page",
-        "ouverte.": "ouverte.",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Позволяет отображать всплывающее окно, которое должно быть абсолютно проверено во всех браузерах, которые имеют страницу",
+        "ouverte.": "открыт.",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Отправить, командный пункт, отчет о целях, дизайн или панель PNG \/ PDF \/ JPEG \/ SVG.",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Удалить программирование всех блоков В и сценарий",
-        "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Permet de pousser une valeur dans une commande de type information de maniere arbitraire",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)"
+        "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Позволяет произвольно вставить значение в команду типа информации",
+        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Разрешить добавлять \/ изменять тег (тег существует только во время текущего выполнения сценария, в отличие от переменных, которые остаются в конце сценария)"
     },
     "desktop\/modal\/help.cronSyntaxe.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Générateur": "Générateur",
-        "Resultat :": "Resultat :",
+        "Resultat :": "результат:",
         "N'oubliez pas de copier\/coller le résultat": "N'oubliez pas de copier\/coller le résultat",
         "Exemples \/ Programmation prédéfinie": "Exemples \/ Programmation prédéfinie",
         "Entrée": "Entrée",
@@ -428,7 +428,7 @@
         "Texte": "текст",
         "Porte\/Fenêtre": "Двери \/ окна",
         "Couleur conditionnel": "условный цвет",
-        "Affichage conditionnel": "Affichage conditionnel",
+        "Affichage conditionnel": "Условное отображение",
         "Statut": "Статус",
         "Rechercher d\\'une commande": "Команда поиска \\ «s",
         "Puissance": "Мощность",
@@ -443,29 +443,29 @@
         "Fênetre\/Porte": "Окно \/ Дверь",
         "Volet": "створка",
         "Etat": "Состояние",
-        "Rotation": "Rotation",
+        "Rotation": "вращение",
         "Activer": "активировать",
         "Ouverture": "Открытие",
         "Gauche": "слева",
         "Droite": "право",
-        "Devant": "Devant",
+        "Devant": "передний",
         "Derriere": "Derriere",
         "Normal": "нормальный",
-        "Inversé": "Inversé",
-        "Translation": "Translation",
-        "Sens": "Sens",
+        "Inversé": "перевернутый",
+        "Translation": "перевод",
+        "Sens": "значение",
         "Haut": "топ",
         "Bas": "Bas",
-        "Répeter": "Répeter",
-        "Masquer quand la porte\/fenêtre est ouverte": "Masquer quand la porte\/fenêtre est ouverte",
+        "Répeter": "повторение",
+        "Masquer quand la porte\/fenêtre est ouverte": "Скрыть, когда дверь \/ окно открыто",
         "Couleur": "Цвет",
-        "Couleur ouverte": "Couleur ouverte",
-        "Couleur fermée": "Couleur fermée",
-        "Masquer quand le volet est ouvert": "Masquer quand le volet est ouvert",
-        "Couleur fermé": "Couleur fermé",
+        "Couleur ouverte": "Открытый цвет",
+        "Couleur fermée": "Цвет закрыт",
+        "Masquer quand le volet est ouvert": "Скрыть, когда затвор открыт",
+        "Couleur fermé": "Цвет закрыт",
         "Condition": "состояние",
         "Ajouter": "Добавить",
-        "Masqué si": "Masqué si"
+        "Masqué si": "Скрыто, если"
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -484,15 +484,15 @@
         "Type": "Тип",
         "Sous-type": "Под-Тип",
         "Commande déclenchant une mise à jour": "Команда запускает или отменяет обновление",
-        "Valeurs possibles": "Valeurs possibles",
+        "Valeurs possibles": "Возможные значения",
         "Valeur": "Значение",
         "Date collecte": "коллекция Дата",
         "Date valeur": "дата валютирования",
         "URL directe": "прямой URL",
         "Unité": "Устройство",
         "Visible": "Видимый",
-        "Valeur minimum (défaut : 0)": "Valeur minimum (défaut : 0)",
-        "Valeur maximum (défaut : 100)": "Valeur maximum (défaut : 100)",
+        "Valeur minimum (défaut : 0)": "Минимальное значение (по умолчанию: 0)",
+        "Valeur maximum (défaut : 100)": "Максимальное значение (по умолчанию: 100)",
         "Suivre dans la timeline": "Следуйте на временной шкале",
         "Interdire dans les interactions automatique": "Запретите автоматическое взаимодействие в",
         "Icône": "Иконка",
@@ -503,12 +503,12 @@
         "Equipement": "Оборудование",
         "Commandes": "Команды",
         "Scénario": "Сценарий",
-        "Calcul et arrondi": "Calcul et arrondi",
+        "Calcul et arrondi": "Расчет и округление",
         "Formule de calcul (#value# pour la valeur)": "Формула расчета (в #value# исходное значение)",
         "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
         "Type générique": "общий тип",
         "Aucun": "Нет",
-        " . $info['family'] . ": " . $info['family'] . ",
+        " . $info['family'] . ": ", $ info [&#39;family&#39;].",
         "Restriction de l'action": "Ограничение действия",
         "Confirmer l'action": "Подтвердите действие",
         "Code d'accès": "Код доступа",
@@ -540,7 +540,7 @@
         "Copie des données historisées": "Копирование исторических данных",
         "Copier l'historique de cette commande sur une autre commande": "Скопируйте историю этой команды в другую команду",
         "Gestion des valeurs": "Управление значений",
-        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Valeurs interdites (séparées par \";\")": "Запрещенные значения (разделенные &quot;;&quot;)",
         "Valeur retour d'état": "Значение состояния обратной связи",
         "Durée avant retour d'état (min)": "Время заявить обратной связи (мин)",
         "Autres": "другой",
@@ -553,12 +553,12 @@
         "Niveau": "Уровень",
         "En": "в",
         "si (#value# pour la valeur)": "если (значение # # для значения)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)",
+        "Pendant plus de (en min, laisser vide pour immédiat)": "Для более чем (через минуту оставьте пустым для немедленного)",
         "Widget": "Виджет",
-        " . $value['name'] . ": " . $value['name'] . ",
+        " . $value['name'] . ": ", $ value [&#39;name&#39;].",
         "Afficher le nom": "Показать имя",
         "Afficher le nom ET l'icône": "Печатает имя и значок",
-        "Afficher les statistiques": "Afficher les statistiques",
+        "Afficher les statistiques": "Показать статистику",
         "Retour à la ligne forcé avant le widget": "Форсирован перенос перед виджетом",
         "après le widget": "после виджета",
         "Paramètres optionnels widget": "Дополнительные параметры виджета",
@@ -596,16 +596,16 @@
         "Action": "Действие",
         "Dépôt de données supprimé": "Депозитные удаленные данные",
         "Dépôt de données sauvegardé": "Депозит сохраняемых данных",
-        "Graphique de lien(s)": "Graphique de lien(s)"
+        "Graphique de lien(s)": "Ссылка графическая"
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Supprimer": "удаление",
         "Sauvegarder": "экономить",
         "Ajouter": "Добавить",
-        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Note sauvegardée avec succès": "Примечание успешно сохранено",
         "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
-        "Note supprimée avec succès": "Note supprimée avec succès"
+        "Note supprimée avec succès": "Заметка успешно удалена"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -643,11 +643,11 @@
         "Tentative échouée": "Неудачная попытка",
         "Date de dernière communication": "Дата последней коммуникации",
         "Dernière mise à jour": "Последнее обновление",
-        "Tag": "Tag",
+        "Tag": "тег",
         "Commandes": "Команды",
         "Action": "Действие",
         "Widget": "Виджет",
-        " . $value['name'] . ": " . $value['name'] . ",
+        " . $value['name'] . ": ", $ value [&#39;name&#39;].",
         "Afficher le nom": "Показать имя",
         "Afficher le nom de l'objet": "Отображаемое имя объекта",
         "Couleur de fond": "Цвет фона",
@@ -667,7 +667,7 @@
         "Warning": "предупреждение",
         "Ok": "Ок",
         "Alertes Communications": "бдительные Communications",
-        "Danger (en minutes)": "Danger (en minutes)",
+        "Danger (en minutes)": "Опасность (в минутах)",
         "Configuration général": "Общая конфигурация",
         "Défaut": "По умолчанию",
         "Tableau": "стол",
@@ -686,43 +686,43 @@
         "Suppression réalisée avec succès": "Удаление успешно завершено",
         "Configuration de la commande": "управляющий набор",
         "Logs": "Журналы",
-        "Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui",
-        "Changement de pile(s) pris en compte": "Changement de pile(s) pris en compte"
+        "Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Вы меняли батарейки? Это действие установит дату замены батарей на сегодня.",
+        "Changement de pile(s) pris en compte": "Смена аккумулятора (ов) учтена"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Corriger tout": "Corriger tout",
+        "Corriger tout": "Исправить все",
         "Table": "стол",
         "Status": "Статус",
         "Champs": "Champs",
         "Index": "Index",
         "SQL": "SQL",
         "Action": "Действие",
-        "Corriger": "Corriger",
-        "Etes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
-        "Vérification base de données": "Vérification base de données"
+        "Corriger": "правильный",
+        "Etes-vous sûr de vouloir corriger la table ": "Вы уверены, что хотите исправить таблицу",
+        "Vérification base de données": "Проверка базы данных"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
     },
     "desktop\/modal\/twoFactor.authentification.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Etape 1 : Installation sur le téléphone": "Etape 1 : Installation sur le téléphone",
-        "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte": "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte",
-        ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à": ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à",
-        ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.",
-        "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,",
+        "Etape 1 : Installation sur le téléphone": "Шаг 1: Установка на телефон",
+        "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte": "Двухэтапная проверка обеспечивает дополнительный уровень защиты для вашей учетной записи",
+        ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à": ", После настройки двухэтапного подтверждения вам потребуется пароль, а также уникальный код подтверждения для подключения к",
+        ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": ", Обратите внимание, что для создания кодов подтверждения потребуется мобильное устройство.",
+        "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Пожалуйста, установите приложение аутентификации на вашем мобильном устройстве. Если вы еще не установили один,",
         "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).": "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).",
-        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.",
-        "Etape 2 : Configuration": "Etape 2 : Configuration",
-        "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.",
-        "Vous pouvez aussi entrer manuellement le code suivant : ": "Vous pouvez aussi entrer manuellement le code suivant : ",
-        "Etape 3 : vérification": "Etape 3 : vérification",
-        "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Veuillez entrer le code fourni pour vérification et activation de la double authentification",
-        "Code de test": "Code de test",
+        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "Обратите внимание, что двойная аутентификация необходима только для внешних подключений, поэтому она не будет активной для локального подключения.",
+        "Etape 2 : Configuration": "Шаг 2: Конфигурация",
+        "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Откройте и настройте приложение для аутентификации, отсканировав QR-код ниже.",
+        "Vous pouvez aussi entrer manuellement le code suivant : ": "Вы также можете вручную ввести следующий код:",
+        "Etape 3 : vérification": "Шаг 3: проверка",
+        "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Пожалуйста, введите код, указанный для проверки и активации двойной аутентификации",
+        "Code de test": "Тестовый код",
         "OK": "ОК",
-        "Configuration réussie": "Configuration réussie",
-        "Code invalide": "Code invalide"
+        "Configuration réussie": "Конфигурация успешна",
+        "Code invalide": "Неверный код"
     },
     "desktop\/modal\/history.calcul.php": {
         "Sauvegarder": "экономить",
@@ -764,14 +764,14 @@
         "Afficher le graphique": "Просмотр диаграммы"
     },
     "desktop\/modal\/update.send.php": {
-        "Le dépôt est inactif : ": "Le dépôt est inactif : ",
+        "Le dépôt est inactif : ": "Депозит неактивен:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
     },
     "desktop\/modal\/report.bug.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune adresse pour le market n\\'est renseignée": "Aucune adresse pour le market n\\'est renseignée",
-        "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans",
-        "avant d\\'ouvrir un ticket": "avant d\\'ouvrir un ticket",
+        "Aucune adresse pour le market n\\'est renseignée": "Адрес для рынка не введен",
+        "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "Рыночный счет не введен. Пожалуйста, зарегистрируйтесь на рынке, затем введите свои учетные данные в",
+        "avant d\\'ouvrir un ticket": "перед открытием билета",
         "Etape 1 : Information sur les tickets": "Шаг 1: билеты информация",
         "Merci de vérifier avant toute ouverture de ticket :": "Спасибо за предварительную проверку перед открытием талона",
         "- que la question n'a pas déjà été posée sur le <a href='https:\/\/community.jeedom.com\/'>community<\/a>": "- que la question n'a pas déjà été posée sur le <a href='https:\/\/community.jeedom.com\/'>community<\/a>",
@@ -783,7 +783,7 @@
         "Rapport": "доклад",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION<\/strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Вы можете сообщить об ошибке, который будет опубликован на нашем общедоступном Bug Tracker (<STRONG> Внимание: <\/ STRONG> Ваше сообщение будет опубликовано, оно может быть удалено, если это не ошибка, вы не получите техническая помощь после этого заявления)",
         "Demande d'amélioration": "Улучшение запроса",
-        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
+        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Вы можете отправлять предложения по улучшению, которые будут опубликованы на нашей специальной общедоступной странице и которые могут быть включены в нашу дорожную карту.",
         "Voir les bugs": "Смотрите ошибки",
         "Voir les propositions d'amélioration": "См предложения по улучшению",
         "Etape 3 : Catégorie et type de la demande": "Шаг 3: Размер и тип спроса",
@@ -794,14 +794,14 @@
         "Général": "общий",
         "Scénario": "Сценарий",
         "Etape 4 : Demande de support": "Шаг 4: Запрос поддержки",
-        "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/jeedom.github.io\/documentation\/howto\/fr_FR\/remonter_un_bug\">documentation": "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/jeedom.github.io\/documentation\/howto\/fr_FR\/remonter_un_bug\">documentation",
+        "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/jeedom.github.io\/documentation\/howto\/fr_FR\/remonter_un_bug\">documentation": "ВАЖНО: для быстрого и точного ответа, пожалуйста, прочитайте эту <a target=\"_blank\" href=\"https:\/\/jeedom.github.io\/documentation\/howto\/fr_FR\/remonter_un_bug\">документацию<\/a>",
         "Titre": "Название",
         "Message": "Сообщение",
-        "Ouvrir un accès au support": "Ouvrir un accès au support",
+        "Ouvrir un accès au support": "Открытый доступ к поддержке",
         "Envoyer": "Отправить",
         "Ce plugin utilise un gestionnaire de demande de support": "Этот плагин использует менеджер запроса поддержки",
         "Accéder": "доступ",
-        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre",
+        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "Вы только что объявили ошибку, которая будет опубликована на нашем общедоступном трекере ошибок. <br\/> Вы можете следовать за ним",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Ваш талон был открыт. Письмо будет направлено",
         "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)": "ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\\'informationd personnelles (mail, compte market, clef api...)"
     },
@@ -827,10 +827,10 @@
         "Type": "Тип",
         "ID": "Идентификатор",
         "Nom": "имя",
-        "Historique vidé avec succès": "Historique vidé avec succès"
+        "Historique vidé avec succès": "История успешно опустошена"
     },
     "desktop\/modal\/update.display.php": {
-        "Le dépôt est inactif : ": "Le dépôt est inactif : ",
+        "Le dépôt est inactif : ": "Депозит неактивен:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
     },
     "desktop\/modal\/object.configure.php": {
@@ -842,7 +842,7 @@
     },
     "desktop\/modal\/interact.query.display.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Interact Def ID ne peut être vide": "Interact Def ID ne peut être vide",
+        "Interact Def ID ne peut être vide": "Interact Def ID не может быть пустым",
         "Aucune phrase trouvée": "Не найдено ни одного предложения",
         "Phrase": "Фраза"
     },
@@ -917,15 +917,15 @@
         "Widget au survol": "Виджет эстакада",
         "Action": "Действие",
         "Equipement": "Оборудование",
-        "Afficher au survol": "Afficher au survol",
+        "Afficher au survol": "Показать на эстакаде",
         "Afficher sur un clic": "Просмотр по клику",
         "Position": "Позиция",
         "Haut": "топ",
         "Bas": "Bas",
         "Haut Gauche": "Вверху слева",
-        "Haut Droite": "Haut Droite",
-        "Bas Gauche": "Bas Gauche",
-        "Bas Droite": "Bas Droite",
+        "Haut Droite": "Вверху справа",
+        "Bas Gauche": "Внизу слева",
+        "Bas Droite": "Справа внизу",
         "Information binaire": "бинарная информация",
         "Action on": "Принятие решения по",
         "Action off": "Действие от",
@@ -938,12 +938,12 @@
         "Nom": "имя",
         "Icône": "Иконка",
         "Choisir": "Выбрать",
-        "Image (marche uniquement avec le thème Jeedom)": "Image (marche uniquement avec le thème Jeedom)",
+        "Image (marche uniquement avec le thème Jeedom)": "Изображение (работает только с темой Jeedom)",
         "Envoyer": "Отправить",
         "Supprimer l'image": "Удалить изображение",
-        "Image ajoutée": "Image ajoutée",
+        "Image ajoutée": "Изображение добавлено",
         "Image supprimée": "изображение удалено",
-        "Vue sauvegardé": "Vue sauvegardé"
+        "Vue sauvegardé": "Сохраненный вид"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -958,18 +958,18 @@
         "Relancer": "возрождать"
     },
     "desktop\/modal\/object.display.php": {
-        "La classe demandée n\\'existe pas : ": "La classe demandée n\\'existe pas : ",
-        "La classe demandée n\\'a pas de méthode byId : ": "La classe demandée n\\'a pas de méthode byId : ",
-        "L\\'objet n\\'existe pas : ": "L\\'objet n\\'existe pas : ",
-        "L\\'objet n\\'a aucun élément : ": "L\\'objet n\\'a aucun élément : ",
+        "La classe demandée n\\'existe pas : ": "Запрашиваемый класс не существует:",
+        "La classe demandée n\\'a pas de méthode byId : ": "Запрашиваемый класс не имеет метода byId:",
+        "L\\'objet n\\'existe pas : ": "Объект не существует:",
+        "L\\'objet n\\'a aucun élément : ": "Объект не имеет элементов:",
         "Scénario : ": "Scénario :"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'équipement": "Конфигурация оборудования",
         "Configuration de l'objet": "Конфигурация объекта",
         "Configuration de la commande": "управляющий набор",
-        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Historique des suppressions": "Historique des suppressions"
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Вы уверены, что хотите удалить все это оборудование?",
+        "Historique des suppressions": "История удаления"
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы редактируете вы можете вылепить перемещение виджетов, изменить размер и изменить порядок команд в виджетах"
@@ -982,7 +982,7 @@
         "Etes-vous sûr de vouloir supprimer le scénario": "Вы уверены, что желаете удалить сценарий?",
         "Lancement du scénario réussi": "Успешный запуск сценария",
         "Arrêt du scénario réussi": "Остановка успешного сценария",
-        "Edition texte scénarios": "Edition texte scénarios",
+        "Edition texte scénarios": "Сценарии редактирования текста",
         "Variables des scénarios": "Переменные сценариев",
         "Testeur d'expression": "выражение Tester",
         "Résumé scénario": "сценарий Резюме",
@@ -1005,13 +1005,13 @@
         "Déclenché": "Триггерный",
         "Au repos": "Остальное",
         "Ajout d'un nouveau scénario": "Добавление нового сценария",
-        "Graphique de lien(s)": "Graphique de lien(s)",
+        "Graphique de lien(s)": "Ссылка графическая",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Export du scénario": "Экспорт сценария",
         "Template de scénario": "Шаблон сценария",
         "Erreur": "Ошибка",
         "Actif": "Активный",
-        "Démarrage": "Démarrage",
+        "Démarrage": "пуск в эксплуатацию",
         "En cours": "В процессе",
         "Arrêté": "Остановленный",
         "Jamais": "Никогда",
@@ -1044,7 +1044,7 @@
         "A (Hmm)": "В (Чмм)",
         "FAIRE": "СДЕЛАТЬ",
         "CODE": "КОД",
-        "ACTION": "ДЕЙСТВИЕ"
+        "ACTION": "Действие"
     },
     "desktop\/js\/profils.js": {
         "Authentification 2 étapes": "Authentication шаги 2",
@@ -1056,8 +1056,8 @@
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Вы уверены, что хотите сбросить ключ API",
         "Commande réalisée avec succès": "Команда выполнена успешно",
         "Sauvegarde réussie": "Удачная резервная копия",
-        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
-        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Обратите внимание, что это рискованная операция. Подтвердите, что вы понимаете риски и что если",
+        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "после этого не будет работать запрос на поддержку (эта попытка доступа записана)?",
         "Connexion échouée :": "Не удалось установить соединение:",
         "Connexion réussie": "Успешный вход",
         "Décocher pour desactiver l\\'action": "Снимите флажок, чтобы отключить Action \\ «ы",
@@ -1069,7 +1069,7 @@
         "Test réussi": "успешное испытание",
         "Administration système": "система администрирования",
         "Administration base de données": "администрирование баз данных",
-        "Vérification base de données": "Vérification base de données",
+        "Vérification base de données": "Проверка базы данных",
         "Création des commandes virtuel réussies": "Создание успешных виртуальных элементов управления",
         "Somme": "сумма",
         "Moyenne": "Средний",
@@ -1091,7 +1091,7 @@
         "Modification effectuée": "Изменение сделано",
         "Actif": "Активный",
         "Local": "Локальный",
-        "Ne pas faire de rotation clef api": "Ne pas faire de rotation clef api",
+        "Ne pas faire de rotation clef api": "Не поворачивайте ключ API",
         "Administrateur": "администратор",
         "Utilisateur": "Пользователь",
         "Utilisateur limité": "ограниченный пользователь",
@@ -1099,14 +1099,14 @@
         "Désactiver": "Отключить",
         "NOK": "Неактивен",
         "Renouveler la clef API": "Заменить ключ API",
-        "Régénérer API": "Régénérer API",
+        "Régénérer API": "Восстановить API",
         "Supprimer": "Удалить",
         "Mot de passe": "Пароль",
         "Droits": "Права"
     },
     "desktop\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Предупреждение об оставлении страницы с несохраненными измененными данными. Вы хотите продолжить?",
-        "A propos": "A propos",
+        "A propos": "о",
         "Bienvenue dans Jeedom": "Добро пожаловать в Jeedom",
         "Etes-vous sûr de vouloir arrêter le système ?": "Вы уверены, что хотите выключить систему?",
         "Etes-vous sûr de vouloir redémarrer le système ?": "Вы уверены, что хотите перезагрузить?",
@@ -1128,7 +1128,7 @@
         "Etes-vous sûr de vouloir supprimer tous les logs ?": "Вы уверены, что хотите удалить все журналы?"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "Vérification base de données",
+        "Vérification base de données": "Проверка базы данных",
         "Commande : ": "команда:"
     },
     "desktop\/js\/message.js": {
@@ -1274,7 +1274,7 @@
         "Graphique des liens": "Графические ссылки",
         "Image supprimée": "изображение удалено",
         "Envoyer": "Отправить",
-        "Image ajoutée": "Image ajoutée",
+        "Image ajoutée": "Изображение добавлено",
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Вы уверены, что хотите удалить этот объект",
         "Commande": "Команда",
         "Activer": "активировать",
@@ -1394,8 +1394,8 @@
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Отключение системы Cron",
         "Activer le système cron": "Включение системы Cron",
-        "Détails du cron": "Détails du cron",
-        "Détails du listener": "Détails du listener"
+        "Détails du cron": "Детали Cron",
+        "Détails du listener": "Детали слушателя"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -1414,7 +1414,7 @@
         "Exporter": "Экспорт",
         "Arrêter": "Стоп",
         "Template": "Подложка",
-        "Edition texte": "Edition texte",
+        "Edition texte": "Редактирование текста",
         "Sauvegarder": "Сохранить",
         "Supprimer": "Удалить",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Пожалуйста, создайте резервную копию. Это действие может завершиться неудачей",
@@ -1436,9 +1436,9 @@
         "Timeout en secondes (0 = illimité)": "Тайм-аут в секундах (0 = без ограничений)",
         "Défaut": "По умолчанию",
         "Temps réel": "Окно событий",
-        "Multi-lancement": "Multi-lancement",
+        "Multi-lancement": "Multi-Launch",
         "Le scénario pourra tourner plusieurs fois en même temps": "Сценарий будет работать одновременно несколько раз",
-        "Synchrone": "Synchrone",
+        "Synchrone": "синхронный",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Сценарий в синхронном режиме. Внимание, это может сделать систему нестабильной",
         "Timeline": "хронология",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Расстрелы сценария можно увидеть на временной шкале.",
@@ -1466,8 +1466,8 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Consistance": "Consistance",
-        "Droit": "Droit",
+        "Consistance": "консистенция",
+        "Droit": "право",
         "Rechercher": "поиск",
         "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Нажмите команду справа или введите пользовательскую команду ниже",
         "OK": "ОК"
@@ -1479,28 +1479,28 @@
         "Enregistrer cet ordinateur": "Запомнить параметры входа",
         "Connexion": "Соединение",
         "J'ai perdu mon mot de passe": "Я потерял свой пароль",
-        "En créer un !": "En créer un !",
-        "Connecter Jeedom au Market": "Connecter Jeedom au Market"
+        "En créer un !": "Создать один!",
+        "Connecter Jeedom au Market": "Подключите Jeedom к рынку"
     },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Etape 1": "Etape 1",
-        "Insérer une clé USB de plus de 8Go": "Insérer une clé USB de plus de 8Go",
-        "dans votre Jeedom et cliquer sur": "dans votre Jeedom et cliquer sur",
+        "Insérer une clé USB de plus de 8Go": "Вставьте USB-накопитель объемом более 8 ГБ",
+        "dans votre Jeedom et cliquer sur": "в вашем Джидоме и нажмите на",
         "Etape 2": "Etape 2",
-        "Backup lancé merci de patienter...": "Backup lancé merci de patienter...",
+        "Backup lancé merci de patienter...": "Резервное копирование запущено, пожалуйста, подождите ...",
         "Etape 3": "Etape 3",
-        "Téléchargement de l'image Jeedom.": "Téléchargement de l'image Jeedom.",
+        "Téléchargement de l'image Jeedom.": "Загрузите образ Jeedom.",
         "Etape 4": "Etape 4",
-        "Migration de votre Jeedom": "Migration de votre Jeedom",
+        "Migration de votre Jeedom": "Миграция твоего Джидома",
         "Etape 5": "Etape 5",
-        "Finalisation": "Finalisation",
-        "Reprendre la restauration": "Reprendre la restauration",
-        "Pour reprendre votre restauration cliquez sur \"Reprendre\".": "Pour reprendre votre restauration cliquez sur \"Reprendre\".",
+        "Finalisation": "завершение",
+        "Reprendre la restauration": "Возобновить восстановление",
+        "Pour reprendre votre restauration cliquez sur \"Reprendre\".": "Чтобы возобновить восстановление, нажмите «Продолжить».",
         "Fermer": "Fermer",
         "Reprendre": "резюме",
-        "Réinstallation de votre Backup": "Réinstallation de votre Backup",
-        "Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?": "Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?",
+        "Réinstallation de votre Backup": "Переустановка вашей резервной копии",
+        "Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?": "Вы хотите установить резервную копию на этот Jeedom или начать с нуля?",
         "Votre backup est disponible sur votre Jeedom dans tous les cas.": "Votre backup est disponible sur votre Jeedom dans tous les cas.",
         "Si vous choisissez \"zéro\" n'oubliez pas que vos identifiants sont admin\/admin": "Si vous choisissez \"zéro\" n'oubliez pas que vos identifiants sont admin\/admin",
         "Zéro": "Zéro",
@@ -1778,7 +1778,7 @@
         "Edition": "издание",
         "Sauvegarder": "экономить",
         "Supprimer": "удаление",
-        "Nouveau": "Nouveau"
+        "Nouveau": "Новый"
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -1874,7 +1874,7 @@
         "Désactivé": "инвалид",
         "Statut démon": "демон статус",
         "erreurs": "ошибки",
-        "en cours": "en cours",
+        "en cours": "В процессе",
         "Santé ": "Здоровье",
         "Plugins": "Плагины",
         "et": "и"
@@ -1934,7 +1934,7 @@
     },
     "desktop\/php\/display.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Historique des suppressions": "Historique des suppressions",
+        "Historique des suppressions": "История удаления",
         "Rechercher": "Искать",
         "Inactif": "неактивный",
         "Nombre d'objets :": "Nombre d'objets :",
@@ -2020,7 +2020,7 @@
         "Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins": "Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins",
         "Code postal": "Code postal",
         "Ville": "Ville",
-        "Divers": "Divers",
+        "Divers": "Различный",
         "Surface habitable": "Surface habitable",
         "Surface habitable votre maison, permet de ne pas avoir à la remplir dans les plugins": "Surface habitable votre maison, permet de ne pas avoir à la remplir dans les plugins",
         "Nombre d'occupant": "Nombre d'occupant",
@@ -2103,7 +2103,7 @@
         "Opacité par défaut des widgets": "виджеты Непрозрачность по умолчанию",
         "Pas horizontal": "Pas horizontal",
         "Pas vertical": "Pas vertical",
-        "Marge": "Marge",
+        "Marge": "Маржа",
         "Dashboard couleur de fond": "Цвет фона приборной панели",
         "Remettre par défaut": "Заменить по умолчанию",
         "Dashboard couleur commande": "Управление цветом приборной панели",
@@ -2374,7 +2374,7 @@
     },
     "core\/ajax\/cache.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2388,11 +2388,11 @@
         "Le fichier est trop gros (maximum 100Mo)": "Le fichier est trop gros (maximum 100Mo)",
         "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/log.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/view.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2403,26 +2403,26 @@
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Plugin introuvable : ": "Plugin introuvable : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Message inconnu. Vérifiez l\\'ID": "Message inconnu. Vérifiez l\\'ID",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/config.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aucune clef demandée": "Aucune clef demandée",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/migrate.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/object.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2432,17 +2432,17 @@
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/cron.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Cron id inconnu": "Cron id inconnu",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Dépôt de données inconnu. Vérifiez l\\'ID : ": "Dépôt de données inconnu. Vérifiez l\\'ID : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/cmd.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2461,7 +2461,7 @@
         "Scénario": "Сценарий",
         "Intéraction": "Intéraction",
         "Utilisateur": "Пользователь",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Connexion de l\\'utilisateur par REMOTE_USER : ",
@@ -2470,12 +2470,12 @@
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté",
         "Utilisateur non trouvé : ": "Utilisateur non trouvé : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Note inconnue. Vérifiez l\\'ID": "Note inconnue. Vérifiez l\\'ID",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2486,37 +2486,37 @@
         "Impossible de créer le template": "Impossible de créer le template",
         "La conversion suivante ne peut être vide : ": "La conversion suivante ne peut être vide : ",
         "Scénario ID inconnu": "Scénario ID inconnu",
-        "Champs json invalide": "Champs json invalide",
+        "Champs json invalide": "Неверные поля JSON",
         "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé : ",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 10Mo)": "Le fichier est trop gros (maximum 10Mo)",
         "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/network.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/event.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Impossible de supprimer : ": "Impossible de supprimer : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Impossible de trouver l\\'objet associé : ": "Impossible de trouver l\\'objet associé : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/interact.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Interaction inconnue. Vérifiez l\\'ID": "Interaction inconnue. Vérifiez l\\'ID",
         "InteractQuery ID inconnu": "InteractQuery ID inconnu",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/jeedom.ajax.php": {
         "Vue": "Вид",
@@ -2536,7 +2536,7 @@
         " inconnu": " inconnu",
         "Vous ne pouvez éditer ce type d\\'extension : ' . $pathinfo['extension']": "Vous ne pouvez éditer ce type d\\'extension : ' . $pathinfo['extension']",
         "Impossible de créer le fichier": "Impossible de créer le fichier",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/eqLogic.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2553,7 +2553,7 @@
         ") existe déjà pour cet objet": ") existe déjà pour cet objet",
         "Une commande portant ce nom (": "Une commande portant ce nom (",
         ") existe déjà pour cet équipement": ") existe déjà pour cet équipement",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/plan.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2565,7 +2565,7 @@
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
         "Impossible de déplacer le fichier temporaire dans : ": "Impossible de déplacer le fichier temporaire dans : ",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2586,7 +2586,7 @@
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Listerner id inconnu": "Listerner id inconnu",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2638,7 +2638,7 @@
         "Plugin": "Плагин",
         "Widget": "Виджет",
         "[Z-Wave] Configuration module": "[Z-Wave] Configuration module",
-        "Script": "Script",
+        "Script": "Скрипт",
         "Scénario": "Сценарий",
         "[Caméra] Modèle": "[Caméra] Modèle",
         "[SNMP] Configuration": "[SNMP] Configuration",
@@ -2707,7 +2707,7 @@
         "Impossible d\\'écrire dans le répertoire : ": "Impossible d\\'écrire dans le répertoire : ",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ",
         "Téléchargement de ": "скачать",
-        "URL ": "URL ",
+        "URL ": "URL",
         "Installation des plugin": "Installation des plugin",
         "OK\\n": "OK\\n",
         "Impossible de supprimer : ": "Impossible de supprimer : ",
@@ -2773,7 +2773,7 @@
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "видимый",
-        "Masquer": "Masquer",
+        "Masquer": "скрыть",
         "Activer": "активировать",
         "Désactiver": "Отключить"
     },
@@ -2788,10 +2788,10 @@
     },
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Оборудование",
-        "Selectionner un équipement": "Selectionner un équipement",
+        "Selectionner un équipement": "Sélectionner un équipement",
         "Action": "Действие",
         "Visible": "видимый",
-        "Masquer": "Masquer",
+        "Masquer": "скрыть",
         "Activer": "активировать",
         "Désactiver": "Отключить"
     },
@@ -2932,7 +2932,7 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Attention",
         " n\\'a pas envoyé de message depuis plus de ": " n\\'a pas envoyé de message depuis plus de ",
-        " min (vérifiez les piles)": " min (vérifiez les piles)",
+        " min (vérifiez les piles)": "min (vérifiez les piles)",
         "[' . config::byKey('name": "[' . config::byKey('name",
         "Aucun": "Нет",
         "L\\'équipement n\\'a pas pu être trouvé : ": "L\\'équipement n\\'a pas pu être trouvé : ",
@@ -2945,7 +2945,7 @@
     },
     "core\/class\/jeedom.class.php": {
         "Commande retour interactions": "Commande retour interactions",
-        "Commande sur ": "Commande sur ",
+        "Commande sur ": "обычай",
         "Système à jour": "обновление системы",
         "OK": "ОК",
         "Cron actif": "хрон активный",
@@ -2969,7 +2969,7 @@
         "Espace disque libre tmp": "Espace disque libre tmp",
         "En cas d\\'erreur essayez de redémarrer. Si le problème persiste": "En cas d\\'erreur essayez de redémarrer. Si le problème persiste",
         "Mémoire disponible": "доступная память",
-        "Total ": "Total ",
+        "Total ": "Total",
         "Mémoire suffisante": "Mémoire suffisante",
         "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios": "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios",
         "Erreur I\/O": "Erreur I\/O",
@@ -3015,7 +3015,7 @@
         "Erreur sur la démarrage des plugins : ": "Erreur sur la démarrage des plugins : ",
         "Test de connexion au market": "Тест подключения рынка",
         "Erreur sur la connexion au market : ": "Erreur sur la connexion au market : ",
-        "Démarrage de jeedom fini avec succès": "jeedom Запуск успешно завершен",
+        "Démarrage de jeedom fini avec succès": "Jeedom Запуск успешно завершен",
         "De nouvelles mises à jour sont disponibles : ": "Новые обновления доступны:",
         "Vous pouvez arrêter le système": "Vous pouvez arrêter le système",
         "Vous pouvez lancer le redémarrage du système": "Vous pouvez lancer le redémarrage du système"
@@ -3061,7 +3061,7 @@
         "FAIRE": "СДЕЛАТЬ",
         "CODE": "КОД",
         "ACTION": "ДЕЙСТВИЕ",
-        "DANS": "DANS",
+        "DANS": "В",
         "A": "В определенное время"
     },
     "core\/class\/message.class.php": {
@@ -3227,7 +3227,7 @@
     },
     "core\/class\/scenarioExpression.class.php": {
         "Scénario : ": "Scénario :",
-        "Variable : ": "Variable : ",
+        "Variable : ": "Variable :",
         "Commande non trouvée": "Команда не найдена",
         "Aucun": "нет",
         "Type inconnu": "Type inconnu",
@@ -3568,9 +3568,9 @@
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Rafraichir",
-        "Version desktop": "Version desktop",
-        "Démons": "Démons",
-        "Santé": "Santé",
-        "Alertes": "Alertes"
+        "Version desktop": "Настольная версия",
+        "Démons": "демоны",
+        "Santé": "Здоровье",
+        "Alertes": "Уведомления"
     }
 }

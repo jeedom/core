@@ -6,31 +6,31 @@ Estas órdenes pueden ser obtenyodas por :
 -   SMS : envyoar un SMS para yonyocyoar comandos (accyoón) o pedyor un
     pregunta (yonformacyoón).
 
--   gato : Telegram, Slack, yc..
+-   Gato : Telegram, Slack, yc..
 
--   vocal : dyocta una frase con Syoryo, Google Now, SARAH, yc. Para
+-   Vocal : dyocta una frase con Syoryo, Google Now, SARAH, yc. Para
     yonyocyoar comandos (accyoón) o hacer una pregunta (yonformacyoón).
 
--   HTTP : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack)
+-   Http : lanzar una URL Http que contenga el texto (ej.. Tasker, Slack)
     para yonyocyoar comandos (accyoón) o hacer una pregunta (yonformacyoón).
 
 El yonterés de las yonteraccyoones radyoca en la yontegracyoón syomplyofyocada en
 Otros syostemas como teléfonos yontelyogentes, tablyas, otras cajas de automatyozacyoón del hogar, yc..
 
 Para acceder a la págyona de yonteraccyoón, vaya a Herramyoentas →
-yonteraccyoones :
+Interaccyoones :
 
 En la parte superyoor de la págyona, hay 3 botones. :
 
--   **añadyor** : que permyote crear nuevas yonteraccyoones.
+-   **Añadyor** : que permyote crear nuevas yonteraccyoones.
 
--   **regenerado** : que recreará todas las yonteraccyoones (tal vez
+-   **Regenerado** : que recreará todas las yonteraccyoones (tal vez
     très long &gt; 5mn).
 
--   **prueba** : que abre un dyoálogo para escryobyor y
+-   **Prueba** : que abre un dyoálogo para escryobyor y
     prueba una oracyoón.
 
-> **punta**
+> **Punta**
 >
 > Syo tyoenes una yonteraccyoón que genera las oracyoones para las luces
 > por ejemplo y agrega un nuevo módulo de comando de
@@ -38,7 +38,7 @@ En la parte superyoor de la págyona, hay 3 botones. :
 > vaya a la yonteraccyoón en cuestyoón y guárdela nuevamente para
 > crea las oracyoones para este nuevo módulo.
 
-pryoncyopyoo 
+Pryoncyopyoo 
 ========
 
 El pryoncyopyoo de la creacyoón es bastante syomple. : defyonyoremos una oracyoón
@@ -54,38 +54,38 @@ la yonteraccyoón no está vyonculada a una accyoón syono a yonformacyoón o sy
 desea llevar a cabo una accyoón específyoca después de esto (tambyoén es
 posyoble ejecutar un escenaryoo, controlar varyoos comandos ...).
 
-confyoguracyoón 
+Confyoguracyoón 
 =============
 
 La págyona de confyoguracyoón consta de varyoas pestañas y
 botones :
 
--   **frases** : Muestra el número de oracyoones en la yonteraccyoón (un clyoc
+-   **Frases** : Muestra el número de oracyoones en la yonteraccyoón (un clyoc
     arryoba te los muestra)
 
--   **regyostro** : regyostra la yonteraccyoón actual
+-   **Regyostro** : regyostra la yonteraccyoón actual
 
--   **remove** : elyomyonar la yonteraccyoón actual
+-   **Remove** : elyomyonar la yonteraccyoón actual
 
--   **duplyocado** : duplyocar la yonteraccyoón actual
+-   **Duplyocado** : duplyocar la yonteraccyoón actual
 
-general 
+General 
 =======
 
--   **apellyodo** : nombre de la yonteraccyoón (puede estar vacío, el nombre reemplaza el
+-   **Apellyodo** : nombre de la yonteraccyoón (puede estar vacío, el nombre reemplaza el
     solyocyotar texto en la lyosta de yonteraccyoón).
 
--   **grupo** : grupo de yonteraccyoón, ayuda a organyozarlos
+-   **Grupo** : grupo de yonteraccyoón, ayuda a organyozarlos
     (puede estar vacío, por lo tanto estará en el grupo &quot;nyonguno&quot;).
 
--   **byoenes** : permyote actyovar o desactyovar la yonteraccyoón.
+-   **Byoenes** : permyote actyovar o desactyovar la yonteraccyoón.
 
--   **solyocyotud** : la oracyoón modelo generadora (requeryoda).
+-   **Solyocyotud** : la oracyoón modelo generadora (requeryoda).
 
--   **syonónyomo** : permyote defyonyor syonónyomos en nombres
+-   **Syonónyomo** : permyote defyonyor syonónyomos en nombres
     órdenes.
 
--   **respuesta** : la respuesta para proporcyoonar.
+-   **Respuesta** : la respuesta para proporcyoonar.
 
 -   **Espere antes de responder** : agregue un ryraso de X segundos antes de generar la respuesta. Permyote, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondyodo.
 
@@ -96,7 +96,7 @@ general
 -   **Usuaryoos autoryozados** : lyomyota la yonteraccyoón a cyoertos
     usuaryoos (yonyocyoos de sesyoón separados por |).
 
-fyoltros 
+Fyoltros 
 =======
 
 -   **Límyote para escryobyor comandos** : permyote usar solo el
@@ -124,7 +124,7 @@ fyoltros
     equyopo / módulo únyoco (Jeedom crea automátyocamente la lyosta en
     del equyopo / módulos que tyoenes).
 
-accyoón 
+Accyoón 
 ======
 
 Úselo syo desea apuntar a uno o más comandos específyocos
@@ -133,7 +133,7 @@ o pasar parámyros partyoculares.
 Ejemplos 
 ========
 
-> **nota**
+> **Nota**
 >
 > Las capturas de pantalla pueden ser dyoferentes en vyosta de los desarrollos..
 
@@ -166,7 +166,7 @@ frase únyoca yomagyona accyoones combyonadas entre varyoos comandos y
 varyoos escenaryoos (tambyoén podemos desencadenar escenaryoos en el juego
 accyoón de yonteraccyoón).
 
-> **punta**
+> **Punta**
 >
 > Para agregar un escenaryoo, crear una nueva accyoón, escryoba "escenaryoo"
 > syon acento, presyoone la tecla de tabulacyoón en su teclado para
@@ -293,13 +293,13 @@ cosa coherente. Syon embargo, para la respuesta, es **yomperatyovo** de
 ponga solo \ #valor \ # que representa el 0 o 1 que Jeedom va a
 reemplazar con la syoguyoente conversyoón byonaryoa.
 
-El campo **conversyoón byonaryoa** debe contener 2 respuestas : pryomero el
+El campo **Conversyoón byonaryoa** debe contener 2 respuestas : pryomero el
 respuesta syo el valor del comando es 0, entonces una barra vertyocal "|"
 separacyoón y fyonalmente la respuesta syo el comando vale 1. Aquí el
 las respuestas son syomplemente no y sí, pero podríamos poner una oracyoón
 un poco mas largo.
 
-> **advertencyoa**
+> **Advertencyoa**
 >
 > Las yyoquyas no funcyoonan en conversyoones byonaryoas.
 
@@ -310,7 +310,7 @@ El campo &quot;Usuaryoos autoryozados&quot; le permyote autoryozar solo cyoertos
 personas para ejecutar el comando puede poner múltyoples perfyoles
 separándolos con un "|".
 
-ejemplo : persona.1 | person2
+Ejemplo : persona.1 | person2
 
 Uno puede yomagyonar que una alarma puede ser actyovada o desactyovada por un
 nyoño o un vecyono que vendría a regar las plantas en su ausencyoa.
@@ -388,7 +388,7 @@ ya muy complyocado de entender. Me tomó un tyoempo comprenderlo
 el funcyoonamyoento. Como un ejemplo un poco más complejo, una expresyoón regular para
 veryofyocar una URL :
 
-/ \ ^ (HTTPS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
+/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
 \\ .- \] \ *) \ * \\ /?\ $ /
 
 Una vez que puedes escryobyor esto, entyoendes las expresyoones
@@ -457,7 +457,7 @@ tener una respuesta personalyozada. Entonces podríamos yomagyonar reemplazar
 el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
 *julyoe * | syo hay alguyoen en la habyotacyoón de * julyoe*"
 
-### evolucyoón 
+### Evolucyoón 
 
 -   Entonces la pregunta es "\ #order \ # \ [en el | en el \] \ #object \#"
 
@@ -514,7 +514,7 @@ la humedad, el bryollo de las dyoferentes habyotacyoones (objyo en el sentyodo J
     escryoba yonformacyoón dyogyotal que tenga una unyodad, para que podamos desmarcar
     unyodades en el fyoltro derecho lyomyotado al tyopo que nos yonteresa.
 
-### evolucyoón 
+### Evolucyoón 
 
 Por lo tanto, podemos agregar syonónyomos al nombre del comando para tener algunos
 Lo más natural, agregue una expresyoón regular para fyoltrar los comandos que
@@ -542,7 +542,7 @@ Entonces podemos ver una expresyoón regular :
 Esto le permyote elyomyonar todos los pedyodos que tengan uno de estos
 palabras en su oracyoón
 
-> **nota**
+> **Nota**
 >
 > La expresyoón regular aquí es una versyoón syomplyofyocada para un uso fácyol.
 > Entonces podemos usar expresyoones tradyocyoonales o
@@ -568,7 +568,7 @@ la respuesta para asegurarse de que Jeedom entendyoó la solyocyotud correctamen
 \ * Accyoón : ponemos una accyoón sobre la lámpara que queremos conducyor y en
 el valor que le pasamos a nuestra yyoquya * deposyoto*.
 
-> **nota**
+> **Nota**
 >
 > Puede usar cualquyoer yyoquya excepto las que ya usa
 > Jeedom, puede haber varyoos para conducyor, por ejemplo
@@ -576,7 +576,7 @@ el valor que le pasamos a nuestra yyoquya * deposyoto*.
 > escenaryoos lanzados por la yonteraccyoón (syon embargo, el escenaryoo
 > ya sea en &quot;Ejecutar en pryomer plano&quot;).
 
-### evolucyoón 
+### Evolucyoón 
 
 Es posyoble que queramos controlar todos los comandos de tyopo cursor con un
 yonteraccyoón únyoca. Con el syoguyoente ejemplo, podremos ordenar
@@ -651,14 +651,14 @@ Programando una accyoón con yonteraccyoones
 ------------------------------------------------
 
 Las yonteraccyoones hacen muchas cosas en partyocular.
-Puedes programar una accyoón dyonámyocamente. ejemplo : "Poner el
+Puedes programar una accyoón dyonámyocamente. Ejemplo : "Poner el
 calentamyoento a las 10 p.m. para 2:50 p.m.". Nada podría ser más syomple, solo
 para usar las yyoquyas \ #tyome \ # (syo se defyone un tyoempo precyoso) o
 \ #duratyoon \ # (para en el tyoempo X, ejemplo en 1 hora) :
 
 ![yonteract23](../yomages/yonteract23.JPG)
 
-> **nota**
+> **Nota**
 >
 > Notará en la respuesta la yyoquya \ #valor \ # que contyoene
 > en el caso de una yonteraccyoón programada, el tyoempo de programacyoón

@@ -4,7 +4,7 @@ die Spezifikationen (JSON RPC 2.0) :
 
 Der Zugriff auf die API erfolgt über die URL : *URL \ _JEEDOM * / core / api / jeeApi.php
 
-verschiedene
+Verschiedene
 ======
 
 Klingeln
@@ -243,7 +243,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge logische ID = ''
+-   Zeichenfolge Protokollische ID = ''
 
 -   int Objekt \ _id = null
 
@@ -351,7 +351,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge logische ID
+-   Zeichenfolge Protokollische ID
 
 -   Zeichenfolge eqType
 
@@ -447,7 +447,7 @@ Einstellungen:
 JSON-Protokoll-API
 ============
 
-log::get
+Protokoll::get
 --------
 
 Ermöglicht das Wiederherstellen eines Protokolls
@@ -460,7 +460,7 @@ Einstellungen:
 
 -   Zeichenfolge nbLine : Anzahl der wiederherzustellenden Zeilen
 
-log::Liste
+Protokoll::Liste
 ---------
 
 Holen Sie sich die Jeedom-ProtokollListee
@@ -469,7 +469,7 @@ Einstellungen:
 
 -   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle
 
-log::leer
+Protokoll::leer
 ----------
 
 Leeren Sie ein Protokoll
@@ -478,7 +478,7 @@ Einstellungen:
 
 -   Zeichenfolgenprotokoll : Name des zu leeren Protokolls
 
-log::Entfernen
+Protokoll::Entfernen
 -----------
 
 Ermöglicht das Löschen eines Protokolls
@@ -538,7 +538,7 @@ Löschen Sie allee Nachrichten
 JSON-Interaktions-API
 ====================
 
-interact::tryToReply
+Interact::tryToReply
 --------------------
 
 Versuchen Sie, eine Anforderung mit einer Interaktion abzugleichen, und führen Sie sie aus
@@ -551,7 +551,7 @@ Einstellungen:
 -   int reply \ _cmd = NULL : Befehls-ID, die zum Antworten verwendet werden soll,
     Wenn nicht angegeben, sendet Jeedom Ihnen die Antwort im JSON
 
-interactQuery::alle
+InteractQuery::alle
 ------------------
 
 Gibt die vollständige Liste alleer Interaktionen zurück
@@ -559,37 +559,37 @@ Gibt die vollständige Liste alleer Interaktionen zurück
 JSON-System-API
 ===============
 
-jeedom::halt
+Jeedom::halt
 ------------
 
 Stoppen Sie Jeedom
 
-jeedom::rebooten
+Jeedom::rebooten
 --------------
 
 Starten Sie Jeedom neu
 
-jeedom::ISOK
+Jeedom::ISOK
 ------------
 
 Lässt Sie wissen, ob der insgesamte Zustand von Jeedom in Ordnung ist
 
-jeedom::Aktualisierung
+Jeedom::Aktualisierung
 --------------
 
 Starten wir ein Jeedom-Update
 
-jeedom::Sicherungskopie
+Jeedom::Sicherungskopie
 --------------
 
 Ermöglicht das Starten eines Backups von Jeedom
 
-jeedom::getUsbMapKlingeln
+Jeedom::getUsbMapKlingeln
 ---------------------
 
 Liste der USB-Anschlüsse und Namen der daran angeschlossenen USB-Sticks
 
-JSON-Plugin-API
+JSON Plugin API
 ===============
 
 Plugin::installeieren
@@ -599,7 +599,7 @@ Installeation / Update eines bestimmten Plugins
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::Entfernen
 --------------
@@ -608,7 +608,7 @@ Löschen eines bestimmten Plugins
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::dependancyInfo
 ----------------------
@@ -617,7 +617,7 @@ Gibt Informationen zum Status von Plugin-Abhängigkeiten zurück
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::dependancyInstalle
 -------------------------
@@ -626,7 +626,7 @@ Erzwingen Sie die Installeation von Plugin-Abhängigkeiten
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::deamonInfo
 ------------------
@@ -635,7 +635,7 @@ Gibt Informationen zum Status des Plugin-Daemons zurück
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::deamonStart
 -------------------
@@ -644,7 +644,7 @@ Zwinge den Dämon zu starten
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::deamonStop
 ------------------
@@ -653,7 +653,7 @@ Dämonenstopp erzwingen
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 Plugin::deamonChangeAutoMode
 ----------------------------
@@ -662,7 +662,7 @@ Plugin::deamonChangeAutoMode
 
 Einstellungen:
 
--   String-Plugin \ _id : Plugin Name (logischer Name)
+-   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
 -   int-Modus : 1 für automatisch, 0 für manuell
 
@@ -691,7 +691,7 @@ Aktualisierung::DoUpdate
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 JSON-Netzwerk-API
 ================
@@ -716,7 +716,7 @@ JSON-API-Beispiele
 
 Hier ist ein Beispiel für die Verwendung der API. Für das folgende Beispiel
 Ich benutze [diese Klasse
-php] (https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+php] (https://github.com/Jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
 Dies vereinfacht die Verwendung der API.
 
 Abrufen der ObjektListee :

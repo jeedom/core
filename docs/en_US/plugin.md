@@ -20,7 +20,7 @@ By clicking on a plugin, you access its configuration. Upstairs you
 find the name of the plugin, then in brackets, its name in Jeedom
 (ID) and finally, the type of version installed (stable, beta).
 
-> **Important**
+> **IMPORTANT**
 >
 > When downloading a plugin, it is disabled by default.
 > So you have to activate it by yourself.
@@ -46,7 +46,7 @@ Below left, there is a status area with :
 
 -   **Version** : the version of the plugin installed
 
--   **Action** : Allows you to enable or disable the plugin
+-   **ACTION** : Allows you to enable or disable the plugin
 
 -   **Jeedom version** : Minimum Jeedom version required
     for the operation of the plugin
@@ -57,7 +57,7 @@ Below left, there is a status area with :
 On the right, we find the Log and surveillance zone which allows to define 
 
 -   the level of logs specific to the plugin (we find this same possibility in
-Administration → Configuration on the logs tab, at the bottom of the page)
+Administration → D'actualité on the logs tab, at the bottom of the page)
 
 -   see the plugin logs
 
@@ -74,7 +74,7 @@ Dependencies :
 
 -   **Status** : will tell you if the dependencies are OK or KO
 
--   **Installation** : will install or reinstall
+-   **Setup** : will install or reinstall
     dependencies (if you don&#39;t do it manually and they are
     KO, Jeedom will take care of itself after a while)
 
@@ -87,7 +87,7 @@ Devil :
 
 -   **Status** : will tell you if the demon is OK or KO
 
--   **Configuration** : will be OK if all the criteria for the demon
+-   **D'actualité** : will be OK if all the criteria for the demon
     turns are met or will give cause for blocking
 
 -   **(To restart** : allows to launch or relaunch the demon
@@ -114,17 +114,17 @@ if the plugin uses one of the Jeedom core functions such as :
 
 -   **Interact** : specific interactions
 
--   **cron** : one cron per minute
+-   **Cron** : one cron per minute
 
--   **cron5** : one cron every 5 minutes
+-   **Cron5** : one cron every 5 minutes
 
--   **cron15** : one cron every 15 minutes
+-   **Cron15** : one cron every 15 minutes
 
--   **cron30** : one cron every 30 minutes
+-   **Cron30** : one cron every 30 minutes
 
--   **cronHourly** : one cron every hour
+-   **CronHourly** : one cron every hour
 
--   **cronDaily** : a daily cron
+-   **CronDaily** : a daily cron
 
 > **Tip**
 >
@@ -146,7 +146,7 @@ loading you will get the page.
 > **Tip**
 >
 > You must have entered your Market account information in
-> administration (Configuration → Updates → Market tab) in order to
+> administration (D'actualité → Updates → Market tab) in order to
 > find the plugins you have already purchased for example.
 
 At the top of the window you have filters :
@@ -166,7 +166,7 @@ At the top of the window you have filters :
 -   **Search** : allows you to search for a plugin (in the name or
     description of it)
 
--   **username** : displays the username used for the
+-   **Username** : displays the username used for the
     connection to the Market and the status of the connection
 
 > **Tip**
@@ -204,13 +204,13 @@ change history, a &quot;Documentation&quot; button which returns
 to the plugin documentation. Then you have the language available
 and the various information on the date of the last stable version.
 
-> **Important**
+> **IMPORTANT**
 >
 > It is really not recommended to put a beta plugin on a
 > Jeedom non beta, many operating problems can
 > result.
 
-> **Important**
+> **IMPORTANT**
 >
 > Some plugins are chargeable, in this case the plugin sheet will
 > will offer to buy it. Once this is done, wait for a
