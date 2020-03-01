@@ -1,4 +1,4 @@
-die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation deEndeieren.
+Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation deEndeieren.
 Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und
 wird leichter zu identifizieren sein. Wir sagen dann, dass das Objekt
 ist das **relativ** Ausrüstung. Auf die Objektverwaltung kann zugegriffen werden
@@ -14,7 +14,7 @@ Management
 
 Sie haben zwei Möglichkeiten :
 
--   **hinzufügen** : Erstellen Sie ein neues Objekt.
+-   **Hinzufügen** : Erstellen Sie ein neues Objekt.
 
 -   **Übersicht** : Zeigt die Liste der erstellten Objekte an
     sowie deren Konfiguration.
@@ -40,7 +40,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
     die Wohnung zu erziehen. Ein Objekt kann nur ein übergeordnetes Objekt haben
     Es können jedoch mehrere Objekte dasselbe übergeordnete Objekt haben.
 
--   **sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
+-   **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 
 -   **Verstecke dich auf dem Armaturenbrett** : Aktivieren Sie dieses Kontrollkästchen, um es auszublenden
     das Objekt auf dem Dashboard. Es wird immer noch in der aufbewahrt
@@ -53,7 +53,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
     daran angeschlossene Ausrüstung.
 
 -   **Tag-Textfarbe** : Ermöglicht die Auswahl der Textfarbe
-    des Objekts. Dieser Text wird über dem **Farbe des Tags**. Für dich
+    des Objekts. Dieser Text wird über dem **Tag Farbe**. Für dich
     um eine Farbe zu wählen, um den Text lesbar zu machen.
 
 -   **Größe auf dem Armaturenbrett (1 bis 12)** : Hier können Sie die Breite deEndeieren
@@ -81,7 +81,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 > **Spitze**
 >
 > Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät deEndeiert wurde, wird es
-> wird als Elternteil haben : **keine** .
+> wird als Elternteil haben : **Keine** .
 
 Registerkarte &quot;Zusammenfassung&quot; 
 -------------
@@ -131,9 +131,9 @@ Jeedom sowie deren Konfiguration :
 
 -   **Vater** : Name des übergeordneten Objekts.
 
--   **sichtbar** : Objektsichtbarkeit.
+-   **Sichtbar** : Objektsichtbarkeit.
 
--   **maskiert** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
+-   **Maskiert** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
 
 -   **Zusammenfassung deEndeiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. diese
     Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.

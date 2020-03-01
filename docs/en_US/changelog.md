@@ -7,7 +7,7 @@ Changelog
 - Possibility to change the theme automatically according to the time.
 - In mobile, the theme can change depending on the brightness (Requires activating * generic extra sensor * in chrome, chrome page:// flags). <br/><br/>
 - Improvement and reorganization of the main menu.
-- plugins menu : The list of categories and plugins is now sorted alphabetically.
+- Plugins menu : The list of categories and plugins is now sorted alphabetically.
 - Tools menu : Addition of a button to access the expression tester.
 - Tools menu : Addition of a button to access the variables. <br/><br/>
 - Search fields now support accents.
@@ -20,36 +20,36 @@ Changelog
 - Dashboard : The tiles indicate an info command (history, which will open the History window) or action on hover.
 - Dashboard : The history window now allows you to open this history in Analysis / History.
 - Dashboard : History window retains its position / dimensions when another history reopens.
-- Command Configuration window: Ctrl + click on &quot;Save&quot; closes the window after.
-- Equipment Configuration window: Ctrl + click on &quot;Save&quot; closes the window after.
+- Command D'actualité window: Ctrl + click on &quot;Save&quot; closes the window after.
+- Equipment D'actualité window: Ctrl + click on &quot;Save&quot; closes the window after.
 - Adding usage information when deleting equipment.
 - Objects : Added option to use custom colors.
 - Objects : Add context menu on tabs (quick object change).
-- interactions : Add context menu on tabs (quick interaction change).
-- plugins : Add context menu on tabs (quick change of equipment).
-- plugins : On the plugins management page, an orange dot indicates non-stable plugins.
+- Interactions : Add context menu on tabs (quick interaction change).
+- Plugins : Add context menu on tabs (quick change of equipment).
+- Plugins : On the Plugins management page, an orange dot indicates non-stable plugins.
 - Table improvements with filter and sort option.
 - Ability to assign an icon to an interaction.
 - Each Jeedom page now has a title in the interface language (browser tab).
 - Prevention of auto-filling on fields&#39; Access code'.
 - Management of functions * Previous page / Next page * of the browser. <br/><br/>
-- Widgets : Redesign of the widget system (Tools / Widgets menu).
-- Widgets : Ability to replace a widget with another on all commands using it.
-- Widgets : Ability to assign a widget to multiple commands.
-- Widgets : Add horizontal info numeric widget.
-- Widgets : Adding an info numeric vertical widget.
-- Widgets : Addition of an info numeric compass / wind widget (thanks @thanaus).
-- Widgets : Adding an info numeric rain widget (thanks @thanaus)
-- Widgets : Display of the info / action shutter widget proportional to the value. <br/><br/>
-- Configuration : Improvement and reorganization of tabs.
-- Configuration : Added many * tooltips * (help).
-- Configuration : Adding a search engine.
-- Configuration : Adding a button to empty the widget cache (Cache tab).
-- Configuration : Added option to disable widget cache (Cache tab).
-- Configuration : Ability to center the content of the tiles vertically (Interface tab).
-- Configuration : Addition of a parameter for the global purging of the histories (Tab Commands).
-- Configuration : Change from # message # to # subject # in Configuration / Logs / Messages to avoid duplication of the message.
-- Configuration : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation ) <br/><br/>
+- Widget : Redesign of the widget system (Tools / Widget menu).
+- Widget : Ability to replace a widget with another on all commands using it.
+- Widget : Ability to assign a widget to multiple commands.
+- Widget : Add horizontal info numeric widget.
+- Widget : Adding an info numeric vertical widget.
+- Widget : Addition of an info numeric compass / wind widget (thanks @thanaus).
+- Widget : Adding an info numeric rain widget (thanks @thanaus)
+- Widget : Display of the info / action shutter widget proportional to the value. <br/><br/>
+- D'actualité : Improvement and reorganization of tabs.
+- D'actualité : Added many * tooltips * (help).
+- D'actualité : Adding a search engine.
+- D'actualité : Adding a button to empty the widget cache (Cache tab).
+- D'actualité : Added option to disable widget cache (Cache tab).
+- D'actualité : Ability to center the content of the tiles vertically (Interface tab).
+- D'actualité : Addition of a parameter for the global purging of the histories (Tab Commands).
+- D'actualité : Change from # message # to # subject # in D'actualité / Logs / Messages to avoid duplication of the message.
+- D'actualité : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation ) <br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
 - Scenario : Possibility by Ctrl + click on the button * execution * to save it, launch it, and display the log (if the log level is not on * None *).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.
@@ -82,11 +82,11 @@ Changelog
 - Numerous bug fixes.
 - Adding a mass configuration system (used on the Equipment page to configure Communications Alerts on them)
 
->**IMPORTANT**
+>**Important**
 >
 >If after the update you have an error on the dashboard try to restart your box so that it takes the new additions of components into account
 
->**IMPORTANT**
+>**Important**
 >
 >The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the functions have been taken over internally on the core). More information [here] (https://www.jeedom.com/blog/4368-les-widgets-en-v4)
 
@@ -257,7 +257,7 @@ Changelog
 - Ability to add options in reports
 - Addition of a heartbeat by plugin and automatic restart of daemon in case of problems
 - Addition of listeners on the task engine page
-- optimizations
+- Optimizations
 - Possibility to consult the logs in mobile version (wepapp)
 - Addition of an action tag in the scenarios (see documentation)
 - Possibility to have a full screen view by adding &quot;&amp; fullscreen = 1&quot; in the url
@@ -288,7 +288,7 @@ Changelog
 3.2.12
 =====
 - Bugfix
-- optimizations
+- Optimizations
 
 3.2.11
 =====
@@ -492,7 +492,7 @@ Changelog
     - Possibility to activate a magnetization of the widgets between them
     - Certain types of widgets can now be duplicated
     - Ability to lock an item
-- plugins can now use their own API key
+- Plugins can now use their own API key
 - Adding automatic interactions, Jeedom will try to understand the sentence, execute the action and respond
 - Added management of demons in mobile version
 - Addition of cron management in mobile version
@@ -521,8 +521,8 @@ Changelog
 - Correction of the access to the doc of third-party plugins if they do not have a doc locally
 - The interactions can take into account the notion of context (depending on the previous request as well as that before)
 - Possibility of weighting words according to their size for the analysis of comprehension
-- plugins can now add interactions
-- interactions can now return files in addition to the response
+- Plugins can now add interactions
+- Interactions can now return files in addition to the response
 - Possibility to see on the plugins configuration page the functionalities of these plugins (interact, cron…) and to deactivate them individually
 - Automatic interactions can return values from summaries
 - Ability to define synonyms for objects, equipment, commands and summaries that will be used in contextual responses and summaries

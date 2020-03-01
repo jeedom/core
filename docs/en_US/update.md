@@ -23,7 +23,7 @@ you can press the button "Check for updates".
 
 The button **Update** allows to update the set of
 Jeedom. Once you click on it, we get these different
-options :
+Jeedoms Sources :
 -   **Pre-update** : Allows you to update the update script before
     applications of new updates.
 
@@ -43,7 +43,7 @@ options :
 -   **Update to reapply** : Allows you to reapply a bet
     up to date. (NB : Not all updates can be reapplied.)
 
-> **Important**
+> **IMPORTANT**
 >
 > Before an update, by default, Jeedom will make a backup. In
 > if there is a problem when applying an update, Jeedom will
@@ -68,7 +68,7 @@ These two similar tabs, consist of a table :
 You will find the following information : \* **Status** : OK or NOK.
 Allows to know the current state of the plugin. \* **Last name** : You there
 find the source of the element, the type of element and its name. \*
-**Version** : Indicates the specific version of the item. \* **options** :
+**Version** : Indicates the specific version of the item. \* **Jeedoms Sources** :
 Check this box if you do not want this item to be updated.
 day during the general update (Button **Update**).
 
@@ -80,7 +80,7 @@ day during the general update (Button **Update**).
 On each line, you can use the following functions to
 every element :
 
--   **reinstate** : Force resettlement.
+-   **Reinstate** : Force resettlement.
 
 -   **Remove** : Allows you to uninstall it.
 
@@ -93,7 +93,7 @@ every element :
 -   **Changelog** : Access the list of changes in the
     update.
 
-> **Important**
+> **IMPORTANT**
 >
 > If the changelog is empty but you still have an update
 > update means that the documentation has been updated.

@@ -6,18 +6,18 @@ It is accessible by Home → Design
 
 > **Tip**
 >
-> It is possible to go directly to a design thanks to the submenu.
+> It is possible to go directly to a Design thanks to the submenu.
 
-> **Important**
+> **IMPORTANT**
 >
 > All actions are done by right clickk on this page, attention
-> to do it well in design. During creation, it is therefore necessary to
-> do in the middle of the page (to be sure to be on the design).
+> to do it well in Design. During creation, it is therefore necessary to
+> do in the middle of the page (to be sure to be on the Design).
 
 In the menu (right clickk therefore), we find the
 following actions :
 
--   **designs** : Displays the list of your designs and allows you to access them
+-   **Designs** : Displays the list of your Designs and allows you to access them
 
 -   **Editing** : Switch to edit mode
 
@@ -35,8 +35,8 @@ following actions :
 
     -   **Towards a view** : Add a link to a view
 
-    -   **Towards a design** : Add a link to another
-        design
+    -   **Towards a Design** : Add a link to another
+        Design
 
 -   **Add equipment** : Adds equipment
 
@@ -72,20 +72,20 @@ following actions :
     -   **Hide item highlighting** : Hide it
         highlight around items
 
--   **Delete design** : delete design
+-   **Delete Design** : delete Design
 
--   **Create a design** : allows to add a new design
+-   **Create a Design** : allows to add a new Design
 
--   **Duplicate design** : duplicate the current design
+-   **Duplicate Design** : duplicate the current Design
 
--   **Configure the design** : access to design configuration
+-   **Configure the Design** : access to Design configuration
 
--   **Save** : allows to save the design (attention, there are
+-   **Save** : allows to save the Design (attention, there are
     also automatic backups during certain actions)
 
-> **Important**
+> **IMPORTANT**
 >
-> The configuration of the design elements is done by clickking on
+> The configuration of the Design elements is done by clickking on
 > these.
 
 Design configuration 
@@ -95,39 +95,39 @@ Found here :
 
 -   **General**
 
-    -   **Last name** : The name of your design
+    -   **Last name** : The name of your Design
 
     -   **Transparent background** : makes the background transparent. Be careful if the
         box is checked, the background color is not used
 
-    -   **Background color** : design background color (white
+    -   **Background color** : Design background color (white
         by default)
 
-    -   **Coded** : Access code to your design (if empty, no code
+    -   **Coded** : Access code to your Design (if empty, no code
         is not requested)
 
     -   **Icon** : An icon for it (appears in the menu
-        choice of design)
+        choice of Design)
 
     -   **Picture**
 
-        -   **To send** : allows to add a background image to the design
+        -   **To send** : allows to add a background image to the Design
 
         -   **Delete image** : delete image
 
--   **sizes**
+-   **Sizes**
 
-    -   **Size (WxH)** : Allows you to fix the size of your design
+    -   **Size (WxH)** : Allows you to fix the size of your Design
         (gray frame in edit mode)
 
 General configuration of elements 
 ===================================
 
-> **Note**
+> **NOTE**
 >
 > Depending on the type of item, options may change.
 
-> **Note**
+> **NOTE**
 >
 > The selected item is highlighted in red (instead of green
 > for everyone else).
@@ -155,7 +155,7 @@ Duplicate
 
 Allows you to duplicate the element
 
-lock 
+Lock 
 -----------
 
 Locks the element so that it is no longer movable or
@@ -181,7 +181,7 @@ Display settings
 
 -   **Transparent background** : makes the background transparent
 
--   **border** : add a border, beware the syntax is
+-   **Border** : add a border, beware the syntax is
     HTML (be careful, you must use CSS syntax, for example :
     solid 1px black)
 
@@ -204,7 +204,7 @@ Text / html
 -   **Smooth it out** : allows you to round off the angles (do not
     forget to put%, ex 50%)
 
--   **border** : add a border, beware the syntax is
+-   **Border** : add a border, beware the syntax is
     HTML (use CSS syntax, for example : solid
     1px black)
 
@@ -214,15 +214,15 @@ Text / html
 -   **Text alignment** : allows you to choose the alignment of the
     text (left / right / centered)
 
--   **fat** : bold text
+-   **Fat** : bold text
 
 -   **Text** : Text in HTML code that will be in the element
 
-> **Important**
+> **IMPORTANT**
 >
 > If you put HTML code (especially Javascript), be careful
 > to check it before because you can if there is an error in it
-> or if it overwrites a Jeedom component completely crashing the design and
+> or if it overwrites a Jeedom component completely crashing the Design and
 > all you have to do is delete it directly from the database
 
 Scenario 
@@ -241,7 +241,7 @@ Display settings
 
 -   **Last name** : Name of the link (displayed text)
 
--   **Link** : Link to the design or view in question
+-   **Link** : Link to the Design or view in question
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
@@ -261,7 +261,7 @@ Display settings
 -   **Text alignment** : allows you to choose the alignment of the
     text (left / right / centered)
 
--   **fat** : bold text
+-   **Fat** : bold text
 
 Equipment 
 ==========
@@ -349,7 +349,7 @@ display the widget in question
 -   **Position** : allows you to choose the location where the
     widget (default bottom right)
 
-summary 
+Summary 
 ======
 
 -   **Link** : Used to indicate the summary to be displayed (General for the
@@ -370,16 +370,16 @@ summary
 -   **Font size (ex 50%, you must put the% sign)** :
     allows you to change the font size
 
--   **fat** : bold text
+-   **Fat** : bold text
 
 
 FAQ 
 ======
 
->**I can no longer edit my design**
+>**I can no longer edit my Design**
 >
->If you have put a widget or an image that takes almost the entire design, you must clickk outside the widget or image to access the menu by right-clickking.
+>If you have put a widget or an image that takes almost the entire Design, you must clickk outside the widget or image to access the menu by right-clickking.
 
->**Delete a design that no longer works**
+>**Delete a Design that no longer works**
 >
->In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the design id previously found.
+>In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the Design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the Design id previously found.

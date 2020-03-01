@@ -19,7 +19,7 @@ Die Verwendung ist sehr einfach, Sie wählen aus, wenn Sie sehen möchten :
 
 Anschließend wählen Sie den Namen des betreffenden Berichts aus und sehen alle Daten der Berichte im Speicher
 
-> **wichtig**
+> **Wichtig**
 >
 > Das automatische Löschen erfolgt standardmäßig für Berichte, die länger als 30 Tage dauern (Sie können diesen Zeitraum in der Konfiguration von Jeedom konfigurieren).
 

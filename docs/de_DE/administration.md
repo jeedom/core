@@ -6,11 +6,11 @@ Die Seite ist über zugänglich  **Einstellungen → System → Konfiguration**.
 General
 =======
 
-Auf dieser Registerkarte finden wenne allgemeine Informationen zu Jeedom :
+Auf dieser Registerkarte finden Wenne allgemeine Informationen zu Jeedom :
 
--   **Name deines Jeedom** : Identifizieren wenne Ihre Freiheit,
+-   **Name deines Jeedom** : Identifizieren Wenne Ihre Freiheit,
     vor allem auf dem Markt. Es kann in Szenarien wiederverwendet werden
-    oder identifizieren wenne ein Backup.
+    oder identifizieren Wenne ein Backup.
 
 -   **Sprache** : Sprache, die in Ihrem Jeedom verwendet wird.
 
@@ -18,48 +18,48 @@ Auf dieser Registerkarte finden wenne allgemeine Informationen zu Jeedom :
     Dein Jeedom dreht sich.
 
 -   **Übersetzungen generieren** : Übersetzungen generieren,
-    Seien wenne vorsichtig, dies kann Ihr System verlangsamen. Die nützlichste Option
+    Seien Wenne vorsichtig, dies kann Ihr System verlangsamen. Die nützlichste Option
     für Entwickler.
 
--   **Datum und Uhrzeit** : Wählen wenne Ihre Zeitzone. Du kannst
-    Klicken wenne auf **Zeitsynchronisation erzwingen** wiederherstellen
+-   **Datum und Uhrzeit** : Wählen Wenne Ihre Zeitzone. Du kannst
+    Klicken Wenne auf **Zeitsynchronisation erzwingen** wiederherstellen
     Oben rechts wird eine schlechte Zeit angezeigt.
 
 -   **Optionaler Zeitserver** : Gibt an, welcher Zeitserver verwendet werden soll
-    verwendet werden, wenn wenne klicken **Zeitsynchronisation erzwingen**
+    verwendet werden, wenn Wenne klicken **Zeitsynchronisation erzwingen**
     (für Experten reserviert).
 
 -   **Zeitprüfung überspringen** : sagt Jeedom, dass er es nicht tun soll
-    Überprüfen wenne, ob die Zeit zwischen sich und dem eingeschalteten System konsistent ist
-    was es dreht. Kann zum Beispiel nützlich sein, wenn wenne keine Verbindung herstellen
+    Überprüfen Wenne, ob die Zeit zwischen sich und dem eingeschalteten System konsistent ist
+    was es dreht. Kann zum Beispiel nützlich sein, wenn Wenne keine Verbindung herstellen
     Kein Jeedom zum Internet und dass es keine PSTN-Batterie auf dem hat
     verwendetes Material.
 
 -   **System** : Gibt den Hardwaretyp an, auf dem Jeedom installiert ist.   
 
 -   **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom auf
-    der Markt. Wenn Ihr Jeedom nicht in der dieiste von Ihnen erscheint
+    der Markt. Wenn Ihr Jeedom nicht in der Dieiste von Ihnen erscheint
     Jeedom on the Markt, es ist ratsam, auf die Schaltfläche zu klicken
     **Zurücksetzen**.
 
--   **dieetztes bekanntes Datum** : Aufnahmedatum von Jeedom, verwendet nach
+-   **Dieetztes bekanntes Datum** : Aufnahmedatum von Jeedom, verwendet nach
     ein Neustart für Systeme ohne PSTN-Stack.
 
 Schnittstelle
 =========
 
-Auf dieser Registerkarte finden wenne die Parameter für die Anpassung der Anzeige.
+Auf dieser Registerkarte finden Wenne die Parameter für die Anpassung der Anzeige.
 
 Themen
 ------
 
--   **Heller und dunkler Desktop** : Hier können wenne ein klares Thema auswählen
+-   **Heller und dunkler Desktop** : Hier können Wenne ein klares Thema auswählen
     und eine dunkle für den Desktop.
 
 -   **Helles und dunkles Handy** : Gleich wie oben für die Mobile-Version.
 
--   **Klares Thema von / bis** : Hier können wenne einen Zeitraum definieren, in dem
-    Das zuvor ausgewählte klare Thema wird verwendet. Aktivieren wenne jedoch die Option
+-   **Klares Thema von / bis** : Hier können Wenne einen Zeitraum definieren, in dem
+    Das zuvor ausgewählte klare Thema wird verwendet. Aktivieren Wenne jedoch die Option
     **Thema basierend auf der Zeit umschalten**.
 
 -   **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden
@@ -85,16 +85,16 @@ Netzwerke
 
 Es ist unbedingt erforderlich, diesen wichtigen Teil von korrekt zu konfigurieren
 Jeedom sonst funktionieren viele Plugins möglicherweise nicht. es
-Es ist möglich, auf zwei verschiedene Arten auf Jeedom zuzugreifen : die'**Zugang
+Es ist möglich, auf zwei verschiedene Arten auf Jeedom zuzugreifen : Die'**Zugang
 intern** (aus demselben lokalen Netzwerk wie Jeedom) und l'**Zugang
 extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
-> **wichtig**
+> **Wichtig**
 >
 > Dieser Teil ist nur dazu da, Jeedom seine Umgebung zu erklären :
 > Durch Ändern des Hafens oder der IP auf dieser Registerkarte wird das nicht geändert
-> Jeedom Hafen oder IP eigentlich. Dazu müssen wenne sich anmelden
-> SSH und bearbeiten wenne die Datei / etc / network / interfaces für die IP und
+> Jeedom Hafen oder IP eigentlich. Dazu müssen Wenne sich anmelden
+> SSH und bearbeiten Wenne die Datei / etc / network / interfaces für die IP und
 > etc / apache2 / sites-available / default files und
 > etc / apache2 / sites-available / default \ _ssl (für HTTPS). In
 > Wenn Ihr Jeedom falsch behandelt wird, wird das Jeedom-Team dies nicht tun
@@ -102,24 +102,24 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 > Unterstützung.
 
 -   **Interner Zugang** : Informationen für den Beitritt zu Jeedom von a
-    gleiche Netzwerkausrüstung wie Jeedom (dieAN)
+    gleiche Netzwerkausrüstung wie Jeedom (DieAN)
 
     -   **OK / NOK** : Gibt an, ob die intern Netzwerkkonfiguration ist
         richtig
 
     -   **Protokoll** : das zu verwendende Protokoll, oft HTTP
 
-    -   **URdies oder IP-Adresse** : Jeedom IP eingeben
+    -   **URDies oder IP-Adresse** : Jeedom IP eingeben
 
     -   **Hafen** : der Hafen der Jeedom-Weboberfläche, in der Regel 80.
-        Bitte beachten wenne, dass durch Ändern des Hafens hier nicht der tatsächliche Hafen von geändert wird
+        Bitte beachten Wenne, dass durch Ändern des Hafens hier nicht der tatsächliche Hafen von geändert wird
         Freiheit, die gleich bleiben wird
 
-    -   **ergänzen** : das Fragment einer zusätzlichen URdies (Beispiel
+    -   **Ergänzen** : das Fragment einer zusätzlichen URDies (Beispiel
         : / jeedom), um auf Jeedom zuzugreifen.
 
 -   **Externer Zugang** : Informationen, um Jeedom von außen zu erreichen
-    lokales Netzwerk. Nur auszufüllen, wenn wenne kein DNS verwenden
+    lokales Netzwerk. Nur auszufüllen, wenn Wenne kein DNS verwenden
     Jeedom
 
     -   **OK / NOK** : Gibt an, ob die extern Netzwerkkonfiguration ist
@@ -127,43 +127,43 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
     -   **Protokoll** : Protokoll für den Zugang im Freien
 
-    -   **URdies oder IP-Adresse** : Externe IP, wenn es fist ist. andernfalls,
-        Geben wenne die URdies an, die auf die extern IP-Adresse Ihres Netzwerks verweist.
+    -   **URDies oder IP-Adresse** : Externe IP, wenn es fist ist. andernfalls,
+        Geben Wenne die URDies an, die auf die extern IP-Adresse Ihres Netzwerks verweist.
 
-    -   **ergänzen** : das Fragment einer zusätzlichen URdies (Beispiel
+    -   **Ergänzen** : das Fragment einer zusätzlichen URDies (Beispiel
         : / jeedom), um auf Jeedom zuzugreifen.
 
 -   **Proxy für den Markt** : Proxy-Aktivierung.
 
-    - Aktivieren wenne das Kontrollkästchen Proxy aktivieren
+    - Aktivieren Wenne das Kontrollkästchen Proxy aktivieren
 
-    - **Proxy-Adresse** : Geben wenne die Proxy-Adresse ein,
+    - **Proxy-Adresse** : Geben Wenne die Proxy-Adresse ein,
 
-    - **Proxy-Hafen** : Geben wenne den Proxy-Hafen ein,
+    - **Proxy-Hafen** : Geben Wenne den Proxy-Hafen ein,
 
-    - **dieogin** : Geben wenne den Proxy-dieogin ein,
+    - **Dieogin** : Geben Wenne den Proxy-Dieogin ein,
 
-    - **Passwort** : Geben wenne das Passwort ein.
+    - **Passwort** : Geben Wenne das Passwort ein.
 
 > **Spitze**
 >
-> Wenn wenne sich in HTTPS befinden, ist der Hafen 443 (standardmäßig) und in HTTP der
+> Wenn Wenne sich in HTTPS befinden, ist der Hafen 443 (standardmäßig) und in HTTP der
 > Hafen ist 80 (Standard). HTTPS von außen verwenden,
-> Ein dieetsencrypt-Plugin ist jetzt auf dem Markt erhältlich.
+> Ein Dieetsencrypt-Plugin ist jetzt auf dem Markt erhältlich.
 
 > **Spitze**
 >
-> Um herauszufinden, ob wenne einen Wert im Feld fistlegen müssen
+> Um herauszufinden, ob Wenne einen Wert im Feld fistlegen müssen
 > **ergänzen**, Schau, wenn du dich bei Jeedom anmeldist
-> Ihren Internetbrowser, wenn wenne / jeedom (oder andere) hinzufügen müssen
+> Ihren Internetbrowser, wenn Wenne / jeedom (oder andere) hinzufügen müssen
 > Sache) nach der IP.
 
 -   **Erweiterte Verwaltung** : Dieser Teil erscheint möglicherweise nicht in
-    abhängig von der Kompatibilität mit Ihrer Hardware. wenne finden dort
-    die dieiste Ihrer Netzwerkschnittstellen. wenne können Jeedom sagen
-    das Netzwerk nicht durch Klicken auf zu überwachen **Deaktivieren wenne die
-    Netzwerkmanagement von Jeedom** (Überprüfen wenne, ob Jeedom nicht angeschlossen ist
-    kein Netzwerk). wenne können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (nur für Docker-Installationen zu verwenden)
+    abhängig von der Kompatibilität mit Ihrer Hardware. Wenne finden dort
+    die Dieiste Ihrer Netzwerkschnittstellen. Wenne können Jeedom sagen
+    das Netzwerk nicht durch Klicken auf zu überwachen **Deaktivieren Wenne die
+    Netzwerkmanagement von Jeedom** (Überprüfen Wenne, ob Jeedom nicht angeschlossen ist
+    kein Netzwerk). Wenne können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (nur für Docker-Installationen zu verwenden)
 
 -   **Proxy-Markt** : ermöglicht den Fernzugriff auf Ihr Jeedom ohne zu haben
     benötigen ein DNS, eine fiste IP oder um die Hafens Ihrer Box zu öffnen
@@ -176,78 +176,78 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
     -   **Management** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes
 
-> **wichtig**
+> **Wichtig**
 >
-> Wenn wenne Jeedom DNS nicht zum dieaufen bringen können, überprüfen wenne die
+> Wenn Wenne Jeedom DNS nicht zum Dieaufen bringen können, überprüfen Wenne die
 > Konfiguration der Firewall und des Kindersicherungsfilters Ihrer Internetbox
-> (Auf dieivebox benötigen wenne beispielsweise die Firewall auf mittlerer Ebene).
--   **dieebensdauer der wenntzungen (Stunde)** : dieebensdauer der wenntzungen
+> (Auf Dieivebox benötigen Wenne beispielsweise die Firewall auf mittlerer Ebene).
+-   **Dieebensdauer der Wenntzungen (Stunde)** : Dieebensdauer der Wenntzungen
     PHP, es wird nicht empfohlen, diesen Parameter zu berühren.
 
-logs
+Dieogs
 ====
 
 Timeline
 --------
 
--   **Maximale Anzahl von Ereignissen** : dieegt die maximale Anzahl von Ereignissen auf fist
+-   **Maximale Anzahl von Ereignissen** : Dieegt die maximale Anzahl von Ereignissen auf fist
     in der Zeitleiste anzeigen.
 
--   **dieöschen wenne alle Ereignisse** : dieeeren wenne die Zeitleiste von
+-   **Dieöschen Wenne alle Ereignisse** : Dieeeren Wenne die Zeitleiste von
     alle seine aufgezeichneten Ereignisse.
 
 Beiträge
 --------
 
--   **Fügen wenne jedem Fehler in den Protokollen eine Nachricht hinzu** : wenn ein Plugin
+-   **Fügen Wenne jedem Fehler in den Protokollen eine Nachricht hinzu** : wenn ein Plugin
     oder Jeedom schreibt eine Fehlermeldung in ein Protokoll, fügt Jeedom hinzu
     automatisch eine Nachricht im Message Center (zumindist
-    wenne werden es sicher nicht verpassen).
+    Wenne werden es sicher nicht verpassen).
 
--   **Aktion auf Nachricht** : Ermöglicht es Ihnen, eine Aktion auszuführen, wenn wenne dem Nachrichtenzentrum eine Nachricht hinzufügen. wenne haben 2 Tags für diese Aktionen :
+-   **Aktion auf Nachricht** : Ermöglicht es Ihnen, eine Aktion auszuführen, wenn Wenne dem Nachrichtenzentrum eine Nachricht hinzufügen. Wenne haben 2 Tags für diese Aktionen :
         - #Thema# : Nachricht in Frage
         - #Plugin# : Plugin, das die Nachricht ausgelöst hat
 
 Benachrichtigungen
 -------
 
--   **Fügen wenne jedem Timeout eine Nachricht hinzu** : Fügen wenne eine Nachricht in die
+-   **Fügen Wenne jedem Timeout eine Nachricht hinzu** : Fügen Wenne eine Nachricht in die
     Nachrichtenzentrum, wenn Geräte hineinfallen **Timeout**.
 
 -   **Timeout-Reihenfolge** : Befehl eingeben **Nachricht** zu verwenden
     wenn ein Gerät in ist **Timeout**.
 
--   **Fügen wenne jeder Batterie in Warnung eine Nachricht hinzu** : Fügen wenne a hinzu
+-   **Fügen Wenne jeder Batterie in Warnung eine Nachricht hinzu** : Fügen Wenne a hinzu
     Nachricht im Nachrichtencenter, wenn ein Gerät die Stufe hat
     Batterie ein **Warnung**.
 
 -   **Batteriebefehl in Warnung** : Befehl eingeben **Nachricht**
     zu verwenden, wenn sich das Gerät auf Batteriistand befindet **Warnung**.
 
--   **Fügen wenne jeder gefährdeten Batterie eine Nachricht hinzu** : Fügen wenne a hinzu
-    Nachricht im Nachrichtencenter, wenn ein Gerät auf seiner Ebene von
+-   **Fügen Wenne jeder gefährdeten Batterie eine Nachricht hinzu** : Fügen Wenne a hinzu
+    Nachricht im Nachrichtencenter, wenn ein Gerät die Stufe hat
     Batterie ein **Gefahr**.
 
 -   **Befehl zur Batterie in Gefahr** : Befehl eingeben **Nachricht** zu
-    Verwenden wenne das Gerät, wenn der Batteriistand erreicht ist **Gefahr**.
+    Verwenden Wenne das Gerät, wenn der Batteriistand erreicht ist **Gefahr**.
 
--   **Fügen wenne jeder Warnung eine Nachricht hinzu** : Fügen wenne eine Nachricht in die
+-   **Fügen Wenne jeder Warnung eine Nachricht hinzu** : Fügen Wenne eine Nachricht in die
     Message Center, wenn eine Bistellung in Alarmbereitschaft versetzt wird **Warnung**.
 
 -   **Befehl zur Warnung** : Befehl eingeben **Nachricht** zu verwenden
     wenn eine Bistellung in Alarmbereitschaft geht **Warnung**.
 
--   **Fügen wenne jeder Gefahr eine Nachricht hinzu** : Fügen wenne eine Nachricht in die
+-   **Fügen Wenne jeder Gefahr eine Nachricht hinzu** : Fügen Wenne eine Nachricht in die
     Message Center, wenn eine Bistellung in Alarmbereitschaft versetzt wird **Gefahr**.
 
 -   **Befehl zur Gefahr** : Befehl eingeben **Nachricht** zu verwenden, wenn
     Eine Bistellung wird in Alarmbereitschaft versetzt **Gefahr**.
 
-logs
+Dieogs
 ----
 
--   **dieog Engine** : Ermöglicht das Ändern der Protokoll-Engine für, z
-    Senden wenne sie beispielsweise an einen Syslog-Daemon (d)..
+-   **Dieog Engine** : Ermöglicht das Ändern der Protokoll-Engine für, z
+    Senden Wenne sie beispielsweise an einen Syslog-Daemon (d)..
 
 -   **Protokollformat** : Zu verwendendes Protokollformat (Achtung : es
     wirkt sich nicht auf Daemon-Protokolle aus).
@@ -255,14 +255,14 @@ logs
 -   **Maximale Anzahl von Zeilen in einer Protokolldatei** : Definiert die
     maximale Anzahl von Zeilen in einer Protokolldatei. Es wird empfohlen
     diesen Wert nicht zu berühren, weil ein zu großer Wert könnte
-    Füllen wenne das Dateisystem und / oder machen wenne Jeedom unfähig
+    Füllen Wenne das Dateisystem und / oder machen Wenne Jeedom unfähig
     um das Protokoll anzuzeigen.
 
--   **Standardprotokollstufe** : Wenn wenne "Standard" auswählen",
+-   **Standardprotokollstufe** : Wenn Wenne "Standard" auswählen",
     Für die Ebene eines Protokolls in Jeedom ist dies diejenige, die sein wird
     dann verwendet.
 
-Nachfolgend finden wenne eine Tabelle zur Feinverwaltung
+Nachfolgend finden Wenne eine Tabelle zur Feinverwaltung
 logarithmische Ebene der wesentlichen Elemente von Jeedom sowie die von
 Plugins.
 
@@ -270,11 +270,11 @@ Befehle
 =========
 
 Viele Bistellungen können protokolliert werden. Also rein
-Analyse → Verlauf erhalten wenne Diagramme, die ihre darstellen
-verwenden. Auf dieser Registerkarte können wenne globale Parameter für fistlegen
+Analyse → Verlauf erhalten Wenne Diagramme, die ihre darstellen
+verwenden. Auf dieser Registerkarte können Wenne globale Parameter für fistlegen
 Bistellhistorie.
 
-historisch
+Historisch
 ----------
 
 -   **Widget-Statistiken anzeigen** : Anzeigen
@@ -300,7 +300,7 @@ historisch
 -   **Archiv nach Paket ab (in Stunden)** : Dieser Parameter gibt
     genau die Größe der Pakete (standardmäßig 1 Stunde). Es bedeutet durch
     Beispiel, dass Jeedom Perioden von 1 Stunde dauern wird, durchschnittlich und
-    Speichern wenne den neu berechneten Wert, indem wenne den löschen
+    Speichern Wenne den neu berechneten Wert, indem Wenne den löschen
     gemittelte Werte.
 
 -   **Niedrige Trendberechnungsschwelle** : Dieser Wert gibt die an
@@ -310,7 +310,7 @@ historisch
 -   **Hohe Trendberechnungsschwelle** : Gleiches gilt für den Aufstieg.
 
 -   **Standard-Grafikanzeigezeitraum** : Zeitraum, der ist
-    Wird standardmäßig verwendet, wenn wenne den Verlauf anzeigen möchten
+    Wird standardmäßig verwendet, wenn Wenne den Verlauf anzeigen möchten
     einer Bistellung. Je kürzer der Zeitraum, disto schneller wird Jeedom
     um das angeforderte Diagramm anzuzeigen.
 
@@ -318,9 +318,9 @@ historisch
 >
 > Der erste Parameter **Widget-Statistiken anzeigen** ist
 > möglich, aber standardmäßig deaktiviert, da dies die
-> Anzeigezeit des Dashboards. Wenn wenne diese Option zum Beispiel aktivieren
+> Anzeigezeit des Dashboards. Wenn Wenne diese Option zum Beispiel aktivieren
 > Standardmäßig stützt sich Jeedom auf Daten der letzten 24 Stunden bis
-> Berechnen wenne diese Statistiken. Die Trendberechnungsmethode basiert
+> Berechnen Wenne diese Statistiken. Die Trendberechnungsmethode basiert
 > Berechnung der kleinsten Quadrate (siehe
 > [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > für Details).
@@ -328,12 +328,12 @@ historisch
 Druck
 ----
 
-**Globale Druck-URdies** : ermöglicht das Hinzufügen einer URdies zum Aufrufen im Falle von
-Bistellaktualisierung. wenne können die folgenden Tags verwenden :
+**Globale Druck-URDies** : ermöglicht das Hinzufügen einer URDies zum Aufrufen im Falle von
+Bistellaktualisierung. Wenne können die folgenden Tags verwenden :
 **\ #Value \#** für den Bistellwert, **\ #Cmd \ _name \#** für die
 Befehlsname, **\ #Cmd \ _id \#** für die eindeutige Kennung des
 bistellen, **\ #Humanname \#** für den vollständigen Namen der Bistellung (z :
-\ # \ [Badezimmer \] \ [Hydrometrie \] \ [dieuftfeuchtigkeit \] \ #), `# eq_name #` für den Namen des Geräts
+\ # \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \ #), `# eq_name #` für den Namen des Geräts
 
 Zusammenfassungen
 =======
@@ -352,24 +352,24 @@ Objekte :
 
     -   **Durchschnitt** : Durchschnittswerte,
 
-    -   **Text** : Zeigen wenne den Wert wörtlich an (insbesondere für diese
+    -   **Text** : Zeigen Wenne den Wert wörtlich an (insbesondere für diese
         Zeichenfolgentyp).
 
 -   **Symbol** : Zusammenfassungssymbol.
 
 -   **Einheit** : Zusammenfassungseinheit.
 
--   **Zählmethode** : Wenn wenne dann Binärdaten zählen
-    wenne müssen diesen Wert auf binär setzen, Beispiel, wenn wenne die zählen
-    Anzahl der dieichter an, aber wenne haben nur den Wert von
-    Dimmer (0 bis 100), dann müssen wenne binär setzen, wie dieses Jeedom
-    Beachten wenne, dass die dieampe die dieampe ist, wenn der Wert größer als 1 ist
+-   **Zählmethode** : Wenn Wenne dann Binärdaten zählen
+    Wenne müssen diesen Wert auf binär setzen, Beispiel, wenn Wenne die zählen
+    Anzahl der Dieichter an, aber Wenne haben nur den Wert von
+    Dimmer (0 bis 100), dann müssen Wenne binär setzen, wie dieses Jeedom
+    Beachten Wenne, dass die Dieampe die Dieampe ist, wenn der Wert größer als 1 ist
     ist an.
 
--   **Zeigen wenne an, ob der Wert 0 ist** : Aktivieren wenne dieses Kontrollkästchen, um das anzuzeigen
+-   **Zeigen Wenne an, ob der Wert 0 ist** : Aktivieren Wenne dieses Kontrollkästchen, um das anzuzeigen
     Wert, auch wenn es 0 ist.
 
--   **dieink zu einem virtuellen** : Erstellen wenne virtuelle Bistellungen
+-   **Dieink zu einem virtuellen** : Erstellen Wenne virtuelle Bistellungen
     mit Wert die der Zusammenfassung.
 
 -   **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts erlaubt
@@ -380,7 +380,7 @@ Einrichtungen
 
 -   **Anzahl der Fehler vor Deaktivierung des Geräts** : Anzahl
     Kommunikationsfehler mit dem Gerät vor Deaktivierung von
-    dieses (eine Nachricht warnt wenne, wenn dies passiert).
+    dieses (eine Nachricht warnt Wenne, wenn dies passiert).
 
 -   **Batterieschwellen** : Ermöglicht die Verwaltung globaler Alarmschwellenwerte
     auf die Batterien.
@@ -388,26 +388,26 @@ Einrichtungen
 Verhältnis
 ========
 
-Konfigurieren wenne die Erstellung und Verwaltung von Berichten
+Konfigurieren Wenne die Erstellung und Verwaltung von Berichten
 
 -   **Zeitüberschreitung nach Seitengenerierung (in ms)** : Bekanntmachung
-    Warten nach dem dieaden des Berichts, um das &quot;Foto&quot; aufzunehmen, um
-    Ändern wenne dies beispielsweise, wenn Ihr Bericht unvollständig ist.
+    Warten nach dem Dieaden des Berichts, um das &quot;Foto&quot; aufzunehmen, um
+    Ändern Wenne dies beispielsweise, wenn Ihr Bericht unvollständig ist.
 
--   **Bereinigen wenne ältere Berichte von (Tagen)** : Definiert die
-    Anzahl der Tage vor dem dieöschen eines Berichts (Berichte dauern
-    ein wenig Platz, also achten wenne darauf, nicht zu viel zu setzen
+-   **Bereinigen Wenne ältere Berichte von (Tagen)** : Definiert die
+    Anzahl der Tage vor dem Dieöschen eines Berichts (Berichte dauern
+    ein wenig Platz, also achten Wenne darauf, nicht zu viel zu setzen
     Erhaltung).
 
 Verbindungen
 =====
 
-dieinkgrafiken konfigurieren. Diese dieinks ermöglichen es Ihnen
+Dieinkgrafiken konfigurieren. Diese Dieinks ermöglichen es Ihnen
 siehe in Form eines Diagramms die Beziehungen zwischen Objekten,
 Ausrüstung, Gegenstände usw..
 
 -   **Tiefe für Szenarien** : Wird verwendet, um zu definieren, wann
-    Anzeigen eines Diagramms der dieinks eines Szenarios, die Nummer
+    Anzeigen eines Diagramms der Dieinks eines Szenarios, die Nummer
     Maximale Anzahl der anzuzeigenden Elemente (je mehr Elemente, disto größer die
     je langsamer es zu generieren ist und je schwieriger es zu lesen ist).
 
@@ -419,27 +419,27 @@ Ausrüstung, Gegenstände usw..
 
 -   **Tiefe für Variablen** : Gleiches gilt für Variablen.
 
--   **Parameter des Prerenders** : dieasst uns auf das dieayout einwirken
+-   **Parameter des Prerenders** : Dieasst uns auf das Dieayout einwirken
     des Graphen.
 
--   **Parameter rendern** : idem.
+-   **Parameter rendern** : Idem.
 
 Wechselwirkungen
 ============
 
-Auf dieser Registerkarte können wenne globale Parameter für fistlegen
-Interaktionen, die wenne unter Extras → Interaktionen finden.
+Auf dieser Registerkarte können Wenne globale Parameter für fistlegen
+Interaktionen, die Wenne unter Extras → Interaktionen finden.
 
 > **Spitze**
 >
-> Um das Interaktionsprotokoll zu aktivieren, wechseln wenne zur Registerkarte
-> Administration → Konfiguration → Protokolle, dann kreuzen wenne an **debuggen** in der dieiste
+> Um das Interaktionsprotokoll zu aktivieren, wechseln Wenne zur Registerkarte
+> Administration → Konfiguration → Protokolle, dann kreuzen Wenne an **Debuggen** in der Dieiste
 > von unten. Aufmerksamkeit : Die Protokolle sind dann sehr ausführlich !
 
 General
 -------
 
-Hier haben wenne drei Parameter :
+Hier haben Wenne drei Parameter :
 
 -   **Empfindlichkeit** : Es gibt 4 Korrespondenzstufen (Empfindlichkeit
     reicht von 1 (genau passend) bis 99)
@@ -456,92 +456,92 @@ Hier haben wenne drei Parameter :
     -   mehr als 3 Wörter : die Ebene der Korrespondenz für Interaktionen
         mehr als drei Wörter
 
--   **Antworten wenne nicht, wenn die Interaktion nicht verstanden wird** : Standard
+-   **Antworten Wenne nicht, wenn die Interaktion nicht verstanden wird** : Standard
     Jeedom antwortet &quot;Ich habe es nicht verstanden&quot;, wenn keine Interaktion erfolgt
     stimmt nicht überein. Es ist möglich, diese Funktion für zu deaktivieren
-    dass Jeedom nichts beantwortet. Aktivieren wenne das Kontrollkästchen zum Deaktivieren
+    dass Jeedom nichts beantwortet. Aktivieren Wenne das Kontrollkästchen zum Deaktivieren
     die Antwort.
 
 -   **Allgemeine Ausschluss-Regex für Interaktionen** : lass uns
-    Definieren wenne einen regulären Ausdruck, der, wenn er einer Interaktion entspricht,
+    Definieren Wenne einen regulären Ausdruck, der, wenn er einer Interaktion entspricht,
     löscht diesen Satz automatisch aus der Generation (reserviert)
-    an Experten). Weitere Informationen finden wenne in den Erläuterungen in der
+    an Experten). Weitere Informationen finden Wenne in den Erläuterungen in der
     Kapitel **Regexp-Ausschluss** Dokumentation zu
     Wechselwirkungen.
 
 Automatische Interaktion, Kontext &amp; Warnung
 -----------------------------------------------------
 
--   die **automatische Interaktionen** Erlaube Jeedom, es zu versuchen
+-   Die **automatische Interaktionen** Erlaube Jeedom, es zu versuchen
     eine Interaktionsanfrage verstehen, auch wenn es keine gibt
     von definiert. Er sucht dann nach einem Objekt- und / oder Gerätenamen
     und / oder um zu versuchen, so gut wie möglich zu antworten.
 
--   die **kontextuelle Interaktionen** erlauben wenne zu verketten
+-   Die **kontextuelle Interaktionen** erlauben Wenne zu verketten
     Zum Beispiel mehrere Anfragen, ohne alles zu wiederholen :
 
     -   *Jeedom hält den Kontext :*
 
-        -   *wenne* : Wie viel ist er im Raum ?
+        -   *Wenne* : Wie viel ist er im Raum ?
 
         -   *Jeedom* : Temperatur 25.2 ° C.
 
-        -   *wenne* : und im Wohnzimmer ?
+        -   *Wenne* : und im Wohnzimmer ?
 
         -   *Jeedom* : Temperatur 27.2 ° C.
 
-    -   *Stellen wenne zwei Fragen in einer :*
+    -   *Stellen Wenne zwei Fragen in einer :*
 
-        -   *wenne* : Wie ist es im Schlafzimmer und im Wohnzimmer? ?
+        -   *Wenne* : Wie ist es im Schlafzimmer und im Wohnzimmer? ?
 
         -   *Jeedom* : Temperatur 23.6 ° C, Temperatur 27.2 ° C.
 
--   Typ Interaktionen **dieassen wenne uns wissen** lass uns fragen
-    Jeedom, um wenne zu benachrichtigen, wenn eine Bistellung a überschreitet / absteigt oder a wert ist
+-   Typ Interaktionen **Dieassen Wenne uns wissen** lass uns fragen
+    Jeedom, um Wenne zu benachrichtigen, wenn eine Bistellung a überschreitet / absteigt oder a wert ist
     bistimmter Wert.
 
-    -   *wenne* : Benachrichtigen wenne mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
+    -   *Wenne* : Benachrichtigen Wenne mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
 
     -   *Jeedom* : OK (* Sobald die Wohnzimmertemperatur 25 ° C überschreitet,
         Jeedom wird es dir nur einmal sagen *)
 
 > **Notiz**
 >
-> Standardmäßig antwortet Jeedom Ihnen auf demselben Kanal wie wenne
-> pflegte ihn zu bitten, wenne zu benachrichtigen. Wenn er keinen findet
+> Standardmäßig antwortet Jeedom Ihnen auf demselben Kanal wie Wenne
+> pflegte ihn zu bitten, Wenne zu benachrichtigen. Wenn er keinen findet
 > nicht, es wird dann der hier angegebene Standardbefehl verwendet
 > Tab : **Standardrückgabebefehl**.
 
 Hier sind die verschiedenen Optionen verfügbar :
 
--   **Aktivieren wenne automatische Interaktionen** : Zum Aktivieren aktivieren
+-   **Aktivieren Wenne automatische Interaktionen** : Zum Aktivieren aktivieren
     automatische Interaktionen.
 
--   **Aktivieren wenne kontextbezogene Antworten** : Zum Aktivieren aktivieren
+-   **Aktivieren Wenne kontextbezogene Antworten** : Zum Aktivieren aktivieren
     kontextuelle Interaktionen.
 
--   **Vorrangige kontextbezogene Antwort, wenn der Satz mit beginnt** : wenn
-    Der Satz beginnt mit dem Wort, das wenne hier eingeben. Jeedom wird es tun
-    Priorisieren wenne dann eine kontextbezogene Antwort (wenne können setzen
+-   **Vorrangige kontextbezogene Antwort, wenn der Satz mit beginnt** : Wenn
+    Der Satz beginnt mit dem Wort, das Wenne hier eingeben. Jeedom wird es tun
+    Priorisieren Wenne dann eine kontextbezogene Antwort (Wenne können setzen
     mehrere Wörter getrennt durch **;** ).
 
--   **Schneiden wenne eine Interaktion in zwei Hälften, wenn sie enthält** : Gleiches für
-    die Aufteilung einer Interaktion mit mehreren Fragen. wenne
-    Geben wenne hier die Wörter an, die die verschiedenen Fragen trennen.
+-   **Schneiden Wenne eine Interaktion in zwei Hälften, wenn sie enthält** : Gleiches für
+    die Aufteilung einer Interaktion mit mehreren Fragen. Wenne
+    Geben Wenne hier die Wörter an, die die verschiedenen Fragen trennen.
 
--   **Aktivieren wenne die Interaktionen "Benachrichtigen""** : Zum Aktivieren aktivieren
-    Typ Interaktionen **dieassen wenne uns wissen**.
+-   **Aktivieren Wenne die Interaktionen "Benachrichtigen""** : Zum Aktivieren aktivieren
+    Typ Interaktionen **Dieassen Wenne uns wissen**.
 
 -   **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn die
     Satz beginnt mit diesen Wörtern, dann wird Jeedom versuchen, ein zu machen
-    Typ Interaktion **dieassen wenne uns wissen** (wenne können mehrere setzen
+    Typ Interaktion **Dieassen Wenne uns wissen** (Wenne können mehrere setzen
     Wörter getrennt durch **;** ).
 
 -   **Standardrückgabebefehl** : Standardrückgabebefehl
-    für eine Typinteraktion **dieassen wenne uns wissen** (insbesondere verwendet,
-    wenn wenne den Alarm über die mobile Schnittstelle programmiert haben)
+    für eine Typinteraktion **Dieassen Wenne uns wissen** (insbesondere verwendet,
+    wenn Wenne den Alarm über die mobile Schnittstelle programmiert haben)
 
--   **Synonym für Objekte** : dieiste der Synonyme für Objekte
+-   **Synonym für Objekte** : Dieiste der Synonyme für Objekte
     (zB : Erdgeschoss | Erdgeschoss | Keller | Erdgeschoss; Bad | Bad).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
@@ -550,7 +550,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 -   **Synonym für Bistellungen** : Synonymliste für
     Bistellungen.
 
--   **Synonym für Abstracts** : dieiste der Synonyme für Zusammenfassungen.
+-   **Synonym für Abstracts** : Dieiste der Synonyme für Zusammenfassungen.
 
 -   **Synonym für maximalen Schiebereglerbefehl** : Synonym für setzen a
     Befehl für den maximalen Schiebereglertyp (zB öffnet sich, um den Verschluss zu öffnen
@@ -560,14 +560,14 @@ Hier sind die verschiedenen Optionen verfügbar :
     Schieberegler-Befehl mindistens (zB schließt, um den Verschluss zu schließen
     der Raum ⇒ Raumkomponente bei 0%).
 
-wenncherheit
+Wenncherheit
 ========
 
-dieDAP
+DieDAP
 ----
 
--   **Aktivieren wenne die dieDAP-Authentifizierung** : Aktivieren wenne die Authentifizierung für
-    durch eine AD (dieDAP)
+-   **Aktivieren Wenne die DieDAP-Authentifizierung** : Aktivieren Wenne die Authentifizierung für
+    durch eine AD (DieDAP)
 
 -   **Gastgeber** : Server, der die AD hostet
 
@@ -581,19 +581,19 @@ dieDAP
 -   **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen
 
 -   **Benutzersuchfelder** : Suchfelder von
-    Benutzer dieogin. Normalerweise uid für dieDAP, SamAccountName für
+    Benutzer Dieogin. Normalerweise uid für DieDAP, SamAccountName für
     Windows AD
 
 -   **Filter (optional)** : Filter auf dem AD (zum Verwalten
     Gruppen zum Beispiel)
 
--   **REMOTE \ _USER zulassen** : Aktivieren wenne REMOTE \ _USER (wird in SSO verwendet
+-   **REMOTE \ _USER zulassen** : Aktivieren Wenne REMOTE \ _USER (wird in SSO verwendet
     zum Beispiel)
 
-einloggen
+Einloggen
 ---------
 
--   **Anzahl der tolerierten Fehler** : dieegt die Anzahl der Versuche fist
+-   **Anzahl der tolerierten Fehler** : Dieegt die Anzahl der Versuche fist
     erlaubt vor dem Verbot der IP
 
 -   **Maximale Zeit zwischen Ausfällen (in Sekunden)** : maximale Zeit
@@ -602,12 +602,12 @@ einloggen
 -   **Verbannungsdauer (in Sekunden), -1 für unendlich** : Zeit von
     IP-Verbot
 
--   **IP "weiß"** : dieiste der IPs, die niemals gesperrt werden können
+-   **IP "weiß"** : Dieiste der IPs, die niemals gesperrt werden können
 
--   **Entfernen wenne gesperrte IPs** : dieöschen wenne die dieiste der IPs
+-   **Entfernen Wenne gesperrte IPs** : Dieöschen Wenne die Dieiste der IPs
     derzeit verboten
 
-Die dieiste der gesperrten IPs befindet sich am Ende dieser Seite. wenne finden dort
+Die Dieiste der gesperrten IPs befindet sich am Ende dieser Seite. Wenne finden dort
 IP, Sperrdatum und Sperrenddatum
 geplant.
 
@@ -617,20 +617,20 @@ Update und Dateien
 Jeedom Update
 ---------------------
 
--   **Quelle aktualisieren** : Wählen wenne die Quelle für die Aktualisierung der
+-   **Quelle aktualisieren** : Wählen Wenne die Quelle für die Aktualisierung der
     Jeedom Kern.
 
 -   **Kernversion** : Kernversion zum Wiederherstellen.
 
--   **Automatisch nach Updates suchen** : Geben wenne an, ob
-    wenne müssen automatisch suchen, wenn es neue Updates gibt
-    (Achten wenne darauf, eine Überlastung des Marktes zu vermeiden
+-   **Automatisch nach Updates suchen** : Geben Wenne an, ob
+    Wenne müssen automatisch suchen, wenn es neue Updates gibt
+    (Achten Wenne darauf, eine Überlastung des Marktes zu vermeiden
     Überprüfung kann sich ändern).
 
 Einlagen
 ----------
 
-Die Depots sind Speicher- (und Service-) Räume, um in der dieage zu sein
+Die Depots sind Speicher- (und Service-) Räume, um in der Dieage zu sein
 Backups verschieben, Plugins wiederherstellen, Core wiederherstellen
 Jeedom usw..
 
@@ -655,7 +655,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 Eine Kaution, die verwendet wird, um Jeedom mit dem Markt zu verbinden, wird dringend empfohlen
 um dieses Repository zu verwenden. Aufmerksamkeit : Jede Supportanfrage kann sein
-abgelehnt, wenn wenne eine andere Einzahlung als diese verwenden.
+abgelehnt, wenn Wenne eine andere Einzahlung als diese verwenden.
 
 -   **Adresse** : Marktadresse (Https://www.jeedom.com/market)
 
@@ -665,20 +665,20 @@ abgelehnt, wenn wenne eine andere Einzahlung als diese verwenden.
 
 -   **[Backup cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes bisteht)
 
--   **[Backup cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG wenne dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können wenne Ihre Freiheit nicht mehr wiederherstellen.
+-   **[Backup cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Wenne dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Wenne Ihre Freiheit nicht mehr wiederherstellen.
 
--   **[Backup cloud] Fréquence backup full** : Häufigkeit der vollständigen Cloud-wenncherung. Eine vollständige wenncherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun
+-   **[Backup cloud] Fréquence backup full** : Häufigkeit der vollständigen Cloud-Wenncherung. Eine vollständige Wenncherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun
 
 ### Samba
 
-Zahlen wenne ein, um automatisch ein Jeedom-Backup an zu senden
+Zahlen Wenne ein, um automatisch ein Jeedom-Backup an zu senden
 eine Samba-Aktie (z : NAS-Synologie).
 
 -   **\ [Backup \] IP** : Samba Server IP.
 
 -   **\ [Backup \] Benutzer** : Benutzername für die Anmeldung
     (anonyme Verbindungen sind nicht möglich). Es muss geben
-    dass der Benutzer diee- und Schreibrechte an der hat
+    dass der Benutzer Diee- und Schreibrechte an der hat
     Zielverzeichnis.
 
 -   **\ [Backup \] Passwort** : Benutzerpasswort.
@@ -691,48 +691,48 @@ eine Samba-Aktie (z : NAS-Synologie).
 
 > **Notiz**
 >
-> Wenn der Pfad zu Ihrem Samba-wenncherungsordner lautet :
+> Wenn der Pfad zu Ihrem Samba-Wenncherungsordner lautet :
 > \\\\ 192.168.0.1 \\ Backups \\ Hausautomation \\ Jeedom Dann IP = 192.168.0.1
 > , Teilen = //192.168.0.1 / Backups, Path = Home Automation / Jeedom
 
 > **Notiz**
 >
 > Bei der Validierung der Samba-Freigabe wie oben beschrieben,
-> In diesem Abschnitt wird eine neue Form der wenncherung angezeigt
+> In diesem Abschnitt wird eine neue Form der Wenncherung angezeigt
 > Administration → Jeedom-Backups. Durch Aktivieren wird Jeedom fortfahren
 > wenn es beim nächsten Backup automatisch gesendet wird. Ein Tist ist
-> möglich durch manuelle wenncherung.
+> möglich durch manuelle Wenncherung.
 
-> **wichtig**
+> **Wichtig**
 >
-> Möglicherweise müssen wenne das smbclient-Paket für das installieren
+> Möglicherweise müssen Wenne das smbclient-Paket für das installieren
 > Einzahlung funktioniert.
 
-> **wichtig**
+> **Wichtig**
 >
 > Das Samba-Protokoll hat mehrere Versionen, die v1 ist kompromittiert
-> wenncherheit und auf einigen NAS können wenne den Client zur Verwendung von v2 zwingen
-> oder v3 zum Verbinden. Wenn wenne also einen Protokollverhandlungsfehler haben
+> Wenncherheit und auf einigen NAS können Wenne den Client zur Verwendung von v2 zwingen
+> oder v3 zum Verbinden. Wenn Wenne also einen Protokollverhandlungsfehler haben
 > fehlgeschlagen: NT_STATUS_INVAID_NETWORK_RESPONSE Es bisteht eine gute Chance, dass NAS aufgelistet wird
-> die Einschränkung bisteht. wenne müssen dann das Betriebssystem Ihres Jeedom ändern
+> die Einschränkung bisteht. Wenne müssen dann das Betriebssystem Ihres Jeedom ändern
 > die Datei / etc / samba / smb.conf und füge diese beiden Zeilen hinzu :
 > Client-Max-Protokoll = SMB3
 > Client-Min-Protokoll = SMB2
 > Der Jeedom-Seite smbclient verwendet dann v2, wobei v3 und nur SMB3 in beiden
 > SMB3. Es liegt also an Ihnen, sich an die Einschränkungen des NAS oder eines anderen Samba-Servers anzupassen
 
-> **wichtig**
+> **Wichtig**
 >
 > Jeedom sollte der einzige sein, der in diesen Ordner schreibt, und er sollte leer sein
 > standardmäßig (d. h. vor dem Konfigurieren und Senden des
-> Bei der ersten wenncherung darf der Ordner keine Datei oder enthalten
+> Bei der ersten Wenncherung darf der Ordner keine Datei oder enthalten
 > Ordner).
 
-### URdies
+### URDies
 
--   **Jeedom-Kern-URdies**
+-   **Jeedom-Kern-URDies**
 
--   **URdies der Jeedom-Kernversion**
+-   **URDies der Jeedom-Kernversion**
 
 Abdeckung
 =====
@@ -741,15 +741,15 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Abdeckung :
 
 -   **Statistiken** : Anzahl der aktuell zwischengespeicherten Objekte
 
--   **Reinigen wenne die Abdeckung** : Erzwingen wenne das dieöschen von Objekten, die dies nicht sind
+-   **Reinigen Wenne die Abdeckung** : Erzwingen Wenne das Dieöschen von Objekten, die dies nicht sind
     nützlicher. Jeedom macht das automatisch jede Nacht.
 
--   **dieöschen wenne alle zwischengespeicherten Daten** : dieeeren wenne den Deckel vollständig.
-    Bitte beachten wenne, dass dies zu Datenverlust führen kann !
+-   **Dieöschen Wenne alle zwischengespeicherten Daten** : Dieeeren Wenne den Deckel vollständig.
+    Bitte beachten Wenne, dass dies zu Datenverlust führen kann !
 
--   **dieeeren wenne den Widget-Abdeckung** : dieeeren wenne den Abdeckung für Widgets
+-   **Dieeeren Wenne den Widget-Abdeckung** : Dieeeren Wenne den Abdeckung für Widgets
 
--   **Deaktivieren wenne den Widget-Abdeckung** : Aktivieren wenne das Kontrollkästchen zum Deaktivieren
+-   **Deaktivieren Wenne den Widget-Abdeckung** : Aktivieren Wenne das Kontrollkästchen zum Deaktivieren
     Das Widget deckt ab
 
 -   **Pause für lange Abfragen** : Wie oft
@@ -761,28 +761,28 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Abdeckung :
 API
 ===
 
-Hier ist die dieiste der verschiedenen API-Schlüssel, die in verfügbar sind
+Hier ist die Dieiste der verschiedenen API-Schlüssel, die in verfügbar sind
 deine Freiheit. Core verfügt über zwei API-Schlüssel :
 
--   ein General : Vermeiden wenne es so oft wie möglich,
+-   ein General : Vermeiden Wenne es so oft wie möglich,
 
 -   und eine andere für Profis : für das Management verwendet
     des Parks. Es kann leer sein.
 
--   Dann finden wenne einen API-Schlüssel pro Plugin, der ihn benötigt.
+-   Dann finden Wenne einen API-Schlüssel pro Plugin, der ihn benötigt.
 
 Für jeden Plugin-API-Schlüssel sowie für HTTP, JsonRPC und APIs
-TTS können wenne deren Umfang definieren :
+TTS können Wenne deren Umfang definieren :
 
--   **untauglich** : API-Schlüssel kann nicht verwendet werden,
+-   **Untauglich** : API-Schlüssel kann nicht verwendet werden,
 
--   **Weiße IP** : Es ist nur eine dieiste von IPs autorisiert (siehe
+-   **Weiße IP** : Es ist nur eine Dieiste von IPs autorisiert (siehe
     Administration → Einstellungen → Netzwerke),
 
--   **localhost** : nur Anfragen vom System, auf dem sich befindet
+-   **Dieocalhost** : nur Anfragen vom System, auf dem sich befindet
     installierte Jeedom sind erlaubt,
 
--   **aktiviert** : Keine Einschränkungen, jedes System mit Zugriff
+-   **Aktiviert** : Keine Einschränkungen, jedes System mit Zugriff
     Ihr Jeedom kann auf diese API zugreifen.
 
 &gt;\ _OS / DB
@@ -790,24 +790,24 @@ TTS können wenne deren Umfang definieren :
 
 Auf dieser Registerkarte befinden sich zwei Teile, die Experten vorbehalten sind.
 
-> **wichtig**
+> **Wichtig**
 >
-> VORSICHT : Wenn wenne Jeedom mit einer dieser beiden dieösungen ändern,
+> Aufmerksamkeit : Wenn Wenne Jeedom mit einer dieser beiden Dieösungen ändern,
 > Der Support kann sich weigern, Ihnen zu helfen.
 
 -   **&gt;\ _SYSTEM** : Ermöglicht den Zugriff auf eine Schnittstelle
     Systemadministration. Es ist eine Art Shell-Konsole in
-    Hier können wenne die nützlichsten Befehle ausführen, einschließlich
+    Hier können Wenne die nützlichsten Befehle ausführen, einschließlich
     um Informationen über das System zu erhalten.
 
 -   **Datei-Editor** : Ermöglicht den Zugriff auf verschiedene Systemdateien
-    und bearbeiten oder löschen oder erstellen wenne sie.
+    und bearbeiten oder löschen oder erstellen Wenne sie.
 
 -   **Datenbank** : Administration / Start : Ermöglicht den Zugriff auf die Datenbank
-    von Jeedom. wenne können dann Befehle in das Feld starten
+    von Jeedom. Wenne können dann Befehle in das Feld starten
     von oben.
     Überprüfen / Starten : Ermöglicht das Starten einer Überprüfung in der Datenbank
-    Jeedom und korrigieren wenne gegebenenfalls Fehler
+    Jeedom und korrigieren Wenne gegebenenfalls Fehler
 
     Zur Information werden unten zwei Parameter angezeigt :
 

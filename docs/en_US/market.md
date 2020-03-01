@@ -53,10 +53,10 @@ For the pros :
 -   **User** : general conditions of use (pay attention to
     read them well because they commit you)
 
--   **developer** : general conditions of use for
+-   **Developer** : general conditions of use for
     developers
 
-    -   **tickets**
+    -   **Tickets**
 
 -   **Number of tickets** : Number of tickets for the current month
     as well as your limit
@@ -70,7 +70,7 @@ For the pros :
 -   **Enable access to beta plugins** : enables access to
     beta plugins (please note that this will prevent you from accessing the support)
 
-    -   **summary** Here you will find a summary of your different
+    -   **Summary** Here you will find a summary of your different
         rights and services
 
 > **Tip**
@@ -112,14 +112,14 @@ My jeedoms
         configure in Jeedom, if you don&#39;t put anything it will be there
         last known IP
 
-    -   **DNS** : allows you to customize the name of your DNS
+    -   **Dns** : allows you to customize the name of your Dns
 
     -   **URLs** : list the different Jeedom access URLss.
 
-    -   **DNS server** : tells you the DNS server to which you
+    -   **Dns server** : tells you the Dns server to which you
         are attached
 
-    -   **DNS status** : allows to see the status of the DNS
+    -   **Dns status** : allows to see the status of the Dns
 
     -   **Creation date** : date of creation of this Jeedom on your
         Market account (as a reminder, this is done automatically when
@@ -156,7 +156,7 @@ My purchases / promotions / donations
 Here you find all your purchases and you can request the return of the
 invoice or receipt email
 
-> **Important**
+> **IMPORTANT**
 >
 > If you buy an official plugin you will receive an invoice. In
 > however for a third party plugin it is a receipt, for the invoice it is necessary

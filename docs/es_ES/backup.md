@@ -1,7 +1,7 @@
 Jeedom ofrece la posibilidad de ser salvado y restaurado desde o desde
 de diferentes lugares.
 
-configuración 
+Configuración 
 =============
 
 Accesible desde **Configuración → Sistema → Copias de seguridad**, esta página permite
@@ -11,10 +11,10 @@ Encontrará, a la izquierda, los parámetros y botones de acción. En la
 correcto, este es el estado en tiempo real de la acción actual (copia de seguridad
 o restauración), si ha lanzado uno.
 
-**copias de seguridad** 
+**Copias de seguridad** 
 ---------------
 
--   **copias de seguridad** : Le permite iniciar una copia de seguridad manualmente y
+-   **Copias de seguridad** : Le permite iniciar una copia de seguridad manualmente y
     inmediatamente (útil si desea hacer un cambio crítico.
     Esto te permitirá volver). También tienes un
     para iniciar una copia de seguridad sin enviar el archivo al
@@ -87,26 +87,26 @@ o restauración), si ha lanzado uno.
 -   **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad
     samba seleccionada arriba.
 
-> **punta**
+> **Punta**
 >
 > Dependiendo de lo que se active, en la página
 > Administración → Configuración → pestaña Actualizaciones, puede ver
 > más o menos secciones.
 
-> **punta**
+> **Punta**
 >
 > Al reinstalar Jeedom y haber tomado la suscripción de
-> copia de seguridad a la nube mercado, debe completar su cuenta
+> copia de seguridad a la nube Mercado, debe completar su cuenta
 > Comercialice su nuevo Jeedom (Administración → Configuración → Pestaña
 > Actualizaciones) luego ven aquí para comenzar la restauración.
 
-> **punta**
+> **Punta**
 >
 > Es posible, en caso de problemas, hacer una copia de seguridad en línea de
 > orden : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
 > o `sudo php / var / www / html / install / backup.php` dependiendo de su sistema.
 
-> **punta**
+> **Punta**
 >
 > También es posible restaurar una copia de seguridad en línea de
 > comandos (de forma predeterminada, Jeedom restaura la copia de seguridad más reciente
@@ -126,7 +126,7 @@ diferente porque no es posible guardar las inclusiones.
 Estos se incluyen directamente en el controlador, por lo que debe
 mantener el mismo controlador para encontrar sus módulos Zwave.
 
-> **nota**
+> **Nota**
 >
 > El sistema en el que está instalado Jeedom no está respaldado. si
 > Ha modificado los parámetros de este sistema (especialmente a través de SSH),
@@ -143,7 +143,7 @@ copias de seguridad. Para suscribirte solo ve a tu página
 puede, desde esta página, recuperar una copia de seguridad o comprar un
 suscripción (por 1, 3, 6 o 12 meses).
 
-> **punta**
+> **Punta**
 >
 > Puede personalizar el nombre de los archivos de respaldo desde
 > de la pestaña **Mis jeedoms**, evitando sin embargo los personajes
@@ -156,4 +156,4 @@ Jeedom realiza una copia de seguridad automática todos los días al mismo tiemp
 hora. Es posible modificar esto, desde el &quot;Motor
 tareas &quot;(la tarea se llama **Jeedom backup**), pero no es
 recomendadas. De hecho, se calcula en relación con la carga de la
-mercado.
+Mercado.

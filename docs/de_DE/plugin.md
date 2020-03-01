@@ -20,7 +20,7 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben du
 Suchen Sie den Namen des Plugins und dann in Klammern den Namen in Jeedom
 (ID) und schließlich die Art der installierten Version (Stable, Beta).
 
-> **wichtig**
+> **Wichtig**
 >
 > Beim Herunterladen eines Plugins ist es standardmäßig deaktiviert.
 > Sie müssen es also selbst aktivieren.
@@ -30,7 +30,7 @@ Oben rechts einige Schaltflächen :
 -   **Dokumentation** : Ermöglicht den direkten Zugriff auf die Seite von
     Plugin-Dokumentation
 
--   **Changelog** : ermöglicht das Anzeigen des Änderungsprotokolls des Plugins, falls vorhanden
+-   **Änderungsprotokoll** : ermöglicht das Anzeigen des Änderungsprotokolls des Plugins, falls vorhanden
 
 -   **Auf den Markt schicken** : ermöglicht das Senden des Plugins auf dem Markt
     (nur verfügbar, wenn Sie der Autor sind)
@@ -116,17 +116,17 @@ wenn das Plugin eine der Jeedom-Kernfunktionen verwendet, wie z :
 
 -   **Interact** : spezifische Wechselwirkungen
 
--   **cron** : ein cron pro Minute
+-   **Cron** : ein Cron pro Minute
 
--   **cron5** : ein cron alle 5 Minuten
+-   **Cron5** : ein Cron alle 5 Minuten
 
--   **cron15** : alle 15 Minuten ein cron
+-   **Cron15** : alle 15 Minuten ein Cron
 
--   **cron30** : alle 30 Minuten ein cron
+-   **Cron30** : alle 30 Minuten ein Cron
 
--   **cronHourly** : eine cron pro Stunde
+-   **CronHourly** : eine Cron pro Stunde
 
--   **cronDaily** : ein täglicher cron
+-   **CronDaily** : ein täglicher cron
 
 > **Spitze**
 >
@@ -201,18 +201,18 @@ Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität
 auf dem Plugin (Sie können es hier bewerten) und Informationen
 komplementär (der Autor, die Person, die das letzte Update vorgenommen hat
 Tag, Link zum Dokument, Anzahl der Downloads). Rechts
-Sie finden einen &quot;Changelog&quot; -Button, mit dem Sie alles haben können
+Sie finden einen &quot;Änderungsprotokoll&quot; -Button, mit dem Sie alles haben können
 Änderungsverlauf, eine Schaltfläche &quot;Dokumentation&quot;, die zurückkehrt
 zur Plugin-Dokumentation. Dann haben Sie die Sprache zur Verfügung
 und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
-> **wichtig**
+> **Wichtig**
 >
 > Es wird wirklich nicht empfohlen, ein Beta-Plugin auf ein zu setzen
 > Jeedom nicht Beta, viele Betriebsprobleme können
 > Ergebnis.
 
-> **wichtig**
+> **Wichtig**
 >
 > Einige Plugins sind kostenpflichtig, in diesem Fall wird das Plugin-Blatt
 > wird anbieten, es zu kaufen. Sobald dies erledigt ist, warten Sie auf a

@@ -6,12 +6,12 @@ también para cambiar tu contraseña.
 Puede encontrarlo en la parte superior derecha haciendo clic en el icono del muñeco de nieve.
 luego Perfil (seguido de su nombre de usuario).
 
-temas
+Temas
 ======
 
 El panel de temas le permite ajustar los parámetros de la interfaz. :
 
--   **escritorio** : temas para usar en el modo de escritorio, tenga cuidado solo
+-   **Escritorio** : temas para usar en el modo de escritorio, tenga cuidado solo
     el tema predeterminado es oficialmente compatible con Jeedom
 
 -   **Color móvil** : permite elegir el color de la interfaz
@@ -35,12 +35,12 @@ El panel de temas le permite ajustar los parámetros de la interfaz. :
 -   **Opacidad por widgets móviles** : permite dar opacidad
     (entre 0 y 1) widgets móviles
 
-interfaz
+Interfaz
 ---------
 
 Le permite definir ciertos comportamientos de interfaz :
 
--   **general**
+-   **General**
 
     -   **Mostrar menús** : dile a Jeedom que muestre el panel
         izquierda, cuando existe, como recordatorio de que este panel es
@@ -62,7 +62,7 @@ Le permite definir ciertos comportamientos de interfaz :
     -   **Pantalla completa** : visualización predeterminada en pantalla completa cuando
         la llegada de los diseños
 
--   **salpicadero**
+-   **Salpicadero**
 
     -   **Desplegar el panel de escenarios** : permite hacer visible
         de manera predeterminada, el menú de escenario (a la derecha) en el tablero
@@ -70,12 +70,12 @@ Le permite definir ciertos comportamientos de interfaz :
     -   **Desdobla el panel de objetos** : permite hacer visible por
         predeterminado el menú de objetos (a la izquierda) en el tablero
 
--   **vista**
+-   **Vista**
 
     -   **Despliegue el panel de vista** : permite hacer visible por
         menú de vistas predeterminado (izquierda) en vistas
 
-seguridad
+Seguridad
 --------
 
 -   **Autenticación de 2 pasos** : permite configurar

@@ -22,7 +22,7 @@ Es gibt zwei Arten von Vorlagen :
 
 Klicken Sie auf der Seite Extras -&gt; WIdentifikationget auf &quot;Hinzufügen&quot; und geben Sie Ihrem neuen WIdentifikationget einen Namen.
 
-dann :
+Dann :
 - Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt
 - Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...).
 - Dann endlich die fragliche Vorlage (wir planen, Ihnen Beispiele für Renderings für jede Vorlage zu geben)
@@ -36,7 +36,7 @@ Dies ist, was wir ein einfaches WIdentifikationget nennen. Hier muss man nur sag
 >
 >Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns.. Wir hatten keine Wahl
 
->**TIPS**
+>**Tipps**
 >
 >Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags einzufügen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte "Anzeige" und des WIdentifikationgets "Optionale Einstellungen" anzugeben". Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen.
 
@@ -71,8 +71,8 @@ Wir werden hier einige WIdentifikationgets beschreiben, die eine ganz bestimmte 
 ## Häufige Einstellungen
 
 - Zeit-WIdentifikationget : Zeigt die Zeit an, seit der sich das System im Anzeigezustand befindet.
-- ein : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1
-- aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0
+- Ein : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1
+- Aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0
 - Licht an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema hell ist (wenn leer, nimmt jeedom das dunkle Bild an)
 - Licht aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema hell ist (wenn leer, nimmt jeedom das dunkle Bild aus)
 - Dunkel an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema dunkel ist (wenn leer, schaltet jeedom das Licht ein)
@@ -92,7 +92,7 @@ Um es zu konfigurieren, müssen Sie das WIdentifikationget ganz einfach der Temp
 
 Das WIdentifikationget verfügt über einen optionalen Parameter : Skala, mit der Sie die Größe ändern können, indem Sie beispielsweise die Skala auf 0 setzen.5 es wird 2 mal kleiner sein
 
->**HINWEIS**
+>**Notiz**
 >
 > Aufmerksamkeit für ein Design Es ist besonders wichtig, mit diesem WIdentifikationget keine Bestellung aufzugeben, die nicht funktioniert, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Bestellungen verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
 
@@ -156,7 +156,7 @@ jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
 
 Die Funktion, die beim Aktualisieren des WIdentifikationgets aufgerufen wird und die Aktualisierung des HTML-Codes der WIdentifikationget-Vorlage übernimmt
 
-und :
+Und :
 
 ```
 jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});

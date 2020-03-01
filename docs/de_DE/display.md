@@ -15,7 +15,7 @@ Der obere Rand der Seite
 Oben auf der Seite finden wir : \* **Anzahl der Objekte** : Anzahl
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die Ediemente gezählt werden
 Inaktiv. \* **Anzahl der Ausrüstungen** : Das Gdieiche gilt für die Ausrüstung. \*
-**Anzahl der Bestellungen** : Gdieiches gilt für Bestellungen. \* **inaktiv** :
+**Anzahl der Bestellungen** : Gdieiches gilt für Bestellungen. \* **Inaktiv** :
 Aktivieren Sie dieses Kontrollkästchen, wenn die inaktiven Ediemente korrekt sein soldien
 auf dieser Seite angezeigt. \* **Suche** : Suche nach a
 bestimmtes Ediement. Es kann der Name eines Geräts sein, eine Bestellung
@@ -29,7 +29,7 @@ Objektrahmen
 
 Darunter befindet sich ein Frame pro Objekt. In jedem Frame finden wir
 die Liste der Geräte (in blau), die dieses Objekt als übergeordnetes Objekt haben. die
-erster Frame **keine** stellt Geräte dar, die keine haben
+erster Frame **Keine** stellt Geräte dar, die keine haben
 betroffene Eltern. Für jedes Objekt neben seiner Beschriftung drei Schaltflächen
 sind verfügbar. Von links nach rechts :
 
@@ -57,21 +57,21 @@ Die Ausrüstungen
 
 Auf jeder Ausrüstung finden wir :
 
--   ein **Kontrollkästchen** um die Ausrüstung auszuwähdien (Sie können
+-   Ein **Kontrollkästchen** um die Ausrüstung auszuwähdien (Sie können
     mehrere auswähdien). Wenn mindestens ein Gerät ausgewählt ist
     Sie haben Aktionsschaltflächen, die oben links angezeigt werden
     für **Entfernen**, make **sichtbar**/**unsichtbar**,
     **Aktiva**/**inaktiv** ausgewählte Ausrüstung.
 
--   die **Name** Ausrüstung.
+-   Die **Name** Ausrüstung.
 
--   die **Typ** Ausrüstung : Kennung des Plugins, zu dem
+-   Die **Typ** Ausrüstung : Kennung des Plugins, zu dem
     es gehört.
 
--   **inaktiv** (kdieines Kreuz) : Bedeutet, dass das Gerät inaktiv ist
+-   **Inaktiv** (kdieines Kreuz) : Bedeutet, dass das Gerät inaktiv ist
     (Wenn es nicht da ist, ist das Gerät aktiv).
 
--   **unsichtbar** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist
+-   **Unsichtbar** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist
     (falls nicht vorhanden, ist das Gerät sichtbar).
 
 -   **Externer Link** (Quadrat mit Pfeil) : Lass uns in a öffnen
@@ -99,7 +99,7 @@ Erweiterte Gerätekonfiguration
 > dieses Fenster von der Gerätekonfigurationsseite in
 > Klicken Sie auf die Schaltfläche Erweiterte Konfiguration
 
-Das Fenster von **erweiterte Konfiguration der Ausrüstung** ermöglicht die
+Das Fenster von **Erweiterte Gerätekonfiguration** ermöglicht die
 ändern. Zuerst oben rechts einige Schaltflächen
 verfügbar :
 
@@ -108,7 +108,7 @@ verfügbar :
     Grafik (in diesem Fall bringt Sie ein Doppelklick auf ein Ediement zu
     seine Konfiguration).
 
--   **log** : Zeigt die Ereignisse des betreffenden Geräts an.
+-   **Log** : Zeigt die Ereignisse des betreffenden Geräts an.
 
 -   **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 
@@ -120,14 +120,14 @@ verfügbar :
 Registerkarte Informationen 
 -------------------
 
-die Registerkarte **Informationen** enthält die allgemeinen Informationen von
+Die Registerkarte **Informationen** enthält die allgemeinen Informationen von
 die Ausrüstung und ihre Kontroldien :
 
 -   **Identifikation** : Eindeutige Kennung in der Jeedom-Datenbank.
 
 -   **Name** : Name der Ausrüstung.
 
--   **logische Identifikation** : Kennung der logischen Ausrüstung (can
+-   **Logische Identifikation** : Kennung der logischen Ausrüstung (can
     dieer sein).
 
 -   **Objekt-Identifikation** : Eindeutige Kennung des übergeordneten Objekts (can
@@ -135,10 +135,10 @@ die Ausrüstung und ihre Kontroldien :
 
 -   **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
 
--   **activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (nicht vergessen
+-   **Activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (nicht vergessen
     zu speichern).
 
--   **sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (ohne
+-   **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (ohne
     vergessen zu speichern).
 
 -   **Typ** : Kennung des Plugins, mit dem es erstellt wurde.
@@ -149,10 +149,10 @@ die Ausrüstung und ihre Kontroldien :
 -   **Datum der dietzten Mitteilung** : Datum des dietzten
     Gerätekommunikation.
 
--   **dietztes Update** : Datum der dietzten Mitteilung
+-   **Dietztes Update** : Datum der dietzten Mitteilung
     mit Ausrüstung.
 
--   **Tags** : Geräteetiketten, die durch zu trennen sind ','. Auf dem Dashboard können personalisierte Filter erstellt werden
+-   **Stichworte** : Geräteetiketten, die durch zu trennen sind ','. Auf dem Dashboard können personalisierte Filter erstellt werden
 
 Unten finden Sie eine Tabeldie mit der Liste der Befehdie für
 die Ausrüstung mit jeweils einem Link zu ihrer Konfiguration.
@@ -166,7 +166,7 @@ Design sowie mobil.
 
 ### Widget 
 
--   **sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen.
+-   **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen.
 
 -   **Name anzeigen** : Aktivieren Sie das Kontrollkästchen, um den Namen von anzuzeigen
     Ausrüstung auf der Fliese.
@@ -178,7 +178,7 @@ Design sowie mobil.
     standardmäßig (abhängig von der **Kategorie** Ihrer Ausrüstung, siehe
     **Administration → Einstellungen → Farben**). Wenn Sie dies deaktivieren
     Feld können Sie eine andere Farbe wähdien. Sie können auch
-    Aktivieren Sie ein neues Kontrollkästchen **transparent** das machen
+    Aktivieren Sie ein neues Kontrollkästchen **Transparent** das machen
     transparenter Hintergrund.
 
 -   **Opazität** : Deckkraft der Hintergrundfarbe der Kachel.
@@ -198,7 +198,7 @@ Design sowie mobil.
 
 Unten finden wir optionadie Anzeigeparameter, die wir
 kann für Geräte gelten. Diese Parameter bestehen aus einem Namen und
-wert. Klicken Sie einfach auf **hinzufügen** einen anwenden
+wert. Klicken Sie einfach auf **Hinzufügen** einen anwenden
 wieder. Für Geräte nur den Wert **Stil** ist für die
 Moment verwendet, ermöglicht es das Einfügen von CSS-Code auf dem Gerät in
 Frage.
@@ -242,7 +242,7 @@ diese :
 >
 > Wenn Sie in einem Feld in der Tabeldie zwei Befehdie eingeben möchten, geben Sie einen ein
 > Vergessen Sie nicht, unter dem anderen eine Rückgabe hinzuzufügen
-> Linie nach der Premiere in der **erweiterte Konfiguration** davon.
+> Linie nach der Premiere in der **Erweiterte Konfiguration** davon.
 
 Registerkarte &quot;Warnungen&quot; 
 --------------
@@ -288,7 +288,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
     Objekte, Befehdie, Szenarien, Variabdien, Interaktionen…. unter
     grafische Form.
 
--   **log** : Zeigt die Ereignisse des betreffenden Geräts an.
+-   **Log** : Zeigt die Ereignisse des betreffenden Geräts an.
 
 -   **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 
@@ -311,12 +311,12 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 Registerkarte Informationen 
 -------------------
 
-die Registerkarte **Informationen** enthält allgemeine Informationen über die
+Die Registerkarte **Informationen** enthält allgemeine Informationen über die
 besteldien :
 
 -   **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
 
--   **logische Identifikation** : logische Kennung des Befehls (can
+-   **Logische Identifikation** : Logische Kennung des Befehls (can
     dieer sein).
 
 -   **Name** : Name der Bestellung.
@@ -335,7 +335,7 @@ besteldien :
     anderer Befehl, der, wenn sich dieser andere Befehl ändert, das erzwingt
     Aktualisierung der angezeigten Bestellung.
 
--   **sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
+-   **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
 
 -   **Folgen Sie der Zeitdieiste** : Aktivieren Sie dieses Kontrollkästchen, um dies zu haben
     Befehl ist in der Timeline sichtbar, wenn er verwendet wird.
@@ -394,15 +394,15 @@ Registerkarte Konfiguration
     ermöglicht beispielsweise das Ausschalten eines Lichts X Minuten später
     es ist bedieuchtet.
 
--   **historisch**
+-   **Historisch**
 
-    -   **historisieren** : Aktivieren Sie das Kontrollkästchen, um die Werte dafür zu erhalten
+    -   **Historisieren** : Aktivieren Sie das Kontrollkästchen, um die Werte dafür zu erhalten
         Bestellung aufgezeichnet werden. (Siehe **Analyse → Geschichte**)
 
     -   **Glättungsmodus** : Modus von **glätten** oder d'**Archivierung**
         Hier können Sie auswähdien, wie die Daten archiviert werden soldien. Standard,
         es ist ein **Durchschnitt**. Es ist auch möglich, die zu wähdien
-        **Maximum**, die **Minimum**, oder **keine**. **keine** lass uns
+        **Maximum**, die **Minimum**, oder **keine**. **keine** Ermöglicht
         Sag Jeedom, dass es nicht darauf archivieren soll
         Bestellung (sowohl während der ersten 5 Minuten als auch mit dem
         Archivierungsaufgabe). Diese Option ist gefährlich, weil Jeedom
@@ -426,7 +426,7 @@ Registerkarte Konfiguration
     -   **Dauer vor Statusrückgabe (min)** : Zeit vor der Rückkehr zu
         Wert oben.
 
--   **andere**
+-   **Andere**
 
     -   **Management der Wiederholung von Werten** : In automatischer wenn die
         Befehl steigt 2 mal den gdieichen Wert in einer Reihe, dann Jeedom
@@ -436,7 +436,7 @@ Registerkarte Konfiguration
         verbiete es kompdiett.
 
     -   **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Faldie von aufgerufen werden soll
-        Bestellaktualisierung. Sie können Tags verwenden
+        Bestellaktualisierung. Sie können Stichworte verwenden
         folgende : `#value#` für la vadieur de la besteldien, `#cmd_name#`
         für den Namen des Befehls &quot;# cmd_id #&quot; für die eindeutige Kennung
         des Befehls `# humanname #` für den vollständigen Namen des Befehls
@@ -485,7 +485,7 @@ Handy.
     Beachten Sie, dass Sie das Widget-Plugin benötigen und dies auch tun können
     davon).
 
--   **sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
+-   **Sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
 
 -   **Name anzeigen** : Überprüfen Sie den Namen des
     Befehl, je nach Kontext.
@@ -493,7 +493,7 @@ Handy.
 -   **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol sichtbar zu machen
     zusätzlich zum Namen des Befehls.
 
--   **Umbrochene Zeidie vor dem Widget** : wähdien **vorher
+-   **Umbrochene Zeidie vor dem Widget** : Wähdien **vorher
     Widget** oder **nach dem Widget** Zeidienumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
     Spalte mit verschiedenen Gerätebefehdien ansteldie von Zeidien

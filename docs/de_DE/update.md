@@ -1,7 +1,7 @@
 Beschreibung 
 ===========
 
-die **Update Center** ermöglicht es Ihnen, alle zu aktualisieren
+Die **Update Center** ermöglicht es Ihnen, alle zu aktualisieren
 Jeedom-Funktionen, einschließlich Kernsoftware,
 Plugins, Widgets usw.. Andere Erweiterungsverwaltungsfunktionen
 verfügbar sind (löschen, neu installieren, prüfen usw.)
@@ -43,7 +43,7 @@ Optionen :
 -   **Update zur erneuten Anwendung** : Ermöglicht es Ihnen, eine Wette erneut anzuwenden
     auf dem neuesten Stand. (NB : Nicht alle Updates können erneut angewendet werden.)
 
-> **wichtig**
+> **Wichtig**
 >
 > Vor einem Update erstellt Jeedom standardmäßig ein Backup. in
 > Wenn beim Anwenden eines Updates ein Problem auftritt, wird Jeedom dies tun
@@ -63,7 +63,7 @@ Diese beiden ähnlichen Registerkarten bestehen aus einer Tabelle :
 -   **Core und Plugins** : Enthält die grundlegende Jeedom-Software (Kern) und die
     Liste der installierten Plugins.
 
--   **andere** : Enthält Widgets, Skripte usw..
+-   **Andere** : Enthält Widgets, Skripte usw..
 
 Sie finden folgende Informationen : \* **Status** : OK oder NOK.
 Ermöglicht den aktuellen Status des Plugins. \* **Name** : Du da
@@ -80,7 +80,7 @@ Tag während des allgemeinen Updates (Button **Update**).
 In jeder Zeile können Sie die folgenden Funktionen verwenden
 jedes Element :
 
--   **wieder einstellen** : Neuansiedlung erzwingen.
+-   **Wieder einstellen** : Neuansiedlung erzwingen.
 
 -   **Entfernen** : Ermöglicht die Deinstallation.
 
@@ -90,10 +90,10 @@ jedes Element :
 -   **Update** : Ermöglicht das Aktualisieren des Elements (falls vorhanden)
     ein Update).
 
--   **Changelog** : Greifen Sie auf die Liste der Änderungen in der zu
+-   **Änderungsprotokoll** : Greifen Sie auf die Liste der Änderungen in der zu
     Update.
 
-> **wichtig**
+> **Wichtig**
 >
 > Wenn das Änderungsprotokoll leer ist, Sie aber noch ein Update haben
 > Update bedeutet, dass die Dokumentation aktualisiert wurde.

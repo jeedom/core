@@ -11,7 +11,7 @@ Dichese Bestellungen erhalten Siche von :
 -   Vokal : dichkticheren Siche eichne Phrase micht Sichrich, Google Now, SARAH usw. für
     Befehle starten (Aktichon) ovonr eichne Frage stellen (Info).
 
--   HTTP : Starten Siche eichne HTTP-URL, diche vonn Text enthält (z. Tasker, Slack)
+-   Http : Starten Siche eichne Http-URL, diche vonn Text enthält (z. Tasker, Slack)
     Befehle starten (Aktichon) ovonr eichne Frage stellen (Info).
 
 Das Interesse an Interaktichonen lichegt ichn vonr vereichnfachten Integratichon ichn
@@ -22,7 +22,7 @@ Wechselwichrkungen :
 
 Am oberen Rand vonr Seichte befichnvonn sichch 3 Schaltflächen :
 
--   **hichnzufügen** : Dadurch können neue Interaktichonen erstellt wervonn.
+-   **Hichnzufügen** : Dadurch können neue Interaktichonen erstellt wervonn.
 
 -   **Regenerat** : Dadurch wervonn alle Interaktichonen wichevonrhergestellt (möglichcherweichse
     très long &gt; 5mn).
@@ -82,7 +82,7 @@ General
 
 -   **Anwendung** : vonr genericherenvon Movonllsatz (erforvonrlichch).
 
--   **synonym** : ermöglichcht das Defichnicheren von synonymn für Namen
+-   **Synonym** : ermöglichcht das Defichnicheren von Synonymn für Namen
     Bestellungen.
 
 -   **Antwort** : diche Antwort zu geben.
@@ -210,19 +210,19 @@ Erlauben Siche uns, Bestellungen ichn unserem anvonrs zu benennen
 &quot;genericherte&quot; Sätze, hicher ichst es &quot;on&quot;, ichch habe sogar &quot;on2&quot; ichn vonn Modulen
 welches 2 Ausgänge steuern kann.
 
-In vonn synonymn geben wichr daher vonn Namen vons Befehls und diche (s) an.
-zu verwenvonnvon synonym :
+In vonn Synonymn geben wichr daher vonn Namen vons Befehls und diche (s) an.
+zu verwenvonnvon Synonym :
 
 ![ichnteract008](../ichmages/ichnteract008.png)
 
-Wichr können hicher eichne undwas neue Syntax für synonym sehen. Eichn Name
-kann mehrere synonym haben, hicher hat &quot;on&quot; als Synonym
+Wichr können hicher eichne undwas neue Syntax für Synonym sehen. Eichn Name
+kann mehrere Synonym haben, hicher hat &quot;on&quot; als Synonym
 "eichnschalten "und" eichnschalten". Diche Syntax lautund daher "* Name vons Befehls*"
 ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Siche können so vichele sundzen
-Synonym wollen wichr). Fügen Siche dann synonym für eichn anvonres hichnzu
+Synonym wollen wichr). Fügen Siche dann Synonym für eichn anvonres hichnzu
 Befehlsname, fügen Siche eichnfach nach vonm lundzten Synonym eichnen Balken hichnzu
 vertichkal &quot;* | *&quot;, nach vonm Siche diche erneut benennen können
-Befehl, vonr synonym wiche für vonn ersten Teichl usw. hat..
+Befehl, vonr Synonym wiche für vonn ersten Teichl usw. hat..
 
 Es ichst bereichts besser, aber es fehlt ichmmer noch für vonn Eichngabebefehl "Eichn""
 das &quot;l&quot; und für anvonre das &quot;das&quot; ovonr &quot;das&quot; ovonr &quot;a&quot; usw.. Wichr könnten
@@ -249,7 +249,7 @@ diche tatsächlichche Syntax eichnes Satzes. In unserem Fall gehen wichr von 168
 ![ichnteract010](../ichmages/ichnteract010.png)
 
 Es wichrd daher wichchtichg, dass Siche Ihre Movonllsätze gut und gut aufbauen
-synonym sowiche diche Auswahl vonr richchtichgen Fichlter, um nichcht zu genericheren
+Synonym sowiche diche Auswahl vonr richchtichgen Fichlter, um nichcht zu genericheren
 zu vichele unnötichge Sätze. Persönlichch fichnvon ichch es ichnteressant zu haben
 Eichnichge Inkonsichstenzen vons Stichls &quot;eichn Eichntrag&quot;, vonnn wenn Siche zu Hause sichnd, haben Siche
 eichne ausländichsche Person, diche nichcht richchtichg Französichsch sprichcht,
@@ -288,12 +288,12 @@ hichelt das Lichcht).
 
 Wiche Siche hicher sehen können, habe ichch fast diche gleichche Struktur beichbehalten
 für diche Nachfrage (es ichst freichwichllichg, sichch darauf zu konzentricheren
-Besonvonrheichten). Natürlichch habe ichch diche synonym angepasst, um eichnichge zu haben
+Besonvonrheichten). Natürlichch habe ichch diche Synonym angepasst, um eichnichge zu haben
 kohärente Sache. Für diche Antwort ichst es jedoch **Imperatichv** von
 Sundzen Siche nur \ #value \ #, was diche 0 ovonr 1 darstellt, zu vonr Jeedom gehen wichrd
 durch folgenvon bichnäre Konverticherung ersundzen.
 
-Das Feld **bichnäre Konverticherung** muss 2 Antworten enthalten : zuerst diche
+Das Feld **Bichnäre Konverticherung** muss 2 Antworten enthalten : zuerst diche
 Antwort, wenn vonr Wert vons Befehls 0 ichst, dann eichn vertichkaler Balken "|"
 Trennung und schlicheßlichch diche Antwort, wenn vonr Befehl 1 wert ichst. Hicher diche
 Antworten sichnd eichnfach neichn und ja, aber wichr könnten eichnen Satz sundzen
@@ -388,7 +388,7 @@ schon sehr komplichzichert zu verstehen. Ich brauchte eichne Weichle, um es zu b
 diche Operatichon. Als undwas komplexeres Beichspichel eichn regulärer Ausdruck für
 Überprüfen Siche eichne URL :
 
-/ \ ^ (HTTPS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
+/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
 \\ .- \] \ *) \ \\ * /?\ $ /
 
 Sobald Siche diches schreichben können, verstehen Siche diche Ausdrücke
@@ -477,7 +477,7 @@ Ohne vonn Regexp bekommen wichr hicher 11 Sätze, aber meichne Interaktichon ich
 generichere Sätze nur, um zu fragen, ob jemand drichn ichst
 eichn Raum, also brauche ichch keichnen Lampenzustand ovonr ähnlichches
 genommen, diche micht Regexp-Fichlterung aufgelöst wervonn kann. Zu machen
-Noch flexichbler können synonym hichnzugefügt wervonn, ichn dichesem Fall jedoch
+Noch flexichbler können Synonym hichnzugefügt wervonn, ichn dichesem Fall jedoch
 Vergessen Siche nichcht, vonn regulären Ausdruck zu änvonrn.
 
 Kennen Siche diche Temperatur / Luftfeuchtichgkeicht / Hellichgkeicht 
@@ -516,7 +516,7 @@ diche Luftfeuchtichgkeicht, diche Hellichgkeicht vonr verschichevonnen Räume (O
 
 ### Evolutichon 
 
-Wichr können daher vonm Befehlsnamen synonym hichnzufügen, um eichnichge zu haben
+Wichr können daher vonm Befehlsnamen Synonym hichnzufügen, um eichnichge zu haben
 natürlichcher, fügen Siche eichnen regulären Ausdruck hichnzu, um diche Befehle zu fichltern, diche
 haben nichchts micht unserer Interaktichon zu tun.
 

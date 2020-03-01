@@ -8,7 +8,7 @@ You can do this on views, design, panel page....
 
 It is triggered from a scenario with the report command, you can choose to have this report sent to you using a message command (email, telegram, etc.)
 
-# use
+# Use
 
 Its use is very simple you select if you want to see :
 
@@ -19,7 +19,7 @@ Its use is very simple you select if you want to see :
 
 Then you select the name of the report in question then you will see all the dates of the reports in memory
 
-> **Important**
+> **IMPORTANT**
 >
 > Automatic deletion is done by default for reports longer than 30 days (you can configure this period in the Jeedom configuration)
 

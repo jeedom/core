@@ -1,4 +1,4 @@
-cambios
+Cambios
 =========
 
 4.0.0
@@ -14,20 +14,20 @@ cambios
 - Los campos de búsqueda (panel de control, escenarios, objetos, widgets, interacciones, complementos) ahora están activos cuando se abre la página, lo que le permite escribir una búsqueda directamente.
 - Agregue un botón X en los campos de búsqueda para cancelar la búsqueda..
 - Durante una búsqueda, la tecla * escape * cancela la búsqueda.
-- salpicadero : En el modo de edición, el campo de búsqueda y sus botones están deshabilitados y se arreglan.
-- salpicadero : En el modo de edición, un clic en un botón * expandir * a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
-- salpicadero : La ejecución de la orden en un mosaico ahora se indica mediante el botón * actualizar*. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.
-- salpicadero : Los mosaicos indican un comando de información (historial, que abrirá la ventana Historial) o acción al pasar el mouse.
-- salpicadero : La ventana de historial ahora le permite abrir este historial en Análisis / Historial.
-- salpicadero : La ventana de historial conserva su posición / dimensiones cuando se vuelve a abrir otro historial.
+- Salpicadero : En el modo de edición, el campo de búsqueda y sus botones están deshabilitados y se arreglan.
+- Salpicadero : En el modo de edición, un clic en un botón * expandir * a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
+- Salpicadero : La ejecución de la orden en un mosaico ahora se indica mediante el botón * actualizar*. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.
+- Salpicadero : Los mosaicos indican un comando de información (historial, que abrirá la ventana Historial) o acción al pasar el mouse.
+- Salpicadero : La ventana de historial ahora le permite abrir este historial en Análisis / Historial.
+- Salpicadero : La ventana de historial conserva su posición / dimensiones cuando se vuelve a abrir otro historial.
 - Ventana de configuración de comandos: Ctrl + clic en &quot;Guardar&quot; cierra la ventana después.
 - Ventana de configuración del equipo: Ctrl + clic en &quot;Guardar&quot; cierra la ventana después.
 - Agregar información de uso al eliminar equipos.
-- objetos : Opción agregada para usar colores personalizados.
-- objetos : Agregar menú contextual en pestañas (cambio rápido de objeto).
-- interacciones : Agregar menú contextual en pestañas (cambio rápido de interacción).
-- plugins : Agregar menú contextual en pestañas (cambio rápido de equipo).
-- plugins : En la página de administración de complementos, un punto naranja indica complementos no estables.
+- Objetos : Opción agregada para usar colores personalizados.
+- Objetos : Agregar menú contextual en pestañas (cambio rápido de objeto).
+- Interacciones : Agregar menú contextual en pestañas (cambio rápido de interacción).
+- Plugins : Agregar menú contextual en pestañas (cambio rápido de equipo).
+- Plugins : En la página de administración de complementos, un punto naranja indica complementos no estables.
 - Mejoras de tabla con filtro y opción de clasificación.
 - Posibilidad de asignar un ícono a una interacción.
 - Cada página de Jeedom ahora tiene un título en el idioma de la interfaz (pestaña del navegador).
@@ -41,26 +41,26 @@ cambios
 - Reproductores : Adición de una brújula de información numérica / widget de viento (gracias @thanaus).
 - Reproductores : Agregar un widget de lluvia de información numérica (gracias @thanaus)
 - Reproductores : Visualización del widget de obturador de información / acción proporcional al valor. <br/><br/>
-- configuración : Mejora y reorganización de pestañas.
-- configuración : Se agregaron muchos * consejos sobre herramientas * (ayuda).
-- configuración : Agregar un motor de búsqueda.
-- configuración : Agregar un botón para vaciar el caché del widget (pestaña Caché).
-- configuración : Opción agregada para deshabilitar el caché del widget (pestaña Caché).
-- configuración : Capacidad para centrar el contenido de los mosaicos verticalmente (pestaña Interfaz).
-- configuración : Adición de un parámetro para la purga global de las historias (Comandos Tab).
-- configuración : Cambie de # mensaje # a # asunto # en Configuración / Registros / Mensajes para evitar la duplicación del mensaje.
-- configuración : Posibilidad en los resúmenes de agregar una exclusión de los pedidos que no se hayan actualizado durante más de XX minutos (ejemplo para el cálculo de los promedios de temperatura si un sensor no ha elevado nada durante más de 30 minutos, se excluirá del cálculo ) <br/><br/>
-- guión : La coloración de los bloques ya no es aleatoria, sino por tipo de bloque..
-- guión : Posibilidad mediante Ctrl + clic en el botón * ejecución * para guardarlo, iniciarlo y mostrar el registro (si el nivel de registro no está activado * Ninguno *).
-- guión : Confirmación de eliminación de bloque. Ctrl + clic para evitar la confirmación.
-- guión : Adición de una función de búsqueda en los bloques de Código. Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
-- guión : Capacidad para condensar bloques.
-- guión : La acción &#39;Agregar bloque&#39; cambia a la pestaña Escenario si es necesario.
-- guión : Nuevas funciones de copiar / pegar en bloque. Ctrl + clic para cortar / reemplazar.
-- guión : Ya no se agrega un nuevo bloque al final del escenario, sino después del bloque donde estaba antes de hacer clic, determinado por el último campo en el que hizo clic.
-- guión : Implementación de un sistema Deshacer / Rehacer (Ctrl + Shift + Z / Ctrl + Shift + Y).
-- guión : Eliminar escenario compartido.
-- guión : Mejora de la ventana de gestión de plantillas de escenarios. <br/><br/>
+- Configuración : Mejora y reorganización de pestañas.
+- Configuración : Se agregaron muchos * consejos sobre herramientas * (ayuda).
+- Configuración : Agregar un motor de búsqueda.
+- Configuración : Agregar un botón para vaciar el caché del widget (pestaña Caché).
+- Configuración : Opción agregada para deshabilitar el caché del widget (pestaña Caché).
+- Configuración : Capacidad para centrar el contenido de los mosaicos verticalmente (pestaña Interfaz).
+- Configuración : Adición de un parámetro para la purga global de las historias (Comandos Tab).
+- Configuración : Cambie de # mensaje # a # asunto # en Configuración / Registros / Mensajes para evitar la duplicación del mensaje.
+- Configuración : Posibilidad en los resúmenes de agregar una exclusión de los pedidos que no se hayan actualizado durante más de XX minutos (ejemplo para el cálculo de los promedios de temperatura si un sensor no ha elevado nada durante más de 30 minutos, se excluirá del cálculo ) <br/><br/>
+- Guión : La coloración de los bloques ya no es aleatoria, sino por tipo de bloque..
+- Guión : Posibilidad mediante Ctrl + clic en el botón * ejecución * para guardarlo, iniciarlo y mostrar el registro (si el nivel de registro no está activado * Ninguno *).
+- Guión : Confirmación de eliminación de bloque. Ctrl + clic para evitar la confirmación.
+- Guión : Adición de una función de búsqueda en los bloques de Código. Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
+- Guión : Capacidad para condensar bloques.
+- Guión : La acción &#39;Agregar bloque&#39; cambia a la pestaña Escenario si es necesario.
+- Guión : Nuevas funciones de copiar / pegar en bloque. Ctrl + clic para cortar / reemplazar.
+- Guión : Ya no se agrega un nuevo bloque al final del escenario, sino después del bloque donde estaba antes de hacer clic, determinado por el último campo en el que hizo clic.
+- Guión : Implementación de un sistema Deshacer / Rehacer (Ctrl + Shift + Z / Ctrl + Shift + Y).
+- Guión : Eliminar escenario compartido.
+- Guión : Mejora de la ventana de gestión de plantillas de escenarios. <br/><br/>
 - Análisis / Equipamiento : Adición de un motor de búsqueda (pestaña Baterías, búsqueda de nombres y padres).
 - Análisis / Equipamiento : Ahora se puede hacer clic en el área de calendario / días del equipo para acceder directamente al cambio de batería (s).
 - Análisis / Equipamiento : Adición de un campo de búsqueda. <br/><br/>
@@ -72,10 +72,10 @@ cambios
 - Resumen de domótica : Adición de equipos e ID de pedidos, en pantalla y en búsqueda.
 - Resumen de domótica : Exportación CSV de objeto primario, id, equipo y su id, comando.
 - Resumen de domótica : Posibilidad de hacer visibles o no uno o más pedidos. <br/><br/>
-- diseño : Posibilidad de especificar el orden (posición) de * Diseños * y * Diseños 3D * (Editar, Configurar diseño).
-- diseño : Adición de un campo CSS personalizado en los elementos de * diseño*.
-- diseño : Desplazamiento de las opciones de visualización en Diseño de la configuración avanzada, en la configuración de visualización de * Diseño*. Esto para simplificar la interfaz y permitir tener diferentes parámetros por * Diseño*.
-- diseño : Mover y cambiar el tamaño de los componentes en * Diseño * tiene en cuenta su tamaño, con o sin magnetización. <br/><br/>
+- Diseño : Posibilidad de especificar el orden (posición) de * Diseños * y * Diseños 3D * (Editar, Configurar diseño).
+- Diseño : Adición de un campo CSS personalizado en los elementos de * diseño*.
+- Diseño : Desplazamiento de las opciones de visualización en Diseño de la configuración avanzada, en la configuración de visualización de * Diseño*. Esto para simplificar la interfaz y permitir tener diferentes parámetros por * Diseño*.
+- Diseño : Mover y cambiar el tamaño de los componentes en * Diseño * tiene en cuenta su tamaño, con o sin magnetización. <br/><br/>
 - Reducción general (estilos CSS / en línea, refactorización, etc.) y mejoras de rendimiento.
 - Elimine Font Awesome 4 para mantener solo Font Awesome 5.
 - Actualización de Libs : jquery 3.4.1, CodeMiror 5.46.0, clasificador de tabla 2.31.1.
@@ -257,7 +257,7 @@ cambios
 - Posibilidad de agregar opciones en informes
 - Adición de un latido por complemento y reinicio automático de daemon en caso de problemas
 - Adición de oyentes en la página del motor de tareas
-- optimizaciones
+- Optimizaciones
 - Posibilidad de consultar los registros en versión móvil (wepapp)
 - Adición de una etiqueta de acción en los escenarios (ver documentación)
 - Posibilidad de tener una vista de pantalla completa agregando &quot;&amp; fullscreen = 1&quot; en la url
@@ -288,7 +288,7 @@ cambios
 3.2.12
 =====
 - Correcciones de errores
-- optimizaciones
+- Optimizaciones
 
 3.2.11
 =====
@@ -526,7 +526,7 @@ cambios
 - Posibilidad de ver en la página de configuración de complementos las funcionalidades de estos complementos (interactuar, cron ...) y desactivarlos individualmente
 - Las interacciones automáticas pueden devolver valores de resúmenes
 - Capacidad para definir sinónimos de objetos, equipos, comandos y resúmenes que se utilizarán en respuestas contextuales y resúmenes
-- Jeedom sabe cómo gestionar varias interacciones relacionadas (contextualmente) en una. Deben estar separados por una palabra clave (por defecto y). ejemplo : "¿Cuánto cuesta en el dormitorio y en la sala de estar? "O" Encienda la luz en la cocina y el dormitorio."
+- Jeedom sabe cómo gestionar varias interacciones relacionadas (contextualmente) en una. Deben estar separados por una palabra clave (por defecto y). Ejemplo : "¿Cuánto cuesta en el dormitorio y en la sala de estar? "O" Encienda la luz en la cocina y el dormitorio."
 - El estado de los escenarios en la página de edición ahora se actualiza dinámicamente
 - Posibilidad de exportar una vista en PDF, PNG, SVG o JPEG con el comando &quot;informe&quot; en un escenario
 - Posibilidad de exportar un diseño en PDF, PNG, SVG o JPEG con el comando &quot;informe&quot; en un escenario
@@ -672,7 +672,7 @@ integración con sistemas de registro (tipo syslog (d))
 - Adición de una página que resume el estado de todos los equipos con batería
 - Rediseño del DNS de Jeedom, uso de openvpn (y por lo tanto del complemento openvpn)
 - Actualizar todas las bibliotecas
-- interacción : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
+- Interacción : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
 - Supresión de la actualización de la interfaz por nodejs (cambiar a extraer cada segundo en la lista de eventos)
 - Posibilidad de aplicaciones de terceros para solicitar eventos a través de la API
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les reconfigurer suite à la mise à jour)
@@ -708,7 +708,7 @@ integración con sistemas de registro (tipo syslog (d))
 - Adición de una página que resume el estado de todos los equipos con batería
 - Rediseño del DNS de Jeedom, uso de openvpn (y por lo tanto del complemento openvpn)
 - Actualizar todas las bibliotecas
-- interacción : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
+- Interacción : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
 - Supresión de la actualización de la interfaz por nodejs (cambiar a extraer cada segundo en la lista de eventos)
 - Posibilidad de aplicaciones de terceros para solicitar eventos a través de la API
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les reconfigurer suite à la mise à jour)
