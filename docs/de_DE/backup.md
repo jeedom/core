@@ -83,7 +83,7 @@ Mit Cloud-Backups kann Jeedom Ihre Backups direkt an den Markt senden. Auf diese
 
 > **Spitze**
 >
-> Sie können den Namen der Sicherungsdateien auf der Registerkarte anpassen **Meine Jeedoms**Vermeiden Sie jedoch exotische Charaktere.
+> Sie können den Namen der Sicherungsdateien auf der Registerkarte anpassen **Meine Jeedoms**, Vermeiden Sie jedoch die exotischen Charaktere.
 
 # Häufigkeit der automatischen Sicherungen
 

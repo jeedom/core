@@ -5,7 +5,7 @@
 No, Jeedom es totalmente utilizable sin necesidad de suscripción.. Sin embargo, hay servicios ofrecidos para copias de seguridad o llamadas / SMS, pero que son realmente opcionales.
 
 ### ¿Jeedom utiliza servidores externos para ejecutar ?
-No, Jeedom no utiliza la infraestructura de tipo &quot;Cloud&quot;. Todo se hace localmente y no necesita nuestros servidores para que su instalación funcione. Solo los servicios como Market, respaldo en línea o Jeedom DNS requieren el uso de nuestros servidores.
+No, Jeedom no utiliza la infraestructura de tipo "Cloud"". Todo se hace localmente y no necesita nuestros servidores para que su instalación funcione. Solo los servicios como Market, respaldo en línea o Jeedom DNS requieren el uso de nuestros servidores.
 
 ### ¿Existe una aplicación móvil dedicada? ?
 Jeedom tiene una versión móvil adecuada para usar en dispositivos móviles y tabletas. También hay una aplicación nativa para Android e iOS.
@@ -14,7 +14,7 @@ Jeedom tiene una versión móvil adecuada para usar en dispositivos móviles y t
 Cuando inicia sesión en Jeedom por primera vez (e incluso después si no los ha cambiado), el nombre de usuario y la contraseña predeterminados son admin / admin. En la primera conexión, se recomienda encarecidamente modificar estos identificadores para mayor seguridad.
 
 ### Ya no puedo conectarme a mi Jeedom
-Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Las credenciales de administrador / administrador solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo IP en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Esto se configura en la administración de la parte de seguridad de Jeedom luego IP &quot;blanca&quot;. Si a pesar de todo aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo hacerlo)
+Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Las credenciales de administrador / administrador solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo IP en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si a pesar de todo aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo hacerlo)
 
 ### No veo todo mi equipo en el Tablero
 A menudo, esto se debe al hecho de que el equipo está asignado a un objeto que no es el niño o el objeto mismo del primer objeto seleccionado a la izquierda en el árbol (puede configurarlo en su perfil).
@@ -45,10 +45,10 @@ sí : O tienes una fuente de alimentación o más, en este caso
 solo use el [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 ### Cómo conectarse en SSH ?
-Aquí hay una [documentación] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : masilla &quot;. El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Aquí hay una [documentación] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
-- Nombre de usuario : &quot;root&quot;, contraseña : &quot;Mjeedom96&quot;
-- Nombre de usuario : &quot;jeedom&quot;, contraseña : &quot;Mjeedom96&quot;
+- Nombre de usuario : "root ", contraseña : "Mjeedom96"
+- Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"
 - O lo que pones en la instalación si estás en bricolaje
 
 Tenga en cuenta que cuando escribe la contraseña no verá nada escrito en la pantalla, esto es normal.
@@ -78,7 +78,7 @@ La aplicación web requiere un teléfono inteligente compatible con HTML5 y CSS3
 ### ¿En qué plataformas se puede ejecutar Jeedom? ?
 Para que Jeedom funcione, necesita una plataforma Linux con derechos de root o un sistema de tipo docker. Por lo tanto, no funciona en una plataforma Android pura.
 
-### No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes) ... &quot; ?
+### No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes)..." ?
 Esto puede deberse a varias cosas, :
 
 - Verifique que su Jeedom todavía esté conectado al mercado (en la página de administración de Jeedom, la parte actualizada tiene un botón de prueba).
@@ -125,12 +125,12 @@ Es recomendable mirar los comandos ejecutados por el escenario, a menudo provien
 ### Tengo inestabilidades o errores 504
 Compruebe si su sistema de archivos no está dañado, en SSH el comando es : ```sudo dmesg | grep error```.
 
-### Tengo el siguiente error : SQLSTATE \ [HY000 \] \ [2002 \] No se puede conectar al servidor MySQL local a través del socket &#39;/var/run/mysqld/mysqld.sock&#39;
+### Tengo el siguiente error : SQLSTATE \ [HY000 \] \ [2002 \] No se puede conectar al servidor MySQL local a través del socket &#39;/var/run/mysqld/mysqld.sock'
 Esto se debe a que MySQL se detuvo, no es normal, los casos comunes son :
 
 - Falta de espacio en el sistema de archivos (se puede verificar haciendo el comando &quot;df -h&quot;, en SSH)
 - Problema de corrupción de archivo (s), que a menudo ocurre después de un cierre inseguro de Jeedom (falla de energía)
-- Problemas de memoria, el sistema carece de memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por &quot;oom&quot;. Si este es el caso, reduzca el consumo de Jeedom desactivando los complementos.
+- Problemas de memoria, el sistema carece de memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por "oom". Si este es el caso, reduzca el consumo de Jeedom desactivando los complementos.
 
 Desafortunadamente, no hay mucha solución si es el segundo caso, lo mejor es recuperar una copia de seguridad (disponible en / var / www / html / backup por defecto), reinstalar Jeedom y restaurar la copia de seguridad. También puede ver por qué MySQL no quiere arrancar desde una consola SSH :
 ``` {.bash}
@@ -165,10 +165,10 @@ echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/
 ### Tengo una preocupación por el tiempo en mi historia
 Intente borrar el caché de Chrome, la visualización de los historiales se calcula en relación con el tiempo del navegador.
 
-### Tengo el error &quot;Problemas de red detectados, reinicio de red&quot;
+### Tengo el error "Problemas de red detectados, reinicio de red"
 Jeedom no puede encontrar o no puede hacer ping a la puerta de enlace. En general, sucede si el cuadro adsl se reinicia (en particular, liveboxes) y Jeedom no se ha reiniciado o se ha reiniciado más rápido que el cuadro. Por seguridad, le dice que ha encontrado un problema y relanza el proceso de conexión de red.. Puede desactivar este mecanismo yendo a la configuración de Jeedom y desactivando la administración de red de Jeedom.
 
-### Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Compruebe que mysqldump está presente &quot;.
+### Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Comprueba que mysqldump está presente."
 Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma.. En casos conocidos de inquietudes tenemos:
 
 - una tabla base corrupta =&gt; allí es un mal comienzo, debemos ver para intentar reparar y si no se inicia desde la última copia de seguridad válida (si está en la tarjeta SD, es el momento adecuado para cambiarla)
@@ -191,7 +191,7 @@ En la administración de Jeedom parte OS / DB, entonces en la consola del sistem
 si | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
-### No puedo instalar las dependencias del complemento. Tengo un error del tipo : &quot;E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou &quot;E: No se pudo obtener lock / var / lib / dpkg / lock &quot;
+### No puedo instalar las dependencias del complemento. Tengo un error del tipo : "E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: No se pudo obtener lock / var / lib / dpkg / lock"
 
 Hay que :
 

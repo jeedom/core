@@ -12,14 +12,14 @@ This API is very easy to use by simple HTTP requests via URL.
 
 > **Note**
 >
-> For all this documentation, \ #API \ _KEY \ # corresponds to your API key, specific to your installation. To find it, go to the &quot;General&quot; menu → &quot;Configuration&quot; → &quot;General&quot; tab.
+> For all this documentation, \ #API \ _KEY \ # corresponds to your API key, specific to your installation. To find it, go to the "General" menu → "Configuration" → "General" tab".
 
 ## Scenario
 
 Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
-- **id** : matches your scenario id. The ID can be found on the page of the scenario concerned, in &quot;Tools&quot; → &quot;Scenarios&quot;, once the scenario has been selected, next to the name of the &quot;General&quot; tab. Another way to find it : in &quot;Tools&quot; → &quot;Scenarios&quot;, click on &quot;Overview&quot;.
-- **action** : corresponds to the action you want to apply. Available commands are : &quot;start&quot;, &quot;stop&quot;, &quot;deactivate&quot; and &quot;activate&quot; to start, stop, deactivate or activate the scenario, respectively.
+- **id** : matches your scenario id. The ID can be found on the relevant scenario page, in "Tools" → "Scenarios", once the scenario has been selected, next to the name of the "General" tab". Another way to find it : in "Tools" → "Scenarios", click on "Overview".
+- **action** : corresponds to the action you want to apply. Available commands are : "start "," stop "," deactivate "and" activate "to start, stop, deactivate or activate the scenario, respectively.
 - **tags** \[optional\] : if the action is &quot;start&quot;, you can pass tags to the scenario (see the documentation on the scenarios) in the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a space and% 3D to =).
 
 ##  Info / Action command
@@ -28,7 +28,7 @@ Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#API
 
 - **id** : corresponds to the id of what you want to control or from which you want to receive information.
 
-The easiest way to get this URL is to go to the page **Analysis → Home automation summary**, to search for the order then to open its advanced configuration (the &quot;gear&quot; icon) and there, you will see a URL which already contains everything you need depending on the type and subtype of the order.
+The easiest way to get this URL is to go to the page **Analysis → Home automation summary**, to search for the order then to open its advanced configuration (the "gear" icon) and there, you will see a URL which already contains everything you need depending on the type and subtype of the order.
 
 > **Note**
 >

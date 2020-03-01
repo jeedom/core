@@ -44,7 +44,7 @@ Here are the different characteristics to configure an object :
 - **Dad** : Indicates the relative of the current object, this makes it possible to define a hierarchy between the objects. for example : The living room is related to the apartment. An object can have only one relative but several objects can have the same relative.
 - **Visible** : Check this box to make this object visible.
 - **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly..
-- **Hide on summary &#39;** : Check this box to hide the object on the summary &#39;&#39;. It is still kept in the list, which allows it to be displayed, but only explicitly..
+- **Hide on summary'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly..
 - **Icon** : Allows you to choose an icon for your object.
 - **Custom colors** : Activates the consideration of the two optional color parameters.
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.

@@ -83,7 +83,7 @@ La copia de seguridad en la nube le permite a Jeedom enviar sus copias de seguri
 
 > **punta**
 >
-> Puede personalizar el nombre de los archivos de copia de seguridad desde la pestaña **Mis jeedoms**, sin embargo evitando personajes exóticos.
+> Puede personalizar el nombre de los archivos de copia de seguridad desde la pestaña **Mis jeedoms**, evitando sin embargo los personajes exóticos.
 
 # Frecuencia de respaldos automáticos
 

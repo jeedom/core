@@ -16,6 +16,6 @@ Danach haben Sie ein leeres Dashboard. Es ist normal, dass der Cache geleert wir
     Korrektur durch den Autor.
 
 -   Die Liste der fraglichen Plugins finden Sie hier :
-    <https://www.jeedom.com/market/index.php?v = d &amp; p = scoring>
+    <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

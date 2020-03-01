@@ -44,7 +44,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Vater** : Gibt das übergeordnete Objekt des aktuellen Objekts an. Dadurch kann eine Hierarchie zwischen den Objekten definiert werden. Zum Beispiel : Das Wohnzimmer ist mit der Wohnung verbunden. Ein Objekt kann nur ein übergeordnetes Objekt haben, aber mehrere Objekte können dasselbe übergeordnete Objekt haben.
 - **sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 - **Im Dashboard ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt im Dashboard auszublenden. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit..
-- **Zusammenfassung ausblenden &#39;** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt in der Zusammenfassung &#39;&#39; auszublenden.. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit..
+- **Zusammenfassung ausblenden'** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt in der Zusammenfassung auszublenden'. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit..
 - **Symbol** : Ermöglicht die Auswahl eines Symbols für Ihr Objekt.
 - **Benutzerdefinierte Farben** : Aktiviert die Berücksichtigung der beiden optionalen Farbparameter.
 - **Tag Farbe** : Ermöglicht die Auswahl der Farbe des Objekts und der daran angeschlossenen Ausrüstung.
@@ -57,7 +57,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 > **Spitze**
 >
-> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Verbindungen**oben rechts.
+> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Verbindungen**, oben rechts.
 
 > **Spitze**
 >

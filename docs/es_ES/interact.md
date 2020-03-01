@@ -121,19 +121,19 @@ Para ordenar todo esto, usaremos los filtros (parte derecha de nuestra página d
 
 ![interact007](../images/interact007.png)
 
-Es mejor, pero podemos hacerlo aún más natural.. Si tomo el ejemplo generado &quot;En la entrada&quot;, sería bueno poder transformar esta oración en &quot;encender la entrada&quot; o &quot;encender la entrada&quot;. Para hacer esto, Jeedom tiene, bajo el campo de solicitud, un campo sinónimo que nos permitirá nombrar el nombre de los comandos de manera diferente en nuestras oraciones &quot;generadas&quot;, aquí está &quot;on&quot;, incluso tengo &quot;on2 &quot;en módulos que pueden controlar 2 salidas.
+Es mejor, pero podemos hacerlo aún más natural.. Si tomo el ejemplo generado "En la entrada", sería bueno poder transformar esta oración en "activar la entrada" o "activar la entrada". Para hacer esto, Jeedom tiene, bajo el campo de solicitud, un campo sinónimo que nos permitirá nombrar el nombre de los comandos de manera diferente en nuestras oraciones &quot;generadas&quot;, aquí está &quot;on&quot;, incluso tengo &quot;on2 &quot;en módulos que pueden controlar 2 salidas.
 
 Por lo tanto, en sinónimos, indicaremos el nombre del comando y los sinónimos para usar :
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí &quot;on&quot; tiene el sinónimo &quot;encender&quot; y &quot;encender&quot;. La sintaxis es, por lo tanto, &quot;* nombre del comando *&quot; ***=*** &quot;* sinónimo 1 *&quot;***,*** &quot;* sinónimo 2 *&quot; (puede agregar tantos sinónimos como desee). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue después del último sinónimo una barra vertical &quot;* | *&quot;, después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos como para el primera parte, yc..
+Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es, por lo tanto, "* nombre del comando*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2 * "(puede agregar tantos sinónimos como desee). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue después del último sinónimo una barra vertical &quot;* | *&quot;, después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos como para el primera parte, yc..
 
 Ya es mejor, pero aún le falta el comando &quot;en&quot; &quot;entrada&quot; la &quot;l&quot; y para otros la &quot;la&quot; o &quot;le&quot; o &quot;a&quot;, yc.. Podríamos cambiar el nombre del equipo para agregarlo, sería una solución, de lo contrario, podemos usar las variaciones en la solicitud. Esto consiste en enumerar una serie de palabras posibles en un lugar de la oración, por lo tanto, Jeedom generará oraciones con estas variaciones.
 
 ![interact009](../images/interact009.png)
 
-Ahora tenemos oraciones un poco más correctas con oraciones que no son correctas, para nuestro ejemplo &quot;en&quot; &quot;entrada&quot;. así que encontramos &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, yc.. Entonces, tenemos todas las variantes posibles con lo que agregamos entre &quot;\ [\]&quot; y esto para cada sinónimo, que rápidamente genera muchas oraciones (aquí 168).
+Ahora tenemos oraciones un poco más correctas con oraciones que no son correctas, para nuestro ejemplo de entrada "on" "". así que encontramos &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, yc.. Entonces, tenemos todas las variantes posibles con lo que agregamos entre &quot;\ [\]&quot; y esto para cada sinónimo, que rápidamente genera muchas oraciones (aquí 168).
 
 Para refinar y no tener cosas improbables como &quot;encender el televisor&quot;, podemos permitir que Jeedom elimine solicitudes sintácticamente incorrectas. Por lo tanto, eliminará lo que está demasiado lejos de la sintaxis real de una oración. En nuestro caso, pasamos de 168 oraciones a 130 oraciones.
 
@@ -169,7 +169,7 @@ El campo **conversión binaria** debe contener 2 respuestas : primero la respues
 
 ### Usuarios autorizados
 
-El campo &quot;Usuarios autorizados&quot; permite autorizar solo a ciertas personas para que ejecuten el comando, puede poner varios perfiles separándolos por un &quot;|&quot;.
+El campo "Usuarios autorizados" permite autorizar solo a ciertas personas para ejecutar el comando, puede poner varios perfiles separándolos por un "|".
 
 ejemplo : persona.1 | person2
 
@@ -180,8 +180,8 @@ Podemos imaginar que una alarma puede ser activada o desactivada por un niño o 
 Es posible crear [Regexp] (https://fr.wikipedia.org / wiki / Expression_rationnelle) exclusión, si una oración generada corresponde a este Regexp se eliminará. El interés es poder eliminar los falsos positivos, es decir, una oración generada por Jeedom que activa algo que no corresponde a lo que queremos o que interferiría con otra interacción que tendría una oración similar..
 
 Tenemos 2 lugares para aplicar un Regexp :
-- En la interacción misma en el campo &quot;Exclusión de expresiones regulares&quot;.
-- En el campo Administración → Configuración → Interacciones → campo &quot;Regexp de exclusión general para interacciones&quot;.
+- En la interacción misma en el campo "Exclusión de expresiones regulares"".
+- En el campo Administración → Configuración → Interacciones → campo "Regexp de exclusión general para interacciones"".
 
 Para el campo &quot;Regex de exclusión general para interacciones&quot;, esta regla se aplicará a todas las interacciones, que se crearán o guardarán nuevamente más tarde.. Si queremos aplicarlo a todas las interacciones existentes, debemos regenerar las interacciones. Generalmente, se usa para borrar oraciones formadas incorrectamente que se encuentran en la mayoría de las interacciones generadas.
 
@@ -200,7 +200,7 @@ Una expresión regular se compone de la siguiente manera :
 - El &quot;\ *&quot; indica que puede haber 0 o más veces el carácter que lo precede, aquí un punto, así que en buen francés cualquier elemento.
 - Luego Julie, que es la palabra a buscar (palabra u otro patrón de expresión), seguido de un punto nuevamente y una barra inclinada.
 
-Si traducimos esta expresión en una oración, daría &quot;busque la palabra Julie que está precedida por cualquier cosa y seguida de cualquier cosa&quot;.
+Si traducimos esta expresión en una oración, daría "busque la palabra Julie que está precedida por cualquier cosa y seguida por cualquier cosa".
 
 Es una versión extremadamente simple de expresiones regulares, pero ya es muy complicada de entender.. Me tomó un tiempo entender cómo funciona. Como un ejemplo un poco más complejo, una expresión regular para verificar una URL :
 
@@ -210,7 +210,7 @@ Una vez que puedes escribir esto, entiendes las expresiones regulares.
 
 ![interact015](../images/interact015.png)
 
-Para resolver el problema de mayúsculas y minúsculas, podemos agregar a nuestra expresión una opción que no distinga entre mayúsculas y minúsculas, o en otras palabras, que considere una lyra minúscula igual a una lyra mayúscula; para hacer esto, simplemente tenemos que agregar al final de nuestra expresión una &quot;i&quot;.
+Para resolver el problema de mayúsculas y minúsculas, podemos agregar a nuestra expresión una opción que no distinga entre mayúsculas y minúsculas, o en otras palabras, que considere una lyra minúscula igual a una lyra mayúscula; para hacer esto, simplemente tenemos que agregar al final de nuestra expresión un "i".
 
 ![interact016](../images/interact016.png)
 
@@ -236,20 +236,20 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 #### Versión básica
 
-- Entonces la pregunta es &quot;¿hay alguien en la sala?&quot;
-- La respuesta será &quot;no, no hay nadie en la sala&quot; o &quot;sí, hay alguien en la sala&quot;
-- El comando que responde a eso es &quot;\ # \ [habitación de Julie \] \ [FGMS-001-2 \] \ [Presence \] \ #&quot;
+- Entonces la pregunta es "¿hay alguien en la sala?"
+- La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación"."
+- El comando que responde a eso es "\ # \ [habitación de Julie \] \ [FGMS-001-2 \] \ [Presence \] \#"
 
 ![interact017](../images/interact017.png)
 
-Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Por lo tanto, podríamos imaginar reemplazar la respuesta del ejemplo con &quot;no, no hay nadie en la habitación de * julie * | sí, hay alguien en la habitación de * julie *&quot;
+Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la habitación de * julie * | sí, hay alguien en la habitación de * julie*"
 
 #### evolución
 
-- Por lo tanto, la pregunta es &quot;\ #order \ # \ [en el | en el \] \ #object \ #&quot;
-- La respuesta será &quot;no, no hay nadie en la sala&quot; o &quot;sí, hay alguien en la sala&quot;
+- Entonces la pregunta es "\ #order \ # \ [en el | en el \] \ #object \#"
+- La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación"."
 - No hay ningún comando que responda a eso en la parte Acción, ya que es una interacción de múltiples comandos
-- Al agregar una expresión regular, podemos limpiar los comandos que no queremos ver para que solo tengamos las oraciones en los comandos de &quot;Presencia&quot;.
+- Al agregar una expresión regular, podemos limpiar los comandos que no queremos ver para que solo tengamos las oraciones en los comandos de "Presencia".".
 
 ![interact018](../images/interact018.png)
 
@@ -265,15 +265,15 @@ Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humeda
 
 ![interact019](../images/interact019.png)
 
-- Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : &quot;que es \ [the | l \\ &#39;\] \ # command \ # object&quot; (el uso de \ [word1 | word2 \] hace posible decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con word1 o word2). Durante la generación, Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \ #command \ # con el nombre del comando y \ #object \ # con el nombre del objyo.
-- La respuesta será &quot;21 ° C&quot; o &quot;200 lux&quot;. Solo pon : \ #valeur \ # \ #unite \ # (la unidad debe complyarse en la configuración de cada pedido para el que queremos tener uno)
+- Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : "que es \ [the | l \\ &#39;\] \ # command \ # object "(el uso de \ [word1 | word2 \] hace posible decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con palabra1 o palabra2). Durante la generación, Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \ #command \ # con el nombre del comando y \ #object \ # con el nombre del objyo.
+- La respuesta será "21 ° C" o "200 lux". Solo pon : \ #valeur \ # \ #unite \ # (la unidad debe complyarse en la configuración de cada pedido para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
 #### evolución
 
 Por lo tanto, podemos agregar sinónimos al nombre del comando para tener algo más natural, agregar una expresión regular para filtrar los comandos que no tienen nada que ver con nuestra interacción.
 
-Agregando un sinónimo, digamos a Jeedom que un comando llamado &quot;X&quot; también se puede llamar &quot;Y&quot; y, por lo tanto, en nuestra oración si tenemos &quot;activar y&quot;, Jeedom sabe que está activado x. Este método es muy conveniente para renombrar nombres de comandos que, cuando se muestran en la pantalla, se escriben de forma poco natural, vocalmente o en una oración escrita como &quot;ON&quot;. Un botón escrito así es complyamente lógico pero no en el contexto de una oración..
+Agregando un sinónimo, digamos a Jeedom que un comando llamado &quot;X&quot; también se puede llamar &quot;Y&quot; y, por lo tanto, en nuestra oración si tenemos &quot;activar y&quot;, Jeedom sabe que está activado x. Este método es muy conveniente para renombrar nombres de comandos que, cuando se muestran en la pantalla, se escriben de forma poco natural, vocalmente o en una oración escrita como "ON"". Un botón escrito así es complyamente lógico pero no en el contexto de una oración..
 
 También podemos agregar un filtro Regexp para eliminar algunos comandos. Usando el ejemplo simple, vemos oraciones &quot;batería&quot; o &quot;latencia&quot;, que no tienen nada que ver con nuestra interacción temperatura / humedad / luz.
 
@@ -323,7 +323,7 @@ Es posible controlar un comando de color mediante las interacciones pidiéndole 
 
 ![interact023](../images/interact023.png)
 
-Hasta ahora, nada complicado, sin embargo, debe haber configurado los colores en Jeedom para que funcione; vaya al menú → Configuración (arriba a la derecha) luego en la sección &quot;Configuración de interacciones&quot; :
+Hasta ahora, nada complicado, sin embargo, debe haber configurado los colores en Jeedom para que funcione; vaya al menú → Configuración (arriba a la derecha) luego en la sección "Configuración de interacciones"" :
 
 ![interact024](../images/interact024.png)
 
@@ -346,7 +346,7 @@ Por lo tanto, este ejemplo permite lanzar el escenario que está vinculado en la
 
 ### Programando una acción con interacciones
 
-Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. ejemplo : &quot;Enciende el calor a las 22 para las 2:50 p.m.&quot;. Para eso, nada más simple, es suficiente usar las yiquyas \ #time \ # (si se define una hora precisa) o \ #duration \ # (para tiempo X, ejemplo en 1 hora) :
+Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. ejemplo : "Enciende el calor a las 22 para las 2:50 p.m.". Para eso, nada más simple, es suficiente usar las yiquyas \ #time \ # (si se define una hora precisa) o \ #duration \ # (para tiempo X, ejemplo en 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 

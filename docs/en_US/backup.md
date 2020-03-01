@@ -83,7 +83,7 @@ Cloud backup allows Jeedom to send your backups directly to the Market. This all
 
 > **Tip**
 >
-> You can customize the name of the backup files from the tab **My jeedoms**, however avoiding exotic characters.
+> You can customize the name of the backup files from the tab **My jeedoms**, avoiding however the exotic characters.
 
 # Frequency of automatic backups
 

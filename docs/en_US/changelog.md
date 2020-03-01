@@ -81,7 +81,7 @@ Changelog
 - Table improvements with filter and sort option.
 - Ability to assign an icon to an interaction.
 - Each Jeedom page now has a title in the interface language (browser tab).
-- Prevention of auto-filling on the fields &#39;Access code&#39;.
+- Prevention of auto-filling on fields&#39; Access code'.
 - Management of functions * Previous page / Next page * of the browser. <br/><br/>
 - Widgets : Redesign of the widget system (Tools / Widgets menu).
 - Widgets : Ability to replace a widget with another on all commands using it.
@@ -373,7 +373,7 @@ Changelog
 - Correction of a bug on the icons of the file editor and on the expression tester.
 - Bug fixes on listenners.
 - Addition of an alert if a plugin blocks crons.
-- Correction of a bug in the cloud monitoring system if the agent version is lower than 3.XX.
+- Correction of a bug in the cloud monitoring system if the agent version is less than 3.X.X.
 
 3.2.8
 =====
@@ -387,7 +387,7 @@ Changelog
 =====
 - Bugfix.
 - Docs update.
-- Possibility to use the tags in the conditions of the &quot;A&quot; and &quot;IN&quot; blocks.
+- Ability to use tags in the conditions of the "A" and "IN blocks".
 - Bug correction of market categories for widgets / scripts / scenarios...
 
 3.2.6
@@ -471,7 +471,7 @@ Changelog
 - Double-clicking on a node on the link graph (except for variables) brings up its configuration page.
 - Ability to put text left / right / center on designs for text / view / design elements.
 - Adding object summaries on the Dashboard (list of objects on the left).
-- Addition of &quot;prevent-me-if&quot; interactions.
+- Add interactions of type "notify me-if".
 - Scenario home page review.
 - Adding a command history for SQL or system commands in the Jeedom interface.
 - Possibility to have the graphs of histories of orders in webapp (by long press on the order).
@@ -534,7 +534,7 @@ Changelog
 - A click on an element of a home automation summary brings you to a detailed view of it.
 - You can now put text type commands in the summaries.
 - Change of bootstraps slider to slider (correction of the bug of the double sliders event).
-- Automatic saving of views when clicking on the &quot;see result&quot; button.
+- Automatic saving of views when clicking on the button "see the result".
 - Possibility to have the docs locally.
 - Third-party developers can add their own ticket management system.
 - Redesign of user rights configuration (everything is on the user management page).
@@ -566,7 +566,7 @@ Changelog
 - Possibility to prohibit certain values for an order (in its advanced configuration).
 - Addition of configuration fields on automatic status feedback (eg return to 0 after 4 min) in the advanced configuration of a command.
 - Adding a valueDate function in scenarios (see scenario documentation).
-- Possibility in the scenarios to modify the value of an order with the action &quot;event&quot;.
+- Possibility in the scenarios to modify the value of an order with the action "event".
 - Addition of a comment field on the advanced configuration of a device.
 - Addition of an alert system on orders with 2 levels : alert and danger. The configuration is in the advanced configuration of commands (info type only of course). You .can see the modules in alert on the Analysis → Equipment page. You can configure the actions on alert on the general configuration page of Jeedom
 - Addition of a &quot;table&quot; area on the views which allows one or more columns to be displayed per box. The boxes also support HTML code.
@@ -587,7 +587,7 @@ Changelog
 - Possibility to see on the plugins configuration page the functionalities of these plugins (interact, cron…) and to deactivate them individually.
 - Automatic interactions can return values from summaries.
 - Ability to define synonyms for objects, equipment, commands and summaries that will be used in contextual responses and summaries.
-- Jeedom knows how to manage several related interactions (contextually) in one. They must be separated by a keyword (by default and). Example : &quot;How much is he in the bedroom and in the living room?&quot; or &quot;Turn on the light in the kitchen and bedroom.&quot;
+- Jeedom knows how to manage several related interactions (contextually) in one. They must be separated by a keyword (by default and). Example : "How much is it in the bedroom and in the living room? "Or" Turn on the light in the kitchen and the bedroom."
 - The status of the scenarios on the edit page is now dynamically updated.
 - Possibility to export a view in PDF, PNG, SVG or JPEG with the &quot;report&quot; command in a scenario.
 - Possibility to export a design in PDF, PNG, SVG or JPEG with the &quot;report&quot; command in a scenario.
@@ -642,7 +642,7 @@ Changelog
 - Adding a plugin category : communicating object.
 - Adding GENERIC \ _TYPE.
 - Removal of new and top filters on the plugins market path.
-- Renaming the default category on the market plugins route to &quot;Top and new&quot;.
+- Renaming the default category on the market plugins route to "Top and new".
 - Correction of free and paid filters on the plugins market path.
 - Correction of a bug which could lead to a duplication of the curves on the history page.
 - Correction of a bug on the timeout value of scenarios.
@@ -738,7 +738,7 @@ integration with logging systems (syslog (d) type)
 - Possibility for third-party applications to request events via the API.
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .reconfigure following the update)
 - Ability to deactivate a block in a scenario.
-- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide.
+- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom to automatically add an icon at the end of your label « ? » and on hover to display the help text.
 - Change of the core update process, we no longer request the archive from the Market but directly from Github now.
 - Addition of a centralized system for installing dependencies on plugins.
 - Redesign of the plugins management page.
@@ -773,7 +773,7 @@ integration with logging systems (syslog (d) type)
 - Possibility for third-party applications to request events via the API.
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .reconfigure following the update)
 - Ability to deactivate a block in a scenario.
-- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom .d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide
+- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom .automatically add an icon at the end of your label « ? » and on hover to display the help text
 - Change of the core update process, we no longer request the archive from the Market but directly from Github now.
 - Addition of a centralized system for installing dependencies on plugins.
 - Redesign of the plugins management page.

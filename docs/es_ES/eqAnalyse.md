@@ -31,7 +31,7 @@ Cada alerta estará representada por el color del mosaico (el nivel de alerta) y
 
 > **punta**
 >
-> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en &quot;no visible&quot;. Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
+> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
 
 ## Pestaña Acciones definidas
 

@@ -1711,7 +1711,7 @@
         "Personnalisation": "Personalisation",
         "Sauvegarde": "safeguard",
         "Log": "log",
-        " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "is starting up, please wait. The page will reload automatically when the startup is complete."
+        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "is starting up, please wait. The page will reload automatically when the startup is complete."
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2966,7 +2966,8 @@
         "Activer": "Activate",
         "Désactiver": "deactivate",
         "Remise à zero des SI": "Reset of IS",
-        "Tags": "tags"
+        "Tags": "tags",
+        "Aucun": "No"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Name",

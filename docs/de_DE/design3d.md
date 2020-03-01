@@ -14,7 +14,7 @@ Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhäng
 >
 > Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Wir empfehlen das sehr gute SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü &quot;3D-Ansicht&quot; und dann über &quot;In OBJ-Format exportieren&quot;.. Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein)..
+Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein)..
 
 > **WICHTIG**
 >

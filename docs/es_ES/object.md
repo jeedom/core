@@ -44,7 +44,7 @@ Aquí están las diferentes características para configurar un objeto. :
 - **padre** : Indica el padre del objeto actual, esto permite definir una jerarquía entre los objetos.. Por ejemplo : El salón está relacionado con el apartamento.. Un objeto puede tener solo un padre pero varios objetos pueden tener el mismo padre.
 - **visible** : Marque esta casilla para hacer visible este objeto.
 - **Ocultar en el tablero** : Marque esta casilla para ocultar el objeto en el Tablero. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente..
-- **Ocultar en resumen &#39;** : Marque esta casilla para ocultar el objeto en el resumen &#39;&#39;. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente..
+- **Ocultar en resumen'** : Marque esta casilla para ocultar el objeto en el resumen'. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente..
 - **icono** : Le permite elegir un icono para su objeto.
 - **Colores personalizados** : Activa la consideración de los dos parámetros de color opcionales..
 - **Etiqueta de color** : Le permite elegir el color del objeto y el equipo adjunto..

@@ -31,7 +31,7 @@ Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben 
 
 > **Spitze**
 >
-> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter &quot;nicht sichtbar&quot; konfigurierten.. Es ist jedoch interessant festzustellen, dass, wenn das Modul &quot;sichtbar&quot; ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist..
+> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul &quot;sichtbar&quot; ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist..
 
 ## Registerkarte &quot;Definierte Aktionen&quot;
 

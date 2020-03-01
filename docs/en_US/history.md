@@ -26,7 +26,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 There are several ways to access the history :
 
 - By clicking on the desired command in a widget,
-- By going to the history page which allows you to superimpose different curves and to combine styles (area, curve, bar),
+- By going to the history page which allows to superimpose different curves and to combine styles (area, curve, bar),
 - On mobile while remaining pressed on the widget in question,
 - By putting a graph area in a view (see below).
 
@@ -95,8 +95,8 @@ The timeline displays certain events in your home automation in chronological fo
 
 To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
 
-- **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it &quot;en masse&quot;.
-- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in &quot;mass&quot;.
+- **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
+- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
 The * Main * timeline always contains all the events. However, you can filter the timeline by * folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
 You can then filter the timeline by this folder by selecting it to the left of the * Refresh button.*.

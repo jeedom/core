@@ -14,7 +14,7 @@ Jeedom periodically connects to the Market to see if updates are available. The 
 
 At the opening of the page, if this verification is more than two hours old, Jeedom automatically redo a verification.
 You can also use the button **Check for updates** To do it manually.
-If you want to perform a manual check, you can press the button &quot;Check for updates&quot;.
+If you want to perform a manual check, you can press the button "Check for updates".
 
 The button **Save** is to be used when you change the options in the table below, to specify not to update certain plugins if necessary.
 

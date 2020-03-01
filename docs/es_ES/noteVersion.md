@@ -16,6 +16,6 @@ Después de eso, tendrá un tablero vacío, es normal que se vacíe el caché, s
     corrección por el autor.
 
 -   Puede encontrar la lista de complementos en cuestión aquí. :
-    <https://www.jeedom.com/market/index.php?v = d &amp; p = puntuación>
+    <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

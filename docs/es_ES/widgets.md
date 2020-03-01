@@ -51,8 +51,8 @@ Dependiendo del tipo de widentificaciónget, generalmente puede personalizar ico
 
 Hay dos tipos de plantillas. :
 
-- El &quot;**sencillo**&quot; : Escriba un icono / imagen para el &quot;encendidentificacióno&quot; y un icono / imagen para el &quot;apagado&quot;
-- El &quot;**multiestado**&quot; : Esto le permite definir, por ejemplo, una imagen si el comando tiene el valor &quot;XX&quot; y otro si&gt; a &quot;YY&quot;, y nuevamente si &lt;a &quot;ZZ&quot;. O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot;, etc..
+- la "**sencillo**" : Escriba un icono / imagen para el "encendidentificacióno" y un icono / imagen para el "apagado""
+- la "**multiestado**" : Esto le permite definir, por ejemplo, una imagen si el comando tiene el valor "XX" y otro si> a "YY", y nuevamente si <a "ZZ". O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot;, etc..
 
 ## Crear un widentificaciónget
 
@@ -72,7 +72,7 @@ Esto es lo que se llama un widentificaciónget simple, aquí solo tiene que deci
 >Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidentificaciónad y eficiencia, tanto para usted como para nosotros.. No tuvimos otra opción
 
 >**TIPS**
->Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la pestaña de visualización y la &quot;Configuración de widentificaciónget opcional&quot;. Por ejemplo, si en el ancho pones como valor # ancho # (ten cUIDado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widentificaciónget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widentificaciónget diferente para cada tamaño de imagen que desee
+>Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widentificaciónget "Parámetros opcionales". Por ejemplo, si en el ancho pones como valor # ancho # (ten cUIDado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widentificaciónget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widentificaciónget diferente para cada tamaño de imagen que desee
 
 ### prueba
 
@@ -84,7 +84,7 @@ Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automá
 
 - #valor #&gt; 1
 - #value# >= 1 && #value# <= 5
-- #valor # == &#39;toto&#39;
+- #valor # == &#39;toto'
 
 >**nota**
 >Es importante tener en cuenta el &quot;alrededor del texto para comparar si el valor es un texto
@@ -159,33 +159,33 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidentificació
 Cuando un nuevo valor Jeedom buscará en la página html, si el comando está allí y en Jeedom.cmd.actualizar si hay una función de actualización. En caso afirmativo, lo llama con un solo argumento que es un objeto en la forma :
 
 ```
-{display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
+{display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'}
 ```
 
 Aquí hay un ejemplo simple de código JavaScript para poner en su widentificaciónget :
 
 ```
 <script>
-    Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options) {
-      $ (&#39;. cmd [data-cmd_identificación = # identificación #]&#39;). attr (&#39;título&#39;, &#39;Fecha de valor : &#39;+ _Options.ValueDate + &#39; <br/> Fecha de recogidentificacióna : &#39;+ _Options.collectDate)
-      $ (&#39;. cmd [data-cmd_identificación = # identificación #] .estado&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+    Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
+      $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.ValueDate+'<br/>Date de collecte : '+_options.collectDate)
+      $('.cmd[data-cmd_identificación=#identificación#] .estado').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;});
+    Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 </script>
 ```
 
 Aquí hay dos cosas importantes :
 
 ```
-Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options) {
-  $ (&#39;. cmd [data-cmd_identificación = # identificación #]&#39;). attr (&#39;título&#39;, &#39;Fecha de valor : &#39;+ _Options.ValueDate + &#39; <br/> Fecha de recogidentificacióna : &#39;+ _Options.collectDate)
-  $ (&#39;. cmd [data-cmd_identificación = # identificación #] .estado&#39;). empty (). append (_options.display_value + &#39;# unit #&#39;);
+Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
+  $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.ValueDate+'<br/>Date de collecte : '+_options.collectDate)
+  $('.cmd[data-cmd_identificación=#identificación#] .estado').empty().append(_options.display_value +' #unite#');
 }
 ```
 La función llamada al actualizar el widentificaciónget. Luego actualiza el código html del widentificaciónget_template.
 
 ```
-Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;});
+Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 ```
  La llamada a esta función para la inicialización del widentificaciónget.
 

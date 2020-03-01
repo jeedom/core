@@ -31,7 +31,7 @@ Each alert will be represented by the color of the tile (the alert level) and a 
 
 > **Tip**
 >
-> Here will be displayed all the modules in alert even those configured in &quot;not visible&quot;. It is however interesting to note that if the module is &quot;visible&quot; the alert will also be visible on the dashboard (in the object concerned).
+> Here will be displayed all the modules in alert even those configured in "not visible". It is however interesting to note that if the module is &quot;visible&quot; the alert will also be visible on the dashboard (in the object concerned).
 
 ## Defined Actions tab
 

@@ -1711,7 +1711,7 @@
         "Personnalisation": "Kişileştirme",
         "Sauvegarde": "Sauvegarde",
         "Log": "Log",
-        " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
+        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2966,7 +2966,8 @@
         "Activer": "Etkinleştir",
         "Désactiver": "demount",
         "Remise à zero des SI": "IS&#39;nin Sıfırlanması",
-        "Tags": "etiketler"
+        "Tags": "etiketler",
+        "Aucun": "Aucun"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "İsim",
@@ -3865,10 +3866,9 @@
         "Crons": "Cronlar"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "CURL hatası:",
-        " sur la commande ": "sipariş üzerine",
-        " après ": "sonra",
-        " relance(s)": "boşluk (lar)",
-        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Démons": "Démons",
+        "Santé": "Santé"
     }
 }

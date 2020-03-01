@@ -12,14 +12,14 @@ Esta API es muy fácil de usar mediante simples solicitudes HTTP a través de UR
 
 > **nota**
 >
-> Para toda esta documentación, \ #API \ _KEY \ # corresponde a su clave API, específica para su instalación. Para encontrarlo, vaya al menú &quot;General&quot; → &quot;Configuración&quot; → pestaña &quot;General&quot;.
+> Para toda esta documentación, \ #API \ _KEY \ # corresponde a su clave API, específica para su instalación. Para encontrarlo, vaya al menú "General" → "Configuración" → pestaña "General"".
 
 ## guión
 
 Aquí está la URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&identificación=\#ID\#&acción=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&identificación=#ID#&acción=#ACTION#)
 
-- **identificación** : coincidentificacióne con su identificación de escenario. El ID se puede encontrar en la página del escenario en cuestión, en &quot;Herramientas&quot; → &quot;Escenarios&quot;, una vez que se ha seleccionado el escenario, junto al nombre de la pestaña &quot;General&quot;. Otra forma de encontrarlo : en &quot;Herramientas&quot; → &quot;Escenarios&quot;, haga clic en &quot;Descripción general&quot;.
-- **acción** : corresponde a la acción que desea aplicar. Los comandos disponibles son : &quot;iniciar&quot;, &quot;detener&quot;, &quot;desactivar&quot; y &quot;activar&quot; para iniciar, detener, desactivar o activar el escenario, respectivamente.
+- **identificación** : coincidentificacióne con su identificación de escenario. El ID se puede encontrar en la página de escenario relevante, en "Herramientas" → "Escenarios", una vez que se ha seleccionado el escenario, junto al nombre de la pestaña "General"". Otra forma de encontrarlo : en "Herramientas" → "Escenarios", haga clic en "Descripción general".
+- **acción** : corresponde a la acción que desea aplicar. Los comandos disponibles son : "iniciar "," detener "," desactivar "y" activar "para iniciar, detener, desactivar o activar el escenario, respectivamente.
 - **etiquetas** \ [Opcional \] : si la acción es &quot;inicio&quot;, puede pasar etiquetas al escenario (consulte la documentación sobre los escenarios) en el formulario etiquetas = toto% 3D1% 20tata% 3D2 (tenga en cuenta que% 20 corresponde a un espacio y% 3D a =).
 
 ##  Comando de información / acción
@@ -28,7 +28,7 @@ Aquí está la URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#
 
 - **identificación** : corresponde a la identificaciónentificación de lo que desea controlar o del que desea recibir información.
 
-La forma más fácil de obtener esta URL es ir a la página **Análisis → Resumen de domótica**, para buscar el pedidentificacióno, luego para abrir su configuración avanzada (el ícono de &quot;engranaje&quot;) y verá una URL que ya contiene todo lo que necesita según el tipo y el subtipo del pedidentificacióno.
+La forma más fácil de obtener esta URL es ir a la página **Análisis → Resumen de domótica**, para buscar el pedidentificacióno y luego abrir su configuración avanzada (el ícono de "engranaje") y allí, verá una URL que ya contiene todo lo que necesita según el tipo y el subtipo del pedidentificacióno.
 
 > **nota**
 >

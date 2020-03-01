@@ -14,7 +14,7 @@ Jeedom stellt regelmäßig eine Verbindung zum Markt her, um festzustellen, ob U
 
 Wenn diese Überprüfung zu Beginn der Seite älter als zwei Stunden ist, wiederholt Jeedom automatisch eine Überprüfung.
 Sie können auch die Schaltfläche verwenden **Suchen Sie nach Updates** Um es manuell zu tun.
-Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie die Schaltfläche &quot;Nach Updates suchen&quot; drücken..
+Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie auf die Schaltfläche "Nach Updates suchen" klicken".
 
 Die Schaltfläche **speichern** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
 

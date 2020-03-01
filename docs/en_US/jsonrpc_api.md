@@ -208,7 +208,7 @@ eqLogic::byTypeAndId
 Returns an equipment table according to the parameters. 
 
 The return will be of the form array (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒
-array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))…., id1 ⇒
+array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))….,id1 ⇒
 array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ array (….)), id2 ⇒ array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 Array (....)) ..)
 
@@ -231,7 +231,7 @@ Settings:
 
 -   string name
 
--   string logicalId = &#39;&#39;
+-   string logicalId = ''
 
 -   int object \ _id = null
 
@@ -348,7 +348,7 @@ Settings:
 
 -   int isHistorized = 0
 
--   string unite = &#39;&#39;
+-   string unit = ''
 
 -   array configuration
 
@@ -512,7 +512,7 @@ Settings:
 -   string type : type of stored value (for scenarios
     it&#39;s scenario)
 
--   id linkId : -1 for the global (value for the default scenarios,
+-   id linkId : -1 for global (value for default scenarios,
     or the scenario id)
 
 -   string key : value name
@@ -559,7 +559,7 @@ Settings:
 
 -   query (request phrase)
 
--   int reply \ _cmd = NULL : ID of the command to use to respond,
+-   int reply \ _cmd = NULL : Command ID to use to respond,
     if not specify then Jeedom returns the answer to you in the json
 
 interactQuery::all
@@ -738,10 +738,10 @@ which simplifies the use of the API.
 Retrieving the list of objects :
 
 ``` {.php}
-$ jsonrpc = new jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all &#39;, array ())) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
-} Else {
+}else{
     echo $ jsonrpc-&gt; getError ();
 }
 ```
@@ -749,10 +749,10 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all &#39;, array ())) {
 Execution of an order (with the option of a title and a message)
 
 ``` {.php}
-$ jsonrpc = new jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=&gt; # cmd_id #,&#39; options&#39; =&gt; array (&#39;title&#39; =&gt; &#39;Cuckoo&#39;, &#39;message&#39; =&gt; &#39;It works&#39;)))) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options&#39; => array (&#39;title&#39; => &#39;Cuckoo&#39;, &#39;message&#39; => &#39;It works&#39;)))){
     echo &#39;OK&#39;;
-} Else {
+}else{
     echo $ jsonrpc-&gt; getError ();
 }
 ```

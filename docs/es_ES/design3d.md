@@ -14,7 +14,7 @@ Esta página le permite crear una vista 3D de su hogar que puede reaccionar depe
 >
 > No puede crear su modelo 3D directamente en Jeedom, debe hacerlo con un software de terceros. Recomendamos el muy bueno SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa SweetHome3d, esto se hace desde el menú &quot;Vista 3D&quot; y luego &quot;Exportar a formato OBJ&quot;. Luego tome todos los archivos generados y póngalos en un archivo zip (puede haber muchos archivos debido a las texturas).
+Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa SweetHome3d, esto se hace desde el menú "Vista 3D" y luego "Exportar a formato OBJ". Luego tome todos los archivos generados y póngalos en un archivo zip (puede haber muchos archivos debido a las texturas).
 
 > **IMPORTANTE**
 >

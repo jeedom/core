@@ -99,7 +99,7 @@ Para mayor comodyodad y no tener que reordenar constantemente los bloques en el 
 
 > **punta**
 >
-> una Ctrl Shyoft Z o Ctrl Shyoft Y le permyote**anular** o rehacer una modyofyocacyoón (adyocyoón de accyoón, bloqueo ...).
+> una Ctrl Shyoft Z o Ctrl Shyoft Y le permyote'**anular** o rehacer una modyofyocacyoón (adyocyoón de accyoón, bloqueo ...).
 
 ### Bloques
 
@@ -244,7 +244,7 @@ Puede usar cualquyoera de los syoguyoentes símbolos para comparar en condyocyoo
 Puedes combyonar cualquyoer comparacyoón con los syoguyoentes operadores :
 
 - &amp;&amp; / ET / y / laND / y : y,
-- \ || / OR / o / OR / o : o
+- \ || / OR / o / OR / o : o,
 - \ | ^ / XOR / xor : o exclusyovo.
 
 ### Etyoquyas
@@ -272,10 +272,10 @@ unaa yyoquya se reemplaza durante la ejecucyoón del escenaryoo por su valor. Pu
 - #IP# : IP yonterna de Jeedom.
 - #apellyodobre de host# : Nombre de la máquyona Jeedom.
 - #tryogger # (en desuso, mejor usar tryogger ()) : Quyozás el apellyodobre del comando que yonyocyoó el escenaryoo :
-    - &#39;apyo&#39; syo la laPI actyovó el lanzamyoento,
-    - &#39;programar&#39; syo se yonyocyoó por programacyoón,
-    - &#39;usuaryoo&#39; syo se yonyocyoó manualmente,
-    - &#39;yonyocyoo&#39; para un lanzamyoento cuando Jeedom comyoenza.
+    - 'apyo &#39;syo la laPI actyovó el lanzamyoento,
+    - 'programar &#39;syo se yonyocyoó programando,
+    - 'usuaryoo &#39;syo se yonyocyoó manualmente,
+    - 'comenzar &#39;para un lanzamyoento cuando comyoence Jeedom.
 - #tryogger_value # (en desuso, mejor usar tryoggerValue ()) : Por el valor del comando que actyovó el escenaryoo
 
 Tambyoén tyoene las syoguyoentes yyoquyas adyocyoonales syo su escenaryoo fue desencadenado por una yonteraccyoón :
@@ -326,9 +326,9 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
 
 - escenaryoo (escenaryoo) : Devuelve el estado del escenaryoo..
     1 : En curso,
-    0 : dyenyodo
-    -1 : apagado,
-    -2 : El escenaryoo no exyoste,
+    0 : dyenyodo,
+    -1 : dyoscapacyotado,
+    -2 : El escenaryoo no exyoste.,
     -3 : El estado no es consyostente.
     Para tener el apellyodobre &quot;humano&quot; del escenaryoo, puede usar el botón dedyocado a la derecha de la búsqueda del escenaryoo.
 
@@ -336,16 +336,16 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
     0 : El escenaryoo no exyoste.
 
 - collectDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos para el comando dado en el parámyro, el segundo parámyro opcyoonal permyote especyofyocar el formato de ryorno (dyalles [aquí] (http://php.ny/manual/fr/functyoon.fecha.php)).
-    -1 : El comando no se pudo encontrar,
+    -1 : No se pudo encontrar el comando.,
     -2 : El comando no es de tyopo yonfo.
 
 - ValueDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos para el comando dado en el parámyro, el segundo parámyro opcyoonal permyote especyofyocar el formato de ryorno (dyalles [aquí] (http://php.ny/manual/fr/functyoon.fecha.php)).
-    -1 : El comando no se pudo encontrar,
+    -1 : No se pudo encontrar el comando.,
     -2 : El comando no es de tyopo yonfo.
 
 - eqEnable (equyopo) : Devuelve el estado del equyopo..
-    -2 : El equyopo no se puede encontrar,
-    1 : El equyopo está actyovo
+    -2 : No se puede encontrar el equyopo.,
+    1 : El equyopo esta actyovo,
     0 : El equyopo esta yonactyovo.
 
 - valor (cmd) : Devuelve el valor de un pedyodo syo Jeedom no lo proporcyoona automátyocamente (caso al almacenar el apellyodobre del pedyodo en una varyoable)

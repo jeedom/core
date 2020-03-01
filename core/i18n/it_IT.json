@@ -1711,7 +1711,7 @@
         "Personnalisation": "personalizzazione",
         "Sauvegarde": "salvaguardia",
         "Log": "log",
-        " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "si sta avviando, per favore aspetta. La pagina verrà ricaricata automaticamente al termine dell&#39;avvio."
+        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2966,7 +2966,8 @@
         "Activer": "attivare",
         "Désactiver": "deactivate",
         "Remise à zero des SI": "Ripristino di IS",
-        "Tags": "tag"
+        "Tags": "tag",
+        "Aucun": "Aucun"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nome",
@@ -3865,10 +3866,9 @@
         "Crons": "cron"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "Errore CURL:",
-        " sur la commande ": "sull&#39;ordine",
-        " après ": "dopo",
-        " relance(s)": "spazio (s)",
-        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Démons": "Démons",
+        "Santé": "Santé"
     }
 }

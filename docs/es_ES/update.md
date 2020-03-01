@@ -14,7 +14,7 @@ Jeedom se conecta periódicamente al mercado para ver si hay actualizaciones dis
 
 Al abrir la página, si esta verificación tiene más de dos horas, Jeedom rehace automáticamente una verificación.
 También puedes usar el botón **Buscar actualizaciones** Para hacerlo manualmente.
-Si desea realizar una verificación manual, puede presionar el botón &quot;Buscar actualizaciones&quot;.
+Si desea realizar una verificación manual, puede presionar el botón "Buscar actualizaciones".
 
 El botón **Guardar** se utilizará cuando cambie las opciones en la tabla a continuación, para especificar que no se actualicen ciertos complementos si es necesario.
 

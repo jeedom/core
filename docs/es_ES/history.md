@@ -26,7 +26,7 @@ El archivado es una tarea que comienza de noche y compacta los datos recuperados
 Hay varias formas de acceder al historial. :
 
 - Al hacer clic en el comando deseado en un widget,
-- Al ir a la página del historial que le permite superponer diferentes curvas y combinar estilos (área, curva, barra),
+- Al ir a la página del historial que permite superponer diferentes curvas y combinar estilos (área, curva, barra),
 - En el dispositivo móvil mientras permanece presionado en el widget en cuestión,
 - Al poner un área de gráfico en una vista (ver más abajo).
 
@@ -95,8 +95,8 @@ La línea de tiempo muestra ciertos eventos en su domótica en forma cronológic
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 
-- **guión** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo &quot;en masa&quot;.
-- **orden** : Ya sea en la configuración avanzada del comando, o en la configuración del historial para hacerlo en &quot;masa&quot;.
+- **guión** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
+- **orden** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
 La línea de tiempo * Principal * siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por * carpeta*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
 Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón * Actualizar.*.
@@ -119,7 +119,7 @@ Una vez que haya activado el seguimiento en la línea de tiempo de los comandos 
 
 La línea de tiempo muestra una tabla de eventos grabados en tres columnas.:
 
-- La fecha y hora del evento,
+- La fecha y hora del evento.,
 - El tipo de evento.: Un comando de información o acción, o un escenario, con el complemento de comando para comandos.
 - El nombre del objeto principal, el nombre y, según el tipo, el estado o el desencadenante.
 

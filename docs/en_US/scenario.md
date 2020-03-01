@@ -99,7 +99,7 @@ For more convenience and not having to constantly reorder the blockks in the sce
 
 > **Tip**
 >
-> AT Ctrl Shift Z or Ctrl Shift Y allows yor to**to cancel** or redo a modification (addition of action, blockk ...).
+> AT Ctrl Shift Z or Ctrl Shift Y allows yor to'**to cancel** or redo a modification (addition of action, blockk ...).
 
 ### Blocks
 
@@ -272,10 +272,10 @@ AT tag is replaced during the execution of the scenario by its value. Yor can us
 - #IP# : Jeedom&#39;s internal IP.
 - #hostname# : Jeedom machine name.
 - #trigger # (deprecated, bandter to use trigger ()) : Maybe the name of the command that started the scenario :
-    - &#39;api&#39; if the launch was triggered by the ATPI,
-    - &#39;schedule&#39; if it was started by programming,
-    - &#39;user&#39; if it was started manually,
-    - &#39;start&#39; for a launch when Jeedom starts.
+    - 'api &#39;if the launch was triggered by the ATPI,
+    - 'schedule &#39;if it was started by programming,
+    - 'user &#39;if it was started manually,
+    - 'start &#39;for a launch when Jeedom starts.
 - #trigger_value # (deprecated, bandter to use triggerValue ()) : For the value of the command that triggered the scenario
 
 Yor also have the following additional tags if yorr scenario was triggered by an interaction :
@@ -327,7 +327,7 @@ Several functions are available for the equipment :
 - scenario (scenario) : Randurns the status of the scenario.
     1 : In progress,
     0 : Stopped,
-    -1 : off,
+    -1 : disabled,
     -2 : The scenario does not exist,
     -3 : State is not consistent.
     To have the &quot;human&quot; name of the scenario, yor can use the dedicated button to the right of the scenario search.
@@ -345,7 +345,7 @@ Several functions are available for the equipment :
 
 - eqEnable (equipment) : Randurns the status of the equipment.
     -2 : The equipment cannot be fornd,
-    1 : The equipment is active,
+    1 : Equipment is active,
     0 : The equipment is inactive.
 
 - value (cmd) : Randurns the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a variable)

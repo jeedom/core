@@ -81,7 +81,7 @@ cambios
 - Mejoras de tabla con filtro y opción de clasificación.
 - Posibilidad de asignar un ícono a una interacción.
 - Cada página de Jeedom ahora tiene un título en el idioma de la interfaz (pestaña del navegador).
-- Prevención del autocompletado en los campos &#39;Código de acceso&#39;.
+- Prevención del autocompletado en el código de acceso de los campos'.
 - Gestión de funciones * Página anterior / Página siguiente * del navegador. <br/><br/>
 - Reproductores : Rediseño del sistema de widgets (menú Herramientas / Reproductores).
 - Reproductores : Posibilidad de reemplazar un widget con otro en todos los comandos que lo usan.
@@ -373,7 +373,7 @@ cambios
 - Corrección de un error en los íconos del editor de archivos y en el probador de expresiones.
 - Corrección de errores en los oyentes..
 - Adición de una alerta si un complemento bloquea crons.
-- Corrección de un error en el sistema de monitoreo en la nube si la versión del agente es inferior a 3.XX.
+- Corrección de un error en el sistema de monitoreo en la nube si la versión del agente es menor a 3.X.X.
 
 3.2.8
 =====
@@ -387,7 +387,7 @@ cambios
 =====
 - Correcciones de errores.
 - Actualización de documentos.
-- Posibilidad de usar las etiquetas en las condiciones de los bloques &quot;A&quot; e &quot;IN&quot;.
+- Posibilidad de usar las etiquetas en las condiciones de los bloques "A" e "IN"".
 - Corrección de errores de categorías de mercado para widgets / scripts / escenarios...
 
 3.2.6
@@ -471,7 +471,7 @@ cambios
 - Al hacer doble clic en un nodo en el gráfico de enlace (a excepción de las variables), aparece su página de configuración.
 - Posibilidad de colocar texto a la izquierda / derecha / centro en diseños para texto / vista / elementos de diseño.
 - Agregar resúmenes de objetos en el Tablero (lista de objetos a la izquierda).
-- Adición de interacciones &quot;prevent-me-if&quot;.
+- Agregar interacciones de tipo "notifícame si".
 - Revisión de la página de inicio del escenario.
 - Agregar un historial de comandos para SQL o comandos del sistema en la interfaz Jeedom.
 - Posibilidad de tener las gráficas de historias de pedidos en la aplicación web (presionando prolongadamente el pedido).
@@ -534,7 +534,7 @@ cambios
 - Un clic en un elemento de un resumen de automatización del hogar lo lleva a una vista detallada del mismo..
 - Ahora puede poner comandos de tipo de texto en los resúmenes.
 - Cambio del control deslizante bootstraps a control deslizante (corrección del error del evento de controles deslizantes dobles).
-- Guardado automático de vistas al hacer clic en el botón &quot;ver resultado&quot;.
+- Guardado automático de vistas al hacer clic en el botón "ver el resultado".
 - Posibilidad de tener los documentos localmente.
 - Los desarrolladores externos pueden agregar su propio sistema de administración de tickets.
 - Rediseño de la configuración de derechos de usuario (todo está en la página de administración de usuarios).
@@ -566,7 +566,7 @@ cambios
 - Posibilidad de prohibir ciertos valores para un pedido (en su configuración avanzada).
 - Adición de campos de configuración en la retroalimentación de estado automática (por ejemplo, volver a 0 después de 4 min) en la configuración avanzada de un comando.
 - Agregar una función valueDate en escenarios (ver documentación de escenarios).
-- Posibilidad en los escenarios de modificar el valor de un pedido con la acción &quot;evento&quot;.
+- Posibilidad en los escenarios de modificar el valor de un pedido con la acción "evento".
 - Adición de un campo de comentario sobre la configuración avanzada de un dispositivo.
 - Adición de un sistema de alerta en pedidos de 2 niveles. : alerta y peligro. La configuración está en la configuración avanzada de comandos (tipo de información, por supuesto). Vosotras .puede ver los módulos en alerta en la página Análisis → Equipo. Puede configurar las acciones en alerta en la página de configuración general de Jeedom
 - Adición de un área de &quot;tabla&quot; en las vistas que permite mostrar una o más columnas por cuadro. Los cuadros también admiten código HTML.
@@ -587,7 +587,7 @@ cambios
 - Posibilidad de ver en la página de configuración de complementos las funcionalidades de estos complementos (interactuar, cron ...) y desactivarlos individualmente.
 - Las interacciones automáticas pueden devolver valores de resúmenes.
 - Capacidad para definir sinónimos de objetos, equipos, comandos y resúmenes que se utilizarán en respuestas contextuales y resúmenes.
-- Jeedom sabe cómo gestionar varias interacciones relacionadas (contextualmente) en una. Deben estar separados por una palabra clave (por defecto y). ejemplo : &quot;¿Cuánto cuesta él en el dormitorio y en la sala de estar?&quot; o &quot;Encienda la luz en la cocina y el dormitorio&quot;.
+- Jeedom sabe cómo gestionar varias interacciones relacionadas (contextualmente) en una. Deben estar separados por una palabra clave (por defecto y). ejemplo : "¿Cuánto cuesta en el dormitorio y en la sala de estar? "O" Encienda la luz en la cocina y el dormitorio."
 - El estado de los escenarios en la página de edición ahora se actualiza dinámicamente.
 - Posibilidad de exportar una vista en PDF, PNG, SVG o JPEG con el comando &quot;informe&quot; en un escenario.
 - Posibilidad de exportar un diseño en PDF, PNG, SVG o JPEG con el comando &quot;informe&quot; en un escenario.
@@ -642,7 +642,7 @@ cambios
 - Agregar una categoría de complemento : objeto comunicante.
 - Agregar GENERIC \ _TYPE.
 - Eliminación de filtros nuevos y superiores en la ruta del mercado de complementos.
-- Cambiar el nombre de la categoría predeterminada en la ruta de complementos del mercado a &quot;Superior y nuevo&quot;.
+- Cambiar el nombre de la categoría predeterminada en la ruta de complementos del mercado a "Superior y nuevo".
 - Corrección de filtros gratuitos y de pago en la ruta del mercado de complementos.
 - Corrección de un error que podría conducir a una duplicación de las curvas en la página del historial..
 - Corrección de un error en el tiempo de espera de los escenarios..
@@ -738,7 +738,7 @@ integración con sistemas de registro (tipo syslog (d))
 - Posibilidad de aplicaciones de terceros para solicitar eventos a través de la API.
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .reconfigurar después de la actualización)
 - Posibilidad de desactivar un bloque en un escenario.
-- Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Esto permite a Jeedom d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide.
+- Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Esto le permite a Jeedom agregar automáticamente un ícono al final de su etiqueta « ? » y al pasar el ratón para mostrar el texto de ayuda.
 - Cambio del proceso de actualización principal, ya no solicitamos el archivo del Mercado sino directamente a Github ahora.
 - Adición de un sistema centralizado para instalar dependencias en complementos.
 - Rediseño de la página de administración de complementos.
@@ -773,7 +773,7 @@ integración con sistemas de registro (tipo syslog (d))
 - Posibilidad de aplicaciones de terceros para solicitar eventos a través de la API.
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .reconfigurar después de la actualización)
 - Posibilidad de desactivar un bloque en un escenario.
-- Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Esto permite a Jeedom .d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide
+- Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. Esto permite a Jeedom .agregue automáticamente un icono al final de su etiqueta « ? » y al pasar el ratón para mostrar el texto de ayuda
 - Cambio del proceso de actualización principal, ya no solicitamos el archivo del Mercado sino directamente a Github ahora.
 - Adición de un sistema centralizado para instalar dependencias en complementos.
 - Rediseño de la página de administración de complementos.
