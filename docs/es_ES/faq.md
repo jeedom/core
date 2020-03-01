@@ -9,7 +9,7 @@ opcional.
 ¿Jeedom utiliza servidores externos para ejecutar ? 
 ==============================================================
 
-No, Jeedom no utiliza la infraestructura de tipo &quot;Cloud&quot;. Todo se hace en
+No, Jeedom no utiliza la infraestructura de tipo "Cloud"". Todo se hace en
 local y no necesita nuestros servidores para su
 trabajos de instalación. Solo servicios como Market, the
 la copia de seguridad en línea o Jeedom DNS requieren el uso de nuestro
@@ -70,10 +70,10 @@ solo use el [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mis
 Cómo conectarse en SSH ?
 =============================
 
-Aquí hay una [documentación] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : masilla &quot;. El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Aquí hay una [documentación] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
-- Nombre de usuario : &quot;root&quot;, contraseña : &quot;Mjeedom96&quot;
-- Nombre de usuario : &quot;jeedom&quot;, contraseña : &quot;Mjeedom96&quot;
+- Nombre de usuario : "root ", contraseña : "Mjeedom96"
+- Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"
 - O lo que pones en la instalación si estás en bricolaje
 
 Tenga en cuenta que cuando escribe la contraseña no verá nada escrito en la pantalla, es normal.
@@ -118,7 +118,7 @@ Para que Jeedom funcione, necesita una plataforma Linux con los derechos
 root o un sistema de tipo docker. Por lo tanto, no funciona en un
 plataforma android pura.
 
-No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes) ... &quot; ? 
+No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes)..." ? 
 ====================================================
 
 Esto puede deberse a varias cosas, es necesario : 
@@ -191,7 +191,7 @@ Tengo inestabilidades o errores 504
 ========================================
 
 Compruebe si su sistema de archivos no está dañado, en SSH el
-el comando es : &quot;error de sudo dmesg | grep&quot; .
+el comando es : "sudo dmesg | error grep" .
 
 No veo todo mi equipo en el tablero 
 ====================================================
@@ -200,7 +200,7 @@ A menudo esto se debe al hecho de que el equipo está asignado a un objeto.
 que no es el hijo o el objeto en sí del primer objeto seleccionado en
 dejado en el árbol (puede configurarlo en su perfil).
 
-Tengo el siguiente error : SQLSTATE \ [HY000 \] \ [2002 \] No se puede conectar al servidor MySQL local a través del socket &#39;/var/run/mysqld/mysqld.sock&#39; 
+Tengo el siguiente error : SQLSTATE \ [HY000 \] \ [2002 \] No se puede conectar al servidor MySQL local a través del socket &#39;/var/run/mysqld/mysqld.sock' 
 ====================================================================================================================================
 
 Esto se debe a que MySQL se detuvo, no es normal, los casos
@@ -212,7 +212,7 @@ las corrientes son :
 -   Problema de corrupción de archivo (s), que a menudo ocurre debido a
     Apagado no limpio de Jeedom (falla de energía)
 
-- 	Problemas de memoria, el sistema se queda sin memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por &quot;oom&quot;. Si este es el caso, reduzca el consumo de libertad desactivando los complementos.
+- 	Problemas de memoria, el sistema se queda sin memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por "oom". Si este es el caso, reduzca el consumo de libertad desactivando los complementos.
 
 Desafortunadamente, no hay mucha solución si es el segundo
 caso, lo mejor es recuperar una copia de seguridad (disponible en
@@ -266,12 +266,12 @@ Tengo una preocupación por el tiempo en mi historia
 
 Intente vaciar el caché de Chrome, la visualización del historial se calcula en relación con el tiempo del navegador.
 
-Tengo el error &quot;Problemas de red detectados, reinicio de red&quot;
+Tengo el error "Problemas de red detectados, reinicio de red"
 =========================================
 
 Jeedom no puede encontrar o hacer ping a la puerta de enlace. En general, sucede si el cuadro adsl se reinicia (en particular, liveboxes) y Jeeodm no se ha reiniciado o se ha reiniciado más rápido que el cuadro. Por seguridad, le dice que ha encontrado un problema y relanza el proceso de conexión de red.. Puede desactivar este mecanismo yendo a la configuración de Jeedom y desactivando la administración de red de Jeedom.
 
-Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Compruebe que mysqldump está presente &quot;.
+Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Comprueba que mysqldump está presente."
 =========================================
 Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos.. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma.. En casos conocidos de inquietudes tenemos
 
@@ -281,7 +281,7 @@ Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, 
 
 Ya no puedo conectarme a mi Jeedom
 =========================================
-Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Los identificadores admin / admin solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo ip en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Esto se configura en la administración de la parte de seguridad de Jeedom luego IP &quot;blanca&quot;. Si a pesar de todo lo que aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo hacerlo)
+Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Los identificadores admin / admin solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo ip en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si a pesar de todo lo que aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo hacerlo)
 
 Tengo errores de tipo &quot;Clase &#39;eqLogic&#39; no encontrada&quot;, parece que faltan archivos o tengo una página en blanco
 =========================================
@@ -296,7 +296,7 @@ cp -R / root / tmp / core-master / * / var / www / html
 rm -rf / root / tmp / core-master
 ```
 
-# No puedo instalar las dependencias del complemento. Tengo un error del tipo : &quot;E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou &quot;E: No se pudo obtener lock / var / lib / dpkg / lock &quot;
+# No puedo instalar las dependencias del complemento. Tengo un error del tipo : "E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: No se pudo obtener lock / var / lib / dpkg / lock"
 
 Hay que :
 

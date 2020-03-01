@@ -1,26 +1,26 @@
 Aquí es donde se encuentran la mayoría de los parámetros de configuración..
 Aunque muchos, esán preconfigurados por defecto.
 
-La página es accesible por **Administración → Configuración**.
+laa página es accesible por **Administración → Configuración**.
 
 general 
 =======
 
 En esa pesaña encontramos información general sobre Jeedom :
 
--   **número de tu Jeedom** : Vamos a identificar tu Jeedom,
+-   **número de tu Jeedom** : Identifica tu Jeedom,
     especialmente en el mercado. Se puede reutilizar en escenarios
     o identificar una copia de seguridad.
 
 -   **sistema** : puntao de hardware en el que esá instalado el sistema donde
     tu Jeedom esá girando.
 
--   **Clave de instalación** : Llave de hardware de su Jeedom en
+-   **Clave de instalación** : lalave de hardware de su Jeedom en
     el mercado. si su Jeedom no aparece en la lista de su
     Jeedom en el mercado, es recomendable hacer clic en el botón
     **Resablecer**.
 
--   **Lengua** : Lenguaje usado en tu Jeedom.
+-   **laengua** : laenguaje usado en tu Jeedom.
 
 -   **Generar traducciones** : Generar traducciones,
     tenga cuidado, eso puede ralentizar su sistema. Opción más útil
@@ -54,18 +54,18 @@ tu libertad. Core tiene dos claves API :
 -   y otro para profesionales : utilizado para la gesión
     del parque. Puede esar vacio.
 
--   Luego encontrará una clave API por complemento que la necesita.
+-   lauego encontrará una clave API por complemento que la necesita.
 
 Para cada clave API de complemento, así como para HTTP, JsonRPC y API
 TTS, puedes definir su alcance :
 
--   **discapacitado** : la clave API no se puede usar,
+-   **discapacitado** : laa clave API no se puede usar,
 
 -   **IP blanca** : solo se autoriza una lista de IP (ver
-    Administración → Configuración → Redes)
+    Administración → Configuración → Redes),
 
 -   **localhost** : solo solicitudes del sistema en el que esá
-    Jeedom instalado esá permitido,
+    Jeedom instalado esán permitidos,
 
 -   **activado** : sin resricciones, cualquier sistema con acceso
     su Jeedom podrá acceder a esa API.
@@ -86,11 +86,11 @@ Dos partes reservadas para expertos esán presentes en esa pesaña.
     para obtener información sobre el sistema.
 
 -   **Base de datos** : Permite el acceso a la base de datos.
-    de Jeedom. Luego puede ejecutar comandos en el campo
+    de Jeedom. lauego puede ejecutar comandos en el campo
     desde lo alto. A continuación se muesran dos parámetros para obtener información. :
 
     -   **usuario** : número de usuario utilizado por Jeedom en
-        la base de datos
+        la base de datos,
 
     -   **Contraseña** : contraseña de acceso a la base de datos
         utilizado por Jeedom.
@@ -98,11 +98,11 @@ Dos partes reservadas para expertos esán presentes en esa pesaña.
 seguridad 
 ========
 
-LDAP 
+laDAP 
 ----
 
--   **Habilitar autenticación LDAP** : habilitar autenticación para
-    a través de un AD (LDAP)
+-   **Habilitar autenticación laDAP** : habilitar autenticación para
+    a través de un AD (laDAP)
 
 -   **anfitrión** : servidor que aloja el AD
 
@@ -116,7 +116,7 @@ LDAP
 -   **Contraseña** : contraseña para que Jeedom se conecte a AD
 
 -   **Campos de busqueda de usuario** : campos de búsqueda de
-    inicio de sesión de usuario. Por lo general, uid para LDAP, samaccountname para
+    inicio de sesión de usuario. Por lo general, uid para laDAP, samaccountname para
     Windows AD
 
 -   **Filtro (opcional)** : filtro en el AD (para administrar
@@ -137,12 +137,12 @@ acceder
 -   **Duración del desierro (en segundos), -1 por infinito** : tiempo de
     Prohibición de IP
 
--   **IP &quot;blanco&quot;** : lista de IP que nunca se pueden prohibir
+-   **IP "blanco"** : lista de IP que nunca se pueden prohibir
 
 -   **Eliminar IP prohibidas** : Borrar la lista de IP
     actualmente prohibido
 
-La lista de IP prohibidas se encuentra al final de esa página.. Encontraras alli
+laa lista de IP prohibidas se encuentra al final de esa página.. Encontraras alli
 IP, fecha de prohibición y fecha de finalización de prohibición
 programado.
 
@@ -151,8 +151,8 @@ redes
 
 Es absolutamente necesario configurar correctamente esa parte importante de
 Jeedom, de lo contrario, muchos complementos pueden no funcionar. Él
-Es posible acceder a Jeedom de dos maneras diferentes : la**acceso
-interna** (de la misma red local que Jeedom) y**acceso
+Es posible acceder a Jeedom de dos maneras diferentes : la'**acceso
+interna** (de la misma red local que Jeedom) y l'**acceso
 externo** (desde otra red, en particular desde Internet).
 
 > **importante**
@@ -168,20 +168,20 @@ externo** (desde otra red, en particular desde Internet).
 > apoyo.
 
 -   **Acceso interno** : información para unirse a Jeedom desde un
-    mismo equipo de red que Jeedom (LAN)
+    mismo equipo de red que Jeedom (laAN)
 
     -   **OK / NOK** : indica si la configuración de red interna es
         correcto
 
     -   **protocolo** : el protocolo a usar, a menudo HTTP
 
-    -   **URL o dirección IP** : Jeedom IP para entrar
+    -   **URla o dirección IP** : Jeedom IP para entrar
 
     -   **puerto** : el puerto de la interfaz web de Jeedom, generalmente 80.
         Tenga en cuenta que cambiar el puerto aquí no cambia el puerto real de
         Jeedom que seguirá siendo el mismo
 
-    -   **complementar** : el fragmento de URL adicional (ejemplo
+    -   **complementar** : el fragmento de URla adicional (ejemplo
         : / jeedom) para acceder a Jeedom.
 
 -   **Acceso externo** : información para llegar a Jeedom desde afuera
@@ -193,10 +193,10 @@ externo** (desde otra red, en particular desde Internet).
 
     -   **protocolo** : protocolo utilizado para acceso al exterior
 
-    -   **URL o dirección IP** : IP externa, si es fija. de lo contrario,
-        proporcione la URL que apunta a la dirección IP externa de su red.
+    -   **URla o dirección IP** : IP externa, si es fija. por lo demás,
+        proporcione la URla que apunta a la dirección IP externa de su red.
 
-    -   **complementar** : el fragmento de URL adicional (ejemplo
+    -   **complementar** : el fragmento de URla adicional (ejemplo
         : / jeedom) para acceder a Jeedom.
 
 > **punta**
@@ -239,7 +239,7 @@ externo** (desde otra red, en particular desde Internet).
 colores 
 ========
 
-La coloración de los widgets se realiza según la categoría a
+laa coloración de los widgets se realiza según la categoría a
 qué equipo pertenece. Entre las categorías encontramos el
 calefacción, seguridad, energía, luz, automatización, multimedia, otros ...
 
@@ -252,7 +252,7 @@ versión de escritorio y móvil. Entonces podemos cambiar :
     luces, persianas, temperaturas).
 
 Al hacer clic en el color, se abre una ventana que le permite elegir su
-color. La cruz al lado del color vuelve al parámetro.
+color. laa cruz al lado del color vuelve al parámetro.
 por defecto.
 
 En la parte superior de la página, también puede configurar la transparencia de
@@ -305,7 +305,7 @@ histórico
     valor a partir del cual Jeedom indica que la tendencia es hacia
     hacia abajo. Debe ser negativo (predeterminado -0.1).
 
--   **Alto umbral de cálculo de tendencia** : Lo mismo para el ascenso.
+-   **Alto umbral de cálculo de tendencia** : lao mismo para el ascenso.
 
 -   **Período predeterminado de visualización de gráficos** : Período que es
     se usa de manera predeterminada cuando desea mostrar el historial
@@ -326,11 +326,11 @@ histórico
 empuje 
 ----
 
-**URL de inserción global** : permite agregar una URL para llamar en caso de
+**URla de inserción global** : permite agregar una URla para llamar en caso de
 orden de actualización. Puedes usar las siguientes etiquetas :
 **\ #Value \#** por el valor del pedido, **\ #Cmd \ _name \#** para el
-nombre del comando **\ #Cmd \ _id \#** para el identificador único de la
-mando, **\ #Humanname \#** para el nombre completo de la orden (ej. :
+nombre del comando, **\ #Cmd \ _id \#** para el identificador único de la
+orden, **\ #Humanname \#** para el nombre completo de la orden (ej. :
 \ # \ [Baño \] \ [Hidrometría \] \ [Humedad \] \ #), `# eq_name #` para el nombre del equipo
 
 cubierta 
@@ -340,7 +340,7 @@ Permite monitorear y actuar en el caché Jeedom :
 
 -   **esadística** : Número de objetos actualmente en caché
 
--   **Limpiar la tapa** : Forzar la eliminación de objetos que no son
+-   **laimpiar la tapa** : Forzar la eliminación de objetos que no son
     mas util. Jeedom hace eso automáticamente todas las noches.
 
 -   **Borrar todos los datos en caché** : Vacíe la tapa completamente.
@@ -402,7 +402,7 @@ Interacción automática, contextual y advertencia
 
 -   la **interacciones automáticas** permitir que Jeedom intente
     entender una solicitud de interacción incluso si no hay ninguna
-    de definido. Luego buscará un objeto y / o nombre del equipo
+    de definido. lauego buscará un objeto y / o nombre del equipo
     y / o para tratar de responder lo mejor posible.
 
 -   la **interacciones contextuales** permitirte encadenar
@@ -453,11 +453,11 @@ Aquí esán las diferentes opciones disponibles. :
     luego priorice una respuesa contextual (puede poner
     varias palabras separadas por **;** ).
 
--   **Cortar una interacción a la mitad si contiene** : Lo mismo para
+-   **Cortar una interacción a la mitad si contiene** : lao mismo para
     El desglose de una interacción que contiene varias preguntas. Vosotras
     da aquí las palabras que separan las diferentes preguntas.
 
--   **Activa las interacciones &quot;Notificarme&quot;** : Marque para activar
+-   **Activa las interacciones "Notificarme""** : Marque para activar
     interacciones de tipo **Avísame**.
 
 -   **Respuesa &quot;Dime&quot; si la oración comienza con** : si la
@@ -466,19 +466,19 @@ Aquí esán las diferentes opciones disponibles. :
     palabras separadas por **;** ).
 
 -   **Comando de retorno predeterminado** : Comando de retorno predeterminado
-    para una interacción tipo **Avísame** (utilizado, en particular,
+    para una interacción tipo **Avísame** (usado, en particular,
     si ha programado la alerta a través de la interfaz móvil)
 
--   **sinónimo de objetos** : Lista de sinónimos para objetos
+-   **sinónimo de objetos** : laista de sinónimos para objetos
     (por ejemplo, : planta baja | planta baja | sótano | planta baja; baño | baño).
 
--   **sinónimo de equipamiento** : Lista de sinónimos para
+-   **sinónimo de equipamiento** : laista de sinónimos para
     los equipos.
 
--   **sinónimo de pedidos** : Lista de sinónimos para
+-   **sinónimo de pedidos** : laista de sinónimos para
     las órdenes.
 
--   **sinónimo de resúmenes** : Lista de sinónimos para resúmenes.
+-   **sinónimo de resúmenes** : laista de sinónimos para resúmenes.
 
 -   **sinónimo de comando de control deslizante máximo** : sinónimo de poner un
     comando de tipo de control deslizante máximo (por ejemplo, se abre para abrir el obturador
@@ -509,7 +509,7 @@ Configurar la generación y gesión de informes.
     esperando después de cargar el informe para tomar la &quot;foto&quot;, en
     cambiar si su informe esá incompleto, por ejemplo.
 
--   **Limpiar informes anteriores de (días)** : Define el
+-   **laimpiar informes anteriores de (días)** : Define el
     Número de días antes de eliminar un informe (los informes tardan
     un poco de espacio, así que ten cuidado de no poner demasiado
     conservación).
@@ -526,13 +526,13 @@ equipos, objetos, etc..
     Número máximo de elementos para mostrar (cuantos más elementos, mayor será
     cuanto más lento será generar y más difícil será leer).
 
--   **Profundidad para objetos** : Lo mismo para los objetos..
+-   **Profundidad para objetos** : lao mismo para los objetos..
 
--   **Profundidad para equipamiento** : Lo mismo para el equipo..
+-   **Profundidad para equipamiento** : lao mismo para el equipo..
 
--   **Profundidad para controles** : Lo mismo para pedidos.
+-   **Profundidad para controles** : lao mismo para pedidos.
 
--   **Profundidad para variables** : Lo mismo para las variables..
+-   **Profundidad para variables** : lao mismo para las variables..
 
 -   **Parámetro de prerender** : Vamos a actuar sobre el diseño
     del gráfico.
@@ -554,7 +554,7 @@ objetos :
 
     -   **suma** : suma los diferentes valores,
 
-    -   **promedio** : promedia los valores,
+    -   **promedio** : valores promedio,
 
     -   **texto** : mostrar el valor literalmente (especialmente para aquellos
         tipo de cadena).
@@ -599,7 +599,7 @@ mensajes
     automáticamente un mensaje en el centro de mensajes (al menos
     seguro que no te lo perderás).
 
--   **Acción sobre mensaje** : Le permite realizar una acción al agregar un mensaje al centro de mensajes. Tienes 2 etiquetas para esas acciones : 
+-   **Acción sobre mensaje** : lae permite realizar una acción al agregar un mensaje al centro de mensajes. Tienes 2 etiquetas para esas acciones : 
         - #mensaje# : mensaje en cuesión
         - #plugin# : complemento que activó el mensaje
 
@@ -641,7 +641,7 @@ Notificaciones
 registro 
 ---
 
--   **Motor de registro** : Le permite cambiar el motor de registro para
+-   **Motor de registro** : lae permite cambiar el motor de registro para
     ejemplo, envíelos a un demonio syslog (d).
 
 -   **Formato de registro** : Formato de registro a utilizar (Precaución : lo
@@ -653,7 +653,7 @@ registro
     llenar el sistema de archivos y / o dejar a Jeedom incapaz
     para mostrar el registro.
 
--   **Nivel de registro predeterminado** : Cuando selecciona &quot;Predeterminado&quot;,
+-   **Nivel de registro predeterminado** : Cuando selecciona "Predeterminado",
     para el nivel de un registro en Jeedom, ese es el que será
     luego usado.
 
@@ -668,7 +668,7 @@ comodidades
     falla de comunicación con el equipo antes de la desactivación de
     ese (un mensaje te avisará si eso sucede).
 
--   **Umbrales de la batería** : Le permite administrar umbrales de alerta global
+-   **Umbrales de la batería** : lae permite administrar umbrales de alerta global
     en las baterías.
 
 Actualización y archivos 
@@ -690,7 +690,7 @@ Actualización de Jeedom
 Depósitos 
 ----------
 
-Los depósitos son espacios de almacenamiento (y servicio) para poder
+laos depósitos son espacios de almacenamiento (y servicio) para poder
 mover copias de seguridad, recuperar complementos, recuperar núcleo
 Jeedom, etc..
 
@@ -753,7 +753,7 @@ una parte de samba (por ejemplo, : NAS Synology).
 >
 > si la ruta a su carpeta de copia de seguridad samba es :
 > \\\\ 192.168.0.1 \\ Copias de seguridad \\ Automatización del hogar \\ Jeedom Entonces IP = 192.168.0.1
-> , Sharing = //192.168.0.1 / Copias de seguridad, Ruta = Domótica / Jeedom
+> , Compartir = //192.168.0.1 / Copias de seguridad, Ruta = Domótica / Jeedom
 
 > **nota**
 >
@@ -774,7 +774,7 @@ una parte de samba (por ejemplo, : NAS Synology).
 > seguridad y en algunos NAS puede obligar al cliente a usar v2
 > o v3 para conectar. Entonces, si tiene un error de negociación de protocolo
 > fracasado: NT_STATUS_INVAID_NETWORK_RESPONSE hay una buena posibilidad de que aparezca NAS
-> la resricción esé en su lugar. Luego debe modificar el sistema operativo de su Jeedom
+> la resricción esé en su lugar. lauego debe modificar el sistema operativo de su Jeedom
 > el archivo / etc / samba / smb.conf y agregue esas dos líneas :
 > protocolo max del cliente = SMB3
 > protocolo min del cliente = SMB2
@@ -788,10 +788,10 @@ una parte de samba (por ejemplo, : NAS Synology).
 > primera copia de seguridad, la carpeta no debe contener ningún archivo o
 > carpetas).
 
-### URL 
+### URla 
 
--   **URL central de Jeedom**
+-   **URla central de Jeedom**
 
--   **URL de la versión principal de Jeedom**
+-   **URla de la versión principal de Jeedom**
 
 

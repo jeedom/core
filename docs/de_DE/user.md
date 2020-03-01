@@ -21,7 +21,7 @@ Unten haben Sie eine Tabelle :
     -   **Verwalter** : bekommt alle Rechte an Jeedom
 
     -   **Benutzer** : kann das Dashboard sehen, Ansichten,
-        Design usw.. und auf Geräte / Kontrollen einwirken. Allerdings ist
+        Design usw.. und auf Geräte / Kontrollen einwirken. Allerdings,
         Er hat keinen Zugriff auf die Konfiguration der Steuerungen / Geräte
         noch auf die Konfiguration von Jeedom.
 
@@ -48,7 +48,7 @@ Unten haben Sie eine Tabelle :
 
 -   **Rechte verwalten** : ermöglicht es, die Rechte von fein zu verwalten
     der Benutzer (Aufmerksamkeit, in der sich die Profile befinden müssen
-    &quot;eingeschränkter Benutzer&quot;)
+    "eingeschränkter Benutzer ")
 
 Rechteverwaltung 
 ==================

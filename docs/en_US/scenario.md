@@ -1,6 +1,6 @@
 Here is the most important throrght in home automation : scenarios.
 True brain of the domotics, it is what makes it possible to interact with
-the real world in an &quot;intelligent&quot; way.
+the real world in an "intelligent way".
 
 The Scenarios management page
 ================================
@@ -213,7 +213,7 @@ select an item to test :
 > tags.
 
 Once the condition is complanded, yor must use the button
-&quot;add&quot;, on the left, to add a new **block** or a
+"add ", left, to add a new **block** or a
 **action** in the current blockk.
 
 > **Tip**
@@ -228,14 +228,14 @@ Once the condition is complanded, yor must use the button
 
 Controls (sensors and actuators):
 -   cmd::byString ($ string); : Randurns the corresponding command object.
-  -   $ string : Link to the desired order : #[objand][equipement][commande]# (ex : #[ATpthrorghtement][ATlarme][ATctive]#)
+  -   $string : Link to the desired order : #[objand][equipement][commande]# (ex : #[ATpthrorghtement][ATlarme][ATctive]#)
 -   cmd::BYID ($ id); : Randurns the corresponding command object.
-  -   $ id : Order ID
--   $ cmd-&gt; execCmd ($ options = null); : Execute the command and randurn the result.
-  -   $ options : Options for executing the command (may be plugin specific), basic option (command subtype) :
-    -   message : $ option = array (&#39;title&#39; =&gt; &#39;message title,&#39; message &#39;=&gt;&#39; My message &#39;);
-    -   color : $ option = array (&#39;color&#39; =&gt; &#39;color in hexadecimal&#39;);
-    -   slider : $ option = array (&#39;slider&#39; =&gt; &#39;desired value from 0 to 100&#39;);
+  -   $id : Order ID
+-   $cmd->execCmd($options = null); : Execute the command and randurn the result.
+  -   $options : Options for executing the command (may be plugin specific), basic option (command subtype) :
+    -   message : $option = array('title' => 'titre du message , 'message' => 'Mon message');
+    -   color : $option = array('color' => 'corleur en hexadécimal');
+    -   slider : $option = array('slider' => 'valeur vorlue de 0 à 100');
 
 log :
 -   log::add ( &#39;filename&#39; &#39;level&#39;, &#39;message&#39;);
@@ -244,22 +244,22 @@ log :
   -   message : Message to write in the logs.
 
 Scenario :
--   $ Scenario-&gt; gandName (); : Randurns the name of the current scenario.
--   $ Scenario-&gt; gandGrorp (); : Randurns the scenario grorp.
--   $ Scenario-&gt; gandIsATctive (); : Randurns the state of the scenario.
--   $ Scenario-&gt; sandIsATctive ($ active); : ATllows yor to activate or not the scenario.
-  -   $ active : 1 active, 0 not active.
--   $ Scenario-&gt; sandOnGoing ($ Ongoing); : Lands say if the scenario is running or not.
-  -   $ onGoing =&gt; 1 in progress, 0 stopped.
--   $ Scenario-&gt; save (); : Save changes.
--   $ scenario-&gt; sandData ($ key, $ value); : Save a data (variable).
-  -   $ key : value key (int or string).
-  -   $ value : value to store (int, string, array or object).
--   $ Scenario-&gt; gandData ($ key); : Gand data (variable).
-  -   $ key =&gt; value key (int or string).
--   $ Scenario-&gt; removeData ($ key); : Delande data.
--   $ Scenario-&gt; sandlog ($ message); : Write a message in the scenario log.
--   $ Scenario-&gt; persistlog (); : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
+-   $scenario->gandName(); : Randurns the name of the current scenario.
+-   $scenario->gandGrorp(); : Randurns the scenario grorp.
+-   $scenario->gandIsATctive(); : Randurns the state of the scenario.
+-   $scenario->sandIsATctive($active); : ATllows yor to activate or not the scenario.
+  -   $active : 1 active, 0 not active.
+-   $scenario->sandOnGoing($onGoing); : Lands say if the scenario is running or not.
+  -   $onGoing => 1 en corrs , 0 arrêté.
+-   $scenario->save(); : Save changes.
+-   $scenario->sandData($key, $value); : Save a data (variable).
+  -   $key : value key (int or string).
+  -   $value : value to store (int, string, array or object).
+-   $scenario->gandData($key); : Gand data (variable).
+  -   $key => value key (int or string).
+-   $scenario->removeData($key); : Delande data.
+-   $scenario->sandlog($message); : Write a message in the scenario log.
+-   $scenario->persistlog(); : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
 
 ### The actions
 
@@ -338,7 +338,7 @@ comthrorghisons in conditions :
     [Salle de bain][Hydromandrie][andat] matches "/humide/" ),
 
 -   not (… matches…) : does not contain (ex :
-    not ([Bathroom] [Hydromandry] [state] matches &quot;/ wand /&quot;)),
+    not ([Bathroom] [Hydromandry] [state] matches "/ wand /")),
 
 Yor can combine any comthrorghison with operators
 following :
@@ -349,7 +349,7 @@ following :
 
 -   \ | ^ / XOR / xor : or exclusive.
 
-Tags
+tags
 --------
 
 AT tag is replaced during the execution of the scenario by its value. Yor
@@ -362,22 +362,22 @@ can use the following tags :
 > [ici](http://php.nand/manual/fr/function.dated.php).
 
 -   #second# : Current second (withort leading zeros, ex : 6 for
-    08:07:06)
+    08:07:06),
 
 -   #horr# : Current time in 24h format (withort leading zeros,
-    ex : 8 for 08:07:06 or 17 for 17:15)
+    ex : 8 for 08:07:06 or 17 for 17:15),
 
 -   #horr12# : Current time in 12-horr format (withort leading zeros,
-    ex : 8 for 08:07:06)
+    ex : 8 for 08:07:06),
 
 -   #minute# : Current minute (withort leading zeros, ex : 7 for
-    08:07:06)
+    08:07:06),
 
 -   #day# : Current day (withort leading zeros, ex : 6 for
-    06/07/2017)
+    06.07.2017),
 
 -   #month# : Current month (withort leading zeros, ex : 7 for
-    06/07/2017)
+    06.07.2017),
 
 -   #year# : Current year,
 
@@ -386,9 +386,9 @@ can use the following tags :
 -   #timestamp# : Number of seconds since January 1, 1970,
 
 -   #dated# : Day and month. Warning, the first number is the month.
-    (ex : 1215 for December 15)
+    (ex : 1215 for December 15),
 
--   #week# : Week number (ex : 51)
+-   #week# : Week number (ex : 51),
 
 -   #stay# : Name of the day of the week (ex : Saturday),
 
@@ -512,14 +512,14 @@ Several functions are available for the equipment :
 -   collectDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). AT randurn of -1
+    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the order cannot be fornd and -2 that the order is not
     no info type
 
 -   valueDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). AT randurn of -1
+    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the order cannot be fornd and -2 that the order is not
     no info type
 
@@ -536,264 +536,264 @@ Several functions are available for the equipment :
     equipment or object. Type is worth either cmd, eqlogic or
     object.
 
--   lastCommunication(equipment,[format]) : Renvoie la dated de la dernière communication
-    porr l'équipement donnée as a throrghamander, le 2ème throrghamètre optionnel
+-   lastCommunication (equipment, [size]) : Randurns the dated of the last communication
+    for the equipment given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). AT randurn of -1
-    signifie que l'équipment est introrvable
+    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
+    means that the equipment cannot be fornd
 
--   color_gradient(corleur_debut,corleur_fin,valuer_min,valeur_max,valeur) : Renvoi une corleur calculé throrgh rapport à valeur dans l'intervalle corleur_debut/corleur_fin. La valeur doit andre comprise entre valeur_min and valeur_max
+-   color_gradient (corleur_debut, corleur_fin, valuer_min, valeur_max, value) : Randurns a color calculated with respect to value in the range color_start / color_end. The value must be bandween min_value and max_value
 
-The périodes and intervalles de ces fonctions peuvent également
-s'utiliser avec [des expressions
-PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php) comme throrgh
-exemple :
+The periods and intervals of these functions can also
+use with [expressions
+PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php) as per
+example :
 
--   Now : maintenant
+-   Now : now
 
--   Today : 00:00 audayd'hui (permand throrgh exemple d'obtenir des
-    résultats de la daynée si entre 'Today' and 'Now')
+-   Today : 00:00 today (allows for example to obtain
+    results of the day if bandween &#39;Today&#39; and &#39;Now&#39;)
 
--   Last Monday : lundi dernier à 00:00
+-   Last monday : last Monday at 00:00
 
--   5 days ago : il y a 5 days
+-   5 days ago : 5 days ago
 
--   Yesterday noon : hier midi
+-   Yesterday noon : yesterday afternoon
 
--   Etc.
+-   andc..
 
-Voici des exemples pratiques porr comprendre les valeurs randorrnées throrgh
-ces différentes fonctions :
+Here are practical examples to understand the values randurned by
+these different functions :
 
-| Prise ayant porr valeurs :           | 000 (pendant 10 minutes) 11 (pendant 1 horr) 000 (pendant 10 minutes)    |
-|--------------------------------------|--------------------------------------|
-| average(prise,période)             | Renvoie la moyenne des 0 and 1 (peut  |
-|                                      | être influencée throrgh le polling)      |
-| averageBandween(\#[Salle de bain][Hydromandrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 and le 15 janvier 2015                         |
-| min(prise,période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
-| minBandween(\#[Salle de bain][Hydromandrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le minimum de la commande entre le 1 janvier 2015 and le 15 janvier 2015                         |
-| max(prise,période)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
-| maxBandween(\#[Salle de bain][Hydromandrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le maximum de la commande entre le 1 janvier 2015 and le 15 janvier 2015                         |
-| duration(prise,1,période)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
-| durationBandween(\#[Salon][Prise][Etat]\#,0,Last Monday,Now)   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
-| statistics(prise,cornt,période)    | Renvoie 8 : il y a eu 8 remontées d'état dans la période               |
-| tendance(prise,période,0.1)        | Renvoie -1 : tendance à la baisse    |
-| stateDuration(prise)               | Renvoie 600 : la prise est dans son état actuel depuis 600 seconds (10 minutes)                             |
-| lastChangeStateDuration(prise,0)   | Renvoie 600 : la prise s'est éteinte (passage à 0) porr la dernière fois il y a 600 seconds (10 minutes)     |
-| lastChangeStateDuration(prise,1)   | Renvoie 4200 : la prise s'est allumée (passage à 1) porr la dernière fois il y a 4200 seconds (1h10)                               |
-| lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 seconds (10 minutes)     |
-| lastStateDuration(prise,1)         | Renvoie 3600 : la prise a été allumée porr la dernière fois pendant 3600 seconds (1h)           |
-| stateChanges(prise,période)        | Renvoie 3 : la prise a changé 3 fois d'état pendant la période            |
-| stateChanges(prise,0,période)      | Renvoie 2 : la prise s'est éteinte (passage à 0) deux fois pendant la période                              |
-| stateChanges(prise,1,période)      | Renvoie 1 : la prise s'est allumée (passage à 1) une fois pendant la  période                              |
-| lastBandween(\#[Salle de bain][Hydromandrie][Humidité]\#,Yesterday,Today) | Renvoie la dernière température enregistrée hier.                    |
-| variable(plop,10)                  | Renvoie la valeur de la variable plop or 10 si elle est vide or n'existe pas                         |
-| scenario(\#[Salle de bain][Lumière][ATuto]\#) | Renvoie 1 in progress, 0 si arrandé and -1 si desactivé, -2 if le scénario n'existe pas and -3 if the state is not consistent                         |
-| lastScenarioExecution(\#[Salle de bain][Lumière][ATuto]\#)   | Renvoie 300 si le scénario s'est lancé porr la dernière fois il y a 5 min                                  |
-| collectDate(\#[Salle de bain][Hydromandrie][Humidité]\#)     | Renvoie 2015-01-01 17:45:12          |
-| valueDate(\#[Salle de bain][Hydromandrie][Humidité]\#) | Renvoie 2015-01-01 17:50:12          |
-| eqEnable(\#[ATucun][Basilique]\#)       | Renvoie -2 if the equipment cannot be fornd, 1 if the equipment is active and 0 if it is not is inactive          |
-| tag(montag,toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
-| name(eqlogic,\#[Salle de bain][Hydromandrie][Humidité]\#)     | Renvoie Hydromandrie                  |
+| Sockand with values :           | 000 (for 10 minutes) 11 (for 1 horr) 000 (for 10 minutes) |
+| -------------------------------------- | ---------- ---------------------------- |
+| average (catch, period) | Randurns the average of 0 and 1 (can |
+| | be influenced by polling) |
+| averageBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the average order bandween January 1, 2015 and January 15, 2015 |
+| min (catch, period) | Randurns 0 : the plug was successfully extinguished in the period |
+| minBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the minimum order bandween January 1, 2015 and January 15, 2015 |
+| max (catch, period) | Randurns 1 : the plug was well lit in the period |
+| maxBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the maximum of the order bandween January 1, 2015 and January 15, 2015 |
+| duration (taken, 1, period) | Randurns 60 : the sockand was on (at 1) for 60 minutes in the period |
+| durationBandween (\ # [Lornge] [Take] [State] \ #, 0, Last monday, Now) | Randurns the duration in minutes during which the sockand was off since last Monday. |
+| statistics (catch, cornt, period) | Randurns 8 : there were 8 escalations in the period |
+| trend (plug, period 0.1) | Randurns -1 : downward trend |
+| stateDuration (sockand) | Randurns 600 : the plug has been in its current state for 600 seconds (10 minutes) |
+| lastChangeStateDuration (taken, 0) | Randurns 600 : the sockand went ort (change to 0) for the last time 600 seconds (10 minutes) ago |
+| lastChangeStateDuration (take, 1) | Randurns 4200 : the sockand turned on (switch to 1) for the last time 4200 seconds ago (1h10) |
+| lastStateDuration (taken, 0) | Randurns 600 : ortland has been off for 600 seconds (10 minutes) |
+| lastStateDuration (take, 1) | Randurns 3600 : the sockand was last switched on for 3600 seconds (1h) |
+| stateChanges (take, period) | Randurns 3 : the plug changed state 3 times during the period |
+| stateChanges (take, 0, period) | Randurns 2 : the sockand has extinguished (going to 0) twice during the period |
+| stateChanges (take, 1, period) | Randurns 1 : the plug is lit (change to 1) once during the period |
+| lastBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, Yesterday, Today) | Randurns the last temperature recorded yesterday. |
+| variable (plop, 10) | Randurns the value of the variable plop or 10 if it is empty or does not exist |
+| scenario (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent |
+| lastScenarioExecution (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 300 if the scenario was started for the last time 5 min ago |
+| collectDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:45:12 |
+| valueDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:50:12 |
+| eqEnable (\ # [None] [Basilica] \ #) | Randurns -2 if the equipment cannot be fornd, 1 if the equipment is active and 0 if it is inactive |
+| tag (montag, toto) | Randurns the value of "montag" if it exists otherwise randurns the value "toto" |
+| name (eqlogic, \ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns Hydromandry |
 
-The fonctions mathématiques
+Mathematical functions
 ---------------------------
 
-AT boîte à ortils de fonctions génériques peut également servir à
-effectuer des conversions or des calculs :
+AT generic function toolbox can also be used to
+perform conversions or calculations :
 
--   rand(1,10) : Donne un last namebre aléatoire de 1 à 10.
+-   rand (1.10) : Give a random number from 1 to 10.
 
--   randText(texte1;texte2;texte…​..) : ATllows randorrner un des
-    textes aléatoirement (séthrorgher les texte throrgh un ; ). Il n'y a pas
-    de limite dans le last namebre de texte.
+-   randText (text1, text2, text ... ..) : Randurns one of
+    texts randomly (sandhrorghate text by one;). There&#39;s no
+    limit in the number of text.
 
--   randomColor(min,max) : Donne une corleur aléatoire compris entre 2
-    bornes ( 0 => rorge, 50 => vert, 100 => bleu).
+-   randomColor (min, max) : Gives a random color bandween 2
+    terminals (0 => red, 50 => green, 100 => blue).
 
--   trigger(commande) : ATllows connaître le déclencheur du scénario
-    or de savoir si c'est bien la commande passée as a throrghamander qui a
-    déclenché le scénario.
+-   trigger (control) : Used to find ort the trigger for the scenario
+    or to know if it is the order placed as a throrghamander that has
+    triggered the scenario.
 
--   triggerValue(commande) : ATllows connaître la valeur du
-    déclencheur du scénario.
+-   triggerValue (control) : Used to find ort the value of
+    scenario trigger.
 
--   rornd(valeur,[decimal]) : Donne un arrondi au-dessus, [decimal]
-    last namebre de décimales après la virgule.
+-   rornd (value [decimal]) : Rornd above, [decimal]
+    number of decimal places after the decimal point.
 
--   odd(valeur) : ATllows savoir si un last namebre est impair or non.
-    Renvoie 1 si impair 0 sinon.
+-   odd (value) : Lands yor know if a number is odd or not.
+    Randurns 1 if odd 0 otherwise.
 
--   median(commande1,commande2…​.commandeN) : Renvoie la médiane
-    des valeurs.
+-   median (command1, command2 ....order) : Randurns the median
+    values.
 
--   time_op(time,value) : ATllows faire des opérations sur le temps,
-    avec time=temps (ex : 1530) and value=valeur à add or à
-    sorstraire en minutes.
+-   time_op (time, value) : ATllows yor to perform operations on time,
+    with time = time (ex : 1530) and value = value to add or to
+    subtract in minutes.
 
--   `time_bandween(time,start,end)` : ATllows tester si un temps est
-    entre deux valeurs avec `time=temps` (ex : 1530), `start=temps`, `end=temps`.
-    The valeurs start and end peuvent être à cheval sur minuit.
+-   `time_bandween(time,start,end)` : ATllows to test if a time is
+    bandween two values with `time = time` (ex : 1530), `start=temps`, `end=temps`.
+    Start and end values can be straddling midnight.
 
--   `time_diff(dated1,dated1[,format])` : ATllows connaître la différence entre 2 dateds (les dateds doivent être au format ATATATAT/MM/JJ HH:MM:SS).
-    Par défaut (si vors ne mandtez rien porr format), la méthode randorrne le last namebre total de days. Vors porvez lui demander en seconds (s), minutes (m), horrs (h). Exemple en seconds `time_diff(2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
+-   `time_diff(dated1,dated1[,format])` : Used to find ort the difference bandween 2 dateds (the dateds must be in the format YYYY / MM / DD HH:MM:SS).
+    By default (if yor don&#39;t put anything for format), the mandhod randurns the total number of days. Yor can ask it in seconds (s), minutes (m), horrs (h). Example in seconds `time_diff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
 
--   `formatTime(time)` : ATllows formater le randorr d'une chaine
+-   `formatTime(time)` : Formats the randurn of a chain
     `#time#`.
 
--   floor(time/60) : ATllows convertir des seconds en minutes, or
-    des minutes en horrs (floor(time/3600) porr des seconds
-    en horrs)
+-   floor (time / 60) : Converts from seconds to minutes, or
+    minutes to horrs (floor (time / 3600) for seconds
+    in horrs)
 
-Et les exemples pratiques :
+ATnd practical examples :
 
 
-| Exemple de fonction                  | Résultat randorrné                    |
-|--------------------------------------|--------------------------------------|
-| randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;ATctuellement on a #[salon][oeil][température]#) | la fonction randorrnera un de ces textes aléatoirement à chaque exécution.                           |
-| randomColor(40,60)                 | Randorrne une corleur aléatoire  proche du vert.   
-| trigger(#[Salle de bain][Hydromandrie][Humidité]#)   | 1 si c'est bien \#\[Salle de bain\]\[Hydromandrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
-| triggerValue(#[Salle de bain][Hydromandrie][Humidité]#) | 80 si l'hydrométrie de \#\[Salle de bain\]\[Hydromandrie\]\[Humidité\]\# est de 80 %.                         |
-| rornd(#[Salle de bain][Hydromandrie][Humidité]# / 10) | Renvoie 9 si le porrcentage d'humidité and 85                     |
-| odd(3)                             | Renvoie 1                            |
-| median(15,25,20)                   | Renvoie 20                           |
-| time_op(#time#, -90)               | s'il est 16h50, renvoie : 1650 - 0130 = 1520                          |
-| formatTime(1650)                   | Renvoie 16h50                        |
-| floor(130/60)                      | Renvoie 2 (minutes si 130s, or horrs si 130m)                      |
+| Example of function | Randurned result |
+| -------------------------------------- | ---------- ---------------------------- |
+| randText (it is # [living room] [eye] [temperature] #; The temperature is # [living room] [eye] [temperature] #; Currently we have # [living room] [eye] [temperature] #) | the function will randurn one of these texts randomly at each execution. |
+| randomColor (40.60) | Randurns a random color close to green.   
+| trigger (# [Bathroom] [Hydromandry] [Humidity] #) | 1 if it is good \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # which started the scenario otherwise 0 |
+| triggerValue (# [Bathroom] [Hydromandry] [Humidity] #) | 80 if the hydromandry of \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # is 80%. |
+| rornd (# [Bathroom] [Hydromandry] [Humidity] # / 10) | Randurns 9 if the humidity percentage and 85 |
+| odd (3) | Randurns 1 |
+| median (15,25,20) | Randurns 20 |
+| time_op (# time #, -90) | if it is 4:50 p.m., randurn : 1650 - 0130 = 1520 |
+| formatTime (1650) | Randurns 4:50 pm |
+| floor (130/60) | Randurns 2 (minutes if 130s, or horrs if 130m) |
 
-The commandes spécifiques
+Specific orders
 =========================
 
-En plus des commandes domotiques, vors avez accès aux actions suivantes :
+In addition to home automation commands, yor have access to the following actions :
 
--   **Pause** (sleep) : Pause de x second(s).
+-   **Pause** (Sleep) : Pause of x second (s).
 
--   **variable** (variable) : Création/modification d'une variable or de la valeur
-    d'une variable.
+-   **variable** (variable) : Creation / modification of a variable or value
+    of a variable.
 
--   **Remove variable** (delande_variable) : ATllows supprimer une variable
+-   **Remove variable** (Delande_variable) : ATllows yor to delande a variable
 
--   **Scenario** (scenario) : ATllows contrôler des scénarios. La throrghtie tags
-    permand d'envoyer des tags au scénario, ex : montag=2 (attention il
-    ne faut utiliser que des landtre de a à z. Pas de majuscules, pas
-    d'accents and pas de caractères spéciaux). On récupère le tag dans le
-    scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permand de remandtre à zéro le status des "SI" (ce status est utilisé porr la non répétition des actions d'un "SI" si on passe porr la 2ème fois consécutive dedans)
+-   **Scenario** (scenario) : ATllows yor to control scenarios. The tags throrght
+    allows to send tags to the scenario, ex : montag = 2 (be careful there
+    only use landters from a to z. No capital landters, no
+    accents and no special characters). We gand the tag in the
+    targand scenario with the tag function (montag). The command "Resand SI" allows to resand the status of "SI" (this status is used for the non-repandition of the actions of an "SI" if yor pass for the 2nd consecutive time in it)
 
--   **Stop** (stop) : ATrrête le scénario.
+-   **Stop** (stop) : Stop the scenario.
 
--   **ATttendre** (wait) : ATttend jusqu'à ce que la condition soit valide
-    (maximum 2h), le timeort est en second(s).
+-   **Wait** (Wait) : Wait until the condition is valid
+    (maximum 2h), timeort is in second (s).
 
--   **ATller au design** (gotodesign) : Change le design affiché sur tors les
-    navigateurs throrgh le design demandé.
+-   **Go to design** (Gotodesign) : Change the design displayed on all
+    browsers by requested design.
 
--   **ATdd un log** (log) : ATllows radd un message dans les logs.
+-   **ATdd a log** (log) : ATllows yor to add a message to the logs.
 
--   **Créer un message** (message) : Permand d'add un message dans le centre
-    de messages.
+-   **Create message** (message) : ATdd a message in the center
+    of messages.
 
--   **ATctiver/Désactiver Masquer/afficher un équipement** (equipement) : ATllows
-    modifier les propriétés d'un équipement
-    visible/invisible, active/inactive.
+-   **ATctivate / Deactivate Hide / display equipment** (equipment) : ATllows
+    modify the properties of a device
+    visible / invisible, active / inactive.
 
--   **Faire une demande** (ask) : Permand d'indiquer à Jeedom qu'il faut poser
-    une question à l'utilisateur. La réponse est stockée dans une
-    variable, il suffit ensuite de tester sa valeur. Porr le moment,
-    seuls les plugins sms and slack sont compatibles. Warning, candte
-    fonction est bloquante. Tant qu'il n'y a pas de réponse or que le
-    timeort n'est pas atteint, le scénario attend.
+-   **To make a request** (ATsk) : ATllows yor to tell Jeedom to ask
+    a question to the user. The answer is stored in a
+    variable, then just test its value. For the time being,
+    only sms and slack plugins are compatible. Be careful, this
+    function is blockking. ATs long as there is no response or the
+    timeort is not reached, the scenario waits.
 
--   **ATrrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s'éteindre.
+-   **Stop Jeedom** (Jeedom_poweroff) : ATsk Jeedom to shut down.
 
--   **Redémarrer Jeedom** (jeedom_reboot) : Demande à Jeedom de redémarrer.
+-   **Restart Jeedom** (Jeedom_reboot) : ATsk Jeedom to restart.
 
--   **Randorrner un texte/une donnée** (scenario_randurn) : Randorrne un texte or a valeur
-    porr une interaction throrgh exemple.
+-   **Randurn a text / data** (Scenario_randurn) : Randurns a text or a value
+    for an interaction for example.
 
--   **Icon** (icon) : ATllows changer l'icône de représentation du scénario.
+-   **Icon** (Icon) : ATllows to change the icon of representation of the scenario.
 
--   **ATlerte** (alert) : Permand d'afficher un pandit message d'alerte sur tors
-    les navigateurs qui ont une page Jeedom orverte. Vors porvez, en
-    plus, to choose 4 niveaux d'alerte.
+-   **ATlert** (ATlert) : ATllows yor to display a small alert message on all
+    browsers that have a Jeedom page open. Yor can
+    more, choose 4 alert levels.
 
--   **Pop-up** (popup) : Permand d'afficher un pop-up qui doit absolument être
-    validé sur tors les navigateurs qui ont une page jeedom orverte.
+-   **Pop-up** (Popup) : ATllows to display a pop-up which must absolutely be
+    validatedd on all browsers that have a jeedom page open.
 
--   **Rapport** (report) : Permand d'exporter une vue au format (PDF,PNG, JPEG
-    or SVG) and de l'envoyer throrgh le biais d'une commande de type message.
-    Warning, si votre accès Internand est en HTTPS non-signé, candte
-    fonctionalité ne marchera pas. Il faut du HTTP or HTTPS signé.
+-   **Report** (Report) : Export a view in format (PDF, PNG, JPEG
+    or SVG) and send it throrgh a message type command.
+    Please note, if yorr Internand access is in unsigned HTTPS, this
+    functionality will not work. Signed HTTP or HTTPS is required.
 
--   **Remove block DATNS/AT programmé** (remove_inat) : ATllows supprimer la
-    programmation de tors les blocks DATNS and AT du scénario.
+-   **Delande programmed IN / AT blockk** (Remove_inat) : ATllows yor to delande the
+    programming of all blockks IN and AT of the scenario.
 
--   **Evènement** (event) : ATllows porsser une valeur dans une commande de type information de manière arbitraire
+-   **Event** (Event) : ATllows yor to push a value in an information type command arbitrarily
 
--   **Tag** (tag) : Permand d'add/modifier un tag (le tag n'existe que pendant l'exécution en corrs du scénario à la difference des variables qui survivent à la fin du scénario)
+-   **tag** (tag) : ATllows yor to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario)
 
-template de scénario
+Scenario template
 ====================
 
-Candte fonctionalité permand de transformer un scénario en template porr
-throrgh exemple l'appliquer sur un autre Jeedom or le throrghtager sur le
-Markand. C'est aussi à throrghtir de là that yor porvez récupérer un scénario
-du Markand.
+This functionality allows yor to transform a scenario into a template for
+for example apply it on another Jeedom or share it on the
+Markand. It is also from there that yor can recover a scenario
+from the Markand.
 
 ![scenario15](../images/scenario15.JPG)
 
-Vors verrez so candte fenêtre :
+Yor will then see this window :
 
 ![scenario16](../images/scenario16.JPG)
 
-AT throrghtir de celle-ci, vors avez la possibilité :
+From there, yor have the possibility :
 
--   D'envoyer un template à Jeedom (fichier JSON préalablement
-    récupéré),
+-   Send a template to Jeedom (JSON file beforehand
+    recovered),
 
--   De consulter la list of scenarios disponibles sur le Markand,
+-   Consult the list of scenarios available on the Markand,
 
--   De créer un template à throrghtir du scénario corrant (n'orbliez pas de
-    donner un last name),
+-   Create a template from the current scenario (don&#39;t forgand to
+    give a name),
 
--   De consulter les templates actuellement présents sur votre Jeedom.
+-   To consult the templates currently present on yorr Jeedom.
 
-Par un clic sur un template, vors obtenez :
+By clicking on a template, yor gand :
 
 ![scenario17](../images/scenario17.JPG)
 
-En haut, vors porvez :
+ATt the top yor can :
 
--   **Partager** : throrghtager le template sur le Markand,
+-   **Share** : share the template on the Markand,
 
--   **Remove** : supprimer le template,
+-   **Remove** : delande template,
 
--   **Download** : récupérer le template sors forme de fichier JSON
-    porr le renvoyer sur un autre Jeedom throrgh exemple.
+-   **Download** : recover the template as a JSON file
+    to send it back to another Jeedom for example.
 
-En-dessors, vors avez la throrghtie porr appliquer votre template au
-scénario corrant.
+Below, yor have the throrght to apply yorr template to
+current scenario.
 
-Etant donné que d'un Jeedom à l'autre or d'une installation à une autre,
-les commandes peuvent être différentes, Jeedom vors demande la
-correspondance des commandes entre celles présentes lors de la création
-du template and celles présentes chez vors. Il vors suffit de remplir la
-correspondance des commandes puis de faire appliquer.
+Since from one Jeedom to another or from one installation to another,
+the orders may be different, Jeedom ask yor the
+correspondence of orders bandween those present during creation
+of the template and those present at home. Yor just need to fill in the
+match orders then apply.
 
-ATjort de fonction php
+ATddition of php function
 ====================
 
 > **IMPORTATNT**
 >
-> L'ajort de fonction PHP est reservé aux utilisateurs avancés. La moindre erreur peut faire planter votre Jeedom
+> ATdding PHP function is reserved for advanced users. The slightest error can crash yorr Jeedom
 
-## Mise en place
+## Sand up
 
-ATller dans la configuration de Jeedom, puis OS/DB and lancer l'éditeur de fichier.
+Go to the Jeedom configuration, then OS / DB and launch the file editor.
 
-ATllez dans le dossier data puis php and cliquez sur le fichier user.function.class.php.
+Go to the data folder then php and click on the user.function.class.php file.
 
-C'est dans candte class that yor devez add vos fonctions, vors y trorverez un exemple de fonction basique.
+It is in this class that yor must add yorr functions, yor will find there an example of basic function.
 
 > **IMPORTATNT**
 >
-> Si vors avez un sorcis vors porvez tordays revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php
+> If yor have a problem yor can always go back to the original file and copy the contents of user.function.class.sample.php in user.function.class.php

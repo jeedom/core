@@ -9,7 +9,7 @@ optional.
 Does Jeedom use outside servers to run ? 
 ==============================================================
 
-No, Jeedom does not use &quot;Cloud&quot; type infrastructure. Everything is done in
+No, Jeedom does not use "Cloud" type infrastructure". Everything is done in
 local and you don&#39;t need our servers for your
 installation works. Only services like the Market, the
 online backup or Jeedom DNS require the use of our
@@ -70,10 +70,10 @@ just use the [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mi
 How to connect in SSH ?
 =============================
 
-Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty &quot;. The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
-- Username : &quot;root&quot;, password : &quot;Mjeedom96&quot;
-- Username : &quot;jeedom&quot;, password : &quot;Mjeedom96&quot;
+- Username : "root ", password : "Mjeedom96"
+- Username : "jeedom ", password : "Mjeedom96"
 - Or what you put in the installation if you are in DIY
 
 Note that when you write the password you will not see anything written on the screen it&#39;s normal.
@@ -118,7 +118,7 @@ For Jeedom to work, you need a linux platform with the rights
 root or a docker type system. It therefore does not work on a
 pure android platform.
 
-I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes) ... &quot; ? 
+I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes)..." ? 
 ====================================================
 
 This can be due to several things, it is necessary : 
@@ -191,7 +191,7 @@ I have instabilities or errors 504
 ========================================
 
 Check if your file system is not corrupt, in SSH the
-command is : &quot;sudo dmesg | grep error&quot; .
+command is : "sudo dmesg | grep error" .
 
 I don&#39;t see all my equipment on the dashboard 
 ====================================================
@@ -200,7 +200,7 @@ Often this is due to the fact that the equipment is assigned to an object
 which is not the child or the object itself of the first object selected at
 left in the tree (you can configure it in your profile).
 
-I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; 
+I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock' 
 ====================================================================================================================================
 
 This is due to MySQL which stopped, it is not normal, the cases
@@ -212,7 +212,7 @@ currents are :
 -   File (s) corruption issue, which often happens due to
     Jeedom&#39;s non-clean shutdown (power failure)
 
-- 	Memory worries, the system runs out of memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by &quot;oom&quot;. If this is the case, reduce the consumption of jeedom by deactivating plugins.
+- 	Memory worries, the system runs out of memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce the consumption of jeedom by deactivating plugins.
 
 Unfortunately, there is not much solution if it is the second
 case, the best is to recover a backup (available in
@@ -266,12 +266,12 @@ I have a time concern on my history
 
 Try to empty the chrome cache, the history display is calculated relative to the browser time.
 
-I have the error &quot;Network problems detected, network restart&quot;
+I have the error "Network problems detected, network restart"
 =========================================
 
 Jeedom can&#39;t find or ping the gateway. In general it happens if the adsl box restarts (in particular liveboxes) and Jeeodm has not restarted or has restarted faster than the box. For security he tells you that he has found a problem and relaunches the network connection process. You can deactivate this mechanism by going to the Jeedom configuration and by deactivating the network management by Jeedom.
 
-I get the message &quot;Failed to back up the database. Check that mysqldump is present. &quot;
+I get the message &quot;Failed to back up the database. Check that mysqldump is present."
 =========================================
 It means that Jeedom cannot back up the database, which can suggest a problem with database and filesystem corruption.. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have
 
@@ -281,7 +281,7 @@ It means that Jeedom cannot back up the database, which can suggest a problem wi
 
 I can no longer connect to my Jeedom
 =========================================
-Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. The admin / admin identifiers only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only ip on 192.168.*.* or 127.0.0.1 are recognized as local. This is configured in the administration of Jeedom security part then &quot;white&quot; IP. If despite all that you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
+Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. The admin / admin identifiers only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only ip on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If despite all that you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
 
 I have errors of type &quot;Class &#39;eqLogic&#39; not found&quot;, files seem to be missing or I have a blank page
 =========================================
@@ -296,7 +296,7 @@ cp -R / root / tmp / core-master / * / var / www / html
 rm -rf / root / tmp / core-master
 ```
 
-# I cannot install the plugin dependencies I have an error of the type : &quot;E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou &quot;E: Could not get lock / var / lib / dpkg / lock &quot;
+# I cannot install the plugin dependencies I have an error of the type : "E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock / var / lib / dpkg / lock"
 
 It is necessary :
 

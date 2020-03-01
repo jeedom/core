@@ -14,7 +14,7 @@ in Bezug auf Geräte zentral :
 Die Registerkarte Batterien 
 ==================
 
-Auf dieser Registerkarte sehen Sie die Liste Ihrer Module im Akkubetrieb.
+Auf dieser Registerkarte sehen Sie die Liste Ihrer Module im Akkubetrieb,
 ihre verbleibende Stufe (die Farbe der Kachel hängt von dieser Stufe ab), die
 Art und Anzahl der in das Modul einzulegenden Batterien, Art der
 Modul sowie das Datum, an dem die Informationen zum Batteriestand angezeigt werden
@@ -48,7 +48,7 @@ Warnung) und ein Logo oben links (die Art der Warnung)
 > **Spitze**
 >
 > Hier werden alle Module in Alarmbereitschaft angezeigt, auch die in konfigurierten
-> &quot;nicht sichtbar&quot;. Es ist jedoch interessant festzustellen, dass wenn das Modul
+> "nicht sichtbar". Es ist jedoch interessant festzustellen, dass wenn das Modul
 > Ist &quot;sichtbar&quot;, wird die Warnung auch im Dashboard angezeigt (in
 > das betreffende Objekt)
 

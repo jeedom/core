@@ -20,6 +20,6 @@ refill.
     correction by the author.
 
 -   You can find the list of plugins in question here :
-    <https://www.jeedom.com/market/index.php?v = d &amp; p = scoring>
+    <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

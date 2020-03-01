@@ -114,7 +114,7 @@ padre este objeto.
 > **punta**
 >
 > Si desea agregar un tipo de resumen o configurar el
-> método de cálculo del resultado, la unidad, el icono y el nombre de un resumen,
+> Método de cálculo del resultado, la unidad, el icono y el nombre de un resumen.,
 > tienes que ir a la configuración general de Jeedom :
 > **Administración → Configuración → pestaña Resúmenes**.
 

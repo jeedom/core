@@ -48,7 +48,7 @@ Below you have a table :
 
 -   **Manage rights** : allows to finely manage the rights of
     the user (attention the profiles must be in
-    &quot;limited user&quot;)
+    "limited user ")
 
 Rights management 
 ==================

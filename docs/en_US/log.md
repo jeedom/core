@@ -31,7 +31,7 @@ buttons :
 > ! if you delete it (on the command line for example) it will not
 > not recreate itself, you have to restart the system.
 
-The &quot;Event&quot; log 
+The event log" 
 ==============
 
 The &quot;Event&quot; log is a bit special. First of all so that it

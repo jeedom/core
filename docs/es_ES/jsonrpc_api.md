@@ -220,7 +220,7 @@ eqLogic::byTypeAndId
 
 Devuelve una tabla de equipos según los parámetros.. El regreso
 será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
-array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)) ....id1 ⇒
+array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)) ....,id1 ⇒
 array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)), id2 ⇒ array (&#39; id&#39;⇒ ..., &#39;cmds&#39; ⇒
 Array (....)) ..)
 
@@ -243,7 +243,7 @@ configuraciones:
 
 -   nombre de cadena
 
--   registro de cadenaicalId = &#39;&#39;
+-   registro de cadenaicalId = ''
 
 -   int objeto \ _id = nulo
 
@@ -365,7 +365,7 @@ configuraciones:
 
 -   int isHistorized = 0
 
--   string unite = &#39;&#39;
+-   unidad de cuerda = ''
 
 -   configuración de matriz
 
@@ -500,7 +500,7 @@ configuraciones:
 -   tipo de cadena : tipo de valor almacenado (para eguións
     es eguión)
 
--   id linkId : -1 para el total (valor para los eguións predeterminados,
+-   id linkId : -1 para total (valor para eguións predeterminados,
     o el id del eguión)
 
 -   clave de cuerda : nombre del valor
@@ -515,7 +515,7 @@ configuraciones:
 -   tipo de cadena : tipo de valor almacenado (para eguións
     es eguión)
 
--   id linkId : -1 para el total (valor para los eguións predeterminados,
+-   id linkId : -1 para total (valor para eguións predeterminados,
     o el id del eguión)
 
 -   clave de cuerda : nombre del valor
@@ -548,7 +548,7 @@ configuraciones:
 
 -   consulta (frase de solicitud)
 
--   int reply \ _cmd = NULL : ID del comando a usar para responder,
+-   int reply \ _cmd = NULL : ID de comando para usar para responder,
     si no especifica, entonces Jeedom le envía la respuesta en el json
 
 InteractQuery::todos
@@ -722,10 +722,10 @@ lo que simplifica el uso de la API.
 Recuperando la listaa de objetos :
 
 ``` {.php}
-$ jsonrpc = nuevo jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendRequest (objeto&#39;::todos &#39;, array ())) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendRequest (objeto&#39;::todos &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
-} Else {
+}otro{
     echo $ jsonrpc-&gt; getError ();
 }
 ```
@@ -733,10 +733,10 @@ if ($ jsonrpc-&gt; sendRequest (objeto&#39;::todos &#39;, array ())) {
 Ejecución de una orden (con la opción de un título y un mensaje)
 
 ``` {.php}
-$ jsonrpc = nuevo jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=&gt; # cmd_id #,&#39; options &#39;=&gt; array (&#39; title &#39;=&gt;&#39; Cuckoo &#39;,&#39; mensaje &#39;=&gt;&#39; Funciona &#39;)))) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; mensaje &#39;=>&#39; Funciona &#39;)))){
     echo &#39;OK&#39;;
-} Else {
+}otro{
     echo $ jsonrpc-&gt; getError ();
 }
 ```

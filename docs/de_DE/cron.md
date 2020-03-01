@@ -18,60 +18,60 @@ Oben rechts haben Sie :
     Aktivieren Sie alle Aufgaben erneut (wenn Sie alle deaktivieren, mehr
     nichts wird auf deinem Jeedom funktionieren)
 
--   **cool** : un bouton pour rafraîchir le tableau des tâches
+-   **cool** : eine Schaltfläche zum Aktualisieren der Aufgabentabelle
 
--   **hinzufügen** : un bouton pour ajouter une tâche cron
+-   **hinzufügen** : eine Schaltfläche zum Hinzufügen eines cron-Jobs
 
--   **Rekord** : un bouton pour enregistrer vos modifications.
+-   **Rekord** : eine Schaltfläche zum Speichern Ihrer Änderungen.
 
-En-dessous, vous avez le tableau de toutes les tâches existantes
-(attention, certaines tâches peuvent lancer des sous-tâches, il est donc
-vivement recommandé de ne jamais modifier d'informations sur cette
-page). Dans ce tableau, on retrouve :
+Unten finden Sie die Tabelle aller vorhandenen Aufgaben
+(Seien Sie vorsichtig, einige Aufgaben können Unteraufgaben starten, so ist es
+Es wird dringend empfohlen, die Informationen hierzu niemals zu ändern
+Seite). In dieser Tabelle finden wir :
 
--   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
-    processus qui tourne et ce qu'il fait vraiment
+-   **\#** : Aufgaben-ID, kann zum Verknüpfen von a hilfreich sein
+    Prozess, der läuft und was er wirklich tut
 
--   **Aktion** : un bouton pour lancer ou arrêter la tâche en fonction
-    de son statut et un bouton pour voir le cron dans le détail (tel que stocké en base)
+-   **Aktion** : eine Schaltfläche zum Starten oder Stoppen der Funktion
+    seinen Status und eine Schaltfläche, um den cron im Detail zu sehen (wie in der Datenbank gespeichert)
 
--   **Aktiva** : indique si la tâche est active (peut être lancée
-    par Jeedom) ou non
+-   **Aktiva** : Gibt an, ob die Aufgabe aktiv ist (kann gestartet werden
+    von Jeedom) oder nicht
 
--   **PID** : indique le process ID actuel
+-   **PID** : gibt die aktuelle Prozess-ID an
 
--   **Dämon** : si cette case est à "oui" alors la tâche doit toujours
-    être en cours. A côté, vous retrouvez la fréquence du démon, il est
-    conseillé de ne jamais toucher cette valeur et surtout de ne jamais
-    la diminuer
+-   **Dämon** : Wenn dieses Feld "Ja" ist, muss die Aufgabe immer
+    in Bearbeitung sein. Als nächstes finden Sie die Frequenz des Dämons, es ist
+    Es wird empfohlen, diesen Wert niemals zu berühren und insbesondere niemals
+    verringern Sie es
 
--   **Unique** : si c'est à "oui" alors la tâche se lancera une fois
-    puis se supprimera
+-   **Single** : Wenn es "Ja" ist, wird die Aufgabe einmal gestartet
+    dann wird gelöscht
 
--   **Classe** : classe PHP appelée pour exécuter la tâche (peut
+-   **Klasse** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (can
     leer sein)
 
--   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
-    si la classe est vide)
+-   **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht)
+    wenn die Klasse leer ist)
 
--   **Programmation** : la programmation de la tâche au format CRON
+-   **Programmierung** : Programmieren der Aufgabe im CRON-Format
 
--   **Timeout** : durée maximale de fonctionnement de la tâche. Wenn die
-    tâche est un démon alors elle sera automatiquement arrêtée et
-    redémarrée à la fin du timeout
+-   **Timeout** : maximale Laufzeit der Aufgabe. Wenn die
+    Aufgabe ist ein Dämon, dann wird es automatisch gestoppt und
+    am Ende des Timeouts neu gestartet
 
--   **Letzter Start** : date de dernier lancement de la tâche
+-   **Letzter Start** : Datum des letzten Taskstarts
 
--   **Dernière durée** : dernière durée pour accomplir la tâche (un
-    démon sera toujours à 0s, il ne faut pas s'inquiéter d'autres tâches
-    peuvent être à 0s)
+-   **Letzte Dauer** : letztes Mal, um die Aufgabe abzuschließen (a
+    Dämon wird immer bei 0 sein, also mach dir keine Sorgen über andere Aufgaben
+    kann 0s sein)
 
--   **Status** : état actuel de la tâche (pour rappel, une tâche démon
-    est toujours à "run")
+-   **Status** : aktueller Status der Aufgabe (zur Erinnerung eine Daemon-Aufgabe
+    ist immer noch "laufen")
 
--   **Suppression** : permet de supprimer la tâche
+-   **Unterdrückung** : Aufgabe löschen
 
 
-# Listener
+# Zuhörer
 
-Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évenement (mise à jour d'une commande...)
+Die Zuhörer sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)

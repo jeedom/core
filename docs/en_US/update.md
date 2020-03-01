@@ -1,29 +1,29 @@
 Description 
 ===========
 
-The **centre de update** permet de mettre up to date toutes les
-fonctionnalités de Jeedom, incluant le logiciel de base (core), les
-plugins, les widgets, etc. D'autres fonctions de gestion des extensions
-sont diponibles (supprimer, réinstaller, vérifier, etc)
+The **update center** allows you to update all
+Jeedom features, including core software,
+plugins, widgets, etc.. Other extension management functions
+are available (delete, reinstall, check, etc.)
 
-La page du Centre de update 
+The Update Center page 
 ================================
 
-Elle est accessible par le menu **Administration → Centre de mise à
+It is accessible from the menu **Administration → Updating center
 day**.
 
-You there trouverez, sur la gauche, l'ensemble des fonctionnalités de
-Jeedom et sur la droite une partie **information** qui décrit ce qu'il
-s'est passé, quand vous avez lancé une update.
+You will find, on the left, all the functionalities of
+Jeedom and on the right part **information** who describes what he
+happened, when you launched an update.
 
-Thes fonctions du haut de la page. 
+Functions at the top of the page. 
 ---------------------------------
 
-En haut du tableau, se trouvent les boutons de commande. Jeedom se
-connecte périodiquement avec le Market pour voir si des mises up to date
-sont disponibles (la date de dernière vérification est indiquée en haut
-à gauche du tableau). Si vous voulez réaliser une vérification manuelle,
-you can press the button &quot;Check for updates&quot;.
+At the top of the table are the control buttons. Jeedom se
+periodically connect with the Market to see if any updates
+are available (the date of the last check is indicated at the top
+left of the table). If you want to perform a manual check,
+you can press the button "Check for updates".
 
 The button **Update** allows to update the set of
 Jeedom. Once you click on it, we get these different
@@ -106,7 +106,7 @@ every element :
 > **Tip**
 >
 > Note that &quot;core : jeedom &quot;means&quot; updating the software
-> Jeedom base &quot;.
+> Jeedom base".
 
 Command line update 
 ================================

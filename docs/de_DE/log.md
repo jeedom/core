@@ -31,7 +31,7 @@ Tasten :
 > ! Wenn Sie es löschen (zum Beispiel in der Befehlszeile), wird es nicht
 > nicht neu erstellen, müssen Sie das System neu starten.
 
-Das &quot;Ereignis&quot; -Protokoll 
+Das Ereignisprotokoll" 
 ==============
 
 Das &quot;Ereignis&quot; -Protokoll ist etwas Besonderes. Zuallererst damit es

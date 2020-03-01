@@ -19,7 +19,7 @@ URLs.
 >
 > For all this documentation, \ #API \ _KEY \ # corresponds to your key
 > API, specific to your installation. To find it, you have to go to
-> the &quot;General&quot; menu → &quot;Configuration&quot; → &quot;General&quot; tab.
+> the "General" menu → "Configuration" → "General" tab".
 
 Scenario 
 ========
@@ -31,11 +31,11 @@ Here is the URLs =
     page of the scenario concerned, in &quot;tools&quot; → &quot;Scenarios&quot;, once the
     selected scenario, next to the name of the &quot;General&quot; tab. Other
     way to find it : in &quot;Tools&quot; → &quot;Scenarios&quot;, click on
-    &quot;Overview&quot;.
+    "Overview".
 
 -   **action** : corresponds to the action you want to apply. The
-    available orders are : &quot;start&quot;, &quot;stop&quot;, &quot;deactivate&quot; and
-    &quot;activate&quot; to respectively start, stop, deactivate or
+    available orders are : "start "," stop "," deactivate "and
+    "activate "to start, stop, deactivate or
     activate the scenario.
 
 -   **tags** \[optional\] : if the action is &quot;start&quot;, you can skip

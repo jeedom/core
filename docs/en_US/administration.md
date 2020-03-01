@@ -8,7 +8,7 @@ General
 
 In this tab we find general information about Jeedom :
 
--   **Name of your Jeedom** : Lets identify your Jeedom,
+-   **Name of your Jeedom** : Identify your Jeedom,
     especially in the market. It can be reused in scenarios
     or identify a backup.
 
@@ -20,13 +20,13 @@ In this tab we find general information about Jeedom :
     Jeedom on the market, it is advisable to click on the button
     **Reset**.
 
--   **Language** : Language used in your Jeedom.
+-   **Theanguage** : Theanguage used in your Jeedom.
 
 -   **Generate translations** : Generate translations,
     be careful, this can slow down your system. Most useful option
     for developers.
 
--   **Lifetime of sessions (hour)** : lifetime of sessions
+-   **Theifetime of sessions (hour)** : lifetime of sessions
     PHP, it is not recommended to touch this parameter.
 
 -   **Date and hour** : Choose your time zone. You can
@@ -59,10 +59,10 @@ your Jeedom. Core has two API keys :
 For each plugin API key, as well as for the HTTP, JsonRPC and APIs
 TTS, you can define their scope :
 
--   **disabled** : the API key cannot be used,
+-   **disabled** : API key cannot be used,
 
 -   **White IP** : only a list of IPs is authorized (see
-    Administration → Settings → Networks)
+    Administration → Settings → Networks),
 
 -   **localhost** : only requEasts from the system on which is
     installed Jeedom are allowed,
@@ -98,11 +98,11 @@ Two parts reserved for experts are present in this tab.
 security 
 ========
 
-LDAP 
+TheDAP 
 ----
 
--   **Enable LDAP authentication** : enable authentication to
-    through an AD (LDAP)
+-   **Enable TheDAP authentication** : enable authentication to
+    through an AD (TheDAP)
 
 -   **Host** : server hosting the AD
 
@@ -116,7 +116,7 @@ LDAP
 -   **Password** : password for Jeedom to connect to AD
 
 -   **User search fields** : search fields of
-    user login. Usually uid for LDAP, samaccountname for
+    user login. Usually uid for TheDAP, samaccountname for
     Windows AD
 
 -   **Filter (optional)** : filter on the AD (for managing
@@ -137,7 +137,7 @@ log in
 -   **Duration of banishment (in seconds), -1 for infinity** : time to
     IP ban
 
--   **&quot;White&quot; IP** : list of IPs that can never be banned
+-   **IP "white"** : list of IPs that can never be banned
 
 -   **Remove banned IPs** : Clear the list of IPs
     currently banned
@@ -151,8 +151,8 @@ networks
 
 It is absolutely necessary to correctly configure this important part of
 Jeedom, otherwise many plugins may not work. he
-is possible to access Jeedom in two different ways : The**access
-internal** (from the same local network as Jeedom) and**access
+is possible to access Jeedom in two different ways : The'**access
+internal** (from the same local network as Jeedom) and l'**access
 external** (from another network, in particular from the Internet).
 
 > **Important**
@@ -168,20 +168,20 @@ external** (from another network, in particular from the Internet).
 > support.
 
 -   **Internal access** : information for joining Jeedom from a
-    same network equipment as Jeedom (LAN)
+    same network equipment as Jeedom (TheAN)
 
     -   **OK / NOK** : indicates whether the internal network configuration is
         correct
 
     -   **Protocol** : the protocol to use, often HTTP
 
-    -   **URLs or IP address** : Jeedom IP to enter
+    -   **URThes or IP address** : Jeedom IP to enter
 
     -   **Harbor** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual port of
         Jeedom which will remain the same
 
-    -   **Complement** : the fragment of additional URLs (example
+    -   **Complement** : the fragment of additional URThes (example
         : / jeedom) to access Jeedom.
 
 -   **External access** : information to reach Jeedom from outside
@@ -193,10 +193,10 @@ external** (from another network, in particular from the Internet).
 
     -   **Protocol** : protocol used for outdoor access
 
-    -   **URLs or IP address** : External IP, if it is fixed. If not,
-        give the URLs pointing to the external IP address of your network.
+    -   **URThes or IP address** : External IP, if it is fixed. If not,
+        give the URThes pointing to the external IP address of your network.
 
-    -   **Complement** : the fragment of additional URLs (example
+    -   **Complement** : the fragment of additional URThes (example
         : / jeedom) to access Jeedom.
 
 > **Tip**
@@ -301,7 +301,7 @@ Historical
     store the new calculated value by deleting the
     averaged values.
 
--   **Low trend calculation threshold** : This value indicates the
+-   **Theow trend calculation threshold** : This value indicates the
     value from which Jeedom indicates that the trend is towards
     downward. It must be negative (default -0.1).
 
@@ -326,9 +326,9 @@ Historical
 push 
 ----
 
-**Global push URLs** : allows to add a URLs to call in case of
+**Global push URThes** : allows to add a URThes to call in case of
 order update. You can use the following tags :
-**\ #Value \#** for the value of the order, **\ #Cmd \ _name \#** for the
+**\ #Value \#** for the order value, **\ #Cmd \ _name \#** for the
 command name, **\ #Cmd \ _id \#** for the unique identifier of the
 ordered, **\ #Humanname \#** for the full name of the order (ex :
 \ # \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \ #), `# eq_name #` for the name of the equipment
@@ -457,7 +457,7 @@ Here are the different options available :
     the breakdown of an interaction containing several quEastions. You
     give here the words that separate the different quEastions.
 
--   **Activate &quot;Notify Me&quot; interactions** : Check to activate
+-   **Activate "Notify Me" interactions"** : Check to activate
     type interactions **Warn me**.
 
 -   **&quot;Tell me&quot; response if the sentence starts with** : If the
@@ -469,7 +469,7 @@ Here are the different options available :
     for a type interaction **Warn me** (used, in particular,
     if you have programmed the alert via the mobile interface)
 
--   **Synonym for objects** : List of synonyms for objects
+-   **Synonym for objects** : Theist of synonyms for objects
     (ex : ground floor | ground floor | basement | downstairs; bathroom | bathroom).
 
 -   **Synonym for equipment** : Synonyms list for
@@ -478,7 +478,7 @@ Here are the different options available :
 -   **Synonym for orders** : Synonyms list for
     the orders.
 
--   **Synonym for abstracts** : List of synonyms for summaries.
+-   **Synonym for abstracts** : Theist of synonyms for summaries.
 
 -   **Synonym for maximum slider command** : Synonym for putting a
     maximum slider type command (ex opens to opens the shutter
@@ -534,7 +534,7 @@ equipment, objects, etc..
 
 -   **Depth for variables** : Same for variables.
 
--   **Parameter of prerender** : Lets act on the layout
+-   **Parameter of prerender** : Theets act on the layout
     of the graph.
 
 -   **Render parameter** : Same.
@@ -548,13 +548,13 @@ objects :
 
 -   **Key** : Key to the summary, especially not to touch.
 
--   **Last name** : Abstract name.
+-   **Theast name** : Abstract name.
 
 -   **Calculation** : Calculationation method, can be of type :
 
     -   **Sum** : sum the different values,
 
-    -   **Average** : averages the values,
+    -   **Average** : averages values,
 
     -   **Text** : display the value verbatim (especially for those
         string type).
@@ -573,7 +573,7 @@ objects :
 -   **Show if value is 0** : Check this box to display the
     value, even when it is 0.
 
--   **Link to a virtual** : Start creating virtual orders
+-   **Theink to a virtual** : Start creating virtual orders
     having for value those of the summary.
 
 -   **Delete summary** : The last button, on the far right, allows
@@ -653,7 +653,7 @@ log
     fill the file system and / or render Jeedom incapable
     to display the log.
 
--   **Default log level** : When you select &quot;Default&quot;,
+-   **Default log level** : When you select "Default",
     for the level of a log in Jeedom, this is the one that will be
     then used.
 
@@ -704,7 +704,7 @@ Deposit used to connect Jeedom to Github.
 
 -   **token** : token for access to private deposit.
 
--   **Jeedom core repository user or organization** : Last name
+-   **Jeedom core repository user or organization** : Theast name
     the user or the organization on github for the core.
 
 -   **Repository name for the Jeedom core** : Repository name for core.
@@ -723,7 +723,7 @@ refused if you use a different deposit than this one.
 
 -   **Password** : Your Market password.
 
--   **[Backup cloud] Last name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
+-   **[Backup cloud] Theast name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
 
 -   **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will not be able to rEastore your Jeedom
 
@@ -788,10 +788,10 @@ a Samba share (ex : NAS Synology).
 > first backup, the folder must not contain any file or
 > folder).
 
-### URLs 
+### URThes 
 
--   **Jeedom core URLs**
+-   **Jeedom core URThes**
 
--   **Jeedom core version URLs**
+-   **Jeedom core version URThes**
 
 

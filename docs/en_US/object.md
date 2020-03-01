@@ -74,7 +74,7 @@ Here are the different characteristics to configure an object :
 > **Tip**
 >
 > You can see a graph representing all the elements of Jeedom
-> attached to this object by clicking on the button **Connections**, above at
+> attached to this object by clicking on the button **Connections**, up at
 > right.
 
 > **Tip**

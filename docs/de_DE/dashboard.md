@@ -1,48 +1,48 @@
-Une des pages principales de Jeedom affiche un compte-rendu de toute
-votre domotique. Ce compte-rendu (contrairement aux vues et design) est
-auto-généré par Jeedom.
+Auf einer der Hauptseiten von Jeedom wird ein Bericht über alle angezeigt
+Ihre Hausautomation. Dieser Bericht ist (im Gegensatz zu den Ansichten und dem Design)
+selbst erzeugt von Jeedom.
 
-Il est accessible en cliquant sur **Accueil → Dashboard**
-
-> **Spitze**
->
-> Il est possible d'aller directement sur un objet de votre domotique.
-> Cela permet de n'avoir que les équipements qui vous intéressent et
-> donc de charger la page plus rapidement
-
--   Vous avez en haut à gauche une petite icône pour faire
-    afficher/masquer l'arbre des objets (celui-ci affiche aussi les
-    informations des résumés d'objet)
-
--   Au milieu, vous pouvez choisir de ne filtrer que sur certains types
-    d'équipements
-
--   A droite, un premier bouton pour passer en mode édition, pour par
-    exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé
-    sur le widget), vous pouvez aussi dans ce mode édition
-    redimensionner certains widgets et réorganiser l'ordre des commandes
-    à l'intérieur de celui-ci
-
--   Un deuxième bouton pour afficher/masquer les scénarios
-
--   En cliquant sur un résumé d'objet, vous filtrez pour n'afficher que
-    les équipements ayant pour parent cet objet et qui concernent ce
-    résumé d'objet.
-
--   Un clic sur une commande de type information permet d'afficher
-    l'historique de la commande (si elle est historisée)
+Sie können darauf zugreifen, indem Sie auf klicken **Home → Dashboard**
 
 > **Spitze**
 >
-> Il est possible, à partir de votre profil, de configurer Jeedom pour
-> que l'arbre des objets et/ou les scénarios soient visibles par défaut
-> lorsque vous arrivez sur le Dashboard
+> Es ist möglich, direkt zu einem Objekt in Ihrer Hausautomation zu gelangen.
+> Dies ermöglicht es Ihnen, nur die Ausrüstung zu haben, die Sie interessiert und
+> Laden Sie die Seite also schneller
+
+-   Oben links haben Sie ein kleines Symbol zu tun
+    Ein- / Ausblenden des Baums von Objekten (dies zeigt auch das an
+    Objektzusammenfassungsinformationen)
+
+-   In der Mitte können Sie festlegen, dass nur nach bestimmten Typen gefiltert wird
+    Ausrüstung
+
+-   Rechts eine erste Schaltfläche zum Umschalten in den Bearbeitungsmodus auf Par
+    Beispiel: Ändern Sie die Reihenfolge der Widgets (mit einem Klick
+    im Widget) können Sie auch in diesem Bearbeitungsmodus
+    Ändern Sie die Größe einiger Widgets und ändern Sie die Reihenfolge der Befehle
+    drinnen
+
+-   Eine zweite Schaltfläche zum Ein- / Ausblenden der Szenarien
+
+-   Durch Klicken auf eine Objektzusammenfassung wird nur zur Anzeige gefiltert
+    Geräte, die sich auf dieses Objekt beziehen und sich darauf beziehen
+    Themenübersicht.
+
+-   Ein Klick auf einen Befehl vom Typ Information wird angezeigt
+    die Bestellhistorie (falls historisch)
 
 > **Spitze**
 >
-> En mobile un appui long sur une commande de type info permet
-> d'afficher un menu vous proposant soit d'afficher l'historique de la
-> commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
+> In Ihrem Profil können Sie Jeedom für konfigurieren
+> Der Objektbaum und / oder die Szenarien sind standardmäßig sichtbar
+> wenn Sie auf das Dashboard gelangen
+
+> **Spitze**
+>
+> In Mobilgeräten ermöglicht ein langes Drücken auf einen Befehl vom Typ Info
+> Zeigen Sie ein Menü an, das entweder den Verlauf des
+> Befehl, oder setzen Sie einen Alarm darauf, damit Sie Freiheit
 > warnen (nur einmal), sobald der Wert einen bestimmten Schwellenwert überschreitet
 
 Bearbeitungsmodus 

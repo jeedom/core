@@ -88,7 +88,7 @@ security
 
 Here you have the list of your currently connected sessions, their ID,
 their IP and the date of last communication. Clicking on
-&quot;Logout&quot; will log out the user. Attention if it is on
+"Disconnect "this will disconnect the user. Attention if it is on
 a registered device this will also delete the recording.
 
 ### Registered devices 

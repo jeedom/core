@@ -21,7 +21,7 @@ botones :
 -   **vaciar** : permite vaciar el registro actual,
 
 -   **remove** : eliminar el registro actual, si Jeedom tiene alguna
-    si lo necesita, lo recreará automáticamente
+    necesitarlo lo recreará automáticamente,
 
 -   **Eliminar todos los registros** : eliminar todos los registros presentes.
 
@@ -31,7 +31,7 @@ botones :
 > ! si lo elimina (en la línea de comando, por ejemplo) no lo hará
 > no recrearse, debes reiniciar el sistema.
 
-El registro &quot;Evento&quot; 
+El registro de eventos" 
 ==============
 
 El registro &quot;Evento&quot; es un poco especial. En primer lugar para que

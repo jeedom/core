@@ -3567,10 +3567,10 @@
         "Alertes": "Alertas"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "Error de CURL:",
-        " sur la commande ": "en la orden",
-        " après ": "después",
-        " relance(s)": "holgura (s)",
-        "Echec de la requête HTTP : ": "Error en solicitud HTTP:"
+        "Rafraichir": "refrescar",
+        "Version desktop": "Versión de escritorio",
+        "Démons": "demonios",
+        "Santé": "salud",
+        "Alertes": "Notificaciones"
     }
 }

@@ -220,7 +220,7 @@ eqLogic::byTypeAndId
 
 Gibt eine Gerätetabelle gemäß den Parametern zurück. Die Rückkehr
 wird vom Formulararray sein (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒
-Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))…., id1 ⇒
+Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 Array (....)) ..)
 
@@ -243,7 +243,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge logische ID = &#39;&#39;
+-   Zeichenfolge logische ID = ''
 
 -   int Objekt \ _id = null
 
@@ -365,7 +365,7 @@ Einstellungen:
 
 -   int isHistorized = 0
 
--   string unite = &#39;&#39;
+-   String-Einheit = ''
 
 -   Array-Konfiguration
 
@@ -500,7 +500,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für das insgesamte (Wert für die Standardszenarien,
+-   id linkId : -1 für insgesamt (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -515,7 +515,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für das insgesamte (Wert für die Standardszenarien,
+-   id linkId : -1 für insgesamt (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -548,7 +548,7 @@ Einstellungen:
 
 -   Abfrage (Anforderungsphrase)
 
--   int reply \ _cmd = NULL : ID des Befehls, mit dem geantwortet werden soll,
+-   int reply \ _cmd = NULL : Befehls-ID, die zum Antworten verwendet werden soll,
     Wenn nicht angegeben, sendet Jeedom Ihnen die Antwort im JSON
 
 interactQuery::alle
@@ -722,10 +722,10 @@ Dies vereinfacht die Verwendung der API.
 Abrufen der ObjektListee :
 
 ``` {.php}
-$ jsonrpc = neuer jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::alle &#39;, array ())) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::alle &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
-} Else {
+}sonst{
     echo $ jsonrpc-&gt; getError ();
 }
 ```
@@ -733,10 +733,10 @@ if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::alle &#39;, array ())) {
 Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 ``` {.php}
-$ jsonrpc = neuer jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=&gt; # cmd_id #,&#39; options &#39;=&gt; array (&#39; title &#39;=&gt;&#39; Cuckoo &#39;,&#39; Nachricht &#39;=&gt;&#39; It works &#39;))) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
     Echo &#39;OK&#39;;
-} Else {
+}sonst{
     echo $ jsonrpc-&gt; getError ();
 }
 ```

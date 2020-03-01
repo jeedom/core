@@ -22,8 +22,8 @@ Funciones en la parte superior de la página..
 En la parte superior de la tabla están los botones de control.. Jeedom se
 conectarse periódicamente con Market para ver si hay actualizaciones
 están disponibles (la fecha de la última verificación se indica en la parte superior
-izquierda de la mesa). Si quieres hacer una verificación manual,
-puedes presionar el botón &quot;Buscar actualizaciones&quot;.
+izquierda de la mesa). Si desea realizar una verificación manual,
+puedes presionar el botón "Buscar actualizaciones".
 
 El botón **Poner al día** permite actualizar el conjunto de
 Jeedom. Una vez que hace clic en él, obtenemos estos diferentes
@@ -106,7 +106,7 @@ cada elemento :
 > **punta**
 >
 > Tenga en cuenta que &quot;núcleo : jeedom &quot;significa&quot; actualizar el software
-> Base de la libertad &quot;.
+> Base Jeedom".
 
 Actualización de línea de comando 
 ================================

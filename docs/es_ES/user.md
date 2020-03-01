@@ -48,7 +48,7 @@ Abajo tienes una mesa :
 
 -   **Administrar derechos** : permite gestionar con precisión los derechos de
     el usuario (atención los perfiles deben estar en
-    &quot;usuario limitado&quot;)
+    "usuario limitado ")
 
 Gestión de derechos 
 ==================

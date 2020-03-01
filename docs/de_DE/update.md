@@ -23,7 +23,7 @@ Am oberen Rand der Tabelle befinden sich die Steuertasten. Jeedom se
 Stellen Sie regelmäßig eine Verbindung zum Markt her, um festzustellen, ob Aktualisierungen vorliegen
 verfügbar sind (das Datum der letzten Prüfung ist oben angegeben
 links von der Tabelle). Wenn Sie eine manuelle Überprüfung durchführen möchten,
-Sie können die Schaltfläche &quot;Nach Updates suchen&quot; drücken..
+Sie können die Taste "Nach Updates suchen" drücken".
 
 Die Schaltfläche **Update** ermöglicht das Aktualisieren des Satzes von
 Jeedom. Sobald Sie darauf klicken, erhalten wir diese unterschiedlich
@@ -106,7 +106,7 @@ jedes Element :
 > **Spitze**
 >
 > Beachten Sie, dass &quot;Kern : jeedom &quot;bedeutet&quot; das Aktualisieren der Software
-> Jeedom Basis &quot;.
+> Jeedom Basis".
 
 Befehlszeilenaktualisierung 
 ================================

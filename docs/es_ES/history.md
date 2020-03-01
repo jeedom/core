@@ -161,10 +161,10 @@ Para verlos, primero debe activar el seguimiento en la línea de tiempo de
 comandos o escenarios deseados :
 
 -   **guión** : ya sea directamente en la página del escenario o en el
-    página de resumen del escenario para hacerlo &quot;en masa&quot;
+    página de resumen del escenario para hacerlo en "masa"
 
 -   **orden** : ya sea en la configuración avanzada del comando,
-    ya sea en la configuración de la historia para hacerlo en &quot;masa&quot;
+    ya sea en la configuración de la historia para hacerlo en "masa"
 
 > **punta**
 >

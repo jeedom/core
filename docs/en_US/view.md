@@ -86,7 +86,7 @@ which will ask you for the widget to add
 Graphic type area 
 ----------------------
 
-A graphic area allows you to add graphics to your view,
+A graphics-type area allows you to add graphics to your view,
 she has the following options :
 
 -   **Period** : allows you to choose the display period for

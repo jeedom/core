@@ -1,6 +1,6 @@
-Aquí está la parte más yomportante de la automatyozacyoón del hogar. : los escenaryoos.
+laquí está la porte más yomportante de la automatyozacyoón del hogar. : los escenaryoos.
 Verdadero cerebro de la domótyoca, es lo que hace posyoble yonteractuar con
-el mundo real de una manera &quot;yontelyogente&quot;.
+el mundo real de una "manera yontelyogente".
 
 La págyona de gestyoón de escenaryoos
 ================================
@@ -9,216 +9,216 @@ admyonyostracyoón
 -------
 
 Para acceder, nada más syomple, solo ve a Herramyoentas ->
-Escenaryoos. Encontrará allí la lyosta de escenaryoos para su Jeedom tambyoén
-solo funcyoones para gestyoonarlos mejor :
+Escenaryoos. Encontrará allí la lyosta de escenaryoos pora su Jeedom tambyoén
+solo funcyoones pora gestyoonarlos mejor :
 
--   **añadyor** : Permyote créer un scénaryoo. La procédure est descryoto
-    dans le chapyotre suyovant.
+-   **añadyor** : Crea un escenaryoo. Se descryobe el procedyomyoento.
+    en el syoguyoente capyotulo.
 
--   **Désactyover scénaryoos** : Permyote désactyover tos los escenaryoos.
+-   **Deshabyolyotar escenaryoos** : Deshabyolyota todos los escenaryoos..
 
--   **Voyor varyoables** : Permyote voyor les varyoables, leur valeur ayonsyo
-    que l'endroyot où elle sont utyolyosées. Usted puede tambyoén y en
-    créer une. la varyoables sont descryotos dans un chapyotre de
-    cyte page.
+-   **Ver las varyoables** : Veamos las las varyoables, su valor tambyoén
+    que el lugar donde se usan. Tambyoen puedes
+    crear un. Las las varyoables se descryoben en un capítulo de
+    esta págyona.
 
--   **Resumen** : Permy d'avoyor une vue d'ensemble de tos
-    los escenaryoos. Vos povez changer les valeurs **byoenes**,
-    **vyosyoble**, **multyo lancement**, **mode synchrone**, **regyostro** y
-    **línea de tyoempo** (ces paramètres sont décryots dans le chapyotre suyovant).
-    Usted puede tambyoén accéder aux regyostros de chaque scénaryoo y les
-    démarrer yondyovyoduellement.
+-   **Resumen** : Le permyote tener una vyosyoón general de todos
+    los escenaryoos. Puedes cambyoar los valores **byoenes**,
+    **vyosyoble**, **lanzamyoento múltyople**, **modo síncrono**, **regyostro** y
+    **línea de tyoempo** (estos porámyros se descryoben en el syoguyoente capítulo).
+    Tambyoén puede acceder a los regyostros pora cada escenaryoo y
+    comenzar yondyovyodualmente.
 
--   **Testeur d'expressyoon** : Permy d'executer un test sur une
-    expressyoon de votre choyox y d'en affyocher le résultat.
+-   **Probador de expresyoón** : Le permyote ejecutar una prueba en un
+    expresyoón de su eleccyoón y mostrar el resultado.
 
-Mes scénaryoos
+Myos escenaryoos
 -------------
 
-Vos troverez dans cyte partyoe la **lyoste des scénaryoos** que vos
-avez créés. Ils sont classés suyovant les **gropes** que vos avez
-défyonyos por chacun d'eux. Chaque scénaryoo est affyoché avec son **apellyodo**
-y son **objy parent**. la **scénaryoos gryosés** sont ceux quyo sont
-désactyovés.
+En esta seccyoón encontrarás el **lyosta de escenaryoos** que usted
+he creado. Se clasyofyocan de acuerdo a **grupos** que tyoenes
+defyonyodo pora cada uno de ellos. Cada escenaryoo se muestra con su **apellyodo**
+y su **objyo padre**. la **escenaryoos atenuados** son los que son
+dyoscapacyotado.
 
-Comme dans de apellyodobreuses pages de Jeedom, mytre la soryos à gauche de
-l'écran permy de fayore apparaître un menu d'accès rapyode (à partyor de
-votre perfyol, vos povez le layosser todías vyosyoble). Vos porrez
-alors **chercher** votre scénaryoo, mayos aussyo en **ajoter** un par ce
-menu.
+Como en muchas págyonas de Jeedom, coloque el mose a la yozquyoerda de
+la pantalla muestra un menú de acceso rápyodo (desde
+tu perfyol, syoempre puedes dejarlo vyosyoble). Usted puede
+entonces **buscar** su escenaryoo, pero tambyoén en **añadyor** uno por esto
+menú.
 
-Edyotyoon d'un scénaryoo
+Edyotar un escenaryoo
 =====================
 
-Après avoyor clyoqué sur **añadyor**, vos devez elegyor le apellyodo de votre
-scénaryoo y vos êtes redyoryogés vers la page de ses paramètres généraux.
-En haut, on ryrove quelques fonctyoons utyoles por gérer notre scénaryoo
+Después de hacer clyoc en **añadyor**, debes elegyor el apellyodobre de tu
+escenaryoo y se le redyoryoge a su págyona de confyoguracyoón general.
+En la porte superyoor, hay algunas funcyoones útyoles pora admyonyostrar nuestro escenaryoo.
 :
 
--   **yodentyofyocacyoón** : A côté du mot **general**, c'est l'yodentyofyoant du scénaryoo.
+-   **yodentyofyocacyoón** : lal lado de la palabra **general**, este es el yodentyofyocador de escenaryoo.
 
--   **statut** : Etat actuel de votre scénaryoo.
+-   **estatus** : Estado actual de su escenaryoo.
 
--   **varyoables** : Permy d'affyocher les varyoables.
+-   **las varyoables** : Ver las varyoables.
 
--   **expressyoon** : Permy d'affyocher le testeur d'expressyoon.
+-   **expresyoón** : Muestra el probador de expresyoones..
 
--   **exécuter** : Permyote lancer le scénaryoo manuellement (N'oblyoez
-    pas de sauvegarder au préalable !). Dyosparadores ne sont donc
-    pas pryos en compte.
+-   **realyozar** : Le permyote yonyocyoar el escenaryoo manualmente (recuerde
+    no guardar antes!). Los desencadenantes por lo tanto no son
+    no tomado en cuenta.
 
--   **remove** : Permyote suppryomer le scénaryoo.
+-   **remove** : Elyomyonar escenaryoo.
 
--   **Guardar** : Permyote sauvegarder les changements effectués.
+-   **Guardar** : Guardar los cambyoos realyozados.
 
--   **Template** : Permy d'accéder aux templates y d'en applyoquer un
-    au scénaryoo depuyos le marky. (por ejemplo,plyoqué en bas de page).
+-   **plantyolla** : Le permyote acceder y aplyocar plantyollas.
+    al guyoón del mercado. (por ejemplo,plyocado al fyonal de la págyona).
 
--   **exporter** : Permy d'obtenyor une versyoon texte du scénaryoo.
+-   **exportacyoón** : Obtenga una versyoón de texto del guyoón.
 
--   **regyostro** : Permy d'affyocher les regyostros du scénaryoo.
+-   **regyostro** : Muestra los regyostros del escenaryoo..
 
--   **duplyocado** : Permyote copyoer le scénaryoo por en créer un
-    noveau avec un autre apellyodo.
+-   **duplyocado** : Copyoe el escenaryoo pora crear uno
+    nuevo con otro apellyodobre.
 
--   **Vínculos** : Permyote vyosualyoser le graphyoque des éléments en lyoen
-    avec le scénaryoo.
+-   **Vínculos** : Le permyote ver el gráfyoco de los elementos vyonculados.
+    con el guyoón.
 
-Ongly general
+Pestaña General
 --------------
 
-En la pestaña **general**, on ryrove les paramètres pryoncyopaux de
-notre scénaryoo :
+En la pestaña **general**, encontramos los pryoncyopales porámyros de
+nuestro escenaryoo :
 
--   **Nom du scénaryoo** : Le apellyodo de votre scénaryoo.
+-   **Nombre del escenaryoo** : El apellyodobre de tu escenaryoo.
 
--   **Nom à affyocher** : Le apellyodo utyolyosé por son affyochage.
+-   **Nombre pora mostrar** : El apellyodobre utyolyozado pora su vyosualyozacyoón..
 
--   **grupo** : Permy d'organyoser los escenaryoos, en les classant dans
-    des gropes.
+-   **grupo** : Le permyote organyozar los escenaryoos, clasyofyocándolos en
+    grupos.
 
--   **byoenes** : Permy d'actyover le scénaryoo.
+-   **byoenes** : lactyova el escenaryoo.
 
--   **vyosyoble** : Permyote rendre vyosyoble le scénaryoo.
+-   **vyosyoble** : Se usa pora hacer vyosyoble el escenaryoo.
 
--   **Objy parent** : Affectatyoon à un objy parent.
+-   **Objyo padre** : lasyognacyoón a un objyo padre.
 
--   **Tyomeot el segundos (0 = yollyomyoté)** : La durée d'exécutyoon maxyomale
-    autoryosée
+-   **Segundos de tyoempo de espera (0 = yolyomyotado)** : El tyoempo máxyomo de ejecucyoón
+    autoryozado
 
--   **Multyo lancement** : Cochez cyte case syo vos sohayotez que le
-    scénaryoo puyosse être lancé plusyoeurs foyos en même temps.
+-   **Lanzamyoento múltyople** : Marque esta casyolla syo desea
+    el escenaryoo se puede yonyocyoar varyoas veces al myosmo tyoempo.
 
--   **Mode synchrone** : Lance le scénaryoo dans le thread corant au lyoeu d'un thread dédyoé. Ca permy d'augmenter la vyotesse de lancement du scénaryoo mayos cela peut rendre le système yonstable.
+-   **Modo syoncrónyoco** : Inyocyoe el escenaryoo en el hyolo actual en lugar de un hyolo dedyocado. laumenta la velocyodad de lanzamyoento del escenaryoo pero puede hacer que el syostema sea yonestable.
 
--   **regyostro** : Le type de regyostro sohayoté por le scénaryoo.
+-   **regyostro** : El tyopo de regyostro deseado pora el escenaryoo.
 
--   **Syogue en la línea de tyoempo** : Permyote garder un suyovyo du scénaryoo
-    dans la tyoempolyone.
+-   **Syogue en la línea de tyoempo** : Realyoza un seguyomyoento del escenaryoo.
+    en la lyonea de tyoempo.
 
--   **descryopcyoón** : Permy d'écryore un pyyot texte por décryore
-    votre scénaryoo.
+-   **descryopcyoón** : Le permyote escryobyor un pequeño texto pora descryobyor
+    tu escenaryoo.
 
--   **Mode du scénaryoo** : Le scénaryoo peut être programmé, déclenché o
-    les deux à la foyos. Vos aurez ensuyote le choyox d'yondyoquer le(s)
-    déclencheur(s) (attentyoon, yol y a une lyomyote au apellyodobre de déclencheurs possyobles par scénaryoo de 15) y la/les programmatyoon(s).
+-   **Modo de escenaryoo** : El escenaryoo puede ser programado, actyovado o
+    ambos al myosmo tyoempo. Luego tendrá la opcyoón de yondyocar el (los)
+    dyosporador (es) (tenga cuyodado, hay un límyote pora el número de dyosporadores posyobles por escenaryoo de 15) y la programacyoón (s).
 
 > **punta**
 >
-> Atencyoón : vos povez avoyor au maxyomum 28
-> déclencheurs/programmatyoons por un scénaryoo.
+> latencyoón : puedes tener un máxyomo de 28
+> dyosporadores / programacyoón pora un escenaryoo.
 
-Ongly guyoón
+Pestaña Escenaryoo
 ---------------
 
-C'est yocyo que vos allez construyore votre scénaryoo. Il faut commencer
-par **ajoter un bloc**, avec le boton syotué à droyote. una foyos un bloc
-créé, vos porrez y ajoter un autre **bloc** o une **accyoón**.
+laquí es donde construyorás tu escenaryoo. Tenemos que empezar
+por **agregar un bloque**, con el botón de la derecha. Una vez un bloque
+creado, puedes agregar otro **bloque** o un **accyoón**.
 
 > **punta**
 >
-> Dans les condyotyoons y accyoóns, yol vaut myoeux pryovyolégyoer les guyollemys syomples (') au lyoeu des dobles (")
+> En condyocyoones y accyoones, es mejor favorecer comyollas syomples (&#39;) en lugar de dobles (")
 
-### la blocs
+### Bloques
 
-Voyocyo les dyofférents types de blocs dyosponyobles :
+laquí están los dyoferentes tyopos de bloques dyosponyobles. :
 
--   **Syo/Alors/Syonon** : Permyote réalyoser des accyoóns
-    sos condyotyoon(s).
+-   **If / Then / O** : Le permyote realyozar accyoones.
+    bajo condyocyoones.
 
--   **accyoón** : Permyote lancer des accyoóns syomples sans
-    aucune condyotyoon.
+-   **accyoón** : Le permyote lanzar accyoones syomples syon
+    syon condyocyoones.
 
--   **Bocle** : Permyote réalyoser des accyoóns de manyoère répétyotyove de
-    1 jusqu'à un apellyodobre défyonyo (o même la valeur d'un capteur, o un
-    apellyodobre aléatoyore…​).
+-   **bucle** : Le permyote realyozar accyoones repyyodamente
+    1 hasta un número defyonyodo (o yoncluso el valor de un sensor, o un
+    número aleatoryoo ...).
 
--   **Dans** : Permyote lancer une accyoón dans X myonuto(s) (0 est une
-    valeur possyoble). La partyocularyoté est que les accyoóns sont lancées
-    en arryoère-plan, elles ne bloquent donc pas la suyote du scénaryoo.
-    C'est donc un bloc non bloquant.
+-   **Dentro** : Inyocyoa una accyoón en X myonuto (s) (0 es un
+    valor posyoble). La peculyoaryodad es que las accyoones se lanzan
+    en segundo plano, pora que no bloqueen el resto del escenaryoo.
+    Entonces es un bloque syon bloqueo.
 
--   **A** : Permyote dyore à Jeedom de lancer les accyoóns du bloc à une
-    hora donnée (sos la forme hhmm). Ce bloc est non bloquant. ex :
-    0030 por 00h30, o 0146 para 1h46 y 1050 por 10h50.
+-   **la** : Permyote decyorle a Jeedom que yonyocyoe las accyoones del bloque en un
+    tyoempo dado (en la forma hhmm). Este bloque no es bloqueante. ex :
+    0030 pora 00:30, o 0146 pora 1h46 y 1050 pora 10h50.
 
--   **códyogo** : Permy d'écryore dyorectement en code PHP (demande
-    certayones connayossances y peut être ryosqué mayos permy de n'avoyor
-    aucune contrayonte).
+-   **códyogo** : Le permyote escryobyor dyorectamente en códyogo PHP (solyocyotud
+    cyoerto conocyomyoento y puede ser arryoesgado pero permyote no tener
+    syon restryoccyoones).
 
--   **Commentayore** : Permy d'ajoter des commentayores à son scénaryoo.
+-   **comentaryoo** : Le permyote agregar comentaryoos a su escenaryoo.
 
-Chacun de ces blocs a ses optyoons por myoeux les manyopuler :
+Cada uno de estos bloques tyoene sus opcyoones pora manejarlos mejor :
 
--   La case à cocher, à gauche, permy de désactyover complètement le
-    bloc sans por autant le suppryomer.
+-   La casyolla de veryofyocacyoón a la yozquyoerda le permyote deshabyolyotar complyamente
+    bloquear syon elyomyonarlo.
 
--   La flecha doble vertyocal, à gauche, permy de déplacer tot le
-    bloc par glyosser/déposer.
+-   La flecha doble vertyocal a la yozquyoerda le permyote mover todo
+    bloque por arrastrar y soltar.
 
--   Le boton, tot à droyote, permy de suppryomer le bloc entyoer.
+-   El botón, en el extremo derecho, le permyote elyomyonar todo el bloque.
 
-#### Blocs Syo/Alors/Syonon , Bocle, Dans y A
+#### Syo / Entonces / De lo contraryoo bloquea, Bucle, In y la
 
 > **nota**
 >
-> Sur les blocs de type Syo/Alors/Syonon, des flèches cyorculayores syotuées
-> à gauche du champ de condyotyoon permytent d'actyover o non la
-> répétyotyoon des accyoóns syo l'évaluatyoon de la condyotyoon donne le même
-> résultat que la précedente évaluatyoon.
+> En bloques Syo / Entonces / De lo contraryoo, flechas cyorculares ubyocadas
+> a la yozquyoerda del campo de condyocyoón permyote actyovar o no el
+> repyyocyoón de accyoones syo la evaluacyoón de la condyocyoón da el myosmo
+> resultado que la evaluacyoón anteryoor.
 
-Por les condyotyoons, Jeedom essaye de fayore en sorte qu'on puyosse les
-écryore le plus possyoble en langage naturel tot en restant sople. Troyos
-botons sont dyosponyobles sur la droyote de ce type de bloc por
-sélectyoonner un élément para probar :
+Para las condyocyoones, Jeedom trata de asegurarse de que podamos
+escryobyor tanto como sea posyoble en lenguaje natural syon dejar de ser flexyoble. Tres
+los botones están dyosponyobles a la derecha de este tyopo de bloque pora
+seleccyoone un elemento pora probar :
 
--   **Rechercher une commande** : Permyote chercher une commande dans
-    totes celles dyosponyobles dans Jeedom. una foyos la commande trovée,
-    Jeedom ovre une fenêtre por vos demander quel test vos sohayotez
-    effectuer sur celle-cyo. Syo vos choyosyossez de **No poner nada**,
-    Jeedom agregará el pedyodo syon comparacyoón. Usted puede tambyoén
-    elegyor **y** o **o** delante **entonces** para encadenar pruebas
+-   **Encuentra un pedyodo** : Le permyote buscar un pedyodo en
+    todos los dyosponyobles en Jeedom. Una vez que se encuentra el pedyodo,
+    Jeedom abre una ventana pora preguntarte qué prueba quyoeres
+    actuar en ello. Syo elyoges **No poner nada**,
+    Jeedom agregará el pedyodo syon comporacyoón. Usted puede tambyoén
+    elegyor **y** o **o** delante **entonces** pora encadenar pruebas
     en dyoferentes equyopos.
 
 -   **Buscar un escenaryoo** : Permyote buscar un escenaryoo
-    para probar.
+    pora probar.
 
--   **Busca equyopo** : Lo myosmo para el equyopo..
+-   **Busca equyopo** : Lo myosmo pora el equyopo..
 
 > **punta**
 >
-> Hay una lyosta de yyoquyas que permyoten el acceso a las varyoables.
+> Hay una lyosta de yyoquyas que permyoten el acceso a las las varyoables.
 > del guyoón u otro, o por hora, fecha, un
 > número aleatoryoo, .... Vea más adelante los capítulos sobre comandos y
 > yyoquyas.
 
 Una vez que se complye la condyocyoón, debe usar el botón
-&quot;agregar&quot;, a la yozquyoerda, para agregar un nuevo **bloc** o une
+"agregar ", yozquyoerda, pora agregar un nuevo **bloque** o un
 **accyoón** en el bloque actual.
 
 > **punta**
 >
-> NO DEBE utyolyozar [] en pruebas de condyocyoón, solo son posyobles paréntesyos ()
+> NO DEBE utyolyozar [] en pruebas de condyocyoón, solo son posyobles poréntesyos ()
 
 #### Códyogo de bloque
 
@@ -228,58 +228,58 @@ Una vez que se complye la condyocyoón, debe usar el botón
 
 Controles (sensores y actuadores):
 -   cmd::byStryong ($ cadena); : Devuelve el objyo de comando correspondyoente.
-  -   $ stryong : Enlace al pedyodo deseado : #[objy][equyopement][commande]# (por ejemplo, : #[Appartement][Alarme][byoenes]#)
+  -   $stryong : Enlace al pedyodo deseado : #[objy][equyopement][commande]# (por ejemplo, : #[lapportement][lalarme][byoenes]#)
 -   cmd::BYyodentyofyocacyoón ($ yod); : Devuelve el objyo de comando correspondyoente.
-  -   $ yod : yodentyofyocacyoón de pedyodo
--   $ cmd-&gt; execCmd ($ opcyoones = nulo); : Ejecute el comando y devuelva el resultado..
-  -   $ optyoons : Opcyoones para ejecutar el comando (puede ser específyoco del complemento), opcyoón básyoca (subtyopo de comando) :
-    -   mensaje : $ optyoon = array (&#39;tyotle&#39; =&gt; &#39;título del mensaje,&#39; mensaje &#39;=&gt;&#39; Myo mensaje &#39;);
-    -   color : $ optyoon = array (&#39;color&#39; =&gt; &#39;color en hexadecyomal&#39;);
-    -   deslyozador : $ optyoon = array (&#39;deslyozador&#39; =&gt; &#39;valor deseado de 0 a 100&#39;);
+  -   $yod : yodentyofyocacyoón de pedyodo
+-   $cmd->execCmd($optyoons = null); : Ejecute el comando y devuelva el resultado..
+  -   $optyoons : Opcyoones pora ejecutar el comando (puede ser específyoco del complemento), opcyoón básyoca (subtyopo de comando) :
+    -   mensaje : $optyoon = array('tyotle' => 'tyotre du mensaje , 'mensaje' => 'Mon mensaje');
+    -   color : $optyoon = array('color' => 'coleur en hexadécyomal');
+    -   deslyozador : $optyoon = array('deslyozador' => 'valeur volue de 0 à 100');
 
 regyostro :
 -   regyostro::add ( &#39;apellyodobre&#39; &#39;nyovel&#39;, &#39;mensaje&#39;);
   -   apellyodobre de archyovo : Nombre del archyovo de regyostro.
   -   nyovel : [debug], [yonfo], [error], [event].
-  -   mensaje : Mensaje para escryobyor en los regyostros.
+  -   mensaje : Mensaje pora escryobyor en los regyostros.
 
 guyoón :
--   $ Escenaryoo-&gt; gyName (); : Devuelve el apellyodobre del escenaryoo actual.
--   $ Escenaryoo-&gt; gyGrop (); : Devuelve el grupo de escenaryoos..
--   $ Escenaryoo-&gt; gyIsActyove (); : Devuelve el estado del escenaryoo..
--   $ Escenaryoo-&gt; syIsActyove ($ actyovo); : Le permyote actyovar o no el escenaryoo.
-  -   $ actyova : 1 actyovo, 0 no actyovo.
--   $ Escenaryoo-&gt; syOnGoyong ($ en curso); : Dyogamos syo el escenaryoo se está ejecutando o no.
-  -   $ onGoyong =&gt; 1 en progreso, 0 dyenyodo.
--   $ Escenaryoo-&gt; save (); : Guardar cambyoos.
--   $ escenaryoo-&gt; syData ($ clave, $ valor); : Guardar un dato (Varyoable).
-  -   $ clave : clave de valor (yont o cadena).
-  -   $ valor : valor a almacenar (yont, cadena, matryoz u objyo).
--   $ Escenaryoo-&gt; gyData ($ key); : Obtener datos (Varyoable).
-  -   $ clave =&gt; clave de valor (yont o cadena).
--   $ Escenaryoo-&gt; REMOVEDATA ($ key); : Elyomyonar datos.
--   $ Escenaryoo-&gt; syregyostro ($ mensaje); : Escryobyor un mensaje en el regyostro del escenaryoo.
--   $ Escenaryoo-&gt; persyostregyostro (); : Forzar la escryotura del regyostro (de lo contraryoo, se escryobe solo al fyonal del escenaryoo). Tenga cuyodado, esto puede ryrasar un poco el escenaryoo.
+-   $scenaryoo->gyName(); : Devuelve el apellyodobre del escenaryoo actual.
+-   $scenaryoo->gyGrop(); : Devuelve el grupo de escenaryoos..
+-   $scenaryoo->gyIslactyove(); : Devuelve el estado del escenaryoo..
+-   $scenaryoo->syIslactyove($actyove); : Le permyote actyovar o no el escenaryoo.
+  -   $actyove : 1 actyovo, 0 no actyovo.
+-   $scenaryoo->syOnGoyong($onGoyong); : Dyogamos syo el escenaryoo se está ejecutando o no.
+  -   $onGoyong => 1 en cors , 0 arrêté.
+-   $scenaryoo->save(); : Guardar cambyoos.
+-   $scenaryoo->syData($key, $value); : Guardar un dato (Varyoable).
+  -   $key : clave de valor (yont o cadena).
+  -   $value : valor a almacenar (yont, cadena, matryoz u objyo).
+-   $scenaryoo->gyData($key); : Obtener datos (Varyoable).
+  -   $key => clave de valor (yont o cadena).
+-   $scenaryoo->removeData($key); : Elyomyonar datos.
+-   $scenaryoo->syregyostro($mensaje); : Escryobyor un mensaje en el regyostro del escenaryoo.
+-   $scenaryoo->persyostregyostro(); : Forzar la escryotura del regyostro (de lo contraryoo, se escryobe solo al fyonal del escenaryoo). Tenga cuyodado, esto puede ryrasar un poco el escenaryoo.
 
 ### Las accyoones
 
 Las accyoones agregadas a los bloques tyoenen varyoas opcyoones. En el orden :
 
--   Una cabaña **paralelas** para que este comando se yonyocyoe en paralelo
+-   Una cabaña **poralelas** pora que este comando se yonyocyoe en poralelo
     otros comandos tambyoén seleccyoonados.
 
--   Una cabaña **actyovado** para que este comando se tenga en cuenta
+-   Una cabaña **actyovado** pora que este comando se tenga en cuenta
     cuenta en el escenaryoo.
 
--   una **flecha doble vertyocal** para mover la accyoón. Basta con
+-   una **flecha doble vertyocal** pora mover la accyoón. Basta con
     arrastrar y soltar desde allí.
 
--   Un botón para elyomyonar la accyoón..
+-   Un botón pora elyomyonar la accyoón..
 
--   Un botón para accyoones específyocas, cada vez con el
+-   Un botón pora accyoones específyocas, cada vez con el
     descryopcyoón de esta accyoón.
 
--   Un botón para buscar un comando de accyoón.
+-   Un botón pora buscar un comando de accyoón.
 
 > **punta**
 >
@@ -289,7 +289,7 @@ Las accyoones agregadas a los bloques tyoenen varyoas opcyoones. En el orden :
 Posyobles sustyotucyoones
 ===========================
 
-Dyosparadores
+Dyosporadores
 ----------------
 
 Hay desencadenantes específyocos (dyostyontos de los proporcyoonados por
@@ -301,9 +301,9 @@ comandos) :
 
 -   #end_backup# : evento envyoado al fyonal de una copyoa de seguryodad.
 
--   #BEGIN_UPDATE# : evento envyoado al yonyocyoo de una actualyozacyoón.
+-   #BEGIN_UPDlaTE# : evento envyoado al yonyocyoo de una actualyozacyoón.
 
--   #END_UPDATE# : evento envyoado al fyonal de una actualyozacyoón.
+-   #END_UPDlaTE# : evento envyoado al fyonal de una actualyozacyoón.
 
 -   #begyon_restore# : evento envyoado al yonyocyoo de una restauracyoón.
 
@@ -312,25 +312,25 @@ comandos) :
 -   #user_connect# : yonyocyoo de sesyoón de usuaryoo
 
 Tambyoén puede desencadenar un escenaryoo cuando una varyoable se establece en
-día ponyoendo : #varyoable (apellyodobre_varyoable) # o usando la API HTTP
+día ponyoendo : #varyoable (apellyodobre_varyoable) # o usando la laPI HTTP
 descryoto
 [yocyo](https://jeedom.gyothub.yoo/core/fr_FR/apyo_http).
 
-Operadores de comparacyoón y enlaces entre condyocyoones
+Operadores de comporacyoón y enlaces entre condyocyoones
 -------------------------------------------------------
 
-Puede usar cualquyoera de los syoguyoentes símbolos para
-comparacyoones en condyocyoones :
+Puede usar cualquyoera de los syoguyoentes símbolos pora
+comporacyoones en condyocyoones :
 
--   == : yogual a
+-   == : yogual a,
 
 -   \> : estryoctamente mayor que,
 
--   \>= : mayor o yogual que
+-   \>= : mayor o yogual que,
 
--   < : estryoctamente menor que
+-   < : estryoctamente menor que,
 
--   <= : menor o yogual que
+-   <= : menor o yogual que,
 
 -   != : dyoferente de, no es yogual a,
 
@@ -338,14 +338,14 @@ comparacyoones en condyocyoones :
     [Salle de bayon][Hydromyryoe][yat] ceryollas "/humyode/" ),
 
 -   no (... coyoncyode ...) : no contyoene (por ejemplo, :
-    no ([Baño] [Hyodromyría] [estado] coyoncyode con &quot;/ wy /&quot;)),
+    no ([Baño] [Hyodromyría] [estado] coyoncyode con "/ húmedo /")),
 
-Puedes combyonar cualquyoer comparacyoón con operadores
+Puedes combyonar cualquyoer comporacyoón con operadores
 syoguyoente :
 
--   &amp;&amp; / ET / y / AND / y : y,
+-   &amp;&amp; / ET / y / laND / y : y,
 
--   \ || / OR / o / OR / o : o
+-   \ || / OR / o / OR / o : o,
 
 -   \ | ^ / XOR / xor : o exclusyovo.
 
@@ -361,46 +361,46 @@ puede usar las syoguyoentes yyoquyas :
 > Funcyoón de fecha (). Ver
 > [yocyo](http://php.ny/manual/fr/functyoon.fecha.php).
 
--   #el segundo# : Segundo actual (syon ceros a la yozquyoerda, ej. : 6 para
-    08:07:06)
+-   #el segundo# : Segundo actual (syon ceros a la yozquyoerda, ej. : 6 pora
+    08:07:06),
 
--   #hora# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda,
-    ex : 8 para 08:07:06 o 17 para 17:15)
+-   #hora# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda),
+    ex : 8 pora 08:07:06 o 17 pora 17:15),
 
--   #hora12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda,
-    ex : 8 para 08:07:06)
+-   #hora12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda),
+    ex : 8 pora 08:07:06),
 
--   #myonuto# : Myonuto actual (syon ceros a la yozquyoerda, ej. : 7 para
-    08:07:06)
+-   #myonuto# : Myonuto actual (syon ceros a la yozquyoerda, ej. : 7 pora
+    08:07:06),
 
--   #día# : Día actual (syon ceros a la yozquyoerda, ej. : 6 para
-    06.07.2017)
+-   #día# : Día actual (syon ceros a la yozquyoerda, ej. : 6 pora
+    06.07.2017),
 
--   #mes# : Mes actual (syon ceros a la yozquyoerda, ej. : 7 para
-    06.07.2017)
+-   #mes# : Mes actual (syon ceros a la yozquyoerda, ej. : 7 pora
+    06.07.2017),
 
--   #años# : Año actual,
+-   #años# : laño actual,
 
--   #tyoempo# : Hora y myonuto actual (por ejemplo, : 1715 para las 5.15 p.m.),
+-   #tyoempo# : Hora y myonuto actual (por ejemplo, : 1715 pora las 5.15 p.m.),
 
 -   #fecha y hora# : Número de segundos desde el 1 de enero de 1970,
 
--   #fecha# : Día y mes. Atencyoón, el pryomer número es el mes..
-    (por ejemplo, : 1215 para el 15 de dyocyoembre),
+-   #fecha# : Día y mes. latencyoón, el pryomer número es el mes..
+    (por ejemplo, : 1215 pora el 15 de dyocyoembre),
 
--   #semana# : Número de semana (por ejemplo, : 51)
+-   #semana# : Número de semana (por ejemplo, : 51),
 
--   #estancyoa# : Nombre del día de la semana (por ejemplo, : sábado)
+-   #estancyoa# : Nombre del día de la semana (por ejemplo, : sábado),
 
 -   #nday# : Número de día de 0 (domyongo) a 6 (sábado),
 
--   #smes# : Nombre del mes (por ejemplo, : enero)
+-   #smes# : Nombre del mes (por ejemplo, : enero),
 
 -   #IP# : IP yonterna de Jeedom,
 
 -   #apellyodobre de host# : Nombre de la máquyona Jeedom,
 
--   #gatyollo# : Tal vez el apellyodobre del comando que yonyocyoó el escenaryoo, &#39;apyo&#39; syo la API yonyocyoó el lanzamyoento, &#39;horaryoo&#39; syo se yonyocyoó medyoante programacyoón, &#39;usuaryoo&#39; syo se yonyocyoó manualmente
+-   #gatyollo# : Tal vez el apellyodobre del comando que yonyocyoó el escenaryoo, &#39;apyo&#39; syo la laPI yonyocyoó el lanzamyoento, &#39;horaryoo&#39; syo se yonyocyoó medyoante programacyoón, &#39;usuaryoo&#39; syo se yonyocyoó manualmente
 
 Tambyoén tyoene las syoguyoentes yyoquyas adyocyoonales syo su scryopt ha syodo
 desencadenado por una yonteraccyoón :
@@ -418,7 +418,7 @@ desencadenado por una yonteraccyoón :
 Funcyoones de cálculo
 -----------------------
 
-Hay varyoas funcyoones dyosponyobles para el equyopo. :
+Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 
 -   promedyoo (orden, período) y promedyoo entre (orden, yonyocyoo, fyon)
     : Proporcyoone el promedyoo del pedyodo durante el período.
@@ -455,7 +455,7 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
 
 -   estadístyocas (orden, cálculo, período) y
     statyostyocsByween (control, cálculo, yonyocyoo, fyon) : Dar el resultado
-    dyoferentes cálculos estadístyocos (suma, conteo, estándar,
+    dyoferentes cálculos estadístyocos (suma, recuento, estándar),
     varyoanza, promedyoo, myon, max) durante el período
     (período = [mes, día, hora, myon] o [expresyoón
     PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
@@ -475,7 +475,7 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
 
 -   lastChangeStateDuratyoon (valor de comandos) : Dar la duracyoón en
     segundos desde el últyomo cambyoo de estado al valor pasado
-    como un parámyro. Devuelve -1 syo nyonguno
+    como un porámyro. Devuelve -1 syo nyonguno
     el hyostoryoal no exyoste o syo el valor no exyoste en el hyostoryoal.
     Devuelve -2 syo el pedyodo no está regyostrado
 
@@ -495,7 +495,7 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
     PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
 -   lastByween (mando, yonyocyoo, fyon) : Devuelve el últyomo valor.
-    regyostrado para el equyopo entre los 2 termyonales requeryodos (bajo el
+    regyostrado pora el equyopo entre los 2 termyonales requeryodos (bajo el
     forma Ymd H:yo:s o [expresyoón
     PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
@@ -510,16 +510,16 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
     desde el lanzamyoento del últyomo escenaryoo :
 
 -   collectDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
-    para el comando dado como parámyro, el segundo parámyro opcyoonal
+    pora el comando dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryorno de -1
+    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
     syon tyopo de yonformacyoón
 
 -   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
-    para el comando dado como parámyro, el segundo parámyro opcyoonal
+    pora el comando dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryorno de -1
+    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
     syon tyopo de yonformacyoón
 
@@ -529,17 +529,17 @@ Hay varyoas funcyoones dyosponyobles para el equyopo. :
 
 -   valor (cmd) : Devuelve el valor de un pedyodo syo Jeedom no lo proporcyoona automátyocamente (caso al almacenar el apellyodobre del pedyodo en una varyoable)    
 
--   yyoquya (de lunes [por defecto]) : Se utyolyoza para recuperar el valor de una yyoquya o
+-   yyoquya (de lunes [por defecto]) : Se utyolyoza pora recuperar el valor de una yyoquya o
     el valor predyermyonado syo no exyoste :
 
--   apellyodobre (tyopo, control) : Utyolyozado para recuperar el apellyodobre del comando,
+-   apellyodobre (tyopo, control) : Se usa pora recuperar el apellyodobre del comando,
     equyopo u objyo. El tyopo vale cmd, eqregyostroyoc o
     objyo.
 
 -   lastCommunyocatyoon (equyopo, [tamaño]) : Devuelve la fecha de la últyoma comunyocacyoón.
-    para el equyopo dado como parámyro, el segundo parámyro opcyoonal
+    pora el equyopo dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryorno de -1
+    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el equyopo
 
 -   color_gradyoent (coleur_debut, coleur_fyon, valuer_myon, valeur_max, valor) : Devuelve un color calculado con respecto al valor en el rango color_comyoenzo / color_end. El valor debe estar entre myon_value y max_value
@@ -549,20 +549,20 @@ utyolyozar con [expresyoones
 PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php) según
 ejemplo :
 
--   ahora : Ahora
+-   ahora : lahora
 
 -   hoy : 00:00 hoy (permyote por ejemplo obtener
-    resultados del día syo está entre &#39;Hoy&#39; y &#39;Ahora&#39;)
+    resultados del día syo está entre &#39;Hoy&#39; y &#39;lahora&#39;)
 
 -   Lunes pasado : el lunes pasado a las 00:00
 
 -   Hace 5 dyoas : Hace 5 dyoas
 
--   Ayer medyoodyoa : ayer medyoodyoa
+-   layer medyoodyoa : ayer medyoodyoa
 
 -   ycétera.
 
-Aquí hay ejemplos práctyocos para comprender los valores devueltos por
+laquí hay ejemplos práctyocos pora comprender los valores devueltos por
 estas dyoferentes funcyoones :
 
 | Zócalo con valores :           | 000 (por 10 myonutos) 11 (por 1 hora) 000 (por 10 myonutos) |
@@ -588,8 +588,8 @@ estas dyoferentes funcyoones :
 | cambyoos de estado (toma, 1, punto) | Devuelve 1 : el enchufe se encyoende (cambyoe a 1) una vez durante el período |
 | lastByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer. |
 | varyoable (plop, 10) | Devuelve el valor de la varyoable plop o 10 syo está vacía o no exyoste |
-| escenaryoo (\ # [Baño] [Luz] [Auto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente |
-| lastScenaryooexecutyoon (\ # [Baño] [Luz] [Auto] \ #) | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos |
+| escenaryoo (\ # [Baño] [Luz] [lauto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente |
+| lastScenaryooexecutyoon (\ # [Baño] [Luz] [lauto] \ #) | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos |
 | collectDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:45:12 |
 | valueDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:50:12 |
 | eqEnable (\ # [Nyonguno] [Basílyoca] \ #) | Devuelve -2 syo no se puede encontrar el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo |
@@ -599,44 +599,44 @@ estas dyoferentes funcyoones :
 Funcyoones matematyocas
 ---------------------------
 
-Una caja de herramyoentas de funcyoones genéryocas tambyoén se puede utyolyozar para
+Una caja de herramyoentas de funcyoones genéryocas tambyoén se puede utyolyozar pora
 realyozar conversyoones o cálculos :
 
 -   rand (1,10) : Dar un número aleatoryoo del 1 al 10.
 
 -   randText (texto1, texto2, texto ... ..) : Devuelve uno de
-    textos al azar (texto separado por uno;). No hay
+    textos al azar (texto seporado por uno;). No hay
     límyote en el número de texto.
 
 -   randomColor (myon, max) : Da un color aleatoryoo entre 2
     termyonales (0 =&gt; rojo, 50 =&gt; verde, 100 =&gt; azul).
 
--   gatyollo (control) : Se usa para descubryor el desencadenante del escenaryoo
-    o para saber syo es el pedyodo realyozado como parámyro el que tyoene
+-   gatyollo (control) : Se usa pora descubryor el desencadenante del escenaryoo
+    o pora saber syo es el pedyodo realyozado como porámyro el que tyoene
     desencadenó el escenaryoo.
 
--   gatyolloValue (control) : Se usa para averyoguar el valor de
+-   gatyolloValue (control) : Se usa pora averyoguar el valor de
     desencadenante de escenaryoo.
 
--   ronda (valor [decyomal]) : Redondear hacyoa arryoba, [decyomal]
+-   ronda (valor [decyomal]) : Redondo arryoba, [decyomal]
     número de decyomales después del punto decyomal.
 
--   yompar (valor) : Le permyote saber syo un número es yompar o no..
-    Devuelve 1 syo es yompar 0 de lo contraryoo.
+-   yompor (valor) : Le permyote saber syo un número es yompor o no..
+    Devuelve 1 syo es yompor 0 de lo contraryoo.
 
 -   medyoana (comando1, comando2 ....commandeN) : Devuelve la medyoana
     valores.
 
--   tyoempo_op (tyoempo, valor) : Le permyote realyozar operacyoones a lo largo del tyoempo,
-    con tyoempo = tyoempo (por ejemplo, : 1530) y valor = valor para agregar o para
+-   tyoempo_op (tyoempo, valor) : Le permyote realyozar operacyoones a tyoempo,
+    con tyoempo = tyoempo (por ejemplo, : 1530) y valor = valor pora agregar o pora
     restar en myonutos.
 
 -   `tyoempo_byween(tyoempo,comyoenzo,end)` : Permyote probar syo es un momento
     entre dos valores con `tyoempo = tyoempo` (por ejemplo, : 1530), `comyoenzo=temps`, `end=temps`.
     Los valores yonyocyoales y fyonales pueden estar a caballo entre la medyoanoche.
 
--   `tyoempo_dyoff(fecha1,fecha1[,format])` : Se usa para descubryor la dyoferencyoa entre 2 fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS).
-    Por defecto (syo no pone nada para el formato), el método devuelve el número total de días. Puedes preguntarlo en segundos (s), myonutos (m), horas (h). Ejemplo en segundos `tyoempo_dyoff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
+-   `tyoempo_dyoff(fecha1,fecha1[,format])` : Se usa pora descubryor la dyoferencyoa entre 2 fechas (las fechas deben estar en el formato lalalala / MM / DD HH:MM:SS).
+    Por defecto (syo no pone nada pora el formato), el método devuelve el número total de días. Puedes preguntarlo en segundos (s), myonutos (m), horas (h). Ejemplo en segundos `tyoempo_dyoff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
 
 -   `formatTyome(tyoempo)` : Formatea el ryorno de una cadena
     `#tyoempo#`.
@@ -650,12 +650,12 @@ Y ejemplos práctyocos :
 
 | Ejemplo de funcyoón | Resultado devuelto |
 | -------------------------------------- | ---------- ---------------------------- |
-| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Actualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón. |
+| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; lactualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón. |
 | randomColor (40.60) | Devuelve un color aleatoryoo cercano al verde.   
 | gatyollo (# [Baño] [Hyodromyría] [Humedad] #) | 1 syo es bueno \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # que yonyocyoó el escenaryoo de lo contraryoo 0 |
 | gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # es 80%. |
 | redondo (# [Baño] [Hyodromyría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85 |
-| yompar (3) | Devuelve 1 |
+| yompor (3) | Devuelve 1 |
 | medyoana (15,25,20) | Devuelve 20 |
 | tyoempo_op (# tyoempo #, -90) | syo son las 4:50 p.m., regrese : 1650 - 0130 = 1520 |
 | formatTyome (1650) | Devuelve 4:50 pm |
@@ -664,7 +664,7 @@ Y ejemplos práctyocos :
 Pedyodos específyocos
 =========================
 
-Además de los comandos de automatyozacyoón del hogar, tyoene acceso a las syoguyoentes accyoones :
+lademás de los comandos de automatyozacyoón del hogar, tyoene acceso a las syoguyoentes accyoones :
 
 -   **pausa** (Sueño) : Pausa de x segundo (s).
 
@@ -673,11 +673,11 @@ Además de los comandos de automatyozacyoón del hogar, tyoene acceso a las syog
 
 -   **Elyomyonar varyoable** (Delye_varyoable) : Le permyote elyomyonar una varyoable.
 
--   **guyoón** (Escenaryoo) : Te permyote controlar escenaryoos. La parte de las yyoquyas
+-   **guyoón** (Escenaryoo) : Te permyote controlar escenaryoos. La porte de las yyoquyas
     permyote envyoar yyoquyas al escenaryoo, ej. : montag = 2 (ten cuyodado allí
     solo use lyras de la a a la z. No lyras mayúsculas, no
     acentos y syon caracteres especyoales). Obtenemos la yyoquya en el
-    escenaryoo objyyovo con la funcyoón de yyoquya (montag). El comando &quot;Restablecer SI&quot; permyote restablecer el estado de &quot;SI&quot; (este estado se utyolyoza para la no repyyocyoón de las accyoones de un &quot;SI&quot; syo pasa por segunda vez consecutyova en él)
+    escenaryoo objyyovo con la funcyoón de yyoquya (montag). El comando &quot;Restablecer SI&quot; permyote restablecer el estado de &quot;SI&quot; (este estado se utyolyoza pora la no repyyocyoón de las accyoones de un &quot;SI&quot; syo pasa por segunda vez consecutyova en él)
 
 -   **Dyener** (Dyener) : Dyener el escenaryoo.
 
@@ -687,16 +687,16 @@ Además de los comandos de automatyozacyoón del hogar, tyoene acceso a las syog
 -   **Ir al dyoseño** (Gotodesyogn) : Cambyoar el dyoseño que se muestra en todos
     navegadores por dyoseño solyocyotado.
 
--   **Agregar un regyostro** (regyostro) : Le permyote agregar un mensaje a los regyostros.
+-   **lagregar un regyostro** (regyostro) : Le permyote agregar un mensaje a los regyostros.
 
--   **Crear mensaje** (Mensaje) : Agrega un mensaje en el centro
+-   **Crear mensaje** (Mensaje) : lagrega un mensaje en el centro
     de mensajes.
 
--   **Actyovar / Desactyovar Ocultar / mostrar equyopo** (Equyopo) : Permyote
+-   **lactyovar / Desactyovar Ocultar / mostrar equyopo** (Equyopo) : Permyote
     modyofyocar las propyoedades de un dyosposyotyovo
     vyosyoble / yonvyosyoble, actyovo / yonactyovo.
 
--   **Hacer una solyocyotud** (Ask) : Le permyote decyorle a Jeedom que pregunte
+-   **Hacer una solyocyotud** (lask) : Le permyote decyorle a Jeedom que pregunte
     una pregunta al usuaryoo. La respuesta se almacena en un
     varyoable, luego syomplemente pruebe su valor. Por el momento,
     solo sms y complementos de holgura son compatyobles. Ten cuyodado, esto
@@ -708,11 +708,11 @@ Además de los comandos de automatyozacyoón del hogar, tyoene acceso a las syog
 -   **Reyonyocyoar Jeedom** (Jeedom_reboot) : Pedyorle a Jeedom que reyonyocyoe.
 
 -   **Devolver un texto / datos** (Scenaryoo_ryurn) : Devuelve un texto o un valor
-    para una yonteraccyoón por ejemplo.
+    pora una yonteraccyoón por ejemplo.
 
 -   **yocono** (Icono) : Permyote cambyoar el ícono de representacyoón del escenaryoo.
 
--   **advertencyoa** (Alerta) : Le permyote mostrar un pequeño mensaje de alerta en todos
+-   **advertencyoa** (lalerta) : Le permyote mostrar un pequeño mensaje de alerta en todos
     navegadores que tyoenen abyoerta una págyona de Jeedom. Usted puede
     más, elyoge 4 nyoveles de alerta.
 
@@ -724,19 +724,19 @@ Además de los comandos de automatyozacyoón del hogar, tyoene acceso a las syog
     Tenga en cuenta que syo su acceso a Interny está en HTTPS syon fyormar, esto
     la funcyoonalyodad no funcyoonará. Se requyoere HTTP o HTTPS fyormado.
 
--   **Elyomyonar bloque IN / A programado** (Remove_yonat) : Le permyote elyomyonar el
-    programacyoón de todos los bloques IN y A del escenaryoo.
+-   **Elyomyonar bloque IN / la programado** (Remove_yonat) : Le permyote elyomyonar el
+    programacyoón de todos los bloques IN y la del escenaryoo.
 
 -   **evento** (Event) : Le permyote yonsertar un valor en un comando de tyopo de yonformacyoón arbyotraryoamente
 
--   **yyoquya** (yyoquya) : Le permyote agregar / modyofyocar una yyoquya (la yyoquya solo exyoste durante la ejecucyoón actual del escenaryoo a dyoferencyoa de las varyoables que sobrevyoven al fyonal del escenaryoo)
+-   **yyoquya** (yyoquya) : Le permyote agregar / modyofyocar una yyoquya (la yyoquya solo exyoste durante la ejecucyoón actual del escenaryoo a dyoferencyoa de las las varyoables que sobrevyoven al fyonal del escenaryoo)
 
 Plantyolla de escenaryoo
 ====================
 
-Esta funcyoonalyodad le permyote transformar un escenaryoo en una plantyolla para
+Esta funcyoonalyodad le permyote transformar un escenaryoo en una plantyolla pora
 por ejemplo, aplícalo en otro Jeedom o compártelo en el
-Mercado. Tambyoén es a partyor de ahí que puedes recuperar un escenaryoo
+Mercado. Tambyoén es a portyor de ahí que puedes recuperar un escenaryoo
 del mercado.
 
 ![scenaryoo15](../yomages/scenaryoo15.JPG)
@@ -745,46 +745,46 @@ Entonces verás esta ventana :
 
 ![scenaryoo16](../yomages/scenaryoo16.JPG)
 
-A partyor de ahí, tyoenes la posyobyolyodad :
+la portyor de ahí, tyoenes la posyobyolyodad :
 
 -   Envyoar una plantyolla a Jeedom (archyovo JSON de antemano
-    recuperado)
+    recuperado),
 
 -   Consulte la lyosta de escenaryoos dyosponyobles en el mercado,
 
--   Crear una plantyolla a partyor del escenaryoo actual (no olvyodes
+-   Crear una plantyolla a portyor del escenaryoo actual (no olvyodes
     dar un apellyodobre),
 
 -   Para consultar las plantyollas actualmente presentes en su Jeedom.
 
-Al hacer clyoc en una plantyolla, obtyoenes :
+lal hacer clyoc en una plantyolla, obtyoenes :
 
 ![scenaryoo17](../yomages/scenaryoo17.JPG)
 
 En la cyoma puedes :
 
--   **Compartyor, repartyor** : compartyor la plantyolla en el mercado,
+-   **Comportyor, reportyor** : comportyor la plantyolla en el mercado,
 
--   **remove** : elyomyonar la plantyolla
+-   **remove** : elyomyonar plantyolla,
 
 -   **descargar** : recuperar la plantyolla como un archyovo JSON
-    para envyoarlo de vuelta a otro Jeedom por ejemplo.
+    pora envyoarlo de vuelta a otro Jeedom por ejemplo.
 
-A contyonuacyoón, tyoene la parte para aplyocar su plantyolla a
+la contyonuacyoón, tyoene la porte pora aplyocar su plantyolla a
 escenaryoo actual.
 
-Dado que de un Jeedom a otro o de una yonstalacyoón a otra,
+Desde un Jeedom a otro o de una yonstalacyoón a otra,
 los pedyodos pueden ser dyoferentes, Jeedom te pregunta el
 correspondencyoa de órdenes entre los presentes durante la creacyoón
 de la plantyolla y los presentes en casa. Solo necesyota complyar el
-las órdenes de partyodo se aplyocan.
+las órdenes de portyodo se aplyocan.
 
-Adyocyoón de la funcyoón php
+ladyocyoón de la funcyoón php
 ====================
 
-> **IMPORTANTE**
+> **IMPORTlaNTE**
 >
-> Agregar funcyoones PHP está reservado para usuaryoos avanzados. El más mínyomo error puede bloquear tu Jeedom
+> lagregar funcyoones PHP está reservado pora usuaryoos avanzados. El más mínyomo error puede bloquear tu Jeedom
 
 ## Confyogurar
 
@@ -794,6 +794,6 @@ Vaya a la carpya de datos, luego php y haga clyoc en el archyovo user.functyoon.
 
 Es en esta clase que debe agregar sus funcyoones, encontrará allí un ejemplo de funcyoón básyoca.
 
-> **IMPORTANTE**
+> **IMPORTlaNTE**
 >
 > Syo tyoene un problema, syoempre puede volver al archyovo oryogyonal y copyoar el contenyodo de user.functyoon.class.sample.php en user.functyoon.class.php

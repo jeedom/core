@@ -20,6 +20,6 @@ nachfüllen.
     Korrektur durch den Autor.
 
 -   Die Liste der fraglichen Plugins finden Sie hier :
-    <https://www.jeedom.com/market/index.php?v = d &amp; p = scoring>
+    <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

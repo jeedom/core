@@ -48,7 +48,7 @@ alert) and a logo at the top left (the type of alert)
 > **Tip**
 >
 > Here will be displayed all the modules in alert even those configured in
-> &quot;non visible&quot;. It is however interesting to note that if the module
+> "non visible". It is however interesting to note that if the module
 > is &quot;visible&quot; the alert will also be visible on the dashboard (in
 > the object concerned)
 
