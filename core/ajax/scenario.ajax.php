@@ -420,7 +420,7 @@ try {
 				if (!isset($param['options'])) {
 					$param['options'] = array();
 				}
-				$html = scenarioExpression::getExpressionOptions($param['expression'], $param['options']);
+				$html = translate::exec(scenarioExpression::getExpressionOptions($param['expression'], $param['options']));
 				if (!isset($html['html']) || $html['html'] == '') {
 					continue;
 				}
@@ -431,7 +431,7 @@ try {
 			}
 			ajax::success($return);
 		}
-		ajax::success(scenarioExpression::getExpressionOptions(init('expression'), init('option')));
+		ajax::success(translate::exec(scenarioExpression::getExpressionOptions(init('expression'), init('option'))));
 	}
 
 	if (init('action') == 'templateupload') {
