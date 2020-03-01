@@ -99,7 +99,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-
+	
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -216,9 +216,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -493,7 +493,7 @@ function setTheme() {
 					<?php
 					try {
 						if (!jeedom::isStarted()) {
-							echo '<div class="alert alert-danger">'.config::byKey('product_name').'{{ est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
+							echo '<div class="alert alert-danger">'.config::byKey('product_name').' {{est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
 						}
 						if (isset($plugin) && is_object($plugin)) {
 							include_file('desktop', $page, 'php', $plugin->getId());
@@ -523,3 +523,4 @@ function setTheme() {
 		?>
 	</body>
 	</html>
+	
