@@ -165,7 +165,7 @@ echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/
 ### I have a time concern on my history
 Try to clear the chrome cache, the display of histories is calculated relative to the browser time.
 
-### I have the error &quot;Network problems detected, network restart&quot;
+### I have the error &quot;Network issues detected, network restart&quot;
 Jeedom can&#39;t find or can&#39;t ping the gateway. In general it happens if the adsl box restarts (in particular liveboxes) and Jeedom has not restarted or has restarted faster than the box. For security he tells you that he has found a problem and relaunches the network connection process. You can deactivate this mechanism by going to the Jeedom configuration and by deactivating the network management by Jeedom.
 
 ### I get the message &quot;Failed to back up the database. Check that mysqldump is present. &quot;

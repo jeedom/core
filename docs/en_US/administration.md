@@ -2,7 +2,7 @@
 **Settings → System → Configuration**
 
 This is where most of the configuration parameters are found..
-Although many, a majority are pre-configured by default.
+Although many, a majority of parameters are configured by default.
 
 
 ## General tab

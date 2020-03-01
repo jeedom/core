@@ -30,7 +30,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 
 > **Spitze**
 >
-> Mit einem Klick auf Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
+> Mit einem Klick auf die Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
 
 ## Die Ausrüstungen
 
@@ -232,7 +232,7 @@ Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Gefahr**) abhän
 
 In diesem Teil können Sie bestimmte WIdentifikationget-Anzeigeverhalten im Dashboard. in Ansichten. im Design und auf Mobilgeräten konfigurieren..
 
-- **WIdentifikationget** : Ermöglicht die Auswahl des WIdentifikationgets auf dekstop oder mobil (beachten Sie. dass Sie das WIdentifikationget-Plugin benötigen und dies auch von dort aus tun können).
+- **WIdentifikationget** : Ermöglicht die Auswahl des WIdentifikationgets auf dem Desktop oder auf dem Handy (beachten Sie. dass Sie das WIdentifikationget-Plugin benötigen und dies auch von dort aus tun können)..
 - **sichtbar** : Überprüfen Sie. ob der Befehl sichtbar ist.
 - **Name anzeigen** : Aktivieren Sie diese Option. um den Namen des Befehls je nach Kontext sichtbar zu machen.
 - **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen. um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.

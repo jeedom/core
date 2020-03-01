@@ -153,7 +153,7 @@ Le permite elegir los comandos para graficar.
 - **frontera** : Definición CSS de un borde de mosaico de equipo. ex : 1px negro sólido.
 - **opacidad** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
-- **CSS personalizado aplicado en** : Selector de CSS en el que aplicar CSS personalizado.
+- **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
 
 ### comandos
 
@@ -196,7 +196,7 @@ Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic en el 
 
 ### Macro binaria
 
-En este modo, Jeedom ejecutará las acciones de encendido o apagado dependiendo del estado del comando que le des. ex : si el comando vale 0, entonces Jeedom ejecutará la (s) acción (es) activada (s) de lo contrario ejecutará la (s) acción (es) desactivada (s)
+En este modo, Jeedom ejecutará las acciones de encendido o apagado dependiendo del estado del comando que usted indique.. ex : si el comando vale 0, entonces Jeedom ejecutará la (s) acción (es) activada (s) de lo contrario ejecutará la (s) acción (es) desactivada (s)
 
 - **Información binaria** : Comando que proporciona el estado que se debe verificar para decidir qué acción hacer (activar o desactivar).
 

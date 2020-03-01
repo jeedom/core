@@ -28,15 +28,19 @@ Define ciertos comportamientos de interfaz
 
 ## Pestaña de seguridad
 
-- **Autenticación de 2 pasos** : le permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba * google authentificator *). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para la conexión local, el código no será solicitado. Importante si durante la configuración de la autenticación doble tiene un error, compruebe que Jeedom (consulte la página de estado) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
+- **Autenticación de 2 pasos** : le permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba * google authentificator *). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código..
+
+  **importante** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (vea en la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
+
 - **Contraseña** : Le permite cambiar su contraseña (no olvide volver a escribirla a continuación).
+
 - **Hash de usuario** : Tu clave de API de usuario.
 
 ### Sesiones activas
 
-Vous avez ici la liste de vos sessions actuellement connecté, leur ID, leur IP ainsi que la date de dernière communication. En cliquant sur "Déconnecter" cela déconnectera l'utilisateur. Attention si il est sur un périphérique enregistré cela supprimera également l'enregistrement.
+Aquí tiene la lista de sus sesiones conectadas actualmente, su ID, su IP, así como la fecha de la última comunicación.. Al hacer clic en &quot;Desconectar&quot; esto desconectará al usuario. Atención, si está en un dispositivo registrado, esto también eliminará la grabación..
 
-### Périphérique enregistrés
+### Dispositivo registrado
 
-Vous retrouvez ici la liste de tous les périphériques enregistré (qui se connecte sans authentification) à votre Jeedom ainsi que la date de dernière utilisation.
-Vous pouvez ici supprimer l'enregistrement d'un périphérique. Attention cela ne le déconnecte pas mais empêchera juste sa reconnexion automatique.
+Aquí encontrará la lista de todos los dispositivos registrados (que se conectan sin autenticación) a su Jeedom, así como la fecha del último uso..
+Aquí puede eliminar el registro de un dispositivo.. Atención, no lo desconecta, solo impedirá su reconexión automática.

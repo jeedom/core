@@ -1,7 +1,7 @@
 # Erweiterte Anpassung
 **Einstellungen → System → Erweiterte Anpassung**
 
-Diese Seite ist Experten vorbehalten und ermöglicht das Hinzufügen von CSS- oder JS-Skripten zusätzlich zu Jeedom, die auf jeder Seite ausgeführt werden.
+Auf dieser Seite (für Experten reserviert) können Sie Jeedom CSS- oder JS-Skripte hinzufügen, die auf jeder Seite ausgeführt werden.
 
 Zugänglich durch **Einstellungen → System → Erweiterte Anpassung**
 
@@ -12,4 +12,6 @@ Für anspruchslose Menschen, die CSS entdecken möchten :
 
 > **wichtig**
 >
-> Jeder Fehler in einem dieser Skripte kann dazu führen, dass Jeedom nicht mehr verfügbar ist. Sie müssen eine Verbindung in SSH herstellen und die Anpassungsdateien löschen, um sie wiederherstellen zu können
+> Jeder Fehler in einem dieser Skripte kann dazu führen, dass Jeedom vollständig funktionsunfähig wird. 
+>
+> Um dieses Problem zu beheben, müssen Sie eine Verbindung zu SSH herstellen und die Anpassungsdateien löschen, um den normalen Betrieb von Jeedom wiederherzustellen.

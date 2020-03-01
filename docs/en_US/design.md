@@ -153,7 +153,7 @@ Allows you to choose the commands to grapher.
 - **border** : CSS definition of an equipment tile border. Ex : 1px solid black.
 - **Opacity** : Opacity of the equipment tile, between 0 and 1. Warning : a background color must be defined.
 - **Custom CSS** : CSS rules to apply on the equipment.
-- **Applied custom css on** : CSS selector on which to apply custom CSS.
+- **Apply custom css on** : CSS selector on which to apply custom CSS.
 
 ### Orders
 
@@ -196,7 +196,7 @@ Here you just need to indicate the list of actions to do when clicking on the ar
 
 ### Binary macro
 
-In this mode, Jeedom will execute the On or Off action (s) depending on the status of the command you give. Ex : if the command is worth 0 then Jeedom will execute the On action (s) otherwise it will execute the Off action (s)
+In this mode, Jeedom will execute the On or Off action (s) depending on the status of the command you indicate. Ex : if the command is worth 0 then Jeedom will execute the On action (s) otherwise it will execute the Off action (s)
 
 - **Binary information** : Command giving the status to check to decide what action to do (On or Off).
 

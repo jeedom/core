@@ -9,7 +9,7 @@ Here is described the principle of historicization of Jeedom. You only need to u
 
 ### archiving
 
-Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
+Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
 Archiving is a task that starts at night and compacts the data recovered during the day. By default Jeedom retrieves all older data of 2 hours and makes 1 hour packets of it (either an average, a minimum or a maximum depending on the settings). So here we have two parameters, one for packet size and another for knowing when to do it (by default, these are 1 hour packets with data that are more than 2 hours old).
 

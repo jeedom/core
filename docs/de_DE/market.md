@@ -51,7 +51,7 @@ Für die Profis :
 
 > **Spitze**
 >
-> Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel auf Null zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anweisungen.
+> Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anforderungen.
 
 - **Meine Jeedoms** : Hier sind alle Ihre Jeedoms aufgelistet
     - **Name** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Namen des Backups, wenn Sie über ein Cloud-Backup-Abonnement verfügen)..

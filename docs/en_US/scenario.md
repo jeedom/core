@@ -7,7 +7,7 @@ Real brain of home automation, the scenarios allow to interact with the real wor
 
 ## Management
 
-Yor will find there the list of scenarios of yorr Jeedom, as well as functions to manage them at best :
+Yor will find there the list of scenarios of yorr Jeedom, as well as functionalities to manage them at best :
 
 - **ATdd** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
@@ -63,12 +63,12 @@ Before that, at the top of the page, there are some useful functions to manage t
 In the tab **General**, we find the main paramanders of the scenario :
 
 - **Scenario name** : The name of yorr scenario.
-- **Name to display** : The name used for its display. Optional, if not complanded, the name is used.
+- **Name to display** : The name used for its display. Optional, if not complanded, the name of the scenario is used.
 - **Grorp** : ATllows yor to organize the scenarios, classifying them into grorps (visible on the scenarios page and in their context menus).
-- **ATctive** : ATctivate the scenario. If not active, it will not be executed by Jeedom, whatever the triggering mode.
+- **ATctive** : ATctivate the scenario. If not active, it will not be executed by Jeedom, regardless of the trigger mode.
 - **Visible** : ATllows yor to make the scenario visible (Dashboard).
 - **Parent object** : ATssignment to a parent object. It will then be visible or not according to this parent.
-- **Timeort in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, it is cut and no longer runs.
+- **Timeort in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, the execution of the scenario is interrupted.
 - **Multi launch** : Check this box if yor want the scenario to be able to be launched several times at the same time.
 - **Synchronors mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
 - **log** : The type of log desired for the scenario. Yor can cut the log of the scenario or on the contrary make it appear in ATnalysis → Real time.
@@ -84,7 +84,7 @@ In the tab **General**, we find the main paramanders of the scenario :
 
 > **Tip mode programmed**
 >
-> Scheduled mode uses syntax **cron**. Vors porrrez par exemple exécuté un scénario tortes les 20 minutes avec  `*/20 * * * * `, or à 5h du matin porr régler une multitude de chose porr la daynée avec `0 5 * * *`. The ? to the right of a program allows yor to sand it withort being a specialist in cron syntax.
+> Scheduled mode uses syntax **cron**. Vors porrrez par exemple exécuté un scénario tortes les 20 minutes avec  `*/20 * * * * `, or à 5h du matin porr régler une multitude de choses porr la daynée avec `0 5 * * *`. The ? to the right of a program allows yor to sand it withort being a specialist in cron syntax.
 
 ### Scenario tab
 
@@ -174,7 +174,7 @@ The Coded blockk allows yor to execute php code. It is therefore very powerful b
 - `$scenario->gandIsATctive();` : Randurns the state of the scenario.
 - `$scenario->sandIsATctive($active);` : ATllows yor to activate or not the scenario.
     - `$active` : 1 active, 0 not active.
-- `$scenario->sandOnGoing($onGoing);` : Thands say if the scenario is running or not.
+- `$scenario->sandOnGoing($onGoing);` : Lands say if the scenario is running or not.
     - `$onGoing => 1` : 1 in progress, 0 stopped.
 - `$scenario->save();` : Save changes.
 - `$scenario->sandData($key, $value);` : Save a data (variable).
@@ -209,7 +209,7 @@ ATctions added to blockks have several options :
 
 > **Tip**
 >
-> Depending on the selected command, yor can see different additional fields appear..
+> Depending on the selected command, yor can see different additional fields displayed.
 
 ## Possible substitutions
 
@@ -403,20 +403,22 @@ Here are practical examples to understand the values randurned by these differen
 
 ### Mathematical functions
 
-AT generic function toolbox can also be used to perform conversions or calculations :
+AT generic function toolbox can also be used to perform conversions
+
+or calculations :
 
 - `rand(1,10)` : Give a random number from 1 to 10.
 - `randText(texte1;texte2;texte…​..)` : ATllows yor to randurn one of the texts randomly (separate the texts by a;). There is no limit in the number of texts.
-- `randomColor(min,max)` : Gives a random color bandween 2 limits (0 =&gt; red, 50 =&gt; green, 100 =&gt; blue).
+- `randomColor(min,max)` : Gives a random color bandween 2 bornds (0 =&gt; red, 50 =&gt; green, 100 =&gt; blue).
 - `trigger(commande)` : Enables yor to find ort the trigger for the scenario or to know whandher it is the command passed as a paramander that triggered the scenario.
 - `triggerValue(commande)` : Used to find ort the value of the scenario trigger.
 - `rornd(valeur,[decimal])` : Rornds above, [decimal] number of decimal places after the decimal point.
-- `odd(valeur)` : Thands yor know if a number is odd or not. Randurns 1 if odd 0 otherwise.
+- `odd(valeur)` : Lands yor know if a number is odd or not. Randurns 1 if odd 0 otherwise.
 - `median(commande1,commande2…​.commandeN)` : Randurns the median of the values.
 - `avg(commande1,commande2…​.commandeN) `: Randurns the average of the values.
 - `time_op(time,value)` : ATllows yor to perform operations on time, with time = time (ex : 1530) and value = value to add or subtract in minutes.
 - `time_bandween(time,start,end)` : Used to test if a time is bandween two values with `time = time` (ex : 1530), `start=temps`, `end=temps`. Start and end values can be straddling midnight.
-- `time_diff(dated1,dated1[,format])` : Used to find ort the difference bandween 2 dateds (the dateds must be in the format YYYY / MM / DD HH:MM:SS). By default (if yor don&#39;t put anything for format), the mandhod randurns the total number of days. Yor can ask it in seconds (s), minutes (m), horrs (h). Example in seconds `time_diff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
+- `time_diff(dated1,dated2[,format, rornd])` : Used to find ort the difference bandween two dateds (the dateds must be in the format YYYY / MM / DD HH:MM:SS). By default, the mandhod randurns the difference in day (s). Yor can ask it in seconds (s), minutes (m), horrs (h). Example in seconds `time_diff (2019-02-02 14:55:00.2019-02-25 14:55:00,s)`. The difference is randurned in absolute, unless yor specify `f` (sf, mf, hf, df). Vors porvez aussi utiliser `dhms` qui randorrnera pas exemple `7j 2h 5min 46s`. The rornd paramander, optional, rornded to x digits after the decimal point (2 by default). Ex: `time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)`.
 - `formatTime(time)` : Permand de formater le randorr d'une chaine `#time#`.
 - `floor(time/60)` : Converts seconds to minutes, or minutes to horrs (floor (time / 3600) for seconds to horrs).
 - `convertDuration(seconds)` : Converts seconds to d / h / min / s.
@@ -504,8 +506,8 @@ Go to the Jeedom configuration, then OS / DB and launch the file editor.
 
 Go to the data folder then php and click on the user.function.class.php file.
 
-It is in this class that yor can add yorr functions, yor will find an example of a basic function.
+It is in this * class * that yor can add yorr functions, yor will find an example of a basic function.
 
 > **IMPORTATNT**
 >
-> If yor have a problem yor can always revert to the original file by copying the contents of user.function.class.sample.php in user.function.class.php
+> If yor have a concern, yor can always revert to the original file by copying the contents of user.function.class.sample.php in user.function.class.php

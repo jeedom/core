@@ -32,6 +32,7 @@ Una vez que haya creado un widentificaciónget, aparecerá en esta parte.
 
 Tiene un motor de búsqueda para filtrar la visualización de widentificacióngets.. La tecla Escape cancela la búsqueda..
 A la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom:
+
 - La cruz para cancelar la búsqueda..
 - La carpeta abierta para desplegar todos los paneles y mostrar todos los widentificacióngets.
 - La carpeta cerrada para doblar todos los paneles.
@@ -60,7 +61,7 @@ Una vez en la página Herramientas -&gt; Widentificaciónget, haga clic en &quot
 entonces :
 - Usted elige si se aplica a una acción o tipo de información.
 - Dependiendo de su elección anterior, tendrá que elegir el subtipo del comando (binario, digital, otro ...).
-- Luego, finalmente, la plantilla en cuestión (planeamos darle ejemplos de representaciones para cada plantilla).
+- Luego, finalmente, la plantilla en cuestión (planeamos poner ejemplos de representaciones para cada plantilla).
 - Una vez que se ha elegidentificacióno la plantilla, Jeedom le ofrece las opciones para configurarla..
 
 ### reemplazo
@@ -71,7 +72,7 @@ Esto es lo que se llama un widentificaciónget simple, aquí solo tiene que deci
 >Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidentificaciónad y eficiencia, tanto para usted como para nosotros.. No tuvimos otra opción
 
 >**TIPS**
->Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la pestaña de visualización y &quot;Configuración de widentificaciónget opcional&quot;. Por ejemplo, si en el ancho pones como valor # ancho # (ten cUIDado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widentificaciónget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widentificaciónget diferente para cada tamaño de imagen que desee
+>Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la pestaña de visualización y la &quot;Configuración de widentificaciónget opcional&quot;. Por ejemplo, si en el ancho pones como valor # ancho # (ten cUIDado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widentificaciónget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widentificaciónget diferente para cada tamaño de imagen que desee
 
 ### prueba
 
@@ -96,7 +97,7 @@ Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automá
 
 ## Descripción de widentificacióngets
 
-Vamos a describir aquí algunos widentificacióngets que tienen un funcionamiento bastante particular..
+Vamos a describir aquí algunos widentificacióngets que tienen un funcionamiento algo particular..
 
 ### Configuraciones frecuentes
 
@@ -107,8 +108,8 @@ Vamos a describir aquí algunos widentificacióngets que tienen un funcionamient
 - Luz apagada : icono para mostrar si el equipo está apagado / 0 y el tema es claro (si está vacío, entonces Jeedom quita la imagen oscura).
 - Oscuro en : icono para mostrar si el equipo está encendidentificacióno / 1 y el tema está oscuro (si está vacío, entonces Jeedom enciende la luz img).
 - Oscuro apagado : icono para mostrar si el equipo está apagado / 0 y el tema está oscuro (si está vacío, entonces Jeedom apaga la luz img).
-- Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se requiere el ancho, Jeedom calculará la altura para no distorsionar la imagen.
-- Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se requiere el ancho, Jeedom calculará la altura para no distorsionar la imagen.
+- Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
+- Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 
 ### higrotermógrafo
 
@@ -122,7 +123,7 @@ Para configurarlo es bastante simple, debe asignar el widentificaciónget al con
 El widentificaciónget tiene un parámetro opcional. : escala que le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño
 
 >**NOTA**
-> Atención en un diseño es importante no hacer un pedidentificacióno solo con este widentificaciónget, no funcionará ya que es un widentificaciónget que utiliza el valor de varios pedidentificaciónos, es absolutamente necesario poner el widentificaciónget completo
+> Atención en un diseño, es importante no poner un comando solo con este widentificaciónget, no funcionará ya que es un widentificaciónget que utiliza el valor de varios comandos, es absolutamente necesario poner el widentificaciónget completo
 
 ### Multilínea
 
@@ -143,7 +144,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidentificació
 - #hidentificacióne_nombre# : vacío u oculto si el usuario solicitó ocultar el nombre del widentificaciónget, ponerlo directamente en una etiqueta de clase
 - #identificación# : ID de pedidentificacióno
 - #estado# : valor del comando, vacío para un comando de tipo de acción si no está vinculado a un comando de estado
-- #UID# : identificaciónentificador único para esta generación del widentificaciónget (si hay varias veces el mismo comando, en el caso de diseños, solo este identificaciónentificador es realmente único)
+- #UID# : Identificador único para esta generación del widentificaciónget (si hay varias veces el mismo comando, caso de diseños:  solo este identificaciónentificador es realmente único)
 - #ValueDate# : fecha del valor del pedidentificacióno
 - #collectDate# : fecha de recogidentificacióna del pedidentificacióno
 - #alertLevel# : nivel de alerta (ver [aquí] (https:// github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php # L67) para la lista)
@@ -155,7 +156,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidentificació
 
 ### Actualizar valores
 
-Cuando un nuevo valor Jeedom buscará en la página web si el comando está allí y en Jeedom.cmd.actualizar si hay una función de actualización. En caso afirmativo, lo llama con un solo argumento que es un objeto en la forma :
+Cuando un nuevo valor Jeedom buscará en la página html, si el comando está allí y en Jeedom.cmd.actualizar si hay una función de actualización. En caso afirmativo, lo llama con un solo argumento que es un objeto en la forma :
 
 ```
 {display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
@@ -185,7 +186,7 @@ La función llamada al actualizar el widentificaciónget. Luego actualiza el có
 
 ```
 Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:&#39;#State #&#39; ValueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;});
- ```
+```
  La llamada a esta función para la inicialización del widentificaciónget.
 
  Encontrará [aquí] (https:// github.com / Jeedom / core / tree / V4-stable / core / template) ejemplos de widentificacióngets (en el tablero y las carpetas móviles)

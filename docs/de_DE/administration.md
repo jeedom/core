@@ -2,7 +2,7 @@
 **Einstellungen → System → Konfiguration**
 
 Hier befinden sich die meisten Konfigurationsparameter..
-Obwohl viele, ist eine Mehrheit standardmäßig vorkonfiguriert.
+Obwohl viele, sind die meisten Parameter standardmäßig konfiguriert.
 
 
 ## Registerkarte &quot;Allgemein&quot;

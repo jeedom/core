@@ -2,7 +2,8 @@
 **Herramientas → objetoos**
 
 la **objetos** le permite definir la estructura de árbol de su domótica.
-Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, puede ubicarse más fácilmente. Luego decimos que el objeto es el **pariente** equipo.
+
+Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar.. Luego decimos que el objeto es el **pariente** equipo.
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como los nombres de las habitaciones (por cierto, esta es la configuración recomendada).
 
@@ -24,6 +25,7 @@ Una vez que haya creado un objeto, aparecerá en esta parte.
 
 Tiene un motor de búsqueda para filtrar la visualización de objetos.. La tecla Escape cancela la búsqueda..
 A la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom:
+
 - La cruz para cancelar la búsqueda..
 - La carpeta abierta para desplegar todos los paneles y mostrar todos los objetos..
 - La carpeta cerrada para doblar todos los paneles.
@@ -33,7 +35,8 @@ Una vez en la configuración de un objeto, tiene un menú contextual con el bot�
 ## Pestaña objetoo
 
 Al hacer clic en un objeto, accede a su página de configuración.
-Cualquier cambio que hagas, no olvides guardarlo.
+
+Independientemente de los cambios que realice, no olvide guardar sus cambios..
 
 Aquí están las diferentes características para configurar un objeto. :
 
@@ -50,7 +53,7 @@ Aquí están las diferentes características para configurar un objeto. :
 
 > **punta**
 >
-> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general, seleccione su objeto con el mouse y arrástrelo y suéltelo para darle un nuevo lugar.
+> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general, seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
 
 > **punta**
 >

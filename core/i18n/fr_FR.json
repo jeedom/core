@@ -186,7 +186,7 @@
         "Télécharger": "Télécharger",
         "Paramètres du scénario": "Paramètres du scénario",
         "Appliquer": "Appliquer",
-        "Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario",
+        "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.",
         "Template ajouté avec succès": "Template ajouté avec succès"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1151,7 +1151,7 @@
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Êtes-vous sûr de vouloir mettre à jour cet objet ?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "Êtes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération a échoué": "L\\'opération a échoué",
-        "Update terminée avec succès.": "Update terminée avec succès.",
+        "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès.",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
         "Recharger": "Recharger",
         "Rester sur la page": "Rester sur la page",
@@ -1162,6 +1162,7 @@
         "Réinstaller": "Réinstaller",
         "Supprimer": "Supprimer",
         "Vérifier": "Vérifier",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -2373,6 +2374,7 @@
         "Beta (Pas de support)": "Beta (Pas de support)",
         "Alpha (Pas de support)": "Alpha (Pas de support)",
         "Vérification automatique des mises à jour": "Vérification automatique des mises à jour",
+        "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "Tester\/Synchroniser",
         "Tester": "Tester",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Attention : toute modification du moteur de cache nécessite un redémarrage de",
@@ -2616,7 +2618,7 @@
     },
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Widgets inconnue - Vérifiez l\\'id": "Widgets inconnue - Vérifiez l\\'id",
+        "Widgets inconnus - Vérifiez l\\'id": "Widgets inconnus - Vérifiez l\\'id",
         "Aucune commande affectée au widget": "Aucune commande affectée au widget",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
@@ -2664,7 +2666,7 @@
         "Commande": "Commande",
         "Objet": "Objet",
         "Scénario": "Scénario",
-        "Intéraction": "Intéraction",
+        "Interaction": "Interaction",
         "Utilisateur": "Utilisateur",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
@@ -2771,7 +2773,7 @@
         "Aucun plan correspondant": "Aucun plan correspondant",
         "Objet inconnu. Vérifiez l\\'ID": "Objet inconnu. Vérifiez l\\'ID",
         "Plan header inconnu. Vérifiez l\\'ID ": "Plan header inconnu. Vérifiez l\\'ID ",
-        "Code d\\'acces invalide": "Code d\\'acces invalide",
+        "Code d\\'accès invalide": "Code d\\'accès invalide",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
@@ -2781,9 +2783,9 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Aucun plan3d correspondant": "Aucun plan3d correspondant",
-        "Objet inconnu verifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
-        "Code d\\'acces invalide": "Code d\\'acces invalide",
+        "Objet inconnu vérifiez l\\'id": "Objet inconnu vérifiez l\\'id",
+        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu vérifiez l\\'id : ",
+        "Code d\\'accès invalide": "Code d\\'accès invalide",
         "Objet inconnu. Vérifiez l\\'ID": "Objet inconnu. Vérifiez l\\'ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 150Mo)": "Le fichier est trop gros (maximum 150Mo)",
@@ -2791,12 +2793,12 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)",
         "Impossible de décompresser les fichiers : ": "Impossible de décompresser les fichiers : ",
         "Impossible de décompresser l\\'archive zip : ": "Impossible de décompresser l\\'archive zip : ",
-        "Il faut 1 seul et unique fichier .obj": "Il faut 1 seul et unique fichier .obj",
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
+        "Il faut un seul et unique fichier .obj": "Il faut un seul et unique fichier .obj",
+        "Aucune méthode correspondant à : ": "Aucune méthode correspondant à : "
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Listerner id inconnu": "Listerner id inconnu",
+        "Listener id inconnu": "Listener id inconnu",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
     "core\/repo\/market.list.repo.php": {
@@ -3214,7 +3216,7 @@
         "Mémoire disponible": "Mémoire disponible",
         "Total ": "Total ",
         "Mémoire suffisante": "Mémoire suffisante",
-        "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios": "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios",
+        "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios": "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios",
         "Erreur I\/O": "Erreur I\/O",
         "Il y a des erreurs disque": "Il y a des erreurs disque",
         "Swap disponible": "Swap disponible",
@@ -3399,7 +3401,7 @@
         " je n\\'ai pas compris": " je n\\'ai pas compris",
         " je n\\'ai pas compris ta demande": " je n\\'ai pas compris ta demande",
         "Ok": "Ok",
-        "Voila": "Voila",
+        "Voilà": "Voilà",
         "Bien compris": "Bien compris",
         "La commande vocale ne peut pas être vide": "La commande vocale ne peut pas être vide",
         "InteractDef_id ne peut pas être vide": "InteractDef_id ne peut pas être vide",
@@ -3420,7 +3422,7 @@
         "Scénario désactivé non lancement de la sous tâche": "Scénario désactivé non lancement de la sous tâche",
         "************Lancement sous tâche**************": "************Lancement sous tâche**************",
         "Tags : ": "Tags : ",
-        "Eléments à lancer on trouvé": "Eléments à lancer on trouvé",
+        "Eléments à lancer non trouvé": "Eléments à lancer non trouvé",
         "************FIN sous tâche**************": "************FIN sous tâche**************",
         "Un déclencheur du scénario : ": "Un déclencheur du scénario : ",
         " est introuvable": " est introuvable",
@@ -3428,7 +3430,7 @@
         "Aucun": "Aucun",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution": "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ",
-        "Trop d\\'appel simultané du scénario": "Trop d\\'appel simultané du scénario",
+        "Trop d\\'appels simultanés du scénario": "Trop d\\'appels simultanés du scénario",
         "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
         "Impossible d\\'exécuter le scénario : ": "Impossible d\\'exécuter le scénario : ",
         " sur : ": " sur : ",
@@ -3565,7 +3567,7 @@
         "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Vous ne pouvez pas créer une commande sans la rattacher à un équipement",
-        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
+        "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut être supérieure à la valeur maximum",
         "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de ",
         ". Sur preExec de la commande": ". Sur preExec de la commande",
         ". Détails : ": ". Détails : ",
@@ -3755,6 +3757,11 @@
         "Barre": "Barre",
         "Variation": "Variation",
         "Escalier": "Escalier"
+    },
+    "mobile\/html\/scenariolog.html": {
+        "Vider": "Vider",
+        "Pause": "Pause",
+        "Rechercher": "Rechercher"
     },
     "mobile\/html\/message.html": {
         "Date": "Date",

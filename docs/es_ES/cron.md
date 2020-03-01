@@ -24,7 +24,7 @@ En esta tabla, encontramos :
 - **\#** : ID de tarea, útil para vincular un proceso en ejecución con lo que realmente hace.
 - **bienes** : Indica si la tarea está activa (puede ser iniciada por Jeedom) o no.
 - **PID** : Indica la ID del proceso actual.
-- **demonio** : Si este cuadro es &quot;sí&quot;, la tarea siempre debe estar en progreso. Además, encontrará la frecuencia del demonio, es recomendable no tocar nunca este valor y, especialmente, nunca disminuirlo..
+- **demonio** : Si este cuadro es &quot;sí&quot;, la tarea siempre debe estar en progreso. Además, encontrará la frecuencia del demonio, se recomienda no modificar nunca este valor y, especialmente, nunca disminuirlo..
 - **Unico** : Si es &quot;sí&quot;, la tarea se iniciará una vez y luego se eliminará.
 - **Clase** : Clase PHP llamada para ejecutar la tarea (puede estar vacía).
 - **función** : Función PHP llamada en la clase llamada (o no si la clase está vacía).

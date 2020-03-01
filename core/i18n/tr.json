@@ -186,7 +186,7 @@
         "Télécharger": "Télécharger",
         "Paramètres du scénario": "Paramètres du scénario",
         "Appliquer": "Appliquer",
-        "Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario",
+        "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.",
         "Template ajouté avec succès": "Template ajouté avec succès"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1151,7 +1151,7 @@
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Êtes-vous sûr de vouloir mettre à jour cet objet ?",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "Êtes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération a échoué": "L\\'opération a échoué",
-        "Update terminée avec succès.": "Update terminée avec succès.",
+        "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès.",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
         "Recharger": "Recharger",
         "Rester sur la page": "Rester sur la page",
@@ -1162,6 +1162,7 @@
         "Réinstaller": "Réinstaller",
         "Supprimer": "Sil",
         "Vérifier": "Vérifier",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -2373,6 +2374,7 @@
         "Beta (Pas de support)": "Beta (Pas de support)",
         "Alpha (Pas de support)": "Alpha (Pas de support)",
         "Vérification automatique des mises à jour": "Vérification automatique des mises à jour",
+        "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "Tester\/Synchroniser",
         "Tester": "Test et",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Attention : toute modification du moteur de cache nécessite un redémarrage de",
@@ -2616,7 +2618,7 @@
     },
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Widgets inconnue - Vérifiez l\\'id": "Widgets inconnue - Vérifiez l\\'id",
+        "Widgets inconnus - Vérifiez l\\'id": "Widgets inconnus - Vérifiez l\\'id",
         "Aucune commande affectée au widget": "Aucune commande affectée au widget",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
@@ -2664,7 +2666,7 @@
         "Commande": "Komuta",
         "Objet": "Konu",
         "Scénario": "Senaryo",
-        "Intéraction": "etkileşim",
+        "Interaction": "Interaction",
         "Utilisateur": "Kullanıcı",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
@@ -2771,7 +2773,7 @@
         "Aucun plan correspondant": "Aucun plan correspondant",
         "Objet inconnu. Vérifiez l\\'ID": "Bilinmeyen nesne. Kimliği kontrol edin",
         "Plan header inconnu. Vérifiez l\\'ID ": "Plan header inconnu. Vérifiez l\\'ID ",
-        "Code d\\'acces invalide": "Code d\\'acces invalide",
+        "Code d\\'accès invalide": "Code d\\'accès invalide",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Dosya bulunamadı. PHP ayarını kontrol edin (yazı boyutu sınırı)",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
@@ -2781,9 +2783,9 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Aucun plan3d correspondant": "Aucun plan3d correspondant",
-        "Objet inconnu verifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
-        "Code d\\'acces invalide": "Code d\\'acces invalide",
+        "Objet inconnu vérifiez l\\'id": "Objet inconnu vérifiez l\\'id",
+        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu vérifiez l\\'id : ",
+        "Code d\\'accès invalide": "Code d\\'accès invalide",
         "Objet inconnu. Vérifiez l\\'ID": "Bilinmeyen nesne. Kimliği kontrol edin",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Dosya bulunamadı. PHP ayarını kontrol edin (yazı boyutu sınırı)",
         "Le fichier est trop gros (maximum 150Mo)": "Dosya çok büyük (maksimum 150 MB)",
@@ -2791,12 +2793,12 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Dosya yüklenemiyor (web sunucusu sınırı?)",
         "Impossible de décompresser les fichiers : ": "Dosyalar açılamıyor:",
         "Impossible de décompresser l\\'archive zip : ": "Zip arşivi açılamıyor:",
-        "Il faut 1 seul et unique fichier .obj": "Tek bir .obj dosyası var",
-        "Aucune methode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
+        "Il faut un seul et unique fichier .obj": "Il faut un seul et unique fichier .obj",
+        "Aucune méthode correspondant à : ": "Aucune méthode correspondant à : "
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Listerner id inconnu": "Listerner kimliği bilinmiyor",
+        "Listener id inconnu": "Listener id inconnu",
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
     "core\/repo\/market.list.repo.php": {
@@ -3214,7 +3216,7 @@
         "Mémoire disponible": "Kullanılabilir bellek",
         "Total ": "toplam",
         "Mémoire suffisante": "Yeterli bellek",
-        "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios": "Bellek yetersizliği nedeniyle çekirdekler tarafından öldürülen işlemlerin sayısı. Sisteminizin belleği azalmış. Eklenti veya senaryo sayısını azaltmaya çalışın",
+        "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios": "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios",
         "Erreur I\/O": "G \/ Ç hatası",
         "Il y a des erreurs disque": "Disk hataları var",
         "Swap disponible": "Takas kullanılabilir",
@@ -3399,7 +3401,7 @@
         " je n\\'ai pas compris": "Anlamadım",
         " je n\\'ai pas compris ta demande": "İsteğini anlamadım",
         "Ok": "tamam",
-        "Voila": "Voila",
+        "Voilà": "Voilà",
         "Bien compris": "İyi anlaşıldı",
         "La commande vocale ne peut pas être vide": "Sesli komut boş olamaz",
         "InteractDef_id ne peut pas être vide": "InteractDef_id boş olamaz",
@@ -3420,7 +3422,7 @@
         "Scénario désactivé non lancement de la sous tâche": "Alt görevin başlatılmaması senaryosu devre dışı bırakıldı",
         "************Lancement sous tâche**************": "************ Görev altında başlat **************",
         "Tags : ": "etiketler:",
-        "Eléments à lancer on trouvé": "Başlattığımız Öğeler Bulduk",
+        "Eléments à lancer non trouvé": "Eléments à lancer non trouvé",
         "************FIN sous tâche**************": "************ END görev altında **************",
         "Un déclencheur du scénario : ": "Bir senaryo tetikleyicisi:",
         " est introuvable": "bulunamadı",
@@ -3428,7 +3430,7 @@
         "Aucun": "Hiçbir",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution": "Senaryonun son uygulaması başlamadı. Günlük senaryosunu kontrol edin",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "Senaryonun son uygulaması başlamadı. Şu adreste yürütülmesi için scenario_execution günlüğüne bakın",
-        "Trop d\\'appel simultané du scénario": "Senaryoya çok fazla eşzamanlı çağrı",
+        "Trop d\\'appels simultanés du scénario": "Trop d\\'appels simultanés du scénario",
         "Lancement du scénario en mode synchrone": "Senaryonun senkronize modda başlatılması",
         "Impossible d\\'exécuter le scénario : ": "Senaryo yürütülemiyor:",
         " sur : ": "tarih:",
@@ -3565,7 +3567,7 @@
         "Le type de la commande ne peut pas être vide :": "Komutun türü boş olamaz:",
         "Le sous-type de la commande ne peut pas être vide :": "Komut alt türü boş bırakılamaz:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Bir cihaza eklemeden sipariş oluşturamazsınız",
-        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "Siparişin minimum değeri maksimum değerden fazla olamaz",
+        "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut être supérieure à la valeur maximum",
         "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
         ". Sur preExec de la commande": ". Sipariş öncesi",
         ". Détails : ": ". Detaylar:",
@@ -3755,6 +3757,11 @@
         "Barre": "çubuk",
         "Variation": "Varyasyon",
         "Escalier": "Merdiven"
+    },
+    "mobile\/html\/scenariolog.html": {
+        "Vider": "Boşalt",
+        "Pause": "Durdur",
+        "Rechercher": "Arayın"
     },
     "mobile\/html\/message.html": {
         "Date": "Tarih",

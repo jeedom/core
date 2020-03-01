@@ -3,7 +3,7 @@
 
 La página * Synthesis * ofrece una síntesis rápida y visual de sus objetos y sus resúmenes..
 
-Puede configurarlo como página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
+Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
 ## Viendo
 

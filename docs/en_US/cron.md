@@ -24,7 +24,7 @@ In this table, we find :
 - **\#** : Task ID, useful for linking a running process to what it really does.
 - **Active** : Indicates if the task is active (can be launched by Jeedom) or not.
 - **PID** : Indicates the current process ID.
-- **Devil** : If this box is &quot;yes&quot; then the task must always be in progress. Beside, you find the frequency of the demon, it is advisable never to touch this value and especially never to decrease it.
+- **Devil** : If this box is &quot;yes&quot; then the task must always be in progress. Beside, you find the frequency of the daemon, it is advised never to modify this value and especially never to decrease it.
 - **Unique** : If it is &quot;yes&quot; then the task will launch once and then delete itself.
 - **Class** : PHP class called to execute the task (can be empty).
 - **Function** : PHP function called in the called class (or not if the class is empty).

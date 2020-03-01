@@ -2,7 +2,8 @@
 **Tools → Objects**
 
 The **objects** allow you to define the tree structure of your home automation.
-All the equipment that you create must belong to an object and can thus be more easily located. We then say that the object is the **relative** equipment.
+
+All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
 
 To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the names of the rooms (this is the recommended configuration, by the way).
 
@@ -24,6 +25,7 @@ Once you have created an object, it will appear in this part.
 
 You have a search engine to filter the display of objects. The Escape key cancels the search.
 To the right of the search field, three buttons found in several places in Jeedom:
+
 - The cross to cancel the search.
 - The open folder to unfold all the panels and display all the objects.
 - The closed folder to fold all the panels.
@@ -33,7 +35,8 @@ Once on the configuration of an object, you have a contextual menu with the Righ
 ## Object tab
 
 By clicking on an object, you access its configuration page.
-Whatever changes you make, don&#39;t forget to save it.
+
+Whatever changes you make, don&#39;t forget to save your changes.
 
 Here are the different characteristics to configure an object :
 
@@ -50,7 +53,7 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> You can change the display order of objects in the Dashboard. In the overview, select your object with the mouse and drag and drop it to give it a new place.
+> You can change the display order of objects in the Dashboard. In the overview, select your object with the mouse with a drag and drop to give it a new place.
 
 > **Tip**
 >

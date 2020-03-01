@@ -186,7 +186,7 @@
         "Télécharger": "ダウンロード",
         "Paramètres du scénario": "シナリオ設定",
         "Appliquer": "適用します",
-        "Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "テンプレートを適用してもよろしいですか？これはシナリオを上書きします",
+        "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.",
         "Template ajouté avec succès": "テンプレートが正常に追加されました"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1151,7 +1151,7 @@
         "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "このアイテムを更新してもよろしいですか？",
         "Êtes-vous sûr de vouloir supprimer cet objet ?": "このオブジェクトを削除してもよろしいですか？",
         "L\\'opération a échoué": "操作に失敗しました",
-        "Update terminée avec succès.": "Update terminée avec succès.",
+        "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès.",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
         "Recharger": "Recharger",
         "Rester sur la page": "Rester sur la page",
@@ -1162,6 +1162,7 @@
         "Réinstaller": "REINSTATE",
         "Supprimer": "取り除きます",
         "Vérifier": "チェック",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -2373,6 +2374,7 @@
         "Beta (Pas de support)": "ベータ（サポートなし）",
         "Alpha (Pas de support)": "アルファ（サポートなし）",
         "Vérification automatique des mises à jour": "更新の自動チェック",
+        "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "テスト\/同期",
         "Tester": "テスト",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "注意：キャッシュエンジンの変更には、再起動が必要です",
@@ -2616,7 +2618,7 @@
     },
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Widgets inconnue - Vérifiez l\\'id": "不明なウィジェット-IDを確認してください",
+        "Widgets inconnus - Vérifiez l\\'id": "Widgets inconnus - Vérifiez l\\'id",
         "Aucune commande affectée au widget": "ウィジェットにコマンドが割り当てられていません",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
@@ -2664,7 +2666,7 @@
         "Commande": "オーダー",
         "Objet": "オブジェクト",
         "Scénario": "シナリオ",
-        "Intéraction": "対話",
+        "Interaction": "Interaction",
         "Utilisateur": "ユーザー",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
@@ -2771,7 +2773,7 @@
         "Aucun plan correspondant": "一致する計画はありません",
         "Objet inconnu. Vérifiez l\\'ID": "不明なオブジェクト。 IDを確認してください",
         "Plan header inconnu. Vérifiez l\\'ID ": "不明なヘッダープラン。 IDを確認してください",
-        "Code d\\'acces invalide": "無効なアクセスコード",
+        "Code d\\'accès invalide": "Code d\\'accès invalide",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
@@ -2781,9 +2783,9 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Aucun plan3d correspondant": "対応する3Dプランはありません",
-        "Objet inconnu verifiez l\\'id": "不明なオブジェクトチェックID",
-        "plan3d header inconnu verifiez l\\'id : ": "plan3d不明なヘッダーチェックID：",
-        "Code d\\'acces invalide": "無効なアクセスコード",
+        "Objet inconnu vérifiez l\\'id": "Objet inconnu vérifiez l\\'id",
+        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu vérifiez l\\'id : ",
+        "Code d\\'accès invalide": "Code d\\'accès invalide",
         "Objet inconnu. Vérifiez l\\'ID": "不明なオブジェクト。 IDを確認してください",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
         "Le fichier est trop gros (maximum 150Mo)": "ファイルが大きすぎます（最大150MB）",
@@ -2791,12 +2793,12 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "ファイルをアップロードできません（Webサーバーの制限？）",
         "Impossible de décompresser les fichiers : ": "ファイルを解凍できません：",
         "Impossible de décompresser l\\'archive zip : ": "zipアーカイブを解凍できません：",
-        "Il faut 1 seul et unique fichier .obj": "単一の.objファイルは1つだけです",
-        "Aucune methode correspondante à : ": "以下に対応するメソッドはありません："
+        "Il faut un seul et unique fichier .obj": "Il faut un seul et unique fichier .obj",
+        "Aucune méthode correspondant à : ": "Aucune méthode correspondant à : "
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Listerner id inconnu": "リスターナーID不明",
+        "Listener id inconnu": "Listener id inconnu",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
     "core\/repo\/market.list.repo.php": {
@@ -3214,7 +3216,7 @@
         "Mémoire disponible": "Mémoire disponible",
         "Total ": "Total ",
         "Mémoire suffisante": "Mémoire suffisante",
-        "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios": "Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios",
+        "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios": "Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios",
         "Erreur I\/O": "Erreur I\/O",
         "Il y a des erreurs disque": "Il y a des erreurs disque",
         "Swap disponible": "Swap disponible",
@@ -3399,7 +3401,7 @@
         " je n\\'ai pas compris": " je n\\'ai pas compris",
         " je n\\'ai pas compris ta demande": " je n\\'ai pas compris ta demande",
         "Ok": "[OK]を",
-        "Voila": "Voila",
+        "Voilà": "Voilà",
         "Bien compris": "Bien compris",
         "La commande vocale ne peut pas être vide": "La commande vocale ne peut pas être vide",
         "InteractDef_id ne peut pas être vide": "InteractDef_id ne peut pas être vide",
@@ -3420,7 +3422,7 @@
         "Scénario désactivé non lancement de la sous tâche": "Scénario désactivé non lancement de la sous tâche",
         "************Lancement sous tâche**************": "************Lancement sous tâche**************",
         "Tags : ": "Tags : ",
-        "Eléments à lancer on trouvé": "Eléments à lancer on trouvé",
+        "Eléments à lancer non trouvé": "Eléments à lancer non trouvé",
         "************FIN sous tâche**************": "************FIN sous tâche**************",
         "Un déclencheur du scénario : ": "Un déclencheur du scénario : ",
         " est introuvable": " est introuvable",
@@ -3428,7 +3430,7 @@
         "Aucun": "何でもありません",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution": "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ",
-        "Trop d\\'appel simultané du scénario": "Trop d\\'appel simultané du scénario",
+        "Trop d\\'appels simultanés du scénario": "Trop d\\'appels simultanés du scénario",
         "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
         "Impossible d\\'exécuter le scénario : ": "Impossible d\\'exécuter le scénario : ",
         " sur : ": " sur : ",
@@ -3565,7 +3567,7 @@
         "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Vous ne pouvez pas créer une commande sans la rattacher à un équipement",
-        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
+        "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut être supérieure à la valeur maximum",
         "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de ",
         ". Sur preExec de la commande": ". Sur preExec de la commande",
         ". Détails : ": ". Détails : ",
@@ -3755,6 +3757,11 @@
         "Barre": "バー",
         "Variation": "変更",
         "Escalier": "階段"
+    },
+    "mobile\/html\/scenariolog.html": {
+        "Vider": "空",
+        "Pause": "休止",
+        "Rechercher": "検索"
     },
     "mobile\/html\/message.html": {
         "Date": "日付",

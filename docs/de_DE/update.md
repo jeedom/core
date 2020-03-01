@@ -14,7 +14,7 @@ Jeedom stellt regelmäßig eine Verbindung zum Markt her, um festzustellen, ob U
 
 Wenn diese Überprüfung zu Beginn der Seite älter als zwei Stunden ist, wiederholt Jeedom automatisch eine Überprüfung.
 Sie können auch die Schaltfläche verwenden **Suchen Sie nach Updates** Um es manuell zu tun.
-). Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie die Schaltfläche &quot;Nach Updates suchen&quot; drücken..
+Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie die Schaltfläche &quot;Nach Updates suchen&quot; drücken..
 
 Die Schaltfläche **speichern** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
 
@@ -22,7 +22,7 @@ Die Schaltfläche **speichern** wird verwendet, wenn Sie die Optionen in der fol
 
 Die Schaltfläche **Update** Mit dieser Option können Sie den Core, die Plugins oder beides aktualisieren.
 Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
-- **Pre-Update** : Ermöglicht das Aktualisieren des Aktualisierungsskripts, bevor die neuen Aktualisierungen angewendet werden. Wird normalerweise auf Anfrage beim Support verwendet.
+- **Pre-Update** : Ermöglicht das Aktualisieren des Aktualisierungsskripts, bevor die neuen Aktualisierungen angewendet werden. Wird in der Regel auf Anfrage des Supports verwendet.
 - **Vorher speichern** : Sichern Sie Jeedom vor dem Update.
 - **Plugins aktualisieren** : Ermöglicht das Einfügen von Plugins in das Update.
 - **Aktualisieren Sie den Kern** : Ermöglicht es Ihnen, den Jeedom-Kernel (den Kern) in das Update aufzunehmen.
@@ -32,7 +32,7 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
 > **wichtig**
 >
-> Vor einem Update erstellt Jeedom standardmäßig ein Backup. Im Falle eines Problems beim Anwenden eines Updates stellt Jeedom das unmittelbar zuvor erstellte Backup automatisch wieder her. Dieses Prinzip gilt nur für Jeedom-Updates und nicht für Plugins.
+> Vor einem Update erstellt Jeedom standardmäßig ein Backup. Im Falle eines Problems beim Anwenden eines Updates stellt Jeedom das unmittelbar zuvor erstellte Backup automatisch wieder her. Dieses Prinzip gilt nur für Jeedom-Updates und nicht für Plugin-Updates.
 
 > **Spitze**
 >
@@ -60,7 +60,7 @@ In jeder Zeile können Sie die folgenden Funktionen verwenden:
 > **wichtig**
 >
 > Wenn das Änderungsprotokoll leer ist, Sie aber noch ein Update haben, bedeutet dies, dass die Dokumentation aktualisiert wurde. Es ist daher nicht erforderlich, den Entwickler um Änderungen zu bitten, da diese nicht unbedingt vorhanden sind. (Es ist oft eine Aktualisierung der Übersetzung, der Dokumentation).
-> In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes erstellen, für die das Changelog nicht unbedingt aktualisiert werden muss.
+> In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes vornehmen, für die nicht unbedingt das Changelog aktualisiert werden muss.
 
 > **Spitze**
 >

@@ -51,7 +51,7 @@ For the pros :
 
 > **Tip**
 >
-> It is possible that the Market sometimes asks you to reset your installation keys to zero, this is normal, just follow what it asks you.
+> It is possible that the Market sometimes asks you to reset your installation keys, this is normal, just follow what is requested.
 
 - **My jeedoms** : This is where all your Jeedoms are listed
     - **Last name** : The name you want to give to your Jeedom (can be found in the name of the backup if you have the cloud backup subscription).

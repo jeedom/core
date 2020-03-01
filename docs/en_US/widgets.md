@@ -32,6 +32,7 @@ Wece you have created a widget, it will appear in this part.
 
 You have a search engine to filter the display of widgets. The Escape key cancels the search.
 To the right of the search field, three buttons found in several places in Jeedom:
+
 - The cross to cancel the search.
 - The open folder to unfold all the panels and display all the widgets.
 - The closed folder to fold all the panels.
@@ -60,7 +61,7 @@ Wece on the Tools -&gt; Widget page, click on &quot;Add&quot; and give a name to
 Then :
 - You choose if it applies to an action or info type order.
 - Depending on your previous choice, you will have to choose the subtype of the command (binary, digital, other ...).
-- Then finally the template in question (we plan to give you examples of renderings for each template).
+- Then finally the template in question (we plan to put examples of renderings for each template).
 - Wece the template has been chosen, Jeedom gives you the options for configuring it.
 
 ### Replacement
@@ -71,7 +72,7 @@ This is what is called a simple widget, here you just have to say that the &quot
 >We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us.. We had no choice
 
 >**TIPS**
->For advanced users it is possible in the replacement values to put tags and specify their value in the advanced configuration of the command, display tab and &quot;Optional widget settings&quot;. For example if in width you put as value # width # (be careful to put the # around) instead of a number, in &quot;Optional widget settings&quot; you can add width (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want
+>For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, display tab and &quot;Optional widget settings&quot;. For example if in width you put as value # width # (be careful to put the # around) instead of a number, in &quot;Optional widget settings&quot; you can add width (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want
 
 ### Test
 
@@ -96,7 +97,7 @@ The tests are in the form : #value # == 1, # value # will be automatically repla
 
 ## Description of widgets
 
-We are going to describe here some widget which have a rather particular functioning.
+We are going to describe here some widgets which have a somewhat particular functioning.
 
 ### Frequent settings
 
@@ -107,8 +108,8 @@ We are going to describe here some widget which have a rather particular functio
 - Light off : icon to display if the equipment is off / 0 and the theme is light (if empty then Jeedom takes the dark img off).
 - Dark on : icon to display if the equipment is on / 1 and the theme is dark (if empty then Jeedom takes the img light on).
 - Dark off : icon to display if the equipment is off / 0 and the theme is dark (if empty then Jeedom takes the img light off).
-- Desktop width : width of the image on desktop in px (just put the number not the px). Important only the width is required, Jeedom will calculate the height so as not to distort the image.
-- Movable width : width of the image on mobile in px (just put the number not the px). Important only the width is required, Jeedom will calculate the height so as not to distort the image.
+- Desktop width : width of the image on desktop in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
+- Movable width : width of the image on mobile in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
 
 ### hygrothermograph
 
@@ -122,7 +123,7 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 The widget has an optional parameter : scale which allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller
 
 >**NOTE**
-> Attention on a design it is especially important not to put an order alone with this widget that will not work since it is a widget using the value of several orders it is absolutely necessary to put the complete widget
+> Attention on a design it is important not to put a command alone with this widget it will not work since it is a widget using the value of several commands, it is absolutely necessary to put the complete widget
 
 ### Multiline
 
@@ -143,11 +144,11 @@ In code mode you have access to different tags for orders, here is a list (not n
 - #hide_name# : empty or hidden if the user asked to hide the name of the widget, to put it directly in a class tag
 - #id# : order id
 - #state# : value of the command, empty for an action type command if it is not linked to a status command
-- #uid# : unique identifier for this generation of the widget (if there is several times the same command, case of designs only this identifier is really unique)
+- #uid# : unique identifier for this generation of the widget (if there is several times the same command, case of designs:  only this identifier is really unique)
 - #valueDate# : date of the order value
 - #collectDate# : date of order collection
 - #alertLevel# : alert level (see [here] (https:// github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php # L67) for the list)
-- #hide_history# : whether the history (max, min, average, trend) should be hidden or not. As for # hide_name # it is empty or hidden, and can therefore be used directly in a class. IMPORTANT if this tag is not found on your widget then the # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # and # trend # tags will not be replaced by Jeedom.
+- #hide_history# : whether the history (max, min, average, trend) should be hidden or not. As for # hide_name # it is empty or hidden, and can therefore be used directly in a class. IMPORTANT if this tag is not found on your widget then the tags # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # and # trend # will not be replaced by Jeedom.
 - #minHistoryValue# : minimum value over the period (period defined in the Jeedom configuration by the user)
 - #averageHistoryValue# : average value over the period (period defined in the Jeedom configuration by the user)
 - #maxHistoryValue# : maximum value over the period (period defined in the Jeedom configuration by the user)
@@ -155,7 +156,7 @@ In code mode you have access to different tags for orders, here is a list (not n
 
 ### Update values
 
-When a new value Jeedom will look in the web page if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
+When a new value Jeedom will look in the html page, if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
 
 ```
 {display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# # AlertLevel&#39;}
@@ -185,7 +186,7 @@ The function called when updating the widget. It then updates the html code of t
 
 ```
 Jeedom.cmd.update [ &#39;# id #&#39;] ({display_value:&#39;#State #&#39; valueDate:&#39;#ValueDate #&#39; collectDate:&#39;#CollectDate #&#39; alertLevel:&#39;# AlertLevel #&#39;});
- ```
+```
  The call to this function for the initialization of the widget.
 
  You will find [here] (https:// github.com / Jeedom / core / tree / V4-stable / core / template) examples of widgets (in the dashboard and mobile folders)

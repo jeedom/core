@@ -1,5 +1,6 @@
-Aquí hay documentación sobre métodos API. Primero aquí está
-las especificaciones (JSON RPC 2.0) :
+Aquí hay documentación sobre métodos API. 
+
+Primero, aquí están las especificaciones (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
 El acceso a la API es a través de la url : *URL \ _JEEDOM * / core / api / jeeApi.php
@@ -37,7 +38,6 @@ configuraciones :
 -   complemento de cadena : (opcional), complemento de valor de configuración
 
 -   cadena por defecto : (opcional), valor a devolver si la clave no existe
-    no
 
 config::Guardar
 ------------
@@ -50,8 +50,7 @@ configuraciones :
 
 -   clave de cuerda : clave de valor de configuración para guardar
 
--   complemento de cadena : (opcional), complemento del valor de configuración para
-    registro
+-   complemento de cadena : (opcional), complemento del valor de configuración para guardar
 
 API de eventoos JSON
 ==============
@@ -59,9 +58,7 @@ API de eventoos JSON
 evento::intercambio
 --------------
 
-Devuelve la listaa de cambios desde la fecha y hora noada en el parámetro
-(debe estar en microsegundos). También tendrás en la respuesta el
-Fecha y hora actual de Jeedom (se reutilizará para la próxima consulta)
+Devuelve la listaa de cambios desde la fecha y hora pasada en el parámetro (debe estar en microsegundos). También tendrá en la respuesta la fecha y hora actual de Jeedom (que se reutilizará para la próxima consulta)
 
 configuraciones :
 
@@ -79,8 +76,7 @@ configuraciones :
 
 -   int enableOnly = 0 (solo devuelve la listaa de complementos activados)
 
--   int orderByCaterogy = 0 (devuelve la listaa de complementos ordenados
-    por categoría)
+-   int orderByCaterogy = 0 (devuelve la listaa de complementos ordenados por categoría)
 
 API JSON de objetos
 ==============
@@ -93,16 +89,12 @@ Devuelve la listaa de todos los objetos.
 jeeObject::completo
 ------------
 
-Devuelve la listaa de todos los objetos, con para cada objeto todos sus
-equipo y para cada equipo todos sus comandos, así como
-estados de estos (para comandos de tipo de información)
+Devuelve la listaa de todos los objetos, para cada objeto todo su equipo y para cada equipo todos sus comandos, así como sus estados (para comandos de tipo de información)
 
 jeeObject::completoById
 ----------------
 
-Devuelve un objeto con todo su equipo y para cada equipo.
-todos sus comandos, así como sus estados (para
-comandos de tipo de información)
+Devuelve un objeto con todo su equipo y para cada equipo todos sus comandos y sus estados (para comandos de tipo de información)
 
 configuraciones :
 
@@ -120,9 +112,7 @@ configuraciones:
 jeeObject::completoById
 ----------------
 
-Devuelve un objeto, su equipo y para cada equipo todos sus
-comandos, así como los estados de las celdas (para comandos de tipo
-info)
+Devuelve un objeto, su equipo y para cada equipo todos sus comandos, así como los estados de las celdas (para comandos de tipo de información)
 
 jeeObject::Guardar
 ------------
@@ -151,12 +141,11 @@ API de resumen JSON
 resumen::total
 ---------------
 
-Devuelve el resumen total de la clave noada en el parámetro
+Devuelve el resumen total de la clave pasada en el parámetro
 
 configuraciones:
 
--   clave de cuerda : (opcional), clave del resumen deseado, si está vacío, entonces Jeedom
-    te envía el resumen de todas las claves
+-   clave de cuerda : (opcional), clave del resumen deseado, si está vacío, Jeedom le envía el resumen de todas las claves
 
 resumen::BYID
 -------------
@@ -167,8 +156,7 @@ configuraciones:
 
 -   int id : ID de objeto
 
--   clave de cuerda : (opcional), clave del resumen deseado, si está vacío, entonces Jeedom
-    te envía el resumen de todas las claves
+-   clave de cuerda : (opcional), clave del resumen deseado, si está vacío, Jeedom le envía el resumen de todas las claves
 
 API JSON EqLogic
 ================
@@ -181,8 +169,7 @@ Devuelve la listaa de todos los equipos.
 eqLogic::completoById
 -----------------
 
-Devuelve el equipo y sus comandos, así como sus estados.
-(para pedidos de tipo de información)
+Devuelve el equipo y sus comandos, así como sus estados (para comandos de tipo de información)
 
 configuraciones:
 
@@ -218,8 +205,9 @@ configuraciones:
 eqLogic::byTypeAndId
 --------------------
 
-Devuelve una tabla de equipos según los parámetros.. El regreso
-será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
+Devuelve una tabla de equipos según los parámetros.. 
+
+El retorno será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
 array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)) ....id1 ⇒
 array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)), id2 ⇒ array (&#39; id&#39;⇒ ..., &#39;cmds&#39; ⇒
 Array (....)) ..)
@@ -292,17 +280,14 @@ Ejecuta el comando especificado
 
 configuraciones:
 
--   int id : ID de un comando o matriz de ID si desea ejecutar
-    múltiples pedidos a la vez
-
--   \ [opciones \] Lista de opciones de comando (depende del tipo y
-    subtipo de comando)
+-   int id : ID de comando o matriz de ID si desea ejecutar múltiples comandos a la vez
+    
+-   \ [opciones \] Lista de opciones de comando (depende del tipo y subtipo del comando)
 
 cmd::getStatistique
 -------------------
 
-Devuelve estadísticas sobre el pedido (solo funciona en
-información y comandos históricos)
+Estadísticas de devoluciones en el pedido (solo funciona con información y pedidos históricos)
 
 configuraciones:
 
@@ -315,8 +300,7 @@ configuraciones:
 cmd::getTendance
 ----------------
 
-Devuelve la tendencia en el comando (solo funciona en los comandos de
-información y tipo histórico)
+Devuelve la tendencia en el pedido (solo funciona con información y pedidos históricos)
 
 configuraciones:
 
@@ -329,8 +313,7 @@ configuraciones:
 cmd::getHistory
 ---------------
 
-Devuelve el historial de comandos (solo funciona en los comandos de
-información y tipo histórico)
+Devuelve el historial de pedidos (solo funciona con información y pedidos históricos)
 
 configuraciones:
 
@@ -414,7 +397,7 @@ configuraciones:
 guión::exportación
 ----------------
 
-Devuelve la exportaciónación del eguión, así como el nombre humano del eguión.
+Devuelve la exportaciónación del eguión, así como el * nombre humano * del eguión
 
 configuraciones:
 
@@ -429,7 +412,7 @@ configuraciones:
 
 -   int id : ID del eguión en el que importaciónar (vacío si se crea)
 
--   string humanName : nombre humano del eguión (vacío si creación)
+-   string humanName : *nombre humano * del eguión (vacío si creación)
 
 -   importaciónación de matriz : eguión (del campo eguión de exportaciónación::exportaciónación)
 
@@ -454,11 +437,11 @@ Le permite recuperar un registro
 
 configuraciones:
 
--   registro de cadena : nombre del registro para recuperar
+-   registro de cadena : nombre del registro a recuperar 
 
 -   inicio de cadena : número de línea en el que comenzar a leer
 
--   string nbLine : cantidad de líneas para recuperar
+-   string nbLine : cantidad de líneas para recuperar 
 
 registro::añadir
 --------
@@ -467,7 +450,7 @@ Permite escribir en un registro
 
 configuraciones:
 
--   registro de cadena : nombre del registro para recuperar
+-   registro de cadena : nombre del registro a recuperar 
 
 -   tipo de cadena : tipo de registro (depuración, información, advertencia, error)
 
@@ -483,7 +466,7 @@ Obtenga la listaa de registros de Jeedom
 
 configuraciones:
 
--   filtro de cadena : (opcional) filtra el nombre de los registros para recuperar
+-   filtro de cadena : (opcional) filtre el nombre de los registros para recuperar 
 
 registro::vaciar
 ----------
@@ -513,12 +496,10 @@ Obtener el valor de una variable almacenada en el almacén de datos
 
 configuraciones:
 
--   tipo de cadena : tipo de valor almacenado (para eguións
-    es eguión)
-
--   id linkId : -1 para el total (valor para los eguións predeterminados,
-    o el id del eguión)
-
+-   tipo de cadena : tipo de valor almacenado (para eguións es eguión)
+    
+-   id linkId : -1 para el total (valor para los eguións predeterminados o el id del eguión)
+    
 -   clave de cuerda : nombre del valor
 
 almacén de datos::Guardar
@@ -572,15 +553,14 @@ API de interacción JSON
 Interact::tryToReply
 --------------------
 
-Intenta hacer coincidir una solicitud con una interacción, ejecuta
-acción y responde en consecuencia
+Intente hacer coincidir una solicitud con una interacción, ejecute la acción y responda en consecuencia
 
 configuraciones:
 
 -   consulta (frase de solicitud)
 
 -   int reply \ _cmd = NULL : ID del comando a usar para responder,
-    si no especifica, entonces Jeedom le envía la respuesta en el json
+    si no especifica, entonces Jeedom le devuelve la respuesta en el json
 
 InteractQuery::todos
 ------------------
@@ -646,7 +626,7 @@ configuraciones:
 plugin::dependancyInfo
 ----------------------
 
-Devuelve información sobre el estado de las dependencias de complementos
+Devuelve información sobre el estado de dependencia del complemento
 
 configuraciones:
 
@@ -710,8 +690,7 @@ API de actualización de JSON
 actualización::todos
 -----------
 
-Devuelve la listaa de todos los componentes instalados, su versión y el
-información relacionada
+Volver a la listaa de todos los componentes instalados, sus versiónes y la información asociada.
 
 actualización::checkUpdate
 -------------------
@@ -753,8 +732,7 @@ Ejemplos de API JSON
 =================
 
 Aquí hay un ejemplo del uso de la API. Para el siguiente ejemplo
-Yo uso [esta clase
-php] (https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+Yo uso [esta clase de PHP] (https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
 Recuperando la listaa de objetos :
@@ -779,5 +757,4 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=
 }
 ```
 
-La API, por supuesto, se puede usar con otros idiomas (simplemente una publicación
-en una página)
+Por supuesto, la API se puede usar con otros idiomas (solo una publicación en una página)

@@ -63,12 +63,12 @@ Davor gichbt es oben auf der Seichte eichnichge nützlichche Funktichonen zum Ve
 In der Regichsterkarte **General**fichnden wichr diche Hauptparamunder des Szenarichos :
 
 - **Name des Szenarichos** : Der Name Ihres Szenarichos.
-- **Name. der angezeichgt werden soll** : Der Name. der für diche Anzeichge verwendund wichrd. Optichonal wichrd der Name verwendund. wenn er nichcht vollständichg ichst.
+- **Name. der angezeichgt werden soll** : Der Name. der für diche Anzeichge verwendund wichrd. Wenn nichcht abgeschlossen. wichrd optichonal der Name des Szenarichos verwendund.
 - **Gruppe** : Ermöglichcht das Organichsicheren der Szenarichen und deren Klassichfichzicherung ichn Gruppen (sichchtbar auf der Szenarichoseichte und ichn ichhren Kontextmenüs)..
-- **Aktichva** : Aktichvicheren Siche das Szenaricho. Wenn es nichcht aktichv ichst. wichrd es von Jeedom unabhängichg vom Auslösemodus nichcht ausgeführt.
+- **Aktichva** : Aktichvicheren Siche das Szenaricho. Wenn nichcht aktichv. wichrd es von Jeedom unabhängichg vom Trichggermodus nichcht ausgeführt.
 - **sichchtbar** : Ermöglichcht es Ihnen. das Szenaricho sichchtbar zu machen (Dashboard).
 - **Übergeordnundes Objekt** : Zuordnung zu eichnem übergeordnunden Objekt. Es wichrd dann entsprechend dichesem Elternteichl sichchtbar seichn oder nichcht.
-- **Zeichtüberschreichtung ichn Sekunden (0 = unbegrenzt)** : Diche maxichmal zulässichge Ausführungszeicht für dicheses Szenaricho. Über dichese Zeicht hichnaus wichrd es geschnichtten und läuft nichcht mehr.
+- **Zeichtüberschreichtung ichn Sekunden (0 = unbegrenzt)** : Diche maxichmal zulässichge Ausführungszeicht für dicheses Szenaricho. Nach dicheser Zeicht wichrd diche Ausführung des Szenarichos unterbrochen.
 - **MehrfachStart** : Aktichvicheren Siche dicheses Kontrollkästchen. wenn das Szenaricho mehrmals gleichchzeichtichg geStartund werden soll.
 - **Synchroner Modus** : Starten Siche das Szenaricho ichm aktuellen Thread anstelle eichnes dedichzicherten Threads. Erhöht diche Geschwichndichgkeicht. micht der das Szenaricho geStartund wichrd. kann jedoch das System ichnstabichl machen.
 - **log** : Der für das Szenaricho gewünschte Protokolltyp. Siche können das Protokoll des Szenarichos ausschneichden oder ichm Gegenteichl unter Analyse → Echtzeicht anzeichgen.
@@ -84,7 +84,7 @@ In der Regichsterkarte **General**fichnden wichr diche Hauptparamunder des Szena
 
 > **Spichtzepmodus programmichert**
 >
-> Der geplante Modus verwendund diche Syntax **cron**. Voders poderrrez par exemple exécuté un scénaricho todertes les 20 Michnutes avec  `*/20 * * * * `. oder à 5h du matichn poderr régler une multichtude de chose poderr la Etichkundtnée avec `0 5 * * *`. diche ? Rechts neben eichnem Programm können Siche es eichnstellen. ohne Spezichalichst für cron-Syntax zu seichn.
+> Der geplante Modus verwendund diche Syntax **cron**. Voders poderrrez par exemple exécuté un scénaricho todertes les 20 Michnutes avec  `*/20 * * * * `. oder à 5h du matichn poderr régler une multichtude de choses poderr la Etichkundtnée avec `0 5 * * *`. diche ? Rechts neben eichnem Programm können Siche es eichnstellen. ohne Spezichalichst für cron-Syntax zu seichn.
 
 ### Regichsterkarte &quot;Szenaricho&quot;
 
@@ -209,7 +209,7 @@ Zu Blöcken hichnzugefügte Aktichonen haben mehrere Optichonen :
 
 > **Spichtze**
 >
-> Abhängichg vom ausgewählten Befehl werden verschichedene zusätzlichche Felder angezeichgt..
+> Abhängichg vom ausgewählten Befehl werden verschichedene zusätzlichche Felder angezeichgt.
 
 ## Möglichche Substichtutichonen
 
@@ -362,7 +362,7 @@ Diche Perichoden und Intervalle dicheser Funktichonen können auch micht [PHP-Au
 
 - jundzt : jundzt.
 - heute : 00:00 heute (ermöglichcht es beichspichelsweichse. Ergebnichsse für den Etichkundt zu erhalten. wenn zwichschen &#39;Heute&#39; und &#39;Jundzt&#39;).
-- dichundzten Montag : lundzten Montag um 00:00.
+- Lundzten Montag : lundzten Montag um 00:00.
 - Vor 5 Etichkundten : Vor 5 Etichkundten.
 - Gestern michttag : gestern michttag.
 - usw..
@@ -403,11 +403,13 @@ Hicher fichnden Siche praktichsche Beichspichele zum Verständnichs der von dich
 
 ### Mathematichsche Funktichonen
 
-Eichne generichsche Funktichons-Toolbox kann auch zum Durchführen von Konverticherungen oder Berechnungen verwendund werden :
+Eichne generichsche Funktichons-Toolbox kann auch zum Durchführen von Konverticherungen verwendund werden
+
+oder Berechnungen :
 
 - `rand(1.10)` : Geben Siche eichne Zufallszahl von 1 bichs 10 an.
 - `randText(texte1;texte2;texte…​..)` : Ermöglichcht es Ihnen. eichnen der Texte zufällichg zurückzugeben (trennen Siche diche Texte durch a;). Diche Anzahl der Texte ichst unbegrenzt.
-- `randomColor(michn.max)` : Gichbt eichne zufällichge Farbe zwichschen 2 Grenzen (0 =&gt; Rot. 50 =&gt; Grün. 100 =&gt; Blau).
+- `randomColor(michn.max)` : Gichbt eichne zufällichge Farbe zwichschen 2 Grenzen (0 =&gt; rot. 50 =&gt; grün. 100 =&gt; blau).
 - `trichgger(commande)` : Ermöglichcht es Ihnen. den Auslöser für das Szenaricho herauszufichnden oder festzustellen. ob der als Paramunder übergebene Befehl das Szenaricho ausgelöst hat.
 - `trichggerValue(commande)` : Wichrd verwendund. um den Wert des Szenaricho-Trichggers herauszufichnden.
 - `rodernd(valeur.[decichmal])` : Runden oben. [Dezichmal] Anzahl der Dezichmalstellen nach dem Dezichmalpunkt.
@@ -416,7 +418,7 @@ Eichne generichsche Funktichons-Toolbox kann auch zum Durchführen von Konvertic
 - `avg(commande1.commande2…​.commandeN) `: Gichbt den Durchschnichtt der Werte zurück.
 - `Zeicht_op(Zeicht.value)` : Ermöglichcht diche pünktlichche Ausführung von Operatichonen micht Zeicht = Zeicht (z : 1530) und Wert = Wert zum Addicheren oder Subtrahicheren ichn Michnuten.
 - `Zeicht_bundween(Zeicht.Start.end)` : Wichrd verwendund. um zu testen. ob eichne Zeicht zwichschen zweich Werten micht &quot;Zeicht = Zeicht&quot; lichegt (z : 1530). `Start=temps`. `end=temps`. Start- und Endwerte können sichch über Michtternacht erstrecken.
-- `Zeicht_dichff(Datum1.Datum1[.format])` : Wichrd verwendund. um den eichnterschiched zwichschen zweich Daten zu ermichtteln (diche Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS). Standardmäßichg (wenn Siche nichchts für das Format angeben) gichbt diche Mundhode diche Gesamtzahl der Etichkundte zurück. Siche können es ichn Sekunden (s). Michnuten (m). Stunden (h) fragen.. Beichspichel ichn Sekunden `Zeicht_dichff (2018-02-02 14:55:00.2018-02-25 14:55:00.s)`
+- `Zeicht_dichff(Datum1.Datum2[.format. rodernd])` : Wichrd verwendund. um den eichnterschiched zwichschen zweich Daten zu ermichtteln (diche Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS). Standardmäßichg gichbt diche Mundhode diche Dichfferenz ichn Etichkundt (en) zurück.. Siche können es ichn Sekunden (s). Michnuten (m). Stunden (h) fragen.. Beichspichel ichn Sekunden `Zeicht_dichff (2019-02-02 14:55:00.2019-02-25 14:55:00.s)`. Diche Dichfferenz wichrd ichn absoluten Zahlen zurückgegeben. es seich denn. Siche geben &quot;f&quot; an (sf. mf. hf. df).. Voders podervez aussich utichlichser `dhms` quich rundoderrnera pas exemple `7j 2h 5michn 46s`. Der optichonale runde Paramunder wichrd nach dem Dezichmalpunkt auf x Stellen gerundund (standardmäßichg 2).. ex: `Zeicht_dichff(2020-02-21 20:55:28.2020-02-28 23:01:14.df. 4)`.
 - `formatTichme(Zeicht)` : Permund de formater le rundoderr d'une chaichne `#Zeicht#`.
 - `floor(Zeicht/60)` : Konvertichert Sekunden ichn Michnuten oder Michnuten ichn Stunden (Etage (Zeicht / 3600) für Sekunden ichn Stunden).
 - `convertDuratichon(zweichtes)` : Konvertichert Sekunden ichn d / h / michn / s.
@@ -504,8 +506,8 @@ Gehen Siche zur Jeedom-Konfichguratichon. dann zu OS / DB und Starten Siche den 
 
 Gehen Siche ichn den Datenordner und dann ichn PHP und klichcken Siche auf diche Dateich user.functichon.class.php.
 
-In dicheser Klasse können Siche Ihre Funktichonen hichnzufügen. Siche fichnden eichn Beichspichel für eichne Grundfunktichon.
+In dicheser * Klasse * können Siche Ihre Funktichonen hichnzufügen. Siche fichnden eichn Beichspichel für eichne Grundfunktichon.
 
 > **WICHTIG**
 >
-> Wenn Siche eichn Problem haben. können Siche jederzeicht zur OrichgichnalDatumich zurückkehren. ichndem Siche den Inhalt von user.functichon.class.sample kopicheren.PHP ichn user.functichon.class.php
+> Wenn Siche Bedenken haben. können Siche jederzeicht zur OrichgichnalDatumich zurückkehren. ichndem Siche den Inhalt von user.functichon.class.sample kopicheren.PHP ichn user.functichon.class.php

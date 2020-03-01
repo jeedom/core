@@ -3,20 +3,16 @@
 
 Tenga en cuenta que esta actualización tiene un error en el script de actualización.
 Si tiene esta versión, deberá iniciar la actualización dos veces.
-Después de eso, tendrá un tablero vacío, es normal que sea el
-caché que se ha vaciado, llevará unas horas el tiempo que
-rellenar.
+Después de eso, tendrá un tablero vacío, es normal que se vacíe el caché, será necesario esperar unas horas mientras se llena nuevamente.
 
 3.1 
 ===
 
--   Tenga en cuenta que hemos cambiado los pasos de los widgets, por lo que esto puede tener
-    un impacto en el posicionamiento de sus widgets en diseños / vistas y
-    salpicadero
-
--   Esta actualización hace que un cambio de diseño sea obligatorio
-    complementos (cambio recomendado en 3.0). Algunos complementos
-    por lo tanto, ya no estará disponible en esta versión hasta
+-   Tenga en cuenta que hemos cambiado los pasos de los widgets para que esto pueda tener un impacto en el posicionamiento de sus widgets en los diseños / vistas y el tablero
+    
+-   Esta actualización hace obligatorio un cambio en el diseño de complementos (cambio recomendado en 3.0). 
+    
+    Por lo tanto, es posible que algunos complementos ya no estén disponibles en esta versión hasta
     corrección por el autor.
 
 -   Puede encontrar la lista de complementos en cuestión aquí. :

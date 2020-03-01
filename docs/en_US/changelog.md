@@ -40,6 +40,12 @@ Changelog
 - Task engine : On the * Daemon * tab, deactivated plugins no longer appear.
 - Advanced equipment configuration window : Dynamic change of switchboard configuration.
 - About window : Addition of shortcuts to Changelog and FAQ.
+- WebApp : Integration of the new Summary page.
+- WebApp : Scenarios page, a click on the scenario title displays its log.
+- WebApp : We can now select / copy part of a log.
+- WebApp : On the search in a log, addition of an x button to cancel the search.
+- WebApp : Persistence of the theme toggle (8h).
+- WebApp : Many bug-fix (UI, portrait / landscape iOS, etc.).
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
