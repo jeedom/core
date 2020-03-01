@@ -63,14 +63,14 @@ You can also edit the internal layout of the controls on the tile :
 
 To the right of each object, an icon allows you to :
 
-- click : All the tiles of this object will adopt a height equal to the highest tile.
-- Ctrl clickk : All the tiles of this object will adopt a height equal to the lowest tile.
+- Click : All the tiles of this object will adopt a height equal to the highest tile.
+- Ctrl Clickk : All the tiles of this object will adopt a height equal to the lowest tile.
 
 ## Jeedom menu bar
 
 > **Tip**
 >
-> - clickk on the clock (menu bar) : Open the Timeline.
-> - clickk on the name of the Jeedom (menu bar) : Opens Settings → System → Configuration.
-> - clickk on ? (toolbar) : Opens help on the current page.
+> - Clickk on the clock (menu bar) : Open the Timeline.
+> - Clickk on the name of the Jeedom (menu bar) : Opens Settings → System → Configuration.
+> - Clickk on ? (toolbar) : Opens help on the current page.
 > - Escape on a research field : Clear the field and cancel this search .

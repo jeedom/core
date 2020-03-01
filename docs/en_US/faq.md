@@ -102,7 +102,7 @@ These must be reset :
 bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9&#39; | head -c 15)
 echo &quot;DROP USER &#39;jeedom&#39; @ &#39;localhost&#39;&quot; | mysql -uroot -p
 echo &quot;CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;&quot; | mysql -uroot -p
-echo &quot;GRANT ALL PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
+echo &quot;GRANT All PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # PASSWORD # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -141,8 +141,8 @@ mysqld --verbose
 Or consult the log : /var/log/mysql/error.log
 
 ### The Shutdown / Restart buttons do not work
-On a DIY installation it&#39;s normal. In SSH, you must make the visudo command and at the end of the file you must add : www-data ALL = (ALL)
-NOPASSWD: ALL.
+On a DIY installation it&#39;s normal. In SSH, you must make the visudo command and at the end of the file you must add : www-data All = (All)
+NOPASSWD: All.
 
 ``` {.bash}
 sudo service apache2 restart

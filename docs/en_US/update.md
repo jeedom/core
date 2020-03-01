@@ -2,7 +2,7 @@
 **Settings → System → Update Center**
 
 
-The **update center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
+The **Update Center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
 Other extension management functions are available (delete, reinstall, check, etc.).
 
 
@@ -25,12 +25,12 @@ Once you click on it, you get these different options :
 - **Pre-update** : Allows you to update the update script before applying the new updates. Generally used at the request of the support.
 - **Save before** : Back up Jeedom before updating.
 - **Update plugins** : Allows you to include plugins in the update.
-- **Update the core** : Allows you to include the Jeedom kernel (the Core) in the update.
+- **Update the Core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
 - **Forced fashion** : Perform the update in forced fashion, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This fashion disables saving!).
 - **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
-> **Important**
+> **IMPORTANT**
 >
 > Before an update, by default, Jeedom will make a backup. In the event of a problem when applying an update, Jeedom will automatically restore the backup made just before. This principle is only valid for Jeedom updates and not for plugin updates.
 
@@ -47,17 +47,17 @@ The plugins have a badge next to their name, specifying their version, green in 
 - **Status** : OK or NOK.
 - **Last name** : Name and origin of the plugin
 - **Version** : Indicates the precise version of the Core or plugin.
-- **options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
+- **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
 On each line, you can use the following functions:
 
-- **reinstate** : Force resettlement.
+- **Reinstate** : Force resettlement.
 - **Remove** : Allows you to uninstall it.
 - **Check** : Query source for updates to find out if a new update is available.
 - **Update** : Allows you to update the element (if it has an update).
 - **Changelog** : Allows access to the list of changes in the update.
 
-> **Important**
+> **IMPORTANT**
 >
 > If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, of the documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
@@ -70,7 +70,7 @@ On each line, you can use the following functions:
 
 During or after an update, this tab allows you to read the log of this update in real time..
 
-> **Note**
+> **NOTE**
 >
 > This log normally ends with * [END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this..
 

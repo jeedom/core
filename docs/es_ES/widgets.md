@@ -8,23 +8,23 @@ Hay dos tipos de widentificacióngets personalizados. :
 - Reproductores basados en una plantilla (administrado por Jeedom Core).
 - Reproductores basados en código de usuario.
 
-> **nota**
+> **Nota**
 >
 > Si los widentificacióngets basados en plantillas están integrados en el Core y, por lo tanto, son monitoreados por el equipo de desarrollo, este último no tiene forma de garantizar la compatibilidentificaciónad de los widentificacióngets basados en el código de usuario de acuerdo con los desarrollos de Jeedom.
 
-## administración
+## Administración
 
 Tienes cuatro opciones :
-- **añadir** : Le permite crear un nuevo widentificaciónget.
-- **importación** : Le permite importar un widentificaciónget como un archivo json previamente exportado.
-- **código** : Abre un editor de archivos para editar widentificacióngets de código..
-- **reemplazo** : Abre una ventana que le permite reemplazar un widentificaciónget por otro en todos los dispositivos que lo usan.
+- **Añadir** : Le permite crear un nuevo widentificaciónget.
+- **Importación** : Le permite importar un widentificaciónget como un archivo json previamente exportado.
+- **Código** : Abre un editor de archivos para editar widentificacióngets de código..
+- **Reemplazo** : Abre una ventana que le permite reemplazar un widentificaciónget por otro en todos los dispositivos que lo usan.
 
 ## Mis widentificacióngets
 
 Una vez que haya creado un widentificaciónget, aparecerá en esta parte.
 
-> **punta**
+> **Punta**
 >
 > Puede abrir un widentificaciónget haciendo :
 > - Haga clic en uno de ellos..
@@ -40,7 +40,7 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 Una vez en la configuración de un widentificaciónget, tiene un menú contextual con el clic derecho en las pestañas del widentificaciónget. También puede usar Ctrl Click o Clic Center para abrir directamente otro widentificaciónget en una nueva pestaña del navegador.
 
 
-## principio
+## Principio
 
 Pero que es una plantilla ?
 En pocas palabras, es un código (aquí html / js) integrado en el Core, algunas partes de las cuales son configurables por el usuario con la interfaz gráfica del Core.
@@ -51,30 +51,30 @@ Dependiendo del tipo de widentificaciónget, generalmente puede personalizar ico
 
 Hay dos tipos de plantillas. :
 
-- la "**sencillo**" : Escriba un icono / imagen para el "encendidentificacióno" y un icono / imagen para el "apagado""
-- la "**multiestado**" : Esto le permite definir, por ejemplo, una imagen si el comando tiene el valor "XX" y otro si> a "YY", y nuevamente si <a "ZZ". O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot;, etc..
+- La "**sencillo**" : Escriba un icono / imagen para el "encendidentificacióno" y un icono / imagen para el "apagado""
+- La "**multiestado**" : Esto le permite definir, por ejemplo, una imagen si el comando tiene el valor "XX" y otro si> a "YY", y nuevamente si <a "ZZ". O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot;, etc..
 
 ## Crear un widentificaciónget
 
 Una vez en la página Herramientas -&gt; Widentificaciónget, haga clic en &quot;Agregar&quot; y asigne un nombre a su nuevo widentificaciónget.
 
-entonces :
+Entonces :
 - Usted elige si se aplica a una acción o tipo de información.
 - Dependiendo de su elección anterior, tendrá que elegir el subtipo del comando (binario, digital, otro ...).
 - Luego, finalmente, la plantilla en cuestión (planeamos poner ejemplos de representaciones para cada plantilla).
 - Una vez que se ha elegidentificacióno la plantilla, Jeedom le ofrece las opciones para configurarla..
 
-### reemplazo
+### Reemplazo
 
 Esto es lo que se llama un widentificaciónget simple, aquí solo tiene que decir que el &quot;encendidentificacióno&quot; corresponde a dicho icono / imagen (con el botón elegir), el &quot;apagado&quot; es ese, etc.. Luego, dependiendo de la plantilla, se le puede ofrecer el ancho y la altura. Esto solo es válidentificacióno para imágenes.
 
->**nota**
+>**Nota**
 >Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidentificaciónad y eficiencia, tanto para usted como para nosotros.. No tuvimos otra opción
 
->**TIPS**
+>**Consejos**
 >Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widentificaciónget "Parámetros opcionales". Por ejemplo, si en el ancho pones como valor # ancho # (ten cUIDado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widentificaciónget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widentificaciónget diferente para cada tamaño de imagen que desee
 
-### prueba
+### Prueba
 
 Esto se llama la parte multiestatal, a menudo tiene, como para widentificacióngets sencillo, la opción de &quot;altura&quot; / &quot;ancho&quot; para las imágenes solo entonces debajo de la parte de prueba.
 
@@ -86,13 +86,13 @@ Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automá
 - #value# >= 1 && #value# <= 5
 - #valor # == &#39;toto'
 
->**nota**
+>**Nota**
 >Es importante tener en cuenta el &quot;alrededor del texto para comparar si el valor es un texto
 
->**nota**
+>**Nota**
 >Para usuarios avanzados, aquí también es posible usar funciones de JavaScript tipo #valor#.match (&quot;^ plop&quot;), aquí probamos si el texto comienza con plop
 
->**nota**
+>**Nota**
 >Es posible mostrar el valor del comando en el widentificaciónget colocando, por ejemplo, al lado del código HTML del icono #value#
 
 ## Descripción de widentificacióngets
@@ -102,8 +102,8 @@ Vamos a describir aquí algunos widentificacióngets que tienen un funcionamient
 ### Configuraciones frecuentes
 
 - Widentificaciónget de tiempo : muestra el tiempo desde que el sistema ha estado en el estado de visualización.
-- uno : icono para mostrar si el equipo está encendidentificacióno / 1.
-- apagado : icono para mostrar si el equipo está apagado / 0.
+- Uno : icono para mostrar si el equipo está encendidentificacióno / 1.
+- Apagado : icono para mostrar si el equipo está apagado / 0.
 - Luz encendidentificacióna : icono para mostrar si el equipo está encendidentificacióno / 1 y el tema es claro (si está vacío, entonces Jeedom toma la imagen oscura).
 - Luz apagada : icono para mostrar si el equipo está apagado / 0 y el tema es claro (si está vacío, entonces Jeedom quita la imagen oscura).
 - Oscuro en : icono para mostrar si el equipo está encendidentificacióno / 1 y el tema está oscuro (si está vacío, entonces Jeedom enciende la luz img).
@@ -111,7 +111,7 @@ Vamos a describir aquí algunos widentificacióngets que tienen un funcionamient
 - Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 - Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 
-### higrotermógrafo
+### Higrotermógrafo
 
 Este widentificaciónget es un poco especial porque es un widentificaciónget de comandos múltiples, es decir que reúne en su pantalla el valor de varios comandos. Aquí toma los comandos de temperatura y humedad..
 
@@ -122,7 +122,7 @@ Para configurarlo es bastante simple, debe asignar el widentificaciónget al con
 
 El widentificaciónget tiene un parámetro opcional. : escala que le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño
 
->**NOTA**
+>**Nota**
 > Atención en un diseño, es importante no poner un comando solo con este widentificaciónget, no funcionará ya que es un widentificaciónget que utiliza el valor de varios comandos, es absolutamente necesario poner el widentificaciónget completo
 
 ### Multilínea
@@ -147,7 +147,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidentificació
 - #UID# : Identificador único para esta generación del widentificaciónget (si hay varias veces el mismo comando, caso de diseños:  solo este identificaciónentificador es realmente único)
 - #ValueDate# : fecha del valor del pedidentificacióno
 - #collectDate# : fecha de recogidentificacióna del pedidentificacióno
-- #alertLevel# : nivel de alerta (ver [aquí] (https:// github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php # L67) para la lista)
+- #alertLevel# : nivel de alerta (ver [aquí] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php # L67) para la lista)
 - #hidentificacióne_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a # hidentificacióne_nombre #, está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTEE si esta etiqueta no se encuentra en su widentificaciónget, entonces las etiquetas # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # y # trend # no serán reemplazadas por Jeedom.
 - #minHistoryValue# : valor mínimo durante el período (período definidentificacióno en la configuración de Jeedom por el usuario)
 - #averageHistoryValue# : valor promedio durante el período (período definidentificacióno en la configuración de Jeedom por el usuario)

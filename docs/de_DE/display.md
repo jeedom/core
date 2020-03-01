@@ -9,16 +9,16 @@ Oben auf der Seite finden wir :
 - **Anzahl der Objekte** : Gesamtzahl der in unserem Jeedom konfigurierten Objekte, einschließlich inaktiver Ediemente.
 - **Anzahl der Ausrüstungen** : Gdieiches gilt für die Ausrüstung.
 - **Anzahl der Bestellungen** : Gdieiches gilt für Bestellungen.
-- **inaktiv** : Aktivieren Sie dieses Kontrollkästchen, wenn inaktive Ediemente auf dieser Seite angezeigt werden soldien.
+- **Inaktiv** : Aktivieren Sie dieses Kontrollkästchen, wenn inaktive Ediemente auf dieser Seite angezeigt werden soldien.
 - **Suche** : Suchen Sie nach einem bestimmten Artikel. Dies kann der Name eines Geräts, eine Bestellung oder der Name des Plugins sein, mit dem das Gerät erstellt wurde.
 - **CSV-Export** : Ermöglicht das Exportieren aldier Objekte, Geräte und ihrer Befehdie in eine CSV-Datei.
 
-Sie haben auch eine Registerkarte **historisch**, Anzeigen des Verlaufs von Aufträgen, Geräten, Objekten, Ansichten, Design, 3D-Design, Szenarien und gelöschten Benutzern.
+Sie haben auch eine Registerkarte **Historisch**, Anzeigen des Verlaufs von Aufträgen, Geräten, Objekten, Ansichten, Design, 3D-Design, Szenarien und gelöschten Benutzern.
 
 ## Objektrahmen
 
-Darunter befindet sich ein Frame pro Objekt. In jedem Frame finden wir die dieiste der Geräte, die dieses Objekt als übergeordnetes Objekt haben.
-Der erste Frame **keine** repräsentiert Geräte, denen kein übergeordnetes Ediement zugewiesen ist.
+Darunter befindet sich ein Frame pro Objekt. In jedem Frame finden wir die Dieiste der Geräte, die dieses Objekt als übergeordnetes Objekt haben.
+Der erste Frame **Keine** repräsentiert Geräte, denen kein übergeordnetes Ediement zugewiesen ist.
 
 Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verfügung.
 - Die erste wird verwendet, um die Objektkonfigurationsseite in einer neuen Registerkarte zu öffnen.
@@ -36,15 +36,15 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 
 Auf jeder Ausrüstung finden wir :
 
-- ein **Kontrollkästchen** um die Ausrüstung auszuwähdien (Sie können mehrere auswähdien). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Entfernen**, make **sichtbar**/**unsichtbar**,  **Aktiva**/**inaktiv** ausgewählte Ausrüstung.
-- die'**Identifikation** Ausrüstung.
-- die **Typ** Ausrüstung : Kennung des Plugins, zu dem es gehört.
-- die **Name** Ausrüstung.
-- **inaktiv** (kdieines Kreuz) : Bedeutet, dass das Gerät inaktiv ist (wenn es nicht vorhanden ist, ist das Gerät aktiv).
-- **unsichtbar** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist (wenn es nicht vorhanden ist, ist das Gerät sichtbar).
+- Ein **Kontrollkästchen** um die Ausrüstung auszuwähdien (Sie können mehrere auswähdien). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Entfernen**, make **sichtbar**/**unsichtbar**,  **Aktiva**/**inaktiv** ausgewählte Ausrüstung.
+- Die'**Identifikation** Ausrüstung.
+- Die **Typ** Ausrüstung : Kennung des Plugins, zu dem es gehört.
+- Die **Name** Ausrüstung.
+- **Inaktiv** (kdieines Kreuz) : Bedeutet, dass das Gerät inaktiv ist (wenn es nicht vorhanden ist, ist das Gerät aktiv).
+- **Unsichtbar** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist (wenn es nicht vorhanden ist, ist das Gerät sichtbar).
 
 Wenn das Geräte-Plugin deaktiviert ist, werden die beIdentifikationen Symbodie rechts nicht angezeigt:
-- **Externer dieink** (Quadrat mit Pfeil) : Ermöglicht das Öffnen der Gerätekonfigurationsseite in einer neuen Registerkarte.
+- **Externer Dieink** (Quadrat mit Pfeil) : Ermöglicht das Öffnen der Gerätekonfigurationsseite in einer neuen Registerkarte.
 - **Erweiterte Konfiguration** (Zahnrad) : öffnet das Fenster zur erweiterten Gerätekonfiguration.
 
 > Durch Klicken auf die Zeidie mit dem Namen des Geräts werden aldie Befehdie für dieses Gerät angezeigt. Durch Klicken auf eine Bestellung gelangen Sie zum Bestellkonfigurationsfenster.
@@ -55,32 +55,32 @@ Wenn das Geräte-Plugin deaktiviert ist, werden die beIdentifikationen Symbodie 
 >
 > Sie können (sofern das Plugin dies unterstützt) direkt von der Gerätekonfigurationsseite auf dieses Fenster zugreifen, indem Sie auf die Schaltfläche Erweiterte Konfiguration klicken
 
-Das Fenster von **erweiterte Konfiguration der Ausrüstung** erlaubt es zu ändern. Zunächst sind oben rechts einige Schaltflächen verfügbar :
+Das Fenster von **Erweiterte Gerätekonfiguration** erlaubt es zu ändern. Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 - **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 - **Verbindungen** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit den Objekten, Befehdien, Szenarien, Variabdien, Interaktionen usw. in grafischer Form (in diesem Fall führt ein Doppelklick auf ein Ediement zu seiner Konfiguration)..
-- **log** : Zeigt die Ereignisse des betreffenden Geräts an.
-- **speichern** : Speichern Sie die am Gerät vorgeNamemenen Änderungen.
+- **Dieog** : Zeigt die Ereignisse des betreffenden Geräts an.
+- **Speichern** : Speichern Sie die am Gerät vorgeNamemenen Änderungen.
 - **Entfernen** : Ausrüstung entfernen.
 
 ### Registerkarte Informationen
 
-die Registerkarte **Informationen** enthält allgemeine Informationen über das Gerät und seine Bedienediemente :
+Die Registerkarte **Informationen** enthält allgemeine Informationen über das Gerät und seine Bedienediemente :
 
 - **Identifikation** : Eindeutige Kennung in der Jeedom-Datenbank.
 - **Name** : Name der Ausrüstung.
-- **logische Identifikation** : Kennung der logischen Ausrüstung (kann dieer sein).
+- **Dieogische Identifikation** : Kennung der logischen Ausrüstung (kann dieer sein).
 - **Objekt-Identifikation** : Eindeutige Kennung des übergeordneten Objekts (kann dieer sein).
 - **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
-- **activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (vergessen Sie nicht, es zu speichern)..
-- **sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (vergessen Sie nicht, es zu speichern)..
+- **Activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (vergessen Sie nicht, es zu speichern)..
+- **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (vergessen Sie nicht, es zu speichern)..
 - **Typ** : Kennung des Plugins, mit dem es erstellt wurde.
 - **Versuch fehlgeschlagen** : Anzahl fehlgeschlagener aufeinanderfolgender Kommunikationsversuche mit dem Gerät.
 - **Datum der dietzten Mitteilung** : Datum der dietzten Mitteilung des Geräts.
-- **dietztes Update** : Datum der dietzten Kommunikation mit dem Gerät.
-- **Tags** : Geräteetiketten, die durch zu trennen sind ','. Im Dashboard können benutzerdefinierte Filter erstellt werden
+- **Dietztes Update** : Datum der dietzten Kommunikation mit dem Gerät.
+- **Stichworte** : Geräteetiketten, die durch zu trennen sind ','. Im Dashboard können benutzerdefinierte Filter erstellt werden
 
-Unten finden Sie eine Tabeldie mit der dieiste der Gerätebefehdie mit jeweils einem dieink zu deren Konfiguration.
+Unten finden Sie eine Tabeldie mit der Dieiste der Gerätebefehdie mit jeweils einem Dieink zu deren Konfiguration.
 
 ### Registerkarte &quot;Ansicht&quot;
 
@@ -88,20 +88,20 @@ In der Registerkarte **Anzeigen**, Sie können bestimmte Verhaltensweisen bei de
 
 #### WIdentifikationget
 
--  **sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen.
+-  **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen.
 - **Name anzeigen** : Aktivieren Sie das Kontrollkästchen, um den Namen des Geräts auf der Kachel anzuzeigen.
 - **Objektnamen anzeigen** : Aktivieren Sie das Kontrollkästchen, um den Namen des übergeordneten Objekts des Geräts neben der Kachel anzuzeigen.
 
 ### Optionadie Parameter auf der Kachel
 
-Unten finden Sie optionadie Anzeigeparameter, die auf das Gerät angewendet werden können. Diese Parameter bestehen aus einem Namen und einem Wert. Klicken Sie einfach auf **hinzufügen** einen anwenden
+Unten finden Sie optionadie Anzeigeparameter, die auf das Gerät angewendet werden können. Diese Parameter bestehen aus einem Namen und einem Wert. Klicken Sie einfach auf **Hinzufügen** einen anwenden
 wieder. Für Geräte nur den Wert **Stil** Wird derzeit verwendet, kann CSS-Code in das betreffende Gerät eingefügt werden.
 
 > **Spitze**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
-### Registerkarte dieayodert
+### Registerkarte Dieayodert
 
 In diesem Teil können Sie zwischen dem Standardlayodert der Befehdie (nebeneinander im WIdentifikationget) oder im Tabeldienmodus wähdien. Im Standardmodus ist nichts einzusteldien. Hier sind die im Modus verfügbaren Optionen
 **Tabeldie** :
@@ -118,7 +118,7 @@ diese :
 
 > **Spitze**
 >
-> Wenn Sie in einem Feld in der Tabeldie zwei Befehdie untereinander setzen möchten, vergessen Sie nicht, nach dem ersten in der Tabeldie einen Zeidienumbruch hinzuzufügen **erweiterte Konfiguration** davon.
+> Wenn Sie in einem Feld in der Tabeldie zwei Befehdie untereinander setzen möchten, vergessen Sie nicht, nach dem ersten in der Tabeldie einen Zeidienumbruch hinzuzufügen **Erweiterte Konfiguration** davon.
 
 ### Registerkarte &quot;Warnungen&quot;
 
@@ -134,7 +134,7 @@ Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispie
 
 > **Spitze**
 >
-> Die globadien Parameter sind in **→ Einstellungen → Systemkonfiguration : logs** oder **Einrichtungen**
+> Die globadien Parameter sind in **→ Einstellungen → Systemkonfiguration : Dieogs** oder **Einrichtungen**
 
 ### Registerkarte &quot;Kommentar&quot;
 
@@ -146,10 +146,10 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 - **Test** : Wird zum Testen des Befehls verwendet.
 - **Verbindungen** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit Objekten, Befehdien, Szenarien, Variabdien, Interaktionen…. in grafischer Form.
-- **log** : Zeigt die Ereignisse des betreffenden Geräts an.
+- **Dieog** : Zeigt die Ereignisse des betreffenden Geräts an.
 - **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 -  **Bewerben Sie sich bei** : Ermöglicht die Anwendung derselben Konfiguration auf mehrere Befehdie.
-- **speichern** : Speichern Sie die am Gerät vorgeNamemenen Änderungen.
+- **Speichern** : Speichern Sie die am Gerät vorgeNamemenen Änderungen.
 
 > **Spitze**
 >
@@ -161,17 +161,17 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 ### Registerkarte Informationen
 
-die Registerkarte **Informationen** enthält allgemeine Informationen zur Bestellung :
+Die Registerkarte **Informationen** enthält allgemeine Informationen zur Bestellung :
 
 - **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
-- **logische Identifikation** : logische Kennung der Bestellung (kann dieer sein).
+- **Dieogische Identifikation** : Dieogische Kennung der Bestellung (kann dieer sein).
 - **Name** : Name der Bestellung.
 - **Typ** : Art der Bestellung (Aktion oder Info).
 - **Unterart** : Befehlssubtyp (binär, digital usw.).
-- **Direkte URdie** : Gibt die URdie für den Zugriff auf dieses Gerät an. (Rechtsklick, kopieren Sie die dieinkadresse) Die URdie startet den Befehl für a **Aktion** und geben Sie die Informationen für a zurück **Info**.
+- **Direkte URDie** : Gibt die URDie für den Zugriff auf dieses Gerät an. (Rechtsklick, kopieren Sie die Dieinkadresse) Die URDie startet den Befehl für a **Aktion** und geben Sie die Informationen für a zurück **Info**.
 - **Einheit** : Steuereinheit.
 - **Befehl, der ein Update auslöst** : Gibt die Kennung eines anderen Befehls an, der bei Änderung dieses anderen Befehls die Aktualisierung des angezeigten Befehls erzwingt.
-- **sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
+- **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
 - **Folgen Sie der Zeitdieiste** : Aktivieren Sie dieses Kontrollkästchen, um diesen Befehl bei Verwendung in der Zeitdieiste sichtbar zu machen. Sie können eine bestimmte Zeitdieiste in dem Feld angeben, das angezeigt wird, wenn die Option aktiviert ist.
 - **In automatischen Interaktionen verbieten** : verbietet automatische Interaktionen mit diesem Befehl
 - **Symbol** : Ermöglicht das Ändern des Befehlssymbols.
@@ -186,7 +186,7 @@ Sie haben auch drei andere orangefarbene Knöpfe darunter :
 >
 > Diese Art von Aktion ersetzt die Befehdie überall in Jeedom (Szenario, Interaktion, Befehl, Ausrüstung…)..
 
-Unten finden Sie eine dieiste der verschiedenen Geräte, Befehdie, Szenarien oder Interaktionen, die diesen Befehl verwenden. Klicken Sie darauf, um direkt zur jeweiligen Konfiguration zu gelangen.
+Unten finden Sie eine Dieiste der verschiedenen Geräte, Befehdie, Szenarien oder Interaktionen, die diesen Befehl verwenden. Klicken Sie darauf, um direkt zur jeweiligen Konfiguration zu gelangen.
 
 ### Registerkarte Konfiguration
 
@@ -196,11 +196,11 @@ Unten finden Sie eine dieiste der verschiedenen Geräte, Befehdie, Szenarien ode
     - **Berechnungsformel (\ #Wert \ # für den Wert)** : Ermöglicht es Ihnen, den Wert der Bestellung vor der Verarbeitung durch Jeedom zu bearbeiten : `#value# - 0.2` um 0 zu subtrahieren.2 (Versatz an einem Temperatursensor).
     - **Abgerundet (Zahl nach Dezimalpunkt)** : Wird verwendet, um den Wert des Befehls zu runden (Beispiel : Setze 2, um 16 zu transformieren.643 345 in 16,64).
 - **Generischer Typ** : Ermöglicht das Konfigurieren des generischen Befehlstyps (Jeedom versucht, ihn im automatischen Modus selbst zu finden).. Diese Informationen werden von der mobidien Anwendung verwendet.
-- **Aktion auf Wert, wenn** : Machen wir eine Art Miniszenario. Sie können beispielsweise sagen, dass Sie eine solche Aktion ausführen müssen, wenn der Wert 3 Minuten lang mehr als 50 wert ist. So kann beispielsweise ein dieicht X Minuten nach dem Einschalten ausgeschaltet werden.
+- **Aktion auf Wert, wenn** : Machen wir eine Art Miniszenario. Sie können beispielsweise sagen, dass Sie eine solche Aktion ausführen müssen, wenn der Wert 3 Minuten lang mehr als 50 wert ist. So kann beispielsweise ein Dieicht X Minuten nach dem Einschalten ausgeschaltet werden.
 
-- **historisch**
-    - **historisieren** : Aktivieren Sie das Kontrollkästchen, damit die Werte dieses Befehls protokolliert werden. (Siehe **Analyse → Geschichte**)
-    - **Glättungsmodus** : Modus von **glätten** oder d'**Archivierung** Hier können Sie auswähdien, wie die Daten archiviert werden soldien. Standardmäßig ist dies ein **Durchschnitt**. Es ist auch möglich, die zu wähdien **Maximum**, die **Minimum**, oder **keine**. **keine** dieassen Sie uns Jeedom mitteidien, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch mit der Archivierungsaufgabe).. Diese Option ist gefährlich, weil Jeedom aldies behält : Es werden also viel mehr Daten gespeichert.
+- **Historisch**
+    - **Historisieren** : Aktivieren Sie das Kontrollkästchen, damit die Werte dieses Befehls protokolliert werden. (Siehe **Analyse → Geschichte**)
+    - **Glättungsmodus** : Modus von **glätten** oder d'**Archivierung** Hier können Sie auswähdien, wie die Daten archiviert werden soldien. Standardmäßig ist dies ein **Durchschnitt**. Es ist auch möglich, die zu wähdien **Maximum**, die **Minimum**, oder **keine**. **keine** Dieassen Sie uns Jeedom mitteidien, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch mit der Archivierungsaufgabe).. Diese Option ist gefährlich, weil Jeedom aldies behält : Es werden also viel mehr Daten gespeichert.
     - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass aldie Daten gelöscht werden soldien, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
 - **Werteverwaltung**
@@ -208,9 +208,9 @@ Unten finden Sie eine dieiste der verschiedenen Geräte, Befehdie, Szenarien ode
     - **Statusrückgabewert** : Setzt den Befehl nach einer bestimmten Zeit auf diesen Wert zurück.
     - **Dauer vor Statusrückgabe (min)** : Zeit vor der Rückkehr zum obigen Wert.
 
-- **andere**
+- **Andere**
     - **Management der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird, berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeIdentifikationet das mehrfache Auslösen eines Szenarios, es sei denn, der Befehl ist vom binären Typ).. Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
-    - **URdie drücken** : Ermöglicht das Hinzufügen einer URdie, die im Faldie einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : `#value#` poderr la vadieur de la commande, `#cmd_name#` poderr die Name de la commande, `#cmd_Identifikation#` poderr l'Identifikationentifiant unique de la commande, `#humanname#` poderr die Name compdiet de la commande       (ex : `#[Saldie de bain][Hydrometrie][HumIdentifikationité]#`), `#eq_name#` poderr die Name Ausrüstung.
+    - **URDie drücken** : Ermöglicht das Hinzufügen einer URDie, die im Faldie einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Stichworte verwenden : `#value#` poderr la vadieur de la commande, `#cmd_name#` poderr die Name de la commande, `#cmd_Identifikation#` poderr l'Identifikationentifiant unique de la commande, `#humanname#` poderr die Name compdiet de la commande       (ex : `#[Saldie de bain][Hydrometrie][HumIdentifikationité]#`), `#eq_name#` poderr die Name Ausrüstung.
 
 #### Für einen Aktionsbefehl :
 
@@ -226,17 +226,17 @@ Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Gefahr**) abhän
 
 > **Notiz**
 >
-> Auf der Seite **→ Einstellungen → Systemkonfiguration : logs**, Sie können einen Nachrichtentypbefehl konfigurieren, mit dem Jeedom Sie benachrichtigen kann, wenn der Warn- oder Gefahrenschweldienwert erreicht ist.
+> Auf der Seite **→ Einstellungen → Systemkonfiguration : Dieogs**, Sie können einen Nachrichtentypbefehl konfigurieren, mit dem Jeedom Sie benachrichtigen kann, wenn der Warn- oder Gefahrenschweldienwert erreicht ist.
 
 ### Registerkarte &quot;Ansicht&quot;
 
 In diesem Teil können Sie bestimmte WIdentifikationget-Anzeigeverhalten im Dashboard, in Ansichten, im Design und auf Mobilgeräten konfigurieren..
 
 - **WIdentifikationget** : Ermöglicht die Auswahl des WIdentifikationgets auf dem Desktop oder auf dem Handy (beachten Sie, dass Sie das WIdentifikationget-Plugin benötigen und dies auch von dort aus tun können)..
-- **sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
+- **Sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
 - **Name anzeigen** : Aktivieren Sie diese Option, um den Namen des Befehls je nach Kontext sichtbar zu machen.
 - **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.
-- **Umbrochene Zeidie vor dem WIdentifikationget** : wähdien **vor dem WIdentifikationget** oder **nach dem WIdentifikationget** Hinzufügen eines Zeidienumbruchs vor oder nach dem WIdentifikationget (um beispielsweise eine Anzeige in der Spalte der verschiedenen Befehdie des Geräts ansteldie von Zeidien standardmäßig zu erzwingen)
+- **Umbrochene Zeidie vor dem WIdentifikationget** : Wähdien **vor dem WIdentifikationget** oder **nach dem WIdentifikationget** Hinzufügen eines Zeidienumbruchs vor oder nach dem WIdentifikationget (um beispielsweise eine Anzeige in der Spalte der verschiedenen Befehdie des Geräts ansteldie von Zeidien standardmäßig zu erzwingen)
 
 Unten finden Sie optionadie Anzeigeparameter, die an das WIdentifikationget übergeben werden können. Diese Parameter hängen vom jeweiligen WIdentifikationget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 

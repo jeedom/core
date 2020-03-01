@@ -29,13 +29,13 @@ For the pros :
 - **Support requests recipient** : know who will receive support emails (end customer, installer or both).
     - **TOS**
 - **User** : general conditions of use (be careful to read them well because they bind you).
-- **developer** : terms of use for developers.
-    - **tickets**
+- **Developer** : terms of use for developers.
+    - **Tickets**
 - **Number of tickets** : Number of tickets for the current month and your limit.
 - **Support** : Button to send a support request (also accessible by the exclamation mark at the top right on the Market or on your Jeedom).
     - **Access to betas**
 - **Enable access to beta plugins** : Enables access to betas plugins (note that this will prevent you from accessing the support).
-    - **summary** Here you will find a summary of your different rights and services.
+    - **Summary** Here you will find a summary of your different rights and services.
 
 > **Tip**
 >
@@ -57,10 +57,10 @@ For the pros :
     - **Last name** : The name you want to give to your Jeedom (can be found in the name of the backup if you have the cloud backup subscription).
     - **State** : Lets see the state of the Jeedom in question.
     - **Local / remote IP** : IP or address of this Jeedom, configure in Jeedom, if you do not put anything it will be the last known IP.
-    - **DNS** : Allows you to customize the name of your DNS.
+    - **Dns** : Allows you to customize the name of your Dns.
     - **URLs** : List the different Jeedom access URLss.
-    - **DNS server** : Tells you the DNS server to which you are attached.
-    - **DNS status** : Allows you to see the status of the DNS.
+    - **Dns server** : Tells you the Dns server to which you are attached.
+    - **Dns status** : Allows you to see the status of the Dns.
     - **Creation date** : Date of creation of this Jeedom on your Market account (as a reminder, this is done automatically when you link it to the Market).
     - **Last update** : Jeedom&#39;s last communication with the Market.
     - **Hardware** : Jeedom hardware name.
@@ -82,7 +82,7 @@ On this tab you can view your SMS / Calls balance (usable with the Phone market 
 
 Here you find all your purchases and you can request the return of the invoice or receipt email.
 
-> **Important**
+> **IMPORTANT**
 >
 > If you buy an official plugin you will receive an invoice. However for a third party plugin it is a receipt, for the invoice you have to ask the developer.
 

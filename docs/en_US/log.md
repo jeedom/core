@@ -1,13 +1,13 @@
-# logs
-**Analysis → logs**
+# Logs
+**Analysis → Logs**
 
-logs are log files, allowing you to follow what is happening on your home automation. In most cases the logs will only be used for debugging and solving problems by the support team.
+Logs are log files, allowing you to follow what is happening on your home automation. In most cases the logs will only be used for debugging and solving problems by the support team.
 
 > **Tip**
 >
 > When the page opens, the first available log is displayed.
 
-The logs page is quite simple :
+The Logs page is quite simple :
 On the left, a list of available logs, with a search field to filter the name of the logs.
 Top right 5 buttons :
 

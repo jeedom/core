@@ -1,4 +1,4 @@
-# interacciones
+# Interacciones
 **Herramientas → Interacciones**
 
 El sistema de interacción en Jeedom le permite realizar acciones desde texto o comandos de voz..
@@ -6,13 +6,13 @@ El sistema de interacción en Jeedom le permite realizar acciones desde texto o 
 Estas órdenes pueden ser obtenidas por :
 
 - SMS : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
-- gato : Telegram, Slack, yc..
-- vocal : dicta una frase con Siri, Google Now, SARAH, yc.. Para iniciar comandos (acción) o hacer una pregunta (información).
-- HTTP : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
+- Gato : Telegram, Slack, yc..
+- Vocal : dicta una frase con Siri, Google Now, SARAH, yc.. Para iniciar comandos (acción) o hacer una pregunta (información).
+- Http : lanzar una URL Http que contenga el texto (ej.. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
 
 El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tablyas, otras cajas de automatización del hogar, yc..
 
-> **punta**
+> **Punta**
 >
 > Puede abrir una interacción haciendo :
 > - Haga clic en uno de ellos..
@@ -26,19 +26,19 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 
 Una vez en la configuración de una interacción, tiene un menú contextual con el botón derecho en las pestañas de la interacción. También puede usar Ctrl Click o Click Center para abrir directamente otra interacción en una nueva pestaña del navegador.
 
-## interacciones
+## Interacciones
 
 En la parte superior de la página, hay 3 botones. :
 
-- **añadir** : Le permite crear nuevas interacciones..
-- **regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
-- **prueba** : Abre un diálogo para escribir y probar una oración..
+- **Añadir** : Le permite crear nuevas interacciones..
+- **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
+- **Prueba** : Abre un diálogo para escribir y probar una oración..
 
-> **punta**
+> **Punta**
 >
 > Si tiene una interacción que genera las oraciones para las luces, por ejemplo, y agrega un nuevo módulo de control de luz, tendrá que regenerar todas las interacciones o ir a la interacción en cuestión y guardarla nuevamente para crear las oraciones de este nuevo módulo.
 
-## principio
+## Principio
 
 El principio de la creación es bastante simple. : definiremos una oración modelo generadora que permitirá a Jeedom crear una o más cientos de otras oraciones que serán posibles combinaciones del modelo.
 
@@ -46,23 +46,23 @@ Vamos a definir respuestas de la misma manera con un modelo (esto le permite a J
 
 También podemos definir un comando para ejecutar si, por ejemplo, la interacción no está vinculada a una acción sino a una información o si deseamos llevar a cabo una acción particular después de esta (también es posible ejecutar un escenario, controlar varias órdenes ...).
 
-## configuración
+## Configuración
 
 La página de configuración consta de varias pestañas y botones. :
 
-- **frases** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **registro** : Grabar la interacción actual.
-- **remove** : Eliminar interacción actual.
-- **duplicado** : Duplica la interacción actual.
+- **Frases** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
+- **Registro** : Grabar la interacción actual.
+- **Remove** : Eliminar interacción actual.
+- **Duplicado** : Duplica la interacción actual.
 
 ### Pestaña General
 
-- **apellido** : apellidobre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
-- **grupo** : Grupo de interacción, esto les permite organizarse (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
-- **bienes** : Habilita o deshabilita la interacción..
-- **solicitud** : La oración modelo generadora (requerida).
-- **sinónimo** : Permite definir sinónimos en los nombres de los comandos.
-- **respuesta** : La respuesta para proporcionar.
+- **Apellido** : Apellidobre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
+- **Grupo** : Grupo de interacción, esto les permite organizarse (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
+- **Bienes** : Habilita o deshabilita la interacción..
+- **Solicitud** : La oración modelo generadora (requerida).
+- **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
+- **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder** : Agregue un ryraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
 - **Conversión binaria** : Convierte valores binarios en abiertos / cerrados, por ejemplo (solo para comandos de tipo de información binaria).
 - **Usuarios autorizados** : Limita la interacción con ciertos usuarios (inicios de sesión separados por |).
@@ -83,7 +83,7 @@ La página de configuración consta de varias pestañas y botones. :
 
 #### Ejemplos
 
-> **nota**
+> **Nota**
 >
 > Las capturas de pantalla pueden ser diferentes en vista de los desarrollos..
 
@@ -103,7 +103,7 @@ Podemos imaginar hacer lo mismo con varias acciones para encender varias lámpar
 
 En los 2 ejemplos anteriores, la oración modelo es idéntica, pero las acciones que resultan de ella cambian de acuerdo con lo que está configurado en la parte &quot;Acción&quot;, por lo que ya con una simple interacción con una sola oración podemos imaginar acciones combinadas entre varios comandos y varios escenarios (también podemos activar escenarios en la parte de acción de las interacciones).
 
-> **punta**
+> **Punta**
 >
 > Para agregar un escenario, cree una nueva acción, escriba &quot;escenario&quot; sin acento, presione la tecla de tabulación en su teclado para que aparezca el selector de escenario.
 
@@ -161,9 +161,9 @@ Las conversiones binarias se aplican a los comandos de tipo de información cuyo
 
 Como podemos ver aquí, he mantenido casi la misma estructura para la solicitud (es voluntario enfocarse en los dyalles). Por supuesto, adapté los sinónimos para tener algo coherente. Sin embargo, para la respuesta, es **imperativo** para poner solo \ #valor \ # que representa el 0 o 1 que Jeedom reemplazará con la siguiente conversión binaria.
 
-El campo **conversión binaria** debe contener 2 respuestas : primero la respuesta si el valor del comando es 0, luego una barra vertical &quot;|&quot; separación y finalmente la respuesta si el comando vale 1. Aquí las respuestas son simplemente no y sí, pero podríamos poner una oración un poco más larga.
+El campo **Conversión binaria** debe contener 2 respuestas : primero la respuesta si el valor del comando es 0, luego una barra vertical &quot;|&quot; separación y finalmente la respuesta si el comando vale 1. Aquí las respuestas son simplemente no y sí, pero podríamos poner una oración un poco más larga.
 
-> **advertencia**
+> **Advertencia**
 >
 > Las yiquyas no funcionan en conversiones binarias.
 
@@ -171,7 +171,7 @@ El campo **conversión binaria** debe contener 2 respuestas : primero la respues
 
 El campo "Usuarios autorizados" permite autorizar solo a ciertas personas para ejecutar el comando, puede poner varios perfiles separándolos por un "|".
 
-ejemplo : persona.1 | person2
+Ejemplo : persona.1 | person2
 
 Podemos imaginar que una alarma puede ser activada o desactivada por un niño o un vecino que vendría a regar las plantas en su ausencia.
 
@@ -204,7 +204,7 @@ Si traducimos esta expresión en una oración, daría "busque la palabra Julie q
 
 Es una versión extremadamente simple de expresiones regulares, pero ya es muy complicada de entender.. Me tomó un tiempo entender cómo funciona. Como un ejemplo un poco más complejo, una expresión regular para verificar una URL :
 
-/ \ ^ (HTTPS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \ *) \ * \\ /?\ $ /
+/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \ *) \ * \\ /?\ $ /
 
 Una vez que puedes escribir esto, entiendes las expresiones regulares.
 
@@ -244,7 +244,7 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la habitación de * julie * | sí, hay alguien en la habitación de * julie*"
 
-#### evolución
+#### Evolución
 
 - Entonces la pregunta es "\ #order \ # \ [en el | en el \] \ #object \#"
 - La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación"."
@@ -269,7 +269,7 @@ Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humeda
 - La respuesta será "21 ° C" o "200 lux". Solo pon : \ #valeur \ # \ #unite \ # (la unidad debe complyarse en la configuración de cada pedido para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
-#### evolución
+#### Evolución
 
 Por lo tanto, podemos agregar sinónimos al nombre del comando para tener algo más natural, agregar una expresión regular para filtrar los comandos que no tienen nada que ver con nuestra interacción.
 
@@ -285,7 +285,7 @@ Entonces podemos ver una expresión regular :
 
 Esto le permite eliminar todos los comandos que tienen una de estas palabras en su oración
 
-> **nota**
+> **Nota**
 >
 > La expresión regular aquí es una versión simplificada para un uso fácil. Por lo tanto, podemos usar expresiones tradicionales o expresiones simplificadas como en este ejemplo.
 
@@ -299,11 +299,11 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 Como podemos ver, aquí está en la solicitud la yiquya **\#consigna\#** (puede poner lo que quiera) que se usa en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \ * Solicitud : en el que creamos una yiquya que representará el valor que se enviará a la interacción. \ * Respuesta : reutilizamos la yiquya para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \ * Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor pasamos nuestra yiquya * instrucción*.
 
-> **nota**
+> **Nota**
 >
 > Podemos usar cualquier yiquya, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las yiquyas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en &quot;Ejecutar en primer plano&quot;).
 
-#### evolución
+#### Evolución
 
 Es posible que queramos controlar todos los comandos de tipo cursor con una sola interacción. Con el siguiente ejemplo, podremos controlar varias unidades con una sola interacción y, por lo tanto, generar un conjunto de oraciones para controlarlas..
 
@@ -346,10 +346,10 @@ Por lo tanto, este ejemplo permite lanzar el escenario que está vinculado en la
 
 ### Programando una acción con interacciones
 
-Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. ejemplo : "Enciende el calor a las 22 para las 2:50 p.m.". Para eso, nada más simple, es suficiente usar las yiquyas \ #time \ # (si se define una hora precisa) o \ #duration \ # (para tiempo X, ejemplo en 1 hora) :
+Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. Ejemplo : "Enciende el calor a las 22 para las 2:50 p.m.". Para eso, nada más simple, es suficiente usar las yiquyas \ #time \ # (si se define una hora precisa) o \ #duration \ # (para tiempo X, ejemplo en 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 
-> **nota**
+> **Nota**
 >
 > Notará en la respuesta la yiquya \ #valor \ # que contiene en el caso de una interacción programada el tiempo de programación efectivo

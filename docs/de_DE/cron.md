@@ -4,7 +4,7 @@
 Diese Seite informiert über alle Jeedom-Anwendungsaufgaben, die auf dem Server ausgeführt werden.
 Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwenden.
 
-> **wichtig**
+> **Wichtig**
 >
 > Im Falle eines Missbrauchs auf dieser Seite kann jede Anfrage nach Unterstützung abgelehnt werden.
 
@@ -13,9 +13,9 @@ Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwend
 Oben rechts haben Sie :
 
 - **Cron-System deaktivieren** : eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
-- **cool** : Aktualisiert die Aufgabentabelle.
-- **hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
-- **speichern** : Speichern Sie Ihre Änderungen.
+- **Cool** : Aktualisiert die Aufgabentabelle.
+- **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
+- **Speichern** : Speichern Sie Ihre Änderungen.
 
 Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern.).
 
@@ -29,7 +29,7 @@ In dieser Tabelle finden wir :
 - **Klasse** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (kann leer sein).
 - **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
 - **Programmierung** : Programmierung der Aufgabe im CRON-Format.
-- **Timeout** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
+- **Zeitüberschreitung** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
 - **Letzter Start** : Datum des letzten Taskstarts.
 - **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
 - **Status** : Aktueller Status der Aufgabe (zur Erinnerung, eine Daemon-Aufgabe wird immer &quot;ausgeführt&quot;).

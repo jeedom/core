@@ -27,7 +27,7 @@ Die Verwendung ist sehr einfach. Wählen Sie links, wenn Sie sehen möchten :
 
 Wählen Sie dann den Namen des betreffenden Berichts aus. Sie sehen dann alle Daten der verfügbaren Berichte.
 
-> **wichtig**
+> **Wichtig**
 >
 > Das automatische Löschen erfolgt standardmäßig für Berichte, die älter als 30 Tage sind. Sie können diese Verzögerung in der Konfiguration von Jeedom konfigurieren.
 

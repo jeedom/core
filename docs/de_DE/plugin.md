@@ -10,7 +10,7 @@ Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Lin
 
 Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)..
 
-> **wichtig**
+> **Wichtig**
 >
 > Beim Herunterladen eines Plugins ist es standardmäßig deaktiviert. Sie müssen es also selbst aktivieren.
 
@@ -23,7 +23,7 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finde
 ### Oben rechts einige Schaltflächen :
 
 - **Dokumentation** : Ermöglicht den direkten Zugriff auf die Plugin-Dokumentationsseite.
-- **Changelog** : Sehen wir uns das Plugin-Änderungsprotokoll an, falls vorhanden.
+- **Änderungsprotokoll** : Sehen wir uns das Plugin-Änderungsprotokoll an, falls vorhanden.
 - **Details** : Ermöglicht es Ihnen, die Plugin-Seite auf dem Markt zu finden.
 - **Entfernen** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
 
@@ -70,14 +70,14 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 ### Unten befindet sich ein Funktionsbereich. Auf diese Weise können Sie feststellen, ob das Plugin eine der Jeedom-Kernfunktionen verwendet, z :
 
 - **Interact** : Spezifische Wechselwirkungen.
-- **cron** : Ein cron pro Minute.
-- **cron5** : Ein cron alle 5 Minuten.
-- **cron10** : Ein cron alle 10 Minuten.
-- **cron15** : Ein cron alle 15 Minuten.
-- **cron30** : Ein cron alle 30 Minuten.
-- **cronHourly** : Ein cron pro Stunde.
-- **cronDaily** : Ein täglicher cron.
-- **deadcmd** : Ein cron für tote Kommandeure.
+- **Cron** : Ein Cron pro Minute.
+- **Cron5** : Ein Cron alle 5 Minuten.
+- **Cron10** : Ein Cron alle 10 Minuten.
+- **Cron15** : Ein Cron alle 15 Minuten.
+- **Cron30** : Ein Cron alle 30 Minuten.
+- **CronHourly** : Ein Cron pro Stunde.
+- **CronDaily** : Ein täglicher Cron.
+- **deadcmd** : Ein Cron für tote Kommandeure.
 - **Gesundheit** : Eine alte Gesundheit.
 
 > **Spitze**
@@ -116,13 +116,13 @@ Wenn Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um d
     - **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr wenig verwendet).
     - **Entfernen** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
 
-Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das letzte Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
+Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das letzte Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Änderungsprotokoll&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
-> **wichtig**
+> **Wichtig**
 >
 > Es wird wirklich nicht empfohlen, ein Beta-Plugin auf ein Nicht-Beta-Jeedom zu setzen, da dies zu vielen Betriebsproblemen führen kann..
 
-> **wichtig**
+> **Wichtig**
 >
 > Einige Plugins sind kostenpflichtig. In diesem Fall bietet Ihnen das Plugin den Kauf an. Sobald Sie fertig sind, müssen Sie ungefähr zehn Minuten warten (Zahlungsüberprüfungszeit) und dann zur Plugin-Datei zurückkehren, um sie normal zu installieren.
 

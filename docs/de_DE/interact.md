@@ -8,7 +8,7 @@ Diese Bestellungen erhalten Sie von :
 - SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info).
 - Katze : Telegramm, Slack usw..
 - Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw.. Befehle starten (Aktion) oder eine Frage stellen (Info).
-- HTTP : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
+- Http : Starten Sie eine Http-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablunds, andere Hausautomationsboxen usw..
 
@@ -30,7 +30,7 @@ Sobald Sie eine Interaktion konfiguriert haben, haben Sie ein Kontextmenü mit d
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
-- **hinzufügen** : Ermöglicht das Erstellen neuer Interaktionen.
+- **Hinzufügen** : Ermöglicht das Erstellen neuer Interaktionen.
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Test** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
@@ -61,7 +61,7 @@ Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 - **Gruppe** : Interaktionsgruppe, dies ermöglicht es ihnen, organisiert zu werden (kann leer sein, wird daher in der Gruppe &quot;keine&quot; sein).
 - **Aktiva** : Aktiviert oder deaktiviert die Interaktion.
 - **Anwendung** : Der generierende Modellsatz (erforderlich).
-- **synonym** : Ermöglicht das Definieren von synonymn für die Namen der Befehle.
+- **Synonym** : Ermöglicht das Definieren von Synonymn für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
 - **Warten Sie, bevor Sie antworten.** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortund werden.
 - **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo).
@@ -123,11 +123,11 @@ Um Ordnung zu schaffen, verwenden wir die Filter (rechter Teil unserer Konfigura
 
 Es ist besser, aber wir können es noch natürlicher machen. Wenn ich das generierte Beispiel "Bei Eingabe" nehme, wäre es schön, diesen Satz in "Eintrag einschalten" oder "Eintrag einschalten" umwandeln zu können". Zu diesem Zweck hat Jeedom unter dem Anforderungsfeld ein Synonymfeld, mit dem wir den Namen der Befehle in unseren &quot;generierten&quot; Sätzen unterschiedlich benennen können. Hier ist es &quot;on&quot;, ich habe sogar &quot;on2&quot; &quot;in Modulen, die 2 Ausgänge steuern können.
 
-In synonymn geben wir daher den Namen des Befehls und die zu verwendenden synonym an :
+In Synonymn geben wir daher den Namen des Befehls und die zu verwendenden Synonym an :
 
 ![interact008](../images/interact008.png)
 
-Wir können hier eine undwas neue Syntax für synonym sehen. Ein Befehlsname kann mehrere synonym haben, hier hat "Ein" das Synonym "Einschalten" und "Einschalten"". Die Syntax lautund daher "* Name des Befehls*" ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele synonym hinzufügen, wie Sie möchten). Um dann synonym für einen anderen Befehlsnamen hinzuzufügen, fügen Sie nach dem lundzten Synonym einfach einen vertikalen Balken &quot;* | *&quot; hinzu, nach dem Sie den Befehl erneut benennen können, der synonym für den Befehl enthält erster Teil usw..
+Wir können hier eine undwas neue Syntax für Synonym sehen. Ein Befehlsname kann mehrere Synonym haben, hier hat "Ein" das Synonym "Einschalten" und "Einschalten"". Die Syntax lautund daher "* Name des Befehls*" ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele Synonym hinzufügen, wie Sie möchten). Um dann Synonym für einen anderen Befehlsnamen hinzuzufügen, fügen Sie nach dem lundzten Synonym einfach einen vertikalen Balken &quot;* | *&quot; hinzu, nach dem Sie den Befehl erneut benennen können, der Synonym für den Befehl enthält erster Teil usw..
 
 Es ist schon besser, aber es fehlt immer noch für den Befehl &quot;on&quot; &quot;input&quot; das &quot;l&quot; und für andere das &quot;la&quot; oder &quot;le&quot; oder &quot;a&quot; usw.. Wir könnten den Namen des Geräts ändern, um es hinzuzufügen, es wäre eine Lösung, andernfalls könnten wir die Variationen in der Anfrage verwenden. Dies besteht aus der Auflistung einer Reihe möglicher Wörter an einer Stelle im Satz. Jeedom generiert daher Sätze mit diesen Variationen.
 
@@ -139,7 +139,7 @@ Um zu verfeinern und keine unwahrscheinlichen Dinge wie &quot;Schalten Sie den F
 
 ![interact010](../images/interact010.png)
 
-Es ist daher wichtig, dass Sie Ihre Modellsätze und synonym gut erstellen und die richtigen Filter auswählen, um nicht zu viele unnötige Sätze zu generieren.. Persönlich finde ich es interessant, einige Inkonsistenzen des Stils &quot;ein Eintrag&quot; zu haben, denn wenn Sie zu Hause eine ausländische Person haben, die nicht richtig Französisch spricht, funktionieren die Interaktionen immer noch.
+Es ist daher wichtig, dass Sie Ihre Modellsätze und Synonym gut erstellen und die richtigen Filter auswählen, um nicht zu viele unnötige Sätze zu generieren.. Persönlich finde ich es interessant, einige Inkonsistenzen des Stils &quot;ein Eintrag&quot; zu haben, denn wenn Sie zu Hause eine ausländische Person haben, die nicht richtig Französisch spricht, funktionieren die Interaktionen immer noch.
 
 ### Passen Sie die Antworten an
 
@@ -159,9 +159,9 @@ Binäre Konvertierungen gelten für Befehle vom Typ info, deren Subtyp binär is
 
 ![interact013](../images/interact013.png)
 
-Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die synonym angepasst, um undwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \ #value \ # zu sundzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersundzt.
+Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die Synonym angepasst, um undwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \ #value \ # zu sundzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersundzt.
 
-Das Feld **binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 ist, dann ein vertikaler Balken &quot;|&quot; Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen undwas längeren Satz sundzen.
+Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 ist, dann ein vertikaler Balken &quot;|&quot; Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen undwas längeren Satz sundzen.
 
 > **Warnung**
 >
@@ -204,7 +204,7 @@ Wenn wir diesen Ausdruck in einen Satz übersundzen, würde er "nach dem Wort Ju
 
 Es ist eine extrem einfache Version von regulären Ausdrücken, aber bereits sehr kompliziert zu verstehen. Ich habe eine Weile gebraucht, um zu verstehen, wie es funktioniert. Als undwas komplexeres Beispiel ein regulärer Ausdruck zum Überprüfen einer URL :
 
-/ \ ^ (HTTPS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \ *) \ \\ * /?\ $ /
+/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \ *) \ \\ * /?\ $ /
 
 Sobald Sie dies schreiben können, verstehen Sie die regulären Ausdrücke.
 
@@ -253,7 +253,7 @@ Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisiert
 
 ![interact018](../images/interact018.png)
 
-Ohne den Regexp erhalten wir hier 11 Sätze, aber meine Interaktion zielt darauf ab, Sätze zu generieren, nur um zu fragen, ob sich jemand in einem Raum befindund, sodass ich keinen Lampenstatus oder ähnliches benötige Steckdosen, die mit Regexp-Filterung aufgelöst werden können. Um es noch flexibler zu machen, können Sie synonym hinzufügen. In diesem Fall sollten Sie jedoch nicht vergessen, den regulären Ausdruck zu ändern.
+Ohne den Regexp erhalten wir hier 11 Sätze, aber meine Interaktion zielt darauf ab, Sätze zu generieren, nur um zu fragen, ob sich jemand in einem Raum befindund, sodass ich keinen Lampenstatus oder ähnliches benötige Steckdosen, die mit Regexp-Filterung aufgelöst werden können. Um es noch flexibler zu machen, können Sie Synonym hinzufügen. In diesem Fall sollten Sie jedoch nicht vergessen, den regulären Ausdruck zu ändern.
 
 ### Kennen Sie die Temperatur / Luftfeuchtigkeit / Helligkeit
 
@@ -271,7 +271,7 @@ Hier ein allgemeines Beispiel, anhand dessen die Temperatur, Luftfeuchtigkeit un
 
 #### Evolution
 
-Wir können daher dem Befehlsnamen synonym hinzufügen, um undwas Natürlicheres zu erhalten. Fügen Sie einen regulären Ausdruck hinzu, um die Befehle zu filtern, die nichts mit unserer Interaktion zu tun haben.
+Wir können daher dem Befehlsnamen Synonym hinzufügen, um undwas Natürlicheres zu erhalten. Fügen Sie einen regulären Ausdruck hinzu, um die Befehle zu filtern, die nichts mit unserer Interaktion zu tun haben.
 
 Wenn wir ein Synonym hinzufügen, sagen wir zu Jeedom, dass ein Befehl mit dem Namen &quot;X&quot; auch als &quot;Y&quot; bezeichnund werden kann. Wenn wir also in unserem Satz &quot;y einschalten&quot; haben, weiß Jeedom, dass es x einschaltund. Diese Mundhode ist sehr praktisch, um Befehlsnamen umzubenennen, die, wenn sie auf dem Bildschirm angezeigt werden, auf unnatürliche Weise, stimmlich oder in einem geschriebenen Satz wie "EIN" geschrieben werden.". Ein so geschriebener Button ist völlig logisch, aber nicht im Kontext eines Satzes.
 
