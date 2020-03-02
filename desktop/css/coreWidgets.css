@@ -448,10 +448,6 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] {
   position: absolute;
 }
 
-.widget-rain-title {
-  padding-top: 4px;
-}
-
 .widget-rain-container {
   background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
   background-size: cover;
@@ -469,7 +465,6 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] {
 }
 
 .widget-rain-main {
-  height: 80px;
   overflow: hidden;
   width: 80px;
   z-index: 0;
