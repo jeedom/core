@@ -293,7 +293,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 		'type' => array(
 		'info' => array(
-			'name' => _('Info',__FILE__),
+			'name' => __('Info',__FILE__),
 			'subtype' => array(
 				'numeric' => array(
 					'name' => __('Numérique',__FILE__),
