@@ -4,7 +4,7 @@
         <span class="value"></span>
         <span class="unite">#unite#</span>
   </div>
-  <div class="widget-rain-container">
+  <div class="content-xl widget-rain-container">
     <span class="plage unite" style="display:none;"></span>
     <div class="widget-rain-main">
     </div>
@@ -18,6 +18,8 @@
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd_#id# = $('.cmd[data-cmd_id=#id#]')
+      cmd_#id#.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'#unite#')
+
       var value_#id# = parseFloat(_options.display_value);
       cmd_#id#.find('.value').empty().append(value_#id#);
 
