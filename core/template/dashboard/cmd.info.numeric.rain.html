@@ -35,9 +35,10 @@
     }
 
     if ('#scale#' != '') {
-      var el_#id# = $('.cmd[data-cmd_id=#id#] .widget-rain-main')
+      var el_#id# = $('.cmd[data-cmd_id=#id#] .widget-rain-container')
       el_#id#.width(el_#id#.width() * '#scale#')
       el_#id#.height(el_#id#.height() * '#scale#')
+      if ('#scale#' < '1') $('.cmd[data-cmd_id=#id#] .widget-rain-main').width(el_#id#.width() * '#scale#')
     }
     if ('#animate#' == '0') {
       $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('animation','none')
