@@ -94,11 +94,11 @@ Mensaje
 =======
 
 Aquí está la URL =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=mensaje&categoría=\#CATEGORY\#&mensaje=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=mensaje&categoría=#CATEGORY#&mensaje=#MESSAGE#)
+[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Mensaje&categoría=\#CATEGORY\#&Mensaje=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=Mensaje&categoría=#CATEGORY#&Mensaje=#MESSAGE#)
 
 -   **categoría** : categoría de mensaje para agregar al centro de mensajes
 
--   **mensaje** : mensaje en cuestión, tenga cuidentificaciónado de pensar en la codificación
+-   **Mensaje** : mensaje en cuestión, tenga cuidentificaciónado de pensar en la codificación
     el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar un
     herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
 

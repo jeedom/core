@@ -151,10 +151,10 @@ Ich habe ein BDD-Identifizierungsproblem
 Diese müssen zurückgesetzt werden :
 
 ``` {.bash}
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
-echo &quot;GEWÄHRLEISTUNG AlleER PRIVILEGIEN FÜR jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
+bdd_password = $ (cat / dev / urandom | tr-cd &#39;a-f0-9' | Kopf -c 15)
+echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
+echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
+echo &quot;GEWÄHRLEISTUNG AlleER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
 sudo sed -i -e &quot;s / # PASSWORT # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -191,7 +191,7 @@ Ich habe Instabilitäten oder Fehler 504
 ========================================
 
 Überprüfen Sie, ob Ihr Dateisystem nicht beschädigt ist
-Befehl ist : "sudo dmesg | grep error" .
+Befehl ist : "sudo dmesg | grep Fehler" .
 
 Ich sehe nicht alle meine Geräte auf dem Armaturenbrett 
 ====================================================
