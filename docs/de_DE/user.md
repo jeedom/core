@@ -21,7 +21,7 @@ Unten haben Sie eine Tabelle :
     -   **Verwalter** : bekommt alle Rechte an Jeedom
 
     -   **Benutzer** : kann das Dashboard sehen, Ansichten,
-        Design usw.. und auf Geräte / Kontrollen einwirken. Allerdings ist
+        Design usw.. und auf Geräte / Kontrollen einwirken. Allerdings,
         Er hat keinen Zugriff auf die Konfiguration der Steuerungen / Geräte
         noch auf die Konfiguration von Jeedom.
 
@@ -48,7 +48,7 @@ Unten haben Sie eine Tabelle :
 
 -   **Rechte verwalten** : ermöglicht es, die Rechte von fein zu verwalten
     der Benutzer (bitte beachten Sie, dass das Profil sein muss
-    &quot;eingeschränkter Benutzer&quot;)
+    "eingeschränkter Benutzer ")
 
 Rechteverwaltung 
 ==================
@@ -57,7 +57,7 @@ Wenn Sie auf &quot;Rechte verwalten&quot; klicken, wird ein Fenster angezeigt, i
 Benutzerrechte fein verwalten. Die erste Registerkarte wird angezeigt
 die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 
-> **wichtig**
+> **Wichtig**
 >
 > Das Profil muss eingeschränkt werden, sonst werden hier keine Einschränkungen gesetzt
 > wird berücksichtigt
@@ -65,7 +65,7 @@ die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 Sie erhalten eine Tabelle, die für jede Ausrüstung und jede erlaubt
 Szenario definieren Benutzerrechte :
 
--   **keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
+-   **Keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
 
 -   **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, jedoch nicht
     kann nicht darauf reagieren

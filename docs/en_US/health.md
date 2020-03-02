@@ -4,7 +4,7 @@ use it) state of health by plugin.
 
 The page is accessible by Analysis → Health
 
-> **Note**
+> **NOTE**
 >
 > A click on the icon at the top right gives access to the benchmark of your
 > Jeedom.
@@ -28,11 +28,11 @@ find the icons :
 
 -   Overall state of the plugin
 
-> **Note**
+> **NOTE**
 >
 > Icons may vary depending on plugin
 
-> **Note**
+> **NOTE**
 >
 > Generally when the line is green, everything is fine
 > and when it’s red, there’s a problem.

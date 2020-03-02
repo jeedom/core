@@ -92,7 +92,7 @@ Sicherheit
 
 Hier haben Sie die Liste Ihrer aktuell verbundenen Sitzungen, deren ID,
 ihre IP sowie das Datum der letzten Kommunikation. Durch Klicken auf
-&quot;Abmelden&quot; meldet den Benutzer ab. Achtung wenn es an ist
+"Trennen "Dadurch wird der Benutzer getrennt. Achtung wenn es an ist
 Bei einem registrierten Gerät wird die Aufzeichnung gelöscht.
 
 ### Registriertes Gerät

@@ -6,7 +6,7 @@ also to change your password.
 You can find it at the top right by clicking on the snowman icon
 then Profile (followed by your username).
 
-themes
+Themes
 ======
 
 The themes panel allows you to adjust interface parameters :
@@ -75,7 +75,7 @@ Allows you to define certain interface behaviors :
     -   **Unfold the view panel** : allows to make visible by
         default views menu (left) on views
 
-security
+Security
 --------
 
 -   **2-step authentication** : allows to configure
@@ -92,7 +92,7 @@ security
 
 Here you have the list of your currently connected sessions, their ID,
 their IP as well as the date of last communication. Clicking on
-&quot;Logout&quot; will log out the user. Attention if it is on
+"Disconnect "this will disconnect the user. Attention if it is on
 a registered device this will delete the recording.
 
 ### Registered device

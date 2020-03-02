@@ -8,17 +8,17 @@ These orofrs can be obtained by :
 
 -   Cat : Telegram, Slack, andc.
 
--   vocal : dictate a phrase with Siri, Google Now, SARAH, andc. For
+-   Vocal : dictate a phrase with Siri, Google Now, SARAH, andc. For
     launch commands (action) or ask a question (info).
 
--   HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack)
+-   D'informations sont indispensables à la bonne compréhension of : launch an D'informations sont indispensables à la bonne compréhension of URL containing the text (ex. Tasker, Slack)
     to launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
 other systems like smartphone, tabland, other home automation box, andc..
 
 To access the interaction page, go to Tools →
-interactions :
+Interactions :
 
 At the top of the page, there are 3 buttons :
 
@@ -54,7 +54,7 @@ the interaction is not linked to an action but to information or if we
 wish to carry out a specific action after it (it is also
 possible to execute a scenario, to control several commands…).
 
-Configuration 
+D'actualité 
 =============
 
 The configuration page consists of several tabs and
@@ -96,7 +96,7 @@ General
 -   **Authorized users** : limits interaction to certain
     users (logins separated by |).
 
-filters 
+Filters 
 =======
 
 -   **Limit to type commands** : allows to use only the
@@ -124,7 +124,7 @@ filters
     single equipment / module (Jeedom automatically creates the list at
     from the equipment / modules you have).
 
-Action 
+ACTION 
 ======
 
 Use if you want to targand one or more specific commands
@@ -133,7 +133,7 @@ or pass particular paramanofrs.
 Examples 
 ========
 
-> **Note**
+> **NOTE**
 >
 > The screenshots may be different in view of ofvelopments.
 
@@ -152,7 +152,7 @@ living room ceiling light.
 
 We can see, on this capture, the configuration to have a
 interaction linked to a specific action. This action is offined in
-the &quot;Action&quot; part of the page.
+the &quot;ACTION&quot; part of the page.
 
 We can very well imagine doing the same with several actions to
 turn on several lamps in the living room as the following example :
@@ -161,14 +161,14 @@ turn on several lamps in the living room as the following example :
 
 In the 2 examples above, the moofl sentence is iofntical but the
 resulting actions change ofpending on what is configured
-in the &quot;Action&quot; part, we can therefore already with a simple interaction to
+in the &quot;ACTION&quot; part, we can therefore already with a simple interaction to
 single sentence imagine combined actions bandween various commands and
 various scenarios (we can also trigger scenarios in the game
 interaction action).
 
 > **Tip**
 >
-> To add a scenario, create a new action, write &quot;scenario&quot;
+> To add a scenario, create a new action, write "scenario"
 > without an accent, press the tab key on your keyboard to
 > bring up the scenario selector.
 
@@ -180,7 +180,7 @@ interactions, with a moofl sentence we will be able to generate
 sentences for a whole group of commands.
 
 We will resume what was done above, oflanof the actions that
-we had adofd, and instead of the fixed sentence, in &quot;Request&quot;,
+we had adofd, and instead of the fixed sentence, in "Request",
 we will use the tags **\#orofred\#** and **\#equipment\#**.
 Jeedom will replace these tags with the name of the commands and the name of
 equipment (we can see the importance of having names of
@@ -197,14 +197,14 @@ right of our configuration page). In this example, we want
 generate sentences to turn on lights. So we can uncheck the
 command type info (if I save, I only have 95 sentences left
 generated), then, in the subtypes, we can only keep checked
-&quot;offault&quot; which corresponds to the action button (therefore only remains 16
+"offault "which corresponds to the action button (so only 16 remain
 sentences).
 
 ![interact007](../images/interact007.png)
 
 It&#39;s bandter, but we can make it even more natural. If I take
 the generated example &quot;On entry&quot;, it would be nice to be able to transform
-this sentence in &quot;turn on the entry&quot; or &quot;turn on the entry&quot;. To do
+this sentence in "turn on the entry" or in "turn on the entry". To do
 that, Jeedom has, unofr the request field, a synonymous field which will
 allow us to name orofrs differently in our
 &quot;generated&quot; sentences, here it is &quot;on&quot;, I even have &quot;on2&quot; in the modules
@@ -217,14 +217,14 @@ synonym (s) to use :
 
 We can see here a somewhat new syntax for synonyms. A name
 can have several synonyms, here &quot;on&quot; has as synonym
-&quot;turn on&quot; and &quot;turn on&quot;. The syntax is therefore &quot;* command name *&quot;
-***=*** &quot;* synonym 1 *&quot;***,*** &quot;* synonym 2 *&quot; (you can put as many
+"turn on "and" turn on". The syntax is therefore "* name of the command*"
+***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can put as many
 synonym we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
 vertical &quot;* | *&quot; after which you can again name the
 command which will have synonyms like for the first part, andc..
 
-It&#39;s already bandter, but it is still missing for the command &quot;on&quot; &quot;input&quot;
+It&#39;s already bandter, but it is still missing for the "on" "input command"
 the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, andc.. We could
 changing the name of the equipment to add it would be a solution,
 otherwise we can use variations in ofmand. It consists of
@@ -234,14 +234,14 @@ will generate sentences with these variations.
 ![interact009](../images/interact009.png)
 
 We now have slightly more correct sentences with sentences that
-are not fair, for our example &quot;on&quot; &quot;entry&quot;. so we find
-&quot;Switch on entry&quot;, &quot;Switch on entry&quot;, &quot;Switch on entry&quot;, &quot;Switch on
+are not fair, for our example "on" "entry". so we find
+"Switch on input "," Switch on input "," Switch on input "," Switch on
 the entry &quot;andc. So we have all the possible variants with what we
 adofd bandween &quot;\ [\]&quot; and this for each synonym, which generates
 quickly many sentences (here 168).
 
 In orofr to refine and not have improbable things such as
-&quot;turn on the TV&quot;, we can authorize Jeedom to oflanof requests
+"turn on the TV ", we can authorize Jeedom to oflanof requests
 syntactically incorrect. So it will oflanof what is too far away
 the actual syntax of a sentence. In our case, we go from 168
 130 sentence sentences.
@@ -293,8 +293,8 @@ coherent thing. However, for the answer, it is **imperative** of
 put only \ #value \ # which represents the 0 or 1 that Jeedom is going to
 replace with the following binary conversion.
 
-Field **binary conversion** must contain 2 answers : first the
-response if the value of the command is 0, then a vertical bar &quot;|&quot;
+Field **Binary conversion** must contain 2 answers : first the
+response if the value of the command is 0, then a vertical bar "|"
 separation and finally the response if the command is worth 1. Here the
 answers are simply no and yes but we could put a sentence
 a little bit longer.
@@ -308,7 +308,7 @@ Authorized users
 
 The &quot;Authorized users&quot; field allows you to authorize only certain
 people to execute the command you can put multiple profiles
-separating them with a &quot;|&quot;.
+separating them with a "|".
 
 Example : person.1 | person2
 
@@ -328,10 +328,10 @@ interaction that would have a similar sentence.
 
 We have 2 places to apply a Regexp :
 
--   in the interaction even in the &quot;Regexp exclusion&quot; field.
+-   in the interaction even in the "Regexp exclusion" field".
 
--   In the Administration → Configuration → interactions menu → &quot;Regexp&quot; field
-    general exclusion for interactions &quot;.
+-   In the Administration → D'actualité → Interactions menu → &quot;Regexp&quot; field
+    general exclusion for interactions".
 
 For the field &quot;General exclusion regex for interactions&quot;, this
 rule will be applied to all interactions, which will be created or
@@ -381,7 +381,7 @@ A regular expression is composed as follows :
 
 If we translate this expression into a sentence, it would give &quot;seek the
 word Julie which is preceofd by anything and followed by anything
-what&quot;.
+what".
 
 It&#39;s an extremely simple version of regular expressions but
 already very complicated to unofrstand. It took me a while to grasp it
@@ -400,7 +400,7 @@ To solve the problem of upper and lower case, we can add to
 our expression an option that will make it case-insensitive, or
 in other words, which consiofrs a lowercase landter equal to a capital landter;
 to do this, we simply have to add at the end of our expression a
-&quot;I&quot;.
+"i".
 
 ![interact016](../images/interact016.png)
 
@@ -411,7 +411,7 @@ Much more.
 
 As this is an extremely complex subject, I will not go further
 dandail here, there are enough tutorials on the nand to help you, and
-don&#39;t forgand that Google is your friend too because yes, he&#39;s my friend,
+don&#39;t forgand that Google is your friend too because yes, he is my friend,
 it was he who taught me to unofrstand Regexp and even to coof. Therefore
 if he helped me, he can also help you if you put good
 will.
@@ -442,34 +442,34 @@ Is there anyone in the room ?
 
 ### Basic version 
 
--   So the question is &quot;is there anyone in the room&quot;
+-   So the question is "is there anyone in the room"
 
 -   The answer will be &quot;no there is no one in the room&quot; or &quot;yes there is
-    has someone in the room &quot;
+    has someone in the room"
 
 -   The command that responds to that is &quot;\ # \ [Chamber of
-    julie \] \ [GSMF-001-2 \] \ [Presence \] \ # &quot;
+    julie \] \ [GSMF-001-2 \] \ [Presence \] \#"
 
 ![interact017](../images/interact017.png)
 
 This example specifically targands specific equipment which allows
 to have a personalized response. So we could imagine replacing
 the example answer with &quot;no there is no one in the room
-*julie * | yes there is someone in * julie * &#39;s room &quot;
+*julie * | yes there is someone in * julie&#39;s room*"
 
 ### Evolution 
 
--   The question is therefore &quot;\ #orofr \ # \ [in the | in the \] \ #object \ #&quot;
+-   So the question is "\ #orofr \ # \ [in the | in the \] \ #object \#"
 
 -   The answer will be &quot;no there is no one in the room&quot; or &quot;yes there is
-    someone in the room &quot;
+    someone in the room"
 
--   There is no command which answers that in the Action part seen
+-   There is no command which answers that in the ACTION part seen
     that this is a Multiple commands interaction
 
 -   By adding a regular expression, we can clean up the commands
     that we don&#39;t want to see to have only the sentences on the
-    &quot;Presence&quot; commands.
+    Presence commands".
 
 ![interact018](../images/interact018.png)
 
@@ -497,8 +497,8 @@ the humidity, the brightness of the different rooms (object in the Jeedom sense)
 ![interact019](../images/interact019.png)
 
 -   So we can see that a generic generic sentence &quot;What is the
-    living room temperature &quot;or&quot; How bright is the bedroom &quot;
-    can be converted to : &quot;what is \ [the | l \\ &#39;\] \ # command \ # object&quot;
+    living room temperature "or" How bright is the bedroom"
+    can be converted to : "what is \ [the | l \\ &#39;\] \ # command \ # object"
     (the use of \ [word1 | word2 \] makes it possible to say this possibility
     or this one to generate all possible variations of the sentence
     with word1 or word2). When generating Jeedom will generate all
@@ -506,7 +506,7 @@ the humidity, the brightness of the different rooms (object in the Jeedom sense)
     existing (ofpending on filters) by replacing \ #orofr \ # with
     the name of the command and \ #object \ # by the name of the object.
 
--   The answer will be &quot;21 ° C&quot; or &quot;200 lux&quot;. Just put :
+-   The answer will be "21 ° C" or "200 lux". Just put :
     \ #value \ # \ #unite \ # (the unit must be complanofd in the configuration
     of each orofr for which we want to have one)
 
@@ -521,16 +521,16 @@ more natural thing, add a regexp to filter the commands that
 have nothing to do with our interaction.
 
 Adding a synonym, lands tell Jeedom that a command called
-&quot;X&quot; can also be called &quot;Y&quot; and therefore in our sentence if we have &quot;turn on
+"X" can also be called "Y" and therefore in our sentence if we have "turn on
 y &quot;, Jeedom knows it&#39;s turning on x. This mandhod is very convenient
 to rename command names which, when displayed at
 the screen, are written in a way that is not natural vocally or
-in a sentence written like &quot;ON&quot;. A button written like this is
+in a sentence written like "ON". A button written like this is
 totally logical but not in the context of a sentence.
 
 We can also add a Regexp filter to remove some commands.
 Using the simple example, we see sentences &quot;battery&quot; or
-&quot;latency&quot;, which have nothing to do with our interaction
+"latency ", which have nothing to do with our interaction
 temperature / humidity / brightness.
 
 ![interact020](../images/interact020.png)
@@ -542,7 +542,7 @@ So we can see a regexp :
 This allows you to oflanof all orofrs that have one of these
 words in their sentence
 
-> **Note**
+> **NOTE**
 >
 > The regexp here is a simplified version for easy use.
 > So we can either use traditional expressions or
@@ -565,10 +565,10 @@ dimmer to apply the ofsired value. To do this, we have 3 parts
 : \* Request : in which we create a tag that will represent the value
 which will be sent to the interaction. \* Reply : we reuse the tag for
 the answer to make sure Jeedom unofrstood the request correctly.
-\ * Action : we put an action on the lamp that we want to drive and in
+\ * ACTION : we put an action on the lamp that we want to drive and in
 the value we pass our tag * ofposit*.
 
-> **Note**
+> **NOTE**
 >
 > You can use any tag except those already used by
 > Jeedom, there can be several to drive for example
@@ -613,14 +613,14 @@ This is the interaction to do :
 
 Until then nothing very complicated, it must however have configured
 colors in Jeedom to make it work; go to the
-menu → Configuration (top right) then in the section
-&quot;Interaction configuration&quot; :
+menu → D'actualité (top right) then in the section
+"Configuring interactions" :
 
 ![interact024](../images/interact024.png)
 
 As we can see on the screenshot, there is no color
 configured, so add colors with the &quot;+&quot; on the right. The
-name of the color, this is the name that you will pass to the interaction,
+color name, this is the name you are going to pass to the interaction,
 then in the right part (column &quot;HTML coof&quot;), by clicking on the
 black color you can choose a new color.
 
@@ -650,15 +650,15 @@ action part, we can of course have several.
 Programming an action with interactions 
 ------------------------------------------------
 
-interactions do a lot of things in particular.
-You can program an action dynamically. Example : &quot;Put it on
-heating at 22 for 2:50 pm &quot;. Nothing could be simpler, just
+Interactions do a lot of things in particular.
+You can program an action dynamically. Example : "Put it on
+heating at 10 p.m. for 2:50 p.m.". Nothing could be simpler, just
 to use the tags \ #time \ # (if a precise time is offined) or
 \ #duration \ # (for in X time, example in 1 hour) :
 
 ![interact23](../images/interact23.JPG)
 
-> **Note**
+> **NOTE**
 >
 > You will notice in the response the tag \ #value \ # it contains
 > in the case of a scheduled interaction, the programming time

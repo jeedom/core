@@ -4,7 +4,7 @@ von verschiedenen Orten.
 Konfiguration 
 =============
 
-Zugänglich von **Einstellungen → System → Backups**Diese Seite ermöglicht die
+Zugänglich von **Einstellungen → System → Backups**, Diese Seite ermöglicht die
 Verwaltung von Backups, Wiederherstellungen.
 
 Links finden Sie die Parameter und Aktionsschaltflächen. Auf dem
@@ -129,7 +129,7 @@ Behalten Sie den gleichen Controller bei, um die Zwave-Module zu finden.
 > **Notiz**
 >
 > Das System, auf dem Jeedom installiert ist, wird nicht gesichert. wenn
-> Sie haben die Parameter dieses Systems geändert (insbesondere über SSH).
+> Sie haben die Parameter dieses Systems geändert (insbesondere über SSH).,
 > Es liegt an Ihnen, einen Weg zu finden, um sie bei Problemen wiederherzustellen.
 
 Cloud-Backup 
@@ -146,7 +146,7 @@ Abonnement (für 1, 3, 6 oder 12 Monate).
 > **Spitze**
 >
 > Sie können den Namen der Sicherungsdateien von anpassen
-> der Registerkarte **Meine Jeedoms**Vermeiden Sie jedoch die Zeichen
+> der Registerkarte **Meine Jeedoms**, Vermeiden Sie jedoch die Zeichen
 > exotisch.
 
 Häufigkeit der automatischen Sicherungen 

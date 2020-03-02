@@ -20,7 +20,7 @@ By clicking on a plugin, you access its configuration. Upstairs you
 find the name of the plugin, then in brackets, its name in Jeedom
 (ID) and finally, the type of version installed (stable, beta).
 
-> **Important**
+> **IMPORTANT**
 >
 > When downloading a plugin, it is disabled by default.
 > So you have to activate it by yourself.
@@ -48,7 +48,7 @@ Below left, there is a status area with :
 
 -   **Author** : plugin author
 
--   **Action** : Allows you to enable or disable the plugin
+-   **ACTION** : Allows you to enable or disable the plugin
 
 -   **Jeedom version** : Indicates the minimum Jeedom version required
     for the plugin
@@ -59,7 +59,7 @@ Below left, there is a status area with :
 On the right, we find the Log area which allows you to define 
 
 -   the level of logs specific to the plugin (we find this same possibility in
-Administration → Configuration on the logs tab, at the bottom of the page)
+Administration → D'actualité on the logs tab, at the bottom of the page)
 
 -   see the plugin logs
 
@@ -76,7 +76,7 @@ Dependencies :
 
 -   **Status** : will tell you if the dependencies are OK or KO
 
--   **Installation** : will install or reinstall
+-   **Setup** : will install or reinstall
     dependencies (if you don&#39;t do it manually and they are
     KO, Jeedom will take care of itself after a while)
 
@@ -89,7 +89,7 @@ Devil :
 
 -   **Status** : will tell you if the demon is OK or KO
 
--   **Configuration** : will be OK if all the criteria for the demon
+-   **D'actualité** : will be OK if all the criteria for the demon
     turns are met or will give cause for blocking
 
 -   **(To restart** : allows launching or relaunching the demon
@@ -116,17 +116,17 @@ if the plugin uses one of the Jeedom core functions such as :
 
 -   **Interact** : specific interactions
 
--   **cron** : one cron per minute
+-   **Cron** : one cron per minute
 
--   **cron5** : one cron every 5 minutes
+-   **Cron5** : one cron every 5 minutes
 
--   **cron15** : one cron every 15 minutes
+-   **Cron15** : one cron every 15 minutes
 
--   **cron30** : one cron every 30 minutes
+-   **Cron30** : one cron every 30 minutes
 
--   **cronHourly** : one cron every hour
+-   **CronHourly** : one cron every hour
 
--   **cronDaily** : a daily cron
+-   **CronDaily** : a daily cron
 
 > **Tip**
 >
@@ -142,13 +142,13 @@ Plugin installation
 ========================
 
 To install a new plugin, just click on the button
-&quot;Market&quot; (and that Jeedom is connected to the Internet). After a short time of
+"Market "(and that Jeedom is connected to the Internet). After a short time of
 loading you will get the page.
 
 > **Tip**
 >
 > You must have entered your Market account information in
-> administration (Configuration → Updates → Market tab) in order to
+> administration (D'actualité → Updates → Market tab) in order to
 > find the plugins you have already purchased for example.
 
 At the top of the window you have filters :
@@ -168,7 +168,7 @@ At the top of the window you have filters :
 -   **Search** : allows you to search for a plugin (in the name or
     description of it)
 
--   **username** : displays the username used for the
+-   **Username** : displays the username used for the
     connection to the Market and the status of the connection
 
 > **Tip**
@@ -206,13 +206,13 @@ change history, a &quot;Documentation&quot; button which returns
 to the plugin documentation. Then you have the language available
 and the various information on the date of the last stable version.
 
-> **Important**
+> **IMPORTANT**
 >
 > It is really not recommended to put a beta plugin on a
 > Jeedom non beta, many operating problems can
 > result.
 
-> **Important**
+> **IMPORTANT**
 >
 > Some plugins are chargeable, in this case the plugin sheet will
 > will offer to buy it. Once this is done, wait for a
@@ -224,9 +224,9 @@ and the various information on the date of the last stable version.
 > You can also add a plugin to Jeedom from a file or
 > from a Github repository. This requires, in the configuration of
 > Jeedom, activate the appropriate function in the &quot;Updates and
-> files &quot;. It will then be possible, by placing the mouse completely
+> files". It will then be possible, by placing the mouse completely
 > left, and bringing up the plugin page menu, click
-> on &quot;Add from another source&quot;. You can then choose the
-> source &quot;File&quot;. Attention, in the case of the addition by a file
+> on "Add from another source". You can then choose the
+> source "File". Attention, in the case of the addition by a file
 > zip, the zip name must be the same as the plugin ID and from
 > opening the ZIP a plugin \ _info folder must be present.

@@ -4,11 +4,11 @@ minutos para tener una pantalla más personalizada.
 
 Se puede acceder a las vistas desde el menú Inicio → Ver. :
 
-> **punta**
+> **Punta**
 >
 > Es posible ir directamente a una vista gracias al submenú.
 
-> **punta**
+> **Punta**
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic
 > en el menú de vistas.
@@ -24,7 +24,7 @@ En esta página, hay un botón en la parte superior izquierda para mostrar o
 ocultar la lista de vistas y el botón para agregar uno
 (Jeedom le preguntará su nombre y lo enviará a la página de edición) :
 
-> **punta**
+> **Punta**
 >
 > Puede modificar esta opción en su perfil para que la lista
 > las vistas serán visibles por defecto.
@@ -39,7 +39,7 @@ pon todo lo que quieras). Cada zona es de tipo gráfico, widget
 o tabla, dependiendo del tipo que pueda poner widgets
 de equipo, control o gráficos en él.
 
-> **punta**
+> **Punta**
 >
 > Puede mover el orden de las zonas arrastrando y soltando.
 
@@ -55,12 +55,12 @@ su nombre y tipo.
 
 En cada zona tienes las siguientes opciones generales :
 
--   **ancho** : define el ancho del área (en modo
+-   **Ancho** : define el ancho del área (en modo
     solo escritorio)
 
--   **editar** : permite cambiar el nombre de la zona
+-   **Editar** : permite cambiar el nombre de la zona
 
--   **remove** : permite eliminar la zona
+-   **Remove** : permite eliminar la zona
 
 Área de tipo de widget 
 -------------------
@@ -70,12 +70,12 @@ Un área de tipo de widget le permite agregar widgets :
 -   **Agregar widget** : agregar / editar widgets a
     mostrar en el área
 
-> **punta**
+> **Punta**
 >
 > Puede eliminar un widget directamente haciendo clic en el
 > bote de basura en frente de este.
 
-> **punta**
+> **Punta**
 >
 > Es posible cambiar el orden de los widgets en el área por
 > arrastrar / soltar.
@@ -86,10 +86,10 @@ que le pedirá el widget para agregar
 Área de tipo gráfico 
 ----------------------
 
-Un área de gráficos le permite agregar gráficos a su vista,
+Un área de tipo gráfico le permite agregar gráficos a su vista,
 ella tiene las siguientes opciones :
 
--   **período** : le permite elegir el período de visualización para
+-   **Período** : le permite elegir el período de visualización para
     gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año o todo)
 
 -   **Agregar curva** : permite agregar / modificar gráficos
@@ -98,28 +98,28 @@ Cuando presiona el botón &quot;Agregar curva&quot;, Jeedom muestra la lista
 comandos históricos y puede elegir los que desea agregar, un
 Una vez hecho esto, tiene acceso a las siguientes opciones :
 
--   **cubo de basura** : eliminar comando del gráfico
+-   **Cubo de basura** : eliminar comando del gráfico
 
--   **apellido** : nombre del comando graficado
+-   **Apellido** : nombre del comando graficado
 
--   **color** : color de la curva
+-   **Color** : color de la curva
 
--   **tipo** : tipo de curva
+-   **Puntao** : tipo de curva
 
--   **grupo** : permite la agrupación de datos (tipo máximo
+-   **Grupo** : permite la agrupación de datos (tipo máximo
     por día)
 
--   **escala** : escala (derecha o izquierda) de la curva
+-   **Escala** : escala (derecha o izquierda) de la curva
 
--   **escalera** : muestra la curva escalonada
+-   **Escalera** : muestra la curva escalonada
 
--   **montón** : apilar la curva con las curvas de otro tipo
+-   **Montón** : apilar la curva con las curvas de otro tipo
     montón
 
--   **cambio** : grafica solo variaciones con valor
+-   **Cambio** : grafica solo variaciones con valor
     anterior
 
-> **punta**
+> **Punta**
 >
 > Es posible cambiar el orden de los gráficos en el área por
 > arrastrar / soltar.
@@ -133,7 +133,7 @@ Aqui tienes los botones :
 
 -   **Agregar línea** : agregar una fila a la mesa
 
-> **nota**
+> **Nota**
 >
 > Es posible reorganizar las líneas arrastrando y soltando, pero no
 > las columnas
@@ -143,7 +143,7 @@ información en las cajas :
 
 -   **texto** : solo texto para escribir
 
--   **html** : cualquier código html (javascript posible pero
+-   **HTML** : cualquier código HTML (javascript posible pero
     fuertemente desanimado)
 
 -   **widget de comando** : el botón de la derecha te permite elegir

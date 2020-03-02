@@ -4,11 +4,11 @@ tu imaginación.
 
 Es accesible por Inicio → Diseño
 
-> **punta**
+> **Punta**
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
-> **importante**
+> **Importante**
 >
 > Todas las acciones se realizan haciendo clic derecho en esta página, atención
 > hacerlo bien en diseño. Durante la creación, por lo tanto, es necesario
@@ -17,9 +17,9 @@ Es accesible por Inicio → Diseño
 En el menú (clic derecho, por lo tanto), encontramos el
 siguientes acciones :
 
--   **diseños** : Muestra la lista de sus diseños y le permite acceder a ellos.
+-   **Diseños** : Muestra la lista de sus diseños y le permite acceder a ellos.
 
--   **edición** : Cambiar al modo de edición
+-   **Edición** : Cambiar al modo de edición
 
 -   **Pantalla completa** : Le permite usar toda la página web, que
     eliminará el menú Jeedom de la parte superior
@@ -54,7 +54,7 @@ siguientes acciones :
 
 -   **Viendo**
 
-    -   **no** : No muestra ninguna cuadrícula
+    -   **No** : No muestra ninguna cuadrícula
 
     -   **10x10** : Muestra una cuadrícula de 10 por 10
 
@@ -83,7 +83,7 @@ siguientes acciones :
 -   **Guardar** : permite guardar el diseño (atención, hay
     también copias de seguridad automáticas durante ciertas acciones)
 
-> **importante**
+> **Importante**
 >
 > La configuración de los elementos de diseño se realiza haciendo clic en
 > estos.
@@ -93,9 +93,9 @@ Configuración de diseño
 
 Encontrado aquí :
 
--   **general**
+-   **General**
 
-    -   **apellido** : El nombre de su diseño
+    -   **Apellido** : El nombre de su diseño
 
     -   **Fondo transparente** : hace que el fondo sea transparente. Tenga cuidado si el
         la casilla está marcada, no se utiliza el color de fondo
@@ -103,19 +103,19 @@ Encontrado aquí :
     -   **Color de fondo** : diseño de color de fondo (blanco
         por defecto)
 
-    -   **código** : Código de acceso a su diseño (si está vacío, sin código
+    -   **Código** : Código de acceso a su diseño (si está vacío, sin código
         no es solicitado)
 
-    -   **icono** : Un icono para ello (aparece en el menú
+    -   **Icono** : Un icono para ello (aparece en el menú
         elección de diseño)
 
-    -   **imagen**
+    -   **Imagen**
 
-        -   **enviar a** : permite agregar una imagen de fondo al diseño
+        -   **Enviar a** : permite agregar una imagen de fondo al diseño
 
         -   **Eliminar imagen** : borrar imagen
 
--   **tamaños**
+-   **Tamaños**
 
     -   **Tamaño (WxH)** : Le permite fijar el tamaño de su diseño.
         (marco gris en modo edición)
@@ -123,11 +123,11 @@ Encontrado aquí :
 Configuración general de elementos. 
 ===================================
 
-> **nota**
+> **Nota**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
-> **nota**
+> **Nota**
 >
 > El elemento seleccionado se resalta en rojo (en lugar de verde
 > para todos los demás).
@@ -135,7 +135,7 @@ Configuración general de elementos.
 Ajuste de la pantalla 
 ---------------------
 
--   **profundidad** : permite elegir el nivel de profundidad
+-   **Profundidad** : permite elegir el nivel de profundidad
 
 -   **Posición X (%)** :
 
@@ -145,29 +145,29 @@ Ajuste de la pantalla
 
 -   **Altura (px)** :
 
-remove 
+Remove 
 ---------
 
 Eliminar elemento
 
-duplicado 
+Duplicado 
 ---------
 
 Le permite duplicar el elemento.
 
-cerradura 
+Cerradura 
 -----------
 
 Bloquea el elemento para que ya no sea móvil o
 de tamaño variable.
 
-gráfico 
+Gráfico 
 =========
 
 Configuraciones de pantalla 
 ---------------------
 
--   **período** : le permite elegir el período de visualización
+-   **Período** : le permite elegir el período de visualización
 
 -   **Mostrar subtítulo** : mostrar leyenda
 
@@ -181,7 +181,7 @@ Configuraciones de pantalla
 
 -   **Fondo transparente** : hace que el fondo sea transparente
 
--   **frontera** : agregue un borde, tenga cuidado con la sintaxis
+-   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
     HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo :
     sólido 1px negro)
 
@@ -193,7 +193,7 @@ Le permite elegir los comandos para graficar
 Text / html 
 =========
 
--   **icono** : Icono para mostrar en frente
+-   **Icono** : Icono para mostrar en frente
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
@@ -204,7 +204,7 @@ Text / html
 -   **Alrededor de los ángulos** : le permite redondear los ángulos (no
     olvide poner%, ex 50%)
 
--   **frontera** : agregue un borde, tenga cuidado con la sintaxis
+-   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
     HTML (use la sintaxis CSS, por ejemplo : sólido
     1px negro)
 
@@ -214,18 +214,18 @@ Text / html
 -   **Alineación de texto** : le permite elegir la alineación de
     texto (izquierda / derecha / centrado)
 
--   **grasa** : texto en negrita
+-   **Grasa** : texto en negrita
 
--   **texto** : Texto en código HTML que estará en el elemento
+-   **Texto** : Texto en código HTML que estará en el elemento
 
-> **importante**
+> **Importante**
 >
 > Si coloca código HTML (especialmente Javascript), tenga cuidado
 > para comprobarlo antes porque puedes hacerlo si hay un error
 > o si sobrescribe un componente de Jeedom que bloquea completamente el diseño y
 > todo lo que tienes que hacer es eliminarlo directamente de la base de datos
 
-guión 
+Guión 
 ========
 
 Configuraciones de pantalla 
@@ -233,15 +233,15 @@ Configuraciones de pantalla
 
 No hay configuraciones de visualización específicas
 
-enlace 
+Enlace 
 ====
 
 Configuraciones de pantalla 
 ---------------------
 
--   **apellido** : apellidobre del enlace (texto mostrado)
+-   **Apellido** : Apellidobre del enlace (texto mostrado)
 
--   **enlace** : Enlace al diseño o vista en cuestión
+-   **Enlace** : Enlace al diseño o vista en cuestión
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
@@ -261,9 +261,9 @@ Configuraciones de pantalla
 -   **Alineación de texto** : le permite elegir la alineación de
     texto (izquierda / derecha / centrado)
 
--   **grasa** : texto en negrita
+-   **Grasa** : texto en negrita
 
-equipo 
+Equipo 
 ==========
 
 Configuraciones de pantalla 
@@ -277,7 +277,7 @@ Configuración avanzada
 Muestra la ventana de configuración avanzada del equipo (ver
 documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
 
-orden 
+Orden 
 ========
 
 Configuraciones de pantalla 
@@ -291,27 +291,27 @@ Configuración avanzada
 Muestra la ventana de configuración avanzada del comando (ver
 documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
 
-imagenn / Cámara 
+Imagenn / Cámara 
 ============
 
 Configuraciones de pantalla 
 ---------------------
 
--   **visualización** : define lo que desea mostrar, imagen fija o
+-   **Visualización** : define lo que desea mostrar, imagen fija o
     transmitir desde una cámara
 
--   **imagen** : le permite enviar la imagen en cuestión (si tiene
+-   **Imagen** : le permite enviar la imagen en cuestión (si tiene
     elige una imagen)
 
--   **cámara** : cámara para mostrar (si elige cámara)
+-   **Cámara** : cámara para mostrar (si elige cámara)
 
-zona 
+Zona 
 ====
 
 Configuraciones de pantalla 
 ---------------------
 
--   **puntao de area** : Aquí es donde eliges el tipo de área :
+-   **Puntao de area** : Aquí es donde eliges el tipo de área :
     Macro individual, macro binaria o widget al pasar el mouse
 
 ### Macro individual 
@@ -324,7 +324,7 @@ en la zona
 ### Macro binaria 
 
 En este modo, Jeedom ejecutará las acciones de encendido o apagado en
-dependiendo del estado del pedido que da. ex : si el pedido
+dependiendo del estado del pedido que da. Ex : si el pedido
 es 0, entonces Jeedom ejecutará la (s) acción (es) On (s) de lo contrario se ejecutará
 la (s) acción (es) Off
 
@@ -339,20 +339,20 @@ para el apagado
 En este modo, al pasar el mouse o al hacer clic en el área Jeedom, usted
 mostrar el widget en cuestión
 
--   **equipo** : widget para mostrar al pasar el mouse o al hacer clic
+-   **Equipo** : widget para mostrar al pasar el mouse o al hacer clic
 
 -   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
 
 -   **Ver en un clic** : si está marcado, el widget se muestra en
     clic
 
--   **posición** : le permite elegir la ubicación donde
+-   **Posición** : le permite elegir la ubicación donde
     widget (predeterminado abajo a la derecha)
 
-resumen 
+Resumen 
 ======
 
--   **enlace** : Se utiliza para indicar el resumen que se mostrará (General para
+-   **Enlace** : Se utiliza para indicar el resumen que se mostrará (General para
     global si no indica el objeto)
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
@@ -370,7 +370,7 @@ resumen
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
     le permite cambiar el tamaño de fuente
 
--   **grasa** : texto en negrita
+-   **Grasa** : texto en negrita
 
 
 Preguntas frecuentes 

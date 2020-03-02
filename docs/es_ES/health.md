@@ -4,7 +4,7 @@ usarlo) estado de salud por complemento.
 
 La página es accesible por Análisis → Salud
 
-> **nota**
+> **Nota**
 >
 > Un clic en el icono en la esquina superior derecha le da acceso al punto de referencia de su
 > Jeedom.
@@ -28,11 +28,11 @@ encuentra los iconos :
 
 -   Estado general del complemento
 
-> **nota**
+> **Nota**
 >
 > Los iconos pueden variar según el complemento
 
-> **nota**
+> **Nota**
 >
 > Generalmente cuando la línea es verde, todo está bien
 > y cuando está rojo, hay un problema.

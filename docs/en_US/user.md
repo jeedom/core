@@ -9,14 +9,14 @@ to save and a button to open a support access.
 
 Below you have a table :
 
--   **username** : user id
+-   **Username** : user id
 
 -   **Active** : allows to deactivate the account
 
 -   **Local only** : authorize user login
     only if it is on the local Jeedom network
 
--   **profiles** : allows to choose the user profile :
+-   **Profiles** : allows to choose the user profile :
 
     -   **Administrator** : gets all rights on Jeedom
 
@@ -39,7 +39,7 @@ Below you have a table :
     actual, so if you save your computer, the date of
     connection is not updated every time you return to it.
 
--   **to change the password** : allows to change the password from
+-   **To change the password** : allows to change the password from
     the user
 
 -   **Remove** : delete user
@@ -48,7 +48,7 @@ Below you have a table :
 
 -   **Manage rights** : allows to finely manage the rights of
     the user (please note that the profile must be
-    &quot;limited user&quot;)
+    "limited user ")
 
 Rights management 
 ==================
@@ -57,7 +57,7 @@ When clicking on &quot;Manage rights&quot; a window appears allowing you
 finely manage user rights. The first tab displays
 the different equipment. The second presents the scenarios.
 
-> **Important**
+> **IMPORTANT**
 >
 > The profile must be limited otherwise no restrictions placed here
 > will be taken into account
@@ -67,7 +67,7 @@ scenario, define user rights :
 
 -   **No** : the user does not see the equipment / scenario
 
--   **visualization** : the user sees the equipment / scenario but does not
+-   **Visualization** : the user sees the equipment / scenario but does not
     can&#39;t act on it
 
 -   **Visualization and execution** : the user sees

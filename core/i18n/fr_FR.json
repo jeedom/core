@@ -1710,7 +1710,7 @@
         "Personnalisation": "Personnalisation",
         "Sauvegarde": "Sauvegarde",
         "Log": "Log",
-        " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": " est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
+        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2941,7 +2941,8 @@
         "Activer": "Activer",
         "Désactiver": "Désactiver",
         "Remise à zero des SI": "Remise à zero des SI",
-        "Tags": "Tags"
+        "Tags": "Tags",
+        "Aucun": "Aucun"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nom",
@@ -3030,6 +3031,39 @@
         "Délai": "Délai",
         "Commandes": "Commandes",
         "Sélectionner la commande": "Sélectionner la commande"
+    },
+    "core\/config\/jeedom.config.php": {
+        "Chauffage": "Chauffage",
+        "Sécurité": "Sécurité",
+        "Energie": "Energie",
+        "Lumière": "Lumière",
+        "Automatisme": "Automatisme",
+        "Multimédia": "Multimédia",
+        "Autre": "Autre",
+        "Protocole domotique": "Protocole domotique",
+        "Passerelle domotique": "Passerelle domotique",
+        "Programmation": "Programmation",
+        "Organisation": "Organisation",
+        "Météo": "Météo",
+        "Communication": "Communication",
+        "Objets connectés": "Objets connectés",
+        "Confort": "Confort",
+        "Monitoring": "Monitoring",
+        "Santé": "Santé",
+        "Nature": "Nature",
+        "Timeout": "Timeout",
+        "Batterie en Warning": "Batterie en Warning",
+        "Batterie en Danger": "Batterie en Danger",
+        "Warning": "Warning",
+        "Danger": "Danger",
+        "Numérique": "Numérique",
+        "Binaire": "Binaire",
+        "Action": "Action",
+        "Défaut": "Défaut",
+        "Curseur": "Curseur",
+        "Message": "Message",
+        "Couleur": "Couleur",
+        "Liste": "Liste"
     },
     "core\/php\/jeePlugin.php": {
         "Le plugin ID ne peut être vide": "Le plugin ID ne peut être vide",

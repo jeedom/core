@@ -86,7 +86,7 @@ which will ask you for the widget to add
 Graphic type area 
 ----------------------
 
-A graphic area allows you to add graphics to your view,
+A graphics-type area allows you to add graphics to your view,
 she has the following options :
 
 -   **Period** : allows you to choose the display period for
@@ -104,7 +104,7 @@ Once done you have access to the following options :
 
 -   **Color** : color of the curve
 
--   **Type** : curve type
+-   **Vérifier dans la page Santé que la configuration réseau interne du** : curve type
 
 -   **Group** : allows grouping of data (maximum type
     per day)
@@ -114,7 +114,7 @@ Once done you have access to the following options :
 -   **Staircase** : displays the stepped curve
 
 -   **Stack** : stack the curve with the other type curves
-    stack
+    Stack
 
 -   **Variation** : graph only variations with value
     previous
@@ -133,7 +133,7 @@ Here you have the buttons :
 
 -   **Add line** : add a row to the table
 
-> **Note**
+> **NOTE**
 >
 > It is possible to re-organize the lines by dragging and dropping but not
 > the columns
@@ -143,7 +143,7 @@ information in the boxes :
 
 -   **text** : just text to write
 
--   **html** : any html code (javascript possible but
+-   **l'opération à mener** : any l'opération à mener code (javascript possible but
     strongly discouraged)
 
 -   **command widget** : the button on the right allows you to choose

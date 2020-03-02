@@ -4,7 +4,7 @@ qué comando de tipo de información (binario o digital). Que tu
 por lo tanto, permitirá, por ejemplo, historizar una curva de temperatura,
 consumo o apertura de puertas, etc.
 
-principio 
+Principio 
 ========
 
 Aquí se describe el principio de historización de Jeedom. No es
@@ -13,7 +13,7 @@ o desea cambiar la configuración de
 historización. La configuración predeterminada es adecuada para la mayoría
 caso.
 
-archivado 
+Archivado 
 ---------
 
 El archivo de datos le permite a Jeedom reducir la cantidad de datos
@@ -32,7 +32,7 @@ Aquí 2 parámetros, uno para el tamaño del paquete y otro para conocer
 cuándo hacerlo (por defecto, estos son paquetes
 1 hora con datos que tienen más de 2 horas de antigüedad).
 
-> **punta**
+> **Punta**
 >
 > Si ha seguido bien, debe tener una alta precisión en el
 > Últimas 2 horas solamente. Sin embargo, cuando inicio sesión a las 5 p.m.,
@@ -40,7 +40,7 @@ cuándo hacerlo (por defecto, estos son paquetes
 > para evitar consumir recursos innecesariamente, la tarea que hace
 > el archivo se realiza solo una vez al día, por la tarde.
 
-> **importante**
+> **Importante**
 >
 > Por supuesto, este principio de archivo solo se aplica a pedidos de
 > tipo digital; en comandos de tipo binario, Jeedom no mantiene
@@ -69,17 +69,17 @@ semana porque por defecto quiero que sea solo una semana - ver
 (estos parámetros se guardan de una pantalla a otra; por lo tanto,
 solo configúrelos una vez).
 
--   **escalera** : muestra la curva como un
+-   **Escalera** : muestra la curva como un
     escalera o pantalla continua.
 
--   **cambio** : muestra la diferencia en valor de
+-   **Cambio** : muestra la diferencia en valor de
     punto anterior.
 
--   **línea** : muestra el gráfico como líneas.
+-   **Línea** : muestra el gráfico como líneas.
 
 -   **área** : muestra el gráfico como un área.
 
--   **columna**\* : muestra el gráfico como barras.
+-   **Columna**\* : muestra el gráfico como barras.
 
 Gráfico sobre vistas y diseños. 
 =====================================
@@ -91,21 +91,21 @@ las opciones :
 
 Una vez que se activan los datos, puede elegir :
 
--   **color** : el color de la curva.
+-   **Color** : el color de la curva.
 
--   **tipo** : El tipo de gráfico (área, línea o columna).
+-   **Puntao** : El tipo de gráfico (área, línea o columna).
 
--   **escala** : ya que puedes poner varias curvas (datos)
+-   **Escala** : ya que puedes poner varias curvas (datos)
     en el mismo gráfico, es posible distinguir las escalas
     (derecha o izquierda).
 
--   **escalera** : muestra la curva como un
+-   **Escalera** : muestra la curva como un
     escalera o pantalla continua
 
--   **montón** : permite apilar los valores de las curvas (ver en
+-   **Montón** : permite apilar los valores de las curvas (ver en
     a continuación para el resultado).
 
--   **cambio** : muestra la diferencia en valor de
+-   **Cambio** : muestra la diferencia en valor de
     punto anterior.
 
 Opción en la página del historial 
@@ -118,14 +118,14 @@ Historia calculada
 
 Permite mostrar una curva de acuerdo con un cálculo en varios
 comando (puede hacer casoi todo, + - / \ * valor absoluto ... ver
-Documentación PHP para ciertas funciones). ex :
+Documentación PHP para ciertas funciones). Ex :
 abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio de
 La vida \] \ [Humedad \] \ [Temperatura \] *)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite
 guárdelos para verlos más fácilmente
 
-> **punta**
+> **Punta**
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo;
 > aparecen los comandos históricos que se pueden graficar.
@@ -135,11 +135,11 @@ Historial de pedidos
 
 Frente a cada dato que se puede graficar, encontrará dos íconos :
 
--   **cubo de basura** : permite eliminar los datos grabados; entonces
+-   **Cubo de basura** : permite eliminar los datos grabados; entonces
     del clic, Jeedom pregunta si es necesario eliminar los datos antes de un
     cierta fecha o todos los datos.
 
--   **flecha** : permite tener una exportación CSV de datos históricos.
+-   **Flecha** : permite tener una exportación CSV de datos históricos.
 
 Eliminación de valor inconsistente 
 =================================
@@ -151,7 +151,7 @@ pregunta, haciendo clic directamente en el gráfico; de
 más, puede establecer el mínimo y el máximo permitidos para
 evitar problemas futuros.
 
-línea de tiempo 
+Línea de tiempo 
 ========
 
 La línea de tiempo muestra ciertos eventos en su domótica en el formulario
@@ -160,13 +160,13 @@ cronológico.
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de
 comandos o escenarios deseados :
 
--   **guión** : ya sea directamente en la página del escenario o en el
-    página de resumen del escenario para hacerlo &quot;en masa&quot;
+-   **Guión** : ya sea directamente en la página del escenario o en el
+    página de resumen del escenario para hacerlo en "masa"
 
--   **orden** : ya sea en la configuración avanzada del comando,
-    ya sea en la configuración de la historia para hacerlo en &quot;masa&quot;
+-   **Orden** : ya sea en la configuración avanzada del comando,
+    ya sea en la configuración de la historia para hacerlo en "masa"
 
-> **punta**
+> **Punta**
 >
 > Tiene acceso a las ventanas de resumen de los escenarios o al
 > configuración del historial directamente desde la página
@@ -175,7 +175,7 @@ comandos o escenarios deseados :
 Una vez que haya habilitado el seguimiento en la línea de tiempo del pedido y
 escenarios deseados, puede verlos aparecer en la línea de tiempo.
 
-> **importante**
+> **Importante**
 >
 > Debe esperar nuevos eventos después de activar el seguimiento
 > en la línea de tiempo antes de verlos aparecer.
@@ -188,7 +188,7 @@ Las tarjetas en la pantalla de la línea de tiempo :
 -   **Comando de información** : en fondo azul, un icono a la derecha le permite
     muestra la ventana de configuración avanzada del comando
 
--   **guión** : en fondo gris, tienes 2 iconos : uno para mostrar
+-   **Guión** : en fondo gris, tienes 2 iconos : uno para mostrar
     el registro del escenario y uno para ir al escenario
 
 

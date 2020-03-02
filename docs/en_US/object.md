@@ -36,11 +36,11 @@ Here are the different characteristics to configure an object :
 -   **Object name** : The name of your object.
 
 -   **Dad** : Indicates the relative of the current object, this allows
-    deende a hierarchy between objects. for example : The living room has
+    deende a hierarchy between objects. For example : The living room has
     to relative the apartment. An object can only have one relative
     but several objects can have the same relative.
 
--   **Visible** : Check this box to make this object visible.
+-   **Jeedom** : Check this box to make this object visible.
 
 -   **Hide on the dashboard** : Check this box to hide
     the object on the dashboard. It is still kept in the
@@ -53,11 +53,11 @@ Here are the different characteristics to configure an object :
     equipment attached to it.
 
 -   **Tag text color** : Allows you to choose the text color
-    of the object. This text will be over the **color of the tag**. To you
+    of the object. This text will be over the **Tag color**. To you
     to choose a color to make the text readable.
 
 -   **Size on the dashboard (1 to 12)** : Allows you to deende the width
-    the display of this object in the dashboard. for example : if you
+    the display of this object in the dashboard. For example : if you
     put `6` to two consecutive objects in the list, then it
     will be side by side on the dashboard. If you put `3` to four
     objects that follow each other, they will also be side by side.
@@ -75,7 +75,7 @@ Here are the different characteristics to configure an object :
 > **Tip**
 >
 > You can see a graph representing all the elements of Jeedom
-> attached to this object by clicking on the button **Connections**, above at
+> attached to this object by clicking on the button **Connections**, up at
 > right.
 
 > **Tip**
@@ -125,13 +125,13 @@ Overview
 The overview allows you to view all the objects in
 Jeedom, as well as their configuration :
 
--   **ID** : Object ID.
+-   **Id** : Object Id.
 
 -   **Object** : Object name.
 
 -   **Dad** : Name of relative object.
 
--   **Visible** : Object visibility.
+-   **Jeedom** : Object visibility.
 
 -   **Mask** : Indicates if the object is hidden on the dashboard.
 

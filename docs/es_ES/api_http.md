@@ -8,20 +8,20 @@ JSON RPC 2.0 y otro a través de URL y solicitud HTTP.
 Esta API se usa muy fácilmente mediante solicitudes HTTP simples a través de
 URL.
 
-> **nota**
+> **Nota**
 >
 > Para toda esta documentación, \ #IP \ _JEEDOM \ # corresponde a su url
 > acceso a Jeedom. Esto es (a menos que esté conectado a su red
 > local) de la dirección de Internet que utiliza para acceder a Jeedom
 > desde afuera.
 
-> **nota**
+> **Nota**
 >
 > Para toda esta documentación, \ #API \ _KEY \ # corresponde a su clave
 > API, específica para su instalación. Para encontrarlo, tienes que ir a
-> el menú &quot;General&quot; → &quot;Configuración&quot; → pestaña &quot;General&quot;.
+> el menú "General" → "Configuración" → pestaña "General"".
 
-guión 
+Guión 
 ========
 
 Aquí está la URL =
@@ -31,11 +31,11 @@ Aquí está la URL =
     página del escenario en cuestión, en &quot;Herramientas&quot; → &quot;Escenarios&quot;, una vez que
     escenario seleccionado, junto al nombre de la pestaña &quot;General&quot;. otro
     manera de encontrarlo : en &quot;Herramientas&quot; → &quot;Escenarios&quot;, haga clic en
-    &quot;Descripción general&quot;.
+    "Resumen".
 
 -   **acción** : corresponde a la acción que desea aplicar. la
-    los pedidentificaciónos disponibles son : &quot;iniciar&quot;, &quot;detener&quot;, &quot;desactivar&quot; y
-    &quot;activar&quot; para iniciar, detener, desactivar o
+    los pedidentificaciónos disponibles son : "iniciar "," detener "," desactivar "y
+    "activar "para iniciar, detener, desactivar o
     activar el escenario.
 
 -   **etiquetas** \ [Opcional \] : si la acción es &quot;inicio&quot;, puede omitir
@@ -58,19 +58,19 @@ avanzado (el icono de &quot;engranaje&quot;) y allí verá una URL que contiene
 ya todo lo que necesita dependiendo del tipo y subtipo de
 orden.
 
-> **nota**
+> **Nota**
 >
 > Es posible que el campo \ #ID \ # coloque varios comandos
 > de una vez. Para hacer esto, debe pasar una matriz en json (ex
 > % 5B12,58,23% 5D, tenga en cuenta que \ [y \] deben estar codificados, de ahí que% 5B
 > y% 5D). El regreso de Jeedom será un json
 
-> **nota**
+> **Nota**
 >
 > Los parámetros deben estar codificados para url, puede usar
 > una herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
 
-interacción 
+Interacción 
 ===========
 
 Aquí está la URL =
@@ -90,7 +90,7 @@ Aquí está la URL =
 -   **responder \ _cmd** \ [Opcional \] : ID de comando para usar para
     satisfacer la demanda
 
-mensaje 
+Mensaje 
 =======
 
 Aquí está la URL =
@@ -102,7 +102,7 @@ Aquí está la URL =
     el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar un
     herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
 
-objeto 
+Objeto 
 =====
 
 Aquí está la URL =
@@ -110,7 +110,7 @@ Aquí está la URL =
 
 Devuelve en json la lista de todos los objetos Jeedom
 
-equipo 
+Equipo 
 ==========
 
 Aquí está la URL =
@@ -119,7 +119,7 @@ Aquí está la URL =
 -   **el objeto \ _identificación** : ID del objeto del que queremos recuperar
     comodidentificaciónades
 
-orden 
+Orden 
 ========
 
 Aquí está la URL =
@@ -137,7 +137,7 @@ Aquí está la URL =
 Devuelve todos los objetos, equipos, comandos (y su valor si esto
 son informaciones) en json
 
-variable 
+Variable 
 ========
 
 Aquí está la URL =

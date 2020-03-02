@@ -4,7 +4,7 @@ die Spezifikationen (JSON RPC 2.0) :
 
 Der Zugriff auf die API erfolgt über die URL : *URL \ _JEEDOM * / core / api / jeeApi.php
 
-verschiedene
+Verschiedene
 ======
 
 Klingeln
@@ -220,7 +220,7 @@ eqLogic::byTypeAndId
 
 Gibt eine Gerätetabelle gemäß den Parametern zurück. Die Rückkehr
 wird vom Formulararray sein (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒
-Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))…., id1 ⇒
+Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 Array (....)) ..)
 
@@ -243,7 +243,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge logische ID = &#39;&#39;
+-   Zeichenfolge Protokollische ID = ''
 
 -   int object \ _id = null
 
@@ -351,7 +351,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge logische ID
+-   Zeichenfolge Protokollische ID
 
 -   Zeichenfolge eqType
 
@@ -365,7 +365,7 @@ Einstellungen:
 
 -   int isHistorized = 0
 
--   string unite = &#39;&#39;
+-   String-Einheit = ''
 
 -   Array-Konfiguration
 
@@ -447,7 +447,7 @@ Einstellungen:
 JSON-Protokoll-API
 ============
 
-log::get
+Protokoll::get
 --------
 
 Ermöglicht das Wiederherstellen eines Protokolls
@@ -460,7 +460,7 @@ Einstellungen:
 
 -   Zeichenfolge nbLine : Anzahl der wiederherzustellenden Zeilen
 
-log::hinzufügen
+Protokoll::hinzufügen
 --------
 
 Ermöglicht das Schreiben in ein Protokoll
@@ -473,10 +473,10 @@ Einstellungen:
 
 -   Zeichenfolge Nachricht : SMS zu schreiben
 
--   Zeichenfolge logische ID : logische ID der generierten Nachricht
+-   Zeichenfolge Protokollische ID : Protokollische ID der generierten Nachricht
 
 
-log::Liste
+Protokoll::Liste
 ---------
 
 Holen Sie sich die Jeedom-ProtokollListee
@@ -485,7 +485,7 @@ Einstellungen:
 
 -   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle
 
-log::leer
+Protokoll::leer
 ----------
 
 Leeren Sie ein Protokoll
@@ -494,7 +494,7 @@ Einstellungen:
 
 -   Zeichenfolgenprotokoll : Name des zu leeren Protokolls
 
-log::Entfernen
+Protokoll::Entfernen
 -----------
 
 Ermöglicht das Löschen eines Protokolls
@@ -516,7 +516,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für das insgesamte (Wert für die Standardszenarien,
+-   id linkId : -1 für insgesamt (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -531,7 +531,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für das insgesamte (Wert für die Standardszenarien,
+-   id linkId : -1 für insgesamt (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -559,7 +559,7 @@ Einstellungen:
 
 -   String-Aktion : Aktion
 
--   Zeichenfolge logische ID : logicalId
+-   Zeichenfolge Protokollische ID : ProtokollicalId
 
 Nachricht::EntfernenAll
 ------------------
@@ -569,7 +569,7 @@ Löschen Sie allee Nachrichten
 JSON-Interaktions-API
 ====================
 
-interact::tryToReply
+Interact::tryToReply
 --------------------
 
 Versuchen Sie, eine Anforderung mit einer Interaktion abzugleichen, und führen Sie sie aus
@@ -579,10 +579,10 @@ Einstellungen:
 
 -   Abfrage (Anforderungsphrase)
 
--   int reply \ _cmd = NULL : ID des Befehls, mit dem geantwortet werden soll,
+-   int reply \ _cmd = NULL : Befehls-ID, die zum Antworten verwendet werden soll,
     Wenn nicht angegeben, sendet Jeedom Ihnen die Antwort im JSON
 
-interactQuery::alle
+InteractQuery::alle
 ------------------
 
 Gibt die vollständige Liste alleer Interaktionen zurück
@@ -590,37 +590,37 @@ Gibt die vollständige Liste alleer Interaktionen zurück
 JSON-System-API
 ===============
 
-jeedom::halt
+Jeedom::halt
 ------------
 
 Stoppen Sie Jeedom
 
-jeedom::rebooten
+Jeedom::rebooten
 --------------
 
 Starten Sie Jeedom neu
 
-jeedom::ISOK
+Jeedom::ISOK
 ------------
 
 Lässt Sie wissen, ob der insgesamte Zustand von Jeedom in Ordnung ist
 
-jeedom::Aktualisierung
+Jeedom::Aktualisierung
 --------------
 
 Starten wir ein Jeedom-Update
 
-jeedom::Sicherungskopie
+Jeedom::Sicherungskopie
 --------------
 
 Ermöglicht das Starten eines Backups von Jeedom
 
-jeedom::getUsbMapKlingeln
+Jeedom::getUsbMapKlingeln
 ---------------------
 
 Liste der USB-Anschlüsse und Namen der daran angeschlossenen USB-Sticks
 
-JSON-Plugin-API
+JSON Plugin API
 ===============
 
 Plugin::installeieren
@@ -631,7 +631,7 @@ Installeation / Update eines bestimmten Plugins
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::Entfernen
 --------------
@@ -641,7 +641,7 @@ Löschen eines bestimmten Plugins
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::dependancyInfo
 ----------------------
@@ -651,7 +651,7 @@ Gibt Informationen zum Status von Plugin-Abhängigkeiten zurück
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::dependancyInstalle
 -------------------------
@@ -661,7 +661,7 @@ Erzwingen Sie die Installeation von Plugin-Abhängigkeiten
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::deamonInfo
 ------------------
@@ -671,7 +671,7 @@ Gibt Informationen zum Status des Plugin-Daemons zurück
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::deamonStart
 -------------------
@@ -681,7 +681,7 @@ Zwinge den Dämon zu starten
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::deamonStop
 ------------------
@@ -691,7 +691,7 @@ Dämonenstopp erzwingen
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 Plugin::deamonChangeAutoMode
 ----------------------------
@@ -701,7 +701,7 @@ Plugin::deamonChangeAutoMode
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 -   int-Modus : 1 für automatisch, 0 für manuell
 
 JSON-Update-API
@@ -729,7 +729,7 @@ Aktualisierung::DoUpdate
 Einstellungen:
 
 -   int Plugin \ _id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
 JSON-Netzwerk-API
 ================
@@ -754,16 +754,16 @@ JSON-API-Beispiele
 
 Hier ist ein Beispiel für die Verwendung der API. Für das folgende Beispiel
 Ich benutze [diese Klasse
-php] (https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+php] (https://github.com/Jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
 Dies vereinfacht die Verwendung der API.
 
 Abrufen der ObjektListee :
 
 ``` {.php}
-$ jsonrpc = neuer jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
-} Else {
+}sonst{
     echo $ jsonrpc-&gt; getError ();
 }
 ```
@@ -771,10 +771,10 @@ if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())) {
 Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 ``` {.php}
-$ jsonrpc = neuer jsonrpcClient (&#39;# URL_JEEDOM # / core / api / jeeApi.php &#39;, # API_KEY #);
-if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=&gt; # cmd_id #,&#39; options &#39;=&gt; array (&#39; title &#39;=&gt;&#39; Cuckoo &#39;,&#39; Nachricht &#39;=&gt;&#39; It works &#39;))) {
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
     Echo &#39;OK&#39;;
-} Else {
+}sonst{
     echo $ jsonrpc-&gt; getError ();
 }
 ```

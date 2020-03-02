@@ -1,4 +1,4 @@
-troncos 
+Troncos 
 ====
 
 El menú Registros le permite seguir lo que está sucediendo en su domótica. En la
@@ -16,16 +16,16 @@ botones :
 -   **Pausa / Reanudar** : le permite pausar / reanudar la configuración
     actualización de registro en tiempo real
 
--   **descargar** : permite descargar el registro actual,
+-   **Descargar** : permite descargar el registro actual,
 
--   **vaciar** : permite vaciar el registro actual,
+-   **Vaciar** : permite vaciar el registro actual,
 
--   **remove** : eliminar el registro actual, si Jeedom tiene alguna
-    si lo necesita, lo recreará automáticamente
+-   **Remove** : eliminar el registro actual, si Jeedom tiene alguna
+    necesitarlo lo recreará automáticamente,
 
 -   **Eliminar todos los registros** : eliminar todos los registros presentes.
 
-> **punta**
+> **Punta**
 >
 > Tenga en cuenta que el registro http.el error no se puede eliminar. Es esencial
 > ! si lo elimina (en la línea de comando, por ejemplo) no lo hará

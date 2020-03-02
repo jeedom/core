@@ -2,7 +2,7 @@ It informs of all Jeedom application tasks that run on the
 server. This menu is to be used with full knowledge of the facts or at the
 request technical support.
 
-> **Important**
+> **IMPORTANT**
 >
 > In case of mishandling on this page, any request for
 > support may be denied you.
@@ -10,7 +10,7 @@ request technical support.
 To access it, go to **Settings → System → Task engine**
 :
 
-# cron
+# Cron
 
 At the top right, you have :
 
@@ -32,7 +32,7 @@ page). In this table, we find :
 -   **\#** : Task ID, can be useful for linking a
     process that is running and what it really does
 
--   **Action** : a button to start or stop the task in function
+-   **ACTION** : a button to start or stop the task in function
     its status and a button to view the cron in detail (as stored in the database)
 
 -   **Active** : indicates if the task is active (can be launched
@@ -56,7 +56,7 @@ page). In this table, we find :
 
 -   **Programming** : programming the task in CRON format
 
--   **timeout** : maximum task run time. If the
+-   **Timeout** : maximum task run time. If the
     task is a demon then it will be automatically stopped and
     restarted at the end of the timeout
 
@@ -69,13 +69,13 @@ page). In this table, we find :
 -   **Status** : current status of the task (as a reminder, a daemon task
     is still &quot;run&quot;)
 
--   **suppression** : delete task
+-   **Suppression** : delete task
 
 
-# listener
+# Listener
 
 The listeners are just visible in reading and allow you to see the functions called on an event (update of a command ...)
 
-# demons
+# Demons
 
 Summary table of the daemons with their state, the date of last launch as well as the possibility of stopping or restarting them.

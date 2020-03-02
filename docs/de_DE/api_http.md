@@ -19,7 +19,7 @@ URLs.
 >
 > Für all diese Dokumentationen entspricht \ #API \ _KEY \ # Ihrem Schlüssel
 > API, spezifisch für Ihre Installation. Um es zu finden, müssen Sie zu gehen
-> das Menü &quot;Allgemein&quot; → Registerkarte &quot;Konfiguration&quot; → &quot;Allgemein&quot;.
+> das Menü "Allgemein" → Registerkarte "Konfiguration" → "Allgemein"".
 
 Szenario 
 ========
@@ -31,11 +31,11 @@ Hier ist die URLs =
     Seite des betreffenden Szenarios unter &quot;Extras&quot; → &quot;Szenarien&quot;, sobald die
     ausgewähltes Szenario neben dem Namen der Registerkarte &quot;Allgemein&quot;. andere
     Weg, um es zu finden : Klicken Sie unter &quot;Extras&quot; → &quot;Szenarien&quot; auf
-    &quot;Übersicht&quot;.
+    "Übersicht".
 
 -   **Aktion** : entspricht der Aktion, die Sie anwenden möchten. die
-    verfügbare Bestellungen sind : &quot;Start&quot;, &quot;Stopp&quot;, &quot;Deaktivieren&quot; und
-    &quot;aktivieren&quot; zum Starten, Stoppen, Deaktivieren oder
+    verfügbare Bestellungen sind : "start "," stop "," disable "und
+    "aktivieren "um zu starten, zu stoppen, zu deaktivieren oder
     Aktivieren Sie das Szenario.
 
 -   **Tags** \ [Optional \] : Wenn die Aktion &quot;Start&quot; ist, können Sie überspringen
@@ -119,7 +119,7 @@ Hier ist die URLs =
 -   **Objekt \ _Identifikation** : ID des Objekts, von dem wir abrufen möchten
     Komfort
 
-bestellen 
+Bestellen 
 ========
 
 Hier ist die URLs =

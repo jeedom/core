@@ -1,13 +1,13 @@
-logs 
+Logs 
 ====
 
-The logs menu allows you to follow what is happening on your home automation. In the
+The Logs menu allows you to follow what is happening on your home automation. In the
 most cases the logs will only be used for debugging and
 solve problems by the support team.
 
-To access it, go to Analysis → logs :
+To access it, go to Analysis → Logs :
 
-The logs page is quite simple, at the top left a drop-down list
+The Logs page is quite simple, at the top left a drop-down list
 allowing the choice of the log to watch, at the top right you have 5
 buttons :
 

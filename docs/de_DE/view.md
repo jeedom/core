@@ -58,7 +58,7 @@ In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 -   **Breite** : Definiert die Breite des Bereichs (im Modus
     nur Desktop)
 
--   **bearbeiten** : ermöglicht das Ändern des Namens der Zone
+-   **Bearbeiten** : ermöglicht das Ändern des Namens der Zone
 
 -   **Entfernen** : ermöglicht das Löschen der Zone
 
@@ -86,7 +86,7 @@ Hier werden Sie aufgefordert, das Widget hinzuzufügen
 Grafiktypbereich 
 ----------------------
 
-In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen.
+In einem grafischen Bereich können Sie Ihrer Ansicht Grafiken hinzufügen,
 Sie hat die folgenden Optionen :
 
 -   **Zeit** : Hier können Sie den Anzeigezeitraum für auswählen
@@ -143,7 +143,7 @@ Informationen in den Feldern :
 
 -   **Text** : Nur Text zum Schreiben
 
--   **html** : jeder HTML-Code (Javascript möglich aber
+-   **HTML** : jeder HTML-Code (Javascript möglich aber
     stark entmutigt)
 
 -   **Befehls-Widget** : Über die Schaltfläche rechts können Sie auswählen
