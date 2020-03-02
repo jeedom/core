@@ -253,7 +253,7 @@ Here are the different options available :
 - **Activate "Notify Me" interactions"** : Check to enable type interactions **Warn me**.
 - **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **;** ).
 - **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
-- **Synonym for objects** : Theist of synonyms for objects (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
+- **Synonym for objects** : Theist of synonyms for objects (ex : ground floor|ground floor|basement|low; sdb|bathroom).
 - **Synonym for equipment** : Theist of synonyms for equipment.
 - **Synonym for orders** : Theist of synonyms for commands.
 - **Synonym for abstracts** : Theist of synonyms for summaries.
