@@ -170,7 +170,7 @@ comandos o escenarios deseados :
 >
 > Tiene acceso a las ventanas de resumen de los escenarios o al
 > configuración del historial directamente desde la página
-> línea de tiempo.
+> Línea de tiempo.
 
 Una vez que haya habilitado el seguimiento en la línea de tiempo del pedido y
 escenarios deseados, puede verlos aparecer en la línea de tiempo.

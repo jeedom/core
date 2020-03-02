@@ -154,7 +154,7 @@ externo** (desde otra red, en particular desde Internet).
 > **Punta**
 >
 > Para saber si necesita esablecer un valor en el campo
-> **complementar**, mira, cuando inicias sesión en Jeedom en
+> **Complementar**, mira, cuando inicias sesión en Jeedom en
 > su navegador de Internet, si necesita agregar / jeedom (u otro
 > cosa) después de la IP.
 
@@ -542,7 +542,7 @@ Aquí esán las diferentes opciones disponibles. :
     si ha programado la alerta a través de la interfaz móvil)
 
 -   **Sinónimo de objetos** : Laista de sinónimos para objetos
-    (por ejemplo, : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
+    (por ejemplo, : planta baja|planta baja|bajo tierra|bajo; sdb|cuarto de baño).
 
 -   **Sinónimo de equipamiento** : Laista de sinónimos para
     los equipos.

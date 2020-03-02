@@ -154,7 +154,7 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 > **Spitze**
 >
 > Um herauszufinden, ob Wenne einen Wert im Feld fistlegen müssen
-> **ergänzen**, Schau, wenn du dich bei Jeedom anmeldist
+> **Ergänzen**, Schau, wenn du dich bei Jeedom anmeldist
 > Ihren Internetbrowser, wenn Wenne / jeedom (oder andere) hinzufügen müssen
 > Sache) nach der IP.
 
@@ -542,7 +542,7 @@ Hier sind die verschiedenen Optionen verfügbar :
     wenn Wenne den Alarm über die mobile Schnittstelle programmiert haben)
 
 -   **Synonym für Objekte** : Dieiste der Synonyme für Objekte
-    (zB : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
+    (zB : Erdgeschoss|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
     Ausrüstung.
