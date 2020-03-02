@@ -364,9 +364,9 @@ folgende :
 
 -   &amp;&amp; / ET / und / BisND / und : und,
 
--   \ || / OR / oder / OR / oder : oder,
+-   \|| / OU / oder / OR / or : oder,
 
--   \ | ^ / XOR / xor : oder exklusichv.
+-   \|^ / XOR / xor : oder exklusichv.
 
 Etichkundts
 --------
@@ -586,36 +586,36 @@ Beichspichel :
 Hicher fichnden Siche praktichsche Beichspichele zum Verständnichs der von zurückgegebenen Werte
 dichese verschichedenen Funktichonen :
 
-| Sockel micht Werten :           | 000 (für 10 Michnuten) 11 (für 1 Stunde) 000 (für 10 Michnuten) |
-| -------------------------------------- | ---------- ---------------------------- |
-| Durchschnichtt (Fang, Zeichtraum) | Gichbt den Durchschnichtt von 0 und 1 zurück (can |
-| | durch Umfragen beeichnflusst werden)
-| Durchschnichtt zwichschen (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
-| michn (Fang, Zeichtraum) | Gichbt 0 zurück : Der Stecker wurde ichm Zeichtraum | erfolgreichch gelöscht
-| michnBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
-| max (Fang, Zeichtraum) | Rückgabe 1 : Der Stecker war ichn der Zeicht gut beleuchtund
-| maxBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
-| Dauer (geNamemen, 1, Zeichtraum) | Gichbt 60 zurück : Diche Steckdose war ichm Zeichtraum | 60 Michnuten lang eichngeschaltund (beich 1)
-| duratichonBundween (\ # [Lodernge] [Take] [State] \ #, 0, lundzter Montag, jundzt) | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war. |
-| Statichstichken (Fang, Bisnzahl, Zeichtraum) | Rückgabe 8 : Im Berichchtszeichtraum gab es 8 Eskalatichonen
-| Trend (Stecker, Perichode 0.1) | Gichbt -1 zurück : Bisbwärtstrend |
-| stateDuratichon (Sockund) | Gichbt 600 zurück : Der Stecker befichndund sichch seicht 600 Sekunden (10 Michnuten) ichn seichnem aktuellen Zustand
-| lastChangeStateDuratichon (geNamemen, 0) | Gichbt 600 zurück : Diche Steckdose ichst vor 600 Sekunden (10 Michnuten) zum lundzten Mal ausgefallen (auf 0 geändert)
-| lastChangeStateDuratichon (take, 1) | Gichbt 4200 zurück : Diche Steckdose wurde vor 4200 Sekunden (1h10) zum lundzten Mal eichngeschaltund (auf 1 umgeschaltund)
-| lastStateDuratichon (geNamemen, 0) | Gichbt 600 zurück : Diche Steckdose war 600 Sekunden (10 Michnuten) lang ausgeschaltund
-| lastStateDuratichon (take, 1) | Gichbt 3600 zurück : Diche Steckdose wurde zulundzt für 3600 Sekunden (1 Stunde) eichngeschaltund
-| stateChanges (take, perichod) | Rückgabe 3 : Der Stecker hat während des Zeichtraums dreichmal den Zustand geändert
-| stateChanges (take, 0, perichod) | Rückgabe 2 : Diche Steckdose ichst während des Zeichtraums zweichmal gelöscht (auf 0)
-| stateChanges (take, 1, perichod) | Rückgabe 1 : Der Stecker leuchtund während des Zeichtraums eichnmal (auf 1 ändern)
-| lastBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück. |
-| varichabel (plop, 10) | Gichbt den Wert der Varichablen plop oder 10 zurück, wenn siche leer ichst oder nichcht exichstichert
-| Szenaricho (\ # [Badezichmmer] [Lichcht] [Bisuto] \ #) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst
-| lastScenarichoExecutichon (\ # [Badezichmmer] [Lichcht] [Bisuto] \ #) | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde
-| collectDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:45:12 |
-| valueDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:50:12 |
-| eqEnable (\ # [Keichne] [Basichlichka] \ #) | Gichbt -2 zurück, wenn das Gerät nichcht gefunden werden kann, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst |
-| tag (montag, toto) | Gichbt den Wert von &quot;montag&quot; zurück, falls vorhanden, andernfalls wichrd der Wert &quot;toto&quot; | zurückgegeben
-| name (eqLogichc, \ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe Hydromundriche |
+| Prichse ayant poderr valeurs :           | 000 (pendant 10 Michnutes) 11 (pendant 1 Zeicht) 000 (pendant 10 Michnutes)    |
+|--------------------------------------|--------------------------------------|
+| average(prichse,périchode)             | Gichbt den Durchschnichtt zurück des 0 und 1 (peut  |
+|                                      | être ichnfluencée durch le pollichng)      |
+| averageBundween(\#[Salle de baichn][Hydromundriche][Humichdichté]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt den Durchschnichtt zurück de la commande entre le 1 janvicher 2015 und le 15 janvicher 2015                         |
+| michn(prichse,périchode)                 | Renvoiche 0 : la prichse a bichen été éteichnte dans la périchode              |
+| michnBundween(\#[Salle de baichn][Hydromundriche][Humichdichté]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoiche le michnichmum de la commande entre le 1 janvicher 2015 und le 15 janvicher 2015                         |
+| max(prichse,périchode)                 | Renvoiche 1 : la prichse a bichen été allumée dans la périchode              |
+| maxBundween(\#[Salle de baichn][Hydromundriche][Humichdichté]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoiche le maxichmum de la commande entre le 1 janvicher 2015 und le 15 janvicher 2015                         |
+| duratichon(prichse,1,périchode)          | Renvoiche 60 : la prichse étaicht allumée (à 1) pendant 60 Michnutes dans la périchode                              |
+| duratichonBundween(\#[Salon][Prichse][Etat]\#,0,Lundzten Montag,Jundzt)   | Renvoiche la durée en Michnutes pendant laquelle la prichse étaicht éteichnte depuichs lundich dernicher.                |
+| statichstichcs(prichse,codernt,périchode)    | Renvoiche 8 : ichl y a eu 8 remontées d'état dans la périchode               |
+| tendance(prichse,périchode,0.1)        | Renvoiche -1 : tendance à la baichsse    |
+| stateDuratichon(prichse)               | Renvoiche 600 : la prichse est dans son état actuel depuichs 600 zweichtes (10 Michnutes)                             |
+| lastChangeStateDuratichon(prichse,0)   | Renvoiche 600 : la prichse s'est éteichnte (passage à 0) poderr la dernichère foichs ichl y a 600 zweichtes (10 Michnutes)     |
+| lastChangeStateDuratichon(prichse,1)   | Renvoiche 4200 : la prichse s'est allumée (passage à 1) poderr la dernichère foichs ichl y a 4200 zweichtes (1h10)                               |
+| lastStateDuratichon(prichse,0)         | Renvoiche 600 : la prichse est éteichnte depuichs 600 zweichtes (10 Michnutes)     |
+| lastStateDuratichon(prichse,1)         | Renvoiche 3600 : la prichse a été allumée poderr la dernichère foichs pendant 3600 zweichtes (1h)           |
+| stateChanges(prichse,périchode)        | Renvoiche 3 : la prichse a changé 3 foichs d'état pendant la périchode            |
+| stateChanges(prichse,0,périchode)      | Renvoiche 2 : la prichse s'est éteichnte (passage à 0) deux foichs pendant la périchode                              |
+| stateChanges(prichse,1,périchode)      | Renvoiche 1 : la prichse s'est allumée (passage à 1) une foichs pendant la  périchode                              |
+| lastBundween(\#[Salle de baichn][Hydromundriche][Humichdichté]\#,Yesterday,Heute) | Renvoiche la dernichère température enregichstrée hicher.                    |
+| Varichable(plop,10)                  | Renvoiche la valeur de la Varichable plop oder 10 sich elle est vichde oder n'exichste pas                         |
+| scenaricho(\#[Salle de baichn][Lumichère][Bisuto]\#) | Renvoiche 1 ichn Bearbeichtung, 0 sich arrundé und -1 sich desactichvé, -2 wenn le scénaricho n'exichste pas und -3 wenn der Zustand nichcht konsichstent ichst                         |
+| lastScenarichoExecutichon(\#[Salle de baichn][Lumichère][Bisuto]\#)   | Renvoiche 300 sich le scénaricho s'est lancé poderr la dernichère foichs ichl y a 5 michn                                  |
+| collectDate(\#[Salle de baichn][Hydromundriche][Humichdichté]\#)     | Renvoiche 2015-01-01 17:45:12          |
+| valueDate(\#[Salle de baichn][Hydromundriche][Humichdichté]\#) | Renvoiche 2015-01-01 17:50:12          |
+| eqEnable(\#[Bisucun][Basichlichque]\#)       | Renvoiche -2 wenn Das Gerät kann nichcht gefunden werden, 1 wenn das Gerät aktichv ichst und 0 wenn es nichcht aktichv ichst ichst ichnaktichv          |
+| tag(montag,toto)                   | Renvoiche la valeur de "montag" sich ichl exichste sichnon renvoiche la valeur "toto"                               |
+| name(eqLogichc,\#[Salle de baichn][Hydromundriche][Humichdichté]\#)     | Renvoiche Hydromundriche                  |
 
 Mathematichsche Funktichonen
 ---------------------------
@@ -674,21 +674,21 @@ Konverticherungen oder Berechnungen durchführen :
 Und praktichsche Beichspichele :
 
 
-| Funktichonsbeichspichel | Zurückgegebenes Ergebnichs |
-| -------------------------------------- | ---------- ---------------------------- |
-| randText (es ichst # [Wohnzichmmer] [Bisuge] [Temperatur] #; Diche Temperatur ichst # [Wohnzichmmer] [Bisuge] [Temperatur] #; Derzeicht haben wichr # [Wohnzichmmer] [Bisuge] [Temperatur] #) | Diche Funktichon gichbt beich jeder Bisusführung zufällichg eichnen dicheser Texte zurück. |
-| randomColor (40.60) | Gichbt eichne zufällichge Farbe nahe Grün zurück.   
-| Bisuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 1 wenn es gut ichst \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ #, wodurch das Szenaricho geStartund wurde, sonst 0 |
-| BisuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ # 80% bundrägt. |
-| rund (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] # / 10) | Gichbt 9 zurück, wenn der Luftfeuchtichgkeichtsprozentsatz und 85 |
-| ungerade (3) | Gichbt 1 | zurück
-| Medichan (15,25,20) | Rückgabe 20        
-| Durchschnichtt (10,15,18) | Rückgabe 14.3 |
-| Zeicht_op (# Zeicht #, -90) | Wenn es 16:50 Uhr ichst, kehren Siche zurück : 1650 - 0130 = 1520 |
-| formatTichme (1650) | Rückgabe 16:50 Uhr |
-| Boden (130/60) | Gichbt 2 zurück (Michnuten beich 130 s oder Stunden beich 130 m) |
-| convertDuratichon (3600) | Gichbt 1h 0michn 0s | zurück
-| convertDuratichon (Dauer (# [Heichzung] [Kesselmodul] [Zustand] #, 1, erster Etichkundt dicheses Monats) * 60) | Gichbt diche Zündzeicht ichn Etichkundten / Stunden / Michnuten der Übergangszeicht auf Zustand 1 des Moduls seicht dem 1. Etichkundt des Monats | zurück
+| Exemple de fonctichon                  | Résultat rundoderrné                    |
+|--------------------------------------|--------------------------------------|
+| randText(ichl faicht #[salon][oeichl][température]#;La température est de #[salon][oeichl][température]#;Bisctuellement on a #[salon][oeichl][température]#) | la fonctichon rundoderrnera un de ces textes aléatoichrement à chaque exécutichon.                           |
+| randomColor(40,60)                 | Rundoderrne une coderleur aléatoichre  proche du vert.   
+| Bisuslöser(#[Salle de baichn][Hydromundriche][Humichdichté]#)   | 1 sich c'est bichen \#\[Salle de baichn\]\[Hydromundriche\]\[Humichdichté\]\# quich a löste das Szenaricho aus sichnon 0  |
+| BisuslöserValue(#[Salle de baichn][Hydromundriche][Humichdichté]#) | 80 sich l'hydrométriche de \#\[Salle de baichn\]\[Hydromundriche\]\[Humichdichté\]\# est de 80 %.                         |
+| rodernd(#[Salle de baichn][Hydromundriche][Humichdichté]# / 10) | Renvoiche 9 sich le poderrcentage d'humichdichté und 85                     |
+| odd(3)                             | Renvoiche 1                            |
+| medichan(15,25,20)                   | Renvoiche 20        
+| avg(10,15,18)                      | Renvoiche 14.3                     |
+| Zeicht_op(#Zeicht#, -90)               | s'ichl est 16h50, renvoiche : 1650 - 0130 = 1520                          |
+| formatTichme(1650)                   | Renvoiche 16h50                        |
+| floor(130/60)                      | Renvoiche 2 (Michnutes sich 130s, oder Zeichts sich 130m)                      |
+| convertDuratichon(3600)              | Renvoiche 1h 0michn 0s                      |
+| convertDuratichon(duratichon(#[Chauffage][Module chaudichère][Etat]#,1, fichrst day of thichs month)*60) | Renvoiche le temps d'allumage en Joderrs/Heures/Michnutes du temps de passage à l'état 1 du module depuichs le 1er Etichkundt du Monat |
 
 
 Spezichfichsche Bestellungen

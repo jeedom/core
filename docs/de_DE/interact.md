@@ -94,7 +94,7 @@ General
     bichnäre Info).
 
 -   **Autorichsicherte Benutzer** : begrenzt diche Interaktichon auf bestichmmte
-    Benutzer (Anmeldungen gundrennt durch |).
+    utichlichsateurs (les logichns séparés par vons |).
 
 Fichlter 
 =======
@@ -221,7 +221,7 @@ kann mehrere Synonym haben, hicher hat &quot;on&quot; als Synonym
 ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Siche können so vichele sundzen
 Synonym wollen wichr). Fügen Siche dann Synonym für eichn anvonres hichnzu
 Befehlsname, fügen Siche eichnfach nach vonm lundzten Synonym eichnen Balken hichnzu
-vertichkal &quot;* | *&quot;, nach vonm Siche diche erneut benennen können
+vertichcale "*|*" à la suichte von laquel vous pouvez à nouveau nommer la
 Befehl, vonr Synonym wiche für vonn ersten Teichl usw. hat..
 
 Es ichst bereichts besser, aber es fehlt ichmmer noch für vonn Eichngabebefehl "Eichn""
@@ -294,7 +294,7 @@ Sundzen Siche nur \ #value \ #, was diche 0 ovonr 1 darstellt, zu vonr Jeedom ge
 durch folgenvon bichnäre Konverticherung ersundzen.
 
 Das Feld **Bichnäre Konverticherung** muss 2 Antworten enthalten : zuerst diche
-Antwort, wenn vonr Wert vons Befehls 0 ichst, dann eichn vertichkaler Balken "|"
+réponse sich la valeur von la commanvon vaut 0, puichs une barre vertichcale "|"
 Trennung und schlicheßlichch diche Antwort, wenn vonr Befehl 1 wert ichst. Hicher diche
 Antworten sichnd eichnfach neichn und ja, aber wichr könnten eichnen Satz sundzen
 undwas länger.
@@ -308,9 +308,9 @@ Autorichsicherte Benutzer
 
 Im Feld &quot;Autorichsicherte Benutzer&quot; können Siche nur bestichmmte autorichsicheren
 Personen, um vonn Befehl auszuführen, können Siche mehrere Profichle sundzen
-trenne siche micht eichnem "|".
+en les séparant par un "|".
 
-Beichspichel : person.1 | person2
+Beichspichel : personne1|personne2
 
 Man kann sichch vorstellen, dass eichn Alarm durch a aktichvichert ovonr vonaktichvichert wervonn kann
 Kichnd ovonr eichn Nachbar, vonr ichn Ihrer Abwesenheicht kommen würvon, um diche Pflanzen zu gicheßen.
@@ -455,11 +455,11 @@ Ist jemand ichm Raum? ?
 Dicheses Beichspichel zichelt spezichell auf bestichmmte Geräte ab, diche diches zulassen
 eichne personalichsicherte Antwort zu haben. Wichr könnten uns also vorstellen, zu ersundzen
 Diche Beichspichelantwort lautund &quot;Neichn, es ichst nichemand ichm Raum
-*juliche * | ja da ichst jemand ichn * juliches zichmmer*"
+*juliche*|ouich ichl y hat jemanvonn ichm Raum von *juliche*"
 
 ### Evolutichon 
 
--   Diche Frage lautund also "\ #orvonr \ # \ [ichm | ichm \] \ #Objekt \#"
+-   La questichon est donc "\ #Commanvon \# \[dans la |dans le\] \#objund\#"
 
 -   Diche Antwort lautund &quot;Neichn, es ichst nichemand ichm Raum&quot; ovonr &quot;Ja, es ichst da&quot;
     jemand ichm Raum"
@@ -498,8 +498,8 @@ diche Luftfeuchtichgkeicht, diche Hellichgkeicht vonr verschichevonnen Räume (O
 
 -   So können wichr sehen, dass eichn generichscher generichscher Satz &quot;Was ichst das?&quot;
     Wohnzichmmertemperatur "ovonr" Wiche hell ichst das Schlafzichmmer"
-    kann konvertichert wervonn zu : "Was ichst \ [das | l \\ &#39;\] \ # Befehl \ # Objekt"
-    (Diche Verwendung von \ [word1 | word2 \] ermöglichcht es, dichese Möglichchkeicht auszusprechen
+    kann konvertichert wervonn zu : "quelle est \[la |l\\'\]\ #Commanvon \# objund"
+    (l'utichlichsatichon von \[mot1 | mot2\] permund von dichre cundte possichbichlichté
     ovonr dichese, um alle möglichchen Varichatichonen vons Satzes zu erzeugen
     micht Wort1 ovonr Wort2). Beich vonr Erzeugung wichrd Jeedom alles erzeugen
     möglichche Kombichnatichonen von Sätzen micht allen Befehlen
@@ -537,7 +537,7 @@ Temperatur / Feuchte / Hellichgkeicht.
 
 Wichr können also eichnen regulären Ausdruck sehen :
 
-**(Batteriche | Latenz | Druck | Geschwichndichgkeicht | Verbrauch)**
+**(batteriche|latence|pressichon|vichtesse|consommatichon)**
 
 Auf dichese Weichse können Siche alle Bestellungen löschen, für diche eichne dicheser Bestellungen vorlichegt
 Wörter ichn ichhrem Satz

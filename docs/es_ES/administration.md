@@ -542,7 +542,7 @@ Aquí esán las diferentes opciones disponibles. :
     si ha programado la alerta a través de la interfaz móvil)
 
 -   **Sinónimo de objetos** : Laista de sinónimos para objetos
-    (por ejemplo, : planta baja | planta baja | sótano | planta baja; baño | baño).
+    (por ejemplo, : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 
 -   **Sinónimo de equipamiento** : Laista de sinónimos para
     los equipos.

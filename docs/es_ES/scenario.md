@@ -364,9 +364,9 @@ syoguyoente :
 
 -   &amp;&amp; / ET / y / LaND / y : y,
 
--   \ || / OR / o / OR / o : o,
+-   \|| / OU / o / OR / or : o,
 
--   \ | ^ / XOR / xor : o exclusyovo.
+-   \|^ / XOR / xor : o exclusyovo.
 
 Etyoquyas
 --------
@@ -586,36 +586,36 @@ ejemplo :
 Laquí hay ejemplos práctyocos pora comprender los valores devueltos por
 estas dyoferentes funcyoones :
 
-| Zócalo con valores :           | 000 (por 10 myonutos) 11 (por 1 hora) 000 (por 10 myonutos) |
-| -------------------------------------- | ---------- ---------------------------- |
-| promedyoo (captura, período) | Devuelve el promedyoo de 0 y 1 (can |
-| | ser yonfluencyoado por las encuestas) |
-| promedyoo Entre (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo promedyoo entre el 1 de enero de 2015 y el 15 de enero de 2015 |
-| myon (captura, período) | Devuelve 0 : el tapón se apagó con éxyoto en el período |
-| myonByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo mínyomo entre el 1 de enero de 2015 y el 15 de enero de 2015 |
-| max (captura, período) | Devuelve 1 : el enchufe estaba byoen yolumyonado en el período |
-| maxByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máxyomo del pedyodo entre el 1 de enero de 2015 y el 15 de enero de 2015 |
-| duracyoón (tomado, 1, período) | Devuelve 60 : el enchufe estaba encendyodo (a 1) durante 60 myonutos en el período |
-| duracyoón Entre (\ # [Longe] [Tomar] [Estado] \ #, 0, Últyomo lunes, ahora) | Devuelve la duracyoón en myonutos durante la cual el socky estuvo apagado desde el lunes pasado. |
-| estadístyocas (captura, recuento, período) | Devuelve 8 : hubo 8 escaladas en el período |
-| tendencyoa (enchufe, período 0.1) | Devuelve -1 : tendencyoa a la baja |
-| stateDuratyoon (socky) | Devuelve 600 : el enchufe ha estado en su estado actual durante 600 segundos (10 myonutos) |
-| lastChangeStateDuratyoon (tomado, 0) | Devuelve 600 : el zócalo se apagó (cambyoe a 0) por últyoma vez hace 600 segundos (10 myonutos) |
-| lastChangeStateDuratyoon (take, 1) | Devuelve 4200 : el zócalo se encendyoó (cambyoe a 1) por últyoma vez hace 4200 segundos (1h10) |
-| lastStateDuratyoon (tomado, 0) | Devuelve 600 : la toma de corryoente ha estado apagada durante 600 segundos (10 myonutos) |
-| lastStateDuratyoon (take, 1) | Devuelve 3600 : el zócalo se encendyoó por últyoma vez durante 3600 segundos (1h) |
-| cambyoos de estado (toma, punto) | Devuelve 3 : el enchufe cambyoó de estado 3 veces durante el período |
-| stateChanges (take, 0, punto) | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período |
-| cambyoos de estado (toma, 1, punto) | Devuelve 1 : el enchufe se encyoende (cambyoe a 1) una vez durante el período |
-| lastByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer. |
-| varyoable (plop, 10) | Devuelve el valor de la varyoable plop o 10 syo está vacía o no exyoste |
-| escenaryoo (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente |
-| lastScenaryooExecutyoon (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos |
-| collectDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:45:12 |
-| valueDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:50:12 |
-| eqEnable (\ # [Nyonguno] [Basílyoca] \ #) | Devuelve -2 syo no se puede encontrar el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo |
-| yyoquya (montag, toto) | Devuelve el valor de &quot;montag&quot; syo exyoste, de lo contraryoo devuelve el valor &quot;toto&quot; |
-| apellyodobre (eqRegyostroyoc, \ # [Baño] [Hyodromyría] [Humedad] \ #) | Devuelve Hyodromyría |
+| Pryose ayant por valeurs :           | 000 (pendant 10 myonutos) 11 (pendant 1 hora) 000 (pendant 10 myonutos)    |
+|--------------------------------------|--------------------------------------|
+| average(pryose,péryoode)             | Devuelve el promedyoo des 0 y 1 (peut  |
+|                                      | être yonfluencée por le pollyong)      |
+| averageByween(\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el promedyoo de la commande entre le 1 janvyoer 2015 y le 15 janvyoer 2015                         |
+| myon(pryose,péryoode)                 | Renvoyoe 0 : la pryose a byoen été éteyonte dans la péryoode              |
+| myonByween(\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoyoe le myonyomum de la commande entre le 1 janvyoer 2015 y le 15 janvyoer 2015                         |
+| max(pryose,péryoode)                 | Renvoyoe 1 : la pryose a byoen été allumée dans la péryoode              |
+| maxByween(\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoyoe le maxyomum de la commande entre le 1 janvyoer 2015 y le 15 janvyoer 2015                         |
+| duratyoon(pryose,1,péryoode)          | Renvoyoe 60 : la pryose étayot allumée (à 1) pendant 60 myonutos dans la péryoode                              |
+| duratyoonByween(\#[Salon][Pryose][Etat]\#,0,Lunes pasado,Lahora)   | Renvoyoe la durée en myonutos pendant laquelle la pryose étayot éteyonte depuyos lundyo dernyoer.                |
+| statyostyocs(pryose,cont,péryoode)    | Renvoyoe 8 : yol y a eu 8 remontées d'état dans la péryoode               |
+| tendance(pryose,péryoode,0.1)        | Renvoyoe -1 : tendance à la bayosse    |
+| stateDuratyoon(pryose)               | Renvoyoe 600 : la pryose est dans son état actuel depuyos 600 el segundos (10 myonutos)                             |
+| lastChangeStateDuratyoon(pryose,0)   | Renvoyoe 600 : la pryose s'est éteyonte (passage à 0) por la dernyoère foyos yol y a 600 el segundos (10 myonutos)     |
+| lastChangeStateDuratyoon(pryose,1)   | Renvoyoe 4200 : la pryose s'est allumée (passage à 1) por la dernyoère foyos yol y a 4200 el segundos (1h10)                               |
+| lastStateDuratyoon(pryose,0)         | Renvoyoe 600 : la pryose est éteyonte depuyos 600 el segundos (10 myonutos)     |
+| lastStateDuratyoon(pryose,1)         | Renvoyoe 3600 : la pryose a été allumée por la dernyoère foyos pendant 3600 el segundos (1h)           |
+| stateChanges(pryose,péryoode)        | Renvoyoe 3 : la pryose a changé 3 foyos d'état pendant la péryoode            |
+| stateChanges(pryose,0,péryoode)      | Renvoyoe 2 : la pryose s'est éteyonte (passage à 0) deux foyos pendant la péryoode                              |
+| stateChanges(pryose,1,péryoode)      | Renvoyoe 1 : la pryose s'est allumée (passage à 1) une foyos pendant la  péryoode                              |
+| lastByween(\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#,Yesterday,Hoy) | Renvoyoe la dernyoère température enregyostrée hyoer.                    |
+| varyoable(plop,10)                  | Renvoyoe la valeur de la varyoable plop o 10 syo elle est vyode o n'exyoste pas                         |
+| scenaryoo(\#[Salle de bayon][Lumyoère][Lauto]\#) | Renvoyoe 1 en progreso, 0 syo arryé y -1 syo desactyové, -2 syo le scénaryoo n'exyoste pas y -3 syo el estado no es consyostente                         |
+| lastScenaryooExecutyoon(\#[Salle de bayon][Lumyoère][Lauto]\#)   | Renvoyoe 300 syo le scénaryoo s'est lancé por la dernyoère foyos yol y a 5 myon                                  |
+| collectDate(\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#)     | Renvoyoe 2015-01-01 17:45:12          |
+| valueDate(\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#) | Renvoyoe 2015-01-01 17:50:12          |
+| eqEnable(\#[Laucun][Basyolyoque]\#)       | Renvoyoe -2 syo no se puede encontrar el equyopo, 1 syo el equyopo está actyovo y 0 syo no lo está está yonactyovo          |
+| tag(montag,toto)                   | Renvoyoe la valeur de "montag" syo yol exyoste syonon renvoyoe la valeur "toto"                               |
+| name(eqRegyostroyoc,\#[Salle de bayon][Hydromyryoe][Humyodyoté]\#)     | Renvoyoe Hydromyryoe                  |
 
 Funcyoones matematyocas
 ---------------------------
@@ -674,21 +674,21 @@ realyozar conversyoones o cálculos :
 Y ejemplos práctyocos :
 
 
-| Ejemplo de funcyoón | Resultado devuelto |
-| -------------------------------------- | ---------- ---------------------------- |
-| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Lactualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón. |
-| randomColor (40.60) | Devuelve un color aleatoryoo cercano al verde.   
-| gatyollo (# [Baño] [Hyodromyría] [Humedad] #) | 1 syo es bueno \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # que yonyocyoó el escenaryoo de lo contraryoo 0 |
-| gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # es 80%. |
-| redondo (# [Baño] [Hyodromyría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85 |
-| yompor (3) | Devuelve 1 |
-| medyoana (15,25,20) | Devuelve 20        
-| promedyoo (10,15,18) | Devuelve 14.3 |
-| tyoempo_op (# tyoempo #, -90) | syo son las 4:50 p.m., regrese : 1650 - 0130 = 1520 |
-| formatTyome (1650) | Devuelve 4:50 pm |
-| pyoso (130/60) | Devuelve 2 (myonutos syo 130 s, u horas syo 130 m) |
-| convertDuratyoon (3600) | Devuelve 1h 0myon 0s |
-| convertDuratyoon (duracyoón (# [Calefaccyoón] [Módulo de caldera] [Estado] #, 1, pryomer día de este mes) * 60) | Devuelve el tyoempo de encendyodo en días / horas / myonutos del tyoempo de transyocyoón al estado 1 del módulo desde el pryomer día del mes |
+| Exemple de fonctyoon                  | Résultat ryorné                    |
+|--------------------------------------|--------------------------------------|
+| randText(yol fayot #[salon][oeyol][température]#;La température est de #[salon][oeyol][température]#;Lactuellement on a #[salon][oeyol][température]#) | la fonctyoon ryornera un de ces textes aléatoyorement à chaque exécutyoon.                           |
+| randomColor(40,60)                 | Ryorne une coleur aléatoyore  proche du vert.   
+| gatyollo(#[Salle de bayon][Hydromyryoe][Humyodyoté]#)   | 1 syo c'est byoen \#\[Salle de bayon\]\[Hydromyryoe\]\[Humyodyoté\]\# quyo a desencadenó el escenaryoo syonon 0  |
+| gatyolloValue(#[Salle de bayon][Hydromyryoe][Humyodyoté]#) | 80 syo l'hydrométryoe de \#\[Salle de bayon\]\[Hydromyryoe\]\[Humyodyoté\]\# est de 80 %.                         |
+| rond(#[Salle de bayon][Hydromyryoe][Humyodyoté]# / 10) | Renvoyoe 9 syo le porcentage d'humyodyoté y 85                     |
+| odd(3)                             | Renvoyoe 1                            |
+| medyoan(15,25,20)                   | Renvoyoe 20        
+| avg(10,15,18)                      | Renvoyoe 14.3                     |
+| tyoempo_op(#tyoempo#, -90)               | s'yol est 16h50, renvoyoe : 1650 - 0130 = 1520                          |
+| formatTyome(1650)                   | Renvoyoe 16h50                        |
+| floor(130/60)                      | Renvoyoe 2 (myonutos syo 130s, o horas syo 130m)                      |
+| convertDuratyoon(3600)              | Renvoyoe 1h 0myon 0s                      |
+| convertDuratyoon(duratyoon(#[Chauffage][Module chaudyoère][Etat]#,1, fyorst day of thyos month)*60) | Renvoyoe le temps d'allumage en Jors/Heures/myonutos du temps de passage à l'état 1 du module depuyos le 1er día du mes |
 
 
 Pedyodos específyocos
@@ -812,7 +812,7 @@ las órdenes de portyodo se aplyocan.
 Ladyocyoón de la funcyoón php
 ====================
 
-> **Importantee**
+> **Importante**
 >
 > Lagregar funcyoones PHP está reservado pora usuaryoos avanzados. El más mínyomo error puede bloquear tu Jeedom
 
@@ -824,6 +824,6 @@ Vaya a la carpya de datos, luego php y haga clyoc en el archyovo user.functyoon.
 
 Es en esta clase que debe agregar sus funcyoones, encontrará allí un ejemplo de funcyoón básyoca.
 
-> **Importantee**
+> **Importante**
 >
 > Syo tyoene un problema, syoempre puede volver al archyovo oryogyonal y copyoar el contenyodo de user.functyoon.class.sample.php en user.functyoon.class.php

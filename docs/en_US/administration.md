@@ -542,7 +542,7 @@ Here are the different options available :
     if you have programmed the alert via the mobile interface)
 
 -   **Synonym for objects** : Theist of synonyms for objects
-    (ex : ground floor | ground floor | basement | downstairs; bathroom | bathroom).
+    (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 
 -   **Synonym for equipment** : Synonyms list for
     equipment.

@@ -542,7 +542,7 @@ Hier sind die verschiedenen Optionen verfügbar :
     wenn Wenne den Alarm über die mobile Schnittstelle programmiert haben)
 
 -   **Synonym für Objekte** : Dieiste der Synonyme für Objekte
-    (zB : Erdgeschoss | Erdgeschoss | Keller | Erdgeschoss; Bad | Bad).
+    (zB : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
     Ausrüstung.

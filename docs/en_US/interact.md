@@ -94,7 +94,7 @@ General
     binary info).
 
 -   **Authorized users** : limits interaction to certain
-    users (logins separated by |).
+    utilisateurs (les logins séparés par ofs |).
 
 Filters 
 =======
@@ -221,7 +221,7 @@ can have several synonyms, here &quot;on&quot; has as synonym
 ***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can put as many
 synonym we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
-vertical &quot;* | *&quot; after which you can again name the
+verticale "*|*" à la suite of laquel vous pouvez à nouveau nommer la
 command which will have synonyms like for the first part, andc..
 
 It&#39;s already bandter, but it is still missing for the "on" "input command"
@@ -294,7 +294,7 @@ put only \ #value \ # which represents the 0 or 1 that Jeedom is going to
 replace with the following binary conversion.
 
 Field **Binary conversion** must contain 2 answers : first the
-response if the value of the command is 0, then a vertical bar "|"
+réponse si la valeur of la commanof vaut 0, puis une barre verticale "|"
 separation and finally the response if the command is worth 1. Here the
 answers are simply no and yes but we could put a sentence
 a little bit longer.
@@ -308,9 +308,9 @@ Authorized users
 
 The &quot;Authorized users&quot; field allows you to authorize only certain
 people to execute the command you can put multiple profiles
-separating them with a "|".
+en les séparant par un "|".
 
-Example : person.1 | person2
+Example : personne1|personne2
 
 One can imagine that an alarm can be activated or ofactivated by a
 child or a neighbor who would come to water the plants in your absence.
@@ -455,11 +455,11 @@ Is there anyone in the room ?
 This example specifically targands specific equipment which allows
 to have a personalized response. So we could imagine replacing
 the example answer with &quot;no there is no one in the room
-*julie * | yes there is someone in * julie&#39;s room*"
+*julie*|oui il y has someone in the room of *julie*"
 
 ### Evolution 
 
--   So the question is "\ #orofr \ # \ [in the | in the \] \ #object \#"
+-   La question est donc "\#orofred\# \[dans la |dans le\] \#objand\#"
 
 -   The answer will be &quot;no there is no one in the room&quot; or &quot;yes there is
     someone in the room"
@@ -498,8 +498,8 @@ the humidity, the brightness of the different rooms (object in the Jeedom sense)
 
 -   So we can see that a generic generic sentence &quot;What is the
     living room temperature "or" How bright is the bedroom"
-    can be converted to : "what is \ [the | l \\ &#39;\] \ # command \ # object"
-    (the use of \ [word1 | word2 \] makes it possible to say this possibility
+    can be converted to : "quelle est \[la |l\\'\]\#orofred\# objand"
+    (l'utilisation of \[mot1 | mot2\] permand of dire candte possibilité
     or this one to generate all possible variations of the sentence
     with word1 or word2). When generating Jeedom will generate all
     possible combinations of sentences with all commands
@@ -537,7 +537,7 @@ temperature / humidity / brightness.
 
 So we can see a regexp :
 
-**(Battery | latency | pressure | speed | consumption)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 This allows you to oflanof all orofrs that have one of these
 words in their sentence
