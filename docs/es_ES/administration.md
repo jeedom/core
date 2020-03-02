@@ -253,7 +253,7 @@ Aquí están las diferentes opciones disponibles. :
 - **Activa las interacciones "Notificarme""** : Marque para habilitar las interacciones de tipo **Avísame**.
 - **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la oración comienza con esta (s) palabra (s) entonces Jeedom buscará hacer una interacción del tipo **Avísame** (puedes poner varias palabras separadas por **;** ).
 - **Comando de retorno predeterminado** : Comando de retorno predeterminado para la interacción de tipo **Avísame** (utilizado, en particular, si ha programado la alerta a través de la interfaz móvil)
-- **Sinónimo de objetos** : Laista de sinónimos para objetos (ej. : planta baja | planta baja | sótano | planta baja; baño | baño).
+- **Sinónimo de objetos** : Laista de sinónimos para objetos (ej. : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 - **Sinónimo de equipamiento** : Laista de sinónimos para equipos.
 - **Sinónimo de pedidos** : Laista de sinónimos para comandos.
 - **Sinónimo de resúmenes** : Laista de sinónimos para resúmenes.

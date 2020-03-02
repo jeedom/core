@@ -65,7 +65,7 @@ The configuration page consists of several tabs and buttons :
 - **Reply** : The answer to provide.
 - **Wait before answering (s)** : Add a delay of X seconds before generating the response. It allows for example to wait for the randurn of a lamp status before being answered.
 - **Binary conversion** : Converts binary values to open / closed for example (only for binary info type commands).
-- **Authorized users** : Limits interaction to certain users (logins separated by |).
+- **Authorized users** : Limite l'interaction à certains utilisateurs (les logins séparés par des |).
 
 ### Filters tab
 
@@ -127,7 +127,7 @@ In synonyms, we will therefore indicate the name of the command and the synonym 
 
 ![interact008](../images/interact008.png)
 
-We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "* name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can add as many synonyms as you want). Then, to add synonyms for another command name, simply add after the last synonym a vertical bar &quot;* | *&quot; after which you can again name the command which will have synonyms as for the first part, andc.
+We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "* name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can add as many synonyms as you want). Puis, pour ajouter des synonymes pour un autre nom de commande, il suffit d'ajouter après le dernier synonyme une barre verticale "*|*" à la suite de laquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie, andc.
 
 It&#39;s already bandter, but it still lacks for the command &quot;on&quot; &quot;input&quot; the &quot;l&quot; and for others the &quot;la&quot; or &quot;le&quot; or &quot;a&quot;, andc.. We could change the name of the equipment to add it, it would be a solution, otherwise we can use the variations in the request. This consists of listing a series of possible words at a location in the sentence, Jeedom will therefore generate sentences with these variations.
 
@@ -161,7 +161,7 @@ Binary conversions apply to commands of type info whose subtype is binary (randu
 
 As we can see here, I have kept almost the same structure for the request (it is voluntary to focus on the specifics). Of course, I adapted the synonyms to have somandhing coherent. However, for the answer, it is **imperative** to put only \ #value \ # which represents the 0 or 1 that Jeedom will replace with the following binary conversion.
 
-Field **Binary conversion** must contain 2 answers : first the response if the value of the command is 0, then a vertical bar &quot;|&quot; separation and finally the response if the command is worth 1. Here the answers are simply no and yes but we could put a little longer sentence.
+Field **Binary conversion** must contain 2 answers : en premier la réponse si la valeur de la commande vaut 0, puis une barre verticale "|" de séparation and enfin la réponse si la commande vaut 1. Here the answers are simply no and yes but we could put a little longer sentence.
 
 > **Warning**
 >
@@ -169,9 +169,9 @@ Field **Binary conversion** must contain 2 answers : first the response if the v
 
 ### Authorized users
 
-The field "Authorized users" allows to authorize only certain people to execute the command, you can put several profiles by separating them by a "|".
+Field "Authorized users" permand de n'autoriser que certaines personnes à exécuter la commande, vous pouvez mandtre plusieurs profils en les séparant par un "|".
 
-Example : person.1 | person2
+Example : personne1|personne2
 
 We can imagine that an alarm can be activated or deactivated by a child or a neighbor who would come to water the plants in your absence.
 
@@ -242,11 +242,11 @@ In this example we see a simple sentence that will randurn an answer with 3 diff
 
 ![interact017](../images/interact017.png)
 
-This example specifically targands specific equipment which allows for a personalized response. So we could imagine replacing the answer of the example with "no there is no one in the room of * julie * | yes there is someone in the room of * julie*"
+This example specifically targands specific equipment which allows for a personalized response. On pourrait donc imaginer remplacer la réponse de l'exemple par "non il n'y a personne dans la chambre de *julie*|oui il y a quelqu'un dans la chambre de *julie*"
 
 #### Evolution
 
-- So the question is "\ #order \ # \ [in the | in the \] \ #object \#"
+- La question est donc "\#ordered\# \[dans la |dans le\] \#objand\#"
 - The answer will be "no there is no one in the room" or "yes there is someone in the room"
 - There is no command that responds to that in the Action part since it is a Multiple commands interaction
 - By adding a regular expression, we can clean up the commands that we don&#39;t want to see so that we only have the sentences on the "Presence" commands.".
@@ -265,7 +265,7 @@ Here a generic example which is used to know the temperature, humidity, brightne
 
 ![interact019](../images/interact019.png)
 
-- So we can see that a generic sentence like &quot;What is the temperature in the living room&quot; or &quot;What is the brightness of the bedroom&quot; can be converted into : "which is \ [the | l \\ &#39;\] \ # command \ # object "(the use of \ [word1 | word2 \] makes it possible to say this possibility or that one to generate all the possible variants of the sentence with word1 or word2). During generation Jeedom will generate all possible combinations of sentences with all existing commands (depending on the filters) by replacing \ #command \ # with the name of the command and \ #object \ # with the name of the object.
+- So we can see that a generic sentence like &quot;What is the temperature in the living room&quot; or &quot;What is the brightness of the bedroom&quot; can be converted into : "quelle est \[la |l\\'\]\#ordered\# objand" (l'utilisation de \[mot1 | mot2\] permand de dire candte possibilité ou celle-là pour générer toutes les variantes possibles de la phrase avec mot1 ou mot2). During generation Jeedom will generate all possible combinations of sentences with all existing commands (depending on the filters) by replacing \ #command \ # with the name of the command and \ #object \ # with the name of the object.
 - The answer will be "21 ° C" or "200 lux". Just put : \ #valeur \ # \ #unite \ # (the unit must be complanded in the configuration of each order for which we want to have one)
 - This example therefore generates a sentence for all digital info type commands that have a unit, so we can uncheck units in the right filter limited to the type that interests us.
 
@@ -281,7 +281,7 @@ We can also add a Regexp filter to remove some commands. Using the simple exampl
 
 So we can see a regexp :
 
-**(Battery | latency | pressure | speed | consumption)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 This allows you to delande all commands that have one of these words in their sentence
 

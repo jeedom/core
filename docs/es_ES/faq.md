@@ -99,10 +99,10 @@ También puede consultar el registro /var/www/html/log/http.error. Muy a menudo,
 Estos deben restablecerse :
 
 ``` {.bash}
-bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9&#39; | head -c 15)
-echo &quot;DROP USER &#39;jeedom&#39; @ &#39;localhost&#39;&quot; | mysql -uroot -p
-echo &quot;CREAR USUARIO &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFICADO POR &#39;$ {bdd_password}&#39;;&quot; | mysql -uroot -p
-echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # CONTRASEÑA # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -188,7 +188,7 @@ rm -rf / root / tmp / core-master
 ### Tengo el error en backdrop_execution MYSQL_ATTR_INIT_COMMAND
 En la administración de Jeedom parte OS / DB, entonces en la consola del sistema es necesario hacer :
 ```
-si | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
 ### No puedo instalar las dependencias del complemento. Tengo un error del tipo : "E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: No se pudo obtener lock / var / lib / dpkg / lock"

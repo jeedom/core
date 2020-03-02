@@ -253,7 +253,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 - **Aktivieren Sie die Interaktionen "Benachrichtigen""** : Aktivieren Sie diese Option, um Typinteraktionen zu aktivieren **Dieassen Sie uns wissen**.
 - **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn der Satz mit diesen Wörtern beginnt, wird Jeedom versuchen, eine Interaktion des Typs herzustellen **Dieassen Sie uns wissen** (Sie können mehrere Wörter getrennt durch setzen **;** ).
 - **Standardrückgabebefehl** : Standardrückgabebefehl für Typinteraktion **Dieassen Sie uns wissen** (wird insbesondere verwendet, wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
-- **Synonym für Objekte** : Dieiste der Synonyme für Objekte (z : Erdgeschoss | Erdgeschoss | Keller | Erdgeschoss; Bad | Bad).
+- **Synonym für Objekte** : Dieiste der Synonyme für Objekte (z : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 - **Synonym für Ausrüstung** : Dieiste der Synonyme für Geräte.
 - **Synonym für Bestellungen** : Dieiste der Synonyme für Befehle.
 - **Synonym für Abstracts** : Dieiste der Synonyme für Zusammenfassungen.
