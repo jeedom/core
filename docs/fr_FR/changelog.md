@@ -50,6 +50,11 @@ Changelog
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
 
+4.0.43
+=====
+
+- Amélioration des traductions.
+- Correction de bugs sur les templates de scénario.
 
 4.0.0
 =====
