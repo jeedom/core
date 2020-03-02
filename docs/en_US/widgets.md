@@ -120,18 +120,32 @@ To configure it it&#39;s quite simple you have to assign the wIDget to the tempe
 >**Important**
 >It is ABSOLUTELY necessary that your orders have the generic type temperature on the temperature control and humIDity on the humIDity control (this is configured in the advanced configuration of the command tab configuration).
 
-The wIDget has an optional parameter : scale which allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller
+##### Optional parameter (s)
+
+- scale : Allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller.
 
 >**NOTE**
 > Attention on a design it is important not to put a command alone with this wIDget it will not work since it is a wIDget using the value of several commands, it is absolutely necessary to put the complete wIDget
 
 ### Multiline
 
-- MaxHeight parameter to define its maximum height (scrollbar on the sIDe if the text exceeds this value)
+##### Optional parameter (s)
+
+- maxHeight : Allows you to define its maximum height (scrollbar on the sIDe if the text exceeds this value).
 
 ### SlIDer Button
 
-- Step : allows to adjust the Step of an action on a button (0.5 by default)
+##### Optional parameter (s)
+
+- Step : Allows you to adjust the Step of a button action (0.5 by default).
+
+### Rain
+
+##### Optional parameter (s)
+
+- scale : Allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller.
+- showRange : Displays the min / max values of the command.
+
 
 ## Coded WIDget
 

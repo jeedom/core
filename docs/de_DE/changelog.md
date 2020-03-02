@@ -50,6 +50,11 @@
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
 
+4.0.43
+=====
+
+- Verbesserte Übersetzungen.
+- Fehlerbehebungen bei Szenariovorlagen.
 
 4.0.0
 =====
