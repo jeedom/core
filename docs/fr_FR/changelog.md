@@ -4,8 +4,8 @@ Changelog
 4.0.43
 =====
 
-- Amélioration des tracductions
-- Correction de bugs
+- Amélioration des traductions.
+- Correction de bugs sur les templates de scénario.
 
 4.0.0
 =====
