@@ -4,7 +4,7 @@
         <span class="value"></span>
         <span class="unite">#unite#</span>
   </div>
-  <div class="content-xl widget-rain-container">
+  <div class="content widget-rain-container">
     <span class="plage unite" style="display:none;"></span>
     <div class="widget-rain-main">
     </div>
@@ -20,30 +20,30 @@
       var cmd_#id# = $('.cmd[data-cmd_id=#id#]')
       cmd_#id#.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'#unite#')
 
-      var value_#id# = parseFloat(_options.display_value);
-      cmd_#id#.find('.value').empty().append(value_#id#);
+      var value_#id# = parseFloat(_options.display_value)
+      cmd_#id#.find('.value').empty().append(value_#id#)
 
       var minValue_#id# = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue_#id# = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (value_#id# >= maxValue_#id#) {
-        value_#id# = maxValue_#id#;
-        cmd_#id#.find('.value').css('color','var(--al-danger-color)');
+        value_#id# = maxValue_#id#
+        cmd_#id#.find('.value').css('color','var(--al-danger-color)')
       } else {
-        cmd_#id#.find('.value').css('color','');
+        cmd_#id#.find('.value').css('color','')
       }
       var height_#id# = ((value_#id# - minValue_#id#) * 100) / (maxValue_#id# - minValue_#id#)
       height_#id# = Math.round(parseFloat(height_#id#) * 10) / 10
       cmd_#id#.find('.widget-rain-water').height(height_#id#+'%')
 
       if ('#showRange#' == '1') {
-        cmd_#id#.find('.plage').empty().append(minValue_#id# + ' | ' + maxValue_#id#);
+        cmd_#id#.find('.plage').empty().append(minValue_#id# + ' | ' + maxValue_#id#)
       }
     }
 
     if ('#scale#' != '') {
       var el_#id# = $('.cmd[data-cmd_id=#id#] .widget-rain-container')
+      el_#id#.attr('style', 'height:' + el_#id#.height() * '#scale#' + 'px !important')
       el_#id#.width(el_#id#.width() * '#scale#')
-      el_#id#.height(el_#id#.height() * '#scale#')
       if ('#scale#' < '1') $('.cmd[data-cmd_id=#id#] .widget-rain-main').width(el_#id#.width() * '#scale#')
     }
     if ('#animate#' == '0') {
@@ -53,6 +53,6 @@
       $('.cmd[data-cmd_id=#id#] .plage').show()
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
   </script>
 </div>
