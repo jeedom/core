@@ -151,10 +151,10 @@ Tengo un problema con el identificador de BDD
 Estos deben restablecerse :
 
 ``` {.bash}
-bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9&#39; | head -c 15)
-echo &quot;DROP USER &#39;jeedom&#39; @ &#39;localhost&#39;&quot; | mysql -uroot -p
-echo &quot;CREAR USUARIO &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFICADO POR &#39;$ {bdd_password}&#39;;&quot; | mysql -uroot -p
-echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # CONTRASEÑA # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -191,7 +191,7 @@ Tengo inestabilidades o errores 504
 ========================================
 
 Compruebe si su sistema de archivos no está dañado, en SSH el
-el comando es : "sudo dmesg | error grep" .
+el comando es : "sudo dmesg | grep error" .
 
 No veo todo mi equipo en el tablero 
 ====================================================

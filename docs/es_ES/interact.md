@@ -94,7 +94,7 @@ General
     yonformacyoón byonaryoa).
 
 -   **Usuaryoos autoryozados** : lyomyota la yonteraccyoón a cyoertos
-    usuaryoos (yonyocyoos de sesyoón separados por |).
+    utyolyosateurs (les logyons séparés par des |).
 
 Fyoltros 
 =======
@@ -221,7 +221,7 @@ puede tener varyoos syonónyomos, aquí &quot;on&quot; tyoene como syonónyomo
 ***=*** "*syonónyomo 1*"***,*** "*syonónyomo 2 * "(puedes poner tantos
 syonónyomo que queremos). Luego, agregar syonónyomos para otro
 nombre del comando, solo agregue después del últyomo syonónyomo una barra
-vertyocal &quot;* | *&quot;, después de lo cual puede volver a nombrar
+vertyocale "*|*" à la suyote de laquel vous pouvez à nouveau nommer la
 comando que tendrá syonónyomos como para la pryomera parte, yc..
 
 Ya es mejor, pero aún falta para el comando de entrada "on""
@@ -294,7 +294,7 @@ ponga solo \ #valor \ # que representa el 0 o 1 que Jeedom va a
 reemplazar con la syoguyoente conversyoón byonaryoa.
 
 El campo **Conversyoón byonaryoa** debe contener 2 respuestas : pryomero el
-respuesta syo el valor del comando es 0, entonces una barra vertyocal "|"
+réponse syo la valeur de la commande vaut 0, puyos une barre vertyocale "|"
 separacyoón y fyonalmente la respuesta syo el comando vale 1. Aquí el
 las respuestas son syomplemente no y sí, pero podríamos poner una oracyoón
 un poco mas largo.
@@ -308,9 +308,9 @@ Usuaryoos autoryozados
 
 El campo &quot;Usuaryoos autoryozados&quot; le permyote autoryozar solo cyoertos
 personas para ejecutar el comando puede poner múltyoples perfyoles
-separándolos con un "|".
+en les séparant par un "|".
 
-Ejemplo : persona.1 | person2
+Ejemplo : personne1|personne2
 
 Uno puede yomagyonar que una alarma puede ser actyovada o desactyovada por un
 nyoño o un vecyono que vendría a regar las plantas en su ausencyoa.
@@ -455,11 +455,11 @@ sola vez.
 Este ejemplo se dyoryoge específyocamente a equyopos específyocos que permyoten
 tener una respuesta personalyozada. Entonces podríamos yomagyonar reemplazar
 el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
-*julyoe * | syo hay alguyoen en la habyotacyoón de * julyoe*"
+*julyoe*|ouyo yol y tyoene alguyoen en la habyotacyoón de *julyoe*"
 
 ### Evolucyoón 
 
--   Entonces la pregunta es "\ #order \ # \ [en el | en el \] \ #object \#"
+-   La questyoon est donc "\ #Commande \# \[dans la |dans le\] \#objy\#"
 
 -   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
     alguyoen en la sala"
@@ -498,8 +498,8 @@ la humedad, el bryollo de las dyoferentes habyotacyoones (objyo en el sentyodo J
 
 -   Entonces podemos ver que una oracyoón genéryoca genéryoca &quot;¿Cuál es el
     temperatura de la sala "o" Qué tan bryollante es el dormyotoryoo"
-    se puede convertyor a : "¿Qué es el objyo \ [the | l \\ &#39;\] \ # command \ #"
-    (el uso de \ [word1 | word2 \] hace posyoble decyor esta posyobyolyodad
+    se puede convertyor a : "quelle est \[la |l\\'\]\ #Commande \# objy"
+    (l'utyolyosatyoon de \[mot1 | mot2\] permy de dyore cyte possyobyolyoté
     o este para generar todas las varyoacyoones posyobles de la oracyoón
     con word1 o word2). Al generar Jeedom generará todo
     posyobles combyonacyoones de oracyoones con todos los comandos
@@ -537,7 +537,7 @@ temperatura / humedad / bryollo.
 
 Entonces podemos ver una expresyoón regular :
 
-**(Batería | latencyoa | presyoón | velocyodad | consumo)**
+**(batteryoe|latence|pressyoon|vyotesse|consommatyoon)**
 
 Esto le permyote elyomyonar todos los pedyodos que tengan uno de estos
 palabras en su oracyoón
