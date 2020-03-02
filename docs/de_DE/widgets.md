@@ -120,18 +120,32 @@ Um es zu konfigurieren, müssen Sie das WIdentifikationget ganz einfach der Temp
 >**WICHTIG**
 >Es ist ABSOLUT erforderlich, dass Ihre Bestellungen die generische Temperatur für die Temperaturregelung und die Luftfeuchtigkeit für die Feuchtigkeitsregelung haben (dies wird in der erweiterten Konfiguration der Befehlsregisterkonfiguration konfiguriert)..
 
-Das WIdentifikationget verfügt über einen optionalen Parameter : Skala, mit der Sie die Größe ändern können, indem Sie beispielsweise die Skala auf 0 setzen.5 es wird 2 mal kleiner sein
+##### Optionale Parameter
+
+- Skala : Ermöglicht das Ändern der Größe, indem Sie beispielsweise die Skalierung auf 0 setzen.5 es wird 2 mal kleiner sein.
 
 >**Notiz**
 > Achtung bei einem Entwurf Es ist wichtig, einen Befehl nicht alleine mit diesem WIdentifikationget zu platzieren. Es funktioniert nicht, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Befehle verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
 
 ### Mehrzeilige
 
-- MaxHeight-Parameter zum Definieren der maximalen Höhe (Bildlaufleiste an der Seite, wenn der Text diesen Wert überschreitet)
+##### Optionale Parameter
+
+- maxHeight : Ermöglicht das Definieren der maximalen Höhe (Bildlaufleiste an der Seite, wenn der Text diesen Wert überschreitet).
 
 ### Schieberegler
 
-- Schritt : Ermöglicht das Anpassen des Aktionsschritts auf einer Schaltfläche (0).5 standardmäßig)
+##### Optionale Parameter
+
+- Schritt : Ermöglicht das Anpassen des Aktionsschritts auf einer Schaltfläche (0).5 standardmäßig).
+
+### Regen
+
+##### Optionale Parameter
+
+- Skala : Ermöglicht das Ändern der Größe, indem Sie beispielsweise die Skalierung auf 0 setzen.5 es wird 2 mal kleiner sein.
+- anzeigen Radius : Zeigt die Min / Max-Werte des Befehls an.
+
 
 ## CODE-WIdentifikationget
 

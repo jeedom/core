@@ -120,18 +120,32 @@ Para configurarlo es bastante simple, debe asignar el widentificaciónget al con
 >**IMPORTANTE**
 >Es ABSOLUTAMENTE necesario que sus pedidentificaciónos tengan la temperatura de tipo genérico en el control de temperatura y la humedad en el control de humedad (esto se configura en la configuración avanzada de la configuración de la pestaña de comandos).
 
-El widentificaciónget tiene un parámetro opcional. : escala que le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño
+##### Parámetros opcionales
+
+- escala : Le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño.
 
 >**Nota**
 > Atención en un diseño, es importante no poner un comando solo con este widentificaciónget, no funcionará ya que es un widentificaciónget que utiliza el valor de varios comandos, es absolutamente necesario poner el widentificaciónget completo
 
 ### Multilínea
 
-- Parámetro MaxHeight para definir su altura máxima (barra de desplazamiento en el lateral si el texto excede este valor)
+##### Parámetros opcionales
+
+- maxHeight : Le permite definir su altura máxima (barra de desplazamiento en el lateral si el texto excede este valor).
 
 ### Botón deslizante
 
-- paso : permite ajustar el paso de una acción en un botón (0.5 por defecto)
+##### Parámetros opcionales
+
+- paso : Permite ajustar el paso de una acción en un botón (0.5 por defecto).
+
+### Lluvia
+
+##### Parámetros opcionales
+
+- escala : Le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño.
+- mostrarel : Muestra los valores min / max del comando.
+
 
 ## Widentificaciónget de código
 

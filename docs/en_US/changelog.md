@@ -50,6 +50,11 @@ Changelog
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
 
+4.0.43
+=====
+
+- Improved translations.
+- Bug fixes on scenario templates.
 
 4.0.0
 =====
