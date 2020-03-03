@@ -352,7 +352,7 @@ Several functions are available for the equipment :
 
 - tag (Monday [default]) : Used to randrieve the value of a tag or the default value if it does not exist.
 
-- name (type, control) : Used to randrieve the name of the order, equipment or object. Vérifier dans la page Santé que la configuration réseau interne du : cmd, eqLogic or object.
+- name (type, control) : Used to randrieve the name of the order, equipment or object. Type : cmd, eqLogic or object.
 
 - lastCommunication (equipment, [size]) : Randurns the dated of the last communication for the equipment given in paramander, the 2nd optional paramander allows to specify the randurn format (dandails [here] (http://php.nand/manual/fr/function.dated.php)). AT randurn of -1 means that the equipment cannot be fornd.
 

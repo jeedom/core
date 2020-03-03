@@ -65,7 +65,7 @@ When you press the &quot;Add curve&quot; button Jeedom displays the list of hist
 - **Trash can** : Remove command from chart.
 - **Last name** : Name of the command to draw.
 - **Color** : Color of the curve.
-- **Vérifier dans la page Santé que la configuration réseau interne du** : Vérifier dans la page Santé que la configuration réseau interne du of curve.
+- **Type** : Type of curve.
 - **Group** : Allows you to group data (maximum type per day).
 - **Ladder** : Scale (right or left) of the curve.
 - **Staircase** : Displays the staircase curve.
