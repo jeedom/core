@@ -26,7 +26,11 @@ echo "[START INSTALL]\n";
 $starttime = strtotime('now');
 
 try {
-	require_once __DIR__ . '/../core/php/core.inc.php';
+	date_default_timezone_set('Europe/Brussels');
+	require_once __DIR__ . '/../vendor/autoload.php';
+	require_once __DIR__ . '/../core/config/common.config.php';
+	require_once __DIR__ . '/../core/class/DB.class.php';
+	require_once __DIR__ . '/../core/class/system.class.php';
 	if (count(system::ps('install/install.php', 'sudo')) > 1) {
 		echo "Une mise à jour/installation est déjà en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
 		print_r(system::ps('install/install.php', 'sudo'));
@@ -38,7 +42,7 @@ try {
 	if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 		throw new Exception('Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')');
 	}
-	echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
+	echo "\nInstallation de Jeedom\n";
 	echo "Installation de la base de données...";
 	try {
 		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true));
@@ -46,6 +50,7 @@ try {
 		echo "***ERREUR*** " . $e->getMessage() . "\n";
 	}
 	echo "OK\n";
+	require_once __DIR__ . '/../core/php/core.inc.php';
 	echo "Post installation...\n";
 	config::save('api', config::genKey());
 	require_once __DIR__ . '/consistency.php';
