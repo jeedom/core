@@ -81,7 +81,7 @@ Dependencias :
     KO, Jeedom se cuidará solo después de un tiempo)
 
 -   **Última instalación** : fecha de la última instalación de
-    dependencias
+    Dependencias
 
 Demonio :
 

@@ -114,7 +114,7 @@ Una vez hecho esto, tiene acceso a las siguientes opciones :
 -   **Escalera** : muestra la curva escalonada
 
 -   **Montón** : apilar la curva con las curvas de otro tipo
-    montón
+    Montón
 
 -   **Cambio** : grafica solo variaciones con valor
     anterior

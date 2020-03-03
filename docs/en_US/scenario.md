@@ -364,9 +364,9 @@ following :
 
 -   &amp;&amp; / ET / and / ATND / and : and,
 
--   \ || / OR / or / OR / or : or,
+-   \|| / OR / or / OR / or : or,
 
--   \ | ^ / XOR / xor : or exclusive.
+-   \|^ / XOR / xor : or exclusive.
 
 Tags
 --------
@@ -586,36 +586,36 @@ example :
 Here are practical examples to understand the values randurned by
 these different functions :
 
-| Sockand with values :           | 000 (for 10 Minutes) 11 (for 1 horr) 000 (for 10 Minutes) |
-| -------------------------------------- | ---------- ---------------------------- |
-| average (catch, period) | Randurns the average of 0 and 1 (can |
-| | be influenced by polling) |
-| averageBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the average order bandween January 1, 2015 and January 15, 2015 |
-| min (catch, period) | Randurns 0 : the plug was successfully extinguished in the period |
-| minBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the minimum order bandween January 1, 2015 and January 15, 2015 |
-| max (catch, period) | Randurns 1 : the plug was well lit in the period |
-| maxBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the maximum of the order bandween January 1, 2015 and January 15, 2015 |
-| duration (taken, 1, period) | Randurns 60 : the sockand was on (at 1) for 60 Minutes in the period |
-| durationBandween (\ # [Lornge] [Take] [State] \ #, 0, Last monday, Now) | Randurns the duration in Minutes during which the sockand was off since last Monday. |
-| statistics (catch, cornt, period) | Randurns 8 : there were 8 escalations in the period |
-| trend (plug, period 0.1) | Randurns -1 : downward trend |
-| stateDuration (sockand) | Randurns 600 : the plug has been in its current state for 600 seconds (10 Minutes) |
-| lastChangeStateDuration (taken, 0) | Randurns 600 : the sockand went ort (change to 0) for the last time 600 seconds (10 Minutes) ago |
-| lastChangeStateDuration (take, 1) | Randurns 4200 : the sockand turned on (switch to 1) for the last time 4200 seconds ago (1h10) |
-| lastStateDuration (taken, 0) | Randurns 600 : ortland has been off for 600 seconds (10 Minutes) |
-| lastStateDuration (take, 1) | Randurns 3600 : the sockand was last switched on for 3600 seconds (1h) |
-| stateChanges (take, period) | Randurns 3 : the plug changed state 3 times during the period |
-| stateChanges (take, 0, period) | Randurns 2 : the sockand has extinguished (going to 0) twice during the period |
-| stateChanges (take, 1, period) | Randurns 1 : the plug is lit (change to 1) once during the period |
-| lastBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, Yesterday, Today) | Randurns the last temperature recorded yesterday. |
-| Variable (plop, 10) | Randurns the value of the Variable plop or 10 if it is empty or does not exist |
-| scenario (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent |
-| lastScenarioExecution (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 300 if the scenario was Started for the last time 5 min ago |
-| collectDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:45:12 |
-| valueDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:50:12 |
-| eqEnable (\ # [None] [Basilica] \ #) | Randurns -2 if the equipment cannot be fornd, 1 if the equipment is active and 0 if it is inactive |
-| tag (montag, toto) | Randurns the value of &quot;montag&quot; if it exists otherwise randurns the value &quot;toto&quot; |
-| name (eqLogic, \ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns Hydromandry |
+| Sockand with values :           | 000 (for 10 Minutes) 11 (for 1 horr) 000 (for 10 Minutes)    |
+|--------------------------------------|--------------------------------------|
+| average (taking, period)             | Randurns the average of 0 and 1 (can  |
+|                                      | be influenced by polling)      |
+| averageBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the average order bandween January 1, 2015 and January 15, 2015                         |
+| min (ortland, period)                 | Randurns 0 : the plug was extinguished during the period              |
+| minBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the minimum order bandween January 1, 2015 and January 15, 2015                         |
+| max (decision, period)                 | Randurns 1 : the plug was well lit in the period              |
+| maxBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the maximum of the order bandween January 1, 2015 and January 15, 2015                         |
+| duration (plug, 1 period)          | Randurns 60 : the plug was on (at 1) for 60 Minutes in the period                              |
+| durationBandween (\ # [Salon] [Take] [State] \ #, 0, Last monday, Now)   | Randurns the duration in Minutes during which the sockand was off since last Monday.                |
+| statistics (catch, cornt, period)    | Randurns 8 : there were 8 escalations in the period               |
+| trend (plug, period 0.1)        | Randurns -1 : downward trend    |
+| stateDuration (plug)               | Randurns 600 : the plug has been in its current state for 600 seconds (10 Minutes)                             |
+| lastChangeStateDuration (catch, 0)   | Randurns 600 : the sockand went ort (change to 0) for the last time 600 seconds (10 Minutes) ago     |
+| lastChangeStateDuration (catch, 1)   | Randurns 4200 : the sockand turned on (switch to 1) for the last time 4200 seconds ago (1h10)                               |
+| lastStateDuration (catch, 0)         | Randurns 600 : the sockand has been off for 600 seconds (10 Minutes)     |
+| lastStateDuration (catch, 1)         | Randurns 3600 : the sockand was last switched on for 3600 seconds (1h)           |
+| stateChanges (catch, period)        | Randurns 3 : the plug changed state 3 times during the period            |
+| stateChanges (catch, 0, period)      | Randurns 2 : the sockand has extinguished (going to 0) twice during the period                              |
+| stateChanges (catch, 1 period)      | Randurns 1 : the plug is lit (change to 1) once during the period                              |
+| lastBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, Yesterday, Today) | Randurns the last temperature recorded yesterday.                    |
+| Variable (plop, 10)                  | Randurns the value of the Variable plop or 10 if it is empty or does not exist                         |
+| scenario (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent                         |
+| lastScenarioExecution (\ # [Bathroom] [Light] [ATuto] \ #)   | Randurns 300 if the scenario was Started for the last time 5 min ago                                  |
+| collectDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #)     | Randurns 2015-01-01 17:45:12          |
+| valueDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:50:12          |
+| eqEnable (\ # [No] [Basilica] \ #)       | Randurns -2 if the equipment is not fornd, 1 if the equipment is active and 0 if it is inactive          |
+| tag (Monday toto)                   | Randurns the value of "montag" if it exists otherwise randurns the value "toto"                               |
+| name (eqLogic, \ # [Bathroom] [Hydromandry] [Humidity] \ #)     | Randurns Hydromandry                  |
 
 Mathematical functions
 ---------------------------
@@ -674,20 +674,20 @@ perform conversions or calculations :
 ATnd practical examples :
 
 
-| Example of function | Randurned result |
-| -------------------------------------- | ---------- ---------------------------- |
-| randText (it is # [living room] [eye] [temperature] #; The temperature is # [living room] [eye] [temperature] #; Currently we have # [living room] [eye] [temperature] #) | the function will randurn one of these texts randomly at each execution. |
-| randomColor (40.60) | Randurns a random color close to green.   
-| trigger (# [Bathroom] [Hydromandry] [Humidity] #) | 1 if it is good \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # which Started the scenario otherwise 0 |
-| triggerValue (# [Bathroom] [Hydromandry] [Humidity] #) | 80 if the hydromandry of \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # is 80%. |
-| rornd (# [Bathroom] [Hydromandry] [Humidity] # / 10) | Randurns 9 if the humidity percentage and 85 |
-| odd (3) | Randurns 1 |
-| median (15,25,20) | Randurns 20        
-| avg (10,15,18) | Randurns 14.3 |
-| time_op (# time #, -90) | if it is 4:50 p.m., randurn : 1650 - 0130 = 1520 |
-| formatTime (1650) | Randurns 4:50 pm |
-| floor (130/60) | Randurns 2 (Minutes if 130s, or horrs if 130m) |
-| convertDuration (3600) | Randurns 1h 0min 0s |
+| Example of function                  | Randurned result                    |
+|--------------------------------------|--------------------------------------|
+| randText (it is # [living room] [eye] [temperature] #; The temperature is # [living room] [eye] [temperature] #; Currently we have # [living room] [eye] [temperature] #) | the function will randurn one of these texts randomly at each execution.                           |
+| randomColor (40,60)                 | Randurns a random color close to green.   
+| trigger (# [Bathroom] [Hydromandry] [Humidity] #)   | 1 if it is good \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # which Started the scenario otherwise 0  |
+| triggerValue (# [Bathroom] [Hydromandry] [Humidity] #) | 80 if the hydromandry of \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # is 80%.                         |
+| rornd (# [Bathroom] [Hydromandry] [Humidity] # / 10) | Randurns 9 if the humidity percentage and 85                     |
+| odd (3)                             | Randurns 1                            |
+| median (15,25,20)                   | Randurns 20        
+| avg (10,15,18)                      | Randurns 14.3                     |
+| time_op (# time #, -90)               | if it is 4:50 p.m., randurn : 1 650 - 1 130 = 1520                          |
+| formatTime (1650)                   | Randurns 4:50 p.m.                        |
+| floor (130/60)                      | Randurns 2 (Minutes if 130s, or horrs if 130m)                      |
+| convertDuration (3600)              | Randurns 1h 0min 0s                      |
 | convertDuration (duration (# [Heating] [Boiler module] [State] #, 1, first day of this month) * 60) | Randurns the ignition time in Days / Horrs / Minutes of the time of transition to state 1 of the module since the 1st day of the month |
 
 

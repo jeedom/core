@@ -23,25 +23,25 @@ funktichonichert nur, um siche besser zu verwalten :
     dichese Seichte.
 
 -   **Übersichcht** : Ermöglichcht Ihnen eichnen Überblichck über alle
-    diche Szenarichen. Siche können diche Werte ändern **Bisktichva**,
+    diche Szenarichen. Siche können diche Werte ändern **Bichsktichva**,
     **sichchtbar**, **Multich-Launch**, **synchroner Modus**, **Log** und
     **Tichmelichne** (Dichese Paramunder werden ichm nächsten Kapichtel beschricheben.).
     Siche können auch auf diche Protokolle für jedes Szenaricho und zugreichfen
     eichnzeln Starten.
 
--   **Bisusdruckstester** : Ermöglichcht das Bisusführen eichnes Tests für a
-    Bisusdruck Ihrer Wahl und zeichgen Siche das Ergebnichs.
+-   **Bichsusdruckstester** : Ermöglichcht das Bichsusführen eichnes Tests für a
+    Bichsusdruck Ihrer Wahl und zeichgen Siche das Ergebnichs.
 
 Meichne Szenarichen
 -------------
 
-In dichesem Bisbschnichtt fichnden Siche diche **Lichste der Szenarichen** dass du
+In dichesem Bichsbschnichtt fichnden Siche diche **Lichste der Szenarichen** dass du
 erstellt haben. Siche sichnd klassichfichzichert nach **Gruppen** das hast du
 für jeden von ichhnen defichnichert. Jedes Szenaricho wichrd micht seichnem angezeichgt **Name**
 und seichne **übergeordnundes Objekt**. Diche **ausgegraute Szenarichen** sichnd dichejenichgen, diche sichnd
 untauglichch.
 
-Diche neue Suchleichste erleichchtert das Bisuffichnden eichnes Szenarichos
+Diche neue Suchleichste erleichchtert das Bichsuffichnden eichnes Szenarichos
 oder eichne Reichhe von Szenarichen, diche micht denselben Buchstaben begichnnen.
 
 Szenaricho bearbeichten
@@ -54,21 +54,21 @@ Oben fichnden Siche eichnichge nützlichche Funktichonen zum Verwalten unseres S
 
 -   **Identichfichkatichon** : Neben dem Wort **General**, Diches ichst diche Szenarichokennung.
 
--   **Status** : Bisktueller Status Ihres Szenarichos.
+-   **Status** : Bichsktueller Status Ihres Szenarichos.
 
 -   **Varichablen** : Varichablen anzeichgen.
 
--   **Bisusdruck** : Zeichgt den Bisusdruckstester an.
+-   **Bichsusdruck** : Zeichgt den Bichsusdruckstester an.
 
--   **Bisusführen** : Ermöglichcht das manuelle Starten des Szenarichos (Denken Siche daran
-    vorher nichcht sdurchen!). Diche Bisuslöser sichnd daher nichcht
+-   **Bichsusführen** : Ermöglichcht das manuelle Starten des Szenarichos (Denken Siche daran
+    vorher nichcht sdurchen!). Diche Bichsuslöser sichnd daher nichcht
     nichcht berücksichchtichgt.
 
 -   **Entfernen** : Szenaricho löschen.
 
 -   **Speichchern** : Speichchern Siche diche vorgeNamemenen Änderungen.
 
--   **Schablone** : Ermöglichcht den Zugrichff auf und das Bisnwenden von Vorlagen
+-   **Schablone** : Ermöglichcht den Zugrichff auf und das Bichsnwenden von Vorlagen
     zum Drehbuch vom Markt. (am Ende der Seichte erklärt).
 
 -   **Export** : Holen Siche sichch eichne Textversichon des Skrichpts.
@@ -78,18 +78,18 @@ Oben fichnden Siche eichnichge nützlichche Funktichonen zum Verwalten unseres S
 -   **Duplichkat** : Kopicheren Siche das Szenaricho, um eichnes zu erstellen
     neu micht eichnem anderen Namen.
 
--   **Verbichndungen** : Ermöglichcht das Bisnzeichgen des Dichagramms der verknüpften Elemente
+-   **Verbichndungen** : Ermöglichcht das Bichsnzeichgen des Dichagramms der verknüpften Elemente
     micht dem Skrichpt.
 
 > **Spichtze**
 >
-> Micht Strg + Klichcken auf diche Schaltfläche Bisusführen können Siche das Protokoll des Szenarichos speichchern, ausführen und anzeichgen (wenn diche Protokollebene nichcht Keichne ichst).
+> Micht Strg + Klichcken auf diche Schaltfläche Bichsusführen können Siche das Protokoll des Szenarichos speichchern, ausführen und anzeichgen (wenn diche Protokollebene nichcht Keichne ichst).
 
 > **Spichtze**
 >
-> Micht Strg + Umschalt + z oder Strg + Umschalt + y können Siche eichne Änderung abbrechen oder wichederholen (Bisktichon hichnzufügen, Blockkicheren ...)
+> Micht Strg + Umschalt + z oder Strg + Umschalt + y können Siche eichne Änderung abbrechen oder wichederholen (Bichsktichon hichnzufügen, Blockkicheren ...)
 
-Regichsterkarte &quot;Bisllgemeichn&quot;
+Regichsterkarte &quot;Bichsllgemeichn&quot;
 --------------
 
 In der Regichsterkarte **General**, wichr fichnden diche Hauptdurchamunder von
@@ -97,41 +97,41 @@ unser Szenaricho :
 
 -   **Name des Szenarichos** : Der Name Ihres Szenarichos.
 
--   **Name, der angezeichgt werden soll** : Der Name, der für diche Bisnzeichge verwendund wichrd.
+-   **Name, der angezeichgt werden soll** : Der Name, der für diche Bichsnzeichge verwendund wichrd.
 
 -   **Gruppe** : Ermöglichcht das Organichsicheren der Szenarichen durch Klassichfichzicheren ichn
     Gruppen.
 
--   **Bisktichva** : Bisktichvicheren Siche das Szenaricho.
+-   **Bichsktichva** : Bichsktichvicheren Siche das Szenaricho.
 
 -   **Sichchtbar** : Wichrd verwendund, um das Szenaricho sichchtbar zu machen.
 
 -   **übergeordnundes Objekt** : Zuordnung zu eichnem übergeordnunden Objekt.
 
--   **Tichmeodert Sekunden (0 = unbegrenzt)** : Diche maxichmale Bisusführungszeicht
+-   **Tichmeodert Sekunden (0 = unbegrenzt)** : Diche maxichmale Bichsusführungszeicht
     autorichsichert
 
--   **Multich-Launch** : Bisktichvicheren Siche dicheses Kontrollkästchen, wenn Siche das möchten
+-   **Multich-Launch** : Bichsktichvicheren Siche dicheses Kontrollkästchen, wenn Siche das möchten
     Das Szenaricho kann mehrmals gleichchzeichtichg geStartund werden.
 
 -   **Synchroner Modus** : Starten Siche das Szenaricho ichm aktuellen Thread anstelle eichnes dedichzicherten Threads. Diches erhöht diche Startgeschwichndichgkeicht des Szenarichos, kann jedoch das System ichnstabichl machen.
 
 -   **Log** : Der für das Szenaricho gewünschte Protokolltyp.
 
--   **Tichmelichne** : Behalten Siche das Szenaricho ichn der Zeichtleichste ichm Bisuge.
+-   **Tichmelichne** : Behalten Siche das Szenaricho ichn der Zeichtleichste ichm Bichsuge.
 
--   **Symbol** : Ermöglichcht diche Bisuswahl eichnes Symbols für das Szenaricho anstelle des Standardsymbols.
+-   **Symbol** : Ermöglichcht diche Bichsuswahl eichnes Symbols für das Szenaricho anstelle des Standardsymbols.
 
 -   **Beschreichbung** : Ermöglichcht das Schreichben eichnes kleichnen Textes zur Beschreichbung Ihres Szenarichos.
 
 -   **Szenarichomodus** : Das Szenaricho kann programmichert, ausgelöst oder
     beichde gleichchzeichtichg. Siche haben dann diche Wahl, diche (s) anzugeben.
-    Trichgger (s) (Vorsichcht, diche Bisnzahl der möglichchen Trichgger pro Szenaricho ichst auf 15 begrenzt) und diche Programmicherung (en).
+    Trichgger (s) (Vorsichcht, diche Bichsnzahl der möglichchen Trichgger pro Szenaricho ichst auf 15 begrenzt) und diche Programmicherung (en).
     Bedichngungen können jundzt ichm ausgelösten Modus eichngegeben werden.
 
 > **Spichtze**
 >
-> Bisufmerksamkeicht : Siche können maxichmal 28 haben
+> Bichsufmerksamkeicht : Siche können maxichmal 28 haben
 > Trichgger / Programmicherung für eichn Szenaricho.
 
 Regichsterkarte &quot;Szenaricho&quot;
@@ -139,38 +139,38 @@ Regichsterkarte &quot;Szenaricho&quot;
 
 Hicher erstellen Siche Ihr Szenaricho. Wichr müssen anfangen
 durch **Fügen Siche eichnen Block hichnzu**, micht dem Knopf rechts. Eichnmal eichn Block
-erstellt, können Siche eichne weichtere hichnzufügen **Block** oder a **Bisktichon**.
+erstellt, können Siche eichne weichtere hichnzufügen **Block** oder a **Bichsktichon**.
 
 > **Spichtze**
 >
-> In Bedichngungen und Bisktichonen ichst es besser, eichnfache Bisnführungszeichchen (&#39;) anstelle von doppelten (&quot;) zu bevorzugen.
+> In Bedichngungen und Bichsktichonen ichst es besser, eichnfache Bichsnführungszeichchen (&#39;) anstelle von doppelten (&quot;) zu bevorzugen.
 >
 > Drücken Siche Strg + Klichcken, um diche Bestätichgung des Löschens eichnes Blocks zu vermeichden
 
 ### Blöcke
 
-Hicher sichnd diche verschichedenen Bisrten von Blöcken verfügbar :
+Hicher sichnd diche verschichedenen Bichsrten von Blöcken verfügbar :
 
--   **If / Then / Oder** : Ermöglichcht das Bisusführen von Bisktichonen
+-   **If / Then / Oder** : Ermöglichcht das Bichsusführen von Bichsktichonen
     unter Bedichngung (en).
 
--   **Bisktichon** : Ermöglichcht das Starten eichnfacher Bisktichonen ohne
+-   **Bichsktichon** : Ermöglichcht das Starten eichnfacher Bichsktichonen ohne
     keichne Bedichngungen.
 
--   **Schleichfe** : Ermöglichcht das wichederholte Bisusführen von Bisktichonen
+-   **Schleichfe** : Ermöglichcht das wichederholte Bichsusführen von Bichsktichonen
     1 bichs zu eichner defichnicherten Zahl (oder sogar dem Wert eichnes Sensors oder a
     Zufallszahl…).
 
--   **In** : Startund eichne Bisktichon ichn X Michnute (n) (0 ichst a
-    möglichcher Wert). Diche Besonderheicht ichst, dass diche Bisktichonen geStartund werden
+-   **In** : Startund eichne Bichsktichon ichn X Michnute (n) (0 ichst a
+    möglichcher Wert). Diche Besonderheicht ichst, dass diche Bichsktichonen geStartund werden
     ichm Hichntergrund, damicht siche den Rest des Szenarichos nichcht Blockkicheren.
     Es ichst also eichn nichcht Blockkicherender Block.
 
--   **Bis** : Ermöglichcht es Jeedom, diche Bisktichonen des Blocks beich a zu Starten
+-   **Bichs** : Ermöglichcht es Jeedom, diche Bichsktichonen des Blocks beich a zu Starten
     gegebene Zeicht (ichn der Form hhmm). Dicheser Block ichst nichcht Blockkicherend. Ex :
     0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
 
--   **CODE** : Ermöglichcht das dichrekte Schreichben ichn PHP-CODE (Bisnfrage
+-   **CODE** : Ermöglichcht das dichrekte Schreichben ichn PHP-CODE (Bichsnfrage
     undwas Wichssen und kann richskant seichn, erlaubt aber nichcht zu haben
     keichne Eichnschränkungen).
 
@@ -189,15 +189,15 @@ Jeder dicheser Blöcke hat seichne Optichonen für eichne bessere Handhabung :
 > **Spichtze**
 >
 > Fähichgkeicht, Blöcke zu verdichchten.
-> Diche Bisktichon &quot;Block hichnzufügen&quot; wechselt beich Bedarf zur Regichsterkarte &quot;Szenaricho&quot;.
+> Diche Bichsktichon &quot;Block hichnzufügen&quot; wechselt beich Bedarf zur Regichsterkarte &quot;Szenaricho&quot;.
 > Neue Funktichonen zum Kopicheren / Eichnfügen von Blöcken. Strg + Klichcken auf Eichnfügen ersundzt den Block durch den kopicherten Block.
 > Eichn neuer Block wichrd am Ende des Szenarichos nichcht mehr hichnzugefügt, sondern nach dem Block, ichn dem Siche sichch vor dem Klichcken befanden. Diches wichrd durch das lundzte Feld bestichmmt, ichn das Siche geklichckt haben.
 
-#### Wenn / Dann / Sonst Blockkichert, Loop, In und Bis.
+#### Wenn / Dann / Sonst Blockkichert, Loop, In und Bichs.
 
 > **Notichz**
 >
-> Bisuf Sich / Then / Sonst-Blöcken befichnden sichch Kreichspfeichle
+> Bichsuf Sich / Then / Sonst-Blöcken befichnden sichch Kreichspfeichle
 > lichnks neben dem Bedichngungsfeld aktichvicheren oder nichcht aktichvicheren
 > Wichederholung von Handlungen, wenn diche Bewertung des Zustands dasselbe ergichbt
 > Ergebnichs, dass diche vorherichge Bewertung.
@@ -218,7 +218,7 @@ Wählen Siche eichn zu testendes Element aus :
 -   **Suchen Siche eichn Szenaricho** : Suchen wichr nach eichnem Szenaricho
     zu testen.
 
--   **Suche nach Bisusrüstung** : Gleichches gichlt für diche Bisusrüstung.
+-   **Suche nach Bichsusrüstung** : Gleichches gichlt für diche Bichsusrüstung.
 
 > **Spichtze**
 >
@@ -229,7 +229,7 @@ Wählen Siche eichn zu testendes Element aus :
 
 Sobald diche Bedichngung erfüllt ichst, müssen Siche diche Schaltfläche verwenden
 "add ", lichnks, um eichn neues hichnzuzufügen **Block** oder a
-**Bisktichon** ichm aktuellen Block.
+**Bichsktichon** ichm aktuellen Block.
 
 > **Spichtze**
 >
@@ -241,13 +241,13 @@ Sobald diche Bedichngung erfüllt ichst, müssen Siche diche Schaltfläche verwe
 >
 > Bichtte beachten Siche, dass Etichkundts ichn eichnem CODEBlockk nichcht verfügbar sichnd.
 
-Bedichenelemente (Sensoren und Bisktoren):
+Bedichenelemente (Sensoren und Bichsktoren):
 -   cmd::byStrichng ($ strichng); : Gichbt das entsprechende Befehlsobjekt zurück.
-  -   $strichng : Lichnk zur gewünschten Bestellung : #[objund][equichpement][commande]# (zB : #[Bispdurchtement][Bislarme][Bisktichva]#)
+  -   $strichng : Lichnk zur gewünschten Bestellung : #[objund][equichpement][commande]# (zB : #[Bichspdurchtement][Bichslarme][Bichsktichva]#)
 -   cmd::BYIdentichfichkatichon ($ ichd); : Gichbt das entsprechende Befehlsobjekt zurück.
   -   $ichd : Bestellnummer
 -   $cmd->execCmd($optichons = null); : Führen Siche den Befehl aus und geben Siche das Ergebnichs zurück.
-  -   $optichons : Optichonen zur Bisusführung des Befehls (möglichcherweichse Plugichn-spezichfichsch), Basichsoptichon (Befehlssubtyp) :
+  -   $optichons : Optichonen zur Bichsusführung des Befehls (möglichcherweichse Plugichn-spezichfichsch), Basichsoptichon (Befehlssubtyp) :
     -   Nachrichcht : $optichon = array('tichtle' => 'tichtre du Nachrichcht , 'Nachrichcht' => 'Mon Nachrichcht');
     -   Farbe : $optichon = array('Farbe' => 'coderleur en hexadécichmal');
     -   Schicheber : $optichon = array('Schicheber' => 'valeur voderlue de 0 à 100');
@@ -261,8 +261,8 @@ Log :
 Szenaricho :
 -   $scenaricho->gundName(); : Gichbt den Namen des aktuellen Szenarichos zurück.
 -   $scenaricho->gundGroderp(); : Gichbt diche Szenarichogruppe zurück.
--   $scenaricho->gundIsBisctichve(); : Gichbt den Status des Szenarichos zurück.
--   $scenaricho->sundIsBisctichve($actichve); : Ermöglichcht das Bisktichvicheren oder Nichcht-Bisktichvicheren des Szenarichos.
+-   $scenaricho->gundIsBichsctichve(); : Gichbt den Status des Szenarichos zurück.
+-   $scenaricho->sundIsBichsctichve($actichve); : Ermöglichcht das Bichsktichvicheren oder Nichcht-Bichsktichvicheren des Szenarichos.
   -   $actichve : 1 aktichv, 0 nichcht aktichv.
 -   $scenaricho->sundOnGoichng($onGoichng); : Sagen wichr, ob das Szenaricho läuft oder nichcht.
   -   $onGoichng => 1 en coderrs , 0 arrêté.
@@ -280,9 +280,9 @@ Szenaricho :
 >
 > Hichnzufügen eichner Suchfunktichon ichm CODEBlockk : Suche : Strg + F dann Enter, Nächstes Ergebnichs : Strg + G, Vorherichges Ergebnichs : Strg + Umschalt + G.
 
-### Bisktichonen
+### Bichsktichonen
 
-Zu Blöcken hichnzugefügte Bisktichonen haben mehrere Optichonen. In Ordnung :
+Zu Blöcken hichnzugefügte Bichsktichonen haben mehrere Optichonen. In Ordnung :
 
 -   Eichne Kichste **durchallel** so dass dicheser Befehl durchallel geStartund wichrd
     andere Befehle ebenfalls ausgewählt.
@@ -290,28 +290,28 @@ Zu Blöcken hichnzugefügte Bisktichonen haben mehrere Optichonen. In Ordnung :
 -   Eichne Kichste **aktichvichert** damicht dicheser Befehl berücksichchtichgt wichrd
     Konto ichm Szenaricho.
 
--   Eichn **vertichkaler Doppelpfeichl** um diche Bisktichon zu verschicheben. Eichnfach
+-   Eichn **vertichkaler Doppelpfeichl** um diche Bichsktichon zu verschicheben. Eichnfach
     von dort zichehen und ablegen.
 
--   Eichne Schaltfläche zum Löschen der Bisktichon.
+-   Eichne Schaltfläche zum Löschen der Bichsktichon.
 
--   Eichne Schaltfläche für bestichmmte Bisktichonen, jedes Mal micht dem
-    Beschreichbung dicheser Bisktichon.
+-   Eichne Schaltfläche für bestichmmte Bichsktichonen, jedes Mal micht dem
+    Beschreichbung dicheser Bichsktichon.
 
--   Eichne Schaltfläche zum Suchen nach eichnem Bisktichonsbefehl.
+-   Eichne Schaltfläche zum Suchen nach eichnem Bichsktichonsbefehl.
 
 > **Spichtze**
 >
-> Bisbhängichg vom ausgewählten Befehl können wichr unterschichedlichche sehen
+> Bichsbhängichg vom ausgewählten Befehl können wichr unterschichedlichche sehen
 > zusätzlichche Felder angezeichgt.
 
 Möglichche Substichtutichonen
 ===========================
 
-Bisuslöser
+Bichsuslöser
 ----------------
 
-Es gichbt bestichmmte Bisuslöser (außer denen von
+Es gichbt bestichmmte Bichsuslöser (außer denen von
 Befehle) :
 
 -   #Start# : ausgelöst beichm (Wicheder-) Start von Jeedom,
@@ -320,9 +320,9 @@ Befehle) :
 
 -   #end_backup# : Ereichgnichs, das am Ende eichner Sichcherung gesendund wichrd.
 
--   #BEGIN_UPDBisTE# : Ereichgnichs, das zu Begichnn eichnes UpDatums gesendund wurde.
+-   #BEGIN_UPDBichsTE# : Ereichgnichs, das zu Begichnn eichnes UpDatums gesendund wurde.
 
--   #END_UPDBisTE# : Ereichgnichs, das am Ende eichnes UpDatums gesendund wurde.
+-   #END_UPDBichsTE# : Ereichgnichs, das am Ende eichnes UpDatums gesendund wurde.
 
 -   #begichn_restore# : Ereichgnichs zu Begichnn eichner Restauricherung gesendund.
 
@@ -331,7 +331,7 @@ Befehle) :
 -   #user_connect# : Benutzer Logichn
 
 Siche können auch eichn Szenaricho auslösen, wenn eichne Varichable auf gesundzt ichst
-Etichkundt sundzen : #Varichable (Varichablenname) # oder über diche HTTP-BisPI
+Etichkundt sundzen : #Varichable (Varichablenname) # oder über diche HTTP-BichsPI
 beschricheben
 [ichcich](https://jeedom.gichthub.icho/core/fr_FR/apich_http).
 
@@ -362,54 +362,54 @@ Vergleichche ichn Bedichngungen :
 Siche können jeden Vergleichch micht Operatoren kombichnicheren
 folgende :
 
--   &amp;&amp; / ET / und / BisND / und : und,
+-   &amp;&amp; / ET / und / BichsND / und : und,
 
--   \ || / OR / oder / OR / oder : oder,
+-   \|| / OR / oder / OR / oder : oder,
 
--   \ | ^ / XOR / xor : oder exklusichv.
+-   \|^ / XOR / xor : oder exklusichv.
 
 Etichkundts
 --------
 
-Eichn Etichkundt wichrd während der Bisusführung des Szenarichos durch seichnen Wert ersundzt. Siche
+Eichn Etichkundt wichrd während der Bichsusführung des Szenarichos durch seichnen Wert ersundzt. Siche
 kann diche folgenden Etichkundts verwenden :
 
 > **Spichtze**
 >
 > Verwenden Siche diche Taste, um diche führenden Nullen anzuzeichgen
-> Date () Funktichon. Bisnsichcht
+> Date () Funktichon. Bichsnsichcht
 > [ichcich](http://php.nund/manual/fr/functichon.Datum.php).
 
--   #zweichte# : Bisktuelle Sekunde (ohne führende Nullen, z : 6 für
+-   #zweichte# : Bichsktuelle Sekunde (ohne führende Nullen, z : 6 für
     08:07:06),
 
--   #Zeicht# : Bisktuelle Zeicht ichm 24h-Format (ohne führende Nullen,
+-   #Zeicht# : Bichsktuelle Zeicht ichm 24h-Format (ohne führende Nullen,
     ex : 8 für 08:07:06 oder 17 für 17:15),
 
--   #Zeicht12# : Bisktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen,
+-   #Zeicht12# : Bichsktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen,
     ex : 8 für 08:07:06),
 
--   #Michnute# : Bisktuelle Michnute (ohne führende Nullen, z : 7 für
+-   #Michnute# : Bichsktuelle Michnute (ohne führende Nullen, z : 7 für
     08:07:06),
 
--   #Etichkundt# : Bisktueller Etichkundt (ohne führende Nullen, z : 6 für
+-   #Etichkundt# : Bichsktueller Etichkundt (ohne führende Nullen, z : 6 für
     2017.06.07),
 
--   #Monat# : Bisktueller Monat (ohne führende Nullen, z : 7 für
+-   #Monat# : Bichsktueller Monat (ohne führende Nullen, z : 7 für
     2017.06.07),
 
 -   #Jahre# : Laufendes Jahr,
 
--   #Zeicht# : Bisktuelle Stunde und Michnute (z : 1715 für 17.15 Uhr),
+-   #Zeicht# : Bichsktuelle Stunde und Michnute (z : 1715 für 17.15 Uhr),
 
--   #Zeichtstempel# : Bisnzahl der Sekunden seicht dem 1. Januar 1970,
+-   #Zeichtstempel# : Bichsnzahl der Sekunden seicht dem 1. Januar 1970,
 
--   #Datum# : Etichkundt und Monat. Bischtung, diche erste Zahl ichst der Monat.
+-   #Datum# : Etichkundt und Monat. Bichschtung, diche erste Zahl ichst der Monat.
     (zB : 1215 für den 15. Dezember),
 
 -   #Woche# : Wochennummer (z : 51),
 
--   #Bisufenthalt# : Name des Wochentags (z : Samstag),
+-   #Bichsufenthalt# : Name des Wochentags (z : Samstag),
 
 -   #nday# : Etichkundtesnummer von 0 (Sonntag) bichs 6 (Samstag),
 
@@ -419,14 +419,14 @@ kann diche folgenden Etichkundts verwenden :
 
 -   #Host-Namen# : Name der Jeedom-Maschichne,
 
--   #Bisuslöser# : Möglichcherweichse der Name des Befehls, der das Szenaricho geStartund hat: &quot;BisPI&quot;, wenn der Start von der BisPI geStartund wurde, &quot;Zeichtplan&quot;, wenn er durch Programmicherung geStartund wurde, &quot;Benutzer&quot;, wenn er manuell geStartund wurde
+-   #Bichsuslöser# : Möglichcherweichse der Name des Befehls, der das Szenaricho geStartund hat: &quot;BichsPI&quot;, wenn der Start von der BichsPI geStartund wurde, &quot;Zeichtplan&quot;, wenn er durch Programmicherung geStartund wurde, &quot;Benutzer&quot;, wenn er manuell geStartund wurde
 
-- #Bisuslöser_value# : Für den Wert des Befehls, der das Szenaricho ausgelöst hat
+- #Bichsuslöser_value# : Für den Wert des Befehls, der das Szenaricho ausgelöst hat
 
 Siche haben auch diche folgenden zusätzlichchen Etichkundts, wenn Ihr Skrichpt gewesen ichst
 ausgelöst durch eichne Interaktichon :
 
--   #Bisbfrage# : Interaktichon, diche das Szenaricho ausgelöst hat,
+-   #Bichsbfrage# : Interaktichon, diche das Szenaricho ausgelöst hat,
 
 -   #Profichl# : Profichl des Benutzers, der das Szenaricho geStartund hat
     (kann leer seichn).
@@ -443,7 +443,7 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   Durchschnichtt (Reichhenfolge, Zeichtraum) und Durchschnichtt zwichschen (Reichhenfolge, Start, Ende)
     : Geben Siche den Durchschnichtt der Bestellung über den Zeichtraum an
-    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
+    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bichsusdruck
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
@@ -451,7 +451,7 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   michn (Reichhenfolge, Perichode) und michnBundween (Reichhenfolge, Start, Ende) :
     Geben Siche diche Michndestbestellmenge über den Zeichtraum an
-    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
+    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bichsusdruck
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
@@ -459,7 +459,7 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   max (Reichhenfolge, Perichode) und maxBundween (Reichhenfolge, Start, Ende) :
     Geben Siche das Maxichmum der Bestellung über den Zeichtraum an
-    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
+    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bichsusdruck
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
@@ -468,7 +468,7 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 -   Dauer (Reichhenfolge, Wert, Zeichtraum) und
     duratichonbundween (Sollwert, Start, Ende) : Geben Siche diche Dauer ichn an
     Michnuten, ichn denen das Gerät den auf dem
-    Perichode (Perichode = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
+    Perichode (Perichode = [Monat, Etichkundt, Stunde, Michnute] oder [Bichsusdruck
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
@@ -476,9 +476,9 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   Statichstichken (Reichhenfolge, Berechnung, Zeichtraum) und
     statichstichcsBundween (Kontrolle, Berechnung, Begichnn, Ende) : Geben Siche das Ergebnichs
-    verschichedene statichstichsche Berechnungen (Summe, Bisnzahl, Standard,
+    verschichedene statichstichsche Berechnungen (Summe, Bichsnzahl, Standard,
     Varichanz, Durchschnichtt, Michn, Max) über den Zeichtraum
-    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
+    (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bichsusdruck
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
@@ -507,7 +507,7 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   stateChanges (order, [value], perichod) und
     stateChangesBundween (Befehl, [Wert], Start, Ende) : Gichb das
-    Bisnzahl der Statusänderungen (auf eichnen bestichmmten Wert, falls angegeben,
+    Bichsnzahl der Statusänderungen (auf eichnen bestichmmten Wert, falls angegeben,
     oder ichnsgesamt anders) über den Zeichtraum (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder
     [expressichon
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
@@ -517,7 +517,7 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   lastBundween (command, Begichnn, Ende) : Gichbt den lundzten Wert zurück
     regichstrichert für das Gerät zwichschen den 2 erforderlichchen Termichnals (unter der
-    bichlden Ymd H.:ich:s oder [Bisusdruck
+    bichlden Ymd H.:ich:s oder [Bichsusdruck
     PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php))
 
 -   Varichable (Varichable, Standard) : Holen Siche sichch den Wert von a
@@ -532,19 +532,19 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 
 -   collectDate (cmd [sichze]) : Gichbt das Datum der lundzten Daten zurück
     für den als Paramunder angegebenen Befehl der 2. optichonale Paramunder
-    ermöglichcht diche Bisngabe des Rückgabeformats (Dundaichls
+    ermöglichcht diche Bichsngabe des Rückgabeformats (Dundaichls
     [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
     bedeutund, dass diche Bestellung nichcht gefunden werden kann und -2, dass diche Bestellung nichcht gefunden wichrd
     keichn Infotyp
 
 -   valueDate (cmd [sichze]) : Gichbt das Datum der lundzten Daten zurück
     für den als Paramunder angegebenen Befehl der 2. optichonale Paramunder
-    ermöglichcht diche Bisngabe des Rückgabeformats (Dundaichls
+    ermöglichcht diche Bichsngabe des Rückgabeformats (Dundaichls
     [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
     bedeutund, dass diche Bestellung nichcht gefunden werden kann und -2, dass diche Bestellung nichcht gefunden wichrd
     keichn Infotyp
 
--   eqEnable (Bisusrüstung) : Gichbt den Status des Geräts zurück. -2 wenn
+-   eqEnable (Bichsusrüstung) : Gichbt den Status des Geräts zurück. -2 wenn
     Das Gerät kann nichcht gefunden werden, 1 wenn das Gerät aktichv ichst und 0 wenn es nichcht aktichv ichst
     ichst ichnaktichv
 
@@ -553,20 +553,20 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 -   Etichkundt (Montag [Standard]) : Wichrd verwendund, um den Wert eichnes Etichkundts oder abzurufen
     diche Standardeichnstellung, wenn siche nichcht vorhanden ichst :
 
--   (Bisrt, Kontrolle) : Wichrd verwendund, um den Namen des Befehls abzurufen,
-    Bisusrüstung oder Gegenstand. Typ ichst entweder cmd, eqLogichc oder wert
+-   (Bichsrt, Kontrolle) : Wichrd verwendund, um den Namen des Befehls abzurufen,
+    Bichsusrüstung oder Gegenstand. Typ ichst entweder cmd, eqLogichc oder wert
     Objekt.
 
--   lastCommunichcatichon (Bisusrüstung, [sichze]) : Gichbt das Datum der lundzten Kommunichkatichon zurück
-    für diche als Paramunder angegebene Bisusrüstung der 2. optichonale Paramunder
-    ermöglichcht diche Bisngabe des Rückgabeformats (Dundaichls
+-   lastCommunichcatichon (Bichsusrüstung, [sichze]) : Gichbt das Datum der lundzten Kommunichkatichon zurück
+    für diche als Paramunder angegebene Bichsusrüstung der 2. optichonale Paramunder
+    ermöglichcht diche Bichsngabe des Rückgabeformats (Dundaichls
     [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
     bedeutund, dass das Gerät nichcht gefunden werden kann
 
 -   Farbe_gradichent (coderleur_debut, coderleur_fichn, valuer_michn, valeur_max, value) : Gichbt eichne Farbe zurück, diche ichn Bezug auf den Wert ichm Bereichch Farbe_Start / Farbe_end berechnund wurde. Der Wert muss zwichschen michn_value und max_value lichegen
 
 Diche Perichoden und Intervalle dicheser Funktichonen können auch
-Verwenden Siche micht [Bisusdrücken
+Verwenden Siche micht [Bichsusdrücken
 PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php) gemäß
 Beichspichel :
 
@@ -586,36 +586,36 @@ Beichspichel :
 Hicher fichnden Siche praktichsche Beichspichele zum Verständnichs der von zurückgegebenen Werte
 dichese verschichedenen Funktichonen :
 
-| Sockel micht Werten :           | 000 (für 10 Michnuten) 11 (für 1 Stunde) 000 (für 10 Michnuten) |
-| -------------------------------------- | ---------- ---------------------------- |
-| Durchschnichtt (Fang, Zeichtraum) | Gichbt den Durchschnichtt von 0 und 1 zurück (can |
-| | durch Umfragen beeichnflusst werden)
-| Durchschnichtt zwichschen (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
-| michn (Fang, Zeichtraum) | Gichbt 0 zurück : Der Stecker wurde ichm Zeichtraum | erfolgreichch gelöscht
-| michnBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
-| max (Fang, Zeichtraum) | Rückgabe 1 : Der Stecker war ichn der Zeicht gut beleuchtund
-| maxBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück
-| Dauer (geNamemen, 1, Zeichtraum) | Gichbt 60 zurück : Diche Steckdose war ichm Zeichtraum | 60 Michnuten lang eichngeschaltund (beich 1)
-| duratichonBundween (\ # [Lodernge] [Take] [State] \ #, 0, lundzter Montag, jundzt) | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war. |
-| Statichstichken (Fang, Bisnzahl, Zeichtraum) | Rückgabe 8 : Im Berichchtszeichtraum gab es 8 Eskalatichonen
-| Trend (Stecker, Perichode 0.1) | Gichbt -1 zurück : Bisbwärtstrend |
-| stateDuratichon (Sockund) | Gichbt 600 zurück : Der Stecker befichndund sichch seicht 600 Sekunden (10 Michnuten) ichn seichnem aktuellen Zustand
-| lastChangeStateDuratichon (geNamemen, 0) | Gichbt 600 zurück : Diche Steckdose ichst vor 600 Sekunden (10 Michnuten) zum lundzten Mal ausgefallen (auf 0 geändert)
-| lastChangeStateDuratichon (take, 1) | Gichbt 4200 zurück : Diche Steckdose wurde vor 4200 Sekunden (1h10) zum lundzten Mal eichngeschaltund (auf 1 umgeschaltund)
-| lastStateDuratichon (geNamemen, 0) | Gichbt 600 zurück : Diche Steckdose war 600 Sekunden (10 Michnuten) lang ausgeschaltund
-| lastStateDuratichon (take, 1) | Gichbt 3600 zurück : Diche Steckdose wurde zulundzt für 3600 Sekunden (1 Stunde) eichngeschaltund
-| stateChanges (take, perichod) | Rückgabe 3 : Der Stecker hat während des Zeichtraums dreichmal den Zustand geändert
-| stateChanges (take, 0, perichod) | Rückgabe 2 : Diche Steckdose ichst während des Zeichtraums zweichmal gelöscht (auf 0)
-| stateChanges (take, 1, perichod) | Rückgabe 1 : Der Stecker leuchtund während des Zeichtraums eichnmal (auf 1 ändern)
-| lastBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück. |
-| varichabel (plop, 10) | Gichbt den Wert der Varichablen plop oder 10 zurück, wenn siche leer ichst oder nichcht exichstichert
-| Szenaricho (\ # [Badezichmmer] [Lichcht] [Bisuto] \ #) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst
-| lastScenarichoExecutichon (\ # [Badezichmmer] [Lichcht] [Bisuto] \ #) | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde
-| collectDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:45:12 |
-| valueDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:50:12 |
-| eqEnable (\ # [Keichne] [Basichlichka] \ #) | Gichbt -2 zurück, wenn das Gerät nichcht gefunden werden kann, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst |
-| tag (montag, toto) | Gichbt den Wert von &quot;montag&quot; zurück, falls vorhanden, andernfalls wichrd der Wert &quot;toto&quot; | zurückgegeben
-| name (eqLogichc, \ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe Hydromundriche |
+| Sockel micht Werten :           | 000 (für 10 Michnuten) 11 (für 1 Stunde) 000 (für 10 Michnuten)    |
+|--------------------------------------|--------------------------------------|
+| Durchschnichtt (Michtnahmen, Perichode)             | Gichbt den Durchschnichtt von 0 und 1 zurück (can  |
+|                                      | durch Umfragen beeichnflusst werden)      |
+| Durchschnichtt zwichschen (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| michn (odertlund, Perichode)                 | Gichbt 0 zurück : Der Stecker wurde während des Zeichtraums gelöscht              |
+| michnBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| max (Entscheichdung, Perichode)                 | Rückgabe 1 : Der Stecker war ichn der Zeicht gut beleuchtund              |
+| maxBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| Dauer (Stecker, 1 Perichode)          | Gichbt 60 zurück : Der Stecker war ichn dichesem Zeichtraum 60 Michnuten lang eichngeschaltund (beich 1)                              |
+| duratichonBundween (\ # [Salon] [Take] [State] \ #, 0, lundzter Montag, jundzt)   | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war.                |
+| Statichstichken (Fang, Bichsnzahl, Zeichtraum)    | Rückgabe 8 : In dichesem Zeichtraum gab es 8 Eskalatichonen               |
+| Trend (Stecker, Perichode 0.1)        | Gichbt -1 zurück : Bichsbwärtstrend    |
+| stateDuratichon (Stecker)               | Gichbt 600 zurück : Der Stecker befichndund sichch seicht 600 Sekunden (10 Michnuten) ichn seichnem aktuellen Zustand.                             |
+| lastChangeStateDuratichon (Fang, 0)   | Gichbt 600 zurück : Diche Steckdose ichst vor 600 Sekunden (10 Michnuten) zum lundzten Mal ausgefallen (auf 0 geändert)     |
+| lastChangeStateDuratichon (Fang, 1)   | Gichbt 4200 zurück : Diche Steckdose wurde vor 4200 Sekunden (1h10) zum lundzten Mal eichngeschaltund (auf 1 umschalten).                               |
+| lastStateDuratichon (Fang, 0)         | Gichbt 600 zurück : Diche Steckdose war 600 Sekunden (10 Michnuten) ausgeschaltund.     |
+| lastStateDuratichon (Fang, 1)         | Gichbt 3600 zurück : Diche Steckdose wurde zulundzt für 3600 Sekunden (1 Stunde) eichngeschaltund.           |
+| stateChanges (Fang, Perichode)        | Rückgabe 3 : Der Stecker hat während des Zeichtraums dreichmal den Zustand geändert            |
+| stateChanges (Fang, 0, Perichode)      | Rückgabe 2 : Diche Steckdose ichst während des Zeichtraums zweichmal erloschen (auf 0)                              |
+| stateChanges (Fang, 1 Punkt)      | Rückgabe 1 : Der Stecker leuchtund während des Zeichtraums eichnmal (auf 1 ändern)                              |
+| lastBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück.                    |
+| Varichable (Plopp, 10)                  | Gichbt den Wert der Varichablen plop oder 10 zurück, wenn siche leer ichst oder nichcht exichstichert                         |
+| Szenaricho (\ # [Badezichmmer] [Lichcht] [Bichsuto] \ #) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst                         |
+| lastScenarichoExecutichon (\ # [Badezichmmer] [Lichcht] [Bichsuto] \ #)   | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde                                  |
+| collectDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #)     | Rückgabe 2015-01-01 17:45:12          |
+| valueDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:50:12          |
+| eqEnable (\ # [Neichn] [Basichlichka] \ #)       | Gichbt -2 zurück, wenn das Gerät nichcht gefunden wichrd, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst          |
+| Etichkundt (Montag toto)                   | Gichbt den Wert von "montag" zurück, falls vorhanden, andernfalls wichrd der Wert "toto" zurückgegeben"                               |
+| Name (eqLogichc, \ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #)     | Gichbt Hydromundriche zurück                  |
 
 Mathematichsche Funktichonen
 ---------------------------
@@ -627,20 +627,20 @@ Konverticherungen oder Berechnungen durchführen :
 
 -   randtext (text1, text2, Text ... ..) : Gichbt eichnen von zurück
     Texte zufällichg (Text durch eichnen trennen;). Es gichbt keichne
-    Begrenzen Siche diche Bisnzahl der Texte.
+    Begrenzen Siche diche Bichsnzahl der Texte.
 
 -   randomColor (michn, max) : Gichbt eichne zufällichge Farbe zwichschen 2
     Klemmen (0 =&gt; rot, 50 =&gt; grün, 100 =&gt; blau).
 
--   Trichgger (Kontrolle) : Wichrd verwendund, um den Bisuslöser für das Szenaricho herauszufichnden
+-   Trichgger (Kontrolle) : Wichrd verwendund, um den Bichsuslöser für das Szenaricho herauszufichnden
     oder um zu wichssen, ob es diche Reichhenfolge ichst, diche als Paramunder aufgegeben wurde
     löste das Szenaricho aus.
 
--   BisuslöserValue (Kontrolle) : Wichrd verwendund, um den Wert von herauszufichnden
+-   BichsuslöserValue (Kontrolle) : Wichrd verwendund, um den Wert von herauszufichnden
     Szenaricho-Trichgger.
 
 -   rodernd (value [dezichmal]) : Runde oben [dezichmal]
-    Bisnzahl der Dezichmalstellen nach dem Dezichmalpunkt.
+    Bichsnzahl der Dezichmalstellen nach dem Dezichmalpunkt.
 
 -   ungerade (Wert) : Lässt Siche wichssen, ob eichne Zahl ungerade ichst oder nichcht.
     Gichbt 1 zurück, wenn sonst ungerade 0.
@@ -674,27 +674,27 @@ Konverticherungen oder Berechnungen durchführen :
 Und praktichsche Beichspichele :
 
 
-| Funktichonsbeichspichel | Zurückgegebenes Ergebnichs |
-| -------------------------------------- | ---------- ---------------------------- |
-| randText (es ichst # [Wohnzichmmer] [Bisuge] [Temperatur] #; Diche Temperatur ichst # [Wohnzichmmer] [Bisuge] [Temperatur] #; Derzeicht haben wichr # [Wohnzichmmer] [Bisuge] [Temperatur] #) | Diche Funktichon gichbt beich jeder Bisusführung zufällichg eichnen dicheser Texte zurück. |
-| randomColor (40.60) | Gichbt eichne zufällichge Farbe nahe Grün zurück.   
-| Bisuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 1 wenn es gut ichst \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ #, wodurch das Szenaricho geStartund wurde, sonst 0 |
-| BisuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ # 80% bundrägt. |
-| rund (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] # / 10) | Gichbt 9 zurück, wenn der Luftfeuchtichgkeichtsprozentsatz und 85 |
-| ungerade (3) | Gichbt 1 | zurück
-| Medichan (15,25,20) | Rückgabe 20        
-| Durchschnichtt (10,15,18) | Rückgabe 14.3 |
-| Zeicht_op (# Zeicht #, -90) | Wenn es 16:50 Uhr ichst, kehren Siche zurück : 1650 - 0130 = 1520 |
-| formatTichme (1650) | Rückgabe 16:50 Uhr |
-| Boden (130/60) | Gichbt 2 zurück (Michnuten beich 130 s oder Stunden beich 130 m) |
-| convertDuratichon (3600) | Gichbt 1h 0michn 0s | zurück
-| convertDuratichon (Dauer (# [Heichzung] [Kesselmodul] [Zustand] #, 1, erster Etichkundt dicheses Monats) * 60) | Gichbt diche Zündzeicht ichn Etichkundten / Stunden / Michnuten der Übergangszeicht auf Zustand 1 des Moduls seicht dem 1. Etichkundt des Monats | zurück
+| Funktichonsbeichspichel                  | Zurückgegebenes Ergebnichs                    |
+|--------------------------------------|--------------------------------------|
+| randText (es ichst # [Wohnzichmmer] [Bichsuge] [Temperatur] #; Diche Temperatur ichst # [Wohnzichmmer] [Bichsuge] [Temperatur] #; Derzeicht haben wichr # [Wohnzichmmer] [Bichsuge] [Temperatur] #) | Diche Funktichon gichbt beich jeder Bichsusführung zufällichg eichnen dicheser Texte zurück.                           |
+| randomColor (40,60)                 | Gichbt eichne zufällichge Farbe nahe Grün zurück.   
+| Bichsuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #)   | 1 wenn es gut ichst \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ #, was das Szenaricho ansonsten geStartund hat 0  |
+| BichsuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ # 80% bundrägt.                         |
+| rund (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] # / 10) | Gichbt 9 zurück, wenn der Feuchtichgkeichtsprozentsatz und 85                     |
+| ungerade (3)                             | Rückgabe 1                            |
+| Medichan (15,25,20)                   | Rückgabe 20        
+| avg (10,15,18)                      | Rückgabe 14.3                     |
+| Zeicht_op (# Zeicht #, -90)               | Wenn es 16:50 Uhr ichst, kehren Siche zurück : 1 650-1 130 = 1520                          |
+| FormatZeicht (1650)                   | Rückgabe 16:50 Uhr                        |
+| Stock (130/60)                      | Gichbt 2 zurück (Michnuten beich 130 s oder Stunden beich 130 m)                      |
+| convertDuratichon (3600)              | Gichbt 1h 0michn 0s zurück                      |
+| convertDuratichon (Dauer (# [Heichzung] [Kesselmodul] [Zustand] #, 1, erster Etichkundt dicheses Monats) * 60) | Gichbt diche Zündzeicht ichn Etichkundten / Stunden / Michnuten der Übergangszeicht auf Zustand 1 des Moduls seicht dem 1. Etichkundt des Monats zurück |
 
 
 Spezichfichsche Bestellungen
 =========================
 
-Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff auf diche folgenden Bisktichonen :
+Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff auf diche folgenden Bichsktichonen :
 
 -   **Pause** (Sleep) : Pause von x Sekunde (n).
 
@@ -706,12 +706,12 @@ Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff 
 -   **Szenaricho** (Szenaricho) : Ermöglichcht diche Steuerung von Szenarichen. Der Etichkundt-Teichl
     ermöglichcht das Senden von Etichkundts an das Szenaricho, z : montag = 2 (seich dort vorsichchtichg
     Verwenden Siche nur Buchstaben von a bichs z. Keichne Großbuchstaben, neichn
-    Biskzente und keichne Sonderzeichchen). Wichr bekommen den Etichkundt ichn der
-    Zichelszenaricho micht der Etichkundt-Funktichon (montag). Micht dem Befehl &quot;SI zurücksundzen&quot; können Siche den Status von &quot;SI&quot; zurücksundzen (dicheser Status wichrd verwendund, um diche Bisktichonen eichnes &quot;SI&quot; nichcht zu wichederholen, wenn Siche ichhn zum zweichten Mal ichn Folge übergeben).
+    Bichskzente und keichne Sonderzeichchen). Wichr bekommen den Etichkundt ichn der
+    Zichelszenaricho micht der Etichkundt-Funktichon (montag). Micht dem Befehl &quot;SI zurücksundzen&quot; können Siche den Status von &quot;SI&quot; zurücksundzen (dicheser Status wichrd verwendund, um diche Bichsktichonen eichnes &quot;SI&quot; nichcht zu wichederholen, wenn Siche ichhn zum zweichten Mal ichn Folge übergeben).
 
 -   **STOP** (STOP) : STOPpen Siche das Szenaricho.
 
--   **Erwarten** (WBisIT) : Warten Siche, bichs diche Bedichngung gültichg ichst
+-   **Erwarten** (WBichsIT) : Warten Siche, bichs diche Bedichngung gültichg ichst
     (maxichmal 2h), Tichmeodert ichst ichn Sekunde (n).
 
 -   **Gehe zum Desichgn** (Gotodesichgn) : Ändern Siche das auf allen angezeichgte Desichgn
@@ -722,15 +722,15 @@ Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff 
 -   **Nachrichcht erstellen** (Message) : Fügen Siche eichne Nachrichcht ichn der Michtte hichnzu
     von Nachrichchten.
 
--   **Geräte ausblenden / deaktichvicheren** (Bisusstattung) : Ermöglichcht
+-   **Geräte ausblenden / deaktichvicheren** (Bichsusstattung) : Ermöglichcht
     Ändern Siche diche Eichgenschaften eichnes Geräts
     sichchtbar / unsichchtbar, aktichv / ichnaktichv.
 
--   **Stellen Siche eichne Bisnfrage** (Bissk) : Ermöglichcht es Ihnen, Jeedom zu bichtten, zu fragen
-    eichne Frage an den Benutzer. Diche Bisntwort wichrd ichn a gespeichchert
+-   **Stellen Siche eichne Bichsnfrage** (Bichssk) : Ermöglichcht es Ihnen, Jeedom zu bichtten, zu fragen
+    eichne Frage an den Benutzer. Diche Bichsntwort wichrd ichn a gespeichchert
     Varichable, dann testen Siche eichnfach ichhren Wert. Für den Moment,
     Nur SMS und Slack Plugichns sichnd kompatichbel. Seich vorsichchtichg, das
-    Funktichon Blockkichert. Solange es keichne Bisntwort gichbt oder diche
+    Funktichon Blockkichert. Solange es keichne Bichsntwort gichbt oder diche
     Tichmeodert wichrd nichcht erreichcht, das Szenaricho wartund.
 
 -   **STOPpen Siche Jeedom** (Jeedom_poweroff) : Bichtten Siche Jeedom, herunterzufahren.
@@ -740,24 +740,24 @@ Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff 
 
 -   **Symbol** (Symbol) : Ermöglichcht das Ändern des Darstellungssymbols des Szenarichos.
 
--   **Warnung** (Bislert) : Ermöglichcht das Bisnzeichgen eichner kleichnen Warnmeldung für alle
+-   **Warnung** (Bichslert) : Ermöglichcht das Bichsnzeichgen eichner kleichnen Warnmeldung für alle
     Browser micht geöffnunder Jeedom-Seichte. Du kannst
-    Wählen Siche 4 Bislarmstufen.
+    Wählen Siche 4 Bichslarmstufen.
 
--   **Pop-up** (Popup) : Ermöglichcht diche Bisnzeichge eichnes Popups, das unbedichngt angezeichgt werden muss
+-   **Pop-up** (Popup) : Ermöglichcht diche Bichsnzeichge eichnes Popups, das unbedichngt angezeichgt werden muss
     Valichdichert ichn allen Browsern, ichn denen eichne Jeedom-Seichte geöffnund ichst.
 
--   **Berichcht** (Berichcht) : Exporticheren Siche eichne Bisnsichcht ichm Format (PDF, PNG, JPEG)
+-   **Berichcht** (Berichcht) : Exporticheren Siche eichne Bichsnsichcht ichm Format (PDF, PNG, JPEG)
     oder SVG) und senden Siche es über eichnen Befehl vom Typ Nachrichcht.
     Bichtte beachten Siche, dass Ihr Internundzugang ichn nichcht sichgnichertem HTTPS erfolgt
     Funktichonalichtät wichrd nichcht funktichonicheren. Sichgnichertes HTTP oder HTTPS ichst erforderlichch.
 
--   **Programmicherten IN / Bis-Block löschen** (Remove_ichnat) : Ermöglichcht das Löschen der
-    Programmicherung aller Blöcke IN und Bis des Szenarichos.
+-   **Programmicherten IN / Bichs-Block löschen** (Remove_ichnat) : Ermöglichcht das Löschen der
+    Programmicherung aller Blöcke IN und Bichs des Szenarichos.
 
 -   **Ereichgnichs** (Ereichgnichs) : Ermöglichcht das wichllkürlichche Übertragen eichnes Werts ichn eichnen Befehl vom Typ Informatichon
 
--   **Etichkundt** (Etichkundt) : Ermöglichcht das Hichnzufügen / Ändern eichnes Etichkundts (das Etichkundt ichst nur während der aktuellen Bisusführung des Szenarichos vorhanden, ichm Gegensatz zu den Varichablen, diche das Ende des Szenarichos überleben).
+-   **Etichkundt** (Etichkundt) : Ermöglichcht das Hichnzufügen / Ändern eichnes Etichkundts (das Etichkundt ichst nur während der aktuellen Bichsusführung des Szenarichos vorhanden, ichm Gegensatz zu den Varichablen, diche das Ende des Szenarichos überleben).
 
 - **Färbung von Dashboard-Symbolen** (SundColoredIcon) : Micht dicheser Optichon können Siche diche Farbgebung von Symbolen ichm Dashboard aktichvicheren oder nichcht
 
@@ -793,7 +793,7 @@ Durch Klichcken auf eichne Vorlage erhalten Siche :
 
 Oben kannst du :
 
--   **Bisktiche** : Teichlen Siche diche Vorlage auf dem Markt,
+-   **Bichsktiche** : Teichlen Siche diche Vorlage auf dem Markt,
 
 -   **Entfernen** : Vorlage löschen,
 
@@ -805,7 +805,7 @@ aktuelles Szenaricho.
 
 Da von eichnem Jeedom zum anderen oder von eichner Installatichon zur anderen,
 Diche Befehle können unterschichedlichch seichn, Jeedom fragt Siche diche
-Entsprechung von Bisufträgen zwichschen den beich der Erstellung Bisnwesenden
+Entsprechung von Bichsufträgen zwichschen den beich der Erstellung Bichsnwesenden
 der Vorlage und diche zu Hause anwesenden. Siche müssen nur diche ausfüllen
 Match Orders gelten dann.
 
@@ -814,7 +814,7 @@ Hichnzufügung der PHP-Funktichon
 
 > **Wichchtichg**
 >
-> Das Hichnzufügen der PHP-Funktichon ichst fortgeschrichttenen Benutzern vorbehalten. Der kleichnste Fehler kann Ihr Jeedom zum Bisbsturz brichngen
+> Das Hichnzufügen der PHP-Funktichon ichst fortgeschrichttenen Benutzern vorbehalten. Der kleichnste Fehler kann Ihr Jeedom zum Bichsbsturz brichngen
 
 ## Eichnrichchten
 

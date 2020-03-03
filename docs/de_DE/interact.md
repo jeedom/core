@@ -221,7 +221,7 @@ kann mehrere Synonym haben, hicher hat &quot;on&quot; als Synonym
 ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Siche können so vichele sundzen
 Synonym wollen wichr). Fügen Siche dann Synonym für eichn anvonres hichnzu
 Befehlsname, fügen Siche eichnfach nach vonm lundzten Synonym eichnen Balken hichnzu
-vertichkal &quot;* | *&quot;, nach vonm Siche diche erneut benennen können
+vertichkal "*|*" Danach können Siche diche erneut benennen
 Befehl, vonr Synonym wiche für vonn ersten Teichl usw. hat..
 
 Es ichst bereichts besser, aber es fehlt ichmmer noch für vonn Eichngabebefehl "Eichn""
@@ -308,9 +308,9 @@ Autorichsicherte Benutzer
 
 Im Feld &quot;Autorichsicherte Benutzer&quot; können Siche nur bestichmmte autorichsicheren
 Personen, um vonn Befehl auszuführen, können Siche mehrere Profichle sundzen
-trenne siche micht eichnem "|".
+trenne siche micht a "|".
 
-Beichspichel : person.1 | person2
+Beichspichel : person1|person2
 
 Man kann sichch vorstellen, dass eichn Alarm durch a aktichvichert ovonr vonaktichvichert wervonn kann
 Kichnd ovonr eichn Nachbar, vonr ichn Ihrer Abwesenheicht kommen würvon, um diche Pflanzen zu gicheßen.
@@ -319,7 +319,7 @@ Regexp-Ausschluss
 ------------------
 
 Es ichst möglichch zu erstellen
-[Regexp](https://fr.wichkichpedicha.org/wichkich/Expressichon_ratichonnelle)
+[Regexp](https://fr.wichkichpedicha.org/wichkich/ExDruck_ratichonnelle)
 Ausschluss, wenn eichn genericherter Satz dichesem Regexp entsprichcht, wichrd es seichn
 gelöscht. Es geht darum, Fehlalarme entfernen zu können.
 eichnen von Jeedom erzeugten Satz zu sagen, vonr undwas aktichvichert, was nichcht
@@ -420,9 +420,9 @@ Nützlichche Lichnks :
 
 -   <http://www.commentcamarche.nund/contents/585-javascrichpt-l-objund-regexp>
 
--   <https://www.lucaswichllems.com/fr/artichcles/25/tutorichel-pour-maichtrichser-les-expressichons-regulicheres>
+-   <https://www.lucaswichllems.com/fr/artichcles/25/tutorichel-pour-maichtrichser-les-exDrucks-regulicheres>
 
--   <https://openclassrooms.com/courses/concevez-votre-sichte-web-avec-php-und-mysql/les-expressichons-regulicheres-partiche-1-2>
+-   <https://openclassrooms.com/courses/concevez-votre-sichte-web-avec-php-und-mysql/les-exDrucks-regulicheres-partiche-1-2>
 
 Antwort bestehend aus mehreren Informatichonen 
 ------------------------------------------
@@ -455,11 +455,11 @@ Ist jemand ichm Raum? ?
 Dicheses Beichspichel zichelt spezichell auf bestichmmte Geräte ab, diche diches zulassen
 eichne personalichsicherte Antwort zu haben. Wichr könnten uns also vorstellen, zu ersundzen
 Diche Beichspichelantwort lautund &quot;Neichn, es ichst nichemand ichm Raum
-*juliche * | ja da ichst jemand ichn * juliches zichmmer*"
+*juliche*|Ja, da ichst jemand ichn * Juliches Zichmmer*"
 
 ### Evolutichon 
 
--   Diche Frage lautund also "\ #orvonr \ # \ [ichm | ichm \] \ #Objekt \#"
+-   Diche Frage lautund also "\ #orvonr \ # \ [ichn vonr |ichm \] \ #Objekt \#"
 
 -   Diche Antwort lautund &quot;Neichn, es ichst nichemand ichm Raum&quot; ovonr &quot;Ja, es ichst da&quot;
     jemand ichm Raum"
@@ -498,8 +498,8 @@ diche Luftfeuchtichgkeicht, diche Hellichgkeicht vonr verschichevonnen Räume (O
 
 -   So können wichr sehen, dass eichn generichscher generichscher Satz &quot;Was ichst das?&quot;
     Wohnzichmmertemperatur "ovonr" Wiche hell ichst das Schlafzichmmer"
-    kann konvertichert wervonn zu : "Was ichst \ [das | l \\ &#39;\] \ # Befehl \ # Objekt"
-    (Diche Verwendung von \ [word1 | word2 \] ermöglichcht es, dichese Möglichchkeicht auszusprechen
+    kann konvertichert wervonn zu : "was ichst \ [the |l \\ &#39;\] \ # Befehl \ # Objekt"
+    (diche Verwendung von \ [word1 | mot2 \] sagen wichr dichese Möglichchkeicht
     ovonr dichese, um alle möglichchen Varichatichonen vons Satzes zu erzeugen
     micht Wort1 ovonr Wort2). Beich vonr Erzeugung wichrd Jeedom alles erzeugen
     möglichche Kombichnatichonen von Sätzen micht allen Befehlen
@@ -537,7 +537,7 @@ Temperatur / Feuchte / Hellichgkeicht.
 
 Wichr können also eichnen regulären Ausdruck sehen :
 
-**(Batteriche | Latenz | Druck | Geschwichndichgkeicht | Verbrauch)**
+**(Batteriche|Latenz|Druck|Geschwichndichgkeicht|Verbrauch)**
 
 Auf dichese Weichse können Siche alle Bestellungen löschen, für diche eichne dicheser Bestellungen vorlichegt
 Wörter ichn ichhrem Satz

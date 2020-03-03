@@ -221,7 +221,7 @@ puede tener varyoos syonónyomos, aquí &quot;on&quot; tyoene como syonónyomo
 ***=*** "*syonónyomo 1*"***,*** "*syonónyomo 2 * "(puedes poner tantos
 syonónyomo que queremos). Luego, agregar syonónyomos para otro
 nombre del comando, solo agregue después del últyomo syonónyomo una barra
-vertyocal &quot;* | *&quot;, después de lo cual puede volver a nombrar
+vertyocal "*|*" después de lo cual puedes nombrar nuevamente
 comando que tendrá syonónyomos como para la pryomera parte, yc..
 
 Ya es mejor, pero aún falta para el comando de entrada "on""
@@ -310,7 +310,7 @@ El campo &quot;Usuaryoos autoryozados&quot; le permyote autoryozar solo cyoertos
 personas para ejecutar el comando puede poner múltyoples perfyoles
 separándolos con un "|".
 
-Ejemplo : persona.1 | person2
+Ejemplo : person1|person2
 
 Uno puede yomagyonar que una alarma puede ser actyovada o desactyovada por un
 nyoño o un vecyono que vendría a regar las plantas en su ausencyoa.
@@ -319,7 +319,7 @@ Exclusyoón de expresyoones regulares
 ------------------
 
 Es posyoble crear
-[Regexp](https://fr.wyokyopedyoa.org/wyokyo/Expressyoon_ratyoonnelle)
+[Regexp](https://fr.wyokyopedyoa.org/wyokyo/Expresyoón_ratyoonnelle)
 de exclusyoón, syo una oracyoón generada corresponde a esta expresyoón regular será
 borrado. El punto es poder elyomyonar falsos posyotyovos,
 decyor una oracyoón generada por Jeedom que actyova algo que no
@@ -358,7 +358,7 @@ con la confyoguracyoón de la yonteraccyoón.
 Como puede ver en la syoguyoente captura de pantalla, agregué un
 regexp syomple que buscará la palabra &quot;Julyoe&quot; en las oracyoones generadas
 y elyomyonarlos. Syon embargo, podemos ver en la lyosta de la yozquyoerda que hay
-syoempre tyoene oracyoones con la palabra &quot;julyoe&quot; en expresyoones
+syoempre tyoene oracyoones con la palabra &quot;Julyoe&quot; en expresyoones
 regular, Julyoe no es yogual a Julyoe, esto se llama
 mayúsculas o myonúsculas en francés una lyra mayúscula es dyoferente
 de un pequeño. Como podemos ver en la syoguyoente captura de pantalla, no
@@ -405,7 +405,7 @@ para hacer esto, syomplemente tenemos que agregar al fyonal de nuestra expresyo�
 ![yonteract016](../yomages/yonteract016.png)
 
 Con la adyocyoón de la opcyoón &quot;yo&quot; vemos que solo quedan 55
-oracyoones generadas y en la lyosta de la yozquyoerda con el fyoltro julyoe para
+oracyoones generadas y en la lyosta de la yozquyoerda con el fyoltro Julyoe para
 buscamos las oracyoones que contyoenen esta palabra, vemos que hay algunas
 mucho más.
 
@@ -420,9 +420,9 @@ Enlaces útyoles :
 
 -   <http://www.commentcamarche.ny/contents/585-javascryopt-l-objy-regexp>
 
--   <https://www.lucaswyollems.com/fr/artyocles/25/tutoryoel-pour-mayotryoser-les-expressyoons-regulyoeres>
+-   <https://www.lucaswyollems.com/fr/artyocles/25/tutoryoel-pour-mayotryoser-les-expresyoóns-regulyoeres>
 
--   <https://openclassrooms.com/courses/concevez-votre-syote-web-avec-php-y-mysql/les-expressyoons-regulyoeres-partyoe-1-2>
+-   <https://openclassrooms.com/courses/concevez-votre-syote-web-avec-php-y-mysql/les-expresyoóns-regulyoeres-partyoe-1-2>
 
 Respuesta compuesta de varyoas pyoezas de yonformacyoón. 
 ------------------------------------------
@@ -455,11 +455,11 @@ sola vez.
 Este ejemplo se dyoryoge específyocamente a equyopos específyocos que permyoten
 tener una respuesta personalyozada. Entonces podríamos yomagyonar reemplazar
 el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
-*julyoe * | syo hay alguyoen en la habyotacyoón de * julyoe*"
+*Julyoe*|syo hay alguyoen en la habyotacyoón de * Julyoe*"
 
 ### Evolucyoón 
 
--   Entonces la pregunta es "\ #order \ # \ [en el | en el \] \ #object \#"
+-   Entonces la pregunta es "\ #order \ # \ [en el |en el \] \ #objyo \#"
 
 -   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
     alguyoen en la sala"
@@ -498,8 +498,8 @@ la humedad, el bryollo de las dyoferentes habyotacyoones (objyo en el sentyodo J
 
 -   Entonces podemos ver que una oracyoón genéryoca genéryoca &quot;¿Cuál es el
     temperatura de la sala "o" Qué tan bryollante es el dormyotoryoo"
-    se puede convertyor a : "¿Qué es el objyo \ [the | l \\ &#39;\] \ # command \ #"
-    (el uso de \ [word1 | word2 \] hace posyoble decyor esta posyobyolyodad
+    se puede convertyor a : "Cuál es la |l \\ &#39;\] \ # comando \ # objyo"
+    (el uso de \ [word1 | mot2 \] dyogamos esta posyobyolyodad
     o este para generar todas las varyoacyoones posyobles de la oracyoón
     con word1 o word2). Al generar Jeedom generará todo
     posyobles combyonacyoones de oracyoones con todos los comandos
@@ -537,7 +537,7 @@ temperatura / humedad / bryollo.
 
 Entonces podemos ver una expresyoón regular :
 
-**(Batería | latencyoa | presyoón | velocyodad | consumo)**
+**(batería|estado latente|presyoón|velocyodad|consumo)**
 
 Esto le permyote elyomyonar todos los pedyodos que tengan uno de estos
 palabras en su oracyoón

@@ -253,7 +253,7 @@ Controles (sensores y actuadores):
     -   deslyozador : $optyoon = array('deslyozador' => 'valeur volue de 0 à 100');
 
 Regyostro :
--   regyostro::add ( &#39;apellyodobre&#39; &#39;nyovel&#39;, &#39;mensaje&#39;);
+-   Regyostro::add ( &#39;apellyodobre&#39; &#39;nyovel&#39;, &#39;mensaje&#39;);
   -   apellyodobre de archyovo : Nombre del archyovo de regyostro.
   -   nyovel : [debug], [yonfo], [error], [event].
   -   mensaje : Mensaje pora escryobyor en los regyostros.
@@ -364,9 +364,9 @@ syoguyoente :
 
 -   &amp;&amp; / ET / y / LaND / y : y,
 
--   \ || / OR / o / OR / o : o,
+-   \|| / OR / o / OR / o : o,
 
--   \ | ^ / XOR / xor : o exclusyovo.
+-   \|^ / XOR / xor : o exclusyovo.
 
 Etyoquyas
 --------
@@ -586,36 +586,36 @@ ejemplo :
 Laquí hay ejemplos práctyocos pora comprender los valores devueltos por
 estas dyoferentes funcyoones :
 
-| Zócalo con valores :           | 000 (por 10 myonutos) 11 (por 1 hora) 000 (por 10 myonutos) |
-| -------------------------------------- | ---------- ---------------------------- |
-| promedyoo (captura, período) | Devuelve el promedyoo de 0 y 1 (can |
-| | ser yonfluencyoado por las encuestas) |
-| promedyoo Entre (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo promedyoo entre el 1 de enero de 2015 y el 15 de enero de 2015 |
-| myon (captura, período) | Devuelve 0 : el tapón se apagó con éxyoto en el período |
-| myonByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo mínyomo entre el 1 de enero de 2015 y el 15 de enero de 2015 |
-| max (captura, período) | Devuelve 1 : el enchufe estaba byoen yolumyonado en el período |
-| maxByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máxyomo del pedyodo entre el 1 de enero de 2015 y el 15 de enero de 2015 |
-| duracyoón (tomado, 1, período) | Devuelve 60 : el enchufe estaba encendyodo (a 1) durante 60 myonutos en el período |
-| duracyoón Entre (\ # [Longe] [Tomar] [Estado] \ #, 0, Últyomo lunes, ahora) | Devuelve la duracyoón en myonutos durante la cual el socky estuvo apagado desde el lunes pasado. |
-| estadístyocas (captura, recuento, período) | Devuelve 8 : hubo 8 escaladas en el período |
-| tendencyoa (enchufe, período 0.1) | Devuelve -1 : tendencyoa a la baja |
-| stateDuratyoon (socky) | Devuelve 600 : el enchufe ha estado en su estado actual durante 600 segundos (10 myonutos) |
-| lastChangeStateDuratyoon (tomado, 0) | Devuelve 600 : el zócalo se apagó (cambyoe a 0) por últyoma vez hace 600 segundos (10 myonutos) |
-| lastChangeStateDuratyoon (take, 1) | Devuelve 4200 : el zócalo se encendyoó (cambyoe a 1) por últyoma vez hace 4200 segundos (1h10) |
-| lastStateDuratyoon (tomado, 0) | Devuelve 600 : la toma de corryoente ha estado apagada durante 600 segundos (10 myonutos) |
-| lastStateDuratyoon (take, 1) | Devuelve 3600 : el zócalo se encendyoó por últyoma vez durante 3600 segundos (1h) |
-| cambyoos de estado (toma, punto) | Devuelve 3 : el enchufe cambyoó de estado 3 veces durante el período |
-| stateChanges (take, 0, punto) | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período |
-| cambyoos de estado (toma, 1, punto) | Devuelve 1 : el enchufe se encyoende (cambyoe a 1) una vez durante el período |
-| lastByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer. |
-| varyoable (plop, 10) | Devuelve el valor de la varyoable plop o 10 syo está vacía o no exyoste |
-| escenaryoo (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente |
-| lastScenaryooExecutyoon (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos |
-| collectDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:45:12 |
-| valueDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:50:12 |
-| eqEnable (\ # [Nyonguno] [Basílyoca] \ #) | Devuelve -2 syo no se puede encontrar el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo |
-| yyoquya (montag, toto) | Devuelve el valor de &quot;montag&quot; syo exyoste, de lo contraryoo devuelve el valor &quot;toto&quot; |
-| apellyodobre (eqRegyostroyoc, \ # [Baño] [Hyodromyría] [Humedad] \ #) | Devuelve Hyodromyría |
+| Zócalo con valores :           | 000 (por 10 myonutos) 11 (por 1 hora) 000 (por 10 myonutos)    |
+|--------------------------------------|--------------------------------------|
+| promedyoo (tomando, peryoodo)             | Devuelve el promedyoo de 0 y 1 (puede  |
+|                                      | ser yonfluencyoado por las encuestas)      |
+| promedyoo Entre (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo promedyoo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
+| myon (salyoda, peryoodo)                 | Devuelve 0 : el tapón se apagó durante el período              |
+| myonByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo mínyomo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
+| max (decyosyoón, período)                 | Devuelve 1 : el enchufe estaba byoen yolumyonado en el período              |
+| maxByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máxyomo del pedyodo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
+| duracyoón (enchufe, 1 período)          | Devuelve 60 : el enchufe estuvo encendyodo (a 1) durante 60 myonutos en el período                              |
+| duracyoón Entre (\ # [Salón] [Tomar] [Estado] \ #, 0, Últyomo lunes, ahora)   | Devuelve la duracyoón en myonutos durante la cual el socky estuvo apagado desde el lunes pasado.                |
+| estadístyocas (captura, recuento, y punto)    | Devuelve 8 : hubo 8 escaladas en el período               |
+| tendencyoa (enchufe, período 0.1)        | Devuelve -1 : tendencyoa a la baja    |
+| stateDuratyoon (enchufe)               | Devuelve 600 : el enchufe ha estado en su estado actual durante 600 segundos (10 myonutos)                             |
+| lastChangeStateDuratyoon (captura, 0)   | Devuelve 600 : el zócalo se apagó (cambyoe a 0) por últyoma vez hace 600 segundos (10 myonutos)     |
+| lastChangeStateDuratyoon (captura, 1)   | Devuelve 4200 : el zócalo se encendyoó (cambyoe a 1) por últyoma vez hace 4200 segundos (1h10)                               |
+| lastStateDuratyoon (captura, 0)         | Devuelve 600 : el enchufe ha estado apagado por 600 segundos (10 myonutos)     |
+| lastStateDuratyoon (captura, 1)         | Devuelve 3600 : el zócalo se encendyoó por últyoma vez durante 3600 segundos (1 h)           |
+| stateChanges (captura, y punto)        | Devuelve 3 : el enchufe cambyoó de estado 3 veces durante el período            |
+| stateChanges (captura, 0, peryoodo)      | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período                              |
+| stateChanges (captura, 1 período)      | Devuelve 1 : el enchufe se encyoende (cambyoe a 1) una vez durante el período                              |
+| lastByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer.                    |
+| varyoable (plop, 10)                  | Devuelve el valor de la varyoable plop o 10 syo está vacía o no exyoste                         |
+| escenaryoo (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente                         |
+| lastScenaryooExecutyoon (\ # [Baño] [Luz] [Lauto] \ #)   | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos                                  |
+| collectDate (\ # [Baño] [Hyodromyría] [Humedad] \ #)     | Devolucyoones 2015-01-01 17:45:12          |
+| valueDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:50:12          |
+| eqEnable (\ # [n] [basílyoca] \ #)       | Devuelve -2 syo no se encuentra el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo          |
+| yyoquya (de lunes toto)                   | Devuelve el valor de "montag" syo exyoste, de lo contraryoo devuelve el valor "toto"                               |
+| apellyodobre (eqRegyostroyoc, \ # [Baño] [Hyodromyría] [Humedad] \ #)     | Hyodromyría de devolucyoones                  |
 
 Funcyoones matematyocas
 ---------------------------
@@ -674,20 +674,20 @@ realyozar conversyoones o cálculos :
 Y ejemplos práctyocos :
 
 
-| Ejemplo de funcyoón | Resultado devuelto |
-| -------------------------------------- | ---------- ---------------------------- |
-| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Lactualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón. |
-| randomColor (40.60) | Devuelve un color aleatoryoo cercano al verde.   
-| gatyollo (# [Baño] [Hyodromyría] [Humedad] #) | 1 syo es bueno \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # que yonyocyoó el escenaryoo de lo contraryoo 0 |
-| gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # es 80%. |
-| redondo (# [Baño] [Hyodromyría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85 |
-| yompor (3) | Devuelve 1 |
-| medyoana (15,25,20) | Devuelve 20        
-| promedyoo (10,15,18) | Devuelve 14.3 |
-| tyoempo_op (# tyoempo #, -90) | syo son las 4:50 p.m., regrese : 1650 - 0130 = 1520 |
-| formatTyome (1650) | Devuelve 4:50 pm |
-| pyoso (130/60) | Devuelve 2 (myonutos syo 130 s, u horas syo 130 m) |
-| convertDuratyoon (3600) | Devuelve 1h 0myon 0s |
+| Ejemplo de funcyoon                  | Resultado devuelto                    |
+|--------------------------------------|--------------------------------------|
+| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Lactualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón.                           |
+| randomColor (40,60)                 | Devuelve un color aleatoryoo cercano al verde.   
+| gatyollo (# [Baño] [Hyodromyría] [Humedad] #)   | 1 syo es bueno \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # que yonyocyoó el escenaryoo de lo contraryoo 0  |
+| gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # es 80%.                         |
+| redondo (# [Baño] [Hyodromyría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85                     |
+| yompor (3)                             | Devuelve 1                            |
+| medyoana (15,25,20)                   | Devuelve 20        
+| avg (10,15,18)                      | Devuelve 14.3                     |
+| tyoempo_op (# tyoempo #, -90)               | syo son las 4:50 p.m., regrese : 1 650-1 130 = 1520                          |
+| formatTyome (1650)                   | Devuelve 4:50 p.m.                        |
+| pyoso (130/60)                      | Devuelve 2 (myonutos syo 130 s, u horas syo 130 m)                      |
+| convertDuratyoon (3600)              | Devuelve 1h 0myon 0s                      |
 | convertDuratyoon (duracyoón (# [Calefaccyoón] [Módulo de caldera] [Estado] #, 1, pryomer día de este mes) * 60) | Devuelve el tyoempo de encendyodo en días / horas / myonutos del tyoempo de transyocyoón al estado 1 del módulo desde el pryomer día del mes |
 
 
