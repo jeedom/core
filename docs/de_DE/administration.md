@@ -84,7 +84,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 > **Spitze**
 >
-> Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
+> Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
 - **Erweiterte Verwaltung** : Dieser Teil wird je nach Kompatibilität mit Ihrer Hardware möglicherweise nicht angezeigt.
     Dort finden Sie die Dieiste Ihrer Netzwerkschnittstellen. Sie können Jeedom anweisen, das Netzwerk nicht zu überwachen, indem Sie auf klicken **Deaktivieren Sie die Jeedom-Netzwerkverwaltung** (Überprüfen Sie, ob Jeedom mit keinem Netzwerk verbunden ist.). Sie können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (nur für Docker-Installationen zu verwenden).
@@ -253,7 +253,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 - **Aktivieren Sie die Interaktionen "Benachrichtigen""** : Aktivieren Sie diese Option, um Typinteraktionen zu aktivieren **Dieassen Sie uns wissen**.
 - **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn der Satz mit diesen Wörtern beginnt, wird Jeedom versuchen, eine Interaktion des Typs herzustellen **Dieassen Sie uns wissen** (Sie können mehrere Wörter getrennt durch setzen **;** ).
 - **Standardrückgabebefehl** : Standardrückgabebefehl für Typinteraktion **Dieassen Sie uns wissen** (wird insbesondere verwendet, wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
-- **Synonym für Objekte** : Dieiste der Synonyme für Objekte (z : Erdgeschoss | Erdgeschoss | Keller | Erdgeschoss; Bad | Bad).
+- **Synonym für Objekte** : Dieiste der Synonyme für Objekte (z : Erdgeschoss|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
 - **Synonym für Ausrüstung** : Dieiste der Synonyme für Geräte.
 - **Synonym für Bestellungen** : Dieiste der Synonyme für Befehle.
 - **Synonym für Abstracts** : Dieiste der Synonyme für Zusammenfassungen.

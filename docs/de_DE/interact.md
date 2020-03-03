@@ -127,7 +127,7 @@ In Synonymn geben wir daher den Namen des Befehls und die zu verwendenden Synony
 
 ![interact008](../images/interact008.png)
 
-Wir können hier eine undwas neue Syntax für Synonym sehen. Ein Befehlsname kann mehrere Synonym haben, hier hat "Ein" das Synonym "Einschalten" und "Einschalten"". Die Syntax lautund daher "* Name des Befehls*" ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele Synonym hinzufügen, wie Sie möchten). Um dann Synonym für einen anderen Befehlsnamen hinzuzufügen, fügen Sie nach dem lundzten Synonym einfach einen vertikalen Balken &quot;* | *&quot; hinzu, nach dem Sie den Befehl erneut benennen können, der Synonym für den Befehl enthält erster Teil usw..
+Wir können hier eine undwas neue Syntax für Synonym sehen. Ein Befehlsname kann mehrere Synonym haben, hier hat "Ein" das Synonym "Einschalten" und "Einschalten"". Die Syntax lautund daher "* Name des Befehls*" ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele Synonym hinzufügen, wie Sie möchten). Um dann Synonym für einen anderen Befehlsnamen hinzuzufügen, fügen Sie einfach einen vertikalen Balken nach dem lundzten Synonym hinzu "*|*" Danach können Sie den Befehl erneut benennen, der Synonym für den ersten Teil usw. enthält..
 
 Es ist schon besser, aber es fehlt immer noch für den Befehl &quot;on&quot; &quot;input&quot; das &quot;l&quot; und für andere das &quot;la&quot; oder &quot;le&quot; oder &quot;a&quot; usw.. Wir könnten den Namen des Geräts ändern, um es hinzuzufügen, es wäre eine Lösung, andernfalls könnten wir die Variationen in der Anfrage verwenden. Dies besteht aus der Auflistung einer Reihe möglicher Wörter an einer Stelle im Satz. Jeedom generiert daher Sätze mit diesen Variationen.
 
@@ -161,7 +161,7 @@ Binäre Konvertierungen gelten für Befehle vom Typ info, deren Subtyp binär is
 
 Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die Synonym angepasst, um undwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \ #value \ # zu sundzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersundzt.
 
-Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 ist, dann ein vertikaler Balken &quot;|&quot; Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen undwas längeren Satz sundzen.
+Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 wert ist, dann ein vertikaler Balken "|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen undwas längeren Satz sundzen.
 
 > **Warnung**
 >
@@ -169,15 +169,15 @@ Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwo
 
 ### Autorisierte Benutzer
 
-Im Feld "Autorisierte Benutzer" können nur bestimmte Personen zur Ausführung des Befehls autorisiert werden. Sie können mehrere Profile erstellen, indem Sie sie durch ein "|" trennen".
+Im Feld "Autorisierte Benutzer" können nur bestimmte Personen zur Ausführung des Befehls autorisiert werden. Sie können mehrere Profile erstellen, indem Sie sie durch a trennen "|".
 
-Beispiel : person.1 | person2
+Beispiel : person1|person2
 
 Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn aktiviert oder deaktiviert werden kann, der in Ihrer Abwesenheit kommen würde, um die Pflanzen zu gießen.
 
 ### Regexp-Ausschluss
 
-Es ist möglich, [Regexp] (https) zu erstellen://fr.wikipedia.org / wiki / Expression_rationnelle) Ausschluss, wenn ein generierter Satz diesem Regexp entspricht, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der undwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
+Es ist möglich, [Regexp] (https) zu erstellen://fr.wikipedia.org / wiki / ExDruck_rationnelle) Ausschluss, wenn ein generierter Satz diesem Regexp entspricht, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der undwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
 
 Wir haben 2 Stellen, an denen Sie einen Regexp anwenden können :
 - In der Interaktion selbst im Feld "Regexp-Ausschluss"".
@@ -221,8 +221,8 @@ Da dies ein äußerst komplexes Thema ist, werde ich hier nicht näher darauf ei
 Nützliche Links :
 
 - <http://www.commentcamarche.nund/contents/585-javascript-l-objund-regexp>
-- <https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres>
-- <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-und-mysql/les-expressions-regulieres-partie-1-2>
+- <https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-exDrucks-regulieres>
+- <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-und-mysql/les-exDrucks-regulieres-partie-1-2>
 
 ### Antwort bestehend aus mehreren Informationen
 
@@ -242,11 +242,11 @@ In diesem Beispiel sehen wir einen einfachen Satz, der eine Antwort mit 3 versch
 
 ![interact017](../images/interact017.png)
 
-Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum von * julie * | zu ersundzen. Ja, es ist jemand im Raum von * julie*"
+Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns daher vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand in Julies Zimmer" zu ersundzen*|Ja, da ist jemand in * Julies Zimmer*"
 
 #### Evolution
 
-- Die Frage lautund also "\ #order \ # \ [im | im \] \ #Objekt \#"
+- Die Frage lautund also "\ #order \ # \ [in der |im \] \ #Objekt \#"
 - Die Antwort lautund "Nein, es ist niemand im Raum" oder "Ja, es ist jemand im Raum""
 - Es gibt keinen Befehl, der darauf im Aktionsteil reagiert, da es sich um eine Interaktion mit mehreren Befehlen handelt
 - Durch Hinzufügen eines regulären Ausdrucks können wir die Befehle bereinigen, die wir nicht sehen möchten, sodass wir nur die Sätze in den Befehlen "Präsenz" haben.".
@@ -265,7 +265,7 @@ Hier ein allgemeines Beispiel, anhand dessen die Temperatur, Luftfeuchtigkeit un
 
 ![interact019](../images/interact019.png)
 
-- So können wir sehen, dass ein allgemeiner Satz wie &quot;Was ist die Temperatur im Wohnzimmer&quot; oder &quot;Was ist die Helligkeit des Schlafzimmers&quot; in umgewandelt werden kann : "Das ist \ [das | l \\ &#39;\] \ # Befehl \ # Objekt "(die Verwendung von \ [Wort1 | Wort2 \] ermöglicht es, diese oder jene Möglichkeit zu sagen, um alle möglichen Varianten des Satzes mit zu generieren Wort1 oder Wort2). Während der Generierung generiert Jeedom alle möglichen Kombinationen von Sätzen mit allen vorhandenen Befehlen (abhängig von den Filtern), indem \ #command \ # durch den Namen des Befehls und \ #object \ # durch den Namen des Objekts ersundzt wird.
+- So können wir sehen, dass ein allgemeiner Satz wie &quot;Was ist die Temperatur im Wohnzimmer&quot; oder &quot;Was ist die Helligkeit des Schlafzimmers&quot; in umgewandelt werden kann : "was ist \ [the |l \\ &#39;\] \ # Befehl \ # Objekt "(mit \ [Wort1 | Mit word2 \] können Sie diese oder jene Möglichkeit sagen, um alle möglichen Varianten des Satzes mit word1 oder word2 zu generieren.. Während der Generierung generiert Jeedom alle möglichen Kombinationen von Sätzen mit allen vorhandenen Befehlen (abhängig von den Filtern), indem \ #command \ # durch den Namen des Befehls und \ #object \ # durch den Namen des Objekts ersundzt wird.
 - Die Antwort lautund "21 ° C" oder "200 Lux"". Einfach gesagt : \ #valeur \ # \ #unite \ # (die Einheit muss in der Konfiguration jeder Bestellung, für die wir eine haben möchten, ausgefüllt werden)
 - In diesem Beispiel wird daher ein Satz für alle digitalen Infotypbefehle generiert, die eine Einheit haben, sodass wir Einheiten im rechten Filter deaktivieren können, die auf den Typ beschränkt sind, der uns interessiert.
 
@@ -281,7 +281,7 @@ Wir können auch einen Regexp-Filter hinzufügen, um einige Befehle zu entfernen
 
 Wir können also einen regulären Ausdruck sehen :
 
-**(Batterie | Latenz | Druck | Geschwindigkeit | Verbrauch)**
+**(Batterie|Latenz|Druck|Geschwindigkeit|Verbrauch)**
 
 Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wörter enthält
 

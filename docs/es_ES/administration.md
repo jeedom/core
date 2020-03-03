@@ -84,7 +84,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 > **Punta**
 >
-> Para saber si necesita establecer un valor en el campo **complementar**, mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (o lo que sea) después de la IP.
+> Para saber si necesita establecer un valor en el campo **Complementar**, mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (o lo que sea) después de la IP.
 
 - **Gestión avanzada** : Esta parte puede no aparecer, dependiendo de la compatibilidad con su hardware.
     Allí encontrará la lista de sus interfaces de red.. Puede decirle a Jeedom que no monitoree la red haciendo clic en **deshabilitar la administración de la red Jeedom** (verifique si Jeedom no está conectado a ninguna red). También puede especificar el rango de ip local en la forma 192.168.1.* (para usarse solo en instalaciones de tipo acoplable).
@@ -253,7 +253,7 @@ Aquí están las diferentes opciones disponibles. :
 - **Activa las interacciones "Notificarme""** : Marque para habilitar las interacciones de tipo **Avísame**.
 - **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la oración comienza con esta (s) palabra (s) entonces Jeedom buscará hacer una interacción del tipo **Avísame** (puedes poner varias palabras separadas por **;** ).
 - **Comando de retorno predeterminado** : Comando de retorno predeterminado para la interacción de tipo **Avísame** (utilizado, en particular, si ha programado la alerta a través de la interfaz móvil)
-- **Sinónimo de objetos** : Laista de sinónimos para objetos (ej. : planta baja | planta baja | sótano | planta baja; baño | baño).
+- **Sinónimo de objetos** : Laista de sinónimos para objetos (ej. : planta baja|planta baja|bajo tierra|bajo; sdb|cuarto de baño).
 - **Sinónimo de equipamiento** : Laista de sinónimos para equipos.
 - **Sinónimo de pedidos** : Laista de sinónimos para comandos.
 - **Sinónimo de resúmenes** : Laista de sinónimos para resúmenes.

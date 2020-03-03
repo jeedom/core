@@ -664,6 +664,7 @@ a.ui-slider-handle {
 select option {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color));
+  font-family: 'Roboto', 'Verdana';
 }
 
 

@@ -50,6 +50,11 @@ Cambios
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
 
+4.0.43
+=====
+
+- Traducciones mejoradas.
+- Corrección de errores en plantillas de escenarios..
 
 4.0.0
 =====

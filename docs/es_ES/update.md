@@ -40,7 +40,7 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 
 ## Pestañas Core y Plugins
 
-La tabla contiene las versiónes de Core y los complementos instalados..
+La tabla contiene las Versiónes de Core y los complementos instalados..
 
 Los complementos tienen una insignia al lado de su nombre, especificando su versión, verde en * estable *, o naranja en * beta * u otro.
 
@@ -84,11 +84,11 @@ Una vez conectado, este es el comando para realizar :
 Los posibles parámetros son :
 
 - **modo** : `force`, pour lancer une mise à jour en modo forcé (ne tient pas compte des erreurs).
-- **versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
+- **Versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :
 
-```sudo php  /var/www/html/install/update.php modo=force versión=4.0.04```
+```sudo php  /var/www/html/install/update.php modo=force Versión=4.0.04```
 
 Atención, después de una actualización en la línea de comando, es necesario volver a aplicar los derechos en la carpeta Jeedom :
 
