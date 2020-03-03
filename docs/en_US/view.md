@@ -104,7 +104,7 @@ Once done you have access to the following options :
 
 -   **Color** : color of the curve
 
--   **Vérifier dans la page Santé que la configuration réseau interne du** : curve type
+-   **Type** : curve type
 
 -   **Group** : allows grouping of data (maximum type
     per day)

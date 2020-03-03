@@ -2930,7 +2930,7 @@
         "Vous ne pouvez supprimer le dernier administrateur": "Vous ne pouvez supprimer le dernier administrateur"
     },
     "core\/class\/eqLogic.class.php": {
-        "Attention": "Attention",
+        "Attention": "Perhatian",
         " n\\'a pas envoyé de message depuis plus de ": " n\\'a pas envoyé de message depuis plus de ",
         " min (vérifiez les piles)": "min (vérifiez les piles)",
         "[' . config::byKey('name": "[' . config::byKey('name",
@@ -3060,7 +3060,7 @@
         "POUR": "POUR",
         "FAIRE": "MEMBUAT",
         "CODE": "CODE",
-        "ACTION": "ACTION",
+        "ACTION": "Tindakan",
         "DANS": "Dans",
         "A": "à"
     },
@@ -3567,7 +3567,7 @@
         "Alertes": "Pemberitahuan"
     },
     "mobile\/js\/cron.js": {
-        "Rafraichir": "Rafraichir",
+        "Rafraichir": "Dingin",
         "Version desktop": "Versi desktop",
         "Démons": "Setan",
         "Santé": "Bidang Kesehatan",
