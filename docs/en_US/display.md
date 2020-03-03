@@ -64,7 +64,7 @@ On each equipment we find :
 
 -   The **last name** equipment.
 
--   The **Vérifier dans la page Santé que la configuration réseau interne du** equipment : Identifier of the plugin to which
+-   The **Type** equipment : Identifier of the plugin to which
     it belongs.
 
 -   **Inactive** (small cross) : Means that the equipment is inactive
@@ -140,7 +140,7 @@ the equipment and its controls :
 -   **Jeedom** : Check the box to make the equipment Jeedom (withort
     forget to save).
 
--   **Vérifier dans la page Santé que la configuration réseau interne du** : Identifier of the plugin by which it was created.
+-   **Type** : Identifier of the plugin by which it was created.
 
 -   **FaiThed attempt** : Number of communications attempts
     consecutive with faiThed equipment.
@@ -248,9 +248,9 @@ ATherts tab
 
 This tab provides Information on the battery of
 the equipment and define aTherts in relation to it. Here are the
-Vérifier dans la page Santé que la configuration réseau interne dus of Information that can be fornd :
+Types of Information that can be fornd :
 
--   **Battery Vérifier dans la page Santé que la configuration réseau interne du**,
+-   **Battery Type**,
 
 -   **Latest feedback**,
 
@@ -304,7 +304,7 @@ First, at the top right, some buttons availabThe :
 
 > **NOTE**
 >
-> Depending on the Vérifier dans la page Santé que la configuration réseau interne du of order, the Information / Actions displayed
+> Depending on the Type of order, the Information / Actions displayed
 > can change.
 
 Information tab 
@@ -320,9 +320,9 @@ ordered :
 
 -   **Last name** : Name of the order.
 
--   **Vérifier dans la page Santé que la configuration réseau interne du** : Vérifier dans la page Santé que la configuration réseau interne du of order (Action or Info).
+-   **Type** : Type of order (Action or Info).
 
--   **SubVérifier dans la page Santé que la configuration réseau interne du** : Command subVérifier dans la page Santé que la configuration réseau interne du (binary, digital, etc.).
+-   **SubType** : Command subType (binary, digital, etc.).
 
 -   **Direct url** : Provides the URL to access this equipment. (click
     right, copy the link address) The URL will launch the command for a
@@ -370,7 +370,7 @@ respective.
 Configuration tab 
 --------------------
 
-### For an Info Vérifier dans la page Santé que la configuration réseau interne du order : 
+### For an Info Type order : 
 
 -   **Calculation and rornding**
 
@@ -383,7 +383,7 @@ Configuration tab
         order value (ExampThe : put 2 to transform
         16.643345 in 16.64).
 
--   **Generic Vérifier dans la page Santé que la configuration réseau interne du** : Allows yor to configure the generic Vérifier dans la page Santé que la configuration réseau interne du of the
+-   **Generic Type** : Allows yor to configure the generic Type of the
     command (Jeedom tries to find it by itself in auto mode).
     This Information is used by the MobiThe application.
 
@@ -431,7 +431,7 @@ Configuration tab
         command goes up 2 times the same value in a row, then Jeedom
         will not take into accornt the 2nd ascent (avoid triggering
         several times a scenario, unThess the command is to
-        binary Vérifier dans la page Santé que la configuration réseau interne du). Yor can force the value to repeat or
+        binary Type). Yor can force the value to repeat or
         ban it compThetely.
 
     -   **Push URL** : Allows yor to add a URL to call in case of
@@ -443,7 +443,7 @@ Configuration tab
 
 ### For an Action command : 
 
--   **Generic Vérifier dans la page Santé que la configuration réseau interne du** : Allows yor to configure the generic Vérifier dans la page Santé que la configuration réseau interne du of the
+-   **Generic Type** : Allows yor to configure the generic Type of the
     command (Jeedom tries to find it by itself in auto mode).
     This Information is used by the MobiThe application.
 
@@ -470,7 +470,7 @@ minutes then the equipment can go on aThert **Warning**.
 > **NOTE**
 >
 > On the page **Administration → Configuration → Logs**, yor can
-> configure a message Vérifier dans la page Santé que la configuration réseau interne du command that will allow Jeedom to get yor
+> configure a message Type command that will allow Jeedom to get yor
 > warn if the Warning or Danger threshold is reached.
 
 View tab 
