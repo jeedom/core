@@ -37,7 +37,7 @@ try {
 		echo "[END INSTALL]\n";
 		die();
 	}
-	echo "****Install jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "****Install jeedom at (" . date('Y-m-d H:i:s') . ")****\n";
 	/*         * ***************************INSTALLATION************************** */
 	if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 		throw new Exception('Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')');
