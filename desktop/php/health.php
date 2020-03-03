@@ -189,7 +189,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom">
 					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de Jeedom}}</span>
 				</a>
-				<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="Benchmark Jeedom"></i>
+				<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="{{Benchmark Jeedom}}"></i>
 			</h3>
 		</div>
 		<div id="health_jeedom" class="panel-collapse collapse in" aria-expanded="true">
