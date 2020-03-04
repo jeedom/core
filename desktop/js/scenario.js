@@ -1794,7 +1794,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     retour += '<div>';
-    retour += '<legend >{{A (Hmm)}}</legend>';
+    retour += '<legend >{{A}}</legend><span>(Hmm)</span>';
     retour += '</div>';
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
