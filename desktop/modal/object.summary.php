@@ -14,7 +14,7 @@ if (!isConnect()) {
 			<th data-sorter="false" data-filter="false">{{Visible}}</th>
 			<th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur le Dashboard}}</th>
 			<th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur la Synthèse}}</th>
-			<th data-sorter="false" data-filter="false">{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="Si grisé, alors il n'est pas remonté en résumé global"></i></sup></th>
+			<th data-sorter="false" data-filter="false">{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="{{Si grisé, alors il n'est pas remonté en résumé global}}"></i></sup></th>
 			<th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Dashboard masqué}}</th>
 			<th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Mobile masqué}}</th>
 		</tr>

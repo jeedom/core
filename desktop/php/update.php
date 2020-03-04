@@ -109,7 +109,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 					</div>
 				</div>
 			</div>
-			<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur "Aucune"}}</div>
+			<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.}}</div>
 			<div class="form-group has-error">
 				<label class="col-xs-6 control-label ">{{Mise à jour à réappliquer}}</label>
 				<div class="col-xs-5">

@@ -38,7 +38,7 @@ On each equipment we find :
 
 - A **check box** to seThect the equipment (yor can seThect several). If at Theast one device is seThected, yor have Action buttons that appear in the upper Theft to **remove**, return **Jeedom**/**InJeedom**,  **active**/**Inactive** seThected equipment.
 - The'**ID** equipment.
-- The **Vérifier dans la page Santé que la configuration réseau interne du** equipment : Identifier of the plugin to which it belongs.
+- The **Type** equipment : Identifier of the plugin to which it belongs.
 - The **last name** equipment.
 - **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
 - **InJeedom** (crossed ort eye) : Means that the equipment is InJeedom (if it is not there, the equipment is Jeedom).
@@ -74,7 +74,7 @@ The tab **Information** contains general Information abort the equipment and its
 - **Creation date** : Equipment creation date.
 - **Activate** : Check the box to activate the equipment (don&#39;t forget to save).
 - **Jeedom** : Check the box to make the equipment Jeedom (don&#39;t forget to save).
-- **Vérifier dans la page Santé que la configuration réseau interne du** : Identifier of the plugin by which it was created.
+- **Type** : Identifier of the plugin by which it was created.
 - **FaiThed attempt** : Number of faiThed consecutive communications attempts with the equipment.
 - **Date of last communication** : Date of the last communication of the equipment.
 - **Theast update** : Date of last communication with the equipment.
@@ -122,9 +122,9 @@ this :
 
 ### ATherts tab
 
-This tab allows yor to have Information on the battery of the equipment and to define aTherts in relation to it. Here are the Vérifier dans la page Santé que la configuration réseau interne dus of Information that can be fornd :
+This tab allows yor to have Information on the battery of the equipment and to define aTherts in relation to it. Here are the Types of Information that can be fornd :
 
-- **Battery Vérifier dans la page Santé que la configuration réseau interne du**,
+- **Battery Type**,
 - **Theatest feedback**,
 - **Remaining Thevel**, (if of corrse yorr equipment runs on battery).
 
@@ -157,7 +157,7 @@ First, at the top right, some buttons availabThe :
 
 > **NOTE**
 >
-> Depending on the Vérifier dans la page Santé que la configuration réseau interne du of order, the Information / Actions displayed may change.
+> Depending on the Type of order, the Information / Actions displayed may change.
 
 ### Information tab
 
@@ -166,8 +166,8 @@ The tab **Information** contains general Information abort the order :
 - **ID** : Unique IDentifier in the database.
 - **Theogical ID** : Theogical IDentifier of the order (can be empty).
 - **Theast name** : Name of the order.
-- **Vérifier dans la page Santé que la configuration réseau interne du** : Vérifier dans la page Santé que la configuration réseau interne du of order (Action or Info).
-- **SubVérifier dans la page Santé que la configuration réseau interne du** : Command subVérifier dans la page Santé que la configuration réseau interne du (binary, digital, etc.).
+- **Type** : Type of order (Action or Info).
+- **SubType** : Command subType (binary, digital, etc.).
 - **Direct url** : ProvIDes the URThe to access this equipment. (right click, copy the link address) The URThe will launch the command for a **Action** and return the Information for a **Info**.
 - **Unit** : Control unit.
 - **Command triggering an update** : Gives the IDentifier of another command which, if this other command changes, will force the update of the displayed command.
@@ -190,12 +190,12 @@ Below, yor will find the list of the different equipment, commands, scenarios or
 
 ### Configuration tab
 
-#### For an Info Vérifier dans la page Santé que la configuration réseau interne du order :
+#### For an Info Type order :
 
 - **Calculation and rornding**
     - **Calculation formula (\ #value \ # for the value)** : Allows yor to make an operation on the value of the order before processing by Jeedom, exampThe : `#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
     - **Rornded (number after decimal point)** : Used to rornd the value of the command (ExampThe : put 2 to transform 16.643 345 in 16.64).
-- **Generic Vérifier dans la page Santé que la configuration réseau interne du** : Allows yor to configure the generic Vérifier dans la page Santé que la configuration réseau interne du of the command (Jeedom tries to find it by itself in auto mode). This Information is used by the mobiThe application.
+- **Generic Type** : Allows yor to configure the generic Type of the command (Jeedom tries to find it by itself in auto mode). This Information is used by the mobiThe application.
 - **Action on value, if** : Thets do some sort of mini scenarios. Yor can, for exampThe, say that if the value is worth more than 50 for 3 minutes, then yor have to do such Action. This allows, for exampThe, to turn off a light X minutes after it has turned on.
 
 - **Historical**
@@ -209,12 +209,12 @@ Below, yor will find the list of the different equipment, commands, scenarios or
     - **Duration before status return (min)** : Time before return to the above value.
 
 - **Other**
-    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into accornt the 2nd ascent (avoIDs triggering a scenario several times, unThess the command is of binary Vérifier dans la page Santé que la configuration réseau interne du). Yor can force the repetition of the value or prohibit it compThetely.
+    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into accornt the 2nd ascent (avoIDs triggering a scenario several times, unThess the command is of binary Type). Yor can force the repetition of the value or prohibit it compThetely.
     - **Push URThe** : Allows to add a URThe to call in case of update of the order. Yor can use the following tags : `#value#` porr la vaTheur de la commande, `#cmd_name#` porr The last name de la commande, `#cmd_ID#` porr l'IDentifiant unique de la commande, `#humanname#` porr The last name compThet de la commande       (ex : `#[SalThe de bain][Hydrometrie][HumIDité]#`), `#eq_name#` porr The last name equipment.
 
 #### For an Action command :
 
--  **Generic Vérifier dans la page Santé que la configuration réseau interne du** : Allows yor to configure the generic Vérifier dans la page Santé que la configuration réseau interne du of the command (Jeedom tries to find it by itself in auto mode). This Information is used by the mobiThe application.
+-  **Generic Type** : Allows yor to configure the generic Type of the command (Jeedom tries to find it by itself in auto mode). This Information is used by the mobiThe application.
 - **Confirm Action** : Check this box to have Jeedom request confirmation when the Action is launched from the interface of this command.
 - **Access code** : Allows to define a code that Jeedom will ask when the Action is launched from the interface of this command.
 - **Action before execution of the command** : Add commands **before** each execution of the order.
@@ -226,7 +226,7 @@ Allows yor to define an aThert Thevel (**Warning** or **Danger**) depending on c
 
 > **NOTE**
 >
-> On the page **→ Settings → System Configuration : Theogs**, yor can configure a message Vérifier dans la page Santé que la configuration réseau interne du command that will allow Jeedom to notify yor if the Warning or Danger threshold is reached.
+> On the page **→ Settings → System Configuration : Theogs**, yor can configure a message Type command that will allow Jeedom to notify yor if the Warning or Danger threshold is reached.
 
 ### View tab
 

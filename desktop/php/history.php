@@ -18,7 +18,7 @@ $date = array(
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
 		<br/>
-		
+
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -72,7 +72,7 @@ $date = array(
 					?>
 				</ul>
 			</div>
-			
+
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-3 col-sm-12 center">
@@ -121,7 +121,7 @@ $date = array(
 						</center>
 					</div>
 					<div class="col-lg-2 col-sm-12">
-						<a class="btn btn-warning pull-right" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
+						<a class="btn btn-warning pull-right" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >
 							<i class="fas fa-times"></i> {{Affichage}}
 						</a>
 					</div>
@@ -159,7 +159,7 @@ $date = array(
 			<tbody>
 			</tbody>
 		</table>
-		
+
 	</div>
 </div>
 

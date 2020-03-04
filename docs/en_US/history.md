@@ -56,7 +56,7 @@ You can also display the graphs on the views (we will see here the configuration
 
 Once a data is activated, you can choose :
 - **Color** : The color of the curve.
-- **Vérifier dans la page Santé que la configuration réseau interne du** : The type of graph (area, row or column).
+- **Type** : The type of graph (area, row or column).
 - **Ladder** : Since you can put several curves (data) on the same graph, it is possible to distinguish the scales (right or left).
 - **Staircase** : Displays the curve as a staircase or a continuous display.
 - **Stack** : Used to stack the values of the curves (see below for the result).
