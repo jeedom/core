@@ -94,15 +94,15 @@ class translate {
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
 		foreach ($matches[1] as $text) {
 			if (trim($text) == '') {
-				$replace["{{" . $text . "}}"] = $text;
+				$replace['{{' . $text . '}}'] = $text;
 			}
 			if (isset($translate[$_name]) && isset($translate[$_name][$text])) {
-				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][$text],'##');
+				$replace['{{' . $text . '}}'] = ltrim($translate[$_name][$text],'##');
 			}
-			if (!isset($replace["{{" . $text . "}}"]) && isset($translate['common']) && isset($translate['common'][$text])) {
-				$replace["{{" . $text . "}}"] = $translate['common'][$text];
+			if (!isset($replace['{{' . $text . '}}']) && isset($translate['common']) && isset($translate['common'][$text])) {
+				$replace['{{' . $text . '}}'] = $translate['common'][$text];
 			}
-			if (!isset($replace["{{" . $text . "}}"])) {
+			if (!isset($replace['{{' . $text . '}}'])) {
 				if (strpos($_name, '#') === false) {
 					if (!isset($translate[$_name])) {
 						$translate[$_name] = array();
@@ -110,11 +110,11 @@ class translate {
 					$translate[$_name][$text] = $text;
 				}
 			}
-			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace["{{" . $text . "}}"]));
+			if ($_backslash && isset($replace['{{' . $text . '}}'])) {
+				$replace['{{' . $text . '}}'] = str_replace("'", "\'", str_replace("\'", "'", $replace['{{' . $text . '}}']));
 			}
-			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = $text;
+			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace['{{' . $text . '}}'])) {
+				$replace['{{' . $text . '}}'] = $text;
 			}
 		}
 		return str_replace(array_keys($replace), $replace, $_content);
