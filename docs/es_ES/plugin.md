@@ -69,7 +69,7 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 ### A continuación, hay un área de funcionalidad. Esto le permite ver si el complemento utiliza una de las funciones principales de Jeedom, como :
 
-- **Interactuar** : Interacciones específicas.
+- **Interact** : Interacciones específicas.
 - **Cron** : Un cron por minuto.
 - **Cron5** : Un cron cada 5 minutos..
 - **Cron10** : Un cron cada 10 minutos..
