@@ -582,7 +582,7 @@ Objekte :
 Dieogs 
 ====
 
-Timeline 
+Zeitleiste 
 --------
 
 -   **Maximale Anzahl von Ereignissen** : Dieegt die maximale Anzahl auf fist

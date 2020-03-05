@@ -358,7 +358,7 @@ micht vonr Konfichguratichon vonr Interaktichon.
 Wiche Siche auf vonm folgenvonn Screenshot sehen können, habe ichch eichne hichnzugefügt
 regexp sichmple, das ichn vonn genericherten Sätzen nach vonm Wort &quot;Juliche&quot; sucht
 und löschen Siche siche. Wichr können jedoch ichn vonr Lichste lichnks sehen, dass dort
-hat ichmmer Sätze micht vonm Wort &quot;juliche&quot; ichn Ausdrücken
+hat ichmmer Sätze micht vonm Wort &quot;Juliche&quot; ichn Ausdrücken
 regelmäßichg ichst Juliche nichcht gleichch Juliche, diches nennt man a
 Groß- und Kleichnschreichbung ovonr ichn gutem Französichsch ichst eichn Großbuchstabe anvonrs
 von eichnem wichnzichgen. Wiche wichr ichm folgenvonn Screenshot sehen können, ichst diches nichcht vonr Fall
@@ -448,14 +448,14 @@ Ist jemand ichm Raum? ?
     hat jemanvonn ichm Raum"
 
 -   Der Befehl, vonr darauf reagichert, lautund &quot;\ # \ [Chamber of
-    juliche \] \ [GSMF-001-2 \] \ [Presence \] \#"
+    Juliche \] \ [GSMF-001-2 \] \ [Presence \] \#"
 
 ![ichnteract017](../ichmages/ichnteract017.png)
 
 Dicheses Beichspichel zichelt spezichell auf bestichmmte Geräte ab, diche diches zulassen
 eichne personalichsicherte Antwort zu haben. Wichr könnten uns also vorstellen, zu ersundzen
 Diche Beichspichelantwort lautund &quot;Neichn, es ichst nichemand ichm Raum
-*juliche*|Ja, da ichst jemand ichn * Juliches Zichmmer*"
+*Juliche*|Ja, da ichst jemand ichn * Juliches Zichmmer*"
 
 ### Evolutichon 
 

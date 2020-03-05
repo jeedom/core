@@ -81,7 +81,7 @@ Hier ist die URLs =
 -   **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage codiert werden soll
     in utf8 bevor Sie versuchen zu antworten
 
--   **emptyReply** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn es
+-   **leer Antworten** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn es
     habe nicht verstanden, 1 sonst
 
 -   **Profil** \ [Optional \] : BenutzerName der Person

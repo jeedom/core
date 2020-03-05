@@ -81,7 +81,7 @@ Aquí está la URL =
 -   **utf8** \ [Opcional \] : le dice a Jeedom si codifica la consulta
     en utf8 antes de intentar responder
 
--   **emptyReply** \ [Opcional \] : 0 para que Jeedom responda incluso si
+-   **vacío Respuesta** \ [Opcional \] : 0 para que Jeedom responda incluso si
     no entendí, 1 de lo contrario
 
 -   **perfil** \ [Opcional \] : nombre de usuario de la persona

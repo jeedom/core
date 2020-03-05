@@ -298,7 +298,7 @@ Settings:
 -   \ [options \] List of command options (depends on type and
     command subtype)
 
-cmd::getStatistique
+cmd::getStatistics
 -------------------
 
 Returns statistics on the order (only works on

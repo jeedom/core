@@ -298,7 +298,7 @@ Einstellungen:
 -   \ [Optionen \] Liste der Befehlsoptionen (abhängig von Typ und
     Befehlssubtyp)
 
-cmd::getStatistique
+cmd::bekommenStatistics
 -------------------
 
 Gibt Statistiken zur Bestellung zurück (funktioniert nur bei
@@ -312,7 +312,7 @@ Einstellungen:
 
 -   Zeichenfolge endTime : Enddatum der Statistikberechnung
 
-cmd::getTendance
+cmd::bekommenTendance
 ----------------
 
 Gibt den Trend für den Befehl zurück (funktioniert nur für die Befehle von
@@ -326,7 +326,7 @@ Einstellungen:
 
 -   Zeichenfolge endTime : Enddatum der Trendberechnung
 
-cmd::getHistory
+cmd::bekommenHistory
 ---------------
 
 Gibt den Befehlsverlauf zurück (funktioniert nur mit den Befehlen von
@@ -447,7 +447,7 @@ Einstellungen:
 JSON-Protokoll-API
 ============
 
-Protokoll::get
+Protokoll::bekommen
 --------
 
 Ermöglicht das Wiederherstellen eines Protokolls
@@ -584,7 +584,7 @@ Jeedom::Sicherungskopie
 
 Ermöglicht das Starten eines Backups von Jeedom
 
-Jeedom::getUsbMapKlingeln
+Jeedom::bekommenUsbMapKlingeln
 ---------------------
 
 Liste der USB-Anschlüsse und Namen der daran angeschlossenen USB-Sticks
@@ -610,7 +610,7 @@ Einstellungen:
 
 -   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
-Plugin::dependancyInfo
+Plugin::AbhängigkeitInfo
 ----------------------
 
 Gibt Informationen zum Status von Plugin-Abhängigkeiten zurück
@@ -619,7 +619,7 @@ Einstellungen:
 
 -   String-Plugin \ _id : Plugin Name (Protokollischer Name)
 
-Plugin::dependancyInstalle
+Plugin::AbhängigkeitInstalleieren
 -------------------------
 
 Erzwingen Sie die Installeation von Plugin-Abhängigkeiten
@@ -724,9 +724,9 @@ Abrufen der ObjektListee :
 ``` {.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::alle &#39;, array ())){
-    print_r ($ jsonrpc-&gt; getResult ());
+    print_r ($ jsonrpc-&gt; bekommenResult ());
 }sonst{
-    echo $ jsonrpc-&gt; getError ();
+    echo $ jsonrpc-&gt; bekommenError ();
 }
 ```
 
@@ -737,7 +737,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
     Echo &#39;OK&#39;;
 }sonst{
-    echo $ jsonrpc-&gt; getError ();
+    echo $ jsonrpc-&gt; bekommenError ();
 }
 ```
 

@@ -573,7 +573,7 @@
     um das Widgund zu bekommen
 
 -   Die globale Zusammenfassung und Teile werden jundzt ohne Berufung aktualisiert
-    ajax
+    Ajax
 
 -   Ein Klick auf ein Element einer Zusammenfassung der Hausautomation bringt Sie zu einer Ansicht
     dundailliert davon

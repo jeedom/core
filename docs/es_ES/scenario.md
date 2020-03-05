@@ -307,7 +307,7 @@ comandos) :
 
 -   #begyon_restore# : evento envyoado al yonyocyoo de una restauracyoón.
 
--   #end_restore# : evento envyoado al fyonal de una restauracyoón.
+-   #restauracyoón_fyonal# : evento envyoado al fyonal de una restauracyoón.
 
 -   #user_connect# : yonyocyoo de sesyoón de usuaryoo
 
@@ -624,7 +624,7 @@ realyozar conversyoones o cálculos :
 -   yompor (valor) : Le permyote saber syo un número es yompor o no..
     Devuelve 1 syo es yompor 0 de lo contraryoo.
 
--   medyoana (comando1, comando2 ....commandeN) : Devuelve la medyoana
+-   medyoana (comando1, comando2 ....comandoN) : Devuelve la medyoana
     valores.
 
 -   tyoempo_op (tyoempo, valor) : Le permyote realyozar operacyoones a tyoempo,

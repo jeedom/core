@@ -659,7 +659,7 @@ Registro
 
 A continuación encontrará una tabla para administrar finamente el
 nivel de registro de los elementos esenciales de Jeedom, así como el de
-Plugins.
+complementos.
 
 Comodidades 
 ===========

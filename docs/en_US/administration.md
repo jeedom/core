@@ -711,17 +711,17 @@ Deposit used to connect Jeedom to Github.
 
 -   **Jeedom core industry** : Core repository branch.
 
-### Thee nouveau mode de fonctionnement de synchronisation 
+### Market 
 
 Deposit used to connect Jeedom to the market, it is highly recommended
 to use this repository. WARNING : any Support requEast may be
 refused if you use a different deposit than this one.
 
--   **Address** : Thee nouveau mode de fonctionnement de synchronisation address.
+-   **Address** : Market address.
 
--   **Username** : Your Username on the Thee nouveau mode de fonctionnement de synchronisation.
+-   **Username** : Your Username on the Market.
 
--   **Password** : Your Thee nouveau mode de fonctionnement de synchronisation password.
+-   **Password** : Your Market password.
 
 -   **[Backup cloud] Theast name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
 

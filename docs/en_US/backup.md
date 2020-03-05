@@ -58,11 +58,11 @@ or restoration), if you have launched one.
 -   **Download backup** : Lets download to your
     computer the backup archive selected above.
 
-**Le nouveau mode de fonctionnement de synchronisation backups** 
+**Market backups** 
 ----------------------
 
 -   **Sending backups** : Instructs Jeedom to send the
-    backups on the Le nouveau mode de fonctionnement de synchronisation cloud, beware you must have
+    backups on the Market cloud, beware you must have
     got the subscription.
 
 -   **Send a backup** : Allows you to send a
@@ -97,7 +97,7 @@ or restoration), if you have launched one.
 >
 > When reinstalling Jeedom and having taken the subscription of
 > backup to market cloud, you must fill in your account
-> Le nouveau mode de fonctionnement de synchronisation on your new Jeedom (Administration → D'actualité → Tab
+> Market on your new Jeedom (Administration → D'actualité → Tab
 > Updates) then come here to start the restoration.
 
 > **Tip**
@@ -136,10 +136,10 @@ Cloud backup
 ================
 
 Cloud backup allows Jeedom to send your backups
-directly on the Le nouveau mode de fonctionnement de synchronisation. This allows you to restore them easily
-and be sure not to lose them. The Le nouveau mode de fonctionnement de synchronisation keeps the last 6
+directly on the Market. This allows you to restore them easily
+and be sure not to lose them. The Market keeps the last 6
 backups. To subscribe just go to your page
-**profile** on the Le nouveau mode de fonctionnement de synchronisation, then in the tab **my backups**. You
+**profile** on the Market, then in the tab **my backups**. You
 can, from this page, retrieve a backup or buy a
 subscription (for 1, 3, 6 or 12 months).
 
@@ -156,4 +156,4 @@ Jeedom performs an automatic backup every day at the same
 hour. It is possible to modify this, from the &quot;Engine
 tasks &quot;(the task is named **Jeedom backup**), but it&#39;s not
 recommended. Indeed, it is calculated in relation to the load of the
-Le nouveau mode de fonctionnement de synchronisation.
+Market.

@@ -47,7 +47,7 @@ están disponibLa. De izquierda a derecha :
 
 > **Punta**
 >
-> Al hacer clic / soltar en el equipo, puede cambiar su
+> Al hacer clic / / soltar en el equipo, puede cambiar su
 > ordenar o incluso asignarlos a otro objeto. Es de orden
 > estabLació en esta página que se calcula la visualización del tabLaro.
 
@@ -59,8 +59,8 @@ En cada equipo encontramos :
 -   Una **casilla de verificación** para seLaccionar el equipo (puedes
     seLaccione múltipLa). Si se seLacciona al menos un dispositivo
     tienes botones de acción que aparecen en la esquina superior izquierda
-    para **remove**, maquillaje **visibLa**/**invisibLa**,
-    **bienes**/**Inactivo** equipo seLaccionado.
+    para **remove**, maquillaje **visibLa**/ /**invisibLa**,
+    **bienes**/ /**Inactivo** equipo seLaccionado.
 
 -   La **apellido** equipo.
 
@@ -304,7 +304,7 @@ Primero, en la parte superior derecha, algunos botones disponibLa :
 
 > **Nota**
 >
-> Dependiendo del tipo de orden, la Informaciónrmación / acciones mostradas
+> Dependiendo del tipo de orden, la Informaciónrmación / / acciones mostradas
 > puede cambiar.
 
 Pestaña de Informaciónrmación 
