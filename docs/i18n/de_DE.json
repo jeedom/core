@@ -3544,7 +3544,7 @@
         "Dans ce cas, il faut se référer à la documentation du plugin en question pour savoir comment le configurer": "In diesem Fall finden Sie Informationen zur Konfiguration des betreffenden Plugins in der Dokumentation",
         "En dessous, on retrouve une zone fonctionnalités": "Unten befindet sich ein Funktionsbereich",
         "Celle-ci permet de voir si le plugin utilise une des fonctions core Jeedom tel que": "Auf diese Weise können Sie feststellen, ob das Plugin eine der Jeedom-Kernfunktionen verwendet, z",
-        "Interact": "Interagiere",
+        "Interact": "Interact",
         "Des interactions spécifiques": "Spezifische Wechselwirkungen",
         "Cron": "Cron",
         "Un cron à la minute": "Ein Cron pro Minute",
