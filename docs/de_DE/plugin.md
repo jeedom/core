@@ -114,7 +114,7 @@ Dämon :
 Unten befindet sich ein Funktionsbereich. Dies ermöglicht es Ihnen zu sehen
 wenn das Plugin eine der Jeedom-Kernfunktionen verwendet, wie z :
 
--   **Interagiere** : spezifische Wechselwirkungen
+-   **Interact** : spezifische Wechselwirkungen
 
 -   **Cron** : ein Cron pro Minute
 
