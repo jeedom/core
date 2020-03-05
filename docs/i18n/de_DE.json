@@ -436,7 +436,7 @@
         "la phrase commence par le mot que vous renseignez ici, Jeedom va": "Der Satz beginnt mit dem Wort, das Sie hier eingeben. Jeedom wird es tun",
         "alors prioritiser une réponse contextuelle (vous pouvez mettre": "Priorisieren Sie dann eine kontextbezogene Antwort (Sie können setzen",
         "plusieurs mots en les séparant par des": "mehrere Wörter getrennt durch",
-        ";": ";",
+        ";": ";;",
         ")": ")",
         "Découper une interaction en 2 si elle contient": "Schneiden Sie eine Interaktion in zwei Hälften, wenn sie enthält",
         "Même chose pour": "Gleiches für",
