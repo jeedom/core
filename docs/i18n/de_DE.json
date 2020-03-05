@@ -364,7 +364,7 @@
         "Cochez pour activer les interactions contextuelles": "Aktivieren Sie diese Option, um kontextbezogene Interaktionen zu aktivieren",
         "Réponse contextuelle prioritaire si la phrase commence par": "Vorrangige kontextbezogene Antwort, wenn der Satz mit beginnt",
         "Si la phrase commence par le mot que vous renseignez ici, Jeedom va alors prioriser une réponse contextuelle (vous pouvez mettre plusieurs mots en les séparant par des": "Wenn der Satz mit dem Wort beginnt, das Sie hier eingeben, priorisiert Jeedom eine kontextbezogene Antwort (Sie können mehrere Wörter durch trennen",
-        ";": ";",
+        ";": ";;",
         ")": ")",
         "Découper une interaction en 2 si elle contient": "Schneiden Sie eine Interaktion in zwei Hälften, wenn sie enthält",
         "Même chose pour le découpage d'une interaction contenant plusieurs questions": "Gleiches gilt für die Aufteilung einer Interaktion mit mehreren Fragen",

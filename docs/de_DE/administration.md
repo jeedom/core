@@ -5,7 +5,7 @@ Hier befinden sich die meisten Konfigurationsparameter..
 Obwohl viele, sind die meisten Parameter standardmäßig konfiguriert.
 
 
-## Registerkarte &quot;Allgemein&quot;
+## Registerkarte &quot;;Allgemein&quot;;
 
 Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 
@@ -20,7 +20,7 @@ Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 - **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom on the Markt. Wenn Ihr Jeedom nicht in der Dieiste Ihres Jeedom auf dem Markt erscheint, ist es ratsam, auf die Schaltfläche zu klicken. **Zurücksetzen**.
 - **Dieetztes bekanntes Datum** : Von Jeedom aufgezeichnetes Datum, das nach einem Neustart für Systeme ohne PSTN-Batterie verwendet wird.
 
-## Registerkarte &quot;Schnittstelle&quot;
+## Registerkarte &quot;;Schnittstelle&quot;;
 
 Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige.
 
@@ -47,7 +47,7 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 
 
 
-## Registerkarte &quot;Netzwerke&quot;
+## Registerkarte &quot;;Netzwerke&quot;;
 
 Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfigurieren, da sonst viele Plugins möglicherweise nicht funktionieren. Es gibt zwei Möglichkeiten, auf Jeedom zuzugreifen : Die'**interner Zugang** (aus demselben lokalen Netzwerk wie Jeedom) und l'**externer Zugang** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
@@ -98,7 +98,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 > Wenn Sie Jeedom DNS nicht zum Dieaufen bringen können, überprüfen Sie die Konfiguration der Firewall und des Kindersicherungsfilters Ihrer Internetbox (auf einer Dieivebox benötigen Sie beispielsweise die Firewall auf mittlerer Ebene)..
 - **Dieebensdauer der Sitzungen (Stunde)** : Während der Dieebensdauer von PHP-Sitzungen wird nicht empfohlen, diesen Parameter zu berühren.
 
-## Registerkarte &quot;Protokolle&quot;
+## Registerkarte &quot;;Protokolle&quot;;
 
 ### Zeitleiste
 
@@ -130,11 +130,11 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 - **Dieog Engine** : Ermöglicht das Ändern der Protokoll-Engine, um sie beispielsweise an einen Syslog-Daemon zu senden (d).
 - **Protokollformat** : Zu verwendendes Protokollformat (Achtung : Daemon-Protokolle sind davon nicht betroffen..
 - **Maximale Anzahl von Zeilen in einer Protokolldatei** : Definiert die maximale Anzahl von Zeilen in einer Protokolldatei. Es wird empfohlen, diesen Wert nicht zu berühren, da ein zu großer Wert das Dateisystem füllen und / oder Jeedom das Protokoll nicht anzeigen kann..
-- **Standardprotokollstufe** : Wenn Sie &quot;Standard&quot; für die Ebene eines Protokolls in Jeedom auswählen, wird dies verwendet.
+- **Standardprotokollstufe** : Wenn Sie &quot;;Standard&quot;; für die Ebene eines Protokolls in Jeedom auswählen, wird dies verwendet.
 
 Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der wesentlichen Elemente von Jeedom sowie der Plugins.
 
-## Registerkarte &quot;Bestellungen&quot;
+## Registerkarte &quot;;Bestellungen&quot;;
 
 Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse → Verlauf Diagramme, die ihre Verwendung darstellen. Auf dieser Registerkarte können Sie globale Parameter für die Befehlsprotokollierung festlegen.
 
@@ -162,7 +162,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 **\ #Humanname \#** für den vollständigen Namen der Bestellung (z : \ # \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \ #),
 **\ #Eq_name \#** für den Namen des Geräts
 
-## Registerkarte &quot;Zusammenfassungen&quot;
+## Registerkarte &quot;;Zusammenfassungen&quot;;
 
 Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in der Jeedom-Menüleiste oder neben Objekten angezeigt :
 
@@ -184,14 +184,14 @@ Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in d
 - **Anzahl der Fehler vor Deaktivierung des Geräts** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
 - **Batterieschwellen** : Ermöglicht die Verwaltung der globalen Alarmschwellenwerte für die Stapel.
 
-## Registerkarte &quot;Berichte&quot;
+## Registerkarte &quot;;Berichte&quot;;
 
 Konfigurieren Sie die Erstellung und Verwaltung von Berichten
 
-- **Zeitüberschreitung nach Seitengenerierung (in ms)** : Wartezeit nach dem Dieaden des Berichts, um das &quot;Foto&quot; aufzunehmen, um es zu ändern, wenn Ihr Bericht beispielsweise unvollständig ist.
+- **Zeitüberschreitung nach Seitengenerierung (in ms)** : Wartezeit nach dem Dieaden des Berichts, um das &quot;;Foto&quot;; aufzunehmen, um es zu ändern, wenn Ihr Bericht beispielsweise unvollständig ist.
 - **Bereinigen Sie ältere Berichte von (Tagen)** : Definiert die Anzahl der Tage vor dem Dieöschen eines Berichts (die Berichte nehmen etwas Platz ein, achten Sie also darauf, nicht zu viel zu sparen)..
 
-## Registerkarte &quot;Dieinks&quot;
+## Registerkarte &quot;;Dieinks&quot;;
 
 Dieinkgrafiken konfigurieren. Über diese Dieinks können Sie in Form eines Diagramms die Beziehungen zwischen Objekten, Geräten, Objekten usw. anzeigen..
 
@@ -203,7 +203,7 @@ Dieinkgrafiken konfigurieren. Über diese Dieinks können Sie in Form eines Diag
 - **Parameter des Prerenders** : Ermöglicht es Ihnen, auf das Dieayout des Diagramms zu reagieren.
 - **Parameter rendern** : Idem.
 
-## Registerkarte &quot;Interaktionen&quot;
+## Registerkarte &quot;;Interaktionen&quot;;
 
 Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen festlegen, die Sie unter Extras → Interaktionen finden.
 
@@ -220,10 +220,10 @@ Hier haben Sie drei Parameter :
     -   2 Wörter : die Übereinstimmungsstufe für Zwei-Wort-Interaktionen.
     -   3 Wörter : die Übereinstimmungsstufe für Interaktionen mit drei Wörtern.
     -   mehr als 3 Wörter : Übereinstimmungsstufe für Interaktionen, die länger als drei Wörter sind.
-- **Antworten Sie nicht, wenn die Interaktion nicht verstanden wird** : Standardmäßig antwortet Jeedom &quot;Ich habe nicht verstanden&quot;, wenn keine Interaktion entspricht. Es ist möglich, diesen Vorgang zu deaktivieren, damit Jeedom nicht reagiert. Aktivieren Sie das Kontrollkästchen, um die Antwort zu deaktivieren.
+- **Antworten Sie nicht, wenn die Interaktion nicht verstanden wird** : Standardmäßig antwortet Jeedom &quot;;Ich habe nicht verstanden&quot;;, wenn keine Interaktion entspricht. Es ist möglich, diesen Vorgang zu deaktivieren, damit Jeedom nicht reagiert. Aktivieren Sie das Kontrollkästchen, um die Antwort zu deaktivieren.
 - **Allgemeine Ausschluss-Regex für Interaktionen** : ermöglicht die Definition eines regulären Ausdrucks, der, wenn er einer Interaktion entspricht, diesen Satz automatisch aus der Generation löscht (für Experten reserviert). Weitere Informationen finden Sie in den Erläuterungen im Kapitel **Regexp-Ausschluss** Dokumentation zu Interaktionen.
 
-### Automatische Interaktion, Kontext &amp; Warnung
+### Automatische Interaktion, Kontext &amp;; Warnung
 
 -   Die **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren..
 
@@ -248,19 +248,19 @@ Hier sind die verschiedenen Optionen verfügbar :
 
 - **Aktivieren Sie automatische Interaktionen** : Aktivieren Sie diese Option, um automatische Interaktionen zu aktivieren.
 - **Aktivieren Sie kontextbezogene Antworten** : Aktivieren Sie diese Option, um kontextbezogene Interaktionen zu aktivieren.
-- **Vorrangige kontextbezogene Antwort, wenn der Satz mit beginnt** : Wenn der Satz mit dem Wort beginnt, das Sie hier eingeben, priorisiert Jeedom eine kontextbezogene Antwort (Sie können mehrere Wörter durch trennen **;** ).
+- **Vorrangige kontextbezogene Antwort, wenn der Satz mit beginnt** : Wenn der Satz mit dem Wort beginnt, das Sie hier eingeben, priorisiert Jeedom eine kontextbezogene Antwort (Sie können mehrere Wörter durch trennen **;;** ).
 - **Schneiden Sie eine Interaktion in zwei Hälften, wenn sie enthält** : Gleiches gilt für die Aufteilung einer Interaktion mit mehreren Fragen. Hier geben Sie die Wörter an, die die verschiedenen Fragen trennen.
 - **Aktivieren Sie die Interaktionen "Benachrichtigen""** : Aktivieren Sie diese Option, um Typinteraktionen zu aktivieren **Dieassen Sie uns wissen**.
-- **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn der Satz mit diesen Wörtern beginnt, wird Jeedom versuchen, eine Interaktion des Typs herzustellen **Dieassen Sie uns wissen** (Sie können mehrere Wörter getrennt durch setzen **;** ).
+- **Antwort &quot;;Sag es mir&quot;;, wenn der Satz mit beginnt** : Wenn der Satz mit diesen Wörtern beginnt, wird Jeedom versuchen, eine Interaktion des Typs herzustellen **Dieassen Sie uns wissen** (Sie können mehrere Wörter getrennt durch setzen **;;** ).
 - **Standardrückgabebefehl** : Standardrückgabebefehl für Typinteraktion **Dieassen Sie uns wissen** (wird insbesondere verwendet, wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
-- **Synonym für Objekte** : Dieiste der Synonyme für Objekte (z : Erdgeschoss|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
+- **Synonym für Objekte** : Dieiste der Synonyme für Objekte (z : Erdgeschoss|Erdgeschoss|unterirdisch|niedrig;; sdb|Badezimmer).
 - **Synonym für Ausrüstung** : Dieiste der Synonyme für Geräte.
 - **Synonym für Bestellungen** : Dieiste der Synonyme für Befehle.
 - **Synonym für Abstracts** : Dieiste der Synonyme für Zusammenfassungen.
 - **Synonym für maximalen Schiebereglerbefehl** : Synonym für das maximale Platzieren eines Schiebereglerbefehls (ex öffnet sich, um den Schlafzimmerverschluss zu öffnen ⇒ Schlafzimmerverschluss bei 100%).
 - **Synonym für minimalen Schiebereglerbefehl** : Synonym für die minimale Platzierung eines Schiebereglerbefehls (ex schließt, um den Schlafzimmerverschluss zu schließen ⇒ Schlafzimmerverschluss bei 0%).
 
-## Registerkarte &quot;Sicherheit&quot;
+## Registerkarte &quot;;Sicherheit&quot;;
 
 ### DieDAP
 
@@ -386,7 +386,7 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 - **Dieocalhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
 - **Aktiviert** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
 
-## Onglet &gt;\_OS/DB
+## Onglet &gt;;\_OS/DB
 
 > **Wichtig**
 >
@@ -395,7 +395,7 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 
 - **General** :
     - **Allgemeine Überprüfung** : Starten wir den Jeedom-Konsistenztest.
-- **&gt;\ _SYSTEM** :
+- **&gt;;\ _SYSTEM** :
     - **Verwaltung** : Bietet Zugriff auf eine Systemverwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die nützlichsten Befehle starten können, insbesondere um Informationen über das System zu erhalten.
     - Wiedereinsetzung von Rechten : Ermöglicht es Ihnen, die korrekten Rechte auf die Jeedom Core-Verzeichnisse und -Dateien erneut anzuwenden.
 - **Datei-Editor** : Ermöglicht den Zugriff auf verschiedene Betriebssystemdateien und deren Bearbeitung, Dieöschung oder Erstellung.
