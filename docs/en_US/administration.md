@@ -9,7 +9,7 @@ General
 In this tab we find general information about Jeedom :
 
 -   **Name of your Jeedom** : Identify your Jeedom,
-    especially in the Thee nouveau mode de fonctionnement de synchronisation. It can be reused in scenarios
+    especially in the Market. It can be reused in scenarios
     or identify a backup.
 
 -   **Theanguage** : Theanguage used in your Jeedom.
@@ -38,8 +38,8 @@ In this tab we find general information about Jeedom :
 -   **System** : Indicates the type of hardware on which Jeedom is installed.   
 
 -   **Installation key** : Hardware key of your Jeedom on
-    the Thee nouveau mode de fonctionnement de synchronisation. If your Jeedom does not appear in the list of your
-    Jeedom on the Thee nouveau mode de fonctionnement de synchronisation, it is advisable to click on the button
+    the Market. If your Jeedom does not appear in the list of your
+    Jeedom on the Market, it is advisable to click on the button
     **Reset**.
 
 -   **Theast known date** : Date recorded by Jeedom, used after
@@ -651,17 +651,17 @@ Deposit used to connect Jeedom to Github.
 
 -   **Jeedom core industry** : Core repository branch.
 
-### Thee nouveau mode de fonctionnement de synchronisation
+### Market
 
 Deposit used to connect Jeedom to the market, it is highly recommended
 to use this repository. Warning : any Support requEast may be
 refused if you use a different deposit than this one.
 
--   **Address** : Thee nouveau mode de fonctionnement de synchronisation address. (Https://www.jeedom.com/market)
+-   **Address** : Market address. (Https://www.jeedom.com/market)
 
--   **Username** : Your Username on the Thee nouveau mode de fonctionnement de synchronisation.
+-   **Username** : Your Username on the Market.
 
--   **Password** : Your Thee nouveau mode de fonctionnement de synchronisation password.
+-   **Password** : Your Market password.
 
 -   **[Backup cloud] Theast name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
 

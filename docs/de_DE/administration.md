@@ -187,7 +187,7 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 Dieogs
 ====
 
-Timeline
+Zeitleiste
 --------
 
 -   **Maximale Anzahl von Ereignissen** : Dieegt die maximale Anzahl von Ereignissen auf fist

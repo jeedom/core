@@ -373,7 +373,7 @@ Summary
 -   **Fat** : bold text
 
 
-FAQ 
+Faq 
 ======
 
 >**I can no longer edit my Design**

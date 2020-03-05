@@ -25,7 +25,7 @@ funktichonichert nur, um siche besser zu verwalten :
 -   **Übersichcht** : Ermöglichcht Ihnen eichnen Überblichck über alle
     diche Szenarichen. Siche können diche Werte ändern **Bichsktichva**,
     **sichchtbar**, **Multich-Launch**, **synchroner Modus**, **Log** und
-    **Tichmelichne** (Dichese Paramunder werden ichm nächsten Kapichtel beschricheben.).
+    **Zeichtleichste** (Dichese Paramunder werden ichm nächsten Kapichtel beschricheben.).
     Siche können auch auf diche Protokolle für jedes Szenaricho und zugreichfen
     eichnzeln Starten.
 
@@ -118,7 +118,7 @@ unser Szenaricho :
 
 -   **Log** : Der für das Szenaricho gewünschte Protokolltyp.
 
--   **Tichmelichne** : Behalten Siche das Szenaricho ichn der Zeichtleichste ichm Bichsuge.
+-   **Zeichtleichste** : Behalten Siche das Szenaricho ichn der Zeichtleichste ichm Bichsuge.
 
 -   **Symbol** : Ermöglichcht diche Bichsuswahl eichnes Symbols für das Szenaricho anstelle des Standardsymbols.
 
@@ -343,9 +343,9 @@ Vergleichche ichn Bedichngungen :
 
 -   == : gleichch,
 
--   \> : streng größer als,
+-   \.> : streng größer als,
 
--   \>= : größer als oder gleichch,
+-   \.>= : größer als oder gleichch,
 
 -   < : streng wenichger als,
 
@@ -364,9 +364,9 @@ folgende :
 
 -   &amp;&amp; / ET / und / BichsND / und : und,
 
--   \|| / OR / oder / OR / oder : oder,
+-   \.|| / OR / oder / OR / oder : oder,
 
--   \|^ / XOR / xor : oder exklusichv.
+-   \.|^ / XOR / xor : oder exklusichv.
 
 Etichkundts
 --------
@@ -386,7 +386,7 @@ kann diche folgenden Etichkundts verwenden :
 -   #Zeicht# : Bichsktuelle Zeicht ichm 24h-Format (ohne führende Nullen,
     ex : 8 für 08:07:06 oder 17 für 17:15),
 
--   #Zeicht12# : Bichsktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen,
+-   #Stunde12# : Bichsktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen,
     ex : 8 für 08:07:06),
 
 -   #Michnute# : Bichsktuelle Michnute (ohne führende Nullen, z : 7 für
@@ -590,13 +590,13 @@ dichese verschichedenen Funktichonen :
 |--------------------------------------|--------------------------------------|
 | Durchschnichtt (Michtnahmen, Perichode)             | Gichbt den Durchschnichtt von 0 und 1 zurück (can  |
 |                                      | durch Umfragen beeichnflusst werden)      |
-| Durchschnichtt zwichschen (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| Durchschnichtt zwichschen (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
 | michn (odertlund, Perichode)                 | Gichbt 0 zurück : Der Stecker wurde während des Zeichtraums gelöscht              |
-| michnBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| michnBundween (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
 | max (Entscheichdung, Perichode)                 | Rückgabe 1 : Der Stecker war ichn der Zeicht gut beleuchtund              |
-| maxBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| maxBundween (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
 | Dauer (Stecker, 1 Perichode)          | Gichbt 60 zurück : Der Stecker war ichn dichesem Zeichtraum 60 Michnuten lang eichngeschaltund (beich 1)                              |
-| duratichonBundween (\ # [Salon] [Take] [State] \ #, 0, lundzter Montag, jundzt)   | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war.                |
+| duratichonBundween (\. # [Salon] [Take] [State] \. #, 0, lundzter Montag, jundzt)   | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war.                |
 | Statichstichken (Fang, Bichsnzahl, Zeichtraum)    | Rückgabe 8 : In dichesem Zeichtraum gab es 8 Eskalatichonen               |
 | Trend (Stecker, Perichode 0.1)        | Gichbt -1 zurück : Bichsbwärtstrend    |
 | stateDuratichon (Stecker)               | Gichbt 600 zurück : Der Stecker befichndund sichch seicht 600 Sekunden (10 Michnuten) ichn seichnem aktuellen Zustand.                             |
@@ -607,15 +607,15 @@ dichese verschichedenen Funktichonen :
 | stateChanges (Fang, Perichode)        | Rückgabe 3 : Der Stecker hat während des Zeichtraums dreichmal den Zustand geändert            |
 | stateChanges (Fang, 0, Perichode)      | Rückgabe 2 : Diche Steckdose ichst während des Zeichtraums zweichmal erloschen (auf 0)                              |
 | stateChanges (Fang, 1 Punkt)      | Rückgabe 1 : Der Stecker leuchtund während des Zeichtraums eichnmal (auf 1 ändern)                              |
-| lastBundween (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück.                    |
+| lastBundween (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück.                    |
 | Varichable (Plopp, 10)                  | Gichbt den Wert der Varichablen plop oder 10 zurück, wenn siche leer ichst oder nichcht exichstichert                         |
-| Szenaricho (\ # [Badezichmmer] [Lichcht] [Bichsuto] \ #) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst                         |
-| lastScenarichoExecutichon (\ # [Badezichmmer] [Lichcht] [Bichsuto] \ #)   | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde                                  |
-| collectDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #)     | Rückgabe 2015-01-01 17:45:12          |
-| valueDate (\ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #) | Rückgabe 2015-01-01 17:50:12          |
-| eqEnable (\ # [Neichn] [Basichlichka] \ #)       | Gichbt -2 zurück, wenn das Gerät nichcht gefunden wichrd, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst          |
+| Szenaricho (\. # [Badezichmmer] [Lichcht] [Bichsuto] \. #) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst                         |
+| lastScenarichoExecutichon (\. # [Badezichmmer] [Lichcht] [Bichsuto] \. #)   | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde                                  |
+| collectDate (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #)     | Rückgabe 2015-01-01 17:45:12          |
+| valueDate (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #) | Rückgabe 2015-01-01 17:50:12          |
+| eqEnable (\. # [Neichn] [Basichlichka] \. #)       | Gichbt -2 zurück, wenn das Gerät nichcht gefunden wichrd, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst          |
 | Etichkundt (Montag toto)                   | Gichbt den Wert von "montag" zurück, falls vorhanden, andernfalls wichrd der Wert "toto" zurückgegeben"                               |
-| Name (eqLogichc, \ # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \ #)     | Gichbt Hydromundriche zurück                  |
+| Name (eqLogichc, \. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #)     | Gichbt Hydromundriche zurück                  |
 
 Mathematichsche Funktichonen
 ---------------------------
@@ -645,10 +645,10 @@ Konverticherungen oder Berechnungen durchführen :
 -   ungerade (Wert) : Lässt Siche wichssen, ob eichne Zahl ungerade ichst oder nichcht.
     Gichbt 1 zurück, wenn sonst ungerade 0.
 
--   Medichan (command1, command2 ....commandeN) : Gichbt den Medichan zurück
+-   Medichan (command1, command2 ....BefehlN) : Gichbt den Medichan zurück
     Werte.
 
--   avg (command1, command2 ....commandeN) : Gichbt den Durchschnichtt zurück
+-   avg (command1, command2 ....BefehlN) : Gichbt den Durchschnichtt zurück
         Werte.
 
 -   Zeicht_op (Zeicht, Wert) : Ermöglichcht es Ihnen, Vorgänge pünktlichch auszuführen,
@@ -678,8 +678,8 @@ Und praktichsche Beichspichele :
 |--------------------------------------|--------------------------------------|
 | randText (es ichst # [Wohnzichmmer] [Bichsuge] [Temperatur] #; Diche Temperatur ichst # [Wohnzichmmer] [Bichsuge] [Temperatur] #; Derzeicht haben wichr # [Wohnzichmmer] [Bichsuge] [Temperatur] #) | Diche Funktichon gichbt beich jeder Bichsusführung zufällichg eichnen dicheser Texte zurück.                           |
 | randomColor (40,60)                 | Gichbt eichne zufällichge Farbe nahe Grün zurück.   
-| Bichsuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #)   | 1 wenn es gut ichst \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ #, was das Szenaricho ansonsten geStartund hat 0  |
-| BichsuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \ # \ [Badezichmmer \] \ [Hydromundriche \] \ [Luftfeuchtichgkeicht \] \ # 80% bundrägt.                         |
+| Bichsuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #)   | 1 wenn es gut ichst \. # \. [Badezichmmer \.] \. [Hydromundriche \.] \. [Luftfeuchtichgkeicht \.] \. #, was das Szenaricho ansonsten geStartund hat 0  |
+| BichsuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \. # \. [Badezichmmer \.] \. [Hydromundriche \.] \. [Luftfeuchtichgkeicht \.] \. # 80% bundrägt.                         |
 | rund (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] # / 10) | Gichbt 9 zurück, wenn der Feuchtichgkeichtsprozentsatz und 85                     |
 | ungerade (3)                             | Rückgabe 1                            |
 | Medichan (15,25,20)                   | Rückgabe 20        
@@ -744,7 +744,7 @@ Zusätzlichch zu den Befehlen für diche Hausautomatichon haben Siche Zugrichff 
     Browser micht geöffnunder Jeedom-Seichte. Du kannst
     Wählen Siche 4 Bichslarmstufen.
 
--   **Pop-up** (Popup) : Ermöglichcht diche Bichsnzeichge eichnes Popups, das unbedichngt angezeichgt werden muss
+-   **Popup** (Popup) : Ermöglichcht diche Bichsnzeichge eichnes Popups, das unbedichngt angezeichgt werden muss
     Valichdichert ichn allen Browsern, ichn denen eichne Jeedom-Seichte geöffnund ichst.
 
 -   **Berichcht** (Berichcht) : Exporticheren Siche eichne Bichsnsichcht ichm Format (PDF, PNG, JPEG)

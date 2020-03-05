@@ -65,10 +65,10 @@ Diese beiden ähnlichen Registerkarten bestehen aus einer Tabelle :
 
 -   **Andere** : Enthält Widgets, Skripte usw..
 
-Sie finden folgende Informationen : \* **Status** : OK oder NOK.
-Ermöglicht den aktuellen Status des Plugins. \* **Name** : Du da
-Suchen Sie die Quelle des Elements, den Elementtyp und seinen Namen. \*
-**Version** : Gibt die spezifische Version des Elements an. \* **Optionen** :
+Sie finden folgende Informationen : \.* **Status** : OK oder NOK.
+Ermöglicht den aktuellen Status des Plugins. \.* **Name** : Du da
+Suchen Sie die Quelle des Elements, den Elementtyp und seinen Namen. \.*
+**Version** : Gibt die spezifische Version des Elements an. \.* **Optionen** :
 Aktivieren Sie dieses Kontrollkästchen, wenn dieses Element nicht aktualisiert werden soll.
 Tag während des allgemeinen Updates (Button **Update**).
 
