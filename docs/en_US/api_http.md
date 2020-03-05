@@ -50,10 +50,10 @@ Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#API
 
 ## Message
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
+Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Message&category=\#CATEGORY\#&Message=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=Message&category=#CATEGORY#&Message=#MESSAGE#)
 
-- **category** : message category to add to message center.
-- **message** : message in question, be careful to think about encoding the message (space becomes% 20, =% 3D…). You can use a tool, [here] (https://meyerweb.com/eric/tools/dencoder/).
+- **category** : Message category to add to Message center.
+- **Message** : Message in question, be careful to think about encoding the Message (space becomes% 20, =% 3D…). You can use a tool, [here] (https://meyerweb.com/eric/tools/dencoder/).
 
 ## Object
 

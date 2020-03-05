@@ -52,7 +52,7 @@ Depending on the type of wIDget, you can generally customize icons or put images
 There are two types of templates :
 
 - The "**simple**" : Type an icon / image for the "on" and an icon / image for the "off"
-- The "**multistates**" : This allows you to define for example an image if the command is set to "XX" and another if> to "YY", and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if &quot;plop&quot;, and so on.
+- The "**multistate**" : This allows you to define for example an image if the command is set to "XX" and another if> to "YY", and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if &quot;plop&quot;, and so on.
 
 ## Creating a wIDget
 

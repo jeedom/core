@@ -223,7 +223,7 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
 - **Fat** : Bold text.
 
-## FAQ
+## Faq
 
 >**I can no longer edit my design**
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.

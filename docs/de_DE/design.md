@@ -182,15 +182,15 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 - **Bild** : Ermöglicht das Senden des betreffenden Bildes (wenn Sie ein Bild ausgewählt haben).
 - **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 
-## Zone
+## Bereich
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Art der Zone** : Hier wählen Sie die Art des Bereichs : Einfaches Makro, Binärmakro oder Widget beim Hover.
+- **Art der Bereich** : Hier wählen Sie die Art des Bereichs : Einfaches Makro, Binärmakro oder Widget beim Hover.
 
 ### Einzelne Makro
 
-In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus.
+In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus.
 
 Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
 
@@ -223,7 +223,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
 - **Fett** : Fetter Text.
 
-## FAQ
+## Faq
 
 >**Ich kann mein Design nicht mehr bearbeiten**
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.

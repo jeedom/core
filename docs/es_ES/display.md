@@ -36,7 +36,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibLaas..
 
 En cada equipo encontramos :
 
-- Una **casilla de verificación** para seLaaccionar el equipo (puede seLaaccionar varios). Si se seLaacciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **remove**, maquillaje **visibLaa**/**invisibLaa**,  **bienes**/**Inactivo** equipo seLaaccionado.
+- Una **casilla de verificación** para seLaaccionar el equipo (puede seLaaccionar varios). Si se seLaacciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **remove**, maquillaje **visibLaa**/ /**invisibLaa**,  **bienes**/ /**Inactivo** equipo seLaaccionado.
 - La'**identificación** equipo.
 - Laa **tipo** equipo : Identificador del compLaamento al que pertenece.
 - Laa **apellidentificacióno** equipo.
@@ -157,7 +157,7 @@ Primero, en la parte superior derecha, algunos botones disponibLaas :
 
 > **Nota**
 >
-> Dependiendo del tipo de orden, la Informaciónrmación / acciones mostradas pueden cambiar.
+> Dependiendo del tipo de orden, la Informaciónrmación / / acciones mostradas pueden cambiar.
 
 ### Pestaña de Informaciónrmación
 

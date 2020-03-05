@@ -184,7 +184,7 @@ Configuraciones:
 
 -   int id
 
-eqLogic::byType
+eqLogic::por tipo
 ---------------
 
 Devuelve todos los equipos que pertenecen al tipo especificado (complemento)
@@ -193,7 +193,7 @@ Configuraciones:
 
 -   tipo de cadena
 
-eqLogic::byObjectId
+eqLogic::porObjectId
 -------------------
 
 Devuelve todo el equipo que pertenece al objeto especificado.
@@ -202,7 +202,7 @@ Configuraciones:
 
 -   int objeto \ _id
 
-eqLogic::byTypeAndId
+eqLogic::por tipoAndId
 --------------------
 
 Devuelve una tabla de equipos según los parámetros.. 
@@ -284,7 +284,7 @@ Configuraciones:
     
 -   \ [opciones \] Lista de opciones de comando (depende del tipo y subtipo del comando)
 
-cmd::getStatistique
+cmd::obtenerStatistics
 -------------------
 
 Estadísticas de devoluciones en el pedido (solo funciona con información y pedidos históricos)
@@ -297,7 +297,7 @@ Configuraciones:
 
 -   string endTime : fecha de finalización del cálculo de estadísticas
 
-cmd::getTendance
+cmd::obtenerTendance
 ----------------
 
 Devuelve la tendencia en el pedido (solo funciona con información y pedidos históricos)
@@ -310,7 +310,7 @@ Configuraciones:
 
 -   string endTime : fecha de finalización del cálculo de tendencia
 
-cmd::getHistory
+cmd::obtenerHistory
 ---------------
 
 Devuelve el historial de pedidos (solo funciona con información y pedidos históricos)
@@ -430,7 +430,7 @@ Configuraciones:
 API de registro JSON
 ============
 
-registro::get
+registro::obtener
 --------
 
 Le permite recuperar un registro
@@ -477,7 +477,7 @@ Configuraciones:
 
 -   registro de cadena : nombre del registro para vaciar
 
-registro::remove
+registro::quitar
 -----------
 
 Le permite eliminar un registro
@@ -489,7 +489,7 @@ Configuraciones:
 API de almacén de datos JSON (variable)
 =============================
 
-almacén de datos::byTypeLinkIdKey
+almacén de datos::por tipoLinkIdKey
 --------------------------
 
 Obtener el valor de una variable almacenada en el almacén de datos
@@ -540,9 +540,9 @@ Configuraciones:
 
 -   acción de cuerda : acción
 
--   registro de cadenaicalId : registroicalId
+-   registro de cadenaicalId : Id. lógico
 
-mensaje::removeAll
+mensaje::quitarAll
 ------------------
 
 Eliminar todos los mensajes
@@ -595,7 +595,7 @@ Jeedom::reserva
 
 Le permite iniciar una copia de seguridad de Jeedom
 
-Jeedom::getUsbMapde ping
+Jeedom::obtenerUsbMapde ping
 ---------------------
 
 Lista de puertos USB y nombres de llaves USB conectadas
@@ -613,7 +613,7 @@ Configuraciones:
 -   int Plugin \ _id (opcional) : ID del complemento
 -   registro de cadenaicalId (opcional) : nombre del complemento (nombre lógico)
 
-Plugin::remove
+Plugin::quitar
 --------------
 
 Eliminación de un complemento dado
@@ -623,7 +623,7 @@ Configuraciones:
 -   int Plugin \ _id (opcional) : ID del complemento
 -   registro de cadenaicalId (opcional) : nombre del complemento (nombre lógico)
 
-Plugin::dependancyInfo
+Plugin::información de dependencia
 ----------------------
 
 Devuelve información sobre el estado de dependencia del complemento
@@ -633,7 +633,7 @@ Configuraciones:
 -   int Plugin \ _id (opcional) : ID del complemento
 -   registro de cadenaicalId (opcional) : nombre del complemento (nombre lógico)
 
-Plugin::dependancyInsttodos
+Plugin::dependenciaInstalar
 -------------------------
 
 Forzar la instalación de dependencias de complementos
@@ -713,7 +713,7 @@ Configuraciones:
 API de red JSON
 ================
 
-red::restartDns
+red::reiniciarDns
 -------------------
 
 Forzar el (re) inicio del DNS de Jeedom
@@ -740,9 +740,9 @@ Recuperando la listaa de objetos :
 ``` {.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::todos &#39;, array ())){
-    print_r ($ jsonrpc-&gt; getResult ());
+    print_r ($ jsonrpc-&gt; obtenerResult ());
 }otro{
-    echo $ jsonrpc-&gt; getError ();
+    echo $ jsonrpc-&gt; obtenerError ();
 }
 ```
 
@@ -753,7 +753,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; mensaje &#39;=>&#39; Funciona &#39;)))){
     echo &#39;OK&#39;;
 }otro{
-    echo $ jsonrpc-&gt; getError ();
+    echo $ jsonrpc-&gt; obtenerError ();
 }
 ```
 

@@ -36,7 +36,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 
 Auf jeder Ausrüstung finden wir :
 
-- Ein **Kontrollkästchen** um die Ausrüstung auszuwähDien (Sie können mehrere auswähDien). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Entfernen**, make **sichtbar**/**unsichtbar**,  **Aktiva**/**Inaktiv** ausgewählte Ausrüstung.
+- Ein **Kontrollkästchen** um die Ausrüstung auszuwähDien (Sie können mehrere auswähDien). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Entfernen**, make **sichtbar**/.**unsichtbar**,  **Aktiva**/.**Inaktiv** ausgewählte Ausrüstung.
 - Die'**Identifikation** Ausrüstung.
 - Die **Typ** Ausrüstung : Kennung des Plugins, zu dem es gehört.
 - Die **Name** Ausrüstung.
@@ -157,7 +157,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 > **Notiz**
 >
-> Abhängig von der Art der Bestellung können sich die angezeigten Informationen / Aktionen ändern.
+> Abhängig von der Art der Bestellung können sich die angezeigten Informationen /. Aktionen ändern.
 
 ### Registerkarte Informationen
 

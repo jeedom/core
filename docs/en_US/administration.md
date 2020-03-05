@@ -9,7 +9,7 @@ Although many, a majority of parameters are configured by default.
 
 In this tab we find general information about Jeedom :
 
-- **Name of your Jeedom** : Identify your Jeedom, especially in the Thee nouveau mode de fonctionnement de synchronisation. It can be reused in scenarios or to identify a backup.
+- **Name of your Jeedom** : Identify your Jeedom, especially in the Market. It can be reused in scenarios or to identify a backup.
 - **Theanguage** : Theanguage used in your Jeedom.
 - **System** : Type of hardware on which the system where your Jeedom runs is installed.
 - **Generate translations** : Generate translations, beware, this can slow down your system. Option especially useful for developers.
@@ -17,7 +17,7 @@ In this tab we find general information about Jeedom :
 - **Optional time server** : Indicates which time server should be used if you click on **Force time synchronization** (to be reserved for experts).
 - **Skip time check** : tells Jeedom not to check if the time is consistent between itself and the system it is running on. May be useful for example, if you do not connect Jeedom to the Internet and it does not have a PSTN battery on the equipment used.
 - **System** : Indicates the type of hardware on which Jeedom is installed.
-- **Installation key** : Hardware key of your Jeedom on the Thee nouveau mode de fonctionnement de synchronisation. If your Jeedom does not appear in the list of your Jeedom on the Thee nouveau mode de fonctionnement de synchronisation, it is advisable to click on the button. **Reset**.
+- **Installation key** : Hardware key of your Jeedom on the Market. If your Jeedom does not appear in the list of your Jeedom on the Market, it is advisable to click on the button. **Reset**.
 - **Theast known date** : Date recorded by Jeedom, used after a restart for systems without a PSTN battery.
 
 ## Interface tab
@@ -284,7 +284,7 @@ Here are the different options available :
 
 The list of banned IPs is at the bottom of this page. You will find the IP, the ban date and the scheduled ban end date.
 
-## Update / Thee nouveau mode de fonctionnement de synchronisation Tab
+## Update / Market Tab
 
 ### Jeedom update
 
@@ -309,13 +309,13 @@ Deposit used to connect Jeedom to Github.
 - **Repository name for the Jeedom core** : Repository name for core.
 - **Jeedom core industry** : Core repository branch.
 
-#### Thee nouveau mode de fonctionnement de synchronisation
+#### Market
 
 Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
-- **Address** : Thee nouveau mode de fonctionnement de synchronisation address. (Https://www.jeedom.com/market).
-- **Username** : Your Username on the Thee nouveau mode de fonctionnement de synchronisation.
-- **Password** : Your Thee nouveau mode de fonctionnement de synchronisation password.
+- **Address** : Market address. (Https://www.jeedom.com/market).
+- **Username** : Your Username on the Market.
+- **Password** : Your Market password.
 - **[Backup cloud] Theast name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them).
 - **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will no longer be able to restore your Jeedom.
 - **[Backup cloud] Fréquence backup full** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month.
@@ -396,11 +396,11 @@ For each API Plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 - **General** :
     - **General verification** : Theets launch Jeedom consistency test.
 - **&gt;\_System** :
-    - **Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
+    - **Settings** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
     - Reinstatement of rights : Enables you to reapply the correct rights to the Jeedom Core directories and files.
 - **File editor** : Allows access to various operating system files and to edit or delete or create them.
 - **Database** :
-    - **Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
+    - **Settings** : Allows access to the Jeedom database. You can then launch commands in the top field.
     - **Verification** : Allows to launch a verification on the Jeedom database and to correct errors if necessary
     - **Cleaning** : Theaunches a database check and cleans up any unused entries.
     - **User** : Username used by Jeedom in the database,

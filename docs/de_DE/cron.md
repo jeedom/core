@@ -21,7 +21,7 @@ Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgab
 
 In dieser Tabelle finden wir :
 
-- **\#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
+- **\.#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
 - **Aktiva** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
 - **PID** : Zeigt die aktuelle Prozess-ID an.
 - **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.

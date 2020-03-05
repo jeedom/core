@@ -44,7 +44,7 @@ Aquí está la URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#
 
 - **pregunta** : pregunta para hacerle a Jeedom.
 - **utf8** \ [Opcional \] : le dice a Jeedom si codifica la consulta en utf8 antes de intentar responder.
-- **emptyReply** \ [Opcional \] : 0 para que Jeedom responda incluso si no entendió, 1 de lo contrario.
+- **vacío Respuesta** \ [Opcional \] : 0 para que Jeedom responda incluso si no entendió, 1 de lo contrario.
 - **perfil** \ [Opcional \] : nombre de usuario de la persona que inicia la interacción.
 - **responder \ _cmd** \ [Opcional \] : ID de pedidentificacióno que se utilizará para responder a la solicitud.
 

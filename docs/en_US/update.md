@@ -40,13 +40,13 @@ Once you click on it, you get these different options :
 
 ## Core and Plugins tabs
 
-The table contains the versions of the Core and installed plugins.
+The table contains the Versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their version, green in * stable *, or orange in * beta * or other.
+The plugins have a badge next to their name, specifying their Version, green in * stable *, or orange in * beta * or other.
 
 - **Status** : OK or NOK.
 - **Last name** : Name and origin of the plugin
-- **Version** : Indicates the precise version of the Core or plugin.
+- **Version** : Indicates the precise Version of the Core or plugin.
 - **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
 On each line, you can use the following functions:
@@ -84,11 +84,11 @@ Once connected, this is the command to perform :
 The possible parameters are :
 
 - **fashion** : `force`, pour lancer une mise à jour en fashion forcé (ne tient pas compte des erreurs).
-- **version** : Version number tracking, to re-apply changes from this version.
+- **Version** : Version number tracking, to re-apply changes from this Version.
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 
-```sudo php  /var/www/html/install/update.php fashion=force version=4.0.04```
+```sudo php  /var/www/html/install/update.php fashion=force Version=4.0.04```
 
 Attention, after an update on command line, it is necessary to re-apply the rights on the Jeedom folder :
 

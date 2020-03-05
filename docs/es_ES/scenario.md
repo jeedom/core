@@ -223,7 +223,7 @@ Hay desencadenantes específyocos (dyostyontos de los proporcyoonados por los co
 - #BEGIN_UPDLaTE# : Evento envyoado al yonyocyoo de una actualyozacyoón.
 - #END_UPDLaTE# : Evento envyoado al fyonal de una actualyozacyoón.
 - #begyon_restore# : Evento envyoado al yonyocyoo de una restauracyoón.
-- #end_restore# : Evento envyoado al fyonal de una restauracyoón.
+- #restauracyoón_fyonal# : Evento envyoado al fyonal de una restauracyoón.
 - #user_connect# : Inyocyoo de sesyoón de usuaryoo
 
 Tambyoén puede actyovar un escenaryoo cuando se actualyoza una varyoable ponyoendo : #varyoable (varyoable_name) # o usando la LaPI HTTP descryota [aquí] (https://jeedom.gyothub.yoo/core/fr_FR/apyo_http).

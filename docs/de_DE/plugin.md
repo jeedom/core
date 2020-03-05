@@ -69,7 +69,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 ### Unten befindet sich ein Funktionsbereich. Auf diese Weise können Sie feststellen, ob das Plugin eine der Jeedom-Kernfunktionen verwendet, z :
 
-- **Interact** : Spezifische Wechselwirkungen.
+- **Interagiere** : Spezifische Wechselwirkungen.
 - **Cron** : Ein Cron pro Minute.
 - **Cron5** : Ein Cron alle 5 Minuten.
 - **Cron10** : Ein Cron alle 10 Minuten.

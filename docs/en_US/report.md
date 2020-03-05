@@ -35,7 +35,7 @@ Once the report is selected, you can view it, download it or delete it.
 
 You can aln delete all backups of a given report
 
-## FAQ
+## Faq
 
 > If you have a Details error :
 > *cutycapt: error while loading shared libraries: libEGL.n: cannot open shared object file: No such file or directory*

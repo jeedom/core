@@ -40,7 +40,7 @@ Wir finden oben rechts den Anzeigezeitraum (hier in der letzten Woche, weil ich 
 - **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
 - **Linie** : Zeigt das Diagramm als Linien an.
 - **Bereich** : Zeigt das Diagramm als Fläche an.
-- **Spalte**\* : Zeigt das Diagramm als Balken an.
+- **Spalte**\.* : Zeigt das Diagramm als Balken an.
 
 > **Spitze**
 >
@@ -68,9 +68,9 @@ Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
 #### Berechnete Geschichte
 
-Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \ * absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
+Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \. * absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
 Ex :
-abs (* \ [Garten \] \ [Hygrometrie \] \ [Temperatur \] * - * \ [Wohnraum \] \ [Hygrometrie \] \ [Temperatur \] *)
+abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Wohnraum \.] \. [Hygrometrie \.] \. [Temperatur \.] *)
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie diese zur einfacheren erneuten Anzeige speichern können.
 

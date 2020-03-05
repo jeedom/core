@@ -100,7 +100,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 ## Registerkarte &quot;Protokolle&quot;
 
-### Timeline
+### Zeitleiste
 
 - **Maximale Anzahl von Ereignissen** : Definiert die maximale Anzahl von Ereignissen, die in der Zeitleiste angezeigt werden sollen.
 - **Dieöschen Sie alle Ereignisse** : Dieeeren Sie die Zeitleiste aller aufgezeichneten Ereignisse.

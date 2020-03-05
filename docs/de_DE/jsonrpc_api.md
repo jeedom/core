@@ -284,7 +284,7 @@ Einstellungen:
     
 -   \ [Optionen \] Liste der Befehlsoptionen (abhängig vom Typ und Subtyp des Befehls)
 
-cmd::getStatistique
+cmd::bekommenStatistics
 -------------------
 
 Gibt Statistiken zur Bestellung zurück (funktioniert nur bei Informationen und historischen Bestellungen)
@@ -297,7 +297,7 @@ Einstellungen:
 
 -   Zeichenfolge endTime : Enddatum der Statistikberechnung
 
-cmd::getTendance
+cmd::bekommenTendance
 ----------------
 
 Gibt den Trend der Bestellung zurück (funktioniert nur bei Informationen und historischen Bestellungen)
@@ -310,7 +310,7 @@ Einstellungen:
 
 -   Zeichenfolge endTime : Enddatum der Trendberechnung
 
-cmd::getHistory
+cmd::bekommenHistory
 ---------------
 
 Gibt den Bestellverlauf zurück (funktioniert nur bei Informationen und historischen Aufträgen)
@@ -430,7 +430,7 @@ Einstellungen:
 JSON-Protokoll-API
 ============
 
-Protokoll::get
+Protokoll::bekommen
 --------
 
 Ermöglicht das Abrufen eines Protokolls
@@ -540,7 +540,7 @@ Einstellungen:
 
 -   String-Aktion : Aktion
 
--   Zeichenfolge Protokollische ID : ProtokollicalId
+-   Zeichenfolge Protokollische ID : Protokollische ID
 
 Nachricht::EntfernenAll
 ------------------
@@ -595,7 +595,7 @@ Jeedom::Sicherungskopie
 
 Ermöglicht das Starten eines Backups von Jeedom
 
-Jeedom::getUsbMapKlingeln
+Jeedom::bekommenUsbMapKlingeln
 ---------------------
 
 Liste der USB-Anschlüsse und Namen der daran angeschlossenen USB-Sticks
@@ -623,7 +623,7 @@ Einstellungen:
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
-Plugin::dependancyInfo
+Plugin::AbhängigkeitInfo
 ----------------------
 
 Gibt Informationen zum Plugin-Abhängigkeitsstatus zurück
@@ -633,7 +633,7 @@ Einstellungen:
 -   int Plugin \ _id (optional) : Plugin ID
 -   Zeichenfolge Protokollische ID (optional) : Plugin Name (Protokollischer Name)
 
-Plugin::dependancyInstalle
+Plugin::AbhängigkeitInstalleieren
 -------------------------
 
 Erzwingen Sie die Installeation von Plugin-Abhängigkeiten
@@ -740,9 +740,9 @@ Abrufen der ObjektListee :
 ``` {.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())){
-    print_r ($ jsonrpc-&gt; getResult ());
+    print_r ($ jsonrpc-&gt; bekommenResult ());
 }sonst{
-    echo $ jsonrpc-&gt; getError ();
+    echo $ jsonrpc-&gt; bekommenError ();
 }
 ```
 
@@ -753,7 +753,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
     Echo &#39;OK&#39;;
 }sonst{
-    echo $ jsonrpc-&gt; getError ();
+    echo $ jsonrpc-&gt; bekommenError ();
 }
 ```
 

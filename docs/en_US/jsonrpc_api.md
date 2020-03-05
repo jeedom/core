@@ -284,7 +284,7 @@ Settings:
     
 -   \ [options \] List of command options (depends on the type and subtype of the command)
 
-cmd::getStatistique
+cmd::getStatistics
 -------------------
 
 Returns statistics on the order (only works on info and historical orders)
