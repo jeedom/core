@@ -83,7 +83,7 @@ user::isBan();
 								<option value="pt_PT">{{Portugais}}</option>
 								<option value="ru_RU">{{Russe}}</option>
 								<option value="ja_JP">{{Japonais}}</option>
-								<option value="id_ID">{{Indonesien</option}}>
+								<option value="id_ID">{{Indonesien}}</option>
 								<option value="tr">{{Turque}}</option>
 							</select>
 						</div>
