@@ -418,7 +418,7 @@ Cambios
 -   Correcciones de errores
 
 -   Optimización global de Jeedom (en clases de carga de
-    complementos, tiempo casi dividido por 3)
+    plugins, tiempo casi dividido por 3)
 
 -   Soporte de Debian 9
 
@@ -1120,7 +1120,7 @@ Cambios
     el archivo en el mercado pero ahora en Github ahora
 
 -   Adición de un sistema centralizado para instalar dependencias en
-    complementos
+    plugins
 
 -   Rediseño de la página de administración de complementos
 
@@ -1217,7 +1217,7 @@ Cambios
     el archivo en el mercado pero ahora en Github ahora
 
 -   Adición de un sistema centralizado para instalar dependencias en
-    complementos
+    plugins
 
 -   Rediseño de la página de administración de complementos
 

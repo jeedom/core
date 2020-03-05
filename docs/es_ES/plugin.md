@@ -112,7 +112,7 @@ Demonio :
 A continuación, hay un área de funcionalidad. Esto te permite ver
 si el complemento utiliza una de las funciones principales de Jeedom, como :
 
--   **Interactuar** : interacciones específicas
+-   **Interact** : interacciones específicas
 
 -   **Cron** : un cron por minuto
 

@@ -10,11 +10,11 @@ Es accesible por Inicio → Diseño
 
 > **Importante**
 >
-> Todas las acciones se realizan haciendo haga clic derecho en esta página, atención
+> Todas las acciones se realizan haciendo clic derecho en esta página, atención
 > hacerlo bien en diseño. Durante la creación, por lo tanto, es necesario
 > hacer en el medio de la página (para asegurarse de estar en el diseño).
 
-En el menú (haga clic derecho, por lo tanto), encontramos el
+En el menú (clic derecho, por lo tanto), encontramos el
 siguientes acciones :
 
 -   **Diseños** : Muestra la lista de tus diseños y accede a ellos.
@@ -45,8 +45,8 @@ siguientes acciones :
 -   **Añadir imagen / cámara** : Le permite agregar una imagen o transmisión
     de una camara
 
--   **Agregar área** : Agregar un área transparente en la que se pueda hacer haga clic
-    quién puede ejecutar una serie de acciones con un haga clic (dependiendo
+-   **Agregar área** : Agregar un área transparente en la que se pueda hacer clic
+    quién puede ejecutar una serie de acciones con un clic (dependiendo
     o no el estado de otro pedido)
 
 -   **Agregar resumen** : Agrega información de un resumen de objeto o
@@ -85,7 +85,7 @@ siguientes acciones :
 
 > **Importante**
 >
-> La configuración de los elementos de diseño se realiza haciendo haga clic en
+> La configuración de los elementos de diseño se realiza haciendo clic en
 > estos.
 
 Configuración de diseño 
@@ -316,9 +316,9 @@ Configuraciones de pantalla
 
 ### Macro individual 
 
-En este modo, un haga clic en la zona realiza una o más acciones.
+En este modo, un clic en la zona realiza una o más acciones.
 
-Aquí solo debe indicar la lista de acciones que debe hacer al hacer haga clic
+Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic
 en la zona
 
 ### Macro binaria 
@@ -336,15 +336,15 @@ para el apagado
 
 ### Widget de desplazamiento 
 
-En este modo, al pasar el mouse o al hacer haga clic en el área Jeedom, usted
+En este modo, al pasar el mouse o al hacer clic en el área Jeedom, usted
 mostrar el widget en cuestión
 
--   **Equipo** : widget para mostrar al pasar el mouse o al hacer haga clic
+-   **Equipo** : widget para mostrar al pasar el mouse o al hacer clic
 
 -   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
 
--   **Ver en un haga clic** : si está marcado, el widget se muestra en
-    haga clic
+-   **Ver en un clic** : si está marcado, el widget se muestra en
+    clic
 
 -   **Posición** : le permite elegir la ubicación donde
     widget (predeterminado abajo a la derecha)
@@ -378,7 +378,7 @@ Preguntas frecuentes
 
 >**Ya no puedo editar mi diseño**
 >
->Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer haga clic fuera del widget o imagen para acceder al menú haciendo haga clic con el botón derecho.
+>Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
 >**Eliminar un diseño que ya no funciona**
 >
