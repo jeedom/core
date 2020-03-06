@@ -96,9 +96,9 @@ class translate {
 			if (trim($text) == '') {
 				$replace['{{' . $text . '}}'] = $text;
 			}
-			if (isset($translate[$_name]) && isset($translate[$_name][$text])) {
+			if (isset($translate[$_name]) && isset($translate[$_name][$text]) && $translate[$_name][$text] != '') {
 				$replace['{{' . $text . '}}'] = ltrim($translate[$_name][$text],'##');
-			}else if(strpos($text,"'") !== false && isset($translate[$_name]) && isset($translate[$_name][str_replace("'","\'",$text)])){
+			}else if(strpos($text,"'") !== false && isset($translate[$_name]) && isset($translate[$_name][str_replace("'","\'",$text)]) && $translate[$_name][str_replace("'","\'",$text)] != ''){
 				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][str_replace("'","\'",$text)],'##');
 			}
 			if (!isset($replace['{{' . $text . '}}']) && isset($translate['common']) && isset($translate['common'][$text])) {
