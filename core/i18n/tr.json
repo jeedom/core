@@ -3736,6 +3736,17 @@
         "L\\'objet ne peut pas être son propre père": "Nesne kendi babası olamaz",
         "Objet": "Konu"
     },
+    "core\/template\/widgets.html": {
+        "Date de valeur": "",
+        "Date de collecte": "",
+        "Valeur": "Değer",
+        "Activer": "Etkinleştir",
+        "Desactiver": "Demount",
+        "Dernier lancement": "Son çalıştırma",
+        "Min": "",
+        "Moyenne": "Ortalama",
+        "Max": ""
+    },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Süre"
     },

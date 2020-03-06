@@ -3736,6 +3736,17 @@
         "L\\'objet ne peut pas être son propre père": "",
         "Objet": "Объект"
     },
+    "core\/template\/widgets.html": {
+        "Date de valeur": "",
+        "Date de collecte": "",
+        "Valeur": "Значение",
+        "Activer": "активировать",
+        "Desactiver": "деактивировать",
+        "Dernier lancement": "Последний запуск",
+        "Min": "",
+        "Moyenne": "Средний",
+        "Max": ""
+    },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Продолжительность"
     },

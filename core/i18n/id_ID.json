@@ -3736,6 +3736,17 @@
         "L\\'objet ne peut pas être son propre père": "",
         "Objet": "Item"
     },
+    "core\/template\/widgets.html": {
+        "Date de valeur": "",
+        "Date de collecte": "",
+        "Valeur": "Nilai",
+        "Activer": "Mengaktifkan",
+        "Desactiver": "Penonaktifan",
+        "Dernier lancement": "Peluncuran terakhir",
+        "Min": "",
+        "Moyenne": "Rata-rata",
+        "Max": ""
+    },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Lamanya"
     },
