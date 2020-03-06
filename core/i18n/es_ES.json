@@ -3652,6 +3652,17 @@
         "L\\'objet ne peut pas être son propre père": "El objeto no puede ser su propio padre",
         "Objet": "Objeto"
     },
+    "core\/template\/widgets.html": {
+        "Date de valeur": "",
+        "Date de collecte": "",
+        "Valeur": "Valor",
+        "Activer": "Activar",
+        "Desactiver": "Desactivar",
+        "Dernier lancement": "Última ejecución",
+        "Min": "",
+        "Moyenne": "Media",
+        "Max": ""
+    },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Duración"
     },

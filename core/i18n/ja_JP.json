@@ -3652,6 +3652,17 @@
         "L\\'objet ne peut pas être son propre père": "",
         "Objet": "オブジェクト"
     },
+    "core\/template\/widgets.html": {
+        "Date de valeur": "",
+        "Date de collecte": "",
+        "Valeur": "値",
+        "Activer": "アクティブ",
+        "Desactiver": "非アクティブ化",
+        "Dernier lancement": "最後の打ち上げ",
+        "Min": "",
+        "Moyenne": "平均",
+        "Max": ""
+    },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "期間"
     },
