@@ -1,4 +1,4 @@
-# copias de seguridad
+# Copias de seguridad
 **Configuración → Sistema → Copias de seguridad**
 
 Jeedom ofrece la posibilidad de ser guardado y restaurado desde o desde diferentes ubicaciones.
@@ -7,9 +7,9 @@ Esta página permite la gestión de copias de seguridad, restaura.
 
 Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha está el estado en tiempo real de la acción en curso (copia de seguridad o restauración), si ha lanzado una..
 
-## copias de seguridad
+## Copias de seguridad
 
-- **copias de seguridad** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, ver más abajo). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo..
+- **Copias de seguridad** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, ver más abajo). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo..
 
 - **Ubicación de respaldo** : Indica la carpeta en la que Jeedom copia las copias de seguridad.. Se recomienda no cambiarlo.. Si está en un camino relativo, su origen es donde está instalado Jeedom.
 
@@ -47,21 +47,21 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad de samba seleccionada anteriormente.
 
-> **punta**
+> **Punta**
 >
 > Dependiendo de lo que se active, en la página Configuración → Sistema → Configuración : Actualizaciones, puedes ver más o menos secciones.
 
-> **punta**
+> **Punta**
 >
 > Al reinstalar Jeedom y haber tomado la suscripción de copia de seguridad de Cloud de Market, debe ingresar su cuenta de Market en su nuevo Jeedom (Configuración → Sistema → Configuración : Actualizaciones) luego ven aquí para comenzar la restauración.
 
-> **punta**
+> **Punta**
 >
 > Es posible, en caso de problemas, hacer una copia de seguridad en la línea de comando :
 >  `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
 > o `sudo php / var / www / html / install / backup.php` dependiendo de su sistema.
 
-> **punta**
+> **Punta**
 >
 > También es posible restaurar una copia de seguridad de la línea de comandos (de forma predeterminada, Jeedom restaura la copia de seguridad más reciente presente en el directorio de copia de seguridad) :
 > `sudo php /usr/share/nginx/www/jeedom/install/restore.php` o
@@ -73,7 +73,7 @@ Durante una copia de seguridad, Jeedom realizará una copia de seguridad de todo
 
 A nivel de protocolo, solo la Z-Wave (OpenZwave) es un poco diferente porque no es posible guardar las inclusiones. Estos se incluyen directamente en el controlador, por lo que debe mantener el mismo controlador para encontrar sus módulos Zwave.
 
-> **nota**
+> **Nota**
 >
 > El sistema en el que está instalado Jeedom no está respaldado. Si ha cambiado la configuración de este sistema (incluso a través de SSH), depende de usted encontrar una manera de recuperarlos si tiene alguna inquietud..
 
@@ -81,9 +81,9 @@ A nivel de protocolo, solo la Z-Wave (OpenZwave) es un poco diferente porque no 
 
 La copia de seguridad en la nube le permite a Jeedom enviar sus copias de seguridad directamente al mercado. Esto le permite restaurarlos fácilmente y asegurarse de no perderlos.. The Market conserva las últimas 6 copias de seguridad. Para suscribirte solo ve a tu página **perfil** en el mercado, luego en la pestaña **mis copias de seguridad**. Puede, desde esta página, recuperar una copia de seguridad o comprar una suscripción (durante 1, 3, 6 o 12 meses).
 
-> **punta**
+> **Punta**
 >
-> Puede personalizar el nombre de los archivos de copia de seguridad desde la pestaña **Mis jeedoms**, sin embargo evitando personajes exóticos.
+> Puede personalizar el nombre de los archivos de copia de seguridad desde la pestaña **Mis jeedoms**, evitando sin embargo los personajes exóticos.
 
 # Frecuencia de respaldos automáticos
 

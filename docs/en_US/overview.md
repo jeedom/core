@@ -23,11 +23,11 @@ The configuration of the display of the object is done in **Tools → Objects** 
 >
 > The display order of the objects is that of the * home automation summary *, which you can reorder (Analysis → Home automation summary).
 
-> **Note**
+> **NOTE**
 >
 > If an object has not defined a summary, a button is displayed at the top right to access the configuration / summaries of the object..
 
-## functions
+## Functions
 
 For each object, you can click :
 - On the image, to open the equipment page of this object (also accessible via the menu * Home → Dashboard → Object *).

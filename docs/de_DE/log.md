@@ -1,4 +1,4 @@
-# logs
+# Logs
 **Analyse → Protokolle**
 
 Protokolle sind Protokolldateien, mit denen Sie verfolgen können, was in Ihrer Hausautomation geschieht. In den meisten Fällen werden die Protokolle nur zum Debuggen und Lösen von Problemen durch das Support-Team verwendet.
@@ -14,7 +14,7 @@ Oben rechts 5 Tasten :
 - **Suche** : Ermöglicht das Filtern der Anzeige des aktuellen Protokolls.
 - **Pause / Resume** : Unterbrechen / Fortsetzen der Echtzeitaktualisierung des aktuellen Protokolls.
 - **Download** : Laden Sie das aktuelle Protokoll herunter.
-- **leer** : Löschen Sie das aktuelle Protokoll.
+- **Leer** : Löschen Sie das aktuelle Protokoll.
 - **Entfernen** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
 - **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 

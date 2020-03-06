@@ -120,18 +120,32 @@ Pour le configurer c'est assez simple il faut affecter le widget à la commande 
 >**IMPORTANT**
 >Il faut ABSOLUMENT que vos commandes aient les génériques type température sur la commande de température et humidité sur la commande humidité (cela se configure dans la configuration avancée de la commande onglet configuration).
 
-Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+##### Paramètre(s) optionnel(s)
+
+- scale : Permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit.
 
 >**NOTE**
 > Attention sur un design il ne faut surtout pas mettre une commande seule avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commandes, il faut absolument mettre le widget complet
 
 ### Multiline
 
-- Parametre maxHeight pour définir sa hauteur maximale (scrollbar sur le coté si le texte dépasse cette valeur)
+##### Paramètre(s) optionnel(s)
+
+- maxHeight : Permet de définir sa hauteur maximale (scrollbar sur le coté si le texte dépasse cette valeur).
 
 ### Slider Button
 
-- step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
+##### Paramètre(s) optionnel(s)
+
+- step : Permet de régler le pas d'une action sur un bouton (0.5 par défaut).
+
+### Rain
+
+##### Paramètre(s) optionnel(s)
+
+- scale : Permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit.
+- showRange : Affiche les valeurs min/max de la commande.
+
 
 ## Widget code
 

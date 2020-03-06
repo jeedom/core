@@ -20,13 +20,13 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'eqLogic' => array(
 		'category' => array(
-			'heating' => array('name' => 'Chauffage', 'icon' => 'fa fa-fire'),
-			'security' => array('name' => 'Sécurité', 'icon' => 'fa fa-lock'),
-			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
-			'light' => array('name' => 'Lumière', 'icon' => 'fa fa-lightbulb-o'),
-			'automatism' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
-			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fas fa-sliders-h'),
-			'default' => array('name' => 'Autre', 'icon' => 'fa fa-circle-o'),
+			'heating' => array('name' => __('Chauffage',__FILE__), 'icon' => 'fa fa-fire'),
+			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fa fa-lock'),
+			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fa fa-bolt'),
+			'light' => array('name' => __('Lumière',__FILE__), 'icon' => 'fa fa-lightbulb-o'),
+			'automatism' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fa fa-magic'),
+			'multimedia' => array('name' => __('Multimédia',__FILE__), 'icon' => 'fas fa-sliders-h'),
+			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'fa fa-circle-o'),
 		),
 		'style' => array(
 			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
@@ -46,30 +46,30 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'plugin' => array(
 		'category' => array(
-			'security' => array('name' => 'Sécurité', 'icon' => 'fas fa-lock'),
-			'automation protocol' => array('name' => 'Protocole domotique', 'icon' => 'fas fa-rss'),
-			'home automation protocol' => array('name' => 'Passerelle domotique', 'icon' => 'fas fa-asterisk'),
-			'programming' => array('name' => 'Programmation', 'icon' => 'fas fa-code'),
-			'organization' => array('name' => 'Organisation', 'icon' => 'far fa-calendar-alt', 'alias' => array('travel', 'finance')),
-			'weather' => array('name' => 'Météo', 'icon' => 'far fa-sun'),
-			'communication' => array('name' => 'Communication', 'icon' => 'fas fa-comment'),
-			'devicecommunication' => array('name' => 'Objets connectés', 'icon' => 'fas fa-language'),
-			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fas fa-sliders-h'),
-			'wellness' => array('name' => 'Confort', 'icon' => 'far fa-user'),
-			'monitoring' => array('name' => 'Monitoring', 'icon' => 'fas fa-tachometer-alt'),
-			'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
-			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
-			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fas fa-magic'),
-			'energy' => array('name' => 'Energie', 'icon' => 'fas fa-bolt'),
-			'other' => array('name' => 'Autre', 'icon' => 'fas fa-bars'),
+			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fas fa-lock'),
+			'automation protocol' => array('name' => __('Protocole domotique',__FILE__), 'icon' => 'fas fa-rss'),
+			'home automation protocol' => array('name' => __('Passerelle domotique',__FILE__), 'icon' => 'fas fa-asterisk'),
+			'programming' => array('name' => __('Programmation',__FILE__), 'icon' => 'fas fa-code'),
+			'organization' => array('name' => __('Organisation',__FILE__), 'icon' => 'far fa-calendar-alt', 'alias' => array('travel', 'finance')),
+			'weather' => array('name' => __('Météo',__FILE__), 'icon' => 'far fa-sun'),
+			'communication' => array('name' => __('Communication',__FILE__), 'icon' => 'fas fa-comment'),
+			'devicecommunication' => array('name' => __('Objets connectés',__FILE__), 'icon' => 'fas fa-language'),
+			'multimedia' => array('name' => __('Multimédia',__FILE__), 'icon' => 'fas fa-sliders-h'),
+			'wellness' => array('name' => __('Confort',__FILE__), 'icon' => 'far fa-user'),
+			'monitoring' => array('name' => __('Monitoring',__FILE__), 'icon' => 'fas fa-tachometer-alt'),
+			'health' => array('name' => __('Santé',__FILE__), 'icon' => 'icon loisir-runner5'),
+			'nature' => array('name' => __('Nature',__FILE__), 'icon' => 'icon nature-leaf32'),
+			'automatisation' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fas fa-magic'),
+			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fas fa-bolt'),
+			'other' => array('name' => __('Autre',__FILE__), 'icon' => 'fas fa-bars'),
 		),
 	),
 	'alerts' => array(
-		'timeout' => array('name' => 'Timeout', 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
-		'batterywarning' => array('name' => 'Batterie en Warning', 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
-		'batterydanger' => array('name' => 'Batterie en Danger', 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
-		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
-		'danger' => array('name' => 'Danger', 'icon' => 'fa fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
+		'timeout' => array('name' => __('Timeout',__FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
+		'batterywarning' => array('name' => __('Batterie en Warning',__FILE__), 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
+		'batterydanger' => array('name' => __('Batterie en Danger',__FILE__), 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
+		'warning' => array('name' => __('Warning',__FILE__), 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
+		'danger' => array('name' => __('Danger',__FILE__), 'icon' => 'fa fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
 	),
 	'cmd' => array(
 		'widgets' => array(
@@ -294,10 +294,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'type' => array(
 		'info' => array(
-			'name' => 'Info',
+			'name' => __('Info',__FILE__),
 			'subtype' => array(
 				'numeric' => array(
-					'name' => 'Numérique',
+					'name' => __('Numérique',__FILE__),
 					'configuration' => array(
 						'minValue' => array('visible' => true),
 						'maxValue' => array('visible' => true),
@@ -310,7 +310,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						),
 					),
 					'binary' => array(
-						'name' => 'Binaire',
+						'name' => __('Binaire',__FILE__),
 						'configuration' => array(
 							'minValue' => array('visible' => false),
 							'maxValue' => array('visible' => false),
@@ -323,7 +323,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							),
 						),
 						'string' => array(
-							'name' => 'Autre',
+							'name' => __('Autre',__FILE__),
 							'configuration' => array(
 								'minValue' => array('visible' => false),
 								'maxValue' => array('visible' => false),
@@ -338,10 +338,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						),
 					),
 					'action' => array(
-						'name' => 'Action',
+						'name' => __('Action',__FILE__),
 						'subtype' => array(
 							'other' => array(
-								'name' => 'Défaut',
+								'name' => __('Défaut',__FILE__),
 								'configuration' => array(
 									'minValue' => array('visible' => false),
 									'maxValue' => array('visible' => false),
@@ -354,7 +354,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 									),
 								),
 								'slider' => array(
-									'name' => 'Curseur',
+									'name' => __('Curseur',__FILE__),
 									'configuration' => array(
 										'minValue' => array('visible' => true),
 										'maxValue' => array('visible' => true),
@@ -367,7 +367,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 										),
 									),
 									'message' => array(
-										'name' => 'Message',
+										'name' => __('Message',__FILE__),
 										'configuration' => array(
 											'minValue' => array('visible' => false),
 											'maxValue' => array('visible' => false),
@@ -380,7 +380,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 											),
 										),
 										'color' => array(
-											'name' => 'Couleur',
+											'name' => __('Couleur',__FILE__),
 											'configuration' => array(
 												'minValue' => array('visible' => false),
 												'maxValue' => array('visible' => false),
@@ -393,7 +393,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 												),
 											),
 											'select' => array(
-												'name' => 'Liste',
+												'name' => __('Liste',__FILE__),
 												'configuration' => array(
 													'minValue' => array('visible' => false),
 													'maxValue' => array('visible' => false),

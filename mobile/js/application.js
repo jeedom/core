@@ -435,7 +435,7 @@ function initApplication(_reinit) {
                 page(res[1], 'Plugin', '', res[0])
               }
             } else {
-              page('home', 'Accueil')
+              page('home', '{{Accueil}}')
             }
             $('#pagecontainer').css('padding-top','64px')
           })

@@ -38,7 +38,7 @@ $('.backgroundforJeedom').css({
 
 $( function() {
   jeedom.timeline.autocompleteFolder()
-  
+
   $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
 })
 
@@ -128,7 +128,7 @@ $('#bt_resetInsideScenarioSearch').on('click', function () {
     btn.data('state', '1')
     searchField.focus()
   } else {
-    
+
     if (searchField.val() == '') {
       btn.find('i').removeClass('fa-times').addClass('fa-search')
       searchField.hide()
@@ -175,7 +175,7 @@ $(function(){
             scenarioList[group].push([sc.name, sc.id])
           }
         }
-        
+
         //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
@@ -191,7 +191,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
         {
           $('.nav.nav-tabs').contextMenu({
@@ -277,7 +277,7 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
     }
     modifyWithoutSave = false
   }
-  
+
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.scenarioListContainer').packery();
@@ -553,7 +553,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
   var expression = false
   var insertAfter = false
   var elementDiv = $(this).closest('.element')
-  
+
   //is scenario empty:
   if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
@@ -571,7 +571,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
       elementDiv = $('#div_scenarioElement')
     }
   }
-  
+
   $('#md_addElement').modal('show')
   $("#bt_addElementSave").off('click').on('click', function (event) {
     setUndoStack()
@@ -585,7 +585,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     } else {
       elementDiv.append(newEL.addClass('disableElement'))
     }
-    
+
     setEditor()
     updateSortable()
     updateElseToggle()
@@ -595,7 +595,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     setAutocomplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
-  
+
 })
 
 $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
@@ -650,7 +650,7 @@ $pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function 
 $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
   var changeThis = $(this)
   if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse')
-  
+
   if ($(this).children('i').hasClass('fa-eye')) {
     changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash')
     changeThis.closest('.element').addClass('elementCollapse')
@@ -800,7 +800,7 @@ $pageContainer.off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdE
         '</div> </div>' +
         '</form> </div>  </div>';
       }
-      
+
       bootbox.dialog({
         title: "{{Ajout d'une nouvelle condition}}",
         message: message,
@@ -904,10 +904,10 @@ $pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  fun
   })
   SC_CLIPBOARD = SC_CLIPBOARD.clone()
   SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
-  
+
   localStorage.removeItem('jeedomScCopy')
   localStorage.setItem('jeedomScCopy', $(SC_CLIPBOARD)[0].outerHTML)
-  
+
   if(event.ctrlKey) {
     setUndoStack()
     clickedBloc.remove()
@@ -920,14 +920,14 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
   if (localStorage.getItem('jeedomScCopy')) {
     SC_CLIPBOARD = $.parseHTML(localStorage.getItem('jeedomScCopy'))
   }
-  
+
   setUndoStack()
   //Removes its id for later save:
   newBloc = $(SC_CLIPBOARD).clone()
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
-  
+
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
     //get the element if copied from an expression:
@@ -948,7 +948,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
       $('#insertHere').removeAttr('id')
     }
   }
-  
+
   if(event.ctrlKey) {
     clickedBloc.remove()
   }
@@ -1050,7 +1050,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       } else {
         ui.placeholder.removeClass('sortable-placeholderLast')
       }
-      
+
       getClass = true
       if (ui.placeholder.parent().hasClass('subElement')) {
         getClass = false
@@ -1062,7 +1062,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
         getClass = false
       }
-      
+
       if (getClass) {
         ui.placeholder.addClass('sortable-placeholder')
       } else {
@@ -1076,7 +1076,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
-      
+
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
         ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
           var value = $(this).value();
@@ -1094,14 +1094,14 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
         })
         ui.item.parent().replaceWith(el);
       }
-      
+
       if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
         $("#div_scenarioElement").sortable("cancel");
       }
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel");
       }
-      
+
       updateTooltips()
       updateSortable()
     },
@@ -1272,7 +1272,7 @@ function setAutocomplete() {
         }
       })
     }
-    
+
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
       $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
         source: autoCompleteAction,
@@ -1326,13 +1326,13 @@ function printScenario(_id) {
     },
     success: function (data) {
       $('.scenarioAttr').value('');
-      
+
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected',true);
       $('.scenarioAttr[data-l1key=object_id]').val('');
       $pageContainer.setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
-      
+
       $('#div_scenarioElement').empty();
       $('.provokeMode').empty();
       $('.scheduleMode').empty();
@@ -1514,13 +1514,13 @@ function addExpression(_expression) {
   if (_expression.type == 'condition' || _expression.type == 'code') {
     sortable = 'noSortable';
   }
-  
+
   var retour = '<div class="expression ' + sortable + ' col-xs-12" >'
-  
+
   if (_expression.type == 'action') {
     retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
   }
-  
+
   retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>';
@@ -1537,7 +1537,7 @@ function addExpression(_expression) {
     retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '</span>';
     retour += '</div>';
-    
+
     break;
     case 'element' :
     retour += '<div class="col-xs-12" >';
@@ -1613,7 +1613,7 @@ function addSubElement(_subElement) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-  
+
   blocClass = '';
   switch (_subElement.type) {
     case 'if':
@@ -1651,7 +1651,7 @@ function addSubElement(_subElement) {
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>';
-  
+
   switch (_subElement.type) {
     case 'if' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1663,15 +1663,15 @@ function addSubElement(_subElement) {
       retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="Décocher pour désactiver l\'élément" />';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />';
     }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="Décocher pour désactiver l\'élément" />';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />';
     }
     retour += '</div>';
     retour += '<div >';
     retour += '<legend >{{SI}}</legend>';
     retour += '</div>';
-    
+
     retour += '<div >';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
       retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>';
@@ -1679,7 +1679,7 @@ function addSubElement(_subElement) {
       retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>';
     }
     retour += '</div>';
-    
+
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1689,7 +1689,7 @@ function addSubElement(_subElement) {
     retour += '  </div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1705,7 +1705,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     break;
-    
+
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1721,7 +1721,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     break;
-    
+
     case 'for' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1749,7 +1749,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'in' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1766,7 +1766,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     retour += '<div>';
-    retour += '<legend tooltip="Action DANS x minutes">{{DANS}}</legend>';
+    retour += '<legend tooltip="{{Action DANS x minutes}}">{{DANS}}</legend>';
     retour += '</div>';
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
@@ -1777,7 +1777,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'at' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1794,7 +1794,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     retour += '<div>';
-    retour += '<legend >{{A (Hmm)}}</legend>';
+    retour += '<legend >{{A}}</legend><span>(Hmm)</span>';
     retour += '</div>';
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
@@ -1805,7 +1805,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1821,7 +1821,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     break;
-    
+
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1852,7 +1852,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'comment' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
     retour += '<div>';
@@ -1880,7 +1880,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1940,7 +1940,7 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-  
+
   elementClass = ''
   switch (_element.type) {
     case 'if' :
@@ -1964,9 +1964,9 @@ function addElement(_element) {
     case 'action' :
     elementClass = 'elementACTION'
   }
-  
+
   var div = '<div class="element ' + elementClass + '">';
-  
+
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
@@ -2050,7 +2050,7 @@ function getElement(_element) {
   }
   element = element[0];
   element.subElements = [];
-  
+
   _element.findAtDepth('.subElement', 2).each(function () {
     var subElement = $(this).getValues('.subElementAttr', 2);
     subElement = subElement[0];
@@ -2072,7 +2072,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression);
-      
+
     });
     element.subElements.push(subElement);
   });
@@ -2107,7 +2107,7 @@ function getAddButton(_caret) {
   retour += '<span class="caret"></span>'
   retour += '</button>'
   retour += '<ul class="dropdown-menu">'
-  
+
   retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
@@ -2116,7 +2116,7 @@ function getAddButton(_caret) {
   retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
-  
+
   retour += '</ul>'
   retour += '</div>'
   if (_caret) {
@@ -2128,11 +2128,11 @@ function getAddButton(_caret) {
 $pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', function (event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
-  
+
   var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
   var newEL = $(addExpression({type: 'element', element: {type: elementType}}))
   elementDiv.append(newEL.addClass('disableElement'))
-  
+
   setEditor()
   updateSortable()
   updateElseToggle()
@@ -2169,7 +2169,7 @@ function setUndoStack(state=0) {
   syncEditors()
   newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
-  
+
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -2229,16 +2229,16 @@ function syncEditors() {
 }
 function resetEditors() {
   editor = []
-  
+
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression')
     var code = expression.find('.expressionAttr[data-l1key=expression]')
     var element = expression.parents('elementCODE').first()
-    
+
     code.show()
     code.removeAttr('id')
     expression.find('.CodeMirror-wrap').remove()
   })
-  
+
   setEditor()
 }

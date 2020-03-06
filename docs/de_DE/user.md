@@ -6,14 +6,14 @@ Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt s
 Auf der Seite haben Sie drei Schaltflächen :
 
 - Benutzer hinzufügen.
-- speichern.
+- Speichern.
 - Öffnen Sie den Support-Zugriff.
 
 ## Liste der Benutzer
 
 - **Benutzername** : Benutzer-ID.
 - **Aktiva** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
-- **lokal** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
+- **Lokal** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
 - **Profil** : Ermöglicht die Auswahl des Benutzerprofils :
     - **Verwalter** : Der Benutzer erhält alle Rechte (Bearbeitung / Beratung) an Jeedom.
     - **Benutzer** : Der Benutzer kann Dashboard, Ansichten, Designs usw. anzeigen.. und auf Geräte / Kontrollen einwirken. Er hat jedoch weder Zugriff auf die Konfiguration der Steuerungen / Geräte noch auf die Konfiguration von Jeedom.
@@ -31,18 +31,18 @@ Auf der Seite haben Sie drei Schaltflächen :
 
 Wenn Sie auf &quot;Rechte&quot; klicken, wird ein Fenster angezeigt, in dem Sie die Benutzerrechte genau verwalten können. Auf der ersten Registerkarte werden die verschiedenen Geräte angezeigt. Der zweite zeigt die Szenarien.
 
-> **wichtig**
+> **Wichtig**
 >
 > Das Profil muss eingeschränkt sein, da sonst keine hier aufgeführten Einschränkungen berücksichtigt werden.
 
 Sie erhalten eine Tabelle, in der für jedes Gerät und jedes Szenario die Rechte des Benutzers definiert werden können. :
-- **keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht.
+- **Keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht.
 - **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, kann jedoch nicht darauf reagieren.
 - **Visualisierung und Ausführung** : Der Benutzer sieht die Ausrüstung / das Szenario und kann darauf reagieren (eine Lampe anzünden, das Szenario starten usw.)..
 
 ## Aktive Sitzung (en)
 
-Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, deren IP und seit wann an. Sie können den Benutzer über die Schaltfläche abmelden **trennen**.
+Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, deren IP und seit wann an. Sie können den Benutzer über die Schaltfläche abmelden **Trennen**.
 
 ## Registrierte Geräte
 

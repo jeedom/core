@@ -3,11 +3,11 @@
 
 Esta página le permite ver todos los informes generados por la acción del informe (consulte la documentación del escenario).
 
-## principio
+## Principio
 
 Un informe es una captura de pantalla de la interfaz Jeedom en un momento t.
 
-> **nota**
+> **Nota**
 >
 > Esta captura está adaptada para no tomar la barra de menú y otros elementos innecesarios en este tipo de un..
 
@@ -16,7 +16,7 @@ Puede hacer esto en vistas, diseños, páginas de paneles....
 La generación se desencadena desde un escenario con el comando de informe.
 Puede elegir que se le envíe este informe utilizando un comando de mensaje (correo electrónico, telegrama, etc.).
 
-## un
+## Un
 
 Su un es muy sencillo.. Seleccione a la izquierda si quiere ver :
 
@@ -27,7 +27,7 @@ Su un es muy sencillo.. Seleccione a la izquierda si quiere ver :
 
 Luego seleccione el nombre del informe en cuestión. Luego verá todas las fechas de los informes disponibles..
 
-> **importante**
+> **Importante**
 >
 > La eliminación automática se realiza de forma predeterminada para informes de más de 30 días. Puede configurar este retran en la configuración de Jeedom.
 

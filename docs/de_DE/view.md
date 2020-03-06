@@ -34,7 +34,7 @@ Nach dem Klicken auf die Schaltfläche Zone hinzufügen fragt Jeedom nach Name u
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
 - **Breite** : Definiert die Breite des Bereichs (nur im Desktop-Modus).
-- **bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
+- **Bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
 - **Entfernen** : Löschen Sie die Zone.
 
 ### Widget-Typ-Bereich
@@ -90,7 +90,7 @@ Hier haben Sie die Schaltflächen :
 Nachdem Sie Ihre Zeilen / Spalten hinzugefügt haben, können Sie Informationen in die Felder einfügen :
 
 - **Text** : Nur Text zum Schreiben.
-- **html** : jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
+- **HTML** : jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
 - **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget für den Befehl angezeigt wird)..
 
 

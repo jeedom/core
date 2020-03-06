@@ -14,7 +14,7 @@ Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhäng
 >
 > Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Wir empfehlen das sehr gute SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü &quot;3D-Ansicht&quot; und dann über &quot;In OBJ-Format exportieren&quot;.. Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein)..
+Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein)..
 
 > **WICHTIG**
 >
@@ -84,15 +84,15 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 #### Tür / Fenster
 
 - Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
-- Rotation
-	- activate : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
+- Drehung
+	- Activate : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
 	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
 - Übersetzung
-	- activate : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp)
+	- Activate : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp)
 	- Bedeutung : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
 	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
 - Verstecken, wenn die Tür / das Fenster geöffnet ist
-	- activate : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
+	- Activate : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
 - Farbe
 	- Farbe öffnen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
@@ -101,7 +101,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 - Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
-	- activate : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
+	- Activate : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Farbe
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 

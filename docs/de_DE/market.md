@@ -57,10 +57,10 @@ Für die Profis :
     - **Name** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Namen des Backups, wenn Sie über ein Cloud-Backup-Abonnement verfügen)..
     - **Zustand** : Sehen wir uns den Zustand des fraglichen Jeedom an.
     - **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom, konfigurieren Sie in Jeedom. Wenn Sie nichts eingeben, ist dies die letzte bekannte IP.
-    - **DNS** : Ermöglicht das Anpassen des Namens Ihres DNS.
+    - **Dns** : Ermöglicht das Anpassen des Namens Ihres Dns.
     - **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLss auf.
-    - **DNS-Server** : Zeigt Ihnen den DNS-Server an, an den Sie angeschlossen sind.
-    - **DNS-Status** : Hier können Sie den Status des DNS anzeigen.
+    - **Dns-Server** : Zeigt Ihnen den Dns-Server an, an den Sie angeschlossen sind.
+    - **Dns-Status** : Hier können Sie den Status des Dns anzeigen.
     - **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem Marktkonto (zur Erinnerung, dies erfolgt automatisch, wenn Sie es mit dem Markt verknüpfen).
     - **Letztes Update** : Jeedom&#39;s letzte Kommunikation mit dem Markt.
     - **Hardware** : Jeedom Hardware-Name.
@@ -82,7 +82,7 @@ Auf dieser Registerkarte können Sie Ihren SMS- / Anrufsaldo anzeigen (verwendba
 
 Hier finden Sie alle Ihre Einkäufe und können die Rücksendung der Rechnung oder Quittungs-E-Mail anfordern.
 
-> **wichtig**
+> **Wichtig**
 >
 > Wenn Sie ein offizielles Plugin kaufen, erhalten Sie eine Rechnung. Für ein Plugin eines Drittanbieters handelt es sich jedoch um eine Quittung. Für die Rechnung müssen Sie den Entwickler fragen.
 

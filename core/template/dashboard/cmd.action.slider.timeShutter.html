@@ -22,7 +22,7 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
       jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'))
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       var position = _options.display_value
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')

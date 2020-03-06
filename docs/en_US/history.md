@@ -1,13 +1,13 @@
 # Historical
 **Analysis → History**
 
-Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
+IMPORTANT part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
 
 ### Principle
 
 Here is described the principle of historicization of Jeedom. You only need to understand this if you are having historization issues or want to change the historization settings.. Default settings are fine in most cases.
 
-### archiving
+### Archiving
 
 Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
@@ -17,7 +17,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 >
 > If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. Why ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
 
-> **Important**
+> **IMPORTANT**
 >
 > Of course, this archiving principle only applies to digital type commands; on binary type commands, Jeedom keeps only the dates of change of state.
 
@@ -26,7 +26,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 There are several ways to access the history :
 
 - By clicking on the desired command in a widget,
-- By going to the history page which allows you to superimpose different curves and to combine styles (area, curve, bar),
+- By going to the history page which allows to superimpose different curves and to combine styles (area, curve, bar),
 - On mobile while remaining pressed on the widget in question,
 - By putting a graph area in a view (see below).
 
@@ -95,13 +95,13 @@ The timeline displays certain events in your home automation in chronological fo
 
 To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
 
-- **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it &quot;en masse&quot;.
-- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in &quot;mass&quot;.
+- **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
+- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
 The * Main * timeline always contains all the events. However, you can filter the timeline by * folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
 You can then filter the timeline by this folder by selecting it to the left of the * Refresh button.*.
 
-> **Note**
+> **NOTE**
 >
 > If you no longer use a folder, it will appear in the list as long as events linked to this folder exist. It will disappear from the list by itself.
 
@@ -111,7 +111,7 @@ You can then filter the timeline by this folder by selecting it to the left of t
 
 Once you have activated tracking in the timeline of the commands and scenarios you want, you will be able to see them appear on the timeline.
 
-> **Important**
+> **IMPORTANT**
 >
 > You have to wait for new events after activating the tracking on the timeline before seeing them appear.
 

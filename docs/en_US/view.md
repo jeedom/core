@@ -1,4 +1,4 @@
-# views
+# Views
 **Home → View**
 
 Views allow you to create a custom view.
@@ -83,14 +83,14 @@ Here you have the buttons :
 - **Add column** : Add a column to the table.
 - **Add line** : Add a row to the table.
 
-> **Note**
+> **NOTE**
 >
 > It is possible to reorganize the rows by dragging and dropping but not the columns.
 
 Once you have added your rows / columns you can add information in the boxes :
 
 - **text** : just text to write.
-- **html** : any html code (javascript possible but strongly discouraged).
+- **l'opération à mener** : any l'opération à mener code (javascript possible but strongly discouraged).
 - **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
 
 

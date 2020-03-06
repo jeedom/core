@@ -63,7 +63,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nom de votre}} <?php echo config::byKey('product_name'); ?>
-							<sup><i class="fas fa-question-circle" tooltip="{{Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)}}"></i></sup>
+							<sup><i class="fas fa-question-circle" tooltip="{{Nom de votre}} <?php echo config::byKey('product_name'); ?> {{(utilisé notamment par le market)}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="name" />
@@ -75,16 +75,16 @@ user::isBan();
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<select class="form-control configKey" data-l1key="language">
-								<option value="fr_FR">French</option>
-								<option value="en_US">English</option>
-								<option value="de_DE">German</option>
-								<option value="es_ES">Spanish</option>
-								<option value="ru_RU">Russian</option>
-								<option value="id_ID">Indonesian</option>
-								<option value="it_IT">Italian</option>
-								<option value="ja_JP">Japanese</option>
-								<option value="pt_PT">Portuguese</option>
-								<option value="tr">Turkish</option>
+								<option value="fr_FR">{{Français}}</option>
+								<option value="en_US">{{Anglais}}</option>
+								<option value="de_DE">{{Allemand}}</option>
+								<option value="es_ES">{{Espagnol}}</option>
+								<option value="it_IT">{{Italien}}</option>
+								<option value="pt_PT">{{Portugais}}</option>
+								<option value="ru_RU">{{Russe}}</option>
+								<option value="ja_JP">{{Japonais}}</option>
+								<option value="id_ID">{{Indonesien}}</option>
+								<option value="tr">{{Turque}}</option>
 							</select>
 						</div>
 					</div>

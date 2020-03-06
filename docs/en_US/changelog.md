@@ -13,7 +13,7 @@ Changelog
 - Update Center : If you open another browser during an update, the progress bar and the log indicate it.
 - Update Center : If the update finishes correctly, display of a window asking to reload the page.
 - Core updates : Implementation of a system for cleaning up old unused Core files.
-- Widgets / Objects / Scenarios / interactions / plugins Pages :
+- Widget / Objects / Scenarios / Interactions / Plugins Pages :
 	- Ctrl Clic / Clic Center on a Widget, Object, Scenarios, Interaction, plugin equipment : Opens in a new tab.
 	- Ctrl Clic / Clic Center also available in their context menus (on the tabs).
 - New ModalDisplay page:
@@ -23,7 +23,7 @@ Changelog
 - Scenario : Addition of the age function (gives the age of the value of the order).
 - Scenario : *stateChanges () * now accepts the period * today * (from midnight to now), * yesterday * and * day * (for 1 day).
 - Scenario : Functions * statistics (), average (), max (), min (), trend (), duration ()* : Bugfix for the period * yesterday *, and now accepts * day * (for 1 day).
-- Scenario : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Orders).
+- Scenario : Possibility to deactivate the automatic quote system (Settings → System → D'actualité : Orders).
 - Scenario : Display of a * warning * if no trigger is configured.
 - Scenario : bugfix of select on copy / paste block.
 - Scenario : copy / paste of block between different scenarios.
@@ -33,7 +33,7 @@ Changelog
 - Analysis / History : We can now use the * Area * option with the * Staircase option*.
 - Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
 - View : possibility to put scenarios.
-- Tools / Widgets : The * Apply on * function shows the linked commands checked, unchecking one will apply the default core widget on this command.
+- Tools / Widget : The * Apply on * function shows the linked commands checked, unchecking one will apply the default core widget on this command.
 - Integration of the Timeline in DB for reliability reasons.
 - Management of multiple timelines.
 - Home automation summary : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
@@ -50,6 +50,11 @@ Changelog
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
 
+4.0.43
+=====
+
+- Improved translations.
+- Bug fixes on scenario templates.
 
 4.0.0
 =====
@@ -57,7 +62,7 @@ Changelog
 - Possibility to change the theme automatically according to the time.
 - In mobile, the theme can change depending on the brightness (Requires activating * generic extra sensor * in chrome, chrome page:// flags). <br/><br/>
 - Improvement and reorganization of the main menu.
-- plugins menu : The list of categories and plugins is now sorted alphabetically.
+- Plugins menu : The list of categories and plugins is now sorted alphabetically.
 - Tools menu : Addition of a button to access the expression tester.
 - Tools menu : Addition of a button to access the variables. <br/><br/>
 - Search fields now support accents.
@@ -70,36 +75,36 @@ Changelog
 - Dashboard : The tiles indicate an info command (history, which will open the History window) or action on hover.
 - Dashboard : The history window now allows you to open this history in Analysis / History.
 - Dashboard : History window retains its position / dimensions when another history reopens.
-- Command Configuration window: Ctrl + click on &quot;Save&quot; closes the window after.
-- Equipment Configuration window: Ctrl + click on &quot;Save&quot; closes the window after.
+- Command D'actualité window: Ctrl + click on &quot;Save&quot; closes the window after.
+- Equipment D'actualité window: Ctrl + click on &quot;Save&quot; closes the window after.
 - Adding usage information when deleting equipment.
 - Objects : Added option to use custom colors.
 - Objects : Add context menu on tabs (quick object change).
-- interactions : Add context menu on tabs (quick interaction change).
-- plugins : Add context menu on tabs (quick change of equipment).
-- plugins : On the plugins management page, an orange dot indicates non-stable plugins.
+- Interactions : Add context menu on tabs (quick interaction change).
+- Plugins : Add context menu on tabs (quick change of equipment).
+- Plugins : On the Plugins management page, an orange dot indicates non-stable plugins.
 - Table improvements with filter and sort option.
 - Ability to assign an icon to an interaction.
 - Each Jeedom page now has a title in the interface language (browser tab).
-- Prevention of auto-filling on the fields &#39;Access code&#39;.
+- Prevention of auto-filling on fields&#39; Access code'.
 - Management of functions * Previous page / Next page * of the browser. <br/><br/>
-- Widgets : Redesign of the widget system (Tools / Widgets menu).
-- Widgets : Ability to replace a widget with another on all commands using it.
-- Widgets : Ability to assign a widget to multiple commands.
-- Widgets : Add horizontal info numeric widget.
-- Widgets : Adding an info numeric vertical widget.
-- Widgets : Addition of an info numeric compass / wind widget (thanks @thanaus).
-- Widgets : Adding an info numeric rain widget (thanks @thanaus)
-- Widgets : Display of the info / action shutter widget proportional to the value. <br/><br/>
-- Configuration : Improvement and reorganization of tabs.
-- Configuration : Added many * tooltips * (help).
-- Configuration : Adding a search engine.
-- Configuration : Adding a button to empty the widget cache (Cache tab).
-- Configuration : Added option to disable widget cache (Cache tab).
-- Configuration : Ability to center the content of the tiles vertically (Interface tab).
-- Configuration : Addition of a parameter for the global purging of the histories (Tab Commands).
-- Configuration : Change from # message # to # subject # in Configuration / Logs / Messages to avoid duplication of the message.
-- Configuration : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation ) <br/><br/>
+- Widget : Redesign of the widget system (Tools / Widget menu).
+- Widget : Ability to replace a widget with another on all commands using it.
+- Widget : Ability to assign a widget to multiple commands.
+- Widget : Add horizontal info numeric widget.
+- Widget : Adding an info numeric vertical widget.
+- Widget : Addition of an info numeric compass / wind widget (thanks @thanaus).
+- Widget : Adding an info numeric rain widget (thanks @thanaus)
+- Widget : Display of the info / action shutter widget proportional to the value. <br/><br/>
+- D'actualité : Improvement and reorganization of tabs.
+- D'actualité : Added many * tooltips * (help).
+- D'actualité : Adding a search engine.
+- D'actualité : Adding a button to empty the widget cache (Cache tab).
+- D'actualité : Added option to disable widget cache (Cache tab).
+- D'actualité : Ability to center the content of the tiles vertically (Interface tab).
+- D'actualité : Addition of a parameter for the global purging of the histories (Tab Commands).
+- D'actualité : Change from # message # to # subject # in D'actualité / Logs / Messages to avoid duplication of the message.
+- D'actualité : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation ) <br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
 - Scenario : Possibility by Ctrl + click on the button * execution * to save it, launch it, and display the log (if the log level is not on * None *).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.
@@ -132,13 +137,13 @@ Changelog
 - Numerous bug fixes.
 - Adding a mass configuration system (used on the Equipment page to configure the Communication Alert on these)
 
->**IMPORTANT**
+>**Important**
 >
 >If after the update you have an error on the Dashboard try to restart your box so that it takes the new additions of components into account.
 
->**IMPORTANT**
+>**Important**
 >
->The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the functions have been taken over internally on the core). More information [here] (https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+>The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the functions have been taken over internally on the core). More information [here] (https://www.jeedom.com/blog/4368-les-widgets-en-v4).
 
 3.3.39
 =====
@@ -149,7 +154,7 @@ Changelog
 - Better consideration of plugin widgets.
 - Optimization of the health calculation on the swap.
 
->**IMPORTANT**
+>**Important**
 >
 >This update fixes a concern that may prevent any history recording as of January 1, 2020, it is more than highly recommended.
 
@@ -321,7 +326,7 @@ Changelog
 - Ability to add options in reports.
 - Addition of a heartbeat by plugin and automatic restart of the daemon in case of problems.
 - Addition of listeners on the task engine page.
-- optimizations.
+- Optimizations.
 - Possibility to consult the logs in mobile version (wepapp).
 - Addition of an action tag in the scenarios (see documentation).
 - Possibility to have a full screen view by adding &quot;&amp; fullscreen = 1&quot; in the url.
@@ -352,7 +357,7 @@ Changelog
 3.2.12
 =====
 - Bugfix.
-- optimizations.
+- Optimizations.
 
 3.2.11
 =====
@@ -373,7 +378,7 @@ Changelog
 - Correction of a bug on the icons of the file editor and on the expression tester.
 - Bug fixes on listenners.
 - Addition of an alert if a plugin blocks crons.
-- Correction of a bug in the cloud monitoring system if the agent version is lower than 3.XX.
+- Correction of a bug in the cloud monitoring system if the agent version is less than 3.X.X.
 
 3.2.8
 =====
@@ -387,7 +392,7 @@ Changelog
 =====
 - Bugfix.
 - Docs update.
-- Possibility to use the tags in the conditions of the &quot;A&quot; and &quot;IN&quot; blocks.
+- Ability to use tags in the conditions of the "A" and "IN blocks".
 - Bug correction of market categories for widgets / scripts / scenarios...
 
 3.2.6
@@ -416,7 +421,7 @@ Changelog
 
 3.2.2
 =====
-- Removal of the old widget update system (deprecated since version 3.0). Please note if your widget does not use the new system there is a risk of malfunction (.duplication of it in this case). Example widget [here] (https://github.com/Jeedom/core/tree/beta/core/template/Dashboard)
+- Removal of the old widget update system (deprecated since version 3.0). Please note if your widget does not use the new system there is a risk of malfunction (.duplication of it in this case). Example widget [here] (https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 - Possibility to display the graphs in table form or to export these in csv or xls.
 - Users can now add their own php function for scenarios. See documentation of scenarios for implementation.
 - JEED-417 : addition of a time_diff function in the scenarios.
@@ -471,7 +476,7 @@ Changelog
 - Double-clicking on a node on the link graph (except for variables) brings up its configuration page.
 - Ability to put text left / right / center on designs for text / view / design elements.
 - Adding object summaries on the Dashboard (list of objects on the left).
-- Addition of &quot;prevent-me-if&quot; interactions.
+- Add interactions of type "notify me-if".
 - Scenario home page review.
 - Adding a command history for SQL or system commands in the Jeedom interface.
 - Possibility to have the graphs of histories of orders in webapp (by long press on the order).
@@ -534,7 +539,7 @@ Changelog
 - A click on an element of a home automation summary brings you to a detailed view of it.
 - You can now put text type commands in the summaries.
 - Change of bootstraps slider to slider (correction of the bug of the double sliders event).
-- Automatic saving of views when clicking on the &quot;see result&quot; button.
+- Automatic saving of views when clicking on the button "see the result".
 - Possibility to have the docs locally.
 - Third-party developers can add their own ticket management system.
 - Redesign of user rights configuration (everything is on the user management page).
@@ -553,7 +558,7 @@ Changelog
     - Possibility to activate a magnetization of the widgets between them.
     - Certain types of widgets can now be duplicated.
     - Ability to lock an item.
-- plugins can now use their own API key.
+- Plugins can now use their own API key.
 - Adding automatic interactions, Jeedom will try to understand the sentence, execute the action and respond.
 - Added management of demons in mobile version.
 - Addition of cron management in mobile version.
@@ -566,7 +571,7 @@ Changelog
 - Possibility to prohibit certain values for an order (in its advanced configuration).
 - Addition of configuration fields on automatic status feedback (eg return to 0 after 4 min) in the advanced configuration of a command.
 - Adding a valueDate function in scenarios (see scenario documentation).
-- Possibility in the scenarios to modify the value of an order with the action &quot;event&quot;.
+- Possibility in the scenarios to modify the value of an order with the action "event".
 - Addition of a comment field on the advanced configuration of a device.
 - Addition of an alert system on orders with 2 levels : alert and danger. The configuration is in the advanced configuration of commands (info type only of course). You .can see the modules in alert on the Analysis → Equipment page. You can configure the actions on alert on the general configuration page of Jeedom
 - Addition of a &quot;table&quot; area on the views which allows one or more columns to be displayed per box. The boxes also support HTML code.
@@ -582,12 +587,12 @@ Changelog
 - Correction of the access to the doc of third-party plugins if they do not have a doc locally.
 - The interactions can take into account the notion of context (depending on the previous request as well as that before).
 - Possibility of weighting words according to their size for the analysis of comprehension.
-- plugins can now add interactions.
-- interactions can now return files in addition to the response.
+- Plugins can now add interactions.
+- Interactions can now return files in addition to the response.
 - Possibility to see on the plugins configuration page the functionalities of these plugins (interact, cron…) and to deactivate them individually.
 - Automatic interactions can return values from summaries.
 - Ability to define synonyms for objects, equipment, commands and summaries that will be used in contextual responses and summaries.
-- Jeedom knows how to manage several related interactions (contextually) in one. They must be separated by a keyword (by default and). Example : &quot;How much is he in the bedroom and in the living room?&quot; or &quot;Turn on the light in the kitchen and bedroom.&quot;
+- Jeedom knows how to manage several related interactions (contextually) in one. They must be separated by a keyword (by default and). Example : "How much is it in the bedroom and in the living room? "Or" Turn on the light in the kitchen and the bedroom."
 - The status of the scenarios on the edit page is now dynamically updated.
 - Possibility to export a view in PDF, PNG, SVG or JPEG with the &quot;report&quot; command in a scenario.
 - Possibility to export a design in PDF, PNG, SVG or JPEG with the &quot;report&quot; command in a scenario.
@@ -642,7 +647,7 @@ Changelog
 - Adding a plugin category : communicating object.
 - Adding GENERIC \ _TYPE.
 - Removal of new and top filters on the plugins market path.
-- Renaming the default category on the market plugins route to &quot;Top and new&quot;.
+- Renaming the default category on the market plugins route to "Top and new".
 - Correction of free and paid filters on the plugins market path.
 - Correction of a bug which could lead to a duplication of the curves on the history page.
 - Correction of a bug on the timeout value of scenarios.
@@ -738,7 +743,7 @@ integration with logging systems (syslog (d) type)
 - Possibility for third-party applications to request events via the API.
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .reconfigure following the update)
 - Ability to deactivate a block in a scenario.
-- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide.
+- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom to automatically add an icon at the end of your label « ? » and on hover to display the help text.
 - Change of the core update process, we no longer request the archive from the Market but directly from Github now.
 - Addition of a centralized system for installing dependencies on plugins.
 - Redesign of the plugins management page.
@@ -773,7 +778,7 @@ integration with logging systems (syslog (d) type)
 - Possibility for third-party applications to request events via the API.
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .reconfigure following the update)
 - Ability to deactivate a block in a scenario.
-- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom .d'ajouter automatiquement à la fin de votre label une icône « ? » et au survol d'afficher le texte d'aide
+- Addition for developers of a tooltips help system. Il faut sur un label mettre la classe « help » et mettre un attribut data-help avec le message d'aide souhaité. This allows Jeedom .automatically add an icon at the end of your label « ? » and on hover to display the help text
 - Change of the core update process, we no longer request the archive from the Market but directly from Github now.
 - Addition of a centralized system for installing dependencies on plugins.
 - Redesign of the plugins management page.

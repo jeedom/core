@@ -1,4 +1,4 @@
-# users
+# Users
 **Settings → System → Users**
 
 This page allows you to define the list of users authorized to connect to Jeedom, as well as their administrator rights..
@@ -11,7 +11,7 @@ On the page you have three buttons :
 
 ## Users list
 
-- **username** : User ID.
+- **Username** : User ID.
 - **Active** : Allows you to deactivate the account without deleting it.
 - **Local** : Allows the connection of the user only if he is on the local network of Jeedom.
 - **Profile** : Allows you to choose the user profile :
@@ -31,13 +31,13 @@ On the page you have three buttons :
 
 When clicking on &quot;Rights&quot; a window appears allowing you to manage user rights finely. The first tab displays the different equipment. The second presents the scenarios.
 
-> **Important**
+> **IMPORTANT**
 >
 > The profile must be limited otherwise no restrictions put here will be taken into account.
 
 You get a table which allows, for each device and each scenario, to define the rights of the user. :
 - **No** : the user does not see the equipment / scenario.
-- **visualization** : the user sees the equipment / scenario but cannot act on it.
+- **Visualization** : the user sees the equipment / scenario but cannot act on it.
 - **Visualization and execution** : the user sees the equipment / scenario and can act on it (light a lamp, launch the scenario, etc.).
 
 ## Active session (s)
@@ -49,7 +49,7 @@ Displays the browser sessions active on your Jeedom, with user information, its 
 List the peripherals (computers, mobiles etc) which have recorded their authentication on your Jeedom.
 You can see which user, their IP, when, and delete the registration for this device.
 
-> **Note**
+> **NOTE**
 >
 > The same user may have registered different devices. For example, his desktop computer, laptop, mobile, etc..
 

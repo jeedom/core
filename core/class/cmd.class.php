@@ -1350,7 +1350,7 @@ class cmd {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
-			return translate::exec(template_replace($replace, $template),'widgets/'.$_version.'/'.$this->getTemplate($_version));
+			return translate::exec(template_replace($replace, $template), 'core/template/widgets.html');
 		} else {
 			$cmdValue = $this->getCmdValue();
 			if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
@@ -1406,7 +1406,7 @@ class cmd {
 			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
 			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
 			$replace['#other_tooltips#'] = ($replace['#name#'] != $this->getName()) ? $this->getName() : '';
-			return translate::exec(template_replace($replace, $html),'widgets/'.$_version.'/'.$this->getTemplate($_version));
+			return translate::exec(template_replace($replace, $template), 'core/template/widgets.html');
 		}
 	}
 

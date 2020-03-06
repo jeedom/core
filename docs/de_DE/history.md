@@ -1,4 +1,4 @@
-# historisch
+# Historisch
 **Analyse → Geschichte**
 
 Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren.. Auf diese Weise können Sie beispielsweise eine Temperatur-, Verbrauchs- oder Türöffnungskurve usw. protokollieren.
@@ -15,9 +15,9 @@ Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellte
 
 > **Spitze**
 >
-> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. warum ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
+> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Warum ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
-> **wichtig**
+> **Wichtig**
 >
 > Dieses Archivierungsprinzip gilt natürlich nur für digitale Befehle. Bei Befehlen vom Typ Binär behält Jeedom nur die Daten der Zustandsänderung bei.
 
@@ -25,8 +25,8 @@ Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellte
 
 Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
-- Durch Klicken auf den gewünschten Befehl in einem Widget wird
-- Wenn Sie zur Verlaufsseite gehen, auf der Sie verschiedene Kurven überlagern und Stile (Fläche, Kurve, Balken) kombinieren können,
+- Durch Klicken auf den gewünschten Befehl in einem Widget,
+- Gehen Sie zur Verlaufsseite, auf der Sie verschiedene Kurven überlagern und Stile (Fläche, Kurve, Balken) kombinieren können.,
 - Auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben,
 - Indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten).
 
@@ -40,7 +40,7 @@ Wir finden oben rechts den Anzeigezeitraum (hier in der letzten Woche, weil ich 
 - **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
 - **Linie** : Zeigt das Diagramm als Linien an.
 - **Bereich** : Zeigt das Diagramm als Fläche an.
-- **Spalte**\* : Zeigt das Diagramm als Balken an.
+- **Spalte**\.* : Zeigt das Diagramm als Balken an.
 
 > **Spitze**
 >
@@ -68,9 +68,9 @@ Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
 #### Berechnete Geschichte
 
-Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \ * absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
-ex :
-abs (* \ [Garten \] \ [Hygrometrie \] \ [Temperatur \] * - * \ [Wohnraum \] \ [Hygrometrie \] \ [Temperatur \] *)
+Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \. * absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
+Ex :
+abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Wohnraum \.] \. [Hygrometrie \.] \. [Temperatur \.] *)
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie diese zur einfacheren erneuten Anzeige speichern können.
 
@@ -83,7 +83,7 @@ Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie d
 Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 
 - **Mülleimer** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
-- **Pfeil** : Aktiviert den CSV-export historischer Daten.
+- **Pfeil** : Aktiviert den CSV-Export historischer Daten.
 
 ### Inkonsistente Wertentfernung
 
@@ -95,8 +95,8 @@ In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation in chronol
 
 Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle oder Szenarien auf der Zeitachse aktivieren. Anschließend treten diese Ereignisse auf.
 
-- **Szenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies &quot;en masse&quot; zu tun..
-- **bestellen** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in &quot;Masse&quot; zu tun..
+- **Szenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies in großen Mengen zu tun".
+- **Bestellen** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in "Masse" zu tun".
 
 Die * Main * -Zeitleiste enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach * Ordner filtern*. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
 Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche * Aktualisieren auswählen.*.
@@ -111,7 +111,7 @@ Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links 
 
 Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenarien aktiviert haben, können Sie sie in der Zeitleiste anzeigen.
 
-> **wichtig**
+> **Wichtig**
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking auf der Timeline aktiviert haben, bevor sie angezeigt werden.
 

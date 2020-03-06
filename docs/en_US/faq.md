@@ -1,11 +1,11 @@
-# FAQ
-**Settings → Version : FAQ**
+# Faq
+**Settings → Version : Faq**
 
 ### Jeedom does it require a subscription ?
 No, Jeedom is fully usable without any need for any subscription. However, there are services offered for backups or calls / SMS, but which are really optional.
 
 ### Does Jeedom use outside servers to run ?
-No, Jeedom does not use &quot;Cloud&quot; type infrastructure. Everything is done locally and you do not need our servers for your installation to work. Only services like Market, online backup or Jeedom DNS require the use of our servers.
+No, Jeedom does not use "Cloud" type infrastructure". Everything is done locally and you do not need our servers for your installation to work. Only services like Market, online backup or Jeedom DNS require the use of our servers.
 
 ### Is there a dedicated mobile app ?
 Jeedom has a mobile version suitable for use on mobile and tablet. There is also a native app for Android and iOS.
@@ -14,7 +14,7 @@ Jeedom has a mobile version suitable for use on mobile and tablet. There is also
 When you log in to Jeedom for the first time (and even afterwards if you haven&#39;t changed them), the default username and password are admin / admin. At the first connection, you are strongly recommended to modify these identifiers for more security.
 
 ### I can no longer connect to my Jeedom
-Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. This is configured in the administration of Jeedom security part then &quot;white&quot; IP. If despite everything you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
+Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If despite everything you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
 
 ### I do not see all my equipment on the Dashboard
 Often this is due to the fact that the equipment is assigned to an object which is not the child or the object itself of the first object selected on the left in the tree (you can configure it in your profile).
@@ -45,10 +45,10 @@ Yes : Either you have a power pack or more, in this case you
 just use the [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 ### How to connect in SSH ?
-Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty &quot;. The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
-- Username : &quot;root&quot;, password : &quot;Mjeedom96&quot;
-- Username : &quot;jeedom&quot;, password : &quot;Mjeedom96&quot;
+- Username : "root ", password : "Mjeedom96"
+- Username : "jeedom ", password : "Mjeedom96"
 - Or what you put in the installation if you are in DIY
 
 Note that when you write the password you will not see anything written on the screen, this is normal.
@@ -78,7 +78,7 @@ The webapp requires a smartphone supporting HTML5 and CSS3. It is therefore unfo
 ### What platforms can Jeedom run on ?
 For Jeedom to work, you need a linux platform with root rights or a docker type system. It therefore does not work on a pure android platform.
 
-### I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes) ... &quot; ?
+### I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes)..." ?
 This can be due to several things, :
 
 - Check that your Jeedom is still connected to the market (in the Jeedom administration page, updated part you have a test button).
@@ -99,10 +99,10 @@ You can also look at the log /var/www/html/log/http.error. Very often, this indi
 These must be reset :
 
 ``` {.bash}
-bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9&#39; | head -c 15)
-echo &quot;DROP USER &#39;jeedom&#39; @ &#39;localhost&#39;&quot; | mysql -uroot -p
-echo &quot;CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;&quot; | mysql -uroot -p
-echo &quot;GRANT ALL PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;; &quot;| mysql -uroot -p
+bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9' | head -c 15)
+echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
+echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
+echo &quot;GRANT All PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # PASSWORD # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -125,12 +125,12 @@ It is advisable to look at the commands executed by the scenario, often it comes
 ### I have instabilities or errors 504
 Check if your file system is not corrupt, in SSH the command is : ```sudo dmesg | grep error```.
 
-### I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39;
+### I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock'
 This is due to MySQL which stopped, it is not normal, the common cases are :
 
 - Lack of space on the file system (can be checked by making the command &quot;df -h&quot;, in SSH)
 - File (s) corruption problem, which often happens after an unsafe shutdown of Jeedom (power failure)
-- Memory worries, the system lacks memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by &quot;oom&quot;. If this is the case, reduce Jeedom&#39;s consumption by deactivating plugins.
+- Memory worries, the system lacks memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce Jeedom&#39;s consumption by deactivating plugins.
 
 Unfortunately, there is not much solution if it is the second case, the best being to recover a backup (available in / var / www / html / backup by default), reinstall Jeedom and restore the backup. You can also see why MySQL doesn&#39;t want to boot from an SSH console :
 ``` {.bash}
@@ -141,8 +141,8 @@ mysqld --verbose
 Or consult the log : /var/log/mysql/error.log
 
 ### The Shutdown / Restart buttons do not work
-On a DIY installation it&#39;s normal. In SSH, you must make the visudo command and at the end of the file you must add : www-data ALL = (ALL)
-NOPASSWD: ALL.
+On a DIY installation it&#39;s normal. In SSH, you must make the visudo command and at the end of the file you must add : www-data All = (All)
+NOPASSWD: All.
 
 ``` {.bash}
 sudo service apache2 restart
@@ -165,10 +165,10 @@ echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/
 ### I have a time concern on my history
 Try to clear the chrome cache, the display of histories is calculated relative to the browser time.
 
-### I have the error &quot;Network issues detected, network restart&quot;
+### I have the error "Network issues detected, network restart"
 Jeedom can&#39;t find or can&#39;t ping the gateway. In general it happens if the adsl box restarts (in particular liveboxes) and Jeedom has not restarted or has restarted faster than the box. For security he tells you that he has found a problem and relaunches the network connection process. You can deactivate this mechanism by going to the Jeedom configuration and by deactivating the network management by Jeedom.
 
-### I get the message &quot;Failed to back up the database. Check that mysqldump is present. &quot;
+### I get the message &quot;Failed to back up the database. Check that mysqldump is present."
 It means that Jeedom cannot back up the database which can suggest a problem with database and filesystem corruption. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have:
 
 - a corrupt base table =&gt; there it is bad start we must see to try to repair and if it does not start from the last good backup (if you are on SD card it is the right time to change it)
@@ -191,7 +191,7 @@ In the administration of Jeedom part OS / DB then in the system console it is ne
 yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
-### I cannot install the plugin dependencies I have an error of the type : &quot;E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou &quot;E: Could not get lock / var / lib / dpkg / lock &quot;
+### I cannot install the plugin dependencies I have an error of the type : "E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock / var / lib / dpkg / lock"
 
 It is necessary :
 

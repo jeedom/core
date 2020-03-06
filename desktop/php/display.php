@@ -146,7 +146,7 @@ $plugin_enable = config::getPluginEnable();
 				$div .= '</a></h3>';
 				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:55px;display: inline;">';
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a></h3>';
+				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a></h3>';
 				$div .= '</div>';
 				
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';

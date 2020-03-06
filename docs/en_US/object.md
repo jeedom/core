@@ -1,7 +1,7 @@
 # Objects
 **Tools → Objects**
 
-The **objects** allow you to define the tree structure of your home automation.
+The **Objects** allow you to define the tree structure of your home automation.
 
 All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
 
@@ -41,14 +41,14 @@ Whatever changes you make, don&#39;t forget to save your changes.
 Here are the different characteristics to configure an object :
 
 - **Object name** : The name of your object.
-- **Dad** : Indicates the relative of the current object, this makes it possible to define a hierarchy between the objects. for example : The living room is related to the apartment. An object can have only one relative but several objects can have the same relative.
-- **Visible** : Check this box to make this object visible.
+- **Dad** : Indicates the relative of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one relative but several objects can have the same relative.
+- **Jeedom** : Check this box to make this object visible.
 - **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly..
-- **Hide on summary &#39;** : Check this box to hide the object on the summary &#39;&#39;. It is still kept in the list, which allows it to be displayed, but only explicitly..
+- **Hide on summary'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly..
 - **Icon** : Allows you to choose an icon for your object.
 - **Custom colors** : Activates the consideration of the two optional color parameters.
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
-- **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **color of the tag**. You choose a color to make the text readable.
+- **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
 - **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard.
 
 > **Tip**
@@ -87,10 +87,10 @@ Each tab represents a type of summary defined in the configuration of Jeedom. Cl
 
 The overview allows you to view all the objects in Jeedom, as well as their configuration :
 
-- **ID** : Object ID.
+- **Id** : Object Id.
 - **Object** : Object name.
 - **Dad** : Name of relative object.
-- **Visible** : Object visibility.
+- **Jeedom** : Object visibility.
 - **Mask** : Indicates if the object is hidden on the Dashboard.
 - **Summary Defined** : Indicates the number of orders per summary. What is in blue is taken into account in the global summary.
 - **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
