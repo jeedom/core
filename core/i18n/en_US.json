@@ -5,7 +5,8 @@
         "Valeur": "Value",
         "Activer": "Enable",
         "Desactiver": "Disable",
-        "Dernier lancement": "Last start"
+        "Dernier lancement": "Last start",
+        "Moyenne": "Average"
     },
     "mobile.manifest.php": {
         "Erreur sur la fonction mobileManifest du plugin : ": "Error on the plugin mobileManifest function:"
