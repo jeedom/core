@@ -16,7 +16,7 @@
       }else{
         cmd.find('.timeCmd').parent().remove();
       }
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       if (_options.display_value == '1') {
         cmd.find('.iconCmd').empty().append("#_icon_on_#");
       }else {

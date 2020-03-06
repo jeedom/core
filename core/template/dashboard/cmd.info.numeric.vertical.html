@@ -21,7 +21,7 @@
       var cmd = $('.cmd[data-cmd_id=#id#]')
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
       height = Math.round(parseFloat(height) * 10) / 10
       cmd.find('.vgauge-value').height(height+'%')
