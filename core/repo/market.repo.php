@@ -420,7 +420,7 @@ class repo_market {
 		if (!is_writable($backup_dir)) {
 			throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
 		}
-		$restore_dir = '/tmp/jeedom_cloud_restore';
+		$restore_dir = '/usr/jeedom_cloud_restore';
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
 		}
