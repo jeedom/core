@@ -1596,11 +1596,15 @@ class scenarioExpression {
 						$stringFunction = strval($this->getExpression());
 						$functionName = explode('(', $stringFunction)[0];
 						if (class_exists('userFunction') && method_exists('userFunction', $functionName)) {
-							$scenario->persistLog();
 							$arguments = str_replace([$functionName, '(', ')'], '', $stringFunction);
-							$arguments = explode(',', $arguments);
-							$result = call_user_func_array('userFunction' . "::" . $functionName, $arguments);
+							if ($arguments != '') {
+								$arguments = explode(',', $arguments);
+							} else {
+								$arguments = [];
+							}
+							$result = call_user_func_array('userFunction::' . $functionName, $arguments);
 							$this->setLog($scenario, 'userFunction: ' . $stringFunction . ' : ' . json_encode($result));
+							$scenario->persistLog();
 							return;
 						}
 					}
