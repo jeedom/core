@@ -44,24 +44,20 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
-  apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
-  apt-get -y install git python python-pip
-  apt-get -y install python3 python3-pip
-  apt-get -y install software-properties-common
-  apt-get -y install libexpat1 ssl-cert
-  apt-get -y install apt-transport-https
-  apt-get -y install xvfb cutycapt xauth
-  apt-get -y install at
+  apt_install ntp ca-certificates unzip curl sudo cron \
+    locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient \
+    git python python-pip \
+    python3 python3-pip \
+    software-properties-common \
+    libexpat1 ssl-cert \
+    apt-transport-https \
+    xvfb cutycapt xauth \
+    at
   add-apt-repository non-free
   apt-get update
-  apt-get -y install libav-tools
-  apt-get -y install libsox-fmt-mp3 sox libttspico-utils
-  apt-get -y install espeak
-  apt-get -y install mbrola
-  apt-get -y remove brltty
-  apt-get -y remove net-tools
-  apt-get -y install nmap
+  apt-get -y install libsox-fmt-mp3 sox libttspico-utils \
+    espeak \
+    nmap
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
@@ -105,20 +101,20 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 5 php${NORMAL}"
-  apt_install php libapache2-mod-php php-json php-mysql
-  apt install -y php-curl
-  apt install -y php-gd
-  apt install -y php-imap
-  apt install -y php-xml
-  apt install -y php-opcache
-  apt install -y php-soap
-  apt install -y php-xmlrpc
-  apt install -y php-common
-  apt install -y php-dev
-  apt install -y php-zip
-  apt install -y php-ssh2
-  apt install -y php-mbstring
-  apt install -y php-ldap
+  apt_install php libapache2-mod-php php-json php-mysql \
+    php-curl \
+    php-gd \
+    php-imap \
+    php-xml \
+    php-opcache \
+    php-soap \
+    php-xmlrpc \
+    php-common \
+    php-dev \
+    php-zip \
+    php-ssh2 \
+    php-mbstring \
+    php-ldap
   echo "${VERT}étape 5 php réussie${NORMAL}"
 }
 
