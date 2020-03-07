@@ -2420,6 +2420,7 @@
         "Jeedom benchmark": ""
     },
     "desktop\/js\/dashboard.js": {
+        "Historique": "History",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode you can move the widgets, resize them and change the order of the commands in the widgets. Don&#39;t forget to leave the edit mode to save"
     },
     "desktop\/js\/plan.js": {
@@ -2842,6 +2843,13 @@
         "Sélectionner une variable": "Select a variable"
     },
     "core\/js\/history.class.js": {
+        "Tous": "All",
+        "30 min": "30 mins",
+        "Heure": "Hour",
+        "Jour": "Day",
+        "Semaine": "Week",
+        "Mois": "Month",
+        "Année": "Year",
         "Il n\\'existe encore aucun historique pour cette commande :": "No history available for this command:",
         "du": "of",
         "au": "to",
