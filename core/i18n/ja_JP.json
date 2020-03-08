@@ -2420,6 +2420,7 @@
         "Jeedom benchmark": "Jeedomベンチマーク"
     },
     "desktop\/js\/dashboard.js": {
+        "Historique": "歴史的",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "編集モードでは、ウィジェットを移動したり、ウィジェットのサイズを変更したり、ウィジェット内のコマンドの順序を変更したりできます。編集モードを終了して保存することを忘れないでください"
     },
     "desktop\/js\/plan.js": {
@@ -2851,6 +2852,13 @@
         "et du point de": "とのポイント",
         "valeur :": "値：",
         "Ne rien mettre pour supprimer la valeur": "値を削除するには何も入れないでください",
+        "Tous": "全て",
+        "30 min": "30分",
+        "Heure": "",
+        "Jour": "日",
+        "Semaine": "週",
+        "Mois": "月",
+        "Année": "年",
         "La valeur a été éditée avec succès": "値が正常に編集されています"
     },
     "core\/config\/jeedom.config.php": {

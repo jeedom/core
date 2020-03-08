@@ -2420,6 +2420,7 @@
         "Jeedom benchmark": "Punto di riferimento Jeedom"
     },
     "desktop\/js\/dashboard.js": {
+        "Historique": "Storico",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sei in modalità di modifica, puoi spostare i widget, ridimensionarli e cambiare l&#39;ordine dei comandi nei widget. Non dimenticare di uscire dalla modalità di modifica per salvare"
     },
     "desktop\/js\/plan.js": {
@@ -2851,6 +2852,13 @@
         "et du point de": "e al punto di",
         "valeur :": "valore :",
         "Ne rien mettre pour supprimer la valeur": "Lascia vuoto per usare il valore predefinito",
+        "Tous": "Tutti",
+        "30 min": "30 minuti",
+        "Heure": "",
+        "Jour": "Giorno",
+        "Semaine": "Settimana",
+        "Mois": "Mese",
+        "Année": "Anno",
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo"
     },
     "core\/config\/jeedom.config.php": {

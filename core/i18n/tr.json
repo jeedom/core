@@ -2420,6 +2420,7 @@
         "Jeedom benchmark": ""
     },
     "desktop\/js\/dashboard.js": {
+        "Historique": "Geçmiş",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sen widget'lar taşımak, yeniden boyutlandırmak ve widget'larda komutların sırasını değiştirebilirsiniz düzenleme modunda bulunmaktadır. kaydetmek için düzenleme modundan çıkmak için unutmayın"
     },
     "desktop\/js\/plan.js": {
@@ -2851,6 +2852,13 @@
         "et du point de": "ve noktadan",
         "valeur :": "değer :",
         "Ne rien mettre pour supprimer la valeur": "Değeri silmek için hiç birşey koymayın",
+        "Tous": "Hepsi",
+        "30 min": "30 dak",
+        "Heure": "",
+        "Jour": "Gün",
+        "Semaine": "Hafta",
+        "Mois": "Ay",
+        "Année": "Sene",
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi"
     },
     "core\/config\/jeedom.config.php": {
