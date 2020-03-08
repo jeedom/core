@@ -2420,6 +2420,7 @@
         "Jeedom benchmark": "Jeedom patokan"
     },
     "desktop\/js\/dashboard.js": {
+        "Historique": "Historis",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Anda berada dalam mode edit Anda dapat memindahkan widget, mengubah ukuran dan mengubah urutan perintah dalam widget. Ingat untuk meninggalkan mode edit untuk menyimpan"
     },
     "desktop\/js\/plan.js": {
@@ -2851,6 +2852,13 @@
         "et du point de": "dan titik",
         "valeur :": "Nilai",
         "Ne rien mettre pour supprimer la valeur": "Jangan menaruh apapun untuk menghapus nilai",
+        "Tous": "Semua",
+        "30 min": "",
+        "Heure": "",
+        "Jour": "Hari",
+        "Semaine": "Mingu",
+        "Mois": "Bulan",
+        "Année": "Tahun",
         "La valeur a été éditée avec succès": "Nilai telah berhasil diedit"
     },
     "core\/config\/jeedom.config.php": {

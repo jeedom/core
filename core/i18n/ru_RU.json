@@ -2420,6 +2420,7 @@
         "Jeedom benchmark": "Тест Jeedom"
     },
     "desktop\/js\/dashboard.js": {
+        "Historique": "История",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Вы находитесь в режиме редактирования вы можете перемещать виджеты, изменять размер и изменить порядок команд в виджетах. Не забудьте выйти из режима редактирования, чтобы сохранить"
     },
     "desktop\/js\/plan.js": {
@@ -2851,6 +2852,13 @@
         "et du point de": "и точка",
         "valeur :": "значение:",
         "Ne rien mettre pour supprimer la valeur": "Ничего не вводите, чтобы удалить значение",
+        "Tous": "все",
+        "30 min": "30 мин",
+        "Heure": "",
+        "Jour": "день",
+        "Semaine": "неделя",
+        "Mois": "месяц",
+        "Année": "год",
         "La valeur a été éditée avec succès": "Значение было успешно изменено"
     },
     "core\/config\/jeedom.config.php": {
