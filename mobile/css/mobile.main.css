@@ -503,6 +503,7 @@ p.state {
   padding: 4px 10px;
 }
 .ui-header.ui-bar-inherit #summaryglobalContainer {
+  scrollbar-width: thin;
   position: relative;
   right: 2px !important;
   max-height: 24px;
@@ -511,6 +512,7 @@ p.state {
   overflow-y: hidden;
   white-space: nowrap;
   margin: 0 8px;
+  padding: 4px 0;
 }
 
 .objectSummaryglobal .objectSummaryParent {
