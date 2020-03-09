@@ -364,24 +364,18 @@ class network {
 			if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
 				throw new \Exception(__('Impossible de générer le certificat et la clef privé',__FILE__));
 			}
-			$client_id = shell_exec('cd '.$dir.';./tunnel id');
-			try {
-				repo_market::sendTunnelClientId($client_id);
-			} catch (\Exception $e) {
-				unlink($dir.'/client.key');
-				unlink($dir.'/client.crt');
-				throw new \Exception($e);
-			}
 		}
 		$replace = array(
 			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
 			'#PORT#' => config::byKey('internalPort', 'core', 80),
 		);
-		if(file_exists($dir.'/tunnel.yaml')){
-			unlink($dir.'/tunnel.yaml');
+		if(file_exists($dir.'/tunnel.yml')){
+			unlink($dir.'/tunnel.yml');
 		}
-		file_put_contents($dir.'/tunnel.yaml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yaml')));
-		shell_exec('cd '.$dir.';nohup ./'.$exec.' -config tunnel.yaml start-all > '.log::getPathToLog('tunnel').' 2>&1 &');
+		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
+		$client_id = shell_exec('cd '.$dir.';./'.$exec.' id');
+		repo_market::sendTunnelClientId(trim($client_id));
+		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all > '.log::getPathToLog('tunnel').' 2>&1 &');
 	}
 	
 	public static function dns2_run() {
