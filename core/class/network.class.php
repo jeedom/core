@@ -330,6 +330,88 @@ class network {
 		return $openvpn;
 	}
 	
+	public static function dns2_start() {
+		if (config::byKey('service::tunnel::enable') != 1 && false) {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		try {
+			self::dns2_stop();
+		} catch (\Exception $e) {
+			
+		}
+		$arch = php_uname('m');
+		if($arch == 'x86_64'){
+			$arch = 'amd64';
+		}
+		$exec = 'tunnel-linux-'.$arch;
+		$dir = __DIR__.'/../../script/tunnel';
+		if(!file_exists($dir.'/'.$exec)){
+			echo shell_exec('cd '.$dir.';wget https://images.jeedom.com/resources/tunnel/'.$exec.' > '.log::getPathToLog('tunnel').' 2>&1');
+		}
+		if(!file_exists($dir.'/'.$exec)){
+			throw new \Exception(__('Impossible de télécharger : ',__FILE__).'https://images.jeedom.com/resources/tunnel/'.$exec);
+		}
+		if(filesize($dir.'/'.$exec) < 7000000){
+			unlink($dir.'/'.$exec);
+			throw new \Exception(__('Taille invalide pour : ',__FILE__).$dir.'/'.$exec);
+		}
+		shell_exec('chmod +x '.$dir.'/'.$exec);
+		if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
+			shell_exec('cd '.$dir.';openssl req -x509 -nodes -newkey rsa:2048 -sha256 -keyout client.key -out client.crt -subj "/C=EU/ST=FR/L=Paris/O=Jeedom, Inc./OU=IT/CN=jeedom.com"> '.log::getPathToLog('tunnel').' 2>&1');
+			if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
+				throw new \Exception(__('Impossible de générer le certificat et la clef privé',__FILE__));
+			}
+			$client_id = shell_exec('cd '.$dir.';./tunnel id');
+			try {
+				repo_market::sendTunnelClientId($client_id);
+			} catch (\Exception $e) {
+				unlink($dir.'/client.key');
+				unlink($dir.'/client.crt');
+				throw new \Exception($e);
+			}
+		}
+		$replace = array(
+			'#URL#' => str_replace('https://','',config::byKey('jeedom::url')),
+			'#PORT#' => config::byKey('internalPort', 'core', 80),
+		);
+		if(file_exists($dir.'/tunnel.yaml')){
+			unlink($dir.'/tunnel.yaml');
+		}
+		file_put_contents($dir.'/tunnel.yaml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yaml')));
+		shell_exec('cd '.$dir.';nohup ./'.$exec.' -config tunnel.yaml start-all > '.log::getPathToLog('tunnel').' 2>&1 &');
+	}
+	
+	public static function dns2_run() {
+		if (config::byKey('service::tunnel::enable') != 1) {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		$arch = php_uname('m');
+		if($arch == 'x86_64'){
+			$arch = 'amd64';
+		}
+		$exec = 'tunnel-linux-'.$arch;
+		return (shell_exec('ps ax | grep -c '.$exec) > 0);
+	}
+	
+	public static function dns2_stop() {
+		if (config::byKey('service::tunnel::enable') != 1) {
+			return;
+		}
+		$arch = php_uname('m');
+		if($arch == 'x86_64'){
+			$arch = 'amd64';
+		}
+		$exec = 'tunnel-linux-'.$arch;
+		shell_exec('pkill -9 '.$exec);
+		return;
+	}
+	
 	public static function dns_start() {
 		if (config::byKey('dns::token') == '') {
 			return;

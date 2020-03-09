@@ -1,0 +1,9 @@
+server_addr: backend.eu.dns.jeedom.com:443
+tunnels:
+  web:
+    proto: http
+    addr: localhost:#PORT#
+    host: #URL#
+backoff:
+  max_time: 0
+  max_interval: 5ms
