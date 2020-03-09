@@ -419,6 +419,11 @@ class network {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
+		try {
+			self::dns2_start();
+		} catch (\Exception $e) {
+			
+		}
 	}
 	
 	public static function dns_run() {
@@ -450,6 +455,11 @@ class network {
 			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
+		try {
+			self::dns2_stop();
+		} catch (\Exception $e) {
+			
+		}
 	}
 	
 	/*     * *********************Network management************************* */
