@@ -331,7 +331,7 @@ class network {
 	}
 	
 	public static function dns2_start() {
-		if (config::byKey('service::tunnel::enable') != 1 && false) {
+		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
@@ -374,7 +374,7 @@ class network {
 			}
 		}
 		$replace = array(
-			'#URL#' => str_replace('https://','',config::byKey('jeedom::url')),
+			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
 			'#PORT#' => config::byKey('internalPort', 'core', 80),
 		);
 		if(file_exists($dir.'/tunnel.yaml')){
