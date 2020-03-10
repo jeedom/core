@@ -91,8 +91,8 @@ jeedom.eqLogic.remove = function (_params) {
   var paramsRequired = ['id', 'type'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -118,8 +118,8 @@ jeedom.eqLogic.copy = function (_params) {
   var paramsRequired = ['id', 'name'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -233,7 +233,7 @@ jeedom.eqLogic.byId = function (_params) {
     return;
   }
   if (init(_params.noCache, false) == false && isset(jeedom.eqLogic.cache.byId[_params.id]) && 'function' == typeof (_params.success)) {
-    _params.success(jeedom.eqLogic.cache.byId[_params.eqLogic_id]);
+    _params.success(jeedom.eqLogic.cache.byId[_params.id]);
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
