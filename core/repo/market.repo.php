@@ -454,7 +454,6 @@ class repo_market {
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
 		}
-		jeedom::restore($backup_dir . '/' . $backup_name, true);
 	}
 	
 	/*     * ***********************CRON*************************** */
