@@ -414,7 +414,7 @@ class network {
 			$arch = 'arm';
 		}
 		$exec = 'tunnel-linux-'.$arch;
-		shell_exec('pkill -9 '.$exec);
+		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".$arch."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 		return;
 	}
 	
