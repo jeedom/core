@@ -420,7 +420,8 @@ if(!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')){
 }
 
 $duplicity_version = trim(str_replace('duplicity','',shell_exec('duplicity --version')));
-if(version_compare($duplicity_version, '0.7.18','<')){
+if(version_compare($duplicity_version, '0.7.19','<')){
+	echo "Upgrade duplicity to 0.7.19\n";
 	exec('sudo apt remove -y --purge duplicity');
 	exec('sudo apt install -y gettext');
 	exec('sudo apt install -y librsync-dev');
@@ -431,7 +432,7 @@ if(version_compare($duplicity_version, '0.7.18','<')){
 	exec('tar xvf /tmp/duplicity.tar.gz');
 	exec('cd duplicity-0.7.19; sudo python setup.py install');
 	exec('sudo rm -rf /tmp/duplicity.tar.gz');
-	exec('sudo rm -rf duplicity-0.7.19');	
+	exec('sudo rm -rf duplicity-0.7.19');
 }
 
 } catch (Exception $e) {
