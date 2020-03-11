@@ -120,7 +120,7 @@ echo '</script>';
 							$div .= '<div class="form-group">';
 							$div .= '<label class="col-sm-6 col-xs-12"></label>';
 							$div .= '<div class="col-sm-6 col-xs-12">';
-							$div .= '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</a>';
+							$div .= '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Rapatrier la sauvegarde}}</a>';
 							$div .= '</div>';
 							$div .= '</div>';
 							$div .= '</fieldset>';
