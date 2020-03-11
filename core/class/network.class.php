@@ -345,6 +345,10 @@ class network {
 		$arch = php_uname('m');
 		if($arch == 'x86_64'){
 			$arch = 'amd64';
+		}elseif($arch == 'aarch64'){
+			$arch = 'arm64';
+		}elseif($arch == 'armv7l' || $arch == 'armv6l'){
+			$arch = 'arm';
 		}
 		$exec = 'tunnel-linux-'.$arch;
 		$dir = __DIR__.'/../../script/tunnel';
@@ -388,6 +392,10 @@ class network {
 		$arch = php_uname('m');
 		if($arch == 'x86_64'){
 			$arch = 'amd64';
+		}elseif($arch == 'aarch64'){
+			$arch = 'arm64';
+		}elseif($arch == 'armv7l' || $arch == 'armv6l'){
+			$arch = 'arm';
 		}
 		$exec = 'tunnel-linux-'.$arch;
 		return (shell_exec('ps ax | grep -c '.$exec) > 0);
@@ -400,6 +408,10 @@ class network {
 		$arch = php_uname('m');
 		if($arch == 'x86_64'){
 			$arch = 'amd64';
+		}elseif($arch == 'aarch64'){
+			$arch = 'arm64';
+		}elseif($arch == 'armv7l' || $arch == 'armv6l'){
+			$arch = 'arm';
 		}
 		$exec = 'tunnel-linux-'.$arch;
 		shell_exec('pkill -9 '.$exec);
@@ -419,6 +431,11 @@ class network {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
+		try {
+			self::dns2_start();
+		} catch (\Exception $e) {
+			
+		}
 	}
 	
 	public static function dns_run() {
@@ -450,6 +467,11 @@ class network {
 			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
+		try {
+			self::dns2_stop();
+		} catch (\Exception $e) {
+			
+		}
 	}
 	
 	/*     * *********************Network management************************* */
