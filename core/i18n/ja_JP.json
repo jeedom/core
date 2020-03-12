@@ -2117,6 +2117,7 @@
         "Sauvegardes": "バックアップ",
         "Envoi des sauvegardes": "バックアップを送信する",
         "Chargement...": "読み込んでいます...",
+        "Rapatrier la sauvegarde en local": "",
         "Informations": "情報"
     },
     "desktop\/php\/plan.php": {
@@ -2624,8 +2625,8 @@
         "Fichier(s) ajouté(s) avec succès": "ファイルが正常に追加されました",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "のバックアップを送信してもよろしいですか",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "クラウド上で？一度起動すると、この操作はキャンセルできません。",
-        "avec la sauvegarde Cloud": "クラウドバックアップあり",
-        "Une fois lancée cette opération ne peut être annulée": "一度起動すると、この操作はキャンセルできません。",
+        "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "",
+        "Sauvegarde rapatrier avec succès": "",
         "L\\'opération est réussie": "操作は成功しました",
         "L\\'opération a échoué": "操作に失敗しました"
     },

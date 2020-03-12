@@ -2117,6 +2117,7 @@
         "Sauvegardes": "Sicherungen",
         "Envoi des sauvegardes": "Senden von Backups",
         "Chargement...": "Wird geladen ...",
+        "Rapatrier la sauvegarde en local": "Rufen Sie die Sicherung lokal ab",
         "Informations": "Information"
     },
     "desktop\/php\/plan.php": {
@@ -2624,8 +2625,8 @@
         "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Sind Sie sicher, dass Sie ein Backup von senden möchten?",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "auf der Wolke? Nach dem Start kann dieser Vorgang nicht abgebrochen werden.",
-        "avec la sauvegarde Cloud": "mit Cloud-Backup",
-        "Une fois lancée cette opération ne peut être annulée": "Nach dem Start kann dieser Vorgang nicht abgebrochen werden.",
+        "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Sind Sie sicher, dass Sie Cloud-Backups repatriieren möchten?",
+        "Sauvegarde rapatrier avec succès": "Backup erfolgreich abrufen",
         "L\\'opération est réussie": "Die Operation ist erfolgreich",
         "L\\'opération a échoué": "Operation fehlgeschlagen"
     },
