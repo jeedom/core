@@ -502,7 +502,7 @@ class network {
 	public static function cron5() {
 		try {
 			if(config::byKey('service::tunnel::enable') == 1 && config::byKey('market::allowDNS') == 1 && !self::dns2_run()){
-				self::dns2_start()
+				self::dns2_start();
 			}
 		} catch (\Exception $e) {
 			
