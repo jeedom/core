@@ -2117,6 +2117,7 @@
         "Sauvegardes": "Kayıtlar",
         "Envoi des sauvegardes": "Kayıtların gönderilmesi",
         "Chargement...": "Yükleniyor ...",
+        "Rapatrier la sauvegarde en local": "",
         "Informations": "Bilgiler"
     },
     "desktop\/php\/plan.php": {
@@ -2624,8 +2625,8 @@
         "Fichier(s) ajouté(s) avec succès": "Dosya(lar) başarıyla eklendi(ler)",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "",
-        "avec la sauvegarde Cloud": "",
-        "Une fois lancée cette opération ne peut être annulée": "Başlatıldiķtan sonra bu işlem iptal edilemez",
+        "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "",
+        "Sauvegarde rapatrier avec succès": "",
         "L\\'opération est réussie": "Operasyon başarıldı",
         "L\\'opération a échoué": "Operasyon başarılamadı"
     },

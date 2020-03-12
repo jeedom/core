@@ -2117,6 +2117,7 @@
         "Sauvegardes": "Резервные копии",
         "Envoi des sauvegardes": "Отправка резервных копий",
         "Chargement...": "Loading ...",
+        "Rapatrier la sauvegarde en local": "",
         "Informations": "Информация"
     },
     "desktop\/php\/plan.php": {
@@ -2624,8 +2625,8 @@
         "Fichier(s) ajouté(s) avec succès": "Файл (ы) добавлен (ы) успешно",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "",
-        "avec la sauvegarde Cloud": "",
-        "Une fois lancée cette opération ne peut être annulée": "После запуска эта операция не может быть отменена",
+        "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "",
+        "Sauvegarde rapatrier avec succès": "",
         "L\\'opération est réussie": "Операция прошла успешно",
         "L\\'opération a échoué": "Операция не удалась"
     },

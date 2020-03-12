@@ -2117,6 +2117,7 @@
         "Sauvegardes": "Backups",
         "Envoi des sauvegardes": "Envio de backups",
         "Chargement...": "Carregando ...",
+        "Rapatrier la sauvegarde en local": "",
         "Informations": "Informação"
     },
     "desktop\/php\/plan.php": {
@@ -2624,8 +2625,8 @@
         "Fichier(s) ajouté(s) avec succès": "Arquivo (s) adicionado (s) com sucesso",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "",
-        "avec la sauvegarde Cloud": "",
-        "Une fois lancée cette opération ne peut être annulée": "Uma vez lançado esta operação não pode ser cancelada",
+        "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "",
+        "Sauvegarde rapatrier avec succès": "",
         "L\\'opération est réussie": "Operação de L \\ 'é bem sucedida",
         "L\\'opération a échoué": "Operação de L \\ 'falhou"
     },
