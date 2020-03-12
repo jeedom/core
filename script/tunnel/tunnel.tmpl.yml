@@ -1,4 +1,4 @@
-server_addr: 51.178.59.68:30122
+server_addr: backend.eu.dns-dev.jeedom.com:443
 tunnels:
   web:
     proto: http
