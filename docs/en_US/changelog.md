@@ -1,6 +1,14 @@
 Changelog
 =========
 
+4.0.44
+=====
+
+- Improved translations (oui encore).
+- Bugfix.
+- Amélioration de la restoration de backup cloud.
+- La restoration cloud ne repatrie plus que le backup en local maintenant vous laissant le choix de le télécharger ou de le restaurer.
+
 4.0.43
 =====
 

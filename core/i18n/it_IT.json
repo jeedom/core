@@ -3361,6 +3361,9 @@
         "La commande de démarrage du DNS est introuvable": "Comando di avvio DNS non trovato",
         "La commande de statut du DNS est introuvable": "Comando stato DNS non trovato",
         "La commande d\\'arrêt du DNS est introuvable": "Comando di arresto DNS non trovato",
+        "Impossible de télécharger : ": "",
+        "Taille invalide pour : ": "",
+        "Impossible de générer le certificat et la clef privé": "",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": ""
     },

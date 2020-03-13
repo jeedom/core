@@ -3361,6 +3361,9 @@
         "La commande de démarrage du DNS est introuvable": "DNS-Startbefehl nicht gefunden",
         "La commande de statut du DNS est introuvable": "DNS-Statusbefehl nicht gefunden",
         "La commande d\\'arrêt du DNS est introuvable": "DNS-Stoppbefehl nicht gefunden",
+        "Impossible de télécharger : ": "Herunterladen nicht möglich:",
+        "Taille invalide pour : ": "Ungültige Größe für:",
+        "Impossible de générer le certificat et la clef privé": "Zertifikat und privater Schlüssel können nicht generiert werden",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Netzwerkproblem erkannt, Neustart des Netzwerks. Kein Gateway gefunden",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Netzwerkproblem erkannt, Neustart des Netzwerks. Das Gateway reagiert nicht auf Ping:"
     },
