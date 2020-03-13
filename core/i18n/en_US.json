@@ -1450,7 +1450,7 @@
         "Accès interne": "Internal access",
         "Protocole": "Protocol",
         "Aucun": "None",
-        "HTTP": "D'informations sont indispensables à la bonne compréhension de",
+        "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Accès externe": "External access",
         "Gestion avancée": "Advanced management",
@@ -3451,6 +3451,7 @@
         "La commande de démarrage du DNS est introuvable": "DNS start command not found",
         "La commande de statut du DNS est introuvable": "DNS status command not found",
         "La commande d\\'arrêt du DNS est introuvable": "DNS stop command not found",
+        "Redémarrage du tunnel jeedom": "Jeedom tunnel restart",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Network issue detected, network restart. No gateway found",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Network issue detected, network restart. The gateway does not respond to ping:"
     },
