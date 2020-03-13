@@ -3451,6 +3451,7 @@
         "La commande de démarrage du DNS est introuvable": "La commande de démarrage du DNS est introuvable",
         "La commande de statut du DNS est introuvable": "La commande de statut du DNS est introuvable",
         "La commande d\\'arrêt du DNS est introuvable": "La commande d\\'arrêt du DNS est introuvable",
+        "Redémarrage du tunnel jeedom": "Redémarrage du tunnel jeedom",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : "
     },
