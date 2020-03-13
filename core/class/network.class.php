@@ -398,7 +398,6 @@ class network {
 			$arch = 'arm';
 		}
 		$exec = 'tunnel-linux-'.$arch;
-		;
 		return (shell_exec('ps ax | grep '.$exec.' | grep  -c -v grep') > 0);
 	}
 	
