@@ -1602,7 +1602,7 @@ user::isBan();
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<?php
-							echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> ' . __('objets', __FILE__) . '</span>';
+							echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> {{objets}}</span>';
 							?>
 						</div>
 					</div>
