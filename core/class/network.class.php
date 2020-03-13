@@ -449,7 +449,7 @@ class network {
 			$arch = 'arm';
 		}
 		$exec = 'tunnel-linux-'.$arch;
-		return (shell_exec('ps ax | grep -c '.$exec) > 0);
+		return (shell_exec('ps ax | grep '.$exec.' | grep  -c -v grep') > 0);
 	}
 	
 	public static function dns2_stop() {
