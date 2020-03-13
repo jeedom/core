@@ -471,7 +471,7 @@ user::isBan();
 						</div>
 						<span class="col-lg-2 col-md-3 col-sm-3 col-xs-6"></span>
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-							<a class="btn btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Personnalisation avancée</a>
+							<a class="btn btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -984,7 +984,7 @@ user::isBan();
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<a id="bt_addObjectSummary" class="btn btn-sm btn-success pull-right"><i class="fas fa-plus-circle"></i> Ajouter un type de résumé</a>
+					<a id="bt_addObjectSummary" class="btn btn-sm btn-success pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter un type de résumé}}</a>
 					<table class="table table-condensed table-bordered" id="table_objectSummary" >
 						<thead>
 							<tr>
@@ -1602,7 +1602,7 @@ user::isBan();
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<?php
-							echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> ' . __('objets', __FILE__) . '</span>';
+							echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> {{objets}}</span>';
 							?>
 						</div>
 					</div>
@@ -1610,7 +1610,7 @@ user::isBan();
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<select class="form-control configKey" data-l1key="cache::engine">
-								<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
+								<option value="FilesystemCache">{{Système de fichiers}} (<?php echo cache::getFolder(); ?>)</option>
 								<?php if (class_exists('memcached')) {?>
 									<option value="MemcachedCache">{{Memcached}}</option>
 								<?php }?>
