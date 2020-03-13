@@ -238,7 +238,7 @@ class repo_market {
 	/*     * ***********************BACKUP*************************** */
 	
 	public static function beckup_serverPath(){
-		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service_backup_url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
+		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
 	}
 	
 	public static function backup_install(){
@@ -253,7 +253,7 @@ class repo_market {
 	
 	public static function backup_createFolderIsNotExist() {
 		$client = new Sabre\DAV\Client(array(
-			'baseUri' => config::byKey('service_backup_url'),
+			'baseUri' => config::byKey('service::backup::url'),
 			'userName' => config::byKey('market::username'),
 			'password' => config::byKey('market::password'),
 		));
@@ -479,7 +479,7 @@ class repo_market {
 					'name' => config::byKey('name'),
 					'hwkey' => jeedom::getHardwareKey()
 				);
-				$url = config::byKey('service_monitoring_url').'/service/monitoring';
+				$url = config::byKey('service::monitoring::url').'/service/monitoring';
 				$request_http = new com_http($url);
 				$request_http->setHeader(array(
 					'Content-Type: application/json',
