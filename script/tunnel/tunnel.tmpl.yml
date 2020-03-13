@@ -1,4 +1,4 @@
-server_addr: backend.eu.dns-dev.jeedom.com:443
+server_addr: #SERVER_ADDR#
 tunnels:
   web:
     proto: http
