@@ -381,7 +381,7 @@ class network {
 		$cmd->execCmd();
 	}
 	
-	public static function dns2_start() {
+		public static function dns2_start() {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
 		}
@@ -393,6 +393,7 @@ class network {
 		} catch (\Exception $e) {
 			
 		}
+		log::clear('tunnel');
 		$arch = php_uname('m');
 		if($arch == 'x86_64'){
 			$arch = 'amd64';
@@ -423,14 +424,32 @@ class network {
 		$replace = array(
 			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
 			'#PORT#' => config::byKey('internalPort', 'core', 80),
+			'#SERVER_ADDR#' => config::byKey('service::tunnel::eu::backend::1')
 		);
+		for($i=1;$i<3;$i++){
+			$infos = explode(':',config::byKey('service::tunnel::eu::backend::'.$i));
+			log::add('tunnel','debug','Test access to '.$infos[0].' on port '.$infos[1]);
+			if(count($infos) < 2){
+				break;
+			}
+			if(network::portOpen($infos[0],$infos[1])){
+				log::add('tunnel','debug','Access is open, used it');
+				$replace['#SERVER_ADDR#'] = config::byKey('service::tunnel::eu::backend::'.$i);
+				break;
+			}
+			log::add('tunnel','debug','Access is close test next');
+		}
 		if(file_exists($dir.'/tunnel.yml')){
 			unlink($dir.'/tunnel.yml');
 		}
 		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
 		$client_id = shell_exec('cd '.$dir.';./'.$exec.' id');
-		repo_market::sendTunnelClientId(trim($client_id));
-		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all > '.log::getPathToLog('tunnel').' 2>&1 &');
+		try {
+			repo_market::sendTunnelClientId(trim($client_id));
+		} catch (\Exception $e) {
+			log::add('tunnel','debug','Error on on send tunnel id to market : '.$e->getMessage());
+		}
+		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all >> '.log::getPathToLog('tunnel').' 2>&1 &');
 	}
 	
 	public static function dns2_run() {
@@ -470,6 +489,15 @@ class network {
 	}
 	
 	/*     * *********************Network management************************* */
+	
+	public static function portOpen($host, $port) {
+		$fp = @fsockopen($host, $port, $errno, $errstr, 0.1);
+		if (!is_resource($fp)){
+			return false;
+		}
+		fclose($fp);
+		return true;
+	}
 	
 	public static function getInterfaceIp($_interface) {
 		$ip = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " | grep \"inet .*" . $_interface . "\" | awk '{print $2}' | cut -d '/' -f 1"));
