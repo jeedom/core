@@ -606,7 +606,7 @@ class jeedom {
 			if (isset($bluetoothMapping[$_name])) {
 				return $bluetoothMapping[$_name];
 			}
-			$bluetoothMapping = self::getBluetoothMapping('', true);
+			$bluetoothMapping = self::getBluetoothMapping('');
 			if (isset($bluetoothMapping[$_name])) {
 				return $bluetoothMapping[$_name];
 			}
