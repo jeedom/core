@@ -5,5 +5,4 @@ tunnels:
     addr: localhost:#PORT#
     host: #URL#
 backoff:
-  max_time: 0
-  max_interval: 5ms
+  max_time: 4m
