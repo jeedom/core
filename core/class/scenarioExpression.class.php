@@ -1024,7 +1024,7 @@ class scenarioExpression {
 				case '#njour#':
 				$return['#njour#'] = (int) date('w');
 				break;
-				case '#name#':
+				case '#jeedom_name#':
 				$return['#jeedom_name#'] = config::byKey('name');
 				break;
 				case '#hostname#':
