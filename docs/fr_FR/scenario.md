@@ -256,19 +256,19 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 > Pour avoir les zéros initiaux à l’affichage, il faut utiliser la fonction Date(). Voir [ici](http://php.net/manual/fr/function.date.php).
 
 - #seconde# : Seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06).
-- #heure# : Heure courante au format 24h (sans les zéros initiaux). Ex : 8 pour 08:07:06 ou 17 pour 17:15.
-- #heure12# : Heure courante au format 12h (sans les zéros initiaux). Ex : 8 pour 08:07:06.
+- #hour# : Heure courante au format 24h (sans les zéros initiaux). Ex : 8 pour 08:07:06 ou 17 pour 17:15.
+- #hour12# : Heure courante au format 12h (sans les zéros initiaux). Ex : 8 pour 08:07:06.
 - #minute# : Minute courante (sans les zéros initiaux). Ex : 7 pour 08:07:06.
-- #jour# : Jour courant (sans les zéros initiaux). Ex : 6 pour 06/07/2017.
-- #mois# : Mois courant (sans les zéros initiaux). Ex : 7 pour 06/07/2017.
-- #annee# : Année courante.
+- #day# : Jour courant (sans les zéros initiaux). Ex : 6 pour 06/07/2017.
+- #month# : Mois courant (sans les zéros initiaux). Ex : 7 pour 06/07/2017.
+- #year# : Année courante.
 - #time# : Heure et minute courante. Ex : 1715 pour 17h15.
 - #timestamp# : Nombre de secondes depuis le 1er janvier 1970.
 - #date# : Jour et mois. Attention, le premier nombre est le mois. Ex : 1215 pour le 15 décembre.
-- #semaine# : Numéro de la semaine.
-- #sjour# : Nom du jour de la semaine. Ex : Samedi.
-- #njour# : Numéro du jour de 0 (dimanche) à 6 (samedi).
-- #smois# : Nom du mois. Ex : Janvier.
+- #week# : Numéro de la semaine.
+- #sday# : Nom du jour de la semaine. Ex : Samedi.
+- #nday# : Numéro du jour de 0 (dimanche) à 6 (samedi).
+- #smonth# : Nom du mois. Ex : Janvier.
 - #IP# : IP interne de Jeedom.
 - #hostname# : Nom de la machine Jeedom.
 - #trigger# (deprecié, mieux vaut utiliser trigger()) : Peut être le nom de la commande qui a déclenché le scénario :
