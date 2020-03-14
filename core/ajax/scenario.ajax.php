@@ -104,7 +104,7 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
 		}
-		$path = __DIR__ . '/../config/scenario';
+		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path)) {
 			mkdir($path);
 		}
