@@ -449,6 +449,11 @@ class network {
 		} catch (\Exception $e) {
 			log::add('tunnel','debug','Error on on send tunnel id to market : '.$e->getMessage());
 		}
+		$replace['#URL#'] = str_replace('https://','',config::byKey('service::tunnel::host'));
+		if(file_exists($dir.'/tunnel.yml')){
+			unlink($dir.'/tunnel.yml');
+		}
+		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
 		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all >> '.log::getPathToLog('tunnel').' 2>&1 &');
 	}
 	
