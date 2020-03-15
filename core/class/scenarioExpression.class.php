@@ -1051,10 +1051,11 @@ class scenarioExpression {
 				break;
 			}
 		}
+		$new = array();
 		foreach ($return as $key => $value) {
-			$return[str_replace($replace,array_keys($replace),$key)] = $value;
+			$new[str_replace($replace,array_keys($replace),$key)] = $value;
 		}
-		return $return;
+		return array_merge($return,$new);
 	}
 	
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
