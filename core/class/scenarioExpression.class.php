@@ -1007,10 +1007,10 @@ class scenarioExpression {
 			'annee' => 'year',
 			'semaine' => 'week'
 		);
-		foreach ($matches as &$tag) {
+		foreach($matches as &$tag) {
 			$tag = str_replace(array_keys($replace),$replace,$tag);
 		}
-		foreach ($matches as $tag) {
+		foreach($matches as &$tag) {
 			switch ($tag) {
 				case '#seconde#':
 				$return['#seconde#'] = (int) date('s');
@@ -1074,10 +1074,11 @@ class scenarioExpression {
 				break;
 			}
 		}
+		$new = array();
 		foreach ($return as $key => $value) {
-			$return[str_replace($replace,array_keys($replace),$key)] = $value;
+			$new[str_replace($replace,array_keys($replace),$key)] = $value;
 		}
-		return $return;
+		return array_merge($return,$new);
 	}
 	
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
