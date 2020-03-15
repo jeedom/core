@@ -3164,7 +3164,14 @@
         ". Vérifiez les droits": ". Check the rights",
         "Echec de création de l\\'archive zip": "Failed to create zip archive",
         "Aucune fonction correspondante à : ": "No function corresponding to:",
-        "Impossible de trouver le fichier à envoyer : ": "Unable to find file to send:"
+        "Impossible de trouver le fichier à envoyer : ": "Unable to find file to send:",
+        "Adresse": "Address",
+        "Nom d\\'utilisateur": "Username",
+        "Mot de passe": "Password",
+        "[Backup cloud] Nom": "[Backup cloud] Name",
+        "[Backup cloud] Mot de passe": "[Backup cloud] Password",
+        "[Backup cloud] Fréquence backup full": "[Backup cloud] Frequency full backup",
+        "Version : beta, stable": "Version: beta, stable"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",

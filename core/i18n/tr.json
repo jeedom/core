@@ -3164,7 +3164,14 @@
         ". Vérifiez les droits": ". Hakları kontrol edin",
         "Echec de création de l\\'archive zip": "Zip arşivi oluşturulamadı",
         "Aucune fonction correspondante à : ": "Şuna karşılık gelen işlev yok:",
-        "Impossible de trouver le fichier à envoyer : ": "Gönderilecek dosya bulunamadı:"
+        "Impossible de trouver le fichier à envoyer : ": "Gönderilecek dosya bulunamadı:",
+        "Adresse": "",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "Şifre",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Version : beta, stable": ""
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

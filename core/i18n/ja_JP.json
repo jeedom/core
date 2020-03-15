@@ -3164,7 +3164,14 @@
         ". Vérifiez les droits": "。権利を確認する",
         "Echec de création de l\\'archive zip": "Zipアーカイブを作成できませんでした",
         "Aucune fonction correspondante à : ": "以下に対応する機能はありません：",
-        "Impossible de trouver le fichier à envoyer : ": "送信するファイルが見つかりません："
+        "Impossible de trouver le fichier à envoyer : ": "送信するファイルが見つかりません：",
+        "Adresse": "アドレス",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "パスワード",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Version : beta, stable": ""
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
