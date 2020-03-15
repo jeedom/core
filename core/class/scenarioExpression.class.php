@@ -977,6 +977,16 @@ class scenarioExpression {
 			return $return;
 		}
 		$matches = array_unique($matches[0]);
+		$replace = array(
+			'heure' => 'hour',
+			'jour' => 'day',
+			'mois' => 'month',
+			'annee' => 'year',
+			'semaine' => 'week'
+		);
+		foreach ($matches as &$tag) {
+			$tag = str_replace(array_keys($replace),$replace,$tag);
+		}
 		foreach ($matches as $tag) {
 			switch ($tag) {
 				case '#seconde#':
@@ -1040,6 +1050,9 @@ class scenarioExpression {
 				$return['#trigger_value#'] = '';
 				break;
 			}
+		}
+		foreach ($return as $key => $value) {
+			$return[str_replace($replace,array_keys($replace),$key)] = $value;
 		}
 		return $return;
 	}
