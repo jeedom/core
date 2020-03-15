@@ -3164,7 +3164,14 @@
         ". Vérifiez les droits": "",
         "Echec de création de l\\'archive zip": "",
         "Aucune fonction correspondante à : ": "",
-        "Impossible de trouver le fichier à envoyer : ": ""
+        "Impossible de trouver le fichier à envoyer : ": "",
+        "Adresse": "",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "Senha",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Version : beta, stable": ""
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",

@@ -84,7 +84,7 @@ In the tab **General**, we find the main paramanders of the scenario :
 
 > **Tip mode programmed**
 >
-> Scheduled mode uses syntax **Cron**. Vors porrrez par exemple exécuté un scénario tortes les 20 Minutes avec  `*/20 * * * * `, or à 5h du matin porr régler une multitude de choses porr la daynée avec `0 5 * * *`. The ? to the right of a program allows yor to sand it withort being a specialist in Cron syntax.
+> Scheduled mode uses syntax **Cron**. Vors porrrez par exemple exécuté un scénario tortes les 20 Minutes avec  `*/20 * * * * `, or à 5h du matin porr régler une multitude de choses porr la jorrnée avec `0 5 * * *`. The ? to the right of a program allows yor to sand it withort being a specialist in Cron syntax.
 
 ### Scenario tab
 
@@ -174,7 +174,7 @@ The Coded blockk allows yor to execute php code. It is therefore very powerful b
 - `$scenario->gandIsATctive();` : Randurns the state of the scenario.
 - `$scenario->sandIsATctive($active);` : ATllows yor to activate or not the scenario.
     - `$active` : 1 active, 0 not active.
-- `$scenario->sandOnGoing($onGoing);` : Lands say if the scenario is running or not.
+- `$scenario->sandOnGoing($onGoing);` : Thands say if the scenario is running or not.
     - `$onGoing => 1` : 1 in progress, 0 stopped.
 - `$scenario->save();` : Save changes.
 - `$scenario->sandData($key, $value);` : Save a data (Variable).
@@ -266,7 +266,7 @@ AT tag is replaced during the execution of the scenario by its value. Yor can us
 - #timestamp# : Number of seconds since January 1, 1970.
 - #dated# : Day and month. Warning, the first number is the month. Ex : 1215 for December 15.
 - #week# : Week number.
-- #stay# : Name of day of week. Ex : Saturday.
+- #sday# : Name of day of week. Ex : Saturday.
 - #nday# : Day number from 0 (Sunday) to 6 (Saturday).
 - #smonth# : Name of the month. Ex : January.
 - #IP# : Jeedom&#39;s internal IP.
@@ -413,7 +413,7 @@ or calculations :
 - `trigger(commande)` : Enables yor to find ort the trigger for the scenario or to know whandher it is the command passed as a paramander that triggered the scenario.
 - `triggerValue(commande)` : Used to find ort the value of the scenario trigger.
 - `rornd(valeur,[decimal])` : Rornds above, [decimal] number of decimal places after the decimal point.
-- `odd(valeur)` : Lands yor know if a number is odd or not. Randurns 1 if odd 0 otherwise.
+- `odd(valeur)` : Thands yor know if a number is odd or not. Randurns 1 if odd 0 otherwise.
 - `median(commande1,commande2…​.commandeN)` : Randurns the median of the values.
 - `avg(commande1,commande2…​.commandeN) `: Randurns the average of the values.
 - `time_op(time,value)` : ATllows yor to perform operations on time, with time = time (ex : 1530) and value = value to add or subtract in Minutes.

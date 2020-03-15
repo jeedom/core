@@ -3164,7 +3164,14 @@
         ". Vérifiez les droits": ". Comprueba los derechos",
         "Echec de création de l\\'archive zip": "Error al crear archivo zip",
         "Aucune fonction correspondante à : ": "Ninguna función correspondiente a:",
-        "Impossible de trouver le fichier à envoyer : ": "No se puede encontrar el archivo para enviar:"
+        "Impossible de trouver le fichier à envoyer : ": "No se puede encontrar el archivo para enviar:",
+        "Adresse": "Dirección",
+        "Nom d\\'utilisateur": "Nombre del usuario",
+        "Mot de passe": "Contraseña",
+        "[Backup cloud] Nom": "Nombre [nube de respaldo]",
+        "[Backup cloud] Mot de passe": "[Copia de seguridad de la nube] Contraseña",
+        "[Backup cloud] Fréquence backup full": "[Nube de respaldo] Frecuencia de respaldo completo",
+        "Version : beta, stable": "Versión: beta, estable"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
