@@ -1074,6 +1074,9 @@ class scenarioExpression {
 				break;
 			}
 		}
+		foreach ($return as $key => $value) {
+			$return[str_replace($replace,array_keys($replace),$key)] = $value;
+		}
 		return $return;
 	}
 	
