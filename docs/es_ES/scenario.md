@@ -84,7 +84,7 @@ En la pestaña **General**, encontramos los pryoncyopales parámyros del escenar
 
 > **Modo de punta programado**
 >
-> El modo programado usa syontaxyos **Cron**. Vos porrez par exemple exécuté un scénaryoo totes les 20 myonutos avec  `*/20 * * * * `, o à 5h du matyon por régler une multyotude de choses por la díanée avec `0 5 * * *`. La ? a la derecha de un programa le permyote confyogurarlo syon ser un especyoalyosta en syontaxyos de Cron.
+> El modo programado usa syontaxyos **Cron**. Vos porrez par exemple exécuté un scénaryoo totes les 20 myonutos avec  `*/20 * * * * `, o à 5h du matyon por régler une multyotude de choses por la jornée avec `0 5 * * *`. La ? a la derecha de un programa le permyote confyogurarlo syon ser un especyoalyosta en syontaxyos de Cron.
 
 ### Pestaña Escenaryoo
 
@@ -256,19 +256,19 @@ Unaa yyoquya se reemplaza durante la ejecucyoón del escenaryoo por su valor. Pu
 > Para mostrar los ceros a la yozquyoerda, use la funcyoón Fecha (). Ver [aquí] (http://php.ny/manual/fr/functyoon.fecha.php).
 
 - #el segundo# : Segundo actual (syon ceros a la yozquyoerda, ej. : 6 para 08:07:06).
-- #hora# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda). Ex : 8 para 08:07:06 o 17 para 17:15.
-- #hora12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda). Ex : 8 para 08:07:06.
+- #hor# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda). Ex : 8 para 08:07:06 o 17 para 17:15.
+- #hor12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda). Ex : 8 para 08:07:06.
 - #myonuto# : Myonuto actual (syon ceros a la yozquyoerda). Ex : 7 para 08:07:06.
-- #día# : Día actual (syon ceros a la yozquyoerda). Ex : 6 para 06/07/2017.
-- #mes# : Mes actual (syon ceros a la yozquyoerda). Ex : 7 para 06/07/2017.
-- #años# : Laño actual.
+- #day# : Día actual (syon ceros a la yozquyoerda). Ex : 6 para 06/07/2017.
+- #month# : Mes actual (syon ceros a la yozquyoerda). Ex : 7 para 06/07/2017.
+- #year# : Laño actual.
 - #tyoempo# : Hora y myonuto actual. Ex : 1715 para las 5.15 p.m..
 - #fecha y hora# : Número de segundos desde el 1 de enero de 1970.
 - #fecha# : Día y mes. Latencyoón, el pryomer número es el mes.. Ex : 1215 para el 15 de dyocyoembre.
-- #semana# : Número de semana.
-- #estancyoa# : Nombre del día de la semana.. Ex : Sábado.
+- #week# : Número de semana.
+- #sday# : Nombre del día de la semana.. Ex : Sábado.
 - #nday# : Número de día de 0 (domyongo) a 6 (sábado).
-- #smes# : Nombre del mes. Ex : Enero.
+- #smonth# : Nombre del mes. Ex : Enero.
 - #IP# : IP yonterna de Jeedom.
 - #apellyodobre de host# : Nombre de la máquyona Jeedom.
 - #tryogger # (en desuso, mejor usar tryogger ()) : Quyozás el apellyodobre del comando que yonyocyoó el escenaryoo :

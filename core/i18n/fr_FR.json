@@ -1344,7 +1344,6 @@
         "Mode édition": "Mode édition"
     },
     "desktop\/php\/administration.php": {
-        "objets": "objets",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Rechercher": "Rechercher",
         "Sauvegarder": "Sauvegarder",
@@ -1440,6 +1439,7 @@
         "Personnalisation": "Personnalisation",
         "Activer": "Activer",
         "Permet de modifier les paramètres par défaut des thèmes": "Permet de modifier les paramètres par défaut des thèmes",
+        "Personnalisation avancée": "Personnalisation avancée",
         "Transparence": "Transparence",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "Transparence (Opacité) des tuiles et de certains éléments d'interface.",
         "Arrondi": "Arrondi",
@@ -1526,6 +1526,7 @@
         "URL de push globale": "URL de push globale",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
         "Quoter automatiquement les expressions": "Quoter automatiquement les expressions",
+        "Ajouter un type de résumé": "Ajouter un type de résumé",
         "Clé": "Clé",
         "Nom": "Nom",
         "Calcul": "Calcul",
@@ -1621,8 +1622,9 @@
         "Tester": "Tester",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Attention : toute modification du moteur de cache nécessite un redémarrage de",
         "Statistiques": "Statistiques",
+        "objets": "objets",
         "Moteur de cache": "Moteur de cache",
-        "Système de fichiers (<?php echo cache::getFolder(); ?>)": "Système de fichiers (<?php echo cache::getFolder(); ?>)",
+        "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcached",
         "Redis": "Redis",
         "Adresse Memcache": "Adresse Memcache",
@@ -3162,7 +3164,14 @@
         ". Vérifiez les droits": ". Vérifiez les droits",
         "Echec de création de l\\'archive zip": "Echec de création de l\\'archive zip",
         "Aucune fonction correspondante à : ": "Aucune fonction correspondante à : ",
-        "Impossible de trouver le fichier à envoyer : ": "Impossible de trouver le fichier à envoyer : "
+        "Impossible de trouver le fichier à envoyer : ": "Impossible de trouver le fichier à envoyer : ",
+        "Adresse": "Adresse",
+        "Nom d\\'utilisateur": "Nom d\\'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "[Backup cloud] Nom": "[Backup cloud] Nom",
+        "[Backup cloud] Mot de passe": "[Backup cloud] Mot de passe",
+        "[Backup cloud] Fréquence backup full": "[Backup cloud] Fréquence backup full",
+        "Version : beta, stable": "Version : beta, stable"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",

@@ -1344,7 +1344,6 @@
         "Mode édition": ""
     },
     "desktop\/php\/administration.php": {
-        "objets": "Объекты",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Rechercher": "поиск",
         "Sauvegarder": "Сохранить",
@@ -1440,6 +1439,7 @@
         "Personnalisation": "",
         "Activer": "Активировать",
         "Permet de modifier les paramètres par défaut des thèmes": "",
+        "Personnalisation avancée": "Расширенные настройки",
         "Transparence": "",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "",
         "Arrondi": "",
@@ -1526,6 +1526,7 @@
         "URL de push globale": "Глобальный URL Нажмите",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "",
         "Quoter automatiquement les expressions": "",
+        "Ajouter un type de résumé": "",
         "Clé": "",
         "Nom": "Имя",
         "Calcul": "Расчёт",
@@ -1621,8 +1622,9 @@
         "Tester": "Тест",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "",
         "Statistiques": "статистика",
+        "objets": "Объекты",
         "Moteur de cache": "крышка двигателя",
-        "Système de fichiers (<?php echo cache::getFolder(); ?>)": "",
+        "Système de fichiers": "",
         "Memcached": "",
         "Redis": "",
         "Adresse Memcache": "Memcached Адрес",
@@ -3162,7 +3164,14 @@
         ". Vérifiez les droits": "",
         "Echec de création de l\\'archive zip": "",
         "Aucune fonction correspondante à : ": "",
-        "Impossible de trouver le fichier à envoyer : ": ""
+        "Impossible de trouver le fichier à envoyer : ": "",
+        "Adresse": "",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "Пароль",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Version : beta, stable": ""
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",

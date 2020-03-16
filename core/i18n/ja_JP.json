@@ -1344,7 +1344,6 @@
         "Mode édition": "編集モード"
     },
     "desktop\/php\/administration.php": {
-        "objets": "オブジェクト",
         "401 - Accès non autorisé": "401-不正アクセス",
         "Rechercher": "検索",
         "Sauvegarder": "セーブ",
@@ -1440,6 +1439,7 @@
         "Personnalisation": "パーソナライゼーション",
         "Activer": "アクティブにし",
         "Permet de modifier les paramètres par défaut des thèmes": "テーマのデフォルト設定を変更する",
+        "Personnalisation avancée": "高度なカスタマイズ",
         "Transparence": "透明度",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "タイルおよび特定のインターフェイス要素の透明度（不透明度）。",
         "Arrondi": "ラウンド",
@@ -1526,6 +1526,7 @@
         "URL de push globale": "グローバルプッシュURL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "コマンドの値を更新するときに呼び出すURLをここに配置します。 <br>次のタグを使用できます。 <br> ＃値＃（注文値）、＃cmd_id＃（注文ID）および＃cmd_name＃（注文名）",
         "Quoter automatiquement les expressions": "式を自動的に引用する",
+        "Ajouter un type de résumé": "",
         "Clé": "キー",
         "Nom": "表題",
         "Calcul": "計算",
@@ -1621,8 +1622,9 @@
         "Tester": "テスト",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "注意：キャッシュエンジンの変更には、再起動が必要です",
         "Statistiques": "統計",
+        "objets": "オブジェクト",
         "Moteur de cache": "エンジンカバー",
-        "Système de fichiers (<?php echo cache::getFolder(); ?>)": "ファイルシステム（ <?php echo cache::getFolder(); ?> ）",
+        "Système de fichiers": "",
         "Memcached": "Memcachedの",
         "Redis": "Redisの",
         "Adresse Memcache": "Memcachedの住所",
@@ -3162,7 +3164,14 @@
         ". Vérifiez les droits": "。権利を確認する",
         "Echec de création de l\\'archive zip": "Zipアーカイブを作成できませんでした",
         "Aucune fonction correspondante à : ": "以下に対応する機能はありません：",
-        "Impossible de trouver le fichier à envoyer : ": "送信するファイルが見つかりません："
+        "Impossible de trouver le fichier à envoyer : ": "送信するファイルが見つかりません：",
+        "Adresse": "アドレス",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "パスワード",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Version : beta, stable": ""
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

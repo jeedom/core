@@ -38,35 +38,35 @@ class repo_market {
 	public static $_configuration = array(
 		'configuration' => array(
 			'address' => array(
-				'name' => 'Adresse',
+				'name' => '{{Adresse}}',
 				'type' => 'input',
 			),
 			'username' => array(
-				'name' => 'Nom d\'utilisateur',
+				'name' => '{{Nom d\'utilisateur}}',
 				'type' => 'input',
 			),
 			'password' => array(
-				'name' => 'Mot de passe',
+				'name' => '{{Mot de passe}}',
 				'type' => 'password',
 			),
 			
 			'cloud::backup::name' => array(
-				'name' => '[Backup cloud] Nom',
+				'name' => '{{[Backup cloud] Nom}}',
 				'type' => 'input',
 			),
 			'cloud::backup::password' => array(
-				'name' => '[Backup cloud] Mot de passe',
+				'name' => '{{[Backup cloud] Mot de passe}}',
 				'type' => 'password',
 			),
 			'cloud::backup::fullfrequency' => array(
-				'name' => '[Backup cloud] Fréquence backup full',
+				'name' => '{{[Backup cloud] Fréquence backup full}}',
 				'type' => 'select',
 				'values' => array('1D' => 'Chaque jour', '1W' => 'Chaque semaine', '1M' => 'Chaque mois'),
 			),
 		),
 		'parameters_for_add' => array(
 			'version' => array(
-				'name' => 'Version : beta, stable',
+				'name' => '{{Version : beta, stable}}',
 				'type' => 'input',
 			),
 		),
