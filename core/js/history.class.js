@@ -87,7 +87,7 @@ jeedom.history.drawChart = function (_params) {
       derive: _params.option.derive || '',
       allowZero: init(_params.option.allowZero, 0),
       groupingType : _params.option.groupingType || '',
-      lastPointToEnd : _params.option.lastPointToEnd || 0
+      lastPointToEnd : _params.option.lastPointToEnd || 0,
     },
     dataType: 'json',
     global: _params.global || true,
