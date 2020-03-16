@@ -391,6 +391,12 @@ try {
 				$return['history_name'] = init('id');
 				$return['unite'] = init('unite');
 			}
+			if(init('lastPointToEnd') == 1){
+				$last = end($data);
+				if ($last[0] < (strtotime($dateEnd . " UTC") * 1000)) {
+					$data[] = array((strtotime($dateEnd . " UTC") * 1000), $last[1]);
+				}
+			}
 			$return['data'] = $data;
 			ajax::success($return);
 		}
