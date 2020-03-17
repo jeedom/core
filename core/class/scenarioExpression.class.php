@@ -986,8 +986,6 @@ class scenarioExpression {
 		);
 		foreach($matches as &$tag) {
 			$tag = str_replace(array_keys($replace),$replace,$tag);
-		}
-		foreach($matches as &$tag) {
 			switch ($tag) {
 				case '#seconde#':
 				$return['#seconde#'] = (int) date('s');
