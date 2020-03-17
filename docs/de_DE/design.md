@@ -305,18 +305,18 @@ Anzeigeeinstellungen
 
 -   **Kamera** : Kamera zum Anzeigen (wenn Sie Kamera gewählt haben)
 
-Zone 
+Bereich 
 ====
 
 Anzeigeeinstellungen 
 ---------------------
 
--   **Art der Zone** : Hier wählen Sie die Art des Bereichs :
+-   **Art der Bereich** : Hier wählen Sie die Art des Bereichs :
     Einfaches Makro, Binärmakro oder Widget beim Hover
 
 ### Einzelne Makro 
 
-In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus.
+In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus.
 
 Hier müssen Sie nur die Liste der Aktionen angeben, die beim Klicken ausgeführt werden sollen
 auf dem Gebiet
@@ -373,7 +373,7 @@ Zusammenfassung
 -   **Fett** : fetter Text
 
 
-FAQ 
+Faq 
 ======
 
 >**Ich kann mein Design nicht mehr bearbeiten**

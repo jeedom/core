@@ -828,7 +828,7 @@ class scenario {
 					if(config::byKey('widget::disableCache','core',0) == 0){
 						cache::set('scenarioHtml' . $version . $this->getId(), $html);
 					}
-					return $html;
+					return translate::exec($html, 'core/template/widgets.html');
 				}
 				/**
 				*

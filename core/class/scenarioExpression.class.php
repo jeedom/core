@@ -970,35 +970,43 @@ class scenarioExpression {
 		return __('Type inconnu', __FILE__);
 	}
 	
-	public static function getRequestTags($_expression) {
+		public static function getRequestTags($_expression) {
 		$return = array();
 		preg_match_all("/#([a-zA-Z0-9]*)#/", $_expression, $matches);
 		if (count($matches) == 0) {
 			return $return;
 		}
 		$matches = array_unique($matches[0]);
-		foreach ($matches as $tag) {
+		$replace = array(
+			'heure' => 'hour',
+			'jour' => 'day',
+			'mois' => 'month',
+			'annee' => 'year',
+			'semaine' => 'week'
+		);
+		foreach($matches as &$tag) {
+			$tag = str_replace(array_keys($replace),$replace,$tag);
 			switch ($tag) {
 				case '#seconde#':
 				$return['#seconde#'] = (int) date('s');
 				break;
-				case '#heure#':
-				$return['#heure#'] = (int) date('G');
+				case '#hour#':
+				$return['#hour#'] = (int) date('G');
 				break;
-				case '#heure12#':
-				$return['#heure12#'] = (int) date('g');
+				case '#hour12#':
+				$return['#hour12#'] = (int) date('g');
 				break;
 				case '#minute#':
 				$return['#minute#'] = (int) date('i');
 				break;
-				case '#jour#':
-				$return['#jour#'] = (int) date('d');
+				case '#day#':
+				$return['#day#'] = (int) date('d');
 				break;
-				case '#mois#':
-				$return['#mois#'] = (int) date('m');
+				case '#month#':
+				$return['#month#'] = (int) date('m');
 				break;
-				case '#annee#':
-				$return['#annee#'] = (int) date('Y');
+				case '#year#':
+				$return['#year#'] = (int) date('Y');
 				break;
 				case '#time#':
 				$return['#time#'] = date('Gi');
@@ -1012,19 +1020,19 @@ class scenarioExpression {
 				case '#date#':
 				$return['#date#'] = date('md');
 				break;
-				case '#semaine#':
-				$return['#semaine#'] = date('W');
+				case '#week#':
+				$return['#week#'] = date('W');
 				break;
-				case '#sjour#':
-				$return['#sjour#'] = date_fr(date('l'));
+				case '#sday#':
+				$return['#sday#'] = date_fr(date('l'));
 				break;
-				case '#smois#':
-				$return['#smois#'] = date_fr(date('F'));
+				case '#smonth#':
+				$return['#smonth#'] = date_fr(date('F'));
 				break;
-				case '#njour#':
-				$return['#njour#'] = (int) date('w');
+				case '#nday#':
+				$return['#nday#'] = (int) date('w');
 				break;
-				case '#name#':
+				case '#jeedom_name#':
 				$return['#jeedom_name#'] = config::byKey('name');
 				break;
 				case '#hostname#':
@@ -1041,7 +1049,11 @@ class scenarioExpression {
 				break;
 			}
 		}
-		return $return;
+		$new = array();
+		foreach ($return as $key => $value) {
+			$new[str_replace($replace,array_keys($replace),$key)] = $value;
+		}
+		return array_merge($return,$new);
 	}
 	
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
@@ -1596,11 +1608,15 @@ class scenarioExpression {
 						$stringFunction = strval($this->getExpression());
 						$functionName = explode('(', $stringFunction)[0];
 						if (class_exists('userFunction') && method_exists('userFunction', $functionName)) {
-							$scenario->persistLog();
 							$arguments = str_replace([$functionName, '(', ')'], '', $stringFunction);
-							$arguments = explode(',', $arguments);
-							$result = call_user_func_array('userFunction' . "::" . $functionName, $arguments);
+							if ($arguments != '') {
+								$arguments = explode(',', $arguments);
+							} else {
+								$arguments = [];
+							}
+							$result = call_user_func_array('userFunction::' . $functionName, $arguments);
 							$this->setLog($scenario, 'userFunction: ' . $stringFunction . ' : ' . json_encode($result));
+							$scenario->persistLog();
 							return;
 						}
 					}

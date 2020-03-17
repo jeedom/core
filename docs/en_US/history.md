@@ -93,7 +93,7 @@ Once a data is activated, you can choose :
 
 -   **Color** : the color of the curve.
 
--   **Vérifier dans la page Santé que la configuration réseau interne du** : the type of graph (area, line or column).
+-   **Type** : the type of graph (area, line or column).
 
 -   **Ladder** : since you can put several curves (data)
     on the same graph, it is possible to distinguish the scales

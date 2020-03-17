@@ -1,0 +1,8 @@
+server_addr: #SERVER_ADDR#
+tunnels:
+  web:
+    proto: http
+    addr: localhost:#PORT#
+    host: #URL#
+backoff:
+  max_time: 4m

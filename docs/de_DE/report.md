@@ -27,9 +27,9 @@ Sobald der Bericht ausgewählt ist, können Sie ihn sehen, erneut herunterladen 
 
 Sie können auch alle Sicherungen eines bestimmten Berichts löschen
 
-# FAQ
+# Faq
 
-> **Wenn Sie einen Detailfehler haben : cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.n: freigegebene Objektdatei kann nicht geöffnet werden: Keine nlche Datei oder Verzeichnis**
+> **Wenn Sie einen Detailfehler haben : Cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.n: freigegebene Objektdatei kann nicht geöffnet werden: Keine nlche Datei oder Verzeichnis**
 >
 > Dies ist in ssh oder in Administration -&gt; Konfiguration -&gt; OS / DB -&gt; System -&gt; Administration erforderlich :
 >sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.n.2 /usr/lib/aarch64-linux-gnu/libGLESv2.n

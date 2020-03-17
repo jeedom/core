@@ -112,7 +112,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 
 - #Name# : BefehlsName
 - #valueName# : Name des Befehlswertes und = # Name #, wenn es sich um einen Befehl vom Typ Info handelt
-- #hIdentifikatione_Name# : leer oder ausgeblendet, wenn der Benutzer den Namen des WIdentifikationgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
+- #VersteckName# : leer oder ausgeblendet, wenn der Benutzer den Namen des WIdentifikationgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
 - #Identifikation# : Bestellnummer
 - #Zustand# : Wert des Befehls, leer für einen Aktionstypbefehl, wenn er nicht mit einem Statusbefehl verknüpft ist
 - #uIdentifikation# : eindeutige Kennung für diese Generation des WIdentifikationgets (wenn es mehrmals denselben Befehl gibt, ist bei Entwürfen nur diese Kennung wirklich eindeutig)
@@ -121,7 +121,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 - #alertLevel# : Alarmstufe (siehe [hier] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.PHP # L67) für die Liste)
 - #hIdentifikatione_history# : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. # HIdentifikatione_Name # ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem WIdentifikationget gefunden wird, werden die Tags # minHistoryValue #, # durchschnittlichHistoryValue #, # maxHistoryValue # und # trend # nicht durch Jeedom ersetzt.
 - #minHistoryValue# : Mindestwert über den Zeitraum (Zeitraum, der vom Benutzer in der Konfiguration von jeedom definiert wurde)
-- #averageHistoryValue# : Durchschnittswert über den Zeitraum (Zeitraum, der in der Konfiguration von jeedom durch den Benutzer definiert wurde)
+- #durchschnittlicherHistorischer Wert# : Durchschnittswert über den Zeitraum (Zeitraum, der in der Konfiguration von jeedom durch den Benutzer definiert wurde)
 - #maxHistoryValue# : Maximalwert über den Zeitraum (Zeitraum, der vom Benutzer in der Konfiguration von jeedom definiert wurde)
 - #Trend# : Trend über den Zeitraum (Zeitraum, den der Benutzer in der Konfiguration von jeedom definiert hat). Achtung, der Trend ist direkt eine Klasse für Symbole : fas fa-Pfeil nach oben, fas fa-Pfeil nach unten oder fas fa-minus
 

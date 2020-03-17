@@ -12,12 +12,12 @@ Diese Seite ist zugänglich von **Analyse → Zusammenfassung der Hausautomation
 Der obere Rand der Seite 
 ------------------
 
-Oben auf der Seite finden wir : \* **Anzahl der Objekte** : Anzahl
+Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Anzahl
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die EDiemente gezählt werden
-Inaktiv. \* **Anzahl der Ausrüstungen** : Das GDieiche gilt für die Ausrüstung. \*
-**Anzahl der Bestellungen** : GDieiches gilt für Bestellungen. \* **Inaktiv** :
+Inaktiv. \.* **Anzahl der Ausrüstungen** : Das GDieiche gilt für die Ausrüstung. \.*
+**Anzahl der Bestellungen** : GDieiches gilt für Bestellungen. \.* **Inaktiv** :
 Aktivieren Sie dieses Kontrollkästchen, wenn die inaktiven EDiemente korrekt sein solDien
-auf dieser Seite angezeigt. \* **Suche** : Suche nach a
+auf dieser Seite angezeigt. \.* **Suche** : Suche nach a
 bestimmtes EDiement. Es kann der Name eines Geräts sein, eine Bestellung
 oder der Name des Plugins, mit dem das Gerät erstellt wurde.
 
@@ -48,7 +48,7 @@ sind verfügbar. Von links nach rechts :
 
 > **Spitze**
 >
-> Durch Klicken / AbDiegen auf das Gerät können Sie dessen ändern
+> Durch Klicken /. AbDiegen auf das Gerät können Sie dessen ändern
 > bestelDien oder sogar einem anderen Objekt zuordnen. Es ist aus der Bestellung
 > Auf dieser Seite wurde festgeDiegt, dass die Dashboard-Anzeige berechnet wird.
 
@@ -60,8 +60,8 @@ Auf jeder Ausrüstung finden wir :
 -   Ein **Kontrollkästchen** um die Ausrüstung auszuwähDien (Sie können
     mehrere auswähDien). Wenn mindestens ein Gerät ausgewählt ist
     Sie haben Aktionsschaltflächen, die oben links angezeigt werden
-    für **Entfernen**, make **sichtbar**/**unsichtbar**,
-    **Aktiva**/**Inaktiv** ausgewählte Ausrüstung.
+    für **Entfernen**, make **sichtbar**/.**unsichtbar**,
+    **Aktiva**/.**Inaktiv** ausgewählte Ausrüstung.
 
 -   Die **Name** Ausrüstung.
 
@@ -292,7 +292,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 -   **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 
--   Bewerben Sie sich bei \* : Wenden Sie dieselbe Konfiguration auf an
+-   Bewerben Sie sich bei \.* : Wenden Sie dieselbe Konfiguration auf an
     Mehrfachbestellungen.
 
 -   **Rekord** : Speichern Sie die vorgeNamemenen Änderungen an
@@ -305,7 +305,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 > **Notiz**
 >
-> Abhängig von der Art der Bestellung werden die Informationen / Aktionen angezeigt
+> Abhängig von der Art der Bestellung werden die Informationen /. Aktionen angezeigt
 > kann sich ändern.
 
 Registerkarte Informationen 
@@ -375,7 +375,7 @@ Registerkarte Konfiguration
 
 -   **Berechnung und Rundung**
 
-    -   **Berechnungsformel (\ #Wert \ # für den Wert)** : Ermöglicht
+    -   **Berechnungsformel (\. #Wert \. # für den Wert)** : Ermöglicht
         Machen Sie eine Operation mit dem Wert der Bestellung vor
         Jeedom Behandlung, Beispiel : `#value# - 0.2` zu verschanzen
         0,2 (Offset an einem Temperatursensor).

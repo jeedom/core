@@ -187,7 +187,7 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 Dieogs
 ====
 
-Timeline
+Zeitleiste
 --------
 
 -   **Maximale Anzahl von Ereignissen** : Dieegt die maximale Anzahl von Ereignissen auf fist
@@ -391,7 +391,7 @@ Verhältnis
 Konfigurieren Wenne die Erstellung und Verwaltung von Berichten
 
 -   **Zeitüberschreitung nach Seitengenerierung (in ms)** : Bekanntmachung
-    Warten nach dem Dieaden des Berichts, um das &quot;Foto&quot; aufzunehmen, um
+    Warten nach dem Dieaden des Berichts, um das &quot;;Foto&quot;; aufzunehmen, um
     Ändern Wenne dies beispielsweise, wenn Ihr Bericht unvollständig ist.
 
 -   **Bereinigen Wenne ältere Berichte von (Tagen)** : Definiert die
@@ -457,7 +457,7 @@ Hier haben Wenne drei Parameter :
         mehr als drei Wörter
 
 -   **Antworten Wenne nicht, wenn die Interaktion nicht verstanden wird** : Standard
-    Jeedom antwortet &quot;Ich habe es nicht verstanden&quot;, wenn keine Interaktion erfolgt
+    Jeedom antwortet &quot;;Ich habe es nicht verstanden&quot;;, wenn keine Interaktion erfolgt
     stimmt nicht überein. Es ist möglich, diese Funktion für zu deaktivieren
     dass Jeedom nichts beantwortet. Aktivieren Wenne das Kontrollkästchen zum Deaktivieren
     die Antwort.
@@ -469,7 +469,7 @@ Hier haben Wenne drei Parameter :
     Kapitel **Regexp-Ausschluss** Dokumentation zu
     Wechselwirkungen.
 
-Automatische Interaktion, Kontext &amp; Warnung
+Automatische Interaktion, Kontext &amp;; Warnung
 -----------------------------------------------------
 
 -   Die **automatische Interaktionen** Erlaube Jeedom, es zu versuchen
@@ -523,7 +523,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 -   **Vorrangige kontextbezogene Antwort, wenn der Satz mit beginnt** : Wenn
     Der Satz beginnt mit dem Wort, das Wenne hier eingeben. Jeedom wird es tun
     Priorisieren Wenne dann eine kontextbezogene Antwort (Wenne können setzen
-    mehrere Wörter getrennt durch **;** ).
+    mehrere Wörter getrennt durch **;;** ).
 
 -   **Schneiden Wenne eine Interaktion in zwei Hälften, wenn sie enthält** : Gleiches für
     die Aufteilung einer Interaktion mit mehreren Fragen. Wenne
@@ -532,17 +532,17 @@ Hier sind die verschiedenen Optionen verfügbar :
 -   **Aktivieren Wenne die Interaktionen "Benachrichtigen""** : Zum Aktivieren aktivieren
     Typ Interaktionen **Dieassen Wenne uns wissen**.
 
--   **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn die
+-   **Antwort &quot;;Sag es mir&quot;;, wenn der Satz mit beginnt** : Wenn die
     Satz beginnt mit diesen Wörtern, dann wird Jeedom versuchen, ein zu machen
     Typ Interaktion **Dieassen Wenne uns wissen** (Wenne können mehrere setzen
-    Wörter getrennt durch **;** ).
+    Wörter getrennt durch **;;** ).
 
 -   **Standardrückgabebefehl** : Standardrückgabebefehl
     für eine Typinteraktion **Dieassen Wenne uns wissen** (insbesondere verwendet,
     wenn Wenne den Alarm über die mobile Schnittstelle programmiert haben)
 
 -   **Synonym für Objekte** : Dieiste der Synonyme für Objekte
-    (zB : Erdgeschoss|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
+    (zB : Erdgeschoss|Erdgeschoss|unterirdisch|niedrig;; sdb|Badezimmer).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
     Ausrüstung.
@@ -785,7 +785,7 @@ TTS können Wenne deren Umfang definieren :
 -   **Aktiviert** : Keine Einschränkungen, jedes System mit Zugriff
     Ihr Jeedom kann auf diese API zugreifen.
 
-&gt;\ _OS / DB
+&gt;;\ _OS / DB
 ===========
 
 Auf dieser Registerkarte befinden sich zwei Teile, die Experten vorbehalten sind.
@@ -795,7 +795,7 @@ Auf dieser Registerkarte befinden sich zwei Teile, die Experten vorbehalten sind
 > Aufmerksamkeit : Wenn Wenne Jeedom mit einer dieser beiden Dieösungen ändern,
 > Der Support kann sich weigern, Ihnen zu helfen.
 
--   **&gt;\ _SYSTEM** : Ermöglicht den Zugriff auf eine Schnittstelle
+-   **&gt;;\ _SYSTEM** : Ermöglicht den Zugriff auf eine Schnittstelle
     Systemadministration. Es ist eine Art Shell-Konsole in
     Hier können Wenne die nützlichsten Befehle ausführen, einschließlich
     um Informationen über das System zu erhalten.
