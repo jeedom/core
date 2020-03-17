@@ -970,7 +970,7 @@ class scenarioExpression {
 		return __('Type inconnu', __FILE__);
 	}
 	
-	public static function getRequestTags($_expression) {
+		public static function getRequestTags($_expression) {
 		$return = array();
 		preg_match_all("/#([a-zA-Z0-9]*)#/", $_expression, $matches);
 		if (count($matches) == 0) {
@@ -984,31 +984,31 @@ class scenarioExpression {
 			'annee' => 'year',
 			'semaine' => 'week'
 		);
-		foreach ($matches as &$tag) {
+		foreach($matches as &$tag) {
 			$tag = str_replace(array_keys($replace),$replace,$tag);
 		}
-		foreach ($matches as &$tag) {
+		foreach($matches as &$tag) {
 			switch ($tag) {
 				case '#seconde#':
 				$return['#seconde#'] = (int) date('s');
 				break;
-				case '#heure#':
-				$return['#heure#'] = (int) date('G');
+				case '#hour#':
+				$return['#hour#'] = (int) date('G');
 				break;
-				case '#heure12#':
-				$return['#heure12#'] = (int) date('g');
+				case '#hour12#':
+				$return['#hour12#'] = (int) date('g');
 				break;
 				case '#minute#':
 				$return['#minute#'] = (int) date('i');
 				break;
-				case '#jour#':
-				$return['#jour#'] = (int) date('d');
+				case '#day#':
+				$return['#day#'] = (int) date('d');
 				break;
-				case '#mois#':
-				$return['#mois#'] = (int) date('m');
+				case '#month#':
+				$return['#month#'] = (int) date('m');
 				break;
-				case '#annee#':
-				$return['#annee#'] = (int) date('Y');
+				case '#year#':
+				$return['#year#'] = (int) date('Y');
 				break;
 				case '#time#':
 				$return['#time#'] = date('Gi');
@@ -1022,17 +1022,17 @@ class scenarioExpression {
 				case '#date#':
 				$return['#date#'] = date('md');
 				break;
-				case '#semaine#':
-				$return['#semaine#'] = date('W');
+				case '#week#':
+				$return['#week#'] = date('W');
 				break;
-				case '#sjour#':
-				$return['#sjour#'] = date_fr(date('l'));
+				case '#sday#':
+				$return['#sday#'] = date_fr(date('l'));
 				break;
-				case '#smois#':
-				$return['#smois#'] = date_fr(date('F'));
+				case '#smonth#':
+				$return['#smonth#'] = date_fr(date('F'));
 				break;
-				case '#njour#':
-				$return['#njour#'] = (int) date('w');
+				case '#nday#':
+				$return['#nday#'] = (int) date('w');
 				break;
 				case '#jeedom_name#':
 				$return['#jeedom_name#'] = config::byKey('name');
