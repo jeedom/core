@@ -2865,7 +2865,7 @@
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "Kalorifer",
         "Sécurité": "Güvenlik",
         "Energie": "",
         "Lumière": "Işık",

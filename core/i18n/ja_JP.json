@@ -2865,7 +2865,7 @@
         "La valeur a été éditée avec succès": "値が正常に編集されています"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "加熱",
         "Sécurité": "セキュリティ",
         "Energie": "",
         "Lumière": "ライト",

@@ -2865,7 +2865,7 @@
         "La valeur a été éditée avec succès": "Nilai telah berhasil diedit"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "Pemanasan",
         "Sécurité": "Keamanan",
         "Energie": "",
         "Lumière": "Cahaya",

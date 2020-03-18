@@ -2865,7 +2865,7 @@
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "Riscaldamento",
         "Sécurité": "Sicurezza",
         "Energie": "",
         "Lumière": "Luce",
