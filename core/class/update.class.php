@@ -107,7 +107,7 @@ class update {
 		$class = 'repo_' . $_id;
 		$return = array(
 			'name' => $class::$_name,
-			'configuration' => $class::$_configuration,
+			'configuration' => (method_exists($class,'getConfigurationOption')) ? $class::getConfigurationOption() : array(),
 			'scope' => $class::$_scope,
 		);
 		$return['enable'] = config::byKey($_id . '::enable');
