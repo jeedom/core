@@ -2,11 +2,12 @@
 Changelog
 =========
 
-3.3.40
+3.3.43
 =====
 
 - Rotation automatique de la clé api des utilisateurs admin tous les 3 mois. I est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs. Attention cette mise à jour lance une rotation des clés api des utilisateurs admins.
 - Possibilité de renseigner des informations globales à votre maison dans l'administration de Jeedom (position géographique, altitude...) pour éviter d'avoir à les resaisir dans les plugins lors de la création d'équipement.
+- Mise à jour du repository sur smart
 
 3.3.39
 =====
