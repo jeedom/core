@@ -715,6 +715,10 @@ class eqLogic {
 		}
 		if(is_array($this->getDisplay('parameters')) && count($this->getDisplay('parameters')) > 0){
 			foreach ($this->getDisplay('parameters') as $key => $value) {
+				if($key == $_version.'_class'){
+					$replace['#class#'] = $value;
+					continue;
+				}
 				$replace['#'.$key.'#'] = $value;
 			}
 		}
