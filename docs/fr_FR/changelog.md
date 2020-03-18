@@ -49,6 +49,7 @@ Changelog
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
+- Widget : possibilité d'ajouté des class css à un widget (voir documentation widget)
 
 4.0.43
 =====
