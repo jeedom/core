@@ -675,6 +675,15 @@ class repo_market {
 		}
 	}
 	
+	public static function sendTunnelClientId($_client_id) {
+		$market = self::getJsonRpc();
+		if ($market->sendRequest('service::tunnel::setClientId',array('client_id' => $_client_id))) {
+			return $market->getResult();
+		} else {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+	
 	public static function distinctCategorie($_type) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
@@ -761,6 +770,12 @@ class repo_market {
 			}
 			if (isset($_result['service::backup::enable']) && config::byKey('service::backup::enable') != $_result['service::backup::enable']) {
 				config::save('service::backup::enable', $_result['service::backup::enable']);
+			}
+			if (isset($_result['service::tunnel::enable']) && config::byKey('service::tunnel::enable') != $_result['service::tunnel::enable']) {
+				config::save('service::tunnel::enable', $_result['service::tunnel::enable']);
+			}
+			if (isset($_result['service::tunnel::host']) && config::byKey('service::tunnel::host') != $_result['service::tunnel::host']) {
+				config::save('service::tunnel::host', $_result['service::tunnel::host']);
 			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
