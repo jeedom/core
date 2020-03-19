@@ -340,7 +340,7 @@ function initApplication(_reinit) {
         plugins = data.result.plugins
         userProfils = data.result.userProfils
         jeedom.init()
-        var include = ['core/js/core.js']
+        var include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
           for(var i in jeedom.theme.css) {
             document.body.style.setProperty(i,jeedom.theme.css[i])
