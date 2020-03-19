@@ -60,6 +60,15 @@ try {
 );
 }
 
+try {
+	if(class_exists('repo_market')){
+		repo_market::test();
+	}
+} catch (\Exception $e) {
+	
+}
+
+
 $crons = cron::all();
 if (is_array($crons)) {
 	if (class_exists('Cron\CronExpression')) {
