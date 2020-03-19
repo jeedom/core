@@ -1,6 +1,7 @@
 /***************Fonction d'initialisation*********************/
 var PAGE_HISTORY = [];
 var PANEL_SCROLL= 0
+var APP_MODE=false
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++
   $.showLoading()
@@ -36,6 +37,16 @@ $(function() {
       $('body').trigger('orientationChanged', [event.orientation])
     }, 200)
   })
+  
+  if(getUrlVars('app_mode') == 1){
+    APP_MODE = true;
+    $('.backgroundforJeedom').height('100%');
+    $('.backgroundforJeedom').css('top','0');
+    $('#pagecontainer').prepend($('#searchContainer'));
+    $('div[data-role=header]').remove();
+    $('#searchContainer').css('top',0);
+    $('#bt_eraseSearchInput').css('top',0);
+  }
   
   initApplication()
   
@@ -438,7 +449,11 @@ function initApplication(_reinit) {
             } else {
               page('home', '{{Accueil}}')
             }
-            $('#pagecontainer').css('padding-top','64px')
+            if(APP_MODE){
+              $('#pagecontainer').css('padding-top',0);
+            }else{
+              $('#pagecontainer').css('padding-top','64px')
+            }
           })
         })
       }
@@ -499,8 +514,13 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#page').load(page, function () {
       $('body').attr('data-page', 'connection')
       $('#page').trigger('create')
-      $('#pagecontainer').css('padding-top','64px')
-      setTimeout(function(){$('#pagecontainer').css('padding-top','64px');}, 100)
+      if(APP_MODE){
+        $('div[data-role=header]').remove();
+        $('#pagecontainer').css('padding-top',0);
+      }else{
+        $('#pagecontainer').css('padding-top','64px')
+        setTimeout(function(){$('#pagecontainer').css('padding-top','64px');}, 100)
+      }
     });
     return
   }
@@ -559,9 +579,14 @@ function page(_page, _title, _option, _plugin,_dialog) {
         }
       }
       Waves.init()
-      $('#pagecontainer').css('padding-top','64px')
+      if(APP_MODE){
+        $('div[data-role=header]').remove();
+        $('#pagecontainer').css('padding-top',0);
+      }else{
+        $('#pagecontainer').css('padding-top','64px')
+        setTimeout(function(){$('#pagecontainer').css('padding-top','64px'); }, 100)
+      }
       $('#page').fadeIn(400)
-      setTimeout(function(){$('#pagecontainer').css('padding-top','64px'); }, 100)
     })
   }
 }
