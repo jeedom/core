@@ -99,6 +99,12 @@ Die Tests sind in der Form : #Wert # == 1, # Wert # wird vom System automatisch 
 
 Wir werden hier einige WIdentifikationgets beschreiben, die eine etwas bestimmte Funktion haben.
 
+### Gerät
+
+Die équipements possedent certains parametres de configuration :
+
+- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du wIdentifikationget
+
 ### Häufige Einstellungen
 
 - Zeit-WIdentifikationget : Zeigt die Zeit an, seit sich das System im Anzeigezustand befindet.

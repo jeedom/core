@@ -1004,13 +1004,13 @@
         "Test": "Test",
         "Rechercher une commande": "Search a command",
         "Rechercher un scenario": "Search a scenario",
-        "Rechercher un équipement": "Search for equipment",
-        "Exécuter": "Perform",
+        "Rechercher un équipement": "Search an equipment",
+        "Exécuter": "Execute",
         "Résultat": "Result",
         "Historique": "History",
         "L\\'expression de test ne peut être vide": "Test expression cannot be empty",
-        "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Attention: there must be a concern, because the result is the same as the expression",
-        "Je vais évaluer : ": "I will assess:",
+        "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Attention: there must be a problem, because the result is the same as the expression",
+        "Je vais évaluer : ": "I will test:",
         "Résultat : ": "Result:"
     },
     "desktop\/modal\/object.massEdit.php": {
@@ -3143,10 +3143,26 @@
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Path",
+        "[Backup] IP": "[Backup] IP",
+        "[Backup] Utilisateur": "[Backup] User",
+        "[Backup] Mot de passe": "[Backup] Password",
+        "[Backup] Partage": "[Backup] Sharing",
+        "[Backup] Chemin": "[Backup] Path",
         "Impossible d\\'écrire dans le répertoire : ": "Unable to write to directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Execute the following command in SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "Address",
+        "Nom d\\'utilisateur": "Username",
+        "Mot de passe": "Password",
+        "[Backup cloud] Nom": "[Backup cloud] Name",
+        "[Backup cloud] Mot de passe": "[Backup cloud] Password",
+        "[Backup cloud] Fréquence backup full": "[Backup cloud] Frequency full backup",
+        "Chaque jour": "Every day",
+        "Chaque semaine": "Every week",
+        "Chaque mois": "Each month",
+        "Version : beta, stable": "Version: beta, stable",
         "Lancement de l\\'installation de ": "Launch of the installation of",
         " en version ": "in version",
         "Objet introuvable sur le market : ": "Object not found on the market:",
@@ -3164,14 +3180,7 @@
         ". Vérifiez les droits": ". Check the rights",
         "Echec de création de l\\'archive zip": "Failed to create zip archive",
         "Aucune fonction correspondante à : ": "No function corresponding to:",
-        "Impossible de trouver le fichier à envoyer : ": "Unable to find file to send:",
-        "Adresse": "Address",
-        "Nom d\\'utilisateur": "Username",
-        "Mot de passe": "Password",
-        "[Backup cloud] Nom": "[Backup cloud] Name",
-        "[Backup cloud] Mot de passe": "[Backup cloud] Password",
-        "[Backup cloud] Fréquence backup full": "[Backup cloud] Frequency full backup",
-        "Version : beta, stable": "Version: beta, stable"
+        "Impossible de trouver le fichier à envoyer : ": "Unable to find file to send:"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -3193,6 +3202,13 @@
         "Market Jeedom": "Jeedom Market"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "User or organization of the repository",
+        "Nom du dépôt": "Repository name",
+        "Branche": "Plugged",
+        "Token (facultatif)": "Token (optional)",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "Jeedom core repository user or organization",
+        "Nom du dépôt pour le core Jeedom": "Repository name for the Jeedom core",
+        "Branche pour le core Jeedom": "Jeedom core industry",
         "Dépot github non trouvé : ": "Github repository not found:",
         "Impossible d\\'écrire dans le répertoire : ": "Unable to write to directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Execute the following command in SSH: sudo chmod 777 -R",
@@ -3236,7 +3252,13 @@
         "ici": "here",
         "Votre objet a été envoyé avec succès sur le market": "Your item has been successfully sent to the market"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Path"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "ZIP file URL",
+        "URL core Jeedom": "Jeedom core URL",
+        "URL version core Jeedom": "Jeedom core version URL",
         "Impossible d\\'écrire dans le répertoire : ": "Unable to write to directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Execute the following command in SSH: sudo chmod 777 -R"
     },

@@ -99,6 +99,12 @@ The tests are in the form : #value # == 1, # value # will be automatically repla
 
 We are going to describe here some wIDgets which have a somewhat particular functioning.
 
+### Device
+
+The équipements possedent certains parametres de configuration :
+
+- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du wIDget
+
 ### Frequent settings
 
 - Time wIDget : displays the time since the system has been in the display state.

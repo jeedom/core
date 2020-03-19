@@ -3143,10 +3143,26 @@
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "パス",
+        "[Backup] IP": "",
+        "[Backup] Utilisateur": "",
+        "[Backup] Mot de passe": "",
+        "[Backup] Partage": "",
+        "[Backup] Chemin": "",
         "Impossible d\\'écrire dans le répertoire : ": "ディレクトリに書き込めません：",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "。 SSHで次のコマンドを実行します。sudochmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "アドレス",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "パスワード",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Chaque jour": "",
+        "Chaque semaine": "",
+        "Chaque mois": "",
+        "Version : beta, stable": "",
         "Lancement de l\\'installation de ": "インストールの開始",
         " en version ": "バージョンで",
         "Objet introuvable sur le market : ": "市場で見つからないオブジェクト：",
@@ -3164,14 +3180,7 @@
         ". Vérifiez les droits": "。権利を確認する",
         "Echec de création de l\\'archive zip": "Zipアーカイブを作成できませんでした",
         "Aucune fonction correspondante à : ": "以下に対応する機能はありません：",
-        "Impossible de trouver le fichier à envoyer : ": "送信するファイルが見つかりません：",
-        "Adresse": "アドレス",
-        "Nom d\\'utilisateur": "",
-        "Mot de passe": "パスワード",
-        "[Backup cloud] Nom": "",
-        "[Backup cloud] Mot de passe": "",
-        "[Backup cloud] Fréquence backup full": "",
-        "Version : beta, stable": ""
+        "Impossible de trouver le fichier à envoyer : ": "送信するファイルが見つかりません："
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -3193,6 +3202,13 @@
         "Market Jeedom": "ジーダムマーケット"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "",
+        "Nom du dépôt": "",
+        "Branche": "ブランチ",
+        "Token (facultatif)": "",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "",
+        "Nom du dépôt pour le core Jeedom": "",
+        "Branche pour le core Jeedom": "",
         "Dépot github non trouvé : ": "Githubリポジトリが見つかりません：",
         "Impossible d\\'écrire dans le répertoire : ": "ディレクトリに書き込めません：",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "。 SSHで次のコマンドを実行します。sudochmod 777 -R",
@@ -3236,7 +3252,13 @@
         "ici": "ここに",
         "Votre objet a été envoyé avec succès sur le market": "商品は市場に正常に送信されました"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "パス"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "",
+        "URL core Jeedom": "",
+        "URL version core Jeedom": "",
         "Impossible d\\'écrire dans le répertoire : ": "ディレクトリに書き込めません：",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "。 SSHで次のコマンドを実行します。sudochmod 777 -R"
     },

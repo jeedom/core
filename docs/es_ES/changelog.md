@@ -49,6 +49,7 @@ Cambios
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
+- Reproductor : possibilité d'ajouté des class css à un widget (voir documentation widget)
 
 4.0.43
 =====

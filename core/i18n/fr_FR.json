@@ -3143,10 +3143,26 @@
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Chemin",
+        "[Backup] IP": "[Backup] IP",
+        "[Backup] Utilisateur": "[Backup] Utilisateur",
+        "[Backup] Mot de passe": "[Backup] Mot de passe",
+        "[Backup] Partage": "[Backup] Partage",
+        "[Backup] Chemin": "[Backup] Chemin",
         "Impossible d\\'écrire dans le répertoire : ": "Impossible d\\'écrire dans le répertoire : ",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Exécuter la commande suivante en SSH : sudo chmod 777 -R "
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "Adresse",
+        "Nom d\\'utilisateur": "Nom d\\'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "[Backup cloud] Nom": "[Backup cloud] Nom",
+        "[Backup cloud] Mot de passe": "[Backup cloud] Mot de passe",
+        "[Backup cloud] Fréquence backup full": "[Backup cloud] Fréquence backup full",
+        "Chaque jour": "Chaque jour",
+        "Chaque semaine": "Chaque semaine",
+        "Chaque mois": "Chaque mois",
+        "Version : beta, stable": "Version : beta, stable",
         "Lancement de l\\'installation de ": "Lancement de l\\'installation de ",
         " en version ": " en version ",
         "Objet introuvable sur le market : ": "Objet introuvable sur le market : ",
@@ -3164,14 +3180,7 @@
         ". Vérifiez les droits": ". Vérifiez les droits",
         "Echec de création de l\\'archive zip": "Echec de création de l\\'archive zip",
         "Aucune fonction correspondante à : ": "Aucune fonction correspondante à : ",
-        "Impossible de trouver le fichier à envoyer : ": "Impossible de trouver le fichier à envoyer : ",
-        "Adresse": "Adresse",
-        "Nom d\\'utilisateur": "Nom d\\'utilisateur",
-        "Mot de passe": "Mot de passe",
-        "[Backup cloud] Nom": "[Backup cloud] Nom",
-        "[Backup cloud] Mot de passe": "[Backup cloud] Mot de passe",
-        "[Backup cloud] Fréquence backup full": "[Backup cloud] Fréquence backup full",
-        "Version : beta, stable": "Version : beta, stable"
+        "Impossible de trouver le fichier à envoyer : ": "Impossible de trouver le fichier à envoyer : "
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -3193,6 +3202,13 @@
         "Market Jeedom": "Market Jeedom"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "Utilisateur ou organisation du dépôt",
+        "Nom du dépôt": "Nom du dépôt",
+        "Branche": "Branche",
+        "Token (facultatif)": "Token (facultatif)",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilisateur ou organisation du dépôt pour le core Jeedom",
+        "Nom du dépôt pour le core Jeedom": "Nom du dépôt pour le core Jeedom",
+        "Branche pour le core Jeedom": "Branche pour le core Jeedom",
         "Dépot github non trouvé : ": "Dépot github non trouvé : ",
         "Impossible d\\'écrire dans le répertoire : ": "Impossible d\\'écrire dans le répertoire : ",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ",
@@ -3236,7 +3252,13 @@
         "ici": "ici",
         "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Chemin"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "URL du fichier ZIP",
+        "URL core Jeedom": "URL core Jeedom",
+        "URL version core Jeedom": "URL version core Jeedom",
         "Impossible d\\'écrire dans le répertoire : ": "Impossible d\\'écrire dans le répertoire : ",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Exécuter la commande suivante en SSH : sudo chmod 777 -R "
     },

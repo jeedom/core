@@ -3143,10 +3143,26 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Weg",
+        "[Backup] IP": "[Backup] IP",
+        "[Backup] Utilisateur": "[Backup] Benutzer",
+        "[Backup] Mot de passe": "[Backup] Passwort",
+        "[Backup] Partage": "[Backup] Freigabe",
+        "[Backup] Chemin": "[Backup] Pfad",
         "Impossible d\\'écrire dans le répertoire : ": "In Verzeichnis kann nicht geschrieben werden:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "Adresse",
+        "Nom d\\'utilisateur": "Benutzername",
+        "Mot de passe": "Passwort",
+        "[Backup cloud] Nom": "[Backup Cloud] Name",
+        "[Backup cloud] Mot de passe": "[Backup Cloud] Passwort",
+        "[Backup cloud] Fréquence backup full": "[Backup Cloud] Häufigkeit der vollständigen Sicherung",
+        "Chaque jour": "Jeden Tag",
+        "Chaque semaine": "Jede Woche",
+        "Chaque mois": "Jeden Monat",
+        "Version : beta, stable": "Version: Beta, stabil",
         "Lancement de l\\'installation de ": "Start der Installation von",
         " en version ": "in der Version",
         "Objet introuvable sur le market : ": "Objekt nicht auf dem Markt gefunden:",
@@ -3164,14 +3180,7 @@
         ". Vérifiez les droits": ". Überprüfen Sie die Rechte",
         "Echec de création de l\\'archive zip": "Fehler beim Erstellen des Zip-Archivs",
         "Aucune fonction correspondante à : ": "Keine Funktion entsprechend:",
-        "Impossible de trouver le fichier à envoyer : ": "Datei zum Senden nicht gefunden:",
-        "Adresse": "Adresse",
-        "Nom d\\'utilisateur": "Benutzername",
-        "Mot de passe": "Passwort",
-        "[Backup cloud] Nom": "[Backup Cloud] Name",
-        "[Backup cloud] Mot de passe": "[Backup Cloud] Passwort",
-        "[Backup cloud] Fréquence backup full": "[Backup Cloud] Häufigkeit der vollständigen Sicherung",
-        "Version : beta, stable": "Version: Beta, stabil"
+        "Impossible de trouver le fichier à envoyer : ": "Datei zum Senden nicht gefunden:"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -3193,6 +3202,13 @@
         "Market Jeedom": "Jeedom Markt"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "Benutzer oder Organisation des Repositorys",
+        "Nom du dépôt": "Repository-Name",
+        "Branche": "Zweig",
+        "Token (facultatif)": "Token (optional)",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "Jeedom Core Repository Benutzer oder Organisation",
+        "Nom du dépôt pour le core Jeedom": "Repository-Name für den Jeedom-Kern",
+        "Branche pour le core Jeedom": "Jeedom Kernindustrie",
         "Dépot github non trouvé : ": "Github-Repository nicht gefunden:",
         "Impossible d\\'écrire dans le répertoire : ": "In Verzeichnis kann nicht geschrieben werden:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R",
@@ -3236,7 +3252,13 @@
         "ici": "hier",
         "Votre objet a été envoyé avec succès sur le market": "Ihr Artikel wurde erfolgreich auf den Markt gebracht"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Weg"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "URL der ZIP-Datei",
+        "URL core Jeedom": "Jeedom-Kern-URL",
+        "URL version core Jeedom": "URL der Jeedom-Kernversion",
         "Impossible d\\'écrire dans le répertoire : ": "In Verzeichnis kann nicht geschrieben werden:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R"
     },

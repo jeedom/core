@@ -49,6 +49,7 @@ Changelog
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
+- Widget : possibilité d'ajouté des class css à un widget (voir documentation widget)
 
 4.0.43
 =====
