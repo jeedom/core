@@ -2,11 +2,14 @@
 Änderungsprotokoll
 =========
 
-3.3.40
+3.3.43
 =====
 
 - Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startund.
 - Möglichkeit, globale Informationen für Ihr Zuhause in die Jeedom-Verwaltung einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in Plugins eingegeben werden müssen.
+- Mise à Tag du repository sur smart
+- Migration sur le nouveau systeme de backup cloud (l'ancien systeme restera actif 2 semaines und vous pourrait en cas de besoin demander la mise à disposition des anciens backup au support, passer ce délai l'ancien systeme sera supprimé)
+- Migration sur le nouveau systeme de monitoring (l'ancien systeme restera actif 2 semaines, passé se delai il sera supprimé)
 
 3.3.39
 =====
@@ -19,7 +22,7 @@
 
 >**WICHTIG**
 >
->Dieses Update behebt ein Problem, das auftrunden könnte:Es ist mehr als zu empfehlen, seit dem 1. Januar 2020 einen historischen Rekord zu fischen
+>Dieses Update behebt ein Problem, das möglicherweise eine Aufzeichnung des Verlaufs ab dem 1. Januar 2020 verhindert. Es wird mehr als empfohlen
 
 3.3.38
 =====

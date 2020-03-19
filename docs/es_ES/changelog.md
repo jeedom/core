@@ -2,11 +2,14 @@
 Cambios
 =========
 
-3.3.40
+3.3.43
 =====
 
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses.. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
 - Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
+- Mise à día du repository sur smart
+- Migration sur le nouveau systeme de backup cloud (l'ancien systeme restera actif 2 semaines y vous pourrait en cas de besoin demander la mise à disposition des anciens backup au support, passer ce délai l'ancien systeme sera supprimé)
+- Migration sur le nouveau systeme de monitoring (l'ancien systeme restera actif 2 semaines, passé se delai il sera supprimé)
 
 3.3.39
 =====
@@ -19,7 +22,7 @@ Cambios
 
 >**IMPORTANTE**
 >
->Esta actualización soluciona una inquiyud que podría:pescando cualquier registro histórico al 1 de enero de 2020, es más que altamente recomendado
+>Esta actualización soluciona una inquiyud que puede evitar cualquier registro de historial a partir del 1 de enero de 2020, es más que altamente recomendable
 
 3.3.38
 =====
