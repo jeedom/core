@@ -30,7 +30,7 @@ $('#in_search').on('keyup',function() {
     var search = $(this).value()
     var searchID = search
     if (isNaN(search)) searchID = false
-
+    
     $('div.panel-collapse').removeClass('in')
     $('.cmd').show().removeClass('alert-success').addClass('alert-info')
     $('.eqLogic').show()
@@ -67,11 +67,10 @@ $('#in_search').on('keyup',function() {
           }
         })
       } else {
-        var eqName = eqLogic.attr('data-name')
-        eqName = normTextLower(eqName)
-        var type = eqLogic.attr('data-type')
-        type = normTextLower(type)
-        if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0) {
+        var eqName = normTextLower(eqLogic.attr('data-name'))
+        var type = normTextLower(eqLogic.attr('data-type'))
+        var category = normTextLower(eqLogic.attr('data-translate-category'))
+        if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0 && category.indexOf(search) < 0) {
           eqLogic.hide()
         } else {
           eqParent.find('div.panel-collapse').addClass('in')
@@ -225,7 +224,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
     $(event.target).find('.configureCmd').click()
     return false
   }
-
+  
   if (!$(event.target).hasClass('eqLogic')) {
     event.stopPropagation()
     return false
@@ -359,8 +358,8 @@ $('.bt_setIsVisible').on('click',function(){
       }
     });
   }
-
-
+  
+  
 })
 
 $('.bt_setIsEnable').on('click',function(){

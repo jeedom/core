@@ -86,8 +86,14 @@ $plugin_enable = config::getPluginEnable();
 				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[-1] as $eqLogic) {
-					
-					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+					$translate_category = '';
+					foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
+						if ($eqLogic->getCategory($key, 0) == 1) {
+							$translate_category .= __($value['name'],__FILE__).',';
+						}
+					}
+					$translate_category = trim($translate_category,',');
+					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-translate-category="'.$translate_category.'" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
@@ -154,7 +160,14 @@ $plugin_enable = config::getPluginEnable();
 				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
-					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
+					$translate_category = '';
+					foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
+						if ($eqLogic->getCategory($key, 0) == 1) {
+							$translate_category .= __($value['name'],__FILE__).',';
+						}
+					}
+					$translate_category = trim($translate_category,',');
+					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-translate-category="'.$translate_category.'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
