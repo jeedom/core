@@ -26,6 +26,9 @@ try {
 		$return = jeedom::getThemeConfig();
 		$return['serverDatetime'] = getmicrotime();
 		$return['serverTZoffsetMin'] = getTZoffsetMin();
+		if(!isConnect() && init('oauth') != ''){
+			loginByHash(init('auth'));
+		}
 		if (!isConnect()) {
 			$return['connected'] = false;
 			ajax::success($return);
