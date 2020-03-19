@@ -99,6 +99,12 @@ Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automá
 
 Vamos a describir aquí algunos widentificacióngets que tienen un funcionamiento algo particular..
 
+### Dispositivos
+
+La équipements possedent certains parametres de configuration :
+
+- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du widentificaciónget
+
 ### Configuraciones frecuentes
 
 - Widentificaciónget de tiempo : muestra el tiempo desde que el sistema ha estado en el estado de visualización.

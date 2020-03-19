@@ -49,6 +49,7 @@
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
+- Widget : possibilité d'ajouté des class css à un widget (voir documentation widget)
 
 4.0.43
 =====
