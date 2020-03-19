@@ -1,6 +1,12 @@
 Änderungsprotokoll
 =========
 
+4.0.45
+=====
+
+- Amélioration du testeur d'expression
+- Mise à jour du repository sur smart
+
 4.0.44
 =====
 

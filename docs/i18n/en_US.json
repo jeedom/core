@@ -997,6 +997,9 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "4.0.45": "4.0.45",
+        "Amélioration du testeur d'expression": "Amélioration du testeur d'expression",
+        "Mise à jour du repository sur smart": "Mise à jour du repository sur smart",
         "4.0.44": "4.0.44",
         "Amélioration des traductions (oui encore)": "Amélioration des traductions (oui encore)",
         "Correction de bugs": "Bugfix",
