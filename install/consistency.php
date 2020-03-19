@@ -424,6 +424,8 @@ if(version_compare($duplicity_version, '0.7.19','<')){
 	exec('sudo apt install -y python-dev');
 	exec('sudo pip install future');
 	exec('sudo pip install fasteners');
+	exec('sudo pip2 install future');
+	exec('sudo pip2 install fasteners');
 	exec('sudo wget https://images.jeedom.com/resources/duplicity/duplicity.tar.gz -O /tmp/duplicity.tar.gz');
 	exec('tar xvf /tmp/duplicity.tar.gz');
 	exec('cd duplicity-0.7.19; sudo python setup.py install');
