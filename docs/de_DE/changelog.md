@@ -37,6 +37,7 @@
 - Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - Verwaltung mehrerer Zeitleisten.
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
+- Zusammenfassung der Hausautomation : Possibilité de chercher sur les catégories d'équipements
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.

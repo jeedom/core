@@ -2173,6 +2173,7 @@
         "Visuel": "Visuell"
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "$ Wert [ 'name']",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Supprimer": "Löschen",
         "Visible": "Sichtbar",

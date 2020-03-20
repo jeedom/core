@@ -37,6 +37,7 @@ Cambios
 - Integración de la línea de tiempo en DB por razones de confiabilidad.
 - Gestión de múltiples líneas de tiempo..
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
+- Resumen de domótica : Possibilité de chercher sur les catégories d'équipements
 - Motor de tareas : En la pestaña * Daemon *, los complementos desactivados ya no aparecen.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.

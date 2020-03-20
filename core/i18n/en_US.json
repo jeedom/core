@@ -2173,6 +2173,7 @@
         "Visuel": "Visual"
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "$ Value [ 'name']",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Supprimer": "Delete",
         "Visible": "Jeedom",

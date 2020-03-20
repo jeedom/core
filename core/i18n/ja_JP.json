@@ -2173,6 +2173,7 @@
         "Visuel": "ビジュアル"
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "",
         "401 - Accès non autorisé": "401-不正アクセス",
         "Supprimer": "取り除きます",
         "Visible": "目に見えます",
