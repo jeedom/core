@@ -765,6 +765,7 @@
         "Gestion de Timelines multiples": "Verwaltung mehrerer Zeitleisten",
         "Résumé domotique": "Zusammenfassung der Hausautomation",
         "Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée)": "Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration).",
+        "Possibilité de chercher sur les catégories d'équipements": "Possibilité de chercher sur les catégories d'équipements",
         "Moteur de tâches": "Task-Engine",
         "Sur l'onglet *Démon*, les plugins désactivés n'apparaissent plus": "Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt",
         "Fenêtre de configuration avancée d'équipement": "Fenster zur erweiterten Gerätekonfiguration",
