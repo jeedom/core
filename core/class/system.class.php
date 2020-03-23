@@ -1,25 +1,25 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 
 class system {
-
+	
 	private static $_distrib = null;
 	private static $_command = array(
 		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
@@ -28,9 +28,9 @@ class system {
 		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'dnf'),
 		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'apt'),
 	);
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function loadCommand() {
 		if (file_exists(__DIR__ . '/../../config/system_cmd.json')) {
 			$content = file_get_contents(__DIR__ . '/../../config/system_cmd.json');
@@ -40,11 +40,11 @@ class system {
 		}
 		return self::$_command;
 	}
-
+	
 	/**
-	 *
-	 * @return string/object self::
-	 */
+	*
+	* @return string/object self::
+	*/
 	public static function getDistrib() {
 		self::loadCommand();
 		if (isset(self::$_command['custom'])) {
@@ -61,7 +61,7 @@ class system {
 		}
 		return self::$_distrib;
 	}
-
+	
 	public static function get($_key = '') {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
@@ -79,14 +79,14 @@ class system {
 		}
 		return $return;
 	}
-
+	
 	public static function getCmdSudo() {
 		if (!jeedom::isCapable('sudo')) {
 			return '';
 		}
 		return 'sudo ';
 	}
-
+	
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
@@ -94,7 +94,7 @@ class system {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
 		}
 	}
-
+	
 	public static function ps($_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
@@ -126,7 +126,7 @@ class system {
 					$info[$order[$i]] = trim($value);
 				} else {
 					$info[end($order)] = $info[end($order)] . ' ' . trim($value);
-
+					
 				}
 				$i++;
 			}
@@ -134,7 +134,7 @@ class system {
 		}
 		return $return;
 	}
-
+	
 	public static function kill($_find = '', $_kill9 = true) {
 		if (trim($_find) == '') {
 			return;
@@ -164,11 +164,25 @@ class system {
 		}
 		exec($cmd);
 	}
-
+	
 	public static function php($arguments, $_sudo = false) {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
 		}
 		return exec('php ' . $arguments);
+	}
+	
+	public static function getArch(){
+		$arch = php_uname('m');
+		if($arch == 'x86_64'){
+			return 'amd64';
+		}
+		if($arch == 'aarch64'){
+			return 'arm64';
+		}
+		if($arch == 'armv7l' || $arch == 'armv6l'){
+			return 'arm';
+		}
+		return $arch;
 	}
 }
