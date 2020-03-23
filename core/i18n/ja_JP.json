@@ -1373,12 +1373,12 @@
         "Anglais": "",
         "Allemand": "",
         "Espagnol": "",
-        "Italien": "",
-        "Portugais": "",
-        "Russe": "",
-        "Japonais": "",
-        "Indonesien": "",
-        "Turque": "",
+        "Italien (pas de support)": "",
+        "Portugais (pas de support)": "",
+        "Russe (pas de support)": "",
+        "Japonais (pas de support)": "",
+        "Indonesien (pas de support)": "",
+        "Turque (pas de support)": "",
         "Date et heure": "日時",
         "Fuseau horaire de votre": "あなたのタイムゾーン",
         "Forcer la synchronisation de l'heure": "フォース時刻同期",
@@ -3791,9 +3791,9 @@
         "Activer": "アクティブ",
         "Desactiver": "非アクティブ化",
         "Dernier lancement": "最後の打ち上げ",
-        "Min": "",
+        "Min": "低いです",
         "Moyenne": "平均",
-        "Max": ""
+        "Max": "マックス"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "期間"

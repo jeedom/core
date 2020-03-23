@@ -1373,12 +1373,12 @@
         "Anglais": "",
         "Allemand": "",
         "Espagnol": "",
-        "Italien": "",
-        "Portugais": "",
-        "Russe": "",
-        "Japonais": "",
-        "Indonesien": "",
-        "Turque": "",
+        "Italien (pas de support)": "",
+        "Portugais (pas de support)": "",
+        "Russe (pas de support)": "",
+        "Japonais (pas de support)": "",
+        "Indonesien (pas de support)": "",
+        "Turque (pas de support)": "",
         "Date et heure": "Saat ve tarih",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Saatin senkronize edilmesini zorla",
@@ -3791,9 +3791,9 @@
         "Activer": "Etkinleştir",
         "Desactiver": "Demount",
         "Dernier lancement": "Son çalıştırma",
-        "Min": "",
+        "Min": "Minimum",
         "Moyenne": "Ortalama",
-        "Max": ""
+        "Max": "Maximum"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Süre"

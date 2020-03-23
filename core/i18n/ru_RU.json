@@ -1373,12 +1373,12 @@
         "Anglais": "",
         "Allemand": "",
         "Espagnol": "",
-        "Italien": "",
-        "Portugais": "",
-        "Russe": "",
-        "Japonais": "",
-        "Indonesien": "",
-        "Turque": "",
+        "Italien (pas de support)": "",
+        "Portugais (pas de support)": "",
+        "Russe (pas de support)": "",
+        "Japonais (pas de support)": "",
+        "Indonesien (pas de support)": "",
+        "Turque (pas de support)": "",
         "Date et heure": "Дата и Время",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Синхронизация времени Force",
@@ -3791,9 +3791,9 @@
         "Activer": "активировать",
         "Desactiver": "деактивировать",
         "Dernier lancement": "Последний запуск",
-        "Min": "",
+        "Min": "Мин",
         "Moyenne": "Средний",
-        "Max": ""
+        "Max": "Макс"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Продолжительность"
