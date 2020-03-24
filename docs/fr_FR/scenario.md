@@ -193,7 +193,6 @@ Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais n
 #### Bloc Commentaire
 
 Le Bloc commentaire agît différemment quand il est masqué. Ses boutons sur la gauche disparaissent ainsi que le titre du bloc, et réapparaissent au survol. De même, la première ligne du commentaire est affichée en caractères gras.
-
 Ceci permet d'utiliser ce bloc comme séparation purement visuel au sein du scénario.
 
 ### Les Actions
