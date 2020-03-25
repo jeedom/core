@@ -7,9 +7,9 @@ Changelog
 
 - Automatic rotation of the API key of admin users every 3 months. I can deactivate it (but it is not recommended) in the user management. Please note this update launches a rotation of API keys for admins users.
 - Ability to enter global information for your home in the Jeedom administration (geographic position, altitude ...) to avoid having to re-enter it in plugins when creating equipment.
-- Mise à day du repository sur smart
-- Migration sur le nouveau systeme de backup cloud (l'ancien systeme restera actif 2 semaines and vous pourrait en cas de besoin demander la mise à disposition des anciens backup au support, passer ce délai l'ancien systeme sera supprimé)
-- Migration sur le nouveau systeme de monitoring (l'ancien systeme restera actif 2 semaines, passé se delai il sera supprimé)
+- Updating the repository on smart
+- Migration to the new cloud backup system (the old system will remain active for 2 weeks and you could, if necessary, request the availability of old backups to support, pass this period the old system will be delanded)
+- Migration to the new monitoring system (the old system will remain active for 2 weeks, past this time it will be delanded)
 
 3.3.39
 =====
