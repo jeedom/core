@@ -90,7 +90,7 @@ try {
 	
 	echo "Backup database access configuration...";
 	
-	if (copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
+	if (!copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Can not copy ' . __DIR__ . "/../core/config/common.config.php\n";
 	}
 	
