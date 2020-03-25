@@ -37,7 +37,7 @@ Cambios
 - Integración de la línea de tiempo en DB por razones de confiabilidad.
 - Gestión de múltiples líneas de tiempo..
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
-- Resumen de domótica : Possibilité de chercher sur les catégories d'équipements
+- Resumen de domótica : Posibilidad de buscar en categorías de equipos
 - Motor de tareas : En la pestaña * Daemon *, los complementos desactivados ya no aparecen.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.
@@ -50,7 +50,7 @@ Cambios
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
-- Reproductor : possibilité d'ajouté des class css à un widget (voir documentation widget)
+- Reproductor : posibilidad de agregar la clase css a un widget (ver documentación del widget)
 
 4.0.43
 =====

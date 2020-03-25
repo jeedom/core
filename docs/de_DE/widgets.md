@@ -101,9 +101,9 @@ Wir werden hier einige WIdentifikationgets beschreiben, die eine etwas bestimmte
 
 ### Gerät
 
-Die équipements possedent certains parametres de configuration :
+Die Geräte haben bestimmte Konfigurationsparameter :
 
-- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du wIdentifikationget
+- dashboard_class / mobile_class : Ermöglicht das Hinzufügen einer Klasse zur Ausrüstung. Zum Beispiel col2 für Geräte in der mobilen Version, mit der die Breite des WIdentifikationgets verdoppelt werden kann
 
 ### Häufige Einstellungen
 

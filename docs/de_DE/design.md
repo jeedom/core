@@ -190,9 +190,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 
 ### Einzelne Makro
 
-In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus.
-
-Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
+In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus. Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
 
 ### Binäres Makro
 

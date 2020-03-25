@@ -34,9 +34,7 @@ Una vez en la configuración de un objeto, tiene un menú contextual con el bot�
 
 ## Pestaña Objetoo
 
-Al hacer clic en un objeto, accede a su página de configuración.
-
-Independientemente de los cambios que realice, no olvide guardar sus cambios..
+Al hacer clic en un objeto, accede a su página de configuración. Independientemente de los cambios que realice, no olvide guardar sus cambios..
 
 Aquí están las diferentes características para configurar un objeto. :
 

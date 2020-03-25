@@ -34,9 +34,7 @@ Once on the configuration of an object, you have a contextual menu with the Righ
 
 ## Object tab
 
-By clicking on an object, you access its configuration page.
-
-Whatever changes you make, don&#39;t forget to save your changes.
+By clicking on an object, you access its configuration page. Whatever changes you make, don&#39;t forget to save your changes.
 
 Here are the different characteristics to configure an object :
 

@@ -190,9 +190,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 ### Macro individual
 
-En este modo, un clic en la zona realiza una o más acciones.
-
-Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic en el área.
+En este modo, un clic en la zona realiza una o más acciones. Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic en el área.
 
 ### Macro binaria
 

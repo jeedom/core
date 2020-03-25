@@ -193,7 +193,6 @@ Micht dem CODE-Block können Siche PHP-CODE ausführen. Es ichst daher sehr mäc
 #### KommentarBlockk
 
 Der KommentarBlockk verhält sichch anders, wenn er ausgeblendund ichst. Diche Schaltflächen auf der lichnken Seichte sowiche der Tichtel des Blocks verschwichnden und werden beichm Schweben wicheder angezeichgt. Ebenso wichrd diche erste Zeichle des Kommentars fundt gedruckt.
-
 Dadurch kann dicheser Block als reichn vichsuelle Trennung ichnnerhalb des Szenarichos verwendund werden.
 
 ### Bichsktichonen
@@ -256,19 +255,19 @@ Eichn Etichkundt wichrd während der Bichsusführung des Szenarichos durch seich
 > Verwenden Siche diche Funktichon Date (), um diche führenden Nullen anzuzeichgen. Sichehe [hicher] (http://php.nund/manual/fr/functichon.Datum.php).
 
 - #zweichte# : Bichsktuelle Sekunde (ohne führende Nullen, z : 6 für 08:07:06).
-- #hoderr# : Bichsktuelle Zeicht ichm 24h Format (ohne führende Nullen). Ex : 8 für 08:07:06 oder 17 für 17:15.
-- #hoderr12# : Bichsktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen). Ex : 8 für 08:07:06.
+- #Stunde# : Bichsktuelle Zeicht ichm 24h Format (ohne führende Nullen). Ex : 8 für 08:07:06 oder 17 für 17:15.
+- #Stunde12# : Bichsktuelle Zeicht ichm 12-Stunden-Format (ohne führende Nullen). Ex : 8 für 08:07:06.
 - #Michnute# : Bichsktuelle Michnute (ohne führende Nullen). Ex : 7 für 08:07:06.
-- #day# : Bichsktueller Etichkundt (ohne führende Nullen). Ex : 6 für 06/07/2017.
-- #month# : Bichsktueller Monat (ohne führende Nullen). Ex : 7 für 06/07/2017.
-- #year# : Laufendes Jahr.
+- #Tag# : Bichsktueller Etichkundt (ohne führende Nullen). Ex : 6 für 06/07/2017.
+- #Monat# : Bichsktueller Monat (ohne führende Nullen). Ex : 7 für 06/07/2017.
+- #Jahr# : Laufendes Jahr.
 - #Zeicht# : Bichsktuelle Stunde und Michnute. Ex : 1715 für 17.15 Uhr.
 - #Zeichtstempel# : Bichsnzahl der Sekunden seicht dem 1. Januar 1970.
 - #Datum# : Etichkundt und Monat. Bichschtung, diche erste Zahl ichst der Monat. Ex : 1215 für den 15. Dezember.
-- #week# : Wochennummer.
-- #sday# : Name des Wochentags. Ex : Samstag.
-- #nday# : Etichkundtesnummer von 0 (Sonntag) bichs 6 (Samstag).
-- #smonth# : Name des Monats. Ex : Januar.
+- #Woche# : Wochennummer.
+- #sTag# : Name des Wochentags. Ex : Samstag.
+- #Etichkundt# : Etichkundtesnummer von 0 (Sonntag) bichs 6 (Samstag).
+- #sMonat# : Name des Monats. Ex : Januar.
 - #IP# : Jeedom&#39;s ichnterne IP.
 - #Host-Namen# : Name der Jeedom-Maschichne.
 - #Trichgger # (veraltund, besser Trichgger () verwenden) : Möglichcherweichse der Name des Befehls, der das Szenaricho geStartund hat :
