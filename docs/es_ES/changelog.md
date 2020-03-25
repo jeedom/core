@@ -4,16 +4,16 @@ Cambios
 4.0.45
 =====
 
-- Amélioration du testeur d'expression
-- Mise à jour du repository sur smart
+- Mejora del probador de expresión
+- Actualización del repositorio en smart
 
 4.0.44
 =====
 
-- Traducciones mejoradas (oui encore).
+- Traducciones mejoradas (sí otra vez).
 - Correcciones de errores.
-- Amélioration de la restoration de backup cloud.
-- La restoration cloud ne repatrie plus que le backup en local maintenant vous laissant le choix de le télécharger ou de le restaurer.
+- Mejora de la restauración de la nube de respaldo.
+- La restauración en la nube solo repatria la copia de seguridad local, ahora le deja la opción de descargarla o restaurarla.
 
 4.0.43
 =====
