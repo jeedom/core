@@ -180,7 +180,7 @@ try {
 
 	if (init('action') == 'applyTemplate') {
 		unautorizedInDemo();
-		$path = __DIR__ . '/../config/scenario';
+		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
 		}
