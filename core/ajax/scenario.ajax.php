@@ -121,7 +121,7 @@ try {
 
 	if (init('action') == 'removeTemplate') {
 		unautorizedInDemo();
-		$path = __DIR__ . '/../data/scenario';
+		$path = __DIR__ . '/../../data/scenario';
 		if (file_exists($path . '/' . init('template'))) {
 			unlink($path . '/' . init('template'));
 		}
