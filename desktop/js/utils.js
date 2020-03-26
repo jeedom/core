@@ -829,25 +829,28 @@ function initPage(){
 }
 
 function createObserver() {
-  __OBSERVER__ = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if ( mutation.type == 'childList' ) {
-        if (mutation.addedNodes.length >= 1) {
-          if (mutation.addedNodes[0].nodeName != '#text') {
-            //console.log('Added ' + mutation.addedNodes[0].tagName + ' tag.')
-            initTooltips($(mutation.target))
+  var mainContent = document.getElementById('div_mainContainer')
+  if (mainContent) {
+      __OBSERVER__ = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if ( mutation.type == 'childList' ) {
+          if (mutation.addedNodes.length >= 1) {
+            if (mutation.addedNodes[0].nodeName != '#text') {
+              //console.log('Added ' + mutation.addedNodes[0].tagName + ' tag.')
+              initTooltips($(mutation.target))
+            }
           }
+          else if (mutation.removedNodes.length >= 1) {
+            //console.log('Removed ' + mutation.removedNodes[0].tagName + ' tag.')
+          }
+        } else if (mutation.type == 'attributes') {
+          //console.log('Modified ' + mutation.attributeName + ' attribute.')
+          if (mutation.attributeName == 'title') initTooltips($(mutation.target))
         }
-        else if (mutation.removedNodes.length >= 1) {
-          //console.log('Removed ' + mutation.removedNodes[0].tagName + ' tag.')
-        }
-      } else if (mutation.type == 'attributes') {
-        //console.log('Modified ' + mutation.attributeName + ' attribute.')
-        if (mutation.attributeName == 'title') initTooltips($(mutation.target))
-      }
+      })
     })
-  })
-  __OBSERVER__.observe(document.getElementById('div_mainContainer'), _observerConfig_)
+    __OBSERVER__.observe(mainContent, _observerConfig_)
+  }
 }
 
 function initTooltips(_el) {
