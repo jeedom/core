@@ -436,7 +436,7 @@ try {
 
 	if (init('action') == 'templateupload') {
 		unautorizedInDemo();
-		$uploaddir = __DIR__ . '/../../core/config/scenario/';
+		$uploaddir = __DIR__ . '/../../data/scenario';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);
 		}
