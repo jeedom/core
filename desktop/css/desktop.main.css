@@ -207,6 +207,9 @@ legend > sub {
   font-size: 12px;
   font-style: italic
 }
+legend .pull-right:not(.input-group) {
+  margin-right: 15px !important;
+}
 
 :not([data-page=display])legend {
   color: var(--link-color) !important;
