@@ -364,7 +364,7 @@ class network {
 		}
 		$replace = array(
 			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
-			'#PORT#' => config::byKey('internalPort', 'core', 80),
+			'#PORT#' =>80,
 			'#SERVER_ADDR#' => config::byKey('service::tunnel::eu::backend::1')
 		);
 		for($i=1;$i<3;$i++){
