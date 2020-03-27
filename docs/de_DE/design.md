@@ -316,9 +316,7 @@ Anzeigeeinstellungen
 
 ### Einzelne Makro 
 
-In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus.
-
-Hier müssen Sie nur die Liste der Aktionen angeben, die beim Klicken ausgeführt werden sollen
+In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus. Hier müssen Sie nur die Liste der Aktionen angeben, die beim Klicken ausgeführt werden sollen
 auf dem Gebiet
 
 ### Binäres Makro 

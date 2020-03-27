@@ -316,9 +316,7 @@ Display settings
 
 ### Single macro 
 
-In this mode, a clickk on the zone performs one or more actions.
-
-Here you just need to indicate the list of actions to do when clickking
+In this mode, a clickk on the zone performs one or more actions. Here you just need to indicate the list of actions to do when clickking
 on the area
 
 ### Binary macro 
