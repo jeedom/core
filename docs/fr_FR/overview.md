@@ -38,6 +38,4 @@ Pour chaque objet, vous pouvez cliquer :
 >
 > Ctrl Clic ou Clic Centre sur l'objet ou un élément de résumé ouvre un autre onglet de votre navigateur.
 
-Quand vous cliquez sur un objet à partir de la synthèse, les deux boutons à gauche de la barre de recherche sont remplacés par un bouton permettant de revenir à la synthèse.
-
-De plus, les objets enfants ne sont pas affichés.
+Quand vous cliquez sur un objet à partir de la synthèse, les deux boutons à gauche de la barre de recherche sont remplacés par un bouton permettant de revenir à la synthèse. De plus, les objets enfants ne sont pas affichés.

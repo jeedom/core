@@ -38,6 +38,4 @@ For each object, you can click :
 >
 > Ctrl Click or Center Click on the object or a summary element opens another tab of your browser.
 
-When you click on an object from the summary, the two buttons on the left of the search bar are replaced by a button allowing to return to the summary.
-
-In addition, child objects are not displayed.
+When you click on an object from the summary, the two buttons on the left of the search bar are replaced by a button allowing to return to the summary. In addition, child objects are not displayed.

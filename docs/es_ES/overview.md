@@ -38,6 +38,4 @@ Para cada objeto, puede hacer clic :
 >
 > Ctrl Click o Center Click en el objeto o un elemento de resumen abre otra pestaña de su navegador.
 
-Cuando hace clic en un objeto del resumen, los dos botones a la izquierda de la barra de búsqueda se reemplazan por un botón que permite volver al resumen.
-
-Además, los objetos secundarios no se muestran.
+Cuando hace clic en un objeto del resumen, los dos botones a la izquierda de la barra de búsqueda se reemplazan por un botón que permite volver al resumen. Además, los objetos secundarios no se muestran.

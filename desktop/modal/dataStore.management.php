@@ -6,7 +6,7 @@ sendVarToJS('dataStore_type', init('type'));
 sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
-<a class="btn btn-sm pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus"></i> {{Ajouter}}</a>
+<a class="btn btn-sm pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 <table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
 	<thead>
 		<tr>

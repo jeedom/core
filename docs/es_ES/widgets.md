@@ -101,9 +101,9 @@ Vamos a describir aquí algunos widentificacióngets que tienen un funcionamient
 
 ### Dispositivos
 
-La équipements possedent certains parametres de configuration :
+Los equipos tienen ciertos parámetros de configuración. :
 
-- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du widentificaciónget
+- dashboard_class / mobile_class : permite agregar una clase al equipo. Por ejemplo, col2 para equipos en versión móvil, que permite duplicar el ancho del widentificaciónget
 
 ### Configuraciones frecuentes
 

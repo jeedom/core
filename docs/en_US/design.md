@@ -190,9 +190,7 @@ Displays the advanced equipment configuration window (see documentation **Home a
 
 ### Single macro
 
-In this mode, a click on the zone performs one or more actions.
-
-Here you just need to indicate the list of actions to do when clicking on the area.
+In this mode, a click on the zone performs one or more actions. Here you just need to indicate the list of actions to do when clicking on the area.
 
 ### Binary macro
 

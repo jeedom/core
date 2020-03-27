@@ -101,9 +101,9 @@ We are going to describe here some wIDgets which have a somewhat particular func
 
 ### Device
 
-The équipements possedent certains parametres de configuration :
+The equipments have certain configuration parameters :
 
-- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du wIDget
+- dashboard_class / mobile_class : allows to add a class to the equipment. For example col2 for equipment in mobile version, which allows to double the wIDth of the wIDget
 
 ### Frequent settings
 
@@ -164,7 +164,7 @@ In code mode you have access to different tags for orders, here is a list (not n
 - #hIDe_name# : empty or hIDden if the user asked to hIDe the name of the wIDget, to put it directly in a class tag
 - #ID# : order ID
 - #state# : value of the command, empty for an action type command if it is not linked to a status command
-- #uID# : unique IDentifier for this generation of the wIDget (if there is several times the same command, case of designs:  only this IDentifier is really unique)
+- #UID# : unique IDentifier for this generation of the wIDget (if there is several times the same command, case of designs:  only this IDentifier is really unique)
 - #valueDate# : date of the order value
 - #collectDate# : date of order collection
 - #alertLevel# : alert level (see [here] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php # L67) for the list)

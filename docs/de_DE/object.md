@@ -34,9 +34,7 @@ Sobald Sie ein Objekt konfiguriert haben, haben Sie ein Kontextmenü mit der rec
 
 ## Registerkarte &quot;Objekt&quot;
 
-Durch Klicken auf ein Objekt gelangen Sie auf dessen Konfigurationsseite.
-
-Vergessen Sie nicht, Ihre Änderungen zu speichern, unabhängig davon, welche Änderungen Sie vornehmen.
+Durch Klicken auf ein Objekt gelangen Sie auf dessen Konfigurationsseite. Vergessen Sie nicht, Ihre Änderungen zu speichern, unabhängig davon, welche Änderungen Sie vornehmen.
 
 Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
