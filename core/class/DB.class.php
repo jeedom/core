@@ -508,7 +508,7 @@ class DB {
 	
 	/*************************DB ANALYZER***************************/
 	
-	function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
+	public static function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
 		$result = DB::compareDatabase($_database);
 		$error = '';
 		foreach ($result as $tname => $tinfo) {
@@ -581,7 +581,7 @@ class DB {
 		return true;
 	}
 	
-	function compareDatabase($_database){
+	public static function compareDatabase($_database){
 		$return = array();
 		foreach ($_database['tables'] as $table) {
 			$return = array_merge($return,self::compareTable($table));
@@ -590,7 +590,7 @@ class DB {
 	}
 	
 	
-	function compareTable($_table){
+	public static function compareTable($_table){
 		try {
 			$describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
 		} catch (\Exception $e) {
@@ -704,7 +704,7 @@ class DB {
 		return $return;
 	}
 	
-	function prepareIndexCompare($indexes){
+	public static function prepareIndexCompare($indexes){
 		$return = array();
 		foreach ($indexes as $index) {
 			if($index['Key_name'] == 'PRIMARY'){
@@ -723,7 +723,7 @@ class DB {
 		return $return;
 	}
 	
-	function compareField($_ref_field,$_real_field,$_table_name){
+	public static function compareField($_ref_field,$_real_field,$_table_name){
 		$return = array($_ref_field['name'] => array('status' => 'ok','sql' => ''));
 		if($_ref_field['type'] != $_real_field['Type']){
 			$return[$_ref_field['name']]['status'] = 'nok';
@@ -748,7 +748,7 @@ class DB {
 		return $return;
 	}
 	
-	function compareIndex($_ref_index,$_real_index,$_table_name,$_forceRebuild = false){
+	public static function compareIndex($_ref_index,$_real_index,$_table_name,$_forceRebuild = false){
 		$return = array($_ref_index['Key_name'] => array('status' => 'ok','presql' => '','sql' => ''));
 		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
@@ -769,7 +769,7 @@ class DB {
 		return $return;
 	}
 	
-	function buildDefinitionField($_field){
+	public static function buildDefinitionField($_field){
 		$return = ' '.$_field['type'];
 		if($_field['null'] == 'NO'){
 			$return .= ' NOT NULL';
@@ -785,7 +785,7 @@ class DB {
 		return $return;
 	}
 	
-	function buildDefinitionIndex($_index,$_table_name){
+	public static function buildDefinitionIndex($_index,$_table_name){
 		if($_index['Non_unique'] == 0){
 			$return = 'CREATE UNIQUE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
 		}else{
