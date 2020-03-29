@@ -193,7 +193,6 @@ The Coded blockk allows yor to execute php code. It is therefore very powerful b
 #### Comment blockk
 
 Comment blockk acts differently when it is hidden. Its buttons on the left disappear as well as the title of the blockk, and reappear on hover. Similarly, the first line of the comment is displayed in bold type.
-
 This allows this blockk to be used as a purely visual separation within the scenario.
 
 ### The ATctions

@@ -1373,12 +1373,12 @@
         "Anglais": "",
         "Allemand": "",
         "Espagnol": "",
-        "Italien": "",
-        "Portugais": "",
-        "Russe": "",
-        "Japonais": "",
-        "Indonesien": "",
-        "Turque": "",
+        "Italien (pas de support)": "",
+        "Portugais (pas de support)": "",
+        "Russe (pas de support)": "",
+        "Japonais (pas de support)": "",
+        "Indonesien (pas de support)": "",
+        "Turque (pas de support)": "",
         "Date et heure": "Data e hora",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Sincronização Time Force",
@@ -2173,6 +2173,7 @@
         "Visuel": ""
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Supprimer": "Remover",
         "Visible": "Visivél",
@@ -2865,7 +2866,7 @@
         "La valeur a été éditée avec succès": "O valor foi editado com sucesso"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "Aquecimento",
         "Sécurité": "Segurança",
         "Energie": "",
         "Lumière": "Luz",
@@ -3143,10 +3144,26 @@
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Caminho",
+        "[Backup] IP": "",
+        "[Backup] Utilisateur": "",
+        "[Backup] Mot de passe": "",
+        "[Backup] Partage": "",
+        "[Backup] Chemin": "",
         "Impossible d\\'écrire dans le répertoire : ": "",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ""
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "Senha",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Chaque jour": "",
+        "Chaque semaine": "",
+        "Chaque mois": "",
+        "Version : beta, stable": "",
         "Lancement de l\\'installation de ": "",
         " en version ": "",
         "Objet introuvable sur le market : ": "",
@@ -3164,14 +3181,7 @@
         ". Vérifiez les droits": "",
         "Echec de création de l\\'archive zip": "",
         "Aucune fonction correspondante à : ": "",
-        "Impossible de trouver le fichier à envoyer : ": "",
-        "Adresse": "",
-        "Nom d\\'utilisateur": "",
-        "Mot de passe": "Senha",
-        "[Backup cloud] Nom": "",
-        "[Backup cloud] Mot de passe": "",
-        "[Backup cloud] Fréquence backup full": "",
-        "Version : beta, stable": ""
+        "Impossible de trouver le fichier à envoyer : ": ""
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3193,6 +3203,13 @@
         "Market Jeedom": "Mercado Jeedom"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "",
+        "Nom du dépôt": "",
+        "Branche": "",
+        "Token (facultatif)": "",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "",
+        "Nom du dépôt pour le core Jeedom": "",
+        "Branche pour le core Jeedom": "",
         "Dépot github non trouvé : ": "",
         "Impossible d\\'écrire dans le répertoire : ": "",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "",
@@ -3236,7 +3253,13 @@
         "ici": "aqui",
         "Votre objet a été envoyé avec succès sur le market": ""
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Caminho"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "",
+        "URL core Jeedom": "",
+        "URL version core Jeedom": "",
         "Impossible d\\'écrire dans le répertoire : ": "",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ""
     },
@@ -3768,7 +3791,7 @@
         "Activer": "Ativar",
         "Desactiver": "Desativar",
         "Dernier lancement": "último lançamento",
-        "Min": "",
+        "Min": "Baixo",
         "Moyenne": "Média",
         "Max": ""
     },

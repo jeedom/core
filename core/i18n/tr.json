@@ -1373,12 +1373,12 @@
         "Anglais": "",
         "Allemand": "",
         "Espagnol": "",
-        "Italien": "",
-        "Portugais": "",
-        "Russe": "",
-        "Japonais": "",
-        "Indonesien": "",
-        "Turque": "",
+        "Italien (pas de support)": "",
+        "Portugais (pas de support)": "",
+        "Russe (pas de support)": "",
+        "Japonais (pas de support)": "",
+        "Indonesien (pas de support)": "",
+        "Turque (pas de support)": "",
         "Date et heure": "Saat ve tarih",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Saatin senkronize edilmesini zorla",
@@ -2173,6 +2173,7 @@
         "Visuel": "Görsel"
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "$ Değer [ 'name']",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Supprimer": "Sil",
         "Visible": "Görülebilir",
@@ -2865,7 +2866,7 @@
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "Kalorifer",
         "Sécurité": "Güvenlik",
         "Energie": "",
         "Lumière": "Işık",
@@ -3143,10 +3144,26 @@
         "Aucune méthode correspondante à : ": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Yol",
+        "[Backup] IP": "",
+        "[Backup] Utilisateur": "",
+        "[Backup] Mot de passe": "",
+        "[Backup] Partage": "",
+        "[Backup] Chemin": "",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "Şifre",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Chaque jour": "",
+        "Chaque semaine": "",
+        "Chaque mois": "",
+        "Version : beta, stable": "",
         "Lancement de l\\'installation de ": "Kurulumun başlatılması",
         " en version ": "versiyonda",
         "Objet introuvable sur le market : ": "Piyasada bulunmayan nesne:",
@@ -3164,14 +3181,7 @@
         ". Vérifiez les droits": ". Hakları kontrol edin",
         "Echec de création de l\\'archive zip": "Zip arşivi oluşturulamadı",
         "Aucune fonction correspondante à : ": "Şuna karşılık gelen işlev yok:",
-        "Impossible de trouver le fichier à envoyer : ": "Gönderilecek dosya bulunamadı:",
-        "Adresse": "",
-        "Nom d\\'utilisateur": "",
-        "Mot de passe": "Şifre",
-        "[Backup cloud] Nom": "",
-        "[Backup cloud] Mot de passe": "",
-        "[Backup cloud] Fréquence backup full": "",
-        "Version : beta, stable": ""
+        "Impossible de trouver le fichier à envoyer : ": "Gönderilecek dosya bulunamadı:"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -3193,6 +3203,13 @@
         "Market Jeedom": "Jeedom Pazarı"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "",
+        "Nom du dépôt": "",
+        "Branche": "şube",
+        "Token (facultatif)": "",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "",
+        "Nom du dépôt pour le core Jeedom": "",
+        "Branche pour le core Jeedom": "",
         "Dépot github non trouvé : ": "Github deposu bulunamadı:",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R",
@@ -3236,7 +3253,13 @@
         "ici": "burada",
         "Votre objet a été envoyé avec succès sur le market": "Ürününüz başarıyla pazara gönderildi"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Yol"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "",
+        "URL core Jeedom": "",
+        "URL version core Jeedom": "",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R"
     },
@@ -3768,9 +3791,9 @@
         "Activer": "Etkinleştir",
         "Desactiver": "Demount",
         "Dernier lancement": "Son çalıştırma",
-        "Min": "",
+        "Min": "Minimum",
         "Moyenne": "Ortalama",
-        "Max": ""
+        "Max": "Maximum"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Süre"

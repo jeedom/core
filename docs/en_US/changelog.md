@@ -37,6 +37,7 @@ Changelog
 - Integration of the Timeline in DB for reliability reasons.
 - Management of multiple timelines.
 - Home automation summary : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
+- Home automation summary : Ability to search on equipment categories
 - Task engine : On the * Daemon * tab, deactivated plugins no longer appear.
 - Advanced equipment configuration window : Dynamic change of switchboard configuration.
 - About window : Addition of shortcuts to Changelog and FAQ.
@@ -49,6 +50,7 @@ Changelog
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
+- Widget : possibility to add class css to a widget (see widget documentation)
 
 4.0.43
 =====

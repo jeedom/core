@@ -1373,12 +1373,12 @@
         "Anglais": "",
         "Allemand": "",
         "Espagnol": "",
-        "Italien": "",
-        "Portugais": "",
-        "Russe": "",
-        "Japonais": "",
-        "Indonesien": "",
-        "Turque": "",
+        "Italien (pas de support)": "",
+        "Portugais (pas de support)": "",
+        "Russe (pas de support)": "",
+        "Japonais (pas de support)": "",
+        "Indonesien (pas de support)": "",
+        "Turque (pas de support)": "",
         "Date et heure": "Data e ora",
         "Fuseau horaire de votre": "Il tuo fuso orario",
         "Forcer la synchronisation de l'heure": "Forza Sincronizzazione",
@@ -2173,6 +2173,7 @@
         "Visuel": "Visivo"
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "$ Valore [ 'name']",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Supprimer": "Rimuovere",
         "Visible": "Visibile",
@@ -2865,7 +2866,7 @@
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo"
     },
     "core\/config\/jeedom.config.php": {
-        "Chauffage": "",
+        "Chauffage": "Riscaldamento",
         "Sécurité": "Sicurezza",
         "Energie": "",
         "Lumière": "Luce",
@@ -3143,10 +3144,26 @@
         "Aucune méthode correspondante à : ": "Nessun metodo corrispondente a:"
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Sentiero",
+        "[Backup] IP": "",
+        "[Backup] Utilisateur": "",
+        "[Backup] Mot de passe": "",
+        "[Backup] Partage": "",
+        "[Backup] Chemin": "",
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "Indirizzo",
+        "Nom d\\'utilisateur": "",
+        "Mot de passe": "Password",
+        "[Backup cloud] Nom": "",
+        "[Backup cloud] Mot de passe": "",
+        "[Backup cloud] Fréquence backup full": "",
+        "Chaque jour": "",
+        "Chaque semaine": "",
+        "Chaque mois": "",
+        "Version : beta, stable": "",
         "Lancement de l\\'installation de ": "Lancio dell'installazione di",
         " en version ": "nella versione",
         "Objet introuvable sur le market : ": "Oggetto non trovato sul mercato:",
@@ -3164,14 +3181,7 @@
         ". Vérifiez les droits": ". Controlla i diritti",
         "Echec de création de l\\'archive zip": "Impossibile creare l'archivio zip",
         "Aucune fonction correspondante à : ": "Nessuna funzione corrispondente a:",
-        "Impossible de trouver le fichier à envoyer : ": "Impossibile trovare il file da inviare:",
-        "Adresse": "Indirizzo",
-        "Nom d\\'utilisateur": "",
-        "Mot de passe": "Password",
-        "[Backup cloud] Nom": "",
-        "[Backup cloud] Mot de passe": "",
-        "[Backup cloud] Fréquence backup full": "",
-        "Version : beta, stable": ""
+        "Impossible de trouver le fichier à envoyer : ": "Impossibile trovare il file da inviare:"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -3193,6 +3203,13 @@
         "Market Jeedom": "Mercato di Jeedom"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "",
+        "Nom du dépôt": "",
+        "Branche": "Ramo",
+        "Token (facultatif)": "",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "",
+        "Nom du dépôt pour le core Jeedom": "",
+        "Branche pour le core Jeedom": "",
         "Dépot github non trouvé : ": "Repository Github non trovato:",
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R",
@@ -3236,7 +3253,13 @@
         "ici": "qua",
         "Votre objet a été envoyé avec succès sur le market": "Il tuo articolo è stato inviato con successo al mercato"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Sentiero"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "",
+        "URL core Jeedom": "",
+        "URL version core Jeedom": "",
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R"
     },

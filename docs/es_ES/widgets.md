@@ -99,6 +99,12 @@ Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automá
 
 Vamos a describir aquí algunos widentificacióngets que tienen un funcionamiento algo particular..
 
+### Dispositivos
+
+Los equipos tienen ciertos parámetros de configuración. :
+
+- dashboard_class / mobile_class : permite agregar una clase al equipo. Por ejemplo, col2 para equipos en versión móvil, que permite duplicar el ancho del widentificaciónget
+
 ### Configuraciones frecuentes
 
 - Widentificaciónget de tiempo : muestra el tiempo desde que el sistema ha estado en el estado de visualización.

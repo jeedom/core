@@ -35,43 +35,6 @@ class repo_market {
 		'pullInstall' => true,
 	);
 	
-	public static $_configuration = array(
-		'configuration' => array(
-			'address' => array(
-				'name' => '{{Adresse}}',
-				'type' => 'input',
-			),
-			'username' => array(
-				'name' => '{{Nom d\'utilisateur}}',
-				'type' => 'input',
-			),
-			'password' => array(
-				'name' => '{{Mot de passe}}',
-				'type' => 'password',
-			),
-			
-			'cloud::backup::name' => array(
-				'name' => '{{[Backup cloud] Nom}}',
-				'type' => 'input',
-			),
-			'cloud::backup::password' => array(
-				'name' => '{{[Backup cloud] Mot de passe}}',
-				'type' => 'password',
-			),
-			'cloud::backup::fullfrequency' => array(
-				'name' => '{{[Backup cloud] Fréquence backup full}}',
-				'type' => 'select',
-				'values' => array('1D' => 'Chaque jour', '1W' => 'Chaque semaine', '1M' => 'Chaque mois'),
-			),
-		),
-		'parameters_for_add' => array(
-			'version' => array(
-				'name' => '{{Version : beta, stable}}',
-				'type' => 'input',
-			),
-		),
-	);
-	
 	private $id;
 	private $name;
 	private $type;
@@ -105,6 +68,44 @@ class repo_market {
 	private $allowVersion = array();
 	
 	/*     * ***********************Méthodes statiques*************************** */
+	
+	public static function getConfigurationOption(){
+		return array(
+			'configuration' => array(
+				'address' => array(
+					'name' => __('Adresse',__FILE__),
+					'type' => 'input',
+				),
+				'username' => array(
+					'name' => __('Nom d\'utilisateur',__FILE__),
+					'type' => 'input',
+				),
+				'password' => array(
+					'name' => __('Mot de passe',__FILE__),
+					'type' => 'password',
+				),
+				'cloud::backup::name' => array(
+					'name' => __('[Backup cloud] Nom',__FILE__),
+					'type' => 'input',
+				),
+				'cloud::backup::password' => array(
+					'name' => __('[Backup cloud] Mot de passe',__FILE__),
+					'type' => 'password',
+				),
+				'cloud::backup::fullfrequency' => array(
+					'name' => __('[Backup cloud] Fréquence backup full',__FILE__),
+					'type' => 'select',
+					'values' => array('1D' => __('Chaque jour',__FILE__), '1W' => __('Chaque semaine',__FILE__), '1M' => __('Chaque mois',__FILE__)),
+				),
+			),
+			'parameters_for_add' => array(
+				'version' => array(
+					'name' => __('Version : beta, stable',__FILE__),
+					'type' => 'input',
+				),
+			),
+		);
+	}
 	
 	public static function pullInstall(){
 		$market = self::getJsonRpc();

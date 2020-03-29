@@ -37,6 +37,7 @@
 - Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - Verwaltung mehrerer Zeitleisten.
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
+- Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.
@@ -49,6 +50,7 @@
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
+- Widget : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation)
 
 4.0.43
 =====

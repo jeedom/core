@@ -37,6 +37,7 @@ Changelog
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
+- Résumé domotique : Possibilité de chercher sur les catégories d'équipements
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
@@ -49,6 +50,7 @@ Changelog
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
+- Widget : possibilité d'ajouté des class css à un widget (voir documentation widget)
 
 4.0.43
 =====

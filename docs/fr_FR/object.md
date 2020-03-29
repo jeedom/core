@@ -34,9 +34,7 @@ Une fois sur la configuration d'un objet, vous disposez d'un menu contextuel au 
 
 ## Onglet Objet
 
-En cliquant sur un objet, vous accédez à sa page de configuration.
-
-Quels que soient les changements effectués, n’oubliez pas de sauvegarder vos modifications.
+En cliquant sur un objet, vous accédez à sa page de configuration. Quels que soient les changements effectués, n’oubliez pas de sauvegarder vos modifications.
 
 Voici donc les différentes caractéristiques pour configurer un objet :
 

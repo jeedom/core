@@ -99,6 +99,12 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 
 Nous allons ici décrire certains widgets qui ont un fonctionnement un peu particulier.
 
+### Equipement
+
+Les équipements possedent certains parametres de configuration :
+
+- dashboard_class/mobile_class : permet d'ajouter une class à l'équipement. Par exemple col2 pour les équipements en version mobile, qui permet la de doubler la largeur du widget
+
 ### Paramètres fréquents
 
 - Time widget : affiche le temps depuis lequel le système est dans l'état afficher.

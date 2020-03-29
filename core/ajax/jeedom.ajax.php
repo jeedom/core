@@ -30,7 +30,6 @@ try {
 			$return['connected'] = false;
 			ajax::success($return);
 		}
-		
 		$return['user_id'] = $_SESSION['user']->getId();
 		$return['jeedom_token'] = ajax::getToken();
 		@session_start();

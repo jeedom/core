@@ -202,3 +202,14 @@ Il faut :
 - cliquer sur Dpkg configure
 - attendre 10min
 - relancer les dépendances du plugins qui bloque
+
+### J'ai cette erreur sur l'installation des dependances d'un plugin : "from pip._internal import main"
+
+Il faut dans la console systeme de Jeedom ou en ssh faire 
+
+````
+sudo easy_install pip
+sudo easy_install3 pip
+````
+
+Puis relancer les dependances

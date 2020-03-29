@@ -38,6 +38,4 @@ Für jedes Objekt können Sie klicken :
 >
 > Strg Klicken oder Mitte Klicken Sie auf das Objekt oder ein Zusammenfassungselement öffnet eine weitere Registerkarte Ihres Browsers.
 
-Wenn Sie in der Zusammenfassung auf ein Objekt klicken, werden die beiden Schaltflächen links in der Suchleiste durch eine Schaltfläche ersetzt, mit der Sie zur Zusammenfassung zurückkehren können.
-
-Außerdem werden untergeordnete Objekte nicht angezeigt.
+Wenn Sie in der Zusammenfassung auf ein Objekt klicken, werden die beiden Schaltflächen links in der Suchleiste durch eine Schaltfläche ersetzt, mit der Sie zur Zusammenfassung zurückkehren können. Außerdem werden untergeordnete Objekte nicht angezeigt.

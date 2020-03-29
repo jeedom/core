@@ -153,7 +153,9 @@ $('#in_change_passwordToo').keypress(function(e) {
 $(document).ready(function(){
   var theme = 'core/themes/core2019_Light/desktop/core2019_Light.css';
   $('#bootstrap_theme_css').attr('href', theme);
-  
+
+  document.title = 'Jeedom - Login'
+
   $(".veen .login-btn button").click(function(){
     $('.veen .wrapper').removeClass('move');
     $('.body').css('background','#ff4931');
@@ -161,9 +163,7 @@ $(document).ready(function(){
     $(this).addClass('active');
   });
   window.setTimeout(function(){
-    //$('.veen').removeClass('animated');
     $('.veen').removeClass('zoomIn');
-    //$('.btn_help').removeClass('animated');
     $('.btn_help').removeClass('bounceInUp');
   }, 5000);
   window.setTimeout(function(){
@@ -174,7 +174,7 @@ $(document).ready(function(){
       },3000);
     },5000);
   }, 10000);
-  
+
 });
 
 // Function //

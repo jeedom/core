@@ -1373,12 +1373,12 @@
         "Anglais": "Inglés",
         "Allemand": "Alemán",
         "Espagnol": "Español",
-        "Italien": "Italiano",
-        "Portugais": "Portugués",
-        "Russe": "Ruso",
-        "Japonais": "Japonés",
-        "Indonesien": "Indonesio",
-        "Turque": "Turco",
+        "Italien (pas de support)": "Italiano (sin soporte)",
+        "Portugais (pas de support)": "Portugués (sin soporte)",
+        "Russe (pas de support)": "Ruso (sin soporte)",
+        "Japonais (pas de support)": "Japonés (sin soporte)",
+        "Indonesien (pas de support)": "Indonesio (sin soporte)",
+        "Turque (pas de support)": "Turco (sin soporte)",
         "Date et heure": "Dia y hora",
         "Fuseau horaire de votre": "Su zona horaria",
         "Forcer la synchronisation de l'heure": "Forzar la sincronización de la hora",
@@ -2173,6 +2173,7 @@
         "Visuel": "Visual"
     },
     "desktop\/php\/display.php": {
+        "$value['name']": "Valor $ [ 'nombre']",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Supprimer": "Borrar",
         "Visible": "Visible",
@@ -3143,10 +3144,26 @@
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "core\/repo\/samba.repo.php": {
+        "Chemin": "Ruta",
+        "[Backup] IP": "[Copia de seguridad] IP",
+        "[Backup] Utilisateur": "Usuario [copia de seguridad]",
+        "[Backup] Mot de passe": "[Copia de seguridad] Contraseña",
+        "[Backup] Partage": "[Copia de seguridad] Compartir",
+        "[Backup] Chemin": "[Copia de seguridad] Ruta",
         "Impossible d\\'écrire dans le répertoire : ": "No se puede escribir en el directorio:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Ejecute el siguiente comando en SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Adresse": "Dirección",
+        "Nom d\\'utilisateur": "Nombre del usuario",
+        "Mot de passe": "Contraseña",
+        "[Backup cloud] Nom": "Nombre [nube de respaldo]",
+        "[Backup cloud] Mot de passe": "[Copia de seguridad de la nube] Contraseña",
+        "[Backup cloud] Fréquence backup full": "[Nube de respaldo] Frecuencia de respaldo completo",
+        "Chaque jour": "Cada día",
+        "Chaque semaine": "Cada semana",
+        "Chaque mois": "Cada mes",
+        "Version : beta, stable": "Versión: beta, estable",
         "Lancement de l\\'installation de ": "Lanzamiento de la instalación de",
         " en version ": "en versión",
         "Objet introuvable sur le market : ": "Objeto no encontrado en el mercado:",
@@ -3164,14 +3181,7 @@
         ". Vérifiez les droits": ". Comprueba los derechos",
         "Echec de création de l\\'archive zip": "Error al crear archivo zip",
         "Aucune fonction correspondante à : ": "Ninguna función correspondiente a:",
-        "Impossible de trouver le fichier à envoyer : ": "No se puede encontrar el archivo para enviar:",
-        "Adresse": "Dirección",
-        "Nom d\\'utilisateur": "Nombre del usuario",
-        "Mot de passe": "Contraseña",
-        "[Backup cloud] Nom": "Nombre [nube de respaldo]",
-        "[Backup cloud] Mot de passe": "[Copia de seguridad de la nube] Contraseña",
-        "[Backup cloud] Fréquence backup full": "[Nube de respaldo] Frecuencia de respaldo completo",
-        "Version : beta, stable": "Versión: beta, estable"
+        "Impossible de trouver le fichier à envoyer : ": "No se puede encontrar el archivo para enviar:"
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3193,6 +3203,13 @@
         "Market Jeedom": "Mercado de la libertad"
     },
     "core\/repo\/github.repo.php": {
+        "Utilisateur ou organisation du dépôt": "Usuario u organización del depósito",
+        "Nom du dépôt": "Nombre del deposito",
+        "Branche": "Rama",
+        "Token (facultatif)": "Token (opcional)",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "Usuario u organización del repositorio principal de Jeedom",
+        "Nom du dépôt pour le core Jeedom": "Nombre del repositorio para el núcleo Jeedom",
+        "Branche pour le core Jeedom": "Industria central de Jeedom",
         "Dépot github non trouvé : ": "Repositorio de Github no encontrado:",
         "Impossible d\\'écrire dans le répertoire : ": "No se puede escribir en el directorio:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Ejecute el siguiente comando en SSH: sudo chmod 777 -R",
@@ -3236,7 +3253,13 @@
         "ici": "aquí",
         "Votre objet a été envoyé avec succès sur le market": "Su artículo ha sido enviado con éxito al mercado"
     },
+    "core\/repo\/file.repo.php": {
+        "Chemin": "Ruta"
+    },
     "core\/repo\/url.repo.php": {
+        "URL du fichier ZIP": "URL del archivo ZIP",
+        "URL core Jeedom": "URL central de Jeedom",
+        "URL version core Jeedom": "URL de la versión principal de Jeedom",
         "Impossible d\\'écrire dans le répertoire : ": "No se puede escribir en el directorio:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Ejecute el siguiente comando en SSH: sudo chmod 777 -R"
     },

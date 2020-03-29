@@ -343,15 +343,7 @@ class network {
 			
 		}
 		log::clear('tunnel');
-		$arch = php_uname('m');
-		if($arch == 'x86_64'){
-			$arch = 'amd64';
-		}elseif($arch == 'aarch64'){
-			$arch = 'arm64';
-		}elseif($arch == 'armv7l' || $arch == 'armv6l'){
-			$arch = 'arm';
-		}
-		$exec = 'tunnel-linux-'.$arch;
+		$exec = 'tunnel-linux-'.system::getArch();
 		$dir = __DIR__.'/../../script/tunnel';
 		if(!file_exists($dir.'/'.$exec)){
 			echo shell_exec('cd '.$dir.';wget https://images.jeedom.com/resources/tunnel/'.$exec.' > '.log::getPathToLog('tunnel').' 2>&1');
@@ -372,7 +364,7 @@ class network {
 		}
 		$replace = array(
 			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
-			'#PORT#' => config::byKey('internalPort', 'core', 80),
+			'#PORT#' =>80,
 			'#SERVER_ADDR#' => config::byKey('service::tunnel::eu::backend::1')
 		);
 		for($i=1;$i<3;$i++){
@@ -413,15 +405,7 @@ class network {
 		if (config::byKey('market::allowDNS') != 1) {
 			return false;
 		}
-		$arch = php_uname('m');
-		if($arch == 'x86_64'){
-			$arch = 'amd64';
-		}elseif($arch == 'aarch64'){
-			$arch = 'arm64';
-		}elseif($arch == 'armv7l' || $arch == 'armv6l'){
-			$arch = 'arm';
-		}
-		$exec = 'tunnel-linux-'.$arch;
+		$exec = 'tunnel-linux-'.system::getArch();
 		return (shell_exec('ps ax | grep '.$exec.' | grep  -c -v grep') > 0);
 	}
 	
@@ -429,16 +413,7 @@ class network {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
 		}
-		$arch = php_uname('m');
-		if($arch == 'x86_64'){
-			$arch = 'amd64';
-		}elseif($arch == 'aarch64'){
-			$arch = 'arm64';
-		}elseif($arch == 'armv7l' || $arch == 'armv6l'){
-			$arch = 'arm';
-		}
-		$exec = 'tunnel-linux-'.$arch;
-		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".$arch."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
+		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".system::getArch()."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 		return;
 	}
 	
