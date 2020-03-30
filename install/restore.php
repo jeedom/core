@@ -107,6 +107,7 @@ try {
 		'tmp',
 		'log',
 		'backup',
+		'script/tunnel',
 		'.git',
 		'.log',
 		'core/config/common.config.php',
