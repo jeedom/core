@@ -137,6 +137,7 @@ try {
 		'tests',
 		'support',
 		'backup',
+		'script/tunnel',
 		'.git',
 		'.log',
 		'core/config/common.config.php',
