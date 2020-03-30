@@ -171,4 +171,18 @@ class system {
 		}
 		return exec('php ' . $arguments);
 	}
+	
+	public static function getArch(){
+		$arch = php_uname('m');
+		if($arch == 'x86_64'){
+			return 'amd64';
+		}
+		if($arch == 'aarch64'){
+			return 'arm64';
+		}
+		if($arch == 'armv7l' || $arch == 'armv6l'){
+			return 'arm';
+		}
+		return $arch;
+	}
 }

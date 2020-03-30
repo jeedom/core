@@ -3666,9 +3666,9 @@
         "Activer": "Etkinleştir",
         "Desactiver": "Demount",
         "Dernier lancement": "Son çalıştırma",
-        "Min": "",
+        "Min": "Minimum",
         "Moyenne": "Ortalama",
-        "Max": ""
+        "Max": "Maximum"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Süre"

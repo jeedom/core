@@ -1,13 +1,19 @@
 Änderungsprotokoll
 =========
 
+4.0.45
+=====
+
+- Verbesserung des Expressionstesters
+- Aktualisieren des Repositorys auf smart
+
 4.0.44
 =====
 
-- Verbesserte Übersetzungen (oui encore).
+- Verbesserte Übersetzungen (ja nochmal).
 - Fehlerbehebungen.
-- Amélioration de la restoration de backup cloud.
-- La restoration cloud ne repatrie plus que le backup en local maintenant vous laissant le choix de le télécharger ou de le restaurer.
+- Verbesserung der Wiederherstellung der Backup-Cloud.
+- Durch die Cloud-Wiederherstellung wird nur die lokale Sicherung zurückgeführt, sodass Sie die Wahl haben, sie herunterzuladen oder wiederherzustellen.
 
 4.0.43
 =====

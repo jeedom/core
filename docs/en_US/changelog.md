@@ -1,13 +1,19 @@
 Changelog
 =========
 
+4.0.45
+=====
+
+- Improvement of the expression tester
+- Updating the repository on smart
+
 4.0.44
 =====
 
-- Improved translations (oui encore).
+- Improved translations (yes again).
 - Bugfix.
-- Amélioration de la restoration de backup cloud.
-- La restoration cloud ne repatrie plus que le backup en local maintenant vous laissant le choix de le télécharger ou de le restaurer.
+- Improvement of backup cloud restoration.
+- The cloud restoration only repatriates the local backup now leaving you the choice to download or restore it.
 
 4.0.43
 =====

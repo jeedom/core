@@ -121,7 +121,7 @@ try {
 
 	if (init('action') == 'removeTemplate') {
 		unautorizedInDemo();
-		$path = __DIR__ . '/../config/scenario';
+		$path = __DIR__ . '/../../data/scenario';
 		if (file_exists($path . '/' . init('template'))) {
 			unlink($path . '/' . init('template'));
 		}
@@ -180,7 +180,7 @@ try {
 
 	if (init('action') == 'applyTemplate') {
 		unautorizedInDemo();
-		$path = __DIR__ . '/../config/scenario';
+		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
 		}
@@ -436,7 +436,7 @@ try {
 
 	if (init('action') == 'templateupload') {
 		unautorizedInDemo();
-		$uploaddir = __DIR__ . '/../../core/config/scenario/';
+		$uploaddir = __DIR__ . '/../../data/scenario';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);
 		}

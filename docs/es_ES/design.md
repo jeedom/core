@@ -316,9 +316,7 @@ Configuraciones de pantalla
 
 ### Macro individual 
 
-En este modo, un clic en la zona realiza una o más acciones.
-
-Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic
+En este modo, un clic en la zona realiza una o más acciones. Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic
 en la zona
 
 ### Macro binaria 

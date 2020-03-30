@@ -3666,9 +3666,9 @@
         "Activer": "アクティブ",
         "Desactiver": "非アクティブ化",
         "Dernier lancement": "最後の打ち上げ",
-        "Min": "",
+        "Min": "低いです",
         "Moyenne": "平均",
-        "Max": ""
+        "Max": "マックス"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "期間"

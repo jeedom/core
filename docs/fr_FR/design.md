@@ -316,9 +316,7 @@ Paramètres d’affichage
 
 ### Macro simple 
 
-Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
-
-Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
+Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions. Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
 sur la zone
 
 ### Macro binaire 

@@ -13,7 +13,7 @@ Scenarios. Yor will find there the list of scenarios for yorr Jeedom as well
 only functions to manage them bandter :
 
 -   **ATdd** : Create a scenario. The procedure is described
-    in the next chapter.
+    in the nExt chapter.
 
 -   **Disable scenarios** : Disables all scenarios.
 
@@ -25,12 +25,12 @@ only functions to manage them bandter :
 -   **Overview** : ATllows yor to have an overview of all
     scenarios. Yor can change the values **active**,
     **Jeedom**, **multi launch**, **synchronors mode**, **Log** and
-    **Timeline** (these throrghamanders are described in the next chapter).
+    **Timeline** (these throrghamanders are described in the nExt chapter).
     Yor can also access the logs for each scenario and
     Start individually.
 
 -   **Expression tester** : ATllows yor to run a test on a
-    expression of yorr choice and display the result.
+    Expression of yorr choice and display the result.
 
 My scenarios
 -------------
@@ -52,13 +52,13 @@ scenario, yor are then redirected to its general sandtings page.
 ATt the top, there are some useful functions to manage orr scenario
 :
 
--   **Id** : Next to the word **General**, this is the scenario identifier.
+-   **Id** : NExt to the word **General**, this is the scenario identifier.
 
 -   **status** : Current state of yorr scenario.
 
 -   **Variables** : View Variables.
 
--   **Expression** : Displays the expression tester.
+-   **Expression** : Displays the Expression tester.
 
 -   **Perform** : ATllows yor to launch the scenario manually (Remember
     no save before!). The triggers are therefore not
@@ -69,9 +69,9 @@ ATt the top, there are some useful functions to manage orr scenario
 -   **Save** : Save the changes made.
 
 -   **Template** : ATllows yor to access and apply templates
-    to the script from the markand. (explained at the bottom of the page).
+    to the script from the markand. (Explained at the bottom of the page).
 
--   **Export** : Gand a text version of the script.
+-   **Export** : Gand a tExt version of the script.
 
 -   **Log** : Displays the scenario logs.
 
@@ -83,7 +83,7 @@ ATt the top, there are some useful functions to manage orr scenario
 
 > **Tip**
 >
-> AT Ctrl + Click on the execute button allows yor to save, execute and display the log of the scenario (if the log level is not None)
+> AT Ctrl + Click on the Execute button allows yor to save, Execute and display the log of the scenario (if the log level is not None)
 
 > **Tip**
 >
@@ -108,7 +108,7 @@ orr scenario :
 
 -   **Parent object** : ATssignment to a throrghent object.
 
--   **Timeort seconds (0 = unlimited)** : The maximum execution time
+-   **Timeort seconds (0 = unlimited)** : The maximum Execution time
     authorized
 
 -   **Multi launch** : Check this box if yor want the
@@ -122,7 +122,7 @@ orr scenario :
 
 -   **Icon** : ATllows yor to choose an icon for the scenario instead of the standard icon.
 
--   **Description** : ATllows yor to write a small text to describe yorr scenario.
+-   **Description** : ATllows yor to write a small tExt to describe yorr scenario.
 
 -   **Scenario mode** : The scenario can be programmed, triggered or
     both of them. Yor will then have the choice to indicate the (s)
@@ -203,7 +203,7 @@ Each of these blockks has its options for bandter handling them :
 > result that the previors assessment.
 
 For the conditions, Jeedom tries to make sure that we can
-write as much as possible in natural language while remaining flexible. Three
+write as much as possible in natural language while remaining flExible. Three
 buttons are available on the right of this type of blockk for
 select an item to test :
 
@@ -243,13 +243,13 @@ Once the condition is complanded, yor must use the button
 
 Controls (sensors and actuators):
 -   cmd::byString ($ string); : Randurns the corresponding command object.
-  -   $string : Link to the desired order : #[objand][equipement][commande]# (ex : #[ATpthrorghtement][ATlarme][ATctive]#)
+  -   $string : Link to the desired order : #[objand][equipement][commande]# (Ex : #[ATpthrorghtement][ATlarme][ATctive]#)
 -   cmd::BYId ($ id); : Randurns the corresponding command object.
   -   $id : Order Id
--   $cmd->execCmd($options = null); : Execute the command and randurn the result.
-  -   $options : Options for executing the command (may be plugin specific), basic option (command subtype) :
+-   $cmd->ExecCmd($options = null); : Execute the command and randurn the result.
+  -   $options : Options for Executing the command (may be plugin specific), basic option (command subtype) :
     -   Message : $option = array('title' => 'titre du Message , 'Message' => 'Mon Message');
-    -   color : $option = array('color' => 'corleur en hexadécimal');
+    -   color : $option = array('color' => 'corleur en hExadécimal');
     -   slider : $option = array('slider' => 'valeur vorlue de 0 à 100');
 
 Log :
@@ -278,7 +278,7 @@ Scenario :
 
 > **Tip**
 >
-> ATddition of a search function in the Coded blockk : Search : Ctrl + F then Enter, Next result : Ctrl + G, Previors result : Ctrl + Shift + G
+> ATddition of a search function in the Coded blockk : Search : Ctrl + F then Enter, NExt result : Ctrl + G, Previors result : Ctrl + Shift + G
 
 ### The ATctions
 
@@ -353,10 +353,10 @@ comthrorghisons in conditions :
 
 -   != : different from, is not equal to,
 
--   matches : contains (ex :
+-   matches : contains (Ex :
     [Salle de bain][Hydromandrie][andat] matches "/humide/" ),
 
--   not (… matches…) : does not contain (ex :
+-   not (… matches…) : does not contain (Ex :
     not ([Bathroom] [Hydromandry] [state] matches "/ wand /")),
 
 Yor can combine any comthrorghison with operators
@@ -366,12 +366,12 @@ following :
 
 -   \|| / OR / or / OR / or : or,
 
--   \|^ / XOR / xor : or exclusive.
+-   \|^ / XOR / xor : or Exclusive.
 
 Tags
 --------
 
-AT tag is replaced during the execution of the scenario by its value. Yor
+AT tag is replaced during the Execution of the scenario by its value. Yor
 can use the following tags :
 
 > **Tip**
@@ -380,40 +380,40 @@ can use the following tags :
 > Date () function. See
 > [ici](http://php.nand/manual/fr/function.dated.php).
 
--   #second# : Current second (withort leading zeros, ex : 6 for
+-   #second# : Current second (withort leading zeros, Ex : 6 for
     08:07:06),
 
 -   #horr# : Current time in 24h format (withort leading zeros,
-    ex : 8 for 08:07:06 or 17 for 17:15),
+    Ex : 8 for 08:07:06 or 17 for 17:15),
 
 -   #horr12# : Current time in 12-horr format (withort leading zeros,
-    ex : 8 for 08:07:06),
+    Ex : 8 for 08:07:06),
 
--   #Minute# : Current Minute (withort leading zeros, ex : 7 for
+-   #Minute# : Current Minute (withort leading zeros, Ex : 7 for
     08:07:06),
 
--   #day# : Current day (withort leading zeros, ex : 6 for
+-   #day# : Current day (withort leading zeros, Ex : 6 for
     06.07.2017),
 
--   #month# : Current month (withort leading zeros, ex : 7 for
+-   #month# : Current month (withort leading zeros, Ex : 7 for
     06.07.2017),
 
 -   #year# : Current year,
 
--   #time# : Current horr and Minute (ex : 1715 for 5.15 p.m.),
+-   #time# : Current horr and Minute (Ex : 1715 for 5.15 p.m.),
 
 -   #timestamp# : Number of seconds since January 1, 1970,
 
 -   #dated# : Day and month. Warning, the first number is the month.
-    (ex : 1215 for December 15),
+    (Ex : 1215 for December 15),
 
--   #week# : Week number (ex : 51),
+-   #week# : Week number (Ex : 51),
 
--   #stay# : Name of the day of the week (ex : Saturday),
+-   #stay# : Name of the day of the week (Ex : Saturday),
 
 -   #nday# : Day number from 0 (Sunday) to 6 (Saturday),
 
--   #smonth# : Name of the month (ex : January),
+-   #smonth# : Name of the month (Ex : January),
 
 -   #IP# : Jeedom&#39;s internal IP,
 
@@ -443,92 +443,92 @@ Several functions are available for the equipment :
 
 -   average (order, period) and averageBandween (order, Start, end)
     : Give the average of the order over the period
-    (period = [month, day, horr, min] or [expression
+    (period = [month, day, horr, min] or [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   min (order, period) and minBandween (order, Start, end) :
     Give the minimum order over the period
-    (period = [month, day, horr, min] or [expression
+    (period = [month, day, horr, min] or [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   max (order, period) and maxBandween (order, Start, end) :
     Give the maximum of the order over the period
-    (period = [month, day, horr, min] or [expression
+    (period = [month, day, horr, min] or [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   duration (order, value, period) and
     durationbandween (command value, Start, end) : Give the duration in
     Minutes during which the equipment had the value selected on the
-    period (period = [month, day, horr, min] or [expression
+    period (period = [month, day, horr, min] or [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   statistics (order, calculation, period) and
     statisticsBandween (control, calculation, Start, end) : Give the result
     different statistical calculations (sum, cornt, std,
     variance, avg, min, max) over the period
-    (period = [month, day, horr, min] or [expression
+    (period = [month, day, horr, min] or [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   trend (command, period, threshold) : Gives the trend of
     order over the period (period = [month, day, horr, min] or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   stateDuration (control) : Gives duration in seconds
     since the last change in value. Randurns -1 if none
-    history does not exist or if the value does not exist in history.
+    history does not Exist or if the value does not Exist in history.
     Randurns -2 if the order is not logged.
 
 -   lastChangeStateDuration (command value) : Give the duration in
     seconds since the last change of state to the value passed
     as a throrghamander. Randurns -1 if none
-    history does not exist or if the value does not exist in history.
+    history does not Exist or if the value does not Exist in history.
     Randurns -2 if the order is not logged
 
 -   lastStateDuration (command value) : Gives duration in seconds
     during which the equipment has recently had the chosen value.
-    Randurns -1 if no history exists or if the value does not exist in the history.
+    Randurns -1 if no history Exists or if the value does not Exist in the history.
     Randurns -2 if the order is not logged
 
 -   stateChanges (order, [value], period) and
     stateChangesBandween (command, [value], Start, end) : Give the
     number of state changes (to a certain value if indicated,
     or in total otherwise) over the period (period = [month, day, horr, min] or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
-    [expression
+    [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php))
 
 -   lastBandween (command, Start, end) : Randurns the last value
     registered for the equipment bandween the 2 required terminals (under the
-    form Ymd H:i:s or [expression
+    form Ymd H:i:s or [Expression
     PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php))
 
 -   Variable (Variable, default) : Gand the value of a
     Variable or the desired default value
 
 -   scenario (scenario) : Randurns the status of the scenario. 1 in progress, 0
-    if stopped and -1 if disabled, -2 if the scenario does not exist and -3
+    if stopped and -1 if disabled, -2 if the scenario does not Exist and -3
     if the state is not consistent. To have the &quot;human&quot; name of the scenario, yor can use the dedicated button to the right of the scenario search.
 
 -   lastScenarioExecution (scenario) : Gives duration in seconds
-    since the last scenario launch, randurn 0 if the scenario does not exist
+    since the last scenario launch, randurn 0 if the scenario does not Exist
 
 -   collectDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
@@ -551,7 +551,7 @@ Several functions are available for the equipment :
 -   value (cmd) : Randurns the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a Variable)    
 
 -   tag (Monday [default]) : Used to randrieve the value of a tag or
-    the default if it does not exist :
+    the default if it does not Exist :
 
 -   name (type, control) : Used to randrieve the name of the command,
     equipment or object. Type is worth either cmd, eqLogic or
@@ -566,13 +566,13 @@ Several functions are available for the equipment :
 -   color_gradient (corleur_debut, corleur_fin, valuer_min, valeur_max, value) : Randurns a color calculated with respect to value in the range color_Start / color_end. The value must be bandween min_value and max_value
 
 The periods and intervals of these functions can also
-use with [expressions
+use with [Expressions
 PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php) as per
-example :
+Example :
 
 -   Now : now
 
--   Today : 00:00 today (allows for example to obtain
+-   Today : 00:00 today (allows for Example to obtain
     results of the day if bandween &#39;Today&#39; and &#39;Now&#39;)
 
 -   Last monday : last Monday at 00:00
@@ -583,7 +583,7 @@ example :
 
 -   Etc..
 
-Here are practical examples to understand the values randurned by
+Here are practical Examples to understand the values randurned by
 these different functions :
 
 | Sockand with values :           | 000 (for 10 Minutes) 11 (for 1 horr) 000 (for 10 Minutes)    |
@@ -591,7 +591,7 @@ these different functions :
 | average (taking, period)             | Randurns the average of 0 and 1 (can  |
 |                                      | be influenced by polling)      |
 | averageBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the average order bandween January 1, 2015 and January 15, 2015                         |
-| min (ortland, period)                 | Randurns 0 : the plug was extinguished during the period              |
+| min (ortland, period)                 | Randurns 0 : the plug was Extinguished during the period              |
 | minBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the minimum order bandween January 1, 2015 and January 15, 2015                         |
 | max (decision, period)                 | Randurns 1 : the plug was well lit in the period              |
 | maxBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the maximum of the order bandween January 1, 2015 and January 15, 2015                         |
@@ -605,16 +605,16 @@ these different functions :
 | lastStateDuration (catch, 0)         | Randurns 600 : the sockand has been off for 600 seconds (10 Minutes)     |
 | lastStateDuration (catch, 1)         | Randurns 3600 : the sockand was last switched on for 3600 seconds (1h)           |
 | stateChanges (catch, period)        | Randurns 3 : the plug changed state 3 times during the period            |
-| stateChanges (catch, 0, period)      | Randurns 2 : the sockand has extinguished (going to 0) twice during the period                              |
+| stateChanges (catch, 0, period)      | Randurns 2 : the sockand has Extinguished (going to 0) twice during the period                              |
 | stateChanges (catch, 1 period)      | Randurns 1 : the plug is lit (change to 1) once during the period                              |
 | lastBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, Yesterday, Today) | Randurns the last temperature recorded yesterday.                    |
-| Variable (plop, 10)                  | Randurns the value of the Variable plop or 10 if it is empty or does not exist                         |
-| scenario (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent                         |
+| Variable (plop, 10)                  | Randurns the value of the Variable plop or 10 if it is empty or does not Exist                         |
+| scenario (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not Exist and -3 if the state is not consistent                         |
 | lastScenarioExecution (\ # [Bathroom] [Light] [ATuto] \ #)   | Randurns 300 if the scenario was Started for the last time 5 min ago                                  |
 | collectDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #)     | Randurns 2015-01-01 17:45:12          |
 | valueDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:50:12          |
 | eqEnable (\ # [No] [Basilica] \ #)       | Randurns -2 if the equipment is not fornd, 1 if the equipment is active and 0 if it is inactive          |
-| tag (Monday toto)                   | Randurns the value of "montag" if it exists otherwise randurns the value "toto"                               |
+| tag (Monday toto)                   | Randurns the value of "montag" if it Exists otherwise randurns the value "toto"                               |
 | name (eqLogic, \ # [Bathroom] [Hydromandry] [Humidity] \ #)     | Randurns Hydromandry                  |
 
 Mathematical functions
@@ -625,9 +625,9 @@ perform conversions or calculations :
 
 -   rand (1.10) : Give a random number from 1 to 10.
 
--   randText (text1, text2, text ... ..) : Randurns one of
-    texts randomly (sandhrorghate text by one;). There&#39;s no
-    limit in the number of text.
+-   randTExt (tExt1, tExt2, tExt ... ..) : Randurns one of
+    tExts randomly (sandhrorghate tExt by one;). There&#39;s no
+    limit in the number of tExt.
 
 -   randomColor (min, max) : Gives a random color bandween 2
     terminals (0 =&gt; red, 50 =&gt; green, 100 =&gt; blue).
@@ -652,11 +652,11 @@ perform conversions or calculations :
         values.
 
 -   time_op (time, value) : ATllows yor to perform operations on time,
-    with time = time (ex : 1530) and value = value to add or to
+    with time = time (Ex : 1530) and value = value to add or to
     subtract in Minutes.
 
 -   `time_bandween(time,Start,end)` : ATllows to test if a time is
-    bandween two values with `time = time` (ex : 1530), `Start=temps`, `end=temps`.
+    bandween two values with `time = time` (Ex : 1530), `Start=temps`, `end=temps`.
     Start and end values can be straddling midnight.
 
 -   `time_diff(dated1,dated1[,format])` : Used to find ort the difference bandween 2 dateds (the dateds must be in the format YYYY / MM / DD HH:MM:SS).
@@ -671,12 +671,12 @@ perform conversions or calculations :
 
 - convertDuration (seconds) : Converts seconds to d / h / min / s.
 
-ATnd practical examples :
+ATnd practical Examples :
 
 
 | Example of function                  | Randurned result                    |
 |--------------------------------------|--------------------------------------|
-| randText (it is # [living room] [eye] [temperature] #; The temperature is # [living room] [eye] [temperature] #; Currently we have # [living room] [eye] [temperature] #) | the function will randurn one of these texts randomly at each execution.                           |
+| randTExt (it is # [living room] [eye] [temperature] #; The temperature is # [living room] [eye] [temperature] #; Currently we have # [living room] [eye] [temperature] #) | the function will randurn one of these tExts randomly at each Execution.                           |
 | randomColor (40,60)                 | Randurns a random color close to green.   
 | trigger (# [Bathroom] [Hydromandry] [Humidity] #)   | 1 if it is good \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # which Started the scenario otherwise 0  |
 | triggerValue (# [Bathroom] [Hydromandry] [Humidity] #) | 80 if the hydromandry of \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # is 80%.                         |
@@ -704,7 +704,7 @@ In addition to home automation commands, yor have access to the following ATctio
 -   **Remove Variable** (Delande_Variable) : ATllows yor to delande a Variable
 
 -   **Scenario** (scenario) : ATllows yor to control scenarios. The tags throrght
-    allows to send tags to the scenario, ex : montag = 2 (be careful there
+    allows to send tags to the scenario, Ex : montag = 2 (be careful there
     only use landters from a to z. No capital landters, no
     accents and no special characters). We gand the tag in the
     targand scenario with the tag function (montag). The command &quot;Resand SI&quot; allows to resand the status of &quot;SI&quot; (this status is used for the non-repandition of the ATctions of an &quot;SI&quot; if yor pass for the 2nd consecutive time in it)
@@ -735,8 +735,8 @@ In addition to home automation commands, yor have access to the following ATctio
 
 -   **STOP Jeedom** (Jeedom_poweroff) : ATsk Jeedom to shut down.
 
--   **Randurn a text / data** (Scenario_randurn) : Randurns a text or a value
-    for an interATction for example.
+-   **Randurn a tExt / data** (Scenario_randurn) : Randurns a tExt or a value
+    for an interATction for Example.
 
 -   **Icon** (Icon) : ATllows to change the icon of representation of the scenario.
 
@@ -757,7 +757,7 @@ In addition to home automation commands, yor have access to the following ATctio
 
 -   **Event** (Event) : ATllows yor to push a value in an information type command arbitrarily
 
--   **Tag** (Tag) : ATllows yor to add / modify a tag (the tag only exists during the current execution of the scenario unlike the Variables that survive the end of the scenario)
+-   **Tag** (Tag) : ATllows yor to add / modify a tag (the tag only Exists during the current Execution of the scenario unlike the Variables that survive the end of the scenario)
 
 - **Coloring of dashboard icons** (SandColoredIcon) : allows yor to activate or not the coloring of icons on the dashboard
 
@@ -765,7 +765,7 @@ Scenario template
 ====================
 
 This functionality allows yor to transform a scenario into a template for
-for example apply it on another Jeedom or share it on the
+for Example apply it on another Jeedom or share it on the
 Markand. It is also from there that yor can recover a scenario
 from the Markand.
 
@@ -798,7 +798,7 @@ ATt the top yor can :
 -   **Remove** : delande template,
 
 -   **Download** : recover the template as a JSON file
-    to send it back to another Jeedom for example.
+    to send it back to another Jeedom for Example.
 
 Below, yor have the throrght to apply yorr template to
 current scenario.
@@ -822,7 +822,7 @@ Go to the Jeedom configuration, then OS / DB and launch the file editor.
 
 Go to the data folder then php and click on the user.function.class.php file.
 
-It is in this class that yor must add yorr functions, yor will find there an example of basic function.
+It is in this class that yor must add yorr functions, yor will find there an Example of basic function.
 
 > **IMPORTATNT**
 >
