@@ -396,7 +396,7 @@
         "serveur hébergeant l'AD": "server hosting the AD",
         "Domaine": "Field",
         "domaine de votre AD": "domain of your AD",
-        "Base DN": "DN base",
+        "Base DN des utilisateurs": "DN base",
         "base DN de votre AD": "DN base of your AD",
         "Nom d'utilisateur": "Username",
         "nom d'utilisateur pour que Jeedom se connecte à l'AD": "username for Jeedom to log into AD",

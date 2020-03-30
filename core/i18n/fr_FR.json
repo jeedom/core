@@ -1590,7 +1590,7 @@
         "Hôte": "Hôte",
         "Port": "Port",
         "Domaine": "Domaine",
-        "Base DN": "Base DN",
+        "Base DN des utilisateurs": "Base DN des utilisateurs",
         "Champs recherche utilisateur": "Champs recherche utilisateur",
         "Filtre administrateurs (optionnel)": "Filtre administrateurs (optionnel)",
         "Filtre utilisateurs (optionnel)": "Filtre utilisateurs (optionnel)",
