@@ -3,7 +3,6 @@ FROM debian:stretch
 MAINTAINER info@jeedom.com
 
 ENV SHELL_ROOT_PASSWORD Mjeedom96
-ENV APACHE_PORT 80
 ENV SSH_PORT 22
 ENV MODE_HOST 0
 
@@ -28,11 +27,7 @@ RUN /root/install_docker.sh -s 4;exit 0
 RUN /root/install_docker.sh -s 5;exit 0
 RUN /root/install_docker.sh -s 8;exit 0
 RUN /root/install_docker.sh -s 11;exit 0
-RUN systemctl disable apache2;exit 0
 RUN systemctl disable sshd;exit 0
-
-VOLUME /var/www/html
-EXPOSE 80
 
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh

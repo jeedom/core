@@ -13,15 +13,6 @@ fi
 
 echo "root:${ROOT_PASSWORD}" | chpasswd
 
-if [ ! -z ${APACHE_PORT} ]; then
-	echo 'Change apache listen port to : '${APACHE_PORT}
-	echo "Listen ${APACHE_PORT}" > /etc/apache2/ports.conf
-	sed -i -E "s/\<VirtualHost \*:(.*)\>/VirtualHost \*:${APACHE_PORT}/" /etc/apache2/sites-enabled/000-default.conf
-else
-	echo "Listen 80" > /etc/apache2/ports.conf
-	sed -i -E "s/\<VirtualHost \*:(.*)\>/VirtualHost \*:80/" /etc/apache2/sites-enabled/000-default.conf
-fi
-
 if [ ! -z ${SSH_PORT} ]; then
 	echo 'Change SSH listen port to : '${SSH_PORT}
 	sed -i '/Port /d' /etc/ssh/sshd_config
@@ -97,6 +88,6 @@ chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
 echo 'Start apache2'
-service apache2 restart
+service apache2 start
 
 /usr/bin/supervisord
