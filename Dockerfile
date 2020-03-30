@@ -4,7 +4,6 @@ MAINTAINER info@jeedom.com
 
 RUN apt-get update && apt-get install -y supervisor
 
-RUN mkdir -p /var/log/supervisor
 ADD install/OS_specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ADD install/install.sh /root/install_docker.sh
