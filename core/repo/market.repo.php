@@ -311,7 +311,6 @@ class repo_market {
 			$cmd .= ' --exclude "' . $exclude . '"';
 		}
 		$cmd .= ' --num-retries 2';
-		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --tempdir '.$base_dir . '/tmp';
 		$cmd .= ' ' . $base_dir;
 		$cmd .= self::beckup_serverPath();
@@ -348,7 +347,6 @@ class repo_market {
 		
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity cleanup --force ';
-		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
 		$cmd .= self::beckup_serverPath();
 		try {
@@ -369,7 +367,6 @@ class repo_market {
 		}
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
-		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
 		$cmd .= self::beckup_serverPath();
 		try {
@@ -393,7 +390,6 @@ class repo_market {
 		$return = array();
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity collection-status';
-		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --timeout 60';
 		$cmd .= self::beckup_serverPath();
@@ -437,7 +433,6 @@ class repo_market {
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
-		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
 		$cmd .= ' --tempdir '.$base_dir;
 		$cmd .= self::beckup_serverPath();
@@ -741,7 +736,6 @@ class repo_market {
 		}
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
-		$jsonrpc->setNoSslCheck(true);
 		return $jsonrpc;
 	}
 	
@@ -1011,7 +1005,7 @@ class repo_market {
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		log::add('update', 'alert', __('URL ', __FILE__) . $url);
-		exec('wget --no-check-certificate "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update').' 2>&1');
+		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update').' 2>&1');
 		switch ($this->getType()) {
 			case 'plugin':
 			return $tmp;
