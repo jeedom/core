@@ -6,22 +6,6 @@ if ! [ -f /.dockerinit ]; then
 	chmod 755 /.dockerinit
 fi
 
-if [ -z ${ROOT_PASSWORD} ]; then
-	ROOT_PASSWORD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 20)
-	echo "Use generate password : ${ROOT_PASSWORD}"
-fi
-
-echo "root:${ROOT_PASSWORD}" | chpasswd
-
-if [ ! -z ${SSH_PORT} ]; then
-	echo 'Change SSH listen port to : '${SSH_PORT}
-	sed -i '/Port /d' /etc/ssh/sshd_config
-	echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config
-else
-	sed  -i '/Port /d' /etc/ssh/sshd_config
-	echo "Port 22" >> /etc/ssh/sshd_config
-fi
-
 if [ ! -z ${MODE_HOST} ] && [ ${MODE_HOST} -eq 1 ]; then
 	echo 'Update /etc/hosts for host mode'
 	echo "127.0.0.1 localhost jeedom" > /etc/hosts
@@ -55,9 +39,6 @@ else
 		/root/install.sh -s 11
 	fi
 fi
-
-echo 'Start sshd'
-service ssh restart
 
 echo 'Start atd'
 service atd restart
