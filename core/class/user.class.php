@@ -55,58 +55,77 @@ class user {
 	public static function connect($_login, $_mdp) {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
-			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
+			log::add("connection", "info", __('LDAP Authentification', __FILE__));
 			$ad = self::connectToLDAP();
 			if ($ad !== false) {
-				log::add("connection", "debug", __('Connection au LDAP OK', __FILE__));
+				log::add("connection", "debug", __('LDAP Connection OK', __FILE__));
 				$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 				ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
-					return false;
-				}
-				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
-				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
-				if ($result) {
-					$entries = ldap_get_entries($ad, $result);
-					if ($entries['count'] > 0) {
+				if (ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+					log::add("connection", "debug", __('Bind user OK', __FILE__));
+					$all_profiles = array('restrict', 'user', 'admin'); 
+					$profiles = 'none'; # default
+					foreach ($all_profiles as $p) {
+						if (config::byKey('ldap:filter:'.$p)!="" && $result_profile = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter:'.$p))) {
+							$entries = ldap_get_entries($ad, $result_profile);
+							if ($entries['count'] > 0) {
+								$profiles = $p;
+								log::add("connection", "info", __('LDAP Profile Check - The "'.$p.'" profile was FOUND for the user "'.$_login.'" in the LDAP', __FILE__));
+							} else {
+								log::add("connection", "info", __('LDAP Profile Check - User "'.$_login.'" has no "'.$p.'" profile in the LDAP', __FILE__));
+							}
+						}
+						else {
+							log::add("connection", "info", __('LDAP Profile Check - No filter or bad search filter applied for the profile "'.$p.'" ', __FILE__));
+						}
+					}
+					# If the profile is always 'none' and there is no filter, then try to access as admin (default)
+					if ($profiles == 'none' && config::bykey('ldap:filter:admin')=="") {
+						log::add("connection", "info", __('LDAP Profile Check - [WARNING] None filter was set for administrators and no profile was found, try to authenticate "'.$_login.'" as an administrator if the user is in the LDAP', __FILE__));
+						if ($result_profile = ldap_search($ad, config::byKey('ldap:basedn'), config::byKey('ldap::usersearch') . '=' . $_login )) {
+							$entries = ldap_get_entries($ad, $result_profile);
+							if ($entries['count'] > 0) {
+								$profiles = 'admin';
+								log::add("connection", "info", __('LDAP Profile Check - User "'.$_login.'" exists in the LDAP, authentication OK as administrator', __FILE__));
+							} else {
+								log::add("connection", "info", __('LDAP Profile Check - User "'.$_login.'" doesn\'t exist in the LDAP', __FILE__));
+							}
+						}
+
+					}
+					log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ' - "' . $profiles . '" profile selected)');
+					if ($profiles != 'none') {
 						$user = self::byLogin($_login);
 						if (is_object($user)) {
 							$user->setPassword($sMdp)
-							->setOptions('lastConnection', date('Y-m-d H:i:s'));
+							->setOptions('lastConnection', date('Y-m-d H:i:s'))
+   							->setProfils($profiles);
 							$user->save();
 							return $user;
 						}
 						$user = (new user)
 						->setLogin($_login)
 						->setPassword($sMdp)
-						->setOptions('lastConnection', date('Y-m-d H:i:s'));
+						->setOptions('lastConnection', date('Y-m-d H:i:s'))
+	   					->setProfils($profiles);
 						$user->save();
-						log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
+						log::add("connection", "info", __('User created from the LDAP : ', __FILE__) . $_login);
 						jeedom::event('user_connect');
-						log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+						log::add('event', 'info', __('User connection accepted ', __FILE__) . $_login);
 						return $user;
 					} else {
 						$user = self::byLogin($_login);
 						if (is_object($user)) {
 							$user->remove();
 						}
-						log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
-						return false;
+						log::add("connection", "info", __('User not allowed to access to Jeedom according to the LDAP (', __FILE__) . $_login . ')');
 					}
 				} else {
-					$user = self::byLogin($_login);
-					if (is_object($user)) {
-						$user->remove();
-					}
-					log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
-					return false;
+					log::add("connection", "info", __('Invalid account or wrong password for the LDAP (', __FILE__) . $_login . ')');
 				}
-				return false;
 			} else {
-				log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
+				log::add("connection", "info", __('LDAP connection impossible', __FILE__));
 			}
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
@@ -114,13 +133,15 @@ class user {
 			$user = user::byLoginAndPassword($_login, sha1($_mdp));
 			if (is_object($user)) {
 				$user->setPassword($sMdp);
+				log::add('event', 'info', __('Local account found for ', __FILE__) . $_login);
 			}
 		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');
-			log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+			log::add('event', 'info', __('Local account found for ', __FILE__) . $_login);
+			log::add('event', 'info', __('User connection accepted ', __FILE__) . $_login);
 		}
 		return $user;
 	}
