@@ -1,11 +1,12 @@
 Changelog
 =========
 
-4.0.45
+4.0.46
 =====
 
 - Amélioration du testeur d'expression
 - Mise à jour du repository sur smart
+- Correction de bugs
 
 4.0.44
 =====
