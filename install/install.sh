@@ -445,7 +445,9 @@ case ${STEP} in
   ;;
   10) step_10_jeedom_installation
   ;;
-  11) step_11_jeedom_check
+  11) step_11_jeedom_post
+  ;;
+  12) step_12_jeedom_check
   ;;
   *) echo "${ROUGE}Désolé, Je ne peux sélectionner une ${STEP} étape pour vous !${NORMAL}"
   ;;
