@@ -381,7 +381,7 @@ class network {
 		$cmd->execCmd();
 	}
 	
-		public static function dns2_start() {
+	public static function dns2_start() {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
 		}
@@ -436,6 +436,7 @@ class network {
 		}
 		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
 		$client_id = shell_exec('cd '.$dir.';./'.$exec.' id');
+		log::add('tunnel','debug','Client id is : '.$client_id);
 		try {
 			repo_market::sendTunnelClientId(trim($client_id));
 		} catch (\Exception $e) {
