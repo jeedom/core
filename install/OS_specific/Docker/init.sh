@@ -6,11 +6,6 @@ if ! [ -f /.dockerinit ]; then
 	chmod 755 /.dockerinit
 fi
 
-if [ ! -z ${MODE_HOST} ] && [ ${MODE_HOST} -eq 1 ]; then
-	echo 'Update /etc/hosts for host mode'
-	echo "127.0.0.1 localhost jeedom" > /etc/hosts
-fi
-
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else

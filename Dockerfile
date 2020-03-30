@@ -2,8 +2,6 @@ FROM debian:stretch
 
 MAINTAINER info@jeedom.com
 
-ENV MODE_HOST 0
-
 RUN apt-get update && apt-get install -y wget supervisor
 
 RUN mkdir -p /var/log/supervisor
