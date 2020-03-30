@@ -53,6 +53,7 @@ step_2_mainpackage() {
   apt-get -y install apt-transport-https
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
+  apt-get -y install mariadb-client
   add-apt-repository non-free
   apt-get update
   apt-get -y install libav-tools
