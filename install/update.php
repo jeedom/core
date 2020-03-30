@@ -116,7 +116,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 				} else {
 					$class = 'repo_' . config::byKey('core::repo::provider');
 					if (!class_exists($class)) {
