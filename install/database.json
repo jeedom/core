@@ -2402,7 +2402,7 @@
         },
         {
           "name": "name",
-          "type": "varchar(255)",
+          "type": "varchar(191)",
           "null": "NO",
           "key": "",
           "default": null,
