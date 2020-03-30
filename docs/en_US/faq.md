@@ -202,3 +202,14 @@ It is necessary :
 - click on Dpkg configure
 - wait 10min
 - relaunch the dependencies of the blocking plugins
+
+### I have this error when installing plugin dependencies : "from pip._internal import main"
+
+It is necessary in the system console of Jeedom or in ssh to make 
+
+````
+sudo easy_install pip
+sudo easy_install3 pip
+````
+
+Then relaunch the dependencies

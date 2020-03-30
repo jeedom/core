@@ -2450,7 +2450,12 @@
         "lancer l'administration Système": "lancer l'administration Système",
         "cliquer sur Dpkg configure": "cliquer sur Dpkg configure",
         "attendre 10min": "attendre 10min",
-        "relancer les dépendances du plugins qui bloque": "relancer les dépendances du plugins qui bloque"
+        "relancer les dépendances du plugins qui bloque": "relancer les dépendances du plugins qui bloque",
+        "J'ai cette erreur sur l'installation des dependances d'un plugin": "J'ai cette erreur sur l'installation des dependances d'un plugin",
+        "from pip": "from pip",
+        "_internal import main": "_internal import main",
+        "Il faut dans la console systeme de Jeedom ou en ssh faire": "Il faut dans la console systeme de Jeedom ou en ssh faire",
+        "Puis relancer les dependances": "Puis relancer les dependances"
     },
     "health.md": {
         "Santé": "Santé",
