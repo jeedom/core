@@ -202,3 +202,14 @@ Hay que :
 - haga clic en configurar Dpkg
 - espera 10min
 - relanzar las dependencias de los complementos de bloqueo
+
+### Tengo este error al instalar dependencias de complementos : "de pip._ principal de importación interna"
+
+Es necesario en la consola del sistema de Jeedom o en ssh hacer 
+
+````
+sudo easy_install pip
+sudo easy_install3 pip
+````
+
+Luego relanzar las dependencias

@@ -202,3 +202,14 @@ Du musst :
 - Klicken Sie auf Dpkg konfigurieren
 - Warten Sie 10 Minuten
 - Starten Sie die Abhängigkeiten der blockierenden Plugins neu
+
+### Ich habe diesen Fehler bei der Installation von Plugin-Abhängigkeiten : "von pip._internal import main"
+
+E.s ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen 
+
+````
+sudo easy_install pip
+sudo easy_install3 pip
+````
+
+Starten Sie dann die Abhängigkeiten neu

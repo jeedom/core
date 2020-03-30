@@ -2450,7 +2450,12 @@
         "lancer l'administration Système": "Starten Sie die Systemadministration",
         "cliquer sur Dpkg configure": "Klicken Sie auf Dpkg konfigurieren",
         "attendre 10min": "Warten Sie 10 Minuten",
-        "relancer les dépendances du plugins qui bloque": "Starten Sie die Abhängigkeiten der blockierenden Plugins neu"
+        "relancer les dépendances du plugins qui bloque": "Starten Sie die Abhängigkeiten der blockierenden Plugins neu",
+        "J'ai cette erreur sur l'installation des dependances d'un plugin": "Ich habe diesen Fehler bei der Installation von Plugin-Abhängigkeiten",
+        "from pip": "von pip",
+        "_internal import main": "_internal import main",
+        "Il faut dans la console systeme de Jeedom ou en ssh faire": "Es ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen",
+        "Puis relancer les dependances": "Starten Sie dann die Abhängigkeiten neu"
     },
     "health.md": {
         "Santé": "Gesundheit",

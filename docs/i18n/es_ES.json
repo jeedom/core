@@ -2450,7 +2450,12 @@
         "lancer l'administration Système": "iniciar la administración del sistema",
         "cliquer sur Dpkg configure": "haga clic en configurar Dpkg",
         "attendre 10min": "espera 10min",
-        "relancer les dépendances du plugins qui bloque": "relanzar las dependencias de los complementos de bloqueo"
+        "relancer les dépendances du plugins qui bloque": "relanzar las dependencias de los complementos de bloqueo",
+        "J'ai cette erreur sur l'installation des dependances d'un plugin": "Tengo este error al instalar dependencias de complementos",
+        "from pip": "de pip",
+        "_internal import main": "_ principal de importación interna",
+        "Il faut dans la console systeme de Jeedom ou en ssh faire": "Es necesario en la consola del sistema de Jeedom o en ssh hacer",
+        "Puis relancer les dependances": "Luego relanzar las dependencias"
     },
     "health.md": {
         "Santé": "Salud",
