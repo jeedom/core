@@ -4,6 +4,7 @@ if (!isConnect('admin')) {
 }
 global $JEEDOM_INTERNAL_CONFIG;
 $select = array('dashboard' => '','mobile'=>'');
+$seld = array();
 foreach (cmd::availableWidget('dashboard') as $type => $value) {
   if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
     continue;
@@ -16,10 +17,13 @@ foreach (cmd::availableWidget('dashboard') as $type => $value) {
       if($name == ''){
         continue;
       }
-      $select['dashboard'] .= '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['name'].'</option>';
+      $seld[] = '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['location'].'::'.$widget['name'].'</option>';
     }
   }
 }
+sort($seld);
+$select['dashboard'] = implode('',$seld);
+$selm = array();
 foreach (cmd::availableWidget('mobile') as $type => $value) {
   if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
     continue;
@@ -32,10 +36,12 @@ foreach (cmd::availableWidget('mobile') as $type => $value) {
       if($name == ''){
         continue;
       }
-      $select['mobile'] .= '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['name'].'</option>';
+      $selm[] = '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['location'].'::'.$widget['name'].'</option>';
     }
   }
 }
+sort($selm);
+$select['mobile'] = implode('',$selm);
 ?>
 <div id="form_widgetReplace">
   <div style="display: none;" id="md_widgetReplaceAlert"></div>
