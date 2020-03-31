@@ -53,6 +53,7 @@ step_2_mainpackage() {
   apt-get -y install apt-transport-https
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
+  apt-get -y install mariadb-client
   add-apt-repository non-free
   apt-get update
   apt-get -y install libav-tools
@@ -445,7 +446,9 @@ case ${STEP} in
   ;;
   10) step_10_jeedom_installation
   ;;
-  11) step_11_jeedom_check
+  11) step_11_jeedom_post
+  ;;
+  12) step_12_jeedom_check
   ;;
   *) echo "${ROUGE}Désolé, Je ne peux sélectionner une ${STEP} étape pour vous !${NORMAL}"
   ;;
