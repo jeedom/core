@@ -40,17 +40,34 @@ Changelog
 - Résumé domotique : Possibilité de chercher sur les catégories d'équipements
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
+- Widgets : Possibilité d'ajouter des class css à un widget (voir documentation widget).
+- Widgets : Ajout d'un widget core *sliderVertical*.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
 - WebApp : Intégration de la nouvelle page Synthèse.
 - WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
 - WebApp : On peux maintenant sélectionner / copier une partie d'un log.
 - WebApp : Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
-- WebApp : Persistence de la bascule de thème (8h).
+- WebApp : Persistance de la bascule de thème (8h).
 - WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
-- Widget : possibilité d'ajouté des class css à un widget (voir documentation widget)
+
+
+4.0.46
+=====
+
+- Amélioration du testeur d'expression.
+- Mise à jour du repository sur smart.
+- Correction de bugs.
+
+4.0.44
+=====
+
+- Amélioration des traductions.
+- Correction de bugs.
+- Amélioration de la restoration de backup cloud.
+- La restauration cloud ne rapatrie plus maintenant que le backup en local, laissant le choix de le télécharger ou de le restaurer.
 
 4.0.43
 =====

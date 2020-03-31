@@ -163,11 +163,8 @@ div.cmd > div.center-block {
   left: 0;
 }
 .slider.ui-slider-vertical {
-  position: absolute;
   margin: 5px;
   height: 48px;
-  top: 16px !important;
-  right: 3px;
 }
 
 .sliderValue {
@@ -342,7 +339,13 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
   width: 60px;
   top: 16px !important;
 }
-
+.shuttergauge .slider.ui-slider-vertical {
+  position: absolute;
+  margin: 5px;
+  height: 48px;
+  top: 16px !important;
+  right: 3px;
+}
 .shuttergauge .ui-slider-vertical > .sliderValue {
   bottom: -5px;
   right: 26px;
