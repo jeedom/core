@@ -66,4 +66,4 @@ chown -R www-data:www-data /var/www/html
 echo 'Start apache2'
 service apache2 start
 
-/usr/bin/supervisord
+cron -f
