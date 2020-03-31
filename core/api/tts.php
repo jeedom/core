@@ -29,7 +29,7 @@ $engine = config::byKey('tts::engine');
 if(strpos($engine,'plugin::') !== false){
 	$engine = str_replace('plugin::','',$engine);
 	if(!class_exists($engine) || !method_exists($engine,'tts')){
-		$engine = 'pico'
+		$engine = 'pico';
 	}
 }
 $text = init('text');
