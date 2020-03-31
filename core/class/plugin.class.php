@@ -36,6 +36,7 @@ class plugin {
 	private $mobile;
 	private $eventjs;
 	private $hasDependency;
+	private $hasTtsEngine;
 	private $maxDependancyInstallTime;
 	private $hasOwnDeamon;
 	private $issue = '';
@@ -78,6 +79,7 @@ class plugin {
 		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
 		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
 		$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
+		$plugin->hasTtsEngine = (isset($data['hasTtsEngine'])) ? $data['hasTtsEngine'] : 0;
 		$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
 		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
@@ -1075,6 +1077,15 @@ class plugin {
 	
 	public function setHasOwnDeamony($hasOwnDeamon) {
 		$this->hasOwnDeamon = $hasOwnDeamon;
+		return $this;
+	}
+	
+	public function getHasTtsEngine() {
+		return $this->hasTtsEngine;
+	}
+	
+	public function setHasTtsEngine($hasTtsEngine) {
+		$this->hasTtsEngine = $hasTtsEngine;
 		return $this;
 	}
 	
