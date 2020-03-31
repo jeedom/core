@@ -1,11 +1,12 @@
 Cambios
 =========
 
-4.0.45
+4.0.46
 =====
 
 - Mejora del probador de expresión
 - Actualización del repositorio en smart
+- Correcciones de errores
 
 4.0.44
 =====
