@@ -322,6 +322,17 @@ class config {
 		return str_replace(',','.',$_value);
 	}
 	
+	public static function preConfig_tts_engine($_value){
+		try {
+			if($_value != config::byKey('tts::engine')){
+				rrmdir(jeedom::getTmpFolder('tts'));
+			}
+		} catch (\Exception $e) {
+			
+		}
+		return $_value;
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 	
 	/*     * **********************Getteur Setteur*************************** */

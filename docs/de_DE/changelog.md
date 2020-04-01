@@ -40,17 +40,34 @@
 - Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
+- Widgets : .
+- Widgets : *.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
 - WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
-- WebApp : Persistenz des Themas umschalten (8h).
+- WebApp : .
 - WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
-- Widget : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation)
+
+
+4.0.46
+=====
+
+- Verbesserung des Expressionstesters.
+- Aktualisieren des Repositorys auf smart.
+- Fehlerbehebungen.
+
+4.0.44
+=====
+
+- Verbesserte Übersetzungen.
+- Fehlerbehebungen.
+- Verbesserung der Wiederherstellung der Backup-Cloud.
+- .
 
 4.0.43
 =====

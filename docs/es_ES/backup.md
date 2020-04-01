@@ -47,25 +47,10 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad de samba seleccionada anteriormente.
 
-> **Punta**
+> **Importante**
 >
-> Dependiendo de lo que se active, en la página Configuración → Sistema → Configuración : Actualizaciones, puedes ver más o menos secciones.
+>  !!! 
 
-> **Punta**
->
-> Al reinstalar Jeedom y haber tomado la suscripción de copia de seguridad de Cloud de Market, debe ingresar su cuenta de Market en su nuevo Jeedom (Configuración → Sistema → Configuración : Actualizaciones) luego ven aquí para comenzar la restauración.
-
-> **Punta**
->
-> Es posible, en caso de problemas, hacer una copia de seguridad en la línea de comando :
->  `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> o `sudo php / var / www / html / install / backup.php` dependiendo de su sistema.
-
-> **Punta**
->
-> También es posible restaurar una copia de seguridad de la línea de comandos (de forma predeterminada, Jeedom restaura la copia de seguridad más reciente presente en el directorio de copia de seguridad) :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` o
-> `sudo php /var/www/html/install/restore.php`.
 
 # Lo que se guarda ?
 
