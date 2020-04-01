@@ -1374,6 +1374,8 @@
         "Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)": "Il tuo nome <?php echo config::byKey('product_name'); ?> (utilizzato in particolare dal mercato)",
         "Langue": "Lingua",
         "Langue de votre": "La tua lingua",
+        "Moteur TTS": "",
+        "Plugin": "",
         "Date et heure": "Data e ora",
         "Fuseau horaire de votre": "Il tuo fuso orario",
         "Forcer la synchronisation de l'heure": "Forza Sincronizzazione",
@@ -3883,7 +3885,6 @@
         "Aucun texte à dire": "Nessun testo da dire",
         "Tag detécté dans le tts et plugin song présent": "Tag rilevato nei plugin tts e song presenti",
         "Son trouvé path : ": "Il suo percorso trovato:",
-        "Moteur de voix inconnu : ": "Motore vocale sconosciuto:",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": "Errore nessun file trovato da eliminare mentre la directory fa:"
     }
 }

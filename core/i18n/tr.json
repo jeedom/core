@@ -1374,6 +1374,8 @@
         "Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)": "",
         "Langue": "Dil",
         "Langue de votre": "",
+        "Moteur TTS": "",
+        "Plugin": "Eklenti",
         "Date et heure": "Saat ve tarih",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Saatin senkronize edilmesini zorla",
@@ -3883,7 +3885,6 @@
         "Aucun texte à dire": "Söyleyecek metin yok",
         "Tag detécté dans le tts et plugin song présent": "Etiket ve şarkı eklentisinde mevcut etiket var",
         "Son trouvé path : ": "Bulunan yolu:",
-        "Moteur de voix inconnu : ": "Bilinmeyen ses motoru:",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": "Dizin yapılırken silinecek dosya bulunamadı hatası:"
     }
 }

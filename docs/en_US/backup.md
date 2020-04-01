@@ -87,32 +87,10 @@ or restoration), if you have launched one.
 -   **Restore backup** : Starts restoring the backup
     samba selected above.
 
-> **Tip**
+> **Important**
 >
-> Depending on what will be activated, in the page
-> Administration → D'actualité → Updates tab, you can see
-> more or less sections.
+>  !!! 
 
-> **Tip**
->
-> When reinstalling Jeedom and having taken the subscription of
-> backup to the Market cloud, you must fill in your account
-> Market on your new Jeedom (Administration → D'actualité → Tab
-> Updates) then come here to start the restoration.
-
-> **Tip**
->
-> It is possible, in case of problems, to make an online backup of
-> ordered : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> or `sudo php / var / www / html / install / backup.php` depending on your system.
-
-> **Tip**
->
-> It is also possible to restore an online backup of
-> commands (by default, Jeedom restores the most recent backup
-> present in the backup directory) :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` or
-> `sudo php /var/www/html/install/restore.php`.
 
 What is saved ? 
 ==============================

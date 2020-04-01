@@ -87,32 +87,10 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 -   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
     Samba oben ausgewählt.
 
-> **Spitze**
+> **Wichtig**
 >
-> Je nachdem, was aktiviert wird, auf der Seite
-> Administration → Konfiguration → Registerkarte Updates sehen Sie
-> mehr oder weniger Abschnitte.
+>  !!! 
 
-> **Spitze**
->
-> Bei der Neuinstallation von Jeedom und dem Abonnement von
-> Backup in die Markt Cloud, müssen Sie Ihr Konto ausfüllen
-> Vermarkten Sie auf Ihrem neuen Jeedom (Administration → Konfiguration → Registerkarte
-> Updates) kommen Sie dann hierher, um mit der Wiederherstellung zu beginnen.
-
-> **Spitze**
->
-> Bei Problemen ist es möglich, eine Online-Sicherung von zu erstellen
-> bestellen : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> oder `sudo php / var / www / html / install / backup.PHP` abhängig von Ihrem System.
-
-> **Spitze**
->
-> Es ist auch möglich, eine Online-Sicherung von wiederherzustellen
-> Befehle (standardmäßig stellt Jeedom die letzte Sicherung wieder her
-> im Sicherungsverzeichnis vorhanden) :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` oder
-> `sudo php /var/www/html/install/restore.php`.
 
 Was ist gespeichert ? 
 ==============================

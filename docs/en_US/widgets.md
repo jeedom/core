@@ -112,6 +112,8 @@ In code mode you have access to different tags for orders, here is a list (not n
 
 - #name# : command name
 - #valueName# : name of the command value, and = # name # when it is an info type command
+- ## : 
+- ## : 
 - #hIDe_name# : empty or hIDden if the user asked to hIDe the name of the wIDget, to put it directly in a class tag
 - #ID# : order ID
 - #state# : value of the command, empty for an action type command if it is not linked to a status command

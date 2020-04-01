@@ -112,6 +112,8 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 
 - #Name# : BefehlsName
 - #valueName# : Name des Befehlswertes und = # Name #, wenn es sich um einen Befehl vom Typ Info handelt
+- ## : 
+- ## : 
 - #VersteckName# : leer oder ausgeblendet, wenn der Benutzer den Namen des WIdentifikationgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
 - #Identifikation# : Bestellnummer
 - #Zustand# : Wert des Befehls, leer für einen Aktionstypbefehl, wenn er nicht mit einem Statusbefehl verknüpft ist

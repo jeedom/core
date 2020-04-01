@@ -1374,6 +1374,8 @@
         "Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)": "",
         "Langue": "Bahasa",
         "Langue de votre": "",
+        "Moteur TTS": "",
+        "Plugin": "",
         "Date et heure": "Hari dan Jam",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Angkatan Sinkronisasi Waktu",
@@ -3883,7 +3885,6 @@
         "Aucun texte à dire": "",
         "Tag detécté dans le tts et plugin song présent": "",
         "Son trouvé path : ": "",
-        "Moteur de voix inconnu : ": "",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": ""
     }
 }
