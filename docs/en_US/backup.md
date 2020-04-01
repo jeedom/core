@@ -47,25 +47,10 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Restore backup** : Starts restoring the samba backup selected above.
 
-> **Tip**
+> **Important**
 >
-> Depending on what will be activated, in the Settings → System → Configuration page : Updates, you can see more or less sections.
+>  !!! 
 
-> **Tip**
->
-> When reinstalling Jeedom and having taken the Cloud backup subscription from Market, you must enter your Market account on your new Jeedom (Settings → System → Configuration : Updates) then come here to start the restoration.
-
-> **Tip**
->
-> It is possible, in case of problems, to make a backup on the command line :
->  `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> or `sudo php / var / www / html / install / backup.php` depending on your system.
-
-> **Tip**
->
-> It is also possible to restore a command line backup (by default, Jeedom restores the most recent backup present in the backup directory) :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` or
-> `sudo php /var/www/html/install/restore.php`.
 
 # What is saved ?
 

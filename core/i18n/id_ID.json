@@ -1379,6 +1379,8 @@
         "Japonais (pas de support)": "",
         "Indonesien (pas de support)": "",
         "Turque (pas de support)": "",
+        "Moteur TTS": "",
+        "Plugin": "",
         "Date et heure": "Hari dan Jam",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Angkatan Sinkronisasi Waktu",
@@ -4009,7 +4011,6 @@
         "Aucun texte à dire": "",
         "Tag detécté dans le tts et plugin song présent": "",
         "Son trouvé path : ": "",
-        "Moteur de voix inconnu : ": "",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": ""
     }
 }

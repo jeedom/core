@@ -1379,6 +1379,8 @@
         "Japonais (pas de support)": "",
         "Indonesien (pas de support)": "",
         "Turque (pas de support)": "",
+        "Moteur TTS": "",
+        "Plugin": "プラグイン",
         "Date et heure": "日時",
         "Fuseau horaire de votre": "あなたのタイムゾーン",
         "Forcer la synchronisation de l'heure": "フォース時刻同期",
@@ -4009,7 +4011,6 @@
         "Aucun texte à dire": "",
         "Tag detécté dans le tts et plugin song présent": "",
         "Son trouvé path : ": "",
-        "Moteur de voix inconnu : ": "",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": ""
     }
 }
