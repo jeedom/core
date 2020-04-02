@@ -283,6 +283,16 @@ class config {
 		cache::flushWidget();
 	}
 	
+	public static function postConfig_object_summary($_value){
+		try {
+			foreach (jeeObject::all() as $object) {
+				$object->cleanSummary();
+			}
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
 	public static function preConfig_market_password($_value) {
 		if (!is_sha1($_value)) {
 			return sha1($_value);

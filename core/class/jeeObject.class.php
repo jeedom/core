@@ -644,6 +644,18 @@ class jeeObject {
 		}
 	}
 	
+	public function cleanSummary(){
+		$def = config::byKey('object:summary');
+		$summaries = $this->getConfiguration('summary');
+		foreach ($summaries as $key => $value) {
+			if(!isset($def[$key])){
+				unset($summaries[$key]);
+			}
+		}
+		$this->setConfiguration('summary',$summaries);
+		$this->save();
+	}
+	
 	public function getSummary($_key = '', $_raw = false) {
 		$def = config::byKey('object:summary');
 		if ($_key == '' || !isset($def[$_key])) {
