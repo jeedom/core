@@ -524,50 +524,6 @@ $('.sel_layout').on('change',function(){
 });
 
 
-
-
-$('.background-color-default').off('change').on('change',function(){
-	if($(this).value() == 1){
-		$(this).closest('td').find('.span_configureBackgroundColor').hide();
-	}else{
-		$(this).closest('td').find('.span_configureBackgroundColor').show();
-	}
-});
-$('.background-color-transparent').off('change').on('change',function(){
-	var td = $(this).closest('td');
-	if($(this).value() == 1){
-		td.find('.background-color').hide();
-	}else{
-		td.find('.background-color').show();
-	}
-});
-$('.color-default').off('change').on('change',function(){
-	var td = $(this).closest('td')
-	if($(this).value() == 1){
-		td.find('.color').hide();
-	}else{
-		td.find('.color').show();
-	}
-});
-$('.border-default').off('change').on('change',function(){
-	var td = $(this).closest('td')
-	if($(this).value() == 1){
-		td.find('.border').hide();
-	}else{
-		td.find('.border').show();
-	}
-});
-$('.border-radius-default').off('change').on('change',function(){
-	var td = $(this).closest('td')
-	if($(this).value() == 1){
-		td.find('.border-radius').hide();
-	}else{
-		td.find('.border-radius').show();
-	}
-});
-
-
-
 $('.advanceWidgetParameterDefault').off('change').on('change',function(){
 	if($(this).value() == 1){
 		$(this).closest('td').find('.advanceWidgetParameter').hide();
