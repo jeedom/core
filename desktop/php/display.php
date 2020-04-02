@@ -2,6 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+global $JEEDOM_INTERNAL_CONFIG;
 $nbEqlogic = 0;
 $nbCmd = 0;
 $objects = jeeObject::all();
@@ -69,7 +70,7 @@ $plugin_enable = config::getPluginEnable();
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="panel-group" id="accordionObject">
 			<?php
 			//No parent objects:
@@ -89,7 +90,7 @@ $plugin_enable = config::getPluginEnable();
 
 				$div .= '<div id="config_none" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-
+				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[-1] as $eqLogic) {
 					$translate_category = '';
@@ -134,7 +135,7 @@ $plugin_enable = config::getPluginEnable();
 				$div .= '</div>';
 				echo $div;
 			}
-
+			
 			//one panel per parent:
 			$i = 0;
 			$div = '';
@@ -162,10 +163,10 @@ $plugin_enable = config::getPluginEnable();
 				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
 				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
 				$div .= '</h3></div>';
-
+				
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-
+				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
 					$translate_category = '';
@@ -189,7 +190,7 @@ $plugin_enable = config::getPluginEnable();
 						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 					}
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
-
+					
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
 						$div .= '<input type="checkbox" class="cb_selCmd"> ';
@@ -216,7 +217,7 @@ $plugin_enable = config::getPluginEnable();
 			?>
 		</div>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="historytab">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
@@ -257,7 +258,7 @@ $plugin_enable = config::getPluginEnable();
 			</tbody>
 		</table>
 	</div>
-
+	
 </div>
 
 <?php include_file('desktop', 'display', 'js');?>
