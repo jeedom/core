@@ -2175,10 +2175,10 @@
         "Visuel": "Visual"
     },
     "desktop\/php\/display.php": {
-        "$value['name']": "$ Value [ 'name']",
+        "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Supprimer": "Delete",
-        "Visible": "Jeedom",
+        "Visible": "Visible",
         "Invisible": "Invisible",
         "Actif": "Active",
         "Inactif": "Inactive",
@@ -2197,9 +2197,11 @@
         "Configuration avancée": "Advanced configuration",
         "Aller sur la configuration de l\\'équipement": "Go to the configuration of the equipment",
         "Aller sur la configuration de l\\'objet": "Go to the configuration of the object",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
         "Historique des suppressions": "Deletion history",
         "Vider": "Clear",
-        "Date": "Dated",
+        "Date": "Date",
         "Type": "Type",
         "ID": "Id",
         "Nom": "Name"
