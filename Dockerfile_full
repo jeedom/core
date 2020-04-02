@@ -8,9 +8,6 @@ ADD install/install.sh /root/install_docker.sh
 RUN chmod +x /root/install_docker.sh
 RUN /root/install_docker.sh
 
-RUN apt-get install -y supervisor
-ADD install/OS_specific/Docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 VOLUME /var/lib/mysql
 VOLUME /var/www/html
 EXPOSE 80
