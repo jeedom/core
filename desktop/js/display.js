@@ -235,6 +235,7 @@ $('.bt_exportcsv').on('click',function() {
 
 $('.objectSelectEqlogics').on('click',function() {
   var object = $(this).closest('.objectSortable')
+  if (object.find('.accordion-toggle').attr('aria-expanded') == 'false') object.find('.accordion-toggle').click()
   $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
     $(this).prop('checked', true)
   })

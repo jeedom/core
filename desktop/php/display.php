@@ -77,10 +77,16 @@ $plugin_enable = config::getPluginEnable();
 				$div = '';
 				$div .= '<div class="panel panel-default objectSortable">';
 				$div .= '<div class="panel-heading" data-id="-1">';
-				$div .= '<h3 class="panel-title">';
+				$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
 				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none"><i class="far fa-circle"></i> {{Aucun}}';
-				$div .= '</a>';
-				$div .= '</div>';
+				$div .= '</a></h3>';
+
+				$div .= '<h3 class="panel-title" style="width:100px;display: inline;">';
+              	$div .= '<span class="pull-right" style="min-width:38px">&nbsp;</span>';
+				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
+				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
+				$div .= '</h3></div>';
+
 				$div .= '<div id="config_none" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
 
