@@ -1,126 +1,126 @@
-El análisis de la página de equipos le permite ver muchas informaciones
-relativa a los equipos en el centro:
+La página de Análisis de equipo le permite ver mucha información
+en relación con el equipo centralmente :
 
--   el estado de la batería
+-   el estado de tus baterías
 
--   las alertas módulos
+-   módulos en alerta
 
--   las acciones definidas
+-   acciones definidas
 
 -   alertas definidas
 
--   órdenes huérfanos
+-   órdenes huérfanas
 
-La pestaña Baterías
-====================
+La pestaña Baterías 
+==================
 
-Se puede ver en esta pestaña lista de sus módulos de batería
-su nivel restante (el color de la baldosa depende de ese nivel), la
-tipo y cantidad de baterías para poner en el módulo, el tipo de
-módulo y la información de fecha de la carga de la batería
-se ha actualizado. También puede ver si un determinado umbral era
-establecido para el módulo en particular (representado por una mano)
+Puede ver en esta pestaña la lista de sus módulos con batería,
+su nivel restante (el color del mosaico depende de este nivel), el
+tipo y número de baterías que se insertarán en el módulo, el tipo de
+módulo, así como la fecha en que la información del nivel de batería
+ha sido actualizado. También puede ver si se ha establecido un umbral específico
+banco de trabajo para el módulo particular (representado por una mano)
 
-> **Tip**
+> **Punta**
 >
-> Los umbrales de alerta / advertencia en los niveles de la batería
-> A nivel mundial configurable en el Jeedom configuración
-> (Pestaña Administración → Instalaciones), o el equipo en la página
-> Configuración avanzada del mismo en la pestaña de alertas.
+> Los umbrales de alerta / advertencia en los niveles de batería son
+> configurable globalmente en la configuración de Jeedom
+> (Administración → pestaña Equipo), o por equipo en la página
+> configuración avanzada de estos en la pestaña de alertas.
 
-La pestaña Módulos en alerta
+Módulos en la pestaña de alerta 
 ==========================
 
-En esta pestaña se verá módulos de alerta en tiempo real. la
-Las alertas pueden ser de diferentes tipos:
+En esta pestaña verá en tiempo real los módulos en alerta. la
+las alertas pueden ser de diferentes tipos :
 
--   tiempo de espera (configurado en la pestaña de alertas definido)
+-   tiempo de espera (configurado en la pestaña de alertas definidas)
 
--   aviso de batería o en peligro de extinción
+-   batería en advertencia o en peligro
 
--   advertencia o peligro de comandos (configurable en los ajustes
+-   comando en advertencia o peligro (configurable en los parámetros
     comandos avanzados)
 
-Otros tipos de alertas finalmente va a terminar aquí.
-Cada alerta estará representada por el color de la baldosa (el nivel
-Alerta) y un logotipo en la parte superior izquierda (tipo de aviso)
+Otros tipos de alertas se pueden encontrar aquí.
+Cada alerta estará representada por el color del mosaico (el nivel
+alerta) y un logotipo en la parte superior izquierda (el tipo de alerta)
 
-> **Tip**
+> **Punta**
 >
-> A continuación, se publicarán todos alerta incluso los módulos configurados
-> "No visible". Sin embargo, es interesante observar que si el módulo
-> ¿Es "visible" alerta también será visible en el salpicadero (en
-> El objeto en cuestión)
+> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en
+> "no visible". Sin embargo, es interesante notar que si el módulo
+> está &quot;visible&quot;, la alerta también estará visible en el panel de control (en
+> el objeto en cuestión)
 
-La ficha Acciones definido
+La pestaña Acciones definidas 
 =========================
 
-Este registro le permite ver las acciones definidas directamente en una
-mando. De hecho, se puede poner en diferentes órdenes y
-puede ser difícil recordar todo. Esta ficha es sólo eso
-y sintetiza varias cosas:
+Esta pestaña le permite ver las acciones definidas directamente en un
+mando. De hecho, podemos hacer diferentes pedidos y
+puede ser difícil de recordar todo. Esta pestaña está ahí para eso
+y sintetiza varias cosas :
 
--   acciones sobre el estado (que se encuentra en la configuración avanzada
-    información y comandos para realizar uno o más
-    acciones sobre el valor de una orden - de forma inmediata o después de
+-   acciones en estado (encontradas en parámetros avanzados
+    comandos de información y se utilizan para realizar uno o más
+    acciones sobre el valor de un pedido, inmediatamente o después
     un retraso)
 
--   confirmaciones de patrimonio (configurables en el mismo lugar en una
-    controlar la información y para pedir la confirmación
+-   confirmaciones de acciones (configurables en el mismo lugar en un
+    información del comando y permitir solicitar una confirmación para
     realizar una acción)
 
--   confirmaciones con código (igual que antes, pero con
-    introducción de un código)
+-   confirmaciones con código (igual que el anterior pero con
+    ingresando un código)
 
--   la acción pre y post (configurable siempre en el mismo lugar de
-    comando de acción y para la realización de uno o varios de los demás
+-   acciones pre y post (siempre configurables en el mismo lugar en
+    un comando de acción y que permite ejecutar uno o más otros
     acciones antes o después de la acción en cuestión)
 
-> **Tip**
+> **Punta**
 >
-> En la tabla le permite ver las acciones tanto de texto
-> Definido. Se pueden añadir otros tipos de acciones definidas.
+> La tabla le permite ver muy textualmente las acciones.
+> definido. Se pueden agregar otros tipos de acciones definidas.
 
-La ficha Alertas definido
+La pestaña Alertas definidas 
 =========================
 
-Esta ficha le permite ver todas las alertas definidas, se quiere
-encontrará una tabla con la siguiente información si está disponible:
+Esta pestaña le permite ver todas las alertas definidas, usted
+encuentra en una tabla la siguiente información si existe :
 
--   el retraso en la comunicación de alertas
+-   alertas de retraso de comunicación
 
--   umbrales específicos de baterías en el equipo
+-   umbrales de batería específicos definidos en un dispositivo
 
--   varias órdenes de alertas de peligro y advertencias
+-   las diversas alertas de peligro y comandos de advertencia
 
-El huérfano ficha Comandos
+La pestaña Orphan Orders 
 =============================
 
-Esta ficha le permite ver de un vistazo si usted tiene
-comandos huérfanos utilizan a través de Jeedom. Un pedido
-Huérfano es un comando utilizado en alguna parte, pero que ya no existe.
-Aquí encontramos todos estos comandos, tales como:
+Esta pestaña le permite ver de un vistazo si tiene alguna
+comandos huérfanos utilizados a través de Jeedom. Un pedido
+huérfano es un comando utilizado en algún lugar pero que ya no existe.
+Encontraremos aquí todos estos comandos, como por ejemplo :
 
--   huérfanos comandos utilizados en el cuerpo de un escenario
+-   comandos huérfanos utilizados en el cuerpo de un escenario
 
--   los utilizados en un escenario de gatillo
+-   los utilizados para desencadenar un escenario
 
-Y se utiliza en muchos otros lugares como (no exhaustiva):
+Y se usa en muchos otros lugares como (no exhaustivo) :
 
 -   interacciones
 
--   jeedom configuración
+-   configuraciones de libertad
 
--   en la acción pre o post de un control
+-   en pre o post acción de una orden
 
--   acción sobre el estado del pedido
+-   en acción sobre el estado del pedido
 
--   en algunos plugins
+-   en algunos complementos
 
-> **Tip**
+> **Punta**
 >
-> En la tabla le permite ver los comandos de texto tanto
-> Huérfano. Su objetivo es identificar rápidamente todos
-> órdenes "huérfanos" a través de toda Jeedom y plugins. El se
-> Algunas áreas no pueden ser analizados, la tabla será
-> Ser más amplia en el tiempo.
+> La tabla proporciona una vista muy textual de los comandos.
+> huérfano. Su propósito es poder identificar rápidamente todos los
+> comandos &quot;huérfanos&quot; a través de todos los complementos y libertad. El se
+> algunas áreas pueden no ser analizadas, la tabla será
+> ser cada vez más exhaustivo con el tiempo.

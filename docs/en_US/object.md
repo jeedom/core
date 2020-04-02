@@ -1,67 +1,67 @@
-The **objects** allow to define the tree of your home automation.
-All the equipment you create will belong to an object and
-will be easier to locate. We then say that the object
-is the **parent** of the equipment. Object management is accessible
+The **objects** allow you to deende the tree structure of your home automation.
+All the equipment you create must belong to an object and
+will be more easily identifiable. We then say that the object
+is the **relative** equipment. Object management is accessible
 from the menu **Tools → Objects**.
 
-To give free choice to the customization, you can name these
-objects as you want. Usually, we will define the different
-parts of his house, like the names of the pieces (this is also the
+To give free choice to customization, you can name these
+objects as you want. Usually, we will deende the different
+parts of his house, like the names of the rooms (this is
 recommended configuration).
 
-Management
+Management 
 =======
 
-Two options are available to you:
+You have two options :
 
--   **Add**: Create a new object.
+-   **Add** : Create a new object.
 
--   **Overview**: Displays the list of created objects
+-   **Overview** : Displays the list of created objects
     as well as their configuration.
 
-My objects
+My objects 
 ==========
 
 Once you have created an object, it will appear in this part.
 
-Object tab
+Object tab 
 ------------
 
-Clicking on an object will take you to its configuration page. What
-whatever changes are made, do not forget to save to the
+By clicking on an object, you access its configuration page. What
+whatever the changes made, don&#39;t forget to save at the
 end.
 
-Here are the different features to configure an object:
+Here are the different characteristics to configure an object :
 
--   **Name of the object**: The name of your object.
+-   **Object name** : The name of your object.
 
--   **Father**: Indicates the parent of the current object, this allows you to
-    define a hierarchy between the objects. For example: The show has
-    for parent the apartment. An object can only have one parent
-    but many objects can have the same parent.
+-   **Dad** : Indicates the relative of the current object, this allows
+    deende a hierarchy between objects. For example : The living room has
+    to relative the apartment. An object can only have one relative
+    but several objects can have the same relative.
 
--   **Visible**: Check this box to make this object visible.
+-   **Jeedom** : Check this box to make this object visible.
 
--   **Hide on dashboard**: Check this box to hide
-    the object on the dashboard. It is still preserved in the
-    list, which allows to display it, but only
-    explicit way.
+-   **Hide on the dashboard** : Check this box to hide
+    the object on the dashboard. It is still kept in the
+    list, which allows you to display it, but only
+    explicitly.
 
--   **Icon**: Choose an icon for your object.
+-   **Icon** : Allows you to choose an icon for your object.
 
--   **Color of the tag**: Allows to choose the color of the object and the
+-   **Tag color** : Allows you to choose the color of the object and
     equipment attached to it.
 
--   **Tag text color**: Allows you to choose the color of the text
-    of the object. This text will be over **the color of the tag**. To you
+-   **Tag text color** : Allows you to choose the text color
+    of the object. This text will be over the **Tag color**. To you
     to choose a color to make the text readable.
 
--   **Abstract text color**: Allows you to choose the color of the text
-    summary results of the object in the dashboard.
+-   **Summary text color** : Allows you to choose the color of
+    results of the object summary in the dashboard.
 
--   **Size on the dashboard (1 to 12)**: Sets the width
-    the display of this object in the dashboard. For example: if you
-    put `6` to two consecutive objects in the list, then
+-   **Size on the dashboard (1 to 12)** : Allows you to deende the width
+    the display of this object in the dashboard. For example : if you
+    put `6` to two consecutive objects in the list, then it
     will be side by side on the dashboard. If you put `3` to four
     objects that follow each other, they will also be side by side.
 
@@ -73,74 +73,74 @@ Here are the different features to configure an object:
 
 > **Tip**
 >
-> You can see a graphic representing all the elements of Jeedom
-> attached to this object by clicking on the **Links** button, up to
+> You can see a graph representing all the elements of Jeedom
+> attached to this object by clicking on the button **Connections**, up at
 > right.
 
 > **Tip**
 >
-> When a device is created and no parent has been defined, it
-> will have as parent: **None**.
+> When a device is created and no relative has been deended, it
+> will have as relative : **No** .
 
-Summary tab
+Summary tab 
 -------------
 
 Summaries are global information, assigned to an object, which
-are displayed on the dashboard next to the name of the dashboard.
+are displayed in particular on the dashboard next to the name of the latter.
 
-### Bulletin board
+### Bulletin board 
 
 The columns represent the summaries assigned to the current object. Three
-lines are available:
+lines are proposed to you :
 
--   **Go up in the global summary**: Check the box if you
+-   **Go up in the global summary** : Check the box if you
     want the summary to be displayed in the menu bar
     from Jeedom.
 
--   **Hide in desktop**: Check the box if you do not want
-    the summary is displayed next to the object name on the dashboard.
+-   **Hide on desktop** : Check the box if you do not want
+    the summary is displayed next to the name of the object on the dashboard.
 
--   **Hide in mobile**: Check the box if you do not want
+-   **Hide on mobile** : Check the box if you do not want
     the summary is displayed when you view it from a mobile.
 
-### Orders
+### Orders 
 
-Each tab represents a summary type defined in the configuration
-from Jeedom. Click **Add an order** so that it is
+Each tab represents a type of summary deended in the configuration
+from Jeedom. Click on **Add an order** so that it is
 taken into account in the summary. You have the choice to select the
-control of any Jeedom equipment, even if it does not have to
-parent this object.
+order any Jeedom equipment, even if it is not for
+relative this object.
 
 > **Tip**
 >
 > If you want to add a summary type or to configure the
-> method of calculating the result, the unit, the icon and the name of an abstract,
-> you have to go to Jeedom's general configuration:
-> **Administration → Configuration → Summaries Tab**.
+> method of calculating the result, the unit, the icon and the name of a summary,
+> you have to go to the general configuration of Jeedom :
+> **Administration → Configuration → Summaries tab**.
 
-Overview
+Overview 
 ==============
 
 The overview allows you to view all the objects in
-Jeedom, as well as their configuration:
+Jeedom, as well as their configuration :
 
--   **ID**: ID of the object.
+-   **Id** : Object Id.
 
--   **Object**: Name of the object.
+-   **Object** : Object name.
 
--   **Father**: Name of the parent object.
+-   **Dad** : Name of relative object.
 
--   **Visible**: Visibility of the object.
+-   **Jeedom** : Object visibility.
 
--   **Hidden**: Indicates if the object is hidden on the dashboard.
+-   **Mask** : Indicates if the object is hidden on the dashboard.
 
--   **Summary Set**: Indicates the number of orders per summary. This
-    which is in blue is taken into account in the overall summary.
+-   **Summary Deended** : Indicates the number of orders per summary. This
+    which is in blue is taken into account in the global summary.
 
--   **Summary Dashboard Hidden**: Indicates hidden summaries on
+-   **Hidden Dashboard Summary** : Show hidden summaries on
     the dashboard.
 
--   **Summary Mobile Masked**: Indicates hidden summaries on
+-   **Hidden Mobile Summary** : Show hidden summaries on
     the cellphone.
 
 

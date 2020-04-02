@@ -1,194 +1,194 @@
-Partie importante dans un logiciel : la partie historisation, véritable
-mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe
-quelle commande de type information (binaire ou numérique). Cela vous
-permettra donc par exemple d’historiser une courbe de température, de
-consommation ou les ouvertures d’une porte…​
+Wichtiger Teil in der Software : der Historisierungsteil, real
+Erinnerung daran. In Jeedom ist es möglich, jeden zu historisieren
+welcher Informationstyp Befehl (binär oder digital). Das du
+ermöglicht es daher beispielsweise, eine Temperaturkurve zu historisieren,
+Verbrauch oder Türöffnungen…
 
-Principe 
+Prinzip 
 ========
 
-Ici est décrit le principe d’historisation de Jeedom. Il n’est
-nécessaire de le comprendre que si vous rencontrez des soucis
-d’historisation ou que vous voulez modifier les réglages de
-l’historisation. Les réglages par défaut conviennent dans la plupart des
-cas.
+Hier wird das Prinzip der Historisierung von Jeedom beschrieben. Es ist nicht
+notwendig, um das zu verstehen, wenn Sie irgendwelche Bedenken haben
+oder möchten die Einstellungen für ändern
+Historisierung. Die Standardeinstellungen sind für die meisten geeignet
+Fall.
 
 Archivierung 
 ---------
 
-L’archivage de données permet à Jeedom de réduire la quantité de données
-conservées en mémoire. Cela permet de ne pas utiliser trop de place et
-de ne pas ralentir le système. En effet, si vous conservez toute les
-mesures, cela fait d’autant plus de points à afficher et donc peut
-considérablement allonger les temps pour rendre un graphique. En cas
-d’un nombre trop important de points, cela peut même faire planter
-l’affichage du graphique.
+Durch die Datenarchivierung kann Jeedom die Datenmenge reduzieren
+in Erinnerung behalten. Dies ermöglicht es, nicht zu viel Platz zu verbrauchen und
+das System nicht zu verlangsamen. In der Tat, wenn Sie alle behalten
+Maßnahmen, dies macht umso mehr Punkte anzuzeigen und kann daher
+verlängern Sie die Zeiten dramatisch, um ein Diagramm zu erstellen. Für den Fall
+zu viele Punkte, es kann sogar abstürzen
+Grafikanzeige.
 
-L’archivage est une tâche qui se lance dans la nuit et compacte les
-données récupérées dans la journée. Par défaut Jeedom récupère toutes
-les données plus vieilles de 2h et en fait des paquets de 1h (soit une
-moyenne, un minimum ou un maximum en fonction des réglages). On a donc
-ici 2 paramètres, un pour la taille des paquets et un autre pour savoir
-à partir de quand en faire (pour rappel par défaut ce sont des paquets
-de 1h avec des données qui ont plus de 2h d’ancienneté).
+Die Archivierung ist eine Aufgabe, die nachts beginnt und komprimiert
+Daten während des Tages wiederhergestellt. Standardmäßig stellt Jeedom alle wieder her
+2h ältere Daten und macht 1h Pakete (eins
+Durchschnitt, Minimum oder Maximum je nach Einstellung). Also haben wir
+hier 2 Parameter, einer für die Paketgröße und einer für das Wissen
+wann es zu tun ist (standardmäßig sind dies Pakete
+1 Stunde mit Daten, die mehr als 2 Stunden Dienstalter haben).
 
-> **Tip**
+> **Spitze**
 >
-> Si vous avez bien suivi vous devriez avoir une haute précision sur les
-> 2 dernières heures seulement. Pourtant quand je me connecte à 17h,
-> j’ai une précision sur les 17 dernières heures. Pourquoi ? En fait,
-> pour éviter de consommer des ressources inutilement, la tâche qui fait
-> l’archivage ne se déroule qu’une fois par jour, le soir.
+> Wenn Sie gut gefolgt sind, sollten Sie eine hohe Präzision auf dem haben
+> Nur die letzten 2 Stunden. Doch wenn ich mich um 17 Uhr anmelde.,
+> Ich habe eine Klarstellung zu den letzten 17 Stunden. Warum ? In der Tat,
+> um unnötigen Ressourcenverbrauch zu vermeiden, ist die Aufgabe, die macht
+> Die Archivierung erfolgt nur einmal am Tag, abends.
 
-> **Important**
+> **Wichtig**
 >
-> Bien sûr, ce principe d’archivage ne s’applique qu’aux commandes de
-> type numérique ; sur les commandes de type binaire, Jeedom ne conserve
-> que les dates de changement d’état.
+> Dieses Archivierungsprinzip gilt natürlich nur für Bestellungen von
+> digitaler Typ; Bei Befehlen vom Typ Binär behält Jeedom nicht bei
+> dass die Daten der Zustandsänderung.
 
-Affichage d’un graphique 
+Anzeigen eines Diagramms 
 ========================
 
-Il existe plusieurs moyens d’accéder à l’historique :
+Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
--   en mettant une zone graphe dans une vue (voir plus bas),
+-   indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten),
 
--   en cliquant sur la commande voulue dans un widget,
+-   durch Klicken auf den gewünschten Befehl in einem Widget,
 
--   en allant dans la page historique qui permet de superposer
-    différentes courbes et de combiner les styles (aire, courbe, barre)
+-   indem Sie zur Verlaufsseite gehen, die das Überlagern ermöglicht
+    verschiedene Kurven und kombinieren Stile (Fläche, Kurve, Balken)
 
--   en mobile en restant appuyé sur le widget en question
+-   auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben
 
-Si vous affichez un graphique par la page historique ou en cliquant sur
-le widget, vous avez accès à plusieurs options d’affichage :
+Wenn Sie ein Diagramm auf der Verlaufsseite oder durch Klicken auf anzeigen
+Über das Widget haben Sie Zugriff auf mehrere Anzeigeoptionen :
 
-On retrouve en haut à droite la période d’affichage (ici sur la dernière
-semaine car, par défaut je veux que ça soit seulement une semaine - voir
-2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
-(ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc
-qu’a les configurer une fois).
+Oben rechts finden wir den Anzeigezeitraum (hier am letzten
+Woche, weil ich standardmäßig nur eine Woche haben möchte - siehe
+2 Absätze oben), dann kommen die Parameter der Kurve
+(Diese Parameter werden von einer Anzeige zur anderen gehalten; Sie daher
+als sie einmal konfigurieren).
 
--   **Escalier** : permet d’afficher la courbe sous la forme d’un
-    escalier ou d’un affichage continu.
+-   **Treppe** : zeigt die Kurve als an
+    Treppe oder kontinuierliche Anzeige.
 
--   **Variation** : affiche la différence de valeur par rapport au
-    point précédent.
+-   **Veränderung** : zeigt die Wertdifferenz von an
+    vorheriger Punkt.
 
--   **Ligne** : affiche le graphique sous forme de lignes.
+-   **Linie** : zeigt das Diagramm als Linien an.
 
--   **Aire** : affiche le graphique sous forme d’une aire.
+-   **Bereich** : Zeigt das Diagramm als Fläche an.
 
--   **Colonne**\* : affiche le graphique sous forme de barres.
+-   **Spalte**\.* : Zeigt das Diagramm als Balken an.
 
-Graphique sur les vues et les designs 
+Grafik zu Ansichten und Designs 
 =====================================
 
-Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici
-les options de configuration et non comment faire, pour cela il faut se
-rendre sur la documention des vues ou des designs en fonction). Voici
-les options :
+Sie können die Grafiken auch in den Ansichten anzeigen (wir werden hier sehen
+die Konfigurationsoptionen und nicht wie es geht, dafür muss man
+Ansichten oder Designs basierend auf der Dokumentation rendern). hier ist
+die Optionen :
 
-Une fois une donnée activée, vous pouvez choisir :
+Sobald eine Daten aktiviert sind, können Sie auswählen :
 
--   **Couleur** : la couleur de la courbe.
+-   **Farbe** : die Farbe der Kurve.
 
--   **Type** : le type de graphique (aire, ligne ou colonne).
+-   **Typ** : die Art des Diagramms (Fläche, Linie oder Spalte).
 
--   **Echelle** : vu que vous pouvez mettre plusieurs courbes (données)
-    sur le même graphique, il est possible de distinguer les échelles
-    (droite ou gauche).
+-   **Maßstab** : da kann man mehrere kurven (daten) setzen
+    Im selben Diagramm ist es möglich, die Skalen zu unterscheiden
+    (rechts oder links).
 
--   **Escalier** : permet d’afficher la courbe sous la forme d’un
-    escalier ou d’un affichage continu
+-   **Treppe** : zeigt die Kurve als an
+    Treppe oder kontinuierliche Anzeige
 
--   **Empiler** : permet d’empiler les valeurs des courbes (voir en
-    dessous pour le résultat).
+-   **Stapel** : ermöglicht das Stapeln der Kurvenwerte (siehe in
+    unten für das Ergebnis).
 
--   **Variation** : affiche la différence de valeur par rapport au
-    point précédent.
+-   **Veränderung** : zeigt die Wertdifferenz von an
+    vorheriger Punkt.
 
-Option sur la page d’historique 
+Option auf der Verlaufsseite 
 ===============================
 
-La page d’historique donne accès à quelques options supplémentaires
+Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
-Historique calculé 
+Berechnete Geschichte 
 ------------------
 
-Permet d’affiché une courbe en fonction d’un calcul sur plusieurs
-commande (vous pouvez à peu pret tout faire, +-/\* valeur absolue…​ voir
-documentation PHP pour certaine fonction). Ex :
-abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
-vie\]\[Hygrométrie\]\[Température\]*)
+Wird verwendet, um eine Kurve anzuzeigen, die auf einer Berechnung für mehrere basiert
+Befehl (Sie können so ziemlich alles tun, + - / \. * absoluter Wert ... siehe
+PHP-Dokumentation für bestimmte Funktionen). Ex :
+abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Raum von
+Das Leben \.] \. [Luftfeuchtigkeit \.] \. [Temperatur \.] *)
 
-Vous avez aussi accès à un gestion de formules de calcul qui vous permet
-de les sauvegarder pour les réafficher plus facilement
+Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht
+Speichern Sie sie zur einfacheren Anzeige
 
-> **Tip**
+> **Spitze**
 >
-> Il suffit de cliquer sur le nom de l’objet pour le déplier ;
-> apparaissent les commandes historisées qui peuvent être graphées.
+> Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten.
+> erscheinen die historischen Befehle, die grafisch dargestellt werden können.
 
-Historique de commande 
+Bestellhistorie 
 ----------------------
 
-Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes :
+Vor allen Daten, die grafisch dargestellt werden können, befinden sich zwei Symbole :
 
--   **Poubelle** : permet de supprimer les données enregistrées ; lors
-    du clic, Jeedom demande s’il faut supprimer les données avant une
-    certaine date ou toutes les données.
+-   **Mülleimer** : ermöglicht das Löschen der aufgezeichneten Daten; dann
+    Jeedom fragt, ob die Daten vor a gelöscht werden müssen
+    bestimmtes Datum oder alle Daten.
 
--   **Flèche** : permet d’avoir un export CSV des données historisées.
+-   **Pfeil** : Ermöglicht einen CSV-Export historischer Daten.
 
-Suppression de valeur incohérente 
+Inkonsistente Wertentfernung 
 =================================
 
-Parfois, il se peut que vous ayez des valeurs incohérentes sur les
-graphiques. Cela est souvent dû à un souci d’interprétation de la
-valeur. Il est possible de supprimer ou changer la valeur du point en
-question, en cliquant sur celui-ci directement sur le graphique ; de
-plus, vous pouvez régler le minimum et le maximum autorisés afin
-d’éviter des problèmes futurs.
+Manchmal haben Sie möglicherweise inkonsistente Werte auf dem
+Grafiken. Dies ist häufig auf Bedenken hinsichtlich der Auslegung des
+Wert. Es ist möglich, den Punktwert um zu löschen oder zu ändern
+Frage, indem Sie direkt in der Grafik darauf klicken; von
+Darüber hinaus können Sie das zulässige Minimum und Maximum festlegen
+Vermeiden Sie zukünftige Probleme.
 
-Timeline 
+Zeitleiste 
 ========
 
-La timeline affiche certains événements de votre domotique sous forme
-chronologique.
+In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation im Formular angezeigt
+chronologisch.
 
-Pour les voir, il vous faut d’abord activer le suivi sur la timeline des
-commandes ou scénarios voulus :
+Um sie zu sehen, müssen Sie zuerst das Tracking auf der Zeitleiste von aktivieren
+gewünschte Befehle oder Szenarien :
 
--   **Scenario** : soit directement sur la page de scénario, soit sur la
-    page de résumé des scénarii pour le faire en "masse"
+-   **Szenario** : entweder direkt auf der Szenarioseite oder auf der
+    Szenario-Übersichtsseite, um dies in "Masse" zu tun"
 
--   **Commande** : soit dans la configuration avancée de la commande,
-    soit dans la configuration de l’historique pour le faire en "masse"
+-   **Bestellen** : entweder in der erweiterten Konfiguration des Befehls,
+    entweder in der Konfiguration der Geschichte, um es in "Masse" zu tun"
 
-> **Tip**
+> **Spitze**
 >
-> Vous avez accès aux fenêtres de résumé des scénarii ou de la
-> configuration de l’historique directement à partir de la page de
-> timeline.
+> Sie haben Zugriff auf die Zusammenfassungsfenster der Szenarien oder der
+> Konfiguration des Verlaufs direkt von der Seite
+> Zeitleiste.
 
-Une fois que vous avez activé le suivi dans la timeline des commandes et
-scénarii voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
+Sobald Sie die Nachverfolgung in der Bestellzeitleiste aktiviert haben und
+gewünschten Szenarien können Sie sie auf der Zeitleiste sehen.
 
-> **Important**
+> **Wichtig**
 >
-> Il faut attendre de nouveaux événements après avoir activé le suivi
-> sur la timeline avant de les voir apparaître.
+> Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
+> auf der Zeitleiste, bevor sie angezeigt werden.
 
-Les cartes sur la timeline affiche :
+Die Karten auf der Zeitleiste werden angezeigt :
 
--   **Commande action** : en fond rouge, une icône à droite vous permet
-    d’afficher la fenêtre de configuration avancée de la commande
+-   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+    Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
--   **Commande info** : en fond bleu, une icône à droite vous permet
-    d’afficher la fenêtre de configuration avancée de la commande
+-   **Info Befehl** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+    Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
--   **Scénario** : en fond gris, vous avez 2 icônes : une pour afficher
-    le log du scénario et une pour aller sur le scénario
+-   **Szenario** : In grauem Hintergrund haben Sie 2 Symbole : eine anzuzeigen
+    das Szenario-Protokoll und eines, um zum Szenario zu gelangen
 
 

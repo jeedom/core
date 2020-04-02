@@ -116,7 +116,7 @@ class scenarioExpression {
 				$replace[$value] = '';
 			}
 		}
-		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default');
+		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default.html');
 		return $return;
 	}
 	
@@ -1349,6 +1349,7 @@ class scenarioExpression {
 						break;
 						case 'activate':
 						$this->setLog($scenario, __('Activation du scénario : ', __FILE__) . $actionScenario->getName());
+						$actionScenario->setLastLaunch(date('Y-m-d H:i:s'));
 						$actionScenario->setIsActive(1);
 						$actionScenario->save();
 						break;

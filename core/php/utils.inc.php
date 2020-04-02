@@ -1050,6 +1050,12 @@ function sanitizeAccent($_message) {
 	}
 	
 	function isConnect($_right = '') {
+		if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
+			$user = user::byId($_SESSION['user']->getId());
+			if(!is_object($user)){
+				return false;
+			}
+		}
 		if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
 			return $GLOBALS['isConnect::' . $_right];
 		}
@@ -1375,13 +1381,7 @@ function sanitizeAccent($_message) {
 	}
 	
 	function deleteSession($_id) {
-		$cSsid = session_id();
-		@session_start();
-		session_id($_id);
-		session_unset();
-		session_destroy();
-		session_id($cSsid);
-		@session_write_close();
+		@unlink(session_save_path().'/sess_'.$_id);
 	}
 	
 	function unautorizedInDemo($_user = null) {

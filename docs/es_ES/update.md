@@ -1,135 +1,135 @@
-descripción
+Descripción 
 ===========
 
-La actualización ** ** centro permite actualizar todos
-Jeedom características, incluyendo software básico (core), el
-plugins, widgets, etc. Otras extensiones de las funciones de gestión
-son disponible (quitar, reinstalar, cheque, etc.)
+La **centro de actualizaciones** le permite actualizar todo
+Características de Jeedom, incluido el software central,
+complementos, widgets, etc.. Otras funciones de administración de extensiones
+están disponibles (eliminar, reinstalar, verificar, etc.)
 
-Página Centro de Actualización
+La página del Centro de actualizaciones 
 ================================
 
-Se puede acceder desde el menú de administración ** → hacer Center
+Se puede acceder desde el menú. **Administración → Centro de actualización
 día**.
 
-Se encuentra, a la izquierda, todas las características de
-Jeedom y en la parte derecha ** ** información que describe lo
-sucedido, cuando se puso en marcha una actualización.
+Encontrará, a la izquierda, todas las funcionalidades de
+Jeedom y en la parte correcta **Información** quien describe lo que el
+sucedió, cuando lanzaste una actualización.
 
-Las funciones de la parte superior de la página.
+Funciones en la parte superior de la página.. 
 ---------------------------------
 
-La parte superior de la tabla, son los botones de control. Jeedom es
-se conecta periódicamente con el mercado para ver si las actualizaciones
-están disponibles (fecha de la última verificación es en la parte superior
-izquierdo de la tabla). Si desea realizar una comprobación manual,
-puede pulsar el botón "Buscar actualizaciones".
+En la parte superior de la tabla están los botones de control.. Jeedom se
+conectarse periódicamente con Market para ver si hay actualizaciones
+están disponibles (la fecha de la última verificación se indica en la parte superior
+izquierda de la mesa). Si desea realizar una verificación manual,
+puedes presionar el botón "Buscar actualizaciones".
 
-El botón **Actualización** permite actualizar todos
-Jeedom. Una vez que haya hecho clic en él, obtenemos estos
-opciones:
+El botón **Poner al día** permite actualizar el conjunto de
+Jeedom. Una vez que hace clic en él, obtenemos estos diferentes
+opciones :
 
--   **Guardar** antes: Realizar una copia de seguridad antes Jeedom
-    para realizar la actualización.
+-   **Ahorre antes** : Copia de seguridad de Jeedom antes
+    realizar la actualización.
 
--   **Actualización** plugins: Se utiliza para incluir plugins en la
+-   **Actualizar complementos** : La permite incluir complementos en
     actualización.
 
--   **Actualización** núcleo: si se debe incluir en el núcleo Jeedom
+-   **Actualiza el núcleo** : La permite incluir el núcleo Jeedom en
     la actualización.
 
--   ** ** modo forzado: realiza la actualización en modo forzado, es decir,
-    que incluso si hay un error, Jeedom continúa y no restaurará
+-   **Modo forzado** : Actualización en modo forzado, es decir
+    que, incluso si hay un error, Jeedom continúa y no restaurará
     la salvaguardia.
 
--   **Actualización** volver a aplicar: Para volver a aplicar un conjunto
-    al día. (Nota: Todas las actualizaciones se pueden volver a aplicar.)
+-   **Actualización para volver a aplicar** : La permite volver a aplicar una apuesta.
+    al día. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
 > **Importante**
 >
-> Antes de una actualización por defecto Jeedom hará una copia de seguridad. en
-> Caso se refieren a la hora de aplicar una actualización, se Jeedom
-> Restaurar automáticamente la copia de seguridad realizada inmediatamente antes. este principio
-> ¿Es válida para las actualizaciones y no Jeedom plugins.
+> Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. en
+> si hay un problema al aplicar una actualización, Jeedom lo hará
+> restaurar automáticamente la copia de seguridad realizada justo antes. Este principio
+> solo es válido para las actualizaciones de Jeedom y no para los complementos.
 
-> **Tip**
+> **Punta**
 >
-> Puede forzar una actualización de Jeedom, incluso si se hace
-> No ofrecer.
+> Puede forzar una actualización de Jeedom, incluso si no lo hace
+> no ofrezcas ninguna.
 
-Las actualizaciones de la tabla
+La tabla de actualización 
 ---------------------------
 
-La mesa consta de dos pestañas:
+La tabla consta de dos pestañas. :
 
--   **básicas y complementos** Contiene software básico y Jeedom
-    lista de plugins instalados.
+-   **Núcleo y complementos** : Contiene software básico Jeedom y
+    lista de complementos instalados.
 
--   **Otros**: tiene widgets, scripts, etc.
+-   **Otro** : Contiene widgets, scripts, etc..
 
-Encontrará la siguiente información: \ * ** ** Estado: OK o NOK.
-Se utiliza para determinar el estado actual del plugin. \ * ** ** nombre: Usted va
-encontrar la fuente del elemento, el tipo de elemento y el nombre. \ *
-**** Versión: Muestra la versión exacta del artículo. \ *** ** Opciones:
-Marque esta casilla si no desea que esto se hizo
-día durante la actualización general (botón **Actualización**).
+Encontrará la siguiente información : \* **Estatus** : OK o NOK.
+Permite conocer el estado actual del complemento. \* **Apellido** : Tu ahi
+encuentre la fuente del elemento, el tipo de elemento y su nombre. \*
+**Versión** : Indica la versión específica del artículo.. \* **Opciones** :
+Marque esta casilla si no desea que este artículo se actualice.
+día durante la actualización general (Botón **Poner al día**).
 
-> **Tip**
+> **Punta**
 >
-> Para cada tabla, la primera línea permite siguiente filtro
-> El estado, el nombre o la versión de estos elementos.
+> Para cada tabla, la primera línea permite el siguiente filtro
+> El estado, nombre o versión de los elementos presentes..
 
-En cada línea, puede utilizar las siguientes funciones
-cada elemento:
+En cada línea, puede usar las siguientes funciones para
+cada elemento :
 
--   Vuelva a instalar ** **: Fuerza reasentamiento.
+-   **Restablecer** : Reasentamiento forzado.
 
--   ** ** Eliminar: desinstalar el.
+-   **Remove** : La permite desinstalarlo.
 
--   ** ** Check: Consulta el origen de las actualizaciones de si
-    una nueva actualización disponible.
+-   **Comprobar** : Consulte la fuente de actualizaciones para averiguar si
+    hay una nueva actualización disponible.
 
--   **Actualización**: Para actualizar el elemento (si tiene
+-   **Poner al día** : La permite actualizar el elemento (si tiene
     una actualización).
 
--   ** ** Cambios: Permite acceder a la lista de cambios
+-   **Cambios** : Acceda a la lista de cambios en el
     actualización.
 
 > **Importante**
 >
-> Si el registro de cambios está vacío, pero hay todavía una actualización
-> Día, quiere decir que esta es la documentación se ha actualizado.
-> No es necesario pedir al desarrollador de la
-> Los cambios, ya que no tiene necesariamente. (Esto es a menudo una apuesta
-> Actualización de la traducción de la documentación)
+> Si el registro de cambios está vacío pero aún tiene una actualización
+> actualización significa que la documentación ha sido actualizada.
+> Por lo tanto, no es necesario pedirle al desarrollador
+> cambios, ya que no necesariamente hay. (a menudo es una apuesta
+> traducción de documentación)
 
-> **Tip**
+> **Punta**
 >
-> Tenga en cuenta que "núcleo: jeedom" significa "actualizar software
-> Jeedom básico".
+> Tenga en cuenta que &quot;núcleo : jeedom &quot;significa&quot; actualizar el software
+> Base Jeedom".
 
-línea de comandos actualizada
+Actualización de línea de comando 
 ================================
 
-Es posible hacer una actualización directamente Jeedom SSH.
-Una vez conectado, este es el comando para realizar:
+Es posible actualizar Jeedom directamente en SSH.
+Una vez conectado, este es el comando para realizar :
 
-    sudo php /var/www/html/install/update.php
+    sudo php /var/www/html/install/update.php
 
-Los ajustes posibles son:
+Los posibles parámetros son :
 
--   **`modo`** : `forzado`, para ejecutar una actualización en modo forzado (no 
-    hace caso omiso de los errores).
+-   **`mode`** : `force`, pour lancer une actualización en mode forcé (ne
+    ignora los errores).
 
--   **`version`** seguido por el número de versión para volver a aplicar
+-   **`version`** : seguido del número de versión, para volver a aplicar el
     cambios desde esta versión.
 
-Un ejemplo de sintaxis para una actualización forzada en
-volver a aplicar los cambios desde 1.188.0:
+Aquí hay un ejemplo de sintaxis para hacer una actualización forzada en
+volver a aplicar los cambios desde 1.188.0 :
 
-    sudo php /var/www/html/install/update.php versión mode = fuerza = 1.188.0
+    sudo php / var / www / html / install / update.modo php = forzar versión = 1.188.0
 
-Atención después de una necesidad de actualización en línea de comandos
-volver a aplicar los derechos a la carpeta Jeedom:
+Atención, después de una actualización en la línea de comando, es necesario
+volver a aplicar los derechos en la carpeta Jeedom :
 
-    chown -R www-data: www-data / var / www / html
+    chown -R www-data:www-data / var / www / html

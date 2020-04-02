@@ -25,11 +25,11 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	die();
 }
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
-if (class_exists('gcp')) {
-	$engine = 'gcp';
+if (class_exists('dataservice')) {
+	$engine = 'dataservice';
 } else {
 	$engine = init('engine', 'pico');
-	if ($engine == 'gcp') {
+	if ($engine == 'dataservice') {
 		$engine = 'pico';
 	}
 }
@@ -46,8 +46,10 @@ if(substr(init('text'), -1) == '#' && substr(init('text'), 0,1) == '#' && class_
 		if (init('path') == 1) {
 			echo $song->getPath();
 		} else {
-			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename=' . $song->getName() . '.mp3');
+			header('Content-Type: audio/mpeg');
+			header("Content-Transfer-Encoding: binary");
+			header("Pragma: no-cache");
+			header('Content-length: '.filesize($song->getPath()));
 			readfile($song->getPath());
 		}
 		die();
@@ -63,16 +65,18 @@ if (file_exists($filename)) {
 		echo $filename;
 		die();
 	}
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
+	header('Content-Type: audio/mpeg');
+	header("Content-Transfer-Encoding: binary");
+	header("Pragma: no-cache");
+	header('Content-length: '.filesize($filename));
 	readfile($filename);
 	die();
 }
 log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') with engine '.$engine);
 try {
 	switch ($engine) {
-		case 'gcp':
-		gcp::tts($text);
+		case 'dataservice':
+		dataservice::tts($text);
 		break;
 		case 'espeak':
 		$voice = init('voice', 'fr+f4');
@@ -110,8 +114,10 @@ try {
 if (init('path') == 1) {
 	echo $filename;
 } else {
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
+	header('Content-Type: audio/mpeg');
+	header("Content-Transfer-Encoding: binary");
+	header("Pragma: no-cache");
+	header('Content-length: '.filesize($filename));
 	readfile($filename);
 }
 try {

@@ -151,7 +151,7 @@ class plugin {
 		DB::Prepare($sql, $values);
 	}
 	
-	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true, $_nameOnly = false) {
+		public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true, $_nameOnly = false) {
 		$listPlugin = array();
 		if ($_activateOnly) {
 			$sql = "SELECT plugin
@@ -182,14 +182,21 @@ class plugin {
 					if (!file_exists($pathInfoPlugin)) {
 						continue;
 					}
-					try {
-						$listPlugin[] = plugin::byId($pathInfoPlugin);
-					} catch (Exception $e) {
-						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
-					} catch (Error $e) {
-						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+					if ($_nameOnly) {
+						$listPlugin[] = str_replace('/','',$dirPlugin);
+					}else{
+						try {
+							$listPlugin[] = plugin::byId($pathInfoPlugin);
+						} catch (Exception $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						} catch (Error $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						}
 					}
 				}
+			}
+			if ($_nameOnly) {
+				return $listPlugin;
 			}
 		}
 		if ($_orderByCaterogy) {
@@ -234,14 +241,6 @@ class plugin {
 			return is_json($return, array());
 		}
 		return array();
-	}
-	
-	public static function saveTranslation($_plugin, $_language, $_translation) {
-		$dir = __DIR__ . '/../../plugins/' . $_plugin . '/core/i18n';
-		if (!file_exists($dir)) {
-			mkdir($dir, 0775, true);
-		}
-		file_put_contents($dir . '/' . $_language . '.json', json_encode($_translation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 	}
 	
 	public static function orderPlugin($a, $b) {

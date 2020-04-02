@@ -1,25 +1,25 @@
-3.1.6
+3.1.6 
 =====
 
-Advertencia esta actualización es un error en la secuencia de comandos de actualización.
-Si usted tiene esta versión se tendrá que ejecutar 2 veces la actualización.
-Después de que usted tiene un tablero vacío es normal es el
-caché vació que tomará un par de horas el clima
-es reremplisse.
+Tenga en cuenta que esta actualización tiene un error en el script de actualización.
+Si tiene esta versión, deberá iniciar la actualización dos veces.
+Después de eso, tendrá un tablero vacío, es normal que sea el
+caché que se ha vaciado, llevará unas horas
+rellenar.
 
-3.1
+3.1 
 ===
 
--   Tenga en cuenta que no cambiamos widgets que pueden tener
-    impacto en el posicionamiento de su widget en diseños / puntos de vista y
+-   Tenga en cuenta que hemos cambiado los pasos de los widgets, por lo que esto puede tener
+    un impacto en el posicionamiento de sus widgets en diseños / vistas y
     salpicadero
 
--   Esta actualización dar un cambio en el diseño obligatoria
-    plugins (modificar recomienda 3.0). algunos plugins
-    será, por tanto, ya no estará disponible en esta versión hasta
-    Corrección por el autor.
+-   Esta actualización hace que un cambio de diseño sea obligatorio
+    complementos (cambio recomendado en 3.0). Algunos complementos
+    por lo tanto, ya no estará disponible en esta versión hasta
+    corrección por el autor.
 
--   Puede encontrar la lista de plugins en la pregunta aquí:
-    <Https://www.jeedom.com/market/index.php?v=d&p=scoring>
+-   Puede encontrar la lista de complementos en cuestión aquí. :
+    <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

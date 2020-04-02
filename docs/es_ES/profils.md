@@ -1,112 +1,108 @@
-La página de perfil le permite configurar ciertos comportamientos
-Jeedom específica para el usuario: Inicio de los temas
-versión de escritorio, la versión móvil, gráficos ... Permite
-también cambiar su contraseña.
+La página Perfil le permite configurar cierto comportamiento de
+Jeedom específico del usuario : página de inicio, tema de la
+versión de escritorio, versión móvil, gráficos ... Permite
+también para cambiar tu contraseña.
 
-A encontrar la parte superior derecha hacer clic en el icono del hombre
-y Perfil (seguido de su identificación).
+Puede encontrarlo en la parte superior derecha haciendo clic en el icono del muñeco de nieve.
+luego Perfil (seguido de su nombre de usuario).
 
-temas
+Temas 
 ======
 
-El panel de temas le permite ajustar los parámetros de la interfaz:
+El panel de temas le permite ajustar los parámetros de la interfaz. :
 
--   ** ** escritorio: temas para su uso en el modo de escritorio, sólo el enfoque
-    tema por defecto es apoyado oficialmente por Jeedom
+-   **Escritorio** : tema para usar en modo de escritorio, tenga cuidado solo
+    el tema predeterminado es oficialmente compatible con Jeedom
 
--   ** ** móvil de color: elegir el color de la interfaz
-    (Aquí todo es compatible)
+-   **Color móvil** : permite elegir el color de la interfaz
+    (aquí todo es compatible)
 
--   ** ** gráficos de escritorio: Establecer el tema por defecto
-    la moda de escritorio gráficos
+-   **Gráficos de escritorio** : le permite definir el tema predeterminado para
+    gráficos en modo escritorio
 
--   **móviles** Gráfico: establecer el tema predeterminado
-    gráficos en modo móvil
+-   **Gráfico móvil** : le permite definir el tema predeterminado para
+    gráficos móviles
 
--   ** ** La opacidad de los widgets del Dashboard: para dar opacidad
-    (Entre 0 y 1) de los widgets en el tablero de instrumentos
+-   **Opacidad por widgets del tablero** : permite dar opacidad
+    (entre 0 y 1) widgets en el tablero
 
--   **La opacidad Diseño de los widgets**: dar opacidad
-    (Entre 0 y 1) de widgets en diseños
+-   **Opacidad por widgets de diseño** : permite dar opacidad
+    (entre 0 y 1) widgets en diseños
 
--   **La opacidad de los widgets Vista**: para dar opacidad (entre
-    0 y 1) de widgets en vistas
+-   **Opacidad por widgets de vista** : permite dar opacidad (entre
+    0 y 1) widgets en las vistas
 
--   **La opacidad de los widgets móviles**: permite dar opacidad
-    (Entre 0 y 1) de widgets móviles
+-   **Opacidad por widgets móviles** : permite dar opacidad
+    (entre 0 y 1) widgets móviles
 
-interfaz
+Interfaz 
 ---------
 
-Se puede definir ciertos comportamientos de la interfaz:
+Le permite definir ciertos comportamientos de interfaz :
 
 -   **General**
 
-    -   ** ** Muestra los menús dice panel de visualización Jeedom
-        la izquierda, en su caso, para devolver este panel es
-        disponible en la mayoría de las páginas plugins, así como
-        escenarios de página, interacciones, objetos ....
+    -   **Mostrar menús** : dile a Jeedom que muestre el panel
+        izquierda, cuando existe, como recordatorio de que este panel es
+        disponible en la página de algunos complementos.
 
--   ** ** defecto Página: página por defecto para mostrar cuando
-    escritorio conexión / móvil
+-   **Página predeterminada** : página predeterminada para mostrar cuando
+    conexión de escritorio / móvil
 
--   **objeto predeterminado en el salpicadero** objeto a visualizar de forma predeterminada
-    a su llegada en el salpicadero / móvil
+-   **Objeto predeterminado en el tablero** : objeto de visualización predeterminado
+    a su llegada en el tablero de instrumentos / móvil
 
--   ** ** Vista predeterminada: Ver para mostrar de forma predeterminada a la llegada de
-    el salpicadero / móvil
+-   **Vista predeterminada** : ver para mostrar por defecto al llegar
+    el tablero de instrumentos / móvil
 
--   ** ** predeterminado Diseño: Diseño que se mostrará por defecto cuando
-    la llegada en el salpicadero / móvil
+-   **Diseño por defecto** : diseño para mostrar por defecto cuando
+    la llegada al tablero / móvil
 
-    -   ** ** pantalla completa: pantalla completa por defecto cuando
-        llegada en diseños
+    -   **Pantalla completa** : visualización predeterminada en pantalla completa cuando
+        la llegada de los diseños
+        
+-   **Salpicadero**
 
--   ** ** tablero de instrumentos
+    -   **Desdobla el panel de objetos** : permite hacer visible por
+        predeterminado el menú de objetos (a la izquierda) en el tablero
 
-    -   **Se desarrollan los escenarios del panel**: permite hacer visible
-        escenarios de incumplimiento del menú (derecha) en el salpicadero
+-   **Vista**
 
-    -   **Se desarrollan los objetos del panel**: permite hacer visible
-        elementos de menú por defecto (izquierda) en el salpicadero
+    -   **Despliegue el panel de vista** : permite hacer visible por
+        menú de vistas predeterminado (izquierda) en vistas
 
--   ** ** Ver
-
-    -   **Se desarrollan las vistas del panel**: permite hacer visible
-        menú de puntos de vista por defecto (izquierda) en vistas
-
-seguridad
+Seguridad 
 --------
 
--   Autenticación ** ** 2 pasos: Configurar
-    la autenticación en dos pasos (como un recordatorio, este es un cambio de código
-    cada X segundos que se muestra en un tipo de aplicación móvil
-    google authentificator). Tenga en cuenta que la doble autenticación sólo será necesaria para las conexiones externas. Para conexiones locales el código no será necesario.
+-   **Autenticación de 2 pasos** : permite configurar
+    Autenticación en 2 pasos (como recordatorio, este es un código cambiante
+    aparece cada X segundos en una aplicación móvil, escriba
+    autentificador de google). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, el código no será solicitado.
 
--   ** ** Contraseña: Cambiar la contraseña (no hacer
-    se olvide de volver a escribir a continuación)
+-   **Contraseña** : le permite cambiar su contraseña (no
+    olvide volver a escribirlo a continuación)
 
--   ** ** hash de usuario: su clave de usuario API
+-   **Hash de usuario** : su clave de API de usuario
 
-### sesiones activas
+### Sesiones activas 
 
-Aquí tienes una lista de sus sesiones que están conectados, identificaciones,
-su IP y fecha de la última comunicación. Al hacer clic
-"Desconexión" que desconecta el usuario. Tenga cuidado si está en
-un dispositivo registrado se eliminará grabación églagement.
+Aquí tienes la lista de tus sesiones conectadas actualmente, su ID,
+su IP y la fecha de la última comunicación. Haciendo clic en
+"Desconectar "esto desconectará al usuario. Atención si está encendido
+un dispositivo registrado esto también borrará la grabación.
 
-### unidad periférica registró
+### Dispositivos registrados 
 
-Aquí encontrará la lista de todos los periféricos registrados (que
-conectarse sin autenticación) a su Jeedom y la fecha de
-último uso. Aquí se puede anular el registro de una
-periférica. Tenga en cuenta que esto no se desconecta pero evitará la derecha
+Aquí encontrará la lista de todos los dispositivos registrados (que son
+inicie sesión sin autenticación) en su Jeedom y la fecha de
+último utilizado. Aquí puede eliminar la grabación de un
+dispositivo. Atención, no lo desconecta, solo evitará
 su reconexión automática.
 
-Notificaciones
+Notificaciones 
 -------------
 
--   **Control de usuario de notificación**: control por defecto para
-    join (control de mensajes estándar)
+-   **Comando de notificación del usuario** : Comando predeterminado para
+    unirse a usted (comando de tipo de mensaje)
 
 

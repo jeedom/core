@@ -1,28 +1,36 @@
-Esta página permite ver todos los informes generados por la acción del informe (véase la documentación del escenario).
+Esta página le permite ver todos los informes generados por la acción del informe (consulte la documentación del escenario).
 
-# Qu'est qu'un rapport ?
+# ¿Qué es un informe? ?
 
-Un rapport est une capture d'écran de l'interface de Jeedom à un instant T (la capture est adaptée pour ne pas prendre la barre de menu et autre élément inutile sur ce type d'utilisation).
+Un informe es una captura de pantalla de la interfaz Jeedom en un instante T (la captura se adapta para no tomar la barra de menú y otros elementos innecesarios en este tipo de un).
 
-Vous pouvez le faire sur des vues, design, page de panel....
+Puede hacer esto en vistas, diseño, página de panel....
 
-Elle se déclenche à partir d'un scénarion avec la commande report, vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram....)
+Se activa desde una secuencia de comandos con el comando de informe, puede elegir que se le envíe este informe mediante un comando de mensaje (correo electrónico, telegrama, etc.)
 
-# Utilisation
+# Un
 
-Son utilisation est très simple vous selectionnez si vous voulez voir :
+Su un es muy simple, selecciona si quieres ver :
 
--   les rapports des vues
--   les rapports des degins
--   les rapports des panels des plugins
-- les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module)
+-	ver informes
+-	informes de degins
+-	informes del panel de complementos
+- Informes del equipo (para un resumen de la batería de cada módulo)
 
-Ensuite vous selectionner le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
+Luego selecciona el nombre del informe en cuestión y verá todas las fechas de los informes en la memoria
 
-> **Important**
+> **Importante**
 >
-> Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours (vous pouvez configurer ce délai dans la configuration de Jeedom)
+> La eliminación automática se realiza de forma predeterminada para informes de más de 30 días (puede configurar este período en la configuración de Jeedom)
 
-Une fois le rapport selectionné vous pouvez le voir apparaitre, le retélécharger ou le supprimer.
+Una vez que el informe seleccionado puede verlo aparecer, vuelva a descargarlo o elimínelo.
 
-Vous pouvez aussi supprimer toute les sauvegardes d'un rapport donné
+También puede eliminar todas las copias de seguridad de un informe determinado
+
+# Preguntas frecuentes
+
+> **Si tienes un error de Detalles : cutycapt: error al cargar bibliotecas compartidas: libEGL.n: no se puede abrir el archivo de objeto compartido: No existe tal archivo o directorio**
+>
+> Es necesario en ssh o en Administración -&gt; Configuración -&gt; OS / DB -&gt; Sistema -&gt; Administración para hacer :
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.n.2 /usr/lib/aarch64-linux-gnu/libGLESv2.n
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.n.1 /usr/lib/aarch64-linux-gnu/libEGL.n

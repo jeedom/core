@@ -1,159 +1,137 @@
-Jeedom tiene la oportunidad de ser salvados y restaurados a partir o desde
-diferentes lugares.
+Jeedom tiene la posibilidad de ser salvado y restaurado desde o desde
+de diferentes lugares.
 
-configuración
+Configuración 
 =============
 
-Accesible desde la Administración → ** ** respaldo Esta página permite al
-gestión de copia de seguridad.
+Accesible desde **Administración → Copias de seguridad**, esta página permite
+gestión de respaldo.
 
-Se encuentra, a la izquierda, los parámetros y los botones de acción. En la
-Derecha, este es el estado en tiempo real de la acción actual (copia de seguridad
-o restauración), si se puso en marcha una.
+Encontrará, a la izquierda, los parámetros y botones de acción. En la
+correcto, este es el estado en tiempo real de la acción actual (copia de seguridad
+o restauración), si ha lanzado uno.
 
-** ** Respaldo
+**Copias de seguridad** 
 ---------------
 
--   ** ** Las copias de seguridad: inicia una copia de seguridad de forma manual
-    inmediatamente (útil si desea hacer un cambio fundamental.
-    Esto le permitirá volver). Usted también tiene una
-    botón para iniciar una copia de seguridad sin necesidad de enviar el archivo en el
-    Cloud (requiere suscripción véase más adelante). el envío de una
-    copia de seguridad en la nube puede llevar algún tiempo. esta opción
-    evitando así una pérdida de demasiado tiempo.
+-   **Copias de seguridad** : Le permite iniciar una copia de seguridad manualmente y
+    inmediatamente (útil si desea hacer un cambio crítico.
+    Esto te permitirá volver). También tienes un
+    para iniciar una copia de seguridad sin enviar el archivo al
+    nube (requiere suscripción ver abajo). Enviando un
+    la copia de seguridad en la nube puede llevar un tiempo. Esta opcion
+    así evita una pérdida excesiva de tiempo.
 
--   ** ** Ubicación copias de seguridad: Especifica la carpeta
-    Jeedom copiar las copias de seguridad. No se recomienda
-    cambiar. Si usted es una ruta relativa, su origen es
-    donde instaló Jeedom.
+-   **Ubicación de respaldo** : Indica la carpeta en la que
+    Jeedom copia copias de seguridad. Se recomienda no
+    cambiarlo. Si está en un camino relativo, su origen es
+    donde está instalado Jeedom.
 
--   **Número de días (s) para el almacenamiento de copias de seguridad**: Número de
-    Días para guardar copias de seguridad. Una vez que este período de tiempo, la
-    Se eliminarán las copias de seguridad. Tenga cuidado de no poner un número
-    de días demasiado alto, de lo contrario el sistema de archivos puede
+-   **Número de días de almacenamiento de copias de seguridad.** : Número de
+    días de respaldo para mantener. Una vez que este período ha pasado, el
+    las copias de seguridad se eliminarán. Ten cuidado de no poner un número
+    días demasiado altos, de lo contrario su sistema de archivos puede
     estar saturado.
 
--   **tamaño total máximo de copias de seguridad (MB)**: Restringe
-    el espacio ocupado por todas las copias de seguridad en el archivo
-    copia de seguridad. Si se supera este valor, se eliminará Jeedom
-    las copias de seguridad más antiguas a caer por debajo de la
-    tamaño máximo. Sin embargo, mantener al menos una copia de seguridad.
+-   **Tamaño total máximo de copias de seguridad (MB)** : Permite limitar
+    el lugar ocupado por todas las copias de seguridad en la carpeta
+    copia de seguridad. Si se excede este valor, Jeedom eliminará el
+    copias de seguridad más antiguas hasta caer por debajo del
+    tamaño máximo. Sin embargo, mantendrá al menos una copia de seguridad.
 
-** ** Las copias de seguridad locales
+**Copias de seguridad locales** 
 -----------------------
 
--   ** ** Las copias de seguridad disponibles: Lista de copias de seguridad disponibles.
+-   **Copias de seguridad disponibles** : Lista de copias de seguridad disponibles.
 
--   ** ** Restaurar copia de seguridad: Se inicia la restauración de la copia de seguridad
-    seleccionado anteriormente.
+-   **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad
+    seleccionado arriba.
 
--   ** ** Eliminar copia de seguridad: Elimina la copia de seguridad seleccionada
-    anteriormente, sólo en la carpeta local.
+-   **Eliminar copia de seguridad** : Eliminar copia de seguridad seleccionada
+    arriba, solo en la carpeta local.
 
--   ** ** Email Backup: Envía el archivo en el
-    copias de seguridad de un archivo ubicado en el equipo que es
-    utiliza actualmente (por ejemplo, permite restaurar un archivo
-    previamente recuperado de un nuevo Jeedom o reubicación).
+-   **Enviar una copia de seguridad** : Le permite enviar a la
+    guardar un archivo en la computadora que
+    actualmente usando (permite, por ejemplo, restaurar un archivo
+    previamente recuperado en un nuevo Jeedom o reinstalación).
 
--   ** ** Descargar copia de seguridad: Le permite descargar su
-    Archivo de la computadora de la copia de seguridad seleccionada terminado.
+-   **Descargar copia de seguridad** : Permite descargar a tu
+    computadora el archivo de copia de seguridad seleccionado anteriormente.
 
-** ** Mercado de copia de seguridad
+**Copias de seguridad del mercado** 
 ----------------------
 
--   **Envío de copias de seguridad** Indica enviar el Jeedom
-    copias de seguridad en la nube de Mercado, se debe tener
-    tomó la suscripción.
+-   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el
+    copias de seguridad en la nube del mercado, tenga cuidado con que debe tener
+    obtuve la suscripción.
 
--   ** ** Email Backup: Envía una nube
-    Archivo de copia de seguridad en su ordenador.
+-   **Enviar una copia de seguridad** : Le permite enviar un
+    archivo de respaldo ubicado en su computadora.
 
--   ** ** Disponible copias de seguridad: la lista de copias de seguridad
-    Nube disponibles.
+-   **Copias de seguridad disponibles** : Lista de respaldos
+    nube disponible.
 
--   ** ** Restaurar copia de seguridad: Se inicia la restauración de una
+-   **Restaurar copia de seguridad** : Lanza la restauración de un
     copia de seguridad en la nube.
 
-Las copias de seguridad Samba ** **
+**Copias de seguridad de Samba** 
 ---------------------
 
--   **Envío de copias de seguridad** Indica enviar el Jeedom
-    copias de seguridad en la parte de la samba establecen aquí
-    Administración → Configuración → Actualizaciones Tab.
+-   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el
+    copias de seguridad en el recurso compartido de samba configurado aquí
+    Administración → Configuración → pestaña Actualizaciones.
 
--   ** ** Disponible copias de seguridad: la lista de copias de seguridad
-    Samba disponibles.
+-   **Copias de seguridad disponibles** : Lista de respaldos
+    samba disponible.
 
--   ** ** Restaurar copia de seguridad: Se inicia la restauración de la copia de seguridad
-    samba seleccionado anteriormente.
+-   **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad
+    samba seleccionada arriba.
 
-> **Sugerencia**
+> **Importante**
 >
-> Según lo que se active, en la página
-> Administración → Configuración → pestaña Actualizaciones, puedes ver
-> más o menos secciones.
+>  !!! 
 
-> **Sugerencia**
->
-> Al reinstalar Jeedom y suscribirse a la
-> copia de seguridad en la nube del market, debe registrar su cuenta
-> Market en su nueva Jeedom (Administración → Configuración → Pestaña
-> Actualizaciones) luego venir aquí para comenzar la restauración.
 
-> **Sugerencia**
->
-> Es posible, en caso de problemas, hacer una copia de seguridad en línea de
-> comandos: `sudo php / usr / share / nginx / www / jeedom / install / backup.php`
-> o `sudo php / var / www / html / install / backup.php` según su sistema.
-
-> **Sugerencia**
->
-> También es posible restablecer una copia de seguridad en línea de
-> comandos (de forma predeterminada, Jeedom restaura la copia de seguridad más reciente
-> en el directorio de respaldo):
-> `sudo php / usr / share / nginx / www / jeedom / install / restore.php` o
-> `sudo php / var / www / html / install / restore.php`.
-
-Lo que se ahorra?
+Lo que se guarda ? 
 ==============================
 
-Durante una copia de seguridad, Jeedom será una copia de seguridad de todos los archivos y
-base de datos. De manera que contiene toda la configuración
-(Equipamiento, órdenes, escenarios históricos, diseño, etc.).
+Durante una copia de seguridad, Jeedom realizará una copia de seguridad de todos sus archivos y
+base de datos. Por lo tanto, esto contiene toda su configuración
+(equipos, pedidos, historia, escenarios, diseño, etc.).
 
-En cuanto a los protocolos, sólo el Z-Wave (OpenZwave) es un poco
-diferente, porque no es posible guardar las inclusiones.
-Se incluyen directamente en el controlador, por lo que
+En términos de protocolos, solo el Z-Wave (OpenZwave) es un poco
+diferente porque no es posible guardar las inclusiones.
+Estos se incluyen directamente en el controlador, por lo que debe
 mantener el mismo controlador para encontrar sus módulos Zwave.
 
 > **Nota**
 >
-> El sistema instalado en él Jeedom no se guarda. si
-> ¿Ha cambiado los parámetros del sistema (especialmente a través de SSH)
-> Es para usted para encontrar una manera de conseguir que en caso de problemas.
+> El sistema en el que está instalado Jeedom no está respaldado. si
+> Ha modificado los parámetros de este sistema (especialmente a través de SSH),
+> depende de usted encontrar una manera de recuperarlos en caso de problemas.
 
-copia de seguridad de la nube
+Copia de seguridad en la nube 
 ================
 
-La copia de seguridad de la nube permite Jeedom enviar las copias de seguridad
-directamente en el mercado. Esto le permite restaurar fácilmente
-y asegúrese de no perderlos. El mercado conserva el último 6
-copias de seguridad. Para suscribirse sólo tiene que ir a su página
-**** perfil en el mercado, entonces, en mis copias de seguridad** ** pestaña. Usted
-puede, desde esta página, recoger una copia de seguridad o comprar
-suscripción (para 1, 3, 6 o 12 meses).
+El respaldo en la nube le permite a Jeedom enviar sus respaldos
+directamente en el mercado. Esto le permite restaurarlos fácilmente
+y asegúrate de no perderlos. El mercado guarda los últimos 6
+copias de seguridad. Para suscribirte solo ve a tu página
+**perfil** en el mercado, luego en la pestaña **mis copias de seguridad**. Vosotras
+puede, desde esta página, recuperar una copia de seguridad o comprar un
+suscripción (por 1, 3, 6 o 12 meses).
 
-> **Tip**
+> **Punta**
 >
-> Usted puede personalizar el nombre de los archivos de copia de seguridad de
-> Ficha ** ** Mi Jeedoms, pero evite caracteres
-> Exótico.
+> Puede personalizar el nombre de los archivos de respaldo desde
+> de la pestaña **Mis jeedoms**, evitando sin embargo los personajes
+> exótico.
 
-Frecuencia copias de seguridad automáticas
+Frecuencia de respaldos automáticos 
 ======================================
 
-Jeedom realiza una copia de seguridad automática de todos los días a la misma
-hora. Es posible cambiarlo, vaya a la "Engine
-tareas "(la tarea se denomina copia de seguridad ** ** Jeedom), pero esto no es
-recomendadas. De hecho, se calcula en relación a la carga
+Jeedom realiza una copia de seguridad automática todos los días al mismo tiempo
+hora. Es posible modificar esto, desde el &quot;Motor
+tareas &quot;(la tarea se llama **Jeedom backup**), pero no es
+recomendadas. De hecho, se calcula en relación con la carga de la
 Mercado.

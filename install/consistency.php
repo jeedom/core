@@ -414,6 +414,24 @@ if(!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')){
 	exec('sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf');
 	exec('sudo systemctl daemon-reload');
 }
+	
+$duplicity_version = trim(str_replace('duplicity','',shell_exec('duplicity --version')));
+if(version_compare($duplicity_version, '0.7.19','<')){
+	echo "Upgrade duplicity to 0.7.19\n";
+	exec('sudo apt remove -y --purge duplicity');
+	exec('sudo apt install -y gettext');
+	exec('sudo apt install -y librsync-dev');
+	exec('sudo apt install -y python-dev');
+	exec('sudo pip install future');
+	exec('sudo pip install fasteners');
+	exec('sudo pip2 install future');
+	exec('sudo pip2 install fasteners');
+	exec('sudo wget https://images.jeedom.com/resources/duplicity/duplicity.tar.gz -O /tmp/duplicity.tar.gz');
+	exec('tar xvf /tmp/duplicity.tar.gz');
+	exec('cd duplicity-0.7.19; sudo python setup.py install');
+	exec('sudo rm -rf /tmp/duplicity.tar.gz');
+	exec('sudo rm -rf duplicity-0.7.19');
+}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();

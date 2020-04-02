@@ -1,385 +1,385 @@
-Cette page permet de configurer l’affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+This page allows you to configure the display of all your home automation
+very fine way. It takes time but its only limit is
+your imagination.
 
-Elle est accessible par Acceuil → Design
+It is accessible by Home → Design
 
 > **Tip**
 >
-> Il est possible d’aller directement sur un design grâce au sous-menu.
+> It is possible to go directly to a Design thanks to the submenu.
 
-> **Important**
+> **IMPORTANT**
 >
-> Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le design. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d’être sur le design).
+> All actions are done by right clickk on this page, attention
+> to do it well in Design. During creation, it is therefore necessary to
+> do in the middle of the page (to be sure to be on the Design).
 
-Dans le menu (clic droit donc), nous retrouvons les
-actions suivantes :
+In the menu (right clickk therefore), we find the
+following actions :
 
--   **Designs** : Affiche la liste de vos designs et d’y accéder
+-   **Designs** : Displays the list of your Designs and access them
 
--   **Edition** : Permet de passer en mode édition
+-   **Editing** : Switch to edit mode
 
--   **Plein ecran** : Permet d’utiliser toute la page Internet, ce qui
-    enlèvera le menu de Jeedom du haut
+-   **Full screen** : Allows you to use the entire web page, which
+    will remove Jeedom menu from the top
 
--   **Ajouter graphique** : Permet d’ajouter un graphique
+-   **Add graphic** : Add a graphic
 
--   **Ajouter texte/html** : Permet d’ajouter du texte ou du code
-    html/javascript
+-   **Add text / html** : Allows you to add text or code
+    html / javascript
 
--   **Ajouter scénario** : Permet d’ajouter un scénario
+-   **Add scenario** : Add a scenario
 
--   **Ajouter lien**
+-   **Add link**
 
-    -   **Vers une vue** : Permet d’ajouter un lien vers une vue
+    -   **Towards a view** : Add a link to a view
 
-    -   **Vers un design** : Permet d’ajouter un lien vers un autre
-        design
+    -   **Towards a Design** : Add a link to another
+        Design
 
--   **Ajouter équipement** : Permet d’ajouter un équipement
+-   **Add equipment** : Adds equipment
 
--   **Ajouter commande** : Permet d’ajouter une commande
+-   **Add order** : Add an order
 
--   **Ajouter image/caméra** : Permet d’ajouter une image ou le flux
-    d’une caméra
+-   **Add image / camera** : Allows you to add an image or stream
+    of a camera
 
--   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
-    qui pourra exécuter une série d’actions lors d’un clic (en fonction
-    ou non de l’état d’une autre commande)
+-   **Add area** : Add a transparent clickkable area
+    who can execute a series of actions on a clickk (depending
+    or not the status of another order)
 
--   **Ajouter résumé** : Ajoute les informations d’un résumé d’objet ou
-    général
+-   **Add summary** : Adds information from an object summary or
+    general
 
--   **Affichage**
+-   **Viewing**
 
-    -   **Aucune** : N’affiche aucune grille
+    -   **Any** : Does not display any grid
 
-    -   **10x10** : Affiche une grille de 10 par 10
+    -   **10x10** : Displays a 10 by 10 grid
 
-    -   **15x15** : Affiche une grille de 15 par 15
+    -   **15x15** : Displays a grid of 15 by 15
 
-    -   **20x20** : Affiche une grille de 20 par 20
+    -   **20x20** : Displays a 20 by 20 grid
 
-    -   **Aimanter les éléments** : Ajoute une aimantation entre les
-        éléments pour permettre de les coller plus facilement
+    -   **Magnetize the elements** : Add a magnetization between
+        elements to make it easier to stick them
 
-    -   **Aimanter à la grille** : Ajoute une aimantation des éléments à
-        la grille (attention : en fonction du zoom de l’élément cette
-        fonctionalité peut plus ou moins fonctionner)
+    -   **Magnet on the grid** : Add a magnetization of the elements to
+        the grid (attention : depending on the zoom of the item this
+        functionality can more or less work)
 
-    -   **Masquer la surbrillance des éléments** : Masque la
-        surbrillance autour des éléments
+    -   **Hide item highlighting** : Hide it
+        highlight around items
 
--   **Supprimer le design** : supprime le design
+-   **Delete Design** : delete Design
 
--   **Créer un design** : permet d’ajouter un design
+-   **Create a Design** : allows to add a Design
 
--   **Dupliquer le design** : duplique le design courant
+-   **Duplicate Design** : duplicate the current Design
 
--   **Configurer le design** : accès à la configuration du design
+-   **Configure the Design** : access to Design configuration
 
--   **Sauvegarder** : permet de sauvegarder le design (attention, il y a
-    aussi des sauvegardes automatiques lors de certaines actions)
+-   **Save** : allows to save the Design (attention, there are
+    also automatic backups during certain actions)
 
-> **Important**
+> **IMPORTANT**
 >
-> La configuration des éléments du design se fait par un clic sur
-> ceux-ci.
+> The configuration of the Design elements is done by clickking on
+> these.
 
-Configuration du design 
+Design configuration 
 =======================
 
-On retrouve ici :
+Found here :
 
--   **Général**
+-   **General**
 
-    -   **Nom** : Le nom de votre design
+    -   **Last name** : The name of your Design
 
-    -   **Fond transparent** : rend le fond transparent. Attention si la
-        case est cochée, la couleur de fond n’est pas utilisée
+    -   **Transparent background** : makes the background transparent. Be careful if the
+        box is checked, the background color is not used
 
-    -   **Couleur de fond** : couleur de fond du design (blanc
-        par défaut)
+    -   **Background color** : Design background color (white
+        by default)
 
-    -   **Code** : Code d’accès à votre design (si vide, aucun code
-        n’est demandé)
+    -   **Coded** : Access code to your Design (if empty, no code
+        is not requested)
 
-    -   **Icône** : Une icône pour celui-ci (apparaît dans le menu de
-        choix de design)
+    -   **Icon** : An icon for it (appears in the menu
+        choice of Design)
 
-    -   **Image**
+    -   **Picture**
 
-        -   **Envoyer** : permet d’ajouter une image de fond au design
+        -   **To send** : allows to add a background image to the Design
 
-        -   **Supprimer l’image** : permet de supprimer l’image
+        -   **Delete image** : delete image
 
--   **Tailles**
+-   **Sizes**
 
-    -   **Taille (LxH)** : Permet de fixer la taille de votre design
-        (cadre gris en mode édition)
+    -   **Size (WxH)** : Allows you to fix the size of your Design
+        (gray frame in edit mode)
 
-Configuration générale des éléments 
+General configuration of elements 
 ===================================
 
-> **Note**
+> **NOTE**
 >
-> En fonction du type de l’élément, les options peuvent changer.
+> Depending on the type of item, options may change.
 
-> **Note**
+> **NOTE**
 >
-> L’élément sélectionné apparaît en surbrillance rouge (au lieu de vert
-> pour tous les autres).
+> The selected item is highlighted in red (instead of green
+> for everyone else).
 
-Paramètre d’affichage 
+Display setting 
 ---------------------
 
--   **Profondeur** : permet de choisir le niveau de la profondeur
+-   **Depth** : allows to choose the depth level
 
 -   **Position X (%)** :
 
 -   **Position Y (%)** :
 
--   **Largeur (px)** :
+-   **Width (px)** :
 
--   **Hauteur (px)** :
+-   **Height (px)** :
 
-Supprimer 
+Remove 
 ---------
 
-Permet de supprimer l’élément
+Remove item
 
-Dupliquer 
+Duplicate 
 ---------
 
-Permet de dupliquer l’élément
+Allows you to duplicate the element
 
-Verrouiller 
+Lock 
 -----------
 
-Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
-redimensionnable.
+Locks the element so that it is no longer movable or
+resizable.
 
-Graphique 
+Graphic 
 =========
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
--   **Période** : permet de choisir la période d’affichage
+-   **Period** : allows you to choose the display period
 
--   **Afficher la légende** : affiche la légende
+-   **Show caption** : show legend
 
--   **Afficher le navigateur** : affiche le navigateur (deuxième graph
-    plus léger en dessous du premier)
+-   **Show browser** : display the browser (second graph
+    lighter below the first)
 
--   **Afficher le sélecteur de période** : affiche le sélecteur de
-    période en haut à gauche
+-   **Show period selector** : displays the selector
+    period top left
 
--   **Afficher la barre de défilement** : affiche la barre de défilement
+-   **Show scroll bar** : displays the scroll bar
 
--   **Fond transparent** : rend le fond transparent
+-   **Transparent background** : makes the background transparent
 
--   **Bordure** : permet d’ajouter une bordure, attention la syntaxe est
-    HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
+-   **Border** : add a border, beware the syntax is
+    HTML (be careful, you must use CSS syntax, for example :
     solid 1px black)
 
-Configuration avancée 
+Advanced configuration 
 ---------------------
 
-Permet de choisir les commandes à grapher
+Allows you to choose the commands to grapher
 
-Text/html 
+Text / html 
 =========
 
--   **Icone** : Icone à afficher devant
+-   **Icon** : Icon to display in front
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Background color** : allows you to change the background color or
+    put transparent, do not forget to pass &quot;Default&quot; on NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Text color** : allows you to change the color of the icons and
+    texts (be careful to pass Default to No)
 
--   **Arrondir les angles** : permet d’arrondir les angles (ne pas
-    oublier de mettre %, ex 50%)
+-   **Smooth it out** : allows you to round off the angles (do not
+    forget to put%, ex 50%)
 
--   **Bordure** : permet d’ajouter une bordure, attention la syntaxe est
-    HTML (il faut utiliser une syntaxe CSS, par exemple : solid
+-   **Border** : add a border, beware the syntax is
+    HTML (use CSS syntax, for example : solid
     1px black)
 
--   **Taille de la police** : permet de modifier la taille de la police
-    (ex 50%, il faut bien mettre le signe %)
+-   **Font size** : allows you to change the font size
+    (ex 50%, you must put the% sign)
 
--   **Alignement du texte** : permet de choisir l’alignement du
-    texte (gauche/droit/centré)
+-   **Text alignment** : allows you to choose the alignment of the
+    text (left / right / centered)
 
--   **Gras** : met le texte en gras
+-   **Fat** : bold text
 
--   **Texte** : Texte au code HTML qui sera dans l’élément
+-   **Text** : Text in HTML code that will be in the element
 
-> **Important**
+> **IMPORTANT**
 >
-> Si vous mettez du code HTML (en particulier du Javascript), attention
-> à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter completement le design et
-> il ne restera plus qu’à le supprimer directement en base de données
+> If you put HTML code (especially Javascript), be careful
+> to check it before because you can if there is an error in it
+> or if it overwrites a Jeedom component completely crashing the Design and
+> all you have to do is delete it directly from the database
 
-Scénario 
+Scenario 
 ========
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
-Aucun paramètres spécifiques d’affichage
+No specific display settings
 
-Lien 
+Link 
 ====
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
--   **Nom** : Nom du lien (texte affiché)
+-   **Last name** : Name of the link (displayed text)
 
--   **Lien** : Lien vers le design ou la vue en question
+-   **Link** : Link to the Design or view in question
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Background color** : allows you to change the background color or
+    put transparent, do not forget to pass &quot;Default&quot; on NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Text color** : allows you to change the color of the icons and
+    texts (be careful to pass Default to No)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d’arrondir les angles, ne pas oublier de mettre le %
+-   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
+    allows you to round off the angles, don&#39;t forget to put the%
 
--   **Bordure (attention syntaxe CSS, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   **Border (attention CSS syntax, ex : solid 1px black)** : allows
+    add a border, beware the syntax is HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   **Font size (ex 50%, you must put the% sign)** :
+    allows you to change the font size
 
--   **Alignement du texte** : permet de choisir l’alignement du
-    texte (gauche/droit/centré)
+-   **Text alignment** : allows you to choose the alignment of the
+    text (left / right / centered)
 
--   **Gras** : met le texte en gras
+-   **Fat** : bold text
 
-Equipement 
+Equipment 
 ==========
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
-Aucun paramètre spécifique d’affichage
+No specific display settings
 
-Configuration avancée 
+Advanced configuration 
 ---------------------
 
-Affiche la fenêtre de configuration avancée de l’équipement (voir
-documentation Résumé domotique ("display"))
+Displays the advanced equipment configuration window (see
+documentation Home automation summary (&quot;display&quot;))
 
-Commande 
+Ordered 
 ========
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
-Aucun paramètres spécifiques d’affichage
+No specific display settings
 
-Configuration avancée 
+Advanced configuration 
 ---------------------
 
-Affiche la fenêtre de configuration avancée de la commande (voir
-documentation Résumé domotique ("display"))
+Displays the advanced configuration window of the command (see
+documentation Home automation summary (&quot;display&quot;))
 
-Image/Caméra 
+Picture / Camera 
 ============
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
--   **Afficher** : définit ce que vous voulez afficher, image fixe ou
-    flux d’une caméra
+-   **Pin up** : defines what you want to display, still image or
+    stream from a camera
 
--   **Image** : permet d’envoyer l’image en question (si vous avez
-    choisi une image)
+-   **Picture** : allows you to send the image in question (if you have
+    choose an image)
 
--   **Caméra** : caméra à afficher (si vous avez choisi caméra)
+-   **Camera** : camera to display (if you chose camera)
 
-Zone 
+Zoned 
 ====
 
-Paramètres d’affichage 
+Display settings 
 ---------------------
 
--   **Type de zone** : C’est ici que vous choisissez le type de la zone :
-    Macro simple, Macro Binaire ou Widget au survol
+-   **Type of area** : This is where you choose the type of area :
+    Simple macro, Binary macro or Widget on hover
 
-### Macro simple 
+### Single macro 
 
-Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
+In this mode, a clickk on the zone performs one or more actions.
 
-Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
-sur la zone
+Here you just need to indicate the list of actions to do when clickking
+on the area
 
-### Macro binaire 
+### Binary macro 
 
-Dans ce mode, Jeedom va exécuter la ou les action(s) On ou Off en
-fonction de l’état de la commande que vous donnez. Ex : si la commande
-vaut 0 alors Jeedom exécutera la ou les action(s) On sinon il exécutera
-la ou les action(s) Off
+In this mode, Jeedom will execute the On or Off action (s) in
+depending on the status of the order you give. Ex : if the order
+is worth 0 then Jeedom will execute the action (s) On otherwise it will execute
+the action (s) Off
 
--   **Information binaire** : Commande donnant l’état à vérifier pour
-    décider de l’action à faire (On ou Off)
+-   **Binary information** : Command giving the status to be checked for
+    decide what action to take (On or Off)
 
-Il vous suffit en dessous de mettre les actions à faire pour le On et
-pour le Off
+You just have to put the actions to do for the On and
+for the Off
 
-### Widget au survol 
+### Hover widget 
 
-Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous
-afficherez le widget en question
+In this mode, when hovering or clickking in the Jeedom area, you
+display the widget in question
 
--   **Equipement** : widget à afficher lors du survol ou du clic
+-   **Equipment** : widget to display when hovering or clickking
 
--   **Afficher au survol** : si coché, affiche le widget au survol
+-   **Show on flyover** : if checked, displays the widget on hover
 
--   **Afficher sur un clic** : si coché, alors le widget est affiché au
-    clic
+-   **View on one clickk** : if checked, then the widget is displayed at
+    click
 
--   **Position** : permet de choisir l’emplacement d’apparition du
-    widget (par défaut bas droite)
+-   **Position** : allows you to choose the location where the
+    widget (default bottom right)
 
-Résumé 
+Summary 
 ======
 
--   **Lien** : Permet d’indiquer le résumé à afficher (Général pour le
-    global sinon indiquer l’objet)
+-   **Link** : Used to indicate the summary to be displayed (General for the
+    global if not indicate the object)
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Background color** : allows you to change the background color or
+    put transparent, do not forget to pass &quot;Default&quot; on NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Text color** : allows you to change the color of the icons and
+    texts (be careful to pass Default to No)
 
--   **Arrondir les angles (ne pas oublier de mettre %, ex 50%)** :
-    permet d’arrondir les angles, ne pas oublier de mettre le %
+-   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
+    allows you to round off the angles, don&#39;t forget to put the%
 
--   **Bordure (attention syntaxe CSS, ex : solid 1px black)** : permet
-    d’ajouter une bordure, attention la syntaxe est HTML
+-   **Border (attention CSS syntax, ex : solid 1px black)** : allows
+    add a border, beware the syntax is HTML
 
--   **Taille de la police (ex 50%, il faut bien mettre le signe %)** :
-    permet de modifier la taille de la police
+-   **Font size (ex 50%, you must put the% sign)** :
+    allows you to change the font size
 
--   **Gras** : met le texte en gras
+-   **Fat** : bold text
 
 
-FAQ 
+Faq 
 ======
 
->**Je n'arrive plus à éditer mon design**
+>**I can no longer edit my Design**
 >
->Si vous avez mis un widget ou une image qui prend quasiment la totalité du design, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+>If you have put a widget or an image that takes almost the entire Design, you must clickk outside the widget or image to access the menu by right-clickking.
 
->**Supprimer un design qui ne marche plus**
+>**Delete a Design that no longer works**
 >
->Dans la partie administration puis OS/DB, faire "select * from planHeader", récuperer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précedemment.
+>In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the Design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the Design id previously found.

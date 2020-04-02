@@ -1,297 +1,309 @@
-Does Jeedom require a subscription?
+Jeedom does it require a subscription ? 
 =====================================
 
-No, Jeedom is fully usable without any need of
-subscription whatever. However, there are services offered for
-backups or calls / SMS but that actually stay
+No, Jeedom is fully usable without any need for any
+subscription whatsoever. However, there are services offered for
+backups or calls / SMS, but which actually remain
 optional.
 
-Does Jeedom use external servers to work?
-================================================== ============
+Does Jeedom use outside servers to run ? 
+==============================================================
 
-No, Jeedom does not use cloud infrastructure. Everything is done in
-local and you do not need our servers for your
+No, Jeedom does not use "Cloud" type infrastructure". Everything is done in
+local and you don&#39;t need our servers for your
 installation works. Only services like the Market, the
-online backup or the Jeedom DNS require the use of our
+online backup or Jeedom DNS require the use of our
 servers.
 
-Can we reorder orders for equipment?
+Can we reorder equipment orders ? 
 ==================================================
 
-Yes it is possible, just drag and drop the commands of your
+Yes it is possible, just drag and drop your orders
 object on its configuration.
 
-Can we edit the style of the widgets?
+Can we edit the style of the widgets ? 
 =====================================
 
-Yes it is possible, either through the widget plugin, or in
+Yes it is possible, either by going through the widget plugin, or by
 using the General → Display page
 
-Can we put the same equipment several times on a design?
-================================================== ==============
+Can we put the same equipment more than once on a design ? 
+================================================================
 
-No it is not possible, but you can duplicate it thanks to
+No it is not possible, but you can duplicate it thanks to the
 virtual plugin.
 
-How to change an erroneous data in the history?
-================================================== ==
+How to change wrong historical data ? 
+====================================================
 
-It suffices, on a historical curve of the order, to click on the
+It is enough, on a historical curve of the order, to click on the
 point in question. If you leave the field blank, then the value
 will be deleted.
 
-How long does a backup take?
+How long does a backup take ? 
 ======================================
 
 There is no standard duration, it depends on the system and the volume of
-data to back up, but it can take more than 5 minutes, that's
-normal.
+data to be backed up, but it may take more than 5 minutes, that’s
+Normal.
 
-Is there a dedicated mobile app?
+Is there a dedicated mobile app ? 
 ========================================
 
 Jeedom has a mobile version suitable for use on mobile and
 Tablet. There is also a native app for Android and iOS.
 
-What are the credentials to login the first time?
-================================================== ==============
+What are the credentials to log in the first time ? 
+================================================================
 
-When you first connect to Jeedom (and even if you do not
-have not changed), the default username and password
-are admin / admin. At the first connection, it is strongly
+When you log in to Jeedom for the first time (and even afterwards if you do not
+haven&#39;t changed), default username and password
+are admin / admin. At the first connection, you are strongly
 recommended to modify these identifiers for more security.
 
-Can we put Jeedom in https?
+Can we put Jeedom in https ? 
 ================================
 
-Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
+Yes : Either you have a power pack or more, in this case you
+just use the [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
-Comment se connecter en SSH ?
+How to connect in SSH ?
 =============================
 
-Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
+Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
-- Username : "root", password : "Mjeedom96"
-- Username : "jeedom", password : "Mjeedom96"
-- Ou ce que vous avez mis à l'installation si vous êtes en DIY
+- Username : "root ", password : "Mjeedom96"
+- Username : "jeedom ", password : "Mjeedom96"
+- Or what you put in the installation if you are in DIY
 
-A noter que lorsque vous ecrirez le mot de passe vous ne verrez rien s'ecrire à l'écran c'est normal.
+Note that when you write the password you will not see anything written on the screen it&#39;s Normal.
 
-Comment remettre à plat les droits ? 
+How to reset rights ? 
 ====================================
 
-En SSH faites :
+In SSH do :
 
 ``` {.bash}
 sudo su -
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+chmod -R 775 / var / www / html
+chown -R www-data:www-data / var / www / html
 ```
 
-Où se trouvent les sauvegardes de Jeedom ? 
+Where are Jeedom&#39;s backups ? 
 ==========================================
 
-Elles sont dans le dossier /var/www/html/backup
+They are in the / var / www / html / backup folder
 
-Comment mettre à jour Jeedom en SSH ? 
+How to update Jeedom in SSH ? 
 =====================================
 
-En SSH faites :
+In SSH do :
 
 ``` {.bash}
 sudo su -
 php /var/www/html/install/update.php
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
+chmod -R 775 / var / www / html
+chown -R www-data:www-data / var / www / html
 ```
 
-La Webapp est-elle compatible Symbian ? 
+Is the Webapp compatible Symbian ? 
 =======================================
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
+The webapp requires a smartphone supporting HTML5 and CSS3. It is therefore unfortunately not Symbian compatible.
 
-Sur quelles plateformes Jeedom peut-il fonctionner ? 
+What platforms can Jeedom run on ? 
 ====================================================
 
-Pour que Jeedom fonctionne, il faut une plateforme linux avec les droits
-root ou un système type docker. Il ne fonctionne donc pas sur une
-plateforme android pure.
+For Jeedom to work, you need a linux platform with the rights
+root or a docker type system. It therefore does not work on a
+pure android platform.
 
-Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ? 
+I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes)..." ? 
 ====================================================
 
-Cela peut etre du à plusieurs chose, il faut : 
+This can be due to several things, it is necessary : 
 
-- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de jeedom, partie mise à jour vous avez un bouton de test)
-- Vérifier que le compte market à bien acheté le plugin en question
-- Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
-- Vérifier que votre version de Jeedom est bien compatible avec le plugin
-- Vérifiez que votre Jeedom est toujours correctement connecté au market (Dans la configuration de Jeedom, onglet mise à jour)
+- Check that your Jeedom is still connected to the market (in the jeedom administration page, updated part you have a test button)
+- Check that the market account has purchased the plugin in question
+- Check that you have enough space on Jeedom (the health page will tell you)
+- Check that your version of Jeedom is compatible with the plugin
+- Check that your Jeedom is still correctly connected to the market (In the Jeedom configuration, update tab)
 
-J’ai une page blanche 
+I have a blank page 
 =====================
 
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
+You have to connect in SSH to Jeedom and launch the script
+self-diagnosis :
 
 ``` {.bash}
-sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
+sudo chmod + x / var / www / html / health.sh; sudo /var/www/html/health.sh
 ```
 
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
+If there is a problem, the script will try to correct it. If he can&#39;t
+no, it will tell you.
 
-Vous pouvez aussi regarder le log /var/www/html/log/http.error. Très
-souvent, celui-ci indique le souci.
+You can also look at the log /var/www/html/log/http.error. Very
+often this indicates concern.
 
-J’ai un problème d’identifiant BDD 
+I have a BDD identifier problem 
 ==================================
 
-Il faut réinitialiser ceux-ci :
+These must be reset :
 
 ``` {.bash}
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
-cd /usr/share/nginx/www/jeedom
-sudo cp core/config/common.config.sample.php core/config/common.config.php
-sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
-sudo chown www-data:www-data core/config/common.config.php
+bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9' | head -c 15)
+echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
+echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
+echo &quot;GRANT All PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
+cd / usr / share / nginx / www / jeedom
+sudo cp core / config / common.config.sample.php core / config / common.config.php
+sudo sed -i -e &quot;s / # PASSWORD # / $ {bdd_password} / g&quot; core / config / common.config.php
+sudo chown www-data:www-data core / config / common.config.php
 ```
 
-J’ai des \{\{…​\}\} partout 
+I have \ {\ {… \} \} everywhere 
 =======================
 
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
+The most common cause is the use of a beta plugin
+and Jeedom in stable, or vice versa. To have the detail of the error, it
+must look at the http log.error (in / var / www / html / log).
 
-Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
+When ordering I have a wheel that turns without stopping 
 ===========================================================
 
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
-est en stable. Pour voir l’erreur, il faut faire F12 puis console.
+Again this is often due to a beta plugin while Jeedom
+is in stable. To see the error, you must do F12 then console.
 
-Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
+I no longer have access to Jeedom, neither through the web interface nor in console via SSH 
 =========================================================================
 
-Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
+This error is not due to Jeedom, but to a problem with the system.
+If it persists following a reinstallation, it is advisable to
+see with the after-sales service for a hardware concern. Here is the [documentation] (https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) for the Smart
 
-Mon scénario ne s’arrête plus/pas 
+My scenario does not stop any more 
 =================================
 
-Il est conseillé de regarder les commandes exécutées par le scénario,
-souvent cela vient d’une commande qui ne se termine pas.
+It is advisable to look at the commands executed by the scenario,
+often this comes from an order that does not end.
 
-J’ai des instabilités ou des erreurs 504 
+I have instabilities or errors 504 
 ========================================
 
-Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
-commande est : "sudo dmesg | grep error" .
+Check if your file system is not corrupt, in SSH the
+command is : "sudo dmesg | grep error" .
 
-Je ne vois pas tous mes équipements sur le dashboard 
+I don&#39;t see all my equipment on the dashboard 
 ====================================================
 
-Souvent cela est dû au fait que les équipements sont affectés à un objet
-qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
-gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
+Often this is due to the fact that the equipment is assigned to an object
+which is not the child or the object itself of the first object selected at
+left in the tree (you can configure it in your profile).
 
-J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
+I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock' 
 ====================================================================================================================================
 
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
-courants sont :
+This is due to MySQL which stopped, it is not Normal, the cases
+currents are :
 
--   Manque de place sur le système de fichiers (peut être vérifié en
-    faisant la commande "df -h", en SSH)
+-   Lack of space on the file system (can be checked by
+    doing the command &quot;df -h&quot;, in SSH)
 
--   Problème de corruption de fichier(s), ce qui arrive souvent suite à
-    un arrêt non propre de Jeedom (coupure de courant)
+-   File (s) corruption issue, which often happens due to
+    Jeedom&#39;s non-clean shutdown (power failure)
 
--   Soucis mémoire, le systeme manque de mémoire et tue le process le plus consommateur (souvent la base de données). Cela peut se voir dans l'administration de l'OS puis dmesg, vous devez voir un kill par "oom". Si c'est le cas il faut réduire la consommation de jeedom en désactivant des plugins.
+- 	Memory worries, the system runs out of memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce the consumption of jeedom by deactivating plugins.
 
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
-cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/var/www/html/backup par défaut), de réinstaller Jeedom et
-de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
-veut pas démarrer depuis une console SSH :
+Unfortunately, there is not much solution if it is the second
+case, the best is to recover a backup (available in
+/ var / www / html / backup by default), reinstall Jeedom and
+to restore the backup. You can also see why MySQL is not
+not want to boot from an SSH console :
 
 ``` {.bash}
 sudo su -
-service mysql stop
+mysql stop service
 mysqld --verbose
 ```
 
-Ou consulter le log : /var/log/mysql/error.log
+Or consult the log : /var/log/mysql/error.log
 
-Les boutons Eteindre/Redémarrer ne fonctionnent pas 
+The Shutdown / Restart buttons do not work 
 ===================================================
 
-Sur une installation DIY c’est normal. En SSH, il faut faire la commande
-visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
-NOPASSWD: ALL.
+On a DIY installation it&#39;s Normal. In SSH, you have to order
+visudo and at the end of the file you have to add : www-data All = (All)
+NOPASSWD: All.
 
 ``` {.bash}
 sudo service apache2 restart
 ```
 
-Je ne vois pas certains plugins du Market 
+I don&#39;t see some plugins from the Market 
 =========================================
 
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
-plugin. En général, une mise à jour de jeedom corrige le souci.
+This kind of case happens if your Jeedom is not compatible with the
+plugin. In general, a jeedom update fixes the problem.
 
-J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
+I have timeout equipment but I don&#39;t see it on the dashboard
 =========================================
 
-Les alerte sont classé par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
+The alerts are classified by priority, from the least important to the most important : timeout, battery warning, battery danger, warning alert, danger alert
 
-Mon Jeedom affiche en permanance "En cours de démarrage" même après 1h ? 
+My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ? 
 =====================================
 
-Si vous etes en DIY et sous Debian 9 ou plus, vérifiez qu'il n'y a pas eu une mise à jour d'Apache et donc le retour du privateTmp (visible en faisant `ls /tmp` et voir si il y a un dossier private\*Apache). Si c'est le cas il faut faire :
+If you are DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \ * Apache folder). If it is the case it is necessary to do :
 
 ``` 
 mkdir /etc/systemd/system/apache2.service.d
-echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
-echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
 ``` 
 
-J'ai un soucis d'heure sur mes historiques
+I have a time concern on my history
 =========================================
 
-Essayez de vider le cache de chrome, l'affichage des historique est calculé par rapport à l'heure du navigateur.
+Try to empty the chrome cache, the history display is calculated relative to the browser time.
 
-J'ai l'erreur "Soucis réseaux detecté, redemarrage du réseaux"
+I have the error "Network problems detected, network restart"
 =========================================
 
-Jeedom ne trouve pas ou n'arrive pas a un pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeeodm n'a pas redemarré ou a redemarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connection réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
+Jeedom can&#39;t find or ping the gateway. In general it happens if the adsl box restarts (in particular liveboxes) and Jeeodm has not restarted or has restarted faster than the box. For security he tells you that he has found a problem and relaunches the network connection process. You can deactivate this mechanism by going to the Jeedom configuration and by deactivating the network management by Jeedom.
 
-J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."
+I get the message &quot;Failed to back up the database. Check that mysqldump is present."
 =========================================
-Ca veut dire que Jeedom n'arrive pas a backuper la base de donnée ce qu'i peut laisser penser a un soucis de corrumption de base de données et de filesystem. Il n'y a malheureusement pas de commande miracle pour corriger. Le mieux est de lancer un backup et d'analyser la log de celui-ci. Dans les cas connu de soucis nous avons
+It means that Jeedom cannot back up the database, which can suggest a problem with database and filesystem corruption.. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have
 
-- une table de la base corrompu => la c'est mal partie il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous etês sur garde SD c'est le bon moment pour la changer)
-- pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
+- a corrupt base table =&gt; it is badly started you have to see to try to repair and if it does not start from the last good backup (if you are on SD guard it is the right time to change it)
+- not enough space on the filesystem =&gt; look at the health page this can tell you
 
 
-Je n'arrive plus a me connecter a mon Jeedom
+I can no longer connect to my Jeedom
 =========================================
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raison evidente de sécurité. Les identifiants admin/admin ne marche plus que en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par defaut seul les ip sur 192.168.*.* ou 127.0.0.1 sont reconnu comme local. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procedure de remise à zéro de mot de passe (voir dans les tuto/how to)
+Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. The admin / admin identifiers only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only ip on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If despite all that you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
 
-J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent etre manquant ou j'ai une page blanche
+I have errors of type &quot;Class &#39;eqLogic&#39; not found&quot;, files seem to be missing or I have a blank page
 =========================================
-C'est une erreur assez grave le plus simple est de faire 
+It is a fairly serious error, the simplest is to make 
 
 ``` 
-mkdir -p /root/tmp/
-cd /root/tmp
+mkdir -p / root / tmp /
+cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
 unzip master.zip
-cp -R /root/tmp/core-master/* /var/www/html
-rm -rf /root/tmp/core-master
+cp -R / root / tmp / core-master / * / var / www / html
+rm -rf / root / tmp / core-master
 ```
+
+# I cannot install the plugin dependencies I have an error of the type : "E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock / var / lib / dpkg / lock"
+
+It is necessary :
+
+- restart Jeedom
+- go to the administration of it (notched wheel button at the top right then configuration in v3 or Setup -&gt; System -&gt; Configuration in v4)
+- go to the OS / DB tab
+- launch system administration
+- click on Dpkg configure
+- wait 10min
+- relaunch the dependencies of the blocking plugins

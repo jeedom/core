@@ -1,146 +1,146 @@
-** ** Los artículos se utilizan para definir la estructura de su automatización del hogar.
-Todo el equipo que va a crear pertenecerá a un objeto y
-será, pues, visto con mayor facilidad. Se dice entonces que el objeto
-es el padre ** ** equipos. La gestión de objetos está disponible
-desde las Herramientas → Objetos ** ** menú.
+La **objetos** le permite definalir la estructura de árbol de su domótica.
+Todo el equipo que cree debe pertenecer a un objeto y
+será más fácilmente identificable. Luego decimos que el objeto
+es el **pariente** equipo. La gestión de objetos es accesible.
+del menú **Herramientas → Objetoos**.
 
-Para dejar libre elección a la personalización, puede nombrar a estos
-objetos como desee. Por lo general hay definir los diferentes
-partes de su casa como nombres de piezas (Esta es también la
+Para dar libre elección a la personalización, puede nombrar estos
+objetos como quieras. Por lo general, definaliremos los diferentes
+partes de su casa, como los nombres de las habitaciones (esto es
 configuración recomendada).
 
-administración
+Administración 
 =======
 
-Hay dos opciones disponibles:
+Tienes dos opciones :
 
--   ** ** Añadir: Crea un nuevo objeto.
+-   **Añadir** : Crea un nuevo objeto.
 
--   ** ** Descripción: Muestra una lista de objetos creados
-    y su configuración.
+-   **Resumen** : Muestra la lista de objetos creados.
+    así como su configuración.
 
-mis objetos
+Mis objetos 
 ==========
 
-Una vez que haya creado un objeto, aparecerá en esta sección.
+Una vez que haya creado un objeto, aparecerá en esta parte.
 
-Propósito pestaña
+Pestaña Objetoo 
 ------------
 
-Al hacer clic sobre un objeto, se accede a la página de configuración. ¿Qué
-¿cuáles son los cambios, no se olvide de guardar el
+Al hacer clic en un objeto, accede a su página de configuración. ¿Qué
+sean cuales sean los cambios realizados, no olvide guardar en
 final.
 
-Aquí están las diferentes características para configurar un objeto:
+Aquí están las diferentes características para configurar un objeto. :
 
--   ** ** Nombre del objeto: El nombre de su objeto.
+-   **Nombre del objeto** : El nombre de tu objeto.
 
--   ** ** Padre: especifica el elemento principal del objeto actual, esto permite
-    definir una jerarquía de objetos. Por ejemplo: El espectáculo
-    apartamento de los padres. Un objeto puede tener sólo un padre
+-   **Padre** : Indica el padre del objeto actual, esto permite
+    definalir una jerarquía entre objetos. Por ejemplo : La sala tiene
+    ser padre del apartamento. Un objeto solo puede tener un padre
     pero varios objetos pueden tener el mismo padre.
 
--   ** ** visible: Marque esta casilla para hacer visible este artículo.
+-   **Visible** : Marque esta casilla para hacer visible este objeto.
 
--   ** ** Ocultar el salpicadero: Marque esta casilla para ocultar
-    el objeto en el salpicadero. Todavía se mantiene en el
-    lista, que permite la visualización, pero sólo
-    de forma explícita.
+-   **Esconderse en el tablero** : Marque esta casilla para ocultar
+    el objeto en el tablero. Todavía se mantiene en el
+    lista, que le permite mostrarlo, pero solo
+    explícitamente.
 
--   ** ** Icono: Elija un icono para el objeto.
+-   **Icono** : Le permite elegir un icono para su objeto.
 
--   ** ** etiqueta de color: seleccione el color del objeto y
-    equipos que se le atribuye.
+-   **Etiqueta de color** : Le permite elegir el color del objeto y
+    equipo adjunto.
 
--   ** ** color del texto de la etiqueta: Elija el color del texto
-    del objeto. Este texto será sobre el color ** ** etiqueta. A usted
+-   **Color del texto de la etiqueta** : Le permite elegir el color del texto.
+    del objeto. Este texto estará sobre el **Etiqueta de color**. A usted
     elegir un color para que el texto sea legible.
 
--   **El color de texto abstracto**: Elija el color
-    Resumen de Resultados del objeto en el tablero de instrumentos.
+-   **Color de resumen del texto** : Le permite elegir el color de
+    resultados del resumen del objeto en el tablero.
 
--   **Tamaño en tablero de instrumentos (1 a 12)**: Establece el ancho
-    la visualización de este objeto en el tablero de instrumentos. Por ejemplo: si
-    `6` para poner dos objetos que siguen en la lista, entonces
-    será al lado del otro en el salpicadero. Si pones `3` cuatro
-    objetos que siguen, van a estar juntos.
+-   **Tamaño en el tablero (1 a 12)** : Le permite definalir el ancho
+    la visualización de este objeto en el tablero. Por ejemplo : si usted
+    poner `6` a dos objetos consecutivos en la lista, luego
+    estará lado a lado en el tablero. Si pones `3` a cuatro
+    objetos que se siguen, también estarán uno al lado del otro.
 
-> **Tip**
+> **Punta**
 >
-> Se puede cambiar el orden de visualización de los objetos en el salpicadero.
-> En el menú de la izquierda de la página, utilice las flechas verticales
-> En arrastrar / soltar para darles un nuevo lugar.
+> Puede cambiar el orden de visualización de los objetos en el tablero.
+> En el menú, a la izquierda de su página, use las flechas verticales
+> arrastrar y soltar para darles un nuevo lugar.
 
-> **Tip**
+> **Punta**
 >
-> Se puede ver un gráfico que representa todos los elementos de Jeedom
-> Se adjunta a este artículo haciendo clic en los enlaces de botones ** ** superior
-> Derecho.
+> Puedes ver un gráfico que representa todos los elementos de Jeedom
+> adjunto a este objeto haciendo clic en el botón **Vínculos**, arriba en
+> derecha.
 
-> **Tip**
+> **Punta**
 >
-> Cuando se crea un dispositivo y ningún padre se ha establecido,
-> Tendrá como padre: ** ** Nº
+> Cuando se crea un dispositivo y no se ha definalido ningún padre,
+> tendrá como padre : **No** .
 
-ficha resumen
+Pestaña Resumen 
 -------------
 
-Los resúmenes son la información global asignado a un objeto,
-aparecerá en especial en el tablero al lado del nombre de este último.
+Los resúmenes son información global, asignada a un objeto, que
+se muestran en particular en el tablero al lado del nombre de este último.
 
-### Tablero de anuncios
+### Tablero de anuncios 
 
-Las columnas representan resúmenes pertenecientes al objeto actual. Tres
-líneas están disponibles:
+Las columnas representan los resúmenes asignados al objeto actual. Tres
+te proponen líneas :
 
--   Hasta ** ** en el resumen general: Marca la casilla si
-    quiere que el resumen se muestra en la barra de menú
+-   **Subir en el resumen global** : Marque la casilla si
+    desea que el resumen se muestre en la barra de menú
     de Jeedom.
 
--   ** ** Ocultar en el escritorio: Marque la casilla si no desea
-    Resumen aparece junto al nombre del objeto en el salpicadero.
+-   **Ocultar en el escritorio** : Marque la casilla si no quiere
+    el resumen se muestra junto al nombre del objeto en el tablero.
 
--   Ocultar ** ** móvil: Marque la casilla si no desea
-    el resumen se muestra cuando se ve desde un teléfono móvil.
+-   **Ocultar en el móvil** : Marque la casilla si no quiere
+    el resumen se muestra cuando lo ve desde un dispositivo móvil.
 
-### comandos
+### Comandos 
 
-Cada ficha representa un tipo de resumen definida en la configuración
-de Jeedom. Haga clic en Agregar ** ** fin de que sea
-considerada en abstracto. Usted tiene la opción de seleccionar el
-controlar cualquier equipo Jeedom, incluso si no lo hace
-objeto padre.
+Cada pestaña representa un tipo de resumen definalido en la configuración
+de Jeedom. Haga clic en **Agregar un pedido** para que sea
+tomado en cuenta en el resumen. Tiene la opción de seleccionar el
+ordene cualquier equipo Jeedom, incluso si no es para
+padre este objeto.
 
-> **Tip**
+> **Punta**
 >
-> Si desea agregar un tipo de resumen o para configurar el
-> Método de cálculo de la unidad, el icono y el nombre de un resumen,
-> Tiene que ir a la configuración general de Jeedom:
-> **Administración → Configuración → ficha Resúmenes**.
+> Si desea agregar un tipo de resumen o configurar el
+> Método de cálculo del resultado, la unidad, el icono y el nombre de un resumen.,
+> tienes que ir a la configuración general de Jeedom :
+> **Administración → Configuración → pestaña Resúmenes**.
 
-visión de conjunto
+Resumen 
 ==============
 
-La visión general le permite ver todos los objetos de
-Jeedom, y su configuración:
+La vista general le permite ver todos los objetos en
+Jeedom, así como su configuración :
 
--   ** ** ID: ID del objeto.
+-   **Identificación** : Identificación de objeto.
 
--   ** ** Asunto: Nombre del objeto.
+-   **Objeto** : Nombre del objeto.
 
--   ** ** Padre: Nombre del objeto padre.
+-   **Padre** : Nombre del objeto padre.
 
--   ** ** visible: Visibilidad de objeto.
+-   **Visible** : Visibilidad del objeto.
 
--   ** ** Oculto Indica si el objeto está oculto en el salpicadero.
+-   **Enmascarado** : Indica si el objeto está oculto en el tablero.
 
--   ** ** Resumen Definido: Especifica el número de resumen de pedidos. este
-    que es de color azul se refleja en el resumen general.
+-   **Resumen definalido** : Indica el número de pedidos por resumen. este
+    que está en azul se tiene en cuenta en el resumen global.
 
--   **Resumen del tablero de instrumentos Ocultos resúmenes** Indica ocultos
+-   **Resumen de panel oculto** : Mostrar resúmenes ocultos en
     el tablero de instrumentos.
 
--   **Resumen móvil Oculto** Indica resúmenes ocultos
+-   **Resumen móvil oculto** : Mostrar resúmenes ocultos en
     el móvil.
 
 

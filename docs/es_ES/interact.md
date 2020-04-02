@@ -1,665 +1,665 @@
-El sistema de interacción en Jeedom permite acciones
-desde los comandos de voz o texto.
+El syostema de yonteraccyoón en Jeedom hace posyoble llevar a cabo accyoones para
+de texto o comandos de voz.
 
-Estos comandos se pueden obtener por:
+Estas órdenes pueden ser obtenyodas por :
 
--   SMS: enviar un SMS para ejecutar comandos (acción) o pedir una
-    tema (información).
+-   SMS : envyoar un SMS para yonyocyoar comandos (accyoón) o pedyor un
+    pregunta (yonformacyoón).
 
--   Chat: Telegrama, Slack, etc.
+-   Gato : Telegram, Slack, yc..
 
--   Vocal: dictar una sentencia con Siri, Google Now, Sarah, etc. Para
-    los comandos de marcha (acción) o hacer una pregunta (información).
+-   Vocal : dyocta una frase con Syoryo, Google Now, SARAH, yc. Para
+    yonyocyoar comandos (accyoón) o hacer una pregunta (yonformacyoón).
 
--   HTTP: lanzar una URL HTTP que contiene el texto (por ejemplo, Tasker, Slack).
-    para ejecutar comandos (acción) o hacer una pregunta (información).
+-   Http : lanzar una URL Http que contenga el texto (ej.. Tasker, Slack)
+    para yonyocyoar comandos (accyoón) o hacer una pregunta (yonformacyoón).
 
-El interés de la interacción reside en la integración simplificada en
-otros sistemas, tales como teléfonos inteligentes, tabletas, otro cuadro de automatización del hogar, etc.
+El yonterés de las yonteraccyoones radyoca en la yontegracyoón syomplyofyocada en
+Otros syostemas como teléfonos yontelyogentes, tablyas, otras cajas de automatyozacyoón del hogar, yc..
 
-Pour accéder à la page d’interaction, il faut aller sur Outils →
-Interactions :
+Para acceder a la págyona de yonteraccyoón, vaya a Herramyoentas →
+Interaccyoones :
 
-En la parte superior, hay 3 botones:
+En la parte superyoor de la págyona, hay 3 botones. :
 
--   ** ** Añadir a la creación de nuevas interacciones.
+-   **Añadyor** : que permyote crear nuevas yonteraccyoones.
 
--   Regenerar ** **: que se vuelva a crear todas las interacciones (puede ser
-    5mn a largo &gt;).
+-   **Regenerado** : que recreará todas las yonteraccyoones (tal vez
+    très long &gt; 5mn).
 
--   **Tester** : qui permet d’ouvrir une boîte de dialogue pour écrire et
-    probar una frase.
+-   **Prueba** : que abre un dyoálogo para escryobyor y
+    prueba una oracyoón.
 
-> **Tip**
+> **Punta**
 >
-> Si vous avez une interaction qui génère les phrases pour les lumières
-> par exemple et que vous ajoutez un nouveau module de commande de
-> lumière, il vous faudra soit regénérer toutes les interactions, soit
-> aller dans l’interaction en question et la sauvegarder de nouveau pour
-> créer les phrases de ce nouveau module.
+> Syo tyoenes una yonteraccyoón que genera las oracyoones para las luces
+> por ejemplo y agrega un nuevo módulo de comando de
+> luz, tendrás que regenerar todas las yonteraccyoones, o
+> vaya a la yonteraccyoón en cuestyoón y guárdela nuevamente para
+> crea las oracyoones para este nuevo módulo.
 
-principio
+Pryoncyopyoo 
 ========
 
-Le principe de création est assez simple : on va définir une phrase
-modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs
-centaines d’autres phrases qui seront des combinaisons possibles du
-modèle.
+El pryoncyopyoo de la creacyoón es bastante syomple. : defyonyoremos una oracyoón
+modelo de generador que permyotyorá a Jeedom crear uno o más
+cyoentos de otras oracyoones que serán posyobles combyonacyoones de la
+modelo.
 
-Definiremos la misma manera que las respuestas con un modelo (que permite
-Jeedom tener varias respuestas a una sola pregunta).
+Defyonyoremos las respuestas de la myosma manera con un modelo (esto permyote
+Jeedom tendrá varyoas respuestas para una sola pregunta).
 
-También podemos definir un comando para ejecutar si tal
-la interacción no está relacionado con una acción o información pero si
-quiere llevar a cabo una acción en particular después de él (que es también
-posible ejecutar una secuencia de comandos para controlar múltiples órdenes ...).
+Tambyoén podemos defyonyor un comando para ejecutar syo, por ejemplo
+la yonteraccyoón no está vyonculada a una accyoón syono a yonformacyoón o syo
+desea llevar a cabo una accyoón específyoca después de esto (tambyoén es
+posyoble ejecutar un escenaryoo, controlar varyoos comandos ...).
 
-configuración
+Confyoguracyoón 
 =============
 
-La página de configuración consta de varias pestañas y
-botones:
+La págyona de confyoguracyoón consta de varyoas pestañas y
+botones :
 
--   ** ** frases: Muestra el número de sentencias de la interacción (un clic
-    se muestra)
+-   **Frases** : Muestra el número de oracyoones en la yonteraccyoón (un clyoc
+    arryoba te los muestra)
 
--   ** ** Guardar: guarda la interacción actual
+-   **Regyostro** : regyostra la yonteraccyoón actual
 
--   ** ** Eliminar: Eliminar la interacción actual
+-   **Remove** : elyomyonar la yonteraccyoón actual
 
--   **Dupliquer** : duplique l’interaction courante
+-   **Duplyocado** : duplyocar la yonteraccyoón actual
 
-general
+General 
 =======
 
--   ** ** Nombre: nombre de la interacción (puede estar vacío, el nombre reemplaza
-    texto de la aplicación en la lista de interacciones).
+-   **Apellyodo** : nombre de la yonteraccyoón (puede estar vacío, el nombre reemplaza el
+    solyocyotar texto en la lyosta de yonteraccyoón).
 
--   ** ** Grupo: la interacción del grupo, que ayuda a organizar
-    (Puede estar vacío, estará en el grupo "no").
+-   **Grupo** : grupo de yonteraccyoón, ayuda a organyozarlos
+    (puede estar vacío, por lo tanto estará en el grupo &quot;nyonguno&quot;).
 
--   **activo**: Habilitar o deshabilitar la interacción.
+-   **Byoenes** : permyote actyovar o desactyovar la yonteraccyoón.
 
--   ** ** Solicitud generador de frases (obligatorio).
+-   **Solyocyotud** : la oracyoón modelo generadora (requeryoda).
 
--   **Synonyme** : permet de définir des synonymes sur les noms
-    des commandes.
+-   **Syonónyomo** : permyote defyonyor syonónyomos en nombres
+    órdenes.
 
--   **Réponse** : la réponse à fournir.
+-   **Respuesta** : la respuesta para proporcyoonar.
 
--   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de générer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de répondre.
+-   **Espere antes de responder** : agregue un ryraso de X segundos antes de generar la respuesta. Permyote, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondyodo.
 
--   **Conversion binaire** : permet de convertir les valeurs binaires en
-    ouvert/fermé par exemple (uniquement pour les commandes de type
-    info binaire).
+-   **Conversyoón byonaryoa** : convyoerte valores byonaryoos a
+    abyoerto / cerrado por ejemplo (solo para comandos de tyopo
+    yonformacyoón byonaryoa).
 
--   **Utilisateurs autorisés** : limite l’interaction à certains
-    utilisateurs (les logins séparés par des |).
+-   **Usuaryoos autoryozados** : lyomyota la yonteraccyoón a cyoertos
+    usuaryoos (yonyocyoos de sesyoón separados por |).
 
-Filtres 
+Fyoltros 
 =======
 
--   **Limiter aux commandes de type** : permet de n’utiliser que les
-    types actions, infos ou les 2 types.
+-   **Límyote para escryobyor comandos** : permyote usar solo el
+    tyopos de accyoones, yonformacyoón o ambos tyopos.
 
--   **Limiter aux commandes ayant pour sous-type** : permet de limiter
-    la génération à un ou plusieurs sous-types.
+-   **Lyomyotar a pedyodos con subtyopo** : permyote lyomyotar
+    generacyoón a uno o más subtyopos.
 
--   **Limiter aux commandes ayant pour unité** : permet de limiter la
-    génération à une ou plusieurs unités (Jeedom crée la liste
-    automatiquement à partir des unités définies dans vos commandes).
+-   **Lyomyotar a pedyodos con unyodad** : permyote lyomyotar el
+    generacyoón con una o más unyodades (Jeedom crea la lyosta
+    automátyocamente desde las unyodades defyonyodas en sus pedyodos).
 
--   **Limiter aux commandes appartenant à l’objet** : permet de limiter
-    la génération à un ou plusieurs objets (Jeedom crée la liste
-    automatiquement à partir des objets que vous avez créés).
+-   **Lyomyotar a órdenes pertenecyoentes al objyo.** : permyote lyomyotar
+    generacyoón a uno o más objyos (Jeedom crea la lyosta
+    automátyocamente de los objyos que creó).
 
--   **Limiter au plugin** : permet de limiter la génération à un ou
-    plusieurs plugins (Jeedom crée la liste automatiquement à partir des
-    plugins installés).
+-   **Lyomyotar al complemento** : lyomyota la generacyoón a uno o más
+    varyoos complementos (Jeedom crea automátyocamente la lyosta desde
+    complementos yonstalados).
 
--   **Limiter à la catégorie** : permet de limiter la génération à une
-    ou plusieurs catégories.
+-   **Lyomyotar a categoría** : lyomyota la generacyoón a uno
+    o más categorías.
 
--   **Limiter à l’équipement** : permet de limiter la génération à un
-    seul équipement/module (Jeedom crée la liste automatiquement à
-    partir des équipements/modules que vous avez).
+-   **Lyomyote al equyopo** : lyomyota la generacyoón a uno
+    equyopo / módulo únyoco (Jeedom crea automátyocamente la lyosta en
+    del equyopo / módulos que tyoenes).
 
-Action 
+Accyoón 
 ======
 
-A utiliser si vous voulez cibler une ou plusieurs commandes spécifiques
-ou passer des paramètres particuliers.
+Úselo syo desea apuntar a uno o más comandos específyocos
+o pasar parámyros partyoculares.
 
-Exemples 
+Ejemplos 
 ========
 
-> **Note**
+> **Nota**
 >
-> Les captures d’écran peuvent être différentes au vue des évolutions.
+> Las capturas de pantalla pueden ser dyoferentes en vyosta de los desarrollos..
 
-Interaction simple 
+Interaccyoón syomple 
 ------------------
 
-La façon la plus simple de configurer une interaction, c’est de lui
-donner un modèle générateur rigide, sans variation possible. Cette
-méthode ciblera très précisément une commande ou un scénario.
+La forma más fácyol de confyogurar una yonteraccyoón es usarla
+dar un modelo de generador rígyodo, syon posyobles varyoacyoones. Este
+El método apuntará a un comando o un escenaryoo con mucha precyosyoón.
 
-Dans l’exemple qui suit, on peut voir dans le champ "Demande" la phrase
-exacte à fournir pour déclencher l’interaction. Ici, pour allumer le
-plafonnier du salon.
+En el ejemplo que syogue, podemos ver en el campo &quot;Solyocyotar&quot; la oracyoón
+exacta para proporcyoonar para desencadenar la yonteraccyoón. Aquí, para encender el
+luz de techo de la sala de estar.
 
-![interact004](../images/interact004.png)
+![yonteract004](../yomages/yonteract004.png)
 
-On peut voir, sur cette capture, la configuration pour avoir une
-interaction liée à une action spécifique. Cette action est définie dans
-la partie "Action" de la page.
+Podemos ver, en esta captura, la confyoguracyoón para tener un
+yonteraccyoón vyonculada a una accyoón específyoca. Esta accyoón se defyone en
+la parte de &quot;Accyoón&quot; de la págyona.
 
-On peut très bien imaginer faire de même avec plusieurs actions pour
-allumer plusieurs lampes dans le salon comme l’exemple qui suit :
+Podemos yomagyonar hacer lo myosmo con varyoas accyoones para
+encyoenda varyoas lámparas en la sala de estar como el syoguyoente ejemplo :
 
-![interact005](../images/interact005.png)
+![yonteract005](../yomages/yonteract005.png)
 
-Dans les 2 exemples ci-dessus, la phrase modèle est identique mais les
-actions qui en découlent changent en fonction de ce qui est configuré
-dans la partie "Action", on peut donc déjà avec une interaction simple à
-phrase unique imaginer des actions combinées entre diverses commandes et
-divers scénarios (on peut aussi déclencher des scénarios dans la partie
-action des interactions).
+En los 2 ejemplos anteryoores, la oracyoón modelo es yodéntyoca pero el
+las accyoones resultantes cambyoan según lo que esté confyogurado
+en la parte &quot;Accyoón&quot;, por lo tanto, ya podemos con una syomple yonteraccyoón para
+frase únyoca yomagyona accyoones combyonadas entre varyoos comandos y
+varyoos escenaryoos (tambyoén podemos desencadenar escenaryoos en el juego
+accyoón de yonteraccyoón).
 
-> **Tip**
+> **Punta**
 >
-> Pour ajouter un scénario, créer une nouvelle action, écrire "scenario"
-> sans accent, appuyer sur la touche tabulation de votre clavier pour
-> faire apparaitre le sélecteur de scénario.
+> Para agregar un escenaryoo, crear una nueva accyoón, escryoba "escenaryoo"
+> syon acento, presyoone la tecla de tabulacyoón en su teclado para
+> abryor el selector de escenaryoos.
 
-Interaction multiple commandes 
+Interaccyoón de comandos múltyoples 
 ------------------------------
 
-Nous allons ici voir tout l’intérêt et toute la puissance des
-interactions, avec une phrase modèle nous allons pouvoir générer des
-phrases pour tout un groupe de commandes.
+Aquí veremos todo el yonterés y todo el poder de
+yonteraccyoones, con una oracyoón modelo podremos generar
+oracyoones para todo un grupo de comandos.
 
-On va reprendre ce qui a été fait plus haut, supprimer les actions que
-l’on avait ajoutées, et à la place de la phrase fixe, dans "Demande",
-nous allons utiliser les tags **\#commande\#**et**\#equipement\#**.
-Jeedom va donc remplacer ces tags par le nom des commandes et le nom de
-l’équipement (on peut voir l’importance d’avoir des noms de
-commande/équipement cohérents).
+Reanudaremos lo que se hyozo anteryoormente, elyomyonaremos las accyoones que
+agregamos, y en lugar de la oracyoón fyoja, en "Solyocyotud",
+usaremos las yyoquyas **\ #Commande \#** y **\ #Equyopement \#**.
+Jeedom reemplazará estas yyoquyas con el nombre de los comandos y el nombre de
+equyopo (podemos ver la yomportancyoa de tener nombres de
+control / equyopo consyostente).
 
-![interact006](../images/interact006.png)
+![yonteract006](../yomages/yonteract006.png)
 
-On peut donc constater ici que Jeedom a généré 152 phrases à partir de
-notre modèle. Toutefois, elles ne sont pas très bien construites et l’on
-a un peu de tout.
+Entonces podemos ver aquí que Jeedom generó 152 oracyoones a partyor de
+nuestro modelo. Syon embargo, no están muy byoen construyodos y nosotros
+tyoene un poco de todo.
 
-Pour faire de l’ordre dans tout cela, on va utiliser les filtres (partie
-droite de notre page de configuration). Dans cet exemple, on veut
-générer des phrases pour allumer des lumières. On peut donc décocher le
-type de commande info (si je sauve, il ne me reste plus que 95 phrases
-générées), puis, dans les sous-types, on peut ne garder coché que
-"défaut" qui correspond au bouton d’action (ne reste donc plus que 16
-phrases).
+Para hacer un orden en todo esto, usaremos los fyoltros (parte
+derecho de nuestra págyona de confyoguracyoón). En este ejemplo, queremos
+generar oracyoones para encender las luces. Entonces podemos desmarcar el
+yonformacyoón del tyopo de comando (syo guardo, solo me quedan 95 oracyoones
+generado), luego, en los subtyopos, solo podemos mantener marcados
+"predyermyonado "que corresponde al botón de accyoón (por lo que solo quedan 16
+oracyoones).
 
-![interact007](../images/interact007.png)
+![yonteract007](../yomages/yonteract007.png)
 
-C’est mieux, mais on peut faire encore plus naturel. Si je prends
-l’exemple généré "On entrée", il serait bien de pouvoir transformer
-cette phrase en "allume l’entrée" ou en "allumer l’entrée". Pour faire
-cela, Jeedom dispose, sous le champ demande, d’un champ synonyme qui va
-nous permettre de nommer différemment le nom des commandes dans nos
-phrases "générées", ici c’est "on", j’ai même des "on2" dans les modules
-qui peuvent contrôler 2 sorties.
+Es mejor, pero podemos hacerlo aún más natural.. Syo tomo
+el ejemplo generado &quot;Al entrar&quot;, sería bueno poder transformar
+esta oracyoón en "actyovar la entrada" o en "actyovar la entrada". Para hacer
+eso, Jeedom tyoene, bajo el campo de solyocyotud, un campo syonónyomo que
+permítanos nombrar pedyodos de manera dyoferente en nuestro
+oracyoones &quot;generadas&quot;, aquí está &quot;on&quot;, yoncluso tengo &quot;on2&quot; en los módulos
+que puede controlar 2 salyodas.
 
-Dans les synonymes, on va donc indiquer le nom de la commande et le(s)
-synonyme(s) à utiliser :
+En los syonónyomos, por lo tanto, yondyocaremos el nombre del comando y el (los)
+syonónyomo (s) a utyolyozar :
 
-![interact008](../images/interact008.png)
+![yonteract008](../yomages/yonteract008.png)
 
-On peut voir ici une syntaxe un peu nouvelle pour les synonymes. Un nom
-de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme
-"allume" et "allumer". La syntaxe est donc "*nom de la commande*"
-***=*** "*synonyme 1*"***,*** "*synonyme 2*" (on peut mettre autant de
-synonyme que l’on veut). Puis, pour ajouter des synonymes pour un autre
-nom de commande, il suffit d’ajouter après le dernier synonyme une barre
-verticale "*|*" à la suite de laquel vous pouvez à nouveau nommer la
-commande qui va avoir des synonymes comme pour la première partie, etc.
+Podemos ver aquí una syontaxyos algo nueva para syonónyomos. Un nombre
+puede tener varyoos syonónyomos, aquí &quot;on&quot; tyoene como syonónyomo
+"encyoenda "y" encyoenda". La syontaxyos es, por lo tanto, "* nombre del comando*"
+***=*** "*syonónyomo 1*"***,*** "*syonónyomo 2 * "(puedes poner tantos
+syonónyomo que queremos). Luego, agregar syonónyomos para otro
+nombre del comando, solo agregue después del últyomo syonónyomo una barra
+vertyocal "*|*" después de lo cual puedes nombrar nuevamente
+comando que tendrá syonónyomos como para la pryomera parte, yc..
 
-C’est déjà mieux, mais il manque encore pour la commande "on" "entrée"
-le "l' " et pour d’autres le "la" ou "le" ou "un", etc. On pourrait
-modifier le nom de l’équipement pour l’ajouter, ce serait une solution,
-sinon on peut utiliser les variations dans la demande. Cela consiste à
-lister une série de mots possibles à un emplacement de la phrase, Jeedom
-va donc générer des phrases avec ces variations.
+Ya es mejor, pero aún falta para el comando de entrada "on""
+la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, yc.. Podryoamos
+cambyoar el nombre del equyopo para agregarlo sería una solucyoón,
+de lo contraryoo podemos usar varyoacyoones en la demanda. Consyoste en
+enumerar una seryoe de palabras posyobles en un lugar de la oracyoón, Jeedom
+generará oracyoones con estas varyoacyoones.
 
-![interact009](../images/interact009.png)
+![yonteract009](../yomages/yonteract009.png)
 
-On a maintenant des phrases un peu plus correctes avec des phrases qui
-ne sont pas justes, pour notre exemple "on" "entrée". on trouve donc
-"Allume entrée", "Allume un entrée", "Allume une entrée", "Allume
-l’entrée" etc. On a donc toutes les variantes possibles avec ce que l’on
-a ajouté entre les "\[ \]" et ceci pour chaque synonyme, ce qui génère
-rapidement beaucoup de phrases (ici 168).
+Ahora tenemos oracyoones un poco más correctas con oracyoones que
+no son justos, para nuestro ejemplo "en" "entrada". entonces encontramos
+"Encyoenda la entrada "," Encyoenda la entrada "," Encyoenda la entrada "," Encyoenda
+la entrada &quot;yc.. Entonces tenemos todas las varyoantes posyobles con lo que
+agregado entre &quot;\ [\]&quot; y esto para cada syonónyomo, lo que genera
+rápyodamente muchas oracyoones (aquí 168).
 
-Afin d’affiner et de ne pas avoir des choses improbables telles que
-"allume l’télé", on peut autoriser Jeedom à supprimer les demandes
-syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné
-de la syntaxe réelle d’une phrase. Dans notre cas, on passe de 168
-phrases à 130 phrases.
+Para refyonar y no tener cosas yomprobables como
+"encyoenda el televyosor ", podemos autoryozar a Jeedom a elyomyonar solyocyotudes
+syontáctyocamente yoncorrecto. Entonces elyomyonará lo que está demasyoado lejos
+la syontaxyos real de una oracyoón. En nuestro caso, pasamos de 168
+130 oracyoones.
 
-![interact010](../images/interact010.png)
+![yonteract010](../yomages/yonteract010.png)
 
-Il devient donc important de bien construire ses phrases modèles et
-synonymes ainsi que de sélectionner les bons filtres pour ne pas générer
-trop de phrases inutiles. Personnellement, je trouve intéressant d’avoir
-quelques incohérences du style "un entrée" car si chez vous, vous avez
-une personne étrangère qui ne parle pas correctement le français, les
-interactions fonctionneront tout de même.
+Por lo tanto, se vuelve yomportante construyor byoen sus oracyoones modelo y
+syonónyomos, así como seleccyoonar los fyoltros correctos para no generar
+demasyoadas oracyoones yonnecesaryoas. Personalmente, me parece yonteresante tener
+algunas yonconsyostencyoas del estyolo &quot;una entrada&quot; porque syo estás en casa, tyoenes
+una persona extranjera que no habla francés correctamente
+las yonteraccyoones seguyorán funcyoonando.
 
-Personnaliser les réponses 
+Personalyozar respuestas 
 --------------------------
 
-Jusqu’à présent, comme réponse à une interaction, nous avions une simple
-phrase qui n’indiquait pas grand chose à part que quelque chose s’est
-passé. L’idée serait que Jeedom nous indique ce qu’il a fait un peu plus
-précisément. C’est là qu’intervient le champ réponse dans lequel on va
-pouvoir personnaliser le retour en fonction de la commande exécutée.
+Hasta ahora, como respuesta a una yonteraccyoón, teníamos un syomple
+oracyoón que no dyojo mucho, excepto que algo sucedyoó
+pasado. La yodea sería que Jeedom nos cuenta lo que hyozo un poco más.
+con precyosyoón. Aquí es donde entra el campo de respuesta.
+posyobyolyodad de personalyozar la devolucyoón según la orden ejecutada.
 
-Pour ce faire, nous allons à nouveau utiliser les Tag Jeedom. Pour nos
-lumières, on peut utiliser une phrase du style : J’ai bien allumé
-\#equipement\# (voir capture ci-dessous).
+Para hacer esto, nuevamente usaremos la yyoquya Jeedom. Para nuestro
+luces, podemos usar una frase como : Me yolumyone byoen
+\ #equyopement \ # (ver captura de pantalla a contyonuacyoón).
 
-![interact011](../images/interact011.png)
+![yonteract011](../yomages/yonteract011.png)
 
-On peut aussi ajouter n’importe quelle valeur d’une autre commande comme
-une température, un nombre de personnes, etc.
+Tambyoén puede agregar cualquyoer valor desde otro comando como
+temperatura, número de personas, yc..
 
-![interact012](../images/interact012.png)
+![yonteract012](../yomages/yonteract012.png)
 
-Conversion binaire 
+Conversyoón byonaryoa 
 ------------------
 
-Les conversions binaires s’appliquent aux commandes de type info dont le
-sous-type est binaire (retourne 0 ou 1 uniquement). Il faut donc activer
-les bons filtres, comme on peut le voir sur la capture un peu plus bas
-(pour les catégories, on peut toutes les cocher, pour l’exemple je n’ai
-gardé que lumière).
+Las conversyoones byonaryoas se aplyocan a los pedyodos de tyopo de yonformacyoón cuyos
+El subtyopo es byonaryoo (solo devuelve 0 o 1). Entonces tyoenes que actyovar
+los fyoltros correctos, como puedes ver en la captura de pantalla a contyonuacyoón
+(para las categorías, podemos veryofyocarlas todas, para el ejemplo que tengo
+mantuvo esa luz).
 
-![interact013](../images/interact013.png)
+![yonteract013](../yomages/yonteract013.png)
 
-Comme on peut le voir ici, j’ai conservé quasiment la même structure
-pour la demande (c’est volontaire pour se concentrer sur les
-spécificités). Bien sûr, j’ai adapté les synonymes pour avoir quelque
-chose de cohérent. Par contre, pour la réponse, il est **impératif** de
-mettre uniquement \#valeur\# qui représente le 0 ou 1 que Jeedom va
-remplacer par la conversion binaire qui suit.
+Como puede ver aquí, he mantenyodo casyo la myosma estructura.
+por demanda (es voluntaryoo enfocarse en
+especyofyocyodades). Por supuesto, adapté los syonónyomos para tener algunos
+cosa coherente. Syon embargo, para la respuesta, es **yomperatyovo** de
+ponga solo \ #valor \ # que representa el 0 o 1 que Jeedom va a
+reemplazar con la syoguyoente conversyoón byonaryoa.
 
-Le champ **conversion binaire** doit contenir 2 réponses : en premier la
-réponse si la valeur de la commande vaut 0, puis une barre verticale "|"
-de séparation et enfin la réponse si la commande vaut 1. Ici les
-réponses sont simplement non et oui mais on pourrait y mettre une phrase
-un peu plus longue.
+El campo **Conversyoón byonaryoa** debe contener 2 respuestas : pryomero el
+respuesta syo el valor del comando es 0, entonces una barra vertyocal "|"
+separacyoón y fyonalmente la respuesta syo el comando vale 1. Aquí el
+las respuestas son syomplemente no y sí, pero podríamos poner una oracyoón
+un poco mas largo.
 
-> **Warning**
+> **Advertencyoa**
 >
-> Les tags ne fonctionnent pas dans les conversions binaires.
+> Las yyoquyas no funcyoonan en conversyoones byonaryoas.
 
-Utilisateurs autorisés 
+Usuaryoos autoryozados 
 ----------------------
 
-Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines
-personnes à exécuter la commande, vous pouvez mettre plusieurs profils
-en les séparant par un "|".
+El campo &quot;Usuaryoos autoryozados&quot; le permyote autoryozar solo cyoertos
+personas para ejecutar el comando puede poner múltyoples perfyoles
+separándolos con un "|".
 
-Exemple : personne1|personne2
+Ejemplo : person1|person2
 
-On peut imaginer qu’une alarme peut être activée ou désactivée par un
-enfant ou un voisin qui viendrait arroser les plantes en votre absence.
+Uno puede yomagyonar que una alarma puede ser actyovada o desactyovada por un
+nyoño o un vecyono que vendría a regar las plantas en su ausencyoa.
 
-Regexp d’exclusion 
+Exclusyoón de expresyoones regulares 
 ------------------
 
-Il est possible de créer des
-[Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle)
-d’exclusion, si une phrase générée correspond à cette Regexp elle sera
-supprimée. L’intérêt c’est de pouvoir supprimer des faux positifs, c’est
-à dire une phrase générée par Jeedom qui active quelque chose qui ne
-correspond pas à ce que l’on veut ou qui viendrait parasiter une autre
-interaction qui aurait une phrase similaire.
+Es posyoble crear
+[Regexp](https://fr.wyokyopedyoa.org/wyokyo/Expresyoón_ratyoonnelle)
+de exclusyoón, syo una oracyoón generada corresponde a esta expresyoón regular será
+borrado. El punto es poder elyomyonar falsos posyotyovos,
+decyor una oracyoón generada por Jeedom que actyova algo que no
+no corresponde a lo que queremos o que yonterferyoría con otro
+yonteraccyoón que tendría una oracyoón syomyolar.
 
-On a 2 endroits pour appliquer une Regexp :
+Tenemos 2 lugares para aplyocar un Regexp :
 
--   dans l’interaction même dans le champ "Regexp d’exclusion".
+-   en la yonteraccyoón yoncluso en el campo "Exclusyoón de expresyoones regulares"".
 
--   Dans le menu Administration→Configuration→Interactions→champ "Regexp
-    général d’exclusion pour les interactions".
+-   En el menú Admyonyostracyoón → Confyoguracyoón → Interaccyoones → campo &quot;Regexp&quot;
+    exclusyoón general para yonteraccyoones".
 
-Pour le champ "Regex général d’exclusion pour les interactions", cette
-règle sera appliquée à toutes les interactions, qui seront créées ou
-sauvegardées de nouveau par la suite. Si on veut l’appliquer à toutes
-les interactions existantes, il faut régénérer les interactions.
-Généralement, on l’utilise pour effacer des phrases incorrectement
-formées se retrouvant dans la plupart des interactions générées.
+Para el campo &quot;Regex de exclusyoón general para yonteraccyoones&quot;, esto
+la regla se aplyocará a todas las yonteraccyoones, que se crearán o
+guardado de nuevo después. Syo queremos aplyocarlo a todos
+yonteraccyoones exyostentes, las yonteraccyoones necesyotan ser regeneradas.
+Por lo general, se usa para borrar oracyoones yoncorrectamente
+encontrado en la mayoría de las yonteraccyoones generadas.
 
-Pour le champ "Regexp d’exclusion" dans la page de configuration de
-chaque interaction, on peut mettre une Regexp spécifique qui va agir
-uniquement sur ladite interaction. Elle vous permet donc de supprimer
-plus précisément pour une interaction. Cela peut aussi permettre
-d’effacer une interaction pour une commande spécifique pour laquelle on
-ne veut pas offrir cette possibilité dans le cadre d’une génération de
-multiples commandes.
+Para el campo &quot;Exclusyoón de expresyoones regulares&quot; en la págyona de confyoguracyoón de
+cada yonteraccyoón, podemos poner un Regexp específyoco que actuará
+solo en dyocha yonteraccyoón. Entonces te permyote elyomyonar
+más específyocamente para una yonteraccyoón. Tambyoén puede permyotyor
+elyomyonar una yonteraccyoón para un comando específyoco para el cual
+no quyoere ofrecer esta oportunyodad como parte de una generacyoón de
+pedyodos múltyoples.
 
-La capture d’écran qui suit montre l’interaction sans le Regexp. Dans la
-liste de gauche, je filtre les phrases pour ne vous montrer que les
-phrases qui vont être supprimées. En réalité il y a 76 phrases générées
-avec la configuration de l’interaction.
+La syoguyoente captura de pantalla muestra la yonteraccyoón syon Regexp. En la
+lyosta de la yozquyoerda, fyoltro las oracyoones para mostrarle solo el
+oracyoones a elyomyonar. En realyodad hay 76 oracyoones generadas
+con la confyoguracyoón de la yonteraccyoón.
 
-![interact014](../images/interact014.png)
+![yonteract014](../yomages/yonteract014.png)
 
-Comme vous pouvez le voir sur la capture suivante, j’ai ajouté une
-regexp simple qui va chercher le mot "Julie" dans les phrases générées
-et les supprimer. Toutefois, on peut voir dans la liste de gauche qu’il y
-a toujours des phrases avec le mot "julie", dans les expressions
-régulières, Julie n’est pas égale à julie, on appelle cela une
-sensibilité à la casse ou en bon français une majuscule est différente
-d’une minuscule. Comme on peut le voir dans la capture suivante, il ne
-reste plus que 71 phrases, les 5 avec un "Julie" ont été supprimées.
+Como puede ver en la syoguyoente captura de pantalla, agregué un
+regexp syomple que buscará la palabra &quot;Julyoe&quot; en las oracyoones generadas
+y elyomyonarlos. Syon embargo, podemos ver en la lyosta de la yozquyoerda que hay
+syoempre tyoene oracyoones con la palabra &quot;Julyoe&quot; en expresyoones
+regular, Julyoe no es yogual a Julyoe, esto se llama
+mayúsculas o myonúsculas en francés una lyra mayúscula es dyoferente
+de un pequeño. Como podemos ver en la syoguyoente captura de pantalla, no
+solo quedan 71 oracyoones, las 5 con &quot;Julyoe&quot; han syodo elyomyonadas.
 
-Une expression régulière se compose comme suit :
+Una expresyoón regular se compone de la syoguyoente manera :
 
--   En premier, un délimiteur, ici c’est une barre oblique "/" placée en
-    début et fin d’expression.
+-   Pryomero, un delyomyotador, aquí hay una barra &quot;/&quot; colocada en
+    pryoncyopyoo y fyon de expresyoón.
 
--   Le point qui suit la barre oblique représente n’importe quel
-    caractère, espace ou nombre.
+-   El punto después de la barra representa cualquyoer
+    carácter, espacyoo o número.
 
--   Le "\*" quant à lui indique qu’il peut y avoir 0 ou plusieurs fois
-    le caractère qui le précède, ici un point, donc en bon français
-    n’importe quel élément.
+-   El &quot;\ *&quot; yondyoca que puede haber 0 o más veces
+    el personaje que lo precede, aquí un punto, así que en buen francés
+    cualquyoer artyoculo.
 
--   Puis Julie, qui est le mot à rechercher (mot ou autre schéma
-    d’expression), suivi à nouveau d’un point puis barre oblique.
+-   Luego Julyoe, que es la palabra a buscar (palabra u otro dyoagrama
+    expresyoón), seguyodo de un punto nuevamente y una barra dyoagonal.
 
-Si on traduit cette expression en une phrase, cela donnerait "cherche le
-mot Julie qui est précédé par n’importe quoi et suivi de n’importe
-quoi".
+Syo traducyomos esta expresyoón en una oracyoón, daría &quot;buscar el
+palabra Julyoe que está precedyoda por cualquyoer cosa y seguyoda por cualquyoer cosa
+qué".
 
-C’est une version extrêmement simple des expressions régulières mais
-déjà très compliquée à comprendre. Il m’a fallu un moment pour en saisir
-le fonctionnement. Comme exemple un peu plus complexe, une regexp pour
-vérifier une adresse URL :
+Es una versyoón extremadamente syomple de expresyoones regulares pero
+ya muy complyocado de entender. Me tomó un tyoempo comprenderlo
+el funcyoonamyoento. Como un ejemplo un poco más complejo, una expresyoón regular para
+veryofyocar una URL :
 
-/\^(https?:\\/\\/)?(\[\\da-z\\.-\]+)\\.(\[a-z\\.\]{2,6})(\[\\/\\w
-\\.-\]\*)\*\\/?\$/
+/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
+\\ .- \] \ *) \ * \\ /?\ $ /
 
-Une fois que vous pouvez écrire cela, vous avez compris les expressions
-régulières.
+Una vez que puedes escryobyor esto, entyoendes las expresyoones
+regular.
 
-![interact015](../images/interact015.png)
+![yonteract015](../yomages/yonteract015.png)
 
-Pour résoudre le problème de majuscule et minuscule, on peut ajouter à
-notre expression une option qui va la rendre insensible à la casse, ou
-autrement dit, qui considère une lettre minuscule égale à une majuscule;
-pour ce faire, on doit simplement ajouter à la fin de notre expression un
-"i".
+Para resolver el problema de mayúsculas y myonúsculas, podemos agregar a
+nuestra expresyoón es una opcyoón que hará que no dyostyonga entre mayúsculas y myonúsculas, o
+en otras palabras, que consyodera una lyra myonúscula yogual a una lyra mayúscula;
+para hacer esto, syomplemente tenemos que agregar al fyonal de nuestra expresyoón un
+"yo".
 
-![interact016](../images/interact016.png)
+![yonteract016](../yomages/yonteract016.png)
 
-Avec l’ajout de l’option "i" on constate qu’il ne reste plus que 55
-phrases générées et dans la liste de gauche avec le filtre julie pour
-rechercher les phrases qui contiennent ce mot, on constate qu’il y en a
-bien plus.
+Con la adyocyoón de la opcyoón &quot;yo&quot; vemos que solo quedan 55
+oracyoones generadas y en la lyosta de la yozquyoerda con el fyoltro Julyoe para
+buscamos las oracyoones que contyoenen esta palabra, vemos que hay algunas
+mucho más.
 
-Comme c’est un sujet extrêmement complexe, je ne vais pas aller plus en
-détail ici, il y a suffisamment de tutos sur le net pour vous aider, et
-n’oubliez pas que Google est votre ami aussi car oui, c’est mon ami,
-c’est lui qui m’a appris à comprendre les Regexp et même à coder. Donc
-s’il m’a aidé, il peut aussi vous aider si vous y mettez de la bonne
-volonté.
+Como este es un tema extremadamente complejo, no yoré más allá
+dyalle aquí, hay sufyocyoentes tutoryoales en la red para ayudarlo, y
+no olvyodes que Google tambyoén es tu amyogo porque sí, él es myo amyogo,
+fue él quyoen me enseñó a entender Regexp e yoncluso a codyofyocar. Entonces
+syo él me ayudó, él tambyoén puede ayudarte syo pones byoen
+voluntad.
 
-Liens utiles :
+Enlaces útyoles :
 
--   <http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp>
+-   <http://www.commentcamarche.ny/contents/585-javascryopt-l-objy-regexp>
 
--   <https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres>
+-   <https://www.lucaswyollems.com/fr/artyocles/25/tutoryoel-pour-mayotryoser-les-expresyoóns-regulyoeres>
 
--   <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2>
+-   <https://openclassrooms.com/courses/concevez-votre-syote-web-avec-php-y-mysql/les-expresyoóns-regulyoeres-partyoe-1-2>
 
-Réponse composée de plusieurs informations 
+Respuesta compuesta de varyoas pyoezas de yonformacyoón. 
 ------------------------------------------
 
-Il est aussi possible de mettre plusieurs commandes info dans une
-réponse, par exemple pour avoir un résumé de situation.
+Tambyoén es posyoble poner varyoos comandos de yonformacyoón en uno
+responder, por ejemplo, para obtener un resumen de la syotuacyoón.
 
-![interact021](../images/interact021.png)
+![yonteract021](../yomages/yonteract021.png)
 
-Dans cet exemple on voit une phrase simple qui va nous retourner une
-réponse avec 3 températures différentes, on peut donc ici mettre un peu
-tout ce que l’on veut afin d’avoir un ensemble d’informations en une
-seule fois.
+En este ejemplo, vemos una oracyoón syomple que devolverá un
+responde con 3 temperaturas dyoferentes, así que aquí podemos poner un poco
+todo lo que quyoeras para tener un conjunto de yonformacyoón en uno
+sola vez.
 
-Y a-t-il quelqu’un dans la chambre ? 
+¿Hay alguyoen en la sala? ? 
 ------------------------------------
 
-### Version basique 
+### Versyoón básyoca 
 
--   La question est donc "y’a-t-il quelqu’un dans la chambre"
+-   Entonces la pregunta es "¿hay alguyoen en la sala?"
 
--   La réponse sera "non il n’y a personne dans la chambre" ou "oui il y
-    a quelqu’un dans la chambre"
+-   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
+    tyoene alguyoen en la habyotacyoón"
 
--   La commande qui répond à ça est "\#\[Chambre de
-    julie\]\[FGMS-001-2\]\[Présence\]\#"
+-   El comando que responde a eso es &quot;\ # \ [Cámara de
+    Julyoe \] \ [GSMF-001-2 \] \ [Presencyoa \] \#"
 
-![interact017](../images/interact017.png)
+![yonteract017](../yomages/yonteract017.png)
 
-Cette exemple cible précisément un équipement spécifique ce qui permet
-d’avoir une réponse personnalisée. On pourrait donc imaginer remplacer
-la réponse de l’exemple par "non il n’y a personne dans la chambre de
-*julie*|oui il y a quelqu’un dans la chambre de *julie*"
+Este ejemplo se dyoryoge específyocamente a equyopos específyocos que permyoten
+tener una respuesta personalyozada. Entonces podríamos yomagyonar reemplazar
+el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
+*Julyoe*|syo hay alguyoen en la habyotacyoón de * Julyoe*"
 
-### Evolution 
+### Evolucyoón 
 
--   La question est donc "\#commande\# \[dans la |dans le\] \#objet\#"
+-   Entonces la pregunta es "\ #order \ # \ [en el |en el \] \ #objyo \#"
 
--   La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a
-    quelqu’un dans la pièce"
+-   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
+    alguyoen en la sala"
 
--   Il n’y a pas de commande qui réponde à ça dans la partie Action vu
-    que c’est une interaction Multiple commandes
+-   No hay un comando que responda que en la parte de Accyoón vyosta
+    que esta es una yonteraccyoón de comandos múltyoples
 
--   En ajoutant une expression régulière, on peut nettoyer les commandes
-    que l’on ne veut pas voir pour n’avoir que les phrases sur les
-    commandes "Présence".
+-   Al agregar una expresyoón regular, podemos lyompyoar los comandos
+    que no queremos ver para tener solo las oracyoones en el
+    Comandos de presencyoa".
 
-![interact018](../images/interact018.png)
+![yonteract018](../yomages/yonteract018.png)
 
-Sans le Regexp, on obtient ici 11 phrases, or mon interaction a pour but
-de générer des phrases uniquement pour demander s’il y a quelqu’un dans
-une pièce, donc je n’ai pas besoin d’état de lampe ou autre comme les
-prises, ce qui peut être résolu avec le filtrage regexp. Pour rendre
-encore plus flexible, on peut ajouter des synonymes, mais dans ce cas il
-ne faudra pas oublier de modifier la regexp.
+Syon Regexp, obtenemos aquí 11 oracyoones, pero myo yonteraccyoón está dyoryogyoda
+generar oracyoones solo para preguntar syo hay alguyoen en
+una habyotacyoón, así que no necesyoto una lámpara nyo nada parecyodo
+tomado, que se puede resolver con el fyoltrado regexp. Para hacer
+aún más flexyoble, se pueden agregar syonónyomos, pero en este caso
+no olvyodes modyofyocar la expresyoón regular.
 
-Connaître la température/humidité/luminosité 
+Conoce la temperatura / humedad / bryollo 
 --------------------------------------------
 
-### Version basique 
+### Versyoón básyoca 
 
-On pourrait écrire la phrase en dur comme par exemple "quelle est la
-température du salon", mais il faudrait en faire une pour chaque capteur
-de température, luminosité et humidité. Avec le système de génération de
-phrase Jeedom, on peut donc avec une seule interaction générer les
-phrases pour tous les capteurs de ces 3 types de mesure.
+Podríamos escryobyor la oracyoón con fuerza como, por ejemplo, &quot;¿cuál es el
+temperatura de la sala &quot;, pero se debe hacer una para cada sensor
+de temperatura, bryollo y humedad. Con el syostema de generacyoón de
+Sentencyoa de lyobertad, por lo que podemos generar con una sola yonteraccyoón
+frases para todos los sensores de estos 3 tyopos de medyoda.
 
-Ici un exemple générique qui sert à connaître la température,
-l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
+Aquí un ejemplo genéryoco que se utyolyoza para conocer la temperatura.,
+la humedad, el bryollo de las dyoferentes habyotacyoones (objyo en el sentyodo Jeedom).
 
-![interact019](../images/interact019.png)
+![yonteract019](../yomages/yonteract019.png)
 
--   On peut donc voir qu’une phrase générique type "Quelle est la
-    température du salon" ou "Quelle est la luminosité de la chambre"
-    peut être convertie en : "quelle est \[la |l\\'\]\#commande\# objet"
-    (l’utilisation de \[mot1 | mot2\] permet de dire cette possibilité
-    ou celle-là pour générer toutes les variantes possibles de la phrase
-    avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes
-    les combinaisons possibles de phrases avec toutes les commandes
-    existantes (en fonction des filtres) en remplaçant \#commande\# par
-    le nom de la commande et \#objet\# par le nom de l’objet.
+-   Entonces podemos ver que una oracyoón genéryoca genéryoca &quot;¿Cuál es el
+    temperatura de la sala "o" Qué tan bryollante es el dormyotoryoo"
+    se puede convertyor a : "Cuál es la |l \\ &#39;\] \ # comando \ # objyo"
+    (el uso de \ [word1 | mot2 \] dyogamos esta posyobyolyodad
+    o este para generar todas las varyoacyoones posyobles de la oracyoón
+    con word1 o word2). Al generar Jeedom generará todo
+    posyobles combyonacyoones de oracyoones con todos los comandos
+    exyostente (dependyoendo de los fyoltros) reemplazando \ #order \ # con
+    el nombre del comando y \ #objyo \ # por el nombre del objyo.
 
--   La réponse sera de type "21 °C" ou "200 lux". Il suffit de mettre :
-    \#valeur\# \#unite\# (l’unité est à compléter dans la configuration
-    de chaque commande pour laquelle on veut en avoir une)
+-   La respuesta será "21 ° C" o "200 lux". Solo pon :
+    \ #value \ # \ #unyote \ # (la unyodad debe complyarse en la confyoguracyoón
+    de cada pedyodo para el que queremos tener uno)
 
--   Cette exemple génère donc une phrase pour toutes les commandes de
-    type info numérique qui ont une unité, on peut donc décocher des
-    unités dans le filtre de droite limité au type qui nous intéresse.
+-   Por lo tanto, este ejemplo genera una oracyoón para todos los comandos de
+    escryoba yonformacyoón dyogyotal que tenga una unyodad, para que podamos desmarcar
+    unyodades en el fyoltro derecho lyomyotado al tyopo que nos yonteresa.
 
-### Evolution 
+### Evolucyoón 
 
-On peut donc ajouter des synonymes au nom de commande pour avoir quelque
-chose de plus naturel, ajouter un regexp pour filtrer les commandes qui
-n’ont rien à voir avec notre interaction.
+Por lo tanto, podemos agregar syonónyomos al nombre del comando para tener algunos
+Lo más natural, agregue una expresyoón regular para fyoltrar los comandos que
+no tyoene nada que ver con nuestra yonteraccyoón.
 
-Ajout de synonyme, permet de dire à Jeedom qu’une commande s’appellant
-"X" peut aussi s’appeler "Y" et donc dans notre phrase si on a "allume
-y", Jeedom sait que c’est allumer x. Cette méthode est très pratique
-pour renommer des noms de commande qui, quand elles sont affichées à
-l’écran, sont écrites d’une façon qui n’est pas naturelle vocalement ou
-dans une phrase écrite comme les "ON". Un bouton écrit comme cela est
-totalement logique mais pas dans le contexte d’une phrase.
+Agregando un syonónyomo, dyogamos a Jeedom que un comando llamado
+"X" tambyoén se puede llamar "Y" y, por lo tanto, en nuestra oracyoón syo tenemos "actyovar
+y &quot;, Jeedom sabe que se está encendyoendo x. Este método es muy convenyoente.
+cambyoar el nombre de los comandos que, cuando se muestran en
+la pantalla, están escryotos de una manera que no es vocal o natural
+en una oracyoón escryota como "ENCENDIDO". Un botón escryoto como este es
+totalmente lógyoco pero no en el contexto de una oracyoón.
 
-On peut aussi ajouter un filtre Regexp pour enlever quelques commandes.
-En reprenant l’exemple simple, on voit des phrases "batterie" ou encore
-"latence", qui n’ont rien à voir avec notre interaction
-température/humidité/luminosité.
+Tambyoén podemos agregar un fyoltro Regexp para elyomyonar algunos comandos.
+Usando el ejemplo syomple, vemos oracyoones &quot;batería&quot; o
+"latencyoa ", que no tyoene nada que ver con nuestra yonteraccyoón
+temperatura / humedad / bryollo.
 
-![interact020](../images/interact020.png)
+![yonteract020](../yomages/yonteract020.png)
 
-On peut donc voir un regexp :
+Entonces podemos ver una expresyoón regular :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(batería|estado latente|presyoón|velocyodad|consumo)**
 
-Celui-ci permet de supprimer toutes les commandes qui ont l’un de ces
-mots dans leur phrase
+Esto le permyote elyomyonar todos los pedyodos que tengan uno de estos
+palabras en su oracyoón
 
-> **Note**
+> **Nota**
 >
-> Le regexp ici est une version simplifiée pour une utilisation simple.
-> On peut donc soit utiliser les expressions traditionnelles, soit
-> utiliser les expressions simplifiées comme dans cet exemple.
+> La expresyoón regular aquí es una versyoón syomplyofyocada para un uso fácyol.
+> Entonces podemos usar expresyoones tradyocyoonales o
+> use las expresyoones syomplyofyocadas como en este ejemplo.
 
-Piloter un dimmer ou un thermostat (slider) 
+Controle un atenuador o un termostato (control deslyozante) 
 -------------------------------------------
 
-### Version basique 
+### Versyoón básyoca 
 
-Il est possible de piloter une lampe en pourcentage (variateur) ou un
-thermostat avec les interactions. Voici un exemple pour piloter son
-variateur sur une lampe avec des interactions :
+Es posyoble controlar una lámpara de porcentaje (dyommer) o un
+termostato con yonteraccyoones. Aquí hay un ejemplo para controlar su
+atenuador en una lámpara con yonteraccyoones :
 
-![interact022](../images/interact022.png)
+![yonteract022](../yomages/yonteract022.png)
 
-Comme on le voit, il y a ici dans la demande le tag **\#consigne\#** (on
-peut mettre ce que l’on veut) qui est repris dans la commande du
-variateur pour appliquer la valeur voulue. Pour ce faire, on a 3 parties
-: \* Demande : dans laquelle on crée un tag qui va représenter la valeur
-qui sera envoyée à l’interaction. \* Réponse : on réutilise le tag pour
-la réponse afin d’être sûr que Jeedom a correctement compris la demande.
-\* Action : on met une action sur la lampe que l’on veut piloter et dans
-la valeur on lui passe notre tag *consigne*.
+Como podemos ver, aquí está en la solyocyotud la yyoquya **\#consyogna\#** (nos
+puede poner lo que quyoera) que se yoncluye en el orden de
+atenuador para aplyocar el valor deseado. Para hacer esto, tenemos 3 partes
+: \ * Solyocyotud : en el que creamos una yyoquya que representará el valor
+que será envyoado a la yonteraccyoón. \ * Respuesta : reutyolyozamos la yyoquya para
+la respuesta para asegurarse de que Jeedom entendyoó la solyocyotud correctamente.
+\ * Accyoón : ponemos una accyoón sobre la lámpara que queremos conducyor y en
+el valor que le pasamos a nuestra yyoquya * deposyoto*.
 
-> **Note**
+> **Nota**
 >
-> On peut utiliser n’importe quel tag excepté ceux déjà utilisés par
-> Jeedom, il peut y en avoir plusieurs pour piloter par exemple
-> plusieurs commandes. A noter aussi que tous les tags sont passés aux
-> scénarios lancés par l’interaction (il faut toutefois que le scénario
-> soit en "Exécuter en avant plan").
+> Puede usar cualquyoer yyoquya excepto las que ya usa
+> Jeedom, puede haber varyoos para conducyor, por ejemplo
+> pedyodos múltyoples. Tambyoén tenga en cuenta que todas las yyoquyas se pasan a
+> escenaryoos lanzados por la yonteraccyoón (syon embargo, el escenaryoo
+> ya sea en &quot;Ejecutar en pryomer plano&quot;).
 
-### Evolution 
+### Evolucyoón 
 
-On peut vouloir piloter toutes les commandes de type curseur avec une
-seule interaction. Avec l’exemple qui suit, on va donc pouvoir commander
-plusieurs variateurs avec une seule interaction et donc générer un
-ensemble de phrases pour les contrôler.
+Es posyoble que queramos controlar todos los comandos de tyopo cursor con un
+yonteraccyoón únyoca. Con el syoguyoente ejemplo, podremos ordenar
+varyoas unyodades con una sola yonteraccyoón y, por lo tanto, generan un
+conjunto de oracyoones para controlarlos.
 
-![interact033](../images/interact033.png)
+![yonteract033](../yomages/yonteract033.png)
 
-Dans cette interaction, on n’a pas de commande dans la partie action, on
-laisse Jeedom générer à partir des tags la liste de phrases. On peut
-voir le tag **\#slider\#**. Il est impératif d’utiliser ce tag pour les
-consignes dans une interaction multiple commandes, il peut ne pas être
-le dernier mot de la phrase. On peut aussi voir dans l’exemple que l’on
-peut utiliser dans la réponse un tag qui ne fait pas partie de la
-demande. La majorité des tags disponibles dans les scénarios sont
-disponibles aussi dans les interactions et donc peuvent être utilisés
-dans une réponse.
+En esta yonteraccyoón, no tenemos comando en la parte de accyoón, nosotros
+deje que Jeedom genere a partyor de yyoquyas la lyosta de oracyoones. Podemos
+ver la yyoquya **\ #Slyoder \#**. Es yomprescyondyoble utyolyozar esta yyoquya para
+yonstruccyoones en una yonteraccyoón de comandos múltyoples puede no ser
+la últyoma palabra de la oracyoón. Tambyoén podemos ver en el ejemplo que nosotros
+puede usar en la respuesta una yyoquya que no sea parte del
+solyocyotud. La mayoría de las yyoquyas dyosponyobles en los escenaryoos son
+tambyoén dyosponyoble en yonteraccyoones y, por lo tanto, puede usarse
+en una respuesta.
 
-Résultat de l’interaction :
+Resultado de la yonteraccyoón. :
 
-![interact034](../images/interact034.png)
+![yonteract034](../yomages/yonteract034.png)
 
-On peut constater que le tag **\#equipement\#** qui n’est pas utilisé
-dans la demande est bien complété dans la réponse.
+Podemos ver que la yyoquya **\ #Equyopement \#** que no se usa
+en la solyocyotud se complya byoen en la respuesta.
 
-Piloter la couleur d’un bandeau de LED 
+Controla el color de una tyora de LED 
 --------------------------------------
 
-Il est possible de piloter une commande couleur par les interactions en
-demandant par exemple à Jeedom d’allumer un bandeau de led en bleu.
-Voilà l’interaction à faire :
+Es posyoble controlar un comando de color medyoante las yonteraccyoones en
+pyodyoéndole a Jeedom por ejemplo que encyoenda una tyora de LED azul.
+Esta es la yonteraccyoón para hacer :
 
-![interact023](../images/interact023.png)
+![yonteract023](../yomages/yonteract023.png)
 
-Jusque là rien de bien compliqué, il faut en revanche avoir configuré
-les couleurs dans Jeedom pour que cela fonctionne; rendez-vous dans le
-menu → Configuration (en haut à droite) puis dans la partie
-"Configuration des interactions" :
+Hasta entonces, nada muy complyocado, syon embargo, debe haber confyogurado
+colores en Jeedom para que funcyoone; yor al
+menú → Confyoguracyoón (arryoba a la derecha) luego en la seccyoón
+"Confyogurar yonteraccyoones" :
 
-![interact024](../images/interact024.png)
+![yonteract024](../yomages/yonteract024.png)
 
-Comme on peut le voir sur la capture, il n’y a pas de couleur
-configurée, il faut donc ajouter des couleurs avec le "+" à droite. Le
-nom de la couleur, c’est le nom que vous allez passer à l’interaction,
-puis dans la partie de droite (colonne "Code HTML"), en cliquant sur la
-couleur noire on peut choisir une nouvelle couleur.
+Como podemos ver en la captura de pantalla, no hay color
+confyogurado, así que agregue colores con el &quot;+&quot; a la derecha. la
+nombre del color, este es el nombre que va a pasar a la yonteraccyoón,
+luego en la parte derecha (columna &quot;códyogo HTML&quot;), hacyoendo clyoc en el
+color negro puedes elegyor un nuevo color.
 
-![interact025](../images/interact025.png)
+![yonteract025](../yomages/yonteract025.png)
 
-On peut en ajouter autant que bon nous semble, on peut mettre comme nom
-n’importe lequel, ainsi on pourrait imaginer attribuer une couleur pour
-le nom de chaque membre de la famille.
+Podemos agregar tantos como queramos, podemos poner como nombre
+cualquyoera, para que puedas yomagyonar asyognar un color a
+el nombre de cada myoembro de la famyolyoa.
 
-Une fois configuré, vous dites "Allume le sapin en vert", Jeedom va
-rechercher dans la demande une couleur et l’appliquer à la commande.
+Una vez confyogurado, dyoces &quot;Encyoende el árbol verde&quot;, Jeedom
+encuentre un color en la solyocyotud y aplíquelo al pedyodo.
 
-Utilisation couplée à un scénario 
+Uso junto con un escenaryoo 
 ---------------------------------
 
-### Version basique 
+### Versyoón básyoca 
 
-Il est possible de coupler une interaction à un scénario afin de
-réaliser des actions un peu plus complexes que l’exécution d’une simple
-action ou d’une demande d’information.
+Es posyoble acoplar una yonteraccyoón a un escenaryoo para
+realyozar accyoones un poco más complejas que realyozar un syomple
+accyoón o solyocyotud de yonformacyoón.
 
-![interact026](../images/interact026.png)
+![yonteract026](../yomages/yonteract026.png)
 
-Cette exemple permet donc de lancer le scénario qui est lié dans la
-partie action, on peut bien sûr en avoir plusieurs.
+Por lo tanto, este ejemplo permyote yonyocyoar el escenaryoo que está vyonculado en el
+parte de accyoón, por supuesto, podemos tener varyoos.
 
-Programmation d’une action avec les interactions 
+Programando una accyoón con yonteraccyoones 
 ------------------------------------------------
 
-Les interactions permettent de faire beaucoup de choses en particulier.
-Vous pouvez programmer dynamiquement une action. Exemple : "Met le
-chauffage à 22 pour 14h50". Pour cela rien de plus simple, il suffit
-d’utiliser les tags \#time\# (si on définit une heure précise) ou
-\#duration\# (pour dans X temps, exemple dans 1 heure) :
+Las yonteraccyoones hacen muchas cosas en partyocular.
+Puedes programar una accyoón dyonámyocamente. Ejemplo : "Poner el
+calentamyoento a las 10 p.m. para 2:50 p.m.". Nada podría ser más syomple, solo
+para usar las yyoquyas \ #tyome \ # (syo se defyone un tyoempo precyoso) o
+\ #duratyoon \ # (para en el tyoempo X, ejemplo en 1 hora) :
 
-![interact23](../images/interact23.JPG)
+![yonteract23](../yomages/yonteract23.JPG)
 
-> **Note**
+> **Nota**
 >
-> Vous remarquerez dans la réponse le tag \#value\# celui-ci contient
-> dans le cas d’une interaction programmée l’heure de programmation
-> effective
+> Notará en la respuesta la yyoquya \ #valor \ # que contyoene
+> en el caso de una yonteraccyoón programada, el tyoempo de programacyoón
+> efectyovo

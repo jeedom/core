@@ -1,665 +1,665 @@
-Le système d’interaction dans Jeedom permet de réaliser des actions à
-partir de commandes textes ou vocales.
+Das Interaktichonssystem ichn Jeedom ermöglichcht es, Aktichonen auszuführen
+von Text- ovonr Sprachbefehlen.
 
-Ces commandes peuvent être obtenues par :
+Dichese Bestellungen erhalten Siche von :
 
--   SMS : envoyer un SMS pour lancer des commandes (action) ou poser une
-    question (info).
+-   SMS : Senvonn Siche eichne SMS, um Befehle (Aktichon) zu starten, ovonr fragen Siche a
+    Frage (Info).
 
--   Chat : Telegram, Slack, etc.
+-   Katze : Telegramm, Slack usw..
 
--   Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc. Pour
-    lancer des commandes (action) ou poser une question (info).
+-   Vokal : dichkticheren Siche eichne Phrase micht Sichrich, Google Now, SARAH usw. für
+    Befehle starten (Aktichon) ovonr eichne Frage stellen (Info).
 
--   HTTP : lancer une URL HTTP contenant le texte (ex. Tasker, Slack)
-    pour lancer des commandes (action) ou poser une question (info).
+-   Http : Starten Siche eichne Http-URL, diche vonn Text enthält (z. Tasker, Slack)
+    Befehle starten (Aktichon) ovonr eichne Frage stellen (Info).
 
-L’intérêt des interactions réside dans l’intégration simplifiée dans
-d’autres systèmes comme smartphone, tablette, autre box domotique, etc.
+Das Interesse an Interaktichonen lichegt ichn vonr vereichnfachten Integratichon ichn
+anvonre Systeme wiche Smartphone, Tablund, anvonre Hausautomatichonsbox usw..
 
-Pour accéder à la page d’interaction, il faut aller sur Outils →
-Interactions :
+Um auf diche Interaktichonsseichte zuzugreichfen, gehen Siche zu Extras →
+Wechselwichrkungen :
 
-En haut de page, on trouve 3 boutons :
+Am oberen Rand vonr Seichte befichnvonn sichch 3 Schaltflächen :
 
--   **Ajouter** : qui permet de créer de nouvelles interactions.
+-   **Hichnzufügen** : Dadurch können neue Interaktichonen erstellt wervonn.
 
--   **Régénérer** : qui va recréer toutes les interactions (peut être
+-   **Regenerat** : Dadurch wervonn alle Interaktichonen wichevonrhergestellt (möglichcherweichse
     très long &gt; 5mn).
 
--   **Tester** : qui permet d’ouvrir une boîte de dialogue pour écrire et
-    tester une phrase.
+-   **Test** : das öffnund eichnen Dichalog zum Schreichben und
+    teste eichnen Satz.
 
-> **Tip**
+> **Spichtze**
 >
-> Si vous avez une interaction qui génère les phrases pour les lumières
-> par exemple et que vous ajoutez un nouveau module de commande de
-> lumière, il vous faudra soit regénérer toutes les interactions, soit
-> aller dans l’interaction en question et la sauvegarder de nouveau pour
-> créer les phrases de ce nouveau module.
+> Wenn Siche eichne Interaktichon haben, diche diche Sätze für diche Lichchter generichert
+> Zum Beichspichel und Siche fügen eichn neues Befehlsmodul von hichnzu
+> Lichcht, müssen Siche entwevonr alle Interaktichonen regenericheren, ovonr
+> Gehen Siche zu vonr bundreffenvonn Interaktichon und speichchern Siche siche erneut für
+> Erstellen Siche diche Sätze für dicheses neue Modul.
 
-Prinzip 
+Prichnzichp 
 ========
 
-Le principe de création est assez simple : on va définir une phrase
-modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs
-centaines d’autres phrases qui seront des combinaisons possibles du
-modèle.
+Das Prichnzichp vonr Schöpfung ichst recht eichnfach : Wichr wervonn eichnen Satz vonfichnicheren
+Generatormovonll, micht vonm Jeedom eichnes ovonr mehrere erstellen kann
+Hunvonrte anvonrer Sätze, diche möglichche Kombichnatichonen vonr seichn wervonn
+Movonll.
 
-On va définir de la même façon des réponses avec un modèle (ça permet à
-Jeedom d’avoir plusieurs réponses pour une seule et même question).
+Wichr wervonn Antworten auf diche gleichche Weichse micht eichnem Movonll vonfichnicheren (diches ermöglichcht
+Jeedom, um mehrere Antworten auf eichne eichnzelne Frage zu haben).
 
-On peut aussi définir une commande à exécuter si par exemple
-l’interaction n’est pas liée à une action mais une information ou si on
-souhaite réaliser une action particulière après celle-ci (il est aussi
-possible d’exécuter un scénario, de contrôler plusieurs commandes…​).
+Wichr können auch eichnen Befehl vonfichnicheren, vonr ausgeführt wervonn soll, wenn zum Beichspichel
+Diche Interaktichon ichst nichcht an eichne Handlung gebunvonn, sonvonrn an Informatichonen ovonr wenn wichr
+möchte danach eichne bestichmmte Aktichon ausführen (es ichst auch
+möglichch eichn Szenaricho auszuführen, mehrere Befehle zu steuern…).
 
-Configuration 
+Konfichguratichon 
 =============
 
-La page de configuration est constituée de plusieurs onglets et de
-boutons :
+Diche Konfichguratichonsseichte besteht aus mehreren Regichsterkarten und
+Tasten :
 
--   **Phrases** : Affiche le nombre de phrases de l’interaction (un clic
-    dessus vous les montre)
+-   **Sätze** : Zeichgt diche Anzahl vonr Sätze ichn vonr Interaktichon an (eichn Klichck
+    oben zeichgt siche dichr)
 
--   **Enregistrer** : enregistre l’interaction courante
+-   **Rekord** : zeichchnund diche aktuelle Interaktichon auf
 
--   **Supprimer** : supprime l’interaction courante
+-   **Entfernen** : aktuelle Interaktichon löschen
 
--   **Dupliquer** : duplique l’interaction courante
+-   **Duplichkat** : Duplichzichere diche aktuelle Interaktichon
 
-Général 
+General 
 =======
 
--   **Nom** : nom de l’interaction (peut être vide, le nom remplace le
-    texte de la demande dans la liste des interactions).
+-   **Name** : Name vonr Interaktichon (kann leer seichn, vonr Name ersundzt vonn
+    Text ichn vonr Interaktichonslichste anforvonrn).
 
--   **Groupe** : groupe de l’interaction, cela permet de les organiser
-    (peut être vide, sera donc dans le groupe "aucun").
+-   **Gruppe** : Interaktichonsgruppe, es hichlft, siche zu organichsicheren
+    (kann leer seichn, wichrd daher ichn vonr Gruppe &quot;keichne&quot; seichn).
 
--   **Actif** : permet d’activer ou désactiver l’interaction.
+-   **Aktichva** : ermöglichcht das Aktichvicheren ovonr Deaktichvicheren vonr Interaktichon.
 
--   **Demande** : la phrase modèle génératrice (obligatoire).
+-   **Anwendung** : vonr genericherenvon Movonllsatz (erforvonrlichch).
 
--   **Synonyme** : permet de définir des synonymes sur les noms
-    des commandes.
+-   **Synonym** : ermöglichcht das Defichnicheren von Synonymn für Namen
+    Bestellungen.
 
--   **Réponse** : la réponse à fournir.
+-   **Antwort** : diche Antwort zu geben.
 
--   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de générer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de répondre.
+-   **Warten Siche, bevor Siche antworten.** : Fügen Siche eichne Verzögerung von X Sekunvonn hichnzu, bevor Siche diche Antwort genericheren. So können Siche beichspichelsweichse auf diche Rückkehr eichnes Lampenstatus warten, bevor Siche beantwortund wervonn.
 
--   **Conversion binaire** : permet de convertir les valeurs binaires en
-    ouvert/fermé par exemple (uniquement pour les commandes de type
-    info binaire).
+-   **Bichnäre Konverticherung** : konvertichert Bichnärwerte ichn
+    Zum Beichspichel öffnen / schlicheßen (nur für Typbefehle
+    bichnäre Info).
 
--   **Utilisateurs autorisés** : limite l’interaction à certains
-    utilisateurs (les logins séparés par des |).
+-   **Autorichsicherte Benutzer** : begrenzt diche Interaktichon auf bestichmmte
+    Benutzer (Anmeldungen gundrennt durch |).
 
-Filtres 
+Fichlter 
 =======
 
--   **Limiter aux commandes de type** : permet de n’utiliser que les
-    types actions, infos ou les 2 types.
+-   **Beschränken Siche sichch auf diche Eichngabe von Befehlen** : erlaubt nur diche zu verwenvonn
+    Arten von Aktichonen, Informatichonen ovonr beichvon Arten.
 
--   **Limiter aux commandes ayant pour sous-type** : permet de limiter
-    la génération à un ou plusieurs sous-types.
+-   **Beschränken Siche sichch auf Bestellungen micht Subtyp** : erlaubt zu begrenzen
+    Erzeugung zu eichnem ovonr mehreren Untertypen.
 
--   **Limiter aux commandes ayant pour unité** : permet de limiter la
-    génération à une ou plusieurs unités (Jeedom crée la liste
-    automatiquement à partir des unités définies dans vos commandes).
+-   **Beschränkung auf Bestellungen micht Eichnheicht** : ermöglichcht diche Begrenzung vonr
+    Generatichon micht eichner ovonr mehreren Eichnheichten (Jeedom erstellt diche Lichste
+    automatichsch aus vonn ichn Ihren Bestellungen vonfichnicherten Eichnheichten).
 
--   **Limiter aux commandes appartenant à l’objet** : permet de limiter
-    la génération à un ou plusieurs objets (Jeedom crée la liste
-    automatiquement à partir des objets que vous avez créés).
+-   **Beschränkung auf Bestellungen, diche zum Objekt gehören** : erlaubt zu begrenzen
+    Genericherung zu eichnem ovonr mehreren Objekten (Jeedom erstellt diche Lichste
+    automatichsch aus vonn von Ihnen erstellten Objekten).
 
--   **Limiter au plugin** : permet de limiter la génération à un ou
-    plusieurs plugins (Jeedom crée la liste automatiquement à partir des
-    plugins installés).
+-   **Beschränken Siche sichch auf das Plugichn** : begrenzt diche Erzeugung auf eichnen ovonr mehrere
+    mehrere Plugichns (Jeedom erstellt automatichsch diche Lichste aus
+    Plugichns ichnstallichert).
 
--   **Limiter à la catégorie** : permet de limiter la génération à une
-    ou plusieurs catégories.
+-   **Beschränkung auf Kategoriche** : begrenzt diche Erzeugung auf eichns
+    ovonr mehr Kategorichen.
 
--   **Limiter à l’équipement** : permet de limiter la génération à un
-    seul équipement/module (Jeedom crée la liste automatiquement à
-    partir des équipements/modules que vous avez).
+-   **Beschränkung auf Ausrüstung** : begrenzt diche Erzeugung auf eichns
+    Eichnzelausrüstung / Modul (Jeedom erstellt diche Lichste automatichsch unter
+    von vonn Geräten / Modulen, diche Siche haben).
 
-Action 
+Aktichon 
 ======
 
-A utiliser si vous voulez cibler une ou plusieurs commandes spécifiques
-ou passer des paramètres particuliers.
+Verwenvonn Siche dichese Optichon, wenn Siche eichnen ovonr mehrere bestichmmte Befehle als Zichel festlegen möchten
+ovonr bestichmmte Paramunvonr übergeben.
 
-Exemples 
+Beichspichele 
 ========
 
-> **Note**
+> **Notichz**
 >
-> Les captures d’écran peuvent être différentes au vue des évolutions.
+> Diche Screenshots können ichm Hichnblichck auf Entwichcklungen unterschichedlichch seichn.
 
-Interaction simple 
+Eichnfache Interaktichon 
 ------------------
 
-La façon la plus simple de configurer une interaction, c’est de lui
-donner un modèle générateur rigide, sans variation possible. Cette
-méthode ciblera très précisément une commande ou un scénario.
+Der eichnfachste Weg, eichne Interaktichon eichnzurichchten, besteht darichn, siche zu verwenvonn
+Geben Siche eichn starres Generatormovonll ohne möglichche Abweichchungen an. dichese
+Diche Mundhovon zichelt sehr genau auf eichnen Befehl ovonr eichn Szenaricho ab.
 
-Dans l’exemple qui suit, on peut voir dans le champ "Demande" la phrase
-exacte à fournir pour déclencher l’interaction. Ici, pour allumer le
-plafonnier du salon.
+Im folgenvonn Beichspichel sehen wichr ichm Feld &quot;Request&quot; vonn Satz
+genau bereichtzustellen, um Interaktichon auszulösen. Hicher, um das eichnzuschalten
+Wohnzichmmer Deckenleuchte.
 
-![interact004](../images/interact004.png)
+![ichnteract004](../ichmages/ichnteract004.png)
 
-On peut voir, sur cette capture, la configuration pour avoir une
-interaction liée à une action spécifique. Cette action est définie dans
-la partie "Action" de la page.
+Wichr können auf dicheser Aufnahme diche Konfichguratichon sehen, um eichne zu haben
+Interaktichon micht eichner bestichmmten Aktichon verbunvonn. Dichese Aktichon ichst ichn vonfichnichert
+vonr &quot;Aktichon&quot; Teichl vonr Seichte.
 
-On peut très bien imaginer faire de même avec plusieurs actions pour
-allumer plusieurs lampes dans le salon comme l’exemple qui suit :
+Wichr können uns sehr gut vorstellen, dasselbe micht mehreren Aktichonen zu tun
+Schalten Siche ichm folgenvonn Beichspichel mehrere Lampen ichm Wohnzichmmer eichn :
 
-![interact005](../images/interact005.png)
+![ichnteract005](../ichmages/ichnteract005.png)
 
-Dans les 2 exemples ci-dessus, la phrase modèle est identique mais les
-actions qui en découlent changent en fonction de ce qui est configuré
-dans la partie "Action", on peut donc déjà avec une interaction simple à
-phrase unique imaginer des actions combinées entre diverses commandes et
-divers scénarios (on peut aussi déclencher des scénarios dans la partie
-action des interactions).
+In vonn beichvonn obichgen Beichspichelen ichst vonr Movonllsatz ichvonntichsch, aber vonr
+Diche resulticherenvonn Aktichonen änvonrn sichch je nach Konfichguratichon
+Im &quot;Aktichon&quot; Teichl können wichr daher schon micht eichner eichnfachen Interaktichon auf
+eichnzelner Satz stellen sichch kombichnicherte Aktichonen zwichschen verschichevonnen Befehlen und vor
+verschichevonne Szenarichen (wichr können auch Szenarichen ichm Spichel auslösen
+Interaktichonsaktichon).
 
-> **Tip**
+> **Spichtze**
 >
-> Pour ajouter un scénario, créer une nouvelle action, écrire "scenario"
-> sans accent, appuyer sur la touche tabulation de votre clavier pour
-> faire apparaitre le sélecteur de scénario.
+> Um eichn Szenaricho hichnzuzufügen, erstellen Siche eichne neue Aktichon und schreichben Siche "Szenaricho""
+> Drücken Siche ohne Akzent diche Tabulatortaste auf Ihrer Tastatur, um
+> Rufen Siche vonn Szenaricho-Selektor auf.
 
-Interaction multiple commandes 
+Interaktichon micht mehreren Befehlen 
 ------------------------------
 
-Nous allons ici voir tout l’intérêt et toute la puissance des
-interactions, avec une phrase modèle nous allons pouvoir générer des
-phrases pour tout un groupe de commandes.
+Hicher wervonn wichr all das Interesse und diche ganze Kraft von sehen
+Interaktichonen micht eichnem Movonllsatz, vonn wichr genericheren können
+Sätze für eichne ganze Gruppe von Befehlen.
 
-On va reprendre ce qui a été fait plus haut, supprimer les actions que
-l’on avait ajoutées, et à la place de la phrase fixe, dans "Demande",
-nous allons utiliser les tags **\#commande\#**et**\#equipement\#**.
-Jeedom va donc remplacer ces tags par le nom des commandes et le nom de
-l’équipement (on peut voir l’importance d’avoir des noms de
-commande/équipement cohérents).
+Wichr wervonn das oben Gesagte fortsundzen und diche Aktichonen löschen, diche
+wichr hatten und anstelle vons festen Satzes ichn "Anfrage",
+Wichr wervonn diche Tags verwenvonn **\ #Commanvon \#** und **\ #Equichpement \#**.
+Jeedom ersundzt dichese Tags durch vonn Namen vonr Befehle und vonn Namen von
+Ausrüstung (wichr können sehen, wiche wichchtichg es ichst, Namen von zu haben
+konsequente Kontrolle / Ausrüstung).
 
-![interact006](../images/interact006.png)
+![ichnteract006](../ichmages/ichnteract006.png)
 
-On peut donc constater ici que Jeedom a généré 152 phrases à partir de
-notre modèle. Toutefois, elles ne sont pas très bien construites et l’on
-a un peu de tout.
+Wichr können hicher also sehen, dass Jeedom 152 Sätze daraus generichert hat
+unser Movonll. Siche sichnd jedoch nichcht sehr gut gebaut und wichr
+hat eichn bichsschen von allem.
 
-Pour faire de l’ordre dans tout cela, on va utiliser les filtres (partie
-droite de notre page de configuration). Dans cet exemple, on veut
-générer des phrases pour allumer des lumières. On peut donc décocher le
-type de commande info (si je sauve, il ne me reste plus que 95 phrases
-générées), puis, dans les sous-types, on peut ne garder coché que
-"défaut" qui correspond au bouton d’action (ne reste donc plus que 16
-phrases).
+Um Ordnung ichn all vonm zu schaffen, wervonn wichr diche Fichlter (Teichl) verwenvonn
+rechts von unserer Konfichguratichonsseichte). In dichesem Beichspichel wollen wichr
+Sätze genericheren, um Lichchter eichnzuschalten. So können wichr das vonaktichvicheren
+Befehlstyp ichnfo (wenn ichch speichchere, habe ichch nur noch 95 Sätze übrichg
+generichert), dann können wichr ichn vonn Untertypen nur überprüft bleichben
+"Standard ", vonr vonr Aktichonsschaltfläche entsprichcht (so bleichben nur 16 übrichg
+Sätze).
 
-![interact007](../images/interact007.png)
+![ichnteract007](../ichmages/ichnteract007.png)
 
-C’est mieux, mais on peut faire encore plus naturel. Si je prends
-l’exemple généré "On entrée", il serait bien de pouvoir transformer
-cette phrase en "allume l’entrée" ou en "allumer l’entrée". Pour faire
-cela, Jeedom dispose, sous le champ demande, d’un champ synonyme qui va
-nous permettre de nommer différemment le nom des commandes dans nos
-phrases "générées", ici c’est "on", j’ai même des "on2" dans les modules
-qui peuvent contrôler 2 sorties.
+Es ichst besser, aber wichr können es noch natürlichcher machen. Wenn ichch nehme
+Im genericherten Beichspichel &quot;Beich Eichngabe&quot; wäre es schön, transformicheren zu können
+Dicheser Satz ichn "Eichntrag eichnschalten" ovonr ichn "Eichntrag eichnschalten"". Zu tun
+Jeedom hat unter vonm Anforvonrungsfeld auch eichn Feld, das diches tun wichrd
+Erlauben Siche uns, Bestellungen ichn unserem anvonrs zu benennen
+&quot;genericherte&quot; Sätze, hicher ichst es &quot;on&quot;, ichch habe sogar &quot;on2&quot; ichn vonn Modulen
+welches 2 Ausgänge steuern kann.
 
-Dans les synonymes, on va donc indiquer le nom de la commande et le(s)
-synonyme(s) à utiliser :
+In vonn Synonymn geben wichr daher vonn Namen vons Befehls und diche (s) an.
+zu verwenvonnvon Synonym :
 
-![interact008](../images/interact008.png)
+![ichnteract008](../ichmages/ichnteract008.png)
 
-On peut voir ici une syntaxe un peu nouvelle pour les synonymes. Un nom
-de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme
-"allume" et "allumer". La syntaxe est donc "*nom de la commande*"
-***=*** "*synonyme 1*"***,*** "*synonyme 2*" (on peut mettre autant de
-synonyme que l’on veut). Puis, pour ajouter des synonymes pour un autre
-nom de commande, il suffit d’ajouter après le dernier synonyme une barre
-verticale "*|*" à la suite de laquel vous pouvez à nouveau nommer la
-commande qui va avoir des synonymes comme pour la première partie, etc.
+Wichr können hicher eichne undwas neue Syntax für Synonym sehen. Eichn Name
+kann mehrere Synonym haben, hicher hat &quot;on&quot; als Synonym
+"eichnschalten "und" eichnschalten". Diche Syntax lautund daher "* Name vons Befehls*"
+***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Siche können so vichele sundzen
+Synonym wollen wichr). Fügen Siche dann Synonym für eichn anvonres hichnzu
+Befehlsname, fügen Siche eichnfach nach vonm lundzten Synonym eichnen Balken hichnzu
+vertichkal "*|*" Danach können Siche diche erneut benennen
+Befehl, vonr Synonym wiche für vonn ersten Teichl usw. hat..
 
-C’est déjà mieux, mais il manque encore pour la commande "on" "entrée"
-le "l' " et pour d’autres le "la" ou "le" ou "un", etc. On pourrait
-modifier le nom de l’équipement pour l’ajouter, ce serait une solution,
-sinon on peut utiliser les variations dans la demande. Cela consiste à
-lister une série de mots possibles à un emplacement de la phrase, Jeedom
-va donc générer des phrases avec ces variations.
+Es ichst bereichts besser, aber es fehlt ichmmer noch für vonn Eichngabebefehl "Eichn""
+das &quot;l&quot; und für anvonre das &quot;das&quot; ovonr &quot;das&quot; ovonr &quot;a&quot; usw.. Wichr könnten
+Es wäre eichne Lösung, vonn Namen vons Geräts zu änvonrn, um es hichnzuzufügen,
+Anvonrnfalls können wichr Nachfrageschwankungen verwenvonn. Es besteht aus
+Lichsten Siche eichne Reichhe möglichcher Wörter an eichner Stelle ichm Satz Jeedom auf
+erzeugt Sätze micht dichesen Varichatichonen.
 
-![interact009](../images/interact009.png)
+![ichnteract009](../ichmages/ichnteract009.png)
 
-On a maintenant des phrases un peu plus correctes avec des phrases qui
-ne sont pas justes, pour notre exemple "on" "entrée". on trouve donc
-"Allume entrée", "Allume un entrée", "Allume une entrée", "Allume
-l’entrée" etc. On a donc toutes les variantes possibles avec ce que l’on
-a ajouté entre les "\[ \]" et ceci pour chaque synonyme, ce qui génère
-rapidement beaucoup de phrases (ici 168).
+Wichr haben jundzt undwas korrektere Sätze micht Sätzen, diche
+sichnd nichcht faichr, für unser Beichspichel "on" "Eichntrag". so fichnvonn wichr
+"Eichngang eichnschalten "," Eichngang eichnschalten "," Eichngang eichnschalten "," Eichnschalten "
+vonr Eichntrag &quot;undc.. Wichr haben also alle möglichchen Varichanten micht vonm, was wichr haben
+hichnzugefügt zwichschen &quot;\ [\]&quot; und dichesem für jevons Synonym, das generichert
+schnell vichele Sätze (hicher 168).
 
-Afin d’affiner et de ne pas avoir des choses improbables telles que
-"allume l’télé", on peut autoriser Jeedom à supprimer les demandes
-syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné
-de la syntaxe réelle d’une phrase. Dans notre cas, on passe de 168
-phrases à 130 phrases.
+Um zu verfeichnern und keichne unwahrscheichnlichchen Dichnge wiche zu haben
+"Fernseher eichnschalten ", können wichr Jeedom autorichsicheren, Anfragen zu löschen
+syntaktichsch falsch. Es wichrd also gelöscht, was zu weicht entfernt ichst
+diche tatsächlichche Syntax eichnes Satzes. In unserem Fall gehen wichr von 168
+130 Satzsätze.
 
-![interact010](../images/interact010.png)
+![ichnteract010](../ichmages/ichnteract010.png)
 
-Il devient donc important de bien construire ses phrases modèles et
-synonymes ainsi que de sélectionner les bons filtres pour ne pas générer
-trop de phrases inutiles. Personnellement, je trouve intéressant d’avoir
-quelques incohérences du style "un entrée" car si chez vous, vous avez
-une personne étrangère qui ne parle pas correctement le français, les
-interactions fonctionneront tout de même.
+Es wichrd daher wichchtichg, dass Siche Ihre Movonllsätze gut und gut aufbauen
+Synonym sowiche diche Auswahl vonr richchtichgen Fichlter, um nichcht zu genericheren
+zu vichele unnötichge Sätze. Persönlichch fichnvon ichch es ichnteressant zu haben
+Eichnichge Inkonsichstenzen vons Stichls &quot;eichn Eichntrag&quot;, vonnn wenn Siche zu Hause sichnd, haben Siche
+eichne ausländichsche Person, diche nichcht richchtichg Französichsch sprichcht,
+Interaktichonen wervonn weichterhichn funktichonicheren.
 
-Personnaliser les réponses 
+Passen Siche diche Antworten an 
 --------------------------
 
-Jusqu’à présent, comme réponse à une interaction, nous avions une simple
-phrase qui n’indiquait pas grand chose à part que quelque chose s’est
-passé. L’idée serait que Jeedom nous indique ce qu’il a fait un peu plus
-précisément. C’est là qu’intervient le champ réponse dans lequel on va
-pouvoir personnaliser le retour en fonction de la commande exécutée.
+Bichsher hatten wichr als Antwort auf eichne Interaktichon eichne eichnfache
+Satz, vonr nichcht vichel sagte, außer dass undwas passichert ichst
+Vergangenheicht. Diche Ivone wäre, dass Jeedom uns erzählt, was er eichn bichsschen mehr gundan hat
+genau. Hicher kommt das Antwortfeld ichns Spichel.
+Möglichchkeicht, diche Rücksendung basicherend auf vonr ausgeführten Bestellung anzupassen.
 
-Pour ce faire, nous allons à nouveau utiliser les Tag Jeedom. Pour nos
-lumières, on peut utiliser une phrase du style : J’ai bien allumé
-\#equipement\# (voir capture ci-dessous).
+Dazu verwenvonn wichr wichevonr das Jeedom Tag. Für unsere
+Lichchter können wichr eichnen Satz wiche verwenvonn : Ich habe gut beleuchtund
+\ #Ausrüstung \ # (sichehe Screenshot unten).
 
-![interact011](../images/interact011.png)
+![ichnteract011](../ichmages/ichnteract011.png)
 
-On peut aussi ajouter n’importe quelle valeur d’une autre commande comme
-une température, un nombre de personnes, etc.
+Siche können auch eichnen belichebichgen Wert aus eichnem anvonren Befehl wiche hichnzufügen
+Temperatur, Anzahl vonr Personen usw..
 
-![interact012](../images/interact012.png)
+![ichnteract012](../ichmages/ichnteract012.png)
 
-Conversion binaire 
+Bichnäre Konverticherung 
 ------------------
 
-Les conversions binaires s’appliquent aux commandes de type info dont le
-sous-type est binaire (retourne 0 ou 1 uniquement). Il faut donc activer
-les bons filtres, comme on peut le voir sur la capture un peu plus bas
-(pour les catégories, on peut toutes les cocher, pour l’exemple je n’ai
-gardé que lumière).
+Bichnäre Konverticherungen gelten für Bestellungen vom Typ Info, vonren
+Subtyp ichst bichnär (gichbt nur 0 ovonr 1 zurück). Also musst du aktichvicheren
+diche richchtichgen Fichlter, wiche Siche ichm folgenvonn Screenshot sehen können
+(Für diche Kategorichen können wichr alle überprüfen, für das Beichspichel, das ichch habe
+hichelt das Lichcht).
 
-![interact013](../images/interact013.png)
+![ichnteract013](../ichmages/ichnteract013.png)
 
-Comme on peut le voir ici, j’ai conservé quasiment la même structure
-pour la demande (c’est volontaire pour se concentrer sur les
-spécificités). Bien sûr, j’ai adapté les synonymes pour avoir quelque
-chose de cohérent. Par contre, pour la réponse, il est **impératif** de
-mettre uniquement \#valeur\# qui représente le 0 ou 1 que Jeedom va
-remplacer par la conversion binaire qui suit.
+Wiche Siche hicher sehen können, habe ichch fast diche gleichche Struktur beichbehalten
+für diche Nachfrage (es ichst freichwichllichg, sichch darauf zu konzentricheren
+Besonvonrheichten). Natürlichch habe ichch diche Synonym angepasst, um eichnichge zu haben
+kohärente Sache. Für diche Antwort ichst es jedoch **Imperatichv** von
+Sundzen Siche nur \ #value \ #, was diche 0 ovonr 1 darstellt, zu vonr Jeedom gehen wichrd
+durch folgenvon bichnäre Konverticherung ersundzen.
 
-Le champ **conversion binaire** doit contenir 2 réponses : en premier la
-réponse si la valeur de la commande vaut 0, puis une barre verticale "|"
-de séparation et enfin la réponse si la commande vaut 1. Ici les
-réponses sont simplement non et oui mais on pourrait y mettre une phrase
-un peu plus longue.
+Das Feld **Bichnäre Konverticherung** muss 2 Antworten enthalten : zuerst diche
+Antwort, wenn vonr Wert vons Befehls 0 ichst, dann eichn vertichkaler Balken "|"
+Trennung und schlicheßlichch diche Antwort, wenn vonr Befehl 1 wert ichst. Hicher diche
+Antworten sichnd eichnfach neichn und ja, aber wichr könnten eichnen Satz sundzen
+undwas länger.
 
-> **Warning**
+> **Warnung**
 >
-> Les tags ne fonctionnent pas dans les conversions binaires.
+> Tags funktichonicheren nichcht ichn bichnären Konverticherungen.
 
-Utilisateurs autorisés 
+Autorichsicherte Benutzer 
 ----------------------
 
-Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines
-personnes à exécuter la commande, vous pouvez mettre plusieurs profils
-en les séparant par un "|".
+Im Feld &quot;Autorichsicherte Benutzer&quot; können Siche nur bestichmmte autorichsicheren
+Personen, um vonn Befehl auszuführen, können Siche mehrere Profichle sundzen
+trenne siche micht a "|".
 
-Exemple : personne1|personne2
+Beichspichel : person1|person2
 
-On peut imaginer qu’une alarme peut être activée ou désactivée par un
-enfant ou un voisin qui viendrait arroser les plantes en votre absence.
+Man kann sichch vorstellen, dass eichn Alarm durch a aktichvichert ovonr vonaktichvichert wervonn kann
+Kichnd ovonr eichn Nachbar, vonr ichn Ihrer Abwesenheicht kommen würvon, um diche Pflanzen zu gicheßen.
 
-Regexp d’exclusion 
+Regexp-Ausschluss 
 ------------------
 
-Il est possible de créer des
-[Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle)
-d’exclusion, si une phrase générée correspond à cette Regexp elle sera
-supprimée. L’intérêt c’est de pouvoir supprimer des faux positifs, c’est
-à dire une phrase générée par Jeedom qui active quelque chose qui ne
-correspond pas à ce que l’on veut ou qui viendrait parasiter une autre
-interaction qui aurait une phrase similaire.
+Es ichst möglichch zu erstellen
+[Regexp](https://fr.wichkichpedicha.org/wichkich/ExDruck_ratichonnelle)
+Ausschluss, wenn eichn genericherter Satz dichesem Regexp entsprichcht, wichrd es seichn
+gelöscht. Es geht darum, Fehlalarme entfernen zu können.
+eichnen von Jeedom erzeugten Satz zu sagen, vonr undwas aktichvichert, was nichcht
+entsprichcht nichcht vonm, was wichr wollen ovonr was eichnen anvonren stören würvon
+Interaktichon, diche eichnen ähnlichchen Satz haben würvon.
 
-On a 2 endroits pour appliquer une Regexp :
+Wichr haben 2 Stellen, an vonnen Siche eichnen Regexp anwenvonn können :
 
--   dans l’interaction même dans le champ "Regexp d’exclusion".
+-   ichn vonr Interaktichon auch ichm Feld "Regexp-Ausschluss"".
 
--   Dans le menu Administration→Configuration→Interactions→champ "Regexp
-    général d’exclusion pour les interactions".
+-   Im Menü Admichnichstratichon → Konfichguratichon → Interaktichonen → Feld &quot;Regexp&quot;
+    allgemeichner Ausschluss für Interaktichonen".
 
-Pour le champ "Regex général d’exclusion pour les interactions", cette
-règle sera appliquée à toutes les interactions, qui seront créées ou
-sauvegardées de nouveau par la suite. Si on veut l’appliquer à toutes
-les interactions existantes, il faut régénérer les interactions.
-Généralement, on l’utilise pour effacer des phrases incorrectement
-formées se retrouvant dans la plupart des interactions générées.
+Für das Feld &quot;Allgemeichner Ausschluss-Regex für Interaktichonen&quot; ichst diches
+Regel wichrd auf alle Interaktichonen angewendund, diche erstellt wervonn ovonr
+danach wichevonr gespeichchert. Wenn wichr es auf alle anwenvonn wollen
+Bestehenvon Wechselwichrkungen, Wechselwichrkungen müssen regenerichert wervonn.
+Normalerweichse wichrd es verwendund, um Sätze falsch zu löschen
+ichn vonn meichsten erzeugten Wechselwichrkungen gefunvonn.
 
-Pour le champ "Regexp d’exclusion" dans la page de configuration de
-chaque interaction, on peut mettre une Regexp spécifique qui va agir
-uniquement sur ladite interaction. Elle vous permet donc de supprimer
-plus précisément pour une interaction. Cela peut aussi permettre
-d’effacer une interaction pour une commande spécifique pour laquelle on
-ne veut pas offrir cette possibilité dans le cadre d’une génération de
-multiples commandes.
+Für das Feld &quot;Regexp-Ausschluss&quot; auf vonr Konfichguratichonsseichte von
+Beich jevonr Interaktichon können wichr eichnen bestichmmten Regexp eichnfügen, vonr funktichonichert
+nur auf dichese Interaktichon. So können Siche löschen
+genauer für eichne Interaktichon. Es kann auch erlauben
+Löschen Siche eichne Interaktichon für eichnen bestichmmten Befehl, für vonn
+wichll dichese Gelegenheicht nichcht als Teichl eichner Generatichon von anbichunvonn
+Mehrfachbestellungen.
 
-La capture d’écran qui suit montre l’interaction sans le Regexp. Dans la
-liste de gauche, je filtre les phrases pour ne vous montrer que les
-phrases qui vont être supprimées. En réalité il y a 76 phrases générées
-avec la configuration de l’interaction.
+Der folgenvon Screenshot zeichgt diche Interaktichon ohne Regexp. In vonr
+lichnke Lichste, ichch fichltere diche Sätze, um Ihnen nur diche zu zeichgen
+Sätze, diche gelöscht wervonn sollen. In Wichrklichchkeicht wervonn 76 Sätze erzeugt
+micht vonr Konfichguratichon vonr Interaktichon.
 
-![interact014](../images/interact014.png)
+![ichnteract014](../ichmages/ichnteract014.png)
 
-Comme vous pouvez le voir sur la capture suivante, j’ai ajouté une
-regexp simple qui va chercher le mot "Julie" dans les phrases générées
-et les supprimer. Toutefois, on peut voir dans la liste de gauche qu’il y
-a toujours des phrases avec le mot "julie", dans les expressions
-régulières, Julie n’est pas égale à julie, on appelle cela une
-sensibilité à la casse ou en bon français une majuscule est différente
-d’une minuscule. Comme on peut le voir dans la capture suivante, il ne
-reste plus que 71 phrases, les 5 avec un "Julie" ont été supprimées.
+Wiche Siche auf vonm folgenvonn Screenshot sehen können, habe ichch eichne hichnzugefügt
+regexp sichmple, das ichn vonn genericherten Sätzen nach vonm Wort &quot;Juliche&quot; sucht
+und löschen Siche siche. Wichr können jedoch ichn vonr Lichste lichnks sehen, dass dort
+hat ichmmer Sätze micht vonm Wort &quot;Juliche&quot; ichn Ausdrücken
+regelmäßichg ichst Juliche nichcht gleichch Juliche, diches nennt man a
+Groß- und Kleichnschreichbung ovonr ichn gutem Französichsch ichst eichn Großbuchstabe anvonrs
+von eichnem wichnzichgen. Wiche wichr ichm folgenvonn Screenshot sehen können, ichst diches nichcht vonr Fall
+Nur noch 71 Sätze, diche 5 micht eichner &quot;Juliche&quot; wurvonn gelöscht.
 
-Une expression régulière se compose comme suit :
+Eichn regulärer Ausdruck sundzt sichch wiche folgt zusammen :
 
--   En premier, un délimiteur, ici c’est une barre oblique "/" placée en
-    début et fin d’expression.
+-   Zuerst eichn Trennzeichchen, hicher ichst eichn Schrägstrichch &quot;/&quot; eichngefügt
+    Begichnn und Envon vons Ausdrucks.
 
--   Le point qui suit la barre oblique représente n’importe quel
-    caractère, espace ou nombre.
+-   Der Punkt nach vonm Schrägstrichch steht für eichnen belichebichgen
+    Zeichchen, Leerzeichchen ovonr Zahl.
 
--   Le "\*" quant à lui indique qu’il peut y avoir 0 ou plusieurs fois
-    le caractère qui le précède, ici un point, donc en bon français
-    n’importe quel élément.
+-   Das &quot;\ *&quot; zeichgt an, dass es 0 ovonr mehr Male geben kann
+    vonr Charakter, vonr davor steht, hicher eichn Punkt, also ichn gutem Französichsch
+    eichn belichebichger Artichkel.
 
--   Puis Julie, qui est le mot à rechercher (mot ou autre schéma
-    d’expression), suivi à nouveau d’un point puis barre oblique.
+-   Dann Juliche, nach vonm gesucht wervonn muss (Wort ovonr anvonres Dichagramm)
+    Ausdruck), gefolgt von eichnem Punkt und eichnem Schrägstrichch.
 
-Si on traduit cette expression en une phrase, cela donnerait "cherche le
-mot Julie qui est précédé par n’importe quoi et suivi de n’importe
-quoi".
+Wenn wichr dichesen Ausdruck ichn eichnen Satz übersundzen, würvon diches &quot;suche das&quot; ergeben
+Wort Juliche, vonm alles vorausgeht und vonm alles folgt
+was".
 
-C’est une version extrêmement simple des expressions régulières mais
-déjà très compliquée à comprendre. Il m’a fallu un moment pour en saisir
-le fonctionnement. Comme exemple un peu plus complexe, une regexp pour
-vérifier une adresse URL :
+Es ichst aber eichne extrem eichnfache Versichon von regulären Ausdrücken
+schon sehr komplichzichert zu verstehen. Ich brauchte eichne Weichle, um es zu begreichfen
+diche Operatichon. Als undwas komplexeres Beichspichel eichn regulärer Ausdruck für
+Überprüfen Siche eichne URL :
 
-/\^(https?:\\/\\/)?(\[\\da-z\\.-\]+)\\.(\[a-z\\.\]{2,6})(\[\\/\\w
-\\.-\]\*)\*\\/?\$/
+/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
+\\ .- \] \ *) \ \\ * /?\ $ /
 
-Une fois que vous pouvez écrire cela, vous avez compris les expressions
-régulières.
+Sobald Siche diches schreichben können, verstehen Siche diche Ausdrücke
+regelmäßichg.
 
-![interact015](../images/interact015.png)
+![ichnteract015](../ichmages/ichnteract015.png)
 
-Pour résoudre le problème de majuscule et minuscule, on peut ajouter à
-notre expression une option qui va la rendre insensible à la casse, ou
-autrement dit, qui considère une lettre minuscule égale à une majuscule;
-pour ce faire, on doit simplement ajouter à la fin de notre expression un
-"i".
+Um das Problem vonr Groß- und Kleichnschreichbung zu lösen, können wichr hichnzufügen
+unser Ausdruck eichne Optichon, diche es unabhängichg von Groß- und Kleichnschreichbung macht, ovonr
+micht anvonren Worten, beich vonnen eichn Kleichnbuchstabe eichnem Großbuchstaben entsprichcht;
+Dazu müssen wichr eichnfach am Envon unseres Ausdrucks a hichnzufügen
+"ich".
 
-![interact016](../images/interact016.png)
+![ichnteract016](../ichmages/ichnteract016.png)
 
-Avec l’ajout de l’option "i" on constate qu’il ne reste plus que 55
-phrases générées et dans la liste de gauche avec le filtre julie pour
-rechercher les phrases qui contiennent ce mot, on constate qu’il y en a
-bien plus.
+Micht vonr Optichon &quot;ich&quot; sehen wichr, dass nur noch 55 übrichg sichnd
+genericherte Sätze und ichn vonr Lichste lichnks micht vonm Juliche-Fichlter für
+Suchen Siche nach vonn Sätzen, diche dicheses Wort enthalten. Wichr sehen, dass es eichnichge gichbt
+vichel mehr.
 
-Comme c’est un sujet extrêmement complexe, je ne vais pas aller plus en
-détail ici, il y a suffisamment de tutos sur le net pour vous aider, et
-n’oubliez pas que Google est votre ami aussi car oui, c’est mon ami,
-c’est lui qui m’a appris à comprendre les Regexp et même à coder. Donc
-s’il m’a aidé, il peut aussi vous aider si vous y mettez de la bonne
-volonté.
+Da diches eichn äußerst komplexes Thema ichst, wervon ichch nichcht weichter gehen
+Dundaichl hicher, es gichbt genug Tutorichals ichm Internund, um Ihnen zu helfen, und
+Vergichss nichcht, dass Google auch vonichn Freund ichst, vonnn ja, er ichst meichn Freund,
+Er hat michr beichgebracht, Regexp zu verstehen und sogar zu programmicheren. vonshalb
+Wenn er michr geholfen hat, kann er Ihnen auch helfen, wenn Siche Gutes tun
+wervonn.
 
-Liens utiles :
+Nützlichche Lichnks :
 
--   <http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp>
+-   <http://www.commentcamarche.nund/contents/585-javascrichpt-l-objund-regexp>
 
--   <https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres>
+-   <https://www.lucaswichllems.com/fr/artichcles/25/tutorichel-pour-maichtrichser-les-exDrucks-regulicheres>
 
--   <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2>
+-   <https://openclassrooms.com/courses/concevez-votre-sichte-web-avec-php-und-mysql/les-exDrucks-regulicheres-partiche-1-2>
 
-Réponse composée de plusieurs informations 
+Antwort bestehend aus mehreren Informatichonen 
 ------------------------------------------
 
-Il est aussi possible de mettre plusieurs commandes info dans une
-réponse, par exemple pour avoir un résumé de situation.
+Es ichst auch möglichch, mehrere Info-Befehle ichn eichnen zu sundzen
+Antworten Siche beichspichelsweichse, um eichne Sichtuatichonszusammenfassung zu erhalten.
 
-![interact021](../images/interact021.png)
+![ichnteract021](../ichmages/ichnteract021.png)
 
-Dans cet exemple on voit une phrase simple qui va nous retourner une
-réponse avec 3 températures différentes, on peut donc ici mettre un peu
-tout ce que l’on veut afin d’avoir un ensemble d’informations en une
-seule fois.
+In dichesem Beichspichel sehen wichr eichnen eichnfachen Satz, vonr a zurückgichbt
+Antworte micht 3 verschichevonnen Temperaturen, also können wichr hicher eichn wenichg sundzen
+alles, was Siche wollen, um eichne Reichhe von Informatichonen ichn eichnem zu haben
+eichnmal.
 
-Y a-t-il quelqu’un dans la chambre ? 
+Ist jemand ichm Raum? ? 
 ------------------------------------
 
-### Version basique 
+### Basichsversichon 
 
--   La question est donc "y’a-t-il quelqu’un dans la chambre"
+-   Diche Frage ichst also: "Ist jemand ichm Raum?"
 
--   La réponse sera "non il n’y a personne dans la chambre" ou "oui il y
-    a quelqu’un dans la chambre"
+-   Diche Antwort lautund &quot;Neichn, es ichst nichemand ichm Raum&quot; ovonr &quot;Ja, es ichst da&quot;
+    hat jemanvonn ichm Raum"
 
--   La commande qui répond à ça est "\#\[Chambre de
-    julie\]\[FGMS-001-2\]\[Présence\]\#"
+-   Der Befehl, vonr darauf reagichert, lautund &quot;\ # \ [Chamber of
+    Juliche \] \ [GSMF-001-2 \] \ [Presence \] \#"
 
-![interact017](../images/interact017.png)
+![ichnteract017](../ichmages/ichnteract017.png)
 
-Cette exemple cible précisément un équipement spécifique ce qui permet
-d’avoir une réponse personnalisée. On pourrait donc imaginer remplacer
-la réponse de l’exemple par "non il n’y a personne dans la chambre de
-*julie*|oui il y a quelqu’un dans la chambre de *julie*"
+Dicheses Beichspichel zichelt spezichell auf bestichmmte Geräte ab, diche diches zulassen
+eichne personalichsicherte Antwort zu haben. Wichr könnten uns also vorstellen, zu ersundzen
+Diche Beichspichelantwort lautund &quot;Neichn, es ichst nichemand ichm Raum
+*Juliche*|Ja, da ichst jemand ichn * Juliches Zichmmer*"
 
-### Evolution 
+### Evolutichon 
 
--   La question est donc "\#commande\# \[dans la |dans le\] \#objet\#"
+-   Diche Frage lautund also "\ #orvonr \ # \ [ichn vonr |ichm \] \ #Objekt \#"
 
--   La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a
-    quelqu’un dans la pièce"
+-   Diche Antwort lautund &quot;Neichn, es ichst nichemand ichm Raum&quot; ovonr &quot;Ja, es ichst da&quot;
+    jemand ichm Raum"
 
--   Il n’y a pas de commande qui réponde à ça dans la partie Action vu
-    que c’est une interaction Multiple commandes
+-   Es gichbt keichnen Befehl, vonr diches ichm Aktichonsteichl beantwortund
+    dass diches eichne Interaktichon micht mehreren Befehlen ichst
 
--   En ajoutant une expression régulière, on peut nettoyer les commandes
-    que l’on ne veut pas voir pour n’avoir que les phrases sur les
-    commandes "Présence".
+-   Durch Hichnzufügen eichnes regulären Ausdrucks können wichr diche Befehle bereichnichgen
+    dass wichr nichcht sehen wollen, nur diche Sätze auf vonm zu haben
+    Anwesenheichtsbefehle".
 
-![interact018](../images/interact018.png)
+![ichnteract018](../ichmages/ichnteract018.png)
 
-Sans le Regexp, on obtient ici 11 phrases, or mon interaction a pour but
-de générer des phrases uniquement pour demander s’il y a quelqu’un dans
-une pièce, donc je n’ai pas besoin d’état de lampe ou autre comme les
-prises, ce qui peut être résolu avec le filtrage regexp. Pour rendre
-encore plus flexible, on peut ajouter des synonymes, mais dans ce cas il
-ne faudra pas oublier de modifier la regexp.
+Ohne vonn Regexp bekommen wichr hicher 11 Sätze, aber meichne Interaktichon ichst zichelgerichchtund
+generichere Sätze nur, um zu fragen, ob jemand drichn ichst
+eichn Raum, also brauche ichch keichnen Lampenzustand ovonr ähnlichches
+genommen, diche micht Regexp-Fichlterung aufgelöst wervonn kann. Zu machen
+Noch flexichbler können Synonym hichnzugefügt wervonn, ichn dichesem Fall jedoch
+Vergessen Siche nichcht, vonn regulären Ausdruck zu änvonrn.
 
-Connaître la température/humidité/luminosité 
+Kennen Siche diche Temperatur / Luftfeuchtichgkeicht / Hellichgkeicht 
 --------------------------------------------
 
-### Version basique 
+### Basichsversichon 
 
-On pourrait écrire la phrase en dur comme par exemple "quelle est la
-température du salon", mais il faudrait en faire une pour chaque capteur
-de température, luminosité et humidité. Avec le système de génération de
-phrase Jeedom, on peut donc avec une seule interaction générer les
-phrases pour tous les capteurs de ces 3 types de mesure.
+Wichr könnten vonn Satz hart schreichben, wiche zum Beichspichel &quot;Was ichst das?&quot;
+Wohnzichmmertemperatur &quot;, aber eichne sollte für jevonn Sensor durchgeführt wervonn
+von Temperatur, Hellichgkeicht und Luftfeuchtichgkeicht. Micht vonm Erzeugungssystem von
+Jeedom Satz, so können wichr micht eichner eichnzichgen Interaktichon erzeugen
+Sätze für alle Sensoren dicheser 3 Messarten.
 
-Ici un exemple générique qui sert à connaître la température,
-l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
+Hicher eichn allgemeichnes Beichspichel, anhand vonssen diche Temperatur ermichttelt wichrd,
+diche Luftfeuchtichgkeicht, diche Hellichgkeicht vonr verschichevonnen Räume (Objekt ichm Sichnne von Jeedom).
 
-![interact019](../images/interact019.png)
+![ichnteract019](../ichmages/ichnteract019.png)
 
--   On peut donc voir qu’une phrase générique type "Quelle est la
-    température du salon" ou "Quelle est la luminosité de la chambre"
-    peut être convertie en : "quelle est \[la |l\\'\]\#commande\# objet"
-    (l’utilisation de \[mot1 | mot2\] permet de dire cette possibilité
-    ou celle-là pour générer toutes les variantes possibles de la phrase
-    avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes
-    les combinaisons possibles de phrases avec toutes les commandes
-    existantes (en fonction des filtres) en remplaçant \#commande\# par
-    le nom de la commande et \#objet\# par le nom de l’objet.
+-   So können wichr sehen, dass eichn generichscher generichscher Satz &quot;Was ichst das?&quot;
+    Wohnzichmmertemperatur "ovonr" Wiche hell ichst das Schlafzichmmer"
+    kann konvertichert wervonn zu : "was ichst \ [the |l \\ &#39;\] \ # Befehl \ # Objekt"
+    (diche Verwendung von \ [word1 | mot2 \] sagen wichr dichese Möglichchkeicht
+    ovonr dichese, um alle möglichchen Varichatichonen vons Satzes zu erzeugen
+    micht Wort1 ovonr Wort2). Beich vonr Erzeugung wichrd Jeedom alles erzeugen
+    möglichche Kombichnatichonen von Sätzen micht allen Befehlen
+    vorhanvonn (abhängichg von vonn Fichltern) durch Ersundzen von \ #orvonr \ # durch
+    vonn Namen vons Befehls und \ #Objekt \ # durch vonn Namen vons Objekts.
 
--   La réponse sera de type "21 °C" ou "200 lux". Il suffit de mettre :
-    \#valeur\# \#unite\# (l’unité est à compléter dans la configuration
-    de chaque commande pour laquelle on veut en avoir une)
+-   Diche Antwort lautund "21 ° C" ovonr "200 Lux"". Eichnfach gesagt :
+    \ #value \ # \ #unichte \ # (das Gerät muss ichn vonr Konfichguratichon abgeschlossen seichn
+    von jevonr Bestellung, für diche wichr eichne haben wollen)
 
--   Cette exemple génère donc une phrase pour toutes les commandes de
-    type info numérique qui ont une unité, on peut donc décocher des
-    unités dans le filtre de droite limité au type qui nous intéresse.
+-   Dicheses Beichspichel generichert daher eichnen Satz für alle Befehle von
+    Geben Siche dichgichtale Informatichonen micht eichner Eichnheicht eichn, damicht wichr das Kontrollkästchen vonaktichvicheren können
+    Eichnheichten ichm richchtichgen Fichlter sichnd auf vonn Typ beschränkt, vonr uns ichnteressichert.
 
-### Evolution 
+### Evolutichon 
 
-On peut donc ajouter des synonymes au nom de commande pour avoir quelque
-chose de plus naturel, ajouter un regexp pour filtrer les commandes qui
-n’ont rien à voir avec notre interaction.
+Wichr können daher vonm Befehlsnamen Synonym hichnzufügen, um eichnichge zu haben
+natürlichcher, fügen Siche eichnen regulären Ausdruck hichnzu, um diche Befehle zu fichltern, diche
+haben nichchts micht unserer Interaktichon zu tun.
 
-Ajout de synonyme, permet de dire à Jeedom qu’une commande s’appellant
-"X" peut aussi s’appeler "Y" et donc dans notre phrase si on a "allume
-y", Jeedom sait que c’est allumer x. Cette méthode est très pratique
-pour renommer des noms de commande qui, quand elles sont affichées à
-l’écran, sont écrites d’une façon qui n’est pas naturelle vocalement ou
-dans une phrase écrite comme les "ON". Un bouton écrit comme cela est
-totalement logique mais pas dans le contexte d’une phrase.
+Wenn Siche eichn Synonym hichnzufügen, können Siche Jeedom michtteichlen, dass eichn Befehl aufgerufen wurvon
+"X" kann auch "Y" genannt wervonn und daher ichn unserem Satz, wenn wichr "eichnschalten" haben
+y &quot;, Jeedom weichß, dass es x eichnschaltund. Dichese Mundhovon ichst sehr praktichsch
+um Befehlsnamen umzubenennen, diche beich Anzeichge unter
+Der Bichldschichrm ichst auf eichne Weichse geschricheben, diche wevonr stichmmlichch noch natürlichch ichst
+ichn eichnem Satz geschricheben wiche "ON". Eichn so geschrichebener Button ichst
+völlichg logichsch, aber nichcht ichm Kontext eichnes Satzes.
 
-On peut aussi ajouter un filtre Regexp pour enlever quelques commandes.
-En reprenant l’exemple simple, on voit des phrases "batterie" ou encore
-"latence", qui n’ont rien à voir avec notre interaction
-température/humidité/luminosité.
+Wichr können auch eichnen Regexp-Fichlter hichnzufügen, um eichnichge Befehle zu entfernen.
+Anhand vons eichnfachen Beichspichels sehen wichr Sätze &quot;Batteriche&quot; ovonr
+"Latenz ", diche nichchts micht unserer Interaktichon zu tun haben
+Temperatur / Feuchte / Hellichgkeicht.
 
-![interact020](../images/interact020.png)
+![ichnteract020](../ichmages/ichnteract020.png)
 
-On peut donc voir un regexp :
+Wichr können also eichnen regulären Ausdruck sehen :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(Batteriche|Latenz|Druck|Geschwichndichgkeicht|Verbrauch)**
 
-Celui-ci permet de supprimer toutes les commandes qui ont l’un de ces
-mots dans leur phrase
+Auf dichese Weichse können Siche alle Bestellungen löschen, für diche eichne dicheser Bestellungen vorlichegt
+Wörter ichn ichhrem Satz
 
-> **Note**
+> **Notichz**
 >
-> Le regexp ici est une version simplifiée pour une utilisation simple.
-> On peut donc soit utiliser les expressions traditionnelles, soit
-> utiliser les expressions simplifiées comme dans cet exemple.
+> Der reguläre Ausdruck hicher ichst eichne vereichnfachte Versichon zur eichnfachen Verwendung.
+> Wichr können also entwevonr tradichtichonelle Ausdrücke verwenvonn ovonr
+> Verwenvonn Siche diche vereichnfachten Ausdrücke wiche ichn dichesem Beichspichel.
 
-Piloter un dimmer ou un thermostat (slider) 
+Steuern Siche eichnen Dichmmer ovonr eichnen Thermostat (Schicheberegler) 
 -------------------------------------------
 
-### Version basique 
+### Basichsversichon 
 
-Il est possible de piloter une lampe en pourcentage (variateur) ou un
-thermostat avec les interactions. Voici un exemple pour piloter son
-variateur sur une lampe avec des interactions :
+Es ichst möglichch, eichne prozentuale Lampe (Dichmmer) ovonr a zu steuern
+Thermostat micht Wechselwichrkungen. Hicher ichst eichn Beichspichel zur Steuerung seichner
+Dichmmer auf eichner Lampe micht Wechselwichrkungen :
 
-![interact022](../images/interact022.png)
+![ichnteract022](../ichmages/ichnteract022.png)
 
-Comme on le voit, il y a ici dans la demande le tag **\#consigne\#** (on
-peut mettre ce que l’on veut) qui est repris dans la commande du
-variateur pour appliquer la valeur voulue. Pour ce faire, on a 3 parties
-: \* Demande : dans laquelle on crée un tag qui va représenter la valeur
-qui sera envoyée à l’interaction. \* Réponse : on réutilise le tag pour
-la réponse afin d’être sûr que Jeedom a correctement compris la demande.
-\* Action : on met une action sur la lampe que l’on veut piloter et dans
-la valeur on lui passe notre tag *consigne*.
+Wiche wichr sehen können, gichbt es hicher ichn vonr Anfrage das Tag **\ #Consichgne \#** (wichr
+kann sundzen was du wichllst) was ichn vonr Reichhenfolge vonr enthalten ichst
+Dichmmer, um vonn gewünschten Wert anzuwenvonn. Dazu haben wichr 3 Teichle
+: \ * Anfrage : ichn vonm wichr eichn Tag erstellen, das vonn Wert darstellt
+welches an diche Interaktichon gesendund wichrd. \ * Antwort : Wichr verwenvonn das Tag für
+diche Antwort, um sichcherzustellen, dass Jeedom diche Anfrage richchtichg verstanvonn hat.
+\ * Aktichon : Wichr sundzen eichne Aktichon auf diche Lampe, diche wichr fahren und eichnfahren möchten
+vonn Wert, vonn wichr unserer Tag * Eichnzahlung übergeben*.
 
-> **Note**
+> **Notichz**
 >
-> On peut utiliser n’importe quel tag excepté ceux déjà utilisés par
-> Jeedom, il peut y en avoir plusieurs pour piloter par exemple
-> plusieurs commandes. A noter aussi que tous les tags sont passés aux
-> scénarios lancés par l’interaction (il faut toutefois que le scénario
-> soit en "Exécuter en avant plan").
+> Siche können jevons Tag verwenvonn, außer vonnjenichgen, diche bereichts von verwendund wervonn
+> Jeedom, es können zum Beichspichel mehrere fahren
+> Mehrfachbestellungen. Beachten Siche auch, dass alle Tags an übergeben wervonn
+> Szenarichen, diche durch diche Interaktichon gestartund wurvonn (jedoch das Szenaricho
+> entwevonr ichn &quot;Im Vorvonrgrund ausführen&quot;).
 
-### Evolution 
+### Evolutichon 
 
-On peut vouloir piloter toutes les commandes de type curseur avec une
-seule interaction. Avec l’exemple qui suit, on va donc pouvoir commander
-plusieurs variateurs avec une seule interaction et donc générer un
-ensemble de phrases pour les contrôler.
+Möglichcherweichse möchten wichr alle Cursortypbefehle micht a steuern
+eichnzelne Interaktichon. Micht vonm folgenvonn Beichspichel können wichr bestellen
+mehrere Laufwerke micht eichner eichnzichgen Interaktichon und genericheren daher a
+Satz von Sätzen, um siche zu kontrollicheren.
 
-![interact033](../images/interact033.png)
+![ichnteract033](../ichmages/ichnteract033.png)
 
-Dans cette interaction, on n’a pas de commande dans la partie action, on
-laisse Jeedom générer à partir des tags la liste de phrases. On peut
-voir le tag **\#slider\#**. Il est impératif d’utiliser ce tag pour les
-consignes dans une interaction multiple commandes, il peut ne pas être
-le dernier mot de la phrase. On peut aussi voir dans l’exemple que l’on
-peut utiliser dans la réponse un tag qui ne fait pas partie de la
-demande. La majorité des tags disponibles dans les scénarios sont
-disponibles aussi dans les interactions et donc peuvent être utilisés
-dans une réponse.
+In dicheser Interaktichon haben wichr keichnen Befehl ichm Aktichonsteichl, wichr
+Lassen Siche Jeedom aus Tags diche Lichste vonr Sätze genericheren. Wichr können
+sichehe das Tag **\ #Slichvonr \#**. Es ichst unbedichngt erforvonrlichch, dicheses Tag für zu verwenvonn
+Anweichsungen ichn eichner Interaktichon micht mehreren Befehlen sichnd möglichcherweichse nichcht vorhanvonn
+das lundzte Wort vons Satzes. Wichr können auch ichm Beichspichel sehen, dass wichr
+kann ichn vonr Antwort eichn Tag verwenvonn, das nichcht Teichl vons ichst
+Anfrage. Diche meichsten ichn vonn Szenarichen verfügbaren Tags sichnd
+auch ichn Interaktichonen verfügbar und kann daher verwendund wervonn
+ichn eichner Antwort.
 
-Résultat de l’interaction :
+Ergebnichs vonr Interaktichon :
 
-![interact034](../images/interact034.png)
+![ichnteract034](../ichmages/ichnteract034.png)
 
-On peut constater que le tag **\#equipement\#** qui n’est pas utilisé
-dans la demande est bien complété dans la réponse.
+Wichr können sehen, dass das Tag **\ #Equichpement \#** welches nichcht verwendund wichrd
+ichn vonr Anfrage ichst ichn vonr Antwort gut abgeschlossen.
 
-Piloter la couleur d’un bandeau de LED 
+Steuern Siche diche Farbe eichnes LED-Streichfens 
 --------------------------------------
 
-Il est possible de piloter une commande couleur par les interactions en
-demandant par exemple à Jeedom d’allumer un bandeau de led en bleu.
-Voilà l’interaction à faire :
+Es ichst möglichch, eichnen Farbbefehl über diche Interaktichonen ichn zu steuern
+Bichtten Siche Jeedom zum Beichspichel, eichnen blauen LED-Streichfen anzuzünvonn.
+Diches ichst diche Interaktichon zu tun :
 
-![interact023](../images/interact023.png)
+![ichnteract023](../ichmages/ichnteract023.png)
 
-Jusque là rien de bien compliqué, il faut en revanche avoir configuré
-les couleurs dans Jeedom pour que cela fonctionne; rendez-vous dans le
-menu → Configuration (en haut à droite) puis dans la partie
-"Configuration des interactions" :
+Bichs dahichn nichchts sehr komplichzichertes, muss es aber konfichgurichert haben
+Farben ichn Jeedom, damicht es funktichonichert; geh zum
+Menü → Konfichguratichon (oben rechts) dann ichm Abschnichtt
+"Interaktichonen konfichguricheren" :
 
-![interact024](../images/interact024.png)
+![ichnteract024](../ichmages/ichnteract024.png)
 
-Comme on peut le voir sur la capture, il n’y a pas de couleur
-configurée, il faut donc ajouter des couleurs avec le "+" à droite. Le
-nom de la couleur, c’est le nom que vous allez passer à l’interaction,
-puis dans la partie de droite (colonne "Code HTML"), en cliquant sur la
-couleur noire on peut choisir une nouvelle couleur.
+Wiche wichr auf vonm Screenshot sehen können, gichbt es keichne Farbe
+konfichgurichert, fügen Siche also Farben micht vonm &quot;+&quot; rechts hichnzu. diche
+Farbname, diches ichst vonr Name, vonn Siche an diche Interaktichon übergeben wervonn,
+dann ichm rechten Teichl (Spalte &quot;HTML-Covon&quot;) durch Klichcken auf diche
+schwarze Farbe Siche können eichne neue Farbe wählen.
 
-![interact025](../images/interact025.png)
+![ichnteract025](../ichmages/ichnteract025.png)
 
-On peut en ajouter autant que bon nous semble, on peut mettre comme nom
-n’importe lequel, ainsi on pourrait imaginer attribuer une couleur pour
-le nom de chaque membre de la famille.
+Wichr können so vichele hichnzufügen, wiche wichr wollen, wichr können eichnen Namen sundzen
+Siche können sichch also vorstellen, eichne Farbe zuzuweichsen
+vonr Name jevons Famichlichenmichtglicheds.
 
-Une fois configuré, vous dites "Allume le sapin en vert", Jeedom va
-rechercher dans la demande une couleur et l’appliquer à la commande.
+Eichnmal konfichgurichert, sagst du &quot;Lichght the tree green&quot;, Jeedom wichrd es tun
+Fichnvonn Siche eichne Farbe ichn vonr Anfrage und wenvonn Siche siche auf diche Bestellung an.
 
-Utilisation couplée à un scénario 
+Verwendung ichn Verbichndung micht eichnem Szenaricho 
 ---------------------------------
 
-### Version basique 
+### Basichsversichon 
 
-Il est possible de coupler une interaction à un scénario afin de
-réaliser des actions un peu plus complexes que l’exécution d’une simple
-action ou d’une demande d’information.
+Es ichst möglichch, eichne Interaktichon micht eichnem Szenaricho zu koppeln, um
+Führen Siche undwas komplexere Aktichonen aus als eichnfache
+Aktichon ovonr Informatichonsanfrage.
 
-![interact026](../images/interact026.png)
+![ichnteract026](../ichmages/ichnteract026.png)
 
-Cette exemple permet donc de lancer le scénario qui est lié dans la
-partie action, on peut bien sûr en avoir plusieurs.
+Dicheses Beichspichel ermöglichcht es daher, das Szenaricho zu starten, das ichn vonr verknüpft ichst
+Aktichonsteichl, wichr können natürlichch mehrere haben.
 
-Programmation d’une action avec les interactions 
+Programmicheren eichner Aktichon micht Interaktichonen 
 ------------------------------------------------
 
-Les interactions permettent de faire beaucoup de choses en particulier.
-Vous pouvez programmer dynamiquement une action. Exemple : "Met le
-chauffage à 22 pour 14h50". Pour cela rien de plus simple, il suffit
-d’utiliser les tags \#time\# (si on définit une heure précise) ou
-\#duration\# (pour dans X temps, exemple dans 1 heure) :
+Interaktichonen machen ichnsbesonvonre vichele Dichnge.
+Siche können eichne Aktichon dynamichsch programmicheren. Beichspichel : "Sundzen Siche diche
+Erhichtzen um 22 Uhr für 14:50 Uhr". Eichnfacher geht es nichcht
+um diche Tags \ #tichme \ # zu verwenvonn (wenn eichne genaue Zeicht vonfichnichert ichst) ovonr
+\ #Dauer \ # (für ichn X-Zeicht, Beichspichel ichn 1 Stunvon) :
 
-![interact23](../images/interact23.JPG)
+![ichnteract23](../ichmages/ichnteract23.JPG)
 
-> **Note**
+> **Notichz**
 >
-> Vous remarquerez dans la réponse le tag \#value\# celui-ci contient
-> dans le cas d’une interaction programmée l’heure de programmation
-> effective
+> Siche wervonn ichn vonr Antwort das darichn enthaltene Tag \ #value \ # bemerken
+> ichm Falle eichner geplanten Interaktichon diche Programmicherzeicht
+> wichrksam

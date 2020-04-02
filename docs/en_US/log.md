@@ -1,49 +1,49 @@
-Viewing
+Viewing 
 =========
 
-The Logs menu allows you to follow what is happening on your home. In the
-In most cases the logs will only be used to debug and
+The Logs menu allows you to follow what is happening on your home automation. In the
+most cases the logs will only be used for debugging and
 solve problems by the support team.
 
-To access it, go to Administration → Logs:
+To access it, go to Administration → Logs :
 
-The Logs page is quite simple, in the top left a drop-down list
-allowing the choice of log to look, in the top right you have 5
-buttons:
+The Logs page is quite simple, at the top left a drop-down list
+allowing the choice of the log to watch, at the top right you have 5
+buttons :
 
--   **Search**: allows you to filter the log poster
+-   **Search** : allows to filter the log poster
 
--   **Pause / Resume**: Pause / resume the update
-    real time logs
+-   **Pause / Resume** : allows you to pause / resume the setting
+    real time log update
 
--   **Download**: allows you to download the current log,
+-   **Download** : allows to download the current log,
 
--   **Empty**: allows to empty the current log,
+-   **Empty** : allows to empty the current log,
 
--   **Delete**: deletes the current log, if Jeedom has
+-   **Remove** : delete the current log, if Jeedom has any
     need it will recreate it automatically,
 
--   **Delete all logs**: delete all the logs present.
+-   **Delete all logs** : delete all logs present.
 
 > **Tip**
 >
-> Note that the http.error log can not be deleted. It is essential
->! if you delete it (in command line for example) this one does not
-> will not recreate itself, it is necessary to restart the system.
+> Note that the http log.error cannot be deleted. It is essential
+> ! if you delete it (on the command line for example) it will not
+> not recreate itself, you have to restart the system.
 
-The log "Event"
+The event log" 
 ==============
 
-The log "Event" is a bit special. First of all for him
-it works, it must be in level info or debug, then this one
-list all the events or actions that happen on home automation.
-To access it, either go to the log page or in Analysis
+The &quot;Event&quot; log is a bit special. First of all so that it
+works, it must be in info or debug level, then this one
+lists all the events or actions happening on home automation.
+To access it, you must either go to the log page or in Analysis
 → Real time
 
-Once you click on it, you get a window that
-update in real time and show you all the events of your
+Once you have clicked on it, you will get a window
+updates in real time and displays all the events of your
 Automation.
 
-At the top right you have a search field (works only if you
-are not paused) and a button to pause (useful for making
+At the top right you have a search field (only works if you
+are not paused) and a button to pause (useful for
 copy / paste for example).

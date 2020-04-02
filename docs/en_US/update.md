@@ -1,135 +1,135 @@
-Description
+Description 
 ===========
 
 The **update center** allows you to update all
-features of Jeedom, including core software,
-plugins, widgets, etc. Other extensions management features
+Jeedom features, including core software,
+plugins, widgets, etc.. Other extension management functions
 are available (delete, reinstall, check, etc.)
 
-The Update Center page
+The Update Center page 
 ================================
 
-It can be accessed through the menu ** Administration → Upgrade Center
+It is accessible from the menu **Administration → Updating center
 day**.
 
-On the left, you will find all the features of
-Jeedom and on the right a part **Information** that describes what he
-happened, when you started an update.
+You will find, on the left, all the functionalities of
+Jeedom and on the right part **Information** who describes what he
+happened, when you launched an update.
 
-The functions at the top of the page.
+Functions at the top of the page. 
 ---------------------------------
 
-At the top of the table are the command buttons. Jeedom
-periodically connects with the Market to see if any updates
-are available (the date of last verification is indicated at the top
-to the left of the table). If you want to do a manual check,
-you can press the "Check Updates" button.
+At the top of the table are the control buttons. Jeedom se
+periodically connect with the Market to see if any updates
+are available (the date of the last check is indicated at the top
+left of the table). If you want to perform a manual check,
+you can press the button "Check for updates".
 
-The **Update** button allows you to update the set of
-Jeedom. Once you click on it, you get these different
-options:
+The button **Update** allows to update the set of
+Jeedom. Once you click on it, we get these different
+Jeedoms Sources :
 
--   **Save before**: Make a Jeedom backup before
-    to update.
+-   **Save before** : Back up Jeedom before
+    perform the update.
 
--   **Update plugins**: Allows to include plugins in the
+-   **Update plugins** : Allows you to include plugins in the
     update.
 
--   **Update Core**: Allows you to include the Jeedom kernel in
+-   **Update the core** : Allows you to include the Jeedom kernel in
     the update.
 
--   **Forced Mode**: Performs the update in forced mode, that is to say
+-   **Forced mode** : Update in forced mode, i.e.
     that, even if there is an error, Jeedom continues and will not restore
     the backup.
 
--   **Update Reapply**: Reapply a bet
-    up to date. (NB: Not all updates can be reapplied.)
+-   **Update to reapply** : Allows you to reapply a bet
+    up to date. (NB : Not all updates can be reapplied.)
 
-> **Important**
+> **IMPORTANT**
 >
 > Before an update, by default, Jeedom will make a backup. In
-> case of concern when applying an update, Jeedom will
+> if there is a problem when applying an update, Jeedom will
 > automatically restore the backup made just before. This principle
 > is only valid for Jeedom updates and not plugins.
 
 > **Tip**
 >
 > You can force an update of Jeedom, even if it does not
-> do not propose it.
+> don&#39;t offer any.
 
-The table of updates
+The update table 
 ---------------------------
 
-The table consists of two tabs:
+The table consists of two tabs :
 
--   **Core and Plugins**: Contains Jeedom's core software and the
+-   **Core and Plugins** : Contains basic Jeedom software and
     list of installed plugins.
 
--   **Other**: Contains widgets, scripts, etc.
+-   **Other** : Contains widgets, scripts, etc..
 
-Here you will find the following information: \ * **Status**: OK or NOK.
-Lets know the current state of the plugin. \ * **Name**: You are there
-find the source of the element, the type of element and its name. \ *
-**Version**: Indicates the precise version of the element. \ * **Options**:
-Check this box if you do not want this item to be set
+You will find the following information : \* **Status** : OK or NOK.
+Allows to know the current state of the plugin. \* **Last name** : You there
+find the source of the element, the type of element and its name. \*
+**Version** : Indicates the specific version of the item. \* **Jeedoms Sources** :
+Check this box if you do not want this item to be updated.
 day during the general update (Button **Update**).
 
 > **Tip**
 >
-> For each table, the first line allows filter following
+> For each table, the first line allows the following filter
 > the state, name or version of the elements present.
 
-On each line, you can use the following functions for
-each element:
+On each line, you can use the following functions to
+every element :
 
--   **Reinstall**: Force reinstallation.
+-   **Reinstate** : Force resettlement.
 
--   **Delete**: Allows you to uninstall it.
+-   **Remove** : Allows you to uninstall it.
 
--   **Check**: Queries the source for updates to see if
+-   **Check** : Query source for updates to find out if
     a new update is available.
 
--   **Update**: Allows you to update the item (if it has
+-   **Update** : Allows you to update the element (if it has
     an update).
 
--   **Changelog**: Allows access to the list of changes of the
+-   **Changelog** : Access the list of changes in the
     update.
 
-> **Important**
+> **IMPORTANT**
 >
 > If the changelog is empty but you still have an update
-> day, this means that the documentation has been updated.
-> It is therefore not necessary to ask the developer for
-> changes, as there are not necessarily. (it's often a bet
-> up to date of the translation of the documentation)
+> update means that the documentation has been updated.
+> There is therefore no need to ask the developer for
+> changes, since there are not necessarily any. (it is often a bet
+> translation of documentation)
 
 > **Tip**
 >
-> Note that "core: jeedom" means "the update of the software of
-> Jeedom base ".
+> Note that &quot;core : jeedom &quot;means&quot; updating the software
+> Jeedom base".
 
-Update command line
+Command line update 
 ================================
 
 It is possible to update Jeedom directly in SSH.
-Once connected, here is the command to perform:
+Once connected, this is the command to perform :
 
-    sudo php /var/www/html/install/update.php
+    sudo php /var/www/html/install/update.php
 
-The possible parameters are:
+The possible parameters are :
 
--   **`mode`**:` force`, to start an update in forced mode (only
-    ignore errors).
+-   **`mode`** : `force`, pour lancer une update en mode forcé (ne
+    ignores errors).
 
--   **`version`**: followed by the version number, to reapply the
-    changes since this release.
+-   **`version`** : followed by the version number, to reapply the
+    changes since this version.
 
-Here is an example of syntax to make a forced update in
-Reapply changes since 1.188.0:
+Here is an example of syntax to do a forced update in
+reapplying changes since 1.188.0 :
 
-  sudo php /var/www/html/install/update.php mode=force version=1.188.0
+    sudo php / var / www / html / install / update.php mode = force version = 1.188.0
 
-Attention, after an update command line, it is necessary
-Reapply rights to the Jeedom folder:
+Attention, after an update on command line, it is necessary
+reapply rights on Jeedom folder :
 
-    chown -R www-data: www-data / var / www / html
+    chown -R www-data:www-data / var / www / html

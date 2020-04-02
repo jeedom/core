@@ -1,112 +1,112 @@
-Cette page permet de créer une vue 3D de votre habitation qui pourra réagir en fonction de l'état des différentes informations de votre domotique.
+This page allows you to create a 3D view of your home that can react depending on the state of the various information in your home automation.
 
-Elle est accessible par Acceuil → Dashboard
-
-> **Tip**
->
-> Il est possible d’aller directement sur un design 3D grâce au sous-menu.
-
-# Importation du modèle 3D
-
-> **IMPORTANT**
->
-> Vous ne pouvez pas créer votre modèle 3D directement dans Jeedom, il faut le faire en passant par un logiciel tiers. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
-
-Une fois votre model 3D créé il faut l'exporter au format OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3D" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générés et les mettre dans un fichier zip (il peut y avoir beaucoup de fichiers dû aux textures).
-
-> **IMPORTANT**
->
-> Les fichiers doivent etre à la racine du zip est pas dans un sous-dossier
-
-> **ATTENTION**
->
-> Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est gros plus long sera le temps de rendu dans Jeedom.
-
-Une fois votre modèle 3D exporté il faut dans Jeedom créer un nouveau design 3D. Pour cela il faut passer en mode édition en cliquant sur le petit crayon à droite, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
-
-Jeedom va automatiquement passer sur le nouveau design 3D, il faut repasser en mode édition et cliquer sur les petites roues crantées.
-
-Vous pouvez à partir de cette écran :
-
-- Changer le nom de votre design
-- Ajouter un code d'accès
-- Choisir une icone
-- Importer votre modèle 3D
-
-Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre fichier zip
-
-> **ATTENTION**
->
-> Jeedom autorise l'import d'un fichier de 150mo maximum !
-
-> **ATTENTION**
->
-> Il faut obligatoirement un fichier au format zip
+It is accessible by Home → Dashboard
 
 > **Tip**
 >
-> Une fois l'import du fichier effectué (cela peut être assez long en fonction de la taille de celui-ci), il vous faut rafraichir la page pour voir le résultat (F5)
+> It is possible to go directly to a 3D design thanks to the submenu.
 
+# Importing the 3D model
 
-# Configuration des éléments
-
-> **IMPORTANT**
+> **Important**
 >
-> La configuration ne peut se faire qu'en mode édition
+> You cannot create your 3D model directly in Jeedom, it must be done using third-party software. We recommend the very good SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Pour configurer un élément sur le design 3D il vous faire un double clic sur l'élément que vous voulez configurer. Cela va amener une fenêtre où vous pourrez :
+Once your 3D model has been created, it must be exported in OBJ format. If you use SweetHome3d this is done from the "3D View" menu then "Export to OBJ format". Then take all the generated files and put them in a zip file (there may be a lot of files due to the textures).
 
-- Indiquer un type de lien (actuellement seul Equipement existe)
-- Le lien vers l'élément en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre l'équipment
-- La spécitificité, là il en existe plusieurs que l'on va voir juste après, cela permet de spécifier le type d'équipement et donc l'affichage d'information
+> **Important**
+>
+> Files must be at the root of the zip is not in a subfolder
 
-## Lumière
+> **WARNING**
+>
+> A 3D model is quite impressive (this can represent several hundred MB). The bigger it is the longer the rendering time in Jeedom.
 
-- Statut : Commande d'état de la lumiere peut être un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
-- Puissance : puissance de l'ampoule (attention cela peut ne pas refléter la réalité)
+Once your 3D model has been exported, you must create a new 3D design in Jeedom. For that you have to go into edit mode by clicking on the small pencil on the right, then click on the +, give a name to this new 3D design then validate.
 
-## Texte
+Jeedom will automatically switch to the new 3D design, you must return to edit mode and click on the small notched wheels.
 
-- Texte : texte à afficher (vous pouvez y mettre des commandes, le texte sera automatiquement remis à jour sur changement de celle-ci)
-- Taille du texte
-- Couleur du texte
-- Transparence du texte : de 0 (invisible) à 1 (visible)
-- Couleur de fond
-- Transparence du fond : de 0 (invisible) à 1 (visible)
-- Couleur de la bordure
-- Transparence de la bordure : de 0 (invisible) à 1 (visible)
-- Espacement au-dessus de l'objet : permet d'indiquer l'espacement du texte par rapport à l'élément
+You can from this screen :
 
-## Porte/Fenêtre
+- Change the name of your design
+- Add an access code
+- Choose an icon
+- Import your 3D model
 
-### Porte/Fenêtre
+Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and select your zip file
 
-- Etat : état de la Porte/Fenêtre, 1 fermé et 0 ouvert
+> **WARNING**
+>
+> Jeedom authorizes the import of a file of 150mo maximum !
+
+> **WARNING**
+>
+> You must have a zip file
+
+> **Tip**
+>
+> Once the file has been imported (it can be quite long depending on the size of the file), you need to refresh the page to see the result (F5)
+
+
+# Configuration of elements
+
+> **Important**
+>
+> Configuration can only be done in edit mode
+
+To configure an element on the 3D design, double click on the element you want to configure. This will bring up a window where you can :
+
+- Indicate a type of link (currently only Equipment exists)
+- The link to the item in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
+- The specificity, there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
+
+## Light
+
+- Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
+- Power : bulb power (please note this may not reflect reality)
+
+## Text
+
+- Text : text to display (you can put commands there, the text will be automatically updated on change of it)
+- Text size
+- Text color
+- Text transparency : from 0 (invisible) to 1 (visible)
+- Background color
+- Background transparency : from 0 (invisible) to 1 (visible)
+- Border color
+- Border transparency : from 0 (invisible) to 1 (visible)
+- Space above the object : allows to indicate the spacing of the text compared to the element
+
+## Door / Window
+
+### Door / Window
+
+- State : Door / Window status, 1 closed and 0 open
 - Rotation
-    - Activer : active la rotation de la Porte/Fenêtre lors de l'ouverture
-    - Ouverture : le mieux est de tester pour que cela corresponde à votre Porte/Fenêtre
+	- Activate : activates the rotation of the Door / Window when opening
+	- Opening : the best is to test so that it matches your Door / Window
 - Translation
-    - Activer : active la translation lors de l'ouverture (type Porte/Fenêtre coulissante)
-    - Sens : sens dans lequel la Porte/Fenêtre doit bouger (vous avez haut/bas/droite/gauche)
-    - Répéter : par défaut la Porte/Fenêtre bouge d'une fois sa dimension dans le sens donné mais vous pouvez augmenter cette valeur
-- Masquer quand la Porte/Fenêtre est ouverte
-    - Activer : Masque l'élément si la Porte/Fenêtre est ouverte
-- Couleur
-    - Couleur ouverte : si cocher l'élément prendra cette couleur si la Porte/Fenêtre est ouverte
-    - Couleur fermée : si cocher l'élément prendra cette couleur si la Porte/Fenêtre est fermée
+	- Activate : activates translation when opening (sliding door / window type)
+	- Meaning : direction in which the Door / Window should move (you have up / down / right / left)
+	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
+- Hide when the Door / Window is open
+	- Activate : Hides the element if the Door / Window is open
+- Color
+	- Open color : if checked the element will take on this color if the Door / Window is open
+	- Color closed : if checked the element will take on this color if the Door / Window is closed
 
-### Volet
+### Shutter
 
-- Etat : état du volet, 0 ouvert autre valeur fermé
-- Masquer quand le volet est ouvert
-    - Activer : masque l'élément si le volet est ouvert
-- Couleur
-    - Couleur fermé : si cocher l'élément prendra cette couleur si le volet est fermé
+- State : shutter status, 0 open other value closed
+- Hide when the shutter is open
+	- Activate : hide the element if the shutter is open
+- Color
+	- Color closed : if checked the element will take on this color if the shutter is closed
 
-## Couleur conditionnelle
+## Conditional color
 
-Permet de donner la couleur choisie à l'élément si la condition est valide. Vous pouvez mettre autant de couleurs/conditions que vous voulez.
+Allows to give the chosen color to the element if the condition is valid. You can put as many colors / conditions as you want.
 
 > **Tip**
 >
-> Les conditions sont évaluées dans l'ordre, la première qui est vraie sera prise, les suivantes ne seront donc pas évaluées
+> The conditions are evaluated in order, the first one which is true will be taken, the following ones will therefore not be evaluated

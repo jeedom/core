@@ -1,153 +1,153 @@
-Las vistas pueden simplemente crear una vista personalizada. este
-no es tan potente como los diseños pero permite alguna
-minutos para tener una vista personalizada.
+Las vistas simplemente le permiten crear una vista personalizada. este
+No es tan poderoso como los diseños, pero permite en algunos
+minutos para tener una pantalla más personalizada.
 
-Las vistas son accesibles desde el menú Inicio → Vista:
+Se puede acceder a las vistas desde el menú Inicio → Ver. :
 
-> **Tip**
+> **Punta**
 >
-> Es posible ir directamente a una vista por el submenú.
+> Es posible ir directamente a una vista gracias al submenú.
 
-> **Tip**
+> **Punta**
 >
-> Se puede elegir un perfil en la vista por defecto cuando se hace clic
-> El menú de vistas.
+> Puede elegir la vista predeterminada en su perfil al hacer clic
+> en el menú de vistas.
 
-los puntos de vista
+Las vistas 
 ========
 
-Se puede poner como muchos widgets, los gráficos (que pueden ser
-compuesto de varios datos) o áreas de tabla (que contienen
-órdenes widgets).
+También podemos poner widgets, gráficos (que pueden ser
+compuesto de varios datos) o campos de tabla (que contienen el
+widgets de comando).
 
-En esta página, hay un botón de arriba a la izquierda para mostrar u
-ocultar las vistas de lista y el botón para añadir una
-(Jeedom pregunte por su nombre y le enviará a la página de edición):
+En esta página, hay un botón en la parte superior izquierda para mostrar o
+ocultar la lista de vistas y el botón para agregar uno
+(Jeedom le preguntará su nombre y lo enviará a la página de edición) :
 
-> **Tip**
+> **Punta**
 >
-> Puede editar su perfil de esto a la lista
-> Vistas visibles por defecto.
+> Puede modificar esta opción en su perfil para que la lista
+> las vistas serán visibles por defecto.
 
-Un botón de arriba a la derecha le permite editar la vista actual.
+Un botón en la parte superior derecha le permite editar la vista actual.
 
-Añadir puntos de vista / Editar
+Agregar / Editar una vista 
 =======================
 
-El principio es muy simple: una vista se compone de zonas (se puede
-poner tantas como desee). Cada zona está gráficamente tipo de widget
-o una tabla, dependiendo del tipo que puede poner los widgets
-equipos, control o gráficos en el mismo.
+El principio es bastante simple. : una vista se compone de áreas (puede
+pon todo lo que quieras). Cada zona es de tipo gráfico, widget
+o tabla, dependiendo del tipo que pueda poner widgets
+de equipo, control o gráficos en él.
 
-> **Tip**
+> **Punta**
 >
-> Puede moverse por las zonas de arrastrar / soltar.
+> Puede mover el orden de las zonas arrastrando y soltando.
 
-A la izquierda de la página se encuentra la lista de vistas y una
-botón añadir.
+A la izquierda de la página encontramos la lista de vistas y un
+botón de agregar.
 
-En el centro tiene un botón para cambiar el nombre de una vista, botón de añadir
-zona, un botón para ver el resultado, un botón para guardar y
+En el centro tiene un botón para cambiar el nombre de una vista, un botón para agregar
+de zona, un botón para ver el resultado, un botón para guardar y
 un botón para borrar la vista.
 
-Después de hacer clic en el botón añadir área Jeedom preguntará
+Después de hacer clic en el botón Agregar zona, Jeedom le preguntará
 su nombre y tipo.
 
-En cada zona dispone de las siguientes opciones generales:
+En cada zona tienes las siguientes opciones generales :
 
--   ** ** Anchura: establece el ancho de la zona (en el modo de
-    Sólo escritorio)
+-   **Ancho** : define el ancho del área (en modo
+    solo escritorio)
 
--   ** ** Editar: Cambiar el nombre de la zona
+-   **Editar** : permite cambiar el nombre de la zona
 
--   ** ** Eliminar: Eliminar la zona
+-   **Remove** : permite eliminar la zona
 
-zona tipo de widget
+Área de tipo de widget 
 -------------------
 
-Un tipo de widget de casilla para añadir widgets:
+Un área de tipo de widget le permite agregar widgets :
 
--   ** ** Añadir componente: añadir / editar los widgets
-    mostrado en el área
+-   **Agregar widget** : agregar / editar widgets a
+    mostrar en el área
 
-> **Tip**
+> **Punta**
 >
 > Puede eliminar un widget directamente haciendo clic en el
-> Basura antes de ella.
+> bote de basura en frente de este.
 
-> **Tip**
+> **Punta**
 >
-> Puede cambiar el orden de los widgets en la zona
-> Arrastrar / soltar.
+> Es posible cambiar el orden de los widgets en el área por
+> arrastrar / soltar.
 
-Una vez que el widget botón añadir prisa, se obtiene una ventana
-que le pedirá para agregar el widget
+Una vez que se presiona el botón Agregar widget, aparece una ventana
+que le pedirá el widget para agregar
 
-gráfico tipo de zona
+Área de tipo gráfico 
 ----------------------
 
-Un nuevo cuadro gráfico para añadir gráficos a la vista,
-que tiene las siguientes opciones:
+Un área de tipo gráfico le permite agregar gráficos a su vista,
+ella tiene las siguientes opciones :
 
--   ** ** Periodo: Elija periodo pantalla
-    gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año, o todos)
+-   **Período** : le permite elegir el período de visualización para
+    gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año o todo)
 
--   ** ** Añadir curva: añadir / modificar los gráficos
+-   **Agregar curva** : permite agregar / modificar gráficos
 
-Cuando se pulsa las listas "Añadir curva de" botón Jeedom
-de pedidos congelados y se puede elegir la (s) para añadir una
-Una vez hecho esto usted tiene las siguientes opciones:
+Cuando presiona el botón &quot;Agregar curva&quot;, Jeedom muestra la lista
+comandos históricos y puede elegir los que desea agregar, un
+Una vez hecho esto, tiene acceso a las siguientes opciones :
 
--   ** ** Papelera: borra el gráfico de control
+-   **Cubo de basura** : eliminar comando del gráfico
 
--   ** ** Nombre: nombre del comando graphée
+-   **Apellido** : nombre del comando graficado
 
--   ** ** color: el color de la curva
+-   **Color** : color de la curva
 
--   ** ** Tipo: tipo de curva
+-   **Puntao** : tipo de curva
 
--   ** ** Grupo: le permite agrupar los datos (estándar máximo
+-   **Grupo** : permite la agrupación de datos (tipo máximo
     por día)
 
--   **Escala**: escala (derecha o izquierda) de la curva
+-   **Escala** : escala (derecha o izquierda) de la curva
 
--   ** ** Escalera: muestra la curva de escalera
+-   **Escalera** : muestra la curva escalonada
 
--   Pila ** **: apilar la curva con el otro tipo de curva
-    montón
+-   **Montón** : apilar la curva con las curvas de otro tipo
+    Montón
 
--   ** ** Variación: gráfico sólo cambia con el valor
+-   **Cambio** : grafica solo variaciones con valor
     anterior
 
-> **Tip**
+> **Punta**
 >
-> Es posible cambiar el orden de las cartas en la zona
-> Arrastrar / soltar.
+> Es posible cambiar el orden de los gráficos en el área por
+> arrastrar / soltar.
 
-zona de tipo mesa
+Área de tipo de matriz 
 --------------------
 
-Aquí tienes los botones:
+Aqui tienes los botones :
 
--   ** ** Añadir Columna: añade una columna a la tabla
+-   **Agregar columna** : agregar una columna a la tabla
 
--   ** ** Añadir línea: añadir una línea en la tabla
+-   **Agregar línea** : agregar una fila a la mesa
 
 > **Nota**
 >
-> Puede régoraniser líneas de arrastrar / soltar, pero no
-> Columnas
+> Es posible reorganizar las líneas arrastrando y soltando, pero no
+> las columnas
 
-Una vez que añadir sus líneas / columnas se puede añadir
-información en los cuadros:
+Una vez que haya agregado sus filas / columnas, puede agregar
+información en las cajas :
 
--   ** ** texto: acaba de escribir el texto
+-   **texto** : solo texto para escribir
 
--   Html ** **: todo el código HTML (JavaScript posible, pero
-    desaconseja)
+-   **HTML** : cualquier código HTML (javascript posible pero
+    fuertemente desanimado)
 
--   ** ** Reproductor de control: el botón a la derecha le permite elegir
-    Comando de mostrar (reloj que muestra el widget
-    control)
+-   **widget de comando** : el botón de la derecha te permite elegir
+    el comando para mostrar (cuidado, esto muestra el widget
+    la orden)
 
 

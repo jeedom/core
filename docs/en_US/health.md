@@ -1,38 +1,38 @@
-La page Santé de Jeedom vous permet d’avoir un aperçu rapide de
-l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l’utilisent) l’état de santé par plugin.
+The Jeedom Health page gives you a quick overview of
+the state of health of your Jeedom. It also indicates (if the plugins
+use it) state of health by plugin.
 
 The page is accessible by Analysis → Health
 
-> **Note**
+> **NOTE**
 >
 > Click on the icon on the right to access the benchmark of your
 > Jeedom.
 
-La page santé de Jeedom se présente sous la forme d’un tableau. La 1ere
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n’est pas OK.
+Jeedom&#39;s health page is presented in the form of a table. The 1st
+column gives you a description of what Jeedom checks and whose status
+is displayed in the 2nd column. Finally the last column can
+give resolution advice if verification is not OK.
 
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
-nom du plugin donne le détail de santé de celui-ci. A droite vous
-retrouvez les icônes :
+Below you find the health for each plugin, click on the
+plugin name gives the health detail of it. Right you
+find the icons :
 
--   Plugin hardware access port (Zwave key type)
+-   Access port for plugin hardware (Zwave key type)
 
 -   Demon mode
 
--   Display health page of plugin equipment
+-   Display of the plugin&#39;s equipment health page
 
--   Displaying the plugin configuration page
+-   Display of the plugin configuration page
 
--   Global state of the plugin
+-   Overall state of the plugin
 
-> **Note**
+> **NOTE**
 >
-> Les icônes peuvent varier en fonction du plugin
+> Icons may vary depending on plugin
 
-> **Note**
+> **NOTE**
 >
-> De manière générale quand la ligne est verte c’est que tout va bien
-> et quand c’est rouge, c’est qu’il y a un souci.
+> Generally when the line is green, everything is fine
+> and when it’s red, there’s a problem.

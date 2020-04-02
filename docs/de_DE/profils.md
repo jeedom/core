@@ -1,112 +1,108 @@
-La page Profil vous permet de configurer certains comportements de
-Jeedom spécifiques à l’utilisateur : page d’accueil, thèmes de la
-version desktop, de la version mobile, des graphiques…​ Elle permet
-aussi de changer votre mot de passe.
+Auf der Profilseite können Sie ein bestimmtes Verhalten von konfigurieren
+Benutzerspezifisches Jeedom : Homepage, Thema der
+Desktop-Version, mobile Version, Grafik ... Es erlaubt
+auch um dein Passwort zu ändern.
 
-Vous la retrouvez en haut à droite en cliquant sur le l’icône bonhomme
-puis Profil (suivi de votre identifiant).
+Sie finden es oben rechts, indem Sie auf das Schneemannsymbol klicken
+dann Profil (gefolgt von Ihrem Benutzernamen).
 
 Themen 
 ======
 
-Le panneau thèmes vous permet de régler des paramètres d’interface :
+Im Themenbereich können Sie die Schnittstellenparameter anpassen :
 
--   **Desktop** : thèmes à utiliser en mode desktop, attention seul le
-    thème par défaut est officiellement supporté par Jeedom
+-   **Desktop** : Thema im Desktop-Modus zu verwenden, seien Sie vorsichtig nur die
+    Das Standardthema wird offiziell von Jeedom unterstützt
 
--   **Mobile couleur** : permet de choisir la couleur de l’interface
-    (ici tout est supporté)
+-   **Farbe mobil** : ermöglicht die Auswahl der Schnittstellenfarbe
+    (hier wird alles unterstützt)
 
--   **Graphique Desktop** : permet de définir le thème par défaut des
-    graphiques en mode desktop
+-   **Desktop-Grafiken** : Mit dieser Option können Sie das Standarddesign für definieren
+    Grafiken im Desktop-Modus
 
--   **Graphique Mobile** : permet de définir le thème par défaut des
-    graphiques en mode mobile
+-   **Mobiler Graph** : Mit dieser Option können Sie das Standarddesign für definieren
+    mobile Grafik
 
--   **Opacité par des widgets Dashboard** : permet de donner l’opacité
-    (entre 0 et 1) des widgets sur le dashboard
+-   **Deckkraft durch Armaturenbrett-Widgets** : erlaubt, Deckkraft zu geben
+    (zwischen 0 und 1) Widgets im Armaturenbrett
 
--   **Opacité par des widgets Design** : permet de donner l’opacité
-    (entre 0 et 1) des widgets sur les designs
+-   **Deckkraft durch Design-Widgets** : erlaubt, Deckkraft zu geben
+    (zwischen 0 und 1) Widgets für Designs
 
--   **Opacité par des widgets Vue** : permet de donner l’opacité (entre
-    0 et 1) des widgets sur les vues
+-   **Deckkraft nach Ansichts-Widgets** : erlaubt, Deckkraft zu geben (zwischen
+    0 und 1) Widgets in den Ansichten
 
--   **Opacité par des widgets Mobile** : permet de donner l’opacité
-    (entre 0 et 1) des widgets en mobile
+-   **Deckkraft durch mobile Widgets** : erlaubt, Deckkraft zu geben
+    (zwischen 0 und 1) mobile Widgets
 
-Interface 
+Schnittstelle 
 ---------
 
-Vous permet de définir certains comportements de l’interface :
+Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
 
--   **Général**
+-   **General**
 
-    -   **Afficher les menus** : indique à Jeedom d’afficher le panneau
-        de gauche, lorsqu’il existe, pour rappel ce panneau est
-        disponible sur la plupart des pages des plugins, ainsi que la
-        page des scénarii, des interactions, des objets…​.
+    -   **Menüs anzeigen** : Sagen Sie Jeedom, dass er das Panel anzeigen soll
+        links, wenn es existiert, als Erinnerung ist dieses Panel
+        verfügbar auf der Seite einiger Plugins.
 
--   **Page par défaut** : page par défaut à afficher lors de la
-    connexion en desktop/mobile
+-   **Standardseite** : Standardseite, die angezeigt wird, wenn
+    Desktop / Mobile-Verbindung
 
--   **Objet par défaut sur le dashboard** : objet à afficher par défaut
-    lors de l’arrivée sur le dashboard/mobile
+-   **Standardobjekt im Armaturenbrett** : Standardanzeigeobjekt
+    bei der Ankunft auf dem Armaturenbrett / Handy
 
--   **Vue par défaut** : vue à afficher par défaut lors de l’arrivée sur
-    le dashboard/mobile
+-   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
+    das Armaturenbrett / Handy
 
--   **Design par défaut** : design à afficher par défaut lors de
-    l’arrivée sur le dashboard/mobile
+-   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
+    die Ankunft auf dem Armaturenbrett / Handy
 
-    -   **Plein écran** : affichage par défaut en plein écran lors de
-        l’arrivée sur les designs
+    -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
+        die Ankunft auf den Entwürfen
+        
+-   **Armaturenbrett**
 
--   **Dashboard**
+    -   **Klappen Sie das Objektfenster auf** : ermöglicht sichtbar zu machen durch
+        Standardmäßig das Objektmenü (links) im Armaturenbrett
 
-    -   **Déplier le panneau des scénarii** : permet de rendre visible
-        par défaut le menu des scénarii (à droite) sur le dashboard
+-   **Ansicht**
 
-    -   **Déplier le panneau des objets** : permet de rendre visible par
-        défaut le menu des objets (à gauche) sur le dashboard
+    -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
+        Standardansichtsmenü (links) für Ansichten
 
--   **Vue**
-
-    -   **Déplier le panneau des vues** : permet de rendre visible par
-        défaut le menu des vues (à gauche) sur les vues
-
-Sécurité 
+Sicherheit 
 --------
 
--   **Authentification en 2 étapes** : permet de configurer
-    l’authentification en 2 étapes (pour rappel, c’est un code changeant
-    toutes les X secondes qui s’affiche sur une application mobile, type
-    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé.
+-   **2-stufige Authentifizierung** : ermöglicht zu konfigurieren
+    2-Schritt-Authentifizierung (zur Erinnerung, dies ist ein sich ändernder Code
+    wird alle X Sekunden in einer mobilen Anwendung angezeigt, geben Sie ein
+    Google Authentifikator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert.
 
--   **Mot de passe** : permet de changer votre mot de passe (ne pas
-    oublier de le retaper en dessous)
+-   **Passwort** : ermöglicht es Ihnen, Ihr Passwort zu ändern (nicht
+    vergessen Sie es unten erneut einzugeben)
 
--   **Hash de l’utilisateur** : votre clef API d’utilisateur
+-   **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel
 
-### Sessions actives 
+### Aktive Sitzungen 
 
-Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
-leur IP ainsi que la date de derniere communication. En cliquant sur
-"Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
-un péripherique enregistré cela supprimera églagement l’enregistrement.
+Hier haben Sie die Liste Ihrer aktuell verbundenen Sitzungen, deren ID,
+ihre IP und das Datum der letzten Kommunikation. Durch Klicken auf
+"Trennen "Dadurch wird der Benutzer getrennt. Achtung wenn es an ist
+Bei einem registrierten Gerät wird auch die Aufnahme gelöscht.
 
-### Péripherique enregistrés 
+### Registrierte Geräte 
 
-Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
-connecte sans authentification) à votre Jeedom ainsi que la date de
-derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
-peripherique. Attention cela ne le deconnecte pas mais empechera juste
-sa reconnection automatique.
+Hier finden Sie die Liste aller registrierten Geräte (welche sind
+Melden Sie sich ohne Authentifizierung an) bei Ihrem Jeedom und dem Datum von
+zuletzt verwendet. Hier können Sie die Aufnahme von a löschen
+Gerät. Achtung, es trennt es nicht, sondern verhindert es nur
+seine automatische Wiederverbindung.
 
-Notifications 
+Benachrichtigungen 
 -------------
 
--   **Commande de notification utilisateur** : Commande par défaut pour
-    vous joindre (commande de type message)
+-   **Benutzerbenachrichtigungsbefehl** : Standardbefehl für
+    mach mit (Nachrichtentyp Befehl)
 
 

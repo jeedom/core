@@ -234,7 +234,7 @@ class jeedom {
 			'name' => __('Espace disque libre tmp', __FILE__),
 			'state' => ($value > 10),
 			'result' => $value . ' %',
-			'comment' => __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
+			'comment' => ($value > 10) ? '' : __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
 			'key' => 'space::tmp'
 		);
 		
@@ -282,7 +282,7 @@ class jeedom {
 				'name' => __('Swap disponible', __FILE__),
 				'state' => $ok,
 				'result' => $value . ' % ('.__('Total ',__FILE__).round($values['SwapTotal']/1024).' Mo)',
-				'comment' => __('Le swap libre n\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go',__FILE__),
+				'comment' => ($ok) ? '' :__('Le swap libre n\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go',__FILE__),
 				'key' => 'swap'
 			);
 		} else {
@@ -304,7 +304,7 @@ class jeedom {
 			'name' => __('Swapiness', __FILE__),
 			'state' => $ok,
 			'result' => $value.'%',
-			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
+			'comment' => ($ok) ? '' :__('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
 			'key' => 'swapiness'
 		);
 		
@@ -446,6 +446,9 @@ class jeedom {
 		}
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
+			if($user->getEnable() == 0){
+				return false;
+			}
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
 				return false;
 			}
@@ -998,6 +1001,7 @@ class jeedom {
 			report::clean();
 			DB::optimize();
 			cache::clean();
+			user::regenerateHash();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -1301,6 +1305,9 @@ class jeedom {
 	}
 	
 	public static function forceSyncHour() {
+		if(config::byKey('disable_ntp','core',0) == 1){
+			return;
+		}
 		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
 	}
 	

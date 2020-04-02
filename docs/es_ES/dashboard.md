@@ -1,84 +1,84 @@
-Una de las páginas principales Jeedom muestra un informe de todos
-su automatización del hogar. Este informe (contrariamente a las opiniones y diseño) es
-auto-generado por Jeedom.
+Una de las páginas principales de Jeedom muestra una cuenta de todos
+su domótica. Este informe (a diferencia de las vistas y el diseño) es
+autogenerado por Jeedom.
 
-Se accede haciendo clic en Inicio → ** ** tablero de instrumentos
+Se puede acceder haciendo clic en **Inicio → Tablero**
 
-> **Tip**
+> **Punta**
 >
-> Es posible ir directamente a un elemento de la domótica.
-> Esto sólo tendrá el equipo que le interesan y
-> Así cargar la página más rápido
+> Es posible ir directamente a un objeto en su domótica.
+> Esto le permite tener solo el equipo que le interesa y
+> así que carga la página más rápido
 
--   Tiene la parte superior izquierda un pequeño icono para
-    mostrar / ocultar el árbol de objetos (También muestra
-    resúmenes de objetos de información)
+-   Tienes en la parte superior izquierda un pequeño ícono para hacer
+    muestra / oculta el árbol de objetos (esto también muestra el
+    información de resumen del objeto)
 
--   En el centro, puede elegir filtrar sólo en ciertos tipos
+-   En el medio, puede elegir filtrar solo en ciertos tipos
     equipo
 
--   A la derecha, un primer botón para cambiar al modo de edición, para por
-    tales como cambiar el orden de widgets (utilizando un depositados hecho clic
-    el widget), también se puede en este modo de edición
-    cambiar el tamaño de algunos widgets y reorganizar los comandos
-    interior de la misma
+-   A la derecha, un primer botón para cambiar al modo de edición, a la par
+    ejemplo, modifique el orden de los widgets (usando un clic
+    en el widget), también puedes en este modo de edición
+    cambiar el tamaño de algunos widgets y reorganizar el orden de los comandos
+    dentro de ella
 
--   Un segundo botón para mostrar escenarios / ocultar
+-   Un segundo botón para mostrar / ocultar los escenarios.
 
--   Al hacer clic en un resumen de objetos, filtra para mostrar sólo
-    equipos cuyos padres se oponen y la preocupación de que
-    objeto abstracto.
+-   Al hacer clic en un resumen de objeto, filtra para mostrar solo
+    equipos relacionados con este objeto y que se relacionan con este
+    resumen de la asignatura.
 
--   Al hacer clic en un comando muestra información de tipo
-    la historia de la orden (si historizada)
+-   Se muestra un clic en un comando de tipo de información
+    el historial de pedidos (si es histórico)
 
-> **Tip**
+> **Punta**
 >
 > Es posible, desde su perfil, configurar Jeedom para
-> que el árbol de objetos y/o los escenarios sean visibles por defecto
-> cuando estás en el Dashboard
+> el árbol de objetos y / o los escenarios son visibles por defecto
+> cuando te subes al tablero
 
-> **Tip**
+> **Punta**
 >
-> desde el movil, una pulsación prolongada de un comando info permite
-> mostrar un menú que le ofrece la posibilidad de mostrar el historial de los
-> comandos, o para poner una alerta para que jeedom pueda enviarle
-> un aviso (sólo una vez) cuando el valor supera un determinado umbral
+> En dispositivos móviles, una pulsación larga en un comando de tipo de información permite
+> mostrar un menú que ofrezca mostrar el historial de
+> ordene, o ponga una alerta en él para que pueda
+> advertir (solo una vez) tan pronto como el valor pase un cierto umbral
 
-el modo de edición
+Modo de edición 
 ============
 
-En el modo de edición, puedes cambiar el tamaño de los widgets y su
-disposición en el dashboard.
+En el modo de edición, puede cambiar el tamaño de los widgets y sus
+diseño en el tablero.
 
-También puede editar el diseño interno de los controles de widget
+También puede editar el diseño interno de los controles del widget
 :
 
--   o reorganizar arrastrando / drop
+-   reorganícelos arrastrándolos y soltándolos
 
--   ya sea haciendo clic derecho en el widget. A continuación, ir a:
+-   ya sea haciendo clic derecho en el widget. Entonces accedes :
 
-    -   ** ** Configuración avanzada: permite el acceso a la configuración
-        Mando avanzado
+    -   **Configuración avanzada** : da acceso a la configuración
+        progreso de la orden
 
-    -   ** ** Estándar: diseño predeterminado, todo es automático
-        con sólo la posibilidad de reorganizar los comandos
+    -   **Estándar** : diseño predeterminado, todo es automático
+        con solo la capacidad de reorganizar el orden de las órdenes
 
-    -   **Tabla** : permite poner los comandos en una tabla :
-        se añaden las columnas y filas y suprimen por clic
-        bien, entonces basta con mover los controles en
-        casillas correspondientes. Puede poner varios comandos por cuadro
+    -   **Mesa** : permite poner los comandos en una tabla :
+        columnas y filas se agregan y eliminan haciendo clic
+        en ese momento solo mueva los controles dentro
+        cajas deseadas. Puedes poner múltiples pedidos por caja
 
-    -   ** ** Añadir Columna: añade una columna a la tabla (accesible
-        sólo si está disponible la tabla)
+    -   **Agregar columna** : agregar una columna a la tabla (accesible
+        solo si está en un diseño de tabla)
 
-    -   ** ** línea Añadir: agrega una fila a la tabla (accesible
-        sólo si está disponible la tabla)
+    -   **Agregar línea** : agregar una fila a la tabla (accesible
+        solo si está en un diseño de tabla)
 
-    -   ** ** Eliminar columna: elimina una columna en la tabla
-        (Accesible sólo si está disponible la tabla)
+    -   **Eliminar columna** : eliminar una columna de la tabla
+        (accesible solo si tiene un diseño de tabla)
 
-    -   ** ** Borrar línea: elimina una fila en la tabla (accesible
-        sólo si está disponible la tabla)
+    -   **Eliminar linea** : eliminar una fila en la tabla (accesible
+        solo si está en un diseño de tabla)
 
 

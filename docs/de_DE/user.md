@@ -1,77 +1,77 @@
-Hier ist die Seite, wo man die Liste der Benutzer definieren kann, die befugt
-sind, sich in Jeedom einzuloggen und auch ihre Administratorrechte
-definieren kann.
+Hier können wir die Liste der Benutzer definieren
+darf sich mit Jeedom verbinden, aber auch mit ihren Rechten
+Regisseur
 
-Erreichbar unter Einstellungen → Benutzer.
+Zugänglich für Administration → Benutzer.
 
-Oben rechts haben Sie eine Schaltfläche zum Hinzufügen eines Benutzers,
-eine zum Speichern und eine Schaltfläche zum Öffnen eines Support-Zugriffs.
+Oben rechts haben Sie eine Schaltfläche zum Hinzufügen eines Benutzers, a
+zum Speichern und eine Schaltfläche zum Öffnen eines Support-Zugriffs.
 
-Darunter haben Sie eine Tabelle :
+Unten haben Sie eine Tabelle :
 
--   **Benutzer** : der Anmeldename des Benutzers
+-   **Benutzername** : Benutzer-ID
 
--   **Aktiv** : zum Konto deaktivieren
+-   **Aktiva** : ermöglicht das Deaktivieren des Kontos
 
--   **Lokal** : erlaubt die Benutzeranmeldung nur, wenn sie sich
-    im lokalen Netzwerk von Jeedom befinden
+-   **Nur lokal** : Benutzeranmeldung autorisieren
+    Nur wenn es sich im lokalen Jeedom-Netzwerk befindet
 
--   **Profil** : erlaubt ein Profil für den Benutzers auszuwählen :
+-   **Profile** : ermöglicht die Auswahl des Benutzerprofils :
 
-    -   **Administrator** : erhält alle Rechte für Jeedom
+    -   **Verwalter** : bekommt alle Rechte an Jeedom
 
-    -   **Benutzer** : Kann das Armaturenbrett, die Ansichten, das Design usw. 
-        sehen und auf die Geräte/Befehle reagieren. Es besteht jedoch
-        keinen Zugriff auf die Konfiguration der Befehle/Geräte oder 
-        die Jeedom Konfiguration.
+    -   **Benutzer** : kann das Dashboard sehen, Ansichten,
+        Design usw.. und auf Geräte / Kontrollen einwirken. Allerdings,
+        Er hat keinen Zugriff auf die Konfiguration der Steuerungen / Geräte
+        noch auf die Konfiguration von Jeedom.
 
-    -   **Eingeschränkter Benutzer** : Der Benutzer sieht nur die 
-        genehmigten Geräte (konfigurierbar mit der Schaltfläche 
-        "Rechte")
+    -   **Begrenzter Benutzer** : Der Benutzer sieht nur die
+        autorisierte Geräte (konfigurierbar mit der Schaltfläche &quot;Verwalten&quot;
+        Rechte &quot;)
 
--   **API-Schlüssel** : der persönlichen API-Schlüssel des Benutzers
+-   **API-Schlüssel** : persönlicher API-Schlüssel des Benutzers
 
--   **Doppelte Authentifizierung** : gibt an, ob die doppelte Authentifizierung 
-    aktiv ist (OK) oder nicht (NOK)
+-   **Doppelte Authentifizierung** : Gibt an, ob eine doppelte Authentifizierung vorliegt
+    ist aktiv (OK) oder nicht (NOK)
 
--   **Letzte Anmeldung** : Datum der letzten Anmeldung des Benutzers
-    bei Jeedom. Seien Sie vorsichtig, hier ist das tatsächliche 
-    Anmeldedatum. Wenn Sie Ihren Computer registrieren, wird
-    das Anmeldedatum bei jeder Rückkehr nicht aktualisiert.
+-   **Datum der letzten Verbindung** : Datum der letzten Verbindung von
+    der Benutzer bei Jeedom. Bitte beachten Sie, dass dies das Verbindungsdatum ist
+    Ist also, wenn Sie Ihren Computer speichern, das Datum von
+    Die Verbindung wird nicht jedes Mal aktualisiert, wenn Sie zu ihr zurückkehren.
 
--   **Passwort** : erlaubt das Passwort des Benutzers 
-    zu ändern
+-   **Passwort ändern** : ermöglicht das Ändern des Passworts von
+    Benutzer
 
--   **Löschen** : um den Benutzer zu löschen
+-   **Entfernen** : Benutzer löschen
 
--   **API regenerieren** : Den API-Schlüssel des Benutzers regenerieren
+-   **API-Schlüssel neu generieren** : regeneriert den API-Schlüssel des Benutzers
 
--   **Rechte** : erlaubt, die Rechte des Benutzers genau zu
-    verwalten (Achtung die Profile müssen
-    "Eingeschränkter Benutzer" sein)
+-   **Rechte verwalten** : ermöglicht es, die Rechte von fein zu verwalten
+    der Benutzer (Aufmerksamkeit, in der sich die Profile befinden müssen
+    "eingeschränkter Benutzer ")
 
-Rechteverwaltung
+Rechteverwaltung 
 ==================
 
-Wenn Sie auf "Rechte verwalten" klicken, erscheint ein Fenster, in dem Sie
-die Rechte des Benutzers einstellen können. Die erste Registerkarte zeigt
-die verschiedenen Geräte an. Die zweite enthält die Szenarien.
+Wenn Sie auf &quot;Rechte verwalten&quot; klicken, wird ein Fenster angezeigt, in dem Sie klicken können
+Benutzerrechte fein verwalten. Die erste Registerkarte wird angezeigt
+die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 
 > **Wichtig**
 >
-> Das Profil muss eingeschränkt sein, ansonsten werden hier keine
-> Einschränkungen berücksichtigt
+> Das Profil muss eingeschränkt werden, sonst werden hier keine Einschränkungen gesetzt
+> wird berücksichtigt
 
-Sie erhalten eine Tabelle, die es ermöglicht, für jedes Gerät und jedes
-Szenario die Rechte des Benutzers festzulegen :
+Sie erhalten eine Tabelle, die für jede Ausrüstung und jede erlaubt
+Szenario definieren Benutzerrechte :
 
--   **Keine** : Der Benutzer sieht das Gerät/Szenario nicht.
+-   **Keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
 
--   **Visualisierung** : Der Benutzer sieht das Gerät/Szenario, kann sie 
-    jedoch nicht verwenden
+-   **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, jedoch nicht
+    kann nicht darauf reagieren
 
--   **Visualisierung und Ausführung** : Der Benutzer sieht das
-    Gerät/Szenario und kann sie verwenden (eine Lampe anschalten, Szenarien 
-    starten, etc.)
+-   **Visualisierung und Ausführung** : der Benutzer sieht
+    die Ausrüstung / das Szenario und kann darauf einwirken (eine Lampe anzünden, werfen
+    das Szenario usw.)
 
 
