@@ -532,12 +532,20 @@ sup i {
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
 
-
+#tableCmdLayoutConfiguration .form-control {
+  display: unset;
+}
 #tableCmdLayoutConfiguration .cmdLayout {
   display: inline-block
 }
+#tableCmdLayoutConfiguration .cmdLayoutContainer {
+  min-height: 24px;
+}
 #tableCmdLayoutConfiguration td {
   vertical-align: bottom;
+}
+#tableCmdLayoutConfiguration td input {
+  margin-top: 2px;
 }
 
 /* summary */

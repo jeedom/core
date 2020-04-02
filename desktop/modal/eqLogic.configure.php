@@ -451,9 +451,9 @@ function setTableLayoutSortable() {
 
 function getNewLayoutTd(row, col) {
 	var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
-	newTd += '<center class="cmdLayoutContainer" style="min-height:30px;"></center>'
-	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>'
-	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>'
+	newTd += '<center class="cmdLayoutContainer"></center>'
+	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la case}}"/>'
+	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style de la case (CSS)}}"/>'
 	newTd += '</td>'
 	return newTd
 }
@@ -513,6 +513,7 @@ $('#bt_eqLogicLayoutApply').off().on('click', function () {
 
 		//replace by new table:
 		tableLayout.replaceWith(newTableLayout)
+		$('#tableCmdLayoutConfiguration td').css('width', 100/nbColumn + '%')
 		setTableLayoutSortable()
 	}
 })
@@ -522,50 +523,6 @@ $('.sel_layout').on('change',function(){
 	$('.widget_layout').hide();
 	$('.widget_layout.'+$(this).value()).show();
 });
-
-
-
-
-$('.background-color-default').off('change').on('change',function(){
-	if($(this).value() == 1){
-		$(this).closest('td').find('.span_configureBackgroundColor').hide();
-	}else{
-		$(this).closest('td').find('.span_configureBackgroundColor').show();
-	}
-});
-$('.background-color-transparent').off('change').on('change',function(){
-	var td = $(this).closest('td');
-	if($(this).value() == 1){
-		td.find('.background-color').hide();
-	}else{
-		td.find('.background-color').show();
-	}
-});
-$('.color-default').off('change').on('change',function(){
-	var td = $(this).closest('td')
-	if($(this).value() == 1){
-		td.find('.color').hide();
-	}else{
-		td.find('.color').show();
-	}
-});
-$('.border-default').off('change').on('change',function(){
-	var td = $(this).closest('td')
-	if($(this).value() == 1){
-		td.find('.border').hide();
-	}else{
-		td.find('.border').show();
-	}
-});
-$('.border-radius-default').off('change').on('change',function(){
-	var td = $(this).closest('td')
-	if($(this).value() == 1){
-		td.find('.border-radius').hide();
-	}else{
-		td.find('.border-radius').show();
-	}
-});
-
 
 
 $('.advanceWidgetParameterDefault').off('change').on('change',function(){
