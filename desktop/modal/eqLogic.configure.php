@@ -513,6 +513,7 @@ $('#bt_eqLogicLayoutApply').off().on('click', function () {
 
 		//replace by new table:
 		tableLayout.replaceWith(newTableLayout)
+		$('#tableCmdLayoutConfiguration td').css('width', 100/nbColumn + '%')
 		setTableLayoutSortable()
 	}
 })
