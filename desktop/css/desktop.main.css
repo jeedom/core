@@ -257,6 +257,8 @@ legend .pull-right:not(.input-group) {
 }
 [data-page=display] #div_pageContainer #displaytab ul > li input {
   top: 2px;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  font-size: 12px !important;
 }
 [data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
   margin: 0 !important;
