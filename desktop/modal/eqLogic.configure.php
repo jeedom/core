@@ -451,9 +451,9 @@ function setTableLayoutSortable() {
 
 function getNewLayoutTd(row, col) {
 	var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
-	newTd += '<center class="cmdLayoutContainer" style="min-height:30px;"></center>'
-	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>'
-	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>'
+	newTd += '<center class="cmdLayoutContainer"></center>'
+	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la case}}"/>'
+	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style de la case (CSS)}}"/>'
 	newTd += '</td>'
 	return newTd
 }

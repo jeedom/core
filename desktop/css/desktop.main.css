@@ -539,6 +539,12 @@ sup i {
 #tableCmdLayoutConfiguration td {
   vertical-align: bottom;
 }
+#tableCmdLayoutConfiguration .cmdLayoutContainer {
+  min-height: 24px;
+}
+#tableCmdLayoutConfiguration td input {
+  margin-top: 2px;
+}
 
 /* summary */
 .objectSummaryParent {
