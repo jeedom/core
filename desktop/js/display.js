@@ -238,12 +238,14 @@ $('.objectSelectEqlogics').on('click',function() {
   $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
     $(this).prop('checked', true)
   })
+  setEqActions()
 })
 $('.objectUnselectEqlogics').on('click',function() {
   var object = $(this).closest('.objectSortable')
   $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
     $(this).prop('checked', false)
   })
+  setEqActions()
 })
 
 $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
@@ -285,6 +287,10 @@ $('[aria-controls="displaytab"]').on('click',function() {
 })
 
 $('.cb_selEqLogic').on('change',function(){
+  setEqActions()
+})
+
+function setEqActions() {
   var found = false
   $('.cb_selEqLogic').each(function() {
     if ($(this).value() == 1) {
@@ -307,7 +313,7 @@ $('.cb_selEqLogic').on('change',function(){
     $('.bt_setIsVisible').hide()
     $('.bt_setIsEnable').hide()
   }
-})
+}
 
 $('.cb_selCmd').on('change',function(){
   var found = false
