@@ -30,7 +30,7 @@ $('#in_search').on('keyup',function() {
     var search = $(this).value()
     var searchID = search
     if (isNaN(search)) searchID = false
-    
+
     $('div.panel-collapse').removeClass('in')
     $('.cmd').show().removeClass('alert-success').addClass('alert-info')
     $('.eqLogic').show()
@@ -130,7 +130,24 @@ $('#accordionObject').sortable({
 $('.eqLogicSortable').sortable({
   cursor: "move",
   connectWith: ".eqLogicSortable",
+  start:function(event, info) {
+    //get checked eqlogics in this object:
+    $(this).closest('ul.eqLogicSortable').find('.ui-sortable-handle').each(function() {
+      if ($(this).find('.cb_selEqLogic').prop('checked') == true) {
+        $(this).appendTo(info.item)
+      }
+    })
+  },
   stop: function (event, ui) {
+    //set appended eqlogics:
+    try {
+      ui.item.find('li.eqLogic').each(function(index) {
+        ui.item.after($(this))
+      })
+    } catch(error) {
+      console.log('eqLogic sorting error:' + error)
+    }
+    //set object order:
     var eqLogics = []
     var object = ui.item.closest('.objectSortable')
     objectId = object.find('.panel-heading').attr('data-id')
@@ -215,6 +232,22 @@ $('.bt_exportcsv').on('click',function() {
   $('.bt_exportcsv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile))
 })
 
+
+$('.objectSelectEqlogics').on('click',function() {
+  var object = $(this).closest('.objectSortable')
+  $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
+    $(this).prop('checked', true)
+  })
+  setEqActions()
+})
+$('.objectUnselectEqlogics').on('click',function() {
+  var object = $(this).closest('.objectSortable')
+  $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
+    $(this).prop('checked', false)
+  })
+  setEqActions()
+})
+
 $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
   if (event.target.tagName.toUpperCase() == 'I') return
   //checkbox clicked:
@@ -224,7 +257,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
     $(event.target).find('.configureCmd').click()
     return false
   }
-  
+
   if (!$(event.target).hasClass('eqLogic')) {
     event.stopPropagation()
     return false
@@ -254,6 +287,10 @@ $('[aria-controls="displaytab"]').on('click',function() {
 })
 
 $('.cb_selEqLogic').on('change',function(){
+  setEqActions()
+})
+
+function setEqActions() {
   var found = false
   $('.cb_selEqLogic').each(function() {
     if ($(this).value() == 1) {
@@ -276,7 +313,7 @@ $('.cb_selEqLogic').on('change',function(){
     $('.bt_setIsVisible').hide()
     $('.bt_setIsEnable').hide()
   }
-})
+}
 
 $('.cb_selCmd').on('change',function(){
   var found = false
@@ -358,8 +395,8 @@ $('.bt_setIsVisible').on('click',function(){
       }
     });
   }
-  
-  
+
+
 })
 
 $('.bt_setIsEnable').on('click',function(){
