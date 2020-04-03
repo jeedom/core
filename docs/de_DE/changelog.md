@@ -8,8 +8,8 @@
 - Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startund.
 - Möglichkeit, globale Informationen für Ihr Zuhause in die Jeedom-Verwaltung einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in Plugins eingegeben werden müssen.
 - Aktualisieren des Repositorys auf smart
-- Migration auf das neue Cloud-Backup-System (das alte System bleibt 2 Wochen lang aktiv, und Sie können bei Bedarf die Bereitstellung alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht.)
-- Migration auf das neue Überwachungssystem (das alte System bleibt 2 Wochen lang aktiv, danach wird es gelöscht)
+- 
+- 
 
 3.3.39
 =====

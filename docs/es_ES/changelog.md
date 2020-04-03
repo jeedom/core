@@ -8,8 +8,8 @@ Cambios
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses.. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
 - Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
 - Actualización del repositorio en smart
-- Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 2 semanas y, si es necesario, puede solicitar la provisión de copias de seguridad antiguas para soportar, pasar este período, el sistema antiguo se eliminará)
-- Migración al nuevo sistema de monitoreo (el sistema anterior permanecerá activo durante 2 semanas, pasado este tiempo se eliminará)
+- 
+- 
 
 3.3.39
 =====
