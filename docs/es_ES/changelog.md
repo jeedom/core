@@ -37,7 +37,9 @@ Cambios
 - Integración de la línea de tiempo en DB por razones de confiabilidad.
 - Gestión de múltiples líneas de tiempo..
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
-- Resumen de domótica : Posibilidad de buscar en categorías de equipos
+- Resumen de domótica : Posibilidad de buscar en categorías de equipos.
+- Resumen de domótica : .
+- Resumen de domótica : .
 - Motor de tareas : En la pestaña * Daemon *, los complementos desactivados ya no aparecen.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
 - Reproductores : .
@@ -54,7 +56,11 @@ Cambios
 - Corrección de errores y optimizaciones..
 
 
-4.0.46
+
+=====
+- .
+
+
 =====
 
 - Mejora del probador de expresión.
@@ -66,7 +72,7 @@ Cambios
 
 - Traducciones mejoradas.
 - Correcciones de errores.
-- Mejora de la restauración de la nube de respaldo.
+- .
 - .
 
 4.0.43
