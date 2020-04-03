@@ -194,7 +194,7 @@ function initApplication(_reinit) {
         userProfils = data.result.userProfils;
         widget_margin =  data.result.widget_margin;
         jeedom.init();
-        var include = ['core/js/core.js'];
+        var include = [];
         
         if (isset(userProfils) && userProfils != null) {
           if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
