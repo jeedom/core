@@ -66,7 +66,7 @@ $date = array(
 						$class = 'history';
 						if (!$eqLogic->getIsEnable()) $class = 'history disabled';
 						$_echo .= '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="'.$class.'"><i class="far fa-trash-alt remove" title="{{Supprimer tout ou partie de cet historique.}}"></i> ';
-						if ($cmd->getSubType() != 'string') {
+						if ($cmd->getSubType() == 'string') {
 							$_echo .= '<i class="fas fa-share export" title="{{Exporter cet historique.}}"></i> ';
 						}
 						$_echo .= $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
