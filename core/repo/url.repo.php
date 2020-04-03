@@ -71,7 +71,7 @@ class repo_url {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
-		exec('wget --no-check-certificate --progress=dot --dot=mega ' . $_update->getConfiguration('url') . ' -O ' . $tmp);
+		exec('wget --progress=dot --dot=mega ' . $_update->getConfiguration('url') . ' -O ' . $tmp);
 		log::add('update', 'alert', $result);
 		return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
 	}
@@ -88,7 +88,7 @@ class repo_url {
 	}
 	
 	public static function downloadCore($_path) {
-		exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
+		exec('wget --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
 		return;
 	}
 	
@@ -100,7 +100,7 @@ class repo_url {
 			if (file_exists(jeedom::getTmpFolder('url') . '/version')) {
 				com_shell::execute(system::getCmdSudo() . 'rm /tmp/jeedom_version');
 			}
-			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::version') . ' -O /tmp/jeedom_version');
+			exec('wget --progress=dot --dot=mega ' . config::byKey('url::core::version') . ' -O /tmp/jeedom_version');
 			if (!file_exists(jeedom::getTmpFolder('url') . '/version')) {
 				return null;
 			}
