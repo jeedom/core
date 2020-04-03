@@ -483,7 +483,7 @@ class repo_market {
 				$request_http = new com_http($url);
 				$request_http->setHeader(array(
 					'Content-Type: application/json',
-					'Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+					'Autorization: '.sha512(strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
 				));
 				$request_http->setPost(json_encode($data));
 				try {
