@@ -107,7 +107,7 @@ $('#bt_clearGraph').on('click',function(){
   setChartOptions()
 });
 
-$(".in_datepicker").datepicker();
+$(".in_datepicker").datepicker($.datepicker.regional[jeedom_langage.substring(0,2)])
 
 $(".li_history .history").on('click', function (event) {
   $.hideAlert();

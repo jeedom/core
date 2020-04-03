@@ -335,6 +335,9 @@ legend .pull-right:not(.input-group) {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+div.eqLogic.eqLogic-widget:empty {
+  display: none;
+}
 
 .eqLogic-widget.eqSignalInfo:after,
 .eqLogic-widget.eqSignalAction:after {
@@ -1415,6 +1418,9 @@ button .fas.fa-plus-circle {
 }
 #historytab .label.displayObject i:hover {
   color: inherit !important;
+}
+#historytab .history.disabled {
+  color: var(--placeholder-color) !important;
 }
 #timelinetab .tml-cmd,
 #timelinetab .tml-scenario {
