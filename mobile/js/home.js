@@ -133,5 +133,7 @@ function initHome() {
   $('#bt_forceReload').off('click').on('click', function () {
     window.location.reload(true);
   })
-  setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+  if(!APP_MODE){
+  setTimeout(function() {$('#pagecontainer').css('padding-top','64px')}, 100)}
+}
 }
