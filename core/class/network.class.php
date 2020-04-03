@@ -479,6 +479,15 @@ class network {
 	
 	/*     * *********************Network management************************* */
 	
+	public static function portOpen($host, $port) {
+		$fp = @fsockopen($host, $port, $errno, $errstr, 0.1);
+		if (!is_resource($fp)){
+			return false;
+		}
+		fclose($fp);
+		return true;
+	}
+	
 	public static function getInterfaceIp($_interface) {
 		$ip = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " | grep \"inet .*" . $_interface . "\" | awk '{print $2}' | cut -d '/' -f 1"));
 		if (filter_var($ip, FILTER_VALIDATE_IP)) {
