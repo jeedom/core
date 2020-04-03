@@ -23,9 +23,9 @@ if (!isConnect('admin')) {
 		<br/><br/>
 		<div id="div_noteManagerDisplay">
 			<input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>
-			<input class="noteAttr form-control" data-l1key="name" placeholder="Titre"/>
+			<input class="noteAttr form-control" data-l1key="name" placeholder="{{Titre}}"/>
 			<br/>
-			<textarea class="noteAttr form-control ta_autosize" data-l1key="text" placeholder="Note..."></textarea>
+			<textarea class="noteAttr form-control ta_autosize" data-l1key="text" placeholder="{{Texte}}"></textarea>
 		</div>
 	</div>
 </div>
