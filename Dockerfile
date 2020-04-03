@@ -11,5 +11,4 @@ RUN sh /tmp/install.sh -s 8
 RUN sh /tmp/install.sh -s 11
 
 COPY install/OS_specific/Docker/init.sh /root/
-RUN chmod +x /root/init.sh
-CMD ["/root/init.sh"]
+CMD ["sh", "/root/init.sh"]
