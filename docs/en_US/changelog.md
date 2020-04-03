@@ -37,7 +37,9 @@ Changelog
 - Integration of the Timeline in DB for reliability reasons.
 - Management of multiple timelines.
 - Home automation summary : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
-- Home automation summary : Ability to search on equipment categories
+- Home automation summary : Ability to search on equipment categories.
+- Home automation summary : .
+- Home automation summary : .
 - Task engine : On the * Daemon * tab, deactivated plugins no longer appear.
 - Advanced equipment configuration window : Dynamic change of switchboard configuration.
 - Widget : .
@@ -54,7 +56,11 @@ Changelog
 - Bug fixes and optimizations.
 
 
-4.0.46
+
+=====
+- .
+
+
 =====
 
 - Improvement of the expression tester.
@@ -66,7 +72,7 @@ Changelog
 
 - Improved translations.
 - Bugfix.
-- Improvement of backup cloud restoration.
+- .
 - .
 
 4.0.43

@@ -37,7 +37,9 @@ Changelog
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
-- Résumé domotique : Possibilité de chercher sur les catégories d'équipements
+- Résumé domotique : Possibilité de chercher sur les catégories d'équipements.
+- Résumé domotique : Possibilité de déplacer plusieurs équipements d'un objet dans un autre.
+- Résumé domotique : Possibilité de sélectionner tous les équipements d'un objet.
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
 - Widgets : Possibilité d'ajouter des class css à un widget (voir documentation widget).
@@ -54,7 +56,11 @@ Changelog
 - Corrections de bugs et optimisations.
 
 
-4.0.46
+4.0.48
+=====
+- Possibilité de choisir le moteur TTS de Jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS.
+
+4.0.47
 =====
 
 - Amélioration du testeur d'expression.
@@ -66,7 +72,7 @@ Changelog
 
 - Amélioration des traductions.
 - Correction de bugs.
-- Amélioration de la restoration de backup cloud.
+- Amélioration de la restauration de backup cloud.
 - La restauration cloud ne rapatrie plus maintenant que le backup en local, laissant le choix de le télécharger ou de le restaurer.
 
 4.0.43
