@@ -136,4 +136,3 @@ function initHome() {
   if(!APP_MODE){
   setTimeout(function() {$('#pagecontainer').css('padding-top','64px')}, 100)}
 }
-}
