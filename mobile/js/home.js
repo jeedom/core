@@ -134,5 +134,6 @@ function initHome() {
     window.location.reload(true);
   })
   if(!APP_MODE){
-  setTimeout(function() {$('#pagecontainer').css('padding-top','64px')}, 100)}
+    setTimeout(function() {$('#pagecontainer').css('padding-top','64px')}, 100)
+  }
 }
