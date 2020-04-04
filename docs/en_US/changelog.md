@@ -2,7 +2,7 @@
 Changelog
 =========
 
-3.3.43
+
 =====
 
 - Automatic rotation of the API key of admin users every 3 months. I can deactivate it (but it is not recommended) in the user management. Please note this update launches a rotation of API keys for admins users.

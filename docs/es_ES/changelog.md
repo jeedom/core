@@ -2,7 +2,7 @@
 Cambios
 =========
 
-3.3.43
+
 =====
 
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses.. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
