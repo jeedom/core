@@ -1,4 +1,7 @@
 function initEquipment(_object_id) {
+  if(APP_MODE){
+    $('#in_searchWidget').css('top',0);
+  }
   var objectMapping = {};
   var objectName = {};
   jeedom.object.all({
