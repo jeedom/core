@@ -292,6 +292,8 @@
         "Ajouter": "Aggiungi",
         "Sauvegarder": "Salva",
         "Supprimer": "Rimuovere",
+        "Titre": "Titolo",
+        "Texte": "Testo",
         "Note sauvegardée avec succès": "",
         "Voulez-vous vraiment supprimer la note : ": "",
         "Note supprimée avec succès": ""
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Sauvegarder": "Salva",
         "Sauvegardes locales": "Backup locali",
         "Emplacement": "Posizione",
         "Rétention temporelle (jours)": "Ritenzione temporale (giorni)",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "Configurazione di formule",
         "Configuration": "Configurazione",
         "Rechercher": "Cerca",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno.",
         "Variation": "Variazione",
         "Escalier": "Passi",

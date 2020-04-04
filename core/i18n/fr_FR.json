@@ -292,6 +292,8 @@
         "Ajouter": "Ajouter",
         "Sauvegarder": "Sauvegarder",
         "Supprimer": "Supprimer",
+        "Titre": "Titre",
+        "Texte": "Texte",
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
         "Voulez-vous vraiment supprimer la note : ": "Voulez-vous vraiment supprimer la note : ",
         "Note supprimée avec succès": "Note supprimée avec succès"
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Sauvegarder": "Sauvegarder",
         "Sauvegardes locales": "Sauvegardes locales",
         "Emplacement": "Emplacement",
         "Rétention temporelle (jours)": "Rétention temporelle (jours)",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "Configuration des formules de calcul",
         "Configuration": "Configuration",
         "Rechercher": "Rechercher",
+        "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
+        "Exporter cet historique.": "Exporter cet historique.",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
         "Variation": "Variation",
         "Escalier": "Escalier",

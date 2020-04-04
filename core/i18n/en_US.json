@@ -8,7 +8,7 @@
     "mobile\/modal\/warnme.html": {
         "Valeur": "Value",
         "Annuler": "Cancel",
-        "Ok": "Okay"
+        "Ok": "Ok"
     },
     "mobile\/js\/log.js": {
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
@@ -17,7 +17,7 @@
         "Timeline": "Timeline",
         "Logs": "Logs",
         "Analyse équipement": "Equipment analysis",
-        "Crons": "Cron",
+        "Crons": "Crons",
         "Démons": "Daemons",
         "Santé": "Health",
         "Basculer le thème": "Toggle theme",
@@ -43,7 +43,7 @@
         "Rafraichir": "Refresh",
         "Version desktop": "Desktop version",
         "Démons": "Daemons",
-        "Crons": "Cron"
+        "Crons": "Crons"
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refresh",
@@ -52,7 +52,7 @@
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Refresh",
         "Version desktop": "Desktop version",
-        "Crons": "Cron",
+        "Crons": "Crons",
         "Santé": "Health"
     },
     "mobile\/js\/equipment.js": {
@@ -63,9 +63,9 @@
     "mobile\/js\/application.js": {
         "Résumé": "Summary",
         "Historique": "History",
-        "Préviens moi": "Warn me",
+        "Préviens moi": "Notify me",
         "Me prévenir si": "Notify me if",
-        "Erreur lors de la mise à jour": "Error updating",
+        "Erreur lors de la mise à jour": "Error while updating",
         "Nouvelle tentative dans 5s": "Retry in 5s",
         "Synthèse": "Synthesis",
         "Accueil": "Home"
@@ -113,9 +113,9 @@
     "mobile\/html\/about.html": {
         "Version": "Version",
         "Source": "",
-        "Branche": "Plugged",
+        "Branche": "Branch",
         "Système": "System",
-        "Auteur(s)": "Author (s)"
+        "Auteur(s)": "Author(s)"
     },
     "mobile\/html\/index.html": {
         "Accueil": "Home",
@@ -134,7 +134,7 @@
         "Action": "Action"
     },
     "mobile\/html\/timeline.html": {
-        "Date": "Dated",
+        "Date": "Date",
         "Type": "Type",
         "Visuel": "Visual"
     },
@@ -292,6 +292,8 @@
         "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
+        "Titre": "Title",
+        "Texte": "Text",
         "Note sauvegardée avec succès": "Note successfully saved",
         "Voulez-vous vraiment supprimer la note : ": "Are you sure you want to delete the note:",
         "Note supprimée avec succès": "Note successfully deleted"
@@ -536,17 +538,17 @@
         "Type": "Type",
         "Aucun": "None",
         "Catégorie": "Category",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Général": "Main",
         "Scénario": "Scenario",
         "Etape 4 : Demande de support": "Step 4: Request for support",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/jeedom.github.io\/documentation\/howto\/fr_FR\/remonter_un_bug\">documentation": "IMPORTANT: for a quick and precise response, please read this <a target=\"_blank\" href=\"https:\/\/jeedom.github.io\/documentation\/howto\/fr_FR\/remonter_un_bug\">documentation<\/a>",
         "Titre": "Title",
         "Message": "Message",
-        "Ouvrir un accès au support": "Open support access",
+        "Ouvrir un accès au support": "Open access to support",
         "Envoyer": "Send",
         "Ce plugin utilise un gestionnaire de demande de support": "This plugin uses a support request manager",
-        "Accéder": "To access",
+        "Accéder": "Access",
         "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "You have just declared a bug which will be published on our public Bug Tracker. <br\/> You can follow him",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Your ticket has been opened. An email will be sent to you",
         "ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\\'information personnelle (mail, compte market, clé api...)": "PLEASE NOTE: this request will be public, you MUST NOT put any personal information (email, market account, API key, etc.)"
@@ -640,7 +642,7 @@
         "Valeur retour d'état": "Value state return",
         "Durée avant retour d'état (min)": "Lasted before state return (min)",
         "Autres": "Any",
-        "Gestion de la répétition des valeurs": "Management of values repitition",
+        "Gestion de la répétition des valeurs": "Management of values repetition",
         "Automatique": "Automatic",
         "Toujours répéter": "Always repeat",
         "Jamais répéter": "Never repeat",
@@ -653,17 +655,17 @@
         "Widget": "Widget",
         " . $value['name'] . ": ". $ value ['name'].",
         " . ucfirst($widget['type']) . ": ". ucfirst ($ widget ['type']).",
-        "Afficher le nom": "Display name",
-        "Afficher le nom ET l'icône": "Display name AND icon",
+        "Afficher le nom": "Show name",
+        "Afficher le nom ET l'icône": "Show name AND icon",
         "Afficher les statistiques": "Show statistics",
-        "Retour à la ligne forcé avant le widget": "Force line break after the widget",
+        "Retour à la ligne forcé avant le widget": "Force line break before widget",
         "après le widget": "after widget",
         "Paramètres optionnels widget": "Optional widget settings",
         "Sélection multiple de commandes": "Multiple command selection",
         "Graphique des liens": "Links chart",
         "Êtes-vous sûr de vouloir copier l\\'historique de": "Are you sure you want to copy the history of",
         "vers": "to",
-        "Il est conseillé de vider l\\'historique de la commande": "It is recommended to empty the review of order",
+        "Il est conseillé de vider l\\'historique de la commande": "It is recommended to empty the command history",
         " avant la copie": "before copy",
         "Historique copié avec succès": "History successfully copied",
         "Êtes-vous sûr de vouloir remplacer": "Are you sure you want to replace",
@@ -724,14 +726,14 @@
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Valider": "Validate",
-        "Commande(s) historisée(s) : ": "Historical order (s):",
-        "Commande(s) timeline : ": "Timeline order (s):",
+        "Commande(s) historisée(s) : ": "Historized command(s):",
+        "Commande(s) timeline : ": "Timeline command(s):",
         "Historisé": "Historized",
         "Timeline": "Timeline",
         "Type": "Type",
         "Nom": "Name",
         "Plugin": "Plugin",
-        "Mode de lissage": "Mode smoothing",
+        "Mode de lissage": "Smoothing mode",
         "Purge si plus vieux": "Purge if older",
         "Action": "Action",
         "Dossier": "Folder",
@@ -808,7 +810,7 @@
         "Liens": "Links",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
-        "Affichage": "Viewing",
+        "Affichage": "Display",
         "Disposition": "Disposition",
         "Alertes": "Warnings",
         "Commentaire": "Comment",
@@ -891,11 +893,11 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Version": "Version",
         "Source": "",
-        "Branche": "Plugged",
+        "Branche": "Branch",
         "Système": "System",
         "Changelog": "Changelog",
-        "FAQ": "Faq",
-        "Auteur(s)": "Author (s)"
+        "FAQ": "FAQ",
+        "Auteur(s)": "Author(s)"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access"
@@ -995,7 +997,7 @@
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: Too large a date range can take a very long time to calculate or even not display.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: A large date range can take a very long time to calculate or even not be shown.",
         "Ouvrir dans Analyse \/ Historique.": "Open in Analysis \/ History.",
         "Historique": "History"
     },
@@ -1317,11 +1319,11 @@
         "Version installée": "Installed version",
         "Dernière version": "Last version",
         "Options": "Options",
-        "Actions": "Stock",
+        "Actions": "Actions",
         "Log :": "Log:",
         "Avant toute mise à jour, merci de consulter": "Before any update, please consult",
         "la note de version": "the release note",
-        "du core de Jeedom": "Jeedom core",
+        "du core de Jeedom": "for Jeedom core",
         "Pré-update": "Pre-update",
         "Mettre d'abord le script d'update à jour.": "First update the update script.",
         "Sauvegarder avant": "Save before",
@@ -1331,7 +1333,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error.",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "The following option can only be modified at the request of the support, otherwise it MUST be set to 'None'.",
         "Mise à jour à réappliquer": "Update to reapply",
-        "Aucune": "Any"
+        "Aucune": "None"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1340,7 +1342,7 @@
         "Ajouter une vue": "Add a view",
         "Rechercher": "Search",
         "Afficher\/Masquer les vues": "Show \/ Hide Views",
-        "Edition complète": "Complete Edition",
+        "Edition complète": "Full Edition",
         "Mode édition": "Edit mode"
     },
     "desktop\/php\/administration.php": {
@@ -1761,7 +1763,7 @@
         "Gestion": "Management",
         "Ajouter": "Add",
         "Importer": "Import",
-        "Code": "Coded",
+        "Code": "Code",
         "Remplacement": "Replacement",
         "Mes widgets": "My widgets",
         "Rechercher": "Search",
@@ -1775,9 +1777,9 @@
         "Général": "Main",
         "Nom du widget": "Widget name",
         "Type": "Type",
-        ".$value['name'].": ". $ Value [ 'name'].",
+        ".$value['name'].": ".$value['name'].",
         "Sous-Type": "Subtype",
-        ".$svalue['name'].": ". $ SValue [ 'name'].",
+        ".$svalue['name'].": ".$svalue['name'].",
         "Template": "Template",
         "Icône": "Icon",
         "Choisir": "Select",
@@ -1854,7 +1856,7 @@
         "Groupe": "Group",
         "Groupe du scénario": "Scenario group",
         "Actif": "Active",
-        "Visible": "Jeedom",
+        "Visible": "Visible",
         "Objet parent": "Parent object",
         "Aucun": "None",
         "Log": "Log",
@@ -2014,9 +2016,9 @@
         "Session(s) active(s)": "Active session (s)",
         "ID": "ID",
         "IP": "IP",
-        "Date": "Dated",
-        "Déconnecter": "Disconnect",
-        "Périphérique(s) enregistré(s)": "Registered device (s)",
+        "Date": "Date",
+        "Déconnecter": "Log-out",
+        "Périphérique(s) enregistré(s)": "Registered device(s)",
         "Supprimer tout": "Delete all",
         "Action": "Action",
         "Supprimer": "Delete",
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Sauvegarder": "Save",
         "Sauvegardes locales": "Local backups",
         "Emplacement": "Location",
         "Rétention temporelle (jours)": "Temporal retention (days)",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Configuration": "Setup",
         "Rechercher": "Search",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: Too large a date range can take a very long time to calculate or even not display.",
         "Variation": "Variation",
         "Escalier": "Steps",
@@ -2209,7 +2214,7 @@
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Consistance": "Consistency",
-        "Droit": "Law",
+        "Droit": "Rights",
         "Rechercher": "Search",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on an order on the left or type a custom order below",
         "OK": "Okay"
@@ -2388,9 +2393,9 @@
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Please provide the date (Y-m-d H:m:s) which must be removed before history",
-        "Configuration de l'historique des commandes": "Commands' history setup",
+        "Configuration de l'historique des commandes": "Commands history setup",
         "Historique supprimé avec succès": "History deleted successfully",
-        "Log d'exécution du scénario": "Scenario run log",
+        "Log d'exécution du scénario": "Scenario execution log",
         "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/database.js": {
@@ -3926,7 +3931,7 @@
         "Largeur  (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
         "Delai (ms)": "Delay (ms)",
-        "Option(s)": "Option (s)"
+        "Option(s)": "Option(s)"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "You are not authorized to perform this action 1, IP:",

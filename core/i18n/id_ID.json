@@ -292,6 +292,8 @@
         "Ajouter": "Tambahan",
         "Sauvegarder": "Menyimpan",
         "Supprimer": "Menghapus",
+        "Titre": "Judul",
+        "Texte": "Teks",
         "Note sauvegardée avec succès": "",
         "Voulez-vous vraiment supprimer la note : ": "",
         "Note supprimée avec succès": ""
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Sauvegarder": "Menyimpan",
         "Sauvegardes locales": "Backup lokal",
         "Emplacement": "",
         "Rétention temporelle (jours)": "",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Configuration": "Konfigurasi",
         "Rechercher": "Mencari",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul.",
         "Variation": "Perubahan",
         "Escalier": "Tangga",
