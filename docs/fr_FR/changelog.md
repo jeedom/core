@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.45
+=====
+
+- Correction de bug sur la webapp
+
 3.3.44
 =====
 
