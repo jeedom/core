@@ -2,7 +2,7 @@
 Änderungsprotokoll
 =========
 
-3.3.43
+
 =====
 
 - Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startund.

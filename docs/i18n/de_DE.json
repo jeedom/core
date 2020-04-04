@@ -959,7 +959,7 @@
     },
     "changelog.md": {
         "Changelog": "Änderungsprotokoll",
-        "3.3.43": "3.3.43",
+        "3.3.44": "",
         "Rotation automatique de la clé api des utilisateurs admin tous les 3 mois": "Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate",
         "I est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs": "Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen)",
         "Attention cette mise à jour lance une rotation des clés api des utilisateurs admins": "Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startet",
