@@ -292,6 +292,8 @@
         "Ajouter": "加えます",
         "Sauvegarder": "セーブ",
         "Supprimer": "取り除きます",
+        "Titre": "タイトル",
+        "Texte": "テキスト",
         "Note sauvegardée avec succès": "メモを保存しました",
         "Voulez-vous vraiment supprimer la note : ": "メモを削除してもよろしいですか：",
         "Note supprimée avec succès": "メモを削除しました"
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Sauvegarder": "セーブ",
         "Sauvegardes locales": "ローカルバックアップ",
         "Emplacement": "場所",
         "Rétention temporelle (jours)": "一時的な保持（日）",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "式の設定",
         "Configuration": "コンフィギュレーション",
         "Rechercher": "検索する",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "警告：あまりにも大きな日付範囲を計算するのに長い時間がかかるかさえ表示されない場合があります。",
         "Variation": "変更",
         "Escalier": "階段",

@@ -292,6 +292,8 @@
         "Ajouter": "Hinzufügen",
         "Sauvegarder": "Speichern",
         "Supprimer": "Löschen",
+        "Titre": "Titel",
+        "Texte": "Text",
         "Note sauvegardée avec succès": "Hinweis erfolgreich gespeichert",
         "Voulez-vous vraiment supprimer la note : ": "Möchten Sie die Notiz wirklich löschen:",
         "Note supprimée avec succès": "Hinweis erfolgreich gelöscht"
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Sauvegarder": "Speichern",
         "Sauvegardes locales": "Lokale Backups",
         "Emplacement": "Lage",
         "Rétention temporelle (jours)": "Zeitliche Retention (Tage)",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration": "Konfiguration",
         "Rechercher": "Suchen",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden.",
         "Variation": "Wertänderung",
         "Escalier": "Treppe",

@@ -292,6 +292,8 @@
         "Ajouter": "Добавить",
         "Sauvegarder": "Сохранить",
         "Supprimer": "удаление",
+        "Titre": "Название",
+        "Texte": "текст",
         "Note sauvegardée avec succès": "Примечание успешно сохранено",
         "Voulez-vous vraiment supprimer la note : ": "Вы уверены, что хотите удалить заметку:",
         "Note supprimée avec succès": "Заметка успешно удалена"
@@ -2108,6 +2110,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Sauvegarder": "Сохранить",
         "Sauvegardes locales": "Локальные резервные копии",
         "Emplacement": "",
         "Rétention temporelle (jours)": "",
@@ -2139,6 +2142,8 @@
         "Configuration des formules de calcul": "Настройка формул",
         "Configuration": "Конфигурация",
         "Rechercher": "Искать",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Внимание: слишком большой диапазон дат могут занять много времени, чтобы быть вычислен или даже не появляется.",
         "Variation": "изменение",
         "Escalier": "лестница",
