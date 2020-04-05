@@ -266,8 +266,12 @@ class system {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours',__FILE__));
 		}
 		shell_exec(system::getCmdSudo() .' chmod +x /tmp/jeedom_fix_package');
-		log::clear('packages');
-		$log = log::getPathToLog('packages');
+		if(class_exists('log')){
+			log::clear('packages');
+			$log = log::getPathToLog('packages');
+		}else{
+			$log = '/tmp/jeedom_fix_package_log';
+		}
 		if (exec('which at | wc -l') == 0) {
 			exec(system::getCmdSudo() . '/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1 &');
 		}else{
