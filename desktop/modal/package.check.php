@@ -103,7 +103,13 @@ $('#bt_refreshPackage').off('click').on('click',function(){
 
 $('.bt_correctPackage').off('click').on('click',function(){
   var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir installer le package}} '+el.data('package')+' ?', function (result) {
+  
+  if(el.data('package') == 'all'){
+    var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnel ?}}';
+  }else{
+    var text = '{{Êtes-vous sûr de vouloir installer le package}} '+el.data('package')+' ?';
+  }
+  bootbox.confirm(text, function (result) {
     if (result) {
       jeedom.systemCorrectPackage({
         package : el.data('package'),

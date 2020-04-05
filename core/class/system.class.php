@@ -281,7 +281,7 @@ class system {
 		$cmd .= self::checkInstallationLog();
 		$cmd .= self::getCmdSudo()." apt update\n";
 		foreach ($return as $package => $info) {
-			if($info['status'] != 0 || $info['level'] != 0){
+			if($info['status'] != 0 || $info['optional']){
 				continue;
 			}
 			switch ($info['type']) {
