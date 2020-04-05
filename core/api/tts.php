@@ -90,7 +90,7 @@ try {
 		break;
 		case 'pico':
 		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
-		$lang = init('lang', 'fr-FR');
+		$lang = str_replace('_','-',init('lang',config::byKey('language')));
 		$avconv = 'avconv';
 		if(!com_shell::commandExists('avconv')){
 			$avconv = 'ffmpeg';
