@@ -77,7 +77,7 @@ sendVarToJS('id', $plan3d->getId());
 				<select class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::light::power">
 					<option value="0.5">20 lm (4W)</option>
 					<option value="3">180 lm (25W)</option>
-					<option value="6" selected="selected">400 lm (40W)</option>
+					<option value="6" selected>400 lm (40W)</option>
 					<option value="10">800 lm (60W)</option>
 					<option value="15">1700 lm (100W)</option>
 					<option value="45">3500 lm (300W)</option>
@@ -85,7 +85,7 @@ sendVarToJS('id', $plan3d->getId());
 				</select>
 			</div>
 		</div>
-		
+
 		<!---*********************************TEXT************************************** -->
 		<div class="form-group specificity specificity_text">
 			<label class="col-lg-4 control-label">{{Texte}}</label>
@@ -138,14 +138,14 @@ sendVarToJS('id', $plan3d->getId());
 				<input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::space::z"/>
 			</div>
 		</div>
-		
+
 		<!---*********************************DOOR************************************** -->
-		
+
 		<ul class="nav nav-tabs  specificity specificity_door" role="tablist">
 			<li role="presentation" class="active"><a href="#tab_door_window" aria-controls="tab_door_window" role="tab" data-toggle="tab">{{Fênetre/Porte}}</a></li>
 			<li role="presentation"><a href="#tab_door_shutter" aria-controls="tab_door_shutter" role="tab" data-toggle="tab">{{Volet}}</a></li>
 		</ul>
-		
+
 		<div class="tab-content  specificity specificity_door">
 			<div role="tabpanel" class="tab-pane active" id="tab_door_window">
 				<br/>
@@ -186,7 +186,7 @@ sendVarToJS('id', $plan3d->getId());
 						</select>
 					</div>
 				</div>
-				
+
 				<legend>{{Translation}}</legend>
 				<div class="form-group specificity specificity_door">
 					<label class="col-lg-4 control-label">{{Activer}}</label>
@@ -209,7 +209,7 @@ sendVarToJS('id', $plan3d->getId());
 						<input type="text" class="plan3dAttr form-control translate" data-l1key="configuration" data-l2key="3d::widget::door::translate::repeat"/>
 					</div>
 				</div>
-				
+
 				<legend>{{Masquer quand la porte/fenêtre est ouverte}}</legend>
 				<div class="form-group specificity specificity_door">
 					<label class="col-lg-4 control-label">{{Activer}}</label>
@@ -217,7 +217,7 @@ sendVarToJS('id', $plan3d->getId());
 						<input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::door::hide"/>
 					</div>
 				</div>
-				
+
 				<legend>{{Couleur}}</legend>
 				<div class="form-group specificity specificity_door">
 					<label class="col-lg-4 control-label">{{Couleur ouverte}}</label>
@@ -268,7 +268,7 @@ sendVarToJS('id', $plan3d->getId());
 				</div>
 			</div>
 		</div>
-		
+
 		<script>
 		$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]').on('change',function(){
 			$('.specificity.specificity_door .rotate').attr('disabled',false);
@@ -283,7 +283,7 @@ sendVarToJS('id', $plan3d->getId());
 			}
 		});
 		</script>
-		
+
 		<!---*********************************conditionalColor************************************** -->
 		<div class="specificity specificity_conditionalColor">
 			<legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addCondition"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
@@ -293,18 +293,18 @@ sendVarToJS('id', $plan3d->getId());
 		$('#bt_addCondition').on('click',function(){
 			addConditionalColor({})
 		});
-		
+
 		$('#fd_plan3dConfigure').off('click','.bt_removeConditionalColor').on('click','.bt_removeConditionalColor',  function (event) {
 			$(this).closest('.conditionalColor').remove();
 		});
-		
+
 		$('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalColor').on('click','.listCmdInfoConditionalColor',  function (event) {
 			var el = $(this).closest('.conditionalColor').find('.conditionalColorAttr[data-l1key=cmd]');
 			jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
 				el.atCaret('insert',result.human);
 			});
 		});
-		
+
 		function addConditionalColor(_conditionalColor) {
 			if (!isset(_conditionalColor)) {
 				_conditionalColor = {};
@@ -331,11 +331,11 @@ sendVarToJS('id', $plan3d->getId());
 			$('#div_conditionColor').append(div);
 			$('#div_conditionColor .conditionalColor').last().setValues(_conditionalColor, '.conditionalColorAttr');
 		}
-		
+
 		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 		</script>
-		
-		
+
+
 		<!---*********************************conditionalShow************************************** -->
 		<div class="specificity specificity_conditionalShow">
 			<legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addConditionShow"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
@@ -345,18 +345,18 @@ sendVarToJS('id', $plan3d->getId());
 		$('#bt_addConditionShow').on('click',function(){
 			addConditionalShow({})
 		});
-		
+
 		$('#fd_plan3dConfigure').off('click','.bt_removeConditionalShow').on('click','.bt_removeConditionalShow',  function (event) {
 			$(this).closest('.conditionalShow').remove();
 		});
-		
+
 		$('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalShow').on('click','.listCmdInfoConditionalShow',  function (event) {
 			var el = $(this).closest('.conditionalShow').find('.conditionalShowAttr[data-l1key=cmd]');
 			jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
 				el.atCaret('insert',result.human);
 			});
 		});
-		
+
 		function addConditionalShow(_conditionalShow) {
 			if (!isset(_conditionalShow)) {
 				_conditionalShow = {};
@@ -379,11 +379,11 @@ sendVarToJS('id', $plan3d->getId());
 			$('#div_conditionShow').append(div);
 			$('#div_conditionShow .conditionalShow').last().setValues(_conditionalShow, '.conditionalShowAttr');
 		}
-		
+
 		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 		</script>
-		
-		
+
+
 	</fieldset>
 </form>
 

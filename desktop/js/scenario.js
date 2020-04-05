@@ -900,7 +900,7 @@ $pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  fun
   }
   //Sync select options tags:
   SC_CLIPBOARD.find('select').each(function() {
-    $(this).find('option[value='+$(this).val()+']').attr('selected','selected')
+    $(this).find('option[value='+$(this).val()+']').attr('selected',true)
   })
   SC_CLIPBOARD = SC_CLIPBOARD.clone()
   SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
