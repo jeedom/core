@@ -3025,6 +3025,7 @@
         "Scénario ID inconnu : ": "Unbekannte Szenario-ID:",
         "Vous n\\'êtes pas autorisé à faire cette action": "Sie dürfen diese Aktion nicht ausführen",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "Das Szenario kann nicht gestartet werden, da es deaktiviert ist. Bitte aktivieren Sie es",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "Der Vorlagenname darf nicht leer sein",
         "Impossible de créer le template, vérifiez les droits : ": "Überprüfen Sie die Vorlage nicht. Überprüfen Sie die Rechte:",
         "La conversion suivante ne peut être vide : ": "Die folgende Konvertierung darf nicht leer sein:",
