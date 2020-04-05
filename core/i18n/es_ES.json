@@ -3098,6 +3098,7 @@
         "Impossible de télécharger : ": "No se puede descargar:",
         "Taille invalide pour : ": "Tamaño no válido para:",
         "Impossible de générer le certificat et la clef privé": "No se puede generar el certificado y la clave privada",
+        "Redémarrage du tunnel jeedom": "Reinicio del túnel Jeedom",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Problema de red detectado, reinicio de red. No se encontró puerta de enlace",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Problema de red detectado, reinicio de red. La puerta de enlace no responde al ping:"
     },

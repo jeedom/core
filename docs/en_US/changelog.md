@@ -5,6 +5,11 @@ Changelog
 
 =====
 
+- 
+
+
+=====
+
 - Automatic rotation of the API key of admin users every 3 months. I can deactivate it (but it is not recommended) in the user management. Please note this update launches a rotation of API keys for admins users.
 - Ability to enter global information for your home in the Jeedom administration (geographic position, altitude ...) to avoid having to re-enter it in plugins when creating equipment.
 - Updating the repository on smart

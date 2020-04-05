@@ -3098,6 +3098,7 @@
         "Impossible de télécharger : ": "",
         "Taille invalide pour : ": "",
         "Impossible de générer le certificat et la clef privé": "",
+        "Redémarrage du tunnel jeedom": "",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": ""
     },

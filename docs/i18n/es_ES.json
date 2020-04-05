@@ -959,6 +959,8 @@
     },
     "changelog.md": {
         "Changelog": "Cambios",
+        "3.3.45": "",
+        "Correction de bug sur la webapp": "",
         "3.3.44": "",
         "Rotation automatique de la clé api des utilisateurs admin tous les 3 mois": "Rotación automática de la clave API de los usuarios administradores cada 3 meses.",
         "I est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs": "Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios",
