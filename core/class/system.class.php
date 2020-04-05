@@ -243,11 +243,11 @@ class system {
 				$optional_found = '';
 				if(isset($installPackage[$package])){
 					$found = 1;
-				}elseif(isset($info['optional_if'])){
-					foreach ($info['optional_if'] as $optional) {
-						if(isset($installPackage[$optional])){
+				}elseif(isset($info['alternative'])){
+					foreach ($info['alternative'] as $alternative) {
+						if(isset($installPackage[$alternative])){
 							$found = 2;
-							$optional_found = $optional;
+							$alternative_found = $alternative;
 							break;
 						}
 					}
@@ -257,8 +257,8 @@ class system {
 					'status' => $found,
 					'version' => ($found == 1) ? $installPackage[$package]['version'] : '',
 					'type' => $type,
-					'optional_found' => $optional_found,
-					'level' => isset($info['level']) ? $info['level'] : 0,
+					'alternative_found' => $alternative_found,
+					'optional' => isset($info['optional']) ? $info['optional'] : false,
 					'fix' => ($found == 0) ?  self::installPackage($type,$package) : ''
 				);
 			}

@@ -61,7 +61,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       if($info['status'] == 1){
         echo '<td class="alert alert-success">OK</td>';
       }elseif($info['status'] == 2){
-        echo '<td class="alert alert-success">OK ('.$info['optional_found'].')</td>';
+        echo '<td class="alert alert-success">OK ('.$info['alternative_found'].')</td>';
       }else{
         echo '<td class="alert alert-danger">NOK</td>';
       }
@@ -71,7 +71,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       }
       echo '</td>';
       echo '<td>';
-      if($info['level'] == 0){
+      if($info['optional'] == 0){
         echo '<span class="label label-warning">{{oui}}</span>';
       }else{
         echo '<span class="label label-info">{{non}}</span>';
