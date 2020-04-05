@@ -111,8 +111,8 @@ $('.bt_correctPackage').off('click').on('click',function(){
           $('#div_packageCheckAlert').showAlert({message: error.message, level: 'danger'});
         },
         success : function(){
-          $('#md_modal').dialog({title: "{{Vérification des packages}}"})
-          .load('index.php?v=d&modal=package.check').dialog('open');
+          $('#div_packageCheckAlert').showAlert({message:'{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}', level: 'success'});
+          $('#md_modal2').dialog({title: "{{Installation des packages}}"}).load('index.php?v=d&modal=log.display&log=packages').dialog('open')
         }
       });
     }
