@@ -1874,6 +1874,15 @@ user::isBan();
 							<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
+					<legend><i class="fas fa-box"></i> {{Packages}}</legend>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que les packages necessaire sont bien installé.}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-warning" id="bt_checkPackage" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
+						</div>
+					</div>
 					<legend><i class="fas fa-database"></i> {{Base de données}}</legend>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Administration}}
@@ -1885,14 +1894,15 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
+							<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que la base de données est conforme à ce qui est attendu.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Nettoyage}}</label>
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Nettoyage}}<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-broom"></i> {{Lancer}}</a>
 						</div>

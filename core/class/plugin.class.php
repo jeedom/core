@@ -683,28 +683,34 @@ class plugin {
 			}
 		}
 		$cmd = $plugin_id::dependancy_install();
+		
 		if (is_array($cmd) && count($cmd) == 2) {
-			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
-			$script_array = explode(' ', $script);
-			if (file_exists($script_array[0])) {
-				if (jeedom::isCapable('sudo')) {
-					$this->deamon_stop();
-					message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
-					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-					if (exec('which at | wc -l') == 0) {
-						exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
-					}else{
-						if(!file_exists($cmd['log'])){
-							touch($cmd['log']);
+			if(isset($cmd['package_only']) && $cmd['package_only'] && file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
+				$packages = json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true);
+				system::checkAndInstall($packages,true);
+			}else{
+				$script = str_replace('#stype#', system::get('type'), $cmd['script']);
+				$script_array = explode(' ', $script);
+				if (file_exists($script_array[0])) {
+					if (jeedom::isCapable('sudo')) {
+						$this->deamon_stop();
+						message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
+						config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
+						if (exec('which at | wc -l') == 0) {
+							exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+						}else{
+							if(!file_exists($cmd['log'])){
+								touch($cmd['log']);
+							}
+							exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
 						}
-						exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
+						sleep(1);
+					} else {
+						log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
 					}
-					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
+					log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
 				}
-			} else {
-				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());

@@ -163,6 +163,28 @@ try {
 		ajax::success();
 	}
 	
+	if (init('action') == 'systemCorrectPackage') {
+		unautorizedInDemo();
+		var_dump(init('package'));
+		if(init('package') != 'all'){
+			$cmd = "set -x\n";
+			$cmd .= system::getCmdSudo()." apt update\n";
+			$package = explode('::',init('package'));
+			if($package[0] == 'apt'){
+				$cmd .= system::installPackage($package[1])."\n";
+			}
+			if(file_exists('/tmp/jeedom_fix_package')){
+				shell_exec(system::getCmdSudo() .' rm /tmp/jeedom_fix_package');
+			}
+			file_put_contents('/tmp/jeedom_fix_package',$cmd);
+			system::launchScriptPackage();
+		}else{
+			$packages = json_decode(file_get_contents(__DIR__.'/../../install/packages.json'),true);
+			system::checkAndInstall($packages,true);
+		}
+		ajax::success();
+	}
+	
 	if (init('action') == 'health') {
 		ajax::success(jeedom::health());
 	}

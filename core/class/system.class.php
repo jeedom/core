@@ -20,6 +20,8 @@
 
 class system {
 	
+	private static $_installPackage = array();
+	private static $_packageUpdateMake = false;
 	private static $_distrib = null;
 	private static $_command = array(
 		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
@@ -185,4 +187,99 @@ class system {
 		}
 		return $arch;
 	}
+	
+	public static function getInstallPackage(){
+		if(isset(self::$_installPackage['dpkg'])){
+			return self::$_installPackage['dpkg'];
+		}
+		self::$_installPackage['dpkg'] = array();
+		$lines = explode("\n",shell_exec('dpkg -l | tail -n +6'));
+		foreach ($lines as $line) {
+			$infos = array_values(array_filter(explode("  ",$line)));
+			if(!isset($infos[1])){
+				continue;
+			}
+			self::$_installPackage['dpkg'][$infos[1]] = array(
+				'version' => $infos[2]
+			);
+		}
+		return self::$_installPackage['dpkg'];
+	}
+	
+	public static function checkAndInstall($_packages,$_fix = false){
+		$return = array();
+		if(isset($_packages['apt']) && is_array($_packages['apt']) && count($_packages['apt']) > 0){
+			$installPackage = self::getInstallPackage();
+			foreach ($_packages['apt'] as $package => $info) {
+				$found = 0;
+				$optional_found = '';
+				if(isset($installPackage[$package])){
+					$found = 1;
+				}elseif(isset($info['optional_if'])){
+					foreach ($info['optional_if'] as $optional) {
+						if(isset($installPackage[$optional])){
+							$found = 2;
+							$optional_found = $optional;
+							break;
+						}
+					}
+				}
+				$return['apt::'.$package] = array(
+					'name' => $package,
+					'status' => $found,
+					'version' => ($found == 1) ? $installPackage[$package]['version'] : '',
+					'type' => 'apt',
+					'optional_found' => $optional_found,
+					'level' => isset($info['level']) ? $info['level'] : 0,
+					'fix' => ($found == 0) ?  self::installPackage($package) : ''
+				);
+			}
+		}
+		if(!$_fix){
+			return $return;
+		}
+		$cmd = "set -x\n";
+		$cmd .= " echo '*******************Begin of package installation******************'\n";
+		$cmd .= self::getCmdSudo()." apt update\n";
+		foreach ($return as $package => $info) {
+			if($info['status'] != 0 || $info['level'] != 0){
+				continue;
+			}
+			switch ($info['type']) {
+				case 'apt':
+				$cmd .= self::installPackage($info['name'])."\n";
+				break;
+				default:
+				break;
+			}
+		}
+		$cmd .= " echo '*******************End of package installation******************'\n";
+		if(file_exists('/tmp/jeedom_fix_package')){
+			shell_exec(system::getCmdSudo() .' rm /tmp/jeedom_fix_package');
+		}
+		file_put_contents('/tmp/jeedom_fix_package',$cmd);
+		self::launchScriptPackage();
+	}
+	
+	public static function launchScriptPackage(){
+		if(count(self::ps('dpkg')) > 0 || count(self::ps('apt')) > 0){
+			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours',__FILE__));
+		}
+		shell_exec(system::getCmdSudo() .' chmod +x /tmp/jeedom_fix_package');
+		log::clear('packages');
+		$log = log::getPathToLog('packages');
+		if (exec('which at | wc -l') == 0) {
+			exec(system::getCmdSudo() . '/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1 &');
+		}else{
+			if(!file_exists($log)){
+				touch($log);
+			}
+			exec('echo "/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1" | '.system::getCmdSudo().' at now');
+		}
+	}
+	
+	public static function installPackage($_package){
+		return self::getCmdSudo().' apt install -y '.$_package;
+	}
+	
 }
