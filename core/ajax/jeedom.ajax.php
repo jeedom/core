@@ -167,11 +167,10 @@ try {
 		unautorizedInDemo();
 		if(init('package') != 'all'){
 			$cmd = "set -x\n";
+			$cmd .= system::checkInstallationLog();
 			$cmd .= system::getCmdSudo()." apt update\n";
 			$package = explode('::',init('package'));
-			if($package[0] == 'apt'){
-				$cmd .= system::installPackage($package[1])."\n";
-			}
+			$cmd .= system::installPackage($package[0],$package[1])."\n";
 			if(file_exists('/tmp/jeedom_fix_package')){
 				shell_exec(system::getCmdSudo() .' rm /tmp/jeedom_fix_package');
 			}

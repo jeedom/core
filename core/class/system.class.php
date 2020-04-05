@@ -188,29 +188,57 @@ class system {
 		return $arch;
 	}
 	
-	public static function getInstallPackage(){
-		if(isset(self::$_installPackage['dpkg'])){
-			return self::$_installPackage['dpkg'];
+	public static function getInstallPackage($_type){
+		if(isset(self::$_installPackage[$_type])){
+			return self::$_installPackage[$_type];
 		}
-		self::$_installPackage['dpkg'] = array();
-		$lines = explode("\n",shell_exec('dpkg -l | tail -n +6'));
-		foreach ($lines as $line) {
-			$infos = array_values(array_filter(explode("  ",$line)));
-			if(!isset($infos[1])){
-				continue;
+		self::$_installPackage[$_type] = array();
+		switch ($_type) {
+			case 'apt':
+			$lines = explode("\n",shell_exec('dpkg -l | tail -n +6'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode("  ",$line)));
+				if(!isset($infos[1])){
+					continue;
+				}
+				self::$_installPackage[$_type][$infos[1]] = array(
+					'version' => $infos[2]
+				);
 			}
-			self::$_installPackage['dpkg'][$infos[1]] = array(
-				'version' => $infos[2]
-			);
+			break;
+			case 'pip2':
+			$lines = explode("\n",shell_exec('pip2 list | tail -n +3'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode("  ",$line)));
+				if(!isset($infos[0])){
+					continue;
+				}
+				self::$_installPackage[$_type][$infos[0]] = array(
+					'version' => $infos[1]
+				);
+			}
+			break;
+			case 'pip3':
+			$lines = explode("\n",shell_exec('pip3 list | tail -n +3'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode("  ",$line)));
+				if(!isset($infos[0])){
+					continue;
+				}
+				self::$_installPackage[$_type][$infos[0]] = array(
+					'version' => $infos[1]
+				);
+			}
+			break;
 		}
-		return self::$_installPackage['dpkg'];
+		return self::$_installPackage[$_type];
 	}
 	
 	public static function checkAndInstall($_packages,$_fix = false){
 		$return = array();
-		if(isset($_packages['apt']) && is_array($_packages['apt']) && count($_packages['apt']) > 0){
-			$installPackage = self::getInstallPackage();
-			foreach ($_packages['apt'] as $package => $info) {
+		foreach ($_packages as $type => $value) {
+			$installPackage = self::getInstallPackage($type);
+			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
 				$optional_found = '';
 				if(isset($installPackage[$package])){
@@ -224,14 +252,14 @@ class system {
 						}
 					}
 				}
-				$return['apt::'.$package] = array(
+				$return[$type.'::'.$package] = array(
 					'name' => $package,
 					'status' => $found,
 					'version' => ($found == 1) ? $installPackage[$package]['version'] : '',
-					'type' => 'apt',
+					'type' => $type,
 					'optional_found' => $optional_found,
 					'level' => isset($info['level']) ? $info['level'] : 0,
-					'fix' => ($found == 0) ?  self::installPackage($package) : ''
+					'fix' => ($found == 0) ?  self::installPackage($type,$package) : ''
 				);
 			}
 		}
@@ -283,8 +311,15 @@ class system {
 		}
 	}
 	
-	public static function installPackage($_package){
-		return self::getCmdSudo().' apt install -y '.$_package;
+	public static function installPackage($_type,$_package){
+		switch ($_type) {
+			case 'apt':
+			return self::getCmdSudo().' apt install -y '.$_package;
+			case 'pip2':
+			return self::getCmdSudo().' pip2 install '.$_package;
+			case 'pip3':
+			return self::getCmdSudo().' pip3 install '.$_package;
+		}
 	}
 	
 	public static function checkInstallationLog(){

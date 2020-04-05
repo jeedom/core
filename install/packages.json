@@ -1,7 +1,7 @@
 {
   "apt" : {
-    "avconv" : {"version" : "","description" : "","optional_if" : ["ffmpeg"]},
-    "ffmpeg" : {"version" : "","description" : "","optional_if" : ["avconv"]},
+    "libav-tools" : {"version" : "","description" : "","optional_if" : ["ffmpeg"]},
+    "ffmpeg" : {"version" : "","description" : "","optional_if" : ["libav-tools"]},
     "tar" : {"version" : "","description" : ""},
     "wget" : {"version" : "","description" : ""},
     "ntpdate" : {"version" : "","description" : ""},
