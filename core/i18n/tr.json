@@ -3025,6 +3025,7 @@
         "Scénario ID inconnu : ": "",
         "Vous n\\'êtes pas autorisé à faire cette action": "Bu işlemi yapmanıza izin verilmiyor",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "",

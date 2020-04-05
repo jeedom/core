@@ -3025,6 +3025,7 @@
         "Scénario ID inconnu : ": "不明なシナリオID：",
         "Vous n\\'êtes pas autorisé à faire cette action": "このアクションを実行することはできません",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "シナリオは非アクティブ化されているため、開始できません。有効にしてください",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "テンプレート名は空にできません",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "次の変換は空にできません。",

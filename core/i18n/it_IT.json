@@ -3025,6 +3025,7 @@
         "Scénario ID inconnu : ": "ID scenario sconosciuto:",
         "Vous n\\'êtes pas autorisé à faire cette action": "Non ti è permesso fare questa azione",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "Lo scenario non può essere avviato perché è disattivato. Per favore attivalo",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "Il nome del modello non può essere vuoto",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "La seguente conversione non può essere vuota:",

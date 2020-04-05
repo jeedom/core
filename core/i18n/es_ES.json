@@ -3025,6 +3025,7 @@
         "Scénario ID inconnu : ": "ID de escenario desconocido:",
         "Vous n\\'êtes pas autorisé à faire cette action": "No tienes permiso para hacer esta acción",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "El escenario no se puede iniciar porque está desactivado. Por favor actívelo",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "El nombre de la plantilla no puede estar vacío.",
         "Impossible de créer le template, vérifiez les droits : ": "No se puede crear la plantilla, verifique los derechos:",
         "La conversion suivante ne peut être vide : ": "La siguiente conversión no puede estar vacía:",
