@@ -63,7 +63,11 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       }elseif($info['status'] == 2){
         echo '<td class="alert alert-success">OK ('.$info['alternative_found'].')</td>';
       }else{
-        echo '<td class="alert alert-danger">NOK</td>';
+        if($info['needUpdate']){
+          echo '<td class="alert alert-warning">{{Mise à jour}}</td>';
+        }else{
+          echo '<td class="alert alert-danger">NOK</td>';
+        }
       }
       echo '<td>';
       foreach ($info['needBy'] as $value) {
@@ -79,6 +83,9 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       echo '</td>';
       echo '<td>';
       echo $info['version'];
+      if($info['needUpdate']){
+        echo '/'.$info['needVersion'];
+      }
       echo '</td>';
       echo '<td>';
       echo $info['fix'];
@@ -103,7 +110,6 @@ $('#bt_refreshPackage').off('click').on('click',function(){
 
 $('.bt_correctPackage').off('click').on('click',function(){
   var el = $(this);
-  
   if(el.data('package') == 'all'){
     var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnel ?}}';
   }else{

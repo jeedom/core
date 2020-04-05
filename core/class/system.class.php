@@ -262,11 +262,18 @@ class system {
 						}
 					}
 				}
+				$needUpdate = false;
+				if(isset($info['version']) && version_compare($version,$info['version']) < 0){
+					$found = 0;
+					$needUpdate = true;
+				}
 				$return[$type.'::'.$package] = array(
 					'name' => $package,
 					'status' => $found,
 					'version' => $version,
 					'type' => $type,
+					'needUpdate' => $needUpdate,
+					'needVersion' => isset($info['version']) ? $info['version'] : '',
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
 					'fix' => ($found == 0) ?  self::installPackage($type,$package) : ''
