@@ -470,6 +470,7 @@ class update {
 		}
 		$this->save();
 		log::add('update', 'alert', __("OK\n", __FILE__));
+		log::add('update', 'alert', __("END UPDATE SUCCESS\n", __FILE__));
 	}
 	
 	public static function getLastAvailableVersion() {
