@@ -397,7 +397,7 @@
             if ($(this).is('select')) {
                 if (init(_value) == '') {
                     $(this).val('');
-                    $(this).find('option:first').attr('selected',true);
+                    $(this).find('option:first').prop('selected',true);
                 } else {
                     $(this).val(init(_value));
                 }
