@@ -240,6 +240,7 @@ class system {
 		}
 		$cmd = "set -x\n";
 		$cmd .= " echo '*******************Begin of package installation******************'\n";
+		$cmd .= self::checkInstallationLog();
 		$cmd .= self::getCmdSudo()." apt update\n";
 		foreach ($return as $package => $info) {
 			if($info['status'] != 0 || $info['level'] != 0){
@@ -267,8 +268,8 @@ class system {
 		}
 		shell_exec(system::getCmdSudo() .' chmod +x /tmp/jeedom_fix_package');
 		if(class_exists('log')){
-			log::clear('packages');
 			$log = log::getPathToLog('packages');
+			log::clear('packages');
 		}else{
 			$log = '/tmp/jeedom_fix_package_log';
 		}
@@ -284,6 +285,21 @@ class system {
 	
 	public static function installPackage($_package){
 		return self::getCmdSudo().' apt install -y '.$_package;
+	}
+	
+	public static function checkInstallationLog(){
+		if(class_exists('log')){
+			$log = log::getPathToLog('packages');
+		}else{
+			$log = '/tmp/jeedom_fix_package_log';
+		}
+		if(file_exists($log)){
+			$data = file_get_contents($log);
+			if(strpos($data,'dpkg configure -a')){
+				return "sudo dpkg --configure -a --force-confdef\n";
+			}
+		}
+		return '';
 	}
 	
 }
