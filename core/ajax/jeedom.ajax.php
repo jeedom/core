@@ -165,7 +165,6 @@ try {
 	
 	if (init('action') == 'systemCorrectPackage') {
 		unautorizedInDemo();
-		var_dump(init('package'));
 		if(init('package') != 'all'){
 			$cmd = "set -x\n";
 			$cmd .= system::getCmdSudo()." apt update\n";
