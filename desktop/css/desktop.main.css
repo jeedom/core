@@ -929,6 +929,19 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
+
+#table_packages tbody tr,
+#table_packages tbody td {
+  height: 21px !important;
+  line-height: 14px !important;
+}
+#table_packages tbody tr > td {
+  vertical-align: middle !important;
+}
+#table_packages tbody td > span.label {
+  width: 60px !important;
+  display: block;
+}
 #table_cron .tablesorter-filter {
   display: none;
 }

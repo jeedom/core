@@ -31,11 +31,12 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
 <div style="display: none;" id="div_packageCheckAlert"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
-    <a class="btn btn-default" id="bt_refreshPackage"><i class="fas fa-sync"></i> {{Rafraichir}}</a><a class="btn btn-warning bt_correctPackage" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
+    <a id="bt_refreshPackage" class="btn btn-sm btn-default"><i class="fas fa-sync"></i> {{Rafraichir}}
+    </a><a class="btn btn-sm btn-warning bt_correctPackage" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
   </span>
 </div>
 <br/><br/>
-<table class="table table-condensed">
+<table id="table_packages" class="table table-condensed">
   <thead>
     <tr>
       <th>{{Package}}</th>
@@ -51,51 +52,53 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
   <tbody>
     <?php
     foreach ($datas as $package => $info) {
-      echo '<tr>';
-      echo '<td>';
-      echo $info['name'];
-      echo '</td>';
-      echo '<td>';
-      echo $info['type'];
-      echo '</td>';
+      $_echo = '';
+      $_echo .= '<tr>';
+      $_echo .= '<td>';
+      $_echo .= $info['name'];
+      $_echo .= '</td>';
+      $_echo .= '<td>';
+      $_echo .= $info['type'];
+      $_echo .= '</td>';
       if($info['status'] == 1){
-        echo '<td class="alert alert-success">OK</td>';
+        $_echo .= '<td class="alert-success">OK</td>';
       }elseif($info['status'] == 2){
-        echo '<td class="alert alert-success">OK ('.$info['alternative_found'].')</td>';
+        $_echo .= '<td class="alert-success">OK ('.$info['alternative_found'].')</td>';
       }else{
         if($info['needUpdate']){
-          echo '<td class="alert alert-warning">{{Mise à jour}}</td>';
+          $_echo .= '<td class="alert-warning">{{Mise à jour}}</td>';
         }else{
-          echo '<td class="alert alert-danger">NOK</td>';
+          $_echo .= '<td class="alert-danger">NOK</td>';
         }
       }
-      echo '<td>';
+      $_echo .= '<td>';
       foreach ($info['needBy'] as $value) {
-        echo '<span class="label label-primary">'.$value.'</span>';
+        $_echo .= '<span class="label label-primary">'.$value.'</span>';
       }
-      echo '</td>';
-      echo '<td>';
+      $_echo .= '</td>';
+      $_echo .= '<td>';
       if($info['optional'] == 0){
-        echo '<span class="label label-warning">{{oui}}</span>';
+        $_echo .= '<span class="label label-warning">{{oui}}</span>';
       }else{
-        echo '<span class="label label-info">{{non}}</span>';
+        $_echo .= '<span class="label label-info">{{non}}</span>';
       }
-      echo '</td>';
-      echo '<td>';
-      echo $info['version'];
+      $_echo .= '</td>';
+      $_echo .= '<td>';
+      $_echo .= $info['version'];
       if($info['needUpdate']){
-        echo '/'.$info['needVersion'];
+        $_echo .= '/'.$info['needVersion'];
       }
-      echo '</td>';
-      echo '<td>';
-      echo $info['fix'];
-      echo '</td>';
-      echo '<td>';
+      $_echo .= '</td>';
+      $_echo .= '<td>';
+      $_echo .= $info['fix'];
+      $_echo .= '</td>';
+      $_echo .= '<td>';
       if(!$info['status']){
-        echo '<a class="btn btn-sm btn-warning bt_correctPackage" data-package="'.$package.'"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
+        $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="'.$package.'"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
       }
-      echo '</td>';
-      echo '</tr>';
+      $_echo .= '</td>';
+      $_echo .= '</tr>';
+      echo $_echo;
     }
     ?>
   </tbody>
