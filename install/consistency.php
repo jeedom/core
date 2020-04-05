@@ -34,6 +34,17 @@ try {
 }
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
+	
+	if(method_exists ('system','checkAndInstall')){
+		try {
+			echo "Check jeedom package...";
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/packages.json'),true),true);
+			echo "OK\n";
+		} catch (Exception $ex) {
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		}
+	}
+	
 	if(method_exists ('DB','compareAndFix')){
 		try {
 			echo "Check jeedom database...";

@@ -682,35 +682,34 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
+		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
+			message::add($plugin_id, __('Attention : installation des packages lancée', __FILE__));
+			log::add($plugin_id, 'info', __('Lancement de l\'installation des packages, pour le suivre veuillez lire regarder le logs packages', __FILE__));
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true),true);
+		}
 		$cmd = $plugin_id::dependancy_install();
-		
 		if (is_array($cmd) && count($cmd) == 2) {
-			if(isset($cmd['package_only']) && $cmd['package_only'] && file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
-				$packages = json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true);
-				system::checkAndInstall($packages,true);
-			}else{
-				$script = str_replace('#stype#', system::get('type'), $cmd['script']);
-				$script_array = explode(' ', $script);
-				if (file_exists($script_array[0])) {
-					if (jeedom::isCapable('sudo')) {
-						$this->deamon_stop();
-						message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
-						config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-						if (exec('which at | wc -l') == 0) {
-							exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
-						}else{
-							if(!file_exists($cmd['log'])){
-								touch($cmd['log']);
-							}
-							exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
+			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
+			$script_array = explode(' ', $script);
+			if (file_exists($script_array[0])) {
+				if (jeedom::isCapable('sudo')) {
+					$this->deamon_stop();
+					message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
+					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
+					if (exec('which at | wc -l') == 0) {
+						exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					}else{
+						if(!file_exists($cmd['log'])){
+							touch($cmd['log']);
 						}
-						sleep(1);
-					} else {
-						log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
+						exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
 					}
+					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
+					log::add($plugin_id, 'error', __('Veuillez exécuter le script :', __FILE__) . ' /bin/bash ' . $script);
 				}
+			} else {
+				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux :', __FILE__) .' '. $cmd['script']. ' ' . __('avec #stype# :', __FILE__).' ' . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());

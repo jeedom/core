@@ -3,12 +3,10 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 $result = array();
-$packages = json_decode(file_get_contents(__DIR__.'/../../install/packages.json'),true);
-$result['core'] = system::checkAndInstall($packages);
+$result['core'] = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../install/packages.json'),true));
 foreach (plugin::listPlugin(true,false,false,true) as $plugin) {
   if(file_exists(__DIR__.'/../../plugins/'.$plugin.'/plugin_info/packages.json')){
-    $packages = json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin.'/plugin_info/packages.json'),true);
-    $result[$plugin] = system::checkAndInstall($packages);
+    $result[$plugin] = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin.'/plugin_info/packages.json'),true));
   }
 }
 $datas = array();
