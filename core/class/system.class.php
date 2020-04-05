@@ -241,13 +241,23 @@ class system {
 			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
 				$optional_found = '';
+				$version = '';
 				if(isset($installPackage[$package])){
 					$found = 1;
+					$version = $installPackage[$package]['version'];
 				}elseif(isset($info['alternative'])){
 					foreach ($info['alternative'] as $alternative) {
 						if(isset($installPackage[$alternative])){
 							$found = 2;
 							$alternative_found = $alternative;
+							$version = $installPackage[$alternative]['version'];
+							break;
+						}
+						$keys = array_values(preg_grep($alternative, array_keys($installPackage)));
+						if(is_array($keys) && count($keys) > 0){
+							$found = 2;
+							$alternative_found = $keys[0];
+							$version = $installPackage[$keys[0]]['version'];
 							break;
 						}
 					}
@@ -255,7 +265,7 @@ class system {
 				$return[$type.'::'.$package] = array(
 					'name' => $package,
 					'status' => $found,
-					'version' => ($found == 1) ? $installPackage[$package]['version'] : '',
+					'version' => $version,
 					'type' => $type,
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
