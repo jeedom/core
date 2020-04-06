@@ -323,6 +323,7 @@
         "SQL": "",
         "Action": "Acción",
         "Corriger": "Corregir",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "¿Estás seguro de que quieres corregir la tabla?",
         "Vérification base de données": "Verificación de la base de datos"
     },
@@ -888,6 +889,29 @@
         "Composant supprimée": "Componente eliminado",
         "Configuration du composant": "Configuración de componentes",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Cargando tuvo éxito gracias a cargar la página para ver el resultado"
+    },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "Refrescar",
+        "Corriger tout": "Arreglar todo",
+        "Package": "",
+        "Type": "Tipo",
+        "Status": "Estado",
+        "Voulu par": "",
+        "Obligatoire": "Obligatorio",
+        "Version": "Versión",
+        "Commande": "Comando",
+        "Action": "Acción",
+        "Mise à jour": "Actualización",
+        "oui": "Si",
+        "non": "No",
+        "Corriger": "Corregir",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1672,11 +1696,14 @@
         "Permet de réappliquer les bons droits sur les fichiers.": "Le permite volver a aplicar los derechos correctos a los archivos.",
         "Editeur de fichiers": "Editor de archivos",
         "Editeur": "Editor",
+        "Packages": "",
+        "Vérification": "Verificación",
+        "Vérifie que les packages necessaire sont bien installé.": "",
         "Base de données": "Base de datos",
         "Interface d’administration de la base de données.": "Interfaz de administración de bases de datos.",
-        "Vérification": "Verificación",
-        "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Limpia la base de datos (objetos, comandos, historiales y otra información no válida).",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
         "Nettoyage": "Limpieza",
+        "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Limpia la base de datos (objetos, comandos, historiales y otra información no válida).",
         "Utilisateur": "Usuario"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2558,6 +2585,7 @@
         "Administration système": "Administración del sistema",
         "Administration base de données": "Administración de bases de datos",
         "Vérification base de données": "Verificación de la base de datos",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "La limpieza comenzó con éxito. Para seguir el progreso, mira el registro de cleaningdb",
         "Création des commandes virtuel réussies": "Creación de comandos virtuales correctos",
         "Somme": "Suma",
@@ -3502,6 +3530,9 @@
         "Vue": "Vista",
         "Vue :": "Vista :"
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "Artículo desconocido Verifique la identificación:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Subelemento desconocido. Verifique la identificación:",
@@ -3733,10 +3764,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "Debe esperar al menos 60 segundos entre dos lanzamientos de instalación de dependencias",
         "Les dépendances sont déjà en cours d\\'installation": "Las dependencias ya se están instalando.",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "Las dependencias de otro complemento ya están en progreso, espere hasta que finalicen:",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "Atención: se inició la instalación de dependencias",
-        "Veuillez exécuter le script : ": "Por favor ejecute el script:",
-        "Aucun script ne correspond à votre type de Linux : ": "Ningún script corresponde a su tipo de Linux:",
-        " avec #stype# : ": "con # stype #:",
+        "Veuillez exécuter le script :": "Por favor ejecute el script:",
+        "Aucun script ne correspond à votre type de Linux :": "Ningún script corresponde a su tipo de Linux:",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "Dependencias durante la instalación",
         "Dépendances non installées": "Dependencias no instaladas",
         "Gestion automatique désactivée": "Gestión automática desactivada",
@@ -3778,6 +3811,8 @@
         "Action de pré-update...": "Acción previa a la actualización ...",
         "Post-installation de ": "Post instalación",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el complemento. El nombre del complemento es diferente de la ID o el complemento no está formado correctamente. Por favor contacte al autor.",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Buscar actualizaciones deshabilitadas, actualizaciones y reinstalaciones en",
         "Le logical ID ne peut pas être vide": "El ID lógico no puede estar vacío."
     },
     "core\/class\/listener.class.php": {

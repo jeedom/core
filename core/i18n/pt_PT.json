@@ -323,6 +323,7 @@
         "SQL": "",
         "Action": "Ação",
         "Corriger": "",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
         "Vérification base de données": ""
     },
@@ -888,6 +889,29 @@
         "Composant supprimée": "",
         "Configuration du composant": "",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Carregando sucedido obrigado recarregar a página para ver o resultado"
+    },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "Legal",
+        "Corriger tout": "",
+        "Package": "",
+        "Type": "Tipo",
+        "Status": "Estado",
+        "Voulu par": "",
+        "Obligatoire": "",
+        "Version": "Versão",
+        "Commande": "Ordem",
+        "Action": "Ação",
+        "Mise à jour": "",
+        "oui": "Sim",
+        "non": "Não",
+        "Corriger": "",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1672,11 +1696,14 @@
         "Permet de réappliquer les bons droits sur les fichiers.": "",
         "Editeur de fichiers": "",
         "Editeur": "Editor",
+        "Packages": "",
+        "Vérification": "",
+        "Vérifie que les packages necessaire sont bien installé.": "",
         "Base de données": "Banco de dados",
         "Interface d’administration de la base de données.": "",
-        "Vérification": "",
-        "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
         "Nettoyage": "",
+        "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "",
         "Utilisateur": "Usuário"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2558,6 +2585,7 @@
         "Administration système": "Administração do sistema",
         "Administration base de données": "Banco de dados de administração",
         "Vérification base de données": "",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "",
         "Création des commandes virtuel réussies": "Criando controles virtuais de sucesso",
         "Somme": "Soma",
@@ -3502,6 +3530,9 @@
         "Vue": "Vista",
         "Vue :": "Ver:"
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "",
@@ -3733,10 +3764,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "",
         "Les dépendances sont déjà en cours d\\'installation": "",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "",
-        "Veuillez exécuter le script : ": "",
-        "Aucun script ne correspond à votre type de Linux : ": "",
-        " avec #stype# : ": "",
+        "Veuillez exécuter le script :": "",
+        "Aucun script ne correspond à votre type de Linux :": "",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "",
         "Dépendances non installées": "",
         "Gestion automatique désactivée": "Off Gestão automática",
@@ -3778,6 +3811,8 @@
         "Action de pré-update...": "",
         "Post-installation de ": "Pós-Instalação",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
         "Le logical ID ne peut pas être vide": ""
     },
     "core\/class\/listener.class.php": {

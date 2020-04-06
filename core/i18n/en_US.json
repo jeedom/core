@@ -323,6 +323,7 @@
         "SQL": "",
         "Action": "Action",
         "Corriger": "Correct",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "Are you sure you want to correct the table",
         "Vérification base de données": "Database verification"
     },
@@ -888,6 +889,29 @@
         "Composant supprimée": "Component removed",
         "Configuration du composant": "Component configuration",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Loading successful, please reload the page to see the result"
+    },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "Refresh",
+        "Corriger tout": "Fix all",
+        "Package": "",
+        "Type": "Type",
+        "Status": "Status",
+        "Voulu par": "",
+        "Obligatoire": "Mandatory",
+        "Version": "Version",
+        "Commande": "Command",
+        "Action": "Action",
+        "Mise à jour": "Update",
+        "oui": "Yes",
+        "non": "No",
+        "Corriger": "Correct",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1672,11 +1696,14 @@
         "Permet de réappliquer les bons droits sur les fichiers.": "Enables you to reapply the correct rights to the files.",
         "Editeur de fichiers": "File Editor",
         "Editeur": "Editor",
+        "Packages": "",
+        "Vérification": "Verification",
+        "Vérifie que les packages necessaire sont bien installé.": "",
         "Base de données": "Database",
         "Interface d’administration de la base de données.": "Database administration interface.",
-        "Vérification": "Verification",
-        "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Cleans up the database (objects, commands, histories and other invalid information).",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
         "Nettoyage": "Cleaning",
+        "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Cleans up the database (objects, commands, histories and other invalid information).",
         "Utilisateur": "User"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2558,6 +2585,7 @@
         "Administration système": "System Administration",
         "Administration base de données": "Database Administration",
         "Vérification base de données": "Database verification",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "Cleaning started successfully. To follow the progress please look at the cleaningdb log",
         "Création des commandes virtuel réussies": "Virtual commands creation succeeded",
         "Somme": "Sum",
@@ -3502,6 +3530,9 @@
         "Vue": "View",
         "Vue :": "View :"
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "Unknown item. Check the ID:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Unknown sub-element. Check the ID:",
@@ -3733,10 +3764,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "You must wait at least 60 seconds between two dependency installation launches",
         "Les dépendances sont déjà en cours d\\'installation": "The dependencies are already being installed",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "The dependencies of another plugin are already in progress, please wait until they are finished:",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "Attention: installation of dependencies launched",
-        "Veuillez exécuter le script : ": "Please run the script:",
-        "Aucun script ne correspond à votre type de Linux : ": "No script corresponds to your type of Linux:",
-        " avec #stype# : ": "with # stype #:",
+        "Veuillez exécuter le script :": "Please run the script:",
+        "Aucun script ne correspond à votre type de Linux :": "No script corresponds to your type of Linux:",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "Outbuildings during installation",
         "Dépendances non installées": "Outbuildings not installed",
         "Gestion automatique désactivée": "Automatic management disabled",
@@ -3778,6 +3811,8 @@
         "Action de pré-update...": "Pre-update action ...",
         "Post-installation de ": "Post-installation of",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Unable to install the plugin. The plugin name is different from the ID or the plugin is not properly formed. Please contact the author.",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Checking for disabled updates, updates and reinstalls on",
         "Le logical ID ne peut pas être vide": "The logical ID cannot be empty"
     },
     "core\/class\/listener.class.php": {
