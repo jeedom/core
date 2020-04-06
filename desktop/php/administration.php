@@ -86,6 +86,23 @@ user::isBan();
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Moteur TTS}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<select class="form-control configKey" data-l1key="tts::engine">
+								<option value="pico">Pico</option>
+								<option value="espeak">Espeak</option>
+								<?php
+								foreach (plugin::listPlugin(true) as $plugin) {
+									if(!$plugin->getHasTtsEngine()){
+										continue;
+									}
+									echo '<option value="plugin::'.$plugin->getId().'">{{Plugin}} '.$plugin->getName().'</option>';
+								}
+								?>
+							</select>
+						</div>
+					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Date et heure}}

@@ -1,7 +1,15 @@
 Changelog
 =========
 
-4.0.46
+4.0.49
+=====
+
+- Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS
+- Amélioration du support dans la webwien dans l'application mobile
+- Correction de bugs
+- Mise à jour de la doc
+
+4.0.47
 =====
 
 - Amélioration du testeur d'expression

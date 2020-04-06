@@ -112,6 +112,8 @@ En mode code vous avez accès a different tag pour les commandes, en voici une l
 
 - #name# : nom de la commande
 - #valueName# : nom de la valeur de la commande, et = #name# quand c'est une commande de type info
+- #minValue# : valeur minimum que peut prendre la commande (si la commande est de type slider)
+- #maxValue# : valeur maximum que peut prendre la commande (si la commande est de type slider)
 - #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
 - #id# : id de la commande
 - #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état

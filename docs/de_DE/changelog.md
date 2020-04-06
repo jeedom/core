@@ -1,11 +1,17 @@
 Änderungsprotokoll
 =========
 
-4.0.45
+
+=====
+
+- 
+
+
 =====
 
 - Verbesserung des Expressionstesters
 - Aktualisieren des Repositorys auf smart
+- Fehlerbehebungen
 
 4.0.44
 =====

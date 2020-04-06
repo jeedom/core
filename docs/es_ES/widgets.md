@@ -112,6 +112,8 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidentificació
 
 - #nombre# : nombre del comando
 - #VALUENAME# : nombre del valor del comando y = # nombre # cuando se trata de un comando de tipo de información
+- ## : 
+- ## : 
 - #hidentificacióne_nombre# : vacío u oculto si el usuario solicitó ocultar el nombre del widentificaciónget, ponerlo directamente en una etiqueta de clase
 - #identificación# : ID de pedidentificacióno
 - #estado# : valor del comando, vacío para un comando de tipo de acción si no está vinculado a un comando de estado
