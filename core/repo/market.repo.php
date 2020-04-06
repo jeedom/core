@@ -776,6 +776,12 @@ class repo_market {
 			if (isset($_result['service::tunnel::host']) && config::byKey('service::tunnel::host') != $_result['service::tunnel::host']) {
 				config::save('service::tunnel::host', $_result['service::tunnel::host']);
 			}
+			if (isset($_result['register::id']) && config::byKey('register::id') != $_result['register::id']) {
+				config::save('register::id', $_result['register::id']);
+			}
+			if (isset($_result['username']) && config::byKey('market::username') != $_result['username']) {
+				config::save('market::username', $_result['username']);
+			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
