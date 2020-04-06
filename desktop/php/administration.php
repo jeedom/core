@@ -1878,7 +1878,7 @@ user::isBan();
 					<legend><i class="fas fa-box"></i> {{Packages}}</legend>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que les packages necessaire sont bien installé.}}"></i></sup>
+							<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que les packages nécessaires sont bien installés.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_checkPackage" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
