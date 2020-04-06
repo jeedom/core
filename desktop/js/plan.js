@@ -1240,3 +1240,17 @@ function displayObject(_plan,_html, _noRender) {
   $('.div_displayObject').append(html);
   initEditOption(editOption.state);
 }
+
+//back to mobile home with three fingers on mobile:
+$(function () {
+  if ($('body').attr('data-device') == 'mobile') {
+    $('body').on('touchstart', function(event) {
+      if (event.touches.length == 3) {
+        $('body').off('touchstart')
+        event.preventDefault()
+        event.stopPropagation()
+        window.location.href = 'index.php?v=m'
+      }
+    })
+  }
+})

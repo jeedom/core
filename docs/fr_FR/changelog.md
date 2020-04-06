@@ -50,6 +50,7 @@ Changelog
 - WebApp : On peux maintenant sélectionner / copier une partie d'un log.
 - WebApp : Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
 - WebApp : Persistance de la bascule de thème (8h).
+- WebApp : Sur un design, un click avec trois doights permet de revenir à l'accueil.
 - WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
