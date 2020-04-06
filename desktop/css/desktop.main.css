@@ -939,7 +939,6 @@ table.tablesorter .tablesorter-header:focus {
   vertical-align: middle !important;
 }
 #table_packages tbody td > span.label {
-  width: 60px !important;
   display: block;
 }
 #table_cron .tablesorter-filter {
