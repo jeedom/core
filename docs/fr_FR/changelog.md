@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0.48
+4.0.49
 =====
 
 - Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS
