@@ -898,8 +898,8 @@
         "Package": "",
         "Type": "Tipo",
         "Status": "Estado",
-        "Voulu par": "",
         "Obligatoire": "Obligatorio",
+        "Voulu par": "",
         "Version": "Versión",
         "Commande": "Comando",
         "Action": "Acción",
@@ -1684,26 +1684,30 @@
         "Clé Market": "Mercado clave",
         "Clé Market de": "Mercado clave de",
         "Clé API pour le plugin": "Clave API para el complemento",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ADVERTENCIA: estas operaciones son riesgosas, puede perder el acceso a su sistema y",
-        ". L'équipe": ". el equipo",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "se reserva el derecho de rechazar cualquier solicitud de soporte en caso de manejo inadecuado.",
+        "Vérifications Système": "",
         "Vérification générale": "Verificación general",
         "Permet de lancer le test de consistence de Jeedom.": "Vamos a lanzar la prueba de consistencia Jeedom.",
-        "Lancer": "Iniciar",
-        "Administration": "Administración",
-        "Interface d’administration système.": "Interfaz de administración del sistema.",
+        "Vérifier": "Verificar",
+        "Ouvrir le log Consistency.": "",
+        "Log": "Registro",
         "Rétablissement des droits des dossiers et fichiers": "Restauración de derechos a carpetas y archivos",
         "Permet de réappliquer les bons droits sur les fichiers.": "Le permite volver a aplicar los derechos correctos a los archivos.",
-        "Editeur de fichiers": "Editor de archivos",
-        "Editeur": "Editor",
-        "Packages": "",
-        "Vérification": "Verificación",
-        "Vérifie que les packages necessaire sont bien installé.": "",
-        "Base de données": "Base de datos",
-        "Interface d’administration de la base de données.": "Interfaz de administración de bases de datos.",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
         "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage": "Limpieza",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Limpia la base de datos (objetos, comandos, historiales y otra información no válida).",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ADVERTENCIA: estas operaciones son riesgosas, puede perder el acceso a su sistema y",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "se reserva el derecho de rechazar cualquier solicitud de soporte en caso de manejo inadecuado.",
+        "Editeur de fichiers": "Editor de archivos",
+        "Ouvrir": "",
+        "Administration Système": "Administración del sistema",
+        "Interface d’administration système.": "Interfaz de administración del sistema.",
+        "Administration Base de données": "Administración de bases de datos",
+        "Interface d’administration de la base de données.": "Interfaz de administración de bases de datos.",
         "Utilisateur": "Usuario"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2056,11 +2060,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Vérification": "Verificación",
         "Rechercher": "Buscar",
         "Tables": "Tablas",
         "Taille": "Tamaño",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Haga clic en un comando a la derecha o escriba un comando personalizado a continuación",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Haga clic en un pedido a la izquierda o escriba un pedido personalizado a continuación",
         "OK": "Bueno"
     },
     "desktop\/php\/cron.php": {
@@ -2240,8 +2243,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Consistance": "Consistencia",
-        "Droit": "Correcto",
         "Rechercher": "Buscar",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Haga clic en un pedido a la izquierda o escriba un pedido personalizado a continuación",
         "OK": "Bueno"
@@ -2426,7 +2427,6 @@
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "Verificación de la base de datos",
         "Commande : ": "Orden :"
     },
     "desktop\/js\/message.js": {
@@ -2596,7 +2596,7 @@
         "Binaire": "Binario",
         "Créer virtuel": "Crear virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "Derechos de acceso restaurados exitosamente",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "Verificación realizada, muestra la consistencia del registro para el resultado."
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de seguridad: <br\/> Su contraseña debe ser cambiada.",
@@ -2649,9 +2649,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "¿Estás seguro de que quieres ejecutar este comando?",
         "Celle-ci est classé en dangereuse": "Esto está clasificado como peligroso",
-        "Commande : ": "Orden :",
-        "Remise à plat des droits fait avec succès": "Deber aplanado con éxito",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": "Lanzamiento de la verificación realizada, vea la consistencia del registro para ver el resultado"
+        "Commande : ": "Orden :"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Copa de seguridad realizada con éxito",
