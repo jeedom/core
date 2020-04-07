@@ -30,14 +30,14 @@ $(function() {
   BACKGROUND_IMG = ''
   nbActiveAjaxRequest = 0
   utid = Date.now();
-  
+
   $(window).on('orientationchange', function(event) {
     //wait to get new width:
     window.setTimeout(function() {
       $('body').trigger('orientationChanged', [event.orientation])
     }, 200)
   })
-  
+
   if(getUrlVars('app_mode') == 1){
     APP_MODE = true;
     $('.backgroundforJeedom').height('100%');
@@ -48,43 +48,43 @@ $(function() {
     $('#bt_eraseSearchInput').css('top',0);
     $('#pagecontainer').append('<a href="#bottompanel" id="bt_bottompanel" class="ui-btn ui-btn-inline ui-btn-fab ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" style="position:fixed;bottom:10px;right:10px;"><i class="fas fa-bars" style="position:relative;top:-3px"></i></a>')
   }
-  
+
   initApplication()
-  
+
   $('body').delegate('.link', 'click', function () {
     modal(false)
     panel(false)
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   });
-  
+
   $('body').on('click','.objectSummaryParent',function() {
     modal(false)
     panel(false)
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
   })
-  
+
   $('body').on('click','.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
     mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
-    
+
     mainOpt.panel('open')
     $(document).scrollTop(PANEL_SCROLL)
-    
+
   });
-  
+
   $('body').on('click','#bt_warnmeCmd', function() {
     page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')},null,true)
   });
-  
+
   $('body').on('click','#bt_switchTheme', function() {
     switchTheme(jeedom.theme)
     $('#bottompanel_otherActionList').panel("close")
   });
-  
+
   var webappCache = window.applicationCache
-  
+
   function updateCacheEvent(e) {
     if (webappCache.status == 3) {
       $('#div_updateInProgress').html('<p>Mise à jour de l\'application en cours<br/><span id="span_updateAdvancement">0</span>%</p>')
@@ -117,7 +117,7 @@ $(function() {
     try {
       webappCache.update()
     } catch(e) {
-      
+
     }
   }
 })
@@ -162,7 +162,7 @@ function switchTheme(themeConfig) {
   var theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
   var themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'
   var themeCook = 'alternate'
-  
+
   if ($('#jQMnDColor').attr('href') == theme) {
     $('body').attr('data-theme', themeConfig.mobile_theme_color)
     theme = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/' + themeConfig.mobile_theme_color + '.css'
@@ -173,14 +173,14 @@ function switchTheme(themeConfig) {
     $('#jQMnDColor').attr('href', theme).attr('data-nochange',1)
     $('body').attr('data-theme', themeConfig.mobile_theme_color_night)
   }
-  
+
   var now = new Date()
   var time = now.getTime()
   //+8hours in milliseconds:
   var expireTime = time + (8 * 3600 * 1000)
   now.setTime(expireTime)
   document.cookie = "currentThemeMobile=" + themeCook + "; expires=" + now.toGMTString() +"; path=/"
-  
+
   if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
   setBackgroundImage(BACKGROUND_IMG)
   triggerThemechange()
@@ -372,7 +372,7 @@ function initApplication(_reinit) {
         if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
           $('body').attr('data-coloredIcons',1)
         }
-        
+
         //set theme
         var widget_shadow = true
         var useAdvance = 0
@@ -401,12 +401,12 @@ function initApplication(_reinit) {
           $('#jQMnDColor').attr('href', themeCSS).attr('data-nochange',1)
         }
         $('#jQMnDColor').attr('href', themeCSS)
-        
+
         changeThemeAuto()
         if (widget_shadow) {
           insertHeader("stylesheet", themeShadowCSS, null, null, 'shadows_theme_css', 'text/css')
         }
-        
+
         //custom:
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
@@ -416,44 +416,50 @@ function initApplication(_reinit) {
             include.push('mobile/custom/custom.js')
           }
         }
-        
+
         triggerThemechange()
         for(var i in plugins){
           if (plugins[i].eventjs == 1) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
           }
         }
-        
+
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data)
           $.include(include, function () {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
-            if (getUrlVars('p') == 'view') {
-              page('view', 'Vue',getUrlVars('view_id'));
-            } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
-              var res = userProfils.homePageMobile.split("::")
-              if (res[0] == 'core') {
-                switch (res[1]) {
-                  case 'overview' :
-                  page('overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}")
-                  break
-                  case 'dashboard' :
-                  page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
-                  break
-                  case 'plan' :
-                  window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
-                  break
-                  case 'view' :
-                  page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
-                  break
+
+            if(APP_MODE){
+              page('home', 'Accueil')
+            } else {
+              if (getUrlVars('p') == 'view') {
+                page('view', 'Vue',getUrlVars('view_id'));
+              } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
+                var res = userProfils.homePageMobile.split("::")
+                if (res[0] == 'core') {
+                  switch (res[1]) {
+                    case 'overview' :
+                    page('overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}")
+                    break
+                    case 'dashboard' :
+                    page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
+                    break
+                    case 'plan' :
+                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
+                    break
+                    case 'view' :
+                    page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
+                    break
+                  }
+                } else {
+                  page(res[1], 'Plugin', '', res[0])
                 }
               } else {
-                page(res[1], 'Plugin', '', res[0])
+                page('home', '{{Accueil}}')
               }
-            } else {
-              page('home', '{{Accueil}}')
             }
+
             if(APP_MODE){
               $('#pagecontainer').css('padding-top',0);
             }else{
@@ -505,7 +511,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
   } catch (e) {
-    
+
   }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
