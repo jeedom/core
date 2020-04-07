@@ -37,20 +37,44 @@
 - Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - Verwaltung mehrerer Zeitleisten.
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
-- Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien
+- Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien.
+- Zusammenfassung der Hausautomation : .
+- Zusammenfassung der Hausautomation : .
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
+- Widgets : .
+- Widgets : *.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
 - WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
-- WebApp : Persistenz des Themas umschalten (8h).
+- WebApp : .
+- WebApp : .
 - WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
-- Widget : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation)
+
+
+
+=====
+- .
+
+
+=====
+
+- Verbesserung des Expressionstesters.
+- Aktualisieren des Repositorys auf smart.
+- Fehlerbehebungen.
+
+4.0.44
+=====
+
+- Verbesserte Übersetzungen.
+- Fehlerbehebungen.
+- .
+- .
 
 4.0.43
 =====

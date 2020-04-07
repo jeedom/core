@@ -78,7 +78,12 @@ $result = DB::compareDatabase($database);
 <script>
 $('.bt_correctTable').off('click').on('click',function(){
   var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir corriger la table }}'+el.data('table')+' ?', function (result) {
+  if(el.data('package') == 'all'){
+    var text = '{{Êtes-vous sûr de vouloir corriger toute les tables ?}}';
+  }else{
+    var text = '{{Êtes-vous sûr de vouloir corriger la table }}'+el.data('table')+' ?';
+  }
+  bootbox.confirm(text, function (result) {
     if (result) {
       jeedom.dbcorrectTable({
         table : el.data('table'),

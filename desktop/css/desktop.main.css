@@ -257,6 +257,8 @@ legend .pull-right:not(.input-group) {
 }
 [data-page=display] #div_pageContainer #displaytab ul > li input {
   top: 2px;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  font-size: 12px !important;
 }
 [data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
   margin: 0 !important;
@@ -333,6 +335,9 @@ legend .pull-right:not(.input-group) {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+div.eqLogic.eqLogic-widget:empty {
+  display: none;
+}
 
 .eqLogic-widget.eqSignalInfo:after,
 .eqLogic-widget.eqSignalAction:after {
@@ -530,12 +535,20 @@ sup i {
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
 
-
+#tableCmdLayoutConfiguration .form-control {
+  display: unset;
+}
 #tableCmdLayoutConfiguration .cmdLayout {
   display: inline-block
 }
+#tableCmdLayoutConfiguration .cmdLayoutContainer {
+  min-height: 24px;
+}
 #tableCmdLayoutConfiguration td {
   vertical-align: bottom;
+}
+#tableCmdLayoutConfiguration td input {
+  margin-top: 2px;
 }
 
 /* summary */
@@ -915,6 +928,18 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 }
 table.tablesorter .tablesorter-header:focus {
   outline:none;
+}
+
+#table_packages tbody tr,
+#table_packages tbody td {
+  height: 21px !important;
+  line-height: 14px !important;
+}
+#table_packages tbody tr > td {
+  vertical-align: middle !important;
+}
+#table_packages tbody td > span.label {
+  display: block;
 }
 #table_cron .tablesorter-filter {
   display: none;
@@ -1296,7 +1321,7 @@ li.alert-info.eqLogic {
   top: -6px !important;
 }
 .ui-slider-vertical .ui-slider-handle {
-  left: -5px !important;
+  left: -6px !important;
 }
 .ui-slider-horizontal {
   height: 3.2px !important;
@@ -1405,6 +1430,9 @@ button .fas.fa-plus-circle {
 }
 #historytab .label.displayObject i:hover {
   color: inherit !important;
+}
+#historytab .history.disabled {
+  color: var(--placeholder-color) !important;
 }
 #timelinetab .tml-cmd,
 #timelinetab .tml-scenario {

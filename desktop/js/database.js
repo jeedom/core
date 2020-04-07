@@ -14,11 +14,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('#bt_checkDatabase').on('click',function(){
-  $('#md_modal').dialog({title: "{{Vérification base de données}}"});
-  $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
-});
-
 function dbGenerateTableFromResponse(_response){
   var result = '<table class="table table-condensed table-bordered">';
   result += '<thead>';

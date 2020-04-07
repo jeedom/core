@@ -47,25 +47,10 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Backup wiederherstellen** : Startet die Wiederherstellung des oben ausgewählten Samba-Backups.
 
-> **Spitze**
+> **Wichtig**
 >
-> Je nachdem, was aktiviert wird, auf der Seite Einstellungen → System → Konfiguration : Updates können Sie mehr oder weniger Abschnitte sehen.
+>  !!! 
 
-> **Spitze**
->
-> Wenn Sie Jeedom neu installieren und das Cloud-Backup-Abonnement von Market erhalten haben, müssen Sie Ihr Market-Konto in Ihrem neuen Jeedom eingeben (Einstellungen → System → Konfiguration) : Updates) kommen Sie dann hierher, um mit der Wiederherstellung zu beginnen.
-
-> **Spitze**
->
-> Bei Problemen ist es möglich, ein Backup über die Befehlszeile zu erstellen :
->  `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> oder `sudo php / var / www / html / install / backup.PHP` abhängig von Ihrem System.
-
-> **Spitze**
->
-> Es ist auch möglich, eine Befehlszeilensicherung wiederherzustellen (standardmäßig stellt Jeedom die zuletzt im Sicherungsverzeichnis vorhandene Sicherung wieder her). :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` oder
-> `sudo php /var/www/html/install/restore.php`.
 
 # Was ist gespeichert ?
 

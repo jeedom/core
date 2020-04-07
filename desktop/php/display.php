@@ -2,6 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+global $JEEDOM_INTERNAL_CONFIG;
 $nbEqlogic = 0;
 $nbCmd = 0;
 $objects = jeeObject::all();
@@ -77,10 +78,16 @@ $plugin_enable = config::getPluginEnable();
 				$div = '';
 				$div .= '<div class="panel panel-default objectSortable">';
 				$div .= '<div class="panel-heading" data-id="-1">';
-				$div .= '<h3 class="panel-title">';
+				$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
 				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none"><i class="far fa-circle"></i> {{Aucun}}';
-				$div .= '</a>';
-				$div .= '</div>';
+				$div .= '</a></h3>';
+
+				$div .= '<h3 class="panel-title" style="width:100px;display: inline;">';
+              	$div .= '<span class="pull-right" style="min-width:38px">&nbsp;</span>';
+				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
+				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
+				$div .= '</h3></div>';
+
 				$div .= '<div id="config_none" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
 				
@@ -143,17 +150,19 @@ $plugin_enable = config::getPluginEnable();
 				$div .= '<div class="panel-heading" data-id="'.$object->getId().'">';
 				if ($object->getConfiguration('useCustomColor') == 1) {
 					$aStyle = str_replace('style="', 'style="color:'.$object->getDisplay('tagTextColor').'!important;', $aStyle);
-					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 55px);display: inline-block;">';
+					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 100px);display: inline-block;">';
 					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
 				} else {
-					$div .= '<h3 class="panel-title" style="width:calc(100% - 55px);display: inline-block;">';
+					$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
 					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
 				}
 				$div .= '</a></h3>';
-				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:55px;display: inline;">';
+				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a></h3>';
-				$div .= '</div>';
+				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-square-alt"></i></a>';
+				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
+				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
+				$div .= '</h3></div>';
 				
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';

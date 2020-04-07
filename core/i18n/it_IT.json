@@ -292,6 +292,8 @@
         "Ajouter": "Aggiungi",
         "Sauvegarder": "Salva",
         "Supprimer": "Rimuovere",
+        "Titre": "Titolo",
+        "Texte": "Testo",
         "Note sauvegardée avec succès": "",
         "Voulez-vous vraiment supprimer la note : ": "",
         "Note supprimée avec succès": ""
@@ -321,6 +323,7 @@
         "SQL": "",
         "Action": "Azione",
         "Corriger": "",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
         "Vérification base de données": "Verifica del database"
     },
@@ -887,6 +890,29 @@
         "Configuration du composant": "Configurazione del componente",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Caricamento riuscito thank si ricarica la pagina per vedere il risultato"
     },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "Aggiorna",
+        "Corriger tout": "",
+        "Package": "",
+        "Type": "Tipo",
+        "Status": "Stato",
+        "Obligatoire": "",
+        "Voulu par": "",
+        "Version": "Versione",
+        "Commande": "Comando",
+        "Action": "Azione",
+        "Mise à jour": "",
+        "oui": "Sì",
+        "non": "No",
+        "Corriger": "",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
+    },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Version": "Versione",
@@ -1379,6 +1405,8 @@
         "Japonais (pas de support)": "",
         "Indonesien (pas de support)": "",
         "Turque (pas de support)": "",
+        "Moteur TTS": "",
+        "Plugin": "",
         "Date et heure": "Data e ora",
         "Fuseau horaire de votre": "Il tuo fuso orario",
         "Forcer la synchronisation de l'heure": "Forza Sincronizzazione",
@@ -1668,23 +1696,30 @@
         "Clé Market": "Mercato chiave",
         "Clé Market de": "Mercato chiave di",
         "Clé API pour le plugin": "Chiave API per il plugin",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENZIONE: queste operazioni sono rischiose, potresti perdere l'accesso al tuo sistema e",
-        ". L'équipe": ". il team",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "si riserva il diritto di rifiutare qualsiasi richiesta di supporto in caso di trattamento improprio.",
+        "Vérifications Système": "",
         "Vérification générale": "Verifica generale",
         "Permet de lancer le test de consistence de Jeedom.": "Consente di avviare il test di coerenza Jeedom.",
-        "Lancer": "Avvia",
-        "Administration": "Amministrazione",
-        "Interface d’administration système.": "Interfaccia di amministrazione del sistema.",
+        "Vérifier": "Verifica",
+        "Ouvrir le log Consistency.": "",
+        "Log": "Registro",
         "Rétablissement des droits des dossiers et fichiers": "Ripristino dei diritti su cartelle e file",
         "Permet de réappliquer les bons droits sur les fichiers.": "Consente di riapplicare i diritti corretti ai file.",
-        "Editeur de fichiers": "Editor di file",
-        "Editeur": "Editore",
-        "Base de données": "Database",
-        "Interface d’administration de la base de données.": "Interfaccia di amministrazione del database.",
-        "Vérification": "Verifica",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Pulisce il database (oggetti, comandi, storie e altre informazioni non valide).",
-        "Nettoyage": "Pulizia",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENZIONE: queste operazioni sono rischiose, potresti perdere l'accesso al tuo sistema e",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "si riserva il diritto di rifiutare qualsiasi richiesta di supporto in caso di trattamento improprio.",
+        "Editeur de fichiers": "Editor di file",
+        "Ouvrir": "",
+        "Administration Système": "L'amministrazione del sistema",
+        "Interface d’administration système.": "Interfaccia di amministrazione del sistema.",
+        "Administration Base de données": "Database di Administration",
+        "Interface d’administration de la base de données.": "Interfaccia di amministrazione del database.",
         "Utilisateur": "Utente"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2037,11 +2072,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Vérification": "Verifica",
         "Rechercher": "Ricercare",
         "Tables": "Tabelle",
         "Taille": "Formato",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a destra o digita un ordine personalizzato di seguito",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a sinistra o digita un ordine personalizzato di seguito",
         "OK": "Bene"
     },
     "desktop\/php\/cron.php": {
@@ -2118,6 +2152,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Sauvegarder": "Salva",
         "Sauvegardes locales": "Backup locali",
         "Emplacement": "Posizione",
         "Rétention temporelle (jours)": "Ritenzione temporale (giorni)",
@@ -2149,6 +2184,8 @@
         "Configuration des formules de calcul": "Configurazione di formule",
         "Configuration": "Configurazione",
         "Rechercher": "Cerca",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno.",
         "Variation": "Variazione",
         "Escalier": "Passi",
@@ -2202,6 +2239,8 @@
         "Export CSV": "Esportazione CSV",
         "Rechercher": "Ricercare",
         "Aucun": "Nessuno",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
         "Non actif": "Non attivo",
         "Non visible": "Non visibile",
         "Configuration avancée": "Configurazione avanzata",
@@ -2216,8 +2255,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Consistance": "Coerenza",
-        "Droit": "Diritto",
         "Rechercher": "Ricercare",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a sinistra o digita un ordine personalizzato di seguito",
         "OK": "Bene"
@@ -2402,7 +2439,6 @@
         "Configuration de la commande": "Impostazione comando"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "Verifica del database",
         "Commande : ": "Comando:"
     },
     "desktop\/js\/message.js": {
@@ -2561,6 +2597,7 @@
         "Administration système": "L'amministrazione del sistema",
         "Administration base de données": "Database di Administration",
         "Vérification base de données": "Verifica del database",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "La pulizia è iniziata correttamente. Per seguire l'avanzamento, consultare il registro cleaningdb",
         "Création des commandes virtuel réussies": "La creazione di comandi virtuali di successo",
         "Somme": "Somma",
@@ -2571,7 +2608,7 @@
         "Binaire": "Binario",
         "Créer virtuel": "Creare virtuale",
         "Rétablissement des droits d\\'accès effectué avec succès": "Diritti di accesso ripristinati correttamente",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "Verifica effettuata, visualizzare la coerenza del registro per il risultato."
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2624,9 +2661,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Sei sicuro di voler eseguire questo comando:",
         "Celle-ci est classé en dangereuse": "È classificato come pericoloso",
-        "Commande : ": "Comando:",
-        "Remise à plat des droits fait avec succès": "Dovere appiattimento con successo",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": "Avvio della verifica eseguita, vedere la coerenza del registro per vedere il risultato"
+        "Commande : ": "Comando:"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Backup completato correttamente",
@@ -3028,6 +3063,7 @@
         "Scénario ID inconnu : ": "ID scenario sconosciuto:",
         "Vous n\\'êtes pas autorisé à faire cette action": "Non ti è permesso fare questa azione",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "Lo scenario non può essere avviato perché è disattivato. Per favore attivalo",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "Il nome del modello non può essere vuoto",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "La seguente conversione non può essere vuota:",
@@ -3504,6 +3540,9 @@
         "Vue": "Visione",
         "Vue :": "Visualizza:"
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "Oggetto sconosciuto. Controlla l'ID:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Sottoelemento sconosciuto. Controlla l'ID:",
@@ -3735,10 +3774,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "È necessario attendere almeno 60 secondi tra due lanci di installazione delle dipendenze",
         "Les dépendances sont déjà en cours d\\'installation": "Le dipendenze sono già state installate",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "Attenzione: avviata l'installazione di dipendenze",
-        "Veuillez exécuter le script : ": "Si prega di eseguire lo script:",
-        "Aucun script ne correspond à votre type de Linux : ": "Nessuno script corrisponde al tuo tipo di Linux:",
-        " avec #stype# : ": "con # stype #:",
+        "Veuillez exécuter le script :": "Si prega di eseguire lo script:",
+        "Aucun script ne correspond à votre type de Linux :": "Nessuno script corrisponde al tuo tipo di Linux:",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "Annessi durante l'installazione",
         "Dépendances non installées": "Annessi non installati",
         "Gestion automatique désactivée": "Gestione automatica disabilitata",
@@ -3780,6 +3821,8 @@
         "Action de pré-update...": "Azione pre-aggiornamento ...",
         "Post-installation de ": "Post-installazione di",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Impossibile installare il plug-in. Il nome del plug-in è diverso dall'ID o il plug-in non è stato formato correttamente. Si prega di contattare l'autore.",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
         "Le logical ID ne peut pas être vide": "L'ID logico non può essere vuoto"
     },
     "core\/class\/listener.class.php": {
@@ -4021,7 +4064,6 @@
         "Aucun texte à dire": "Nessun testo da dire",
         "Tag detécté dans le tts et plugin song présent": "Tag rilevato nei plugin tts e song presenti",
         "Son trouvé path : ": "Il suo percorso trovato:",
-        "Moteur de voix inconnu : ": "Motore vocale sconosciuto:",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": "Errore nessun file trovato da eliminare mentre la directory fa:"
     }
 }

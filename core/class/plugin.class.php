@@ -36,6 +36,7 @@ class plugin {
 	private $mobile;
 	private $eventjs;
 	private $hasDependency;
+	private $hasTtsEngine;
 	private $maxDependancyInstallTime;
 	private $hasOwnDeamon;
 	private $issue = '';
@@ -78,6 +79,7 @@ class plugin {
 		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
 		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
 		$plugin->hasOwnDeamon = (isset($data['hasOwnDeamon'])) ? $data['hasOwnDeamon'] : 0;
+		$plugin->hasTtsEngine = (isset($data['hasTtsEngine'])) ? $data['hasTtsEngine'] : 0;
 		$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
 		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
@@ -680,6 +682,11 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
+		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
+			message::add($plugin_id, __('Attention : installation des packages lancée', __FILE__));
+			log::add($plugin_id, 'info', __('Lancement de l\'installation des packages, pour le suivre veuillez lire regarder le logs packages', __FILE__));
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true),true);
+		}
 		$cmd = $plugin_id::dependancy_install();
 		if (is_array($cmd) && count($cmd) == 2) {
 			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
@@ -699,10 +706,10 @@ class plugin {
 					}
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
+					log::add($plugin_id, 'error', __('Veuillez exécuter le script :', __FILE__) . ' /bin/bash ' . $script);
 				}
 			} else {
-				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
+				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux :', __FILE__) .' '. $cmd['script']. ' ' . __('avec #stype# :', __FILE__).' ' . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());
@@ -1075,6 +1082,15 @@ class plugin {
 	
 	public function setHasOwnDeamony($hasOwnDeamon) {
 		$this->hasOwnDeamon = $hasOwnDeamon;
+		return $this;
+	}
+	
+	public function getHasTtsEngine() {
+		return $this->hasTtsEngine;
+	}
+	
+	public function setHasTtsEngine($hasTtsEngine) {
+		$this->hasTtsEngine = $hasTtsEngine;
 		return $this;
 	}
 	

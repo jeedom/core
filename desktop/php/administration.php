@@ -88,6 +88,23 @@ user::isBan();
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Moteur TTS}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<select class="form-control configKey" data-l1key="tts::engine">
+								<option value="pico">Pico</option>
+								<option value="espeak">Espeak</option>
+								<?php
+								foreach (plugin::listPlugin(true) as $plugin) {
+									if(!$plugin->getHasTtsEngine()){
+										continue;
+									}
+									echo '<option value="plugin::'.$plugin->getId().'">{{Plugin}} '.$plugin->getName().'</option>';
+								}
+								?>
+							</select>
+						</div>
+					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Date et heure}}
@@ -1853,83 +1870,91 @@ user::isBan();
 
 		<div role="tabpanel" class="tab-pane" id="ostab">
 			<br/>
-			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 			<form class="form-horizontal">
 				<fieldset>
-					<legend><i class="fas fa-brain"></i> {{Général}}</legend>
+					<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification générale}}
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de Jeedom.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_consitency" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
-						</div>
-					</div>
-					<legend><i class="fas fa-terminal"></i> {{Système}}</legend>
-					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Administration}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
-						</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
+							<a id="bt_logConsistency" class="btn btn-success" target="_blank" title="{{Ouvrir le log Consistency.}}"> {{Log}}</a>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Rétablissement des droits des dossiers et fichiers}}
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Rétablissement des droits des dossiers et fichiers}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Permet de réappliquer les bons droits sur les fichiers.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_cleanFileSystemRight" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
+							<a class="btn btn-info" id="bt_cleanFileSystemRight" style="width:50%;"><i class="fas fa-terminal"></i> {{Vérifier}}</a>
 						</div>
 					</div>
-					<legend><i class="fas fa-indent"></i> {{Editeur de fichiers}}</legend>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Editeur}}</label>
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-box-open"></i> {{Vérification des packages système}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que les packages nécessaires sont bien installés.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-info" id="bt_checkPackage" style="width:50%;"><i class="fas fa-box-open"></i> {{Vérifier}}</a>
 						</div>
 					</div>
-					<legend><i class="fas fa-database"></i> {{Base de données}}</legend>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Administration}}
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Vérification de la base de données}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que la base de données est conforme à ce qui est attendu.}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-info" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Vérifier}}</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Nettoyage de la base de données}}<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Nettoyer}}</a>
+						</div>
+					</div>
+
+					<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
+					<div class="alert alert-danger">
+						{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br/>
+						{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Administration Système}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Administration Base de données}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</a>
 						</div>
 					</div>
+
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">
+							<i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}
 						</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Nettoyage}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-broom"></i> {{Lancer}}</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Utilisateur}}</label>
-						<div class="col-sm-1">
-							<?php
-							global $CONFIG;
-							echo $CONFIG['db']['username'];
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Mot de passe}}</label>
-						<div class="col-sm-1">
-							<?php
-							echo $CONFIG['db']['password'];
-							?>
-						</div>
+						<span class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<?php global $CONFIG; echo $CONFIG['db']['username'].' / '.$CONFIG['db']['password']; ?>
+						</span>
 					</div>
 				</fieldset>
+				<br/>
 			</form>
 		</div>
 	</div>

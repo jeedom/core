@@ -32,7 +32,7 @@ sendVarToJs('cmd_id',$id);
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
-$(".in_datepicker").datepicker()
+$(".in_datepicker").datepicker($.datepicker.regional[jeedom_langage.substring(0,2)])
 $('#ui-datepicker-div').hide()
 
 $('#div_historyChart').css('position', 'relative').css('width', '100%')

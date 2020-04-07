@@ -292,6 +292,8 @@
         "Ajouter": "Tambahan",
         "Sauvegarder": "Menyimpan",
         "Supprimer": "Menghapus",
+        "Titre": "Judul",
+        "Texte": "Teks",
         "Note sauvegardée avec succès": "",
         "Voulez-vous vraiment supprimer la note : ": "",
         "Note supprimée avec succès": ""
@@ -321,6 +323,7 @@
         "SQL": "",
         "Action": "Tindakan",
         "Corriger": "",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
         "Vérification base de données": ""
     },
@@ -887,6 +890,29 @@
         "Configuration du composant": "",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Memuat berhasil terima kasih kembali halaman tersebut untuk melihat hasilnya"
     },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "Dingin",
+        "Corriger tout": "",
+        "Package": "",
+        "Type": "Jenis",
+        "Status": "",
+        "Obligatoire": "",
+        "Voulu par": "",
+        "Version": "Versi",
+        "Commande": "Pesanan",
+        "Action": "Tindakan",
+        "Mise à jour": "",
+        "oui": "Ya",
+        "non": "Tidak",
+        "Corriger": "",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
+    },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Version": "Versi",
@@ -1379,6 +1405,8 @@
         "Japonais (pas de support)": "",
         "Indonesien (pas de support)": "",
         "Turque (pas de support)": "",
+        "Moteur TTS": "",
+        "Plugin": "",
         "Date et heure": "Hari dan Jam",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Angkatan Sinkronisasi Waktu",
@@ -1668,23 +1696,30 @@
         "Clé Market": "",
         "Clé Market de": "",
         "Clé API pour le plugin": "",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
-        ". L'équipe": "",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Vérifications Système": "",
         "Vérification générale": "",
         "Permet de lancer le test de consistence de Jeedom.": "",
-        "Lancer": "Meluncurkan",
-        "Administration": "Administrasi",
-        "Interface d’administration système.": "",
+        "Vérifier": "Memeriksa",
+        "Ouvrir le log Consistency.": "",
+        "Log": "",
         "Rétablissement des droits des dossiers et fichiers": "",
         "Permet de réappliquer les bons droits sur les fichiers.": "",
-        "Editeur de fichiers": "",
-        "Editeur": "Penerbit",
-        "Base de données": "Database",
-        "Interface d’administration de la base de données.": "",
-        "Vérification": "",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "",
-        "Nettoyage": "",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Editeur de fichiers": "",
+        "Ouvrir": "",
+        "Administration Système": "Sistem administrasi",
+        "Interface d’administration système.": "",
+        "Administration Base de données": "Administrasi database",
+        "Interface d’administration de la base de données.": "",
         "Utilisateur": "Pengguna"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2037,11 +2072,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Vérification": "",
         "Rechercher": "Pencarian",
         "Tables": "",
         "Taille": "Size",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Klik perintah di sebelah kanan atau ketik perintah custom bawah",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Ok"
     },
     "desktop\/php\/cron.php": {
@@ -2118,6 +2152,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Sauvegarder": "Menyimpan",
         "Sauvegardes locales": "Backup lokal",
         "Emplacement": "",
         "Rétention temporelle (jours)": "",
@@ -2149,6 +2184,8 @@
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Configuration": "Konfigurasi",
         "Rechercher": "Mencari",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul.",
         "Variation": "Perubahan",
         "Escalier": "Tangga",
@@ -2202,6 +2239,8 @@
         "Export CSV": "",
         "Rechercher": "Pencarian",
         "Aucun": "Tak ada",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
         "Non actif": "Tidak aktif",
         "Non visible": "Tidak terlihat",
         "Configuration avancée": "Konfigurasi lanjutan",
@@ -2216,8 +2255,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Consistance": "",
-        "Droit": "",
         "Rechercher": "Pencarian",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Ok"
@@ -2402,7 +2439,6 @@
         "Configuration de la commande": "Set Kontrol"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "",
         "Commande : ": "Perintah:"
     },
     "desktop\/js\/message.js": {
@@ -2561,6 +2597,7 @@
         "Administration système": "Sistem administrasi",
         "Administration base de données": "Administrasi database",
         "Vérification base de données": "",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "",
         "Création des commandes virtuel réussies": "Menciptakan kontrol virtual yang sukses",
         "Somme": "Jumlah",
@@ -2571,7 +2608,7 @@
         "Binaire": "Biner",
         "Créer virtuel": "Membuat virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": ""
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2624,9 +2661,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
         "Celle-ci est classé en dangereuse": "",
-        "Commande : ": "Perintah:",
-        "Remise à plat des droits fait avec succès": "",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": ""
+        "Commande : ": "Perintah:"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Menyimpan sukses",
@@ -3028,6 +3063,7 @@
         "Scénario ID inconnu : ": "",
         "Vous n\\'êtes pas autorisé à faire cette action": "",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "",
@@ -3504,6 +3540,9 @@
         "Vue": "Pemandangan",
         "Vue :": "View:"
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "",
@@ -3735,10 +3774,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "",
         "Les dépendances sont déjà en cours d\\'installation": "",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "",
-        "Veuillez exécuter le script : ": "",
-        "Aucun script ne correspond à votre type de Linux : ": "",
-        " avec #stype# : ": "",
+        "Veuillez exécuter le script :": "",
+        "Aucun script ne correspond à votre type de Linux :": "",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "",
         "Dépendances non installées": "",
         "Gestion automatique désactivée": "Otomatis Manajemen Off",
@@ -3780,6 +3821,8 @@
         "Action de pré-update...": "",
         "Post-installation de ": "Post-Instalasi",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
         "Le logical ID ne peut pas être vide": ""
     },
     "core\/class\/listener.class.php": {
@@ -4021,7 +4064,6 @@
         "Aucun texte à dire": "",
         "Tag detécté dans le tts et plugin song présent": "",
         "Son trouvé path : ": "",
-        "Moteur de voix inconnu : ": "",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": ""
     }
 }

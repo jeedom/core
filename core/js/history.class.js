@@ -152,7 +152,7 @@ jeedom.history.drawChart = function (_params) {
       _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
       _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
       _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
-      
+
       var legend = {borderColor: 'black',borderWidth: 2,shadow: true};
       legend.enabled = init(_params.showLegend, true);
       if(isset(_params.newGraph) && _params.newGraph == true){
@@ -178,7 +178,7 @@ jeedom.history.drawChart = function (_params) {
       if (isset(jeedom.history.chart[_params.el]) && jeedom.history.chart[_params.el].type == 'pie') {
         _params.option.graphType = 'pie';
       }
-      
+
       if( _params.option.graphType == 'pie'){
         var series = {
           type: _params.option.graphType,
@@ -204,7 +204,7 @@ jeedom.history.drawChart = function (_params) {
               enabled: _params.enableExport || ($.mobile) ? false : true
             },
             tooltip: {
-              pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+              pointFormat: '{point.y} <br/>{series.name}',
               valueDecimals: 2,
             },
             plotOptions: {
@@ -249,7 +249,7 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].nbTimeline++;
             nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
           }
-          
+
           var series = {
             type: 'flags',
             visible: _visible,
@@ -295,14 +295,14 @@ jeedom.history.drawChart = function (_params) {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
-          
+
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
             visible: _visible,
             id: _params.cmd_id,
             cursor: 'pointer',
-            name: (isset(_params.mobile))? data.result.unite : ((isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite),
+            name: (isset(_params.mobile)) ? data.result.unite : ((isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite),
             data: data.result.data,
             color: _params.option.graphColor,
             stack: _params.option.graphStack,
@@ -310,6 +310,8 @@ jeedom.history.drawChart = function (_params) {
             step: _params.option.graphStep,
             yAxis: _params.option.graphScale,
             stacking : stacking,
+            unite: data.result.unite,
+            shortName: (isset(_params.option.name)) ? _params.option.name : data.result.history_name,
             tooltip: {
               valueDecimals: 2
             },
@@ -342,13 +344,13 @@ jeedom.history.drawChart = function (_params) {
         if(isset(_params.option.graphZindex)){
           series.zIndex = _params.option.graphZindex;
         }
-        
+
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
           jeedom.history.chart[_params.el].cmd = new Array();
           jeedom.history.chart[_params.el].color = seriesNumber - 1;
           jeedom.history.chart[_params.el].nbTimeline = 1;
-          
+
           if(_params.dateRange == '30 min'){
             var dateRange = 1
           }else  if(_params.dateRange == '1 hour'){
@@ -423,7 +425,7 @@ jeedom.history.drawChart = function (_params) {
             legend: legend,
             tooltip: {
               xDateFormat: '%Y-%m-%d %H:%M:%S',
-              pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+              pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
               valueDecimals: 2,
             },
             yAxis: [{
@@ -469,7 +471,7 @@ jeedom.history.drawChart = function (_params) {
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange};
       }
-      
+
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
       var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
       for(var i in plotband){

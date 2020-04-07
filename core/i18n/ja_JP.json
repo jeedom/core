@@ -292,6 +292,8 @@
         "Ajouter": "加えます",
         "Sauvegarder": "セーブ",
         "Supprimer": "取り除きます",
+        "Titre": "タイトル",
+        "Texte": "テキスト",
         "Note sauvegardée avec succès": "メモを保存しました",
         "Voulez-vous vraiment supprimer la note : ": "メモを削除してもよろしいですか：",
         "Note supprimée avec succès": "メモを削除しました"
@@ -321,6 +323,7 @@
         "SQL": "",
         "Action": "アクション",
         "Corriger": "正しいです",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "テーブルを修正してもよろしいですか",
         "Vérification base de données": "データベース検証"
     },
@@ -887,6 +890,29 @@
         "Configuration du composant": "コンポーネント構成",
         "Chargement réussi merci de recharger la page pour voir le résultat": "読み込みに成功しました。結果を確認するにはページを再読み込みしてください"
     },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "クール",
+        "Corriger tout": "すべて修正",
+        "Package": "",
+        "Type": "タイプ",
+        "Status": "ステータス",
+        "Obligatoire": "",
+        "Voulu par": "",
+        "Version": "バージョン",
+        "Commande": "オーダー",
+        "Action": "アクション",
+        "Mise à jour": "",
+        "oui": "はい",
+        "non": "ではありません",
+        "Corriger": "正しいです",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
+    },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Version": "バージョン",
@@ -1379,6 +1405,8 @@
         "Japonais (pas de support)": "",
         "Indonesien (pas de support)": "",
         "Turque (pas de support)": "",
+        "Moteur TTS": "",
+        "Plugin": "プラグイン",
         "Date et heure": "日時",
         "Fuseau horaire de votre": "あなたのタイムゾーン",
         "Forcer la synchronisation de l'heure": "フォース時刻同期",
@@ -1668,23 +1696,30 @@
         "Clé Market": "主要市場",
         "Clé Market de": "主要市場",
         "Clé API pour le plugin": "プラグインのAPIキー",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "警告：これらの操作は危険です。システムにアクセスできなくなり、",
-        ". L'équipe": "。チーム",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "不適切な取り扱いがあった場合、サポートのリクエストを拒否する権利を留保します。",
+        "Vérifications Système": "",
         "Vérification générale": "一般的な検証",
         "Permet de lancer le test de consistence de Jeedom.": "Jeedom一貫性テストを起動します。",
-        "Lancer": "打ち上げ",
-        "Administration": "行政",
-        "Interface d’administration système.": "システム管理インターフェース。",
+        "Vérifier": "チェック",
+        "Ouvrir le log Consistency.": "",
+        "Log": "ログ",
         "Rétablissement des droits des dossiers et fichiers": "フォルダーとファイルへの権利の復元",
         "Permet de réappliquer les bons droits sur les fichiers.": "ファイルに正しい権利を再適用できます。",
-        "Editeur de fichiers": "ファイルエディター",
-        "Editeur": "出版社",
-        "Base de données": "データベース",
-        "Interface d’administration de la base de données.": "データベース管理インターフェース。",
-        "Vérification": "検証",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "データベース（オブジェクト、コマンド、履歴、その他の無効な情報）をクリーンアップします。",
-        "Nettoyage": "クリーニング",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "警告：これらの操作は危険です。システムにアクセスできなくなり、",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "不適切な取り扱いがあった場合、サポートのリクエストを拒否する権利を留保します。",
+        "Editeur de fichiers": "ファイルエディター",
+        "Ouvrir": "",
+        "Administration Système": "システム管理",
+        "Interface d’administration système.": "システム管理インターフェース。",
+        "Administration Base de données": "管理データベース",
+        "Interface d’administration de la base de données.": "データベース管理インターフェース。",
         "Utilisateur": "ユーザー"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2037,11 +2072,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Vérification": "検証",
         "Rechercher": "検索",
         "Tables": "テーブル",
         "Taille": "サイズ",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "右側の注文をクリックするか、下にカスタム注文を入力してください",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "左側の注文をクリックするか、下にカスタム注文を入力してください",
         "OK": "[OK]を"
     },
     "desktop\/php\/cron.php": {
@@ -2118,6 +2152,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Sauvegarder": "セーブ",
         "Sauvegardes locales": "ローカルバックアップ",
         "Emplacement": "場所",
         "Rétention temporelle (jours)": "一時的な保持（日）",
@@ -2149,6 +2184,8 @@
         "Configuration des formules de calcul": "式の設定",
         "Configuration": "コンフィギュレーション",
         "Rechercher": "検索する",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "警告：あまりにも大きな日付範囲を計算するのに長い時間がかかるかさえ表示されない場合があります。",
         "Variation": "変更",
         "Escalier": "階段",
@@ -2202,6 +2239,8 @@
         "Export CSV": "CSVエクスポート",
         "Rechercher": "検索",
         "Aucun": "何でもありません",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
         "Non actif": "アクティブではありません",
         "Non visible": "見えない",
         "Configuration avancée": "高度な構成",
@@ -2216,8 +2255,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Consistance": "一貫性",
-        "Droit": "右",
         "Rechercher": "検索",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "左側の注文をクリックするか、下にカスタム注文を入力してください",
         "OK": "[OK]を"
@@ -2402,7 +2439,6 @@
         "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "データベース検証",
         "Commande : ": "注文："
     },
     "desktop\/js\/message.js": {
@@ -2561,6 +2597,7 @@
         "Administration système": "システム管理",
         "Administration base de données": "管理データベース",
         "Vérification base de données": "データベース検証",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "クリーニングが正常に開始されました。進捗状況を確認するには、cleaningdbログをご覧ください",
         "Création des commandes virtuel réussies": "成功した仮想コントロールを作成します",
         "Somme": "サム",
@@ -2571,7 +2608,7 @@
         "Binaire": "バイナリ",
         "Créer virtuel": "仮想作成",
         "Rétablissement des droits d\\'accès effectué avec succès": "正常に復元されたアクセス権",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "検証が実行され、結果のログの一貫性が表示されます。"
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",
@@ -2624,9 +2661,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "このコマンドを実行してよろしいですか：",
         "Celle-ci est classé en dangereuse": "危険に分類されます",
-        "Commande : ": "注文：",
-        "Remise à plat des droits fait avec succès": "正常に平らになる義務",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": "完了した検証の起動、ログの一貫性を確認して結果を確認します"
+        "Commande : ": "注文："
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "成功したバックアップ",
@@ -3028,6 +3063,7 @@
         "Scénario ID inconnu : ": "不明なシナリオID：",
         "Vous n\\'êtes pas autorisé à faire cette action": "このアクションを実行することはできません",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "シナリオは非アクティブ化されているため、開始できません。有効にしてください",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "テンプレート名は空にできません",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "次の変換は空にできません。",
@@ -3504,6 +3540,9 @@
         "Vue": "眺望",
         "Vue :": "表示："
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "",
@@ -3735,10 +3774,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "",
         "Les dépendances sont déjà en cours d\\'installation": "",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "",
-        "Veuillez exécuter le script : ": "",
-        "Aucun script ne correspond à votre type de Linux : ": "",
-        " avec #stype# : ": "",
+        "Veuillez exécuter le script :": "",
+        "Aucun script ne correspond à votre type de Linux :": "",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "",
         "Dépendances non installées": "",
         "Gestion automatique désactivée": "自動管理オフ",
@@ -3780,6 +3821,8 @@
         "Action de pré-update...": "",
         "Post-installation de ": "インストール後",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
         "Le logical ID ne peut pas être vide": ""
     },
     "core\/class\/listener.class.php": {
@@ -4021,7 +4064,6 @@
         "Aucun texte à dire": "",
         "Tag detécté dans le tts et plugin song présent": "",
         "Son trouvé path : ": "",
-        "Moteur de voix inconnu : ": "",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": ""
     }
 }

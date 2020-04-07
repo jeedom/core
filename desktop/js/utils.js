@@ -381,14 +381,14 @@ $(function () {
     closeText: '',
     height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
     width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-    position: { my: "center bottom-10", at: "center bottom", of: window },
+    position: { my: "center center-10", at: "center center", of: window },
     open: function () {
       $("body").css({overflow: 'hidden'})
       $(this).closest( ".ui-dialog" ).find(":button").blur();
       $(this).dialog({
         height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-        position: { my: "center bottom-10", at: "center bottom", of: window },
+        position: { my: "center center-10", at: "center center", of: window },
       });
       setTimeout(function(){initTooltips($("#md_reportBug"))},500);
     },
@@ -468,8 +468,7 @@ $(function () {
   });
 
   $('#bt_jeedomAbout').on('click', function () {
-    $('#md_modal').dialog({title: "{{A propos}}"});
-    $('#md_modal').load('index.php?v=d&modal=about').dialog('open');
+    $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   });
 
   $('#bt_getHelpPage').on('click',function(){
@@ -500,8 +499,7 @@ $(function () {
   });
 
   if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-    $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
-    $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
+    $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
 
   $('#bt_showEventInRealTime').on('click',function(event) {
@@ -621,12 +619,10 @@ $(function () {
   });
 
   $('#bt_messageModal').on('click',function(){
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"});
-    $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
   });
   $('#bt_jsErrorModal').on('click',function(){
-    $('#md_modal').dialog({title: "{{Erreur Javascript}}"});
-    $('#md_modal').load('index.php?v=d&modal=js.error').dialog('open');
+    $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   });
 
   $('body').on('click','.objectSummaryParent',function(){
@@ -1468,8 +1464,7 @@ function editWidgetCmdMode(_mode) {
           icon : 'fas fa-cog',
           callback: function(key, opt){
             saveWidgetDisplay()
-            $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-            $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
+            $('#md_modal').dialog({title: "{{Configuration du widget}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open')
           }
         },
         sep1 : "---------",

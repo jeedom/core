@@ -37,20 +37,44 @@ Cambios
 - Integración de la línea de tiempo en DB por razones de confiabilidad.
 - Gestión de múltiples líneas de tiempo..
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
-- Resumen de domótica : Posibilidad de buscar en categorías de equipos
+- Resumen de domótica : Posibilidad de buscar en categorías de equipos.
+- Resumen de domótica : .
+- Resumen de domótica : .
 - Motor de tareas : En la pestaña * Daemon *, los complementos desactivados ya no aparecen.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
+- Reproductores : .
+- Reproductores : *.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Aplicación web : Integración de la nueva página de resumen.
 - Aplicación web : Página de escenarios, un clic en el título del escenario muestra su registro.
 - Aplicación web : Ahora podemos seleccionar / copiar parte de un registro.
 - Aplicación web : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
-- Aplicación web : Persistencia del cambio de tema (8h).
+- Aplicación web : .
+- Aplicación web : .
 - Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
-- Reproductor : posibilidad de agregar la clase css a un widget (ver documentación del widget)
+
+
+
+=====
+- .
+
+
+=====
+
+- Mejora del probador de expresión.
+- Actualización del repositorio en smart.
+- Correcciones de errores.
+
+4.0.44
+=====
+
+- Traducciones mejoradas.
+- Correcciones de errores.
+- .
+- .
 
 4.0.43
 =====

@@ -3,16 +3,12 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $page = init('page', 1);
-$logfile = init('logfile');
 $list_logfile = array();
 $dir = opendir('log/');
 $logExist = false;
 while ($file = readdir($dir)) {
 	if ($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir('log/' . $file)) {
 		$list_logfile[] = $file;
-		if ($logfile == $file) {
-			$logExist = true;
-		}
 	}
 }
 natcasesort($list_logfile);
@@ -52,7 +48,7 @@ natcasesort($list_logfile);
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-circle"></i>';
 					}
-					echo '<li class="cursor li_log ' .(($file == $logfile)?'active':'') .'" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
+					echo '<li class="cursor li_log" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
 				}
 				?>
 			</ul>

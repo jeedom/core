@@ -292,6 +292,8 @@
         "Ajouter": "Ekle",
         "Sauvegarder": "Kaydet",
         "Supprimer": "Sil",
+        "Titre": "Başlık",
+        "Texte": "Metin",
         "Note sauvegardée avec succès": "",
         "Voulez-vous vraiment supprimer la note : ": "",
         "Note supprimée avec succès": ""
@@ -321,6 +323,7 @@
         "SQL": "",
         "Action": "Eylem",
         "Corriger": "",
+        "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
         "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
         "Vérification base de données": ""
     },
@@ -887,6 +890,29 @@
         "Configuration du composant": "",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Yükleme Eğer sonucunu görmek için sayfayı yeniden teşekkür başarılı"
     },
+    "desktop\/modal\/package.check.php": {
+        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "",
+        "Rafraichir": "Yenile",
+        "Corriger tout": "",
+        "Package": "",
+        "Type": "Çeşit",
+        "Status": "Durum",
+        "Obligatoire": "",
+        "Voulu par": "",
+        "Version": "Versiyon",
+        "Commande": "Komuta",
+        "Action": "Eylem",
+        "Mise à jour": "",
+        "oui": "Evet",
+        "non": "Hayır",
+        "Corriger": "",
+        "Vérification des packages": "",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
+        "Êtes-vous sûr de vouloir installer le package": "",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
+        "Installation des packages": ""
+    },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Version": "Versiyon",
@@ -1379,6 +1405,8 @@
         "Japonais (pas de support)": "",
         "Indonesien (pas de support)": "",
         "Turque (pas de support)": "",
+        "Moteur TTS": "",
+        "Plugin": "Eklenti",
         "Date et heure": "Saat ve tarih",
         "Fuseau horaire de votre": "",
         "Forcer la synchronisation de l'heure": "Saatin senkronize edilmesini zorla",
@@ -1668,23 +1696,30 @@
         "Clé Market": "",
         "Clé Market de": "",
         "Clé API pour le plugin": "",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
-        ". L'équipe": "",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Vérifications Système": "",
         "Vérification générale": "",
         "Permet de lancer le test de consistence de Jeedom.": "",
-        "Lancer": "Başlat",
-        "Administration": "Yönetim",
-        "Interface d’administration système.": "",
+        "Vérifier": "Kontrol et",
+        "Ouvrir le log Consistency.": "",
+        "Log": "",
         "Rétablissement des droits des dossiers et fichiers": "",
         "Permet de réappliquer les bons droits sur les fichiers.": "",
-        "Editeur de fichiers": "",
-        "Editeur": "Yayımcı",
-        "Base de données": "Veri tabanı",
-        "Interface d’administration de la base de données.": "",
-        "Vérification": "",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "",
-        "Nettoyage": "",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Editeur de fichiers": "",
+        "Ouvrir": "",
+        "Administration Système": "Sistem yönetimi",
+        "Interface d’administration système.": "",
+        "Administration Base de données": "Yönetim veritabanı",
+        "Interface d’administration de la base de données.": "",
         "Utilisateur": "Kullanıcı"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2037,11 +2072,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Vérification": "",
         "Rechercher": "Arayın",
         "Tables": "",
         "Taille": "Boyut",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Sağdaki bir komut tıklayın veya aşağıya özel komutu yazın",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Tamam"
     },
     "desktop\/php\/cron.php": {
@@ -2118,6 +2152,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Sauvegarder": "Kaydet",
         "Sauvegardes locales": "Yerel kayıtlar",
         "Emplacement": "",
         "Rétention temporelle (jours)": "",
@@ -2149,6 +2184,8 @@
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Configuration": "Ayar",
         "Rechercher": "Arayın",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak.",
         "Variation": "Derecelendirme",
         "Escalier": "Merdiven",
@@ -2202,6 +2239,8 @@
         "Export CSV": "",
         "Rechercher": "Arayın",
         "Aucun": "Hiçbir",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
         "Non actif": "Aktif değil",
         "Non visible": "Görünmüyor",
         "Configuration avancée": "Gelişmiş ayarlar",
@@ -2216,8 +2255,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Consistance": "",
-        "Droit": "",
         "Rechercher": "Arayın",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Tamam"
@@ -2402,7 +2439,6 @@
         "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "",
         "Commande : ": "Komuta :"
     },
     "desktop\/js\/message.js": {
@@ -2561,6 +2597,7 @@
         "Administration système": "Sistem yönetimi",
         "Administration base de données": "Yönetim veritabanı",
         "Vérification base de données": "",
+        "Vérification des packages": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "",
         "Création des commandes virtuel réussies": "Sanal komutalarının yapilanması başarıldı",
         "Somme": "Toplam",
@@ -2571,7 +2608,7 @@
         "Binaire": "İkili",
         "Créer virtuel": "Sanal oluşturma",
         "Rétablissement des droits d\\'accès effectué avec succès": "",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": ""
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2624,9 +2661,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
         "Celle-ci est classé en dangereuse": "",
-        "Commande : ": "Komuta :",
-        "Remise à plat des droits fait avec succès": "",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": ""
+        "Commande : ": "Komuta :"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Kayıt başarılı",
@@ -3028,6 +3063,7 @@
         "Scénario ID inconnu : ": "",
         "Vous n\\'êtes pas autorisé à faire cette action": "Bu işlemi yapmanıza izin verilmiyor",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "",
+        "Scénario lancé manuellement": "",
         "Le nom du template ne peut être vide ": "",
         "Impossible de créer le template, vérifiez les droits : ": "",
         "La conversion suivante ne peut être vide : ": "",
@@ -3504,6 +3540,9 @@
         "Vue": "İzlenme",
         "Vue :": "Görüntüle:"
     },
+    "core\/class\/system.class.php": {
+        "Installation de package impossible car il y a déjà une installation en cours": ""
+    },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "Bilinmeyen öğe. Kimliği kontrol edin:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Bilinmeyen alt öğe. Kimliği kontrol edin:",
@@ -3735,10 +3774,12 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "İki bağımlılık yükleme başlatması arasında en az 60 saniye beklemelisiniz",
         "Les dépendances sont déjà en cours d\\'installation": "Bağımlılıklar zaten kuruluyor",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "",
+        "Attention : installation des packages lancée": "",
+        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "",
         "Attention : installation des dépendances lancée": "Dikkat: başlatılan bağımlılıkların kurulumu",
-        "Veuillez exécuter le script : ": "Lütfen betiği çalıştırın:",
-        "Aucun script ne correspond à votre type de Linux : ": "Linux türünüze karşılık gelen komut dosyası yok:",
-        " avec #stype# : ": "# stype # ile:",
+        "Veuillez exécuter le script :": "Lütfen betiği çalıştırın:",
+        "Aucun script ne correspond à votre type de Linux :": "Linux türünüze karşılık gelen komut dosyası yok:",
+        "avec #stype# :": "",
         "Dépendances en cours d\\'installation": "Kurulum sırasında müştemilatı",
         "Dépendances non installées": "Binalar kurulu değil",
         "Gestion automatique désactivée": "Otomatik yönetim devre dışı",
@@ -3780,6 +3821,8 @@
         "Action de pré-update...": "Ön güncelleme eylemi ...",
         "Post-installation de ": "Kurulum sonrası",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Eklenti yüklenemedi. Eklenti adı kimlik numarasından farklı veya eklenti düzgün oluşturulmamış. Lütfen yazara başvurun.",
+        "END UPDATE SUCCESS\\n": "",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
         "Le logical ID ne peut pas être vide": "Mantıksal kimlik boş olamaz"
     },
     "core\/class\/listener.class.php": {
@@ -4021,7 +4064,6 @@
         "Aucun texte à dire": "Söyleyecek metin yok",
         "Tag detécté dans le tts et plugin song présent": "Etiket ve şarkı eklentisinde mevcut etiket var",
         "Son trouvé path : ": "Bulunan yolu:",
-        "Moteur de voix inconnu : ": "Bilinmeyen ses motoru:",
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": "Dizin yapılırken silinecek dosya bulunamadı hatası:"
     }
 }

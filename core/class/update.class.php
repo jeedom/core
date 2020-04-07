@@ -470,6 +470,7 @@ class update {
 		}
 		$this->save();
 		log::add('update', 'alert', __("OK\n", __FILE__));
+		log::add('update', 'alert', __("END UPDATE SUCCESS\n", __FILE__));
 	}
 	
 	public static function getLastAvailableVersion() {
@@ -490,7 +491,7 @@ class update {
 	*/
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
+			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__).' ' . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {

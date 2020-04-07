@@ -25,11 +25,10 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	die();
 }
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
-if (class_exists('dataservice')) {
-	$engine = 'dataservice';
-} else {
-	$engine = init('engine', 'pico');
-	if ($engine == 'dataservice') {
+$engine = config::byKey('tts::engine','core','pico');
+if(strpos($engine,'plugin::') !== false){
+	$engine = str_replace('plugin::','',$engine);
+	if(!class_exists($engine) || !method_exists($engine,'tts')){
 		$engine = 'pico';
 	}
 }
@@ -73,12 +72,9 @@ if (file_exists($filename)) {
 	die();
 }
 log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') with engine '.$engine);
+
 try {
-	switch ($engine) {
-		case 'dataservice':
-		dataservice::tts($text);
-		break;
-		case 'espeak':
+	if($engine == 'espeak'){
 		$voice = init('voice', 'fr+f4');
 		$avconv = 'avconv';
 		if(!com_shell::commandExists('avconv')){
@@ -87,10 +83,9 @@ try {
 		$cmd = 'espeak -v' . $voice . ' "' . $text . '" --stdout | '.$avconv.' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
-		break;
-		case 'pico':
+	}else if($engine == 'pico'){
 		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
-		$lang = init('lang', 'fr-FR');
+		$lang = str_replace('_','-',init('lang',config::byKey('language')));
 		$avconv = 'avconv';
 		if(!com_shell::commandExists('avconv')){
 			$avconv = 'ffmpeg';
@@ -99,16 +94,11 @@ try {
 		$cmd .= $avconv.' -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
-		break;
-		default:
-		echo __('Moteur de voix inconnu : ', __FILE__) . $engine;
-		die();
-		break;
+	}else{
+		$engine::tts($filename,$text);
 	}
 } catch (Exception $e) {
-	$volume = '-af "volume=' . init('volume', '6') . 'dB"';
-	$lang = init('lang', 'fr-FR');
-	shell_exec('pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav');
+	log::add('tts','error',$e->getMessage());
 }
 
 if (init('path') == 1) {

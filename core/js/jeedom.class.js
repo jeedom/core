@@ -107,93 +107,93 @@ jeedom.init = function () {
       weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
     },
     colors :['rgb(73, 111, 153)',
-              'rgb(153, 122, 73)',
-              'rgb(73, 153, 77)',
-              'rgb(172, 54, 87)',
-              'rgb(42, 184, 181)',
-              'rgb(167, 48, 161)',
-              'rgb(89, 54, 171)',
-              'rgb(152, 179, 47)',
-              'rgb(99, 99, 99)',
-              'rgb(70, 156, 32)'
-              ]
-  });
+    'rgb(153, 122, 73)',
+    'rgb(73, 153, 77)',
+    'rgb(172, 54, 87)',
+    'rgb(42, 184, 181)',
+    'rgb(167, 48, 161)',
+    'rgb(89, 54, 171)',
+    'rgb(152, 179, 47)',
+    'rgb(99, 99, 99)',
+    'rgb(70, 156, 32)'
+  ]
+});
 
-  $('body').on('cmd::update', function (_event,_options) {
-    jeedom.cmd.refreshValue(_options);
-  });
+$('body').on('cmd::update', function (_event,_options) {
+  jeedom.cmd.refreshValue(_options);
+});
 
-  $('body').on('scenario::update', function (_event,_options) {
-    jeedom.scenario.refreshValue(_options);
-  });
-  $('body').on('eqLogic::update', function (_event,_options) {
-    jeedom.eqLogic.refreshValue(_options);
-  });
-  $('body').on('jeeObject::summary::update', function (_event,_options) {
-    jeedom.object.summaryUpdate(_options);
-  });
+$('body').on('scenario::update', function (_event,_options) {
+  jeedom.scenario.refreshValue(_options);
+});
+$('body').on('eqLogic::update', function (_event,_options) {
+  jeedom.eqLogic.refreshValue(_options);
+});
+$('body').on('jeeObject::summary::update', function (_event,_options) {
+  jeedom.object.summaryUpdate(_options);
+});
 
-  $('body').on('ui::update', function (_event,_options) {
+$('body').on('ui::update', function (_event,_options) {
+  if(isset(_options.page) && _options.page != ''){
+    if(!$.mobile && getUrlVars('p') != _options.page){
+      return;
+    }
+    if($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE != _options.page){
+      return;
+    }
+  }
+  if(!isset(_options.container) || _options.container == ''){
+    _options.container = 'body';
+  }
+  $(_options.container).setValues(_options.data, _options.type);
+});
+
+$('body').on('jeedom::gotoplan', function (_event,_plan_id) {
+  if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
+    if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+      planHeader_id = _plan_id;
+      displayPlan();
+    }
+  }
+});
+
+$('body').on('jeedom::alert', function (_event,_options) {
+  if (!isset(_options.message) || $.trim(_options.message) == '') {
     if(isset(_options.page) && _options.page != ''){
-      if(!$.mobile && getUrlVars('p') != _options.page){
-        return;
-      }
-      if($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE != _options.page){
-        return;
-      }
-    }
-    if(!isset(_options.container) || _options.container == ''){
-      _options.container = 'body';
-    }
-    $(_options.container).setValues(_options.data, _options.type);
-  });
-
-  $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
-    if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-      if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
-        planHeader_id = _plan_id;
-        displayPlan();
-      }
-    }
-  });
-
-  $('body').on('jeedom::alert', function (_event,_options) {
-    if (!isset(_options.message) || $.trim(_options.message) == '') {
-      if(isset(_options.page) && _options.page != ''){
-        if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
-          $.hideAlert();
-        }
-      }else{
+      if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
         $.hideAlert();
       }
-    } else {
-      if(isset(_options.page) && _options.page != ''){
-        if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
-          $('#div_alert').showAlert({message: _options.message, level: _options.level});
-        }
-      }else{
+    }else{
+      $.hideAlert();
+    }
+  } else {
+    if(isset(_options.page) && _options.page != ''){
+      if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
         $('#div_alert').showAlert({message: _options.message, level: _options.level});
       }
+    }else{
+      $('#div_alert').showAlert({message: _options.message, level: _options.level});
     }
-  });
-  $('body').on('jeedom::alertPopup', function (_event,_message) {
-    alert(_message);
-  });
-  $('body').on('jeedom::coloredIcons', function (_event,_state) {
-    $('body').attr('data-coloredIcons',_state);
-  });
-  $('body').on('message::refreshMessageNumber', function (_event,_options) {
-    refreshMessageNumber();
-  });
-  $('body').on('update::refreshUpdateNumber', function (_event,_options) {
-    refreshUpdateNumber();
-  });
-  $('body').on('notify', function (_event,_options) {
-    notify(_options.title, _options.message, _options.theme);
-  });
-  if (typeof user_id !== 'undefined') {
-    jeedom.changes();
   }
+});
+$('body').on('jeedom::alertPopup', function (_event,_message) {
+  alert(_message);
+});
+$('body').on('jeedom::coloredIcons', function (_event,_state) {
+  $('body').attr('data-coloredIcons',_state);
+});
+$('body').on('message::refreshMessageNumber', function (_event,_options) {
+  refreshMessageNumber();
+});
+$('body').on('update::refreshUpdateNumber', function (_event,_options) {
+  refreshUpdateNumber();
+});
+$('body').on('notify', function (_event,_options) {
+  notify(_options.title, _options.message, _options.theme);
+});
+if (typeof user_id !== 'undefined') {
+  jeedom.changes();
+}
 }
 
 jeedom.getConfiguration = function (_params) {
@@ -327,7 +327,6 @@ jeedom.dbcorrectTable = function (_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.rebootSystem = function (_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -342,6 +341,25 @@ jeedom.rebootSystem = function (_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'rebootSystem',
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.systemCorrectPackage = function (_params) {
+  var paramsRequired = ['package'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'systemCorrectPackage',
+    package : _params.package
   };
   $.ajax(paramsAJAX);
 };
