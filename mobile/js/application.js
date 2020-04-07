@@ -435,7 +435,7 @@ function initApplication(_reinit) {
             } else {
               if (getUrlVars('p') == 'view') {
                 page('view', 'Vue',getUrlVars('view_id'));
-              } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
+              } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
                 var res = userProfils.homePageMobile.split("::")
                 if (res[0] == 'core') {
                   switch (res[1]) {
