@@ -1,17 +1,10 @@
-FROM debian:latest
+FROM debian:stretch
 
 MAINTAINER info@jeedom.com
 
-RUN apt-get update
+COPY install/install.sh /tmp/
+RUN sh /tmp/install.sh
 
-ADD install/install.sh /root/install_docker.sh
-RUN chmod +x /root/install_docker.sh
-RUN /root/install_docker.sh
-
-VOLUME /var/lib/mysql
-VOLUME /var/www/html
-EXPOSE 80
-
-ADD install/OS_specific/Docker/init.sh /root/init.sh
+COPY install/OS_specific/Docker/init.sh /root/
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]
