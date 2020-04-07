@@ -898,20 +898,20 @@
         "Package": "",
         "Type": "Type",
         "Status": "Status",
-        "Voulu par": "",
         "Obligatoire": "Mandatory",
+        "Voulu par": "Need by",
         "Version": "Version",
         "Commande": "Command",
         "Action": "Action",
         "Mise à jour": "Update",
         "oui": "Yes",
         "non": "No",
-        "Corriger": "Correct",
-        "Vérification des packages": "",
-        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "",
-        "Êtes-vous sûr de vouloir installer le package": "",
-        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "",
-        "Installation des packages": ""
+        "Corriger": "Fix",
+        "Vérification des packages": "Verification of packages",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "Are you sure you want to install all non-optional packages?",
+        "Êtes-vous sûr de vouloir installer le package": "Are you sure you want to install the package",
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Installation started, this can take several tens of minutes.",
+        "Installation des packages": "Installing packages"
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1684,26 +1684,30 @@
         "Clé Market": "Key Market",
         "Clé Market de": "Key Market of",
         "Clé API pour le plugin": "API key for the plugin",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "WARNING : these operations are risky, you may lose access to your system and to",
-        ". L'équipe": ". The ",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "Team reserves the right to refuse any Support Request in case of mishandling",
+        "Vérifications Système": "",
         "Vérification générale": "General verification",
         "Permet de lancer le test de consistence de Jeedom.": "Lets launch the Jeedom consistency test.",
-        "Lancer": "Run",
-        "Administration": "Settings",
-        "Interface d’administration système.": "System administration interface.",
+        "Vérifier": "Check",
+        "Ouvrir le log Consistency.": "",
+        "Log": "Log",
         "Rétablissement des droits des dossiers et fichiers": "Restoring rights to folders and files",
         "Permet de réappliquer les bons droits sur les fichiers.": "Enables you to reapply the correct rights to the files.",
-        "Editeur de fichiers": "File Editor",
-        "Editeur": "Editor",
-        "Packages": "",
-        "Vérification": "Verification",
-        "Vérifie que les packages necessaire sont bien installé.": "",
-        "Base de données": "Database",
-        "Interface d’administration de la base de données.": "Database administration interface.",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
         "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage": "Cleaning",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Cleans up the database (objects, commands, histories and other invalid information).",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "WARNING : these operations are risky, you may lose access to your system and to",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "Team reserves the right to refuse any Support Request in case of mishandling",
+        "Editeur de fichiers": "File Editor",
+        "Ouvrir": "",
+        "Administration Système": "System Administration",
+        "Interface d’administration système.": "System administration interface.",
+        "Administration Base de données": "Database Administration",
+        "Interface d’administration de la base de données.": "Database administration interface.",
         "Utilisateur": "User"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2056,11 +2060,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Vérification": "Verification",
         "Rechercher": "Search",
         "Tables": "",
         "Taille": "Cut",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Click on an order on the right or type a custom order below",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on an order on the left or type a custom order below",
         "OK": "Okay"
     },
     "desktop\/php\/cron.php": {
@@ -2240,8 +2243,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Consistance": "Consistency",
-        "Droit": "Rights",
         "Rechercher": "Search",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on an order on the left or type a custom order below",
         "OK": "Okay"
@@ -2426,7 +2427,6 @@
         "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "Database verification",
         "Commande : ": "Ordered :"
     },
     "desktop\/js\/message.js": {
@@ -2585,7 +2585,7 @@
         "Administration système": "System Administration",
         "Administration base de données": "Database Administration",
         "Vérification base de données": "Database verification",
-        "Vérification des packages": "",
+        "Vérification des packages": "Verification of packages",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "Cleaning started successfully. To follow the progress please look at the cleaningdb log",
         "Création des commandes virtuel réussies": "Virtual commands creation succeeded",
         "Somme": "Sum",
@@ -2596,7 +2596,7 @@
         "Binaire": "Binary",
         "Créer virtuel": "Create virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "Successfully restored access rights",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "Verification carried out, display the log consistency for the result."
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Security alert: <br\/> Your password must be changed.",
@@ -2649,9 +2649,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Are you sure you want to run this command:",
         "Celle-ci est classé en dangereuse": "It is classified as dangerous",
-        "Commande : ": "Ordered :",
-        "Remise à plat des droits fait avec succès": "Duty flattening successfully",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": "Launch of the verification done, see the log consistency to see the result"
+        "Commande : ": "Ordered :"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Successful backup",
@@ -2753,14 +2751,14 @@
         "Bloc Commentaire": "Comment block"
     },
     "core\/php\/utils.inc.php": {
-        "Trop de session, je ne peux pas lister : ": "Too many sessions, I can't list:",
-        ". Faire, pour les nettoyer : ": ". To clean them:",
+        "Trop de session, je ne peux pas lister : ": "Too many sessions, I can't list: ",
+        ". Faire, pour les nettoyer : ": ". To clean them: ",
         "Cette action n\\'est pas autorisée en mode démo": "This action is not allowed in demo mode",
         "Synthèse": "Synthesis",
         "Vues": "View",
         "Designs": "Designs",
         "Designs 3D": "3D designs",
-        "Equipements": "Devices",
+        "Equipements": "Equipments",
         "Résumé": "Summary",
         "Historique": "History",
         "Rapports": "Reports",
@@ -2768,9 +2766,9 @@
         "Objets": "Objects",
         "Scénarios": "Scenarios",
         "Interactions": "Interactions",
-        "Widgets": "Widget",
+        "Widgets": "Widgets",
         "Gestion Plugins": "Plugins management",
-        "Configuration": "Setup",
+        "Configuration": "Configuration",
         "Sauvegardes": "Backups",
         "Moteur de tâches": "Task engine",
         "Personnalisation": "Personalisation",
@@ -2778,7 +2776,7 @@
         "Préférences": "Preferences",
         "Logs": "Logs",
         "Mises à jour": "Updates",
-        "Panel '.ucfirst($plugin)": "Panel '.ucfirst ($ plugin)",
+        "Panel '.ucfirst($plugin)": "Panel '.ucfirst($plugin)",
         "Panel": "Panel",
         ", ": ","
     },

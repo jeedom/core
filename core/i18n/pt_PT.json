@@ -898,8 +898,8 @@
         "Package": "",
         "Type": "Tipo",
         "Status": "Estado",
-        "Voulu par": "",
         "Obligatoire": "",
+        "Voulu par": "",
         "Version": "Versão",
         "Commande": "Ordem",
         "Action": "Ação",
@@ -1684,26 +1684,30 @@
         "Clé Market": "",
         "Clé Market de": "",
         "Clé API pour le plugin": "",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
-        ". L'équipe": "",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Vérifications Système": "",
         "Vérification générale": "",
         "Permet de lancer le test de consistence de Jeedom.": "",
-        "Lancer": "Lançamento",
-        "Administration": "Administração",
-        "Interface d’administration système.": "",
+        "Vérifier": "Verificar",
+        "Ouvrir le log Consistency.": "",
+        "Log": "",
         "Rétablissement des droits des dossiers et fichiers": "",
         "Permet de réappliquer les bons droits sur les fichiers.": "",
-        "Editeur de fichiers": "",
-        "Editeur": "Editor",
-        "Packages": "",
-        "Vérification": "",
-        "Vérifie que les packages necessaire sont bien installé.": "",
-        "Base de données": "Banco de dados",
-        "Interface d’administration de la base de données.": "",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
         "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage": "",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Editeur de fichiers": "",
+        "Ouvrir": "",
+        "Administration Système": "Administração do sistema",
+        "Interface d’administration système.": "",
+        "Administration Base de données": "Banco de dados de administração",
+        "Interface d’administration de la base de données.": "",
         "Utilisateur": "Usuário"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2056,11 +2060,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Vérification": "",
         "Rechercher": "Pesquisa",
         "Tables": "",
         "Taille": "",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Clique em um comando à direita ou digite um comando personalizado abaixo",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Ok"
     },
     "desktop\/php\/cron.php": {
@@ -2240,8 +2243,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Consistance": "",
-        "Droit": "",
         "Rechercher": "Pesquisa",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Ok"
@@ -2426,7 +2427,6 @@
         "Configuration de la commande": "Set Controle"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "",
         "Commande : ": "Comando:"
     },
     "desktop\/js\/message.js": {
@@ -2596,7 +2596,7 @@
         "Binaire": "Binário",
         "Créer virtuel": "Criar virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": ""
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2649,9 +2649,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
         "Celle-ci est classé en dangereuse": "",
-        "Commande : ": "Comando:",
-        "Remise à plat des droits fait avec succès": "",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": ""
+        "Commande : ": "Comando:"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Backup bem-sucedido",

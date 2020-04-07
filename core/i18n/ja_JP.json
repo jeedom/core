@@ -898,8 +898,8 @@
         "Package": "",
         "Type": "タイプ",
         "Status": "ステータス",
-        "Voulu par": "",
         "Obligatoire": "",
+        "Voulu par": "",
         "Version": "バージョン",
         "Commande": "オーダー",
         "Action": "アクション",
@@ -1684,26 +1684,30 @@
         "Clé Market": "主要市場",
         "Clé Market de": "主要市場",
         "Clé API pour le plugin": "プラグインのAPIキー",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "警告：これらの操作は危険です。システムにアクセスできなくなり、",
-        ". L'équipe": "。チーム",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "不適切な取り扱いがあった場合、サポートのリクエストを拒否する権利を留保します。",
+        "Vérifications Système": "",
         "Vérification générale": "一般的な検証",
         "Permet de lancer le test de consistence de Jeedom.": "Jeedom一貫性テストを起動します。",
-        "Lancer": "打ち上げ",
-        "Administration": "行政",
-        "Interface d’administration système.": "システム管理インターフェース。",
+        "Vérifier": "チェック",
+        "Ouvrir le log Consistency.": "",
+        "Log": "ログ",
         "Rétablissement des droits des dossiers et fichiers": "フォルダーとファイルへの権利の復元",
         "Permet de réappliquer les bons droits sur les fichiers.": "ファイルに正しい権利を再適用できます。",
-        "Editeur de fichiers": "ファイルエディター",
-        "Editeur": "出版社",
-        "Packages": "",
-        "Vérification": "検証",
-        "Vérifie que les packages necessaire sont bien installé.": "",
-        "Base de données": "データベース",
-        "Interface d’administration de la base de données.": "データベース管理インターフェース。",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
         "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage": "クリーニング",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "データベース（オブジェクト、コマンド、履歴、その他の無効な情報）をクリーンアップします。",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "警告：これらの操作は危険です。システムにアクセスできなくなり、",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "不適切な取り扱いがあった場合、サポートのリクエストを拒否する権利を留保します。",
+        "Editeur de fichiers": "ファイルエディター",
+        "Ouvrir": "",
+        "Administration Système": "システム管理",
+        "Interface d’administration système.": "システム管理インターフェース。",
+        "Administration Base de données": "管理データベース",
+        "Interface d’administration de la base de données.": "データベース管理インターフェース。",
         "Utilisateur": "ユーザー"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2056,11 +2060,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Vérification": "検証",
         "Rechercher": "検索",
         "Tables": "テーブル",
         "Taille": "サイズ",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "右側の注文をクリックするか、下にカスタム注文を入力してください",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "左側の注文をクリックするか、下にカスタム注文を入力してください",
         "OK": "[OK]を"
     },
     "desktop\/php\/cron.php": {
@@ -2240,8 +2243,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Consistance": "一貫性",
-        "Droit": "右",
         "Rechercher": "検索",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "左側の注文をクリックするか、下にカスタム注文を入力してください",
         "OK": "[OK]を"
@@ -2426,7 +2427,6 @@
         "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "データベース検証",
         "Commande : ": "注文："
     },
     "desktop\/js\/message.js": {
@@ -2596,7 +2596,7 @@
         "Binaire": "バイナリ",
         "Créer virtuel": "仮想作成",
         "Rétablissement des droits d\\'accès effectué avec succès": "正常に復元されたアクセス権",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "検証が実行され、結果のログの一貫性が表示されます。"
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",
@@ -2649,9 +2649,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "このコマンドを実行してよろしいですか：",
         "Celle-ci est classé en dangereuse": "危険に分類されます",
-        "Commande : ": "注文：",
-        "Remise à plat des droits fait avec succès": "正常に平らになる義務",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": "完了した検証の起動、ログの一貫性を確認して結果を確認します"
+        "Commande : ": "注文："
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "成功したバックアップ",

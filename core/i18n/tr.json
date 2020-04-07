@@ -898,8 +898,8 @@
         "Package": "",
         "Type": "Çeşit",
         "Status": "Durum",
-        "Voulu par": "",
         "Obligatoire": "",
+        "Voulu par": "",
         "Version": "Versiyon",
         "Commande": "Komuta",
         "Action": "Eylem",
@@ -1684,26 +1684,30 @@
         "Clé Market": "",
         "Clé Market de": "",
         "Clé API pour le plugin": "",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
-        ". L'équipe": "",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Vérifications Système": "",
         "Vérification générale": "",
         "Permet de lancer le test de consistence de Jeedom.": "",
-        "Lancer": "Başlat",
-        "Administration": "Yönetim",
-        "Interface d’administration système.": "",
+        "Vérifier": "Kontrol et",
+        "Ouvrir le log Consistency.": "",
+        "Log": "",
         "Rétablissement des droits des dossiers et fichiers": "",
         "Permet de réappliquer les bons droits sur les fichiers.": "",
-        "Editeur de fichiers": "",
-        "Editeur": "Yayımcı",
-        "Packages": "",
-        "Vérification": "",
-        "Vérifie que les packages necessaire sont bien installé.": "",
-        "Base de données": "Veri tabanı",
-        "Interface d’administration de la base de données.": "",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
         "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage": "",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "",
+        "Editeur de fichiers": "",
+        "Ouvrir": "",
+        "Administration Système": "Sistem yönetimi",
+        "Interface d’administration système.": "",
+        "Administration Base de données": "Yönetim veritabanı",
+        "Interface d’administration de la base de données.": "",
         "Utilisateur": "Kullanıcı"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2056,11 +2060,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Vérification": "",
         "Rechercher": "Arayın",
         "Tables": "",
         "Taille": "Boyut",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Sağdaki bir komut tıklayın veya aşağıya özel komutu yazın",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Tamam"
     },
     "desktop\/php\/cron.php": {
@@ -2240,8 +2243,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Consistance": "",
-        "Droit": "",
         "Rechercher": "Arayın",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "",
         "OK": "Tamam"
@@ -2426,7 +2427,6 @@
         "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "",
         "Commande : ": "Komuta :"
     },
     "desktop\/js\/message.js": {
@@ -2596,7 +2596,7 @@
         "Binaire": "İkili",
         "Créer virtuel": "Sanal oluşturma",
         "Rétablissement des droits d\\'accès effectué avec succès": "",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": ""
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2649,9 +2649,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
         "Celle-ci est classé en dangereuse": "",
-        "Commande : ": "Komuta :",
-        "Remise à plat des droits fait avec succès": "",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": ""
+        "Commande : ": "Komuta :"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Kayıt başarılı",

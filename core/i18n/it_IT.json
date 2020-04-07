@@ -898,8 +898,8 @@
         "Package": "",
         "Type": "Tipo",
         "Status": "Stato",
-        "Voulu par": "",
         "Obligatoire": "",
+        "Voulu par": "",
         "Version": "Versione",
         "Commande": "Comando",
         "Action": "Azione",
@@ -1684,26 +1684,30 @@
         "Clé Market": "Mercato chiave",
         "Clé Market de": "Mercato chiave di",
         "Clé API pour le plugin": "Chiave API per il plugin",
-        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENZIONE: queste operazioni sono rischiose, potresti perdere l'accesso al tuo sistema e",
-        ". L'équipe": ". il team",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "si riserva il diritto di rifiutare qualsiasi richiesta di supporto in caso di trattamento improprio.",
+        "Vérifications Système": "",
         "Vérification générale": "Verifica generale",
         "Permet de lancer le test de consistence de Jeedom.": "Consente di avviare il test di coerenza Jeedom.",
-        "Lancer": "Avvia",
-        "Administration": "Amministrazione",
-        "Interface d’administration système.": "Interfaccia di amministrazione del sistema.",
+        "Vérifier": "Verifica",
+        "Ouvrir le log Consistency.": "",
+        "Log": "Registro",
         "Rétablissement des droits des dossiers et fichiers": "Ripristino dei diritti su cartelle e file",
         "Permet de réappliquer les bons droits sur les fichiers.": "Consente di riapplicare i diritti corretti ai file.",
-        "Editeur de fichiers": "Editor di file",
-        "Editeur": "Editore",
-        "Packages": "",
-        "Vérification": "Verifica",
-        "Vérifie que les packages necessaire sont bien installé.": "",
-        "Base de données": "Database",
-        "Interface d’administration de la base de données.": "Interfaccia di amministrazione del database.",
+        "Vérification des packages système": "",
+        "Vérifie que les packages nécessaires sont bien installés.": "",
+        "Vérification de la base de données": "",
         "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage": "Pulizia",
+        "Nettoyage de la base de données": "",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Pulisce il database (oggetti, comandi, storie e altre informazioni non valide).",
+        "Outils Système": "",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENZIONE: queste operazioni sono rischiose, potresti perdere l'accesso al tuo sistema e",
+        "L'équipe": "",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "si riserva il diritto di rifiutare qualsiasi richiesta di supporto in caso di trattamento improprio.",
+        "Editeur de fichiers": "Editor di file",
+        "Ouvrir": "",
+        "Administration Système": "L'amministrazione del sistema",
+        "Interface d’administration système.": "Interfaccia di amministrazione del sistema.",
+        "Administration Base de données": "Database di Administration",
+        "Interface d’administration de la base de données.": "Interfaccia di amministrazione del database.",
         "Utilisateur": "Utente"
     },
     "desktop\/php\/dashboardit.php": {
@@ -2056,11 +2060,10 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Vérification": "Verifica",
         "Rechercher": "Ricercare",
         "Tables": "Tabelle",
         "Taille": "Formato",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a destra o digita un ordine personalizzato di seguito",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a sinistra o digita un ordine personalizzato di seguito",
         "OK": "Bene"
     },
     "desktop\/php\/cron.php": {
@@ -2240,8 +2243,6 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Consistance": "Coerenza",
-        "Droit": "Diritto",
         "Rechercher": "Ricercare",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a sinistra o digita un ordine personalizzato di seguito",
         "OK": "Bene"
@@ -2426,7 +2427,6 @@
         "Configuration de la commande": "Impostazione comando"
     },
     "desktop\/js\/database.js": {
-        "Vérification base de données": "Verifica del database",
         "Commande : ": "Comando:"
     },
     "desktop\/js\/message.js": {
@@ -2596,7 +2596,7 @@
         "Binaire": "Binario",
         "Créer virtuel": "Creare virtuale",
         "Rétablissement des droits d\\'accès effectué avec succès": "Diritti di accesso ripristinati correttamente",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "Verifica effettuata, visualizzare la coerenza del registro per il risultato."
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2649,9 +2649,7 @@
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Sei sicuro di voler eseguire questo comando:",
         "Celle-ci est classé en dangereuse": "È classificato come pericoloso",
-        "Commande : ": "Comando:",
-        "Remise à plat des droits fait avec succès": "Dovere appiattimento con successo",
-        "Lance de la vérification fait, voir le log consistency pour voir le résultat": "Avvio della verifica eseguita, vedere la coerenza del registro per vedere il risultato"
+        "Commande : ": "Comando:"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Backup completato correttamente",
