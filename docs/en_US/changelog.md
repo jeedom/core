@@ -5,6 +5,9 @@ Changelog
 =====
 
 - 
+- 
+- Bugfix
+- Updating the doc
 
 
 =====

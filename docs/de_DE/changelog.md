@@ -5,6 +5,9 @@
 =====
 
 - 
+- 
+- Fehlerbehebungen
+- Aktualisieren des Dokuments
 
 
 =====

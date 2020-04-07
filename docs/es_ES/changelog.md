@@ -5,6 +5,9 @@ Cambios
 =====
 
 - 
+- 
+- Correcciones de errores
+- Actualizando el documento
 
 
 =====
