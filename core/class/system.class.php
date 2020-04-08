@@ -1,25 +1,27 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 
 class system {
-
+	
+	private static $_installPackage = array();
+	private static $_packageUpdateMake = false;
 	private static $_distrib = null;
 	private static $_command = array(
 		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
@@ -28,9 +30,9 @@ class system {
 		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'dnf'),
 		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'apt'),
 	);
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function loadCommand() {
 		if (file_exists(__DIR__ . '/../../config/system_cmd.json')) {
 			$content = file_get_contents(__DIR__ . '/../../config/system_cmd.json');
@@ -40,11 +42,11 @@ class system {
 		}
 		return self::$_command;
 	}
-
+	
 	/**
-	 *
-	 * @return string/object self::
-	 */
+	*
+	* @return string/object self::
+	*/
 	public static function getDistrib() {
 		self::loadCommand();
 		if (isset(self::$_command['custom'])) {
@@ -61,7 +63,7 @@ class system {
 		}
 		return self::$_distrib;
 	}
-
+	
 	public static function get($_key = '') {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
@@ -79,14 +81,17 @@ class system {
 		}
 		return $return;
 	}
-
+	
 	public static function getCmdSudo() {
+		if(!class_exists('jeedom')){
+			return 'sudo ';
+		}
 		if (!jeedom::isCapable('sudo')) {
 			return '';
 		}
 		return 'sudo ';
 	}
-
+	
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
@@ -94,7 +99,7 @@ class system {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
 		}
 	}
-
+	
 	public static function ps($_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
@@ -126,7 +131,7 @@ class system {
 					$info[$order[$i]] = trim($value);
 				} else {
 					$info[end($order)] = $info[end($order)] . ' ' . trim($value);
-
+					
 				}
 				$i++;
 			}
@@ -134,7 +139,7 @@ class system {
 		}
 		return $return;
 	}
-
+	
 	public static function kill($_find = '', $_kill9 = true) {
 		if (trim($_find) == '') {
 			return;
@@ -164,7 +169,7 @@ class system {
 		}
 		exec($cmd);
 	}
-
+	
 	public static function php($arguments, $_sudo = false) {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
@@ -185,7 +190,6 @@ class system {
 		}
 		return $arch;
 	}
-	
 	
 	public static function getInstallPackage($_type){
 		if(isset(self::$_installPackage[$_type])){
@@ -209,7 +213,7 @@ class system {
 			$lines = explode("\n",shell_exec('pip2 list --format=columns | tail -n +3'));
 			foreach ($lines as $line) {
 				$infos = array_values(array_filter(explode("  ",$line)));
-				if(!isset($infos[0])){
+				if(!isset($infos[0]) || !isset($infos[1])){
 					continue;
 				}
 				self::$_installPackage[$_type][$infos[0]] = array(
@@ -233,7 +237,7 @@ class system {
 		return self::$_installPackage[$_type];
 	}
 	
-	public static function checkAndInstall($_packages,$_fix = false){
+	public static function checkAndInstall($_packages,$_fix = false,$_foreground = false){
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			$installPackage = self::getInstallPackage($type);
@@ -284,19 +288,31 @@ class system {
 		}
 		$cmd = "set -x\n";
 		$cmd .= " echo '*******************Begin of package installation******************'\n";
-		$cmd .= self::checkInstallationLog();
-		$cmd .= self::getCmdSudo()." apt update\n";
+		if($_foreground){
+			if(self::checkInstallationLog() != ''){
+				echo shell_exec(self::checkInstallationLog().' 2>&1');
+			}
+		}else{
+			$cmd .= self::checkInstallationLog();
+		}
+		if($_foreground){
+			echo shell_exec(self::getCmdSudo()." apt update 2>&1");
+		}else{
+			$cmd .= self::getCmdSudo()." apt update\n";
+		}
+		
 		foreach ($return as $package => $info) {
 			if($info['status'] != 0 || $info['optional']){
 				continue;
 			}
-			switch ($info['type']) {
-				case 'apt':
-				$cmd .= self::installPackage($info['name'])."\n";
-				break;
-				default:
-				break;
+			if($_foreground){
+				echo shell_exec(self::installPackage($info['type'],$info['name']).' 2>&1');
+			}else{
+				$cmd .= self::installPackage($info['type'],$info['name'])."\n";
 			}
+		}
+		if($_foreground){
+			return;
 		}
 		$cmd .= " echo '*******************End of package installation******************'\n";
 		if(file_exists('/tmp/jeedom_fix_package')){
@@ -352,4 +368,5 @@ class system {
 		}
 		return '';
 	}
+	
 }
