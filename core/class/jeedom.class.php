@@ -220,6 +220,15 @@ class jeedom {
 			'key' => 'php::version'
 		);
 		
+		$apaches = count(system::ps('apache2'));
+		$return[] = array(
+			'name' => __('Apache', __FILE__),
+			'state' => ($apaches > 0),
+			'result' => $apaches,
+			'comment' => '',
+			'key' => 'jeedom::version'
+		);
+		
 		$state = true;
 		$version = '';
 		$uname = shell_exec('uname -a');
