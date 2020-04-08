@@ -57,7 +57,7 @@ if (is_array($scenarioListGroup)) {
 				$div .= '<div class="panel panel-default">';
 				$div .= '<div class="panel-heading">';
 				$div .= '<h3 class="panel-title">';
-				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">Aucun - ';
+				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">{{Aucun}} - ';
 				$c = count($scenarios[-1]);
 				$div .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
 				$div .= '</h3>';
