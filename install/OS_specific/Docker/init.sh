@@ -1,11 +1,6 @@
 #!/bin/bash
 echo 'Start init'
 
-if ! [ -f /.dockerinit ]; then
-	touch /.dockerinit
-	chmod 755 /.dockerinit
-fi
-
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else
