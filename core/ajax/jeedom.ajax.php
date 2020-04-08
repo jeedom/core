@@ -154,7 +154,10 @@ try {
 	
 	if (init('action') == 'db') {
 		unautorizedInDemo();
-		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+		$microtime = getmicrotime();
+		$result = array('sql' => DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+		$result['time'] = getmicrotime() - $microtime;
+		ajax::success($result);
 	}
 	
 	if (init('action') == 'dbcorrectTable') {
