@@ -826,7 +826,7 @@ class cmd {
 		return 'cmd';
 	}
 	
-	public function save() {
+	public function save($_direct = false) {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
@@ -852,7 +852,7 @@ class cmd {
 		if($this->getType() == 'action' && $this->getIsHistorized() == 1){
 			$this->setIsHistorized(0);
 		}
-		DB::save($this);
+		DB::save($this,$_direct);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
 			$this->getEqLogic()->refreshWidget();
