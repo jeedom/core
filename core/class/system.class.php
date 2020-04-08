@@ -185,4 +185,171 @@ class system {
 		}
 		return $arch;
 	}
+	
+	
+	public static function getInstallPackage($_type){
+		if(isset(self::$_installPackage[$_type])){
+			return self::$_installPackage[$_type];
+		}
+		self::$_installPackage[$_type] = array();
+		switch ($_type) {
+			case 'apt':
+			$lines = explode("\n",shell_exec('dpkg -l | tail -n +6'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode("  ",$line)));
+				if(!isset($infos[1])){
+					continue;
+				}
+				self::$_installPackage[$_type][$infos[1]] = array(
+					'version' => $infos[2]
+				);
+			}
+			break;
+			case 'pip2':
+			$lines = explode("\n",shell_exec('pip2 list --format=columns | tail -n +3'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode("  ",$line)));
+				if(!isset($infos[0])){
+					continue;
+				}
+				self::$_installPackage[$_type][$infos[0]] = array(
+					'version' => $infos[1]
+				);
+			}
+			break;
+			case 'pip3':
+			$lines = explode("\n",shell_exec('pip3 list --format=columns | tail -n +3'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode("  ",$line)));
+				if(!isset($infos[0])){
+					continue;
+				}
+				self::$_installPackage[$_type][$infos[0]] = array(
+					'version' => $infos[1]
+				);
+			}
+			break;
+		}
+		return self::$_installPackage[$_type];
+	}
+	
+	public static function checkAndInstall($_packages,$_fix = false){
+		$return = array();
+		foreach ($_packages as $type => $value) {
+			$installPackage = self::getInstallPackage($type);
+			foreach ($_packages[$type] as $package => $info) {
+				$found = 0;
+				$alternative_found = '';
+				$version = '';
+				if(isset($installPackage[$package])){
+					$found = 1;
+					$version = $installPackage[$package]['version'];
+				}elseif(isset($info['alternative'])){
+					foreach ($info['alternative'] as $alternative) {
+						if(isset($installPackage[$alternative])){
+							$found = 2;
+							$alternative_found = $alternative;
+							$version = $installPackage[$alternative]['version'];
+							break;
+						}
+						$keys = array_values(preg_grep($alternative, array_keys($installPackage)));
+						if(is_array($keys) && count($keys) > 0){
+							$found = 2;
+							$alternative_found = $keys[0];
+							$version = $installPackage[$keys[0]]['version'];
+							break;
+						}
+					}
+				}
+				$needUpdate = false;
+				if(isset($info['version']) && version_compare($version,$info['version']) < 0){
+					$found = 0;
+					$needUpdate = true;
+				}
+				$return[$type.'::'.$package] = array(
+					'name' => $package,
+					'status' => $found,
+					'version' => $version,
+					'type' => $type,
+					'needUpdate' => $needUpdate,
+					'needVersion' => isset($info['version']) ? $info['version'] : '',
+					'alternative_found' => $alternative_found,
+					'optional' => isset($info['optional']) ? $info['optional'] : false,
+					'fix' => ($found == 0) ?  self::installPackage($type,$package) : ''
+				);
+			}
+		}
+		if(!$_fix){
+			return $return;
+		}
+		$cmd = "set -x\n";
+		$cmd .= " echo '*******************Begin of package installation******************'\n";
+		$cmd .= self::checkInstallationLog();
+		$cmd .= self::getCmdSudo()." apt update\n";
+		foreach ($return as $package => $info) {
+			if($info['status'] != 0 || $info['optional']){
+				continue;
+			}
+			switch ($info['type']) {
+				case 'apt':
+				$cmd .= self::installPackage($info['name'])."\n";
+				break;
+				default:
+				break;
+			}
+		}
+		$cmd .= " echo '*******************End of package installation******************'\n";
+		if(file_exists('/tmp/jeedom_fix_package')){
+			shell_exec(system::getCmdSudo() .' rm /tmp/jeedom_fix_package');
+		}
+		file_put_contents('/tmp/jeedom_fix_package',$cmd);
+		self::launchScriptPackage();
+	}
+	
+	public static function launchScriptPackage(){
+		if(count(self::ps('dpkg')) > 0 || count(self::ps('apt')) > 0){
+			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours',__FILE__));
+		}
+		shell_exec(system::getCmdSudo() .' chmod +x /tmp/jeedom_fix_package');
+		if(class_exists('log')){
+			$log = log::getPathToLog('packages');
+			log::clear('packages');
+		}else{
+			$log = '/tmp/jeedom_fix_package_log';
+		}
+		if (exec('which at | wc -l') == 0) {
+			exec(system::getCmdSudo() . '/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1 &');
+		}else{
+			if(!file_exists($log)){
+				touch($log);
+			}
+			exec('echo "/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1" | '.system::getCmdSudo().' at now');
+		}
+	}
+	
+	public static function installPackage($_type,$_package){
+		switch ($_type) {
+			case 'apt':
+			return self::getCmdSudo().' apt install -y '.$_package;
+			case 'pip2':
+			return self::getCmdSudo().' pip2 install '.$_package;
+			case 'pip3':
+			return self::getCmdSudo().' pip3 install '.$_package;
+		}
+	}
+	
+	public static function checkInstallationLog(){
+		if(class_exists('log')){
+			$log = log::getPathToLog('packages');
+		}else{
+			$log = '/tmp/jeedom_fix_package_log';
+		}
+		if(file_exists($log)){
+			$data = file_get_contents($log);
+			if(strpos($data,'dpkg configure -a')){
+				return "sudo dpkg --configure -a --force-confdef\n";
+			}
+		}
+		return '';
+	}
 }
