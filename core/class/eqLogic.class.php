@@ -114,7 +114,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 	
-	public static function byObjectId($_object_id, $_onlyEnable=true, $_onlyVisible=false, $_eqType_name=null, $_logicalId=null, $_orderByName=false, $_cmd=false) {
+	public static function byObjectId($_object_id, $_onlyEnable=true, $_onlyVisible=false, $_eqType_name=null, $_logicalId=null, $_orderByName=false, $_onlyHasCmds=false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic';
@@ -138,15 +138,15 @@ class eqLogic {
 			$values['logicalId'] = $_logicalId;
 			$sql .= ' AND logicalId=:logicalId';
 		}
-		if ($_cmd !== false) {
+		if ($_onlyHasCmds !== false) {
 			$sql .= ' AND id IN (SELECT eqLogic_id FROM cmd WHERE 1=1';
-				if(is_array($_cmd)){
-				if(isset($_cmd['type'])){
-				$values['cmd_type'] = $_cmd['type'];
+				if(is_array($_onlyHasCmds)){
+				if(isset($_onlyHasCmds['type'])){
+				$values['cmd_type'] = $_onlyHasCmds['type'];
 				$sql .= ' AND type=:cmd_type';
 				}
-				if(isset($_cmd['subType'])){
-				$values['cmd_subType'] = $_cmd['cmd_subType'];
+				if(isset($_onlyHasCmds['subType'])){
+				$values['cmd_subType'] = $_onlyHasCmds['cmd_subType'];
 				$sql .= ' AND subType=:cmd_subType';
 				}
 				}
