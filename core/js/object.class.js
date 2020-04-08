@@ -33,7 +33,7 @@ jeedom.object.getEqLogic = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {
     pre_success: function(data) {
-      jeedom.object.cache.getEqLogic[_params.id] = data.result;
+      jeedom.object.cache.getEqLogic[_params.id+_params.onlyHasCmds] = data.result;
       return data;
     }
   };
@@ -44,8 +44,8 @@ jeedom.object.getEqLogic = function(_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.object.cache.getEqLogic[params.id])) {
-    params.success(jeedom.object.cache.getEqLogic[params.id]);
+  if (isset(jeedom.object.cache.getEqLogic[params.id+_params.onlyHasCmds])) {
+    params.success(jeedom.object.cache.getEqLogic[params.id+_params.onlyHasCmds]);
     return;
   }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
@@ -54,7 +54,8 @@ jeedom.object.getEqLogic = function(_params) {
     action: "listByObject",
     object_id: _params.id,
     onlyEnable: _params.onlyEnable || 0,
-    orderByName : _params.orderByName || 0
+    orderByName : _params.orderByName || 0,
+    onlyHasCmds : _params.onlyHasCmds || 0
   };
   $.ajax(paramsAJAX);
 };

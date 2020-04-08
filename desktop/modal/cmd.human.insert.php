@@ -80,10 +80,11 @@ mod_insertCmd.getSubType = function () {
 	return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-subType');
 }
 
-mod_insertCmd.changeObjectCmd = function (_select) {
-	jeedom.object.getEqLogic({
+mod_insertCmd.changeObjectCmd = function (_select, _options) {
+ 	jeedom.object.getEqLogic({
 		id: _select.value(),
 		orderByName : true,
+		onlyHasCmds : _options.cmd.type,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
 		},
