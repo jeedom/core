@@ -83,6 +83,9 @@ class system {
 	}
 	
 	public static function getCmdSudo() {
+		if(!class_exists('jeedom')){
+			return 'sudo ';
+		}
 		if (!jeedom::isCapable('sudo')) {
 			return '';
 		}
@@ -210,7 +213,7 @@ class system {
 			$lines = explode("\n",shell_exec('pip2 list --format=columns | tail -n +3'));
 			foreach ($lines as $line) {
 				$infos = array_values(array_filter(explode("  ",$line)));
-				if(!isset($infos[0])){
+				if(!isset($infos[0]) || !isset($infos[1])){
 					continue;
 				}
 				self::$_installPackage[$_type][$infos[0]] = array(
@@ -234,7 +237,7 @@ class system {
 		return self::$_installPackage[$_type];
 	}
 	
-	public static function checkAndInstall($_packages,$_fix = false){
+	public static function checkAndInstall($_packages,$_fix = false,$_foreground = false){
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			$installPackage = self::getInstallPackage($type);
@@ -285,19 +288,31 @@ class system {
 		}
 		$cmd = "set -x\n";
 		$cmd .= " echo '*******************Begin of package installation******************'\n";
-		$cmd .= self::checkInstallationLog();
-		$cmd .= self::getCmdSudo()." apt update\n";
+		if($_foreground){
+			if(self::checkInstallationLog() != ''){
+				echo shell_exec(self::checkInstallationLog().' 2>&1');
+			}
+		}else{
+			$cmd .= self::checkInstallationLog();
+		}
+		if($_foreground){
+			echo shell_exec(self::getCmdSudo()." apt update 2>&1");
+		}else{
+			$cmd .= self::getCmdSudo()." apt update\n";
+		}
+		
 		foreach ($return as $package => $info) {
 			if($info['status'] != 0 || $info['optional']){
 				continue;
 			}
-			switch ($info['type']) {
-				case 'apt':
-				$cmd .= self::installPackage($info['name'])."\n";
-				break;
-				default:
-				break;
+			if($_foreground){
+				echo shell_exec(self::installPackage($info['type'],$info['name']).' 2>&1');
+			}else{
+				$cmd .= self::installPackage($info['type'],$info['name'])."\n";
 			}
+		}
+		if($_foreground){
+			return;
 		}
 		$cmd .= " echo '*******************End of package installation******************'\n";
 		if(file_exists('/tmp/jeedom_fix_package')){

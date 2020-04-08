@@ -24,8 +24,7 @@ require_once __DIR__ . '/../core/config/common.config.php';
 require_once __DIR__ . '/../core/class/system.class.php';
 echo "[START CHECK AND FIX PACKAGES]\n";
 try {
-  system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/packages.json'),true),true);
-  echo "Launch of packages installation successfull. Please do 'tail -f /tmp/jeedom_fix_package_log' to follow installation";
+  system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/packages.json'),true),true,true);
 } catch (\Exception $e) {
   echo "***ERREUR*** " . $e->getMessage() . "\n";
 }
