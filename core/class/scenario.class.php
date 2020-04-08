@@ -800,6 +800,7 @@ class scenario {
 			'#version#' => $_version,
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
+			"#group#" => $this->getGroup(),
 		);
 		if ($replace['#height#'] == 'auto') {
 			$replace['#height#'] = '110px';
