@@ -462,6 +462,8 @@ class jeeObject {
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();
 		if (!is_object($father)) {
+			$this->setFather_id(null);
+			$this->save(true);
 			return;
 		}
 		if (in_array($this->getFather_id(), $_fathers)) {
@@ -492,15 +494,14 @@ class jeeObject {
 		}
 	}
 	
-	public function save() {
+	public function save($_direct = false) {
 		if($this->_changed){
 			cache::set('globalSummaryHtmldashboard', '');
 			cache::set('globalSummaryHtmlmobile', '');
 			$this->setCache('summaryHtmldashboard', '');
 			$this->setCache('summaryHtmlmobile', '');
 		}
-		DB::save($this);
-		return true;
+		return DB::save($this, $_direct);
 	}
 	
 	public function getChild($_visible = true) {
