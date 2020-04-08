@@ -138,7 +138,7 @@ class eqLogic {
 			$values['logicalId'] = $_logicalId;
 			$sql .= ' AND logicalId=:logicalId';
 		}
-		if ($_onlyHasCmds) {
+		if ($_onlyHasCmds !== false) {
 			if ($_onlyHasCmds == 'info'){
 				$sql .= ' AND id IN (SELECT eqLogic_id FROM cmd WHERE type="info")';
 			}else if ($_onlyHasCmds == 'action') {
