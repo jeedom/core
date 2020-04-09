@@ -70,6 +70,9 @@
         "Synthèse": "",
         "Accueil": "Домой"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "Нет"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Пусто",
         "Pause": "Пауза",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "обзор",
         "Mes scénarios": "Мои сценарии",
         "Rechercher": "поиск",
+        "Aucun": "Нет",
         "Ajouter bloc": "Добавить блок",
         "Log (Ctrl+l)": "Журнал (Ctrl + l)",
         "Dupliquer": "дубликат",
@@ -1889,7 +1893,6 @@
         "Actif": "активы",
         "Visible": "Видимый",
         "Objet parent": "Родительский объект",
-        "Aucun": "Нет",
         "Log": "журнал",
         "Défaut": "По умолчанию",
         "Temps réel": "Окно событий",
@@ -2107,7 +2110,7 @@
         "Objet": "Объект",
         "Résumé": "Резюме",
         "Nom de l'objet": "Имя объекта",
-        "Père": "Родитель",
+        "Objet parent": "Родительский объект",
         "Aucun": "Нет",
         "Visible": "Видимый",
         "Rendre cet objet visible ou non.": "",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "управляющий набор"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "команда:"
+        "Commande : ": "команда:",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": ""
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "Операция не удалась"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "Нет",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Предупреждение об оставлении страницы с несохраненными измененными данными. Вы хотите продолжить?",
         "Scénario": "Сценарий",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Вы уверены, что хотите удалить сценарий?",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "версия Jeedom",
         "Version PHP": "PHP версия",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "",
+        "Apache": "",
         "Version OS": "версия ОС",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "",
         "Version database": "базы данных версии",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "",
         "La commande cible n\\'est pas de type info": "",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": ""
     },
     "core\/class\/user.class.php": {

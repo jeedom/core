@@ -51,6 +51,7 @@
 - WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
 - WebApp : .
 - WebApp : .
+- WebApp : .
 - WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.

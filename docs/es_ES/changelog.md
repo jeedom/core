@@ -51,6 +51,7 @@ Cambios
 - Aplicación web : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
 - Aplicación web : .
 - Aplicación web : .
+- Aplicación web : .
 - Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.

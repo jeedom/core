@@ -70,6 +70,9 @@
         "Synthèse": "合成",
         "Accueil": "家庭"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "何でもありません"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "空",
         "Pause": "休止",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "概要",
         "Mes scénarios": "私のシナリオ",
         "Rechercher": "検索",
+        "Aucun": "何でもありません",
         "Ajouter bloc": "ブロックを追加",
         "Log (Ctrl+l)": "ログ（Ctrl + l）",
         "Dupliquer": "重複",
@@ -1889,7 +1893,6 @@
         "Actif": "財産",
         "Visible": "目に見えます",
         "Objet parent": "親オブジェクト",
-        "Aucun": "何でもありません",
         "Log": "ログ",
         "Défaut": "欠陥",
         "Temps réel": "実時間",
@@ -2107,7 +2110,7 @@
         "Objet": "オブジェクト",
         "Résumé": "概要",
         "Nom de l'objet": "オブジェクト名",
-        "Père": "父",
+        "Objet parent": "親オブジェクト",
         "Aucun": "何でもありません",
         "Visible": "目に見えます",
         "Rendre cet objet visible ou non.": "このオブジェクトを表示するかどうか。",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "注文："
+        "Commande : ": "注文：",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": "メッセージセンター"
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "操作に失敗しました"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "何でもありません",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Scénario": "シナリオ",
         "Êtes-vous sûr de vouloir supprimer le scénario": "シナリオを削除してもよろしいですか",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "バージョンJeedom",
         "Version PHP": "PHPのバージョン",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "",
+        "Apache": "",
         "Version OS": "OSのバージョン",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "",
         "Version database": "バージョンデータベース",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "",
         "La commande cible n\\'est pas de type info": "",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": "注文が見つかりません："
     },
     "core\/class\/user.class.php": {

@@ -70,6 +70,9 @@
         "Synthèse": "Synthesis",
         "Accueil": "Home"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "None"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
         "Pause": "Pause",
@@ -1405,7 +1408,7 @@
         "Japonais (pas de support)": "Japanese (no support)",
         "Indonesien (pas de support)": "Indonesian (no support)",
         "Turque (pas de support)": "Turkish (no support)",
-        "Moteur TTS": "",
+        "Moteur TTS": "TTS engine",
         "Plugin": "Plugin",
         "Date et heure": "Date and time",
         "Fuseau horaire de votre": "Timezone of your",
@@ -1684,26 +1687,26 @@
         "Clé Market": "Key Market",
         "Clé Market de": "Key Market of",
         "Clé API pour le plugin": "API key for the plugin",
-        "Vérifications Système": "",
+        "Vérifications Système": "System Checks",
         "Vérification générale": "General verification",
         "Permet de lancer le test de consistence de Jeedom.": "Lets launch the Jeedom consistency test.",
         "Vérifier": "Check",
-        "Ouvrir le log Consistency.": "",
+        "Ouvrir le log Consistency.": "Open Consistency log",
         "Log": "Log",
         "Rétablissement des droits des dossiers et fichiers": "Restoring rights to folders and files",
         "Permet de réappliquer les bons droits sur les fichiers.": "Enables you to reapply the correct rights to the files.",
-        "Vérification des packages système": "",
-        "Vérifie que les packages nécessaires sont bien installés.": "",
-        "Vérification de la base de données": "",
-        "Vérifie que la base de données est conforme à ce qui est attendu.": "",
-        "Nettoyage de la base de données": "",
+        "Vérification des packages système": "Checking system packages",
+        "Vérifie que les packages nécessaires sont bien installés.": "Checks that the necessary packages are installed.",
+        "Vérification de la base de données": "Database verification",
+        "Vérifie que la base de données est conforme à ce qui est attendu.": "Checks that the database is conform.",
+        "Nettoyage de la base de données": "Database cleanup",
         "Nettoie la base de données (objets, commandes, historiques et autres informations non valides).": "Cleans up the database (objects, commands, histories and other invalid information).",
-        "Outils Système": "",
+        "Outils Système": "System Tools",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "WARNING : these operations are risky, you may lose access to your system and to",
-        "L'équipe": "",
+        "L'équipe": "Team",
         "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "Team reserves the right to refuse any Support Request in case of mishandling",
         "Editeur de fichiers": "File Editor",
-        "Ouvrir": "",
+        "Ouvrir": "Open",
         "Administration Système": "System Administration",
         "Interface d’administration système.": "System administration interface.",
         "Administration Base de données": "Database Administration",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "Overview",
         "Mes scénarios": "My scenarios",
         "Rechercher": "Search",
+        "Aucun": "None",
         "Ajouter bloc": "Add block",
         "Log (Ctrl+l)": "Log (Ctrl + l)",
         "Dupliquer": "Duplicate",
@@ -1889,7 +1893,6 @@
         "Actif": "Active",
         "Visible": "Visible",
         "Objet parent": "Parent object",
-        "Aucun": "None",
         "Log": "Log",
         "Défaut": "Default",
         "Temps réel": "Real time",
@@ -2107,7 +2110,7 @@
         "Objet": "Object",
         "Résumé": "Summary",
         "Nom de l'objet": "Object name",
-        "Père": "Parent object",
+        "Objet parent": "Parent object",
         "Aucun": "None",
         "Visible": "Visible",
         "Rendre cet objet visible ou non.": "Make this object visible or not.",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "Ordered :"
+        "Commande : ": "Ordered :",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": "Message Center"
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "Operation failed"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "None",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
         "Scénario": "Scenario",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Are you sure you want to delete the scenario",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "Jeedom version",
         "Version PHP": "PHP version",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "If you are in version 5.4.x we will tell you when version 5.5 will be mandatory",
+        "Apache": "",
         "Version OS": "OS version",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "You are not on an OS officially supported by the Jeedom team (any request for support may therefore be refused). The officially supported OS are Debian Jessie and Debian Strech (see <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">here<\/a> )",
         "Version database": "Database version",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "The target command does not exist:",
         "La commande cible n\\'est pas de type info": "The target command is not of type info",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "The subtype of the target command is not the same as that of the source command",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": "Order not found:"
     },
     "core\/class\/user.class.php": {

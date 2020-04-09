@@ -70,6 +70,9 @@
         "Synthèse": "Synthese",
         "Accueil": "Mein Haus"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "Ohne"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Leeren",
         "Pause": "Pause",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "Übersicht",
         "Mes scénarios": "Meine Szenarien",
         "Rechercher": "Suchen nach",
+        "Aucun": "Ohne",
         "Ajouter bloc": "Block hinzufügen",
         "Log (Ctrl+l)": "Protokoll (Strg + l)",
         "Dupliquer": "Duplikat",
@@ -1889,7 +1893,6 @@
         "Actif": "Aktiva",
         "Visible": "Sichtbar",
         "Objet parent": "Übergeordnetes Objekt",
-        "Aucun": "Ohne",
         "Log": "Log",
         "Défaut": "Standard",
         "Temps réel": "Echtzeit",
@@ -2107,7 +2110,7 @@
         "Objet": "Objekt",
         "Résumé": "Zusammenfassung",
         "Nom de l'objet": "Objektname",
-        "Père": "Vater",
+        "Objet parent": "Übergeordnetes Objekt",
         "Aucun": "Ohne",
         "Visible": "Sichtbar",
         "Rendre cet objet visible ou non.": "Machen Sie dieses Objekt sichtbar oder nicht.",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "Bestellung:"
+        "Commande : ": "Bestellung:",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": "Nachrichtencenter"
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "Operation fehlgeschlagen"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "Ohne",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
         "Scénario": "Szenario",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Möchten Sie das Szenario wirklich löschen?",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "Jeedom Version",
         "Version PHP": "PHP-Version",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "Wenn Sie sich in Version 5.4.x befinden, teilen wir Ihnen mit, wann Version 5.5 obligatorisch ist",
+        "Apache": "",
         "Version OS": "Betriebssystemversion",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "Sie befinden sich nicht in einem Betriebssystem, das offiziell vom Jeedom-Team unterstützt wird (Supportanfragen können daher abgelehnt werden). Das offiziell unterstützte Betriebssystem sind Debian Jessie und Debian Strech (siehe <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">hier<\/a> )",
         "Version database": "Datenbankversion",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "Der Zielbefehl existiert nicht:",
         "La commande cible n\\'est pas de type info": "Der Zielbefehl ist nicht vom Typ info",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "Der Subtyp des Zielbefehls ist nicht der gleiche wie der des Quellbefehls",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": "Bestellung nicht gefunden:"
     },
     "core\/class\/user.class.php": {

@@ -70,6 +70,9 @@
         "Synthèse": "Sentez",
         "Accueil": "Ana sayfa"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "Hiçbir"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Boşalt",
         "Pause": "Durdur",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "Genel görünüm",
         "Mes scénarios": "Senaryolarım",
         "Rechercher": "Arayın",
+        "Aucun": "Hiçbir",
         "Ajouter bloc": "Blok ekleyin",
         "Log (Ctrl+l)": "",
         "Dupliquer": "Kopyala",
@@ -1889,7 +1893,6 @@
         "Actif": "Varlıklar",
         "Visible": "Görülebilir",
         "Objet parent": "Üst nesne",
-        "Aucun": "Hiçbir",
         "Log": "",
         "Défaut": "Varsayılan",
         "Temps réel": "Gerçek zaman",
@@ -2107,7 +2110,7 @@
         "Objet": "Konu",
         "Résumé": "Özet",
         "Nom de l'objet": "Nesne ismi",
-        "Père": "Baba",
+        "Objet parent": "Üst nesne",
         "Aucun": "Hiçbir",
         "Visible": "Görülebilir",
         "Rendre cet objet visible ou non.": "",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "Komuta :"
+        "Commande : ": "Komuta :",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": ""
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "Operasyon başarılamadı"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "Hiçbir",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Scénario": "Senaryo",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Senaryoyu silmek istemenizden eminmisiniz",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "Jeedom versiyonu",
         "Version PHP": "PHP sürümü",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "5.4.x sürümündeyseniz, 5.5 sürümünün ne zaman zorunlu olacağını size söyleyeceğiz",
+        "Apache": "",
         "Version OS": "İşletim sistemi sürümü",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "Jeedom ekibi tarafından resmi olarak desteklenen bir işletim sisteminde değilsiniz (bu nedenle herhangi bir destek talebi reddedilebilir). Resmi olarak desteklenen işletim sistemi Debian Jessie ve Debian Strech'tir ( <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">buraya<\/a> bakınız)",
         "Version database": "Veritabanı sürümü",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "Target komutu mevcut değil:",
         "La commande cible n\\'est pas de type info": "Target komutu tür bilgisi değil",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "Target komutunun alt türü, source komutunun alt türü ile aynı değil",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": "Sipariş bulunamadı:"
     },
     "core\/class\/user.class.php": {
