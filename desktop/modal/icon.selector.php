@@ -133,7 +133,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
-				$echo .= '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
+				$echo .= '<div class="iconCategory"><legend>' . str_replace('/', '', $dir) . '</legend>';
 
 				$number = 1;
 				foreach ($matches as $match) {

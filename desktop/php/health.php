@@ -81,7 +81,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
 			$html .= '{{Configuration démon}}';
 			if ($deamon_info['launchable_message'] != '') {
-				$html .= ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$deamon_info['launchable_message'].'}}"></i></sup>';
+				$html .= ' <sup><i class="fas fa-question-circle tooltips" title="'.$deamon_info['launchable_message'].'"></i></sup>';
 			}
 			$html .= '</td>';
 			switch ($deamon_info['launchable']) {
@@ -129,7 +129,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
 				$html .= $result['test'];
 				if ($result['advice'] != '') {
-					$html .= ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$result['advice'].'}}"></i></sup>';
+					$html .= ' <sup><i class="fas fa-question-circle tooltips" title="'.$result['advice'].'"></i></sup>';
 				}
 				$html .= '</td>';
 				if ($result['state']) {
@@ -203,7 +203,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 							echo '<td style="font-weight:bold;text-align:right;padding-right:12px;width:20%;">';
 							echo $datas['name'];
 							if ($datas['comment'] != '') {
-								echo ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$datas['comment'].'}}"></i></sup>';
+								echo ' <sup><i class="fas fa-question-circle tooltips" title="'.$datas['comment'].'"></i></sup>';
 							}
 							echo '</td>';
 							if ($datas['state'] === 2) {
