@@ -70,6 +70,9 @@
         "Synthèse": "",
         "Accueil": "Rumah"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "Tak ada"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Abisin",
         "Pause": "Berhenti Sebentar",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "Ikhtisar",
         "Mes scénarios": "Skrip saya",
         "Rechercher": "Pencarian",
+        "Aucun": "Tak ada",
         "Ajouter bloc": "Menambahkan blok",
         "Log (Ctrl+l)": "",
         "Dupliquer": "Duplikat",
@@ -1889,7 +1893,6 @@
         "Actif": "Aktiva",
         "Visible": "Terlihat",
         "Objet parent": "Objek induk",
-        "Aucun": "Tak ada",
         "Log": "",
         "Défaut": "Kesalahan",
         "Temps réel": "Real time",
@@ -2107,7 +2110,7 @@
         "Objet": "Item",
         "Résumé": "Ringkasan",
         "Nom de l'objet": "Nama obyek",
-        "Père": "Bapa",
+        "Objet parent": "Objek induk",
         "Aucun": "Tak ada",
         "Visible": "Terlihat",
         "Rendre cet objet visible ou non.": "",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "Set Kontrol"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "Perintah:"
+        "Commande : ": "Perintah:",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": ""
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "Operasi L \\' gagal"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "Tak ada",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Scénario": "Skenario",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Apakah Anda yakin ingin menghapus skenario",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "Versi Jeedom",
         "Version PHP": "Versi PHP",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "",
+        "Apache": "",
         "Version OS": "Versi OS",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "",
         "Version database": "Database versi",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "",
         "La commande cible n\\'est pas de type info": "",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": ""
     },
     "core\/class\/user.class.php": {

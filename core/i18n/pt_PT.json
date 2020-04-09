@@ -70,6 +70,9 @@
         "Synthèse": "",
         "Accueil": "Home"
     },
+    "mobile\/js\/scenario.js": {
+        "Aucun": "Nemhum"
+    },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Vazio",
         "Pause": "Pausa",
@@ -1866,6 +1869,7 @@
         "Vue d'ensemble": "Visão global",
         "Mes scénarios": "Meus scripts",
         "Rechercher": "Pesquisa",
+        "Aucun": "Nemhum",
         "Ajouter bloc": "Adicionar bloco",
         "Log (Ctrl+l)": "",
         "Dupliquer": "Duplicar",
@@ -1889,7 +1893,6 @@
         "Actif": "Ativos",
         "Visible": "Visivél",
         "Objet parent": "Objeto pai",
-        "Aucun": "Nemhum",
         "Log": "",
         "Défaut": "Falha",
         "Temps réel": "Tempo real",
@@ -2107,7 +2110,7 @@
         "Objet": "Objeto",
         "Résumé": "Resumo",
         "Nom de l'objet": "Nome do objeto",
-        "Père": "Pai",
+        "Objet parent": "Objeto pai",
         "Aucun": "Nemhum",
         "Visible": "Visivél",
         "Rendre cet objet visible ou non.": "",
@@ -2427,7 +2430,8 @@
         "Configuration de la commande": "Set Controle"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "Comando:"
+        "Commande : ": "Comando:",
+        "Temps d\\'éxécution": ""
     },
     "desktop\/js\/message.js": {
         "Centre de Messages": ""
@@ -2669,6 +2673,7 @@
         "L\\'opération a échoué": "Operação de L \\ 'falhou"
     },
     "desktop\/js\/scenario.js": {
+        "Aucun": "Nemhum",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Scénario": "Cenas",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Tem certeza de que deseja excluir o cenário",
@@ -3387,6 +3392,7 @@
         "Version Jeedom": "Versão Jeedom",
         "Version PHP": "Versão do PHP",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "",
+        "Apache": "",
         "Version OS": "Versão do SO",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "",
         "Version database": "Banco de dados versão",
@@ -3484,6 +3490,7 @@
         "La commande cible n\\'existe pas :": "",
         "La commande cible n\\'est pas de type info": "",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "",
+        "Erreur l\\'archivage des historiques :": "",
         "Commande introuvable : ": ""
     },
     "core\/class\/user.class.php": {
