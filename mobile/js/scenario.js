@@ -23,15 +23,38 @@ function initScenario() {
       //set each group:
       var fullDiv = ''
       scenarioGroups.forEach(function(group) {
-        fullDiv += '<legend class="toggleShowGroup cursor">'+group+'</legend>'
-        fullDiv += '<div class="groupContainer" style="display:none">'
+        if (group != '{{Aucun}}') {
+          return
+        }
+        var inner = ''
+        var nbr = 0
         htmls.forEach(function(html) {
-          if ($(html).data('group').toLowerCase() == group.toLowerCase()) {
-            fullDiv += "\n"+html
-          } else if ($(html).data('group') == "" && group == '{{Aucun}}') {
-            fullDiv += "\n"+html
+          if ($(html).data('group') == "") {
+            inner += "\n"+html
+            nbr += 1
           }
         })
+        fullDiv += '<legend class="toggleShowGroup cursor">' + group + ' <sup>('+nbr+')</sup></legend>'
+        fullDiv += '<div class="groupContainer" style="display:none">'
+        fullDiv += inner
+        fullDiv += '\n</div>'
+      })
+
+      scenarioGroups.forEach(function(group) {
+        if (group == '{{Aucun}}') {
+          return
+        }
+        var inner = ''
+        var nbr = 0
+        htmls.forEach(function(html) {
+          if ($(html).data('group').toLowerCase() == group.toLowerCase()) {
+            inner += "\n"+html
+            nbr += 1
+          }
+        })
+        fullDiv += '<legend class="toggleShowGroup cursor">' + group + ' <sup>('+nbr+')</sup></legend>'
+        fullDiv += '<div class="groupContainer" style="display:none">'
+        fullDiv += inner
         fullDiv += '\n</div>'
       })
 
