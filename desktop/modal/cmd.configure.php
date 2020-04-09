@@ -539,7 +539,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           $form .= '<legend>';
           if($value['name'] == 'Warning'){
             $form .= '<i class="fas fa-exclamation"></i>';
-          }elseif ($value['name'] == 'Danger') {
+          } elseif ($value['name'] == 'Danger') {
             $form .= '<i class="fas fa-exclamation-triangle"></i>';
           }
           $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
