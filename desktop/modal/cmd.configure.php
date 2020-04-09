@@ -664,7 +664,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                               continue;
                             }
                             if ($key == 0) {
-                              $display .= '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+                              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
                             }
                             if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
                               $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
