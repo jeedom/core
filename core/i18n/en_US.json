@@ -1130,7 +1130,7 @@
         "Bas Gauche": "Bottom Left",
         "Bas Droite": "Bottom Right",
         "Information binaire": "Binary information",
-        "Action on": "",
+        "Action on": "On action",
         "Action off": "Off action",
         "Sélectionner un mot-clé": "Select a keyword"
     },
@@ -3360,7 +3360,7 @@
         "La commande cible n\\'existe pas :": "The target command does not exist:",
         "La commande cible n\\'est pas de type info": "The target command is not of type info",
         "Le sous-type de la commande cible n\\'est pas le même que celui de la commande source": "The subtype of the target command is not the same as that of the source command",
-        "Erreur l\\'archivage des historiques :": "",
+        "Erreur l\\'archivage des historiques :": "Error archiving histories:",
         "Commande introuvable : ": "Order not found:"
     },
     "core\/class\/user.class.php": {
@@ -3405,7 +3405,7 @@
         "Vue :": "View :"
     },
     "core\/class\/system.class.php": {
-        "Installation de package impossible car il y a déjà une installation en cours": ""
+        "Installation de package impossible car il y a déjà une installation en cours": "Can't install package, another installation running"
     },
     "core\/class\/scenarioElement.class.php": {
         "Elément inconnu. Vérifiez l\\'ID : ": "Unknown item. Check the ID:",
