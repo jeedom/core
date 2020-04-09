@@ -309,105 +309,104 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
-					'binary' => array(
-						'name' => __('Binaire',__FILE__),
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => false)),
-							'unite' => array('visible' => false),
-							'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
-							'display' => array(
-								'invertBinary' => array('visible' => true, 'parentVisible' => true),
-								'icon' => array('visible' => true, 'parentVisible' => true),
-							),
-						),
-						'string' => array(
-							'name' => __('Autre',__FILE__),
-							'configuration' => array(
-								'minValue' => array('visible' => false),
-								'maxValue' => array('visible' => false),
-								'listValue' => array('visible' => false)),
-								'unite' => array('visible' => true),
-								'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
-								'display' => array(
-									'invertBinary' => array('visible' => false),
-									'icon' => array('visible' => true, 'parentVisible' => true),
-								),
-							),
+				'binary' => array(
+					'name' => __('Binaire',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => false),
+						'maxValue' => array('visible' => false),
+						'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => true, 'parentVisible' => true),
+							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
-					'action' => array(
-						'name' => __('Action',__FILE__),
-						'subtype' => array(
-							'other' => array(
-								'name' => __('Défaut',__FILE__),
-								'configuration' => array(
-									'minValue' => array('visible' => false),
-									'maxValue' => array('visible' => false),
-									'listValue' => array('visible' => false)),
-									'unite' => array('visible' => false),
-									'isHistorized' => array('visible' => false),
-									'display' => array(
-										'invertBinary' => array('visible' => false),
-										'icon' => array('visible' => true, 'parentVisible' => true),
-									),
-								),
-								'slider' => array(
-									'name' => __('Curseur',__FILE__),
-									'configuration' => array(
-										'minValue' => array('visible' => true),
-										'maxValue' => array('visible' => true),
-										'listValue' => array('visible' => false)),
-										'unite' => array('visible' => false),
-										'isHistorized' => array('visible' => false),
-										'display' => array(
-											'invertBinary' => array('visible' => false),
-											'icon' => array('visible' => true, 'parentVisible' => true),
-										),
-									),
-									'message' => array(
-										'name' => __('Message',__FILE__),
-										'configuration' => array(
-											'minValue' => array('visible' => false),
-											'maxValue' => array('visible' => false),
-											'listValue' => array('visible' => false)),
-											'unite' => array('visible' => false),
-											'isHistorized' => array('visible' => false),
-											'display' => array(
-												'invertBinary' => array('visible' => false),
-												'icon' => array('visible' => true, 'parentVisible' => true),
-											),
-										),
-										'color' => array(
-											'name' => __('Couleur',__FILE__),
-											'configuration' => array(
-												'minValue' => array('visible' => false),
-												'maxValue' => array('visible' => false),
-												'listValue' => array('visible' => false)),
-												'unite' => array('visible' => false),
-												'isHistorized' => array('visible' => false),
-												'display' => array(
-													'invertBinary' => array('visible' => false),
-													'icon' => array('visible' => true, 'parentVisible' => true),
-												),
-											),
-											'select' => array(
-												'name' => __('Liste',__FILE__),
-												'configuration' => array(
-													'minValue' => array('visible' => false),
-													'maxValue' => array('visible' => false),
-													'listValue' => array('visible' => true)),
-													'unite' => array('visible' => false),
-													'isHistorized' => array('visible' => false),
-													'display' => array(
-														'invertBinary' => array('visible' => false),
-														'icon' => array('visible' => true, 'parentVisible' => true),
-													),
-												),
-											),
-										),
-									),
-								),
-							);
-
+				'string' => array(
+					'name' => __('Autre',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => false),
+						'maxValue' => array('visible' => false),
+						'listValue' => array('visible' => false)),
+						'unite' => array('visible' => true),
+						'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+				),
+		),
+		'action' => array(
+			'name' => __('Action',__FILE__),
+			'subtype' => array(
+				'other' => array(
+					'name' => __('Défaut',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => false),
+						'maxValue' => array('visible' => false),
+						'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+				'slider' => array(
+					'name' => __('Curseur',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => true),
+						'maxValue' => array('visible' => true),
+						'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+				'message' => array(
+					'name' => __('Message',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => false),
+						'maxValue' => array('visible' => false),
+						'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+				'color' => array(
+					'name' => __('Couleur',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => false),
+						'maxValue' => array('visible' => false),
+						'listValue' => array('visible' => false)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+				'select' => array(
+					'name' => __('Liste',__FILE__),
+					'configuration' => array(
+						'minValue' => array('visible' => false),
+						'maxValue' => array('visible' => false),
+						'listValue' => array('visible' => true)),
+						'unite' => array('visible' => false),
+						'isHistorized' => array('visible' => false),
+						'display' => array(
+							'invertBinary' => array('visible' => false),
+							'icon' => array('visible' => true, 'parentVisible' => true),
+						),
+					),
+				),
+			),
+		),
+	),
+);
