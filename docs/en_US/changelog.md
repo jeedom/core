@@ -50,6 +50,8 @@ Changelog
 - WebApp : We can now select / copy part of a log.
 - WebApp : On the search in a log, addition of an x button to cancel the search.
 - WebApp : .
+- WebApp : .
+- WebApp : .
 - WebApp : Many bug-fix (UI, portrait / landscape iOS, etc.).
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.

@@ -168,7 +168,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 							<?php
 							$display = '';
 							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								$display .= '<th style="width:20%">{{' . $value['name'] . '}}';
+								$display .= '<th style="width:20%">' . $value['name'] . '';
 								$display .= '</th>';
 							}
 							echo $display;

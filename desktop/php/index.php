@@ -64,7 +64,7 @@ if (init('rescue', 0) == 0) {
 		foreach ($categories as $cat) {
 			$name = $cat[0];
 			$icon = $cat[1];
-			$plugin_menu .= '<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
+			$plugin_menu .= '<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas ' . $icon . '"></i> ' . $name . '</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
@@ -99,7 +99,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-	
+
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -216,9 +216,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-	
+
 	setTheme();
-	
+
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -523,4 +523,3 @@ function setTheme() {
 		?>
 	</body>
 	</html>
-	

@@ -31,12 +31,7 @@ if (!isset(jeedom.object.cache.byId)) {
 
 jeedom.object.getEqLogic = function(_params) {
   var paramsRequired = ['id'];
-  var paramsSpecifics = {
-    pre_success: function(data) {
-      jeedom.object.cache.getEqLogic[_params.id] = data.result;
-      return data;
-    }
-  };
+  var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -44,17 +39,14 @@ jeedom.object.getEqLogic = function(_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.object.cache.getEqLogic[params.id])) {
-    params.success(jeedom.object.cache.getEqLogic[params.id]);
-    return;
-  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: "listByObject",
     object_id: _params.id,
     onlyEnable: _params.onlyEnable || 0,
-    orderByName : _params.orderByName || 0
+    orderByName : _params.orderByName || 0,
+    onlyHasCmds : json_encode(_params.onlyHasCmds) || 0
   };
   $.ajax(paramsAJAX);
 };

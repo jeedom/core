@@ -155,7 +155,7 @@ $(function(){
         for(i=0; i<scenarios.length; i++){
           group = scenarios[i].group
           if (group == null) continue
-          if (group == "") group = 'Aucun'
+          if (group == "") group = '{{Aucun}}'
           group = group[0].toUpperCase() + group.slice(1)
           scenarioGroups.push(group)
         }
@@ -170,7 +170,7 @@ $(function(){
             sc = scenarios[j]
             scGroup = sc.group
             if (scGroup == null) continue
-            if (scGroup == "") scGroup = 'Aucun'
+            if (scGroup == "") scGroup = '{{Aucun}}'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
             scenarioList[group].push([sc.name, sc.id])
           }

@@ -79,7 +79,7 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{Père}}</label>
+							<label class="col-lg-2 col-xs-4 control-label">{{Objet parent}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-7">
 								<select class="form-control objectAttr" data-l1key="father_id">
 									<option value="">{{Aucun}}</option>

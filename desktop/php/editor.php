@@ -67,7 +67,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 					<select  id="sel_widgetType">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</option>';
+							echo '<option value="'.$key.'"><a>'.$value['name'].'</option>';
 						}
 						?>
 					</select>
@@ -81,7 +81,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 							<?php
 							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
 								foreach ($value['subtype'] as $skey => $svalue) {
-									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
+									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>'.$svalue['name'].'</option>';
 								}
 							}
 							?>
