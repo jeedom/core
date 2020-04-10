@@ -664,15 +664,6 @@ class repo_market {
 		}
 	}
 	
-	public static function sendTunnelClientId($_client_id) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('service::tunnel::setClientId',array('client_id' => $_client_id))) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-	
 	public static function getPurchaseInfo() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('purchase::getInfo')) {
@@ -765,12 +756,6 @@ class repo_market {
 			}
 			if (isset($_result['service::backup::enable']) && config::byKey('service::backup::enable') != $_result['service::backup::enable']) {
 				config::save('service::backup::enable', $_result['service::backup::enable']);
-			}
-			if (isset($_result['service::tunnel::enable']) && config::byKey('service::tunnel::enable') != $_result['service::tunnel::enable']) {
-				config::save('service::tunnel::enable', $_result['service::tunnel::enable']);
-			}
-			if (isset($_result['service::tunnel::host']) && config::byKey('service::tunnel::host') != $_result['service::tunnel::host']) {
-				config::save('service::tunnel::host', $_result['service::tunnel::host']);
 			}
 			if (isset($_result['register::id']) && config::byKey('register::id') != $_result['register::id']) {
 				config::save('register::id', $_result['register::id']);
