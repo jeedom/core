@@ -1446,6 +1446,9 @@ button .fas.fa-plus-circle {
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
 }
+#in_testExpression {
+  font-size: 14px !important;
+}
 
 .highcharts-button-disabled{
   display: none !important;
