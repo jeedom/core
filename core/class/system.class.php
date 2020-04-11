@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 
 class system {
-
+	
 	private static $_installPackage = array();
 	private static $_packageUpdateMake = false;
 	private static $_distrib = null;
@@ -30,9 +30,9 @@ class system {
 		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'dnf'),
 		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'apt'),
 	);
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function loadCommand() {
 		if (file_exists(__DIR__ . '/../../config/system_cmd.json')) {
 			$content = file_get_contents(__DIR__ . '/../../config/system_cmd.json');
@@ -42,7 +42,7 @@ class system {
 		}
 		return self::$_command;
 	}
-
+	
 	/**
 	*
 	* @return string/object self::
@@ -63,7 +63,7 @@ class system {
 		}
 		return self::$_distrib;
 	}
-
+	
 	public static function get($_key = '') {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
@@ -81,14 +81,17 @@ class system {
 		}
 		return $return;
 	}
-
+	
 	public static function getCmdSudo() {
+		if(!class_exists('jeedom')){
+			return 'sudo ';
+		}
 		if (!jeedom::isCapable('sudo')) {
 			return '';
 		}
 		return 'sudo ';
 	}
-
+	
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
@@ -96,7 +99,7 @@ class system {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
 		}
 	}
-
+	
 	public static function ps($_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
@@ -128,7 +131,7 @@ class system {
 					$info[$order[$i]] = trim($value);
 				} else {
 					$info[end($order)] = $info[end($order)] . ' ' . trim($value);
-
+					
 				}
 				$i++;
 			}
@@ -136,7 +139,7 @@ class system {
 		}
 		return $return;
 	}
-
+	
 	public static function kill($_find = '', $_kill9 = true) {
 		if (trim($_find) == '') {
 			return;
@@ -166,14 +169,14 @@ class system {
 		}
 		exec($cmd);
 	}
-
+	
 	public static function php($arguments, $_sudo = false) {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
 		}
 		return exec('php ' . $arguments);
 	}
-
+	
 	public static function getArch(){
 		$arch = php_uname('m');
 		if($arch == 'x86_64'){
@@ -187,7 +190,7 @@ class system {
 		}
 		return $arch;
 	}
-
+	
 	public static function getInstallPackage($_type){
 		if(isset(self::$_installPackage[$_type])){
 			return self::$_installPackage[$_type];
@@ -210,7 +213,7 @@ class system {
 			$lines = explode("\n",shell_exec('pip2 list --format=columns | tail -n +3'));
 			foreach ($lines as $line) {
 				$infos = array_values(array_filter(explode("  ",$line)));
-				if(!isset($infos[0])){
+				if(!isset($infos[0]) || !isset($infos[1])){
 					continue;
 				}
 				self::$_installPackage[$_type][$infos[0]] = array(
@@ -233,14 +236,14 @@ class system {
 		}
 		return self::$_installPackage[$_type];
 	}
-
-	public static function checkAndInstall($_packages,$_fix = false){
+	
+	public static function checkAndInstall($_packages,$_fix = false,$_foreground = false){
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			$installPackage = self::getInstallPackage($type);
 			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
-				$optional_found = '';
+				$alternative_found = '';
 				$version = '';
 				if(isset($installPackage[$package])){
 					$found = 1;
@@ -285,19 +288,31 @@ class system {
 		}
 		$cmd = "set -x\n";
 		$cmd .= " echo '*******************Begin of package installation******************'\n";
-		$cmd .= self::checkInstallationLog();
-		$cmd .= self::getCmdSudo()." apt update\n";
+		if($_foreground){
+			if(self::checkInstallationLog() != ''){
+				echo shell_exec(self::checkInstallationLog().' 2>&1');
+			}
+		}else{
+			$cmd .= self::checkInstallationLog();
+		}
+		if($_foreground){
+			echo shell_exec(self::getCmdSudo()." apt update 2>&1");
+		}else{
+			$cmd .= self::getCmdSudo()." apt update\n";
+		}
+		
 		foreach ($return as $package => $info) {
 			if($info['status'] != 0 || $info['optional']){
 				continue;
 			}
-			switch ($info['type']) {
-				case 'apt':
-				$cmd .= self::installPackage($info['name'])."\n";
-				break;
-				default:
-				break;
+			if($_foreground){
+				echo shell_exec(self::installPackage($info['type'],$info['name']).' 2>&1');
+			}else{
+				$cmd .= self::installPackage($info['type'],$info['name'])."\n";
 			}
+		}
+		if($_foreground){
+			return;
 		}
 		$cmd .= " echo '*******************End of package installation******************'\n";
 		if(file_exists('/tmp/jeedom_fix_package')){
@@ -306,7 +321,7 @@ class system {
 		file_put_contents('/tmp/jeedom_fix_package',$cmd);
 		self::launchScriptPackage();
 	}
-
+	
 	public static function launchScriptPackage(){
 		if(count(self::ps('dpkg')) > 0 || count(self::ps('apt')) > 0){
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours',__FILE__));
@@ -327,7 +342,7 @@ class system {
 			exec('echo "/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1" | '.system::getCmdSudo().' at now');
 		}
 	}
-
+	
 	public static function installPackage($_type,$_package){
 		switch ($_type) {
 			case 'apt':
@@ -338,7 +353,7 @@ class system {
 			return self::getCmdSudo().' pip3 install '.$_package;
 		}
 	}
-
+	
 	public static function checkInstallationLog(){
 		if(class_exists('log')){
 			$log = log::getPathToLog('packages');
@@ -353,5 +368,5 @@ class system {
 		}
 		return '';
 	}
-
+	
 }

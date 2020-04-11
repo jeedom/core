@@ -945,6 +945,10 @@ table.tablesorter .tablesorter-header:focus {
   display: none;
 }
 
+#div_commandResult {
+  overflow: auto;
+}
+
 #md_modal table.tablesorter {
   width: 100% !important;
   min-width: 100% !important;
@@ -1441,6 +1445,9 @@ button .fas.fa-plus-circle {
 }
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
+}
+#in_testExpression {
+  font-size: 14px !important;
 }
 
 .highcharts-button-disabled{

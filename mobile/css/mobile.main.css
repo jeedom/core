@@ -197,6 +197,15 @@ a, .ui-link {
   text-shadow: none !important;
   min-height: 20px;
 }
+
+#div_displayScenario .toggleShowGroup {
+  font-size: 16px !important;
+  font-weight: 300;
+  padding: 3px 0;
+  margin: 3px;
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+}
+
 .cmd.refresh {
   position: absolute;
   right: 0;

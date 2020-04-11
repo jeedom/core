@@ -55,7 +55,7 @@ mod_insertCmd.setOptions = function (_options) {
 	$("#table_mod_insertCmdValue_valueEqLogicToMessage").delegate("td.mod_insertCmdValue_object select", 'change', function () {
 		mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
 	});
-
+	
 }
 
 mod_insertCmd.getValue = function () {
@@ -80,10 +80,11 @@ mod_insertCmd.getSubType = function () {
 	return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-subType');
 }
 
-mod_insertCmd.changeObjectCmd = function (_select) {
+mod_insertCmd.changeObjectCmd = function (_select, _options) {
 	jeedom.object.getEqLogic({
 		id: _select.value(),
 		orderByName : true,
+		onlyHasCmds : _options.cmd,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
 		},
@@ -106,7 +107,7 @@ mod_insertCmd.changeObjectCmd = function (_select) {
 			mod_insertCmd.changeEqLogic(_select.closest('tr').find('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options);
 		}
 	});
-
+	
 }
 
 mod_insertCmd.changeEqLogic = function (_select) {

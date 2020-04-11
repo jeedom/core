@@ -330,6 +330,63 @@ class network {
 		return $openvpn;
 	}
 	
+	
+	public static function dns_start() {
+		if (config::byKey('dns::token') == '') {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('action', 'start');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
+		try {
+			self::dns2_start();
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
+	public static function dns_run() {
+		if (config::byKey('dns::token') == '') {
+			return false;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return false;
+		}
+		try {
+			$openvpn = self::dns_create();
+		} catch (Exception $e) {
+			return false;
+		}
+		$cmd = $openvpn->getCmd('info', 'state');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de statut du DNS est introuvable', __FILE__));
+		}
+		return $cmd->execCmd();
+	}
+	
+	public static function dns_stop() {
+		if (config::byKey('dns::token') == '') {
+			return;
+		}
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('action', 'stop');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
+		try {
+			self::dns2_stop();
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
 	public static function dns2_start() {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
@@ -416,62 +473,6 @@ class network {
 		}
 		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".system::getArch()."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 		return;
-	}
-	
-	public static function dns_start() {
-		if (config::byKey('dns::token') == '') {
-			return;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return;
-		}
-		$openvpn = self::dns_create();
-		$cmd = $openvpn->getCmd('action', 'start');
-		if (!is_object($cmd)) {
-			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
-		}
-		$cmd->execCmd();
-		try {
-			self::dns2_start();
-		} catch (\Exception $e) {
-			
-		}
-	}
-	
-	public static function dns_run() {
-		if (config::byKey('dns::token') == '') {
-			return false;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return false;
-		}
-		try {
-			$openvpn = self::dns_create();
-		} catch (Exception $e) {
-			return false;
-		}
-		$cmd = $openvpn->getCmd('info', 'state');
-		if (!is_object($cmd)) {
-			throw new Exception(__('La commande de statut du DNS est introuvable', __FILE__));
-		}
-		return $cmd->execCmd();
-	}
-	
-	public static function dns_stop() {
-		if (config::byKey('dns::token') == '') {
-			return;
-		}
-		$openvpn = self::dns_create();
-		$cmd = $openvpn->getCmd('action', 'stop');
-		if (!is_object($cmd)) {
-			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
-		}
-		$cmd->execCmd();
-		try {
-			self::dns2_stop();
-		} catch (\Exception $e) {
-			
-		}
 	}
 	
 	/*     * *********************Network management************************* */
