@@ -4,10 +4,8 @@ echo 'Start init'
 echo 'Start atd'
 service atd restart
 
-if [ $(which mysqld | wc -l) -ne 0 ]; then
-	echo 'Starting mysql'
-	service mysql restart
-fi
+echo 'Starting mysql'
+service mysql restart
 
 if ! [ -f /.jeedom_backup_restore ]; then
 	if [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
