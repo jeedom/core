@@ -566,6 +566,7 @@
         "Nom": "Nombre"
     },
     "desktop\/modal\/cmd.configure.php": {
+        "(Non géré par Application Mobile)": "",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Tester": "Probar",
         "Liens": "Enlaces",
@@ -3645,12 +3646,12 @@
         "Le plugin OpenVPN doit être installé": "El complemento OpenVPN debe estar instalado",
         "Le plugin OpenVPN doit être actif": "El complemento OpenVPN debe estar activo",
         "Impossible de créer le fichier  : ": "No se puede crear el archivo:",
-        "Impossible de télécharger : ": "No se puede descargar:",
-        "Taille invalide pour : ": "Tamaño no válido para:",
-        "Impossible de générer le certificat et la clef privé": "No se puede generar el certificado y la clave privada",
         "La commande de démarrage du DNS est introuvable": "Comando de inicio DNS no encontrado",
         "La commande de statut du DNS est introuvable": "Comando de estado DNS no encontrado",
         "La commande d\\'arrêt du DNS est introuvable": "Comando de detención de DNS no encontrado",
+        "Impossible de télécharger : ": "No se puede descargar:",
+        "Taille invalide pour : ": "Tamaño no válido para:",
+        "Impossible de générer le certificat et la clef privé": "No se puede generar el certificado y la clave privada",
         "Redémarrage du tunnel jeedom": "Reinicio del túnel Jeedom",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Problema de red detectado, reinicio de red. No se encontró puerta de enlace",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Problema de red detectado, reinicio de red. La puerta de enlace no responde al ping:"
