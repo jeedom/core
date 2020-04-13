@@ -551,7 +551,7 @@ class scenarioExpression {
 			return -1;
 		}
 		$cmd->execCmd();
-		return strtotime() - strtotime($cmd->getCollectDate());
+		return strtotime('now') - strtotime($cmd->getCollectDate());
 	}
 	
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
@@ -644,8 +644,9 @@ class scenarioExpression {
 			}
 			$lastValue = round($history->getValue(), $_decimal);
 		}
-		if ($lastValue == $_value && $lastDuration <= strtotime($_endTime)) {
-			$duration = $duration + (strtotime($_endDate) - $lastDuration);
+		$endTime = strtotime($_endTime);
+		if ($lastValue == $_value && $lastDuration <= $endTime) {
+			$duration = $duration + ($endTime - $lastDuration);
 		}
 		return floor($duration / 60);
 	}
@@ -1301,12 +1302,14 @@ class scenarioExpression {
 						}
 						if (is_numeric($options['duration']) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
-							if ($options['duration'] < 1) {
-								return usleep($options['duration'] * 1000000);
-							} else {
-								return sleep($options['duration']);
-							}
-						}
+                            if ($options['duration'] < 1) {
+                                usleep($options['duration'] * 1000000);
+                                return;
+                            }
+
+                            sleep($options['duration']);
+                            return;
+                        }
 					}
 					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
 					return;
