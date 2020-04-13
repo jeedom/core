@@ -318,7 +318,7 @@ class update {
 					}
 					$extension = strtolower(strrchr($tmp, '.'));
 					if (!in_array($extension, array('.zip'))) {
-						throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
+						throw new Exception(__('Extension du fichier non valide (autorisé .zip) : ', __FILE__) . $extension);
 					}
 					log::add('update', 'alert', __('Décompression du zip...', __FILE__));
 					$zip = new ZipArchive;

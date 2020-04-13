@@ -566,6 +566,7 @@
         "Nom": "İsim"
     },
     "desktop\/modal\/cmd.configure.php": {
+        "(Non géré par Application Mobile)": "",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Tester": "Test et",
         "Liens": "Linkler",
@@ -3645,12 +3646,12 @@
         "Le plugin OpenVPN doit être installé": "OpenVPN eklentisi kurulmalıdır",
         "Le plugin OpenVPN doit être actif": "OpenVPN eklentisi aktif olmalıdır",
         "Impossible de créer le fichier  : ": "Dosya oluşturulamıyor:",
-        "Impossible de télécharger : ": "",
-        "Taille invalide pour : ": "",
-        "Impossible de générer le certificat et la clef privé": "",
         "La commande de démarrage du DNS est introuvable": "DNS başlatma komutu bulunamadı",
         "La commande de statut du DNS est introuvable": "DNS durum komutu bulunamadı",
         "La commande d\\'arrêt du DNS est introuvable": "DNS durdurma komutu bulunamadı",
+        "Impossible de télécharger : ": "",
+        "Taille invalide pour : ": "",
+        "Impossible de générer le certificat et la clef privé": "",
         "Redémarrage du tunnel jeedom": "",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": ""

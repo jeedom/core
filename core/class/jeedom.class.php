@@ -663,7 +663,7 @@ class jeedom {
 		if (file_exists($_backup)) {
 			unlink($_backup);
 		} else {
-			throw new Exception('Impossible de trouver le fichier : ' . $_backup);
+			throw new Exception(__('Impossible de trouver le fichier : ', __FILE__) . $_backup);
 		}
 	}
 
@@ -974,16 +974,16 @@ class jeedom {
 			try {
 				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . self::getTmpFolder() . '/started');
 				if (file_put_contents(self::getTmpFolder() . '/started', date('Y-m-d H:i:s')) === false) {
-					log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started', __FILE__));
+					log::add('starting', 'error', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . '/started');
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . '/started : ' . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . '/started : ' . log::exception($e));
 			}
 
 			if (!file_exists(self::getTmpFolder() . '/started')) {
-				log::add('starting', 'critical', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
+				log::add('starting', 'critical', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . __('/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
 				return;
 			}
 

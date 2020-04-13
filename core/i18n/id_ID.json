@@ -566,6 +566,7 @@
         "Nom": "Nama"
     },
     "desktop\/modal\/cmd.configure.php": {
+        "(Non géré par Application Mobile)": "",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Tester": "Coba",
         "Liens": "Koneksi",
@@ -3645,12 +3646,12 @@
         "Le plugin OpenVPN doit être installé": "",
         "Le plugin OpenVPN doit être actif": "",
         "Impossible de créer le fichier  : ": "",
-        "Impossible de télécharger : ": "",
-        "Taille invalide pour : ": "",
-        "Impossible de générer le certificat et la clef privé": "",
         "La commande de démarrage du DNS est introuvable": "",
         "La commande de statut du DNS est introuvable": "",
         "La commande d\\'arrêt du DNS est introuvable": "",
+        "Impossible de télécharger : ": "",
+        "Taille invalide pour : ": "",
+        "Impossible de générer le certificat et la clef privé": "",
         "Redémarrage du tunnel jeedom": "",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": ""
