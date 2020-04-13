@@ -162,7 +162,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.zip'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .zip) : ', __FILE__) . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 150000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 150Mo)', __FILE__));
