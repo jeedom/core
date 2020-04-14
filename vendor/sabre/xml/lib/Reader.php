@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\Xml;
 
 use XMLReader;
@@ -17,8 +19,8 @@ use XMLReader;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Reader extends XMLReader {
-
+class Reader extends XMLReader
+{
     use ContextStackTrait;
 
     /**
@@ -31,14 +33,13 @@ class Reader extends XMLReader {
      *
      * @return string|null
      */
-    function getClark() {
-
-        if (! $this->localName) {
+    public function getClark()
+    {
+        if (!$this->localName) {
             return null;
         }
 
-        return '{' . $this->namespaceURI . '}' . $this->localName;
-
+        return '{'.$this->namespaceURI.'}'.$this->localName;
     }
 
     /**
@@ -51,31 +52,30 @@ class Reader extends XMLReader {
      *
      * This function will also disable the standard libxml error handler (which
      * usually just results in PHP errors), and throw exceptions instead.
-     *
-     * @return array
      */
-    function parse() {
-
+    public function parse(): array
+    {
         $previousEntityState = libxml_disable_entity_loader(true);
         $previousSetting = libxml_use_internal_errors(true);
 
         try {
-
-            // Really sorry about the silence operator, seems like I have no
-            // choice. See:
-            //
-            // https://bugs.php.net/bug.php?id=64230
-            while ($this->nodeType !== self::ELEMENT && @$this->read()) {
-                // noop
+            while (self::ELEMENT !== $this->nodeType) {
+                if (!$this->read()) {
+                    $errors = libxml_get_errors();
+                    libxml_clear_errors();
+                    if ($errors) {
+                        throw new LibXMLException($errors);
+                    }
+                }
             }
             $result = $this->parseCurrentElement();
 
+            // last line of defense in case errors did occur above
             $errors = libxml_get_errors();
             libxml_clear_errors();
             if ($errors) {
                 throw new LibXMLException($errors);
             }
-
         } finally {
             libxml_use_internal_errors($previousSetting);
             libxml_disable_entity_loader($previousEntityState);
@@ -83,8 +83,6 @@ class Reader extends XMLReader {
 
         return $result;
     }
-
-
 
     /**
      * parseGetElements parses everything in the current sub-tree,
@@ -98,18 +96,15 @@ class Reader extends XMLReader {
      *
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
-     *
-     * @param array $elementMap
-     * @return array
      */
-    function parseGetElements(array $elementMap = null) {
-
+    public function parseGetElements(array $elementMap = null): array
+    {
         $result = $this->parseInnerTree($elementMap);
         if (!is_array($result)) {
             return [];
         }
-        return $result;
 
+        return $result;
     }
 
     /**
@@ -123,17 +118,17 @@ class Reader extends XMLReader {
      * If the $elementMap argument is specified, the existing elementMap will
      * be overridden while parsing the tree, and restored after this process.
      *
-     * @param array $elementMap
      * @return array|string
      */
-    function parseInnerTree(array $elementMap = null) {
-
+    public function parseInnerTree(array $elementMap = null)
+    {
         $text = null;
         $elements = [];
 
-        if ($this->nodeType === self::ELEMENT && $this->isEmptyElement) {
+        if (self::ELEMENT === $this->nodeType && $this->isEmptyElement) {
             // Easy!
             $this->next();
+
             return null;
         }
 
@@ -143,12 +138,7 @@ class Reader extends XMLReader {
         }
 
         try {
-
-            // Really sorry about the silence operator, seems like I have no
-            // choice. See:
-            //
-            // https://bugs.php.net/bug.php?id=64230
-            if (!@$this->read()) {
+            if (!$this->read()) {
                 $errors = libxml_get_errors();
                 libxml_clear_errors();
                 if ($errors) {
@@ -158,9 +148,7 @@ class Reader extends XMLReader {
             }
 
             while (true) {
-
                 if (!$this->isValid()) {
-
                     $errors = libxml_get_errors();
 
                     if ($errors) {
@@ -170,46 +158,40 @@ class Reader extends XMLReader {
                 }
 
                 switch ($this->nodeType) {
-                    case self::ELEMENT :
+                    case self::ELEMENT:
                         $elements[] = $this->parseCurrentElement();
                         break;
-                    case self::TEXT :
-                    case self::CDATA :
+                    case self::TEXT:
+                    case self::CDATA:
                         $text .= $this->value;
                         $this->read();
                         break;
-                    case self::END_ELEMENT :
+                    case self::END_ELEMENT:
                         // Ensuring we are moving the cursor after the end element.
                         $this->read();
                         break 2;
-                    case self::NONE :
+                    case self::NONE:
                         throw new ParseException('We hit the end of the document prematurely. This likely means that some parser "eats" too many elements. Do not attempt to continue parsing.');
-                    default :
+                    default:
                         // Advance to the next element
                         $this->read();
                         break;
                 }
-
             }
-
         } finally {
-
             if (!is_null($elementMap)) {
                 $this->popContext();
             }
-
         }
-        return ($elements ? $elements : $text);
 
+        return $elements ? $elements : $text;
     }
 
     /**
      * Reads all text below the current element, and returns this as a string.
-     *
-     * @return string
      */
-    function readText() {
-
+    public function readText(): string
+    {
         $result = '';
         $previousDepth = $this->depth;
 
@@ -218,8 +200,8 @@ class Reader extends XMLReader {
                 $result .= $this->value;
             }
         }
-        return $result;
 
+        return $result;
     }
 
     /**
@@ -229,11 +211,9 @@ class Reader extends XMLReader {
      *   * name - A clark-notation XML element name.
      *   * value - The parsed value.
      *   * attributes - A key-value list of attributes.
-     *
-     * @return array
      */
-    function parseCurrentElement() {
-
+    public function parseCurrentElement(): array
+    {
         $name = $this->getClark();
 
         $attributes = [];
@@ -248,12 +228,11 @@ class Reader extends XMLReader {
         );
 
         return [
-            'name'       => $name,
-            'value'      => $value,
+            'name' => $name,
+            'value' => $value,
             'attributes' => $attributes,
         ];
     }
-
 
     /**
      * Grabs all the attributes from the current element, and returns them as a
@@ -262,24 +241,20 @@ class Reader extends XMLReader {
      * If the attributes are part of the same namespace, they will simply be
      * short keys. If they are defined on a different namespace, the attribute
      * name will be retured in clark-notation.
-     *
-     * @return array
      */
-    function parseAttributes() {
-
+    public function parseAttributes(): array
+    {
         $attributes = [];
 
         while ($this->moveToNextAttribute()) {
             if ($this->namespaceURI) {
-
                 // Ignoring 'xmlns', it doesn't make any sense.
-                if ($this->namespaceURI === 'http://www.w3.org/2000/xmlns/') {
+                if ('http://www.w3.org/2000/xmlns/' === $this->namespaceURI) {
                     continue;
                 }
 
                 $name = $this->getClark();
                 $attributes[$name] = $this->value;
-
             } else {
                 $attributes[$this->localName] = $this->value;
             }
@@ -287,21 +262,16 @@ class Reader extends XMLReader {
         $this->moveToElement();
 
         return $attributes;
-
     }
 
     /**
      * Returns the function that should be used to parse the element identified
      * by it's clark-notation name.
-     *
-     * @param string $name
-     * @return callable
      */
-    function getDeserializerForElementName($name) {
-
-
+    public function getDeserializerForElementName(string $name): callable
+    {
         if (!array_key_exists($name, $this->elementMap)) {
-            if (substr($name, 0, 2) == '{}' && array_key_exists(substr($name, 2), $this->elementMap)) {
+            if ('{}' == substr($name, 0, 2) && array_key_exists(substr($name, 2), $this->elementMap)) {
                 $name = substr($name, 2);
             } else {
                 return ['Sabre\\Xml\\Element\\Base', 'xmlDeserialize'];
@@ -318,13 +288,11 @@ class Reader extends XMLReader {
         }
 
         $type = gettype($deserializer);
-        if ($type === 'string') {
-            $type .= ' (' . $deserializer . ')';
-        } elseif ($type === 'object') {
-            $type .= ' (' . get_class($deserializer) . ')';
+        if ('string' === $type) {
+            $type .= ' ('.$deserializer.')';
+        } elseif ('object' === $type) {
+            $type .= ' ('.get_class($deserializer).')';
         }
-        throw new \LogicException('Could not use this type as a deserializer: ' . $type . ' for element: ' . $name);
-
+        throw new \LogicException('Could not use this type as a deserializer: '.$type.' for element: '.$name);
     }
-
 }

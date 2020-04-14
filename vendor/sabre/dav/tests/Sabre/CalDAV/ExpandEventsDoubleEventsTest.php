@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\CalDAV;
 
 use Sabre\HTTP;
@@ -15,17 +17,17 @@ use Sabre\VObject;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class ExpandEventsDoubleEventsTest extends \Sabre\DAVServerTest {
-
+class ExpandEventsDoubleEventsTest extends \Sabre\DAVServerTest
+{
     protected $setupCalDAV = true;
 
     protected $caldavCalendars = [
         [
-            'id'           => 1,
-            'name'         => 'Calendar',
+            'id' => 1,
+            'name' => 'Calendar',
             'principaluri' => 'principals/user1',
-            'uri'          => 'calendar1',
-        ]
+            'uri' => 'calendar1',
+        ],
     ];
 
     protected $caldavCalendarObjects = [
@@ -54,13 +56,13 @@ END:VCALENDAR
         ],
     ];
 
-    function testExpand() {
-
+    public function testExpand()
+    {
         $request = HTTP\Sapi::createFromServerArray([
-            'REQUEST_METHOD'    => 'REPORT',
+            'REQUEST_METHOD' => 'REPORT',
             'HTTP_CONTENT_TYPE' => 'application/xml',
-            'REQUEST_URI'       => '/calendars/user1/calendar1',
-            'HTTP_DEPTH'        => '1',
+            'REQUEST_URI' => '/calendars/user1/calendar1',
+            'HTTP_DEPTH' => '1',
         ]);
 
         $request->setBody('<?xml version="1.0" encoding="utf-8" ?>
@@ -82,22 +84,21 @@ END:VCALENDAR
 
         $response = $this->request($request);
 
+        $bodyAsString = $response->getBodyAsString();
         // Everts super awesome xml parser.
         $body = substr(
-            $response->body,
-            $start = strpos($response->body, 'BEGIN:VCALENDAR'),
-            strpos($response->body, 'END:VCALENDAR') - $start + 13
+            $bodyAsString,
+            $start = strpos($bodyAsString, 'BEGIN:VCALENDAR'),
+            strpos($bodyAsString, 'END:VCALENDAR') - $start + 13
         );
         $body = str_replace('&#13;', '', $body);
 
         $vObject = VObject\Reader::read($body);
 
         // We only expect 3 events
-        $this->assertEquals(3, count($vObject->VEVENT), 'We got 6 events instead of 3. Output: ' . $body);
+        $this->assertEquals(3, count($vObject->VEVENT), 'We got 6 events instead of 3. Output: '.$body);
 
         // TZID should be gone
         $this->assertFalse(isset($vObject->VEVENT->DTSTART['TZID']));
-
     }
-
 }

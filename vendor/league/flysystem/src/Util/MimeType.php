@@ -120,7 +120,7 @@ class MimeType
         'docm' => 'application/vnd.ms-word.template.macroEnabled.12',
         'dotm' => 'application/vnd.ms-word.template.macroEnabled.12',
         'dot' => 'application/msword',
-        'dotx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'dotx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
         'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'xltx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
         'xlsm' => 'application/vnd.ms-excel.sheet.macroEnabled.12',
@@ -185,6 +185,7 @@ class MimeType
         'odm' => 'application/vnd.oasis.opendocument.text-master',
         'odb' => 'application/vnd.oasis.opendocument.database',
         'ott' => 'application/vnd.oasis.opendocument.text-template',
+        'webp' => 'image/webp',
     ];
 
     /**

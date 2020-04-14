@@ -12,6 +12,7 @@ use LogicException;
 use Sabre\DAV\Client;
 use Sabre\DAV\Exception;
 use Sabre\DAV\Exception\NotFound;
+use Sabre\DAV\Xml\Property\ResourceType;
 use Sabre\HTTP\HttpException;
 
 class WebDAVAdapter extends AbstractAdapter
@@ -28,6 +29,7 @@ class WebDAVAdapter extends AbstractAdapter
         '{DAV:}getcontenttype',
         '{DAV:}getlastmodified',
         '{DAV:}iscollection',
+        '{DAV:}resourcetype',
     ];
 
     /**
@@ -400,8 +402,18 @@ class WebDAVAdapter extends AbstractAdapter
         return $result;
     }
 
+    /**
+     * @param array $object
+     * @return bool
+     */
     protected function isDirectory(array $object)
     {
+        if (isset($object['{DAV:}resourcetype'])) {
+            /** @var ResourceType $resourceType */
+            $resourceType = $object['{DAV:}resourcetype'];
+            return $resourceType->is('{DAV:}collection');
+        }
+
         return isset($object['{DAV:}iscollection']) && $object['{DAV:}iscollection'] === '1';
     }
 }

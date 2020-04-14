@@ -1,26 +1,31 @@
 language: php
+sudo: required
+dist: xenial
 php:
-  - 5.5
-  - 5.6
   - 7.0
   - 7.1
+  - 7.2
+  - 7.3snapshot
+
+addons:
+  apt:
+    packages:
+    # required for php7.3
+    - libzip4
 
 matrix:
   fast_finish: true
-
-sudo: false
 
 cache:
   directories:
     - $HOME/.composer/cache
 
-before_install:
-  - phpenv config-rm xdebug.ini; true
-
 install:
   - composer install
 
 script:
-  - ./bin/phpunit --configuration tests/phpunit.xml.dist
-  - ./bin/sabre-cs-fixer fix . --dry-run --diff
+  - ./bin/phpunit --configuration tests/phpunit.xml.dist  --coverage-clover=coverage.xml
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
 
