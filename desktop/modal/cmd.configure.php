@@ -304,7 +304,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     }
                     $name = $info['name'];
                     if (isset($info['noapp']) && $info['noapp']) {
-                      $name .= ' '.__('(Non géré par Application Mobile)',__FILE__);
+                      $name .= ' '.'{{(Non géré par Application Mobile)}}';
                     }
                     $optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
                   }
