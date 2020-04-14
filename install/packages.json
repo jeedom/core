@@ -20,7 +20,6 @@
     "mariadb-client" : {"alternative" : ["/mariadb-client-(.*?)/"]},
     "net-tools" : {},
     "nmap" : {},
-    "brltty" : {},
     "mariadb-common" : {"alternative" : ["/mariadb-common-(.*?)/"],"optional" : true},
     "mariadb-server" : {"alternative" : ["/mariadb-server-(.*?)/"],"optional" : true},
     "php-curl" : {"alternative" : ["/php(.*?)-curl/"]},
