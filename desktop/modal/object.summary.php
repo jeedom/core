@@ -10,7 +10,7 @@ if (!isConnect()) {
 		<tr>
 			<th>{{ID}}</th>
 			<th>{{Objet}}</th>
-			<th>{{Père}}</th>
+			<th>{{Parent}}</th>
 			<th data-sorter="false" data-filter="false">{{Visible}}</th>
 			<th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur le Dashboard}}</th>
 			<th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur la Synthèse}}</th>

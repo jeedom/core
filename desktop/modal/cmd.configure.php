@@ -300,11 +300,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   });
                   foreach ($group as $key => $info) {
                     if ($key == 0) {
-                      $optgroup .= '<optgroup label="{{' . $info['family'] . '}}">';
+                      $optgroup .= '<optgroup label="' . $info['family'] . '">';
                     }
                     $name = $info['name'];
                     if (isset($info['noapp']) && $info['noapp']) {
-                      $name .= ' (Non géré par Application Mobile)';
+                      $name .= ' '.'{{(Non géré par Application Mobile)}}';
                     }
                     $optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
                   }
@@ -539,7 +539,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           $form .= '<legend>';
           if($value['name'] == 'Warning'){
             $form .= '<i class="fas fa-exclamation"></i>';
-          }elseif ($value['name'] == 'Danger') {
+          } elseif ($value['name'] == 'Danger') {
             $form .= '<i class="fas fa-exclamation-triangle"></i>';
           }
           $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
@@ -576,7 +576,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <?php
               $display = '';
               foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-                $display .= '<th>{{' . $value['name'] . '}}</th>';
+                $display .= '<th>' . $value['name'] . '</th>';
               }
               echo $display;
               ?>
@@ -617,7 +617,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                               continue;
                             }
                             if ($key == 0) {
-                              $display .= '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+                              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
                             }
                             if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
                               $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
@@ -664,7 +664,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                               continue;
                             }
                             if ($key == 0) {
-                              $display .= '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+                              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
                             }
                             if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
                               $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';

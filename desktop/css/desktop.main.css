@@ -1446,6 +1446,9 @@ button .fas.fa-plus-circle {
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
 }
+#in_testExpression {
+  font-size: 14px !important;
+}
 
 .highcharts-button-disabled{
   display: none !important;
@@ -2072,7 +2075,8 @@ input[type=checkbox].summaryAttr {
 /* __________________________________________________________________________________________________________TABS */
 .tab-content {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
-  padding-bottom: 2px !important;
+  padding-bottom: 12px !important;
+  height: unset !important;
 }
 .tab-content .tab-content,
 .tab-content pre {

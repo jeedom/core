@@ -199,8 +199,10 @@ a, .ui-link {
 }
 
 #div_displayScenario .toggleShowGroup {
-  font-size: 18px !important;
-  padding: 5px 0;
+  font-size: 16px !important;
+  font-weight: 300;
+  padding: 3px 0;
+  margin: 3px;
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
 }
 

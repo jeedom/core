@@ -149,7 +149,7 @@ foreach (widgets::all() as $widget) {
     <li role="presentation" class="active"><a href="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
   </ul>
 
-  <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+  <div class="tab-content" style="overflow:auto;overflow-x: hidden;">
     <div role="tabpanel" class="tab-pane active" id="widgetstab">
       <br/>
       <form class="form-horizontal">
@@ -170,7 +170,7 @@ foreach (widgets::all() as $widget) {
                   <select class="form-control widgetsAttr" data-l1key="type">
                     <?php
                     foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                      echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</option>';
+                      echo '<option value="'.$key.'"><a>'.$value['name'].'</option>';
                     }
                     ?>
                   </select>
@@ -183,7 +183,7 @@ foreach (widgets::all() as $widget) {
                   foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
                     echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="'.$key.'">';
                     foreach ($value['subtype'] as $skey => $svalue) {
-                      echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
+                      echo '<option data-type="'.$key.'" value="'.$skey.'"><a>'.$svalue['name'].'</option>';
                     }
                     echo '</select>';
                   }
