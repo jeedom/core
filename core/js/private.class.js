@@ -30,9 +30,7 @@ jeedom.private = {
         pre_success: function(_data) {
             return _data;
         },
-        success: function(_data) {
-            console.log(_data);
-        },
+        success: function(_data) {},
         post_success: function(_data) {
         },
         complete: function() {
