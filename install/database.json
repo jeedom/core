@@ -510,14 +510,6 @@
           "extra": ""
         },
         {
-          "name": "eqReal_id",
-          "type": "int(11)",
-          "null": "YES",
-          "key": "MUL",
-          "default": null,
-          "extra": ""
-        },
-        {
           "name": "isEnable",
           "type": "tinyint(1)",
           "null": "YES",
@@ -671,101 +663,6 @@
           "columns": {
             "1": {
               "column": "tags",
-              "Sub_part": null
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "eqReal",
-      "fields": [
-        {
-          "name": "id",
-          "type": "int(11)",
-          "null": "NO",
-          "key": "PRI",
-          "default": null,
-          "extra": "auto_increment"
-        },
-        {
-          "name": "logicalId",
-          "type": "varchar(45)",
-          "null": "YES",
-          "key": "MUL",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "name",
-          "type": "varchar(127)",
-          "null": "YES",
-          "key": "UNI",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "type",
-          "type": "varchar(45)",
-          "null": "NO",
-          "key": "MUL",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "configuration",
-          "type": "text",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "cat",
-          "type": "varchar(45)",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        }
-      ],
-      "indexes": {
-        "name_UNIQUE": {
-          "Key_name": "name_UNIQUE",
-          "Non_unique": "0",
-          "columns": {
-            "1": {
-              "column": "name",
-              "Sub_part": null
-            }
-          }
-        },
-        "logicalId": {
-          "Key_name": "logicalId",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            }
-          }
-        },
-        "type": {
-          "Key_name": "type",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "type",
-              "Sub_part": null
-            }
-          }
-        },
-        "name": {
-          "Key_name": "name",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "name",
               "Sub_part": null
             }
           }

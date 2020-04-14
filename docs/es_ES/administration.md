@@ -271,7 +271,9 @@ Aquí están las diferentes opciones disponibles. :
 - **Apellidobre del usuario** : nombre de usuario para que Jeedom inicie sesión en AD.
 - **Contraseña** : contraseña para que Jeedom se conecte a AD.
 - **Campos de busqueda de usuario** : campos de búsqueda de inicio de sesión de usuario. Por lo general, uid para LaDAP, SamAccountName para Windows AD.
-- **Filtro (opcional)** : filtro en el AD (por ejemplo, para la gestión de grupos).
+- **Filtro de administrador (opcional)** : filtro de administrador en la DA (para la gestión de los grupos por ejemplo)
+- **Filtro de usuario (opcional)** : filtro de usuario en el DA (para la gestión de los grupos por ejemplo)
+- **Filtro de usuarios limitados (opcional)** : filtro de usuarios limitados en el DA (para la gestión de los grupos por ejemplo)
 - **Permitir REMOTO \ _USER** : Active REMOTE \ _USER (usado en SSO por ejemplo).
 
 ### Acceder

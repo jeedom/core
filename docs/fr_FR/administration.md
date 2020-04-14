@@ -271,7 +271,9 @@ Voici donc les différentes options disponibles :
 - **Nom d’utilisateur** : nom d’utilisateur pour que Jeedom se connecte à l’AD.
 - **Mot de passe** : mot de passe pour que Jeedom se connecte à l’AD.
 - **Champs recherche utilisateur** : champs de recherche du login utilisateur. En général uid pour LDAP, SamAccountName pour Windows AD.
-- **Filtre (optionnel)** : filtre sur l’AD (pour la gestion des groupes par exemple).
+- **Filtre administrateurs (optionnel)** : filtre administrateurs sur l’AD (pour la gestion des groupes par exemple)
+- **Filtre utilisateurs (optionnel)** : filtre utilisateurs sur l’AD (pour la gestion des groupes par exemple)
+- **Filtre utilisateurs limités (optionnel)** : filtre utilisateurs limités sur l’AD (pour la gestion des groupes par exemple)
 - **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO par exemple).
 
 ### Connexion

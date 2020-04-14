@@ -162,7 +162,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'LIGHT_COLOR' => array('name' => __('Lumière Couleur',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Info'),
 		'LIGHT_SET_COLOR' => array('name' => __('Lumière Couleur',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
 		'LIGHT_MODE' => array('name' => __('Lumière Mode',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
-		'LIGHT_TOGGLE' => array('name' => __('Lumière Toggle',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
 		'LIGHT_STATE_BOOL' => array('name' => __('Lumière Etat (Binaire)',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'LIGHT_COLOR_TEMP' => array('name' => __('Lumière Température Couleur',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'LIGHT_SET_COLOR_TEMP' => array('name' => __('Lumière Température Couleur',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action', 'noapp' => true),

@@ -1326,51 +1326,83 @@ user::isBan();
 						</div>
 						<div id="div_config_ldap">
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Hôte}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Hôte}}
+                                                                        <sup><i class="fas fa-question-circle" tooltip="{{URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s)://URL)}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}
+                                                                        <sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP:389, LDAPS:636)}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:port" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Domaine}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Domaine}}
+                                                                        <sup><i class="fas fa-question-circle" tooltip="{{FQDN de la base}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Base DN}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Base DN des utilisateurs}}
+                                                                        <sup><i class="fas fa-question-circle" tooltip="{{Base DN correspondant à l'emplacement des utilisateurs (e.g cn=users,dc=ldap,dc=local)}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nom d'utilisateur}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nom d'utilisateur}}
+                                                                        <sup><i class="fas fa-question-circle" tooltip="{{Utilisateur ayant accès à la base (si possible, utiliser un compte en lecture seul et pas root pour optimiser la sécurité)}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:username" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Mot de passe}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Mot de passe}}
+                                                                        <sup><i class="fas fa-question-circle" tooltip="{{Mot de passe de l'utilisateur}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text" class="inputPassword configKey form-control" data-l1key="ldap:password" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Champs recherche utilisateur}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Champs recherche utilisateur}}
+                                                                         <sup><i class="fas fa-question-circle" tooltip="{{Champ à utiliser comme identifiant utilisateur (e.g uid)}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Filtre (optionnel)}}</label>
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Filtre administrateurs (optionnel)}}
+                                                                         <sup><i class="fas fa-question-circle" tooltip="{{Filtre permettant d'identifier les administrateurs dans la base. Si vide, tous les utilisateurs en base seront administrateurs par défaut}}"></i></sup>
+                                                                </label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
-									<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
+									<input type="text" class="configKey form-control" data-l1key="ldap:filter:admin" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Filtre utilisateurs (optionnel)}}
+                                                                  <sup><i class="fas fa-question-circle" tooltip="{{Filtre permettant d'identifier les utilisateurs dans la base. Si vide, tous les utilisateurs en base seront administrateurs par défaut}}"></i></sup>
+                                                                </label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
+									<input type="text" class="configKey form-control" data-l1key="ldap:filter:user" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Filtre utilisateurs limités (optionnel)}}
+                                                                  <sup><i class="fas fa-question-circle" tooltip="{{Filtre permettant d'identifier les utilisateurs limités dans la base. Si vide, tous les utilisateurs en base seront administrateurs par défaut}}"></i></sup>
+                                                                </label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
+									<input type="text" class="configKey form-control" data-l1key="ldap:filter:restrict" />
 								</div>
 							</div>
 							<div class="form-group has-error">
