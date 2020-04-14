@@ -421,8 +421,8 @@ class update {
 	public function preInstallUpdate() {
 		if (!file_exists(__DIR__ . '/../../plugins')) {
 			mkdir(__DIR__ . '/../../plugins');
-			@chown(__DIR__ . '/../../plugins', system::getWWWUid());
-			@chgrp(__DIR__ . '/../../plugins', system::getWWWGid());
+			@chown(__DIR__ . '/../../plugins', system::get('www-uid'));
+			@chgrp(__DIR__ . '/../../plugins', system::get('www-gid'));
 			@chmod(__DIR__ . '/../../plugins', 0775);
 		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
