@@ -140,7 +140,7 @@ $optionMaxSize = 15;
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 
-	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+	<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
 				<br/>

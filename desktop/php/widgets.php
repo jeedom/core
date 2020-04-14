@@ -149,7 +149,7 @@ foreach (widgets::all() as $widget) {
     <li role="presentation" class="active"><a href="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
   </ul>
 
-  <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+  <div class="tab-content" style="overflow:auto;overflow-x: hidden;">
     <div role="tabpanel" class="tab-pane active" id="widgetstab">
       <br/>
       <form class="form-horizontal">
