@@ -271,7 +271,9 @@ Here are the different options available :
 - **Username** : username for Jeedom to log into AD.
 - **Password** : password for Jeedom to connect to AD.
 - **User search fields** : user login search fields. Usually uid for TheDAP, SamAccountName for Windows AD.
-- **Filter (optional)** : filter on the AD (for group management for example).
+- **Filter administrators (optional)** : filter administrators on the AD (for managing groups for example)
+- **Filter users (optional)** : filter users on the AD (for managing groups for example)
+- **Filter limited users (optional)** : filter limited users on the AD (for managing groups for example)
 - **Allow REMOTE \ _USER** : Activate REMOTE \ _USER (used in SSO for example).
 
 ### Theog in
