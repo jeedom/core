@@ -8,7 +8,7 @@ if (!isConnect()) {
 		<tr>
 			<th style="width: 150px;">{{Objet}}</th>
 			<th style="width: 150px;">{{Equipement}}</th>
-			<th style="width: 150px;">{{Commande}}</th>
+			<th id="thCmd" style="width: 150px;">{{Commande}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -51,11 +51,15 @@ mod_insertCmd.setOptions = function (_options) {
 	if (isset(mod_insertCmd.options.object.id)) {
 		$('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select').value(mod_insertCmd.options.object.id);
 	}
+	if (isset(mod_insertCmd.options.cmd.type)) {
+		if (mod_insertCmd.options.cmd.type == "info") $('#thCmd').text("{{Commande info}}")
+		if (mod_insertCmd.options.cmd.type == "action") $('#thCmd').text("{{Commande action}}")
+	}
 	mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
 	$("#table_mod_insertCmdValue_valueEqLogicToMessage").delegate("td.mod_insertCmdValue_object select", 'change', function () {
 		mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
 	});
-	
+
 }
 
 mod_insertCmd.getValue = function () {
@@ -107,7 +111,7 @@ mod_insertCmd.changeObjectCmd = function (_select, _options) {
 			mod_insertCmd.changeEqLogic(_select.closest('tr').find('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options);
 		}
 	});
-	
+
 }
 
 mod_insertCmd.changeEqLogic = function (_select) {
