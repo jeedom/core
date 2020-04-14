@@ -520,7 +520,7 @@ class network {
 				if(!self::dns2_run()){
 					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (tunnel pas démarré)', __FILE__));
 					self::dns2_start();
-				}elseif(shell_exec('tail -n 50 '.log::getPathToLog('tunnel').' | grep -c "action handshake"') < 1){
+				}elseif(file_exists(log::getPathToLog('tunnel')) && hell_exec('tail -n 50 '.log::getPathToLog('tunnel').' | grep -c "action handshake"') < 1){
 					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (pas de handshake trouvé)', __FILE__));
 					self::dns2_start();
 				}
