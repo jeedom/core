@@ -938,7 +938,7 @@
         "Attention, il n’y a pas d’assistance de l’équipe ": "Bitte beachten Sie, dass es keine Teamunterstützung gibt",
         " sur les plugins installés depuis une autre source que le Market ": "auf Plugins, die von einer anderen Quelle als dem Markt installiert wurden",
         ".De plus, l’installation d’un plugin depuis une autre source que le Market ": "Installieren Sie außerdem ein Plugin von einer anderen Quelle als dem Markt",
-        " peut dans certains cas entrainer la perte globale d’assistance par l’équipe ": "kann in bestimmten Fällen zum allgemeinen Verlust der Unterstützung durch das Team führen",
+        " entraine la perte globale d’assistance par l’équipe ": "",
         "Type de source": "Art der Quelle",
         "Aucun": "Ohne",
         "Configuration": "Konfiguration",
@@ -3098,7 +3098,8 @@
         "Impossible de télécharger : ": "Herunterladen nicht möglich:",
         "Taille invalide pour : ": "Ungültige Größe für:",
         "Impossible de générer le certificat et la clef privé": "Zertifikat und privater Schlüssel können nicht generiert werden",
-        "Redémarrage du tunnel jeedom": "Jeedom Tunnel Neustart",
+        "Redémarrage du tunnel jeedom (tunnel pas démarré)": "",
+        "Redémarrage du tunnel jeedom (pas de handshake trouvé)": "",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Netzwerkproblem erkannt, Neustart des Netzwerks. Kein Gateway gefunden",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Netzwerkproblem erkannt, Neustart des Netzwerks. Das Gateway reagiert nicht auf Ping:"
     },
