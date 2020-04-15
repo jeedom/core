@@ -271,9 +271,9 @@ Hier sind die verschiedenen Optionen verfügbar :
 - **Benutzername** : Benutzername für Jeedom, um sich bei AD anzumelden.
 - **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen.
 - **Benutzersuchfelder** : Suchfelder für Benutzeranmeldungen. Normalerweise uid für DieDAP, SamAccountName für Windows AD.
-- **Administratoren filtern (optional)** : Administratoren filtern auf dem DA (z.B. für die Gruppenverwaltung)
-- **Benutzerfilter (optional)** : Benutzerfilter auf dem DA (z.B. für die Gruppenverwaltung)
-- **Filter für eingeschränkte Benutzer (optional)** : Filter für eingeschränkte Benutzer auf dem DA (z.B. für die Gruppenverwaltung)
+- **Administrator-Filter (optional)** : 
+- **Benutzerfilter (optional)** : 
+- **Begrenzter Benutzerfilter (optional)** : 
 - **REMOTE \ _USER zulassen** : Aktivieren Sie REMOTE \ _USER (z. B. in SSO).
 
 ### Einloggen
