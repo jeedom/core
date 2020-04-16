@@ -930,17 +930,6 @@ table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
 
-#table_packages tbody tr,
-#table_packages tbody td {
-  height: 21px !important;
-  line-height: 14px !important;
-}
-#table_packages tbody tr > td {
-  vertical-align: middle !important;
-}
-#table_packages tbody td > span.label {
-  display: block;
-}
 #table_cron .tablesorter-filter {
   display: none;
 }
@@ -2223,15 +2212,19 @@ tr.tablesorter-filter-row td {
   transition-property: background-color;
 }
 
-.table-condensed tr,
-.table-condensed td {
-  height: 25px;
-}
-.table-condensed tbody tr td {
+table.table-condensed tbody tr,
+table.table-condensed tbody td {
+  height: 21px !important;
+  line-height: 14px !important;
   padding-top: 1px;
   padding-bottom: 2px;
 }
-
+table.table-condensed tbody tr > td {
+  vertical-align: middle !important;
+}
+#table_packages tbody td > span.label {
+  display: block;
+}
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;

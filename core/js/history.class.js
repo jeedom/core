@@ -118,6 +118,8 @@ jeedom.history.drawChart = function (_params) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
       }
       _params.option.graphDerive = (data.result.derive == "1") ? true : false;
+
+      //series colors:
       var colors = Highcharts.getOptions().colors
       var seriesNumber = 1
       if (isset(jeedom.history.chart[_params.el])) {
@@ -129,6 +131,7 @@ jeedom.history.drawChart = function (_params) {
       if(! _params.option.graphColor){
         _params.option.graphColor = colors[seriesNumber-1];
       }
+
       _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
       if(isset(data.result.cmd)){
         if (init(_params.option.graphStep) == '') {
@@ -145,6 +148,7 @@ jeedom.history.drawChart = function (_params) {
           _params.option.groupingType = {function :split[0],time : split[1] };
         }
       }
+
       var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
       _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
       _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
@@ -155,9 +159,10 @@ jeedom.history.drawChart = function (_params) {
 
       var legend = {borderColor: 'black',borderWidth: 2,shadow: true};
       legend.enabled = init(_params.showLegend, true);
-      if(isset(_params.newGraph) && _params.newGraph == true){
+      if (isset(_params.newGraph) && _params.newGraph == true) {
         delete jeedom.history.chart[_params.el];
       }
+
       var charts = {
         zoomType: 'x',
         renderTo: _params.el,
@@ -167,7 +172,21 @@ jeedom.history.drawChart = function (_params) {
         spacingRight: 5,
         spacingLeft: 5,
         height : _params.height || null,
-        style: {fontFamily: 'Roboto'}
+        style: {fontFamily: 'Roboto'},
+        events : {
+                  render: function () {
+                    //shift dotted zones clipPaths to ensure no overlapping step mode:
+                    $('.highcharts-zone-graph-0.customSolidZone').each(function() {
+                      var solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
+                      $(solidClip).css('transform', 'translate(5px)')
+                    })
+
+                    $('.highcharts-zone-graph-1.customDotZone').each(function() {
+                      var customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
+                      $(customClip).css('transform', 'translate(5px)')
+                    })
+                  }
+              },
       }
       if(charts.height < 10){
         charts.height = null;
@@ -285,6 +304,7 @@ jeedom.history.drawChart = function (_params) {
               }
             }
           }
+
           for(var i in data.result.data){
             series.data.push({
               x : data.result.data[i][0],
@@ -340,7 +360,22 @@ jeedom.history.drawChart = function (_params) {
               }
             }
           };
+
+          //continue value to now, dotted if last value older than one minute (ts in millisecond):
+          var dateEnd = new Date(data.result.dateEnd)
+          dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
+          var dateEndTs = dateEnd.getTime()
+          var diffms = dateEndTs - data.result.data[data.result.data.length - 1][0]
+          if (diffms > 60000) {
+            series.zoneAxis = 'x'
+            data.result.data.push([dateEndTs, data.result.data[data.result.data.length - 1][1]])
+            series.zones = [
+                            {value: data.result.data[data.result.data.length - 2][0], dashStyle: 'Solid', className: 'customSolidZone'},
+                            {value: data.result.data[data.result.data.length - 1][0], dashStyle: 'ShortDash', className: 'customDotZone'}
+                        ]
+          }
         }
+
         if(isset(_params.option.graphZindex)){
           series.zIndex = _params.option.graphZindex;
         }
