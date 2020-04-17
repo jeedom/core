@@ -1072,7 +1072,6 @@ class jeedom {
 		}
 		try {
 			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600))) {
-				sleep(rand(0, 300));
 				update::checkAllUpdate();
 				$updates = update::byStatus('update');
 				if (count($updates) > 0) {
