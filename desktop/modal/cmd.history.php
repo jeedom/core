@@ -66,8 +66,8 @@ $(function() {
           if (cmdIds.length == 1) {
             noChart = false
             $('#md_modal2').dialog('close')
+            return
           }
-          return
         }
         noChart = false
         done -= 1
