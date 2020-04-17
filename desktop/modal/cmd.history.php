@@ -75,12 +75,6 @@ $(function() {
       }
     })
   })
-
-  setTimeout(function() {
-    if (noChart) {
-      setModal()
-    }
-  }, 250)
 })
 
 
@@ -124,6 +118,7 @@ function setModal() {
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
     var divHighChart = $('#div_historyChart')
+    var chart = divHighChart.highcharts()
 
     //check previous size/pos:
     var datas = modal.data()
@@ -147,13 +142,18 @@ function setModal() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
       resizeHighChartModal()
     })
+
     modal.find('.ui-draggable-handle').on('mouseup', function(event) {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
     })
 
+    //highstock v8.0.4 crosshair positionning bug after modal moved:
+    $('#div_historyChart').on('mouseenter', function(event) {
+      chart.pointer.chartPosition = void 0
+    })
+
     //only one history loaded:
     if (cmdIds.length == 1) {
-      var chart = $('#div_historyChart').highcharts()
       if (chart) {
         modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
       }
@@ -162,10 +162,11 @@ function setModal() {
     resizeHighChartModal()
 
     function resizeHighChartModal() {
-      if(!divHighChart || !divHighChart.highcharts()){
+      if(!divHighChart || !chart){
         return;
       }
       divHighChart.highcharts().setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
+      chart.pointer.chartPosition = void 0
     }
   }
 }
