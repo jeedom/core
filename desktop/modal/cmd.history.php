@@ -62,6 +62,13 @@ $(function() {
       showLegend : _showLegend,
       height : jQuery(window).height() - 270,
       success: function (data) {
+        if (data == 'None') {
+          if (cmdIds.length == 1) {
+            noChart = false
+            $('#md_modal2').dialog('close')
+          }
+          return
+        }
         noChart = false
         done -= 1
         setModal()
@@ -136,7 +143,6 @@ function setModal() {
       modalContent.width(width-26).height(height-40)
     }
 
-    resizeHighChartModal()
     modal.resize(function() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
       resizeHighChartModal()
@@ -152,6 +158,8 @@ function setModal() {
         modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
       }
     }
+
+    resizeHighChartModal()
 
     function resizeHighChartModal() {
       if(!divHighChart || !divHighChart.highcharts()){
