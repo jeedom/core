@@ -56,6 +56,7 @@ Cambios
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
+- : ..
 
 
 
@@ -160,7 +161,7 @@ Cambios
 - Diseño : Mover y cambiar el tamaño de los componentes en * Diseño * tiene en cuenta su tamaño, con o sin magnetización. <br/><br/>
 - Reducción general (estilos CSS / en línea, refactorización, etc.) y mejoras de rendimiento.
 - Elimine Font Awesome 4 para mantener solo Font Awesome 5.
-- Actualización de Libs : jquery 3.4.1, CodeMiror 5.46.0, clasificador de tabla 2.31.1.
+- Actualización de s : jquery 3.4.1, CodeMiror 5.46.0, clasificador de tabla 2.31.1.
 - Numerosas correcciones de errores.
 - Agregar un sistema de configuración masiva (utilizado en la página Equipo para configurar la Alerta de comunicación en estos)
 
@@ -570,7 +571,7 @@ Cambios
 - Posibilidad de tener los documentos localmente.
 - Los desarrolladores externos pueden agregar su propio sistema de administración de tickets.
 - Rediseño de la configuración de derechos de usuario (todo está en la página de administración de usuarios).
-- Actualización de Libs : jquery (en 3.0), jquery mobile, hightstock y clasificador de tablas, font-awesome.
+- Actualización de s : jquery (en 3.0), jquery mobile, hightstock y clasificador de tablas, font-awesome.
 - Gran mejora en los diseños.:.
     - Ahora se puede acceder a todas las acciones con un clic derecho.
     - Posibilidad de agregar un solo pedido.
@@ -720,7 +721,7 @@ Cambios
 - Capacidad para configurar el nivel de registro de un complemento directamente en la página de configuración del complemento.
 - Posibilidad de consultar los registros de un complemento directamente en la página de configuración de este.
 - Supresión del inicio de depuración de demonios, ahora el nivel de registro del demonio es el mismo que el del complemento.
-- Limpieza de terceros de Lib.
+- Limpieza de terceros de .
 - Supresión de la voz receptiva (función dicha en los escenarios que funcionaban cada vez menos).
 - Se corrigieron varias vulnerabilidades de seguridad.
 - Adición de un modo síncrono en los escenarios (anteriormente modo rápido).

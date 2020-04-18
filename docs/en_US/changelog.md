@@ -56,6 +56,7 @@ Changelog
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
+- : ..
 
 
 
@@ -160,7 +161,7 @@ Changelog
 - Design : Moving and resizing components on * Design * takes their size into account, with or without magnetization. <br/><br/>
 - General reduction (css / inline styles, refactoring, etc.) and performance improvements.
 - Remove Font Awesome 4 to keep only Font Awesome 5.
-- Libs update : jquery 3.4.1, CodeMiror 5.46.0, tablesorter 2.31.1.
+- s update : jquery 3.4.1, CodeMiror 5.46.0, tablesorter 2.31.1.
 - Numerous bug fixes.
 - Adding a mass configuration system (used on the Equipment page to configure the Communication Alert on these)
 
@@ -457,7 +458,7 @@ Changelog
 - Add an option to easily open an access for the support (on the user page and when opening a ticket).
 - Correction of a rights bug following a restore of a backup.
 - Updating translations.
-- Library update (jquery and highcharts).
+- rary update (jquery and highcharts).
 - Ability to prohibit an order in automatic interactions.
 - Improved automatic interactions.
 - Bug correction on the synonym management of interactions.
@@ -570,7 +571,7 @@ Changelog
 - Possibility to have the docs locally.
 - Third-party developers can add their own ticket management system.
 - Redesign of user rights configuration (everything is on the user management page).
-- Libs update : jquery (in 3.0), jquery mobile, hightstock and table sorter, font-awesome.
+- s update : jquery (in 3.0), jquery mobile, hightstock and table sorter, font-awesome.
 - Big improvement in designs:.
     - All actions are now accessible from a right click.
     - Possibility to add a single order.
@@ -720,7 +721,7 @@ Changelog
 - Ability to configure the log level of a plugin directly on the configuration page of the plugin.
 - Possibility to consult the logs of a plugin directly on the configuration page of this one.
 - Suppression of the debug start of daemons, now the log level of the daemon is the same as that of the plugin.
-- Lib third party cleaning.
+-  third party cleaning.
 - Suppression of responsive voice (function said in the scenarios which worked less and less well).
 - Fixed several security vulnerabilities.
 - Addition of a synchronous mode on the scenarios (formerly fast mode).

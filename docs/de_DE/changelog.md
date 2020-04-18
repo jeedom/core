@@ -56,6 +56,7 @@
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
+- : ..
 
 
 
@@ -160,7 +161,7 @@
 - Design : Das Verschieben und Ändern der Größe von Komponenten in * Design * berücksichtigt deren Größe mit oder ohne Magnetisierung. <br/><br/>
 - Allgemeine Reduzierung (CSS / Inline-Stile, Refactoring usw.) und Leistungsverbesserungen.
 - Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
-- Libs Update : jquery 3.4.1, CodeMiror 5.46.0, Tablesorter 2.31.1.
+- s Update : jquery 3.4.1, CodeMiror 5.46.0, Tablesorter 2.31.1.
 - Zahlreiche Fehlerbehebungen.
 - Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um den Kommunikationsalarm für diese zu konfigurieren)
 
@@ -570,7 +571,7 @@
 - Möglichkeit, die Dokumente lokal zu haben.
 - Entwickler von Drittanbietern können ihr eigenes Ticketverwaltungssystem hinzufügen.
 - Neugestaltung der Benutzerrechtskonfiguration (alles befindet sich auf der Benutzerverwaltungsseite).
-- Libs Update : jquery (in 3.0), jquery mobile, hightstock und table sorter, font-awesome.
+- s Update : jquery (in 3.0), jquery mobile, hightstock und table sorter, font-awesome.
 - Große Verbesserung im Design:.
     - Alle Aktionen sind jetzt mit einem Rechtsklick zugänglich.
     - Möglichkeit, eine einzelne Bestellung hinzuzufügen.
@@ -720,7 +721,7 @@
 - Möglichkeit, die Protokollstufe eines Plugins direkt auf der Konfigurationsseite des Plugins zu konfigurieren.
 - Möglichkeit, die Protokolle eines Plugins direkt auf der Konfigurationsseite dieses Plugins zu konsultieren.
 - Unterdrückung des Debug-Starts von Daemons, jetzt ist die Protokollstufe des Daemons dieselbe wie die des Plugins.
-- Lib Reinigung durch Dritte.
+-  Reinigung durch Dritte.
 - Unterdrückung der reaktionsschnellen Stimme (Funktion in den Szenarien, die immer weniger gut funktionierten).
 - Mehrere Sicherheitslücken wurden behoben.
 - Hinzufügen eines synchronen Modus zu den Szenarien (ehemals schneller Modus).
