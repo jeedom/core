@@ -2974,6 +2974,13 @@ textarea {
 :not(.gauge) >.highcharts-container .highcharts-axis-line { stroke: var(--txt-color) }
 .highcharts-axis-labels text tspan { fill: var(--txt-color)!important; }
 
+.highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
+  font-weight: bold;
+  font-size: 12px;
+  transform: translate(0,10px) !important;
+  fill: var(--contrast-color)!important;
+}
+
 .highcharts-background {
   fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
   fill-opacity: var(--opacity);
