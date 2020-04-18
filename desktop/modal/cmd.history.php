@@ -138,11 +138,18 @@ function setModal() {
       modalContent.width(width-26).height(height-40)
     }
 
-    modal.resize(function() {
+    //handle resizing:
+    var resizeDone
+    function resizeDn() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
       resizeHighChartModal()
+    }
+    modal.resize(function() {
+      clearTimeout(resizeDone);
+      resizeDone = setTimeout(resizeDn, 100);
     })
 
+    //store size/pos:
     modal.find('.ui-draggable-handle').on('mouseup', function(event) {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
     })
@@ -159,15 +166,19 @@ function setModal() {
       }
     }
 
-    resizeHighChartModal()
-
     function resizeHighChartModal() {
       if(!divHighChart || !chart){
         return;
       }
-      divHighChart.highcharts().setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
+      chart.setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
       chart.pointer.chartPosition = void 0
     }
+
+    resizeHighChartModal()
+    setTimeout(function() {
+      chart.setSize()
+      chart.pointer.chartPosition = void 0
+    }, 500)
   }
 }
 </script>
