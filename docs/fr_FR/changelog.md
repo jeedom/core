@@ -2,6 +2,12 @@
 Changelog
 =========
 
+3.3.47
+=====
+
+- Correction de bugs
+- Optimisation du futur systeme de DNS
+
 3.3.45
 =====
 
