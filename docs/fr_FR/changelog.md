@@ -1,6 +1,12 @@
 Changelog
 =========
 
+4.0.51
+=====
+
+- Correction de bugs
+- Optimisation du futur systeme de DNS
+
 4.0.49
 =====
 
