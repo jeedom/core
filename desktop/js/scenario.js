@@ -1122,8 +1122,7 @@ $pageContainer.off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  fun
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Graphique de lien(s)}}"});
-  $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Graphique de lien(s)}}"}).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open')
 });
 
 jwerty.key('ctrl+l', function (e) {
@@ -1134,27 +1133,22 @@ jwerty.key('ctrl+l', function (e) {
 })
 
 $('#bt_logScenario').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
 });
 
 $('#bt_exportScenario').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Export du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.export&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Export du scénario}}"}).load('index.php?v=d&modal=scenario.export&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
 });
 
 $('#bt_templateScenario').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Template de scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Template de scénario}}"}).load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
 });
 
 $pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
   if($(this).attr('value') == 0){
-    $(this).attr('value',1);
-    $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
+    $(this).attr('value',1).html('<span><i class="fas fa-ban text-danger"></i></span>')
   }else{
-    $(this).attr('value',0);
-    $(this).html('<span><i class="fas fa-sync"></span>');
+    $(this).attr('value',0).html('<span><i class="fas fa-sync"></span>')
   }
 });
 

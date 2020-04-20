@@ -16,8 +16,7 @@
 
 
  $("#sel_plugin").on('change', function(event) {
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"});
-    $('#md_modal').load('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value() + '&ajax=1');
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value() + '&ajax=1')
 });
 
  $("#bt_clearMessage").on('click', function(event) {
@@ -34,8 +33,7 @@
 });
 
  $('#bt_refreshMessage').on('click', function(event) {
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"});
-    $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
 });
 
  $("#table_message").delegate(".removeMessage", 'click', function(event) {

@@ -21,8 +21,7 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 
 $('#bt_configureTwoFactorAuthentification').on('click',function(){
   var profil = $('#div_pageContainer').getValues('.userAttr')[0];
-  $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
-  $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
+  $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"}).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
 });
 
 $("#bt_saveProfils").on('click', function (event) {

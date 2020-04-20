@@ -351,8 +351,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
         },
         callback: function(key, opt){
           savePlan(false,false);
-          $('#md_modal').dialog({title: "{{Configuration du design}}"});
-          $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+          $('#md_modal').dialog({title: "{{Configuration du design}}"}).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open')
         }
       },
       sep3 : "---------",
@@ -389,8 +388,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
         icon:'fas fa-cogs',
         callback: function(key, opt){
           savePlan(false,false);
-          $('#md_modal').dialog({title: "{{Configuration du composant}}"});
-          $('#md_modal').load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open');
+          $('#md_modal').dialog({title: "{{Configuration du composant}}"}).load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open')
         }
       },
       configuration: {

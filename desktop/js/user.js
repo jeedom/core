@@ -211,8 +211,7 @@ function printUsers() {
 }
 
 $('#table_user').on( 'click','.bt_manage_restrict_rights', function () {
-  $('#md_modal').dialog({title: "Gestion des droits"});
-  $("#md_modal").load('index.php?v=d&modal=user.rights&id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "Gestion des droits"}).load('index.php?v=d&modal=user.rights&id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open')
 });
 
 
@@ -226,7 +225,7 @@ $('#table_user').on( 'click', '.bt_disableTwoFactorAuthentification',function ()
       printUsers();
     }
   });
-  
+
 });
 
 $('.bt_deleteSession').on('click',function(){

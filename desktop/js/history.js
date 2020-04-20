@@ -93,8 +93,7 @@ $('#bt_displayCalculHistory').on('click',function(){
 });
 
 $('#bt_configureCalculHistory').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-  $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open');
 });
 
 $('#bt_clearGraph').on('click',function(){
@@ -157,8 +156,7 @@ $(".li_history .export").on('click', function () {
 });
 
 $('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"});
-  $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
 
 $('#bt_validChangeDate').on('click',function(){
@@ -337,17 +335,15 @@ $('#bt_tabTimeline').on('click',function(){
 });
 
 $('#table_timeline').on('click','.bt_scenarioLog',function(){
-  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
-});
+  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
+})
 
 $('#table_timeline').on('click','.bt_gotoScenario',function(){
   loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'));
 });
 
 $('#table_timeline').on('click','.bt_configureCmd',function(){
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
 });
 
 $('#bt_refreshTimeline').on('click',function(){

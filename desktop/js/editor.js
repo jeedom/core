@@ -230,11 +230,10 @@ $('#bt_widgetCreate').off('click').on('click',function(){
 });
 
 $('#bt_createFile').off('click').on('click',function(){
-  if(editorType == 'widget'){
-    $('#md_widgetCreate').dialog({title: "{{Options}}"});
-    $("#md_widgetCreate").dialog('open');
+  if (editorType == 'widget') {
+    $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open');
     $('#sel_widgetType').trigger('change');
-  }else{
+  } else {
     bootbox.prompt("Nom du fichier ?", function (result) {
       if (result !== null) {
         jeedom.createFile({

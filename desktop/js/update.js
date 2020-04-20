@@ -34,8 +34,7 @@ $("#md_specifyUpdate").dialog({
 });
 
 $('#bt_updateJeedom').off('click').on('click', function () {
-  $('#md_specifyUpdate').dialog({title: "{{Options}}"});
-  $("#md_specifyUpdate").dialog('open');
+  $('#md_specifyUpdate').dialog({title: "{{Options}}"}).dialog('open')
 });
 
 $('.updateOption[data-l1key=force]').off('click').on('click',function(){

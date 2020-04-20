@@ -102,8 +102,7 @@ $("#bt_addView").on('click', function(event) {
 });
 
 $("#bt_editView").on('click', function(event) {
-  $('#md_modal').dialog({title: "{{Configuration de la vue}}"});
-  $('#md_modal').load('index.php?v=d&modal=view.configure&view_id='+$('.li_view.active').attr('data-view_id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration de la vue}}"}).load('index.php?v=d&modal=view.configure&view_id='+$('.li_view.active').attr('data-view_id')).dialog('open')
 });
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
@@ -370,7 +369,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     }
     line += '</tr>';
     table.find('tbody').append(line);
-    
+
   }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>');
     table.find('tbody tr').each(function(){

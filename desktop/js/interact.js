@@ -171,8 +171,7 @@ $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function()
 $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 $('.displayInteracQuery').on('click', function () {
-  $('#md_modal').dialog({title: "{{Liste des interactions}}"});
-  $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Liste des interactions}}"}).load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open')
 });
 
 setTimeout(function(){
@@ -252,8 +251,7 @@ if (is_numeric(getUrlVars('id'))) {
 }
 
 $('#bt_testInteract,#bt_testInteract2').on('click', function () {
-  $('#md_modal').dialog({title: "{{Tester les interactions}}"});
-  $('#md_modal').load('index.php?v=d&modal=interact.test').dialog('open');
+  $('#md_modal').dialog({title: "{{Tester les interactions}}"}).load('index.php?v=d&modal=interact.test').dialog('open')
 });
 
 $('#div_pageContainer').delegate('.listEquipementInfoReply', 'click', function () {
