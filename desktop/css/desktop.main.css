@@ -2596,6 +2596,11 @@ textarea {
   color: var(--link-color)!important
 }
 
+#jqueryLoadingDiv .loadingImg {
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+}
+
 .col-lg-9.col-md-8.col-sm-7 {
   border-left-width: 0 !important;
 }
