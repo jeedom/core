@@ -32,7 +32,7 @@ $(function() {
   $(window).on("resize", function (event) {
     deviceInfo = getDeviceType()
   })
-  
+
   if(getUrlVars('app_mode') == 1){
     APP_MODE = true;
     $('.backgroundforJeedom').height('100%');
@@ -372,28 +372,35 @@ function initApplication(_reinit) {
           $.include(include, function () {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
-            if (getUrlVars('p') == 'view') {
-              page('view', 'Vue',getUrlVars('view_id'));
-            } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
-              var res = userProfils.homePageMobile.split("::")
-              if (res[0] == 'core') {
-                switch (res[1]) {
-                  case 'dashboard' :
-                  page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
-                  break
-                  case 'plan' :
-                  window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
-                  break
-                  case 'view' :
-                  page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
-                  break
+
+            if(APP_MODE){
+              page('home', 'Accueil')
+            } else {
+              if (getUrlVars('p') == 'view') {
+                page('view', 'Vue',getUrlVars('view_id'));
+              } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
+                var res = userProfils.homePageMobile.split("::")
+                if (res[0] == 'core') {
+                  switch (res[1]) {
+                    case 'dashboard' :
+                    page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
+                    break
+                    case 'plan' :
+                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
+                    break
+                    case 'view' :
+                    page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
+                    break
+                  }
+                } else {
+                  page(res[1], 'Plugin', '', res[0])
                 }
               } else {
-                page(res[1], 'Plugin', '', res[0])
+                page('home', 'Accueil')
               }
-            } else {
-              page('home', 'Accueil')
             }
+
+
             if(APP_MODE){
               $('#pagecontainer').css('padding-top',0);
             }else{

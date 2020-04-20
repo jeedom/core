@@ -4,7 +4,16 @@ Cambios
 
 =====
 
+- Correcciones de errores
 - 
+
+
+=====
+
+- 
+- 
+- Correcciones de errores
+- Actualizando el documento
 
 
 =====

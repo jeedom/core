@@ -4,7 +4,16 @@ Changelog
 
 =====
 
+- Bugfix
 - 
+
+
+=====
+
+- 
+- 
+- Bugfix
+- Updating the doc
 
 
 =====

@@ -931,7 +931,7 @@ class cmd {
 		return 'cmd';
 	}
 	
-	public function save() {
+	public function save($_direct = false) {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
@@ -967,7 +967,7 @@ class cmd {
 			$this->setDisplay('showStatsOnmobile',0);
 			$this->setDisplay('showStatsOndashboard',0);
 		}
-		DB::save($this);
+		DB::save($this,$_direct);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
 			$eqLogic = $this->getEqLogic();
