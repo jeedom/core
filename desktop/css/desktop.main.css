@@ -2998,7 +2998,7 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
-.graph-widget {
+.graph-widget:not(.transparent) {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
 .graph-widget .highcharts-plot-band,
