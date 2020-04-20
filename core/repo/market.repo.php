@@ -238,7 +238,7 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
-	public static function beckup_serverPath(){
+	public static function backup_serverPath(){
 		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
 	}
 	
@@ -313,7 +313,7 @@ class repo_market {
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --tempdir '.$base_dir . '/tmp';
 		$cmd .= ' ' . $base_dir;
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -348,7 +348,7 @@ class repo_market {
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity cleanup --force ';
 		$cmd .= ' --num-retries 3';
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -368,7 +368,7 @@ class repo_market {
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --num-retries 3';
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -392,7 +392,7 @@ class repo_market {
 		$cmd .= ' duplicity collection-status';
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --timeout 60';
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			$results = explode("\n", com_shell::execute($cmd));
 		} catch (\Exception $e) {
@@ -435,7 +435,7 @@ class repo_market {
 		$cmd .= ' --time ' . $timestamp;
 		$cmd .= ' --num-retries 3';
 		$cmd .= ' --tempdir '.$base_dir;
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		$cmd .= ' ' . $restore_dir;
 		try {
 			com_shell::execute($cmd);
