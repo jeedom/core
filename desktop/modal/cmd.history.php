@@ -171,14 +171,13 @@ function setModal() {
         return;
       }
       chart.setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
-      chart.pointer.chartPosition = void 0
+      setTimeout(function() {
+        chart.setSize()
+        chart.pointer.chartPosition = void 0
+      }, 500)
     }
 
     resizeHighChartModal()
-    setTimeout(function() {
-      chart.setSize()
-      chart.pointer.chartPosition = void 0
-    }, 500)
   }
 }
 </script>
