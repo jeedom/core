@@ -9,33 +9,33 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 
 <div style="display: none;" id="div_iconSelectorAlert"></div>
 <style>
-.divIconSel{
-	height: 80px;
-	border: 1px solid #fff;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-}
+	.divIconSel{
+		height: 80px;
+		border: 1px solid #fff;
+		box-sizing: border-box;
+		cursor: pointer;
+		text-align: center;
+	}
 
-.iconSel{
-	line-height: 1.4;
-	font-size: 1.5em;
-}
+	.iconSel{
+		line-height: 1.4;
+		font-size: 1.5em;
+	}
 
-.iconSelected{
-	background-color: #563d7c;
-	color: white;
-}
+	.iconSelected{
+		background-color: #563d7c;
+		color: white;
+	}
 
-.iconDesc{
-	font-size: 0.8em;
-}
+	.iconDesc{
+		font-size: 0.8em;
+	}
 
-.imgContainer img{
-	max-width: 120px;
-	max-height: 70px;
-	padding: 10px;
-}
+	.imgContainer img{
+		max-width: 120px;
+		max-height: 70px;
+		padding: 10px;
+	}
 </style>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -420,7 +420,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				if (elem.position()) {
 					container = $('#mod_selectIcon > .tab-content')
 					pos = elem.position().top + container.scrollTop() - container.position().top
-					container.animate({scrollTop: pos})
+					container.animate({scrollTop: pos-20})
 				} else {
 					$('.customIcon').show();
 					$('.customIcon').empty().append('<span class="iconSel"><i class="' + iconName + '"></i></span><br/><span class="iconDesc">' + iconName + '</span>');
@@ -429,7 +429,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 					if (elem.position()) {
 						container = $('#mod_selectIcon > .tab-content')
 						pos = elem.position().top + container.scrollTop() - container.position().top
-						container.animate({scrollTop: pos})
+						container.animate({scrollTop: pos-20})
 					}
 				}
 			}, 250);
