@@ -5,6 +5,12 @@ Cambios
 
 =====
 
+- Correcciones de errores
+- 
+
+
+=====
+
 - 
 
 

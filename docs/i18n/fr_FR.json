@@ -959,6 +959,9 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "3.3.47": "3.3.47",
+        "Correction de bugs": "Correction de bugs",
+        "Optimisation du futur systeme de DNS": "Optimisation du futur systeme de DNS",
         "3.3.45": "3.3.45",
         "Correction de bug sur la webapp": "Correction de bug sur la webapp",
         "3.3.44": "3.3.44",
@@ -983,7 +986,6 @@
         "Corrections orthographiques": "Corrections orthographiques",
         "Correction de sécurité": "Correction de sécurité",
         "3.3.37": "3.3.37",
-        "Correction de bugs": "Correction de bugs",
         "3.3.36": "3.3.36",
         "Ajout d'un arrondit sur le nombre de jour depuis le dernier changement de pile": "Ajout d'un arrondit sur le nombre de jour depuis le dernier changement de pile",
         "3.3.35": "3.3.35",

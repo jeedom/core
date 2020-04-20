@@ -959,6 +959,9 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "3.3.47": "",
+        "Correction de bugs": "Bugfix",
+        "Optimisation du futur systeme de DNS": "",
         "3.3.45": "",
         "Correction de bug sur la webapp": "",
         "3.3.44": "",
@@ -983,7 +986,6 @@
         "Corrections orthographiques": "Spelling corrections",
         "Correction de sécurité": "Security fix",
         "3.3.37": "3.3.37",
-        "Correction de bugs": "Bugfix",
         "3.3.36": "3.3.36",
         "Ajout d'un arrondit sur le nombre de jour depuis le dernier changement de pile": "Addition of rounding on the number of days since the last battery change",
         "3.3.35": "3.3.35",
