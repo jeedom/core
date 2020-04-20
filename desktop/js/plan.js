@@ -616,7 +616,7 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
 $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
   if(editOption.state == true) return false
   event.stopPropagation()
-  var cmdIds = new Array()
+  var cmdIds = []
   $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
     cmdIds.push($(this).data('cmd_id'))
   })

@@ -2144,7 +2144,7 @@ $pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', fu
 
 
 //UNDO Management
-var _undoStack_ = new Array()
+var _undoStack_ = []
 var _undoState_ = -1
 var _firstState_ = 0
 var _undoLimit_ = 12
@@ -2213,7 +2213,7 @@ function redo() {
   resetEditors()
 }
 function resetUndo() {
-  _undoStack_ = new Array()
+  _undoStack_ = []
   _undoState_ = -1
   _firstState_ = 0
   _undoLimit_ = 10

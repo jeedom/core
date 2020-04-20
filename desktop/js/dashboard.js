@@ -155,7 +155,7 @@ $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqL
   event.stopImmediatePropagation()
   event.stopPropagation()
   if (event.ctrlKey) {
-    var cmdIds = new Array()
+    var cmdIds = []
     $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
       cmdIds.push($(this).data('cmd_id'))
     })
@@ -391,7 +391,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function() {
       if (event.ctrlKey) doesMin = true
       var id_object = $(this).attr('id').replace('edit_object_','')
       var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
-      var arHeights = new Array()
+      var arHeights = []
       objectContainer.find('.eqLogic-widget,.scenario-widget').each(function(index, element) {
         var h = $(this).height()
         arHeights.push(h)

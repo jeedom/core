@@ -65,7 +65,7 @@ if (view_id != '') {
       }catch(err) {
         console.log(err);
       }
-      
+
       try {
         $('.div_displayView').last().empty().html(html.html);
       }catch(err) {
@@ -97,7 +97,7 @@ if (view_id != '') {
           container.on( 'layoutComplete', orderItems );
           container.on( 'dragItemPositioned', orderItems );
         });
-        
+
         $('.eqLogicZone .eqLogic-widget').draggable('disable');
         $('.eqLogicZone .scenario-widget').draggable('disable');
         $('#bt_editViewWidgetOrder').off('click').on('click',function(){
@@ -127,7 +127,7 @@ if (view_id != '') {
 
 $('#div_pageContainer').off('click','.history[data-cmd_id]').on('click','.history[data-cmd_id]', function (event) {
   event.stopPropagation()
-  var cmdIds = new Array()
+  var cmdIds = []
   $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
     cmdIds.push($(this).data('cmd_id'))
   })
