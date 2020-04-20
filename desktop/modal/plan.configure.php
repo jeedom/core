@@ -183,10 +183,10 @@ sendVarToJS('id', $plan->getId());
 		<div class="form-group link_type link_plan link_view link_text">
 			<label class="col-lg-4 control-label">{{Icône}}</label>
 			<div class="col-lg-2">
-				<div class="planAttr" data-l1key="display" data-l2key="icon" ></div>
+				<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir une icône}}</a>
 			</div>
 			<div class="col-lg-2">
-				<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir une icône}}</a>
+				<div class="planAttr" data-l1key="display" data-l2key="icon" ></div>
 			</div>
 		</div>
 		<div class="form-group link_type link_eqLogic">
