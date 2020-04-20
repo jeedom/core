@@ -423,7 +423,7 @@ class network {
 		}
 		$replace = array(
 			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
-			'#PORT#' => 80,
+			'#PORT#' =>80,
 			'#SERVER_ADDR#' => config::byKey('service::tunnel::eu::backend::1')
 		);
 		for($i=1;$i<3;$i++){
@@ -477,6 +477,7 @@ class network {
 		return;
 	}
 	
+	
 	/*     * *********************Network management************************* */
 	
 	public static function portOpen($host, $port) {
@@ -518,9 +519,14 @@ class network {
 	
 	public static function cron5() {
 		try {
-			if(config::byKey('service::tunnel::enable') == 1 && config::byKey('market::allowDNS') == 1 && !self::dns2_run()){
-				log::add('network', 'debug', __('Redémarrage du tunnel jeedom', __FILE__));
-				self::dns2_start();
+			if(config::byKey('service::tunnel::enable') == 1 && config::byKey('market::allowDNS')){
+				if(!self::dns2_run()){
+					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (tunnel pas démarré)', __FILE__));
+					self::dns2_start();
+				}elseif(file_exists(log::getPathToLog('tunnel')) && shell_exec('tail -n 50 '.log::getPathToLog('tunnel').' | grep -c "action handshake"') < 1){
+					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (pas de handshake trouvé)', __FILE__));
+					self::dns2_start();
+				}
 			}
 		} catch (\Exception $e) {
 			

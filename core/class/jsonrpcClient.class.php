@@ -54,7 +54,7 @@ class jsonrpcClient {
 	 * @param int $_maxRetry
 	 * @return boolean
 	 */
-	public function sendRequest($_method, $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
+	public function sendRequest($_method, $_params = null, $_timeout = 60, $_file = null, $_maxRetry = 2) {
 		$_params['apikey'] = $this->apikey;
 		$_params = array_merge($_params, $this->options);
 		$request = array(

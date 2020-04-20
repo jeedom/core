@@ -181,7 +181,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
+	$cron->setSchedule(rand(0,59).' '.rand(0,3).'* * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
@@ -194,7 +194,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule('00 * * * * *');
+	$cron->setSchedule(rand(0,59).' * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);

@@ -938,7 +938,7 @@
         "Attention, il n’y a pas d’assistance de l’équipe ": "Tenga en cuenta que no hay asistencia del equipo",
         " sur les plugins installés depuis une autre source que le Market ": "en complementos instalados desde una fuente que no sea Market",
         ".De plus, l’installation d’un plugin depuis une autre source que le Market ": "Además, instalar un complemento desde una fuente que no sea Market",
-        " peut dans certains cas entrainer la perte globale d’assistance par l’équipe ": "en ciertos casos puede llevar a la pérdida general de asistencia por parte del equipo",
+        " entraine la perte globale d’assistance par l’équipe ": "",
         "Type de source": "Tipo de fuente",
         "Aucun": "Ninguna",
         "Configuration": "Configuración",
@@ -3098,6 +3098,8 @@
         "Impossible de télécharger : ": "No se puede descargar:",
         "Taille invalide pour : ": "Tamaño no válido para:",
         "Impossible de générer le certificat et la clef privé": "No se puede generar el certificado y la clave privada",
+        "Redémarrage du tunnel jeedom (tunnel pas démarré)": "",
+        "Redémarrage du tunnel jeedom (pas de handshake trouvé)": "",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Problema de red detectado, reinicio de red. No se encontró puerta de enlace",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Problema de red detectado, reinicio de red. La puerta de enlace no responde al ping:"
     },

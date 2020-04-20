@@ -5,6 +5,17 @@ Cambios
 
 =====
 
+- Correcciones de errores
+- 
+
+
+=====
+
+- 
+
+
+=====
+
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses.. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
 - Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
 - Actualización del repositorio en smart
