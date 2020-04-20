@@ -2867,6 +2867,10 @@ textarea {
 #jqueryLoadingDiv {
   color: var(--link-color)!important
 }
+#jqueryLoadingDiv .loadingImg {
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+}
 
 .col-lg-9.col-md-8.col-sm-7 {
   border-left-width: 0 !important;
@@ -2994,7 +2998,7 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
-.graph-widget {
+.graph-widget:not(.transparent) {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
 .graph-widget .highcharts-plot-band,

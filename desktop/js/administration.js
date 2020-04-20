@@ -812,9 +812,23 @@ $('#bt_addObjectSummary').on('click', function () {
 
 $pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
   var objectSummary = $(this).closest('.objectSummary');
+
+  var _icon = false
+  var icon = false
+  var color = false
+  if ( $(this).parent().find('.objectSummaryAttr > i').length ) {
+    color = '';
+    class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
+    class_icon = class_icon.replace(' ', '.').split(' ');
+    icon = '.'+class_icon[0];
+    if(class_icon[1]){
+      color = class_icon[1];
+    }
+
+  }
   chooseIcon(function (_icon) {
     objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon);
-  });
+  },{icon:icon,color:color});
 });
 
 $pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
