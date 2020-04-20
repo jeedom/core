@@ -985,10 +985,12 @@
     },
     "changelog.md": {
         "Changelog": "Cambios",
+        "4.0.51": "",
+        "Correction de bugs": "Correcciones de errores",
+        "Optimisation du futur systeme de DNS": "",
         "4.0.49": "",
         "Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS": "",
         "Amélioration du support dans la webwien dans l'application mobile": "",
-        "Correction de bugs": "Correcciones de errores",
         "Mise à jour de la doc": "Actualizando el documento",
         "4.0.47": "",
         "Amélioration du testeur d'expression": "Mejora del probador de expresión",

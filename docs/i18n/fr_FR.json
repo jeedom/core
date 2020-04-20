@@ -985,10 +985,12 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "4.0.51": "4.0.51",
+        "Correction de bugs": "Correction de bugs",
+        "Optimisation du futur systeme de DNS": "Optimisation du futur systeme de DNS",
         "4.0.49": "4.0.49",
         "Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS": "Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS",
         "Amélioration du support dans la webwien dans l'application mobile": "Amélioration du support dans la webwien dans l'application mobile",
-        "Correction de bugs": "Correction de bugs",
         "Mise à jour de la doc": "Mise à jour de la doc",
         "4.0.47": "4.0.47",
         "Amélioration du testeur d'expression": "Amélioration du testeur d'expression",
