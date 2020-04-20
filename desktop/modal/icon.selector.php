@@ -45,7 +45,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 	<?php } ?>
 </ul>
 
-<div class="tab-content" style="height:calc(100% - 20px);overflow-y:scroll;">
+<div class="tab-content" style="height:calc(100% - 20px)!important;overflow-y:scroll;">
 	<div id="mySearch" class="input-group" style="margin-left:6px;margin-top:6px">
 		<div class="input-group-btn">
 			<select class="form-control roundedLeft" style="width : 200px;" id="sel_colorIcon">
