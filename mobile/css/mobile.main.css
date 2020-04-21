@@ -88,6 +88,9 @@ a, .ui-link {
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
+[data-page="equipment"] .backgroundforJeedom {
+  filter: blur(var(--objectBackgroundBlur));
+}
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }
