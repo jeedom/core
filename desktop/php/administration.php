@@ -432,8 +432,14 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+						<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="showBackgroundImg"/>
+						</div>
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Flou des fonds des objets}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" />
 						</div>
 					</div>
 					<legend>{{Tuiles}}</legend>

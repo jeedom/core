@@ -64,6 +64,9 @@ p.state,
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
+[data-page="dashboard"] .backgroundforJeedom {
+  filter: blur(var(--objectBackgroundBlur));
+}
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }

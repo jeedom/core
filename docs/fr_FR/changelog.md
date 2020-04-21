@@ -32,6 +32,7 @@ Changelog
 - Analyse / Historique : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - Analyse / Historique : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
 - Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
+- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface).
 - Vue : possibilité de mettre des scénarios.
 - Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
