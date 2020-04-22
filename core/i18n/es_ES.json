@@ -1448,6 +1448,8 @@
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Actívelo para cambiar automáticamente a un tema alternativo en los momentos seleccionados.",
         "Capteur de luminosité (mobile)": "Sensor de brillo (móvil)",
         "Afficher les images de fond": "Mostrar imágenes de fondo",
+        "Flou des fonds des objets": "",
+        "Valeur de flou pour les images de fond sur les pages Dashboard.": "",
         "Tuiles": "Embaldosado",
         "Pas horizontal": "No horizontal",
         "Contraint la largeur des tuiles tous les x pixels": "Restringe el ancho de los mosaicos cada x píxeles",

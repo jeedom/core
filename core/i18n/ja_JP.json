@@ -1448,6 +1448,8 @@
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "有効にすると、選択した時間に別のテーマに自動的に切り替わります。",
         "Capteur de luminosité (mobile)": "明るさセンサー（モバイル）",
         "Afficher les images de fond": "背景画像を表示する",
+        "Flou des fonds des objets": "",
+        "Valeur de flou pour les images de fond sur les pages Dashboard.": "",
         "Tuiles": "タイリング",
         "Pas horizontal": "水平ではない",
         "Contraint la largeur des tuiles tous les x pixels": "Xピクセルごとにタイルの幅を制限します",

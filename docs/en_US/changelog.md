@@ -32,6 +32,7 @@ Changelog
 - Analysis / History : The options * grouping, type, variation, staircase * are active only with a single curve displayed.
 - Analysis / History : We can now use the * Area * option with the * Staircase option*.
 - Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
+- Dashboard : .
 - View : possibility to put scenarios.
 - Tools / Widget : The * Apply on * function shows the linked commands checked, unchecking one will apply the default core widget on this command.
 - Integration of the Timeline in DB for reliability reasons.

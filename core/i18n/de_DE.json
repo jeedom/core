@@ -1448,6 +1448,8 @@
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Aktivieren Sie diese Option, um zu den ausgewählten Zeiten automatisch zu einem anderen Thema zu wechseln.",
         "Capteur de luminosité (mobile)": "Helligkeitssensor (mobil)",
         "Afficher les images de fond": "Hintergrundbilder anzeigen",
+        "Flou des fonds des objets": "",
+        "Valeur de flou pour les images de fond sur les pages Dashboard.": "",
         "Tuiles": "Fliesen",
         "Pas horizontal": "Nicht horizontal",
         "Contraint la largeur des tuiles tous les x pixels": "Beschränkt die Breite der Kacheln alle x Pixel",
