@@ -2488,6 +2488,13 @@ div[id^=__lpform_] { /*lastpass*/
   font-size : 12px !important;
   line-height: 15px;
 }
+/* translation trick */
+.dropdown-menu .bt_addAction {
+  text-transform: lowercase
+}
+.dropdown-menu .bt_addAction::first-letter {
+  text-transform: uppercase
+}
 
 /* scenarios fields */
 .element .form-control.expressionAttr:not([data-l2key=graphColor]),
