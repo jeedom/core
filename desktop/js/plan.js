@@ -919,6 +919,7 @@ function displayPlan(_code) {
           addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom');
           initEditOption(editOption.state);
           initReportMode();
+          $(window).scrollTop(0);
         }
       });
     },
