@@ -32,6 +32,7 @@
 - Analyse / Geschichte : Die Optionen * Gruppierung, Typ, Variation, Treppe * sind nur mit einer einzelnen Kurve aktiv.
 - Analyse / Geschichte : Wir können jetzt die Option * Area * mit der Option * Staircase verwenden*.
 - Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
+- Armaturenbrett : .
 - Ansicht : Möglichkeit, Szenarien zu setzen.
 - Tools / Widgets : Die Funktion * Anwenden auf * zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
 - Integration der Timeline in die DB aus Zuverlässigkeitsgründen.

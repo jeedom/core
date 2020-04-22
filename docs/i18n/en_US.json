@@ -755,6 +755,7 @@
         "On peut maintenant utiliser l'option *Aire* avec l'option *Escalier": "We can now use the * Area * option with the * Staircase option",
         "Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile": "Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile",
         "Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes": "Ctrl Click on a legend to display only this one, Alt Click to display them all",
+        "Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface)": "",
         "Vue": "View",
         "possibilité de mettre des scénarios": "possibility to put scenarios",
         "Outils \/ Widgets": "Tools \/ Widgets",

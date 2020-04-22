@@ -1448,6 +1448,8 @@
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Activate to automatically switch to alternative theme at the selected times.",
         "Capteur de luminosité (mobile)": "Brightness sensor (mobile)",
         "Afficher les images de fond": "Show background images",
+        "Flou des fonds des objets": "",
+        "Valeur de flou pour les images de fond sur les pages Dashboard.": "",
         "Tuiles": "Tiles",
         "Pas horizontal": "Horizontal step",
         "Contraint la largeur des tuiles tous les x pixels": "Constrains the width of the tiles every x pixels",

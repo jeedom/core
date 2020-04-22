@@ -1448,6 +1448,8 @@
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Activer pour basculer automatiquement en thème alternatif aux heures choisies.",
         "Capteur de luminosité (mobile)": "Capteur de luminosité (mobile)",
         "Afficher les images de fond": "Afficher les images de fond",
+        "Flou des fonds des objets": "Flou des fonds des objets",
+        "Valeur de flou pour les images de fond sur les pages Dashboard.": "Valeur de flou pour les images de fond sur les pages Dashboard.",
         "Tuiles": "Tuiles",
         "Pas horizontal": "Pas horizontal",
         "Contraint la largeur des tuiles tous les x pixels": "Contraint la largeur des tuiles tous les x pixels",

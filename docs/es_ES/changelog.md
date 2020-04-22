@@ -32,6 +32,7 @@ Cambios
 - Análisis / Historia : Las opciones * agrupación, tipo, variación, escalera * están activas solo con una sola curva mostrada.
 - Análisis / Historia : Ahora podemos usar la opción * Área * con la opción * Escalera*.
 - Salpicadero : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
+- Salpicadero : .
 - Vista : posibilidad de poner escenarios.
 - Herramientas / widgets : La función * Aplicar en * muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado en este comando.
 - Integración de la línea de tiempo en DB por razones de confiabilidad.
