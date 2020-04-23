@@ -88,7 +88,7 @@ sendVarToJS('__objectList', $objectLists);
 		<thead>
 			<tr>
 				<th>{{ID}}</th>
-				<th>{{Scénario}}</th>
+				<th><i class="fas fa-cogs"></i> {{Scénario}}</th>
 				<th data-sorter="false" data-filter="false">{{Actions}}</th>
 			</tr>
 		</thead>
@@ -101,7 +101,7 @@ sendVarToJS('__objectList', $objectLists);
 		<thead>
 			<tr>
 				<th>{{ID}}</th>
-				<th>{{Design}}</th>
+				<th><i class="fas fa-paint-brush"></i> {{Design}}</th>
 				<th data-sorter="false" data-filter="false">{{Actions}}</th>
 			</tr>
 		</thead>
@@ -114,7 +114,7 @@ sendVarToJS('__objectList', $objectLists);
 		<thead>
 			<tr>
 				<th>{{ID}}</th>
-				<th>{{Vue}}</th>
+				<th><i class="far fa-image"></i> {{Vue}}</th>
 				<th data-sorter="false" data-filter="false">{{Actions}}</th>
 			</tr>
 		</thead>
@@ -158,6 +158,7 @@ function emptyResultTables() {
 }
 
 $('#sel_searchByType').change(function() {
+	emptyResultTables()
 	$('#searchByTypes > div.searchType').hide()
 	var option = $(this).find('option:selected').val()
 	$('#searchByTypes > div[data-searchType="'+option+'"').show()
@@ -167,6 +168,7 @@ $('.bt_selectEqLogic').on('click', function() {
 	jeedom.eqLogic.getSelectModal({}, function(result) {
 		$('#in_searchFor_equipment').value(result.human)
 		$('#in_searchFor_equipment').attr('data-id', result.id)
+		searchFor()
 	})
 })
 
@@ -174,11 +176,16 @@ $('.bt_selectCommand').on('click', function() {
 	jeedom.cmd.getSelectModal({},function (result) {
 	    $('#in_searchFor_command').value(result.human)
 	    $('#in_searchFor_command').attr('data-id', result.cmd.id)
-	  })
+	    searchFor()
+	 })
 })
 
 //Push the button!
 $('#bt_search').off().on('click',function() {
+	searchFor()
+})
+
+function searchFor() {
 	emptyResultTables()
 	var searchType = $('#sel_searchByType').find('option:selected').val()
 	var searchFor = $('#in_searchFor_'+searchType).val().toLowerCase()
@@ -188,7 +195,7 @@ $('#bt_search').off().on('click',function() {
 		tableViewSearch.find('tbody').empty()
 		window['searchFor_'+searchType](searchFor)
 	}
-})
+}
 
 /* ------            Searching            -------*/
 function searchFor_variable(_searchFor) {
