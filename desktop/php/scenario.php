@@ -11,6 +11,9 @@ if (is_array($scenarioListGroup)) {
 		$scenarios[$group['group']] = scenario::all($group['group']);
 	}
 }
+
+sendVarToJs('initSearch', init('search', 0));
+
 ?>
 
 <div class="row row-overflow">
