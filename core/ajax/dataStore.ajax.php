@@ -66,16 +66,16 @@ try {
 				);
 				$usedBy = $datastore->getUsedBy();
 				foreach ($usedBy['scenario'] as $scenario) {
-					$info_datastore['usedBy']['scenario'][] = $scenario->getHumanName();
+					$info_datastore['usedBy']['scenario'][] = ['humanName'=>$scenario->getHumanName(), 'link'=>$scenario->getLinkToConfiguration(), 'id'=>$scenario->getId()];
 				}
 				foreach ($usedBy['eqLogic'] as $eqLogic) {
-					$info_datastore['usedBy']['eqLogic'][] = $eqLogic->getHumanName();
+					$info_datastore['usedBy']['eqLogic'][] = ['humanName'=>$eqLogic->getHumanName(), 'link'=>$eqLogic->getLinkToConfiguration(), 'id'=>$eqLogic->getId()];
 				}
 				foreach ($usedBy['cmd'] as $cmd) {
-					$info_datastore['usedBy']['cmd'][] = $cmd->getHumanName();
+					$info_datastore['usedBy']['cmd'][] = ['humanName'=>$cmd->getHumanName(), 'link'=>$cmd->getLinkToConfiguration(), 'id'=>$cmd->getId()];
 				}
 				foreach ($usedBy['interactDef'] as $interactDef) {
-					$info_datastore['usedBy']['interactDef'][] = $interactDef->getHumanName();
+					$info_datastore['usedBy']['interactDef'][] = ['humanName'=>$interactDef->getHumanName(), 'link'=>$interactDef->getLinkToConfiguration(), 'id'=>$interactDef->getId()];
 				}
 				$return[] = $info_datastore;
 			}

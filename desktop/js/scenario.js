@@ -40,6 +40,13 @@ $( function() {
   jeedom.timeline.autocompleteFolder()
 
   $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
+
+  if (initSearch != 0) {
+    setTimeout(function() {
+      $('#bt_resetInsideScenarioSearch').trigger('click')
+      $('#in_searchInsideScenario').val(initSearch).keyup().blur().focus()
+    }, 500)
+  }
 })
 
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',function(){
@@ -85,8 +92,7 @@ $('#bt_closeAll').off('click').on('click', function () {
   })
 })
 $('#bt_resetScenarioSearch').on('click', function () {
-  $('#in_searchScenario').val('')
-  $('#in_searchScenario').keyup()
+  $('#in_searchScenario').val('').keyup()
 })
 
 //inside searching
