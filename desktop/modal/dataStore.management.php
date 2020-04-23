@@ -112,16 +112,16 @@ $(function() {
 					tr += '</td>';
 					tr += '<td>';
 					for(var j in data[i].usedBy.scenario){
-						tr += '<span class="label label-primary">'+data[i].usedBy.scenario[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.scenario[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.scenario[j]['humanName']+'</a>';
 					}
 					for(var j in data[i].usedBy.eqLogic){
-						tr += '<span class="label label-primary">'+data[i].usedBy.eqLogic[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.eqLogic[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.eqLogic[j]['humanName']+'</a>';
 					}
 					for(var j in data[i].usedBy.cmd){
-						tr += '<span class="label label-primary">'+data[i].usedBy.cmd[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.cmd[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.cmd[j]['humanName']+'</a>';
 					}
 					for(var j in data[i].usedBy.interactDef){
-						tr += '<span class="label label-primary">'+data[i].usedBy.interactDef[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.interactDef[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.interactDef[j]['humanName']+'</a>';
 					}
 					tr += '</td>';
 					tr += '<td style="min-width:120px; width:120px;">';
