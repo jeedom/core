@@ -137,17 +137,24 @@ function initResultTables() {
 	tableScSearch[0].config.widgetOptions.resizable_widths = ['60px', '', '60px']
 	tableScSearch.trigger('applyWidgets')
 	tableScSearch.trigger('resizableReset')
-	tableScSearch.trigger('sorton', [[[1,0]]])
+	tableScSearch.trigger('sorton', [[[0,0]]])
 
 	tablePlanSearch[0].config.widgetOptions.resizable_widths = ['60px', '', '60px']
 	tablePlanSearch.trigger('applyWidgets')
 	tablePlanSearch.trigger('resizableReset')
-	tablePlanSearch.trigger('sorton', [[[1,0]]])
+	tablePlanSearch.trigger('sorton', [[[0,0]]])
 
 	tableViewSearch[0].config.widgetOptions.resizable_widths = ['60px', '', '60px']
 	tableViewSearch.trigger('applyWidgets')
 	tableViewSearch.trigger('resizableReset')
-	tableViewSearch.trigger('sorton', [[[1,0]]])
+	tableViewSearch.trigger('sorton', [[[0,0]]])
+}
+
+function emptyResultTables() {
+	$('#div_alertScenarioSearch').hide()
+	tableScSearch.find('tbody').empty()
+	tablePlanSearch.find('tbody').empty()
+	tableViewSearch.find('tbody').empty()
 }
 
 $('#sel_searchByType').change(function() {
@@ -170,8 +177,9 @@ $('.bt_selectCommand').on('click', function() {
 	  })
 })
 
-
+//Push the button!
 $('#bt_search').off().on('click',function() {
+	emptyResultTables()
 	var searchType = $('#sel_searchByType').find('option:selected').val()
 	var searchFor = $('#in_searchFor_'+searchType).val().toLowerCase()
 	if (searchFor != '') {
@@ -183,21 +191,6 @@ $('#bt_search').off().on('click',function() {
 })
 
 /* ------            Searching            -------*/
-function searchFor_plugin(_searchFor) {
-	$('#table_ScenarioSearch tbody').empty()
-	jeedom.eqLogic.byType({
-		type: _searchFor,
-		error: function(error) {
-			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
-		},
-		success: function(result) {
-			for (var eq in result) {
-				searchFor_equipment('', result[eq].id)
-			}
-		}
-	})
-}
-
 function searchFor_variable(_searchFor) {
 	console.log('Miss scenario trigger in result.')
 	jeedom.dataStore.all({
@@ -220,8 +213,21 @@ function searchFor_variable(_searchFor) {
 	})
 }
 
+function searchFor_plugin(_searchFor) {
+	jeedom.eqLogic.byType({
+		type: _searchFor,
+		error: function(error) {
+			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+		},
+		success: function(result) {
+			for (var eq in result) {
+				searchFor_equipment('', result[eq].id)
+			}
+		}
+	})
+}
+
 function searchFor_equipment(_searchFor, _byId=false) {
-	$('#table_ScenarioSearch tbody').empty()
 	if (!_byId) {
 		var eQiD = $('#in_searchFor_equipment').attr('data-id')
 	} else {
@@ -237,6 +243,12 @@ function searchFor_equipment(_searchFor, _byId=false) {
 			for (var i in result.scenario) {
 				showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
 			}
+			for (var i in result.plan) {
+				showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
+			}
+			for (var i in result.view) {
+				showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+			}
 			jeedom.eqLogic.getCmd({
 				id : eQiD,
 				error: function(error) {
@@ -244,21 +256,7 @@ function searchFor_equipment(_searchFor, _byId=false) {
 				},
 				success: function(result) {
 					for (var i in result) {
-						jeedom.cmd.usedBy({
-							id : result[i].id,
-							error: function(error) {
-								$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
-							},
-							success: function(result) {
-								console.log(result)
-								for (var i in result.scenario) {
-									showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
-								}
-								for (var i in result.view) {
-									showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
-								}
-							}
-						})
+						searchFor_command('', result[i].id)
 					}
 				}
 			})
@@ -266,19 +264,29 @@ function searchFor_equipment(_searchFor, _byId=false) {
 	})
 }
 
-function searchFor_command(_searchFor) {
-	var cmdId = $('#in_searchFor_command').attr('data-id')
+function searchFor_command(_searchFor, _byId=false) {
+	if (!_byId) {
+		var cmdId = $('#in_searchFor_command').attr('data-id')
+	} else {
+		var cmdId = _byId
+	}
+
 	jeedom.cmd.usedBy({
 		id : cmdId,
 		error: function(error) {
 			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
 		},
 		success: function(result) {
-			var scenarioResult = []
+			console.log(result)
 			for (var i in result.scenario) {
-				scenarioResult.push({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId})
+				showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
 			}
-			showScenariosResult(scenarioResult)
+			for (var i in result.plan) {
+				showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
+			}
+			for (var i in result.view) {
+				showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+			}
 		}
 	})
 }
@@ -292,9 +300,6 @@ function searchFor_value(_searchFor) {
 //display result in scenario table:
 function showScenariosResult(_scenarios, _empty=true) {
 	if (!Array.isArray(_scenarios)) _scenarios = [_scenarios]
-	//$('#div_alertScenarioSearch').hide()
-	if (_empty) $('#table_ScenarioSearch tbody').empty()
-
 	for (var sc in _scenarios) {
 		if (tableScSearch.find('.scenario[data-id="'+_scenarios[sc].id+'"]').length) return
 		var tr = '<tr class="scenario" data-id="' + _scenarios[sc].id + '">'
@@ -321,9 +326,6 @@ function showScenariosResult(_scenarios, _empty=true) {
 //display result in design table:
 function showPlansResult(_plans, _empty=true) {
 	if (!Array.isArray(_plans)) _plans = [_plans]
-	//$('#div_alertScenarioSearch').hide()
-	if (_empty) $('#table_ScenarioSearch tbody').empty()
-
 	for (var sc in _plans) {
 		if (tablePlanSearch.find('.plan[data-id="'+_plans[sc].id+'"]').length) return
 		var tr = '<tr class="plan" data-id="' + _plans[sc].id + '">'
@@ -349,9 +351,6 @@ function showPlansResult(_plans, _empty=true) {
 //display result in view table:
 function showViewsResult(_views, _empty=true) {
 	if (!Array.isArray(_views)) _views = [_views]
-	//$('#div_alertScenarioSearch').hide()
-	if (_empty) $('#table_ScenarioSearch tbody').empty()
-
 	for (var sc in _views) {
 		if (tableViewSearch.find('.view[data-id="'+_views[sc].id+'"]').length) return
 		var tr = '<tr class="view" data-id="' + _views[sc].id + '">'
@@ -375,6 +374,11 @@ function showViewsResult(_views, _empty=true) {
 }
 
 /* ------            Search results Tables Actions            -------*/
+$('#table_ScenarioSearch').delegate('.bt_openLog', 'click', function () {
+	var tr = $(this).closest('tr')
+	$('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
+})
+
 $('#table_ScenarioSearch').delegate('.bt_openScenario', 'click', function () {
 	var tr = $(this).closest('tr')
 	var searchType = $('#sel_searchByType').find('option:selected').val()
@@ -388,19 +392,16 @@ $('#table_ScenarioSearch').delegate('.bt_openScenario', 'click', function () {
 
 $('#table_DesignSearch').delegate('.bt_openDesign', 'click', function () {
 	var tr = $(this).closest('tr')
-	var url = 'index.php?v=d&p=design&id=' + tr.attr('data-id')
+	var url = 'index.php?v=d&p=plan&plan_id=' + tr.attr('data-id')
 	window.open(url).focus()
 })
 
 $('#table_ViewSearch').delegate('.bt_openView', 'click', function () {
 	var tr = $(this).closest('tr')
-	var url = 'index.php?v=d&p=view&id=' + tr.attr('data-id')
+	var url = 'index.php?v=d&p=view&view_id=' + tr.attr('data-id')
 	window.open(url).focus()
 })
 
-$('#table_ScenarioSearch').delegate('.bt_openLog', 'click', function () {
-	var tr = $(this).closest('tr')
-	$('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
-})
+
 
 </script>

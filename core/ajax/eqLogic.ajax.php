@@ -341,6 +341,18 @@ try {
 				$info['linkId'] = $scenario->getId();
 				$return['scenario'][] = $info;
 			}
+			foreach ($result['plan'] as $plan) {
+				$info = utils::o2a($plan);
+				$info['name'] = $plan->getName();
+				$info['linkId'] = $plan->getId();
+				$return['plan'][] = $info;
+			}
+			foreach ($result['view'] as $view) {
+				$info = utils::o2a($view);
+				$info['name'] = $view->getName();
+				$info['linkId'] = $view->getId();
+				$return['view'][] = $info;
+			}
 			ajax::success($return);
 		}
 
