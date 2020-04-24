@@ -12,7 +12,8 @@ sendVarToJS('__objectList', $objectLists);
 <div id="div_alertScenarioSearch"></div>
 
 <!-- Search engine UI -->
-<form class="form-horizontal">
+<form class="form-horizontal shadowed">
+	<br/>
 	<div class="form-group">
 		<label class="col-lg-2 control-label">{{Recherche par}}</label>
 		<div class="col-lg-4">
@@ -61,7 +62,7 @@ sendVarToJS('__objectList', $objectLists);
 			<div class="input-group input-group-sm" >
 			    <input id="in_searchFor_equipment" class="form-control roundedLeft" value="" />
 			    <span class="input-group-btn">
-				    <button type="button" class="btn btn-default cursor bt_selectEqLogic roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>
+				    <button type="button" class="btn btn-default cursor bt_selectEqLogic roundedRight" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>
 			    </span>
 		    </div>
 		</div>
@@ -70,7 +71,7 @@ sendVarToJS('__objectList', $objectLists);
 			<div class="input-group input-group-sm" >
 			    <input id="in_searchFor_command" class="form-control roundedLeft" value="" />
 			    <span class="input-group-btn">
-				    <button type="button" class="btn btn-default cursor bt_selectCommand"  tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>
+				    <button type="button" class="btn btn-default cursor bt_selectCommand" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>
 			    </span>
 		    </div>
 		</div>
@@ -79,9 +80,8 @@ sendVarToJS('__objectList', $objectLists);
 			<input id="in_searchFor_value" class="form-control" placeholder="{{Rechercher}}"/>
 		</div>
 	</div>
+	<br/>
 </form>
-
-<br/>
 <br/>
 <!-- Results UI -->
 <div class="form-horizontal">
@@ -195,7 +195,7 @@ tableStore.forEach(function(table){
 	table.trigger('resizableReset')
 	table.trigger('sorton', [[[0,0]]])
 })
-
+initTooltips()
 /* ------            Search UI            -------*/
 function emptyResultTables() {
 	$('#div_alertScenarioSearch').hide()
