@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.0.52
+=====
+
+- Correction de bug (mise à jour à faire absolument si vous etes en 4.0.51)
+
 4.0.51
 =====
 
