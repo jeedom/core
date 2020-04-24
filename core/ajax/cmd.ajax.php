@@ -146,7 +146,7 @@ try {
 				throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
 			}
 			$result = $cmd->getUsedBy();
-			$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
+			$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array(), 'interactDef' => array());
 			foreach ($result['cmd'] as $cmd) {
 				$info = utils::o2a($cmd);
 				$info['humanName'] = $cmd->getHumanName();
@@ -162,7 +162,7 @@ try {
 				$return['eqLogic'][] = $info;
 			}
 			foreach ($result['scenario'] as $scenario) {
-				$info = utils::o2a($cmd);
+				$info = utils::o2a($scenario);
 				$info['humanName'] = $scenario->getHumanName();
 				$info['link'] = $scenario->getLinkToConfiguration();
 				$info['linkId'] = $scenario->getId();
@@ -179,6 +179,13 @@ try {
 				$info['name'] = $view->getName();
 				$info['linkId'] = $view->getId();
 				$return['view'][] = $info;
+			}
+			foreach ($result['interactDef'] as $interact) {
+				$info = utils::o2a($interact);
+				$info['humanName'] = $interact->getHumanName();
+				$info['link'] = $interact->getLinkToConfiguration();
+				$info['linkId'] = $interact->getId();
+				$return['interactDef'][] = $info;
 			}
 			ajax::success($return);
 		}
