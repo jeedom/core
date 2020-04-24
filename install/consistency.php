@@ -181,7 +181,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule(rand(0,59).' '.rand(0,3).'* * * *');
+	$cron->setSchedule(rand(0,59).' '.rand(0,3).' * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
