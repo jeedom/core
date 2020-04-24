@@ -244,7 +244,7 @@ sendVarToJs('initSearch', init('search', 0));
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
 									</div>
 									<div class="col-xs-5">
-										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%">
+										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%;display:none;">
 									</div>
 								</div>
 								<div class="form-group">

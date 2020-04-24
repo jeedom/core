@@ -138,6 +138,19 @@ sendVarToJS('__objectList', $objectLists);
 		</tbody>
 	</table>
 	<hr class="hrPrimary">
+	<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<thead>
+			<tr>
+				<th><i class="fas fa-cog"></i></i> {{Equipement}}</th>
+				<th>{{ID}}</th>
+				<th data-sorter="false" data-filter="false">{{Actions}}</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+	<hr class="hrPrimary">
 	<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
 		<thead>
 			<tr>
@@ -159,6 +172,7 @@ var tableScSearch = $('#table_ScenarioSearch')
 var tablePlanSearch = $('#table_DesignSearch')
 var tableViewSearch = $('#table_ViewSearch')
 var tableInteractSearch = $('#table_InteractSearch')
+var tableEqlogicSearch = $('#table_EqlogicSearch')
 var tableCmdSearch = $('#table_CmdSearch')
 initResultTables()
 
@@ -185,6 +199,11 @@ function initResultTables() {
 	tableInteractSearch.trigger('resizableReset')
 	tableInteractSearch.trigger('sorton', [[[0,0]]])
 
+	tableEqlogicSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
+	tableEqlogicSearch.trigger('applyWidgets')
+	tableEqlogicSearch.trigger('resizableReset')
+	tableEqlogicSearch.trigger('sorton', [[[0,0]]])
+
 	tableCmdSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
 	tableCmdSearch.trigger('applyWidgets')
 	tableCmdSearch.trigger('resizableReset')
@@ -197,6 +216,7 @@ function emptyResultTables() {
 	tablePlanSearch.find('tbody').empty()
 	tableViewSearch.find('tbody').empty()
 	tableInteractSearch.find('tbody').empty()
+	tableEqlogicSearch.find('tbody').empty()
 	tableCmdSearch.find('tbody').empty()
 }
 
@@ -225,11 +245,9 @@ $('.bt_selectCommand').on('click', function() {
 
 //Push the button!
 $('#in_searchFor_plugin').change(function() {
-	console.log('in_searchFor_plugin')
 	searchFor()
 })
 $('#in_searchFor_variable').change(function() {
-	console.log('in_searchFor_variable')
 	searchFor()
 })
 
@@ -257,6 +275,7 @@ function searchFor_variable(_searchFor) {
 		success: function (result) {
 			scenarioResult = []
 			interactResult = []
+			eqlogicResult = []
 			cmdResult = []
 			for (var i in result) {
 				if (result[i].key.toLowerCase() != _searchFor) continue
@@ -266,12 +285,16 @@ function searchFor_variable(_searchFor) {
 				for (var sc in result[i].usedBy.interactDef) {
 					interactResult.push({'humanName':result[i].usedBy.interactDef[sc]['humanName'], 'id':result[i].usedBy.interactDef[sc]['id']})
 				}
+				for (var sc in result[i].usedBy.eqLogic) {
+					eqlogicResult.push({'humanName':result[i].usedBy.eqLogic[sc]['humanName'], 'id':result[i].usedBy.eqLogic[sc]['id']})
+				}
 				for (var sc in result[i].usedBy.cmd) {
 					cmdResult.push({'humanName':result[i].usedBy.cmd[sc]['humanName'], 'id':result[i].usedBy.cmd[sc]['id']})
 				}
 			}
 			showScenariosResult(scenarioResult)
 			showInteractsResult(interactResult)
+			showEqlogicsResult(eqlogicResult)
 			showCmdsResult(cmdResult)
 		}
 	})
@@ -313,6 +336,15 @@ function searchFor_equipment(_searchFor, _byId=false) {
 			for (var i in result.view) {
 				showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
 			}
+			for (var i in result.interactDef) {
+				showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+			}
+			for (var i in result.eqLogic) {
+				showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+			}
+			for (var i in result.cmd) {
+				showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+			}
 			jeedom.eqLogic.getCmd({
 				id : eQiD,
 				error: function(error) {
@@ -341,7 +373,6 @@ function searchFor_command(_searchFor, _byId=false) {
 			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
 		},
 		success: function(result) {
-			console.log(result)
 			for (var i in result.scenario) {
 				showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
 			}
@@ -350,6 +381,15 @@ function searchFor_command(_searchFor, _byId=false) {
 			}
 			for (var i in result.view) {
 				showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+			}
+			for (var i in result.interactDef) {
+				showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+			}
+			for (var i in result.eqLogic) {
+				showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+			}
+			for (var i in result.cmd) {
+				showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
 			}
 		}
 	})
@@ -364,15 +404,15 @@ function searchFor_value(_searchFor) {
 //display result in scenario table:
 function showScenariosResult(_scenarios, _empty=true) {
 	if (!Array.isArray(_scenarios)) _scenarios = [_scenarios]
-	for (var sc in _scenarios) {
-		if (tableScSearch.find('.scenario[data-id="'+_scenarios[sc].id+'"]').length) return
-		var tr = '<tr class="scenario" data-id="' + _scenarios[sc].id + '">'
+	for (var i in _scenarios) {
+		if (tableScSearch.find('.scenario[data-id="'+_scenarios[i].id+'"]').length) return
+		var tr = '<tr class="scenario" data-id="' + _scenarios[i].id + '">'
 		tr += '<td>'
-		tr += '<span>'+_scenarios[sc].humanName+'</span>'
+		tr += '<span>'+_scenarios[i].humanName+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
-		tr += '<span class="label label-info">'+_scenarios[sc].id+'</span>'
+		tr += '<span class="label label-info">'+_scenarios[i].id+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
@@ -390,15 +430,15 @@ function showScenariosResult(_scenarios, _empty=true) {
 //display result in design table:
 function showPlansResult(_plans, _empty=true) {
 	if (!Array.isArray(_plans)) _plans = [_plans]
-	for (var sc in _plans) {
-		if (tablePlanSearch.find('.plan[data-id="'+_plans[sc].id+'"]').length) return
-		var tr = '<tr class="plan" data-id="' + _plans[sc].id + '">'
+	for (var i in _plans) {
+		if (tablePlanSearch.find('.plan[data-id="'+_plans[i].id+'"]').length) return
+		var tr = '<tr class="plan" data-id="' + _plans[i].id + '">'
 		tr += '<td>'
-		tr += '<span>'+_plans[sc].humanName+'</span>'
+		tr += '<span>'+_plans[i].humanName+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
-		tr += '<span class="label label-info">'+_plans[sc].id+'</span>'
+		tr += '<span class="label label-info">'+_plans[i].id+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
@@ -415,15 +455,15 @@ function showPlansResult(_plans, _empty=true) {
 //display result in view table:
 function showViewsResult(_views, _empty=true) {
 	if (!Array.isArray(_views)) _views = [_views]
-	for (var sc in _views) {
-		if (tableViewSearch.find('.view[data-id="'+_views[sc].id+'"]').length) return
-		var tr = '<tr class="view" data-id="' + _views[sc].id + '">'
+	for (var i in _views) {
+		if (tableViewSearch.find('.view[data-id="'+_views[i].id+'"]').length) return
+		var tr = '<tr class="view" data-id="' + _views[i].id + '">'
 		tr += '<td>'
-		tr += '<span>'+_views[sc].humanName+'</span>'
+		tr += '<span>'+_views[i].humanName+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
-		tr += '<span class="label label-info">'+_views[sc].id+'</span>'
+		tr += '<span class="label label-info">'+_views[i].id+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
@@ -440,15 +480,15 @@ function showViewsResult(_views, _empty=true) {
 //display result in interact table:
 function showInteractsResult(_Interacts, _empty=true) {
 	if (!Array.isArray(_Interacts)) _Interacts = [_Interacts]
-	for (var sc in _Interacts) {
-		if (tableInteractSearch.find('.view[data-id="'+_Interacts[sc].id+'"]').length) return
-		var tr = '<tr class="view" data-id="' + _Interacts[sc].id + '">'
+	for (var i in _Interacts) {
+		if (tableInteractSearch.find('.view[data-id="'+_Interacts[i].id+'"]').length) return
+		var tr = '<tr class="view" data-id="' + _Interacts[i].id + '">'
 		tr += '<td>'
-		tr += '<span>'+_Interacts[sc].humanName+'</span>'
+		tr += '<span>'+_Interacts[i].humanName+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
-		tr += '<span class="label label-info">'+_Interacts[sc].id+'</span>'
+		tr += '<span class="label label-info">'+_Interacts[i].id+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
@@ -463,17 +503,43 @@ function showInteractsResult(_Interacts, _empty=true) {
 }
 
 //display result in cmd table:
-function showCmdsResult(_Cmds, _empty=true) {
-	if (!Array.isArray(_Cmds)) _Cmds = [_Cmds]
-	for (var sc in _Cmds) {
-		if (tableCmdSearch.find('.view[data-id="'+_Cmds[sc].id+'"]').length) return
-		var tr = '<tr class="view" data-id="' + _Cmds[sc].id + '">'
+function showEqlogicsResult(_Eqlogics, _empty=true) {
+	if (!Array.isArray(_Eqlogics)) _Eqlogics = [_Eqlogics]
+	for (var i in _Eqlogics) {
+		if (tableEqlogicSearch.find('.view[data-id="'+_Eqlogics[i].id+'"]').length) return
+		var tr = '<tr class="view" data-id="' + _Eqlogics[i].id + '">'
+		var id = _Eqlogics[i].id.split('=').pop()
 		tr += '<td>'
-		tr += '<span>'+_Cmds[sc].humanName+'</span>'
+		tr += '<span>'+_Eqlogics[i].humanName+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
-		tr += '<span class="label label-info">'+_Cmds[sc].id+'</span>'
+		tr += '<span class="label label-info">'+id+'</span>'
+		tr += '</td>'
+
+		tr += '<td>'
+		tr += '<a class="btn btn-xs btn-success tooltips bt_openEqlogic" target="_blank" title="{{Aller sur l\'équipement.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+		tr += '</td>'
+
+		tr += '</tr>'
+		tableEqlogicSearch.find('tbody').append(tr)
+		tableEqlogicSearch.trigger("update")
+		initTooltips(tableEqlogicSearch)
+	}
+}
+
+//display result in cmd table:
+function showCmdsResult(_Cmds, _empty=true) {
+	if (!Array.isArray(_Cmds)) _Cmds = [_Cmds]
+	for (var i in _Cmds) {
+		if (tableCmdSearch.find('.view[data-id="'+_Cmds[i].id+'"]').length) return
+		var tr = '<tr class="view" data-id="' + _Cmds[i].id + '">'
+		tr += '<td>'
+		tr += '<span>'+_Cmds[i].humanName+'</span>'
+		tr += '</td>'
+
+		tr += '<td>'
+		tr += '<span class="label label-info">'+_Cmds[i].id+'</span>'
 		tr += '</td>'
 
 		tr += '<td>'
@@ -519,6 +585,12 @@ $('#table_ViewSearch').delegate('.bt_openView', 'click', function () {
 $('#table_InteractSearch').delegate('.bt_openInteract', 'click', function () {
 	var tr = $(this).closest('tr')
 	var url = 'index.php?v=d&p=interact&id=' + tr.attr('data-id')
+	window.open(url).focus()
+})
+
+$('#table_EqlogicSearch').delegate('.bt_openEqlogic', 'click', function () {
+	var tr = $(this).closest('tr')
+	var url = tr.attr('data-id')
 	window.open(url).focus()
 })
 
