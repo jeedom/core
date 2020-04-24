@@ -119,6 +119,7 @@ jeedom.init = function () {
   ]
 });
 
+
 $('body').on('cmd::update', function (_event,_options) {
   jeedom.cmd.refreshValue(_options);
 });
