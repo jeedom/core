@@ -24,7 +24,7 @@ Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&t
 
 ##  Info / Action command
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&ID=\#ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&ID=#ID#)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&ID=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&ID=#ID#)
 
 - **ID** : corresponds to the ID of what you want to control or from which you want to receive information.
 
@@ -40,7 +40,7 @@ The easiest way to get this URL is to go to the page **Analysis → Home automat
 
 ## InterAction
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
 - **query** : question to ask Jeedom.
 - **utf8** \[optional\] : tells Jeedom whether to encode query in utf8 before trying to answer.
@@ -50,38 +50,38 @@ Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#API
 
 ## Message
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Message&category=\#CATEGORY\#&Message=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=Message&category=#CATEGORY#&Message=#MESSAGE#)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Message&category=\#CATEGORY\#&Message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Message&category=#CATEGORY#&Message=#MESSAGE#)
 
 - **category** : Message category to add to Message center.
 - **Message** : Message in question, be careful to think about encoding the Message (space becomes% 20, =% 3D…). You can use a tool, [here] (https://meyerweb.com/eric/tools/dencoder/).
 
 ## Object
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Returns in json the list of all Jeedom objects.
 
 ## Equipment
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object \ _ID=\#OBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_ID=#OBJECT_ID#)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object \ _ID=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_ID=#OBJECT_ID#)
 
 - **object \ _ID** : ID of the object whose equipment we want to recover.
 
 ## Ordered
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _ID=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_ID=#EQLOGIC_ID#)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _ID=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_ID=#EQLOGIC_ID#)
 
 - **eqLogic \ _ID** : ID of the equipment from which orders are to be retrieved.
 
 ## Full Data
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
 Returns all objects, equipment, commands (and their value if they are info) in json.
 
 ## Variable
 
-Here is the URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
+Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 
 - **name** : name of the variable whose value is wanted (reading the value).
 - **value** \[optional\] : if &quot;value&quot; is specified then the variable will take this value (writing a value).

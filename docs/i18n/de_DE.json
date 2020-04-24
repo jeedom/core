@@ -587,8 +587,6 @@
         "\\[optionnel\\": "\\ [Optional \\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à = )": "Wenn die Aktion &quot;Start&quot; ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht =)",
         "Info\/Action commande": "Info \/ Aktionsbefehl",
-        "\/\/\\#IP\\_JEEDOM\\#\/jeedom\/core\/api\/jeeApi.php": "\/\/\\#IP\\_JEEDOM\\#\/jeedom\/core\/api\/jeeApi.php",
-        "\/\/#IP_JEEDOM#\/jeedom\/core\/api\/jeeApi.php": "\/\/#IP_JEEDOM#\/jeedom\/core\/api\/jeeApi.php",
         "correspond à l'id de ce que vous voulez piloter ou duquel vous souhaitez recevoir des informations": "entspricht der ID dessen, was Sie steuern möchten oder von dem Sie Informationen erhalten möchten",
         "Le plus simple pour avoir cette URL est d'aller sur la page": "Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite",
         "Analyse → Résumé domotique": "Analyse → Zusammenfassung der Hausautomation",

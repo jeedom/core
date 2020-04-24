@@ -566,6 +566,22 @@ $(function () {
     }
   })
 
+  $('#bt_showSearching').on('click', function (event) {
+    if (event.ctrlKey || event.originalEvent.which == 2) {
+      var title = encodeURI("{{Recherche}}")
+      var url = '/index.php?v=d&p=modaldisplay&loadmodal=search&title=' + title
+      window.open(url).focus()
+    } else {
+      $('#md_modal').dialog({title: "{{Recherche}}"}).load('index.php?v=d&modal=search').dialog('open')
+    }
+  })
+  $('#bt_showSearching').on('mouseup', function (event) {
+    if( event.which == 2 ) {
+      event.preventDefault()
+      $('#bt_showSearching').trigger(jQuery.Event('click', { ctrlKey: true }))
+    }
+  })
+
   $('#bt_gotoDashboard').on('click',function(event){
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()

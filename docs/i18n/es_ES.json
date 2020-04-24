@@ -587,8 +587,6 @@
         "\\[optionnel\\": "\\ [Opcional \\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à = )": "si la acción es &quot;inicio&quot;, puede pasar etiquetas al escenario (consulte la documentación sobre los escenarios) en el formulario etiquetas = toto% 3D1% 20tata% 3D2 (tenga en cuenta que% 20 corresponde a un espacio y% 3D a =)",
         "Info\/Action commande": "Comando de información \/ acción",
-        "\/\/\\#IP\\_JEEDOM\\#\/jeedom\/core\/api\/jeeApi.php": "\/\/\\#IP\\_JEEDOM\\#\/jeedom\/core\/api\/jeeApi.php",
-        "\/\/#IP_JEEDOM#\/jeedom\/core\/api\/jeeApi.php": "\/\/#IP_JEEDOM#\/jeedom\/core\/api\/jeeApi.php",
         "correspond à l'id de ce que vous voulez piloter ou duquel vous souhaitez recevoir des informations": "corresponde a la identificación de lo que desea controlar o del que desea recibir información",
         "Le plus simple pour avoir cette URL est d'aller sur la page": "La forma más fácil de obtener esta URL es ir a la página",
         "Analyse → Résumé domotique": "Análisis → Resumen de domótica",
