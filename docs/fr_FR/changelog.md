@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.48
+=====
+
+- Correction de bug (mise à jour à faire absolument si vous etes en 3.3.47)
+
 3.3.47
 =====
 

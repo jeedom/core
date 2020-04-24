@@ -47,7 +47,7 @@ Info / Aktionsbefehl
 ====================
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&Identifikation=\#ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&Identifikation=#ID#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&Identifikation=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&Identifikation=#ID#)
 
 -   **Identifikation** : entspricht der ID dessen, was Sie fahren möchten oder von welchem
     Sie möchten Informationen erhalten
@@ -74,7 +74,7 @@ Interaktion
 ===========
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&Abfrage=\#QUERY\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&Abfrage=#QUERY#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&Abfrage=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&Abfrage=#QUERY#)
 
 -   **Abfrage** : Frage an Jeedom zu stellen
 
@@ -94,7 +94,7 @@ Nachricht
 =======
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Nachricht&Kategorie=\#CATEGORY\#&Nachricht=\#MESSAGE\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=Nachricht&Kategorie=#CATEGORY#&Nachricht=#MESSAGE#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Nachricht&Kategorie=\#CATEGORY\#&Nachricht=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Nachricht&Kategorie=#CATEGORY#&Nachricht=#MESSAGE#)
 
 -   **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll
 
@@ -106,7 +106,7 @@ Objekt
 =====
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Gibt in json die Liste aller Jeedom-Objekte zurück
 
@@ -114,7 +114,7 @@ Ausrüstung
 ==========
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&Objekt \ _Identifikation=\#OBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_Identifikation=#OBJECT_ID#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&Objekt \ _Identifikation=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_Identifikation=#OBJECT_ID#)
 
 -   **Objekt \ _Identifikation** : ID des Objekts, von dem wir abrufen möchten
     Komfort
@@ -123,7 +123,7 @@ Bestellen
 ========
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _Identifikation=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_Identifikation=#EQLOGIC_ID#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _Identifikation=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_Identifikation=#EQLOGIC_ID#)
 
 -   **eqLogic \ _Identifikation** : ID der Ausrüstung, von der wir wiederherstellen möchten
     Befehle
@@ -132,7 +132,7 @@ Vollständige Daten
 =========
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
 Gibt alle Objekte, Geräte, Befehle (und deren Wert, falls dies der Fall ist) zurück
 sind infos) in json
@@ -141,7 +141,7 @@ Variable
 ========
 
 Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&Name=\#NAME\#&Wert=](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&Name=#NAME#&Wert=)*VALUE*
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&Name=\#NAME\#&Wert=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&Name=#NAME#&Wert=)*VALUE*
 
 -   **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen von
     der Wert)
