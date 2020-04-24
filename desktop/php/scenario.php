@@ -248,6 +248,12 @@ sendVarToJs('initSearch', init('search', 0));
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Dernier lancement}}</label>
+									<div class="col-xs-3">
+										<span class="label label-info scenarioAttr" data-l1key="lastLaunch"></span>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Icône}}</label>
 									<div class="col-xs-3">
 										<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
