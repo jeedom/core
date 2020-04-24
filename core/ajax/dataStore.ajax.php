@@ -72,7 +72,7 @@ try {
 					$info_datastore['usedBy']['eqLogic'][] = ['humanName'=>$eqLogic->getHumanName(), 'link'=>$eqLogic->getLinkToConfiguration(), 'id'=>$eqLogic->getId()];
 				}
 				foreach ($usedBy['cmd'] as $cmd) {
-					$info_datastore['usedBy']['cmd'][] = ['humanName'=>$cmd->getHumanName(), 'link'=>$cmd->getLinkToConfiguration(), 'id'=>$cmd->getId()];
+					$info_datastore['usedBy']['cmd'][] = ['humanName'=>$cmd->getHumanName(), 'link'=>$cmd->getEqLogic()->getLinkToConfiguration(), 'id'=>$cmd->getId()];
 				}
 				foreach ($usedBy['interactDef'] as $interactDef) {
 					$info_datastore['usedBy']['interactDef'][] = ['humanName'=>$interactDef->getHumanName(), 'link'=>$interactDef->getLinkToConfiguration(), 'id'=>$interactDef->getId()];
