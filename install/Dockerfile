@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:10
 
 MAINTAINER info@jeedom.com
 
