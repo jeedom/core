@@ -273,8 +273,6 @@ function searchFor_variable(_searchFor) {
 			$('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
 		},
 		success: function (result) {
-			console.log('dataStore.all')
-			console.log(result)
 			scenarioResult = []
 			interactResult = []
 			eqlogicResult = []
@@ -329,8 +327,6 @@ function searchFor_equipment(_searchFor, _byId=false) {
 			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
 		},
 		success: function(result) {
-			console.log('eqLogic.usedBy')
-			console.log(result)
 			for (var i in result.scenario) {
 				showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
 			}
@@ -377,8 +373,6 @@ function searchFor_command(_searchFor, _byId=false) {
 			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
 		},
 		success: function(result) {
-			console.log('cmd.usedBy')
-			console.log(result)
 			for (var i in result.scenario) {
 				showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
 			}
