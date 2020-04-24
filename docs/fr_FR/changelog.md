@@ -4,10 +4,17 @@ Changelog
 
 4.1.0
 =====
+- Synthèse : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
+- Recherche : Ajout d'un moteur de recherche dans **Outils → Recherche**.
+
 - Dashboard : Mode Édition maintenant en insertion de la tuile déplacée.
 - Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
-- Synthèse : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
+- Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
+- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface).
+- Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
+- Widgets : Possibilité d'ajouter des class css à un widget (voir documentation widget).
+- Widgets : Ajout d'un widget core *sliderVertical*.
 - Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120 mins.
 - Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
 - Centre de mise à jour : Si vous ouvrez un autre navigateur pendant une update, la barre de progression et le log le signalent.
@@ -31,10 +38,7 @@ Changelog
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Analyse / Historique : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - Analyse / Historique : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
-- Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
-- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface).
 - Vue : possibilité de mettre des scénarios.
-- Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
@@ -43,8 +47,6 @@ Changelog
 - Résumé domotique : Possibilité de sélectionner tous les équipements d'un objet.
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
-- Widgets : Possibilité d'ajouter des class css à un widget (voir documentation widget).
-- Widgets : Ajout d'un widget core *sliderVertical*.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
 - WebApp : Intégration de la nouvelle page Synthèse.
 - WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
@@ -54,8 +56,10 @@ Changelog
 - WebApp : Sur un design, un click avec trois doights permet de revenir à l'accueil.
 - WebApp : Affichage des scénarios par groupe.
 - WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
+
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
+
 - Corrections de bugs et optimisations.
 - Lib: Update HighStock v7.1.2 vers v8.0.4.
 
