@@ -35,7 +35,7 @@ sendVarToJS('__objectList', $objectLists);
 	<br/>
 	<div id="searchByTypes" class="form-group">
 		<div class="col-lg-2"></div>
-		<div class="col-lg-4 searchType" data-searchType="plugin" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="plugin" data-tableFilter="111111" style="display: none;">
 			<select id="in_searchFor_plugin" class="form-control">
 				<?php
 					$plugins = plugin::listPlugin();
@@ -46,7 +46,7 @@ sendVarToJS('__objectList', $objectLists);
 			</select>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="variable" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="variable" data-tableFilter="100111" style="display: none;">
 			<select id="in_searchFor_variable" class="form-control">
 				<?php
 					$variables = dataStore::byTypeLinkId('scenario');
@@ -57,7 +57,7 @@ sendVarToJS('__objectList', $objectLists);
 			</select>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="equipment">
+		<div class="col-lg-4 searchType" data-searchType="equipment" data-tableFilter="111111">
 			<div class="input-group input-group-sm" >
 			    <input id="in_searchFor_equipment" class="form-control roundedLeft" value="" />
 			    <span class="input-group-btn">
@@ -66,7 +66,7 @@ sendVarToJS('__objectList', $objectLists);
 		    </div>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="command" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="command" data-tableFilter="111111" style="display: none;">
 			<div class="input-group input-group-sm" >
 			    <input id="in_searchFor_command" class="form-control roundedLeft" value="" />
 			    <span class="input-group-btn">
@@ -75,7 +75,7 @@ sendVarToJS('__objectList', $objectLists);
 		    </div>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="value" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="value" data-tableFilter="111111" style="display: none;">
 			<input id="in_searchFor_value" class="form-control" placeholder="{{Rechercher}}"/>
 		</div>
 	</div>
@@ -86,84 +86,96 @@ sendVarToJS('__objectList', $objectLists);
 <!-- Results UI -->
 <div class="form-horizontal">
 	<hr class="hrPrimary">
-	<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
-		<thead>
-			<tr>
-				<th><i class="fas fa-cogs"></i> {{Scénario}}</th>
-				<th>{{ID}}</th>
-				<th data-sorter="false" data-filter="false">{{Actions}}</th>
-			</tr>
-		</thead>
-		<tbody>
+	<div>
+		<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+			<thead>
+				<tr>
+					<th><i class="fas fa-cogs"></i> {{Scénario}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-	<hr class="hrPrimary">
-	<table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
-		<thead>
-			<tr>
-				<th><i class="fas fa-paint-brush"></i> {{Design}}</th>
-				<th>{{ID}}</th>
-				<th data-sorter="false" data-filter="false">{{Actions}}</th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<hr class="hrPrimary">
+	</div>
+	<div>
+		<table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+			<thead>
+				<tr>
+					<th><i class="fas fa-paint-brush"></i> {{Design}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-	<hr class="hrPrimary">
-	<table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
-		<thead>
-			<tr>
-				<th><i class="far fa-image"></i> {{Vue}}</th>
-				<th>{{ID}}</th>
-				<th data-sorter="false" data-filter="false">{{Actions}}</th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<hr class="hrPrimary">
+	</div>
+	<div>
+		<table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+			<thead>
+				<tr>
+					<th><i class="far fa-image"></i> {{Vue}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-	<hr class="hrPrimary">
-	<table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
-		<thead>
-			<tr>
-				<th><i class="far fa-comments"></i> {{Interaction}}</th>
-				<th>{{ID}}</th>
-				<th data-sorter="false" data-filter="false">{{Actions}}</th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<hr class="hrPrimary">
+	</div>
+	<div>
+		<table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+			<thead>
+				<tr>
+					<th><i class="far fa-comments"></i> {{Interaction}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-	<hr class="hrPrimary">
-	<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
-		<thead>
-			<tr>
-				<th><i class="fas fa-cog"></i></i> {{Equipement}}</th>
-				<th>{{ID}}</th>
-				<th data-sorter="false" data-filter="false">{{Actions}}</th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<hr class="hrPrimary">
+	</div>
+	<div>
+		<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+			<thead>
+				<tr>
+					<th><i class="fas fa-cog"></i></i> {{Equipement}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-	<hr class="hrPrimary">
-	<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
-		<thead>
-			<tr>
-				<th><i class="fas fa-terminal"></i></i> {{Commande}}</th>
-				<th>{{ID}}</th>
-				<th data-sorter="false" data-filter="false">{{Actions}}</th>
-			</tr>
-		</thead>
-		<tbody>
+			</tbody>
+		</table>
+		<hr class="hrPrimary">
+	</div>
+	<div>
+		<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+			<thead>
+				<tr>
+					<th><i class="fas fa-terminal"></i></i> {{Commande}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
-	<hr class="hrPrimary">
+			</tbody>
+		</table>
+		<hr class="hrPrimary">
+	</div>
 </div>
 
 <script>
@@ -174,57 +186,36 @@ var tableViewSearch = $('#table_ViewSearch')
 var tableInteractSearch = $('#table_InteractSearch')
 var tableEqlogicSearch = $('#table_EqlogicSearch')
 var tableCmdSearch = $('#table_CmdSearch')
-initResultTables()
+var tableStore = [tableScSearch, tablePlanSearch, tableViewSearch, tableInteractSearch, tableEqlogicSearch, tableCmdSearch]
+
+initTableSorter()
+tableStore.forEach(function(table){
+	table[0].config.widgetOptions.resizable_widths = ['', '100px', '100px']
+	table.trigger('applyWidgets')
+	table.trigger('resizableReset')
+	table.trigger('sorton', [[[0,0]]])
+})
 
 /* ------            Search UI            -------*/
-function initResultTables() {
-	initTableSorter()
-	tableScSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
-	tableScSearch.trigger('applyWidgets')
-	tableScSearch.trigger('resizableReset')
-	tableScSearch.trigger('sorton', [[[0,0]]])
-
-	tablePlanSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
-	tablePlanSearch.trigger('applyWidgets')
-	tablePlanSearch.trigger('resizableReset')
-	tablePlanSearch.trigger('sorton', [[[0,0]]])
-
-	tableViewSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
-	tableViewSearch.trigger('applyWidgets')
-	tableViewSearch.trigger('resizableReset')
-	tableViewSearch.trigger('sorton', [[[0,0]]])
-
-	tableInteractSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
-	tableInteractSearch.trigger('applyWidgets')
-	tableInteractSearch.trigger('resizableReset')
-	tableInteractSearch.trigger('sorton', [[[0,0]]])
-
-	tableEqlogicSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
-	tableEqlogicSearch.trigger('applyWidgets')
-	tableEqlogicSearch.trigger('resizableReset')
-	tableEqlogicSearch.trigger('sorton', [[[0,0]]])
-
-	tableCmdSearch[0].config.widgetOptions.resizable_widths = ['', '60px', '60px']
-	tableCmdSearch.trigger('applyWidgets')
-	tableCmdSearch.trigger('resizableReset')
-	tableCmdSearch.trigger('sorton', [[[0,0]]])
-}
-
 function emptyResultTables() {
 	$('#div_alertScenarioSearch').hide()
-	tableScSearch.find('tbody').empty()
-	tablePlanSearch.find('tbody').empty()
-	tableViewSearch.find('tbody').empty()
-	tableInteractSearch.find('tbody').empty()
-	tableEqlogicSearch.find('tbody').empty()
-	tableCmdSearch.find('tbody').empty()
+	tableStore.forEach(function(table){
+		table.find('tbody').empty()
+	})
 }
 
 $('#sel_searchByType').change(function() {
 	emptyResultTables()
 	$('#searchByTypes > div.searchType').hide()
 	var option = $(this).find('option:selected').val()
-	$('#searchByTypes > div[data-searchType="'+option+'"').show()
+	var div = $('#searchByTypes > div[data-searchType="'+option+'"')
+	div.show()
+	var dataFilter = Array.from(div.attr('data-tableFilter'), x => parseInt(x))
+	for (var i in tableStore) {
+		var table = tableStore[i]
+		if (dataFilter[i] == 1) table.parent().show()
+		else table.parent().hide()
+	}
 })
 
 $('.bt_selectEqLogic').on('click', function() {
@@ -301,6 +292,7 @@ function searchFor_variable(_searchFor) {
 }
 
 function searchFor_plugin(_searchFor) {
+
 	jeedom.eqLogic.byType({
 		type: _searchFor,
 		error: function(error) {
