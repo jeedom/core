@@ -35,6 +35,7 @@ service atd restart
 
 if [ $(which mysqld | wc -l) -ne 0 ]; then
 	echo 'Starting mysql'
+	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 	service mysql restart
 fi
 
