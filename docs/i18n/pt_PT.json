@@ -587,8 +587,6 @@
         "\\[optionnel\\": "",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à = )": "",
         "Info\/Action commande": "",
-        "\/\/\\#IP\\_JEEDOM\\#\/jeedom\/core\/api\/jeeApi.php": "",
-        "\/\/#IP_JEEDOM#\/jeedom\/core\/api\/jeeApi.php": "",
         "correspond à l'id de ce que vous voulez piloter ou duquel vous souhaitez recevoir des informations": "",
         "Le plus simple pour avoir cette URL est d'aller sur la page": "",
         "Analyse → Résumé domotique": "",
