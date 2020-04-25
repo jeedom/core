@@ -4,10 +4,17 @@
 
 4.1.0
 =====
+- Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
+- Suche :  ****.
+
 - Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - Armaturenbrett : Wir können jetzt auf die * Zeit * der Zeitaktions-Widgets klicken, um das Verlaufsfenster des Befehls für verknüpfte Informationen zu öffnen..
 - Armaturenbrett : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
-- Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
+- Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
+- Armaturenbrett : .
+- Tools / Widgets : Die Funktion * Anwenden auf * zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
+- Widgets : .
+- Widgets : *.
 - Update Center : Aktualisierungen werden beim Öffnen der Seite automatisch überprüft, wenn sie 120 Minuten älter ist.
 - Update Center : Der Fortschrittsbalken befindet sich jetzt auf der Registerkarte * Core und Plugins *, und das Protokoll wird standardmäßig auf der Registerkarte * Informationen geöffnet*.
 - Update Center : Wenn Sie während eines Updates einen anderen Browser öffnen, wird dies in der Fortschrittsanzeige und im Protokoll angezeigt.
@@ -31,10 +38,7 @@
 - Analyse / Geschichte : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - Analyse / Geschichte : Die Optionen * Gruppierung, Typ, Variation, Treppe * sind nur mit einer einzelnen Kurve aktiv.
 - Analyse / Geschichte : Wir können jetzt die Option * Area * mit der Option * Staircase verwenden*.
-- Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
-- Armaturenbrett : .
 - Ansicht : Möglichkeit, Szenarien zu setzen.
-- Tools / Widgets : Die Funktion * Anwenden auf * zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
 - Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - Verwaltung mehrerer Zeitleisten.
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
@@ -43,8 +47,6 @@
 - Zusammenfassung der Hausautomation : .
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
-- Widgets : .
-- Widgets : *.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
@@ -54,8 +56,10 @@
 - WebApp : .
 - WebApp : .
 - WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
+
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
+
 - Fehlerbehebungen und Optimierungen.
 - : ..
 

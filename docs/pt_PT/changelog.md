@@ -4,10 +4,17 @@
 
 
 =====
-- Painel de instrumentos : .
-- Painel de instrumentos : .
-- Painel de instrumentos : .
 -  :  **** .
+-  :  ****.
+
+- Painel de instrumentos : .
+- Painel de instrumentos : .
+- Painel de instrumentos : .
+- Painel de instrumentos : . .
+- Painel de instrumentos : .
+-  : .
+-  : .
+-  : *.
 - Update Center : .
 - Update Center : *.
 - Update Center : .
@@ -31,10 +38,7 @@
 -  : .
 -  : .
 -  : *.
-- Painel de instrumentos : . .
-- Painel de instrumentos : .
 - Vista : .
--  : .
 - .
 - .
 - Resumo Automation : .
@@ -44,7 +48,6 @@
 - Mecanismo de tarefas : .
 -  : .
 -  : .
--  : *.
 -  : .
 -  : .
 -  : .
@@ -53,9 +56,10 @@
 -  : .
 -  : .
 -  : .
--  : .
+
 - Documentação : .
 - Documentação : . .
+
 - .
 - : ..
 
