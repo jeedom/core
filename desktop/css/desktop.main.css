@@ -932,6 +932,9 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
+table.tablesorter thead .tablesorter-filter-row input {
+  height: 20px;
+}
 
 #table_cron .tablesorter-filter {
   display: none;
