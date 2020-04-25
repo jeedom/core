@@ -959,6 +959,8 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "3.3.48": "3.3.48",
+        "Correction de bug (mise à jour à faire absolument si vous etes en 3.3.47)": "Correction de bug (mise à jour à faire absolument si vous etes en 3.3.47)",
         "3.3.47": "3.3.47",
         "Correction de bugs": "Correction de bugs",
         "Optimisation du futur systeme de DNS": "Optimisation du futur systeme de DNS",
