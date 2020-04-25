@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.0.53
+=====
+
+- Correction de bug
+
 4.0.52
 =====
 
