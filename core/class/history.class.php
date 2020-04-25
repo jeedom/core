@@ -120,10 +120,10 @@ class history {
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
 		DB::Prepare($sql, array());
-		if (config::byKey('historyArchivePackage') > 1) {
+		if (config::byKey('historyArchivePackage') < 1) {
 			config::save('historyArchivePackage', 1);
 		}
-		if (config::byKey('historyArchiveTime') > 2) {
+		if (config::byKey('historyArchiveTime') < 2) {
 			config::save('historyArchiveTime', 2);
 		}
 		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
