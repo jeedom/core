@@ -2082,6 +2082,9 @@ input[type=checkbox].summaryAttr {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   padding-bottom: 12px !important;
   height: unset !important;
+  max-height:calc(100% - 50px);
+  overflow:auto;
+  overflow-x: hidden;
 }
 .tab-content .tab-content,
 .tab-content pre {
