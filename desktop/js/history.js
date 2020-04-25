@@ -392,17 +392,36 @@ function displayTimeline(){
 }
 
 function sepDays() {
-  doIt = false
+  var doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
 
-  prevDate = ''
+  var thisDate, thisDateTs, prevDate, prevDateTs = false
+  var decay = 0
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)
+    thisDateTs = moment($(this).text().substring(0,19)).unix()
+
     if (doIt && thisDate != prevDate) {
-      $(this).style('border-top', '1px dotted var(--txt-color)', 'important')
+      $(this).addClass('sepDay')
+      decay = 1-decay
+    } else {
+      $(this).removeClass('sepDay')
+    }
+
+    if (doIt && decay == 1) {
+      $(this).find('td:first-child').css('padding-left', '5%')
+    } else {
+      $(this).find('td:first-child').css('padding-left', '')
+    }
+
+    if (doIt && prevDateTs) {
+      var height = 14 + Math.abs((prevDateTs - thisDateTs) / 250)
+      $(this).attr('style', 'height: '+height+'px !important')
     } else {
       $(this).removeAttr('style')
     }
+
     prevDate = thisDate
+    prevDateTs = thisDateTs
   })
 }

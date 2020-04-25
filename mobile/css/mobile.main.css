@@ -924,13 +924,16 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   margin: 0;
   border: 1px solide red !important;
 }
+#table_timeline td {
+  vertical-align: bottom !important;
+}
 #table_timeline .label-sm {
   padding: 5px;
   border-radius: var(--border-radius);
   line-height: 27px;
 }
-#table_timeline .sepDay td {
-  border-top: 2px dotted var(--txt-color);
+#table_timeline tr.sepDay td {
+  border-top: 2px dashed var(--txt-color) !important;
 }
 
 /* ________________HIGHCHARTS */

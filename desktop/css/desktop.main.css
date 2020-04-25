@@ -1418,6 +1418,19 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
+#table_timeline td {
+  vertical-align: bottom !important;
+}
+#table_timeline > tbody tr {
+  background-color: rgb(var(--bg-color)) !important;
+}
+#table_timeline tr:hover td {
+  background-color: rgb(var(--bg-color)) !important;
+}
+#table_timeline tr.sepDay {
+  border-top: 2px dashed var(--txt-color) !important;
+}
+
 #historytab .label.displayObject {
   margin-top: 2.2px;
 }

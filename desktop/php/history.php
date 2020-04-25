@@ -152,7 +152,7 @@ $date = array(
 				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</span>
 		</div>
-		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
+		<table id="table_timeline" class="table table-condensed tablesorter">
 			<thead>
 				<tr>
 					<th data-sorter="shortDate">{{Date}}</th>
@@ -167,4 +167,7 @@ $date = array(
 	</div>
 </div>
 
-<?php include_file("desktop", "history", "js");?>
+<?php
+include_file("desktop", "history", "js");
+include_file('3rdparty', 'moment/lib.moment', 'js');
+?>

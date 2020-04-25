@@ -1,6 +1,7 @@
+// dates are sorted on desktop by tablesorter. Mobile sort them with 3rdparty momentJs
 $('body').attr('data-page', 'timeline')
 function initTimeline() {
-  
+
   jeedom.timeline.listFolder({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -22,12 +23,11 @@ function initTimeline() {
         $(this).addClass('active')
         displayTimeline()
       })
+      $('#bt_refreshTimeline').on('click',function() {
+        displayTimeline()
+      })
       displayTimeline()
     }
-  })
-  
-  $('#bt_refreshTimeline').on('click',function(){
-    displayTimeline()
   })
 }
 
@@ -93,14 +93,27 @@ function sortByDateConsistentASC(itemA, itemB) {
 }
 
 function sepDays() {
-  prevDate = ''
+  var thisDate, thisDateTs, prevDate, prevDateTs = false
+
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)
+    thisDateTs = moment($(this).text().substring(0,19)).unix()
+
     if (thisDate != prevDate) {
       $(this).addClass('sepDay')
     } else {
       $(this).removeClass('sepDay')
     }
+
+    if (prevDateTs) {
+      var height = 33 + Math.abs((prevDateTs - thisDateTs) / 200)
+      $(this).attr('style', 'height: '+height+'px !important')
+    } else {
+      $(this).removeAttr('style')
+    }
+
     prevDate = thisDate
+    prevDateTs = thisDateTs
   })
+  $("body").addClass("dummyClass").removeClass("dummyClass")
 }
