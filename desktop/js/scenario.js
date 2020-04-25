@@ -2125,6 +2125,7 @@ function getAddButton(_caret) {
   }
   return retour
 }
+
 $pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', function (event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
@@ -2149,6 +2150,21 @@ var _undoState_ = -1
 var _firstState_ = 0
 var _undoLimit_ = 12
 var _redo_ = 0
+var bt_undo = $('#bt_undo')
+var bt_redo = $('#bt_redo')
+
+bt_undo.off('click').on('click', function () {
+  if (!getOpenedModal()) {
+    undo()
+    PREV_FOCUS = null
+  }
+})
+bt_redo.off('click').on('click', function () {
+  if (!getOpenedModal()) {
+    redo()
+    PREV_FOCUS = null
+  }
+})
 
 jwerty.key('ctrl+shift+z/⌘+shift+z', function (e) {
   e.preventDefault()
@@ -2167,6 +2183,8 @@ jwerty.key('ctrl+shift+y/⌘+shift+y', function (e) {
 
 function setUndoStack(state=0) {
   syncEditors()
+  bt_undo.removeClass('disabled')
+  bt_redo.addClass('disabled')
   newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
 
@@ -2183,7 +2201,9 @@ function setUndoStack(state=0) {
   }
 }
 function undo() {
-  if (_undoState_ < _firstState_) return
+  if (_undoState_ < _firstState_) {
+    return
+  }
   try {
     loadState = _undoState_
     if (_redo_ == 0) setUndoStack(_undoState_ + 1)
@@ -2191,6 +2211,9 @@ function undo() {
     $('#div_scenarioElement').replaceWith(loadStack)
     $('.dropdown.open').dropdown("toggle")
     _undoState_ -= 1
+
+    if (_undoState_ < _firstState_) bt_undo.addClass('disabled')
+    bt_redo.removeClass('disabled')
   } catch(error) {
     console.log('undo ERROR:', error)
   }
@@ -2199,13 +2222,18 @@ function undo() {
 }
 function redo() {
   _redo_ = 1
-  if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
+  if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) {
+    return
+  }
+  bt_undo.removeClass('disabled')
   try {
     loadState = _undoState_ + 2
     loadStack = $(_undoStack_[loadState])
     $('#div_scenarioElement').replaceWith(loadStack)
     $('.dropdown.open').dropdown("toggle")
     _undoState_ += 1
+
+    if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) bt_redo.addClass('disabled')
   } catch(error) {
     console.log('redo ERROR:', error)
   }
@@ -2217,6 +2245,8 @@ function resetUndo() {
   _undoState_ = -1
   _firstState_ = 0
   _undoLimit_ = 10
+  bt_undo.addClass('disabled')
+  bt_redo.addClass('disabled')
 }
 
 function syncEditors() {

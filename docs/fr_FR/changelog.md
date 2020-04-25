@@ -25,15 +25,16 @@ Changelog
 	- Ctrl Clic / Clic Centre également disponible dans leurs menus contextuels (sur les onglets).
 - Nouvelle page ModalDisplay:
 	- Menu Analyse : Ctrl Clic / Clic Centre sur *Temps réel* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
-	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
+	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables*, *Recherche* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 - Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
 - Scénario : Ajout de la fonction age (donne l'âge de la valeur de la commande).
 - Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
 - Scénario : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
 - Scénario : Affichage d'un *warning* si aucun déclencheur n'est configuré.
-- Scénario : bugfix des select sur les copier/coller de bloc.
-- Scénario : copier/coller de bloc entre différents scénarios.
+- Scénario : Bugfix des select sur les copier/coller de bloc.
+- Scénario : Copier/coller de bloc entre différents scénarios.
+- Scénario : Les fonctions undo/redo sont maintenant disponible sous forme de boutons (à coté du bouton de création de bloc).
 - Fenêtre des variables de scénarios : tri alphabétique à l'ouverture.
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Analyse / Historique : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.

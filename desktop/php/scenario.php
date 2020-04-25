@@ -130,7 +130,11 @@ sendVarToJs('initSearch', init('search', 0));
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
-				<a class="btn btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
+
+				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)"><i class="fas fa-chevron-left"></i>
+				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)"><i class="fas fa-chevron-right"></i></a>
+
+				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
 				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
