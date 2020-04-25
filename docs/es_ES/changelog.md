@@ -4,10 +4,17 @@ Cambios
 
 4.1.0
 =====
+- Síntesis : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
+- Buscar :  ****.
+
 - Salpicadero : El modo de edición ahora inserta el mosaico movido.
 - Salpicadero : Ahora podemos hacer clic en el * tiempo * de los widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada..
 - Salpicadero : El tamaño del mosaico de un equipo nuevo se adapta a su contenido..
-- Síntesis : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
+- Salpicadero : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
+- Salpicadero : .
+- Herramientas / widgets : La función * Aplicar en * muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado en este comando.
+- Reproductores : .
+- Reproductores : *.
 - Centro de actualizaciones : Las actualizaciones se verifican automáticamente cuando se abre la página si tiene 120 minutos de antigüedad.
 - Centro de actualizaciones : La barra de progreso ahora está en la pestaña * Núcleo y complementos *, y el registro se abre de forma predeterminada en la pestaña * Información*.
 - Centro de actualizaciones : Si abre otro navegador durante una actualización, la barra de progreso y el registro lo indican.
@@ -31,10 +38,7 @@ Cambios
 - Análisis / Historia : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - Análisis / Historia : Las opciones * agrupación, tipo, variación, escalera * están activas solo con una sola curva mostrada.
 - Análisis / Historia : Ahora podemos usar la opción * Área * con la opción * Escalera*.
-- Salpicadero : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
-- Salpicadero : .
 - Vista : posibilidad de poner escenarios.
-- Herramientas / widgets : La función * Aplicar en * muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado en este comando.
 - Integración de la línea de tiempo en DB por razones de confiabilidad.
 - Gestión de múltiples líneas de tiempo..
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
@@ -43,8 +47,6 @@ Cambios
 - Resumen de domótica : .
 - Motor de tareas : En la pestaña * Daemon *, los complementos desactivados ya no aparecen.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
-- Reproductores : .
-- Reproductores : *.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Aplicación web : Integración de la nueva página de resumen.
 - Aplicación web : Página de escenarios, un clic en el título del escenario muestra su registro.
@@ -54,8 +56,10 @@ Cambios
 - Aplicación web : .
 - Aplicación web : .
 - Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).
+
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
+
 - Corrección de errores y optimizaciones..
 - : ..
 

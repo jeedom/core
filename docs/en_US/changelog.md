@@ -4,10 +4,17 @@ Changelog
 
 4.1.0
 =====
+- Synthesis : Adding a new page **Home → Summary** offering a global visual synthesis of the parts.
+- Research :  ****.
+
 - Dashboard : Edit mode now inserting the moved tile.
 - Dashboard : We can now click on the * time * of the time actions widgets to open the history window of the linked info command..
 - Dashboard : The size of a new equipment&#39;s tile adapts to its content.
-- Synthesis : Adding a new page **Home → Summary** offering a global visual synthesis of the parts.
+- Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
+- Dashboard : .
+- Tools / Widget : The * Apply on * function shows the linked commands checked, unchecking one will apply the default core widget on this command.
+- Widget : .
+- Widget : *.
 - Update Center : Updates are checked automatically when the page is opened if it is 120 mins older.
 - Update Center : The progress bar is now on the * Core and plugins * tab, and the log open by default on the * Information tab*.
 - Update Center : If you open another browser during an update, the progress bar and the log indicate it.
@@ -31,10 +38,7 @@ Changelog
 - Analysis / History : Ctrl Click on a legend to display only this history, Alt Click to display them all.
 - Analysis / History : The options * grouping, type, variation, staircase * are active only with a single curve displayed.
 - Analysis / History : We can now use the * Area * option with the * Staircase option*.
-- Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
-- Dashboard : .
 - View : possibility to put scenarios.
-- Tools / Widget : The * Apply on * function shows the linked commands checked, unchecking one will apply the default core widget on this command.
 - Integration of the Timeline in DB for reliability reasons.
 - Management of multiple timelines.
 - Home automation summary : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
@@ -43,8 +47,6 @@ Changelog
 - Home automation summary : .
 - Task engine : On the * Daemon * tab, deactivated plugins no longer appear.
 - Advanced equipment configuration window : Dynamic change of switchboard configuration.
-- Widget : .
-- Widget : *.
 - About window : Addition of shortcuts to Changelog and FAQ.
 - WebApp : Integration of the new Summary page.
 - WebApp : Scenarios page, a click on the scenario title displays its log.
@@ -54,8 +56,10 @@ Changelog
 - WebApp : .
 - WebApp : .
 - WebApp : Many bug-fix (UI, portrait / landscape iOS, etc.).
+
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page * Keyboard / mouse shortcuts * including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
+
 - Bug fixes and optimizations.
 - : ..
 
