@@ -155,5 +155,6 @@ $('#bt_applytimeline').on('click',function(){
 
 $(function() {
   jeedom.timeline.autocompleteFolder()
+  initTooltips($("#table_cmdConfigureHistory"))
 })
 </script>
