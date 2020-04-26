@@ -334,15 +334,15 @@ $('#bt_tabTimeline').on('click',function(){
   displayTimeline();
 });
 
-$('#table_timeline').on('click','.bt_scenarioLog',function(){
+$('#timelineContainer ul').on('click','.bt_scenarioLog',function(){
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
 })
 
-$('#table_timeline').on('click','.bt_gotoScenario',function(){
+$('#timelineContainer ul').on('click','.bt_gotoScenario',function(){
   loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'));
 });
 
-$('#table_timeline').on('click','.bt_configureCmd',function(){
+$('#timelineContainer ul').on('click','.bt_configureCmd',function(){
   $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
 });
 
@@ -358,70 +358,76 @@ function displayTimeline(){
     },
     success: function (data) {
       data = data.reverse()
-      var tr = ''
+      dataLength = data.length
+      var content = ''
+
+      var nextDate, thisDateTs, prevDateTs = false
       for (var i in data) {
-        tr += '<tr>'
-        tr += '<td>'
-        tr += data[i].date
-        tr += '</td>'
-        tr += '<td>'
-        if (data[i].group && data[i].plugins) {
-          if (data[i].group == 'action') {
-            tr += data[i].type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
+        var thisData = data[i]
+        var date = thisData.date.substring(0,10)
+        var time = thisData.date.substring(11,19)
+        thisDateTs = moment(thisData.date.substring(0,19)).unix()
+        var lineClass = ''
+
+        //time spacing:
+        if (prevDateTs) {
+          var height = Math.abs((prevDateTs - thisDateTs) / 130)
+          if (height > 5) {
+            var li = '<li style="margin-top:'+height+'px!important;">'
           } else {
-            tr += data[i].type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
+            var li = '<li>'
           }
-          tr += '&#160&#160' + data[i].plugins
+        } else {
+          var li = '<li>'
         }
-        if (data[i].type == 'scenario') {
-          tr += data[i].type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+        li += '<div>'
+
+        //scenario or cmd info/action:
+        li += '<div class="type">'
+        if (thisData.group && thisData.plugins) {
+          if (thisData.group == 'action') {
+            li += thisData.type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
+            lineClass = 'typeAction'
+          } else {
+            li += thisData.type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
+            lineClass = 'typeInfo'
+          }
+          li += '&#160&#160' + thisData.plugins
         }
-        tr += '</td>'
-        tr += '<td>'
-        tr += data[i].html
-        tr += '</td>'
-        tr += '</tr>'
+        if (thisData.type == 'scenario') {
+          li += thisData.type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+          lineClass = 'typeScenario'
+        }
+        li += '</div>'
+
+        //html:
+        li += '<div class="html">'+thisData.html+'</div>'
+
+        li += '</div>'
+        li += '<span class="vertLine '+lineClass+'"></span>'
+        //time:
+        li += '<div class="time '+lineClass+'">'+time+'</div>'
+
+        //date:
+        li += '<div class="date">'+date+'</div>'
+
+        li += '</li>'
+        content += li
+
+        //newDay ?
+        if (i == 0) {
+          content = '<div class="label-warning day">'+date+'</div>' + content
+        } else {
+          if (i < dataLength -1) {
+            nextDate = data[parseInt(i)+1].date.substring(0,10)
+            if (date != nextDate) {
+              content += '<div class="label-warning day">'+nextDate+'</div>'
+            }
+          }
+        }
+        prevDateTs = thisDateTs
       }
-      $('#table_timeline tbody').empty().append(tr).trigger('update')
-      $('#table_timeline').on('sortEnd', function(){
-        sepDays()
-      })
-      $('#timelinetab #table_timeline').find('th[data-column="0"]').trigger('sort').trigger('sort')
+      $('#timelineContainer ul').empty().append(content)
     }
-  });
-}
-
-function sepDays() {
-  var doIt = false
-  if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-
-  var thisDate, thisDateTs, prevDate, prevDateTs = false
-  var decay = 0
-  $('#table_timeline tbody tr').each(function() {
-    thisDate = $(this).text().substring(0,10)
-    thisDateTs = moment($(this).text().substring(0,19)).unix()
-
-    if (doIt && thisDate != prevDate) {
-      $(this).addClass('sepDay')
-      decay = 1-decay
-    } else {
-      $(this).removeClass('sepDay')
-    }
-
-    if (doIt && decay == 1) {
-      $(this).find('td:first-child').css('padding-left', '5%')
-    } else {
-      $(this).find('td:first-child').css('padding-left', '')
-    }
-
-    if (doIt && prevDateTs) {
-      var height = 14 + Math.abs((prevDateTs - thisDateTs) / 250)
-      $(this).attr('style', 'height: '+height+'px !important')
-    } else {
-      $(this).removeAttr('style')
-    }
-
-    prevDate = thisDate
-    prevDateTs = thisDateTs
   })
 }

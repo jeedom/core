@@ -40,8 +40,9 @@ Changelog
 - Analyse / Historique : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - Analyse / Historique : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
 - Vue : possibilité de mettre des scénarios.
-- Intégration de la Timeline en DB pour des raisons de fiabilité.
-- Gestion de Timelines multiples.
+- Historique : Intégration de la Timeline en DB pour des raisons de fiabilité.
+- Historique : Gestion de Timelines multiples.
+- Historique : Refonte graphique de la timeline.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
 - Résumé domotique : Possibilité de chercher sur les catégories d'équipements.
 - Résumé domotique : Possibilité de déplacer plusieurs équipements d'un objet dans un autre.
@@ -65,9 +66,29 @@ Changelog
 - Lib: Update HighStock v7.1.2 vers v8.0.4.
 
 
-4.0.48
+4.0.53
 =====
-- Possibilité de choisir le moteur TTS de Jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS.
+
+- Correction de bug.
+
+4.0.52
+=====
+
+- Correction de bug (mise à jour à faire absolument si vous êtes en 4.0.51).
+
+4.0.51
+=====
+
+- Correction de bugs.
+- Optimisation du futur système de DNS.
+
+4.0.49
+=====
+
+- Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS.
+- Amélioration du support de la webview dans l'application mobile.
+- Correction de bugs.
+- Mise à jour de la doc.
 
 4.0.47
 =====

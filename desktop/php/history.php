@@ -152,18 +152,10 @@ $date = array(
 				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</span>
 		</div>
-		<table id="table_timeline" class="table table-condensed tablesorter">
-			<thead>
-				<tr>
-					<th data-sorter="shortDate">{{Date}}</th>
-					<th>{{Type}}</th>
-					<th>{{Visuel}}</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-
+		<div id="timelineContainer">
+		  <ul>
+		  </ul>
+		</div>
 	</div>
 </div>
 

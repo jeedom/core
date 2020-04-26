@@ -1421,18 +1421,124 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
-#table_timeline td {
-  vertical-align: bottom !important;
+
+/*______Timeline cards */
+body[data-page="history"] #div_pageContainer {
+  height: 100%;
 }
-#table_timeline > tbody tr {
-  background-color: rgb(var(--bg-color)) !important;
+body[data-page="history"] #div_pageContainer .tab-content {
+  height: 100% !important;
+  padding-bottom: 0 !important;
 }
-#table_timeline tr:hover td {
-  background-color: rgb(var(--bg-color)) !important;
+#timelinetab {
+  height: 100% !important;
 }
-#table_timeline tr.sepDay {
-  border-top: 2px dashed var(--txt-color) !important;
+#timelineContainer {
+  padding-top: 40px;
 }
+
+#timelineContainer ul {
+  padding-top: 15px;
+  list-style: none;
+  padding-left: 130px;
+  background-color: rgb(var(--bg-color));
+}
+/*dotted vertical line:*/
+#timelineContainer ul:before {
+  content: '';
+  width: 1px;
+  height: calc(100% - 200px);
+  position: absolute;
+  border-left: 3px dotted var(--al-info-color);
+}
+#timelineContainer ul li {
+  position: relative;
+  width: calc(100% - 40px);
+  margin-left: 30px ;
+  padding: 6px;
+  border-radius: var(--border-radius);
+  background-color: rgb(var(--eq-bg-color)) !important;
+}
+#timelineContainer ul li > span.vertLine {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  left: -30px;
+  top: 0;
+}
+#timelineContainer ul li > span.vertLine.typeAction {
+  background: var(--al-warning-color);
+}
+#timelineContainer ul li > span.vertLine.typeInfo {
+  background: var(--al-info-color);
+}
+#timelineContainer ul li > span.vertLine.typeScenario {
+  background: var(--bt-success-color);
+}
+
+
+#timelineContainer ul li {
+  margin-top: 5px;
+}
+#timelineContainer ul .day {
+  position: relative;
+  padding: 5px 0 5px 25px;
+  top: 20px;
+  margin-bottom: 40px;
+  margin-left: -115px ;
+  width: 150px;
+  z-index: 200 !important;
+  border-radius: var(--border-radius);
+}
+
+/* pastilles: */
+#timelineContainer ul li .time:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--al-info-color);
+  position: absolute;
+  background: rgb(var(--eq-bg-color)) !important;
+  left: 65px;
+  top: 5px;
+  z-index: 5;
+}
+#timelineContainer ul li .time.typeAction:after {
+  border: 3px solid var(--al-warning-color);
+}
+#timelineContainer ul li .time.typeScenario:after {
+  border: 3px solid var(--bt-success-color);
+}
+
+#timelineContainer div.time {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 700;
+  left: -100px;
+  margin-top: -5px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.date {
+  position: absolute;
+  font-size: 11px;
+  left: -120px;
+  margin-top: 12px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.type {
+  width: 30%;
+  display: inline-block
+}
+#timelineContainer div.html {
+  width: 70%;
+  display: inline-block
+}
+
+
+
 
 #historytab .label.displayObject {
   margin-top: 2.2px;
@@ -1445,11 +1551,6 @@ button .fas.fa-plus-circle {
 }
 #historytab .history.disabled {
   color: var(--placeholder-color) !important;
-}
-#timelinetab .tml-cmd,
-#timelinetab .tml-scenario {
-  font-size: 14px;
-  color: var(--txt-color) !important;
 }
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
@@ -3306,18 +3407,6 @@ path.highcharts-graph {
 #ui-datepicker-div .ui-state-hover {
   color: var(--linkHoverLight-color) !important;
   background: var(--link-color);
-}
-
-div.vis-item,
-div.vis-item-content {
-  background-color: white;
-  border-color: #D7D7D7;
-  padding:0px !important;
-  margin:0px !important;
-}
-.vis-timeline,
-.vis-timeline div {
-  border-color: var(--placeholder-color) !important;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
