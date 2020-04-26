@@ -25,15 +25,16 @@ Changelog
 	- Ctrl Clic / Clic Center also available in their context menus (on the tabs).
 - New ModalDisplay page:
 	- Analysis menu : Ctrl Click / Click Center on * Real time* : Open the window in a new tab, in full screen.
-	- Tools menu : Ctrl Click / Click Center on * Notes *, * Expression tester *, * Variables* : Open the window in a new tab, in full screen.
+	- Tools menu : * : Open the window in a new tab, in full screen.
 - Scenario : Adding a search engine (to the left of the Run button).
 - Scenario : Addition of the age function (gives the age of the value of the order).
 - Scenario : *stateChanges () * now accepts the period * today * (from midnight to now), * yesterday * and * day * (for 1 day).
 - Scenario : Functions * statistics (), average (), max (), min (), trend (), duration ()* : Bugfix for the period * yesterday *, and now accepts * day * (for 1 day).
 - Scenario : Possibility to deactivate the automatic quote system (Settings → System → D'actualité : Orders).
 - Scenario : Display of a * warning * if no trigger is configured.
-- Scenario : bugfix of select on copy / paste block.
-- Scenario : copy / paste of block between different scenarios.
+- Scenario : Bugfix of select on copy / paste block.
+- Scenario : Copy / paste of block between different scenarios.
+- Scenario : .
 - Scenario variables window : alphabetical sort at opening.
 - Analysis / History : Ctrl Click on a legend to display only this history, Alt Click to display them all.
 - Analysis / History : The options * grouping, type, variation, staircase * are active only with a single curve displayed.

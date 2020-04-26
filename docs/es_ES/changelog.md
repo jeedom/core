@@ -25,15 +25,16 @@ Cambios
 	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay:
 	- Menú de análisis : Ctrl Click / Click Center en * Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en * Notas *, * Expression tester *, * Variables* : Abra la ventana en una pestaña nueva, en pantalla completa.
+	- Menú de herramientas : * : Abra la ventana en una pestaña nueva, en pantalla completa.
 - Guión : Agregar un motor de búsqueda (a la izquierda del botón Ejecutar).
 - Guión : Adición de la función de edad (da la edad del valor del pedido).
 - Guión : *stateChanges () * ahora acepta el período * hoy * (desde la medianoche hasta ahora), * ayer * y * día * (durante 1 día).
 - Guión : Funciones * estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración ()* : Corrección de errores para el período * ayer *, y ahora acepta * día * (durante 1 día).
 - Guión : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Comandos).
 - Guión : Visualización de una * advertencia * si no hay un activador configurado.
-- Guión : corrección de errores de seleccionar en el bloque copiar / pegar.
-- Guión : copiar / pegar bloque entre diferentes escenarios.
+- Guión : Corrección de errores de seleccionar en el bloque copiar / pegar.
+- Guión : Copiar / pegar bloque entre diferentes escenarios.
+- Guión : .
 - Ventana de variables de escenario : clasificación alfabética en la apertura.
 - Análisis / Historia : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - Análisis / Historia : Las opciones * agrupación, tipo, variación, escalera * están activas solo con una sola curva mostrada.

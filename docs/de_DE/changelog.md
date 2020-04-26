@@ -25,7 +25,7 @@
 	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs verfügbar (auf den Registerkarten)..
 - Neue ModalDisplay-Seite:
 	- Analysemenü : Strg Klicken / Klicken Sie auf * Echtzeit zentrieren* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
-	- Menü Extras : Strg Klicken / Klicken Sie auf * Notizen *, * Ausdruckstester *, * Variablen* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+	- Menü Extras : * : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
 - Szenario : Hinzufügen einer Suchmaschine (links von der Schaltfläche Ausführen).
 - Szenario : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
 - Szenario : *stateChanges () * akzeptiert jetzt den Zeitraum * heute * (von Mitternacht bis jetzt), * gestern * und * Tag * (für 1 Tag).
@@ -34,6 +34,7 @@
 - Szenario : Anzeige einer * Warnung *, wenn kein Trigger konfiguriert ist.
 - Szenario : Bugfix von Select auf Copy / Paste Block.
 - Szenario : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
+- Szenario : .
 - Fenster &quot;Szenariovariablen&quot; : alphabetische Sortierung beim Öffnen.
 - Analyse / Geschichte : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - Analyse / Geschichte : Die Optionen * Gruppierung, Typ, Variation, Treppe * sind nur mit einer einzelnen Kurve aktiv.
