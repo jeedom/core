@@ -89,10 +89,10 @@ foreach ($cmds as $cmd) {
       }
       $tr .= '</td>';
       $tr .= '<td style="width:90px;">';
+      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       if ($cmd->getType() == 'info') {
         $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
-      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       $tr .= '</td>';
       $tr .= '</tr>';
     }
