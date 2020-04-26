@@ -1029,6 +1029,9 @@ body[data-page="history"] #div_pageContainer .tab-content {
 }
 
 /* timeline special mobile */
+#timelineContainer {
+  padding-top: 0;
+}
 #timelineContainer ul li {
   width: calc(100% - 70px);
 }
