@@ -4,6 +4,11 @@ Cambios
 
 =====
 
+- Corrección de errores
+
+
+=====
+
 - 
 
 
