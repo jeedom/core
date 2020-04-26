@@ -24,9 +24,8 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 //contextMenu
 $(function(){
   try{
-    if ('undefined' !== typeof Core_noEqContextMenu) {
-      if (Core_noEqContextMenu == 1) return false
-    }
+    if ('undefined' !== typeof Core_noEqContextMenu) return false
+    if ($('.nav.nav-tabs').length == 0) return false
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     pluginId =  $('body').attr('data-page')
     jeedom.eqLogic.byType({
