@@ -2625,10 +2625,6 @@ div.vis-item-content {
   padding:0px !important;
   margin:0px !important;
 }
-.vis-timeline,
-.vis-timeline div {
-  border-color: rgb(160, 160, 160) !important;
-}
 
 .ui-dialog .ui-dialog-buttonpane {
   margin: 0;
