@@ -109,8 +109,7 @@ $("#table_cmdConfigureHistory").trigger("update");
 $("#table_cmdConfigureHistory").width('100%');
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
 });
 
 $(".bt_configureHistoryExportData").on('click', function () {
