@@ -9,6 +9,7 @@ function initMessage() {
     getAllMessage()
 
     $("#bt_clearMessage").on('click', function (event) {
+        $('#bottompanel').panel('close')
         jeedom.message.clear({
             plugin: $('#sel_plugin').value(),
             error: function (error) {

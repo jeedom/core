@@ -21,9 +21,11 @@ function initTimeline() {
       $('.changeTimelineFolder').off('click').on('click',function(){
         $('.changeTimelineFolder').removeClass('active')
         $(this).addClass('active')
+        $('#bottompanel').panel('close')
         displayTimeline()
       })
       $('#bt_refreshTimeline').on('click',function() {
+        $('#bottompanel').panel('close')
         displayTimeline()
       })
       displayTimeline()
