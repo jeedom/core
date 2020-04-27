@@ -1045,27 +1045,26 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer ul .html i {
   display: none;
 }
-@media screen and (max-width: 780px) {
-  #timelineContainer ul {
-    padding-left: 105px;
-  }
-  #timelineContainer ul li {
-    width: calc(100% - 17px);
-    margin-left: 0px;
-    font-size: 14px;
-  }
-
+#timelineContainer ul {
+  padding-left: 105px;
+}
+#timelineContainer ul li {
+  width: calc(100% - 17px);
+  margin-left: 0px;
+  font-size: 14px;
+}
+#timelineContainer div.date {
+  left: -100px;
+}
+#timelineContainer ul:before {
+  left: 77px;
+}
+@media screen and (max-width: 780px) and (orientation: portrait) {
   #timelineContainer div.type,
   #timelineContainer div.html {
     width: 100%;
     min-height: 25px;
     display: inline-block
-  }
-  #timelineContainer div.date {
-    left: -100px;
-  }
-  #timelineContainer ul:before {
-    left: 77px;
   }
 }
 
