@@ -31,7 +31,7 @@ function initTimeline() {
   })
 }
 
-
+//exact same success function desktop/mobile:
 function displayTimeline(_folder){
   jeedom.timeline.byFolder({
     folder : $('.changeTimelineFolder.active').attr('data-value'),
@@ -39,6 +39,7 @@ function displayTimeline(_folder){
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (data) {
+      data.sort(sortByDateConsistentASC)
       data = data.reverse()
       dataLength = data.length
       var content = ''
@@ -112,4 +113,19 @@ function displayTimeline(_folder){
       $('#timelineContainer ul').empty().append(content)
     }
   })
+}
+function sortByDateConsistentASC(itemA, itemB) {
+  var valueA = itemA.date
+  var valueB = itemB.date
+  var a = moment(valueA)
+  var b = moment(valueB)
+  var r = 0
+  if (a.isValid() && b.isValid()) {
+    r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
+  }
+  if(r === 0){
+    r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined')?
+    itemA.key - itemB.key : 0
+  }
+  return r
 }
