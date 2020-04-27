@@ -20,6 +20,12 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 - **Clef d’installation** : Clef matérielle de votre Jeedom sur le Market. Si votre Jeedom n’apparaît pas dans la liste de vos Jeedom sur le Market, il est conseillé de cliquer sur le bouton **Remise à zéro**.
 - **Dernière date connue** : Date enregistrée par Jeedom, utilisée après un redémarrage pour des systèmes n'ayant pas de pile RTC.
 
+En dessous, plusieurs paramètres qui centralisent des informations pouvant être utilisés par les plugins, évitant de les renseigner dans chaque plugin.
+
+- Coordonnées : Latitude, Longitude et Altitude de votre habitation / site.
+- Adresse : Adresse postale de votre habitation / site.
+- Divers : Surface et nombre d'occupants de votre habitation / site.
+
 ## Onglet Interface
 
 Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichage.
@@ -134,11 +140,33 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 
 En dessous vous retrouvez un tableau permettant de gérer finement le niveau de log des éléments essentiels de Jeedom ainsi que celui des plugins.
 
-## Onglet Commandes
+## Onglet Résumés
+
+Permet d’ajouter des résumés d’objets. Cette information est affichée tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des objets :
+
+- **Clef** : Clé du résumé, à ne surtout pas toucher.
+- **Nom** : Nom du résumé.
+- **Calcul** : Méthode de calcul, peut être de type :
+    - **Somme** : fait la somme des différentes valeurs,
+    - **Moyenne** : fait la moyenne des valeurs,
+    - **Texte** : affiche textuellement la valeur (surtout pour celles de type chaine de caractères).
+- **Icone** : Icône du résumé.
+- **Unité** : Unité du résumé.
+- **Méthode de comptage** : Si vous comptez une donnée binaire alors il faut mettre cette valeur à binaire, exemple si vous comptez le nombre de lampes allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom considéra que si la valeur est supérieure à 1, alors la lampe est allumée.
+- **Afficher si valeur égale 0** : Cochez cette case pour afficher la valeur, même quand elle vaut 0.
+- **Lier à un virtuel** : Lance la création de commandes virtuelles ayant pour valeur celles du résumé.
+- **Supprimer le résumé** : Le dernier bouton, tout à droite, permet de supprimer le résumé de la ligne.
+
+## Onglet Equipements
+
+### Equipements
+
+- **Nombre d’échecs avant désactivation de l’équipement** : Nombre d’échecs de communication avec l’équipement avant désactivation de celui-ci (un message vous préviendra si cela arrive).
+- **Seuils des piles** : Permet de gérer les seuils d’alertes globaux sur les piles.
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Historique, vous obtenez des graphiques représentant leur utilisation. Cet onglet permet de fixer des paramètres globaux à l’historisation des commandes.
 
-### Historique
+### Historique des commandes
 
 - **Afficher les statistiques sur les widgets** : Permet d’afficher les statistiques sur les widgets. Il faut que le widget soit compatible, ce qui est le cas pour la plupart. Il faut aussi que la commande soit de type numérique.
 - **Période de calcul pour min, max, moyenne (en heures)** : Période de calcul des statistiques (24h par défaut). Il n’est pas possible de mettre moins d’une heure.
@@ -161,28 +189,6 @@ De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Histor
 **\#cmd\_id\#** pour l’identifiant unique de la commande,
 **\#humanname\#** pour le nom complet de la commande (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
 **\#eq_name\#** pour le nom de l'équipement
-
-## Onglet Résumés
-
-Permet d’ajouter des résumés d’objets. Cette information est affichée tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des objets :
-
-- **Clef** : Clé du résumé, à ne surtout pas toucher.
-- **Nom** : Nom du résumé.
-- **Calcul** : Méthode de calcul, peut être de type :
-    - **Somme** : fait la somme des différentes valeurs,
-    - **Moyenne** : fait la moyenne des valeurs,
-    - **Texte** : affiche textuellement la valeur (surtout pour celles de type chaine de caractères).
-- **Icone** : Icône du résumé.
-- **Unité** : Unité du résumé.
-- **Méthode de comptage** : Si vous comptez une donnée binaire alors il faut mettre cette valeur à binaire, exemple si vous comptez le nombre de lampes allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom considéra que si la valeur est supérieure à 1, alors la lampe est allumée.
-- **Afficher si valeur égale 0** : Cochez cette case pour afficher la valeur, même quand elle vaut 0.
-- **Lier à un virtuel** : Lance la création de commandes virtuelles ayant pour valeur celles du résumé.
-- **Supprimer le résumé** : Le dernier bouton, tout à droite, permet de supprimer le résumé de la ligne.
-
-## Onglet Equipements
-
-- **Nombre d’échecs avant désactivation de l’équipement** : Nombre d’échecs de communication avec l’équipement avant désactivation de celui-ci (un message vous préviendra si cela arrive).
-- **Seuils des piles** : Permet de gérer les seuils d’alertes globaux sur les piles.
 
 ## Onglet Rapports
 
@@ -395,15 +401,20 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 > Cet onglet est réservée aux experts.
 > Si vous modifiez Jeedom avec l’une de ces deux solutions, le support peut refuser de vous aider.
 
-- **Général** :
-    - **Vérification générale** : Permet de lancer de test de consistence de Jeedom.
-- **&gt;\_Système** :
-    - **Administration** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
-    - Rétablissement des droits : Permet de réappliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
+### Vérifications Système
+
+- **Vérification générale** : Permet de lancer de test de consistence de Jeedom.
+- **Rétablissement des droits** : Permet de réappliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
+- **Vérification des packages système** : Permet de lancer une vérification des packages installés.
+- **Vérification de la base de données** : Permet de lancer une vérification sur la base de données de Jeedom et de corriger si nécessaire les erreurs.
+- **Nettoyage de la base de données** : Lance une vérification de la base de donnée et nettoie d'éventuelles entrées non utilisées.
+
+
+### Outils Système
+
 - **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système d'exploitation et de les éditer ou supprimer ou d'en créer.
-- **Base de données** :
-    - **Administration** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champs du haut.
-    - **Vérification** : Permet de lancer une vérification sur la base de données de Jeedom et de corriger si nécessaire les erreurs
-    - **Nettoyage** : Lance une vérification de la base de donnée et nettoie d'éventuelles entrées non utilisées.
-    - **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans la base de données,
-    - **Mot de passe** : mot de passe d’accès à la base de données utilisé par Jeedom.
+- **Administration Système** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
+- **Administration Base de données** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champs du haut.
+- **Utilisateur / Mot de passe** : Nom de l’utilisateur et mot de passe d’accès à la base de données utilisé par Jeedom.
+
+
