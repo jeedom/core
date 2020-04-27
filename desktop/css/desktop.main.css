@@ -1537,7 +1537,14 @@ body[data-page="history"] #div_pageContainer .tab-content {
   display: inline-block
 }
 
-
+#timelineOptions {
+  position: fixed;
+  text-align: right;
+  right: 25px;
+  z-index: 5;
+  background: rgba(var(--panel-bg-color), var(--opacity));
+  padding: 5px;
+}
 
 
 #historytab .label.displayObject {
