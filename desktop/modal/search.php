@@ -145,7 +145,7 @@ sendVarToJS('__objectList', $objectLists);
 		<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
-					<th><i class="fas fa-cog"></i></i> {{Equipement}}</th>
+					<th><i class="icon divers-svg"></i></i> {{Equipement}}</th>
 					<th>{{ID}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>

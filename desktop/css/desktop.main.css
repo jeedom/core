@@ -1537,7 +1537,14 @@ body[data-page="history"] #div_pageContainer .tab-content {
   display: inline-block
 }
 
-
+#timelineOptions {
+  position: fixed;
+  text-align: right;
+  right: 25px;
+  z-index: 5;
+  background: rgba(var(--panel-bg-color), var(--opacity));
+  padding: 5px;
+}
 
 
 #historytab .label.displayObject {
@@ -1843,8 +1850,11 @@ input.inputPassword  {
   top: 0 !important;
 }
 .form-group {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   vertical-align: middle !important;
+}
+.form-group .form-control {
+  margin-bottom: 1.1px !important;
 }
 
 .form-control {
