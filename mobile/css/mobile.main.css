@@ -953,7 +953,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer ul li > span.vertLine {
   position: absolute;
   width: 3px;
-  height: 100%;
+  height: 116%;
   left: -30px;
   top: 0;
 }
@@ -1033,18 +1033,26 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding-top: 0;
 }
 #timelineContainer ul:before {
-  left: 77px;
+  left: 78px;
 }
 #timelineContainer ul {
   padding-left: 105px;
 }
 #timelineContainer ul li {
- width: calc(100% - 17px);
-  margin-left: 0px;
+  width: calc(100% - 6px);
+  margin-left: -12px;
   font-size: 14px;
 }
+#timelineContainer ul li > span.vertLine {
+  left: -17px;
+}
+#timelineContainer div.time {
+  left: -88px;
+}
 #timelineContainer ul li .time:after {
-  left: 62px;
+  width: 11px;
+  height: 11px;
+  left: 64px;
   top: 2px;
 }
 #timelineContainer ul .html i {
@@ -1054,7 +1062,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding: 1px 5px;
 }
 #timelineContainer div.date {
-  left: -100px;
+  left: -85px;
 }
 @media screen and (max-width: 780px) and (orientation: portrait) {
   #timelineContainer div.type,

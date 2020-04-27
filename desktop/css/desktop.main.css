@@ -1462,7 +1462,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer ul li > span.vertLine {
   position: absolute;
   width: 3px;
-  height: 100%;
+  height: 116%;
   left: -30px;
   top: 0;
 }
