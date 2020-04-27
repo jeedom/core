@@ -97,6 +97,7 @@ $('#objectOverviewContainer .objectSummaryParent').off('click').on('click', func
   loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0')
 })
 
+//Tile click or center-click
 $('.objectPreview').off('click').on('click', function (event) {
   if (event.target !== this && !$(event.target).hasClass('bottomPreview')) return
   var url = 'index.php?v=d&p=dashboard&object_id='+$(this).attr('data-object_id')+'&childs=0'
@@ -110,7 +111,7 @@ $('.objectPreview').off('click').on('click', function (event) {
 $('.objectPreview').off('mouseup').on('mouseup', function (event) {
   if( event.which == 2 ) {
     var target = event.target
-    if ($(target).hasClass('topPreview')) return
+    if ($(target).hasClass('topPreview') || $(target).hasClass('name')) return
     if (target !== this && !$(target).hasClass('bottomPreview')) {
       target = $(target).closest('.objectSummaryParent')
       var url = 'index.php?v=d&p=dashboard&summary='+target.data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0'
@@ -120,5 +121,23 @@ $('.objectPreview').off('mouseup').on('mouseup', function (event) {
       var id = $(this).attr('data-object_id')
       $('.objectPreview[data-object_id="'+id+'"]').trigger(jQuery.Event('click', {ctrlKey: true}))
     }
+  }
+})
+
+//Tile name click or center-click
+$('.objectPreview .name').off('click').on('click', function (event) {
+  var url = 'index.php?v=d&p=dashboard&object_id='+$(this).closest('.objectPreview').attr('data-object_id')
+  if (event.ctrlKey) {
+    window.open(url).focus()
+  } else {
+    loadPage(url)
+  }
+  return false
+})
+$('.objectPreview .name').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).closest('.objectPreview').attr('data-object_id')
+    $('.objectPreview[data-object_id="'+id+'"] .name').trigger(jQuery.Event('click', {ctrlKey: true}))
   }
 })
