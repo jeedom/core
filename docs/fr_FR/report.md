@@ -1,36 +1,44 @@
+# Rapport
+**Analyse → Rapport**
+
 Cette page permet de voir tous les rapports qui ont été générés par l'action report (voir documentation des scénarios).
 
-# Qu'est qu'un rapport ?
+## Principe
 
-Un rapport est une capture d'écran de l'interface de Jeedom à un instant T (la capture est adaptée pour ne pas prendre la barre de menu et autre élément inutile sur ce type d'utilisation).
+Un rapport est une capture d'écran de l'interface de Jeedom à un instant t.
 
-Vous pouvez le faire sur des vues, design, page de panel....
+> **Note**
+>
+> Cette capture est adaptée pour ne pas prendre la barre de menu et autres éléments inutiles sur ce type d'utilisation.
 
-Elle se déclenche à partir d'un scénario avec la commande report, vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram, etc.)
+Vous pouvez le faire sur des vues, designs, pages de panel....
 
-# Utilisation
+La génération se déclenche à partir d'un scénario avec la commande report.
+Vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram, etc).
 
-Son utilisation est très simple vous sélectionnez si vous voulez voir :
+## Utilisation
 
--	les rapports des vues
--	les rapports des degins
--	les rapports des panels des plugins
-- les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module)
+Son utilisation est très simple. Sélectionnez sur la gauche si vous voulez voir :
 
-Ensuite vous sélectionnez le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
+- Les rapports des vues.
+- Les rapports des designs.
+- Les rapports des panels de plugins.
+- Les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module).
+
+Ensuite, sélectionnez le nom du rapport en question. Vous verrez alors toutes les dates des rapports disponibles.
 
 > **Important**
 >
-> Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours (vous pouvez configurer ce délai dans la configuration de Jeedom)
+> Une suppression automatique est faite par défaut pour les rapports vieux de plus de 30 jours. Vous pouvez configurer ce délai dans la configuration de Jeedom.
 
-Une fois le rapport sélectionné vous pouvez le voir apparaitre, le retélécharger ou le supprimer.
+Une fois le rapport sélectionné, vous pouvez le voir apparaître, le télécharger ou le supprimer.
 
 Vous pouvez aussi supprimer toutes les sauvegardes d'un rapport donné
 
-# FAQ
+## FAQ
 
-> **Si vous avez une erreur du type Détails : cutycapt: error while loading shared libraries: libEGL.so: cannot open shared object file: No such file or directory**
->
-> Il faut en ssh ou dans Administration -> Configuration -> OS/DB -> Systeme -> Administration faire :
->sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so
->sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so
+> Si vous avez une erreur du type Détails :
+> *cutycapt: error while loading shared libraries: libEGL.so: cannot open shared object file: No such file or directory*
+> Il faut en ssh ou dans Réglages → Système → Configuration : OS/DB / Système administration faire :
+> ```sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so```
+> ```sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so```
