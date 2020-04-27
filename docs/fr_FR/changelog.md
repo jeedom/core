@@ -48,6 +48,8 @@ Changelog
 - Résumé domotique : Possibilité de déplacer plusieurs équipements d'un objet dans un autre.
 - Résumé domotique : Possibilité de sélectionner tous les équipements d'un objet.
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
+- Configuration : L'onglet *Informations* est maintenant dans l'onglet *Général*.
+- Configuration : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
 - WebApp : Intégration de la nouvelle page Synthèse.
