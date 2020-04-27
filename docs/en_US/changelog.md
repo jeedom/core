@@ -40,8 +40,9 @@ Changelog
 - Analysis / History : The options * grouping, type, variation, staircase * are active only with a single curve displayed.
 - Analysis / History : We can now use the * Area * option with the * Staircase option*.
 - View : possibility to put scenarios.
-- Integration of the Timeline in DB for reliability reasons.
-- Management of multiple timelines.
+- History : Integration of the Timeline in DB for reliability reasons.
+- History : Management of multiple timelines.
+- History : .
 - Home automation summary : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
 - Home automation summary : Ability to search on equipment categories.
 - Home automation summary : .
@@ -67,7 +68,27 @@ Changelog
 
 
 =====
+
+- Bug fix.
+
+
+=====
+
 - .
+
+
+=====
+
+- Bugfix.
+- .
+
+
+=====
+
+- .
+- .
+- Bugfix.
+- Updating the doc.
 
 
 =====

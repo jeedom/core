@@ -40,8 +40,9 @@ Cambios
 - Análisis / Historia : Las opciones * agrupación, tipo, variación, escalera * están activas solo con una sola curva mostrada.
 - Análisis / Historia : Ahora podemos usar la opción * Área * con la opción * Escalera*.
 - Vista : posibilidad de poner escenarios.
-- Integración de la línea de tiempo en DB por razones de confiabilidad.
-- Gestión de múltiples líneas de tiempo..
+- Historial : Integración de la línea de tiempo en DB por razones de confiabilidad.
+- Historial : Gestión de múltiples líneas de tiempo..
+- Historial : .
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
 - Resumen de domótica : Posibilidad de buscar en categorías de equipos.
 - Resumen de domótica : .
@@ -67,7 +68,27 @@ Cambios
 
 
 =====
+
+- Corrección de errores.
+
+
+=====
+
 - .
+
+
+=====
+
+- Correcciones de errores.
+- .
+
+
+=====
+
+- .
+- .
+- Correcciones de errores.
+- Actualizando el documento.
 
 
 =====

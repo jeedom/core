@@ -40,8 +40,9 @@
 -  : .
 -  : *.
 - Vista : .
-- .
-- .
+- Histórico : .
+- Histórico : .
+- Histórico : .
 - Resumo Automation : .
 - Resumo Automation : .
 - Resumo Automation : .
@@ -67,6 +68,26 @@
 
 
 =====
+
+- .
+
+
+=====
+
+- .
+
+
+=====
+
+- .
+- .
+
+
+=====
+
+- .
+- .
+- .
 - .
 
 

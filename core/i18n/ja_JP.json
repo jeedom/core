@@ -136,11 +136,6 @@
         "Date lancement": "打ち上げ日",
         "Action": "アクション"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "日付",
-        "Type": "タイプ",
-        "Visuel": "ビジュアル"
-    },
     "mobile\/html\/health.html": {
         "Nom": "表題",
         "Status": "ステータス"
@@ -781,8 +776,8 @@
         "1 an": "1年間の",
         "2 ans": "2年",
         "3 ans": "3年",
-        "Exporter la commande": "注文をエクスポートする",
         "Configuration de la commande": "設定された制御",
+        "Exporter la commande": "注文をエクスポートする",
         "Modifications sauvegardées avec succès": "変更が保存されました"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "観覧",
         "Principal": "主要",
-        "Rafraîchir": "クール",
-        "Date": "日付",
-        "Type": "タイプ",
-        "Visuel": "ビジュアル"
+        "Rafraîchir": "クール"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",

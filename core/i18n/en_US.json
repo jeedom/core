@@ -136,11 +136,6 @@
         "Date lancement": "Date start",
         "Action": "Action"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "Date",
-        "Type": "Type",
-        "Visuel": "Visual"
-    },
     "mobile\/html\/health.html": {
         "Nom": "Name",
         "Status": "Status"
@@ -781,8 +776,8 @@
         "1 an": "1 year",
         "2 ans": "2 years",
         "3 ans": "3 years",
-        "Exporter la commande": "Export the command",
         "Configuration de la commande": "Command setup",
+        "Exporter la commande": "Export the command",
         "Modifications sauvegardées avec succès": "Changes successfully saved"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -1477,7 +1472,7 @@
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Activate to automatically switch to alternative theme at the selected times.",
         "Capteur de luminosité (mobile)": "Brightness sensor (mobile)",
         "Afficher les images de fond": "Show background images",
-        "Flou des fonds des objets": "Blurry backgrounds of objects",
+        "Flou des fonds des objets": "Objects background blur",
         "Valeur de flou pour les images de fond sur les pages Dashboard.": "Blur value for background images on Dashboard pages.",
         "Tuiles": "Tiles",
         "Pas horizontal": "Horizontal step",
@@ -1486,7 +1481,7 @@
         "Contraint la hauteur des tuiles tous les x pixels": "Constrains the height of the tiles every x pixels",
         "Marge": "Margin",
         "Espace vertical et horizontal entre les tuiles, en pixel": "Vertical and horizontal space between tiles, in pixels",
-        "Centrage vertical des tuiles": "Vertical centering of the tiles",
+        "Centrage vertical des tuiles": "Vertical centering of tiles",
         "Centre verticalement le contenu des tuiles": "Vertically center the content of the tiles",
         "Icônes widgets colorées": "Colored widget icons",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloring of widget icons according to their state. <br> Editable by scenario, setColoredIcon ('Icon coloring').",
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "Clear the display of curves on the area.",
         "Affichage": "Viewing",
         "Principal": "Main",
-        "Rafraîchir": "Refresh",
-        "Date": "Date",
-        "Type": "Type",
-        "Visuel": "Visual"
+        "Rafraîchir": "Refresh"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",

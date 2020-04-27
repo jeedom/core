@@ -136,11 +136,6 @@
         "Date lancement": "Çalıştırılma tarihi",
         "Action": "Eylem"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "Tarih",
-        "Type": "Çeşit",
-        "Visuel": "Görsel"
-    },
     "mobile\/html\/health.html": {
         "Nom": "İsim",
         "Status": "Durum"
@@ -781,8 +776,8 @@
         "1 an": "1 yıl",
         "2 ans": "",
         "3 ans": "",
-        "Exporter la commande": "",
         "Configuration de la commande": "Komutanın ayarları",
+        "Exporter la commande": "",
         "Modifications sauvegardées avec succès": ""
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "Gösterim",
         "Principal": "Birincil",
-        "Rafraîchir": "Yenile",
-        "Date": "Tarih",
-        "Type": "Çeşit",
-        "Visuel": "Görsel"
+        "Rafraîchir": "Yenile"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Değer [ 'name']",

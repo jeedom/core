@@ -136,11 +136,6 @@
         "Date lancement": "Data de lançamento",
         "Action": "Ação"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "Data",
-        "Type": "Tipo",
-        "Visuel": ""
-    },
     "mobile\/html\/health.html": {
         "Nom": "Nome",
         "Status": "Estado"
@@ -781,8 +776,8 @@
         "1 an": "1 ano",
         "2 ans": "",
         "3 ans": "",
-        "Exporter la commande": "",
         "Configuration de la commande": "Set Controle",
+        "Exporter la commande": "",
         "Modifications sauvegardées avec succès": ""
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "Visualizando",
         "Principal": "",
-        "Rafraîchir": "Legal",
-        "Date": "Data",
-        "Type": "Tipo",
-        "Visuel": ""
+        "Rafraîchir": "Legal"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",

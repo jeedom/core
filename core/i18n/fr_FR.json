@@ -136,11 +136,6 @@
         "Date lancement": "Date lancement",
         "Action": "Action"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "Date",
-        "Type": "Type",
-        "Visuel": "Visuel"
-    },
     "mobile\/html\/health.html": {
         "Nom": "Nom",
         "Status": "Status"
@@ -781,8 +776,8 @@
         "1 an": "1 an",
         "2 ans": "2 ans",
         "3 ans": "3 ans",
-        "Exporter la commande": "Exporter la commande",
         "Configuration de la commande": "Configuration de la commande",
+        "Exporter la commande": "Exporter la commande",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "Vide l'affichage des courbes sur la zone.",
         "Affichage": "Affichage",
         "Principal": "Principal",
-        "Rafraîchir": "Rafraîchir",
-        "Date": "Date",
-        "Type": "Type",
-        "Visuel": "Visuel"
+        "Rafraîchir": "Rafraîchir"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",

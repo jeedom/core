@@ -40,8 +40,9 @@
 - Analyse / Geschichte : Die Optionen * Gruppierung, Typ, Variation, Treppe * sind nur mit einer einzelnen Kurve aktiv.
 - Analyse / Geschichte : Wir können jetzt die Option * Area * mit der Option * Staircase verwenden*.
 - Ansicht : Möglichkeit, Szenarien zu setzen.
-- Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
-- Verwaltung mehrerer Zeitleisten.
+- Chronik : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
+- Chronik : Verwaltung mehrerer Zeitleisten.
+- Chronik : .
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
 - Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien.
 - Zusammenfassung der Hausautomation : .
@@ -67,7 +68,27 @@
 
 
 =====
+
+- Fehlerbehebung.
+
+
+=====
+
 - .
+
+
+=====
+
+- Fehlerbehebungen.
+- .
+
+
+=====
+
+- .
+- .
+- Fehlerbehebungen.
+- Aktualisieren des Dokuments.
 
 
 =====

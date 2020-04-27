@@ -136,11 +136,6 @@
         "Date lancement": "Fecha Lanzamiento",
         "Action": "Acción"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "Fecha",
-        "Type": "Tipo",
-        "Visuel": "Visual"
-    },
     "mobile\/html\/health.html": {
         "Nom": "Nombre",
         "Status": "Estado"
@@ -781,8 +776,8 @@
         "1 an": "1 año",
         "2 ans": "2 años",
         "3 ans": "3 años",
-        "Exporter la commande": "Exportar el pedido",
         "Configuration de la commande": "Configuración del comando",
+        "Exporter la commande": "Exportar el pedido",
         "Modifications sauvegardées avec succès": "Cambios guardados exitosamente"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "Borre la visualización de curvas en el área.",
         "Affichage": "Visualización",
         "Principal": "Primario",
-        "Rafraîchir": "Refrescar",
-        "Date": "Fecha",
-        "Type": "Tipo",
-        "Visuel": "Visual"
+        "Rafraîchir": "Refrescar"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "Valor $ [ 'nombre']",

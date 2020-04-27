@@ -136,11 +136,6 @@
         "Date lancement": "Дата запуска",
         "Action": "Действие"
     },
-    "mobile\/html\/timeline.html": {
-        "Date": "Дата",
-        "Type": "Тип",
-        "Visuel": ""
-    },
     "mobile\/html\/health.html": {
         "Nom": "Имя",
         "Status": "Статус"
@@ -781,8 +776,8 @@
         "1 an": "1 год",
         "2 ans": "2 года",
         "3 ans": "3 года",
-        "Exporter la commande": "Экспортировать заказ",
         "Configuration de la commande": "управляющий набор",
+        "Exporter la commande": "Экспортировать заказ",
         "Modifications sauvegardées avec succès": "Изменения успешно сохранены"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
@@ -2243,10 +2238,7 @@
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "Отображение",
         "Principal": "",
-        "Rafraîchir": "Обновить",
-        "Date": "Дата",
-        "Type": "Тип",
-        "Visuel": ""
+        "Rafraîchir": "Обновить"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",
