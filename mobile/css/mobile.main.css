@@ -1032,11 +1032,16 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer {
   padding-top: 0;
 }
-#timelineContainer ul li {
-  width: calc(100% - 70px);
+#timelineContainer ul:before {
+  left: 77px;
 }
-#timelineContainer ul .html .label-sm {
-  padding: 1px 5px;
+#timelineContainer ul {
+  padding-left: 105px;
+}
+#timelineContainer ul li {
+ width: calc(100% - 17px);
+  margin-left: 0px;
+  font-size: 14px;
 }
 #timelineContainer ul li .time:after {
   left: 62px;
@@ -1045,19 +1050,11 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer ul .html i {
   display: none;
 }
-#timelineContainer ul {
-  padding-left: 105px;
-}
-#timelineContainer ul li {
-  width: calc(100% - 17px);
-  margin-left: 0px;
-  font-size: 14px;
+#timelineContainer ul .html .label-sm {
+  padding: 1px 5px;
 }
 #timelineContainer div.date {
   left: -100px;
-}
-#timelineContainer ul:before {
-  left: 77px;
 }
 @media screen and (max-width: 780px) and (orientation: portrait) {
   #timelineContainer div.type,
@@ -1065,6 +1062,11 @@ body[data-page="history"] #div_pageContainer .tab-content {
     width: 100%;
     min-height: 25px;
     display: inline-block
+  }
+}
+@media screen and (min-width: 1200px) {
+  #timelineContainer ul:before {
+    left: 86px;
   }
 }
 
