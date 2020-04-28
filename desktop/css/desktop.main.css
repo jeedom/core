@@ -1453,6 +1453,8 @@ body[data-page="history"] #div_pageContainer .tab-content {
 }
 #timelineContainer ul li {
   position: relative;
+  margin-top: 5px;
+  min-height: 22px;
   width: calc(100% - 40px);
   margin-left: 30px ;
   padding: 6px;
@@ -1474,11 +1476,6 @@ body[data-page="history"] #div_pageContainer .tab-content {
 }
 #timelineContainer ul li > span.vertLine.typeScenario {
   background: var(--bt-success-color);
-}
-
-
-#timelineContainer ul li {
-  margin-top: 5px;
 }
 #timelineContainer ul .day {
   position: relative;
