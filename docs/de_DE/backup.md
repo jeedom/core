@@ -1,137 +1,75 @@
-Jeedom bietet die Möglichkeit, gerettet oder wiederhergestellt zu werden
-von verschiedenen Orten.
+# Sicherungen
+**Einstellungen → System → Backups**
 
-Konfiguration 
-=============
+Jeedom bietet die Möglichkeit, von oder von verschiedenen Orten aus gerettet und wiederhergestellt zu werden.
+Diese Seite ermöglicht die Verwaltung von Backups und Wiederherstellungen.
 
-Zugänglich von **Einstellungen → System → Backups**, Diese Seite ermöglicht die
-Verwaltung von Backups, Wiederherstellungen.
 
-Links finden Sie die Parameter und Aktionsschaltflächen. Auf dem
-Richtig, dies ist der Echtzeitstatus der aktuellen Aktion (Sicherung)
-oder Wiederherstellung), wenn Sie eine gestartet haben.
+Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite sehen Sie den Echtzeitstatus der laufenden Aktion (Sicherung oder Wiederherstellung), falls Sie eine gestartet haben.
 
-**Sicherungen** 
----------------
+## Sicherungen
 
--   **Sicherungen** : Ermöglicht das manuelle Starten einer Sicherung und
-    sofort (nützlich, wenn Sie eine kritische Änderung vornehmen möchten.
-    Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine
-    Schaltfläche, um eine Sicherung zu starten, ohne das Archiv an das zu senden
-    Cloud (erfordert Abonnement siehe unten). Senden eines
-    Cloud-Backup kann eine Weile dauern. Diese Option
-    So wird ein übermäßiger Zeitverlust vermieden.
+- **Sicherungen** : Ermöglicht das manuelle und sofortige Starten einer Sicherung (nützlich, wenn Sie eine kritische Änderung vornehmen möchten. Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine Schaltfläche zum Starten eines Backups, ohne das Archiv an die Cloud zu senden (erfordert ein Abonnement, siehe unten).. Das Senden eines Backups an die Cloud kann eine Weile dauern. Diese Option vermeidet daher übermäßigen Zeitverlust.
 
--   **Sicherungsspeicherort** : Gibt den Ordner an, in dem
-    Jeedom kopiert Backups. Es wird empfohlen, dies nicht zu tun
-    ändere es. Wenn Sie sich auf einem relativen Pfad befinden, ist sein Ursprung
-    wo Jeedom installiert ist.
+- **Sicherungsspeicherort** : Gibt den Ordner an, in den Jeedom die Sicherungen kopiert. Es wird empfohlen, es nicht zu ändern. Wenn Sie sich auf einem relativen Pfad befinden, ist der Ursprung dort, wo Jeedom installiert ist.
 
--   **Anzahl der Tage, an denen Backups gespeichert werden** : Anzahl der
-    Backup-Tage zu halten. Nach Ablauf dieser Frist wird die
-    Backups werden gelöscht. Achten Sie darauf, keine Nummer einzugeben
-    Tage zu hoch, sonst kann Ihr Dateisystem
-    gesättigt sein.
+- **Anzahl der Tage, an denen Backups gespeichert werden** : Anzahl der zu speichernden Sicherungstage. Nach Ablauf dieser Frist werden die Sicherungen gelöscht. Achten Sie darauf, nicht zu viele Tage einzuplanen, da sonst Ihr Dateisystem möglicherweise überlastet ist.
 
--   **Maximale Gesamtgröße der Sicherungen (MB)** : Ermöglicht das Begrenzen
-    Der Platz, den alle Sicherungen im Ordner einnehmen
-    Backup. Wenn dieser Wert überschritten wird, löscht Jeedom das
-    älteste Backups bis unter die
-    maximale Größe. Es wird jedoch mindestens eine Sicherung gespeichert.
+- **Maximale Gesamtgröße der Sicherungen (MB)** : Begrenzt den Speicherplatz aller Sicherungen im Sicherungsordner. Wenn dieser Wert überschritten wird, löscht Jeedom die ältesten Sicherungen, bis die maximale Größe unterschritten wird. Es wird jedoch mindestens eine Sicherung gespeichert.
 
-**Lokale Backups** 
------------------------
+## Lokale Backups
 
--   **Verfügbare Backups** : Liste der verfügbaren Backups.
+- **Verfügbare Backups** : Liste der verfügbaren Backups.
 
--   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
-    oben ausgewählt.
+- **Backup wiederherstellen** : Startet die Wiederherstellung der oben ausgewählten Sicherung.
 
--   **Backup löschen** : Ausgewählte Sicherung löschen
-    oben nur im lokalen Ordner.
+- **Backup löschen** : Löschen Sie die oben ausgewählte Sicherung nur im lokalen Ordner.
 
--   **Senden Sie ein Backup** : Ermöglicht das Senden an die
-    Speichern Sie ein Archiv auf dem Computer, den Sie
-    Wird derzeit verwendet (ermöglicht beispielsweise das Wiederherstellen eines Archivs
-    zuvor bei einem neuen Jeedom oder einer Neuinstallation wiederhergestellt).
+- **Senden Sie ein Backup** : Ermöglicht das Senden eines Archivs auf dem Computer, den Sie gerade verwenden, an den Sicherungsordner (z. B. um ein Archiv wiederherzustellen, das zuvor auf einem neuen Jeedom wiederhergestellt wurde, oder um eine Neuinstallation durchzuführen)..
 
--   **Backup herunterladen** : Lass uns auf deine herunterladen
-    Computer das oben ausgewählte Backup-Archiv.
+- **Backup herunterladen** : Laden Sie das Archiv der oben ausgewählten Sicherung auf Ihren Computer herunter.
 
-**Marktsicherungen** 
-----------------------
+## Marktsicherungen
 
--   **Senden von Backups** : Weist Jeedom an, das zu senden
-    Backups in der Markt Cloud, Vorsicht, Sie müssen haben
-    habe das Abonnement bekommen.
+- **Senden von Backups** : Bitten Sie Jeedom, Backups an die Market Cloud zu senden. Beachten Sie, dass Sie sich angemeldet haben müssen.
 
--   **Senden Sie ein Backup** : Ermöglicht das Senden eines
-    Sicherungsarchiv auf Ihrem Computer.
+- **Senden Sie ein Backup** : Senden Sie ein Sicherungsarchiv auf Ihrem Computer an die Cloud.
 
--   **Verfügbare Backups** : Liste der Backups
-    Cloud verfügbar.
+- **Verfügbare Backups** : Liste der verfügbaren Cloud-Backups.
 
--   **Backup wiederherstellen** : Startet die Wiederherstellung von a
-    Cloud-Backup.
+- **Backup wiederherstellen** : Startet die Wiederherstellung einer Cloud-Sicherung.
 
-**Samba-Backups** 
----------------------
+## Samba-Backups
 
--   **Senden von Backups** : Weist Jeedom an, das zu senden
-    Backups auf der hier konfigurierten Samba-Freigabe
-    Administration → Konfiguration → Registerkarte Updates.
+- **Senden von Backups** : Weist Jeedom an, die Backups an die hier konfigurierte Samba-Freigabe zu senden. Einstellungen → System → Konfiguration : Updates.
 
--   **Verfügbare Backups** : Liste der Backups
-    Samba verfügbar.
+- **Verfügbare Backups** : Liste der verfügbaren Samba-Backups.
 
--   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
-    Samba oben ausgewählt.
+- **Backup wiederherstellen** : Startet die Wiederherstellung des oben ausgewählten Samba-Backups.
 
 > **Wichtig**
 >
 >  !!! 
 
 
-Was ist gespeichert ? 
-==============================
+# Was ist gespeichert ?
 
-Während einer Sicherung sichert Jeedom alle seine Dateien und die
-Datenbank. Dies enthält daher Ihre gesamte Konfiguration
-(Ausrüstung, Bestellungen, Geschichte, Szenarien, Design usw.).
+Während einer Sicherung sichert Jeedom alle seine Dateien und die Datenbank. Diese enthält daher Ihre gesamte Konfiguration (Ausrüstung, Steuerelemente, Verlauf, Szenarien, Design usw.)..
 
-In Bezug auf Protokolle ist nur die Z-Wave (OpenZwave) ein bisschen
-anders, weil es nicht möglich ist, die Einschlüsse zu speichern.
-Diese sind direkt im Controller enthalten, also müssen Sie
-Behalten Sie den gleichen Controller bei, um die Zwave-Module zu finden.
+Auf Protokollebene unterscheidet sich nur die Z-Wave (OpenZwave) ein wenig, da die Einschlüsse nicht gespeichert werden können. Diese sind direkt im Controller enthalten, daher müssen Sie denselben Controller behalten, um seine Zwave-Module zu finden.
 
 > **Notiz**
 >
-> Das System, auf dem Jeedom installiert ist, wird nicht gesichert. wenn
-> Sie haben die Parameter dieses Systems geändert (insbesondere über SSH).,
-> Es liegt an Ihnen, einen Weg zu finden, um sie bei Problemen wiederherzustellen.
+> Das System, auf dem Jeedom installiert ist, wird nicht gesichert. Wenn Sie die Einstellungen für dieses System geändert haben (auch über SSH), müssen Sie einen Weg finden, diese bei Problemen wiederherzustellen.
 
-Cloud-Backup 
-================
+# Cloud-Backup
 
-Mit Cloud-Backups kann Jeedom Ihre Backups senden
-direkt auf dem Markt. Auf diese Weise können Sie sie einfach wiederherstellen
-und seien Sie sicher, sie nicht zu verlieren. Der Markt behält die letzten 6
-Backups. Um sich anzumelden, gehen Sie einfach auf Ihre Seite
-**Profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Sie
-kann auf dieser Seite ein Backup abrufen oder ein kaufen
-Abonnement (für 1, 3, 6 oder 12 Monate).
+Mit Cloud-Backups kann Jeedom Ihre Backups direkt an den Markt senden. Auf diese Weise können Sie sie einfach wiederherstellen und sicherstellen, dass Sie sie nicht verlieren. Der Markt behält die letzten 6 Backups. Um sich anzumelden, gehen Sie einfach auf Ihre Seite **Profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Auf dieser Seite können Sie ein Backup abrufen oder ein Abonnement kaufen (für 1, 3, 6 oder 12 Monate)..
 
 > **Spitze**
 >
-> Sie können den Namen der Sicherungsdateien von anpassen
-> der Registerkarte **Meine Jeedoms**, Vermeiden Sie jedoch die Zeichen
-> exotisch.
+> Sie können den Namen der Sicherungsdateien auf der Registerkarte anpassen **Meine Jeedoms**, Vermeiden Sie jedoch die exotischen Charaktere.
 
-Häufigkeit der automatischen Sicherungen 
-======================================
+# Häufigkeit der automatischen Sicherungen
 
-Jeedom führt jeden Tag zur gleichen Zeit eine automatische Sicherung durch
-Stunde. Es ist möglich, dies über die &quot;Engine&quot; zu ändern
-Aufgaben &quot;(die Aufgabe heißt **Jeedom Backup**), aber es ist nicht
-empfohlen. In der Tat wird es in Bezug auf die Last der berechnet
-Markt.
+Jeedom führt jeden Tag zur gleichen Zeit eine automatische Sicherung durch. Es ist möglich, es über die &quot;Task-Engine&quot; zu ändern (die Task wird benannt **Jeedom Backup**), wird aber nicht empfohlen. In der Tat wird es in Bezug auf die Belastung des Marktes berechnet.

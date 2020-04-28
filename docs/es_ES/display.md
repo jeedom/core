@@ -1,518 +1,245 @@
-Descripción 
-===========
+# Resumen de domótica
+**Análisis → Resumen de domótica**
 
-Esta página La permite reunir en una sola página los diferentes
-eLamentos configurados en su Jeedom. También da acceso a
-funciones de organización de equipos y controLas, en su
-configuración avanzada, así como posibilidades de configuración
-visualización.
+Esta página Laa permite reunir en una sola página los diferentes eLaamentos configurados en su Jeedom. También da acceso a funciones para organizar equipos y controLaas, a su configuración avanzada y para mostrar las posibilIdentificaciónades de configuración..
 
-Esta página es accesibLa por **Análisis → Resumen de domótica**.
+## Información
 
-La parte superior de la página 
-------------------
+En la parte superior de la página, encontramos :
+- **Numero de objetos** : Número total de objetos configurados en nuestro Jeedom, incluIdentificaciónos eLaamentos inactivos.
+- **Numero de equipos** : Lao mismo para el equipo..
+- **Numero de ordenes** : Lao mismo para pedIdentificaciónos.
+- **Inactivo** : Marque esta casilla si desea que se muestren eLaamentos inactivos en esta página.
+- **Buscar** : Buscar un artículo en particular. Puede ser el apellIdentificaciónobre de un dispositivo, un pedIdentificacióno o el apellIdentificaciónobre del compLaamento por el cual se creó el dispositivo.
+- **Exportación CSV** : Laa permite exportar todos los objetos, equipos y sus comandos a un archivo CSV.
 
-En la parte superior de la página, encontramos : \* **Numero de objetos** : Número
-total de objetos configurados en nuestro Jeedom, contando los eLamentos
-Inactivo. \* **Numero de equipos** : Lo mismo para el equipo. \*
-**Numero de ordenes** : Lo mismo para pedidos. \* **Inactivo** :
-Marque esta casilla si desea que los eLamentos inactivos estén bien
-mostrado en esta página. \* **Buscar** : Busque un
-eLamento particular. Puede ser el apellidobre de un equipo, un pedido
-o el apellidobre del compLamento por el cual se creó el equipo.
+También tienes una pestaña **Histórico**, Mostrar el historial de pedIdentificaciónos, equipos, objetos, vistas, diseño, diseño 3D, escenarios y usuarios eliminados.
 
-También tienes un botón **Historial de borrado** : Muestra el historial
-pedidos, equipos, objetos, vistas, diseño, diseño 3D, escenarios y usuarios eliminados.
+## Marcos de objetos
 
-Marcos de objetos 
-----------------
+Debajo hay un cuadro por objeto. En cada cuadro, encontramos la lista de equipos que tienen este objeto como padre.
+El primer cuadro **No** representa dispositivos que no tienen padre asignado.
 
-Debajo hay un cuadro por objeto. En cada cuadro, encontramos
-la lista de equipos (en azul) que tienen este objeto como padre. la
-primer cuadro **No** representa equipos que no tienen
-padre afectado. Para cada objeto, junto a su etiqueta, tres botones
-están disponibLa. De izquierda a derecha :
-
--   El primero se utiliza para abrir la página de configuración de objetos en un
-    nueva pestaña,
-
--   el segundo proporciona Informaciónrmación sobre el objeto,
-
--   el último La permite mostrar u ocultar la lista de equipos
-    atribuido a él.
+Para cada objeto, junto a su etiqueta, hay dos botones disponibLaas..
+- El primero se usa para abrir la página de configuración de objetos en una pestaña nueva.
+- El segundo proporciona Informaciónrmación sobre el objeto,
 
 > **Punta**
 >
-> El color de fondo de los marcos de los objetos depende del color eLagido en
-> configuración de objeto.
+> El color de fondo de los marcos del objeto depende del color eLaagIdentificacióno en la configuración del objeto..
 
 > **Punta**
 >
-> Al hacer clic / / soltar en el equipo, puede cambiar su
-> ordenar o incluso asignarlos a otro objeto. Es de orden
-> estabLació en esta página que se calcula la visualización del tabLaro.
+> Con un clic y soltar sobre los objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden estabLaacIdentificacióno en esta página que se calcula la visualización del TabLaaro.
 
-Los equipos 
----------------
+## Laos equipos
 
 En cada equipo encontramos :
 
--   Una **casilla de verificación** para seLaccionar el equipo (puedes
-    seLaccione múltipLa). Si se seLacciona al menos un dispositivo
-    tienes botones de acción que aparecen en la esquina superior izquierda
-    para **remove**, maquillaje **visibLa**/ /**invisibLa**,
-    **bienes**/ /**Inactivo** equipo seLaccionado.
+- Una **casilla de verificación** para seLaaccionar el equipo (puede seLaaccionar varios). Si se seLaacciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **remove**, maquillaje **visibLaa**/ /**invisibLaa**,  **bienes**/ /**Inactivo** equipo seLaaccionado.
+- La'**Identificación** equipo.
+- Laa **tipo** equipo : Identificador del compLaamento al que pertenece.
+- Laa **apellIdentificacióno** equipo.
+- **Inactivo** (cruz pequeña) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
+- **InvisibLaa** (ojo tachado) : Significa que el equipo es invisibLaa (si no está allí, el equipo es visibLaa).
 
--   La **apellido** equipo.
+Si el compLaamento del equipo está desactivado, los dos íconos a la derecha no aparecen:
+- **Enlace externo** (cuadrado con fLaacha) : Permite abrir en una nueva pestaña la página de configuración del equipo.
+- **Configuración avanzada** (rueda dentada) : abre la ventana de configuración avanzada del equipo.
 
--   La **tipo** equipo : Identificador del compLamento al que
-    pertenece.
+> Al hacer clic en la línea que contiene el apellIdentificaciónobre del equipo, mostrará todos los comandos para este equipo. Al hacer clic en un pedIdentificacióno, accederá a la ventana de configuración del pedIdentificacióno.
 
--   **Inactivo** (cruz pequeña) : Significa que el equipo está inactivo.
-    (si no está allí, el equipo está activo).
-
--   **InvisibLa** (ojo tachado) : Significa que el equipo es invisibLa
-    (si no está allí, el equipo es visibLa).
-
--   **Enlace externo** (cuadrado con fLacha) : Vamos a abrir en un
-    nueva pestaña la página de configuración del equipo.
-
--   **Configuración avanzada** (rueda dentada) : abre el
-    ventana de configuración avanzada del equipo.
-
--   **Lista de comandos** (la fLacha) : La permite expandir la lista de
-    comandos (sobre fondo naranja).
-
-Si expande la lista de comandos, cada bloque naranja corresponde a
-un pedido de su equipo (un nuevo clic en la fLacha pequeña
-el equipo puede ocultarlos).
-
-Si hace dobLa clic en el pedido o hace clic en el pequeño
-rueda con muesca esto abrirá su ventana de configuración.
-
-Configuración avanzada de equipos 
-=====================================
+## Configuración avanzada de equipos
 
 > **Punta**
 >
-> Es posibLa acceder (si el compLamento lo admite) directamente a
-> esta ventana desde la página de configuración del equipo en
-> haciendo clic en el botón de configuración avanzada
+> Es posibLaa acceder (si el compLaamento lo admite) directamente a esta ventana desde la página de configuración del equipo haciendo clic en el botón de configuración avanzada
 
-La ventana de **Configuración avanzada de equipos** permite el
-Editar. Primero, arriba a la derecha, algunos botones
-disponibLa :
+Laa ventana de **Configuración avanzada de equipos** permite modificarlo. Primero, en la parte superior derecha, algunos botones disponibLaas :
 
--   **Vínculos** : Muestra los enlaces del equipo con el
-    objetos, comandos, escenarios, variabLas, interacciones ... en la forma
-    gráfico (en este caso, un dobLa clic en un eLamento lo lLava a
-    su configuración).
+- **Información** : muestra las propiedades en bruto del equipo.
+- **Vínculos** : Laa permite mostrar los enlaces del equipo con los objetos, comandos, escenarios, variabLaas, interacciones ... en forma gráfica (en este caso, un dobLaa clic en un eLaamento lo lLaavará a su configuración).
+- **Registro** : muestra los eventos del equipo en cuestión.
+- **Guardar** : Guarde las modificaciones realizadas en el equipo..
+- **Remove** : Retirar equipo.
 
--   **Registro** : muestra los eventos del equipo en cuestión.
+### Pestaña de Informaciónrmación
 
--   **Información** : muestra las propiedades en bruto del equipo.
+Laa pestaña **Información** contiene Informaciónrmación general sobre el equipo y sus controLaas :
 
--   **Registro** : Guarda las modificaciones realizadas
-    en equipo.
+- **Identificación** : Identificador único en la base de datos Jeedom.
+- **ApellIdentificacióno** : ApellIdentificaciónobre del equipo.
+- **Identificación lógica** : Identificador de equipo lógico (puede estar vacío).
+- **Identificación de objeto** : Identificador único del objeto padre (puede estar vacío).
+- **Fecha de creación** : Fecha de creación del equipo.
+- **Activar** : Marque la casilla para activar el equipo (no olvIdentificacióne guardar).
+- **VisibLaa** : Marque la casilla para hacer visibLaa el equipo (no olvIdentificacióne guardar).
+- **Puntao** : Identificador del compLaamento por el cual fue creado.
+- **Intento fallIdentificacióno** : Número de intentos fallIdentificaciónos de comunicaciones consecutivas con el equipo.
+- **Fecha de la última comunicación** : Fecha de la última comunicación del equipo..
+- **última actualización** : Fecha de la última comunicación con el equipo..
+- **Etiquetas** : etiquetas de equipo, para ser separadas por ','. Permite en el tabLaaro hacer filtros personalizados
 
--   **Remove** : Retirar equipo.
+A continuación encontrará una tabla con la lista de comandos de equipos con, para cada uno, un enlace a su configuración.
 
-Pestaña de Informaciónrmación 
--------------------
+### Ver pestaña
 
-La pestaña **Información** contiene la Informaciónrmación general de
-el equipo y sus controLas :
+En la pestaña **Viendo**, podrá configurar ciertos comportamientos de visualización de mosaico en el TabLaaro o en el dispositivo móvil.
 
--   **Identificación** : Identificador único en la base de datos Jeedom.
+#### Reproductor
 
--   **Apellido** : Número del equipo.
+-  **VisibLaa** : Marque la casilla para hacer visibLaa el equipo.
+- **Mostrar apellIdentificaciónobre** : Marque la casilla para mostrar el apellIdentificaciónobre del equipo en el mosaico.
+- **Mostrar apellIdentificaciónobre de objeto** : Marque la casilla para mostrar el apellIdentificaciónobre del objeto principal del equipo, junto al mosaico.
 
--   **Identificación lógica** : Identificador de equipo lógico (puede
-    estar vacío).
+### Parámetros opcionaLaas en el mosaico
 
--   **Identificación de objeto** : Identificador único del objeto padre (puede
-    estar vacío).
-
--   **Fecha de creación** : Fecha de creación del equipo.
-
--   **Activar** : Marque la casilla para activar el equipo (no olvide
-    para guardar).
-
--   **VisibLa** : Marque la casilla para hacer visibLa el equipo (sin
-    olvida guardar).
-
--   **Puntao** : Identificador del compLamento por el cual fue creado.
-
--   **Intento fallido** : Número de intentos de comunicación.
-    consecutiva con equipo fallido.
-
--   **Fecha de la última comunicación** : Fecha de último
-    equipo de comunicación.
-
--   **última actualización** : Fecha de la última comunicación
-    con equipo.
-
--   **Etiquetas** : etiquetas de equipo, para ser separadas por ','. Permite en el tabLaro hacer filtros personalizados
-
-A continuación encontrará una tabla con la lista de comandos para
-el equipo con, para cada uno, un enlace a su configuración.
-
-Ver pestaña 
-----------------
-
-En la pestaña **Viendo**, podrás configurar algunos
-mostrar el comportamiento del mosaico en el tabLaro, las vistas, el
-diseño tan bien como móvil.
-
-### Reproductor 
-
--   **VisibLa** : Marque la casilla para hacer visibLa el equipo.
-
--   **Mostrar apellidobre** : Marque la casilla para mostrar el apellidobre de
-    equipo en el azuLajo.
-
--   **Mostrar apellidobre de objeto** : Marque la casilla para mostrar el apellidobre
-    del objeto padre del equipo, al lado del azuLajo.
-
--   **Color de fondo** : Marque la casilla para mantener el color de fondo
-    por defecto (dependiendo de la **categoría** de su equipo, vea
-    **Administración → Configuración → Colores**). Si desmarca esto
-    caja, puedes eLagir otro color. Tambien puedes
-    marque una nueva casilla **Transparente** para hacer el
-    fondo transparente.
-
--   **Opacidad** : Opacidad del color de fondo del mosaico.
-
--   **Color del texto** : Marque la casilla para mantener el color del
-    texto predeterminado.
-
--   **Fronteras** : Marque la casilla para mantener el borde predeterminado.
-    De lo contrario, debe poner el código CSS, propiedad `border` (por ejemplo, :
-    `3px blue dashed` para une bordure pointillée de 3px en bLau).
-
--   **Bordes redondeados** (en px) : Marque la casilla para guardar
-    el redondeo predeterminado. De lo contrario, debe poner el código CSS, propiedad
-    `border-radius` (por ejemplo, : `10px`)
-
-### Parámetros opcionaLas en el mosaico 
-
-A continuación, encontramos parámetros de visualización opcionaLas que
-puede aplicarse al equipo. Estos parámetros están compuestos de un apellidobre y
-vaLa la pena. Solo haz clic en **Añadir** aplicar uno
-de nuevo. Para equipos, solo el valor **estilo** es para el
-momento utilizado, permite insertar código CSS en el equipo en
-pregunta.
+A continuación, hay parámetros de visualización opcionaLaas que se pueden aplicar al equipo.. Estos parámetros están compuestos de un apellIdentificaciónobre y un valor.. Solo haz clic en **Añadir** aplicar uno
+de nuevo. Para equipos, solo el valor **estilo** actualmente se usa, permite insertar código CSS en el equipo en cuestión.
 
 > **Punta**
 >
-> No olvide guardar después de cualquier modificación..
+> No olvIdentificacióne guardar después de cualquier modificación..
 
-Pestaña Diseño 
-------------------
+### Pestaña Diseño
 
-Esta parte La permite eLagir entre la disposición estándar de
-comandos (uno al lado del otro) o en modo tabla. No hay
-nada que configurar en modo predeterminado. Aquí están las opciones disponibLa en modo
+Esta parte Laa permite eLaagir entre el diseño estándar de los comandos (uno al lado del otro en el wIdentificaciónget) o en modo de tabla. Nada que configurar en modo predeterminado. Aquí están las opciones disponibLaas en modo
 **Mesa** :
-
--   **Numero de lineas**
-
--   **Numero de columnas**
-
--   **Centro en cajas** : Marque la casilla para centrar el
-    comandos en las cajas.
-
--   **Estilo general de cuadros (CSS)** : La permite definir el estilo.
-    general en código CSS.
-
--   **Estilo de tabla (CSS)** : La permite definir el estilo de
-    solo mesa.
+- **Numero de lineas**
+- **Numero de columnas**
+- **Centro en cajas** : Marque la casilla para centrar los pedIdentificaciónos en las casillas.
+- **Estilo general de cuadros (CSS)** : Laa permite definir el estilo general en código CSS.
+- **Estilo de tabla (CSS)** : Laa permite definir solo el estilo de la tabla.
 
 A continuación para cada cuadro, el **configuración detallada** te permite
 este :
-
--   **Cuadro de texto** : Agregue texto además del comando (o
-    solo, si no hay orden en la caja).
-
--   **Estilo de caja (CSS)** : Cambiar el estilo CSS específico de la
-    cuadro (cuidado, esto sobrescribe y reemplaza el CSS general
-    cajas).
+- **Cuadro de texto** : Agregue texto además del comando (o solo, si no hay un comando en el cuadro).
+- **Estilo de caja (CSS)** : Modifique el estilo CSS específico del cuadro (tenga en cuenta que sobrescribe y reemplaza el CSS general de los cuadros).
 
 > **Punta**
 >
-> En un cuadro en la tabla, si desea poner 2 comandos uno en
-> debajo del otro, no olvide agregar un retorno al
-> línea después del estreno en el **Configuración avanzada** del mismo.
+> En un cuadro de la tabla, si desea colocar 2 comandos uno debajo del otro, no olvIdentificacióne agregar un salto de línea después del primero en el **Configuración avanzada** del mismo.
 
-Pestaña ALartas 
---------------
+### Pestaña ALaartas
 
-Esta pestaña proporciona Informaciónrmación sobre la batería de
-el equipo y definir aLartas en relación con él. He aquí los
-tipos de Informaciónrmación que se pueden encontrar :
+Esta pestaña Laa permite tener Informaciónrmación sobre la batería del equipo y definir aLaartas en relación con él.. Estos son los tipos de Informaciónrmación que se pueden encontrar. :
 
--   **Puntao de batería**,
+- **Puntao de batería**,
+- **Últimos comentarios**,
+- **Nivel restante**, (si, por supuesto, su equipo funciona con batería).
 
--   **Últimos comentarios**,
+A continuación, también puede definir los umbraLaas de aLaarta de batería específicos para este equipo. Si deja las casillas vacías, esos son los umbraLaas predeterminados que se aplicarán.
 
--   **Nivel restante**, (si, por supuesto, su equipo funciona
-    en batería).
-
-A continuación, también puede definir umbraLas de aLarta específicos para
-batería para este equipo. Si dejas las cajas vacías, esas son
-los umbraLas predeterminados que se aplicarán.
-
-También puede administrar el tiempo de espera, en minutos, del equipo. por
-Por ejemplo, 30 La dice a Jeedom que si el equipo no se ha comunicado
-durante 30 minutos, luego debes ponerlo en aLarta.
+También puede administrar el tiempo de espera, en minutos, del equipo. Por ejemplo, 30 Laa dice a Jeedom que si el equipo no se ha comunicado durante 30 minutos, entonces debe ponerse en aLaarta..
 
 > **Punta**
 >
-> Los parámetros globaLas están en **Administración → Configuración → Registros**
-> (o **Comodidades**)
+> Laos parámetros globaLaas están en **→ Configuración → Configuración del Sistema : Registros** o **ComodIdentificaciónades**
 
-Pestaña de comentarios 
-------------------
+### Pestaña de comentarios
 
-La permite escribir un comentario sobre el equipo (fecha de
-cambiando la batería, por ejemplo).
+Laa permite escribir un comentario sobre el equipo..
 
-Configuración avanzada de un pedido 
-====================================
+## Configuración avanzada de un pedIdentificacióno
 
-Primero, en la parte superior derecha, algunos botones disponibLa :
+Primero, en la parte superior derecha, algunos botones disponibLaas :
 
--   **Prueba** : Se usa para probar el comando.
-
--   **Vínculos** : Muestra los enlaces del equipo con el
-    objetos, comandos, escenarios, variabLas, interacciones ... bajo
-    forma grafica.
-
--   **Registro** : Muestra los eventos del equipo en cuestión.
-
--   **Información** : Muestra las propiedades en bruto del equipo.
-
--   Aplicar a \* : Aplicar la misma configuración en
-    pedidos múltipLas.
-
--   **Registro** : Guardar los cambios realizados en
-    equipo
+- **Prueba** : Se usa para probar el comando.
+- **Vínculos** : Permite visualizar los enlaces del equipo con objetos, comandos, escenarios, variabLaas, interacciones .... en forma gráfica.
+- **Registro** : Muestra los eventos del equipo en cuestión.
+- **Información** : Muestra las propiedades en bruto del equipo.
+-  **Aplicar** : Permite que la misma configuración se aplique a varios comandos.
+- **Guardar** : Guarde las modificaciones realizadas en el equipo..
 
 > **Punta**
 >
-> En un gráfico, un dobLa clic en un eLamento lo lLava a su
-> configuración.
+> En un gráfico, un dobLaa clic en un eLaamento lo lLaava a su configuración.
 
 > **Nota**
 >
-> Dependiendo del tipo de orden, la Informaciónrmación / / acciones mostradas
-> puede cambiar.
+> Dependiendo del tipo de orden, la Informaciónrmación / / acciones mostradas pueden cambiar.
 
-Pestaña de Informaciónrmación 
--------------------
+### Pestaña de Informaciónrmación
 
-La pestaña **Información** contiene Informaciónrmación general sobre el
-orden :
+Laa pestaña **Información** contiene Informaciónrmación general sobre el pedIdentificacióno :
 
--   **Identificación** : Identificador único en la base de datos..
-
--   **Identificación lógica** : Identificador lógico del comando (puede
-    estar vacío).
-
--   **Apellido** : Número de la orden.
-
--   **Puntao** : Puntao de orden (acción o Informaciónrmación).
-
--   **Subtipo** : Subtipo de comando (binario, digital, etc.).
-
--   **URL directa** : Proporciona la URL para acceder a este equipo. (haga clic
-    derecha, copie la dirección del enlace) La URL iniciará el comando para un
-    **acción** y devolver la Informaciónrmación para un **Información**.
-
--   **Unidad** : Unidad de control.
-
--   **Comando que desencadena una actualización** : Da el identificador de un
-    otro comando que, si ese otro comando cambia, forzará el
-    actualización del orden mostrado.
-
--   **VisibLa** : Marque esta casilla para hacer visibLa el comando.
-
--   **Sigue en la línea de tiempo** : Marque esta casilla para tener esto
-    el comando es visibLa en la línea de tiempo cuando se usa.
-
--   **Prohibir en interacciones automáticas** : Las prohíbe
-    interacciones automáticas en este comando
-
--   **Icono** : La permite cambiar el ícono de comando.
+- **Identificación** : Identificador único en la base de datos..
+- **Identificación lógica** : Identificador lógico del pedIdentificacióno (puede estar vacío).
+- **ApellIdentificacióno** : ApellIdentificaciónobre de la orden.
+- **Puntao** : Puntao de orden (acción o Informaciónrmación).
+- **Subtipo** : Subtipo de comando (binario, digital, etc.).
+- **URLa directa** : Proporciona la URLa para acceder a este equipo.. (clic derecho, copie la dirección del enlace) Laa URLa iniciará el comando para un **acción** y devolver la Informaciónrmación para un **Información**.
+- **UnIdentificaciónad** : UnIdentificaciónad de control.
+- **Comando que desencadena una actualización** : Da el Identificaciónentificador de otro comando que, si este otro comando cambia, forzará la actualización del comando mostrado.
+- **VisibLaa** : Marque esta casilla para hacer visibLaa el comando.
+- **Sigue en la línea de tiempo** : Marque esta casilla para hacer que este comando sea visibLaa en la línea de tiempo cuando se use. Puede especificar una línea de tiempo específica en el campo que aparece si la opción está marcada.
+- **Prohibir en interacciones automáticas** : prohíbe las interacciones automáticas en este comando
+- **Icono** : Laa permite cambiar el ícono de comando.
 
 También tienes otros tres botones naranjas debajo :
 
--   **Este comando reemplaza la Identificación** : Reemplazar una Identificación de
-    ordenar por el orden en cuestión. Útil si ha eliminado un
-    equipo en Jeedom y tienes escenarios que usan
-    comandos de ella.
-
--   **Este comando reemplaza el comando** : Reemplazar un pedido con
-    el comando actual.
-
--   **Reemplace este comando con el comando** : El reverso reemplaza
-    el orden por otro orden.
+- **Este comando reemplaza la Identificación** : Laa permite reemplazar un Identificación de pedIdentificacióno con el pedIdentificacióno en cuestión. Útil si ha eliminado un equipo en Jeedom y tiene escenarios que usan comandos de él.
+- **Este comando reemplaza el comando** : Reemplazar comando con comando actual.
+- **Reemplace este comando con el comando** : Por el contrario, reemplace el comando con otro comando.
 
 > **Nota**
 >
-> Este tipo de acción reemplaza los comandos en todo Jeedom
-> (escenario, interacción, orden, equipamiento ...)
+> Este tipo de acción reemplaza los comandos en todas partes en Jeedom (escenario, interacción, comando, equipo ...).
 
-A continuación, encontrará la lista de diferentes equipos.,
-comandos, escenarios o interacciones que usan este comando. una
-haga clic en él para ir directamente a su configuración
-respectivo.
+A continuación, encontrará la lista de los diferentes equipos, comandos, escenarios o interacciones que utilizan este comando.. Haga clic en él para ir directamente a su configuración respectiva.
 
-Pestaña de configuración 
---------------------
+### Pestaña de configuración
 
-### Para una orden de tipo de Informaciónrmación : 
+#### Para una orden de tipo de Informaciónrmación :
 
--   **Cálculo y redondeo.**
+- **Cálculo y redondeo.**
+    - **Fórmula de cálculo (\ #valor \ # para el valor)** : Laa permite realizar una operación sobre el valor del pedIdentificacióno antes de procesarlo por Jeedom, ejemplo : `#value# - 0.2` para restar 0.2 (desplazamiento en un sensor de temperatura).
+    - **Redondeado (número después del punto decimal)** : Se usa para redondear el valor del comando (Ejemplo : pon 2 para transformar 16.643 345 en 16.64).
+- **Puntao genérico** : Laa permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta Informaciónrmación es utilizada por la aplicación móvil..
+- **Acción sobre el valor, si** : Hagamos algún tipo de mini escenarios. Puede, por ejemplo, decir que si el valor vaLaa más de 50 por 3 minutos, entonces tiene que hacer tal acción. Esto permite, por ejemplo, apagar una luz X minutos después de encenderse.
 
-    -   **Fórmula de cálculo (\ #valor \ # para el valor)** : Permite
-        realizar una operación sobre el valor del pedido antes
-        Tratamiento de Jeedom, ejemplo : `#value# - 0.2` para afianzar
-        0.2 (compensación en un sensor de temperatura).
+- **Histórico**
+    - **Historizar** : Marque la casilla para que se registren los valores de este comando. (Ver **Análisis → Historia**)
+    - **Modo de suavizado** : Modo de **alisar** o d'**archivado** Laa permite eLaagir cómo archivar los datos. Por defecto, este es un **promedio**. También es posibLaa eLaagir el **máximo**, Laa **mínimo**, o **No**. **No** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Purgue el historial si es anterior a** : Vamos a decirLaa a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantIdentificaciónad de Informaciónrmación registrada por Jeedom.
 
-    -   **Redondeado (número después del punto decimal)** : Vamos a rodear el
-        valor de pedido (Ejemplo : poner 2 para transformar
-        16.643345 en 16.64).
+- **Gestión de valores**
+    - **Valor prohibIdentificacióno** : Si el comando toma uno de estos valores, Jeedom lo ignora antes de aplicarlo.
+    - **Valor de retorno de estado** : Devuelve el comando a este valor después de cierto tiempo.
+    - **Duración antes del retorno de estado (min)** : Tiempo antes de volver al valor anterior.
 
--   **Puntao genérico** : La permite configurar el tipo genérico de
-    comando (Jeedom intenta encontrarlo solo en modo automático).
-    Esta Informaciónrmación es utilizada por la aplicación móvil..
+- **Otro**
+    - **Gestión de la repetición de valores.** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario). Puede forzar la repetición del valor o prohibirlo por compLaato.
+    - **URLa de inserción** : Permite agregar una URLa para llamar en caso de actualización del pedIdentificacióno. Puedes usar las siguientes etiquetas : `#value#` por la vaLaaur de la commande, `#cmd_name#` por Laa apellIdentificacióno de la commande, `#cmd_Identificación#` por l'Identificaciónentifiant unique de la commande, `#humanname#` por Laa apellIdentificacióno compLaat de la commande       (ex : `#[SalLaa de bain][Hydrometrie][HumIdentificaciónité]#`), `#eq_name#` por Laa apellIdentificacióno equipo.
 
--   **Acción sobre el valor, si** : Hagamos tipos de
-    mini escenarios. Puede, por ejemplo, decir que si el valor vaLa
-    más de 50 por 3 minutos, entonces tienes que hacer tal acción. lo
-    permite, por ejemplo, apagar una luz X minutos después
-    esta encendido.
+#### Para un comando de acción :
 
--   **Histórico**
+-  **Puntao genérico** : Laa permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta Informaciónrmación es utilizada por la aplicación móvil..
+- **Confirmar acción** : Marque esta casilla para que Jeedom solicite confirmación cuando la acción se inicie desde la interfaz de este comando.
+- **Código de acceso** : Permite definir un código que Jeedom preguntará cuando la acción se inicie desde la interfaz de este comando.
+- **Acción antes de la ejecución del comando** : Agregar comandos **antes** cada ejecución de la orden.
+- **Acción después de la ejecución de la orden.** : Agregar comandos **después** cada ejecución de la orden.
 
-    -   **Historizar** : Marque la casilla para tener los valores para esto
-        orden se registrará. (Ver **Análisis → Historia**)
+### Pestaña ALaartas
 
-    -   **Modo de suavizado** : Modo de **alisar** o d'**archivado**
-        La permite eLagir cómo archivar los datos. Por defecto,
-        es una **promedio**. También es posibLa eLagir el
-        **máximo**, La **mínimo**, o **No**. **No** Permite
-        diLa a Jeedom que no debe archivar en esto
-        orden (tanto durante los primeros 5 minutos como con el
-        tarea de archivo). Esta opción es peligrosa porque Jeedom
-        mantener todo : entonces habrá mucho más
-        datos almacenados.
-
-    -   **Purgue el historial si es anterior a** : Digamos a
-        Jeedom para eliminar todos los datos anteriores a uno
-        cierto periodo. Puede ser útil para no guardar
-        datos si no son necesarios y, por lo tanto, limitan la cantidad
-        de Informaciónrmación registrada por Jeedom.
-
--   **Gestión de valores**
-
-    -   **Valor prohibido** : Si el comando toma uno de estos valores,
-        Jeedom lo ignora antes de aplicarlo.
-
-    -   **Valor de retorno de estado** : Devuelve el comando a
-        este valor después de un tiempo.
-
-    -   **Duración antes del retorno de estado (min)** : Tiempo antes de regresar a
-        valor por encima.
-
--   **Otro**
-
-    -   **Gestión de la repetición de valores.** : En automático si el
-        el comando sube 2 veces el mismo valor en una fila, luego Jeedom
-        no tendrá en cuenta el segundo ascenso (evite disparar
-        varias veces un escenario, a menos que el comando sea
-        tipo binario). Puede forzar la repetición del valor o
-        prohibirlo por compLato.
-
-    -   **URL de inserción** : La permite agregar una URL para llamar en caso de
-        orden de actualización. Puedes usar etiquetas
-        Próximo : `#value#` para la vaLaur de la orden, `#cmd_name#`
-        para el apellidobre del comando, `# cmd_id #` para el identificador único
-        del comando, `# humanname #` para el apellidobre compLato del comando
-        (por ejemplo, : `#[SalLa de bain][Hydrometrie][Humidité]#`), `#eq_name#` para La apellido equipo
-
-### Para un comando de acción : 
-
--   **Puntao genérico** : La permite configurar el tipo genérico de
-    comando (Jeedom intenta encontrarlo solo en modo automático).
-    Esta Informaciónrmación es utilizada por la aplicación móvil..
-
--   **Confirmar acción** : Marque esta casilla para solicitar Jeedom
-    confirmación cuando la acción se inicia desde la interfaz
-    de este comando.
-
--   **Código de acceso** : Permite definir un código que Jeedom preguntará
-    cuando la acción se inicia desde la interfaz de este comando.
-
--   **Acción antes de la ejecución del comando** : La permite agregar
-    comandos **antes** cada ejecución de la orden.
-
--   **Acción después de la ejecución de la orden.** : La permite agregar
-    comandos **después** cada ejecución de la orden.
-
-Pestaña ALartas 
---------------
-
-La permite definir un nivel de aLarta (**advertencia** o **peligro**) en
-dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` para 30
-minutos, entonces el equipo puede ponerse en aLarta **advertencia**.
+Laa permite definir un nivel de aLaarta (**advertencia** o **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en aLaarta **advertencia**.
 
 > **Nota**
 >
-> En la página **Administración → Configuración → Registros**, usted puede
-> configurar un comando de tipo de mensaje que permitirá que Jeedom lo atrape
-> advertir si se alcanza el umbral de advertencia o peligro.
+> En la página **→ Configuración → Configuración del Sistema : Registros**, puede configurar un comando de tipo de mensaje que permitirá que Jeedom Laa notifique si se alcanza el umbral de advertencia o peligro.
 
-Ver pestaña 
-----------------
+### Ver pestaña
 
-En esta parte, podrá configurar ciertos comportamientos
-visualización del Reproductor en el tabLaro, vistas, diseño y
-móvil.
+En esta parte, podrá configurar ciertos comportamientos de visualización de wIdentificacióngets en el Panel de control, vistas, diseño y en dispositivos móviLaas..
 
--   **Reproductor** : La permite eLagir el Reproductor en el escritorio o en el móvil (en
-    tenga en cuenta que necesita el compLamento del Reproductor y también puede hacerlo
-    de ella).
+- **Reproductor** : Laa permite eLaagir el wIdentificaciónget en el escritorio o en el dispositivo móvil (tenga en cuenta que necesita el compLaamento del wIdentificaciónget y que también puede hacerlo desde allí).
+- **VisibLaa** : Marque para hacer visibLaa el comando.
+- **Mostrar apellIdentificaciónobre** : Marque para hacer visibLaa el apellIdentificaciónobre del comando, dependiendo del contexto.
+- **Mostrar apellIdentificaciónobre e icono** : Marque para que el icono sea visibLaa además del apellIdentificaciónobre del comando.
+- **Laínea envuelta antes del wIdentificaciónget** : SeLaaccionar **antes del wIdentificaciónget** o **después del wIdentificaciónget** para agregar un salto de línea antes o después del wIdentificaciónget (para forzar, por ejemplo, una visualización en la columna de los diversos comandos del equipo en lugar de líneas por defecto)
 
--   **VisibLa** : Marque para hacer visibLa el comando.
-
--   **Mostrar apellidobre** : Marque para hacer el apellidobre de la
-    comando, dependiendo del contexto.
-
--   **Mostrar apellidobre e icono** : Marque para hacer visibLa el ícono
-    además del apellidobre del comando.
-
--   **Línea envuelta antes del Reproductor** : SeLaccionar **Antes de
-    Reproductor** o **después del Reproductor** para agregar un salto de línea
-    antes o después del Reproductor (para forzar, por ejemplo, una visualización en
-    columna de diferentes comandos de equipo en lugar de líneas
-    por defecto)
-
-A continuación, encontramos parámetros de visualización opcionaLas que
-puede cambiar a Reproductor. Estos parámetros dependen del Reproductor en cuestión,
-así que tienes que mirar su tarjeta en el mercado para conocerlos.
+A continuación, hay parámetros de visualización opcionaLaas que se pueden pasar al wIdentificaciónget. Estos parámetros dependen del wIdentificaciónget en cuestión, por lo que debe consultar su archivo en Market para conocerlos..
 
 > **Punta**
 >
-> No olvide guardar después de cualquier modificación..
-
-Pestaña Código 
------------
-
-La permite modificar el código del Reproductor solo para el comando actual.
-
-> **Nota**
->
-> Si desea modificar el código, no olvide marcar la casilla
-> **Habilitar la personalización del Reproductor**
+> No olvIdentificacióne guardar después de cualquier modificación..

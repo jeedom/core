@@ -1,5 +1,6 @@
-Hier finden Sie eine Dokumentation zu API-Methoden. Zuerst ist hier
-die Spezifikationen (JSON RPC 2.0) :
+Hier finden Sie eine Dokumentation zu API-Methoden. 
+
+Hier sind zunächst die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
 Der Zugriff auf die API erfolgt über die URL : *URL \ _JEEDOM * / core / api / jeeApi.php
@@ -37,7 +38,6 @@ Einstellungen :
 -   String Plugin : (optional), Konfigurationswert-Plugin
 
 -   Zeichenfolge Standard : (optional), Wert, der zurückgegeben werden soll, wenn der Schlüssel nicht vorhanden ist
-    nicht
 
 Config::speichern
 ------------
@@ -50,8 +50,7 @@ Einstellungen :
 
 -   String-Schlüssel : Konfigurationswertschlüssel zum Speichern
 
--   String Plugin : (optional), Plugin des Konfigurationswertes zu
-    Rekord
+-   String Plugin : (optional), Plugin des zu speichernden Konfigurationswerts
 
 JSON-Ereignis-API
 ==============
@@ -59,9 +58,7 @@ JSON-Ereignis-API
 Ereignis::Austausch
 --------------
 
-Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück
-(muss in Mikrosekunden sein). Sie haben auch in der Antwort die
-Jeedom&#39;s aktuelle Datumszeit (zur Wiederverwendung für die nächste Abfrage)
+Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück (muss in Mikrosekunden angegeben werden).. Sie haben in der Antwort auch die aktuelle Datumszeit von Jeedom (die für die nächste Abfrage wiederverwendet werden soll).
 
 Einstellungen :
 
@@ -79,8 +76,7 @@ Einstellungen :
 
 -   int activOnly = 0 (gibt nur die Liste der aktivierten Plugins zurück)
 
--   int orderByCaterogy = 0 (gibt die Liste der sortierten Plugins zurück
-    nach Kategorie)
+-   int orderByCaterogy = 0 (gibt die Liste der Plugins nach Kategorie sortiert zurück)
 
 Objekt-JSON-API
 ==============
@@ -93,16 +89,12 @@ Gibt die Liste alleer Objekte zurück
 jeeObject::voll
 ------------
 
-Gibt die Liste alleer Objekte zurück, wobei für jedes Objekt allee seine
-Ausrüstung und für jede Ausrüstung allee ihre Befehle sowie
-Zustände dieser (für Info-Befehle)
+Gibt die Liste alleer Objekte zurück, wobei für jedes Objekt allee Geräte und für jedes Gerät allee Befehle sowie deren Status angegeben werden (für Befehle vom Typ Info).
 
 jeeObject::vollById
 ----------------
 
-Gibt ein Objekt mit seiner gesamten Ausrüstung und für jede Ausrüstung zurück
-allee seine Befehle sowie ihre Zustände (z
-Info-Typ-Befehle)
+Gibt ein Objekt mit alle seinen Geräten und für jedes Gerät allee seine Befehle und deren Status zurück (für Befehle vom Typ Info).
 
 Einstellungen :
 
@@ -120,9 +112,7 @@ Einstellungen:
 jeeObject::vollById
 ----------------
 
-Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung allee seine zurück
-Befehle sowie die Zellenzustände (für Typbefehle
-info)
+Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung allee seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info).
 
 jeeObject::speichern
 ------------
@@ -155,8 +145,7 @@ Gibt die insgesamte Zusammenfassung für den im Parameter übergebenen Schlüsse
 
 Einstellungen:
 
--   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann Jeedom
-    sendet Ihnen die Zusammenfassung alleer Schlüssel
+-   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung alleer Schlüssel
 
 Zusammenfassung::BYID
 -------------
@@ -167,8 +156,7 @@ Einstellungen:
 
 -   int id : Objekt-ID
 
--   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann Jeedom
-    sendet Ihnen die Zusammenfassung alleer Schlüssel
+-   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung alleer Schlüssel
 
 JSON EqLogic API
 ================
@@ -181,8 +169,7 @@ Gibt die Liste alleer Geräte zurück
 eqLogic::vollById
 -----------------
 
-Gibt Geräte und ihre Befehle sowie deren Status zurück
-(für Info-Bestellungen)
+Gibt Geräte und ihre Befehle sowie deren Status zurück (für Befehle vom Typ Info).
 
 Einstellungen:
 
@@ -218,8 +205,9 @@ Einstellungen:
 eqLogic::byTypeAndId
 --------------------
 
-Gibt eine Gerätetabelle gemäß den Parametern zurück. Die Rückkehr
-wird vom Formulararray sein (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒
+Gibt eine Gerätetabelle gemäß den Parametern zurück. 
+
+Die Rückgabe erfolgt vom Formulararray (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒)
 Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 Array (....)) ..)
@@ -292,17 +280,14 @@ Führen Sie den angegebenen Befehl aus
 
 Einstellungen:
 
--   int id : ID eines Befehls oder ID-Arrays, wenn Sie ausführen möchten
-    mehrere Bestellungen gleichzeitig
-
--   \ [Optionen \] Liste der Befehlsoptionen (abhängig von Typ und
-    Befehlssubtyp)
+-   int id : Befehls-ID oder ID-Array, wenn Sie mehrere Befehle gleichzeitig ausführen möchten
+    
+-   \ [Optionen \] Liste der Befehlsoptionen (abhängig vom Typ und Subtyp des Befehls)
 
 cmd::bekommenStatistics
 -------------------
 
-Gibt Statistiken zur Bestellung zurück (funktioniert nur bei
-Infos und historische Befehle)
+Gibt Statistiken zur Bestellung zurück (funktioniert nur bei Informationen und historischen Bestellungen)
 
 Einstellungen:
 
@@ -315,8 +300,7 @@ Einstellungen:
 cmd::bekommenTendance
 ----------------
 
-Gibt den Trend für den Befehl zurück (funktioniert nur für die Befehle von
-Info und historischer Typ)
+Gibt den Trend der Bestellung zurück (funktioniert nur bei Informationen und historischen Bestellungen)
 
 Einstellungen:
 
@@ -329,8 +313,7 @@ Einstellungen:
 cmd::bekommenHistory
 ---------------
 
-Gibt den Befehlsverlauf zurück (funktioniert nur mit den Befehlen von
-Info und historischer Typ)
+Gibt den Bestellverlauf zurück (funktioniert nur bei Informationen und historischen Aufträgen)
 
 Einstellungen:
 
@@ -414,7 +397,7 @@ Einstellungen:
 Szenario::Export
 ----------------
 
-Gibt den Export des Szenarios sowie den menschlichen Namen des Szenarios zurück
+Gibt den Export des Szenarios sowie den * menschlichen Namen * des Szenarios zurück
 
 Einstellungen:
 
@@ -429,7 +412,7 @@ Einstellungen:
 
 -   int id : ID des Szenarios, in das Importiert werden soll (leer, wenn erstellt)
 
--   Zeichenfolge humanName : menschlicher Name des Szenarios (leer bei Erstellung)
+-   Zeichenfolge humanName : *menschlicher Name * des Szenarios (leer bei Erstellung)
 
 -   Array-Import : Szenario (aus dem Feld Exportszenario::Export)
 
@@ -454,11 +437,11 @@ Ermöglicht das Wiederherstellen eines Protokolls
 
 Einstellungen:
 
--   Zeichenfolgenprotokoll : Name des wiederherzustellenden Protokolls
+-   Zeichenfolgenprotokoll : Name des wiederherzustellenden Protokolls 
 
 -   String-Start : Zeilennummer, auf der mit dem Lesen begonnen werden soll
 
--   Zeichenfolge nbLine : Anzahl der wiederherzustellenden Zeilen
+-   Zeichenfolge nbLine : Anzahl der wiederherzustellenden Zeilen 
 
 Protokoll::hinzufügen
 --------
@@ -467,7 +450,7 @@ Ermöglicht das Schreiben in ein Protokoll
 
 Einstellungen:
 
--   Zeichenfolgenprotokoll : Name des wiederherzustellenden Protokolls
+-   Zeichenfolgenprotokoll : Name des wiederherzustellenden Protokolls 
 
 -   Zeichenfolgentyp : Protokolltyp (Debug, Info, Warnung, Fehler)
 
@@ -483,7 +466,7 @@ Holen Sie sich die Jeedom-ProtokollListee
 
 Einstellungen:
 
--   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle
+-   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle 
 
 Protokoll::leer
 ----------
@@ -513,12 +496,10 @@ Ruft den Wert einer im Datenspeicher gespeicherten Variablen ab
 
 Einstellungen:
 
--   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
-    es ist Szenario)
-
--   id linkId : -1 für insgesamt (Wert für Standardszenarien,
-    oder die Szenario-ID)
-
+-   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien ist es Szenario)
+    
+-   id linkId : -1 für das insgesamte (Wert für die Standardszenarien oder die Szenario-ID)
+    
 -   String-Schlüssel : Wertname
 
 Datenspeicher::speichern
@@ -572,15 +553,14 @@ JSON-Interaktions-API
 Interact::tryToReply
 --------------------
 
-Versuchen Sie, eine Anforderung mit einer Interaktion abzugleichen, und führen Sie sie aus
-Aktion und reagiert entsprechend
+Versuchen Sie, eine Anfrage mit einer Interaktion abzugleichen, führen Sie die Aktion aus und antworten Sie entsprechend
 
 Einstellungen:
 
 -   Abfrage (Anforderungsphrase)
 
 -   int reply \ _cmd = NULL : Befehls-ID, die zum Antworten verwendet werden soll,
-    Wenn nicht angegeben, sendet Jeedom Ihnen die Antwort im JSON
+    Wenn nicht angegeben, gibt Jeedom die Antwort an Sie im JSON zurück
 
 InteractQuery::alle
 ------------------
@@ -646,7 +626,7 @@ Einstellungen:
 Plugin::AbhängigkeitInfo
 ----------------------
 
-Gibt Informationen zum Status von Plugin-Abhängigkeiten zurück
+Gibt Informationen zum Plugin-Abhängigkeitsstatus zurück
 
 Einstellungen:
 
@@ -710,8 +690,7 @@ JSON-Update-API
 Aktualisierung::alle
 -----------
 
-Geben Sie die Liste alleer installeierenierten Komponenten, deren Version und die zurück
-verwandte Informationen
+Zurück zur Liste alleer installeierenierten Komponenten, ihrer Versionen und der zugehörigen Informationen
 
 Aktualisierung::checkUpdate
 -------------------
@@ -753,8 +732,7 @@ JSON-API-Beispiele
 =================
 
 Hier ist ein Beispiel für die Verwendung der API. Für das folgende Beispiel
-Ich benutze [diese Klasse
-php] (https://github.com/Jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+Ich benutze [diese PHP-Klasse] (https://github.com/Jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
 Dies vereinfacht die Verwendung der API.
 
 Abrufen der ObjektListee :
@@ -779,5 +757,4 @@ if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> 
 }
 ```
 
-Die API kann natürlich auch in anderen Sprachen verwendet werden (einfach ein Beitrag
-auf einer Seite)
+Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite).

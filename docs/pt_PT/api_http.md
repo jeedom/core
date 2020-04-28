@@ -1,152 +1,87 @@
-
+# 
 
 .
 
- : 
-..
+ : ..
 
-
-URL .
+.
 
 > ****
 >
-> 
-> . 
-> 
-> .
+> . .
 
 > ****
 >
-> 
-> . 
-> ".
+> . ".
 
-Cenas 
-========
+## Cenas
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&=\#ID\#&Ação=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&=#ID#&Ação=#ACTION#)
+:?apikey=\#APIKEY\#&type=scenario&=\#ID\#&Ação=\#ACTION\#](http:?apikey=#APIKEY#&type=scenario&=#ID#&Ação=#ACTION#)
 
--   **** : . 
-    
-    
-     : 
-    "Visão global".
+- **** : . ".  : ".
+- **Ação** : .  : ".
+- **Etiquetas** ] : .
 
--   **Ação** : 
-     : "
-    "
-    .
+##  
 
--   **Etiquetas** ] : 
-    
-    
-    
+:?apikey=\#APIKEY\#&type=cmd&=\#ID\#](http:?apikey=#APIKEY#&type=cmd&=#ID#)
 
- 
-====================
+- **** : .
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&=\#ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&=#ID#)
-
--   **** : 
-    
-
-
-
-
-
-Ordem.
+ ****, .
 
 > ****
 >
-> 
-> . 
-> 
-> . 
+> . . .
 
 > ****
 >
-> 
-> :
+> :.
 
- 
-===========
+## Interação
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&=#QUERY#)
+:?apikey=\#APIKEY\#&type=interact&=\#QUERY\#](http:?apikey=#APIKEY#&type=interact&=#QUERY#)
 
--   **** : 
+- **** : .
+- **** ] : .
+- **** ] : .
+- **** ] : .
+- **** ] : .
 
--   **** ] : 
-    
+## Mensagem
 
--   **** ] : 
-    
+:?apikey=\#APIKEY\#&type=Mensagem&=\#CATEGORY\#&Mensagem=\#MESSAGE\#](http:?apikey=#APIKEY#&type=Mensagem&=#CATEGORY#&Mensagem=#MESSAGE#)
 
--   **** ] : 
-    
+- **** : .
+- **Mensagem** : . :.
 
--   **** ] : 
-    
+## Objeto
 
-Mensagem 
-=======
+:?apikey=\#APIKEY\#&type=object](http:?apikey=#APIKEY#&type=object)
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Mensagem&=\#CATEGORY\#&Mensagem=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Mensagem&=#CATEGORY#&Mensagem=#MESSAGE#)
+.
 
--   **** : 
+## Equipamento
 
--   **Mensagem** : 
-    . 
-    :
+:?apikey=\#APIKEY\#&type=eqLogic&=\#OBJECT\_ID\#](http:?apikey=#APIKEY#&type=eqLogic&object_=#OBJECT_ID#)
 
-Objeto 
-=====
+- **** : .
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
+## Ordem
 
+:?apikey=\#APIKEY\#&type=command&=\#EQLOGIC\_ID\#](http:?apikey=#APIKEY#&type=command&eqLogic_=#EQLOGIC_ID#)
 
+- **** : .
 
-Equipamento 
-==========
+## 
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_=#OBJECT_ID#)
+:?apikey=\#APIKEY\#&type=fullData](http:?apikey=#APIKEY#&type=fullData)
 
--   **** : 
-    Instalações
+.
 
-Ordem 
-========
+## Variável
 
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_=#EQLOGIC_ID#)
+:?apikey=\#APIKEY\#&type=variable&=\#NAME\#&=](http:?apikey=#APIKEY#&type=variable&=#NAME#&=)*VALUE*
 
--   **** : 
-    Comandos
-
- 
-=========
-
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
-
-
-
-
-Variável 
-========
-
- =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&=\#NAME\#&=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&=#NAME#&=)*VALUE*
-
--   **** : 
-    
-
--   **** ] : 
-    
-
-
+- **** : .
+- **** ] : .

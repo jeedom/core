@@ -1,12 +1,14 @@
-.
+# Projeto 3D
+****
 
+.
 
 
 > ****
 >
 > .
 
-# 
+## 
 
 > ****
 >
@@ -16,7 +18,7 @@
 
 > ****
 >
-> 
+> .
 
 > **Atenção**
 >
@@ -41,31 +43,31 @@
 
 > **Atenção**
 >
-> 
+> .
 
 > ****
 >
-> 
+> .
 
 
-# 
+## 
 
 > ****
 >
-> 
+> .
 
 .  :
 
 - 
 - . . 
-- 
+- : 
 
-## Luz
+### Luz
 
 - Estado : 
 - Poder : 
 
-## Texto
+### Texto
 
 - Texto : 
 - Tamanho do texto
@@ -77,9 +79,9 @@
 -  : 
 -  : 
 
-## Porta / janela
-
 ### Porta / janela
+
+#### Porta / janela
 
 - Estado : 
 - 
@@ -95,7 +97,7 @@
 	-  : 
 	-  : 
 
-### Aba
+#### Aba
 
 - Estado : 
 - 
@@ -103,7 +105,7 @@
 - Cor
 	-  : 
 
-## 
+### 
 
 . .
 

@@ -1,46 +1,80 @@
-Auf der WIdentifikationgets-Seite können Sie benutzerdefinierte und eindeutige WIdentifikationgets für Ihr Jeedom erstellen.
+# WIdentifikationgets
+**Extras → WIdentifikationgets**
 
-Es gibt 2 Möglichkeiten :
+Auf der WIdentifikationgets-Seite können Sie benutzerdefinierte WIdentifikationgets für Ihr Jeedom erstellen.
 
-- Entweder durch Klicken auf die Code-Schaltfläche und direktes Schreiben Ihres HTML-Codes für Ihr WIdentifikationget (dies wird nicht unbedingt empfohlen, da Ihr Code während jeedom-Updates möglicherweise nicht mehr mit jeedom kompatibel ist).
-- Entweder indem Sie ein WIdentifikationget basierend auf einer von uns bereitgestellten Vorlage erstellen
+Es gibt zwei Arten von benutzerdefinierten WIdentifikationgets :
 
-# Aber was ist eine Vorlage ?
+- WIdentifikationgets basierend auf einer Vorlage (verwaltet vom Jeedom Core).
+- WIdentifikationgets basierend auf Benutzercode.
 
-Zur Vereinfachung ist es Code (hier HTML), in dem wir bestimmte Teile vordefiniert haben, die Sie nach Ihren Wünschen konfigurieren können.
+> **Notiz**
+>
+> Wenn vorlagenbasierte WIdentifikationgets in den Core integriert und daher vom Entwicklungsteam überwacht werden, kann letzteres die Kompatibilität von WIdentifikationgets basierend auf Benutzercode gemäß Jeedom-Entwicklungen nicht sicherstellen.
 
-Bei WIdentifikationgets empfehlen wir häufig, die Symbole anzupassen oder die gewünschten Bilder zu platzieren.
+## Verwaltung
 
-# Die Vorlagen
+Sie haben vier Möglichkeiten :
+- **Hinzufügen** : Ermöglicht das Erstellen eines neuen WIdentifikationgets.
+- **Import** : Ermöglicht das Importieren eines WIdentifikationgets als zuvor exportierte JSON-Datei.
+- **Code** : Öffnet einen Datei-Editor zum Bearbeiten von Code-WIdentifikationgets.
+- **Ersatz** : Öffnet ein Fenster, in dem Sie ein WIdentifikationget auf allen Geräten, die es verwenden, durch ein anderes ersetzen können.
+
+## Meine WIdentifikationgets
+
+Sobald Sie ein WIdentifikationget erstellt haben, wird es in diesem Teil angezeigt.
+
+> **Spitze**
+>
+> Sie können ein WIdentifikationget öffnen, indem Sie dies tun :
+> - Klicken Sie auf eine davon.
+> - Strg Clic oder Clic Center, um es in einem neuen Browser-Tab zu öffnen.
+
+Sie haben eine Suchmaschine, um die Anzeige von WIdentifikationgets zu filtern. Die Escape-Taste bricht die Suche ab.
+Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden:
+
+- Das Kreuz, um die Suche abzubrechen.
+- Der geöffnete Ordner zum Entfalten aller Bedienfelder und Anzeigen aller WIdentifikationgets.
+- Der geschlossene Ordner zum Falten aller Panels.
+
+Sobald Sie ein WIdentifikationget konfiguriert haben, haben Sie ein Kontextmenü mit der rechten Maustaste auf die Registerkarten des WIdentifikationgets. Sie können auch ein Strg-Klick- oder Clic-Center verwenden, um ein anderes WIdentifikationget direkt in einer neuen Browser-Registerkarte zu öffnen.
+
+
+## Prinzip
+
+Aber was ist eine Vorlage ?
+Einfach ausgedrückt ist es Code (hier html / js), der in den Core integriert ist. Einige Teile davon können vom Benutzer über die grafische Oberfläche des Core konfiguriert werden.
+
+Abhängig von der Art des WIdentifikationgets können Sie im Allgemeinen Symbole anpassen oder Bilder Ihrer Wahl einfügen.
+
+## Die Vorlagen
 
 Es gibt zwei Arten von Vorlagen :
 
-- Das "einfache" : Geben Sie ein Symbol / Bild für das "Ein" und ein Symbol / Bild für das "Aus" ein"
-- Die "MultiZustands" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl den Wert "XX" und ein anderes if> bis "YY" und erneut if <bis "ZZ" hat". Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn es &quot;plop&quot; ist und so weiter.
+- Die "**einfach**" : Geben Sie ein Symbol / Bild für das "Ein" und ein Symbol / Bild für das "Aus" ein"
+- Die "**multiZustand**" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl auf "XX" gesetzt ist, und ein anderes, wenn> auf "YY" und erneut, wenn <auf "ZZ"". Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn &quot;plop&quot;, und so weiter.
 
-# Wie es geht ?
+## WIdentifikationget erstellen
 
 Klicken Sie auf der Seite Extras -&gt; WIdentifikationget auf &quot;Hinzufügen&quot; und geben Sie Ihrem neuen WIdentifikationget einen Namen.
 
 Dann :
-- Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt
-- Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...).
-- Dann endlich die fragliche Vorlage (wir planen, Ihnen Beispiele für Renderings für jede Vorlage zu geben)
-- Sobald die Vorlage ausgewählt wurde, bietet Ihnen jeedom die Möglichkeit, sie zu konfigurieren
+- Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt.
+- Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...)..
+- Dann endlich die fragliche Vorlage (wir planen, Beispiele für Renderings für jede Vorlage zu setzen).
+- Sobald die Vorlage ausgewählt wurde, bietet Ihnen jeedom die Möglichkeit, sie zu konfigurieren.
 
-## Ersatz
+### Ersatz
 
-Dies ist, was wir ein einfaches WIdentifikationget nennen. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist das ec. Abhängig von der Vorlage werden Sie dann möglicherweise auch nach der Breite und Höhe gefragt.. Dies gilt nur für Bilder.
+Dies wird als einfaches WIdentifikationget bezeichnet. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist dieses usw.. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
 
 >**Notiz**
->
 >Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns.. Wir hatten keine Wahl
 
->**Tipps**
->
->Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags einzufügen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkarte "Anzeige" und des WIdentifikationgets "Optionale Einstellungen" anzugeben". Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen.
+>**Spitzeps**
+>Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkartenanzeige und des WIdentifikationgets "Optionale Parameter" anzugeben". Wenn Sie beispielsweise in wIdentifikationth als Wert # wIdentifikationth # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;Optionale WIdentifikationget-Einstellungen&quot; wIdentifikationth (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes WIdentifikationget erstellen.
 
-## Test
+### Test
 
 Dies wird als mehrstufiger Teil bezeichnet. Bei einfachen WIdentifikationgets haben Sie häufig die Wahl zwischen &quot;Höhe&quot; / &quot;Breite&quot; für die Bilder nur dann unterhalb des Testteils.
 
@@ -53,60 +87,75 @@ Die Tests sind in der Form : #Wert # == 1, # Wert # wird vom System automatisch 
 - #Wert # == &#39;toto'
 
 >**Notiz**
->
 >Es ist wichtig, das &#39;um den Text herum zu notieren, um zu vergleichen, ob der Wert ein Text ist
 
 >**Notiz**
->
 >Für fortgeschrittene Benutzer ist es hier möglich, auch Javascript-Funktionen vom Typ #value zu verwenden#.match (&quot;^ plop&quot;), hier testen wir, ob der Text mit plop beginnt
 
 >**Notiz**
->
 >Es ist möglich, den Wert des Befehls im WIdentifikationget anzuzeigen, indem Sie beispielsweise neben den HTML-Code des Symbols #value setzen#
 
-# Beschreibung der WIdentifikationgets
+## Beschreibung der WIdentifikationgets
 
-Wir werden hier einige WIdentifikationgets beschreiben, die eine ganz bestimmte Funktion haben.
+Wir werden hier einige WIdentifikationgets beschreiben, die eine etwas bestimmte Funktion haben.
 
-## Häufige Einstellungen
+### Gerät
+
+Die Geräte haben bestimmte Konfigurationsparameter :
+
+- dashboard_class / mobile_class : Ermöglicht das Hinzufügen einer Klasse zur Ausrüstung. Zum Beispiel col2 für Geräte in der mobilen Version, mit der die Breite des WIdentifikationgets verdoppelt werden kann
+
+### Häufige Einstellungen
 
 - Zeit-WIdentifikationget : Zeigt die Zeit an, seit der sich das System im Anzeigezustand befindet.
-- Ein : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1
-- Aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0
-- Licht an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema hell ist (wenn leer, nimmt jeedom das dunkle Bild an)
-- Licht aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema hell ist (wenn leer, nimmt jeedom das dunkle Bild aus)
-- Dunkel an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema dunkel ist (wenn leer, schaltet jeedom das Licht ein)
-- Dunkel ab : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema dunkel ist (wenn leer, schaltet jeedom das Licht aus)
-- Desktop-Breite : Breite des Bildes auf dem Desktop in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig, dass nur die Breite erforderlich ist. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren
-- Bewegliche Breite : Breite des Bildes auf dem Handy in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig, dass nur die Breite erforderlich ist. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren
+- Ein : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1.
+- Aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0.
+- Licht an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema hell ist (wenn leer, nimmt jeedom das dunkle Bild an).
+- Licht aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema hell ist (wenn leer, nimmt jeedom das dunkle Bild aus).
+- Dunkel an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema dunkel ist (wenn leer, schaltet jeedom das Licht ein).
+- Dunkel ab : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema dunkel ist (wenn leer, schaltet jeedom das Licht aus).
+- Desktop-Breite : Breite des Bildes auf dem Desktop in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig ist, dass nur die Breite angefordert wird. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
+- Bewegliche Breite : Breite des Bildes auf dem Handy in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig ist, dass nur die Breite angefordert wird. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
 
-## Hygrothermograph
+### Hygrothermograph
 
 Dieses WIdentifikationget ist etwas Besonderes, da es sich um ein WIdentifikationget mit mehreren Befehlen handelt, dh, es stellt auf seiner Anzeige den Wert mehrerer Befehle zusammen. Hier nimmt er Temperatur- und Feuchtigkeitsbefehle entgegen.
 
 Um es zu konfigurieren, müssen Sie das WIdentifikationget ganz einfach der Temperaturregelung Ihres Geräts und der Feuchtigkeitsregelung zuweisen.
 
 >**WICHTIG**
->
->Es ist ABSOLUT erforderlich, dass Ihre Bestellungen die generische Temperatur für die Temperatur- und Feuchtigkeitsregelung für die Feuchtigkeitsregelung haben (dies wird in der erweiterten Konfiguration der Konfiguration der Befehlsregisterkarte konfiguriert)..
+>Es ist ABSOLUT erforderlich, dass Ihre Bestellungen die generische Temperatur für die Temperaturregelung und die Luftfeuchtigkeit für die Feuchtigkeitsregelung haben (dies wird in der erweiterten Konfiguration der Befehlsregisterkonfiguration konfiguriert)..
 
-Das WIdentifikationget verfügt über einen optionalen Parameter : Skala, mit der Sie die Größe ändern können, indem Sie beispielsweise die Skala auf 0 setzen.5 es wird 2 mal kleiner sein
+##### Optionale Parameter
+
+- Skala : Ermöglicht das Ändern der Größe, indem Sie beispielsweise die Skalierung auf 0 setzen.5 es wird 2 mal kleiner sein.
 
 >**Notiz**
->
-> Aufmerksamkeit für ein Design Es ist besonders wichtig, mit diesem WIdentifikationget keine Bestellung aufzugeben, die nicht funktioniert, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Bestellungen verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
+> Achtung bei einem Entwurf Es ist wichtig, einen Befehl nicht alleine mit diesem WIdentifikationget zu platzieren. Es funktioniert nicht, da es sich um ein WIdentifikationget handelt, das den Wert mehrerer Befehle verwendet. Es ist unbedingt erforderlich, das vollständige WIdentifikationget zu platzieren
 
-## Schieberegler
+### Mehrzeilige
 
-- Schritt : Ermöglicht das Anpassen des Aktionsschritts auf einer Schaltfläche (0).5 standardmäßig)
+##### Optionale Parameter
 
-## Kompass
+- maxHeight : Ermöglicht das Definieren der maximalen Höhe (Bildlaufleiste an der Seite, wenn der Text diesen Wert überschreitet).
 
-- Nadel : Für die Anzeige im Kompassmodus auf 1 setzen
+### Schieberegler
 
-# Code-WIdentifikationget
+##### Optionale Parameter
 
-## Tags
+- Schritt : Ermöglicht das Anpassen des Aktionsschritts auf einer Schaltfläche (0).5 standardmäßig).
+
+### Regen
+
+##### Optionale Parameter
+
+- Skala : Ermöglicht das Ändern der Größe, indem Sie beispielsweise die Skalierung auf 0 setzen.5 es wird 2 mal kleiner sein.
+- anzeigen Radius : Zeigt die Min / Max-Werte des Befehls an.
+
+
+## Code-WIdentifikationget
+
+### Tags
 
 Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig). :
 
@@ -117,19 +166,19 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 - #VersteckName# : leer oder ausgeblendet, wenn der Benutzer den Namen des WIdentifikationgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
 - #Identifikation# : Bestellnummer
 - #Zustand# : Wert des Befehls, leer für einen Aktionstypbefehl, wenn er nicht mit einem Statusbefehl verknüpft ist
-- #uIdentifikation# : eindeutige Kennung für diese Generation des WIdentifikationgets (wenn es mehrmals denselben Befehl gibt, ist bei Entwürfen nur diese Kennung wirklich eindeutig)
+- #uIdentifikation# : eindeutige Kennung für diese Generation des WIdentifikationgets (wenn es mehrmals den gleichen Befehl gibt, bei Entwürfen:  nur diese Kennung ist wirklich eindeutig)
 - #valueDate# : Datum des Bestellwertes
 - #collectDate# : Datum der Auftragserfassung
 - #alertLevel# : Alarmstufe (siehe [hier] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.PHP # L67) für die Liste)
 - #hIdentifikatione_history# : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. # HIdentifikatione_Name # ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem WIdentifikationget gefunden wird, werden die Tags # minHistoryValue #, # durchschnittlichHistoryValue #, # maxHistoryValue # und # trend # nicht durch Jeedom ersetzt.
-- #minHistoryValue# : Mindestwert über den Zeitraum (Zeitraum, der vom Benutzer in der Konfiguration von jeedom definiert wurde)
-- #durchschnittlicherHistorischer Wert# : Durchschnittswert über den Zeitraum (Zeitraum, der in der Konfiguration von jeedom durch den Benutzer definiert wurde)
-- #maxHistoryValue# : Maximalwert über den Zeitraum (Zeitraum, der vom Benutzer in der Konfiguration von jeedom definiert wurde)
-- #Trend# : Trend über den Zeitraum (Zeitraum, den der Benutzer in der Konfiguration von jeedom definiert hat). Achtung, der Trend ist direkt eine Klasse für Symbole : fas fa-Pfeil nach oben, fas fa-Pfeil nach unten oder fas fa-minus
+- #minHistoryValue# : Mindestwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
+- #durchschnittlicherHistorischer Wert# : Durchschnittswert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
+- #maxHistoryValue# : Maximalwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
+- #Trend# : Trend über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat). Achtung, der Trend ist direkt eine Klasse für Symbole : fas fa-Pfeil nach oben, fas fa-Pfeil nach unten oder fas fa-minus
 
-## Werte aktualisieren
+### Werte aktualisieren
 
-Wenn ein neuer Wert jeedom auf der Webseite angezeigt wird, wenn der Befehl vorhanden ist, und in jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
+Wenn ein neuer Wert Jeedom auf der HTML-Seite angezeigt wird, wenn der Befehl vorhanden ist und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
 
 ```
 {display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel#'}
@@ -139,31 +188,27 @@ Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr WIdentifika
 
 ```
 <script>
-    jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
+    Jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
       $('.cmd[data-cmd_Identifikation=#Identifikation#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       $('.cmd[data-cmd_Identifikation=#Identifikation#] .Zustand').empty().append(_options.display_value +' #unite#');
     }
-    jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});
+    Jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});
 </script>
 ```
 
-Hier 2 wichtige Sache :
+Hier sind zwei wichtige Dinge :
 
 ```
-jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
+Jeedom.cmd.update [&#39;# Identifikation #&#39;] = function (_options){
   $('.cmd[data-cmd_Identifikation=#Identifikation#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
   $('.cmd[data-cmd_Identifikation=#Identifikation#] .Zustand').empty().append(_options.display_value +' #unite#');
 }
 ```
-
-Die Funktion, die beim Aktualisieren des WIdentifikationgets aufgerufen wird und die Aktualisierung des HTML-Codes der WIdentifikationget-Vorlage übernimmt
-
-Und :
+Die Funktion, die beim Aktualisieren des WIdentifikationgets aufgerufen wird. Anschließend wird der HTML-Code der WIdentifikationget-Vorlage aktualisiert.
 
 ```
-jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});
- ```
-
+Jeedom.cmd.update [ &#39;# Identifikation #&#39;] ({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel # ‚});
+```
  Der Aufruf dieser Funktion zur Initialisierung des WIdentifikationgets.
 
  Sie finden [hier] (https:// github.com / jeedom / core / tree / V4-stabile / core / template) Beispiele für WIdentifikationgets (im Dashboard und in mobilen Ordnern)

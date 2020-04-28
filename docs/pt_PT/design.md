@@ -1,383 +1,230 @@
+# Projeto
+****
 
-. 
+.
 .
 
-
-
 > ****
 >
 > .
 
 > ****
 >
-> 
-> . 
-> .
-
+> . .
 
  :
 
--   **Projetos** : 
-
--   **Edição** : 
-
--   **Tela cheia** : 
-    
-
--   **Adicionar gráfico** : 
-
--   **Adicionar text / html** : 
-    
-
--   **Ajouter Cenas** : 
-
--   ****
-
-    -   **Rumo a vista** : 
-
-    -   **Para projetar** : 
-        Projeto
-
--   **Adicionar equipamento** : 
-
--   **Adicionar comando** : 
-
--   **** : 
-    
-
--   **** : 
-    
-    
-
--   **** : 
-    Geral
-
--   **Visualizando**
-
-    -   **Não** : 
-
-    -   **** : 
-
-    -   **** : 
-
-    -   **** : 
-
-    -   **Magnetizar os elementos** : 
-        
-
-    -   **Alinhar à grade** : 
-         : 
-        
-
-    -   **** : 
-        
-
--   **Limpar projeto** : 
-
--   **Criar um Projeto** : 
-
--   **Projeto duplicado** : 
-
--   **Cenografia** : 
-
--   **Salvar** : 
-    
+- **Projetos** : .
+- **Edição** : .
+- **Tela cheia** : .
+- **Adicionar gráfico** : .
+- **Adicionar text / html** : .
+- **Ajouter Cenas** : .
+- ****
+    - **Rumo a vista** : .
+    - **Para projetar** : .
+- **Adicionar equipamento** : .
+- **Adicionar comando** : .
+- **** : .
+- **** : .
+- **** : .
+- **Visualizando**
+    - **Não** : .
+    - **** : .
+    - **** : .
+    - **** : .
+    - **Magnetizar os elementos** : .
+    - **Alinhar à grade** :  : .
+    - **** : .
+- **Limpar projeto** : .
+- **Criar um design** : .
+- **Projeto duplicado** : .
+- **Cenografia** : .
+- **Salvar** : .
 
 > ****
 >
-> 
 > .
 
-Configuração do projeto 
-=======================
+## Configuração do projeto
 
  :
 
--   **Geral**
+- **Geral**
+    - **Nome** : .
+    - **Posição** : . .
+    - **Fundo transparente** : . .
+    - **Cor de fundo** : .
+    - **Código de acesso* : .
+    - **ícone** : .
+    - **Imagem**
+        - **Enviar** : .
+        - **cluir imagem** : .
+- **Tamanhos**
+    - **Tamanho (LxA** : .
 
-    -   **Nome** : 
-
-    -   **Fundo transparente** : . 
-        
-
-    -   **Cor de fundo** : 
-        
-
-    -   **CÓDIGO** : 
-        
-
-    -   **ícone** : 
-        
-
-    -   **Imagem**
-
-        -   **Enviar** : 
-
-        -   **cluir imagem** : 
-
--   **Tamanhos**
-
-    -   **Tamanho (LxA)** : 
-        
-
- 
-===================================
+## 
 
 > ****
 >
 > .
 
-> ****
->
-> 
-> .
+### 
 
- 
----------------------
+- **Profundidade** : 
+- **Posição X (%** : .
+- **Posição Y (%** : .
+- **Largura (px** : .
+- **Altura (px** : .
 
--   **Profundidade** : 
-
--   **Posição X (%)** :
-
--   **Posição Y (%)** :
-
--   **Largura (px)** :
-
--   **Altura (px)** :
-
-Remover 
----------
+### Remover
 
 
 
-Duplicar 
----------
+### Duplicar
 
 
 
-Trancar 
------------
-
+### Trancar
 
 .
 
-Gráfico 
-=========
+## Gráfico
 
- 
----------------------
+### 
 
--   **Período** : 
+- **Período** : 
+- **Mostrar legenda** : .
+- **Mostrar Navigator** : .
+- **Ver a selecção tempo** : .
+- **Mostrar barra de rolagem** : .
+- **Fundo transparente** : .
+- **** :  : .
 
--   **Mostrar legenda** : 
+### Configuração avançada
 
--   **Mostrar Navigator** : 
-    
+.
 
--   **Ver a selecção tempo** : 
-    
+## 
 
--   **Mostrar barra de rolagem** : 
+### 
 
--   **Fundo transparente** : 
-
--   **** : 
-     :
-    
-
-Configuração avançada 
----------------------
-
-
-
- 
-=========
-
--   **ícone** : 
-
--   **Cor de fundo** : 
-    
-
--   **Cor do texto** : 
-    
-
--   **** : 
-    
-
--   **** : 
-     : 
-    
-
--   **** : 
-    
-
--   **Alinhamento de texto** : 
-    
-
--   **Gordura** : 
-
--   **Texto** : 
+- **ícone** : .
+- **Cor de fundo** : .
+- **Cor do texto** : ..
+- **** : .
+- **** :  : .
+- **** : .
+- **Alinhamento de texto** : .
+- **Gordura** : .
+- **Texto** : .
 
 > ****
 >
-> 
-> 
-> 
-> 
+> .
 
-Cenas 
-========
+## Cenas
 
- 
----------------------
+**
 
+## Link
 
+### 
 
-Link 
-====
+- **Nome** : .
+- **Link** : .
+- **Cor de fundo** : .
+- **Cor do texto** : .
+- **** : .
+- ** : ** : .
+- **** : .
+- **Alinhamento de texto** : .
+- **Gordura** : .
 
- 
----------------------
+## Equipamento
 
--   **Nome** : 
+### 
 
--   **Link** : 
+- **Do nome de exibição do objeto** : .
+- **** : .
+- **Cor de fundo** : .
+- **Cor do texto** : .
+- **** : .
+- **** : .  : .
+- **Opacidade** : . Atenção : .
+- **** : .
+- **** : .
 
--   **Cor de fundo** : 
-    
+### Comandos
 
--   **Cor do texto** : 
-    
+:
+- .
+- .
+- .
 
--   **** :
-    
+### Configuração avançada
 
--   ** : ** : 
-    
+ **Resumo Automation**.
 
--   **** :
-    
+## Ordem
 
--   **Alinhamento de texto** : 
-    
+**
 
--   **Gordura** : 
+### Configuração avançada
 
-Equipamento 
-==========
+ **Resumo Automation**.
 
- 
----------------------
+## 
 
+### 
 
+- **Display** : .
+- **Imagem** : .
+- **Câmera** : .
 
-Configuração avançada 
----------------------
+## 
 
+### 
 
+- **Sala de jantar** :  : .
 
+### único macro
 
-Ordem 
-========
+. .
 
- 
----------------------
-
-
-
-Configuração avançada 
----------------------
-
-
-
-
- 
-============
-
- 
----------------------
-
--   **Display** : 
-    
-
--   **Imagem** : 
-    
-
--   **Câmera** : 
-
- 
-====
-
- 
----------------------
-
--   **Sala de jantar** :  :
-    
-
-### único macro 
-
-. 
-
-
-### Macro binário 
-
+### Macro binário
 
 .  : 
 
+- **Informação binária** : .
 
+.
 
--   **Informação binária** : 
-    
+### Viaduto widget
 
+.
 
+- **Equipamento** : .
+- **** : .
+- **Vista em um clique** : .
+- **Posição** : .
 
+## Resumo
 
-### Viaduto widget 
+### 
 
+- **Link** : .
+- **Cor de fundo** : .
+- **Cor do texto** : .
+- **** : .
+- ** : ** : .
+- **** : .
+- **Gordura** : .
 
-
-
--   **Equipamento** : 
-
--   **** : 
-
--   **Vista em um clique** : 
-    
-
--   **Posição** : 
-    
-
-Resumo 
-======
-
--   **Link** : 
-    
-
--   **Cor de fundo** : 
-    
-
--   **Cor do texto** : 
-    
-
--   **** :
-    
-
--   ** : ** : 
-    
-
--   **** :
-    
-
--   **Gordura** : 
-
-
- 
-======
+## 
 
 >****
->
 >.
 
 >****
->
 >.

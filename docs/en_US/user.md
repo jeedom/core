@@ -1,77 +1,61 @@
-This is where we will be able to define the list of users
-allowed to connect to Jeedom, but also their rights
-director
+# Users
+**Settings → System → Users**
 
-Accessible by Settings → System → Users.
+This page allows you to define the list of users authorized to connect to Jeedom, as well as their administrator rights..
 
-At the top right you have a button to add a user, a
-to save and a button to open a support access.
+On the page you have three buttons :
 
-Below you have a table :
+- Add user.
+- Save.
+- Open access to support.
 
--   **Username** : user id
+## Users list
 
--   **Active** : allows to deactivate the account
+- **Username** : User ID.
+- **Active** : Allows you to deactivate the account without deleting it.
+- **Local** : Allows the connection of the user only if he is on the local network of Jeedom.
+- **Profile** : Allows to choose the user profile :
+    - **Administrator** : The user obtains all rights (editing / consultation) on Jeedom.
+    - **User** : User can see Dashboard, views, designs, etc.. and act on equipment / controls. However, he will not have access to the configuration of the controls / equipment nor to the configuration of Jeedom.
+    - **Limited user** : The user only sees the authorized equipment (configurable with the &quot;Rights&quot; button).
+- **API key** : User&#39;s personal API key.
+- **Double authentication** : Indicates whether double authentication is active (OK) or not (NOK).
+- **Date of last connection** : Date of last user login. Please note, this is the actual connection date, so if you save your computer, the connection date is not updated each time you return.
+- **Rights** : Modify user rights.
+- **Password** : Allows you to change the user&#39;s password.
+- **Remove** : Delete user.
+- **Regenerate API key** : Regenerates the user&#39;s API key.
+- **Manage rights** : Allows you to manage user rights finely (note that the profile must be &quot;limited user&quot;).
 
--   **Local only** : authorize user login
-    only if it is on the local Jeedom network
+## Rights management
 
--   **Profiles** : allows to choose the user profile :
-
-    -   **Administrator** : gets all rights on Jeedom
-
-    -   **User** : can see the dashboard, views,
-        design, etc. and act on equipment / controls. On the other hand,
-        he will not have access to the configuration of controls / equipment
-        nor to the configuration of Jeedom.
-
-    -   **Limited user** : the user only sees the
-        authorized equipment (configurable with the &quot;Manage&quot; button
-        rights&quot;)
-
--   **API key** : user&#39;s personal API key
-
--   **Double authentication** : indicates whether double authentication
-    is active (OK) or not (NOK)
-
--   **Date of last connection** : date of the last connection of
-    the user at Jeedom. Please note, this is the connection date
-    actual, so if you save your computer, the date of
-    connection is not updated every time you return to it.
-
--   **To change the password** : allows to change the password from
-    the user
-
--   **Remove** : delete user
-
--   **Regenerate API key** : regenerates the user&#39;s API key
-
--   **Manage rights** : allows to finely manage the rights of
-    the user (please note that the profile must be
-    "limited user ")
-
-Rights management 
-==================
-
-When clicking on &quot;Manage rights&quot; a window appears allowing you
-finely manage user rights. The first tab displays
-the different equipment. The second presents the scenarios.
+When clicking on &quot;Rights&quot; a window appears allowing you to manage user rights finely. The first tab displays the different equipment. The second presents the scenarios.
 
 > **IMPORTANT**
 >
-> The profile must be limited otherwise no restrictions placed here
-> will be taken into account
+> The profile must be limited otherwise no restrictions put here will be taken into account.
 
-You get a table which allows, for each equipment and each
-scenario, define user rights :
+You get a table which allows, for each device and each scenario, to define the rights of the user. :
+- **No** : the user does not see the equipment / scenario.
+- **Visualization** : the user sees the equipment / scenario but cannot act on it.
+- **Visualization and execution** : the user sees the equipment / scenario and can act on it (light a lamp, launch the scenario, etc.).
 
--   **No** : the user does not see the equipment / scenario
+## Active session (s)
 
--   **Visualization** : the user sees the equipment / scenario but does not
-    can&#39;t act on it
+Displays the browser sessions active on your Jeedom, with user information, its IP and since when. You can log out the user using the button **Log-out**.
 
--   **Visualization and execution** : the user sees
-    the equipment / scenario and can act on it (light a lamp, throw
-    the scenario, etc.)
+## Registered device(s)
+
+List the peripherals (computers, mobiles etc) which have recorded their authentication on your Jeedom.
+You can see which user, their IP, when, and delete the registration for this device.
+
+> **NOTE**
+>
+> The same user may have registered different devices. For example, his desktop computer, laptop, mobile, etc..
+
+
+
+
+
 
 

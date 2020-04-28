@@ -1,383 +1,230 @@
-This page allows you to configure the display of all your home automation
-very fine way. It takes time but its only limit is
-your imagination.
+# Design
+**Home → Design**
 
-It is accessible by Home → Design
+This page allows you to configure the display of all your home automation in a very fine way.
+It takes time but its only limit is your imagination.
 
 > **Tip**
 >
-> It is possible to go directly to a Design thanks to the submenu.
+> It is possible to go directly to a design thanks to the submenu.
 
 > **IMPORTANT**
 >
-> All actions are done by right clickk on this page, attention
-> to do it well in Design. During creation, it is therefore necessary to
-> do in the middle of the page (to be sure to be on the Design).
+> All actions are done by right clicking on this page, be careful to do it well in the design. When creating, you must do it in the middle of the page (to be sure of being on the design).
 
-In the menu (right clickk therefore), we find the
-following actions :
+In the menu (right click), we find the following actions :
 
--   **Designs** : Displays the list of your Designs and allows you to access them
-
--   **Editing** : Switch to edit mode
-
--   **Full screen** : Allows you to use the entire web page, which
-    will remove Jeedom menu from the top
-
--   **Add graphic** : Add a graphic
-
--   **Add text / html** : Allows you to add text or code
-    html / javascript
-
--   **Add scenario** : Add a scenario
-
--   **Add link**
-
-    -   **Towards a view** : Add a link to a view
-
-    -   **Towards a Design** : Add a link to another
-        Design
-
--   **Add equipment** : Adds equipment
-
--   **Add order** : Add an order
-
--   **Add image / camera** : Allows you to add an image or stream
-    of a camera
-
--   **Add area** : Add a transparent clickkable area
-    who can execute a series of actions on a clickk (depending
-    or not the status of another order)
-
--   **Add summary** : Adds information from an object summary or
-    general
-
--   **Viewing**
-
-    -   **Any** : Does not display any grid
-
-    -   **10x10** : Displays a 10 by 10 grid
-
-    -   **15x15** : Displays a grid of 15 by 15
-
-    -   **20x20** : Displays a 20 by 20 grid
-
-    -   **Magnetize the elements** : Add a magnetization between
-        elements to make it easier to stick them
-
-    -   **Magnet on the grid** : Add a magnetization of the elements to
-        the grid (attention : depending on the zoom of the item this
-        functionality can more or less work)
-
-    -   **Hide item highlighting** : Hide it
-        highlight around items
-
--   **Delete Design** : delete Design
-
--   **Create a Design** : allows to add a new Design
-
--   **Duplicate Design** : duplicate the current Design
-
--   **Configure the Design** : access to Design configuration
-
--   **Save** : allows to save the Design (attention, there are
-    also automatic backups during certain actions)
+- **Designs** : Displays the list of your designs and allows you to access them.
+- **Editing** : Switch to edit mode.
+- **Full screen** : Allows you to use the entire web page, which will remove the Jeedom menu from the top.
+- **Add graphic** : Add a graphic.
+- **Add text / html** : Allows you to add text or html / JavaScript code.
+- **Add scenario** : Add a scenario.
+- **Add link**
+    - **Towards a view** : Add a link to a view.
+    - **Towards a design** : Add a link to another design.
+- **Add equipment** : Adds equipment.
+- **Add order** : Add an order.
+- **Add image / camera** : Allows you to add a picture or a stream from a camera.
+- **Add area** : Allows you to add a clickable transparent area which can execute a series of actions when clicking (depending on or not the status of another command).
+- **Add summary** : Adds information from an object or general summary.
+- **Viewing**
+    - **Any** : Does not display any grid.
+    - **10x10** : Displays a 10 by 10 grid.
+    - **15x15** : Displays a grid of 15 by 15.
+    - **20x20** : Displays a 20 by 20 grid.
+    - **Magnetize the elements** : Adds magnetization between the elements to make it easier to stick them.
+    - **Magnet on the grid** : Add a magnetization of the elements to the grid (attention : depending on the zoom of the element this functionality can more or less work).
+    - **Hide item highlighting** : Hide highlighting around items.
+- **Delete design** : Delete design.
+- **Create a design** : Allows to add a new design.
+- **Duplicate design** : Duplicate the current design.
+- **Configure the design** : Access to design configuration.
+- **Save** : Save the design (note, there are also automatic backups during certain actions).
 
 > **IMPORTANT**
 >
-> The configuration of the Design elements is done by clickking on
-> these.
+> The configuration of the design elements is done by a click on them.
 
-Design configuration 
-=======================
+## Design configuration
 
 Found here :
 
--   **General**
+- **General**
+    - **Last name** : The name of your design.
+    - **Position** : The position of the design in the menu. Allows you to order the designs.
+    - **Transparent background** : Makes the background transparent. Be careful if the box is checked, the background color is not used.
+    - **Background color** : Design background color.
+    - **Access code* : Access code to your design (if empty, no code is required).
+    - **Icon** : An icon for it (appears in the design choice menu).
+    - **Picture**
+        - **To send** : Allows to add a background image to the design.
+        - **Delete image** : Delete image.
+- **Sizes**
+    - **Size (WxH)** : Allows you to set the size in pixels of your design.
 
-    -   **Last name** : The name of your Design
-
-    -   **Transparent background** : makes the background transparent. Be careful if the
-        box is checked, the background color is not used
-
-    -   **Background color** : Design background color (white
-        by default)
-
-    -   **Coded** : Access code to your Design (if empty, no code
-        is not requested)
-
-    -   **Icon** : An icon for it (appears in the menu
-        choice of Design)
-
-    -   **Picture**
-
-        -   **To send** : allows to add a background image to the Design
-
-        -   **Delete image** : delete image
-
--   **Sizes**
-
-    -   **Size (WxH)** : Allows you to fix the size of your Design
-        (gray frame in edit mode)
-
-General configuration of elements 
-===================================
+## General configuration of elements
 
 > **NOTE**
 >
 > Depending on the type of item, options may change.
 
-> **NOTE**
->
-> The selected item is highlighted in red (instead of green
-> for everyone else).
+### Common display settings
 
-Display setting 
----------------------
+- **Depth** : Allows to choose the depth level
+- **Position X (%)** : Horizontal coordinate of the element.
+- **Position Y (%)** : Vertical coordinate of the element.
+- **Width (px)** : Element width in pixels.
+- **Height (px)** : Element height in pixels.
 
--   **Depth** : allows to choose the depth level
-
--   **Position X (%)** :
-
--   **Position Y (%)** :
-
--   **Width (px)** :
-
--   **Height (px)** :
-
-Remove 
----------
+### Remove
 
 Remove item
 
-Duplicate 
----------
+### Duplicate
 
 Allows you to duplicate the element
 
-Lock 
------------
+### Lock
 
-Locks the element so that it is no longer movable or
-resizable.
+Allows you to lock the element so that it is no longer movable or resizable.
 
-Graphic 
-=========
+## Graphic
 
-Display settings 
----------------------
+### Specific display settings
 
--   **Period** : allows you to choose the display period
+- **Period** : Allows you to choose the display period
+- **Show caption** : Show legend.
+- **Show browser** : Displays the browser (second lighter graph below the first).
+- **Show period selector** : Displays the period selector at the top left.
+- **Show scroll bar** : Displays the scroll bar.
+- **Transparent background** : Makes the background transparent.
+- **Border** : Allows you to add a border, be careful the syntax is HTML (be careful, you must use CSS syntax, for example : solid 1px black).
 
--   **Show caption** : show legend
+### Advanced configuration
 
--   **Show browser** : display the browser (second graph
-    lighter below the first)
+Allows you to choose the commands to grapher.
 
--   **Show period selector** : displays the selector
-    period top left
+## Text / html
 
--   **Show scroll bar** : displays the scroll bar
+### Specific display settings
 
--   **Transparent background** : makes the background transparent
-
--   **Border** : add a border, beware the syntax is
-    HTML (be careful, you must use CSS syntax, for example :
-    solid 1px black)
-
-Advanced configuration 
----------------------
-
-Allows you to choose the commands to grapher
-
-Text / html 
-=========
-
--   **Icon** : Icon to display in front
-
--   **Background color** : allows you to change the background color or
-    put transparent, do not forget to pass &quot;Default&quot; on NO
-
--   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
-
--   **Smooth it out** : allows you to round off the angles (do not
-    forget to put%, ex 50%)
-
--   **Border** : add a border, beware the syntax is
-    HTML (use CSS syntax, for example : solid
-    1px black)
-
--   **Font size** : allows you to change the font size
-    (ex 50%, you must put the% sign)
-
--   **Text alignment** : allows you to choose the alignment of the
-    text (left / right / centered)
-
--   **Fat** : bold text
-
--   **Text** : Text in HTML code that will be in the element
+- **Icon** : Icon displayed in front of the Design name.
+- **Background color** : allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
+- **Text color** : allows you to change the color of icons and texts (be careful to set Default to No)..
+- **Smooth it out** : allows to round the angles (do not forget to put%, ex 50%).
+- **Border** : allows you to add a border, beware the syntax is HTML (you must use CSS syntax, for example : solid 1px black).
+- **Font size** : allows you to change the font size (ex 50%, you must put the% sign).
+- **Text alignment** : allows to choose the alignment of the text (left / right / centered).
+- **Fat** : bold text.
+- **Text** : Text in HTML code that will be in the element.
 
 > **IMPORTANT**
 >
-> If you put HTML code (especially Javascript), be careful
-> to check it before because you can if there is an error in it
-> or if it overwrites a Jeedom component completely crashing the Design and
-> all you have to do is delete it directly from the database
+> If you put HTML code (in particular Javascript), be careful to check it before because you can if there is an error in it or if it overwrites a Jeedom component completely crash the design and it will only have to delete it directly into the database.
 
-Scenario 
-========
+## Scenario
 
-Display settings 
----------------------
+*No specific display settings*
 
-No specific display settings
+## Link
 
-Link 
-====
+### Specific display settings
 
-Display settings 
----------------------
+- **Last name** : Name of the link (displayed text).
+- **Link** : Link to the design or view in question.
+- **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
+- **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
+- **Round off the angles (don&#39;t forget to put%, ex 50%)** : Allows you to round off the angles, don&#39;t forget to put the%.
+- **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
+- **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
+- **Text alignment** : Allows to choose the alignment of the text (left / right / centered).
+- **Fat** : Bold text.
 
--   **Last name** : Name of the link (displayed text)
+## Equipment
 
--   **Link** : Link to the Design or view in question
+### Specific display settings
 
--   **Background color** : allows you to change the background color or
-    put transparent, do not forget to pass &quot;Default&quot; on NO
+- **Display object name** : Check to display the name of the parent object of the device.
+- **Hide name** : Check to hide the name of the equipment.
+- **Background color** : Allows you to choose a custom background color, or to display the equipment with a transparent background, or to use the default color.
+- **Text color** : Lets you choose a custom background color, or use the default color.
+- **Rounded** : Value in pixels of the rounding of the angles of the equipment tile.
+- **Border** : CSS definition of an equipment tile border. Ex : 1px solid black.
+- **Opacity** : Opacity of the equipment tile, between 0 and 1. Be careful : a background color must be defined.
+- **Custom CSS** : CSS rules to apply on the equipment.
+- **Apply custom css on** : CSS selector on which to apply custom CSS.
 
--   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+### Commands
 
--   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
-    allows you to round off the angles, don&#39;t forget to put the%
+The list of commands present on the equipment allows you, for each command, to:
+- Hide command name.
+- Hide command.
+- Display the order with a transparent background.
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : allows
-    add a border, beware the syntax is HTML
+### Advanced configuration
 
--   **Font size (ex 50%, you must put the% sign)** :
-    allows you to change the font size
+Displays the advanced equipment configuration window (see documentation **Domotic overview**).
 
--   **Text alignment** : allows you to choose the alignment of the
-    text (left / right / centered)
+## Ordered
 
--   **Fat** : bold text
+*No specific display settings*
 
-Equipment 
-==========
+### Advanced configuration
 
-Display settings 
----------------------
+Displays the advanced equipment configuration window (see documentation **Domotic overview**).
 
-No specific display settings
+## Picture / Camera
 
-Advanced configuration 
----------------------
+### Specific display settings
 
-Displays the advanced equipment configuration window (see
-documentation Home automation summary (&quot;display&quot;))
+- **Pin up** : Defines what you want to display, still image or stream from a camera.
+- **Picture** : Allows you to send the image in question (if you have chosen an image).
+- **Camera** : Camera to display (if you chose camera).
 
-Ordered 
-========
+## Zoned
 
-Display settings 
----------------------
+### Specific display settings
 
-No specific display settings
+- **Type of area** : This is where you choose the type of area : Simple macro, Binary macro or Widget on hover.
 
-Advanced configuration 
----------------------
+### Single macro
 
-Displays the advanced configuration window of the command (see
-documentation Home automation summary (&quot;display&quot;))
+In this mode, a click on the zone performs one or more actions. Here you just need to indicate the list of actions to do when clicking on the area.
 
-Picture / Camera 
-============
+### Binary macro
 
-Display settings 
----------------------
+In this mode, Jeedom will execute the On or Off action (s) depending on the status of the command you indicate. Ex : if the command is worth 0 then Jeedom will execute the On action (s) otherwise it will execute the Off action (s)
 
--   **Pin up** : defines what you want to display, still image or
-    stream from a camera
+- **Binary information** : Command giving the status to check to decide what action to do (On or Off).
 
--   **Picture** : allows you to send the image in question (if you have
-    choose an image)
+You just have to put the actions to do for the On and for the Off.
 
--   **Camera** : camera to display (if you chose camera)
+### Hover widget
 
-Zoned 
-====
+In this mode, when hovering or clicking in the Jeedom area, you will display the widget in question.
 
-Display settings 
----------------------
+- **Equipment** : Widget to display when hovering or clicking.
+- **Show on flyover** : If checked, displays the widget on hover.
+- **View on one click** : If checked, then the widget is displayed on click.
+- **Position** : Allows you to choose where the widget will appear (default bottom right).
 
--   **Type of area** : This is where you choose the type of area :
-    Simple macro, Binary macro or Widget on hover
+## Summary
 
-### Single macro 
+### Specific display settings
 
-In this mode, a clickk on the zone performs one or more actions. Here you just need to indicate the list of actions to do when clickking
-on the area
+- **Link** : Allows you to indicate the summary to display (General for the global otherwise indicate the subject).
+- **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
+- **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
+- **Round off the angles (don&#39;t forget to put%, ex 50%)** : Allows you to round off the angles, don&#39;t forget to put the%.
+- **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
+- **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
+- **Fat** : Bold text.
 
-### Binary macro 
+## Faq
 
-In this mode, Jeedom will execute the On or Off action (s) in
-depending on the status of the order you give. Ex : if the order
-is 0 then Jeedom will execute the On action (s) otherwise it will execute
-the action (s) Off
+>**I can no longer edit my design**
+>If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
--   **Binary information** : Command giving the status to be checked for
-    decide what action to take (On or Off)
-
-You just have to put the actions to do for the On and
-for the Off
-
-### Hover widget 
-
-In this mode, when hovering or clickking in the Jeedom area, you
-display the widget in question
-
--   **Equipment** : widget to display when hovering or clickking
-
--   **Show on flyover** : if checked, displays the widget on hover
-
--   **View on one clickk** : if checked, then the widget is displayed at
-    click
-
--   **Position** : allows you to choose the location where the
-    widget (default bottom right)
-
-Summary 
-======
-
--   **Link** : Used to indicate the summary to be displayed (General for the
-    global if not indicate the object)
-
--   **Background color** : allows you to change the background color or
-    put transparent, do not forget to pass &quot;Default&quot; on NO
-
--   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
-
--   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
-    allows you to round off the angles, don&#39;t forget to put the%
-
--   **Border (attention CSS syntax, ex : solid 1px black)** : allows
-    add a border, beware the syntax is HTML
-
--   **Font size (ex 50%, you must put the% sign)** :
-    allows you to change the font size
-
--   **Fat** : bold text
-
-
-Faq 
-======
-
->**I can no longer edit my Design**
->
->If you have put a widget or an image that takes almost the entire Design, you must clickk outside the widget or image to access the menu by right-clickking.
-
->**Delete a Design that no longer works**
->
->In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the Design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the Design id previously found.
+>**Delete a design that no longer works**
+>In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the design id previously found.

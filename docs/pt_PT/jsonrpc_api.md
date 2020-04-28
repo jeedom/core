@@ -1,4 +1,5 @@
 . 
+
 . :
 <http://www.jsonrpc.org/specification>
 
@@ -37,7 +38,6 @@ Configurações :
 -    : 
 
 -    : 
-    
 
 ::
 ------------
@@ -51,7 +51,6 @@ Configurações :
 -    : 
 
 -    : 
-    Registro
 
 
 ==============
@@ -59,9 +58,7 @@ Configurações :
 ::
 --------------
 
-
 . 
-
 
 Configurações :
 
@@ -80,7 +77,6 @@ Configurações :
 -   
 
 -   
-    
 
 
 ==============
@@ -95,12 +91,8 @@ Configurações :
 
 
 
-
-
 ::
 ----------------
-
-
 
 
 
@@ -119,8 +111,6 @@ Configurações:
 
 ::
 ----------------
-
-
 
 
 
@@ -156,7 +146,6 @@ Configurações:
 Configurações:
 
 -    : 
-    
 
 ::
 -------------
@@ -168,7 +157,6 @@ Configurações:
 -    : Object ID
 
 -    : 
-    
 
 
 ================
@@ -180,7 +168,6 @@ Configurações:
 
 ::
 -----------------
-
 
 
 
@@ -219,6 +206,7 @@ Configurações:
 --------------------
 
 . 
+
 
 .,
 
@@ -294,13 +282,10 @@ Configurações:
 
 -    : 
     
-
 -   
-    
 
 ::
 -------------------
-
 
 
 
@@ -317,7 +302,6 @@ Configurações:
 
 
 
-
 Configurações:
 
 -   
@@ -328,7 +312,6 @@ Configurações:
 
 ::
 ---------------
-
 
 
 
@@ -429,7 +412,7 @@ Configurações:
 
 -    : 
 
--    : 
+-    : *
 
 -    : ::
 
@@ -454,11 +437,11 @@ Configurações:
 
 Configurações:
 
--    : 
+-    :  
 
 -    : 
 
--    : 
+-    :  
 
 ::
 --------
@@ -467,7 +450,7 @@ Configurações:
 
 Configurações:
 
--    : 
+-    :  
 
 -    : 
 
@@ -483,7 +466,7 @@ Configurações:
 
 Configurações:
 
--    : 
+-    :  
 
 ::
 ----------
@@ -515,10 +498,8 @@ Configurações:
 
 -    : 
     
-
--    : -,
+-    : -
     
-
 -    : 
 
 ::
@@ -574,7 +555,6 @@ Mensagem::
 
 
 
-
 Configurações:
 
 -   
@@ -590,32 +570,32 @@ Configurações:
 
 ===============
 
-::
+Jeedom::
 ------------
 
 
 
-::
+Jeedom::
 --------------
 
 
 
-::
+Jeedom::
 ------------
 
 
 
-::
+Jeedom::
 --------------
 
 
 
-::
+Jeedom::
 --------------
 
 
 
-::
+Jeedom::
 ---------------------
 
 
@@ -712,7 +692,6 @@ Configurações:
 
 
 
-
 ::
 -------------------
 
@@ -753,7 +732,6 @@ Configurações:
 =================
 
 . 
-
 :
 .
 
@@ -778,6 +756,5 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
     
 }
 ```
-
 
 

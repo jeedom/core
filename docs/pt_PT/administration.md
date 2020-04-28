@@ -1,638 +1,298 @@
+# Configuração
+****
+
 .
 .
 
-  ****.
 
-Geral
-=======
+## 
 
  :
 
--   **** : ,
-    . 
-    .
+- **** : . .
+- **Idioma** : .
+- **Sistema** : .
+- **** : . .
+- **Data e hora** : .  **Sincronização Time Force** .
+- **Servidor de tempo opcional** :  **Sincronização Time Force** .
+- **Ignorar verificar o tempo** : . .
+- **Sistema** : .
+- **Key instalação** : .  **Restabelecer**.
+- **Última data conhecida** : .
 
--   **Idioma** : .
-
--   **stema** : 
-    .
-
--   **** : ,
-    . 
-    .
-
--   **Data e hora** : . 
-     **ncronização Time Force** 
-    .
-
--   **Servidor de tempo opcional** : 
-     **ncronização Time Force**
-    .
-
--   **Ignorar verificar o tempo** : 
-    
-    . 
-    
-    .
-
--   **stema** : .   
-
--   **Key instalação** : 
-    . 
-    
-    **Réabelecer**.
-
--   **Última data conhecida** : 
-    .
-
-
-=========
+## 
 
 .
 
-Temas
-------
+### Temas
 
--   **** : 
-    .
+- **** : .
+- **** : .
+- **** : .  ****.
+- ****   : :.
+- **** : .
 
--   **** : .
+### 
 
--   **** : 
-    . 
-    ****.
+- **** : .
+- **** : .
+- **** : .
 
--   ****   : 
-    :
+### 
 
--   **** : 
-    .
-
-
-------
-
--   **** : .
-
--   **** : .
-
--   **** : .
-
-
-----------------
-
-Redes
-=======
+- **Ativar** : .
+- **** : . 1 :  : .
+- **** : . 0 :  : .
+- **** : .
 
 
 
- : '**
-** '**
-** .
+## 
+
+.  : '**Acesso interno** '**Acesso externo** .
 
 > ****
 >
 >  :
-> 
-> . 
-> 
-> 
-> . 
-> 
-> 
+> . .
 > .
 
--   **Acesso interno** : 
-    
-
-    -   **** : 
-        
-
-    -   **Protocolo** : 
-
-    -   **** : 
-
-    -   **Porta** : .
-        
-        
-
-    -   **** : 
-        : .
-
--   **Acesso externo** : 
-    . 
-    
-
-    -   **** : 
-        
-
-    -   **Protocolo** : 
-
-    -   **** : ,
+- **Acesso interno** : 
+    - **** : .
+    - **Protocolo** : .
+    - **** : .
+    - **Porta** : .
         .
+    - **** :  : .
 
-    -   **** : 
-        : .
+- **Acesso externo** : . .
+    - **** : .
+    - **Protocolo** : .
+    - **** : . .
+    - **** :  : .
 
--   **** : .
-
-    - 
-
+- **** : .
+    - .
     - **** : ,
-
     - **** : ,
-
     - **** : ,
-
     - **Senha** : .
 
 > ****
 >
-> 
-> . ,
-> .
+> . .
 
 > ****
 >
-> 
-> ****, 
-> 
-> .
+>  ****, .
 
--   **Gerenciamento avando** : 
-    . 
-    . 
-     **
-    ** 
-    . .* 
-
--   **** : 
-    
-    
-
-    -   **** : 
-        
-
-    -   **Status de DNS** : 
-
-    -   **Géão** : 
+- **Gerenciamento avançado** : .
+    .  **** . .* .
+- **** : .
+    - **** : .
+    - **Status de DNS** : .
+    - **Gestão** : .
 
 > ****
 >
-> 
-> 
 > .
--   **Sessões vida (tempo** : 
-    .
+- **Sessões vida (tempo** : .
 
-Toras
-====
+## 
 
-Cronograma
---------
+### Cronograma
 
--   **O número máximo de eventos** : 
-    .
+- **O número máximo de eventos** : .
+- **Excluir todos os eventos** : .
 
--   **Excluir todos os eventos** : 
-    .
+### Mensagens
 
-Mensagens
---------
+- **Adicione uma mensagem para cada erro nos logs** : .
+- **** : .  :
+        - ## : .
+        - ## : .
 
--   **Adicione uma mensagem para cada erro nos logs** : 
-    
-    
-    .
+### Notificações
 
--   **** : .  :
-        - ## : 
-        - ## : 
+- **** :  **Tempo limite**.
+- **** :  **Mensagem**  **Tempo limite**.
+- **** :  **Aviso**.
+- **** :  **Mensagem**  **Aviso**.
+- **** :  **Perigo**.
+- **** :  **Mensagem**  **Perigo**.
+- **** :  **Aviso**.
+- **** :  **Mensagem**  **Aviso**.
+- **** :  **Perigo**.
+- **** :  **Mensagem**  **Perigo**.
 
-Notificações
--------
+### Toras
 
--   **** : 
-     **Tempo limite**.
-
--   **** :  **Mensagem** 
-     **Tempo limite**.
-
--   **** : 
-    
-     **Aviso**.
-
--   **** :  **Mensagem**
-     **Aviso**.
-
--   **** : 
-    
-     **Perigo**.
-
--   **** :  **Mensagem** à
-     **Perigo**.
-
--   **** : 
-     **Aviso**.
-
--   **** :  **Mensagem** 
-     **Aviso**.
-
--   **** : 
-     **Perigo**.
-
--   **** :  **Mensagem** 
-     **Perigo**.
-
-Toras
-----
-
--   **og Motor** : 
-    .
-
--   **Toras de formato** :  : 
-    .
-
--   **O número máximo de linhas em um arquivo de log** : 
-    . 
-    
-    
-    .
-
--   **Nível de log padrão** : ",
-    
-    .
-
-
+- **og Motor** : .
+- **Toras de formato** :  : .
+- **O número máximo de linhas em um arquivo de log** : . .
+- **Nível de log padrão** : .
 
 .
 
-Comandos
-=========
+## 
 
-. 
+. . .
 
+### Histórico
 
-.
-
-Histórico
-----------
-
--   **Mostrar éatísticas sobre os widgets** : 
-    . 
-    . 
-    .
-
--   **Período de cálculo para min, max, média (em horas** : Período
-    . 
-    .
-
--   **Período de cálculo para a tendência (em horas** : 
-    . 
-    .
-
--   **Atraso antes de arquivamento (em horas** : 
-    . 
-    
-    
-    
-    .
-
--   **Arquivo por pacote (horas** : 
-    . 
-    
-    
-    .
-
--   **** : 
-    
-    . .
-
--   **Cálculo do limiar acima da tendência** : .
-
--   **Gráficos padrão de exibição Período** : 
-    
-    . 
-    .
+- **Mostrar estatísticas sobre os widgets** : . . .
+- **Período de cálculo para min, max, média (em horas** : . .
+- **Período de cálculo para a tendência (em horas** : . .
+- **Atraso antes de arquivamento (em horas** : . .
+- **Arquivo por pacote (horas** : . .
+- **** : . .
+- **Cálculo do limiar acima da tendência** : .
+- **Gráficos padrão de exibição Período** : . .
 
 > ****
 >
->  **Mostrar éatísticas sobre os widgets** é
-> 
-> . 
-> 
-> . 
-> 
-> [ici](https:
-> .
+>  **Mostrar estatísticas sobre os widgets** . .
+> :..
 
-Empurrão
-----
+### Empurrão
 
-**UR  esforço global** : 
+- **UR  esforço global** : .  :
+**#** , **#** ,
+**#** ,
+**#**  : ,
+**#** 
+
+## 
+
 .  :
-**#** , **#** 
-, **#** 
-Ordem, **#**  :
 
+- **Chave** : .
+- **Nome** : .
+- **Cálculo** :  :
+    - **Soma** : ,
+    - **Média** : ,
+    - **Texto** : .
+- **ícone** : .
+- **Unidade** : .
+- **Método de contagem** : .
+- **** : .
+- **** : .
+- **** : .
 
-Sumários
-=======
+## 
 
-. 
+- **Falha Contagem off equipamentos** : .
+- **** : .
 
-Objetos :
-
--   **Chave** : .
-
--   **Nome** : .
-
--   **Cálculo** :  :
-
-    -   **Soma** : ,
-
-    -   **Média** : ,
-
-    -   **Texto** : 
-        .
-
--   **ícone** : .
-
--   **Unidade** : .
-
--   **Método de contagem** : 
-    
-    
-    
-    
-    .
-
--   **** : 
-    .
-
--   **** : 
-    .
-
--   **** : 
-    .
-
-Instalações
-===========
-
--   **Falha Contagem off equipamentos** : 
-    
-    .
-
--   **** : 
-    .
-
-Relações
-========
+## 
 
 
 
--   **Tempo de espera após geração da página (em ms** : 
-    
-    .
+- **Tempo de espera após geração da página (em ms** : .
+- **impe relatórios mais velhos (dias** : .
 
--   **impe relatórios mais velhos (dias** : 
-    
-    
-    .
+## 
 
-Conexões
-=====
+. .
 
-. 
+- **Profundidade para cenários** : .
+- **Profundidade para objetos** : .
+- **Profundidade de equipamentos** : .
+- **Profundidade para encomendas** : .
+- **Profundidade para variáveis** : .
+- **Prerender parâmetro** : .
+- **Parâmetro renderizar** : .
 
-.
-
--   **Profundidade para cenários** : 
-    
-    
-    .
-
--   **Profundidade para objetos** : .
-
--   **Profundidade de equipamentos** : .
-
--   **Profundidade para encomendas** : .
-
--   **Profundidade para variáveis** : .
-
--   **Prerender parâmetro** : 
-    .
-
--   **Parâmetro renderizar** : .
-
-Interações
-============
-
+## 
 
 .
 
 > ****
 >
-> 
->  **Depurar** 
-> . Atenção :  !
+>  :  **Depurar** . Atenção :  !
 
-Geral
--------
+### Geral
 
  :
 
--   **Sensibilidade** : 
-    
+- **Sensibilidade** : 
+    -    : .
+    -   2 palavras : .
+    -   3 palavras : .
+    -    : .
+- **Não responda se a interação não está incluído** : . . .
+- **** : .  **Exclusão regexp** .
 
-    -    : 
-        
+### Interação automática, contextual e aviso
 
-    -   2 palavras : 
-        
+-    **** . .
 
-    -   3 palavras : 
-        
-
-    -    : 
-        
-
--   **Não responda se a interação não éá incluído** : Por padrão
-    
-    . 
-    . 
-    .
-
--   **** : 
-    ,
-    
-    . 
-     **Exclusão regexp** 
-    .
-
-Interação automática, contextual e aviso
------------------------------------------------------
-
--    **** 
-    
-    . 
-    .
-
--    **** 
-     :
-
-    -   * :*
-
-        -   ** :  ?
-
-        -   ** : .
-
-        -   ** :  ?
-
-        -   ** : .
-
-    -   * :*
-
-        -   ** :  ?
-
-        -   ** : ..
-
--    **** 
-    
-    .
-
-    -   ** :  ?
-
-    -   ** : ,
-        
+-    ****  :
+    - * :*
+        - ** :  ?
+        - *Jeedom* : .
+        - ** :  ?
+        - *Jeedom* : .
+    - * :*
+        - ** :  ?
+        - *Jeedom* : ..
+-    **** .
+    - ** :  ?
+    - *Jeedom* : 
 
 > ****
 >
-> 
-> . 
-> 
->  : **Ordem de devolução padrão**.
+> .  : **Ordem de devolução padrão**.
 
  :
 
--   **Activar interacções automatizados** : 
-    .
+- **Activar interacções automatizados** : .
+- **Ativar respostas contextuais** : .
+- **Prioridade resposta contextual se a sentença começa** :  **** .
+- **Cortar uma interacção 2 se contiver** : . .
+- **"** :  ****.
+- **** :  ****  **** .
+- **Ordem de devolução padrão** :  **** 
+- **** :  : ||||.
+- **** : .
+- **** : .
+- **** : .
+- **Sinônimo máximo controle deslizante** : .
+- **Sinônimo controle deslizante Mínimo** : .
 
--   **Ativar respostas contextuais** : 
-    .
+## 
 
--   **Prioridade resposta contextual se a senten come** : 
-    
-    
-     **** .
+### 
 
--   **Cortar uma interacção 2 se contiver** : 
-    
-    .
+- **Habilitar a autenticação ** : .
+- **Anfitrião** : .
+- **Domínio** : .
+- **DN base** : .
+- **Nomee de Usuário** : .
+- **Senha** : .
+- **Usuário pesquisar Campos** : . .
+- **Filtro do administrador (opcional** : 
+- **Filtro de usuário (opcional** : 
+- **Filtro de usuário limitado (opcional** : 
+- **** : .
 
--   **"** : 
-     ****.
+### ogar
 
--   **** : 
-    
-     **** 
-     **** .
+- **Número de falhas tolerada** : 
+- **** : 
+- **** : 
+- **"** : 
+- **** : 
 
--   **Ordem de devolução padrão** : Ordem de devolução padrão
-     **** ,
-    
+. .
 
--   **** : 
-     : ||||.
+## 
 
--   **** : 
-    .
+### 
 
--   **** : 
-    .
-
--   **** : .
-
--   **nônimo máximo controle deslizante** : 
-    
-    .
-
--   **nônimo controle deslizante Mínimo** : 
-    
-    .
-
-Seguran
-========
-
-
-----
-
--   **Habilitar a autenticação ** : 
-    
-
--   **Anfitrião** : 
-
--   **Domínio** : 
-
--   **DN base** : 
-
--   **Nomee de Usuário** : 
-    
-
--   **Senha** : 
-
--   **Usuário pesquisar Campos** : 
-    . 
-    
-
--   **Filtro (opcional** : 
-    
-
--   **** : 
-    
-
-ogar
----------
-
--   **Número de falhas tolerada** : 
-    
-
--   **** : 
-    
-
--   **** : 
-    
-
--   **"** : 
-
--   **** : 
-    
-
-. 
-
-.
-
-
-=======================
-
-
----------------------
-
--   **Fonte atualização** : 
-    .
-
--   **Core Version** : .
-
--   **** : 
-    
-    
-    .
-
-
-----------
-
-
-
-.
+- **Fonte atualização** : .
+- **Core Version** : .
+- **** : .
 
 ### 
 
@@ -642,177 +302,108 @@ ogar
 
 .
 
--   **** : .
+#### 
 
--   **** : Nome
-    .
-
--   **** : .
-
--   **** : .
-
-### Mercado
-
-
-. Atenção : 
 .
 
--   **** : :
+- **** : .
+- **** : .
+- **** : .
+- **** : .
 
--   **Nomee de Usuário** : .
+#### Mercado
 
--   **Senha** : .
+. Atenção : .
 
--   **[Backup cloud] Nome** : 
+- **** : :.
+- **Nomee de Usuário** : .
+- **Senha** : .
+- **[Backup cloud] Nome** : .
+- **[Backup cloud] Senha** : . . .
+- **[Backup cloud] Fréquence backup full** : . . .
 
--   **[Backup cloud] Senha** : . . .
-
--   **[Backup cloud] Fréquence backup full** : . . 
-
-### 
-
+#### 
 
  : .
 
--   **** : .
-
--   **** : 
-    . 
-    
-    .
-
--   **** : Senha do usuário.
-
--   **** : 
-    .
-
--   **** : 
-    .
+- **** : .
+- **** : . .
+- **** : Senha do usuário.
+- **** : .
+- **** : .
 
 > ****
 >
 >  :
-> .
-> , .
+> ...
 
 > ****
 >
-> ,
-> 
-> . 
-> . 
-> .
+> . . .
 
 > ****
 >
-> 
 > .
 
 > ****
 >
-> 
-> 
-> . 
-> : 
-> . 
-> . :
-> 
+> . : . . :
 > 
 > 
 > . 
 
 > ****
 >
-> 
-> 
-> 
 > .
 
-### UR 
+#### UR 
 
--   ****
+- ****
+- ****
 
--   ****
-
-Cobertura
-=====
+## 
 
  :
 
--   **Estatística** : 
-
--   **Cobertura de limpo** : 
-    . .
-
--   **Vazio todos os dados de cache** : .
+- **Estatística** : .
+- **Cache de limpo** : . .
+- **Vazio todos os dados de cache** : .
      !
+- **** : .
+- **** : .
+- **Tempo de pausa para o longo polling** : . .
 
--   **** : 
-
--   **** : 
-    
-
--   **Tempo de pausa para o longo polling** : 
-    
-    . 
-    
-    .
-
-
-===
-
+## 
 
 .  :
 
 -    : ,
-
--    : 
-    . .
-
+-    : . .
 -   .
-
 
  :
 
--   **** : ,
+- **** : ,
+- **Branco IP** :  : ,
+- **** : ,
+- **Ativado** : .
 
--   **Branco IP** : 
-    ,
-
--   **** : 
-    ,
-
--   **Ativado** : 
-    .
-
-&gt
-===========
-
-.
+## Onglet &gt\_OS/DB
 
 > ****
 >
-> Atenção : ,
+> .
 > .
 
--   **&gt** : 
-    . 
-    
-    .
-
--   **** : 
-    .
-
--   **Banco de dados** :  : 
-    . 
-    .
-     : 
-    
-
-     :
-
-    -   **Usuário** : 
-        ,
-
-    -   **Senha** : 
-        .
+- **Geral** :
+    - **** : .
+- **&gt** :
+    - **Administração** : . .
+    -  : .
+- **** : .
+- **Banco de dados** :
+    - **Administração** : . .
+    - **** : 
+    - **** : .
+    - **Usuário** : ,
+    - **Senha** : .

@@ -3705,7 +3705,7 @@
         "Dernier lancement": "Letzter Start",
         "Min": "Niedrig",
         "Moyenne": "Durchschnitt",
-        "Max": ""
+        "Max": "Max"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Dauer"

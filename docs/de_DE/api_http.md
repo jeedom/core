@@ -1,152 +1,87 @@
-Jeedom bietet Entwicklern und Benutzern eine API
-vollständig, damit Sie Jeedom von jedem Objekt aus steuern können
-verbunden.
+# HTTP-API
 
-Es stehen zwei APIs zur Verfügung : ein entwicklerorientierter Pilot
-JSON RPC 2.0 und eine andere über URLs und HTTP-Anfrage.
+Jeedom bietet Entwicklern und Benutzern eine vollständige API, mit der sie Jeedom von jedem verbundenen Objekt aus steuern können.
 
-Diese API wird sehr einfach von einfachen HTTP-Anfragen über verwendet
-URLs.
+Es stehen zwei APIs zur Verfügung : ein entwicklerorientierter JSON RPC 2-Pilot.0 und eine andere über URL und HTTP-Anfrage.
+
+Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
 
 > **Notiz**
 >
-> Bei all dieser Dokumentation entspricht \ #IP \ _JEEDOM \ # Ihrer URLs
-> Zugang zu Jeedom. Dies ist (es sei denn, Sie sind mit Ihrem Netzwerk verbunden
-> lokal) der Internetadresse, mit der Sie auf Jeedom zugreifen
-> von außen.
+> Für all diese Dokumentationen entspricht \ #IP \ _JEEDOM \ # Ihrer Jeedom-Zugriffs-URL. Dies ist (sofern Sie nicht mit Ihrem lokalen Netzwerk verbunden sind) die Internetadresse, mit der Sie von außen auf Jeedom zugreifen.
 
 > **Notiz**
 >
-> Für all diese Dokumentationen entspricht \ #API \ _KEY \ # Ihrem Schlüssel
-> API, spezifisch für Ihre Installation. Um es zu finden, müssen Sie zu gehen
-> das Menü "Allgemein" → Registerkarte "Konfiguration" → "Allgemein"".
+> In dieser gesamten Dokumentation entspricht \ #API \ _KEY \ # Ihrem API-Schlüssel, der für Ihre Installation spezifisch ist. Um es zu finden, gehen Sie zum Menü "Allgemein" → "Konfiguration" → Registerkarte "Allgemein"".
 
-Szenario 
-========
+## Szenario
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&Identifikation=\#ID\#&Aktion=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&Identifikation=#ID#&Aktion=#ACTION#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&Identifikation=\#ID\#&Aktion=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&Identifikation=#ID#&Aktion=#ACTION#)
 
--   **Identifikation** : entspricht Ihrer Szenario-ID. Die ID befindet sich auf der
-    Seite des betreffenden Szenarios unter &quot;Extras&quot; → &quot;Szenarien&quot;, sobald die
-    ausgewähltes Szenario neben dem Namen der Registerkarte &quot;Allgemein&quot;. andere
-    Weg, um es zu finden : Klicken Sie unter &quot;Extras&quot; → &quot;Szenarien&quot; auf
-    "Übersicht".
+- **Identifikation** : entspricht Ihrer Szenario-ID. Die ID finden Sie auf der entsprechenden Szenarioseite unter "Extras" → "Szenarien" nach Auswahl des Szenarios neben dem Namen der Registerkarte "Allgemein"". Ein anderer Weg, um es zu finden : Klicken Sie unter "Extras" → "Szenarien" auf "Übersicht"".
+- **Aktion** : entspricht der Aktion, die Sie anwenden möchten. Verfügbare Befehle sind : "Start "," Stopp "," Deaktivieren "und" Aktivieren ", um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
+- **Tags** \ [Optional \] : Wenn die Aktion &quot;Start&quot; ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form Tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht =).
 
--   **Aktion** : entspricht der Aktion, die Sie anwenden möchten. die
-    verfügbare Bestellungen sind : "start "," stop "," disable "und
-    "aktivieren "um zu starten, zu stoppen, zu deaktivieren oder
-    Aktivieren Sie das Szenario.
+##  Info / Aktionsbefehl
 
--   **Tags** \ [Optional \] : Wenn die Aktion &quot;Start&quot; ist, können Sie überspringen
-    Szenario-Tags (siehe Szenariodokumentation) unter
-    Die Formular-Tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 a entspricht
-    Leerzeichen und% 3D bis =)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&Identifikation=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&Identifikation=#ID#)
 
-Info / Aktionsbefehl 
-====================
+- **Identifikation** : entspricht der ID dessen, was Sie steuern möchten oder von dem Sie Informationen erhalten möchten.
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&Identifikation=\#ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&Identifikation=#ID#)
-
--   **Identifikation** : entspricht der ID dessen, was Sie fahren möchten oder von welchem
-    Sie möchten Informationen erhalten
-
-Der einfachste Weg, um diese URLs zu erhalten, ist die Seite Extras →
-Zusammenfassung der Hausautomation, um nach dem Befehl zu suchen und dann seine Konfiguration zu öffnen
-Erweitert (das &quot;Zahnrad&quot; -Symbol) und dort sehen Sie eine URLs, die enthält
-schon alles was du brauchst je nach typ und subtyp des
-bestellen.
+Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analyse → Zusammenfassung der Hausautomation**, Um nach der Bestellung zu suchen und dann die erweiterte Konfiguration (das "Zahnrad" -Symbol) zu öffnen, sehen Sie dort eine URL, die je nach Typ und Subtyp der Bestellung bereits alles enthält, was Sie benötigen.
 
 > **Notiz**
 >
-> Im Feld \ #ID \ # können mehrere Befehle platziert werden
-> plötzlich. Dazu müssen Sie ein Array in json übergeben (z
-> % 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B
-> und% 5D). Jeedoms Rückkehr wird ein Json sein
+> Es ist möglich, dass das Feld \ #ID \ # mehrere Befehle gleichzeitig platziert. Dazu müssen Sie ein Array in json übergeben (z. B.% 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B und% 5D).. Jeedoms Rückkehr wird ein Json sein.
 
 > **Notiz**
 >
-> Parameter müssen für die URLs codiert sein, die Sie verwenden können
-> ein Werkzeug, [hier] (https://meyerweb.com/eric/tools/dencoder/)
+> Die Parameter müssen für die URL codiert sein. Sie können ein Tool [hier] (https) verwenden://meyerweb.com/eric/tools/dencoder/).
 
-Interaktion 
-===========
+## Interaktion
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&Abfrage=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&Abfrage=#QUERY#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&Abfrage=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&Abfrage=#QUERY#)
 
--   **Abfrage** : Frage an Jeedom zu stellen
+- **Abfrage** : Frage an Jeedom zu stellen.
+- **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
+- **leer Antworten** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
+- **Profil** \ [Optional \] : BenutzerName der Person, die die Interaktion initiiert.
+- **antworten \ _cmd** \ [Optional \] : Bestellnummer zur Beantwortung der Anfrage.
 
--   **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage codiert werden soll
-    in utf8 bevor Sie versuchen zu antworten
+## Nachricht
 
--   **leer Antworten** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn es
-    habe nicht verstanden, 1 sonst
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Nachricht&Kategorie=\#CATEGORY\#&Nachricht=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Nachricht&Kategorie=#CATEGORY#&Nachricht=#MESSAGE#)
 
--   **Profil** \ [Optional \] : BenutzerName der Person
-    Interaktion auslösen
+- **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
+- **Nachricht** : Denken Sie bei der betreffenden Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen werden zu% 20, =% 3D…).. Sie können ein Tool verwenden, [hier] (https://meyerweb.com/eric/tools/dencoder/).
 
--   **antworten \ _cmd** \ [Optional \] : Befehls-ID, für die verwendet werden soll
-    Nachfrage befriedigen
+## Objekt
 
-Nachricht 
-=======
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Nachricht&Kategorie=\#CATEGORY\#&Nachricht=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Nachricht&Kategorie=#CATEGORY#&Nachricht=#MESSAGE#)
+Gibt in json die Liste aller Jeedom-Objekte zurück.
 
--   **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll
+## Ausrüstung
 
--   **Nachricht** : Nachricht in Frage, denken Sie sorgfältig über die Codierung
-    die Nachricht (Leerzeichen wird% 20, =% 3D…). Sie können eine verwenden
-    Tool, [hier] (https://meyerweb.com/eric/tools/dencoder/)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&Objekt \ _Identifikation=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_Identifikation=#OBJECT_ID#)
 
-Objekt 
-=====
+- **Objekt \ _Identifikation** : ID des Objekts, dessen Ausrüstung wir wiederherstellen möchten.
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
+## Bestellen
 
-Gibt in json die Liste aller Jeedom-Objekte zurück
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _Identifikation=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_Identifikation=#EQLOGIC_ID#)
 
-Ausrüstung 
-==========
+- **eqLogic \ _Identifikation** : ID der Ausrüstung, von der Bestellungen abgerufen werden sollen.
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&Objekt \ _Identifikation=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_Identifikation=#OBJECT_ID#)
+## Vollständige Daten
 
--   **Objekt \ _Identifikation** : ID des Objekts, von dem wir abrufen möchten
-    Komfort
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
-Bestellen 
-========
+Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Informationen handelt) in json zurück.
 
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _Identifikation=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_Identifikation=#EQLOGIC_ID#)
+## Variable
 
--   **eqLogic \ _Identifikation** : ID der Ausrüstung, von der wir wiederherstellen möchten
-    Befehle
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&Name=\#NAME\#&Wert=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&Name=#NAME#&Wert=)*VALUE*
 
-Vollständige Daten 
-=========
-
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
-
-Gibt alle Objekte, Geräte, Befehle (und deren Wert, falls dies der Fall ist) zurück
-sind infos) in json
-
-Variable 
-========
-
-Hier ist die URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&Name=\#NAME\#&Wert=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&Name=#NAME#&Wert=)*VALUE*
-
--   **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen von
-    der Wert)
-
--   **Wert** \ [Optional \] : Wenn &quot;Wert&quot; angegeben ist, dann die Variable
-    wird diesen Wert annehmen (einen Wert schreiben)
-
-
+- **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
+- **Wert** \ [Optional \] : Wenn &quot;Wert&quot; angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Wertes)..

@@ -1,137 +1,75 @@
+# Backups
+****
 
 .
-
-Configuração 
-=============
-
- ****, 
 .
 
-. 
 
-.
+. .
 
-**Backups** 
----------------
+## Backups
 
--   **Backups** : 
-    .
-    . 
-    
-    . 
-    . 
-    .
+- **Backups** : . . . . .
 
--   **Backups Local** : 
-    . 
-    . 
-    .
+- **Backups Local** : . . .
 
--   **** : 
-    . 
-    . 
-    
-    .
+- **** : . . .
 
--   **** : 
-    
-    . 
-    
-    . .
+- **** : . . .
 
-**Backups locais** 
------------------------
+## Backups locais
 
--   **Backups disponíveis** : .
+- **Backups disponíveis** : .
 
--   **Restaurar backup** : 
-    .
+- **Restaurar backup** : .
 
--   **Remover backup** : 
-    .
+- **Remover backup** : .
 
--   **Enviar cópia de segurança** : 
-    
-    
-    .
+- **Enviar cópia de segurança** : .
 
--   **De backup de download** : 
-    .
+- **De backup de download** : .
 
-**** 
-----------------------
+## 
 
--   **Envio de backups** : 
-    
-    .
+- **Envio de backups** : .
 
--   **Enviar cópia de segurança** : 
-    .
+- **Enviar cópia de segurança** : .
 
--   **Backups disponíveis** : 
-    .
+- **Backups disponíveis** : .
 
--   **Restaurar backup** : 
-    .
+- **Restaurar backup** : .
 
-**** 
----------------------
+## 
 
--   **Envio de backups** : 
-    
-    .
+- **Envio de backups** :  : Atualizações.
 
--   **Backups disponíveis** : 
-    .
+- **Backups disponíveis** : .
 
--   **Restaurar backup** : 
-    .
+- **Restaurar backup** : .
 
 > ****
 >
 >  !!! 
 
 
- ? 
-==============================
+#  ?
 
+. .
 
-Banco de dados. 
-.
-
-
-.
-
-.
+. .
 
 > ****
 >
-> 
-> ,
-> .
+> . .
 
- 
-================
+# 
 
-
-. 
-. 
-
-**Perfil**  ****. 
-
-.
+. . .  **Perfil**  ****. .
 
 > ****
 >
-> 
->  ****, 
-> .
+>  ****, .
 
- 
-======================================
+# 
 
-
-
- ****
-
-Mercado.
+.  ****. .

@@ -1,12 +1,14 @@
+# 3D design
+**Home → Design3D**
+
 This page allows you to create a 3D view of your home that can react depending on the state of the various information in your home automation.
 
-It is accessible by Home → Dashboard
 
 > **Tip**
 >
 > It is possible to go directly to a 3D design thanks to the submenu.
 
-# Importing the 3D model
+## Importing the 3D model
 
 > **Important**
 >
@@ -16,11 +18,11 @@ Once your 3D model has been created, it must be exported in OBJ format. If you u
 
 > **Important**
 >
-> The files must be at the root of the zip is not in a subfolder
+> The files must be at the root of the zip and not in a sub-folder.
 
 > **WARNING**
 >
-> A 3D model is quite impressive (this can represent several hundred Mo). The bigger it is the longer the rendering time in Jeedom.
+> A 3D model is quite impressive (this can represent several hundred Mo). The larger it is, the longer the rendering time in Jeedom.
 
 Once your 3D model has been exported, you must create a new 3D design in Jeedom. For that you have to go into edit mode by clicking on the little pencil on the right, then click on the +, give a name to this new 3D design then validate.
 
@@ -41,31 +43,31 @@ Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and selec
 
 > **WARNING**
 >
-> You must have a zip file
+> You must have a zip file.
 
 > **Tip**
 >
-> Once the file has been imported (it can be quite long depending on the size of the file), you need to refresh the page to see the result (F5)
+> Once the file has been imported (it can be quite long depending on the size of the file), you need to refresh the page to see the result (F5).
 
 
-# Configuration of elements
+## Configuration of elements
 
 > **Important**
 >
-> Configuration can only be done in edit mode
+> Configuration can only be done in edit mode.
 
-To configure an element on the 3D design, double click on the element you want to configure. This will bring up a window where you can :
+To configure an element on the 3D design, double click on the element you want to configure. This will display a window where you can :
 
 - Indicate a type of link (currently only Equipment exists)
-- The link to the item in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
-- The specificity, there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
+- Enter the link to the element in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
+- Define specificity: there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
 
-## Light
+### Light
 
 - Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
 - Power : bulb power (please note this may not reflect reality)
 
-## Text
+### Text
 
 - Text : text to display (you can put commands there, the text will be automatically updated on change thereof)
 - Text size
@@ -77,9 +79,9 @@ To configure an element on the 3D design, double click on the element you want t
 - Border transparency : from 0 (invisible) to 1 (visible)
 - Space above the object : allows to indicate the spacing of the text compared to the element
 
-## Door / Window
-
 ### Door / Window
+
+#### Door / Window
 
 - State : Door / Window status, 1 closed and 0 open
 - Rotation
@@ -95,7 +97,7 @@ To configure an element on the 3D design, double click on the element you want t
 	- Open color : if tick the element will take this color if the Door / Window is open
 	- Color closed : if tick the element will take this color if the Door / Window is closed
 
-### Shutter
+#### Shutter
 
 - State : shutter status, 0 open other value closed
 - Hide when the shutter is open
@@ -103,9 +105,9 @@ To configure an element on the 3D design, double click on the element you want t
 - Color
 	- Color closed : if tick the element will take this color if the shutter is closed
 
-## Conditional color
+### Conditional color
 
-Allows to give the chosen color to the element if the condition is valid. You can put as many colors / conditions as you want.
+If the condition is valid, allows to give the chosen color to the element. You can put as many colors / conditions as you want.
 
 > **Tip**
 >

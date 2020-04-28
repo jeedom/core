@@ -1,77 +1,61 @@
-
-
-
-
-.
-
+# Usuários
+****
 
 .
 
  :
 
--   **Nome de Usuário** : 
+- Adicionar Usuário.
+- Salvar.
+- .
 
--   **Ativos** : 
+## 
 
--   **** : 
-    
+- **Nome de Usuário** : .
+- **Ativos** : .
+- **** : .
+- **Perfil** :  :
+    - **Administrador** : .
+    - **Usuário** : . . .
+    - **Usuário limitado** : .
+- **Chave de API** : .
+- **Autenticação dupla** : .
+- **** : . .
+- **** : .
+- **Senha** : .
+- **Remover** : .
+- **** : .
+- **** : .
 
--   **** :  :
+## 
 
-    -   **Administrador** : 
-
-    -   **Usuário** : 
-        . . ,
-        
-        .
-
-    -   **Usuário limitado** : 
-        
-        
-
--   **Chave de API** : 
-
--   **Autenticação dupla** : 
-    
-
--   **** : 
-    . 
-    
-    .
-
--   **** : 
-    
-
--   **Remover** : 
-
--   **** : 
-
--   **** : 
-    
-    "
-
- 
-==================
-
-
-. 
-. .
+. . .
 
 > ****
 >
-> 
-> 
-
+> .
 
  :
+- **Nemhum** : .
+- **** : .
+- **** : .
 
--   **Nemhum** : 
+## 
 
--   **** : 
-    
+.  **Desligar**.
 
--   **** : 
-    
-    
+## 
+
+.
+.
+
+> ****
+>
+> . .
+
+
+
+
+
 
 

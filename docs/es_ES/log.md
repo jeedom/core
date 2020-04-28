@@ -1,49 +1,31 @@
-Troncos 
-====
+# Troncos
+**Análisis → Registros**
 
-El menú Registros le permite seguir lo que está sucediendo en su domótica. En la
-En la mayoría de los casos, los registros solo se utilizarán para la depuración y
-resolver problemas por el equipo de soporte.
-
-Para acceder a él, vaya a Análisis → Registros :
-
-La página de registros es bastante simple, en la parte superior izquierda hay una lista desplegable
-permitiendo la elección del registro para ver, en la parte superior derecha tienes 5
-botones :
-
--   **Buscar** : permite filtrar el cartel de registro
-
--   **Pausa / Reanudar** : le permite pausar / reanudar la configuración
-    actualización de registro en tiempo real
-
--   **Descargar** : permite descargar el registro actual,
-
--   **Vaciar** : permite vaciar el registro actual,
-
--   **Remove** : eliminar el registro actual, si Jeedom tiene alguna
-    necesitarlo lo recreará automáticamente,
-
--   **Eliminar todos los registros** : eliminar todos los registros presentes.
+Los registros son archivos de registro, lo que le permite seguir lo que sucede en la automatización de su hogar.. En la mayoría de los casos, el equipo de soporte solo utilizará los registros para depurar y resolver problemas.
 
 > **Punta**
 >
-> Tenga en cuenta que el registro http.el error no se puede eliminar. Es esencial
-> ! si lo elimina (en la línea de comando, por ejemplo) no lo hará
-> no recrearse, debes reiniciar el sistema.
+> Cuando se abre la página, se muestra el primer registro disponible.
 
-Tiempo real 
-==============
+La página de registros es bastante simple :
+A la izquierda, una lista de registros disponibles, con un campo de búsqueda para filtrar el nombre de los registros..
+Arriba a la derecha 5 botones :
 
-El registro &quot;Evento&quot; es un poco especial. En primer lugar para que
-funciona, debe estar en el nivel de información o depuración, entonces este
-enumera todos los eventos o acciones que ocurren en domótica.
-Para acceder a él, debe ir a la página de registro o en Análisis
-→ tiempo real
+- **Buscar** : Le permite filtrar la visualización del registro actual.
+- **Pausa / Reanudar** : Pausa / reanuda la actualización en tiempo real del registro actual.
+- **Descargar** : Permite descargar el registro actual.
+- **Vaciar** : Permite vaciar el registro actual.
+- **Remove** : Eliminar el registro actual. Si Jeedom lo necesita, lo recreará automáticamente..
+- **Eliminar todos los registros** : Eliminar todos los registros presentes.
 
-Una vez que haya hecho clic en él, obtendrá una ventana
-se actualiza en tiempo real y muestra todos los eventos de su
-automatización.
+> **Punta**
+>
+> Tenga en cuenta que el registro http.el error no se puede eliminar. Es esencial que si lo elimina (en la línea de comando, por ejemplo) no se volverá a crear, debe reiniciar el sistema..
 
-En la parte superior derecha tiene un campo de búsqueda (solo funciona si
-no están en pausa) y un botón para pausar (útil para
-copiar / pegar por ejemplo).
+## Tiempo real
+
+El registro &quot;Evento&quot; es un poco especial. En primer lugar, para que funcione, debe estar en el nivel de información o depuración, luego enumera todos los eventos o acciones que ocurren en la automatización del hogar.. Para acceder a él, debe ir a la página de registro o en Análisis → Tiempo real.
+
+Una vez que hace clic en él, obtiene una ventana que se actualiza en tiempo real y le muestra todos los eventos de su domótica.
+
+En la parte superior derecha tiene un campo de búsqueda (solo funciona si no está en pausa) y un botón para pausar (útil para copiar / pegar, por ejemplo).

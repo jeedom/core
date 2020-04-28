@@ -1,141 +1,95 @@
-Descrição 
-===========
-
-O **Update Center** 
-
-. 
+# Update Center
+****
 
 
- 
-================================
-
- **
-Dia** .
-
-. 
----------------------------------
-
-. 
+O **Update Center** .
+.
 
 
-. ,
+## 
+
+.
+
+. .
+
+.
+ **Verificar atualizações** .
 ".
 
- **Atualizar** 
+ **Salvar** .
 
-Opções :
--   **** : 
-    .
+## Atualizar o núcleo
 
--   **Salvar antes** : 
-    .
-
--   **Plugins de atualização** : 
-    .
-
--   **Atualizar o núcleo** : 
-    .
-
--   **Modo forçado** : 
-    
-    . 
-
--   **Update para reaplicar** : 
-    .  : 
-
-> ****
->
-> 
-> 
-> . 
-> .
-
-> ****
->
-> 
-> .
-
-
-------------------------------------------
-
+ **Atualizar** .
  :
+- **** : . .
+- **Salvar antes** : .
+- **Plugins de atualização** : .
+- **Atualizar o núcleo** : .
 
--   **Núcleo e plugins** : 
-    .
-
--   **Outro** : .
-
- : * **Estado** : .
-. * **Nome** : 
-*
-**Versão** : . * **Opções** :
-
- **Atualizar**.
+- **Modo forçado** : . .
+- **Update para reaplicar** : .  : 
 
 > ****
 >
-> 
+> . . .
+
+> ****
+>
 > .
 
-
- :
-
--   **Reinstalar** : .
-
--   **Remover** : .
-
--   **Verificar** : 
-    .
-
--   **Atualizar** : 
-    .
-
--   **** : 
-    .
-
-> ****
->
-> 
-> .
-> 
-> . 
-> 
-
-> ****
->
->  : 
-> ".
-
-
------------
-
-
+## 
 
 .
 
+.
 
- 
-================================
+- **Estado** : .
+- **Nome** : 
+- **Versão** : .
+- **Opções** :  **Atualizar**.
+
+:
+
+- **Reinstalar** : .
+- **Remover** : .
+- **Verificar** : .
+- **Atualizar** : .
+- **** : .
+
+> ****
+>
+> . . .
+> .
+
+> ****
+>
+> . .
+
+## 
+
+.
+
+> ****
+>
+> ]*. .
+
+## 
 
 .
  :
 
-    
+```sudo php /var/www/html/install/update.php```
 
  :
 
--   **`mode`** : `force`, pour lancer une  en mode forcé (ne
-    .
+- **modo** : `force`, pour lancer une mise à jour en modo forcé (ne tient pas compte des erreurs.
+- **Versão** : .
 
--   **`version`** : 
-    .
+.04 :
 
-
-.14 :
-
-    .
-
+```sudo php  /var/www/html/install/update.php modo=force Versão=4.0.04```
 
  :
 
-    :
+```sudo chown -R www-data:www-data /var/www/html```

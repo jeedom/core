@@ -1,665 +1,355 @@
+# Interações
+****
 
 .
 
  :
 
--    : 
-    .
-
--    : .
-
--    : 
-    .
-
--    : . 
-    .
-
-
-.
-
-
-Interações :
-
- :
-
--   **Adconar** : .
-
--   **Regenerar** : 
-    très long &gt; 5mn.
-
--   **Teste** : 
-    .
-
-> ****
->
-> 
-> 
-> 
-> 
-> .
-
- 
-========
-
- : 
-
-
-.
-
-
-.
-
-
-
-
-.
-
-Confguração 
-=============
-
-
- :
-
--   **** : 
-    
-
--   **Regstro** : 
-
--   **Remover** : 
-
--   **Duplcar** : 
-
-Geral 
-=======
-
--   **Nome** : 
-    .
-
--   **Grupo** : 
-    .
-
--   **Atvos** : .
-
--   **Aplcação** : .
-
--   **Snônmo** : 
-    .
-
--   **Réponse ** : .
-
--   **** : . .
-
--   **Conversão bnára** : 
-    
-    .
-
--   **Usuáros autorzados** : 
-     |.
-
-Fltros 
-=======
-
--   **Lmte para dgtar comandos** : 
-    .
-
--   **Lmte para os comandos que o subtpo** : 
-    .
-
--   **Lmte para os comandos ssa unda** : 
-    
-    .
-
--   **** : 
-    
-    .
-
--   **** : 
-    
-    .
-
--   **** : 
-    .
-
--   **Equpamentos lmte** : 
-    
-    .
-
-Ação 
-======
-
-
-.
-
- 
-========
-
-> ****
->
-> .
-
- 
-------------------
-
-
-
-.
-
-
-. 
-.
-
-![nteract004](../mages/nteract004.png
-
-
-. 
-.
-
-
- :
-
-![nteract005](../mages/nteract005.png
-
-
-
-
-
+-  : .
+-  : .
+-  : . .
+-  : . .
 
 .
 
 > ****
 >
-> "
-> 
-> .
+>  :
+> - .
+> - .
 
- 
-------------------------------
+. .
+:
+- .
+- .
+- .
 
+. .
 
-
-.
-
-
-",
- **#** e **#**.
-
-
-.
-
-![nteract006](../mages/nteract006.png
-
-
-. 
-.
-
-
-. 
-. 
-
-
-"
-.
-
-![nteract007](../mages/nteract007.png
-
-. 
-
-". 
-
-
-
-.
-
+## Interações
 
  :
 
-![nteract008](../mages/nteract008.png
+- **Adicionar** : .
+- **Regenerar** : Recréer toutes les interactions (peut être très long &gt; 5mn.
+- **Teste** : .
 
-. 
-
-"". *"
-***=*** "**"***,*** "*
-. 
-
- "*|*" 
-.
-
-"
-. 
-,
-. 
-
-.
-
-![nteract009](../mages/nteract009.png
-
-
-". 
-"
-. 
-
-.
-
-
-"
-. 
-. 
-.
-
-![nteract010](../mages/nteract010.png
-
-
-
-. 
-
-
-.
-
- 
---------------------------
-
-
-
-
-
-.
-
-. 
- : 
-.
-
-![nteract011](../mages/nteract011.png
-
-
-.
-
-![nteract012](../mages/nteract012.png
-
-Conversão bnára 
-------------------
-
-
-. 
-
-
-.
-
-![nteract013](../mages/nteract013.png
-
-
-
-
-.  **** 
-
-.
-
- **Conversão bnára**  : 
- "|"
-. 
-
-.
-
-> **Avso**
+> ****
 >
 > .
 
-Usuáros autorzados 
-----------------------
+## 
 
+ : .
 
+.
+
+.
+
+## Configuração
+
+ :
+
+- **** : .
+- **Registro** : .
+- **Remover** : .
+- **Duplicar** : .
+
+### 
+
+- **Nome** : .
+- **Grupo** : .
+- **Ativos** : .
+- **Aplicação** : .
+- **Sinônimo** : .
+- **Réponse ** : .
+- **** : . .
+- **Conversão binária** : .
+- **Usuários autorizados** :  |.
+
+### 
+
+- **Limite para digitar comandos** : .
+- **Limite para os comandos que o subtipo** : .
+- **Limite para os comandos dessa unidade** : .
+- **** : .
+- **** : .
+- **** : .
+- **Equipamentos limite** : .
+
+### 
+
+.
+
+#### 
+
+> ****
+>
+> .
+
+#### 
+
+. .
+
+. .
+
+![interact004](../images/interact004.png
+
+. .
+
+ :
+
+![interact005](../images/interact005.png
+
+.
+
+> ****
+>
+> .
+
+#### 
+
+.
+
+ **#** e **#**. .
+
+![interact006](../images/interact006.png
+
+. .
+
+. . .
+
+![interact007](../images/interact007.png
+
+. ". .
+
+ :
+
+![interact008](../images/interact008.png
+
+. ". *" ***=*** "**"***,*** "*.  "*|*" .
+
+. . .
+
+![interact009](../images/interact009.png
+
+". . .
+
+. . .
+
+![interact010](../images/interact010.png
+
+. .
+
+### 
+
+. . .
+
+.  : .
+
+![interact011](../images/interact011.png
+
+.
+
+![interact012](../images/interact012.png
+
+### Conversão binária
+
+. .
+
+![interact013](../images/interact013.png
+
+. .  **** .
+
+ **Conversão binária**  :  "|" . .
+
+> **Aviso**
+>
+> .
+
+### Usuários autorizados
 
  "|".
 
  : |
 
-
 .
 
-Exclusão regexp 
-------------------
+### Exclusão regexp
 
+:.. .
 
-[Regexp](https://fr.wkpeda.org/wk/Ex_ratonnelle
+ :
+- ".
+- ".
 
+. . .
 
+. . .
 
+. . .
 
-.
+![interact014](../images/interact014.png
+
+. . .
 
  :
 
--   ".
-
--   
-    ".
-
-
-
-. 
-.
-
-.
-
-
-
-. 
-. 
-
-
-.
-
-. 
-
-. 
-.
-
-![nteract014](../mages/nteract014.png
-
-
-
-. 
-
-
-
-. 
-.
-
- :
-
--   
-    .
-
--   
-    .
-
--   
-    
-    .
-
--   
-    .
-
-
+- .
+- .
+- .
+- .
 
 ".
 
+. .  :
 
-. 
-. 
- :
-
-?:?
-?
-
+?:??
 
 .
 
-![nteract015](../mages/nteract015.png
+![interact015](../images/interact015.png
 
+".
 
-
-
-
-"".
-
-![nteract016](../mages/nteract016.png
-
-
-
+![interact016](../images/interact016.png
 
 .
 
-
-
-,
-
-
-.
+. .
 
  :
 
--   <http:>
+- <http:>
+- <https:>
+- <https:>
 
--   <https:>
-
--   <https:>
-
- 
-------------------------------------------
-
+### 
 
 .
 
-![nteract021](../mages/nteract021.png
-
-
-
+![interact021](../images/interact021.png
 
 .
 
- ? 
-------------------------------------
+###  ?
 
-###  
+#### 
 
--   "
+- "
+- "
+- #"
 
--   
-    "
+![interact017](../images/interact017.png
 
--   
-    #"
+. *|*"
 
-![nteract017](../mages/nteract017.png
+#### 
 
+-  |#"
+- "
+- 
+- ".
 
-. 
+![interact018](../images/interact018.png
 
-**|*"
+. .
 
-###  
+### 
 
--    |#"
+#### 
 
--   
-    "
-
--   
-    
-
--   
-    
-    ".
-
-![nteract018](../mages/nteract018.png
-
-
-
-
-. 
+. .
 
 .
 
- 
---------------------------------------------
+![interact019](../images/interact019.png
 
-###  
+-  : " | | . .
+- ".  : 
+- .
 
-
-
-. 
-
-.
-
-,
-.
-
-![nteract019](../mages/nteract019.png
-
--   
-    "
-     : " |"
-     | 
-    
-    . 
-    
-    
-    .
-
--   ".  :
-    
-    
-
--   
-    
-    .
-
-###  
-
-
+#### 
 
 .
 
+. ". .
 
-"X" 
-. 
+. .
 
-
-". 
-.
-
-.
-
-"
-.
-
-![nteract020](../mages/nteract020.png
+![interact020](../images/interact020.png
 
  :
 
-**||||**
-
+**||pressão||**
 
 
 
 > ****
 >
-> .
-> 
-> .
+> . .
 
- 
--------------------------------------------
+### 
 
-###  
+#### 
 
+.  :
 
-. 
- :
+![interact022](../images/interact022.png
 
-![nteract022](../mages/nteract022.png
-
- **#** 
-
-. 
-:  : 
-.  : 
-.
- : 
-*.
+ **#** .  :  : .  : .  : *.
 
 > ****
 >
-> 
-> 
-> . 
-> 
-> .
+> . .
 
-###  
+#### 
 
+. .
 
-. 
+![interact033](../images/interact033.png
 
-.
-
-![nteract033](../mages/nteract033.png
-
-
-. 
- **#**. 
-
-. 
-
-
-
-.
+.  **#**. . . .
 
  :
 
-![nteract034](../mages/nteract034.png
+![interact034](../images/interact034.png
 
- **#** 
-.
+ **#** .
 
- 
---------------------------------------
+### 
 
+.  :
 
-.
- :
+![interact023](../images/interact023.png
 
-![nteract023](../mages/nteract023.png
+" :
 
+![interact024](../images/interact024.png
 
+. .
 
-
-"" :
-
-![nteract024](../mages/nteract024.png
-
-
-
-,
+![interact025](../images/interact025.png
 
 .
 
-![nteract025](../mages/nteract025.png
+.
+### 
 
-
+#### 
 
 .
 
+![interact026](../images/interact026.png
 
 .
 
- 
----------------------------------
+### 
 
-###  
+. .  : "".  :
 
-
-
-.
-
-![nteract026](../mages/nteract026.png
-
-
-.
-
- 
-------------------------------------------------
-
-.
-.  : "
-". 
-
- :
-
-![nteract23](../mages/nteract23.JPG
+![interact23](../images/interact23.JPG
 
 > ****
 >
-> 
-> 
 > 

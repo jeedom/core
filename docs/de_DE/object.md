@@ -1,147 +1,95 @@
-Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation deEndeieren.
-Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und
-wird leichter zu identifizieren sein. Wir sagen dann, dass das Objekt
-ist das **relativ** Ausrüstung. Auf die Objektverwaltung kann zugegriffen werden
-aus dem Menü **Werkzeuge → Objekte**.
+# Objekte
+**Werkzeuge → Objekte**
 
-Um die Anpassung frei wählen zu können, können Sie diese benennen
-Objekte wie Sie wollen. Normalerweise werden wir die verschiedenen deEndeieren
-Teile seines Hauses, wie die Namen der Zimmer (das ist
-empfohlene Konfiguration).
+Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 
-Management 
-=======
+Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **relativ** Ausrüstung.
+
+Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihren Wünschen benennen. Normalerweise definieren wir die verschiedenen Teile seines Hauses, wie die Namen der Räume (dies ist übrigens die empfohlene Konfiguration)..
+
+## Management
 
 Sie haben zwei Möglichkeiten :
+- **Hinzufügen** : Erstellen Sie ein neues Objekt.
+- **Übersicht** : Zeigt die Liste der erstellten Objekte und deren Konfiguration an.
 
--   **Hinzufügen** : Erstellen Sie ein neues Objekt.
-
--   **Übersicht** : Zeigt die Liste der erstellten Objekte an
-    sowie deren Konfiguration.
-
-Meine Objekte 
-==========
+## Meine Objekte
 
 Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
 
-Registerkarte &quot;Objekt&quot; 
-------------
+> **Spitze**
+>
+> Sie können ein Objekt öffnen, indem Sie dies tun :
+> - Klicken Sie auf eine davon.
+> - Strg Clic oder Clic Center, um es in einem neuen Browser-Tab zu öffnen.
 
-Durch Klicken auf ein Objekt gelangen Sie auf dessen Konfigurationsseite. Was
-Vergessen Sie nicht, die Änderungen an der zu speichern
-Ende.
+Sie haben eine Suchmaschine, um die Anzeige von Objekten zu filtern. Die Escape-Taste bricht die Suche ab.
+Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden:
+
+- Das Kreuz, um die Suche abzubrechen.
+- Der geöffnete Ordner zum Entfalten aller Bedienfelder und Anzeigen aller Objekte.
+- Der geschlossene Ordner zum Falten aller Panels.
+
+Sobald Sie ein Objekt konfiguriert haben, haben Sie ein Kontextmenü mit der rechten Maustaste auf die Registerkarten des Objekts. Sie können auch einen Strg-Klick oder einen Mittel-Klick verwenden, um ein anderes Objekt direkt in einer neuen Browser-Registerkarte zu öffnen.
+
+## Registerkarte &quot;Objekt&quot;
+
+Durch Klicken auf ein Objekt gelangen Sie auf dessen Konfigurationsseite. Vergessen Sie nicht, Ihre Änderungen zu speichern, unabhängig davon, welche Änderungen Sie vornehmen.
 
 Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
--   **Objektname** : Der Name Ihres Objekts.
-
--   **Vater** : Gibt das übergeordnete Objekt des aktuellen Objekts an
-    DeEndeieren Sie eine Hierarchie zwischen Objekten. Zum Beispiel : Das Wohnzimmer hat
-    die Wohnung zu erziehen. Ein Objekt kann nur ein übergeordnetes Objekt haben
-    Es können jedoch mehrere Objekte dasselbe übergeordnete Objekt haben.
-
--   **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
-
--   **Verstecke dich auf dem Armaturenbrett** : Aktivieren Sie dieses Kontrollkästchen, um es auszublenden
-    das Objekt auf dem Dashboard. Es wird immer noch in der aufbewahrt
-    Liste, mit der Sie sie anzeigen können, aber nur
-    explizit.
-
--   **Symbol** : Ermöglicht die Auswahl eines Symbols für Ihr Objekt.
-
--   **Tag Farbe** : Ermöglicht die Auswahl der Farbe des Objekts und
-    daran angeschlossene Ausrüstung.
-
--   **Tag-Textfarbe** : Ermöglicht die Auswahl der Textfarbe
-    des Objekts. Dieser Text wird über dem **Tag Farbe**. Für dich
-    um eine Farbe zu wählen, um den Text lesbar zu machen.
-
--   **Größe auf dem Armaturenbrett (1 bis 12)** : Hier können Sie die Breite deEndeieren
-    die Anzeige dieses Objekts im Dashboard. Zum Beispiel : wenn du
-    Setzen Sie &quot;6&quot; auf zwei aufeinanderfolgende Objekte in der Liste, dann auf
-    wird nebeneinander auf dem Armaturenbrett angezeigt. Wenn Sie &quot;3&quot; auf vier setzen
-    Objekte, die aufeinander folgen, werden auch nebeneinander stehen.
-    
--   **Bild** : Sie haben die Möglichkeit, ein Bild hochzuladen oder
-    löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts
-    wenn Sie es auf dem Dashboard veröffentlichen.
+- **Objektname** : Der Name Ihres Objekts.
+- **Vater** : Gibt das übergeordnete Objekt des aktuellen Objekts an. Dadurch kann eine Hierarchie zwischen den Objekten definiert werden. Zum Beispiel : Das Wohnzimmer ist mit der Wohnung verbunden. Ein Objekt kann nur ein übergeordnetes Objekt haben, aber mehrere Objekte können dasselbe übergeordnete Objekt haben.
+- **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
+- **Verstecke dich auf dem Armaturenbrett** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt im Dashboard auszublenden. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit..
+- **Zusammenfassung ausblenden'** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt in der Zusammenfassung auszublenden'. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit..
+- **Symbol** : Ermöglicht die Auswahl eines Symbols für Ihr Objekt.
+- **Benutzerdefinierte Farben** : Aktiviert die Berücksichtigung der beiden optionalen Farbparameter.
+- **Tag Farbe** : Ermöglicht die Auswahl der Farbe des Objekts und der daran angeschlossenen Ausrüstung.
+- **Tag-Textfarbe** : Hier können Sie die Farbe des Textes des Objekts auswählen. Dieser Text wird über dem **Tag Farbe**. Sie wählen eine Farbe, um den Text lesbar zu machen.
+- **Bild** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen.
 
 > **Spitze**
 >
-> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern.
-> Wählen Sie in der Übersicht Ihr Objekt mit der Maus und aus 
-> Ziehen und Ablegen, um ihm einen neuen Platz zu geben.
+> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht Ihr Objekt mit der Maus per Drag &amp; Drop aus, um ihm einen neuen Platz zu geben.
 
 > **Spitze**
 >
-> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt
-> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Verbindungen**, bis um
-> Recht.
+> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Verbindungen**, oben rechts.
 
 > **Spitze**
 >
-> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät deEndeiert wurde, wird es
-> wird als Elternteil haben : **Keine** .
+> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Keine**.
 
-Registerkarte &quot;Zusammenfassung&quot; 
--------------
+## Registerkarte &quot;Zusammenfassung&quot;
 
-Zusammenfassungen sind globale Informationen, die einem Objekt zugewiesen sind
-werden insbesondere im Dashboard neben dessen Namen angezeigt.
+Zusammenfassungen sind globale Informationen, die einem Objekt zugewiesen sind und insbesondere im Dashboard neben seinem Namen angezeigt werden..
 
-### Schwarzes Brett 
+### Schwarzes Brett
 
-Die Spalten stellen die Zusammenfassungen dar, die dem aktuellen Objekt zugewiesen sind. drei
-Linien werden Ihnen vorgeschlagen :
+Die Spalten stellen die Zusammenfassungen dar, die dem aktuellen Objekt zugewiesen sind. Ihnen werden drei Zeilen vorgeschlagen :
 
--   **Gehen Sie in die globale Zusammenfassung** : Aktivieren Sie das Kontrollkästchen, wenn Sie
-    Die Zusammenfassung soll in der Menüleiste angezeigt werden
-    von Jeedom.
+- **Gehen Sie in die globale Zusammenfassung** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung in der Jeedom-Menüleiste angezeigt werden soll.
+- **Auf dem Desktop ausblenden** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung nicht neben dem Objektnamen im Dashboard angezeigt werden soll.
+- **Auf dem Handy verstecken** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung nicht angezeigt werden soll, wenn Sie sie von einem Mobiltelefon aus anzeigen.
 
--   **Auf dem Desktop ausblenden** : Aktivieren Sie das Kontrollkästchen, wenn Sie nicht möchten
-    Die Zusammenfassung wird neben dem Namen des Objekts im Dashboard angezeigt.
+### Befehle
 
--   **Auf dem Handy verstecken** : Aktivieren Sie das Kontrollkästchen, wenn Sie nicht möchten
-    Die Zusammenfassung wird angezeigt, wenn Sie sie von einem Mobiltelefon aus anzeigen.
-
-### Befehle 
-
-Jede Registerkarte repräsentiert einen in der Konfiguration deEndeierten Zusammenfassungstyp
-von Jeedom. Klicken Sie auf **Bestellung hinzufügen** so dass es ist
-in der Zusammenfassung berücksichtigt. Sie haben die Wahl, die auszuwählen
-Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
-übergeordnetes Objekt.
+Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration von Jeedom definiert ist. Klicken Sie auf **Bestellung hinzufügen** so dass es in der Zusammenfassung berücksichtigt wird. Sie haben die Wahl, den Befehl eines Jeedom-Geräts auszuwählen, auch wenn dieses Objekt nicht als übergeordnetes Objekt vorhanden ist.
 
 > **Spitze**
 >
-> Wenn Sie einen Zusammenfassungstyp hinzufügen oder die konfigurieren möchten
-> Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung,
-> Sie müssen zur allgemeinen Konfiguration von Jeedom gehen :
-> **Administration → Konfiguration → Registerkarte Zusammenfassungen**.
+> Wenn Sie eine Art von Zusammenfassung hinzufügen oder die Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung konfigurieren möchten, müssen Sie zur allgemeinen Konfiguration von Jeedom wechseln : **Einstellungen → System → Konfiguration : Registerkarte &quot;Zusammenfassungen&quot;**.
 
-Übersicht 
-==============
+## Übersicht
 
-In der Übersicht können Sie alle Objekte in anzeigen
-Jeedom sowie deren Konfiguration :
+In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
 
--   **Identifikation** : Objekt-Identifikation.
-
--   **Objekt** : Objektname.
-
--   **Vater** : Name des übergeordneten Objekts.
-
--   **Sichtbar** : Objektsichtbarkeit.
-
--   **Maskiert** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
-
--   **Zusammenfassung deEndeiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. diese
-    Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.
-
--   **Versteckte Dashboard-Zusammenfassung** : Versteckte Zusammenfassungen anzeigen auf
-    das Dashboard.
-
--   **Versteckte mobile Zusammenfassung** : Versteckte Zusammenfassungen anzeigen auf
-    das Handy.
-
-
+- **Identifikation** : Objekt-Identifikation.
+- **Objekt** : Objektname.
+- **Vater** : Name des übergeordneten Objekts.
+- **Sichtbar** : Objektsichtbarkeit.
+- **Maskiert** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
+- **Zusammenfassung definiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.
+- **Versteckte Dashboard-Zusammenfassung** : Zeigt versteckte Zusammenfassungen im Dashboard an.
+- **Versteckte mobile Zusammenfassung** : Versteckte Zusammenfassungen auf dem Handy anzeigen.

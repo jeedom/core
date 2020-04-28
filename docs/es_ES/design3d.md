@@ -1,12 +1,14 @@
+# Diseño 3D
+**Inicio → Design3D**
+
 Esta página le permite crear una vista 3D de su hogar que puede reaccionar dependiendo del estado de la información variada en su domótica.
 
-Es accesible por Inicio → Panel de control
 
 > **Punta**
 >
 > Es posible ir directamente a un diseño 3D gracias al submenú.
 
-# Importando el modelo 3D
+## Importando el modelo 3D
 
 > **IMPORTANTE**
 >
@@ -16,11 +18,11 @@ Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa Sw
 
 > **IMPORTANTE**
 >
-> Los archivos deben estar en la raíz del zip no está en una subcarpeta
+> Los archivos deben estar en la raíz del zip y no en una subcarpeta.
 
 > **ATENCIÓN**
 >
-> Un modelo 3D es bastante impresionante (esto puede representar varios cientos de Mo). Cuanto más grande es, mayor es el tiempo de representación en Jeedom.
+> Un modelo 3D es bastante impresionante (esto puede representar varios cientos de Mo). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
 
 Una vez que su modelo 3D ha sido exportado, debe crear un nuevo diseño 3D en Jeedom. Para eso, debe ingresar al modo de edición haciendo clic en el pequeño lápiz a la derecha, luego haga clic en +, asigne un nombre a este nuevo diseño 3D y luego valide.
 
@@ -41,31 +43,31 @@ Haga clic en el botón &quot;enviar&quot; en el nivel &quot;Modelo 3D&quot; y se
 
 > **ATENCIÓN**
 >
-> Debes tener un archivo zip
+> Debes tener un archivo zip.
 
 > **Punta**
 >
-> Una vez que se haya importado el archivo (puede ser bastante largo dependiendo del tamaño del archivo), debe actualizar la página para ver el resultado (F5)
+> Una vez que se haya importado el archivo (puede ser bastante largo dependiendo del tamaño del archivo), debe actualizar la página para ver el resultado (F5).
 
 
-# Configuracion de elementos
+## Configuracion de elementos
 
 > **IMPORTANTE**
 >
-> La configuración solo se puede hacer en modo edición
+> La configuración solo se puede hacer en modo edición.
 
-Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que desea configurar. Esto abrirá una ventana donde puedes :
+Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que desea configurar. Esto mostrará una ventana donde puedes :
 
 - Indique un tipo de enlace (actualmente solo existe el equipo)
-- El enlace al artículo en cuestión. Aquí solo puede poner un enlace a un dispositivo por el momento. Esto permite al hacer clic en el elemento para que aparezca el equipo
-- La especificidad, hay varios que veremos justo después, esto permite especificar el tipo de equipo y, por lo tanto, la visualización de información
+- Ingrese el enlace al elemento en cuestión. Aquí solo puede poner un enlace a un dispositivo por el momento. Esto permite al hacer clic en el elemento para que aparezca el equipo
+- Definir especificidad: allí hay varios que veremos justo después, esto permite especificar el tipo de equipo y, por lo tanto, la visualización de información
 
-## Luz
+### Luz
 
 - Estatus : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
 - Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad)
 
-## Texto
+### Texto
 
 - Texto : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo)
 - Tamaño del texto
@@ -77,9 +79,9 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 - Transparencia de la frontera : de 0 (invisible) a 1 (visible)
 - Espacio sobre el objeto : permite indicar el espaciado del texto en comparación con el elemento
 
-## Puerta / ventana
-
 ### Puerta / ventana
+
+#### Puerta / ventana
 
 - Estado : Estado de puerta / ventana, 1 cerrado y 0 abierto
 - Rotación
@@ -95,7 +97,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 	- Color abierto : Si marca, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : Si marca, el elemento tomará este color si la puerta / ventana está cerrada
 
-### Solapa
+#### Solapa
 
 - Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
@@ -103,9 +105,9 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 - Color
 	- Color cerrado : Si marca, el elemento tomará este color si el obturador está cerrado.
 
-## Color condicional
+### Color condicional
 
-Permite dar el color elegido al elemento si la condición es válida. Puedes poner tantos colores / condiciones como quieras.
+Si la condición es válida, permite dar el color elegido al elemento.. Puedes poner tantos colores / condiciones como quieras.
 
 > **Punta**
 >
