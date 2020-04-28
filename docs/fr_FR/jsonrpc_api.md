@@ -716,7 +716,7 @@ API JSON Exemples
 
 Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous
 j’utilise [cette class
-php](https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 qui permet de simplifier l’utilisation de l’api.
 
 Récupération de la liste des objets :
