@@ -186,7 +186,7 @@ Redes
 
 -   **Acesso externo** : 
     . 
-    
+    Jeedom
 
     -   **** : 
         
@@ -412,17 +412,17 @@ Interação automática, contextual e aviso
 
         -   ** :  ?
 
-        -   ** : .
+        -   *Jeedom* : .
 
         -   ** :  ?
 
-        -   ** : .
+        -   *Jeedom* : .
 
     -   * :*
 
         -   ** :  ?
 
-        -   ** : ..
+        -   *Jeedom* : ..
 
 -    **** 
     
@@ -430,7 +430,7 @@ Interação automática, contextual e aviso
 
     -   ** :  ?
 
-    -   ** : ,
+    -   *Jeedom* : ,
         
 
 > ****

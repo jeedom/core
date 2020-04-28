@@ -581,7 +581,7 @@
 -   
 
 -    : 
-    
+    Jeedom
 
 -    : 
 
@@ -975,7 +975,7 @@
     
 
 -   
-    
+    Jeedom
 
 -   
 
@@ -1022,7 +1022,7 @@
 -   
 
 -   
-    
+    Jeedom
 
 -   
     
@@ -1105,14 +1105,14 @@
 -   
 
 -   
-    
+    bateria
 
 -   
     
 
 -   
 
--    : 
+-   Interação : 
      «
     le chambre »)
 
@@ -1202,14 +1202,14 @@
 -   
 
 -   
-    
+    bateria
 
 -   
     
 
 -   
 
--    : 
+-   Interação : 
      «
     le chambre »)
 

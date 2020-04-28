@@ -44,7 +44,7 @@ Interações :
  : 
 
 
-.
+molo.
 
 
 .
@@ -319,7 +319,7 @@ Exclusão regexp
 ------------------
 
 
-[Regexp](https://fr.wkpeda.org/wk/Ex_ratonnelle
+[Regexp](https://fr.wkpeda.org/wk/Expressão_ratonnelle
 
 
 
@@ -537,7 +537,7 @@ Exclusão regexp
 
  :
 
-**||||**
+**||pressão||**
 
 
 
