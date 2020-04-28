@@ -32,9 +32,13 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 - Tienes en la parte superior izquierda un pequeño icono para mostrar / ocultar el árbol de objetos.
 - El segundo icono a la izquierda permite mostrar solo la información de los resúmenes de los objetos..
 - En el medio, un campo de búsqueda le permite buscar equipos por nombre, categoría, complemento, etiqueta, etc..
-- A la derecha, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic - soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico, 
+- A la derecha, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic - soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
+
 - Al hacer clic en el resumen de un objeto, filtra para mostrar solo el equipo relacionado con este objeto y que está relacionado con este resumen de objeto.
+
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
+- .
+- .
 
 > **Punta**
 >

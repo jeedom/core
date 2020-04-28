@@ -48,6 +48,8 @@
 - Zusammenfassung der Hausautomation : .
 - Zusammenfassung der Hausautomation : .
 - Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
+- Konfiguration : *.
+- Konfiguration : *.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Änderungsprotokoll und FAQ.
 - WebApp : Integration der neuen Übersichtsseite.

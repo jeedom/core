@@ -48,6 +48,8 @@
 - Resumo Automation : .
 - Resumo Automation : .
 - Mecanismo de tarefas : .
+- Configuração : *.
+- Configuração : *.
 -  : .
 -  : .
 -  : .
@@ -793,7 +795,7 @@
 - .
 - .
 - .
--  : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »).
+- Interação : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »).
 - .
 - .
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .
@@ -828,7 +830,7 @@
 - .
 - .
 - .
--  : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »).
+- Interação : ajout d'un système d'analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »).
 - .
 - .
 - Refonte du système « d'action sur valeur » avec possibilité de faire plusieurs actions et aussi l'ajout de toutes les actions possibles dans les scénarios (attention il faudra peut-être toutes les .

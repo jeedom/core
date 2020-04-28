@@ -32,9 +32,13 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 - Oben links befindet sich ein kleines Symbol zum Ein- und Ausblenden des Objektbaums.
 - Mit dem zweiten Symbol links können nur die Informationen der Zusammenfassungen der Objekte angezeigt werden.
 - In der Mitte können Sie in einem Suchfeld nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen..
-- Auf der rechten Seite können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen, 
+- Auf der rechten Seite können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen.
+
 - Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
+
 - Ein Klick auf einen Auftrag vom Informationstyp zeigt den Verlauf des Auftrags an (falls er historisch ist)..
+- .
+- .
 
 > **Spitze**
 >

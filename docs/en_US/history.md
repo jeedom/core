@@ -117,7 +117,9 @@ Once you have activated tracking in the timeline of the commands and scenarios y
 
 ### Viewing
 
-The timeline displays a table of recorded events in three columns:
+.
+
+:
 
 - The date and time of the event,
 - The type of event: An info or action command, or a scenario, with the command plugin for commands.
@@ -126,3 +128,4 @@ The timeline displays a table of recorded events in three columns:
 - A command type event displays an icon on the right to open the command configuration.
 - A scenario type event displays two icons on the right to go to the scenario, or open the scenario log.
 
+. .

@@ -117,7 +117,9 @@ Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenari
 
 ### Anzeigen
 
-In der Zeitleiste wird eine Tabelle mit aufgezeichneten Ereignissen in drei Spalten angezeigt:
+.
+
+:
 
 - Datum und Uhrzeit der Veranstaltung,
 - Die Art des Ereignisses: Ein Info- oder Aktionsbefehl oder ein Szenario mit dem Befehls-Plugin für Befehle.
@@ -126,3 +128,4 @@ In der Zeitleiste wird eine Tabelle mit aufgezeichneten Ereignissen in drei Spal
 - Ein Befehlstypereignis zeigt rechts ein Symbol zum Öffnen der Befehlskonfiguration an.
 - Bei einem Ereignis vom Typ Szenario werden rechts zwei Symbole angezeigt, mit denen Sie zum Szenario wechseln oder das Szenarioprotokoll öffnen können.
 
+. .

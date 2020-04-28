@@ -20,6 +20,12 @@ En esta pestaña encontramos información general sobre Jeedom :
 - **Clave de instalación** : Lalave de hardware de su Jeedom en el mercado. Si su Jeedom no aparece en la lista de su Jeedom en el mercado, es recomendable hacer clic en el botón. **Restablecer**.
 - **Última fecha conocida** : Fecha registrada por Jeedom, utilizada después de un reinicio para sistemas sin batería PSTN.
 
+.
+
+- Contacto : .
+- Dirección : .
+- Diverso : .
+
 ## Pestaña interfaz
 
 En esta pestaña encontrará los parámetros de personalización de la pantalla..
@@ -134,11 +140,33 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 A continuación encontrará una tabla para administrar con precisión el nivel de registro de los elementos esenciales de Jeedom, así como el de los complementos.
 
-## Pestaña de pedidos
+## Pestaña Resúmenes
+
+Agregar resúmenes de objetos. Esta información se muestra en la parte superior derecha de la barra de menú de Jeedom, o al lado de los objetos. :
+
+- **Clave** : Clave para el resumen, especialmente para no tocar.
+- **Apellido** : Apellidobre abstracto.
+- **Cálculo** : Método de cálculo, puede ser de tipo :
+    - **Suma** : suma los diferentes valores,
+    - **Promedio** : valores promedio,
+    - **Texto** : mostrar el valor literalmente (especialmente para los de tipo cadena).
+- **Icono** : Ícono de resumen.
+- **Unidad** : Unidad de resumen.
+- **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
+- **Mostrar si el valor es 0** : Marque esta casilla para mostrar el valor, incluso cuando sea 0.
+- **Enlace a un virtual** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen..
+- **Eliminar resumen** : El último botón, en el extremo derecho, elimina el resumen de la línea..
+
+## Pestaña del equipo
+
+### Dispositivos
+
+- **Número de fallas antes de la desactivación del equipo.** : Número de fallas de comunicación con el equipo antes de la desactivación del equipo (un mensaje le avisará si esto sucede).
+- **Umbrales de la batería** : Lae permite administrar los umbrales de alerta global en las pilas.
 
 Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obtiene gráficos que representan su uso. Esta pestaña le permite establecer parámetros globales para el registro de comandos.
 
-### Histórico
+### 
 
 - **Ver estadísticas de widgets** : Ver estadísticas sobre widgets. El widget debe ser compatible, que es el caso para la mayoría. El comando también debe ser de tipo numérico.
 - **Período de cálculo para min, max, promedio (en horas)** : Periodo de cálculo de estadísticas (24h por defecto). No es posible tomar menos de una hora..
@@ -161,28 +189,6 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 **\ #Cmd \ _id \#** para el identificador único del pedido,
 **\ #Humanname \#** para el nombre completo de la orden (ej. : \ # \ [Baño \] \ [Hidrometría \] \ [Humedad \] \ #),
 **\ #Eq_name \#** para el nombre del equipo
-
-## Pestaña Resúmenes
-
-Agregar resúmenes de objetos. Esta información se muestra en la parte superior derecha de la barra de menú de Jeedom, o al lado de los objetos. :
-
-- **Clave** : Clave para el resumen, especialmente para no tocar.
-- **Apellido** : Apellidobre abstracto.
-- **Cálculo** : Método de cálculo, puede ser de tipo :
-    - **Suma** : suma los diferentes valores,
-    - **Promedio** : valores promedio,
-    - **Texto** : mostrar el valor literalmente (especialmente para los de tipo cadena).
-- **Icono** : Ícono de resumen.
-- **Unidad** : Unidad de resumen.
-- **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
-- **Mostrar si el valor es 0** : Marque esta casilla para mostrar el valor, incluso cuando sea 0.
-- **Enlace a un virtual** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen..
-- **Eliminar resumen** : El último botón, en el extremo derecho, elimina el resumen de la línea..
-
-## Pestaña del equipo
-
-- **Número de fallas antes de la desactivación del equipo.** : Número de fallas de comunicación con el equipo antes de la desactivación del equipo (un mensaje le avisará si esto sucede).
-- **Umbrales de la batería** : Lae permite administrar los umbrales de alerta global en las pilas.
 
 ## Pestaña Informes
 
@@ -395,15 +401,20 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 > Esta pestaña está reservada para expertos.
 > Si modifica Jeedom con una de estas dos soluciones, el soporte puede negarse a ayudarlo.
 
-- **General** :
-    - **Verificación general** : Vamos a lanzar la prueba de consistencia Jeedom.
-- **&gt;\ _SYSTEM** :
-    - **Administración** : Proporciona acceso a una interfaz de administración del sistema.. Es un tipo de consola de shell en la que puede iniciar los comandos más útiles, en particular para obtener información sobre el sistema.
-    - Restablecimiento de derechos : Lae permite volver a aplicar los derechos correctos a los directorios y archivos de Jeedom Core.
+### Verificación sistema
+
+- **Verificación general** : Vamos a lanzar la prueba de consistencia Jeedom.
+- **Restablecimiento de derechos** : Lae permite volver a aplicar los derechos correctos a los directorios y archivos de Jeedom Core.
+- **Comprobación de paquetes del sistema** : .
+- **Verificación de la base de datos** : Permite iniciar una verificación en la base de datos Jeedom y corregir errores si es necesario.
+- **Laimpieza de la base de datos** : Inicia una verificación de la base de datos y limpia las entradas no utilizadas.
+
+
+### Herramientas del sistema
+
 - **Editor de archivos** : Permite el acceso a varios archivos del sistema operativo y editarlos, eliminarlos o crearlos.
-- **Base de datos** :
-    - **Administración** : Permite el acceso a la base de datos Jeedom. Lauego puede ejecutar comandos en el campo superior.
-    - **Verificación** : Permite iniciar una verificación en la base de datos Jeedom y corregir errores si es necesario
-    - **Laimpieza** : Inicia una verificación de la base de datos y limpia las entradas no utilizadas.
-    - **Usuario** : Apellidobre de usuario utilizado por Jeedom en la base de datos.,
-    - **Contraseña** : contraseña para acceder a la base de datos utilizada por Jeedom.
+- **Administración del sistema** : Proporciona acceso a una interfaz de administración del sistema.. Es un tipo de consola de shell en la que puede iniciar los comandos más útiles, en particular para obtener información sobre el sistema.
+- **Administración de bases de datos** : Permite el acceso a la base de datos Jeedom. Lauego puede ejecutar comandos en el campo superior.
+- **** : .
+
+

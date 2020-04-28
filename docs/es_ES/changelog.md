@@ -48,6 +48,8 @@ Cambios
 - Resumen de domótica : .
 - Resumen de domótica : .
 - Motor de tareas : En la pestaña * Daemon *, los complementos desactivados ya no aparecen.
+- Configuración : *.
+- Configuración : *.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Aplicación web : Integración de la nueva página de resumen.
