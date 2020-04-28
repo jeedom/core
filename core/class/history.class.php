@@ -120,8 +120,6 @@ class history {
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
 		DB::Prepare($sql, array());
-		$sql = 'SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,\'ONLY_FULL_GROUP_BY\',\'\'))';
-		DB::Prepare($sql, array());
 		if (config::byKey('historyArchivePackage') < 1) {
 			config::save('historyArchivePackage', 1);
 		}
