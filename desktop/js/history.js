@@ -387,6 +387,15 @@ function displayTimeline(){
           }
         }
 
+        //actual time marker:
+        if (i == 0) {
+          var li = '<li style="background-color:transparent!important;">'
+          li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
+          li += '<div class="date">' + date + '</div>'
+          li += '</li>'
+          content += li
+        }
+
         //time spacing:
         var style = ''
         var height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
