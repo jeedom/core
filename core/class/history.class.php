@@ -208,7 +208,7 @@ class history {
 					'archivePackage' => config::byKey('historyArchivePackage')*3600,
 					'archiveTime' => $archiveDatetime
 				);
-				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,`datetime`,' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
+				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
 				FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id
