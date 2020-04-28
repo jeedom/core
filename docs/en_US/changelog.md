@@ -48,6 +48,8 @@ Changelog
 - Home automation summary : .
 - Home automation summary : .
 - Task engine : On the * Daemon * tab, deactivated plugins no longer appear.
+- D'actualité : *.
+- D'actualité : *.
 - Advanced equipment configuration window : Dynamic change of switchboard configuration.
 - About window : Addition of shortcuts to Changelog and FAQ.
 - WebApp : Integration of the new Summary page.

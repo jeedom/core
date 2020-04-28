@@ -38,7 +38,7 @@
 >
 > :.
 
-## 
+## Interação
 
 :?apikey=\#APIKEY\#&type=interact&=\#QUERY\#](http:?apikey=#APIKEY#&type=interact&=#QUERY#)
 

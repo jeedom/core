@@ -83,12 +83,12 @@ O **Update Center** .
 
  :
 
-- **** : `force`, pour lancer une mise à jour en  forcé (ne tient pas compte des erreurs.
+- **modo** : `force`, pour lancer une mise à jour en modo forcé (ne tient pas compte des erreurs.
 - **Versão** : .
 
 .04 :
 
-```sudo php  /var/www/html/install/update.php =force Versão=4.0.04```
+```sudo php  /var/www/html/install/update.php modo=force Versão=4.0.04```
 
  :
 

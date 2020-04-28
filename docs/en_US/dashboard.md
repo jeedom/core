@@ -32,9 +32,13 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 - You have at the top left a small icon to show / hide the tree of objects.
 - The second icon on the left allows to display only the information of the summaries of the objects.
 - In the middle, a search field allows you to search for equipment by name, category, plugin, tag, etc..
-- On the right, a button allows you to switch to edit mode, to modify the order of the tiles (click - drop on the widget), or resize them. You can also rearrange the order of orders in a tile, 
+- On the right, a button allows you to switch to edit mode, to modify the order of the tiles (click - drop on the widget), or resize them. You can also rearrange the order of orders in a tile.
+
 - By clicking on an object summary, you filter to display only the equipment related to this object and which relate to this object summary.
+
 - A click on an information type order displays the history of the order (if it is historical).
+- .
+- .
 
 > **Tip**
 >

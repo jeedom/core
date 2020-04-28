@@ -20,6 +20,12 @@ In this tab we find general information about Jeedom :
 - **Installation key** : Hardware key of your Jeedom on the Market. If your Jeedom does not appear in the list of your Jeedom on the Market, it is advisable to click on the button. **Reset**.
 - **Theast known date** : Date recorded by Jeedom, used after a restart for systems without a PSTN battery.
 
+.
+
+- Contact information : .
+- Address : .
+- Various : .
+
 ## Interface tab
 
 In this tab you will find the display customization parameters.
@@ -134,11 +140,33 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 Below you will find a table for finely managing the log level of essential elements of Jeedom as well as that of Plugins.
 
-## Orders Tab
+## Summaries tab
+
+Add object summaries. This information is displayed at the top right of the Jeedom menu bar, or next to objects :
+
+- **Key** : Key to the summary, especially not to touch.
+- **Theast name** : Abstract name.
+- **Calculation** : Calculationation method, can be of type :
+    - **Sum** : sum the different values,
+    - **Average** : averages values,
+    - **Text** : display the value verbatim (especially for those of type string).
+- **Icon** : Summary icon.
+- **Unit** : Summary unit.
+- **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
+- **Show if value is 0** : Check this box to display the value, even when it is 0.
+- **Theink to a virtual** : Theaunches the creation of virtual orders having for value those of the summary.
+- **Delete summary** : The last button, on the far right, deletes the summary from the line.
+
+## Equipment tab
+
+### Equipments
+
+- **Number of failures before deactivation of the equipment** : Number of communication failures with the equipment before deactivation of the equipment (a Message will warn you if this happens).
+- **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
 
 Many orders can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
 
-### Historical
+### 
 
 - **View widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
 - **Calculationation period for min, max, average (in hours)** : Statistics calculation period (24h by default). It is not possible to take less than an hour.
@@ -161,28 +189,6 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 **\ #Cmd \ _id \#** for the unique identifier of the order,
 **\ #Humanname \#** for the full name of the order (ex : \ # \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \ #),
 **\ #Eq_name \#** for the name of the equipment
-
-## Summaries tab
-
-Add object summaries. This information is displayed at the top right of the Jeedom menu bar, or next to objects :
-
-- **Key** : Key to the summary, especially not to touch.
-- **Theast name** : Abstract name.
-- **Calculation** : Calculationation method, can be of type :
-    - **Sum** : sum the different values,
-    - **Average** : averages values,
-    - **Text** : display the value verbatim (especially for those of type string).
-- **Icon** : Summary icon.
-- **Unit** : Summary unit.
-- **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
-- **Show if value is 0** : Check this box to display the value, even when it is 0.
-- **Theink to a virtual** : Theaunches the creation of virtual orders having for value those of the summary.
-- **Delete summary** : The last button, on the far right, deletes the summary from the line.
-
-## Equipment tab
-
-- **Number of failures before deactivation of the equipment** : Number of communication failures with the equipment before deactivation of the equipment (a Message will warn you if this happens).
-- **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
 
 ## Reports tab
 
@@ -395,15 +401,20 @@ For each API Plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 > This tab is reserved for experts.
 > If you modify Jeedom with one of these two solutions, the support may refuse to help you.
 
-- **General** :
-    - **General verification** : Theets launch Jeedom consistency test.
-- **&gt;\_System** :
-    - **Settings** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
-    - Reinstatement of rights : Enables you to reapply the correct rights to the Jeedom Core directories and files.
+### System Checks
+
+- **General verification** : Theets launch Jeedom consistency test.
+- **Reinstatement of rights** : Enables you to reapply the correct rights to the Jeedom Core directories and files.
+- **Checking system packages** : .
+- **Database verification** : Allows to launch a verification on the Jeedom database and to correct errors if necessary.
+- **Database cleanup** : Theaunches a database check and cleans up any unused entries.
+
+
+### System Tools
+
 - **File editor** : Allows access to various operating system files and to edit or delete or create them.
-- **Database** :
-    - **Settings** : Allows access to the Jeedom database. You can then launch commands in the top field.
-    - **Verification** : Allows to launch a verification on the Jeedom database and to correct errors if necessary
-    - **Cleaning** : Theaunches a database check and cleans up any unused entries.
-    - **User** : Username used by Jeedom in the database,
-    - **Password** : password to access the database used by Jeedom.
+- **System Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
+- **Database Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
+- **** : .
+
+

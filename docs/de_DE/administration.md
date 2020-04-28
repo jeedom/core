@@ -20,6 +20,12 @@ Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 - **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom on the Markt. Wenn Ihr Jeedom nicht in der Dieiste Ihres Jeedom auf dem Markt erscheint, ist es ratsam, auf die Schaltfläche zu klicken. **Zurücksetzen**.
 - **Dieetztes bekanntes Datum** : Von Jeedom aufgezeichnetes Datum, das nach einem Neustart für Systeme ohne PSTN-Batterie verwendet wird.
 
+.
+
+- Kontakt : .
+- Adresse : .
+- Verschiedene : .
+
 ## Registerkarte &quot;;Schnittstelle&quot;;
 
 Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige.
@@ -134,11 +140,33 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der wesentlichen Elemente von Jeedom sowie der Plugins.
 
-## Registerkarte &quot;;Bestellungen&quot;;
+## Registerkarte &quot;;Zusammenfassungen&quot;;
+
+Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in der Jeedom-Menüleiste oder neben Objekten angezeigt :
+
+- **Schlüssel** : Schlüssel zur Zusammenfassung, vor allem nicht zu berühren.
+- **Name** : Abstrakter Name.
+- **Berechnung** : Berechnungsmethode, kann vom Typ sein :
+    - **Summe** : summiere die verschiedenen Werte,
+    - **Durchschnitt** : Durchschnittswerte,
+    - **Text** : Zeigen Sie den Wert wörtlich an (insbesondere für diejenigen vom Typ string)..
+- **Symbol** : Zusammenfassungssymbol.
+- **Einheit** : Zusammenfassungseinheit.
+- **Zählmethode** : Wenn Sie Binärdaten zählen, müssen Sie diesen Wert in Binärdaten setzen. Wenn Sie beispielsweise die Anzahl der leuchtenden Dieampen zählen, aber nur den Wert des Dimmers (0 bis 100) haben, müssen Sie Binärdaten eingeben, so wie Jeedom dies berücksichtigt hat Wenn der Wert größer als 1 ist, leuchtet die Dieampe.
+- **Zeigen Sie an, ob der Wert 0 ist** : Aktivieren Sie dieses Kontrollkästchen, um den Wert anzuzeigen, auch wenn er 0 ist.
+- **Dieink zu einem virtuellen** : Startet die Erstellung virtueller Aufträge, deren Wert denen der Zusammenfassung entspricht.
+- **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts löscht die Zusammenfassung aus der Zeile.
+
+## Registerkarte Ausrüstung
+
+### Geräte
+
+- **Anzahl der Fehler vor Deaktivierung des Geräts** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
+- **Batterieschwellen** : Ermöglicht die Verwaltung der globalen Alarmschwellenwerte für die Stapel.
 
 Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse → Verlauf Diagramme, die ihre Verwendung darstellen. Auf dieser Registerkarte können Sie globale Parameter für die Befehlsprotokollierung festlegen.
 
-### Historisch
+### 
 
 - **Widget-Statistiken anzeigen** : Statistiken zu Widgets anzeigen. Das Widget muss kompatibel sein, was bei den meisten der Fall ist. Der Befehl muss auch vom numerischen Typ sein.
 - **Berechnungszeitraum für min, max, Durchschnitt (in Stunden)** : Statistikberechnungszeitraum (standardmäßig 24 Stunden). Es ist nicht möglich, weniger als eine Stunde zu dauern.
@@ -161,28 +189,6 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 **\ #Cmd \ _id \#** für die eindeutige Kennung der Bestellung,
 **\ #Humanname \#** für den vollständigen Namen der Bestellung (z : \ # \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \ #),
 **\ #Eq_name \#** für den Namen des Geräts
-
-## Registerkarte &quot;;Zusammenfassungen&quot;;
-
-Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in der Jeedom-Menüleiste oder neben Objekten angezeigt :
-
-- **Schlüssel** : Schlüssel zur Zusammenfassung, vor allem nicht zu berühren.
-- **Name** : Abstrakter Name.
-- **Berechnung** : Berechnungsmethode, kann vom Typ sein :
-    - **Summe** : summiere die verschiedenen Werte,
-    - **Durchschnitt** : Durchschnittswerte,
-    - **Text** : Zeigen Sie den Wert wörtlich an (insbesondere für diejenigen vom Typ string)..
-- **Symbol** : Zusammenfassungssymbol.
-- **Einheit** : Zusammenfassungseinheit.
-- **Zählmethode** : Wenn Sie Binärdaten zählen, müssen Sie diesen Wert in Binärdaten setzen. Wenn Sie beispielsweise die Anzahl der leuchtenden Dieampen zählen, aber nur den Wert des Dimmers (0 bis 100) haben, müssen Sie Binärdaten eingeben, so wie Jeedom dies berücksichtigt hat Wenn der Wert größer als 1 ist, leuchtet die Dieampe.
-- **Zeigen Sie an, ob der Wert 0 ist** : Aktivieren Sie dieses Kontrollkästchen, um den Wert anzuzeigen, auch wenn er 0 ist.
-- **Dieink zu einem virtuellen** : Startet die Erstellung virtueller Aufträge, deren Wert denen der Zusammenfassung entspricht.
-- **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts löscht die Zusammenfassung aus der Zeile.
-
-## Registerkarte Ausrüstung
-
-- **Anzahl der Fehler vor Deaktivierung des Geräts** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
-- **Batterieschwellen** : Ermöglicht die Verwaltung der globalen Alarmschwellenwerte für die Stapel.
 
 ## Registerkarte &quot;;Berichte&quot;;
 
@@ -395,15 +401,20 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 > Diese Registerkarte ist Experten vorbehalten.
 > Wenn Sie Jeedom mit einer dieser beiden Dieösungen ändern, kann der Support Ihnen nicht weiterhelfen.
 
-- **General** :
-    - **Allgemeine Überprüfung** : Starten wir den Jeedom-Konsistenztest.
-- **&gt;;\ _SYSTEM** :
-    - **Verwaltung** : Bietet Zugriff auf eine Systemverwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die nützlichsten Befehle starten können, insbesondere um Informationen über das System zu erhalten.
-    - Wiedereinsetzung von Rechten : Ermöglicht es Ihnen, die korrekten Rechte auf die Jeedom Core-Verzeichnisse und -Dateien erneut anzuwenden.
+### 
+
+- **Allgemeine Überprüfung** : Starten wir den Jeedom-Konsistenztest.
+- **Wiedereinsetzung von Rechten** : Ermöglicht es Ihnen, die korrekten Rechte auf die Jeedom Core-Verzeichnisse und -Dateien erneut anzuwenden.
+- **** : .
+- **** : Ermöglicht das Starten einer Überprüfung in der Jeedom-Datenbank und das Korrigieren von Fehlern, falls erforderlich.
+- **** : Startet eine Datenbankprüfung und bereinigt alle nicht verwendeten Einträge.
+
+
+### 
+
 - **Datei-Editor** : Ermöglicht den Zugriff auf verschiedene Betriebssystemdateien und deren Bearbeitung, Dieöschung oder Erstellung.
-- **Datenbank** :
-    - **Verwaltung** : Ermöglicht den Zugriff auf die Jeedom-Datenbank. Sie können dann Befehle im oberen Feld starten.
-    - **Überprüfung** : Ermöglicht das Starten einer Überprüfung in der Jeedom-Datenbank und das Korrigieren von Fehlern, falls erforderlich
-    - **Reinigung** : Startet eine Datenbankprüfung und bereinigt alle nicht verwendeten Einträge.
-    - **Benutzer** : Von Jeedom in der Datenbank verwendeter Benutzername,
-    - **Passwort** : Passwort für den Zugriff auf die von Jeedom verwendete Datenbank.
+- **Systemverwaltung** : Bietet Zugriff auf eine Systemverwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die nützlichsten Befehle starten können, insbesondere um Informationen über das System zu erhalten.
+- **Datenbankverwaltung** : Ermöglicht den Zugriff auf die Jeedom-Datenbank. Sie können dann Befehle im oberen Feld starten.
+- **** : .
+
+

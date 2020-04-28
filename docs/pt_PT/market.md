@@ -1,4 +1,4 @@
-# Mercado 
+# Mercado Jeedom
 
 
 .
@@ -44,7 +44,7 @@
 ## 
 
 - **Nível**
-    - **** : .
+    - **Jeedom** : .
     - **** : .
 - **Key instalação**
     - **** : .

@@ -20,6 +20,12 @@
 - **Key instalação** : .  **Restabelecer**.
 - **Última data conhecida** : .
 
+.
+
+-  : .
+-  : .
+- Vário : .
+
 ## 
 
 .
@@ -136,9 +142,31 @@
 
 ## 
 
+.  :
+
+- **Chave** : .
+- **Nome** : .
+- **Cálculo** :  :
+    - **Soma** : ,
+    - **Média** : ,
+    - **Texto** : .
+- **ícone** : .
+- **Unidade** : .
+- **Método de contagem** : .
+- **** : .
+- **** : .
+- **** : .
+
+## 
+
+### Instalações
+
+- **Falha Contagem off equipamentos** : .
+- **** : .
+
 . . .
 
-### Histórico
+### 
 
 - **Mostrar estatísticas sobre os widgets** : . . .
 - **Período de cálculo para min, max, média (em horas** : . .
@@ -161,28 +189,6 @@
 **#** ,
 **#**  : ,
 **#** 
-
-## 
-
-.  :
-
-- **Chave** : .
-- **Nome** : .
-- **Cálculo** :  :
-    - **Soma** : ,
-    - **Média** : ,
-    - **Texto** : .
-- **ícone** : .
-- **Unidade** : .
-- **Método de contagem** : .
-- **** : .
-- **** : .
-- **** : .
-
-## 
-
-- **Falha Contagem off equipamentos** : .
-- **** : .
 
 ## 
 
@@ -230,15 +236,15 @@
 -    ****  :
     - * :*
         - ** :  ?
-        - ** : .
+        - *Jeedom* : .
         - ** :  ?
-        - ** : .
+        - *Jeedom* : .
     - * :*
         - ** :  ?
-        - ** : ..
+        - *Jeedom* : ..
 -    **** .
     - ** :  ?
-    - ** : 
+    - *Jeedom* : 
 
 > ****
 >
@@ -395,15 +401,20 @@
 > .
 > .
 
-- **Geral** :
-    - **** : .
-- **&gt** :
-    - **Administração** : . .
-    -  : .
+### 
+
 - **** : .
-- **Banco de dados** :
-    - **Administração** : . .
-    - **** : 
-    - **** : .
-    - **Usuário** : ,
-    - **Senha** : .
+- **** : .
+- **** : .
+- **** : .
+- **** : .
+
+
+### 
+
+- **** : .
+- **Administração do sistema** : . .
+- **Banco de dados de administração** : . .
+- **** : .
+
+

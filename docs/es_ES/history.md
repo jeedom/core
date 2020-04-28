@@ -117,7 +117,9 @@ Una vez que haya activado el seguimiento en la línea de tiempo de los comandos 
 
 ### Viendo
 
-La línea de tiempo muestra una tabla de eventos grabados en tres columnas.:
+.
+
+:
 
 - La fecha y hora del evento.,
 - El tipo de evento.: Un comando de información o acción, o un escenario, con el complemento de comando para comandos.
@@ -126,3 +128,4 @@ La línea de tiempo muestra una tabla de eventos grabados en tres columnas.:
 - Un evento de tipo de comando muestra un icono a la derecha para abrir la configuración del comando.
 - Un evento de tipo de escenario muestra dos iconos a la derecha para ir al escenario o abrir el registro del escenario.
 
+. .
