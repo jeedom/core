@@ -1065,7 +1065,7 @@
     },
     "desktop\/modal\/object.massEdit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Type non trouvé : ": "",
+        "Type non trouvé : ": "Type não encontrado:",
         "Sauvegarder": "Salvar",
         "Type": "Tipo",
         "Nom": "Nome",
@@ -3114,20 +3114,20 @@
     },
     "core\/ajax\/interact.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Interaction inconnue. Vérifiez l\\'ID": "",
-        "InteractQuery ID inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Interaction inconnue. Vérifiez l\\'ID": "Interação desconhecida. Verifique a ID",
+        "InteractQuery ID inconnu": "InteractQuery ID desconhecida",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/view.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Vue non trouvée. Vérifiez l\\'iD": "",
         "Vue non trouvée. Vérifiez l\\'ID": "",
-        "Vue inconnu. Vérifiez l\\'ID ": "",
+        "Vue inconnu. Vérifiez l\\'ID ": "Vista desconhecida. Verifique o ID",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "",
-        "Le fichier est trop gros (maximum 5Mo)": "",
-        "Impossible de sauvegarder l\\'image": "",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
+        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extensão de arquivo inválida (.jpg .png .gif autorizado):",
+        "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo 5GB)",
+        "Impossible de sauvegarder l\\'image": "Não foi possível salvar a imagem",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/timeline.ajax.php": {
@@ -3150,51 +3150,51 @@
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Note inconnue. Vérifiez l\\'ID": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Note inconnue. Vérifiez l\\'ID": "Nota desconhecida. Verifique o ID",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/object.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
         "Objet inconnu. Vérifiez l\\'ID ": "Objeto desconhecido. Verifique a ID",
-        "Vue inconnu. Vérifiez l\\'ID ": "",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "",
-        "Le fichier est trop gros (maximum 5Mo)": "",
-        "Impossible de sauvegarder l\\'image": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Vue inconnu. Vérifiez l\\'ID ": "Vista desconhecida. Verifique o ID",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
+        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extensão de arquivo inválida (.jpg .png .gif autorizado):",
+        "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo 5GB)",
+        "Impossible de sauvegarder l\\'image": "Não foi possível salvar a imagem",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/log.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/jeedom.ajax.php": {
         "Vue": "Vista",
         "Objet": "Objeto",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucune documentation trouvée": "Nenhuma documentação encontrada",
-        "Commande non trouvée : ": "",
-        "Aucune Commande de Notification : ": "",
-        "Répertoire de téléversement non trouvé : ": "",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
-        "Extension du fichier non valide (autorisé .tar.gz) : ": "",
-        "Le fichier est trop gros (maximum 1Go)": "",
-        "Impossible de déplacer le fichier temporaire": "",
-        "Impossible de téléverser le fichier (limite du serveur web ?)": "",
-        "La version ne peut être que desktop ou mobile": "",
-        "La version ne peut être que js ou css": "",
-        "Type :": "",
-        " avec id : ": "",
-        " inconnu": "",
-        "Vous ne pouvez éditer ce type d\\'extension : ": "",
-        "Impossible de créer le fichier, vérifiez les droits": "",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "",
-        "Le fichier est trop gros (maximum 5Mo)": "",
-        "Impossible de sauvegarder l\\'image": "",
-        "Fichier introuvable, impossible de le supprimer": "",
-        "Impossible de supprimer le fichier": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : ",
-        "Type non trouvé : ": ""
+        "Commande non trouvée : ": "Comando não encontrado",
+        "Aucune Commande de Notification : ": "Sem comando de notificação",
+        "Répertoire de téléversement non trouvé : ": "Diretório de upload não encontrado:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique o parâmetro PHP (post size limit)",
+        "Extension du fichier non valide (autorisé .tar.gz) : ": "Extensão de arquivo inválida (.tar.gz autorizado):",
+        "Le fichier est trop gros (maximum 1Go)": "O arquivo é muito grande (máximo 1GB)",
+        "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
+        "La version ne peut être que desktop ou mobile": "A versão só pode ser desktop ou dispositivo móvel",
+        "La version ne peut être que js ou css": "A versão pode ser apenas js ou css",
+        "Type :": "Type:",
+        " avec id : ": "com id:",
+        " inconnu": "desconhecido",
+        "Vous ne pouvez éditer ce type d\\'extension : ": "Não pode editar este tipo de extensão:",
+        "Impossible de créer le fichier, vérifiez les droits": "Não foi possível criar o arquivo, verifique os direitos",
+        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extensão de arquivo inválida (.jpg .png .gif autorizado):",
+        "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo 5GB)",
+        "Impossible de sauvegarder l\\'image": "Não foi possível guardar a imagem",
+        "Fichier introuvable, impossible de le supprimer": "Arquivo não encontrado, não pode ser excluído",
+        "Impossible de supprimer le fichier": "Não foi possível excluir o arquivo",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:",
+        "Type non trouvé : ": "Type não encontrado:"
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3203,8 +3203,8 @@
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Listener id inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Listener id inconnu": "Listener id desconhecido",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3228,12 +3228,12 @@
         "La conversion suivante ne peut être vide : ": "",
         "Scénario ID inconnu": "",
         "Champs json invalide": "",
-        "Répertoire de téléversement non trouvé : ": "",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
+        "Répertoire de téléversement non trouvé : ": "Diretório de upload não encontrado:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Extension du fichier non valide (autorisé .json) : ": "",
         "Le fichier est trop gros (maximum 10Mo)": "",
-        "Impossible de déplacer le fichier temporaire": "",
-        "Impossible de téléverser le fichier (limite du serveur web ?)": "",
+        "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/update.ajax.php": {
@@ -3243,11 +3243,11 @@
         "Launch cron dependancy plugins": "Plugins dependência lançamento cron",
         "[END UPDATE SUCCESS]": "[END ACTUALIZAÇÃO SUCESSO]",
         "[END UPDATE ERROR]": "",
-        "Répertoire de téléversement non trouvé : ": "",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
+        "Répertoire de téléversement non trouvé : ": "Diretório de upload não encontrado:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Le fichier est trop gros (maximum 100Mo)": "",
-        "Impossible de déplacer le fichier temporaire": "",
-        "Impossible de téléverser le fichier (limite du serveur web ?)": "",
+        "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/event.ajax.php": {
@@ -3256,17 +3256,17 @@
     },
     "core\/ajax\/plan.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucun plan correspondant": "",
+        "Aucun plan correspondant": "Nenhum plano correspondente",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
-        "Plan header inconnu. Vérifiez l\\'ID ": "",
-        "Code d\\'accès invalide": "Code d\\'acces invalide",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "",
-        "Le fichier est trop gros (maximum 5Mo)": "",
-        "Impossible de sauvegarder l\\'image": "",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "",
-        "Impossible de déplacer le fichier temporaire dans : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Plan header inconnu. Vérifiez l\\'ID ": "Plano de cabeçalho desconhecido. Verifique o ID",
+        "Code d\\'accès invalide": "Código de acesso inválido",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
+        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extensão de arquivo inválida (.jpg .png .gif autorizado):",
+        "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo de 5 MB)",
+        "Impossible de sauvegarder l\\'image": "Não foi possível guardar a imagem",
+        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extensão de arquivo inválida (.jpg .png autorizado):\n",
+        "Impossible de déplacer le fichier temporaire dans : ": "Não foi possível mover o arquivo temporário para:",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3276,16 +3276,16 @@
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Message inconnu. Vérifiez l\\'ID": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Message inconnu. Vérifiez l\\'ID": "Mensagem desconhecida. Verifique o ID",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/migrate.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/network.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/config.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3318,11 +3318,11 @@
         "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
         "Code d\\'accès invalide": "Code d\\'acces invalide",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Extension du fichier non valide (autorisé .zip) : ": "",
         "Le fichier est trop gros (maximum 150Mo)": "",
-        "Impossible de déplacer le fichier temporaire": "",
-        "Impossible de téléverser le fichier (limite du serveur web ?)": "",
+        "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
         "Impossible de décompresser les fichiers : ": "",
         "Impossible de décompresser l\\'archive zip : ": "",
         "Il faut un seul et unique fichier .obj": "",
@@ -3340,15 +3340,15 @@
         "Eqlogic inconnu. Vérifiez l\\'ID": "EqLogic desconhecido. Verifique a ID",
         "Vous n\\'êtes pas autorisé à faire cette action": "Não tem permissão para executar esta ação",
         "EqLogic inconnu. Vérifiez l\\'ID ": "EqLogic desconhecido. Verifique a ID",
-        "Le nom de la copie de l\\'équipement ne peut être vide": "",
-        "Equipement inconnu : ": "",
-        "Type incorrect (classe équipement inexistante) : ": "",
-        "Informations reçues incorrectes": "",
-        "Type incorrect, (classe commande inexistante)": "",
-        "Un équipement portant ce nom (": "",
-        ") existe déjà pour cet objet": "",
-        "Une commande portant ce nom (": "",
-        ") existe déjà pour cet équipement": "",
+        "Le nom de la copie de l\\'équipement ne peut être vide": "O nome da cópia do equipamento não pode estar vazio.",
+        "Equipement inconnu : ": "Equipamento desconhecido:",
+        "Type incorrect (classe équipement inexistante) : ": "Type incorrect (classe equipamento inexistente): ",
+        "Informations reçues incorrectes": "Informação recebida incorreta",
+        "Type incorrect, (classe commande inexistante)": "Nenhum método correspondente a:",
+        "Un équipement portant ce nom (": "Equipamentos com este nome (",
+        ") existe déjà pour cet objet": ") já existe para este objeto",
+        "Une commande portant ce nom (": "Um comando com este nome (",
+        ") existe déjà pour cet équipement": ") já existe para este equipamento",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/cache.ajax.php": {
@@ -4174,7 +4174,7 @@
         "Impossible d\\'ajouter une box Jeedom non esclave à un réseau Jeedom": "",
         "Seul un maître peut recevoir une sauvegarde": "",
         "Aucun esclave correspondant à l\\'ID : ": "",
-        "Répertoire de téléversement non trouvé : ": "",
+        "Répertoire de téléversement non trouvé : ": "Diretório de upload não encontrado:",
         "Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ": "",
         "La taille du fichier est trop importante (maximum 50Mo)": "",
         "Impossible de téléverser le fichier": "",

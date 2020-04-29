@@ -16,7 +16,7 @@
 
 ## Cenas
 
-:?apikey=\#APIKEY\#&type=scenario&=\#ID\#&Ação=\#ACTION\#](http:?apikey=#APIKEY#&type=scenario&=#ID#&Ação=#ACTION#)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&=\#ID\#&Ação=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&=#ID#&Ação=#ACTION#)
 
 - **** : . ".  : ".
 - **Ação** : .  : ".
@@ -24,7 +24,7 @@
 
 ##  
 
-:?apikey=\#APIKEY\#&type=cmd&=\#ID\#](http:?apikey=#APIKEY#&type=cmd&=#ID#)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&=#ID#)
 
 - **** : .
 
@@ -36,11 +36,11 @@
 
 > ****
 >
-> :.
+> Les paramètres doivent être encodés pour les url, Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interação
 
-:?apikey=\#APIKEY\#&type=interact&=\#QUERY\#](http:?apikey=#APIKEY#&type=interact&=#QUERY#)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&=#QUERY#)
 
 - **** : .
 - **** ] : .
@@ -50,38 +50,38 @@
 
 ## Mensagem
 
-:?apikey=\#APIKEY\#&type=Mensagem&=\#CATEGORY\#&Mensagem=\#MESSAGE\#](http:?apikey=#APIKEY#&type=Mensagem&=#CATEGORY#&Mensagem=#MESSAGE#)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Mensagem&=\#CATEGORY\#&Mensagem=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Mensagem&=#CATEGORY#&Mensagem=#MESSAGE#)
 
 - **** : .
-- **Mensagem** : . :.
+- **Mensagem** : . Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objeto
 
-:?apikey=\#APIKEY\#&type=object](http:?apikey=#APIKEY#&type=object)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 .
 
 ## Equipamento
 
-:?apikey=\#APIKEY\#&type=eqLogic&=\#OBJECT\_ID\#](http:?apikey=#APIKEY#&type=eqLogic&object_=#OBJECT_ID#)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_=#OBJECT_ID#)
 
 - **** : .
 
 ## Ordem
 
-:?apikey=\#APIKEY\#&type=command&=\#EQLOGIC\_ID\#](http:?apikey=#APIKEY#&type=command&eqLogic_=#EQLOGIC_ID#)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_=#EQLOGIC_ID#)
 
 - **** : .
 
 ## 
 
-:?apikey=\#APIKEY\#&type=fullData](http:?apikey=#APIKEY#&type=fullData)
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
 .
 
 ## Variável
 
-:?apikey=\#APIKEY\#&type=variable&=\#NAME\#&=](http:?apikey=#APIKEY#&type=variable&=#NAME#&=)*VALUE*
+Voici l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&=\#NAME\#&=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&=#NAME#&=)*VALUE*
 
 - **** : .
 - **** ] : .

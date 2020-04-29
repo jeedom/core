@@ -169,7 +169,7 @@ Em sega :
 - ## : :  
 - ## : 
 - ## : 
-- ## : :.
+- ## : niveau d'alerte (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.
 - ## : . . .
 - ## : 
 - ## : 
@@ -211,4 +211,4 @@ Em sega :
 ```
  .
 
- :.
+ Vous trouverez [ici](https://github.

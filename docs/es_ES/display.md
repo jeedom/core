@@ -193,7 +193,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 #### Para una orden de tipo de Informaciónrmación :
 
 - **Cálculo y redondeo.**
-    - **Fórmula de cálculo (\ #valor \ # para el valor)** : Laa permite realizar una operación sobre el valor del pedidentificacióno antes de procesarlo por Jeedom, ejemplo : `#value# - 0.2` para restar 0.2 (desplazamiento en un sensor de temperatura).
+    - **Fórmula de cálculo (\#valor \# para el valor)** : Laa permite realizar una operación sobre el valor del pedidentificacióno antes de procesarlo por Jeedom, ejemplo : `#value# - 0.2` para restar 0.2 (desplazamiento en un sensor de temperatura).
     - **Redondeado (número después del punto decimal)** : Se usa para redondear el valor del comando (Ejemplo : pon 2 para transformar 16.643 345 en 16.64).
 - **Puntao genérico** : Laa permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta Informaciónrmación es utilizada por la aplicación móvil..
 - **Acción sobre el valor, si** : Hagamos algún tipo de mini escenarios. Puede, por ejemplo, decir que si el valor vaLaa más de 50 por 3 minutos, entonces tiene que hacer tal acción. Esto permite, por ejemplo, apagar una luz X minutos después de encenderse.

@@ -68,7 +68,7 @@ Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
 #### Berechnete Geschichte
 
-Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \. * absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
+Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \.* absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
 Ex :
 abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Wohnraum \.] \. [Hygrometrie \.] \. [Temperatur \.] *)
 

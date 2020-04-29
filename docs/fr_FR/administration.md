@@ -1,4 +1,6 @@
-# Configuration
+# Administration
+
+## Configuration
 **Réglages → Système → Configuration**
 
 C’est sur cette page que se trouvent la plupart des paramètres de configuration.

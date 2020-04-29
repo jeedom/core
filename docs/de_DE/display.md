@@ -193,7 +193,7 @@ Unten finden Sie eine Dieiste der verschiedenen Geräte, BefehDie, Szenarien ode
 #### Für eine Info-Bestellung :
 
 - **Berechnung und Rundung**
-    - **Berechnungsformel (\ #Wert \ # für den Wert)** : Ermöglicht es Ihnen, den Wert der Bestellung vor der Verarbeitung durch Jeedom zu bearbeiten : `#value# - 0.2` um 0 zu subtrahieren.2 (Versatz an einem Temperatursensor).
+    - **Berechnungsformel (\#Wert \# für den Wert)** : Ermöglicht es Ihnen, den Wert der Bestellung vor der Verarbeitung durch Jeedom zu bearbeiten : `#value# - 0.2` um 0 zu subtrahieren.2 (Versatz an einem Temperatursensor).
     - **Abgerundet (Zahl nach Dezimalpunkt)** : Wird verwendet, um den Wert des Befehls zu runden (Beispiel : Setze 2, um 16 zu transformieren.643 345 in 16,64).
 - **Generischer Typ** : Ermöglicht das Konfigurieren des generischen Befehlstyps (Jeedom versucht, ihn im automatischen Modus selbst zu finden).. Diese Informationen werden von der mobiDien Anwendung verwendet.
 - **Aktion auf Wert, wenn** : Machen wir eine Art Miniszenario. Sie können beispielsweise sagen, dass Sie eine solche Aktion ausführen müssen, wenn der Wert 3 Minuten lang mehr als 50 wert ist. So kann beispielsweise ein Dieicht X Minuten nach dem Einschalten ausgeschaltet werden.

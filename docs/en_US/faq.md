@@ -20,7 +20,7 @@ Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely
 Often this is due to the fact that the equipment is assigned to an object which is not the child or the object itself of the first object selected on the left in the tree (you can configure it in your profile).
 
 ### Jeedom interface has shortcuts ?
-Yes, the list of keyboard / mouse shortcuts is [here] (shortcuts.md).
+Yes, the list of keyboard / mouse shortcuts is [here](shortcuts.md).
 
 ### Can we reorder equipment orders ?
 Yes it is possible, just drag and drop the commands of your object on its configuration.
@@ -42,10 +42,10 @@ They are in the / var / www / html / backup folder
 
 ### Can we put Jeedom in https ?
 Yes : Either you have a power pack or more, in this case you
-just use the [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
+suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 ### How to connect in SSH ?
-Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
 - Username : "root ", password : "Mjeedom96"
 - Username : "jeedom ", password : "Mjeedom96"
@@ -117,7 +117,7 @@ Again this is often due to a plugin in beta while Jeedom is in stable. To see th
 
 ### I no longer have access to Jeedom, neither through the web interface nor in console via SSH
 This error is not due to Jeedom, but to a problem with the system.
-If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns.. Here is the [documentation] (https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) for the Smart
+If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns.. Voici la [documentation](https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) for the Smart
 
 ### My scenario does not stop any more
 It is advisable to look at the commands executed by the scenario, often it comes from a command that does not end.
@@ -155,7 +155,7 @@ This kind of case happens if your Jeedom is not compatible with the plugin. In g
 Alerts are ranked by priority, from the least important to the most important : timeout, battery warning, battery danger, warning alert, danger alert
 
 ### My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ?
-If you are in DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \ * Apache folder). If that&#39;s the case, you have to do :
+If you are in DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If that&#39;s the case, you have to do :
 ```
 mkdir /etc/systemd/system/apache2.service.d
 echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf

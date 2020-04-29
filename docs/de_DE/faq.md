@@ -20,7 +20,7 @@ Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr mögl
 Dies liegt häufig daran, dass das Gerät einem Objekt zugewiesen ist, das nicht das untergeordnete Objekt oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können es in Ihrem Profil konfigurieren)..
 
 ### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
-Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier] (shortcuts.md)..
+Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier](shortcuts.md)..
 
 ### Können wir Ausrüstungsbestellungen nachbestellen? ?
 Ja, es ist möglich, ziehen Sie einfach die Befehle Ihres Objekts in die Konfiguration und legen Sie sie dort ab.
@@ -42,10 +42,10 @@ Sie befinden sich im Ordner / var / www / html / backup
 
 ### Können wir Jeedom in https setzen? ?
 Ja : E.ntweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-Verwenden Sie einfach das [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). E.ntweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). E.ntweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 ### So verbinden Sie sich in SSH ?
-Hier ist eine [Dokumentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), Teil &quot;Unter Windows : Kitt". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), Teil &quot;Unter Windows : Kitt". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
 - Benutzername : "root ", Passwort : "Mjeedom96"
 - Benutzername : "jeedom ", Passwort : "Mjeedom96"
@@ -117,7 +117,7 @@ Auch dies ist oft auf ein Plugin in der Beta zurückzuführen, während Jeedom s
 
 ### Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch über SSH in der Konsole
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
-Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen.. Hier ist die [Dokumentation] (https://jeedom.github.io / documents / howto / de_FR / recovery_mode_jeedom_smart) für den Smart
+Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen.. Voici la [documentation](https://jeedom.github.io / documents / howto / de_FR / recovery_mode_jeedom_smart) für den Smart
 
 ### Mein Szenario hört nicht mehr auf
 E.s ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen. Oft stammt sie von einem Befehl, der nicht endet.
@@ -155,7 +155,7 @@ Dies ist der Fall, wenn Ihr Jeedom nicht mit dem Plugin kompatibel ist. Im Allge
 Warnungen werden nach Priorität geordnet, von der am wenigsten wichtigen bis zur wichtigsten : Zeitüberschreitung, Batteriewarnung, Batteriegefahr, Warnmeldung, Gefahrenwarnung
 
 ### Mein Jeedom zeigt auch nach 1 Stunde permanent &quot;Start&quot; an ?
-Wenn Sie in DIY und unter Debian 9 oder höher sind, überprüfen Sie, ob es kein Update von Apache und damit die Rückgabe von privateTmp gegeben hat (sichtbar durch Ausführen von `ls / tmp` und prüfen Sie, ob es ein Update gibt ein privater \ * Apache-Ordner). Wenn dies der Fall ist, ist dies erforderlich :
+Wenn Sie in DIY und unter Debian 9 oder höher sind, überprüfen Sie, ob es kein Update von Apache und damit die Rückgabe von privateTmp gegeben hat (sichtbar durch Ausführen von `ls / tmp` und prüfen Sie, ob es ein Update gibt ein privater \* Apache-Ordner). Wenn dies der Fall ist, ist dies erforderlich :
 ```
 mkdir /etc/systemd/system/apache2.service.d
 echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf

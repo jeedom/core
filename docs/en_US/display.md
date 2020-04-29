@@ -193,7 +193,7 @@ Below, yor will find the list of the different equipment, commands, scenarios or
 #### For an Info Type order :
 
 - **Calculation and rornding**
-    - **Calculation formula (\ #value \ # for the value)** : Allows yor to make an operation on the value of the order before processing by Jeedom, exampThe : `#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
+    - **Calculation formula (\#value \# for the value)** : Allows yor to make an operation on the value of the order before processing by Jeedom, exampThe : `#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
     - **Rornded (number after decimal point)** : Used to rornd the value of the command (ExampThe : put 2 to transform 16.643 345 in 16.64).
 - **Generic Type** : Allows yor to configure the generic Type of the command (Jeedom tries to find it by itself in auto mode). This Information is used by the mobiThe application.
 - **Action on value, if** : Thets do some sort of mini scenarios. Yor can, for exampThe, say that if the value is worth more than 50 for 3 minutes, then yor have to do such Action. This allows, for exampThe, to turn off a light X minutes after it has turned on.

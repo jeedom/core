@@ -360,10 +360,14 @@ function displayTimeline(){
     success: function (data) {
       data.sort(sortByDateConsistentASC)
       data = data.reverse()
-      dataLength = data.length
-      var content = ''
+      var dataLength = data.length
+      var decayFactor = 130
 
-      var nextDate, thisDateTs, prevDateTs = false
+      var isFirstOfDay, isLastOfDay = false
+      var nextDate, thisDateTs = false
+      var prevDate = moment().format("YYYY-MM-DD")
+      var prevDateTs = moment().unix()
+      var content = '<div class="label-warning day">'+data[0].date.substring(0,10)+'</div>'
       for (var i in data) {
         var thisData = data[i]
         var date = thisData.date.substring(0,10)
@@ -371,17 +375,38 @@ function displayTimeline(){
         thisDateTs = moment(thisData.date.substring(0,19)).unix()
         var lineClass = ''
 
-        //time spacing:
-        if (prevDateTs) {
-          var height = Math.abs((prevDateTs - thisDateTs) / 130)
-          if (height > 5) {
-            var li = '<li style="margin-top:'+height+'px!important;">'
-          } else {
-            var li = '<li>'
-          }
+        if (prevDate != date) {
+          isFirstOfDay = true
+          prevDateTs = moment(prevDate + ' 00:00:00').unix()
         } else {
-          var li = '<li>'
+          if (i < dataLength -1) {
+            nextDate = data[parseInt(i)+1].date.substring(0,10)
+            if (date != nextDate) {
+              isLastOfDay = true
+            }
+          }
         }
+
+        //actual time marker:
+        if (i == 0) {
+          var li = '<li style="background-color:transparent!important;">'
+          li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
+          li += '<div class="date">' + date + '</div>'
+          li += '</li>'
+          content += li
+        }
+
+        //time spacing:
+        var style = ''
+        var height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
+        if (height > 5) {
+          style = 'margin-top:'+height+'px!important;'
+        }
+        if (isLastOfDay && i < dataLength -1) {
+          height = Math.abs((thisDateTs - moment(data[parseInt(i)+1].date.substring(0,19)).unix()) / decayFactor)
+          style += 'margin-bottom:'+height+'px!important;'
+        }
+        var li = '<li style="'+style+'">'
         li += '<div>'
 
         //scenario or cmd info/action:
@@ -417,17 +442,13 @@ function displayTimeline(){
         content += li
 
         //newDay ?
-        if (i == 0) {
-          content = '<div class="label-warning day">'+date+'</div>' + content
-        } else {
-          if (i < dataLength -1) {
-            nextDate = data[parseInt(i)+1].date.substring(0,10)
-            if (date != nextDate) {
-              content += '<div class="label-warning day">'+nextDate+'</div>'
-            }
-          }
+        if (isLastOfDay) {
+          content += '<div class="label-warning day">'+nextDate+'</div>'
         }
+
+        prevDate = date
         prevDateTs = thisDateTs
+        isFirstOfDay = isLastOfDay = false
       }
       $('#timelineContainer ul').empty().append(content)
     }

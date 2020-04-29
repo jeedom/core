@@ -42,10 +42,10 @@
 
 ###  ?
 Sim : 
-:. .
+suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). .
 
 ###  ?
-:. : ".  :
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH. : ".  :
 
 -  : " : ""
 -  : " : ""
@@ -117,7 +117,7 @@ Sim :
 
 ### 
 .
-. :.
+. Voici la [documentation](https://jeedom.github.
 
 ### 
 .
@@ -179,7 +179,7 @@ Sim :
 ```
 
 
-:
+wget https://github.com/jeedom/core/archive/master.zip
 
 
 

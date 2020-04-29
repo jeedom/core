@@ -1,4 +1,6 @@
-# Konfiguration
+# Verwaltung
+
+## Konfiguration
 **Einstellungen → System → Konfiguration**
 
 Hier befinden sich die meisten Konfigurationsparameter..
@@ -180,15 +182,15 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 > **Notiz**
 >
 > Der erste Parameter **Widget-Statistiken anzeigen** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
-> Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [hier] (https)://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) für Details).
+> Diea méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir [ici](https://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) für Details).
 
 ### Druck
 
 - **Globale Druck-URDies** : Mit dieser Option können Sie eine URDies hinzufügen, die im Falle einer Auftragsaktualisierung aufgerufen werden soll. Sie können die folgenden Tags verwenden :
-**\ #Value \#** für den Bestellwert, **\ #Cmd \ _name \#** für den Namen des Befehls,
-**\ #Cmd \ _id \#** für die eindeutige Kennung der Bestellung,
-**\ #Humanname \#** für den vollständigen Namen der Bestellung (z : \ # \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \ #),
-**\ #Eq_name \#** für den Namen des Geräts
+**\#Value \#** für den Bestellwert, **\#Cmd \ _name \#** für den Namen des Befehls,
+**\#Cmd \ _id \#** für die eindeutige Kennung der Bestellung,
+**\#Humanname \#** für den vollständigen Namen der Bestellung (z : \# \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \#),
+**\#Eq_name \#** für den Namen des Geräts
 
 ## Registerkarte &quot;;Berichte&quot;;
 
@@ -321,12 +323,12 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Aufmerksamkeit : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
-- **Adresse** : Marktadresse (Https://www.jeedom.com/market).
+- **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
 - **Benutzername** : Ihr Benutzername auf dem Markt.
 - **Passwort** : Ihr Marktpasswort.
-- **[Backup cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes besteht).
-- **[Backup cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
-- **[Backup cloud] Fréquence backup full** : Häufigkeit der vollständigen Cloud-Sicherung. Eine vollständige Sicherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun.
+- **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes besteht).
+- **[Backup Cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
+- **[Backup Cloud] Häufigkeit der vollständigen Sicherung** : Häufigkeit der vollständigen Cloud-Sicherung. Eine vollständige Sicherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun.
 
 #### Samba
 
