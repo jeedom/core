@@ -359,11 +359,7 @@ try {
 
 				foreach ($histories as $history) {
 					$info_history = array();
-					if($groupingType != ''){
-						$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000 - 1;
-					}else{
-						$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000;
-					}
+					$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000;
 					if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly']) {
 						$value = $history->getValue();
 					} else {
