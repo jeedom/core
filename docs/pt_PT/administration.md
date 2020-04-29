@@ -152,7 +152,7 @@
 > ****
 >
 >  **Mostrar estatísticas sobre os widgets** . .
-> :..
+> a méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir [ici](https://fr.wikipedia..
 
 ### Empurrão
 
@@ -315,12 +315,12 @@
 
 . Atenção : .
 
-- **** : :.
+- **** :  du Mercado.(https://www.Jeedom.com/market.
 - **Nomee de Usuário** : .
 - **Senha** : .
-- **[Backup cloud] Nome** : .
-- **[Backup cloud] Senha** : . . .
-- **[Backup cloud] Fréquence backup full** : . . .
+- **** : .
+- **** : . . .
+- **** : . . .
 
 #### 
 

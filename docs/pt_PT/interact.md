@@ -177,7 +177,7 @@
 
 ### Exclusão regexp
 
-:.. .
+Il est possible de créer des [Regexp](https://fr.wikipedia.. .
 
  :
 - ".
@@ -220,9 +220,9 @@
 
  :
 
-- <http:>
-- <https:>
-- <https:>
+- <http://www.commentcamarche.ne/contents/585-javascript-l-obje-regexp>
+- <https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressãos-regulieres>
+- <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-e-mysql/les-expressãos-regulieres-partie-1-2>
 
 ### 
 

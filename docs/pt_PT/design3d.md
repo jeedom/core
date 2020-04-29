@@ -12,7 +12,7 @@
 
 > ****
 >
-> . :.
+> . Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 . ". .
 

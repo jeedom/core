@@ -68,7 +68,7 @@ The history page gives access to some additional options
 
 #### Calculated history
 
-Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \ * absolute value… see PHP documentation for certain functions).
+Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
 Ex :
 abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Living space \] \ [Hygrometry \] \ [Temperature \] *)
 

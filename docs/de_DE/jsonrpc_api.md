@@ -732,7 +732,7 @@ JSON-API-Beispiele
 =================
 
 Hier ist ein Beispiel für die Verwendung der API. Für das folgende Beispiel
-Ich benutze [diese PHP-Klasse] (https://github.com/Jeedom/core/blob/stable/core/class/jsonrpcClient.class.php)
+j'utilise [cette classe php](https://github.com/Jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 Dies vereinfacht die Verwendung der API.
 
 Abrufen der ObjektListee :
