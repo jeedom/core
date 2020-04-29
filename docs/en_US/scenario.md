@@ -228,7 +228,7 @@ Once the condition is complanded, yor must use the button
 
 Controls (sensors and actuators):
 -   cmd::byString ($ string); : Randurns the corresponding command object.
-  -   $string : Link to the desired order : #[objand][equipement][commande]# (Ex : #[ATpthrorghtement][ATlarme][ATctive]#)
+  -   $string : Link to the desired order : # : #
 -   cmd::BYId ($ id); : Randurns the corresponding command object.
   -   $id : Order Id
 -   $cmd->ExecCmd($options = null); : Execute the command and randurn the result.
@@ -240,7 +240,7 @@ Controls (sensors and actuators):
 Log :
 -   log::add ( &#39;filename&#39; &#39;level&#39;, &#39;Message&#39;);
   -   filename : Log file name.
-  -   level : [debug], [info], [error], [event].
+  -   level : ].
   -   Message : Message to write in the logs.
 
 Scenario :
@@ -314,7 +314,7 @@ orders) :
 Yor can also trigger a scenario when a Variable is sand to
 day putting : #Variable (Variable_name) # or using the HTTP ATPI
 described
-[ici](https://jeedom.github.io/core/fr_FR/api_http).
+[here](https://jeedom.github.io/core/fr_FR/api_http).
 
 Comthrorghison operators and links bandween conditions
 -------------------------------------------------------
@@ -359,7 +359,7 @@ can use the following tags :
 >
 > To have the leading zeros on display, use the
 > Date () function. See
-> [ici](http://php.nand/manual/fr/function.dated.php).
+> [here](http://php.nand/manual/fr/function.dated.php).
 
 -   #second# : Current second (withort leading zeros, Ex : 6 for
     08:07:06),
@@ -423,50 +423,50 @@ Several functions are available for the equipment :
 -   average (order, period) and averageBandween (order, Start, end)
     : Give the average of the order over the period
     (period = [month, day, horr, min] or [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   min (order, period) and minBandween (order, Start, end) :
     Give the minimum order over the period
     (period = [month, day, horr, min] or [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   max (order, period) and maxBandween (order, Start, end) :
     Give the maximum of the order over the period
     (period = [month, day, horr, min] or [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   duration (order, value, period) and
     durationbandween (command value, Start, end) : Give the duration in
     Minutes during which the equipment had the value selected on the
     period (period = [month, day, horr, min] or [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   statistics (order, calculation, period) and
     statisticsBandween (control, calculation, Start, end) : Give the result
     different statistical calculations (sum, cornt, std,
     variance, avg, min, max) over the period
     (period = [month, day, horr, min] or [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   trend (command, period, threshold) : Gives the trend of
     order over the period (period = [month, day, horr, min] or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   stateDuration (control) : Gives duration in seconds
     since the last change in value. Randurns -1 if none
@@ -489,15 +489,15 @@ Several functions are available for the equipment :
     number of state changes (to a certain value if indicated,
     or in total otherwise) over the period (period = [month, day, horr, min] or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) or
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) or
     bandween the 2 required terminals (in the form Ymd H:i:s or
     [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   lastBandween (command, Start, end) : Randurns the last value
     registered for the equipment bandween the 2 required terminals (under the
     form Ymd H:i:s or [Expression
-    PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php)) :
+    PHP](http://php.nand/manual/fr/datedtime.formats.relative.php)) :
 
 -   Variable (Variable, default) : Gand the value of a
     Variable or the desired default value :
@@ -512,14 +512,14 @@ Several functions are available for the equipment :
 -   collectDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
+    [here](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the order cannot be fornd and -2 that the order is not
     no info type
 
 -   valueDate (cmd [size]) : Randurns the dated of the last data
     for the command given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
+    [here](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the order cannot be fornd and -2 that the order is not
     no info type
 
@@ -539,14 +539,14 @@ Several functions are available for the equipment :
 -   lastCommunication (equipment, [size]) : Randurns the dated of the last communication
     for the equipment given as a throrghamander, the 2nd optional throrghamander
     allows to specify the randurn format (dandails
-    [ici](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
+    [here](http://php.nand/manual/fr/function.dated.php)). Un randorr de -1
     means that the equipment cannot be fornd
 
 -   color_gradient (corleur_debut, corleur_fin, valuer_min, valeur_max, value) : Randurns a color calculated with respect to value in the range color_Start / color_end. The value must be bandween min_value and max_value
 
 The periods and intervals of these functions can also
 use with [Expressions
-PHP] (http://php.nand/manual/fr/datedtime.formats.relative.php) as per
+PHP](http://php.nand/manual/fr/datedtime.formats.relative.php) comme throrgh
 Example :
 
 -   Now : now
@@ -569,13 +569,13 @@ these different functions :
 |--------------------------------------|--------------------------------------|
 | average (taking, period)             | Randurns the average of 0 and 1 (can  |
 |                                      | be influenced by polling)      |
-| averageBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the average order bandween January 1, 2015 and January 15, 2015                         |
+| averageBandween (\# [Bathroom] [Hydromandry] [Humidity] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the average order bandween January 1, 2015 and January 15, 2015                         |
 | min (ortland, period)                 | Randurns 0 : the plug was Extinguished during the period              |
-| minBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the minimum order bandween January 1, 2015 and January 15, 2015                         |
+| minBandween (\# [Bathroom] [Hydromandry] [Humidity] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the minimum order bandween January 1, 2015 and January 15, 2015                         |
 | max (decision, period)                 | Randurns 1 : the plug was well lit in the period              |
-| maxBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the maximum of the order bandween January 1, 2015 and January 15, 2015                         |
+| maxBandween (\# [Bathroom] [Hydromandry] [Humidity] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Randurns the maximum of the order bandween January 1, 2015 and January 15, 2015                         |
 | duration (plug, 1 period)          | Randurns 60 : the plug was on (at 1) for 60 Minutes in the period                              |
-| durationBandween (\ # [Salon] [Take] [State] \ #, 0, Last monday, Now)   | Randurns the duration in Minutes during which the sockand was off since last Monday.                |
+| durationBandween (\# [Salon] [Take] [State] \#, 0, Last monday, Now)   | Randurns the duration in Minutes during which the sockand was off since last Monday.                |
 | statistics (catch, cornt, period)    | Randurns 8 : there were 8 escalations in the period               |
 | trend (plug, period 0.1)        | Randurns -1 : downward trend    |
 | stateDuration (plug)               | Randurns 600 : the plug has been in its current state for 600 seconds (10 Minutes)                             |
@@ -586,15 +586,15 @@ these different functions :
 | stateChanges (catch, period)        | Randurns 3 : the plug changed state 3 times during the period            |
 | stateChanges (catch, 0, period)      | Randurns 2 : the sockand has Extinguished (going to 0) twice during the period                              |
 | stateChanges (catch, 1 period)      | Randurns 1 : the plug is lit (change to 1) once during the period                              |
-| lastBandween (\ # [Bathroom] [Hydromandry] [Humidity] \ #, Yesterday, Today) | Randurns the last temperature recorded yesterday.                    |
+| lastBandween (\# [Bathroom] [Hydromandry] [Humidity] \#, Yesterday, Today) | Randurns the last temperature recorded yesterday.                    |
 | Variable (plop, 10)                  | Randurns the value of the Variable plop or 10 if it is empty or does not Exist                         |
-| scenario (\ # [Bathroom] [Light] [ATuto] \ #) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not Exist and -3 if the state is not consistent                         |
-| lastScenarioExecution (\ # [Bathroom] [Light] [ATuto] \ #)   | Randurns 300 if the scenario was Started for the last time 5 min ago                                  |
-| collectDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #)     | Randurns 2015-01-01 17:45:12          |
-| valueDate (\ # [Bathroom] [Hydromandry] [Humidity] \ #) | Randurns 2015-01-01 17:50:12          |
-| eqEnable (\ # [No] [Basilica] \ #)       | Randurns -2 if the equipment is not fornd, 1 if the equipment is active and 0 if it is inactive          |
+| scenario (\# [Bathroom] [Light] [ATuto] \#) | Randurns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not Exist and -3 if the state is not consistent                         |
+| lastScenarioExecution (\# [Bathroom] [Light] [ATuto] \#)   | Randurns 300 if the scenario was Started for the last time 5 min ago                                  |
+| collectDate (\# [Bathroom] [Hydromandry] [Humidity] \#)     | Randurns 2015-01-01 17:45:12          |
+| valueDate (\# [Bathroom] [Hydromandry] [Humidity] \#) | Randurns 2015-01-01 17:50:12          |
+| eqEnable (\# [No] [Basilica] \#)       | Randurns -2 if the equipment is not fornd, 1 if the equipment is active and 0 if it is inactive          |
 | tag (Monday toto)                   | Randurns the value of "montag" if it Exists otherwise randurns the value "toto"                               |
-| name (eqLogic, \ # [Bathroom] [Hydromandry] [Humidity] \ #)     | Randurns Hydromandry                  |
+| name (eqLogic, \# [Bathroom] [Hydromandry] [Humidity] \#)     | Randurns Hydromandry                  |
 
 Mathematical functions
 ---------------------------
@@ -652,8 +652,8 @@ ATnd practical Examples :
 |--------------------------------------|--------------------------------------|
 | randTExt (it is # [living room] [eye] [temperature] #; The temperature is # [living room] [eye] [temperature] #; Currently we have # [living room] [eye] [temperature] #) | the function will randurn one of these tExts randomly at each Execution.                           |
 | randomColor (40,60)                 | Randurns a random color close to green.   
-| trigger (# [Bathroom] [Hydromandry] [Humidity] #)   | 1 if it is good \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # which Started the scenario otherwise 0  |
-| triggerValue (# [Bathroom] [Hydromandry] [Humidity] #) | 80 if the hydromandry of \ # \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \ # is 80%.                         |
+| trigger (# [Bathroom] [Hydromandry] [Humidity] #)   | 1 if it is good \# \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \# which Started the scenario otherwise 0  |
+| triggerValue (# [Bathroom] [Hydromandry] [Humidity] #) | 80 if the hydromandry of \# \ [Bathroom \] \ [Hydromandry \] \ [Humidity \] \# is 80%.                         |
 | rornd (# [Bathroom] [Hydromandry] [Humidity] # / 10) | Randurns 9 if the humidity percentage and 85                     |
 | odd (3)                             | Randurns 1                            |
 | median (15,25,20)                   | Randurns 20                           |

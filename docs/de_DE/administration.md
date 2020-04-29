@@ -328,10 +328,10 @@ Druck
 
 **Globale Druck-URDies** : ermöglicht das Hinzufügen einer URDies zum Aufrufen im Falle von
 Bistellaktualisierung. Wenne können die folgenden Tags verwenden :
-**\ #Value \#** für den Bistellwert, **\ #Cmd \ _name \#** für die
-Befehlsname, **\ #Cmd \ _id \#** für die eindeutige Kennung des
-bistellen, **\ #Humanname \#** für den vollständigen Namen der Bistellung (z :
-\ # \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \ #), `# eq_name #` für den Namen des Geräts
+**\#Value \#** für den Bistellwert, **\#Cmd \ _name \#** für die
+Befehlsname, **\#Cmd \ _id \#** für die eindeutige Kennung des
+bistellen, **\#Humanname \#** für den vollständigen Namen der Bistellung (z :
+\# \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \#), `# eq_name #` für den Namen des Geräts
 
 Abdeckung 
 =====
@@ -723,11 +723,11 @@ abgelehnt, wenn Wenne eine andere Einzahlung als diese verwenden.
 
 -   **Passwort** : Ihr Marktpasswort.
 
--   **[Backup cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes bisteht)
+-   **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes bisteht)
 
--   **[Backup cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Wenne dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie kannst du deine Freiheit nicht wiederherstellen
+-   **[Backup Cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Wenne dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie kannst du deine Freiheit nicht wiederherstellen
 
--   **[Backup cloud] Fréquence backup full** : Häufigkeit der vollständigen Cloud-Wenncherung. Eine vollständige Wenncherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun
+-   **[Backup Cloud] Häufigkeit der vollständigen Wenncherung** : Häufigkeit der vollständigen Cloud-Wenncherung. Eine vollständige Wenncherung ist länger als eine inkrementelle (die nur die Unterschiede sendet).. Es wird empfohlen, 1 pro Monat zu tun
 
 ### Samba 
 

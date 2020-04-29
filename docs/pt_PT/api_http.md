@@ -68,7 +68,7 @@ Ordem.
 > ****
 >
 > 
-> :
+> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Interação 
 ===========
@@ -100,7 +100,7 @@ Mensagem
 
 -   **Mensagem** : 
     . 
-    :
+    outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Objeto 
 =====

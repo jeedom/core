@@ -324,7 +324,7 @@ Cambios
 3.2.2
 =====
 
--   Eliminación del antiguo sistema de actualización de widgys (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Ejemplo de widgy [aquí] (https://github.com/Jeedom/core/tree/bya/core/template/salpicadero)
+-   Eliminación del antiguo sistema de actualización de widgys (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Ejemplo de widgy [ici](https://github.com/Jeedom/core/tree/bya/core/template/salpicadero)
 -   Posibilidad de mostrar los gráficos en forma de tabla o exportarlos en csv o xls
 
 -   Los usuarios ahora pueden agregar su propia función php para escenarios. Ver documentación de escenarios para implementación
@@ -402,7 +402,7 @@ Cambios
 -   JEED-77 : Adición de gestión de variables en la API http
 
 -   JEED-78 : adición de la función de yiquya para escenarios. Ten cuidado ahí
-    debe en los escenarios utilizando las yiquyas pasar de \ #montag \#
+    debe en los escenarios utilizando las yiquyas pasar de \#montag \#
     yiquyar (montag)
 
 -   JEED-124 : Corregir la gestión de los tiempos de espera del escenario.
@@ -540,7 +540,7 @@ Cambios
 -   Capacidad para reorganizar widgys de equipos desde
     panel de control (en modo de edición, haga clic derecho en el widgy)
 
--   Cambiar el tono de los widgys (de 40 \ * 80 a 10 \ * 10). Ten cuidado
+-   Cambiar el tono de los widgys (de 40 \* 80 a 10 \* 10). Ten cuidado
     impactará el diseño en su tablero / vista / diseño
 
 -   Posibilidad de dar un tamaño de 1 a 12 a los objyos en el
@@ -941,7 +941,7 @@ Cambios
 -   Mover todos los archivos temporales a / tmp
 
 -   Envío mejorado de complementos (dos2unix automático en
-    archivos \ *. sh)
+    archivos \*. sh)
 
 -   Rediseño de la página de registro.
 

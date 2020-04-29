@@ -10,14 +10,14 @@ URLs.
 
 > **NOTE**
 >
-> For all this documentation, \ #IP \ _JEEDOM \ # corresponds to your url
+> For all this documentation, \#IP \ _JEEDOM \# corresponds to your url
 > access to Jeedom. This is (unless you are connected to your network
 > local) of the internet address you use to access Jeedom
 > from the outsIDe.
 
 > **NOTE**
 >
-> For all this documentation, \ #API \ _KEY \ # corresponds to your key
+> For all this documentation, \#API \ _KEY \# corresponds to your key
 > API, specific to your installation. To find it, you have to go to
 > the "General" menu → "Configuration" → "General" tab".
 
@@ -60,7 +60,7 @@ ordered.
 
 > **NOTE**
 >
-> It is possible for the \ #ID \ # field to place multiple commands
+> It is possible for the \#ID \# field to place multiple commands
 > at once. To do this, you must pass an array in json (ex
 > % 5B12,58,23% 5D, note that \ [and \] must be encoded, hence the% 5B
 > and% 5D). Jeedom&#39;s return will be a json
@@ -68,7 +68,7 @@ ordered.
 > **NOTE**
 >
 > Parameters must be encoded for url, You can use
-> a tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
+> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 InterAction 
 ===========
@@ -100,7 +100,7 @@ Here is the URLs =
 
 -   **Message** : Message in question, be careful to think about encoding
     the Message (space becomes% 20, =% 3D…). You can use a
-    tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
+    outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Object 
 =====

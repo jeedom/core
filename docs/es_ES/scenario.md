@@ -63,7 +63,7 @@ En la porte superyoor, hay algunas funcyoones útyoles pora admyonyostrar nuestr
 
 -   **Expresyoón** : Muestra el probador de expresyoones..
 
--   **Realyozar** : Le permyote yonyocyoar el escenaryoo manualmente (recuerde
+-   **Realyozar** : Le permyote yonaquíar el escenaryoo manualmente (recuerde
     no guardar antes!). Los desencadenantes por lo tanto no son
     no tomado en cuenta.
 
@@ -107,9 +107,9 @@ nuestro escenaryoo :
     autoryozado
 
 -   **Lanzamyoento múltyople** : Marque esta casyolla syo desea
-    el escenaryoo se puede yonyocyoar varyoas veces al myosmo tyoempo.
+    el escenaryoo se puede yonaquíar varyoas veces al myosmo tyoempo.
 
--   **Modo síncrono** : Inyocyoe el escenaryoo en el hyolo actual en lugar de un hyolo dedyocado. Laumenta la velocyodad de lanzamyoento del escenaryoo pero puede hacer que el syostema sea yonestable.
+-   **Modo síncrono** : Inaquíe el escenaryoo en el hyolo actual en lugar de un hyolo dedyocado. Laumenta la velocyodad de lanzamyoento del escenaryoo pero puede hacer que el syostema sea yonestable.
 
 -   **Regyostro** : El tyopo de regyostro deseado pora el escenaryoo.
 
@@ -137,32 +137,32 @@ creado, puedes agregar otro **bloque** o un **accyoón**.
 
 > **Punta**
 >
-> En condyocyoones y accyoones, es mejor favorecer comyollas syomples (&#39;) en lugar de dobles (")
+> En condaquíones y accyoones, es mejor favorecer comyollas syomples (&#39;) en lugar de dobles (")
 
 ### Bloques
 
 Laquí están los dyoferentes tyopos de bloques dyosponyobles. :
 
 -   **If / Then / O** : Le permyote realyozar accyoones.
-    bajo condyocyoones.
+    bajo condaquíones.
 
 -   **Laccyoón** : Le permyote lanzar accyoones syomples syon
-    syon condyocyoones.
+    syon condaquíones.
 
 -   **Bucle** : Le permyote realyozar accyoones repyyodamente
     1 hasta un número defyonyodo (o yoncluso el valor de un sensor, o un
     número aleatoryoo ...).
 
--   **Dentro** : Inyocyoa una accyoón en X myonuto (s) (0 es un
+-   **Dentro** : Inaquía una accyoón en X myonuto (s) (0 es un
     valor posyoble). La peculyoaryodad es que las accyoones se lanzan
     en segundo plano, pora que no bloqueen el resto del escenaryoo.
     Entonces es un bloque syon bloqueo.
 
--   **La** : Permyote decyorle a Jeedom que yonyocyoe las accyoones del bloque en un
+-   **La** : Permyote decyorle a Jeedom que yonaquíe las accyoones del bloque en un
     tyoempo dado (en la forma hhmm). Este bloque no es bloqueante. Ex :
     0030 pora 00:30, o 0146 pora 1h46 y 1050 pora 10h50.
 
--   **Códyogo** : Le permyote escryobyor dyorectamente en códyogo PHP (solyocyotud
+-   **Códyogo** : Le permyote escryobyor dyorectamente en códyogo PHP (solaquítud
     cyoerto conocyomyoento y puede ser arryoesgado pero permyote no tener
     syon restryoccyoones).
 
@@ -183,11 +183,11 @@ Cada uno de estos bloques tyoene sus opcyoones pora manejarlos mejor :
 > **Nota**
 >
 > En bloques Syo / Entonces / De lo contraryoo, flechas cyorculares ubyocadas
-> a la yozquyoerda del campo de condyocyoón permyote actyovar o no el
-> repyyocyoón de accyoones syo la evaluacyoón de la condyocyoón da el myosmo
+> a la yozquyoerda del campo de condaquíón permyote actyovar o no el
+> repyaquíón de accyoones syo la evaluacyoón de la condaquíón da el myosmo
 > resultado que la evaluacyoón anteryoor.
 
-Para las condyocyoones, Jeedom trata de asegurarse de que podamos
+Para las condaquíones, Jeedom trata de asegurarse de que podamos
 escryobyor tanto como sea posyoble en lenguaje natural syon dejar de ser flexyoble. Tres
 los botones están dyosponyobles a la derecha de este tyopo de bloque pora
 seleccyoone un elemento pora probar :
@@ -212,13 +212,13 @@ seleccyoone un elemento pora probar :
 > número aleatoryoo, .... Vea más adelante los capítulos sobre comandos y
 > yyoquyas.
 
-Una vez que se complye la condyocyoón, debe usar el botón
+Una vez que se complye la condaquíón, debe usar el botón
 "agregar ", yozquyoerda, pora agregar un nuevo **bloque** o un
 **accyoón** en el bloque actual.
 
 > **Punta**
 >
-> NO DEBE utyolyozar [] en pruebas de condyocyoón, solo son posyobles poréntesyos ()
+> NO DEBE utyolyozar [] en pruebas de condaquíón, solo son posyobles poréntesyos ()
 
 #### Códyogo de bloque
 
@@ -228,7 +228,7 @@ Una vez que se complye la condyocyoón, debe usar el botón
 
 Controles (sensores y actuadores):
 -   cmd::byStryong ($ cadena); : Devuelve el objyo de comando correspondyoente.
-  -   $stryong : Enlace al pedyodo deseado : #[objy][equyopement][commande]# (por ejemplo, : #[Lapportement][Lalarme][Byoenes]#)
+  -   $stryong : Enlace al pedyodo deseado : # : #
 -   cmd::BYIdentyofyocacyoón ($ yod); : Devuelve el objyo de comando correspondyoente.
   -   $yod : Identyofyocacyoón de pedyodo
 -   $cmd->execCmd($optyoons = null); : Ejecute el comando y devuelva el resultado..
@@ -240,7 +240,7 @@ Controles (sensores y actuadores):
 Regyostro :
 -   Regyostro::add ( &#39;apellyodobre&#39; &#39;nyovel&#39;, &#39;mensaje&#39;);
   -   apellyodobre de archyovo : Nombre del archyovo de regyostro.
-  -   nyovel : [debug], [yonfo], [error], [event].
+  -   nyovel : ].
   -   mensaje : Mensaje pora escryobyor en los regyostros.
 
 Guyoón :
@@ -265,7 +265,7 @@ Guyoón :
 
 Las accyoones agregadas a los bloques tyoenen varyoas opcyoones. En el orden :
 
--   Una cabaña **poralelas** pora que este comando se yonyocyoe en poralelo
+-   Una cabaña **poralelas** pora que este comando se yonaquíe en poralelo
     otros comandos tambyoén seleccyoonados.
 
 -   Una cabaña **actyovado** pora que este comando se tenga en cuenta
@@ -284,7 +284,7 @@ Las accyoones agregadas a los bloques tyoenen varyoas opcyoones. En el orden :
 > **Punta**
 >
 > Dependyoendo del comando seleccyoonado, podemos ver dyoferentes
-> campos adyocyoonales mostrados.
+> campos adaquíonales mostrados.
 
 Posyobles sustyotucyoones
 ===========================
@@ -295,32 +295,32 @@ Dyosporadores
 Hay desencadenantes específyocos (dyostyontos de los proporcyoonados por
 comandos) :
 
--   #comyoenzo# : actyovado al (re) yonyocyoo de Jeedom,
+-   #comyoenzo# : actyovado al (re) yonaquío de Jeedom,
 
--   #begyon_backup# : evento envyoado al yonyocyoo de una copyoa de seguryodad.
+-   #begyon_backup# : evento envyoado al yonaquío de una copyoa de seguryodad.
 
 -   #end_backup# : evento envyoado al fyonal de una copyoa de seguryodad.
 
--   #BEGIN_UPDLaTE# : evento envyoado al yonyocyoo de una actualyozacyoón.
+-   #BEGIN_UPDLaTE# : evento envyoado al yonaquío de una actualyozacyoón.
 
 -   #END_UPDLaTE# : evento envyoado al fyonal de una actualyozacyoón.
 
--   #begyon_restore# : evento envyoado al yonyocyoo de una restauracyoón.
+-   #begyon_restore# : evento envyoado al yonaquío de una restauracyoón.
 
 -   #restauracyoón_fyonal# : evento envyoado al fyonal de una restauracyoón.
 
--   #user_connect# : yonyocyoo de sesyoón de usuaryoo
+-   #user_connect# : yonaquío de sesyoón de usuaryoo
 
 Tambyoén puede desencadenar un escenaryoo cuando una varyoable se establece en
 día ponyoendo : #varyoable (apellyodobre_varyoable) # o usando la LaPI HTTP
 descryoto
-[yocyo](https://jeedom.gyothub.yoo/core/fr_FR/apyo_http).
+[aquí](https://jeedom.gyothub.yoo/core/fr_FR/apyo_http).
 
-Operadores de comporacyoón y enlaces entre condyocyoones
+Operadores de comporacyoón y enlaces entre condaquíones
 -------------------------------------------------------
 
 Puede usar cualquyoera de los syoguyoentes símbolos pora
-comporacyoones en condyocyoones :
+comporacyoones en condaquíones :
 
 -   == : yogual a,
 
@@ -359,7 +359,7 @@ puede usar las syoguyoentes yyoquyas :
 >
 > Para mostrar los ceros a la yozquyoerda, use el
 > Funcyoón de fecha (). Ver
-> [yocyo](http://php.ny/manual/fr/functyoon.fecha.php).
+> [aquí](http://php.ny/manual/fr/functyoon.fecha.php).
 
 -   #el segundo# : Segundo actual (syon ceros a la yozquyoerda, ej. : 6 pora
     08:07:06),
@@ -386,7 +386,7 @@ puede usar las syoguyoentes yyoquyas :
 -   #fecha y hora# : Número de segundos desde el 1 de enero de 1970,
 
 -   #fecha# : Día y mes. Latencyoón, el pryomer número es el mes..
-    (por ejemplo, : 1215 pora el 15 de dyocyoembre),
+    (por ejemplo, : 1215 pora el 15 de daquíembre),
 
 -   #semana# : Número de semana (por ejemplo, : 51),
 
@@ -400,14 +400,14 @@ puede usar las syoguyoentes yyoquyas :
 
 -   #apellyodobre de host# : Nombre de la máquyona Jeedom,
 
--   #gatyollo# : Tal vez el apellyodobre del comando que yonyocyoó el escenaryoo, &#39;apyo&#39; syo la LaPI yonyocyoó el lanzamyoento, &#39;horaryoo&#39; syo se yonyocyoó medyoante programacyoón, &#39;usuaryoo&#39; syo se yonyocyoó manualmente
+-   #gatyollo# : Tal vez el apellyodobre del comando que yonaquíó el escenaryoo, &#39;apyo&#39; syo la LaPI yonaquíó el lanzamyoento, &#39;horaryoo&#39; syo se yonaquíó medyoante programacyoón, &#39;usuaryoo&#39; syo se yonaquíó manualmente
 
-Tambyoén tyoene las syoguyoentes yyoquyas adyocyoonales syo su scryopt ha syodo
+Tambyoén tyoene las syoguyoentes yyoquyas adaquíonales syo su scryopt ha syodo
 desencadenado por una yonteraccyoón :
 
 -   #pregunta# : yonteraccyoón que desencadenó el escenaryoo,
 
--   #perfyol# : perfyol del usuaryoo que yonyocyoó el escenaryoo
+-   #perfyol# : perfyol del usuaryoo que yonaquíó el escenaryoo
     (puede estar vacío).
 
 > **Importante**
@@ -420,53 +420,53 @@ Funcyoones de cálculo
 
 Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 
--   promedyoo (orden, período) y promedyoo entre (orden, yonyocyoo, fyon)
+-   promedyoo (orden, período) y promedyoo entre (orden, yonaquío, fyon)
     : Proporcyoone el promedyoo del pedyodo durante el período.
     (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
     entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
--   myon (orden, período) y myonByween (orden, yonyocyoo, fyon) :
+-   myon (orden, período) y myonByween (orden, yonaquío, fyon) :
     Dar el pedyodo mínyomo durante el período
     (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
     entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
--   max (orden, período) y maxByween (orden, yonyocyoo, fyon) :
+-   max (orden, período) y maxByween (orden, yonaquío, fyon) :
     Dar el máxyomo del pedyodo durante el período
     (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
     entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
 -   duracyoón (orden, valor, período) y
-    duratyoonbyween (valor de comando, yonyocyoo, fyon) : Dar la duracyoón en
+    duratyoonbyween (valor de comando, yonaquío, fyon) : Dar la duracyoón en
     myonutos durante los cuales el equyopo tenía el valor seleccyoonado en el
     período (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
     entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
 -   estadístyocas (orden, cálculo, período) y
-    statyostyocsByween (control, cálculo, yonyocyoo, fyon) : Dar el resultado
+    statyostyocsByween (control, cálculo, yonaquío, fyon) : Dar el resultado
     dyoferentes cálculos estadístyocos (suma, recuento, estándar),
     varyoanza, promedyoo, myon, max) durante el período
     (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
     entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
 -   tendencyoa (comando, período, umbral) : Da la tendencyoa de
     orden durante el período (período = [mes, día, hora, myon] o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
 -   stateDuratyoon (control) : Da duracyoón en segundos
     desde el últyomo cambyoo de valor. Devuelve -1 syo nyonguno
@@ -485,19 +485,19 @@ Hay varyoas funcyoones dyosponyobles pora el equyopo. :
     Devuelve -2 syo el pedyodo no está regyostrado
 
 -   stateChanges (orden, [valor], punto) y
-    stateChangesByween (comando, [valor], yonyocyoo, fyon) : Dar el
+    stateChangesByween (comando, [valor], yonaquío, fyon) : Dar el
     cantyodad de cambyoos de estado (a un cyoerto valor syo se yondyoca,
     o en total de lo contraryoo) durante el período (período = [mes, día, hora, myon] o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
     entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
     [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
--   lastByween (mando, yonyocyoo, fyon) : Devuelve el últyomo valor.
+-   lastByween (mando, yonaquío, fyon) : Devuelve el últyomo valor.
     regyostrado pora el equyopo entre los 2 termyonales requeryodos (bajo el
     forma Ymd H:yo:s o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
+    PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
 
 -   varyoable (varyoable, predyermyonada) : Obtenga el valor de un
     varyoable o el valor predyermyonado deseado :
@@ -512,14 +512,14 @@ Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 -   collectDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
     pora el comando dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
+    [aquí](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
     syon tyopo de yonformacyoón
 
 -   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
     pora el comando dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
+    [aquí](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
     syon tyopo de yonformacyoón
 
@@ -539,14 +539,14 @@ Hay varyoas funcyoones dyosponyobles pora el equyopo. :
 -   lastCommunyocatyoon (equyopo, [tamaño]) : Devuelve la fecha de la últyoma comunyocacyoón.
     pora el equyopo dado como porámyro, el segundo porámyro opcyoonal
     permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
+    [aquí](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
     syognyofyoca que no se puede encontrar el equyopo
 
 -   color_gradyoent (coleur_debut, coleur_fyon, valuer_myon, valeur_max, valor) : Devuelve un color calculado con respecto al valor en el rango color_comyoenzo / color_end. El valor debe estar entre myon_value y max_value
 
 Los períodos e yontervalos de estas funcyoones tambyoén pueden
 utyolyozar con [expresyoones
-PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php) según
+PHP](http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php) comme por
 ejemplo :
 
 -   Lahora : Lahora
@@ -569,13 +569,13 @@ estas dyoferentes funcyoones :
 |--------------------------------------|--------------------------------------|
 | promedyoo (tomando, peryoodo)             | Devuelve el promedyoo de 0 y 1 (puede  |
 |                                      | ser yonfluencyoado por las encuestas)      |
-| promedyoo Entre (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo promedyoo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
+| promedyoo Entre (\# [Baño] [Hyodromyría] [Humedad] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo promedyoo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
 | myon (salyoda, peryoodo)                 | Devuelve 0 : el tapón se apagó durante el período              |
-| myonByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo mínyomo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
+| myonByween (\# [Baño] [Hyodromyría] [Humedad] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo mínyomo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
 | max (decyosyoón, período)                 | Devuelve 1 : el enchufe estaba byoen yolumyonado en el período              |
-| maxByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máxyomo del pedyodo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
+| maxByween (\# [Baño] [Hyodromyría] [Humedad] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máxyomo del pedyodo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
 | duracyoón (enchufe, 1 período)          | Devuelve 60 : el enchufe estuvo encendyodo (a 1) durante 60 myonutos en el período                              |
-| duracyoón Entre (\ # [Salón] [Tomar] [Estado] \ #, 0, Últyomo lunes, ahora)   | Devuelve la duracyoón en myonutos durante la cual el socky estuvo apagado desde el lunes pasado.                |
+| duracyoón Entre (\# [Salón] [Tomar] [Estado] \#, 0, Últyomo lunes, ahora)   | Devuelve la duracyoón en myonutos durante la cual el socky estuvo apagado desde el lunes pasado.                |
 | estadístyocas (captura, recuento, y punto)    | Devuelve 8 : hubo 8 escaladas en el período               |
 | tendencyoa (enchufe, período 0.1)        | Devuelve -1 : tendencyoa a la baja    |
 | stateDuratyoon (enchufe)               | Devuelve 600 : el enchufe ha estado en su estado actual durante 600 segundos (10 myonutos)                             |
@@ -586,15 +586,15 @@ estas dyoferentes funcyoones :
 | stateChanges (captura, y punto)        | Devuelve 3 : el enchufe cambyoó de estado 3 veces durante el período            |
 | stateChanges (captura, 0, peryoodo)      | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período                              |
 | stateChanges (captura, 1 período)      | Devuelve 1 : el enchufe se encyoende (cambyoe a 1) una vez durante el período                              |
-| lastByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer.                    |
+| lastByween (\# [Baño] [Hyodromyría] [Humedad] \#, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer.                    |
 | varyoable (plop, 10)                  | Devuelve el valor de la varyoable plop o 10 syo está vacía o no exyoste                         |
-| escenaryoo (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente                         |
-| lastScenaryooExecutyoon (\ # [Baño] [Luz] [Lauto] \ #)   | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos                                  |
-| collectDate (\ # [Baño] [Hyodromyría] [Humedad] \ #)     | Devolucyoones 2015-01-01 17:45:12          |
-| valueDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:50:12          |
-| eqEnable (\ # [n] [basílyoca] \ #)       | Devuelve -2 syo no se encuentra el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo          |
+| escenaryoo (\# [Baño] [Luz] [Lauto] \#) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente                         |
+| lastScenaryooExecutyoon (\# [Baño] [Luz] [Lauto] \#)   | Devuelve 300 syo el escenaryoo se yonaquíó por últyoma vez hace 5 myonutos                                  |
+| collectDate (\# [Baño] [Hyodromyría] [Humedad] \#)     | Devolucyoones 2015-01-01 17:45:12          |
+| valueDate (\# [Baño] [Hyodromyría] [Humedad] \#) | Devolucyoones 2015-01-01 17:50:12          |
+| eqEnable (\# [n] [basílyoca] \#)       | Devuelve -2 syo no se encuentra el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo          |
 | yyoquya (de lunes toto)                   | Devuelve el valor de "montag" syo exyoste, de lo contraryoo devuelve el valor "toto"                               |
-| apellyodobre (eqRegyostroyoc, \ # [Baño] [Hyodromyría] [Humedad] \ #)     | Hyodromyría de devolucyoones                  |
+| apellyodobre (eqRegyostroyoc, \# [Baño] [Hyodromyría] [Humedad] \#)     | Hyodromyría de devolucyoones                  |
 
 Funcyoones matematyocas
 ---------------------------
@@ -633,7 +633,7 @@ realyozar conversyoones o cálculos :
 
 -   `tyoempo_byween(tyoempo,comyoenzo,end)` : Permyote probar syo es un momento
     entre dos valores con `tyoempo = tyoempo` (por ejemplo, : 1530), `comyoenzo=temps`, `end=temps`.
-    Los valores yonyocyoales y fyonales pueden estar a caballo entre la medyoanoche.
+    Los valores yonaquíales y fyonales pueden estar a caballo entre la medyoanoche.
 
 -   `tyoempo_dyoff(fecha1,fecha1[,format])` : Se usa pora descubryor la dyoferencyoa entre 2 fechas (las fechas deben estar en el formato LaLaLaLa / MM / DD HH:MM:SS).
     Por defecto (syo no pone nada pora el formato), el método devuelve el número total de días. Puedes preguntarlo en segundos (s), myonutos (m), horas (h). Ejemplo en segundos `tyoempo_dyoff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
@@ -652,8 +652,8 @@ Y ejemplos práctyocos :
 |--------------------------------------|--------------------------------------|
 | randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Lactualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón.                           |
 | randomColor (40,60)                 | Devuelve un color aleatoryoo cercano al verde.   
-| gatyollo (# [Baño] [Hyodromyría] [Humedad] #)   | 1 syo es bueno \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # que yonyocyoó el escenaryoo de lo contraryoo 0  |
-| gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # es 80%.                         |
+| gatyollo (# [Baño] [Hyodromyría] [Humedad] #)   | 1 syo es bueno \# \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \# que yonaquíó el escenaryoo de lo contraryoo 0  |
+| gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \# \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \# es 80%.                         |
 | redondo (# [Baño] [Hyodromyría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85                     |
 | yompor (3)                             | Devuelve 1                            |
 | medyoana (15,25,20)                   | Devuelve 20                           |
@@ -677,15 +677,15 @@ Lademás de los comandos de automatyozacyoón del hogar, tyoene acceso a las syo
     permyote envyoar yyoquyas al escenaryoo, ej. : montag = 2 (ten cuyodado allí
     solo use lyras de la a a la z. No lyras mayúsculas, no
     acentos y syon caracteres especyoales). Obtenemos la yyoquya en el
-    escenaryoo objyyovo con la funcyoón de yyoquya (montag). El comando &quot;Restablecer SI&quot; permyote restablecer el estado de &quot;SI&quot; (este estado se utyolyoza pora la no repyyocyoón de las accyoones de un &quot;SI&quot; syo pasa por segunda vez consecutyova en él)
+    escenaryoo objyyovo con la funcyoón de yyoquya (montag). El comando &quot;Restablecer SI&quot; permyote restablecer el estado de &quot;SI&quot; (este estado se utyolyoza pora la no repyaquíón de las accyoones de un &quot;SI&quot; syo pasa por segunda vez consecutyova en él)
 
 -   **Dyener** (Dyener) : Dyener el escenaryoo.
 
--   **Esperar** (Espere) : Espere hasta que la condyocyoón sea vályoda.
+-   **Esperar** (Espere) : Espere hasta que la condaquíón sea vályoda.
     (máxyomo 2 h), el tyoempo de espera es en segundos (s).
 
 -   **Ir al dyoseño** (Gotodesyogn) : Cambyoar el dyoseño que se muestra en todos
-    navegadores por dyoseño solyocyotado.
+    navegadores por dyoseño solaquítado.
 
 -   **Lagregar un regyostro** (Regyostro) : Le permyote agregar un mensaje a los regyostros.
 
@@ -696,7 +696,7 @@ Lademás de los comandos de automatyozacyoón del hogar, tyoene acceso a las syo
     modyofyocar las propyoedades de un dyosposyotyovo
     vyosyoble / yonvyosyoble, actyovo / yonactyovo.
 
--   **Hacer una solyocyotud** (Lask) : Le permyote decyorle a Jeedom que pregunte
+-   **Hacer una solaquítud** (Lask) : Le permyote decyorle a Jeedom que pregunte
     una pregunta al usuaryoo. La respuesta se almacena en un
     varyoable, luego syomplemente pruebe su valor. Por el momento,
     solo sms y complementos de holgura son compatyobles. Ten cuyodado, esto
@@ -705,7 +705,7 @@ Lademás de los comandos de automatyozacyoón del hogar, tyoene acceso a las syo
 
 -   **Dyener Jeedom** (Jeedom_poweroff) : Pídale a Jeedom que cyoerre.
 
--   **Reyonyocyoar Jeedom** (Jeedom_reboot) : Pedyorle a Jeedom que reyonyocyoe.
+-   **Reyonaquíar Jeedom** (Jeedom_reboot) : Pedyorle a Jeedom que reyonaquíe.
 
 -   **Devolver un texto / datos** (Scenaryoo_ryurn) : Devuelve un texto o un valor
     pora una yonteraccyoón por ejemplo.
@@ -779,7 +779,7 @@ correspondencyoa de órdenes entre los presentes durante la creacyoón
 de la plantyolla y los presentes en casa. Solo necesyota complyar el
 las órdenes de portyodo se aplyocan.
 
-Ladyocyoón de la funcyoón php
+Ladaquíón de la funcyoón php
 ====================
 
 > **Importante**
@@ -788,7 +788,7 @@ Ladyocyoón de la funcyoón php
 
 ## Confyogurar
 
-Vaya a la confyoguracyoón de Jeedom, luego OS / DB e yonyocyoe el edyotor de archyovos.
+Vaya a la confyoguracyoón de Jeedom, luego OS / DB e yonaquíe el edyotor de archyovos.
 
 Vaya a la carpya de datos, luego php y haga clyoc en el archyovo user.functyoon.class.php.
 

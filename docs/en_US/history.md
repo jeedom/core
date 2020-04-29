@@ -117,7 +117,7 @@ Calculated history
 ------------------
 
 Used to display a curve based on a calculation on several
-command (you can pretty much do everything, + - / \ * absolute value… see
+command (you can pretty much do everything, + - / \* absolute value… see
 PHP documentation for certain functions). Ex :
 abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Space of
 Life \] \ [Humidity \] \ [Temperature \] *)

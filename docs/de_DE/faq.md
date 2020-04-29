@@ -65,12 +65,12 @@ Können wir Jeedom in https setzen? ?
 ================================
 
 Ja : E.ntweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-Verwenden Sie einfach das [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). E.ntweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). E.ntweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 So verbinden Sie sich in SSH ?
 =============================
 
-Hier ist eine [Dokumentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), Teil &quot;Unter Windows : Kitt". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), Teil &quot;Unter Windows : Kitt". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
 - Benutzername : "root ", Passwort : "Mjeedom96"
 - Benutzername : "jeedom ", Passwort : "Mjeedom96"
@@ -179,7 +179,7 @@ Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch üb
 
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
 Wenn es nach einer Neuinstallation weiterhin besteht, ist es ratsam,
-Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation] (https://jeedom.github.io / documents / howto / de_FR / recovery_mode_jeedom_smart) für den Smart
+Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Voici la [documentation](https://jeedom.github.io / documents / howto / de_FR / recovery_mode_jeedom_smart) für den Smart
 
 Mein Szenario hört nicht mehr auf 
 =================================
@@ -253,7 +253,7 @@ Die Warnungen werden nach Priorität klassifiziert, von der am wenigsten wichtig
 Mein Jeedom zeigt auch nach 1 Stunde permanent &quot;Start&quot; an ? 
 =====================================
 
-Wenn Sie DIY sind und unter Debian 9 oder höher arbeiten, überprüfen Sie, ob Apache nicht aktualisiert wurde und daher privateTmp zurückgegeben wird (sichtbar durch Ausführen von `ls / tmp`), und prüfen Sie, ob dies der Fall ist ein privater \ * Apache-Ordner). Wenn das der Fall ist, müssen Sie tun :
+Wenn Sie DIY sind und unter Debian 9 oder höher arbeiten, überprüfen Sie, ob Apache nicht aktualisiert wurde und daher privateTmp zurückgegeben wird (sichtbar durch Ausführen von `ls / tmp`), und prüfen Sie, ob dies der Fall ist ein privater \* Apache-Ordner). Wenn das der Fall ist, müssen Sie tun :
 
 ``` 
 mkdir /etc/systemd/system/apache2.service.d

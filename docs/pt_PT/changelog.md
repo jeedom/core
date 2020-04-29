@@ -324,7 +324,7 @@
 
 =====
 
--   . . :
+-   . .  de widge [ici](https://github.com/Jeedom/core/tree/bea/core/template/Painel de instrumentos)
 -   
 
 -   . 

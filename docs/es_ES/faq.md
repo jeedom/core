@@ -65,12 +65,12 @@ recomienda modificar estos identificadores para mayor seguridad.
 ================================
 
 Sí : O tienes una fuente de alimentación o más, en este caso
-solo use el [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
+suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 Cómo conectarse en SSH ?
 =============================
 
-Aquí hay una [documentación] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : Masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : Masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
 - Nombre de usuario : "root ", contraseña : "Mjeedom96"
 - Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"
@@ -179,7 +179,7 @@ Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a 
 
 Este error no se debe a Jeedom, sino a un problema con el sistema..
 Si persiste después de una reinstalación, es recomendable
-ver con el servicio postventa para una inquietud de hardware. Aquí está la [documentación] (https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) para Smart
+ver con el servicio postventa para una inquietud de hardware. Voici la [documentation](https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) para Smart
 
 Mi escenario ya no se detiene 
 =================================
@@ -253,7 +253,7 @@ Las alertas se clasifican por prioridad, desde las menos importantes hasta las m
 My Jeedom muestra permanentemente &quot;Iniciando&quot; incluso después de 1 hora ? 
 =====================================
 
-Si es DIY y tiene Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \ * Apache). Si es el caso, es necesario hacer :
+Si es DIY y tiene Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \* Apache). Si es el caso, es necesario hacer :
 
 ``` 
 mkdir /etc/systemd/system/apache2.service.d

@@ -324,7 +324,7 @@ Changelog
 3.2.2
 =====
 
--   Removal of the old widgand update system (deprecated since version 3.0). Attention if your widgand does not use the new system there is a risk of malfunction (duplication of it in this case). Example widgand [here] (https://github.com/Jeedom/core/tree/banda/core/template/Dashboard)
+-   Removal of the old widgand update system (deprecated since version 3.0). Attention if your widgand does not use the new system there is a risk of malfunction (duplication of it in this case). Example de widgand [ici](https://github.com/Jeedom/core/tree/banda/core/template/Dashboard)
 -   Possibility to display the graphs in table form or to export these in csv or xls
 
 -   Users can now add their own php function for scenarios. See documentation of scenarios for implementation
@@ -402,7 +402,7 @@ Changelog
 -   JEED-77 : Addition of Variable management in the http API
 
 -   JEED-78 : addition of the tag function for scenarios. Be careful there
-    must in the scenarios using the tags pass from \ #montag \#
+    must in the scenarios using the tags pass from \#montag \#
     to tag (montag)
 
 -   JEED-124 : Correct the management of scenario timeouts
@@ -540,7 +540,7 @@ Changelog
 -   Ability to rearrange equipment widgands from
     Dashboard (in edit mode right click on the widgand)
 
--   Change the pitch of widgands (from 40 \ * 80 to 10 \ * 10). Be careful
+-   Change the pitch of widgands (from 40 \* 80 to 10 \* 10). Be careful
     will impact the layout on your Dashboard / view / design
 
 -   Possibility to give a size from 1 to 12 to objects on the
@@ -941,7 +941,7 @@ Changelog
 -   Move all temporary files to / tmp
 
 -   Improved sending of plugins (automatic dos2unix on
-    files \ *. sh)
+    files \*. sh)
 
 -   Redesign of the log page
 

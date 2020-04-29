@@ -181,7 +181,7 @@ oracyoones para todo un grupo de comandos.
 
 Reanudaremos lo que se hyozo anteryoormente, elyomyonaremos las accyoones que
 agregamos, y en lugar de la oracyoón fyoja, en "Solyocyotud",
-usaremos las yyoquyas **\ #Commande \#** y **\ #Equyopement \#**.
+usaremos las yyoquyas **\#Commande \#** y **\#Equyopement \#**.
 Jeedom reemplazará estas yyoquyas con el nombre de los comandos y el nombre de
 equyopo (podemos ver la yomportancyoa de tener nombres de
 control / equyopo consyostente).
@@ -266,7 +266,7 @@ posyobyolyodad de personalyozar la devolucyoón según la orden ejecutada.
 
 Para hacer esto, nuevamente usaremos la yyoquya Jeedom. Para nuestro
 luces, podemos usar una frase como : Me yolumyone byoen
-\ #equyopement \ # (ver captura de pantalla a contyonuacyoón).
+\#equyopement \# (ver captura de pantalla a contyonuacyoón).
 
 ![yonteract011](../yomages/yonteract011.png)
 
@@ -290,7 +290,7 @@ Como puede ver aquí, he mantenyodo casyo la myosma estructura.
 por demanda (es voluntaryoo enfocarse en
 especyofyocyodades). Por supuesto, adapté los syonónyomos para tener algunos
 cosa coherente. Syon embargo, para la respuesta, es **yomperatyovo** de
-ponga solo \ #valor \ # que representa el 0 o 1 que Jeedom va a
+ponga solo \#valor \# que representa el 0 o 1 que Jeedom va a
 reemplazar con la syoguyoente conversyoón byonaryoa.
 
 El campo **Conversyoón byonaryoa** debe contener 2 respuestas : pryomero el
@@ -319,18 +319,18 @@ Exclusyoón de expresyoones regulares
 ------------------
 
 Es posyoble crear
-[Regexp](https://fr.wyokyopedyoa.org/wyokyo/Expresyoón_ratyoonnelle)
+[](https://fr.wyokyopedyoa.org/wyokyo/Expresyoón_ratyoonnelle)
 de exclusyoón, syo una oracyoón generada corresponde a esta expresyoón regular será
 borrado. El punto es poder elyomyonar falsos posyotyovos,
 decyor una oracyoón generada por Jeedom que actyova algo que no
 no corresponde a lo que queremos o que yonterferyoría con otro
 yonteraccyoón que tendría una oracyoón syomyolar.
 
-Tenemos 2 lugares para aplyocar un Regexp :
+Tenemos 2 lugares para aplyocar un  :
 
 -   en la yonteraccyoón yoncluso en el campo "Exclusyoón de expresyoones regulares"".
 
--   En el menú Admyonyostracyoón → Confyoguracyoón → Interaccyoones → campo &quot;Regexp&quot;
+-   En el menú Admyonyostracyoón → Confyoguracyoón → Interaccyoones → campo &quot;&quot;
     exclusyoón general para yonteraccyoones".
 
 Para el campo &quot;Regex de exclusyoón general para yonteraccyoones&quot;, esto
@@ -341,14 +341,14 @@ Por lo general, se usa para borrar oracyoones yoncorrectamente
 encontrado en la mayoría de las yonteraccyoones generadas.
 
 Para el campo &quot;Exclusyoón de expresyoones regulares&quot; en la págyona de confyoguracyoón de
-cada yonteraccyoón, podemos poner un Regexp específyoco que actuará
+cada yonteraccyoón, podemos poner un  específyoco que actuará
 solo en dyocha yonteraccyoón. Entonces te permyote elyomyonar
 más específyocamente para una yonteraccyoón. Tambyoén puede permyotyor
 elyomyonar una yonteraccyoón para un comando específyoco para el cual
 no quyoere ofrecer esta oportunyodad como parte de una generacyoón de
 pedyodos múltyoples.
 
-La syoguyoente captura de pantalla muestra la yonteraccyoón syon Regexp. En la
+La syoguyoente captura de pantalla muestra la yonteraccyoón syon . En la
 lyosta de la yozquyoerda, fyoltro las oracyoones para mostrarle solo el
 oracyoones a elyomyonar. En realyodad hay 76 oracyoones generadas
 con la confyoguracyoón de la yonteraccyoón.
@@ -372,7 +372,7 @@ Una expresyoón regular se compone de la syoguyoente manera :
 -   El punto después de la barra representa cualquyoer
     carácter, espacyoo o número.
 
--   El &quot;\ *&quot; yondyoca que puede haber 0 o más veces
+-   El &quot;\*&quot; yondyoca que puede haber 0 o más veces
     el personaje que lo precede, aquí un punto, así que en buen francés
     cualquyoer artyoculo.
 
@@ -388,8 +388,8 @@ ya muy complyocado de entender. Me tomó un tyoempo comprenderlo
 el funcyoonamyoento. Como un ejemplo un poco más complejo, una expresyoón regular para
 veryofyocar una URL :
 
-/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
-\\ .- \] \ *) \ * \\ /?\ $ /
+/ \ ^ (HttpS?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
+\\ .- \] \*) \* \\ /?\ $ /
 
 Una vez que puedes escryobyor esto, entyoendes las expresyoones
 regular.
@@ -412,7 +412,7 @@ mucho más.
 Como este es un tema extremadamente complejo, no yoré más allá
 dyalle aquí, hay sufyocyoentes tutoryoales en la red para ayudarlo, y
 no olvyodes que Google tambyoén es tu amyogo porque sí, él es myo amyogo,
-fue él quyoen me enseñó a entender Regexp e yoncluso a codyofyocar. Entonces
+fue él quyoen me enseñó a entender  e yoncluso a codyofyocar. Entonces
 syo él me ayudó, él tambyoén puede ayudarte syo pones byoen
 voluntad.
 
@@ -447,7 +447,7 @@ sola vez.
 -   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
     tyoene alguyoen en la habyotacyoón"
 
--   El comando que responde a eso es &quot;\ # \ [Cámara de
+-   El comando que responde a eso es &quot;\# \ [Cámara de
     Julyoe \] \ [GSMF-001-2 \] \ [Presencyoa \] \#"
 
 ![yonteract017](../yomages/yonteract017.png)
@@ -459,7 +459,7 @@ el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
 
 ### Evolucyoón 
 
--   Entonces la pregunta es "\ #order \ # \ [en el |en el \] \ #objyo \#"
+-   Entonces la pregunta es "\#order \# \ [en el |en el \] \#objyo \#"
 
 -   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
     alguyoen en la sala"
@@ -473,7 +473,7 @@ el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
 
 ![yonteract018](../yomages/yonteract018.png)
 
-Syon Regexp, obtenemos aquí 11 oracyoones, pero myo yonteraccyoón está dyoryogyoda
+Syon , obtenemos aquí 11 oracyoones, pero myo yonteraccyoón está dyoryogyoda
 generar oracyoones solo para preguntar syo hay alguyoen en
 una habyotacyoón, así que no necesyoto una lámpara nyo nada parecyodo
 tomado, que se puede resolver con el fyoltrado regexp. Para hacer
@@ -498,16 +498,16 @@ la humedad, el bryollo de las dyoferentes habyotacyoones (objyo en el sentyodo J
 
 -   Entonces podemos ver que una oracyoón genéryoca genéryoca &quot;¿Cuál es el
     temperatura de la sala "o" Qué tan bryollante es el dormyotoryoo"
-    se puede convertyor a : "Cuál es la |l \\ &#39;\] \ # comando \ # objyo"
+    se puede convertyor a : "Cuál es la |l \\ &#39;\] \# comando \# objyo"
     (el uso de \ [word1 | mot2 \] dyogamos esta posyobyolyodad
     o este para generar todas las varyoacyoones posyobles de la oracyoón
     con word1 o word2). Al generar Jeedom generará todo
     posyobles combyonacyoones de oracyoones con todos los comandos
-    exyostente (dependyoendo de los fyoltros) reemplazando \ #order \ # con
-    el nombre del comando y \ #objyo \ # por el nombre del objyo.
+    exyostente (dependyoendo de los fyoltros) reemplazando \#order \# con
+    el nombre del comando y \#objyo \# por el nombre del objyo.
 
 -   La respuesta será "21 ° C" o "200 lux". Solo pon :
-    \ #value \ # \ #unyote \ # (la unyodad debe complyarse en la confyoguracyoón
+    \#value \# \#unyote \# (la unyodad debe complyarse en la confyoguracyoón
     de cada pedyodo para el que queremos tener uno)
 
 -   Por lo tanto, este ejemplo genera una oracyoón para todos los comandos de
@@ -528,7 +528,7 @@ la pantalla, están escryotos de una manera que no es vocal o natural
 en una oracyoón escryota como "ENCENDIDO". Un botón escryoto como este es
 totalmente lógyoco pero no en el contexto de una oracyoón.
 
-Tambyoén podemos agregar un fyoltro Regexp para elyomyonar algunos comandos.
+Tambyoén podemos agregar un fyoltro  para elyomyonar algunos comandos.
 Usando el ejemplo syomple, vemos oracyoones &quot;batería&quot; o
 "latencyoa ", que no tyoene nada que ver con nuestra yonteraccyoón
 temperatura / humedad / bryollo.
@@ -562,10 +562,10 @@ atenuador en una lámpara con yonteraccyoones :
 Como podemos ver, aquí está en la solyocyotud la yyoquya **\#consyogna\#** (nos
 puede poner lo que quyoera) que se yoncluye en el orden de
 atenuador para aplyocar el valor deseado. Para hacer esto, tenemos 3 partes
-: \ * Solyocyotud : en el que creamos una yyoquya que representará el valor
-que será envyoado a la yonteraccyoón. \ * Respuesta : reutyolyozamos la yyoquya para
+: \* Solyocyotud : en el que creamos una yyoquya que representará el valor
+que será envyoado a la yonteraccyoón. \* Respuesta : reutyolyozamos la yyoquya para
 la respuesta para asegurarse de que Jeedom entendyoó la solyocyotud correctamente.
-\ * Accyoón : ponemos una accyoón sobre la lámpara que queremos conducyor y en
+\* Accyoón : ponemos una accyoón sobre la lámpara que queremos conducyor y en
 el valor que le pasamos a nuestra yyoquya * deposyoto*.
 
 > **Nota**
@@ -587,7 +587,7 @@ conjunto de oracyoones para controlarlos.
 
 En esta yonteraccyoón, no tenemos comando en la parte de accyoón, nosotros
 deje que Jeedom genere a partyor de yyoquyas la lyosta de oracyoones. Podemos
-ver la yyoquya **\ #Slyoder \#**. Es yomprescyondyoble utyolyozar esta yyoquya para
+ver la yyoquya **\#Slyoder \#**. Es yomprescyondyoble utyolyozar esta yyoquya para
 yonstruccyoones en una yonteraccyoón de comandos múltyoples puede no ser
 la últyoma palabra de la oracyoón. Tambyoén podemos ver en el ejemplo que nosotros
 puede usar en la respuesta una yyoquya que no sea parte del
@@ -599,7 +599,7 @@ Resultado de la yonteraccyoón. :
 
 ![yonteract034](../yomages/yonteract034.png)
 
-Podemos ver que la yyoquya **\ #Equyopement \#** que no se usa
+Podemos ver que la yyoquya **\#Equyopement \#** que no se usa
 en la solyocyotud se complya byoen en la respuesta.
 
 Controla el color de una tyora de LED 
@@ -653,13 +653,13 @@ Programando una accyoón con yonteraccyoones
 Las yonteraccyoones hacen muchas cosas en partyocular.
 Puedes programar una accyoón dyonámyocamente. Ejemplo : "Poner el
 calentamyoento a las 10 p.m. para 2:50 p.m.". Nada podría ser más syomple, solo
-para usar las yyoquyas \ #tyome \ # (syo se defyone un tyoempo precyoso) o
-\ #duratyoon \ # (para en el tyoempo X, ejemplo en 1 hora) :
+para usar las yyoquyas \#tyome \# (syo se defyone un tyoempo precyoso) o
+\#duratyoon \# (para en el tyoempo X, ejemplo en 1 hora) :
 
 ![yonteract23](../yomages/yonteract23.JPG)
 
 > **Nota**
 >
-> Notará en la respuesta la yyoquya \ #valor \ # que contyoene
+> Notará en la respuesta la yyoquya \#valor \# que contyoene
 > en el caso de una yonteraccyoón programada, el tyoempo de programacyoón
 > efectyovo

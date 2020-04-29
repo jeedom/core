@@ -65,12 +65,12 @@ Can we put Jeedom in https ?
 ================================
 
 Yes : Either you have a power pack or more, in this case you
-just use the [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
+suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 How to connect in SSH ?
 =============================
 
-Here is a [documentation] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
 - Username : "root ", password : "Mjeedom96"
 - Username : "jeedom ", password : "Mjeedom96"
@@ -179,7 +179,7 @@ I no longer have access to Jeedom, neither through the web interface nor in cons
 
 This error is not due to Jeedom, but to a problem with the system.
 If it persists following a reinstallation, it is advisable to
-see with the after-sales service for a hardware concern. Here is the [documentation] (https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) for the Smart
+see with the after-sales service for a hardware concern. Voici la [documentation](https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) for the Smart
 
 My scenario does not stop any more 
 =================================
@@ -253,7 +253,7 @@ The alerts are classified by priority, from the least important to the most impo
 My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ? 
 =====================================
 
-If you are DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \ * Apache folder). If it is the case it is necessary to do :
+If you are DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If it is the case it is necessary to do :
 
 ``` 
 mkdir /etc/systemd/system/apache2.service.d

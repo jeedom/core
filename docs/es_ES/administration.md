@@ -328,10 +328,10 @@ Empuje
 
 **URLa de inserción global** : permite agregar una URLa para llamar en caso de
 orden de actualización. Puedes usar las siguientes etiquetas :
-**\ #Value \#** por el valor del pedido, **\ #Cmd \ _name \#** para el
-nombre del comando, **\ #Cmd \ _id \#** para el identificador único de la
-orden, **\ #Humanname \#** para el nombre completo de la orden (ej. :
-\ # \ [Baño \] \ [Hidrometría \] \ [Humedad \] \ #), `# eq_name #` para el nombre del equipo
+**\#Value \#** por el valor del pedido, **\#Cmd \ _name \#** para el
+nombre del comando, **\#Cmd \ _id \#** para el identificador único de la
+orden, **\#Humanname \#** para el nombre completo de la orden (ej. :
+\# \ [Baño \] \ [Hidrometría \] \ [Humedad \] \#), `# eq_name #` para el nombre del equipo
 
 Cubierta 
 =====
@@ -723,11 +723,11 @@ rechazado si utiliza un depósito diferente a ese.
 
 -   **Contraseña** : Tu contraseña de mercado.
 
--   **[Backup cloud] Apellido** : Número de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos)
+-   **Número [nube de respaldo]** : Número de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos)
 
--   **[Backup cloud] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella no podrás resaurar tu Jeedom
+-   **[Copia de seguridad de la nube] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella no podrás resaurar tu Jeedom
 
--   **[Backup cloud] Fréquence backup full** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes
+-   **[Nube de respaldo] Frecuencia de respaldo completo** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes
 
 ### Samba 
 

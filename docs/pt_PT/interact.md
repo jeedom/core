@@ -319,7 +319,7 @@ Exclusão regexp
 ------------------
 
 
-[Regexp](https://fr.wkpeda.org/wk/Expressão_ratonnelle
+[](https://fr.wkpeda.org/wk/Expressão_ratonnelle
 
 
 
@@ -418,11 +418,11 @@ Exclusão regexp
 
  :
 
--   <http:>
+-   <http://www.commentcamarche.ne/contents/585-javascrpt-l-obje-regexp>
 
--   <https:>
+-   <https://www.lucaswllems.com/fr/artcles/25/tutorel-pour-matrser-les-expressãos-reguleres>
 
--   <https:>
+-   <https://openclassrooms.com/courses/concevez-votre-ste-web-avec-php-e-mysql/les-expressãos-reguleres-parte-1-2>
 
  
 ------------------------------------------

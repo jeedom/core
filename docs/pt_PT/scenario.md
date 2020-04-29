@@ -12,7 +12,7 @@ Gestão
 
  :
 
--   **àdconar** : . 
+-   **àdaquonar** : . 
     .
 
 -   **Desatvar cenáros** : .
@@ -44,13 +44,13 @@ Meus scrpts
 
 
 . 
-ENTÃO ****  **àdconar** 
+ENTÃO ****  **àdaquonar** 
 .
 
 
 =====================
 
- **àdconar**, 
+ **àdaquonar**, 
 .
 
 :
@@ -228,7 +228,7 @@ por ****, .
 
 :
 -   :: : .
-  -   $strng :  : #[obje][equpement][commande]#  : #[àpportement][àlarme][àtvos]#)
+  -   $strng :  : # : #
 -   :: : .
   -   $d : 
 -   $->ecCmd($optons = null); : .
@@ -240,7 +240,7 @@ por ****, .
  :
 -   ::
   -    : .
-  -    : [debug], [nfo], [error], [event].
+  -    : ].
   -   Mensagem : .
 
 Cenas :
@@ -314,7 +314,7 @@ Cenas :
 
  : #
 
-[c](https://jeedom.gthub.o/core/fr_FR/ap_http).
+[aqu](https://jeedom.gthub.o/core/fr_FR/ap_http).
 
 
 -------------------------------------------------------
@@ -359,7 +359,7 @@ Cenas :
 >
 > 
 > 
-> [c](http:.
+> [aqu](http://php.ne/manual/fr/functon.Data.php).
 
 -   ## :  : 
     08:07:,
@@ -423,50 +423,50 @@ Cenas :
 -   
     : 
     
-    :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) 
     ::
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -    :
     
     
-    :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) 
     ::
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -    :
     
     
-    :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) 
     ::
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -   
      : 
     
     
-    :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) 
     ::
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -   
      : 
     ,
     
     
-    :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) 
     ::
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -    : 
     
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -    : 
     . 
@@ -489,15 +489,15 @@ Cenas :
     ,
     
     [presson
-    :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) 
     ::
     [presson
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -    : 
     
     ::
-    : :
+    PHP](http://php.ne/manual/fr/Data.formats.relatve.php)) :
 
 -    : 
      :
@@ -512,14 +512,14 @@ Cenas :
 -    : 
     
     
-    [c](http:). Un rer de -1
+    [aqu](http://php.ne/manual/fr/functon.Data.php)). Un rer de -1
     
     
 
 -    : 
     
     
-    [c](http:). Un rer de -1
+    [aqu](http://php.ne/manual/fr/functon.Data.php)). Un rer de -1
     
     
 
@@ -539,14 +539,14 @@ Cenas :
 -    : 
     
     
-    [c](http:). Un rer de -1
+    [aqu](http://php.ne/manual/fr/functon.Data.php)). Un rer de -1
     
 
 -    : . 
 
 
 
-:
+PHP](http://php.ne/manual/fr/Data.formats.relatve.php) comme por
  :
 
 -    : 
@@ -687,7 +687,7 @@ Cenas :
 -   **Va o projeo**  : 
     .
 
--   **àdconar um regstro**  : Permte adconar uma mensagem no .
+-   **àdaquonar um regstro**  : Permte adaquonar uma mensagem no .
 
 -   **Crar mensagem**  : 
     .

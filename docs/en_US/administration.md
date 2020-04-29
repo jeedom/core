@@ -328,10 +328,10 @@ Push
 
 **Global push URThes** : allows to add a URThes to call in case of
 order update. You can use the following tags :
-**\ #Value \#** for the order value, **\ #Cmd \ _name \#** for the
-command name, **\ #Cmd \ _id \#** for the unique identifier of the
-ordered, **\ #Humanname \#** for the full name of the order (ex :
-\ # \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \ #), `# eq_name #` for the name of the equipment
+**\#Value \#** for the order value, **\#Cmd \ _name \#** for the
+command name, **\#Cmd \ _id \#** for the unique identifier of the
+ordered, **\#Humanname \#** for the full name of the order (ex :
+\# \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \#), `# eq_name #` for the name of the equipment
 
 Hidden 
 =====
@@ -723,11 +723,11 @@ refused if you use a different deposit than this one.
 
 -   **Password** : Your Market password.
 
--   **[Backup cloud] Theast name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
+-   **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
 
 -   **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will not be able to rEastore your Jeedom
 
--   **[Backup cloud] Fréquence backup full** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month
+-   **[Backup cloud] Frequency full backup** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month
 
 ### Samba 
 

@@ -10,14 +10,14 @@ URLs.
 
 > **Notiz**
 >
-> Bei all dieser Dokumentation entspricht \ #IP \ _JEEDOM \ # Ihrer URLs
+> Bei all dieser Dokumentation entspricht \#IP \ _JEEDOM \# Ihrer URLs
 > Zugang zu Jeedom. Dies ist (es sei denn, Sie sind mit Ihrem Netzwerk verbunden
 > lokal) der Internetadresse, mit der Sie auf Jeedom zugreifen
 > von außen.
 
 > **Notiz**
 >
-> Für all diese Dokumentationen entspricht \ #API \ _KEY \ # Ihrem Schlüssel
+> Für all diese Dokumentationen entspricht \#API \ _KEY \# Ihrem Schlüssel
 > API, spezifisch für Ihre Installation. Um es zu finden, müssen Sie zu gehen
 > das Menü "Allgemein" → Registerkarte "Konfiguration" → "Allgemein"".
 
@@ -60,7 +60,7 @@ bestellen.
 
 > **Notiz**
 >
-> Im Feld \ #ID \ # können mehrere Befehle platziert werden
+> Im Feld \#ID \# können mehrere Befehle platziert werden
 > plötzlich. Dazu müssen Sie ein Array in json übergeben (z
 > % 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B
 > und% 5D). Jeedoms Rückkehr wird ein Json sein
@@ -68,7 +68,7 @@ bestellen.
 > **Notiz**
 >
 > Parameter müssen für die URLs codiert sein, die Sie verwenden können
-> ein Werkzeug, [hier] (https://meyerweb.com/eric/tools/dencoder/)
+> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Interaktion 
 ===========
@@ -100,7 +100,7 @@ Hier ist die URLs =
 
 -   **Nachricht** : Nachricht in Frage, denken Sie sorgfältig über die Codierung
     die Nachricht (Leerzeichen wird% 20, =% 3D…). Sie können eine verwenden
-    Tool, [hier] (https://meyerweb.com/eric/tools/dencoder/)
+    outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Objekt 
 =====

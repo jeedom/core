@@ -374,7 +374,7 @@ Registerkarte Konfiguration
 
 -   **Berechnung und Rundung**
 
-    -   **Berechnungsformel (\. #Wert \. # für den Wert)** : Ermöglicht
+    -   **Berechnungsformel (\.#Wert \.# für den Wert)** : Ermöglicht
         Machen Sie eine Operation mit dem Wert der Bestellung vor
         Jeedom Behandlung, Beispiel : `#value# - 0.2` zu verschanzen
         0,2 (Offset an einem Temperatursensor).

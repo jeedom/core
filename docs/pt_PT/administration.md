@@ -320,7 +320,7 @@ Histórico
 > 
 > . 
 > 
-> [ici](https:
+> [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s
 > .
 
 Empurrão 
@@ -723,11 +723,11 @@ Instalações
 
 -   **Senha** : .
 
--   **[Backup cloud] Nome** : 
+-   **** : 
 
--   **[Backup cloud] Senha** : . . 
+-   **** : . . 
 
--   **[Backup cloud] Fréquence backup full** : . . 
+-   **** : . . 
 
 ###  
 

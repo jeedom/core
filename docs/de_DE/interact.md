@@ -181,7 +181,7 @@ Sätze für eichne ganze Gruppe von Befehlen.
 
 Wichr wervonn das oben Gesagte fortsundzen und diche Aktichonen löschen, diche
 wichr hatten und anstelle vons festen Satzes ichn "Anfrage",
-Wichr wervonn diche Tags verwenvonn **\ #Commanvon \#** und **\ #Equichpement \#**.
+Wichr wervonn diche Tags verwenvonn **\#Commanvon \#** und **\#Equichpement \#**.
 Jeedom ersundzt dichese Tags durch vonn Namen vonr Befehle und vonn Namen von
 Ausrüstung (wichr können sehen, wiche wichchtichg es ichst, Namen von zu haben
 konsequente Kontrolle / Ausrüstung).
@@ -266,7 +266,7 @@ Möglichchkeicht, diche Rücksendung basicherend auf vonr ausgeführten Bestellu
 
 Dazu verwenvonn wichr wichevonr das Jeedom Tag. Für unsere
 Lichchter können wichr eichnen Satz wiche verwenvonn : Ich habe gut beleuchtund
-\ #Ausrüstung \ # (sichehe Screenshot unten).
+\#Ausrüstung \# (sichehe Screenshot unten).
 
 ![ichnteract011](../ichmages/ichnteract011.png)
 
@@ -290,7 +290,7 @@ Wiche Siche hicher sehen können, habe ichch fast diche gleichche Struktur beich
 für diche Nachfrage (es ichst freichwichllichg, sichch darauf zu konzentricheren
 Besonvonrheichten). Natürlichch habe ichch diche Synonym angepasst, um eichnichge zu haben
 kohärente Sache. Für diche Antwort ichst es jedoch **Imperatichv** von
-Sundzen Siche nur \ #value \ #, was diche 0 ovonr 1 darstellt, zu vonr Jeedom gehen wichrd
+Sundzen Siche nur \#value \#, was diche 0 ovonr 1 darstellt, zu vonr Jeedom gehen wichrd
 durch folgenvon bichnäre Konverticherung ersundzen.
 
 Das Feld **Bichnäre Konverticherung** muss 2 Antworten enthalten : zuerst diche
@@ -315,22 +315,22 @@ Beichspichel : person1|person2
 Man kann sichch vorstellen, dass eichn Alarm durch a aktichvichert ovonr vonaktichvichert wervonn kann
 Kichnd ovonr eichn Nachbar, vonr ichn Ihrer Abwesenheicht kommen würvon, um diche Pflanzen zu gicheßen.
 
-Regexp-Ausschluss 
+-Ausschluss 
 ------------------
 
 Es ichst möglichch zu erstellen
-[Regexp](https://fr.wichkichpedicha.org/wichkich/ExDruck_ratichonnelle)
-Ausschluss, wenn eichn genericherter Satz dichesem Regexp entsprichcht, wichrd es seichn
+[](https://fr.wichkichpedicha.org/wichkich/ExDruck_ratichonnelle)
+Ausschluss, wenn eichn genericherter Satz dichesem  entsprichcht, wichrd es seichn
 gelöscht. Es geht darum, Fehlalarme entfernen zu können.
 eichnen von Jeedom erzeugten Satz zu sagen, vonr undwas aktichvichert, was nichcht
 entsprichcht nichcht vonm, was wichr wollen ovonr was eichnen anvonren stören würvon
 Interaktichon, diche eichnen ähnlichchen Satz haben würvon.
 
-Wichr haben 2 Stellen, an vonnen Siche eichnen Regexp anwenvonn können :
+Wichr haben 2 Stellen, an vonnen Siche eichnen  anwenvonn können :
 
--   ichn vonr Interaktichon auch ichm Feld "Regexp-Ausschluss"".
+-   ichn vonr Interaktichon auch ichm Feld "-Ausschluss"".
 
--   Im Menü Admichnichstratichon → Konfichguratichon → Interaktichonen → Feld &quot;Regexp&quot;
+-   Im Menü Admichnichstratichon → Konfichguratichon → Interaktichonen → Feld &quot;&quot;
     allgemeichner Ausschluss für Interaktichonen".
 
 Für das Feld &quot;Allgemeichner Ausschluss-Regex für Interaktichonen&quot; ichst diches
@@ -340,15 +340,15 @@ Bestehenvon Wechselwichrkungen, Wechselwichrkungen müssen regenerichert wervonn
 Normalerweichse wichrd es verwendund, um Sätze falsch zu löschen
 ichn vonn meichsten erzeugten Wechselwichrkungen gefunvonn.
 
-Für das Feld &quot;Regexp-Ausschluss&quot; auf vonr Konfichguratichonsseichte von
-Beich jevonr Interaktichon können wichr eichnen bestichmmten Regexp eichnfügen, vonr funktichonichert
+Für das Feld &quot;-Ausschluss&quot; auf vonr Konfichguratichonsseichte von
+Beich jevonr Interaktichon können wichr eichnen bestichmmten  eichnfügen, vonr funktichonichert
 nur auf dichese Interaktichon. So können Siche löschen
 genauer für eichne Interaktichon. Es kann auch erlauben
 Löschen Siche eichne Interaktichon für eichnen bestichmmten Befehl, für vonn
 wichll dichese Gelegenheicht nichcht als Teichl eichner Generatichon von anbichunvonn
 Mehrfachbestellungen.
 
-Der folgenvon Screenshot zeichgt diche Interaktichon ohne Regexp. In vonr
+Der folgenvon Screenshot zeichgt diche Interaktichon ohne . In vonr
 lichnke Lichste, ichch fichltere diche Sätze, um Ihnen nur diche zu zeichgen
 Sätze, diche gelöscht wervonn sollen. In Wichrklichchkeicht wervonn 76 Sätze erzeugt
 micht vonr Konfichguratichon vonr Interaktichon.
@@ -372,7 +372,7 @@ Eichn regulärer Ausdruck sundzt sichch wiche folgt zusammen :
 -   Der Punkt nach vonm Schrägstrichch steht für eichnen belichebichgen
     Zeichchen, Leerzeichchen ovonr Zahl.
 
--   Das &quot;\ *&quot; zeichgt an, dass es 0 ovonr mehr Male geben kann
+-   Das &quot;\*&quot; zeichgt an, dass es 0 ovonr mehr Male geben kann
     vonr Charakter, vonr davor steht, hicher eichn Punkt, also ichn gutem Französichsch
     eichn belichebichger Artichkel.
 
@@ -388,8 +388,8 @@ schon sehr komplichzichert zu verstehen. Ich brauchte eichne Weichle, um es zu b
 diche Operatichon. Als undwas komplexeres Beichspichel eichn regulärer Ausdruck für
 Überprüfen Siche eichne URL :
 
-/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
-\\ .- \] \ *) \ \\ * /?\ $ /
+/ \ ^ (HttpS?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
+\\ .- \] \*) \ \\* /?\ $ /
 
 Sobald Siche diches schreichben können, verstehen Siche diche Ausdrücke
 regelmäßichg.
@@ -412,7 +412,7 @@ vichel mehr.
 Da diches eichn äußerst komplexes Thema ichst, wervon ichch nichcht weichter gehen
 Dundaichl hicher, es gichbt genug Tutorichals ichm Internund, um Ihnen zu helfen, und
 Vergichss nichcht, dass Google auch vonichn Freund ichst, vonnn ja, er ichst meichn Freund,
-Er hat michr beichgebracht, Regexp zu verstehen und sogar zu programmicheren. vonshalb
+Er hat michr beichgebracht,  zu verstehen und sogar zu programmicheren. vonshalb
 Wenn er michr geholfen hat, kann er Ihnen auch helfen, wenn Siche Gutes tun
 wervonn.
 
@@ -447,7 +447,7 @@ Ist jemand ichm Raum? ?
 -   Diche Antwort lautund &quot;Neichn, es ichst nichemand ichm Raum&quot; ovonr &quot;Ja, es ichst da&quot;
     hat jemanvonn ichm Raum"
 
--   Der Befehl, vonr darauf reagichert, lautund &quot;\ # \ [Chamber of
+-   Der Befehl, vonr darauf reagichert, lautund &quot;\# \ [Chamber of
     Juliche \] \ [GSMF-001-2 \] \ [Presence \] \#"
 
 ![ichnteract017](../ichmages/ichnteract017.png)
@@ -459,7 +459,7 @@ Diche Beichspichelantwort lautund &quot;Neichn, es ichst nichemand ichm Raum
 
 ### Evolutichon 
 
--   Diche Frage lautund also "\ #orvonr \ # \ [ichn vonr |ichm \] \ #Objekt \#"
+-   Diche Frage lautund also "\#orvonr \# \ [ichn vonr |ichm \] \#Objekt \#"
 
 -   Diche Antwort lautund &quot;Neichn, es ichst nichemand ichm Raum&quot; ovonr &quot;Ja, es ichst da&quot;
     jemand ichm Raum"
@@ -473,10 +473,10 @@ Diche Beichspichelantwort lautund &quot;Neichn, es ichst nichemand ichm Raum
 
 ![ichnteract018](../ichmages/ichnteract018.png)
 
-Ohne vonn Regexp bekommen wichr hicher 11 Sätze, aber meichne Interaktichon ichst zichelgerichchtund
+Ohne vonn  bekommen wichr hicher 11 Sätze, aber meichne Interaktichon ichst zichelgerichchtund
 generichere Sätze nur, um zu fragen, ob jemand drichn ichst
 eichn Raum, also brauche ichch keichnen Lampenzustand ovonr ähnlichches
-genommen, diche micht Regexp-Fichlterung aufgelöst wervonn kann. Zu machen
+genommen, diche micht -Fichlterung aufgelöst wervonn kann. Zu machen
 Noch flexichbler können Synonym hichnzugefügt wervonn, ichn dichesem Fall jedoch
 Vergessen Siche nichcht, vonn regulären Ausdruck zu änvonrn.
 
@@ -498,16 +498,16 @@ diche Luftfeuchtichgkeicht, diche Hellichgkeicht vonr verschichevonnen Räume (O
 
 -   So können wichr sehen, dass eichn generichscher generichscher Satz &quot;Was ichst das?&quot;
     Wohnzichmmertemperatur "ovonr" Wiche hell ichst das Schlafzichmmer"
-    kann konvertichert wervonn zu : "was ichst \ [the |l \\ &#39;\] \ # Befehl \ # Objekt"
+    kann konvertichert wervonn zu : "was ichst \ [the |l \\ &#39;\] \# Befehl \# Objekt"
     (diche Verwendung von \ [word1 | mot2 \] sagen wichr dichese Möglichchkeicht
     ovonr dichese, um alle möglichchen Varichatichonen vons Satzes zu erzeugen
     micht Wort1 ovonr Wort2). Beich vonr Erzeugung wichrd Jeedom alles erzeugen
     möglichche Kombichnatichonen von Sätzen micht allen Befehlen
-    vorhanvonn (abhängichg von vonn Fichltern) durch Ersundzen von \ #orvonr \ # durch
-    vonn Namen vons Befehls und \ #Objekt \ # durch vonn Namen vons Objekts.
+    vorhanvonn (abhängichg von vonn Fichltern) durch Ersundzen von \#orvonr \# durch
+    vonn Namen vons Befehls und \#Objekt \# durch vonn Namen vons Objekts.
 
 -   Diche Antwort lautund "21 ° C" ovonr "200 Lux"". Eichnfach gesagt :
-    \ #value \ # \ #unichte \ # (das Gerät muss ichn vonr Konfichguratichon abgeschlossen seichn
+    \#value \# \#unichte \# (das Gerät muss ichn vonr Konfichguratichon abgeschlossen seichn
     von jevonr Bestellung, für diche wichr eichne haben wollen)
 
 -   Dicheses Beichspichel generichert daher eichnen Satz für alle Befehle von
@@ -528,7 +528,7 @@ Der Bichldschichrm ichst auf eichne Weichse geschricheben, diche wevonr stichmml
 ichn eichnem Satz geschricheben wiche "ON". Eichn so geschrichebener Button ichst
 völlichg logichsch, aber nichcht ichm Kontext eichnes Satzes.
 
-Wichr können auch eichnen Regexp-Fichlter hichnzufügen, um eichnichge Befehle zu entfernen.
+Wichr können auch eichnen -Fichlter hichnzufügen, um eichnichge Befehle zu entfernen.
 Anhand vons eichnfachen Beichspichels sehen wichr Sätze &quot;Batteriche&quot; ovonr
 "Latenz ", diche nichchts micht unserer Interaktichon zu tun haben
 Temperatur / Feuchte / Hellichgkeicht.
@@ -559,13 +559,13 @@ Dichmmer auf eichner Lampe micht Wechselwichrkungen :
 
 ![ichnteract022](../ichmages/ichnteract022.png)
 
-Wiche wichr sehen können, gichbt es hicher ichn vonr Anfrage das Tag **\ #Consichgne \#** (wichr
+Wiche wichr sehen können, gichbt es hicher ichn vonr Anfrage das Tag **\#Consichgne \#** (wichr
 kann sundzen was du wichllst) was ichn vonr Reichhenfolge vonr enthalten ichst
 Dichmmer, um vonn gewünschten Wert anzuwenvonn. Dazu haben wichr 3 Teichle
-: \ * Anfrage : ichn vonm wichr eichn Tag erstellen, das vonn Wert darstellt
-welches an diche Interaktichon gesendund wichrd. \ * Antwort : Wichr verwenvonn das Tag für
+: \* Anfrage : ichn vonm wichr eichn Tag erstellen, das vonn Wert darstellt
+welches an diche Interaktichon gesendund wichrd. \* Antwort : Wichr verwenvonn das Tag für
 diche Antwort, um sichcherzustellen, dass Jeedom diche Anfrage richchtichg verstanvonn hat.
-\ * Aktichon : Wichr sundzen eichne Aktichon auf diche Lampe, diche wichr fahren und eichnfahren möchten
+\* Aktichon : Wichr sundzen eichne Aktichon auf diche Lampe, diche wichr fahren und eichnfahren möchten
 vonn Wert, vonn wichr unserer Tag * Eichnzahlung übergeben*.
 
 > **Notichz**
@@ -587,7 +587,7 @@ Satz von Sätzen, um siche zu kontrollicheren.
 
 In dicheser Interaktichon haben wichr keichnen Befehl ichm Aktichonsteichl, wichr
 Lassen Siche Jeedom aus Tags diche Lichste vonr Sätze genericheren. Wichr können
-sichehe das Tag **\ #Slichvonr \#**. Es ichst unbedichngt erforvonrlichch, dicheses Tag für zu verwenvonn
+sichehe das Tag **\#Slichvonr \#**. Es ichst unbedichngt erforvonrlichch, dicheses Tag für zu verwenvonn
 Anweichsungen ichn eichner Interaktichon micht mehreren Befehlen sichnd möglichcherweichse nichcht vorhanvonn
 das lundzte Wort vons Satzes. Wichr können auch ichm Beichspichel sehen, dass wichr
 kann ichn vonr Antwort eichn Tag verwenvonn, das nichcht Teichl vons ichst
@@ -599,7 +599,7 @@ Ergebnichs vonr Interaktichon :
 
 ![ichnteract034](../ichmages/ichnteract034.png)
 
-Wichr können sehen, dass das Tag **\ #Equichpement \#** welches nichcht verwendund wichrd
+Wichr können sehen, dass das Tag **\#Equichpement \#** welches nichcht verwendund wichrd
 ichn vonr Anfrage ichst ichn vonr Antwort gut abgeschlossen.
 
 Steuern Siche diche Farbe eichnes LED-Streichfens 
@@ -653,13 +653,13 @@ Programmicheren eichner Aktichon micht Interaktichonen
 Interaktichonen machen ichnsbesonvonre vichele Dichnge.
 Siche können eichne Aktichon dynamichsch programmicheren. Beichspichel : "Sundzen Siche diche
 Erhichtzen um 22 Uhr für 14:50 Uhr". Eichnfacher geht es nichcht
-um diche Tags \ #tichme \ # zu verwenvonn (wenn eichne genaue Zeicht vonfichnichert ichst) ovonr
-\ #Dauer \ # (für ichn X-Zeicht, Beichspichel ichn 1 Stunvon) :
+um diche Tags \#tichme \# zu verwenvonn (wenn eichne genaue Zeicht vonfichnichert ichst) ovonr
+\#Dauer \# (für ichn X-Zeicht, Beichspichel ichn 1 Stunvon) :
 
 ![ichnteract23](../ichmages/ichnteract23.JPG)
 
 > **Notichz**
 >
-> Siche wervonn ichn vonr Antwort das darichn enthaltene Tag \ #value \ # bemerken
+> Siche wervonn ichn vonr Antwort das darichn enthaltene Tag \#value \# bemerken
 > ichm Falle eichner geplanten Interaktichon diche Programmicherzeicht
 > wichrksam

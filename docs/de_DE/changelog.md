@@ -324,7 +324,7 @@
 3.2.2
 =====
 
--   Entfernung des alten Widgund-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendund, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel-Widgund [hier] (https://github.com/Jeedom/core/tree/bunda/core/template/Armaturenbrundt)
+-   Entfernung des alten Widgund-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendund, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel de widgund [ici](https://github.com/Jeedom/core/tree/bunda/core/template/Armaturenbrundt)
 -   Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren
 
 -   Benutzer können jundzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
@@ -402,7 +402,7 @@
 -   Jeed-77 : Hinzufügen der Variablenverwaltung in der http-API
 
 -   Jeed-78 : Hinzufügen der Tag-Funktion für Szenarien. Sei dort vorsichtig
-    muss in den Szenarien mit den Tags von \ #montag \ übergeben werden#
+    muss in den Szenarien mit den Tags von \#montag \ übergeben werden#
     zu markieren (montag)
 
 -   Jeed-124 : Korrigieren Sie die Verwaltung von Szenario-Timeouts
@@ -540,7 +540,7 @@
 -   Möglichkeit, Geräte-Widgunds von neu anzuordnen
     Dashboard (im Bearbeitungsmodus Rechtsklick auf das Widgund)
 
--   Ändern Sie die Tonhöhe der Widgunds (von 40 \ * 80 auf 10 \ * 10).. Sei vorsichtig
+-   Ändern Sie die Tonhöhe der Widgunds (von 40 \* 80 auf 10 \* 10).. Sei vorsichtig
     wirkt sich auf das Layout Ihres Dashboards / Ihrer Ansicht / Ihres Designs aus
 
 -   Möglichkeit, Objekten auf dem eine Größe von 1 bis 12 zuzuweisen
@@ -941,7 +941,7 @@
 -   Verschieben Sie alle temporären Dateien nach / tmp
 
 -   Verbessertes Senden von Plugins (automatische Dos2unix ein
-    Dateien \ *. sh)
+    Dateien \*. sh)
 
 -   Neugestaltung der Protokollseite
 

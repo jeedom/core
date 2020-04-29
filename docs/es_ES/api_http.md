@@ -10,14 +10,14 @@ URL.
 
 > **Nota**
 >
-> Para toda esta documentación, \ #IP \ _JEEDOM \ # corresponde a su url
+> Para toda esta documentación, \#IP \ _JEEDOM \# corresponde a su url
 > acceso a Jeedom. Esto es (a menos que esté conectado a su red
 > local) de la dirección de Internet que utiliza para acceder a Jeedom
 > desde afuera.
 
 > **Nota**
 >
-> Para toda esta documentación, \ #API \ _KEY \ # corresponde a su clave
+> Para toda esta documentación, \#API \ _KEY \# corresponde a su clave
 > API, específica para su instalación. Para encontrarlo, tienes que ir a
 > el menú "General" → "Configuración" → pestaña "General"".
 
@@ -60,7 +60,7 @@ orden.
 
 > **Nota**
 >
-> Es posible que el campo \ #ID \ # coloque varios comandos
+> Es posible que el campo \#ID \# coloque varios comandos
 > de una vez. Para hacer esto, debe pasar una matriz en json (ex
 > % 5B12,58,23% 5D, tenga en cuenta que \ [y \] deben estar codificados, de ahí que% 5B
 > y% 5D). El regreso de Jeedom será un json
@@ -68,7 +68,7 @@ orden.
 > **Nota**
 >
 > Los parámetros deben estar codificados para url, puede usar
-> una herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
+> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Interacción 
 ===========
@@ -100,7 +100,7 @@ Aquí está la URL =
 
 -   **Mensaje** : mensaje en cuestión, tenga cuidentificaciónado de pensar en la codificación
     el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar un
-    herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
+    outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Objeto 
 =====

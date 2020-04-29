@@ -374,7 +374,7 @@ Configuration tab
 
 -   **Calculation and rornding**
 
-    -   **Calculation formula (\ #value \ # for the value)** : Allows
+    -   **Calculation formula (\#value \# for the value)** : Allows
         make an operation on the value of the order before
         Jeedom treatment, exampThe : `#value# - 0.2` to entrench
         0.2 (offset on a temperature sensor).

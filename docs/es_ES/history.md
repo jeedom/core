@@ -117,7 +117,7 @@ Historia calculada
 ------------------
 
 Se usa para mostrar una curva basada en un cálculo en varios
-comando (puedes hacer casoi todo, + - / \ * valor absoluto ... ver
+comando (puedes hacer casoi todo, + - / \* valor absoluto ... ver
 Documentación PHP para ciertas funciones). Ex :
 abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio de
 La vida \] \ [Humedad \] \ [Temperatura \] *)

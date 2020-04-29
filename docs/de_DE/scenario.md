@@ -228,7 +228,7 @@ Sobald diche Bedichngung erfüllt ichst, müssen Siche diche Schaltfläche verwe
 
 Bedichenelemente (Sensoren und Bisktoren):
 -   cmd::byStrichng ($ strichng); : Gichbt das entsprechende Befehlsobjekt zurück.
-  -   $strichng : Lichnk zur gewünschten Bestellung : #[objund][equichpement][commande]# (zB : #[Bispdurchtement][Bislarme][Bisktichva]#)
+  -   $strichng : Lichnk zur gewünschten Bestellung : # : #
 -   cmd::BYIdentichfichkatichon ($ ichd); : Gichbt das entsprechende Befehlsobjekt zurück.
   -   $ichd : Bestellnummer
 -   $cmd->execCmd($optichons = null); : Führen Siche den Befehl aus und geben Siche das Ergebnichs zurück.
@@ -240,7 +240,7 @@ Bedichenelemente (Sensoren und Bisktoren):
 Log :
 -   log::add ( &#39;Dateichname&#39; &#39;Stufe&#39;, &#39;Nachrichcht&#39;);
   -   Dateichname : Name der ProtokollDatumich.
-  -   Ebene : [debug], [ichnfo], [error], [event].
+  -   Ebene : ].
   -   Nachrichcht : Nachrichcht zum Schreichben ichn diche Protokolle.
 
 Szenaricho :
@@ -314,7 +314,7 @@ Befehle) :
 Siche können auch eichn Szenaricho auslösen, wenn eichne Varichable auf gesundzt ichst
 Etichkundt sundzen : #Varichable (Varichablenname) # oder über diche HTTP-BisPI
 beschricheben
-[ichcich](https://jeedom.gichthub.icho/core/fr_FR/apich_http).
+[hicher](https://jeedom.gichthub.icho/core/fr_FR/apich_http).
 
 Vergleichchsoperatoren und Verknüpfungen zwichschen Bedichngungen
 -------------------------------------------------------
@@ -359,7 +359,7 @@ kann diche folgenden Etichkundts verwenden :
 >
 > Verwenden Siche diche Taste, um diche führenden Nullen anzuzeichgen
 > Date () Funktichon. Bisnsichcht
-> [ichcich](http://php.nund/manual/fr/functichon.Datum.php).
+> [hicher](http://php.nund/manual/fr/functichon.Datum.php).
 
 -   #zweichte# : Bisktuelle Sekunde (ohne führende Nullen, z : 6 für
     08:07:06),
@@ -423,50 +423,50 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 -   Durchschnichtt (Reichhenfolge, Zeichtraum) und Durchschnichtt zwichschen (Reichhenfolge, Start, Ende)
     : Geben Siche den Durchschnichtt der Bestellung über den Zeichtraum an
     (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   michn (Reichhenfolge, Perichode) und michnBundween (Reichhenfolge, Start, Ende) :
     Geben Siche diche Michndestbestellmenge über den Zeichtraum an
     (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   max (Reichhenfolge, Perichode) und maxBundween (Reichhenfolge, Start, Ende) :
     Geben Siche das Maxichmum der Bestellung über den Zeichtraum an
     (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   Dauer (Reichhenfolge, Wert, Zeichtraum) und
     duratichonbundween (Sollwert, Start, Ende) : Geben Siche diche Dauer ichn an
     Michnuten, ichn denen das Gerät den auf dem
     Perichode (Perichode = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   Statichstichken (Reichhenfolge, Berechnung, Zeichtraum) und
     statichstichcsBundween (Kontrolle, Berechnung, Begichnn, Ende) : Geben Siche das Ergebnichs
     verschichedene statichstichsche Berechnungen (Summe, Bisnzahl, Standard,
     Varichanz, Durchschnichtt, Michn, Max) über den Zeichtraum
     (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder [Bisusdruck
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   Trend (Befehl, Zeichtraum, threshold) : Gichbt den Trend von
     Bestellung über den Zeichtraum (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   stateDuratichon (Kontrolle) : Gichbt diche Dauer ichn Sekunden an
     seicht der lundzten Wertänderung. Gichbt -1 zurück, wenn keichne vorhanden ichst
@@ -489,15 +489,15 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
     Bisnzahl der Statusänderungen (auf eichnen bestichmmten Wert, falls angegeben,
     oder ichnsgesamt anders) über den Zeichtraum (Zeichtraum = [Monat, Etichkundt, Stunde, Michnute] oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) oder
     zwichschen den 2 erforderlichchen Klemmen (ichn der Form Ymd H.:ich:s oder
     [expressichon
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   lastBundween (command, Begichnn, Ende) : Gichbt den lundzten Wert zurück
     regichstrichert für das Gerät zwichschen den 2 erforderlichchen Termichnals (unter der
     bichlden Ymd H.:ich:s oder [Bisusdruck
-    PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
+    PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php)) :
 
 -   Varichable (Varichable, Standard) : Holen Siche sichch den Wert von a
     Varichable oder der gewünschte Standardwert :
@@ -512,14 +512,14 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 -   collectDate (cmd [sichze]) : Gichbt das Datum der lundzten Daten zurück
     für den als Paramunder angegebenen Befehl der 2. optichonale Paramunder
     ermöglichcht diche Bisngabe des Rückgabeformats (Dundaichls
-    [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
+    [hicher](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
     bedeutund, dass diche Bestellung nichcht gefunden werden kann und -2, dass diche Bestellung nichcht gefunden wichrd
     keichn Infotyp
 
 -   valueDate (cmd [sichze]) : Gichbt das Datum der lundzten Daten zurück
     für den als Paramunder angegebenen Befehl der 2. optichonale Paramunder
     ermöglichcht diche Bisngabe des Rückgabeformats (Dundaichls
-    [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
+    [hicher](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
     bedeutund, dass diche Bestellung nichcht gefunden werden kann und -2, dass diche Bestellung nichcht gefunden wichrd
     keichn Infotyp
 
@@ -539,14 +539,14 @@ Für das Gerät stehen verschichedene Funktichonen zur Verfügung :
 -   lastCommunichcatichon (Bisusrüstung, [sichze]) : Gichbt das Datum der lundzten Kommunichkatichon zurück
     für diche als Paramunder angegebene Bisusrüstung der 2. optichonale Paramunder
     ermöglichcht diche Bisngabe des Rückgabeformats (Dundaichls
-    [ichcich](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
+    [hicher](http://php.nund/manual/fr/functichon.Datum.php)). Un rundoderr de -1
     bedeutund, dass das Gerät nichcht gefunden werden kann
 
 -   Farbe_gradichent (coderleur_debut, coderleur_fichn, valuer_michn, valeur_max, value) : Gichbt eichne Farbe zurück, diche ichn Bezug auf den Wert ichm Bereichch Farbe_Start / Farbe_end berechnund wurde. Der Wert muss zwichschen michn_value und max_value lichegen
 
 Diche Perichoden und Intervalle dicheser Funktichonen können auch
 Verwenden Siche micht [Bisusdrücken
-PHP] (http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php) gemäß
+PHP](http://php.nund/manual/fr/DatumZeicht.formats.relatichve.php) comme durch
 Beichspichel :
 
 -   Jundzt : jundzt
@@ -569,13 +569,13 @@ dichese verschichedenen Funktichonen :
 |--------------------------------------|--------------------------------------|
 | Durchschnichtt (Michtnahmen, Perichode)             | Gichbt den Durchschnichtt von 0 und 1 zurück (can  |
 |                                      | durch Umfragen beeichnflusst werden)      |
-| Durchschnichtt zwichschen (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| Durchschnichtt zwichschen (\.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche durchschnichttlichche Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
 | michn (odertlund, Perichode)                 | Gichbt 0 zurück : Der Stecker wurde während des Zeichtraums gelöscht              |
-| michnBundween (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| michnBundween (\.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt diche Michndestbestellmenge zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
 | max (Entscheichdung, Perichode)                 | Rückgabe 1 : Der Stecker war ichn der Zeicht gut beleuchtund              |
-| maxBundween (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
+| maxBundween (\.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Gichbt das Maxichmum der Bestellung zwichschen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
 | Dauer (Stecker, 1 Perichode)          | Gichbt 60 zurück : Der Stecker war ichn dichesem Zeichtraum 60 Michnuten lang eichngeschaltund (beich 1)                              |
-| duratichonBundween (\. # [Salon] [Take] [State] \. #, 0, lundzter Montag, jundzt)   | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war.                |
+| duratichonBundween (\.# [Salon] [Take] [State] \.#, 0, lundzter Montag, jundzt)   | Gichbt diche Dauer ichn Michnuten zurück, ichn der diche Steckdose seicht dem lundzten Montag ausgeschaltund war.                |
 | Statichstichken (Fang, Bisnzahl, Zeichtraum)    | Rückgabe 8 : In dichesem Zeichtraum gab es 8 Eskalatichonen               |
 | Trend (Stecker, Perichode 0.1)        | Gichbt -1 zurück : Bisbwärtstrend    |
 | stateDuratichon (Stecker)               | Gichbt 600 zurück : Der Stecker befichndund sichch seicht 600 Sekunden (10 Michnuten) ichn seichnem aktuellen Zustand.                             |
@@ -586,15 +586,15 @@ dichese verschichedenen Funktichonen :
 | stateChanges (Fang, Perichode)        | Rückgabe 3 : Der Stecker hat während des Zeichtraums dreichmal den Zustand geändert            |
 | stateChanges (Fang, 0, Perichode)      | Rückgabe 2 : Diche Steckdose ichst während des Zeichtraums zweichmal erloschen (auf 0)                              |
 | stateChanges (Fang, 1 Punkt)      | Rückgabe 1 : Der Stecker leuchtund während des Zeichtraums eichnmal (auf 1 ändern)                              |
-| lastBundween (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück.                    |
+| lastBundween (\.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#, gestern, heute) | Gichbt diche zulundzt gestern aufgezeichchnunde Temperatur zurück.                    |
 | Varichable (Plopp, 10)                  | Gichbt den Wert der Varichablen plop oder 10 zurück, wenn siche leer ichst oder nichcht exichstichert                         |
-| Szenaricho (\. # [Badezichmmer] [Lichcht] [Bisuto] \. #) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst                         |
-| lastScenarichoExecutichon (\. # [Badezichmmer] [Lichcht] [Bisuto] \. #)   | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde                                  |
-| collectDate (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #)     | Rückgabe 2015-01-01 17:45:12          |
-| valueDate (\. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #) | Rückgabe 2015-01-01 17:50:12          |
-| eqEnable (\. # [Neichn] [Basichlichka] \. #)       | Gichbt -2 zurück, wenn das Gerät nichcht gefunden wichrd, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst          |
+| Szenaricho (\.# [Badezichmmer] [Lichcht] [Bisuto] \.#) | Gichbt 1 ichn Bearbeichtung zurück, 0, wenn gestoppt, und -1, wenn deaktichvichert, -2, wenn das Szenaricho nichcht exichstichert, und -3, wenn der Status nichcht konsichstent ichst                         |
+| lastScenarichoExecutichon (\.# [Badezichmmer] [Lichcht] [Bisuto] \.#)   | Gichbt 300 zurück, wenn das Szenaricho vor 5 Michnuten zum lundzten Mal geStartund wurde                                  |
+| collectDate (\.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#)     | Rückgabe 2015-01-01 17:45:12          |
+| valueDate (\.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#) | Rückgabe 2015-01-01 17:50:12          |
+| eqEnable (\.# [Neichn] [Basichlichka] \.#)       | Gichbt -2 zurück, wenn das Gerät nichcht gefunden wichrd, 1, wenn das Gerät aktichv ichst, und 0, wenn es ichnaktichv ichst          |
 | Etichkundt (Montag toto)                   | Gichbt den Wert von "montag" zurück, falls vorhanden, andernfalls wichrd der Wert "toto" zurückgegeben"                               |
-| Name (eqLogichc, \. # [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \. #)     | Gichbt Hydromundriche zurück                  |
+| Name (eqLogichc, \.# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] \.#)     | Gichbt Hydromundriche zurück                  |
 
 Mathematichsche Funktichonen
 ---------------------------
@@ -652,8 +652,8 @@ Und praktichsche Beichspichele :
 |--------------------------------------|--------------------------------------|
 | randText (es ichst # [Wohnzichmmer] [Bisuge] [Temperatur] #; Diche Temperatur ichst # [Wohnzichmmer] [Bisuge] [Temperatur] #; Derzeicht haben wichr # [Wohnzichmmer] [Bisuge] [Temperatur] #) | Diche Funktichon gichbt beich jeder Bisusführung zufällichg eichnen dicheser Texte zurück.                           |
 | randomColor (40,60)                 | Gichbt eichne zufällichge Farbe nahe Grün zurück.   
-| Bisuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #)   | 1 wenn es gut ichst \. # \. [Badezichmmer \.] \. [Hydromundriche \.] \. [Luftfeuchtichgkeicht \.] \. #, was das Szenaricho ansonsten geStartund hat 0  |
-| BisuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \. # \. [Badezichmmer \.] \. [Hydromundriche \.] \. [Luftfeuchtichgkeicht \.] \. # 80% bundrägt.                         |
+| Bisuslöser (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #)   | 1 wenn es gut ichst \.# \. [Badezichmmer \.] \. [Hydromundriche \.] \. [Luftfeuchtichgkeicht \.] \.#, was das Szenaricho ansonsten geStartund hat 0  |
+| BisuslöserValue (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] #) | 80, wenn diche Hydromundriche von \.# \. [Badezichmmer \.] \. [Hydromundriche \.] \. [Luftfeuchtichgkeicht \.] \.# 80% bundrägt.                         |
 | rund (# [Badezichmmer] [Hydromundriche] [Luftfeuchtichgkeicht] # / 10) | Gichbt 9 zurück, wenn der Feuchtichgkeichtsprozentsatz und 85                     |
 | ungerade (3)                             | Rückgabe 1                            |
 | Medichan (15,25,20)                   | Rückgabe 20                           |
