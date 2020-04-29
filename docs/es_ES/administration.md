@@ -1,4 +1,6 @@
-# Configuración
+# Administración
+
+## Configuración
 **Preferencias → Sistema → Configuración**
 
 Aquí es donde se encuentran la mayoría de los parámetros de configuración..
@@ -180,15 +182,15 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 > **Nota**
 >
 > El primer parámetro **Ver estadísticas de widgets** es posible pero está deshabilitado de manera predeterminada porque extiende significativamente el tiempo de visualización del tablero. Si activa esta opción, de manera predeterminada, Jeedom se basa en los datos de las últimas 24 horas para calcular estas estadísticas..
-> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí] (https://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) para más detalles).
+> Laa méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir [ici](https://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) para más detalles).
 
 ### Empuje
 
 - **URLa de inserción global** : le permite agregar una URLa para llamar en caso de una actualización del pedido. Puedes usar las siguientes etiquetas :
-**\ #Value \#** por el valor del pedido, **\ #Cmd \ _name \#** para el nombre del comando,
-**\ #Cmd \ _id \#** para el identificador único del pedido,
-**\ #Humanname \#** para el nombre completo de la orden (ej. : \ # \ [Baño \] \ [Hidrometría \] \ [Humedad \] \ #),
-**\ #Eq_name \#** para el nombre del equipo
+**\#Value \#** por el valor del pedido, **\#Cmd \ _name \#** para el nombre del comando,
+**\#Cmd \ _id \#** para el identificador único del pedido,
+**\#Humanname \#** para el nombre completo de la orden (ej. : \# \ [Baño \] \ [Hidrometría \] \ [Humedad \] \#),
+**\#Eq_name \#** para el nombre del equipo
 
 ## Pestaña Informes
 
@@ -321,12 +323,12 @@ Depósito utilizado para conectar Jeedom a Github.
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
-- **Dirección** : Dirección del mercado. (Https://www.jeedom.com/market).
+- **Dirección** : Dirección du Mercado.(https://www.Jeedom.com/market).
 - **Apellidobre del usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
-- **[Backup cloud] Apellido** : Apellidobre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos).
-- **[Backup cloud] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella, ya no podrás restaurar tu Jeedom.
-- **[Backup cloud] Fréquence backup full** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes.
+- **Apellidobre [nube de respaldo]** : Apellidobre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos).
+- **[Copia de seguridad de la nube] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella, ya no podrás restaurar tu Jeedom.
+- **[Nube de respaldo] Frecuencia de respaldo completo** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes.
 
 #### Samba
 

@@ -68,7 +68,7 @@ La página del historial da acceso a algunas opciones adicionales.
 
 #### Historia calculada
 
-Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \ * valor absoluto ... consulte la documentación de PHP para ciertas funciones).
+Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
 Ex :
 abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio habitable \] \ [Higrometría \] \ [Temperatura \] *)
 

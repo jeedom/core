@@ -169,7 +169,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidentificació
 - #UID# : Identificador único para esta generación del widentificaciónget (si hay varias veces el mismo comando, caso de diseños:  solo este identificaciónentificador es realmente único)
 - #ValueDate# : fecha del valor del pedidentificacióno
 - #collectDate# : fecha de recogidentificacióna del pedidentificacióno
-- #alertLevel# : nivel de alerta (ver [aquí] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php # L67) para la lista)
+- #alertLevel# : niveau d'alerte (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php # L67) para la lista)
 - #hidentificacióne_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a # hidentificacióne_nombre #, está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTEE si esta etiqueta no se encuentra en su widentificaciónget, entonces las etiquetas # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # y # trend # no serán reemplazadas por Jeedom.
 - #minHistoryValue# : valor mínimo durante el período (período definidentificacióno en la configuración de Jeedom por el usuario)
 - #averageHistoryValue# : valor promedio durante el período (período definidentificacióno en la configuración de Jeedom por el usuario)
@@ -192,7 +192,7 @@ Aquí hay un ejemplo simple de código JavaScript para poner en su widentificaci
       $('.cmd[data-cmd_identificación=#identificación#]').attr('title','Date de valeur : '+_options.ValueDate+'<br/>Date de collecte : '+_options.collectDate)
       $('.cmd[data-cmd_identificación=#identificación#] .estado').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
+    Jeedom.cmd.update [ &#39;# identificación #&#39;]({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 </script>
 ```
 
@@ -207,8 +207,8 @@ Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
 La función llamada al actualizar el widentificaciónget. Luego actualiza el código html del widentificaciónget_template.
 
 ```
-Jeedom.cmd.update [ &#39;# identificación #&#39;] ({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
+Jeedom.cmd.update [ &#39;# identificación #&#39;]({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 ```
  La llamada a esta función para la inicialización del widentificaciónget.
 
- Encontrará [aquí] (https:// github.com / Jeedom / core / tree / V4-stable / core / template) ejemplos de widentificacióngets (en el tablero y las carpetas móviles)
+ Vous trouverez [ici](https://github.com / Jeedom / core / tree / V4-stable / core / template) ejemplos de widentificacióngets (en el tablero y las carpetas móviles)

@@ -169,7 +169,7 @@ In code mode you have access to different tags for orders, here is a list (not n
 - #UID# : unique IDentifier for this generation of the wIDget (if there is several times the same command, case of designs:  only this IDentifier is really unique)
 - #valueDate# : date of the order value
 - #collectDate# : date of order collection
-- #alertLevel# : alert level (see [here] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php # L67) for the list)
+- #alertLevel# : niveau d'alerte (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php # L67) for the list)
 - #hIDe_history# : whether the history (max, min, average, trend) should be hIDden or not. As for # hIDe_name # it is empty or hIDden, and can therefore be used directly in a class. Important if this tag is not found on your wIDget then the tags # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # and # trend # will not be replaced by Jeedom.
 - #minHistoryValue# : minimum value over the period (period defined in the Jeedom configuration by the user)
 - #averageHistoryValue# : average value over the period (period defined in the Jeedom configuration by the user)
@@ -192,7 +192,7 @@ Here is a simple example of javascript code to put in your wIDget :
       $('.cmd[data-cmd_ID=#ID#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       $('.cmd[data-cmd_ID=#ID#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update [ &#39;# ID #&#39;] ({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
+    Jeedom.cmd.update [ &#39;# ID #&#39;]({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 </script>
 ```
 
@@ -207,8 +207,8 @@ Jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
 The function called when updating the wIDget. It then updates the html code of the wIDget_template.
 
 ```
-Jeedom.cmd.update [ &#39;# ID #&#39;] ({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
+Jeedom.cmd.update [ &#39;# ID #&#39;]({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
 ```
  The call to this function for the initialization of the wIDget.
 
- You will find [here] (https:// github.com / Jeedom / core / tree / V4-stable / core / template) examples of wIDgets (in the dashboard and mobile folders)
+ Vous trouverez [ici](https://github.com / Jeedom / core / tree / V4-stable / core / template) examples of wIDgets (in the dashboard and mobile folders)

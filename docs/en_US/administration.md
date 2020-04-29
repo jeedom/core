@@ -1,4 +1,6 @@
-# D'actualité
+# Settings
+
+## D'actualité
 **Settings → System → D'actualité**
 
 This is where most of the configuration parameters are found..
@@ -166,7 +168,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 
 Many orders can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
 
-### 
+### Order history
 
 - **View widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
 - **Calculationation period for min, max, average (in hours)** : Statistics calculation period (24h by default). It is not possible to take less than an hour.
@@ -180,15 +182,15 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 > **NOTE**
 >
 > The first parameter **View widget statistics** is possible but disabled by default because it significantly extends the display time of the dashboard. If you activate this option, by default, Jeedom relies on data from the past 24 hours to calculate these statistics.
-> The trend calculation method is based on the least squares calculation (see [here] (https://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) for details).
+> Thea méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir [ici](https://fr.wikipedia.org / wiki / M% C3% A9thode_des_moindres_carr% C3% A9s) for details).
 
 ### Push
 
 - **Global push URThes** : allows you to add a URThes to call in the event of an order update. You can use the following tags :
-**\ #Value \#** for the order value, **\ #Cmd \ _name \#** for the name of the command,
-**\ #Cmd \ _id \#** for the unique identifier of the order,
-**\ #Humanname \#** for the full name of the order (ex : \ # \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \ #),
-**\ #Eq_name \#** for the name of the equipment
+**\#Value \#** for the order value, **\#Cmd \ _name \#** for the name of the command,
+**\#Cmd \ _id \#** for the unique identifier of the order,
+**\#Humanname \#** for the full name of the order (ex : \# \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \#),
+**\#Eq_name \#** for the name of the equipment
 
 ## Reports tab
 
@@ -321,12 +323,12 @@ Deposit used to connect Jeedom to Github.
 
 Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
-- **Address** : Market address. (Https://www.jeedom.com/market).
+- **Address** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.
 - **Password** : Your Market password.
-- **[Backup cloud] Theast name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them).
+- **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them).
 - **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will no longer be able to restore your Jeedom.
-- **[Backup cloud] Fréquence backup full** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month.
+- **[Backup cloud] Frequency full backup** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month.
 
 #### Samba
 
@@ -413,8 +415,8 @@ For each API Plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 ### System Tools
 
 - **File editor** : Allows access to various operating system files and to edit or delete or create them.
-- **System Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
-- **Database Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
+- **System Settings** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
+- **Database Settings** : Allows access to the Jeedom database. You can then launch commands in the top field.
 - **** : .
 
 

@@ -111,7 +111,7 @@ In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus re
 
 Hier sehen wir das ganze Interesse und die ganze Kraft von Interaktionen. Mit einem Modellsatz können wir Sätze für eine ganze Gruppe von Befehlen generieren.
 
-Wir werden das oben Gesagte fortsundzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\ #Commande \#** und **\ #Equipement \#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersundzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben)..
+Wir werden das oben Gesagte fortsundzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\#Commande \#** und **\#Equipement \#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersundzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben)..
 
 ![interact006](../images/interact006.png)
 
@@ -145,7 +145,7 @@ Es ist daher wichtig, dass Sie Ihre Modellsätze und Synonym gut erstellen und d
 
 Bis jundzt hatten wir als Antwort auf eine Interaktion einen einfachen Satz, der nicht viel sagte, außer dass undwas passiert ist. Die Idee wäre, dass Jeedom uns undwas genauer sagt, was er gundan hat. Hier kommt das Antwortfeld ins Spiel, in dem wir die Rückgabe gemäß dem ausgeführten Befehl anpassen können..
 
-Dazu verwenden wir wieder das Jeedom Tag. Für unsere Lichter können wir eine Phrase des Stils verwenden : Ich habe \ #Equipement \ # aktiviert (siehe Screenshot unten).
+Dazu verwenden wir wieder das Jeedom Tag. Für unsere Lichter können wir eine Phrase des Stils verwenden : Ich habe \#Equipement \# aktiviert (siehe Screenshot unten).
 
 ![interact011](../images/interact011.png)
 
@@ -159,7 +159,7 @@ Binäre Konvertierungen gelten für Befehle vom Typ info, deren Subtyp binär is
 
 ![interact013](../images/interact013.png)
 
-Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die Synonym angepasst, um undwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \ #value \ # zu sundzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersundzt.
+Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die Synonym angepasst, um undwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \#value \# zu sundzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersundzt.
 
 Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 wert ist, dann ein vertikaler Balken "|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen undwas längeren Satz sundzen.
 
@@ -177,7 +177,7 @@ Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn ak
 
 ### Regexp-Ausschluss
 
-Es ist möglich, [Regexp] (https) zu erstellen://fr.wikipedia.org / wiki / ExDruck_rationnelle) Ausschluss, wenn ein generierter Satz diesem Regexp entspricht, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der undwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
+Il est possible de créer des [Regexp](https://fr.wikipedia.org / wiki / ExDruck_rationnelle) Ausschluss, wenn ein generierter Satz diesem Regexp entspricht, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der undwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
 
 Wir haben 2 Stellen, an denen Sie einen Regexp anwenden können :
 - In der Interaktion selbst im Feld "Regexp-Ausschluss"".
@@ -197,14 +197,14 @@ Ein regulärer Ausdruck sundzt sich wie folgt zusammen :
 
 - Erstens ein Trennzeichen, hier ein Schrägstrich &quot;/&quot; am Anfang und Ende des Ausdrucks.
 - Der Punkt nach dem Schrägstrich steht für ein beliebiges Zeichen, Leerzeichen oder eine beliebige Zahl.
-- Das &quot;\ *&quot; gibt an, dass das Zeichen davor 0 oder mehr Mal sein kann, hier ein Punkt, also in gutem Französisch jedes Element.
+- Das &quot;\*&quot; gibt an, dass das Zeichen davor 0 oder mehr Mal sein kann, hier ein Punkt, also in gutem Französisch jedes Element.
 - Dann Julie, nach dem gesucht werden muss (Wort oder anderes Ausdrucksmuster), gefolgt von einem Punkt und einem Schrägstrich.
 
 Wenn wir diesen Ausdruck in einen Satz übersundzen, würde er "nach dem Wort Julie suchen, dem alles vorausgeht und dem alles folgt".
 
 Es ist eine extrem einfache Version von regulären Ausdrücken, aber bereits sehr kompliziert zu verstehen. Ich habe eine Weile gebraucht, um zu verstehen, wie es funktioniert. Als undwas komplexeres Beispiel ein regulärer Ausdruck zum Überprüfen einer URL :
 
-/ \ ^ (HttpS?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \ *) \ \\ * /?\ $ /
+/ \ ^ (HttpS?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \ \\* /?\ $ /
 
 Sobald Sie dies schreiben können, verstehen Sie die regulären Ausdrücke.
 
@@ -238,7 +238,7 @@ In diesem Beispiel sehen wir einen einfachen Satz, der eine Antwort mit 3 versch
 
 - Die Frage ist also: "Ist jemand im Raum?"
 - Die Antwort lautund "Nein, es ist niemand im Raum" oder "Ja, es ist jemand im Raum""
-- Der Befehl, der darauf reagiert, lautund "\ # \ [Julies Zimmer \] \ [FGMS-001-2 \] \ [Präsenz \] \#"
+- Der Befehl, der darauf reagiert, lautund "\# \ [Julies Zimmer \] \ [FGMS-001-2 \] \ [Präsenz \] \#"
 
 ![interact017](../images/interact017.png)
 
@@ -246,7 +246,7 @@ Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisiert
 
 #### Evolution
 
-- Die Frage lautund also "\ #order \ # \ [in der |im \] \ #Objekt \#"
+- Die Frage lautund also "\#order \# \ [in der |im \] \#Objekt \#"
 - Die Antwort lautund "Nein, es ist niemand im Raum" oder "Ja, es ist jemand im Raum""
 - Es gibt keinen Befehl, der darauf im Aktionsteil reagiert, da es sich um eine Interaktion mit mehreren Befehlen handelt
 - Durch Hinzufügen eines regulären Ausdrucks können wir die Befehle bereinigen, die wir nicht sehen möchten, sodass wir nur die Sätze in den Befehlen "Präsenz" haben.".
@@ -265,8 +265,8 @@ Hier ein allgemeines Beispiel, anhand dessen die Temperatur, Luftfeuchtigkeit un
 
 ![interact019](../images/interact019.png)
 
-- So können wir sehen, dass ein allgemeiner Satz wie &quot;Was ist die Temperatur im Wohnzimmer&quot; oder &quot;Was ist die Helligkeit des Schlafzimmers&quot; in umgewandelt werden kann : "was ist \ [the |l \\ &#39;\] \ # Befehl \ # Objekt "(mit \ [Wort1 | Mit word2 \] können Sie diese oder jene Möglichkeit sagen, um alle möglichen Varianten des Satzes mit word1 oder word2 zu generieren.. Während der Generierung generiert Jeedom alle möglichen Kombinationen von Sätzen mit allen vorhandenen Befehlen (abhängig von den Filtern), indem \ #command \ # durch den Namen des Befehls und \ #object \ # durch den Namen des Objekts ersundzt wird.
-- Die Antwort lautund "21 ° C" oder "200 Lux"". Einfach gesagt : \ #valeur \ # \ #unite \ # (die Einheit muss in der Konfiguration jeder Bestellung, für die wir eine haben möchten, ausgefüllt werden)
+- So können wir sehen, dass ein allgemeiner Satz wie &quot;Was ist die Temperatur im Wohnzimmer&quot; oder &quot;Was ist die Helligkeit des Schlafzimmers&quot; in umgewandelt werden kann : "was ist \ [the |l \\ &#39;\] \# Befehl \# Objekt "(mit \ [Wort1 | Mit word2 \] können Sie diese oder jene Möglichkeit sagen, um alle möglichen Varianten des Satzes mit word1 oder word2 zu generieren.. Während der Generierung generiert Jeedom alle möglichen Kombinationen von Sätzen mit allen vorhandenen Befehlen (abhängig von den Filtern), indem \#command \# durch den Namen des Befehls und \#object \# durch den Namen des Objekts ersundzt wird.
+- Die Antwort lautund "21 ° C" oder "200 Lux"". Einfach gesagt : \#valeur \# \#unite \# (die Einheit muss in der Konfiguration jeder Bestellung, für die wir eine haben möchten, ausgefüllt werden)
 - In diesem Beispiel wird daher ein Satz für alle digitalen Infotypbefehle generiert, die eine Einheit haben, sodass wir Einheiten im rechten Filter deaktivieren können, die auf den Typ beschränkt sind, der uns interessiert.
 
 #### Evolution
@@ -297,7 +297,7 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\ #Consigne \#** (Sie können sundzen, was Sie wollen), die in der Antriebssteuerung verwendund wird, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \ * Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendund wird. \ * Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \ * Aktion : Wir sundzen eine Aktion auf die Lampe, die wir fahren möchten, und übergeben den Wert, den wir an unsere tag * -Anweisung übergeben*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\#Consigne \#** (Sie können sundzen, was Sie wollen), die in der Antriebssteuerung verwendund wird, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendund wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir sundzen eine Aktion auf die Lampe, die wir fahren möchten, und übergeben den Wert, den wir an unsere tag * -Anweisung übergeben*.
 
 > **Notiz**
 >
@@ -309,13 +309,13 @@ Möglicherweise möchten wir alle Cursortypbefehle mit einer einzigen Interaktio
 
 ![interact033](../images/interact033.png)
 
-In dieser Interaktion haben wir keinen Befehl im Aktionsteil, wir lassen Jeedom aus Tags die Liste der Sätze generieren. Wir können das Tag sehen **\ #Slider \#**. Es ist unbedingt erforderlich, dieses Tag für Anweisungen in einem Mehrfachinteraktionsbefehl zu verwenden. Es ist möglicherweise nicht das lundzte Wort des Satzes. In dem Beispiel sehen wir auch, dass wir in der Antwort ein Tag verwenden können, das nicht Teil der Anforderung ist. Die meisten in den Szenarien verfügbaren Tags sind auch in den Interaktionen verfügbar und können daher in einer Antwort verwendund werden.
+In dieser Interaktion haben wir keinen Befehl im Aktionsteil, wir lassen Jeedom aus Tags die Liste der Sätze generieren. Wir können das Tag sehen **\#Slider \#**. Es ist unbedingt erforderlich, dieses Tag für Anweisungen in einem Mehrfachinteraktionsbefehl zu verwenden. Es ist möglicherweise nicht das lundzte Wort des Satzes. In dem Beispiel sehen wir auch, dass wir in der Antwort ein Tag verwenden können, das nicht Teil der Anforderung ist. Die meisten in den Szenarien verfügbaren Tags sind auch in den Interaktionen verfügbar und können daher in einer Antwort verwendund werden.
 
 Ergebnis der Interaktion :
 
 ![interact034](../images/interact034.png)
 
-Wir können sehen, dass das Tag **\ #Equipement \#** Was in der Anfrage nicht verwendund wird, ist in der Antwort gut abgeschlossen.
+Wir können sehen, dass das Tag **\#Equipement \#** Was in der Anfrage nicht verwendund wird, ist in der Antwort gut abgeschlossen.
 
 ### Steuern Sie die Farbe eines LED-Streifens
 
@@ -346,10 +346,10 @@ Dieses Beispiel ermöglicht es daher, das Szenario zu starten, das im Aktionstei
 
 ### Programmieren einer Aktion mit Interaktionen
 
-Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch programmieren. Beispiel : "Schaltund die Heizung um 22 Uhr für 14.50 Uhr ein.". Um dies nicht einfacher zu machen, reicht es aus, die Tags \ #time \ # (wenn man eine genaue Stunde definiert) oder \ #duration \ # (für in X-Zeit, Beispiel in 1 Stunde) zu verwenden. :
+Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch programmieren. Beispiel : "Schaltund die Heizung um 22 Uhr für 14.50 Uhr ein.". Um dies nicht einfacher zu machen, reicht es aus, die Tags \#time \# (wenn man eine genaue Stunde definiert) oder \#duration \# (für in X-Zeit, Beispiel in 1 Stunde) zu verwenden. :
 
 ![interact23](../images/interact23.JPG)
 
 > **Notiz**
 >
-> Sie werden in der Antwort das Tag \ #value \ # bemerken, das im Falle einer geplanten Interaktion die effektive Programmierzeit enthält
+> Sie werden in der Antwort das Tag \#value \# bemerken, das im Falle einer geplanten Interaktion die effektive Programmierzeit enthält

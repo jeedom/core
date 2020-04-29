@@ -732,7 +732,7 @@ Configurações:
 =================
 
 . 
-:
+j'utilise [cette classe php](https://github.com/Jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 .
 
  :
