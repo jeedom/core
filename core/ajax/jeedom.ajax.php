@@ -79,6 +79,10 @@ try {
 	}
 	
 	if (init('action') == 'getDocumentationUrl') {
+		$theme = 'light';
+		if(strpos(config::byKey('default_bootstrap_theme'),'Dark') !== false){
+			$theme = 'dark';
+		}
 		$plugin = null;
 		if (init('plugin') != '' || init('plugin') == 'false') {
 			try {
@@ -89,7 +93,7 @@ try {
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			if ($plugin->getDocumentation() != '') {
-				ajax::success($plugin->getDocumentation());
+				ajax::success($plugin->getDocumentation().'?theme='.$theme);
 			}
 		} else {
 			$page = init('page');
@@ -107,9 +111,6 @@ try {
 				$version = '4.0';
 			}elseif(strpos(jeedom::version(),'4.1') !== false){
 				$version = '4.1';
-			}
-			if(strpos(config::byKey('default_bootstrap_theme'),'Dark') !== false){
-				$theme = 'dark';
 			}
 			ajax::success('https://doc.jeedom.com/' . config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page).'?theme='.$theme);
 		}
