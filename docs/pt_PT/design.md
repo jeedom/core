@@ -133,7 +133,7 @@ Permite escolher os comandos para grapher.
 
 - **Nom** : Nomee do link (texto exibido).
 - **Lien** : Link para o design ou exibição em questão.
-- **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente. Não se esqueça de alterar "Padrão" para NÃO.
+- **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
 - **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** : Permite arredondar os ângulos, não se esqueça de colocar o%.
 - **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
@@ -214,7 +214,7 @@ Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget
 ### Configurações de exibição específicas
 
 - **Lien** : Permite que você indique o resumo a ser exibido (Geral para o global, caso contrário, indique o assunto).
-- **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente. Não se esqueça de alterar "Padrão" para NÃO.
+- **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
 - **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** : Permite arredondar os ângulos, não se esqueça de colocar o%.
 - **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.

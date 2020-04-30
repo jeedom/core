@@ -55,7 +55,7 @@ Se o plug-in do equipamento estiver desativado, os dois ícones à direita não 
 >
 > É possível acessar (se o plugin o suportar) diretamente a esta janela a partir da página de configuração do equipamento, clicando no botão de configuração avançada
 
-A janela de **configuração avançada de equipamentos** permite modificá-lo. Primeiro, no canto superior direito, alguns botões disponíveis :
+A janela de **Configuração avançada de equipamentos** permite modificá-lo. Primeiro, no canto superior direito, alguns botões disponíveis :
 
 - **Informations** : exibe as propriedades brutas do equipamento.
 - **Liens** : Permite exibir os links do equipamento com os objetos, comandos, cenários, variáveis, interações ... em forma gráfica (neste, um clique duplo em um elemento o Ovará à sua configuração).

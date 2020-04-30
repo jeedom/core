@@ -92,7 +92,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 > **Tip**
 >
-> Para descobrir se você precisa definir um valor no campo **complementar**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
+> Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
 - **Gerenciamento avançado** : Esta parte pode não aparecer, dependendo da compatibilidade com o seu hardware.
     Você encontrará a lista de suas interfaces de rede. Você pode dizer ao Jeedom para não monitorar a rede clicando em **desativar o gerenciamento de rede Jeedom** (verifique se o Jeedom não está conectado a nenhuma rede). Você também pode especificar o intervalo de ip local no formato 192.168.1.* (para ser usado apenas em instalações do tipo docker).
@@ -126,7 +126,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Ordem de tempo limite** : Comando de tipo **message** para ser usado se um equipamento estiver em **timeout**.
 - **Adicione uma mensagem a cada bateria em Aviso** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria **warning**.
 - **Comando da bateria em Aviso** : Comando de tipo **message** a ser usado se o equipamento estiver com a bateria **warning**.
-- **Adicione uma mensagem a cada bateria em perigo** : Adicione uma mensagem no centro de mensagens se um dispositivo no nível da bateria **danger**.
+- **Adicione uma mensagem a cada bateria em perigo** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria **danger**.
 - **Comando na bateria em perigo** : Comando de tipo **message** a ser usado se o equipamento estiver com a bateria **danger**.
 - **Adicione uma mensagem a cada aviso** : Adicione uma mensagem no centro de mensagens se um pedido entrar em alerta **warning**.
 - **Comando no aviso** : Comando de tipo **message** usar se um pedido entrar em alerta **warning**.
