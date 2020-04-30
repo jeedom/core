@@ -3,7 +3,7 @@
 
  : . . 
 
-### 
+### Princípio
 
 . . .
 
@@ -13,11 +13,11 @@
 
 . . .
 
-> ****
+> **Tip**
 >
 > . .  ? .
 
-> ****
+> **Important**
 >
 > .
 
@@ -36,13 +36,13 @@
 
 .
 
-- **Escada** : .
-- **Mudança** : .
-- **Linha** : .
-- **área** : .
-- **Coluna*** : .
+- **Escalier** : .
+- **Variation** : .
+- **Ligne** : .
+- **Aire** : .
+- **Colonne**\* : .
 
-> ****
+> **Tip**
 >
 > :
 > - .
@@ -55,12 +55,12 @@
 .  :
 
  :
-- **Cor** : .
-- **o** : .
-- **Escala** : .
-- **Escada** : .
-- **Pilha** : .
-- **Mudança** : .
+- **Couleur** : .
+- **Type** : .
+- **Echelle** : .
+- **Escalier** : .
+- **Empiler** : .
+- **Variation** : .
 
 ### 
 
@@ -69,12 +69,12 @@
 #### História calculado
 
 .
- :
+Ex :
 
 
 .
 
-> ****
+> **Tip**
 >
 > .
 
@@ -82,7 +82,7 @@
 
  :
 
-- **** : .
+- **Poubelle** : .
 - **** : .
 
 ### 
@@ -95,23 +95,23 @@
 
 .
 
-- **Cenas** : ".
-- **Ordem** : ".
+- **Scenario** : ".
+- **Commande** : ".
 
 . *. .
 *.
 
-> ****
+> **Note**
 >
 > . .
 
-> ****
+> **Tip**
 >
 > .
 
 .
 
-> ****
+> **Important**
 >
 > .
 

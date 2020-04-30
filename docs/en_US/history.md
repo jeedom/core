@@ -17,7 +17,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 >
 > If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. Why ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
 
-> **IMPORTANT**
+> **Important**
 >
 > Of course, this archiving principle only applies to digital type commands; on binary type commands, Jeedom keeps only the dates of change of state.
 
@@ -36,11 +36,11 @@ If you display a graph by the history page, you have access to several display o
 
 We find at the top right the display period (here on the last week because, by default I want it to be only one week - see 2 paragraphs above), then come the parameters of the curve (these parameters are kept from one display to another, so you only have to configure them once).
 
-- **Staircase** : Displays the curve as a staircase or a continuous display.
+- **Escalier** : Displays the curve as a staircase or a continuous display.
 - **Variation** : Displays the difference in value from the previous point.
-- **Line** : Displays the graph as lines.
-- **Area** : Displays the graph as an area.
-- **Column**\* : Displays the graph as bars.
+- **Ligne** : Displays the graph as lines.
+- **Aire** : Displays the graph as an area.
+- **Colonne**\* : Displays the graph as bars.
 
 > **Tip**
 >
@@ -55,11 +55,11 @@ We find at the top right the display period (here on the last week because, by d
 You can also display the graphs on the views (we will see here the configuration options and not how to do it, for that you have to go to the documentation of the views or designs in function). Here are the options :
 
 Once a data is activated, you can choose :
-- **Color** : The color of the curve.
+- **Couleur** : The color of the curve.
 - **Type** : The type of graph (area, row or column).
-- **Ladder** : Since you can put several curves (data) on the same graph, it is possible to distinguish the scales (right or left).
-- **Staircase** : Displays the curve as a staircase or a continuous display.
-- **Stack** : Used to stack the values of the curves (see below for the result).
+- **Echelle** : Since you can put several curves (data) on the same graph, it is possible to distinguish the scales (right or left).
+- **Escalier** : Displays the curve as a staircase or a continuous display.
+- **Empiler** : Used to stack the values of the curves (see below for the result).
 - **Variation** : Displays the difference in value from the previous point.
 
 ### Option on the history page
@@ -82,7 +82,7 @@ You also have access to a management of calculation formulas which allows you to
 
 In front of each data that can be displayed, you will find two icons :
 
-- **Trash can** : Allows you to delete the recorded data; when clicking, Jeedom asks whether to delete the data before a certain date or all the data.
+- **Poubelle** : Allows you to delete the recorded data; when clicking, Jeedom asks whether to delete the data before a certain date or all the data.
 - **Arrow** : Enables CSV export of historical data.
 
 ### Inconsistent value removal
@@ -96,12 +96,12 @@ The timeline displays certain events in your home automation in chronological fo
 To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
 
 - **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
-- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
+- **Commande** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
 The * Main * timeline always contains all the events. However, you can filter the timeline by * folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
 You can then filter the timeline by this folder by selecting it to the left of the * Refresh button.*.
 
-> **NOTE**
+> **Note**
 >
 > If you no longer use a folder, it will appear in the list as long as events linked to this folder exist. It will disappear from the list by itself.
 
@@ -111,15 +111,15 @@ You can then filter the timeline by this folder by selecting it to the left of t
 
 Once you have activated tracking in the timeline of the commands and scenarios you want, you will be able to see them appear on the timeline.
 
-> **IMPORTANT**
+> **Important**
 >
 > You have to wait for new events after activating the tracking on the timeline before seeing them appear.
 
 ### Viewing
 
-.
+The timeline displays the recorded events, staggered day by day vertically.
 
-:
+For each event, you have:
 
 - The date and time of the event,
 - The type of event: An info or action command, or a scenario, with the command plugin for commands.
@@ -128,4 +128,4 @@ Once you have activated tracking in the timeline of the commands and scenarios y
 - A command type event displays an icon on the right to open the command configuration.
 - A scenario type event displays two icons on the right to go to the scenario, or open the scenario log.
 
-. .
+At the top right, you can select a timeline folder. This must be created before and must contain events.

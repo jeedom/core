@@ -19,11 +19,11 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 - Su imagen de fondo.
 - Elementos de sus resúmenes..
 
-> **Punta**
+> **Tip**
 >
 > El orden de visualización de los objetos es el del * resumen de automatización del hogar *, que puede reordenar (Análisis → Resumen de automatización del hogar).
 
-> **Nota**
+> **Note**
 >
 > Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto..
 
@@ -34,7 +34,7 @@ Para cada objeto, puede hacer clic :
 - En un elemento de resumen para mostrar los elementos de este objeto, de este tipo.
 - En el icono en la parte inferior izquierda del objeto para abrir la configuración de este objeto (disponible solo en el escritorio).
 
-> **Punta**
+> **Tip**
 >
 > Ctrl Click o Center Click en el objeto o un elemento de resumen abre otra pestaña de su navegador.
 
