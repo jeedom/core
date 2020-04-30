@@ -1,112 +1,112 @@
-Parte importante no software : 
-. 
-. 
-
-
+Parte importante no software : a parte da historização, real
+lembrança disso. É possível em Jeedom historiar qualquer
+qual comando do tipo de informação (binário ou digital). Que você
+permitirá, por exemplo, histórico de uma curva de temperatura,
+aberturas de consumo ou porta ...
 
 Princípio 
 ========
 
-Aqui é descrito o princípio de historicização de Jeedom. 
-
-
-
+Aqui é descrito o princípio de historicização de Jeedom. Não é
+É necessário entender que, se você tiver alguma dúvida
+ou deseja alterar as configurações de
+historização. As configurações padrão são adequadas para a maioria
 cas.
 
 Arquivamento 
 ---------
 
+O arquivamento de dados permite que o Jeedom reduza a quantidade de dados
+mantido na memória. Isso permite não usar muito espaço e
+para não desacelerar o sistema. De fato, se você mantiver todo o
+medidas, isso mostra mais pontos a serem exibidos e, portanto, pode
+aumentar drasticamente os tempos para criar um gráfico. Caso
+muitos pontos, pode até travar
+exibição de gráfico.
 
-. 
-. 
-
-. Caso
-
-.
-
-
-. 
-
-. 
-
-
-.
+O arquivamento é uma tarefa que começa à noite e compacta
+dados recuperados durante o dia. Por padrão, o Jeedom recupera tudo
+Dados 2h mais antigos e cria pacotes de 1h (um
+média, mínimo ou máximo, dependendo das configurações). Então nós temos
+aqui 2 parâmetros, um para o tamanho do pacote e outro para saber
+quando fazê-lo (por padrão, são pacotes
+1 hora com dados com mais de 2 horas de antiguidade).
 
 > **Tip**
 >
-> 
-> . ,
-> . Porque ? ,
-> 
-> .
+> Se você seguiu bem, deve ter uma alta precisão no
+> Apenas nas últimas 2 horas. No entanto, quando eu entro às 17h,
+> Eu tenho um esclarecimento nas últimas 17 horas. Porque ? De fato,
+> para evitar consumir recursos desnecessariamente, a tarefa que torna
+> o arquivamento ocorre apenas uma vez por dia, à noite.
 
 > **Important**
 >
-> 
-> 
-> .
+> Obviamente, esse princípio de arquivamento se aplica apenas a pedidos de
+> tipo digital; nos comandos do tipo binário, o Jeedom não mantém
+> que as datas de mudança de estado.
 
 Visualizando um Gráfico 
 ========================
 
 Existem várias maneiras de acessar o histórico :
 
--   ,
+-   Colocando uma área gráfica em uma visualização (veja abaixo),
 
--   ,
+-   Clicando no comando desejado em um widget,
 
--   
-    
+-   indo para a página de histórico que permite sobrepor
+    diferentes curvas e combinar estilos (área, curva, barra)
 
--   
+-   No celular, enquanto permanece pressionado no widget em questão
 
+Se você exibir um gráfico pela página histórica ou clicando em
+o widget, você tem acesso a várias opções de exibição :
 
- :
+Encontramos no canto superior direito o período de exibição (aqui no último
+semana porque, por padrão, quero que seja apenas uma semana - veja
+2 parágrafos acima), então vêm os parâmetros da curva
+(esses parâmetros são mantidos de um monitor para outro; portanto, você
+do que configurá-los uma vez).
 
+-   **Escalier** : exibe a curva como um
+    escada ou exibição contínua.
 
+-   **Variation** : exibe a diferença no valor de
+    ponto anterior.
 
+-   **Ligne** : Exibe o gráfico como linhas.
 
+-   **Aire** : Exibe o gráfico como uma área.
 
-.
-
--   **Escalier** : 
-    .
-
--   **Variation** : 
-    .
-
--   **Ligne** : .
-
--   **Aire** : .
-
--   **Colonne**\* : .
+-   **Colonne**\* : Exibe o gráfico como barras.
 
 Gráfico em vistas e desenhos 
 =====================================
 
-
-
-
- :
+Você também pode exibir os gráficos nas visualizações (veremos aqui
+as opções de configuração e não como fazê-lo, para fazer isso
+renderizar visualizações ou designs com base na documentação). Aqui está
+as opções :
 
 Depois que os dados são ativados, você pode escolher :
 
--   **Couleur** : .
+-   **Couleur** : A cor da curva.
 
--   **Type** : .
+-   **Type** : O tipo de gráfico (área, linha ou coluna).
 
--   **Echelle** : 
-    
-    .
+-   **Echelle** : já que você pode colocar várias curvas (dados)
+    no mesmo gráfico, é possível distinguir as escalas
+    (direita ou esquerda).
 
--   **Escalier** : 
-    
+-   **Escalier** : exibe a curva como um
+    escada ou exibição contínua
 
--   **Empiler** : 
-    .
+-   **Empiler** : permite empilhar os valores das curvas (veja em
+    abaixo para o resultado).
 
--   **Variation** : 
-    .
+-   **Variation** : exibe a diferença no valor de
+    ponto anterior.
 
 Opção na página do histórico 
 ===============================
@@ -116,36 +116,36 @@ A página de histórico fornece acesso a algumas opções adicionais
 História calculado 
 ------------------
 
+Usado para exibir uma curva com base em um cálculo em vários
+comando (você pode praticamente fazer tudo, + - / \* valor absoluto ... veja
+Documentação do PHP para determinadas funções). Ex :
+abs (* \ [Jardim \] \ [Higrometria \] \ [Temperatura \] * - * \ [Espaço de
+vida \] \ [Higrometria \] \ [Temperatura \] *)
 
-
-. Ex :
-
-
-
-
-
+Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite
+salve-os para facilitar a visualização
 
 > **Tip**
 >
-> 
-> .
+> Basta clicar no nome do objeto para desdobrar;
+> aparecem os comandos históricos que podem ser representados graficamente.
 
 Histórico de pedidos 
 ----------------------
 
- :
+Na frente de cada dado que pode ser representado graficamente, você encontrará dois ícones :
 
--   **Poubelle** : 
-    
-    .
+-   **Poubelle** : permite excluir os dados gravados; quando
+    clique, Jeedom pergunta se é necessário excluir os dados antes de um
+    determinada data ou todos os dados.
 
--   **Arrow** : .
+-   **Arrow** : Permite a exportação CSV de dados históricos.
 
 Remoção de valor inconsistente 
 =================================
 
-
-
+Às vezes você pode ter valores inconsistentes no
+gráficos. Isso geralmente ocorre devido a uma preocupação com a interpretação do
 valor. É possível excluir ou alterar o valor do ponto pressionando
 pergunta, clicando diretamente no gráfico; de
 Além disso, você pode definir o mínimo e o máximo permitido para

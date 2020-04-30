@@ -620,7 +620,7 @@ Notificações
     a ser usado se o equipamento éiver com a bateria **warning**.
 
 -   **Adicione uma mensagem a cada bateria em perigo** : Adicione um
-    mensagem no centro de mensagens se um dispositivo em seu nível de
+    mensagem no centro de mensagens se um dispositivo tiver seu nível de
     bateria em **danger**.
 
 -   **Comando na bateria em perigo** : Comando de tipo **message** à
