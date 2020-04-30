@@ -7,7 +7,7 @@ Esses pedidos podem ser obtidos por :
 
 - SMS : envie um SMS para iniciar comandos (ação) ou faça uma pergunta (informações).
 - Cat : Telegrama, Slack, ec.
-- Vocal : dite uma frase com Siri, Google Now, SARAH ec.. Para iniciar comandos (ação) ou fazer uma pergunta (informações).
+- Vocal : dite uma frase com Siri, Google Now, SARAH ec.. Iniciar comandos (ação) ou fazer uma pergunta (informações).
 - HTTP : inicie uma URL HTTP contendo o texto (ex. Tasker, Slack) para iniciar comandos (ação) ou fazer uma pergunta (informações).
 
 O valor das interações reside na integração simplificada em outros sistemas, como smartphones, tablets, outras caixas de automação residencial, ec..
@@ -51,18 +51,18 @@ Também podemos definir um comando a ser executado se, por exemplo, a interaçã
 A página de configuração consiste em várias guias e botões :
 
 - **Phrases** : Exibe o número de frases da interação (um clique nelas mostra).
-- **Enregistrer** : Grave a interação atual.
+- **Enregistrer** : Registra a interação atual.
 - **Supprimer** : Excluir interação atual.
-- **Dupliquer** : Duplica a interação atual.
+- **Dupliquer** : Duplicar a interação atual.
 
 ### Guia Geral
 
 - **Nom** : Nomee da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
 - **Groupe** : Grupo de interação, isso permite que eles sejam organizados (podem estar vazios; portanto, estarão no grupo "nenhum").
-- **Actif** : Ativa ou desativa a interação.
+- **Actif** : Permite ativar ou desativar a interação.
 - **Demande** : A sentença do modelo de geração (obrigatório).
 - **Synonyme** : Permite definir sinônimos nos nomes dos comandos.
-- **Réponse ** : A resposta a fornecer.
+- **Réponse ** : A resposta para fornecer.
 - **Aguarde antes de responder (s)** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
 - **Conversão binária** : Converte valores binários em abertos / fechados, por exemplo (apenas para comandos do tipo de informações binárias).
 - **Usuários autorizados** : Limita a interação com determinados usuários (logins separados por |).
@@ -180,7 +180,7 @@ Podemos imaginar que um alarme pode ser ativado ou desativado por uma criança o
 É possível criar [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusão, se uma frase gerada corresponder a este Regexp, ela será excluída. O interesse é ser capaz de remover falsos positivos, ou seja, uma sentença gerada pelo Jeedom que ativa algo que não corresponde ao que queremos ou que interferiria em outra interação que teria uma sentença semelhante..
 
 Temos 2 lugares para aplicar um Regexp :
-- Na própria interação no campo "Regexp exclusion"".
+- Na interação, mesmo no campo "Regexp exclusion"".
 - No campo Administração → Configuração → Interações → campo "Regexp de exclusão geral para interações"".
 
 Para o campo "Regex de exclusão geral para interações", essa regra será aplicada a todas as interações, que serão criadas ou salvas novamente mais tarde.. Se queremos aplicá-lo a todas as interações existentes, precisamos regenerar as interações. Geralmente, é usado para apagar frases formadas incorretamente encontradas na maioria das interações geradas.
