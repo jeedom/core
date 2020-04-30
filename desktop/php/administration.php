@@ -67,12 +67,11 @@ user::isBan();
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="name" />
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Langue}}
+
+						<label class="col-lg-3 col-md-2 col-sm-2 col-xs-6 control-label">{{Langue}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
 							<select class="form-control configKey" data-l1key="language">
 								<option value="fr_FR">{{Français}}</option>
 								<option value="en_US">{{Anglais}}</option>
@@ -217,12 +216,11 @@ user::isBan();
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}
+
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-lg-2 col-md-3 col-sm-2 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
 						</div>
 					</div>
@@ -266,10 +264,10 @@ user::isBan();
 			</form>
 			<br>
 			<form class="form-horizontal">
-				<div class="alert alert-info">
+				<div class="alert" style="margin-bottom: 0;">
 					<i class="far fa-comment"></i>
 					<i>{{Les informations suivantes peuvent êtres utilisées par les plugins.}}</i>
-					<i>{{Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site</a>}}</i>
+					<i>{{Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site.</a>}}</i>
 				</div>
 				<fieldset>
 					<legend>{{Coordonnées}}</legend>
@@ -288,8 +286,6 @@ user::isBan();
 							<input type="text" class="configKey form-control" data-l1key="info::altitude" />
 						</div>
 					</div>
-
-					<legend>{{Adresse}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Adresse}}</label>
 						<div class="col-lg-6 col-md-5 col-sm-6 col-xs-6">
