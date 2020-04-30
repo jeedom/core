@@ -473,7 +473,8 @@ class repo_market {
 				$data = array(
 					'health' => jeedom::health(),
 					'name' => config::byKey('name'),
-					'hwkey' => jeedom::getHardwareKey()
+					'hwkey' => jeedom::getHardwareKey(),
+					'language' => config::byKey('language')
 				);
 				$url = config::byKey('service::monitoring::url').'/service/monitoring';
 				$request_http = new com_http($url);
