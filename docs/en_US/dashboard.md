@@ -37,8 +37,8 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 - By clicking on an object summary, you filter to display only the equipment related to this object and which relate to this object summary.
 
 - A click on an information type order displays the history of the order (if it is historical).
-- .
-- .
+- A Ctrl + Clickk on an information type command displays the history of all (historical) commands for this tile.
+- A click on the * time * information of an action command displays the history of the command (if it is logged).
 
 > **Tip**
 >
@@ -59,7 +59,7 @@ You can also edit the internal layout of the controls on the tile :
 - Either by right-clicking on the widget. You then access :
     - **Advanced configuration** : gives access to the advanced configuration of the command.
     - **Standard** : default layout, everything is automatic with just the possibility of rearranging the order of orders.
-    - **Board** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple orders per box
+    - **Tableau** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple orders per box
     - **Add column** : add a column to the table (accessible only if you are in table layout)
     - **Add line** : add a row to the table (accessible only if you are in table layout)
     - **Remove column** : remove a column from the table (accessible only if you are in table layout)

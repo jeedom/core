@@ -6,7 +6,7 @@
 Das Armaturenbrett ist eine der Hauptseiten von Jeedom. Es zeigt einen Bericht über Ihre gesamte Hausautomation an.
 Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst erstellt und enthält alle sichtbaren Objekte und deren Ausrüstung.
 
-> **Spitze**
+> **Tip**
 >
 > Die Anzeigereihenfolge der Objekte im Armaturenbrett ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.
 
@@ -24,7 +24,7 @@ Wenn Sie die Maus über eine Bestellung bewegen, wird unten links auf der Kachel
 
 Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um die Konfigurationsseite dieses Geräts direkt zu öffnen.
 
-> **Spitze**
+> **Tip**
 >
 > Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Armaturenbrett → Objektname**.
 > Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
@@ -37,14 +37,14 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 - Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
 
 - Ein Klick auf einen Auftrag vom Informationstyp zeigt den Verlauf des Auftrags an (falls er historisch ist)..
-- .
-- .
+- Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
+- Ein Klick auf die * Zeit * -Informationen eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls dieser protokolliert ist)..
 
-> **Spitze**
+> **Tip**
 >
 > In Ihrem Profil können Sie Jeedom so konfigurieren, dass der Baum der Objekte und / oder die Szenarien standardmäßig sichtbar sind, wenn Sie im Armaturenbrett ankommen.
 
-> **Spitze**
+> **Tip**
 >
 > Wenn Sie auf Mobilgeräten einen Befehl vom Typ &quot;Info&quot; drücken, wird ein Menü angezeigt, in dem Sie entweder den Verlauf der Bestellung anzeigen oder eine Warnung darauf setzen können, damit Jeedom Sie (einmal) benachrichtigt, sobald dass der Wert einen bestimmten Schwellenwert überschreitet.
 
@@ -59,7 +59,7 @@ Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten
 - Entweder durch Klicken mit der rechten Maustaste auf das Widget. Sie greifen dann zu :
     - **Erweiterte Konfiguration** : Ermöglicht den Zugriff auf die erweiterte Konfiguration des Befehls.
     - **Standard** : Standardlayout, alles ist automatisch mit nur der Möglichkeit, die Reihenfolge der Bestellungen neu zu ordnen.
-    - **Tabelle** : ermöglicht das Einfügen der Befehle in eine Tabelle : Spalten und Zeilen werden durch Klicken mit der rechten Maustaste hinzugefügt und gelöscht. Verschieben Sie dann einfach die Befehle in die gewünschten Felder. Sie können mehrere Bestellungen pro Box aufgeben
+    - **Tableau** : ermöglicht das Einfügen der Befehle in eine Tabelle : Spalten und Zeilen werden durch Klicken mit der rechten Maustaste hinzugefügt und gelöscht. Verschieben Sie dann einfach die Befehle in die gewünschten Felder. Sie können mehrere Bestellungen pro Box aufgeben
     - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
     - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
     - **Säule entfernen** : Entfernen Sie eine Spalte aus der Tabelle (nur verfügbar, wenn Sie sich im Tabellenlayout befinden).
@@ -72,7 +72,7 @@ Rechts von jedem Objekt können Sie ein Symbol verwenden :
 
 ## Jeedom Menüleiste
 
-> **Spitze**
+> **Tip**
 >
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
 > - Klicken Sie auf den Namen des Jeedom (Menüleiste) : Öffnet Einstellungen → System → Konfiguration.
