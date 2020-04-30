@@ -18,14 +18,14 @@ Abaixo, você encontra a saúde de cada plug-in, um clique no nome do plug-in fo
 
 -   Porta de acesso para hardware de plug-in (tipo de chave Zwave).
 -   Modo demônio.
--   .
--   .
--   .
+-   Exibição da página de integridade do equipamento do plug-in.
+-   Exibição da página de configuração do plug-in.
+-   Estado geral do plug-in.
 
 > **Note**
 >
-> .
+> Os ícones podem variar dependendo do plugin.
 
 > **Note**
 >
-> .
+> Geralmente quando a linha está verde, está tudo bem e quando está vermelha, há um problema.

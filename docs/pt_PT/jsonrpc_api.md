@@ -600,7 +600,7 @@ jeedom::getUsbMapping
 
 Lista de portas USB e nomes de chaves USB conectadas a ela
 
-API do plugin JSON
+API de plug-in JSON
 ===============
 
 plugin::install
