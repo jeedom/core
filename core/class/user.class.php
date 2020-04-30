@@ -64,7 +64,7 @@ class user {
 				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
 				if (ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
 					log::add("connection", "debug", __('Bind user OK', __FILE__));
-					$all_profiles = array('restrict', 'user', 'admin'); 
+					$all_profiles = array('restrict', 'user', 'admin');
 					$profiles = 'none'; # default
 					foreach ($all_profiles as $p) {
 						if (config::byKey('ldap:filter:'.$p)!="" && $result_profile = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter:'.$p))) {
@@ -92,7 +92,7 @@ class user {
 								log::add("connection", "info", __('LDAP Profile Check - User "'.$_login.'" doesn\'t exist in the LDAP', __FILE__));
 							}
 						}
-
+						
 					}
 					log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ' - "' . $profiles . '" profile selected)');
 					if ($profiles != 'none') {
@@ -100,7 +100,7 @@ class user {
 						if (is_object($user)) {
 							$user->setPassword($sMdp)
 							->setOptions('lastConnection', date('Y-m-d H:i:s'))
-   							->setProfils($profiles);
+							->setProfils($profiles);
 							$user->save();
 							return $user;
 						}
@@ -108,7 +108,7 @@ class user {
 						->setLogin($_login)
 						->setPassword($sMdp)
 						->setOptions('lastConnection', date('Y-m-d H:i:s'))
-	   					->setProfils($profiles);
+						->setProfils($profiles);
 						$user->save();
 						log::add("connection", "info", __('User created from the LDAP : ', __FILE__) . $_login);
 						jeedom::event('user_connect');
@@ -342,6 +342,16 @@ class user {
 		);
 		$user->setOptions('registerDevice', $registerDevice);
 		$user->save();
+		try {
+			$sessions = listSession();
+			foreach ($sessions as $id => $session) {
+				if($session['user_id'] == $user->getId()){
+					deleteSession($id);
+				}
+			}
+		} catch (\Exception $e) {
+			
+		}
 		return $user->getHash() . '-' . $key;
 	}
 	
