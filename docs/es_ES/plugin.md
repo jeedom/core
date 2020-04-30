@@ -10,11 +10,11 @@ Por lo tanto, hay una lista de complementos en orden alfabético y un enlace al 
 
 Al hacer clic en un complemento, accede a su configuración. En la parte superior, encontrará el nombre del complemento, luego entre paréntesis, su nombre en Jeedom (ID) y, finalmente, el tipo de versión instalada (estable, beta).
 
-> **Importante**
+> **Important**
 >
 > Al descargar un complemento, está deshabilitado de forma predeterminada. Entonces tienes que activarlo tú mismo.
 
-> **Punta**
+> **Tip**
 >
 > Puede hacer Ctrl-clic o hacer clic en Centro para abrir su configuración en una nueva pestaña del navegador.
 
@@ -22,19 +22,19 @@ Al hacer clic en un complemento, accede a su configuración. En la parte superio
 
 ### Arriba a la derecha, algunos botones. :
 
-- **Documentación** : Permite el acceso directo a la página de documentación del complemento.
-- **Cambios** : Permite ver el registro de cambios del complemento si existe.
+- **Documentation** : Permite el acceso directo a la página de documentación del complemento.
+- **Changelog** : Permite ver el registro de cambios del complemento si existe.
 - **Detalles** : Permite encontrar la página de complementos en el mercado.
-- **Remove** : Elimina el complemento de tu Jeedom. Tenga en cuenta que esto también elimina permanentemente todo el equipo de este complemento.
+- **Supprimer** : Elimina el complemento de tu Jeedom. Tenga en cuenta que esto también elimina permanentemente todo el equipo de este complemento.
 
-### Abajo a la izquierda, hay un área **Estado** con :
+### Abajo a la izquierda, hay un área **état** con :
 
-- **Estatus** : Permite ver el estado del complemento (activo / inactivo).
-- **Versión** : La versión del complemento instalado.
-- **Autor** : Autor del complemento.
-- **Acción** : Le permite habilitar o deshabilitar el complemento.
+- **Statut** : Permite ver el estado del complemento (activo / inactivo).
+- **Version** : La versión del complemento instalado.
+- **Auteur** : Autor del complemento.
+- **Action** : Le permite habilitar o deshabilitar el complemento.
 - **Versión Jeedom** : Indica la versión mínima de Jeedom requerida para el complemento.
-- **Licencia** : Indica la licencia del complemento que generalmente será AGPL.
+- **Licence** : Indica la licencia del complemento que generalmente será AGPL.
 
 ### A la derecha, encontramos el área. **Registro y monitoreo** que permite definir :
 
@@ -47,22 +47,22 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 ### Dependencias :
 
-- **Apellido** : Generalmente será local.
-- **Estatus** : Estado de dependencia, OK o NOK.
-- **Instalación** : Permite instalar o reinstalar dependencias (si no lo hace manualmente y son NOK, Jeedom se encargará de sí mismo después de un tiempo).
+- **Nom** : Generalmente será local.
+- **Statut** : Estado de dependencia, OK o NOK.
+- **Installation** : Permite instalar o reinstalar dependencias (si no lo hace manualmente y son NOK, Jeedom se encargará de sí mismo después de un tiempo).
 - **Última instalación** : Fecha de la última instalación de dependencia.
 
 ### Demonio :
 
-- **Apellido** : Generalmente será local.
-- **Estatus** : Estado del demonio, OK o NOK.
-- **Configuración** : OK si se cumplen todos los criterios para que el demonio corra, o si da la causa del bloqueo.
+- **Nom** : Generalmente será local.
+- **Statut** : Estado del demonio, OK o NOK.
+- **Configuration** : OK si se cumplen todos los criterios para que el demonio corra, o si da la causa del bloqueo.
 - **(Re) Inicio** : Permite lanzar o relanzar al demonio.
 - **Parar** : Permite detener el demonio (solo en el caso de que la administración automática esté deshabilitada).
 - **Gestión automática** : Activa o desactiva la administración automática (que permite a Jeedom administrar el demonio y reiniciarlo si es necesario. A menos que se indique lo contrario, es aconsejable dejar activa la gestión automática).
 - **Último lanzamiento** : Fecha del último lanzamiento del demonio.
 
-> **Punta**
+> **Tip**
 >
 > Algunos complementos tienen una parte de configuración. Si este es el caso, aparecerá bajo las zonas de dependencia y demonio descritas anteriormente..
 > En este caso, consulte la documentación del complemento en cuestión para saber cómo configurarlo.
@@ -78,9 +78,9 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 - **CronHourly** : Un cron cada hora.
 - **CronDaily** : Un cron diario.
 - **deadcmd** : Un cron para comandantes muertos.
-- **salud** : Una salud cron.
+- **health** : Una salud cron.
 
-> **Punta**
+> **Tip**
 >
 > Si el complemento utiliza una de estas funciones, puede prohibirlo específicamente desmarcando la casilla &quot;activar&quot; que estará presente al lado.
 
@@ -92,7 +92,7 @@ Podemos encontrar una sección de Panel que habilitará o deshabilitará la visu
 
 Para instalar un nuevo complemento, simplemente haga clic en el botón &quot;Market&quot; (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
 
-> **Punta**
+> **Tip**
 >
 > Debe haber ingresado la información de su cuenta Market en la administración (Configuración → Actualizaciones → pestaña Market) para encontrar los complementos que ya compró, por ejemplo.
 
@@ -100,10 +100,10 @@ En la parte superior de la ventana tienes filtros :
 - **Abierto / De pago** : muestra solo gratis o de pago.
 - **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
 - **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
-- **Buscar** : permite buscar un complemento (en el nombre o la descripción del mismo).
-- **Apellidobre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
+- **Rechercher** : permite buscar un complemento (en el nombre o la descripción del mismo).
+- **Nombre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
 
-> **Punta**
+> **Tip**
 >
 > La pequeña cruz restablece el filtro en cuestión.
 
@@ -114,18 +114,18 @@ Una vez que haya encontrado el complemento que desea, simplemente haga clic en �
     - **Instalar estable** : permite instalar el complemento en su versión estable.
     - **Instalar beta** : permite instalar el complemento en su versión beta (solo para beta testers).
     - **Instalar pro** : permite instalar la versión pro (muy poco utilizada).
-    - **Remove** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
+    - **Supprimer** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
 
 A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, el número de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento.. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
 
-> **Importante**
+> **Important**
 >
 > Realmente no se recomienda poner un complemento beta en un Jeedom no beta, pueden resultar muchos problemas operativos..
 
-> **Importante**
+> **Important**
 >
 > Algunos complementos son de pago, en este caso el complemento le ofrecerá comprarlo.. Una vez hecho esto, debe esperar unos diez minutos (tiempo de validación del pago), luego regresar al archivo del complemento para instalarlo normalmente.
 
-> **Punta**
+> **Tip**
 >
-> También puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de Github. Para hacer esto, en la configuración de Jeedom, active la función apropiada en la sección "Actualizaciones y archivos".". Entonces será posible, colocando el mouse en el extremo izquierdo y haciendo que aparezca el menú de la página del complemento, hacer clic en "Agregar desde otra fuente". Luego puede elegir la fuente "Archivo". Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin \ _info.
+> También puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de Github. Para hacer esto, en la configuración de Jeedom, active la función apropiada en la sección "Actualizaciones y archivos".". Entonces será posible, colocando el mouse en el extremo izquierdo y haciendo que aparezca el menú de la página del complemento, hacer clic en "Agregar desde otra fuente". Luego puede elegir la fuente "Archivo". Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin\_info.

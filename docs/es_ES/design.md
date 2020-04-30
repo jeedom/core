@@ -4,18 +4,18 @@
 Esta página le permite configurar la visualización de toda su domótica de una manera muy fina.
 Lleva tiempo pero su único límite es tu imaginación.
 
-> **Punta**
+> **Tip**
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
-> **Importante**
+> **Important**
 >
 > Todas las acciones se realizan haciendo clic derecho en esta página, tenga cuidado de hacerlo bien en el diseño. Al crear, debe hacerlo en el medio de la página (para asegurarse de estar en el diseño).
 
 En el menú (clic derecho), encontramos las siguientes acciones :
 
-- **Diseños** : Muestra la lista de sus diseños y le permite acceder a ellos..
-- **Edición** : Cambiar al modo de edición.
+- **Designs** : Muestra la lista de sus diseños y le permite acceder a ellos..
+- **Edition** : Cambiar al modo de edición.
 - **Pantalla completa** : Le permite usar toda la página web, lo que eliminará el menú Jeedom de la parte superior.
 - **Añadir gráfico** : Agregar un gráfico.
 - **Añadir texto / html** : Le permite agregar texto o código html / JavaScript.
@@ -28,8 +28,8 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
 - **Agregar área** : Le permite agregar un área transparente en la que se puede hacer clic que puede ejecutar una serie de acciones al hacer clic (dependiendo o no del estado de otro comando).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
-- **Viendo**
-    - **No** : No muestra ninguna cuadrícula.
+- **Affichage**
+    - **Aucune** : No muestra ninguna cuadrícula.
     - **10x10** : Muestra una cuadrícula de 10 por 10.
     - **15x15** : Muestra una cuadrícula de 15 por 15.
     - **20x20** : Muestra una cuadrícula de 20 por 20.
@@ -40,9 +40,9 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Crea un diseño** : Permite agregar un nuevo diseño.
 - **Diseño duplicado** : Duplicar el diseño actual.
 - **Configura el diseño** : Acceso a la configuración de diseño.
-- **Guardar** : Guarde el diseño (tenga en cuenta que también hay copias de seguridad automáticas durante ciertas acciones).
+- **Sauvegarder** : Guarde el diseño (tenga en cuenta que también hay copias de seguridad automáticas durante ciertas acciones).
 
-> **Importante**
+> **Important**
 >
 > La configuración de los elementos de diseño se realiza haciendo clic en ellos..
 
@@ -51,27 +51,27 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 Encontrado aquí :
 
 - **General**
-    - **Apellido** : El nombre de su diseño.
-    - **Posición** : La posición del diseño en el menú.. Le permite ordenar los diseños..
+    - **Nom** : El nombre de su diseño.
+    - **Position** : La posición del diseño en el menú.. Le permite ordenar los diseños..
     - **Fondo transparente** : Hace que el fondo sea transparente. Atención si la casilla está marcada, no se usa el color de fondo.
     - **Color de fondo** : Diseño de color de fondo.
     - **Código de acceso* : Código de acceso a su diseño (si está vacío, no se requiere código).
     - **Icono** : Un icono para ello (aparece en el menú de opciones de diseño).
-    - **Imagen**
-        - **Enviar a** : Permite agregar una imagen de fondo al diseño.
+    - **Image**
+        - **Envoyer** : Permite agregar una imagen de fondo al diseño.
         - **Eliminar imagen** : Borrar imagen.
-- **Tamaños**
+- **Tailles**
     - **Tamaño (WxH)** : Le permite establecer el tamaño en píxeles de su diseño..
 
 ## Configuración general de elementos.
 
-> **Nota**
+> **Note**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
 ### Configuraciones de pantalla comunes
 
-- **Profundidad** : Permite elegir el nivel de profundidad
+- **Profondeur** : Permite elegir el nivel de profundidad
 - **Posición X (%)** : Coordenada horizontal del elemento..
 - **Posición Y (%)** : Coordenada vertical del elemento..
 - **Ancho (px)** : Ancho del elemento en píxeles.
@@ -99,7 +99,7 @@ Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tama�
 - **Mostrar selector de período** : Muestra el selector de período en la esquina superior izquierda..
 - **Mostrar barra de desplazamiento** : Muestra la barra de desplazamiento.
 - **Fondo transparente** : Hace que el fondo sea transparente.
-- **Frontera** : Le permite agregar un borde, tenga cuidado, la sintaxis es HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
+- **Bordure** : Le permite agregar un borde, tenga cuidado, la sintaxis es HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 
 ### Configuración avanzada
 
@@ -113,13 +113,13 @@ Le permite elegir los comandos para graficar.
 - **Color de fondo** : le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No)..
 - **Alrededor de los ángulos** : permite redondear los ángulos (no olvides poner%, ex 50%).
-- **Frontera** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
+- **Bordure** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 - **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
 - **Alineación de texto** : permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Grasa** : texto en negrita.
-- **Texto** : Texto en código HTML que estará en el elemento.
+- **Gras** : texto en negrita.
+- **Texte** : Texto en código HTML que estará en el elemento.
 
-> **Importante**
+> **Important**
 >
 > Si coloca código HTML (especialmente Javascript), tenga cuidado de verificarlo antes porque puede hacerlo si hay un error o si sobrescribe un componente de Jeedom y bloquea completamente el diseño y solo tendrá que eliminarlo. directamente en la base de datos.
 
@@ -131,15 +131,15 @@ Le permite elegir los comandos para graficar.
 
 ### Configuraciones de pantalla específicas
 
-- **Apellido** : Apellidobre del enlace (texto mostrado).
-- **Enlace** : Enlace al diseño o vista en cuestión.
+- **Nom** : Apellidobre del enlace (texto mostrado).
+- **Lien** : Enlace al diseño o vista en cuestión.
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Le permite redondear los ángulos, no olvide poner el%.
 - **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Alineación de texto** : Permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Grasa** : Texto en negrita.
+- **Gras** : Texto en negrita.
 
 ## Equipo
 
@@ -149,9 +149,9 @@ Le permite elegir los comandos para graficar.
 - **Ocultar nombre** : Marque para ocultar el nombre del equipo.
 - **Color de fondo** : Le permite elegir un color de fondo personalizado, mostrar el equipo con un fondo transparente o usar el color predeterminado.
 - **Color del texto** : Le permite elegir un color de fondo personalizado o usar el color predeterminado.
-- **Redondeado** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo..
-- **Frontera** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
-- **Opacidad** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
+- **Arrondis** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo..
+- **Bordure** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
+- **Opacité** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
 - **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
 
@@ -178,15 +178,15 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 ### Configuraciones de pantalla específicas
 
-- **Visualización** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
-- **Imagen** : Le permite enviar la imagen en cuestión (si ha elegido una imagen).
+- **Afficher** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
+- **Image** : Le permite enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
 ## Zona
 
 ### Configuraciones de pantalla específicas
 
-- **Puntao de area** : Aquí es donde eliges el tipo de área : Macro individual, macro binaria o widget al pasar el mouse.
+- **Tipo de area** : Aquí es donde eliges el tipo de área : Macro individual, macro binaria o widget al pasar el mouse.
 
 ### Macro individual
 
@@ -204,22 +204,22 @@ Solo tiene que poner las acciones a realizar para Activar y Desactivar.
 
 En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, se mostrará el widget en cuestión.
 
-- **Equipo** : Widget para mostrar al pasar el mouse o al hacer clic.
+- **Equipement** : Widget para mostrar al pasar el mouse o al hacer clic.
 - **Mostrar en paso elevado** : Si está marcado, muestra el widget al pasar el mouse.
 - **Ver en un clic** : Si está marcado, el widget se muestra al hacer clic.
-- **Posición** : Le permite elegir dónde aparecerá el widget (predeterminado abajo a la derecha).
+- **Position** : Le permite elegir dónde aparecerá el widget (predeterminado abajo a la derecha).
 
 ## Resumen
 
 ### Configuraciones de pantalla específicas
 
-- **Enlace** : Le permite indicar el resumen a mostrar (General para el global, de lo contrario indique el asunto).
+- **Lien** : Le permite indicar el resumen a mostrar (General para el global, de lo contrario indique el asunto).
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Le permite redondear los ángulos, no olvide poner el%.
 - **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
-- **Grasa** : Texto en negrita.
+- **Gras** : Texto en negrita.
 
 ## Preguntas frecuentes
 

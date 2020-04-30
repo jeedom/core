@@ -33,9 +33,9 @@ The principle is quite simple : a view is made up of zones (you can put as many 
 After clicking on the add zone button, Jeedom will ask for its name and type.
 On each zone you have the following general options :
 
-- **Width** : Defines the width of the area (in desktop mode only).
-- **Edit** : Allows to change the name of the zone.
-- **Remove** : Allows to delete the zone.
+- **Largeur** : Defines the width of the area (in desktop mode only).
+- **Editer** : Allows to change the name of the zone.
+- **Supprimer** : Allows to delete the zone.
 
 ### Widget type area
 
@@ -62,14 +62,14 @@ A graphics type area allows you to add graphics to your view, it has the followi
 
 When you press the &quot;Add curve&quot; button Jeedom displays the list of historical commands and you can choose the one (s) to add, once done you have access to the following options :
 
-- **Trash can** : Remove command from chart.
-- **Last name** : Name of the command to draw.
-- **Color** : Color of the curve.
+- **Poubelle** : Remove command from chart.
+- **Nom** : Name of the command to draw.
+- **Couleur** : Color of the curve.
 - **Type** : Curve type.
-- **Group** : Allows you to group data (maximum type per day).
-- **Ladder** : scale (right or left) of the curve.
-- **Staircase** : Displays the stepped curve.
-- **Stack** : Stack the curve with the other type curves.
+- **Groupement** : Allows you to group data (maximum type per day).
+- **Echelle** : scale (right or left) of the curve.
+- **Escalier** : Displays the stepped curve.
+- **Empiler** : Stack the curve with the other type curves.
 - **Variation** : Only draw variations with the previous value.
 
 > **Tip**
@@ -83,14 +83,14 @@ Here you have the buttons :
 - **Add column** : Add a column to the table.
 - **Add line** : Add a row to the table.
 
-> **NOTE**
+> **Note**
 >
 > It is possible to reorganize the rows by dragging and dropping but not the columns.
 
 Once you have added your rows / columns you can add information in the boxes :
 
-- **text** : just text to write.
-- **l'opération à mener** : any l'opération à mener code (javascript possible but strongly discouraged).
+- **texte** : just text to write.
+- **html** : any l'opération à mener code (javascript possible but strongly discouraged).
 - **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
 
 

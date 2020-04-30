@@ -4,7 +4,7 @@
 Mit Ansichten können Sie eine benutzerdefinierte Ansicht erstellen.
 Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Minuten eine individuellere Anzeige.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
 
@@ -14,7 +14,7 @@ Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) od
 
 Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer Ansicht (Jeedom fragt nach dem Namen und sendet Sie zur Bearbeitungsseite). :
 
-> **Spitze**
+> **Tip**
 >
 > Sie können diese Option in Ihrem Profil so ändern, dass die Liste der Ansichten standardmäßig angezeigt wird.
 
@@ -22,7 +22,7 @@ Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausbl
 
 Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so viele setzen, wie Sie möchten).. Jede Zone ist vom Typ Grafik, Widget oder Tabelle, je nachdem, welchen Typ Sie Geräte-, Steuerungs- oder Grafik-Widgets hinzufügen können.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können die Reihenfolge der Zonen durch Ziehen und Ablegen verschieben.
 
@@ -33,9 +33,9 @@ Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so vi
 Nach dem Klicken auf die Schaltfläche Zone hinzufügen fragt Jeedom nach Name und Typ.
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
-- **Breite** : Definiert die Breite des Bereichs (nur im Desktop-Modus).
-- **Bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
-- **Entfernen** : Ermöglicht das Löschen der Zone.
+- **Largeur** : Definiert die Breite des Bereichs (nur im Desktop-Modus).
+- **Editer** : Ermöglicht das Ändern des Namens der Zone.
+- **Supprimer** : Ermöglicht das Löschen der Zone.
 
 ### Widget-Typ-Bereich
 
@@ -43,11 +43,11 @@ In einem Widget-Typbereich können Sie Widgets hinzufügen :
 
 - **Widget hinzufügen** : Hinzufügen / Bearbeiten von Widgets zur Anzeige im Bereich.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können ein Widget direkt löschen, indem Sie auf den Papierkorb davor klicken.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können die Reihenfolge der Widgets im Bereich durch Ziehen und Ablegen ändern.
 
@@ -62,17 +62,17 @@ In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folge
 
 Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeedom die Liste der historischen Befehle an und Sie können die hinzuzufügenden Befehle auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
-- **Mülleimer** : Befehl aus Diagramm entfernen.
-- **Name** : Name des zu zeichnenden Befehls.
-- **Farbe** : Farbe der Kurve.
-- **Typ** : Kurventyp.
-- **Gruppe** : Ermöglicht das Gruppieren von Daten (maximaler Typ pro Tag).
-- **Maßstab** : Skala (rechts oder links) der Kurve.
-- **Treppe** : Zeigt die gestufte Kurve an.
-- **Stapel** : Stapeln Sie die Kurve mit den anderen Kurventypen.
-- **Veränderung** : Zeichnen Sie nur Veränderungen mit dem vorherigen Wert.
+- **Poubelle** : Befehl aus Diagramm entfernen.
+- **Nom** : Name des zu zeichnenden Befehls.
+- **Couleur** : Farbe der Kurve.
+- **Type** : Kurventyp.
+- **Groupement** : Ermöglicht das Gruppieren von Daten (maximaler Typ pro Tag).
+- **Echelle** : Skala (rechts oder links) der Kurve.
+- **Escalier** : Zeigt die gestufte Kurve an.
+- **Empiler** : Stapeln Sie die Kurve mit den anderen Kurventypen.
+- **Variation** : Zeichnen Sie nur Veränderungen mit dem vorherigen Wert.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können die Reihenfolge der Grafiken im Bereich durch Ziehen und Ablegen ändern.
 
@@ -83,14 +83,14 @@ Hier haben Sie die Schaltflächen :
 - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu.
 - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu.
 
-> **Notiz**
+> **Note**
 >
 > Es ist möglich, die Zeilen durch Ziehen und Ablegen neu zu organisieren, nicht jedoch die Spalten.
 
 Nachdem Sie Ihre Zeilen / Spalten hinzugefügt haben, können Sie Informationen in die Felder einfügen :
 
-- **Text** : Nur Text zum Schreiben.
-- **HTML** : jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
+- **texte** : Nur Text zum Schreiben.
+- **html** : jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
 - **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget für den Befehl angezeigt wird)..
 
 

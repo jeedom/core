@@ -10,7 +10,7 @@ You can therefore from this page add JS and CSS scripts executed everywhere in J
 For unsophisticated people who want to discover CSS :
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **IMPORTANT**
+> **Important**
 >
 > Any error in one of these scripts can make Jeedom completely inoperative. 
 >

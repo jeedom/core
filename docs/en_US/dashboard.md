@@ -55,7 +55,7 @@ You can also edit the internal layout of the controls on the tile :
 - Either by right-clicking on the widget. You then access :
     - **Advanced configuration** : gives access to the advanced configuration of the command.
     - **Standard** : default layout, everything is automatic with just the possibility of rearranging the order of orders.
-    - **Board** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple orders per box
+    - **Tableau** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple orders per box
     - **Add column** : add a column to the table (accessible only if you are in table layout)
     - **Add line** : add a row to the table (accessible only if you are in table layout)
     - **Remove column** : remove a column from the table (accessible only if you are in table layout)
@@ -63,7 +63,7 @@ You can also edit the internal layout of the controls on the tile :
 
 To the right of each object, an icon allows you to :
 
-- Click : All the tiles of this object will adopt a height equal to the highest tile.
+- Clickk : All the tiles of this object will adopt a height equal to the highest tile.
 
 ## Jeedom menu bar
 

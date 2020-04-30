@@ -2,7 +2,7 @@
 
 ## Allgemein
 
-Beim Öffnen einer Seite (Armaturenbrett, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können daher ohne weitere Aktion direkt eine Suche eingeben.
+Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können daher ohne weitere Aktion direkt eine Suche eingeben.
 
 - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
 - Klicken Sie auf den Namen des Jeedom (Menüleiste)  : Öffnet **Einstellungen → System → Konfiguration**.

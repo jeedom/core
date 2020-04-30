@@ -11,11 +11,11 @@ The Logs page is quite simple :
 On the left, a list of available logs, with a search field to filter the name of the logs.
 Top right 5 buttons :
 
-- **Search** : Allows you to filter the display of the current log.
+- **Rechercher** : Allows you to filter the display of the current log.
 - **Pause / Resume** : Pause / resume real-time update of the current log.
 - **Download** : Allows to download the current log.
-- **Empty** : Allows to empty the current log.
-- **Remove** : Delete the current log. If Jeedom needs it it will recreate it automatically.
+- **Vider** : Allows to empty the current log.
+- **Supprimer** : Delete the current log. If Jeedom needs it it will recreate it automatically.
 - **Delete all logs** : Delete all logs present.
 
 > **Tip**
