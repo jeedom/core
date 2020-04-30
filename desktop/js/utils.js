@@ -475,6 +475,7 @@ $(function () {
     jeedom.getDocumentationUrl({
       plugin: $(this).attr('data-plugin'),
       page: $(this).attr('data-page'),
+      theme: $('body').data('theme'),
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },

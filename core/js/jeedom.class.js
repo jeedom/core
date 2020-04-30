@@ -533,6 +533,7 @@ jeedom.getDocumentationUrl = function (_params) {
     action: 'getDocumentationUrl',
     plugin: params.plugin || null,
     page: params.page || null,
+    theme: params.theme || null,
   };
   $.ajax(paramsAJAX);
 };
