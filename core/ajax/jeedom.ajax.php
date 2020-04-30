@@ -102,7 +102,13 @@ try {
 			}else if (init('page') == 'plan3d') {
 				$page = 'design3d';
 			}
-			ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
+			$version = '3.3';
+			if(strpos(jeedom::version(),'4.0') !== false){
+				$version = '4.0';
+			}elseif(strpos(jeedom::version(),'4.1') !== false){
+				$version = '4.1';
+			}
+			ajax::success('https://doc.jeedom.com/' . config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page));
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
