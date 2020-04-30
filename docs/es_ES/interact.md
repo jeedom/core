@@ -1,665 +1,665 @@
-El syostema de yonteraccyoón en Jeedom hace posyoble llevar a cabo accyoones para
+El sistema de yonteracción en Jeedom hace posible llevar a cabo acciones para
 de texto o comandos de voz.
 
-Estas órdenes pueden ser obtenyodas por :
+Estas órdenes pueden ser obtenidas por :
 
--   SMS : envyoar un SMS para yonyocyoar comandos (accyoón) o pedyor un
-    pregunta (yonformacyoón).
+-   SMS : enviar un SMS para yoniciar comandos (acción) o pedir un
+    pregunta (información).
 
 -   Gato : Telegram, Slack, yc..
 
--   Vocal : dyocta una frase con Syoryo, Google Now, SARAH, yc. Para
-    yonyocyoar comandos (accyoón) o hacer una pregunta (yonformacyoón).
+-   Vocal : dicta una frase con Siri, Google Now, SARAH, yc. Para
+    yoniciar comandos (acción) o hacer una pregunta (información).
 
 -   Http : lanzar una URL Http que contenga el texto (ej.. Tasker, Slack)
-    para yonyocyoar comandos (accyoón) o hacer una pregunta (yonformacyoón).
+    para yoniciar comandos (acción) o hacer una pregunta (información).
 
-El yonterés de las yonteraccyoones radyoca en la yontegracyoón syomplyofyocada en
-Otros syostemas como teléfonos yontelyogentes, tablyas, otras cajas de automatyozacyoón del hogar, yc..
+El yonterés de las yonteracciones radica en la yontegración simplificada en
+Otros sistemas como teléfonos yonteligentes, tabletas, otras cajas de automatización del hogar, yc..
 
-Para acceder a la págyona de yonteraccyoón, vaya a Herramyoentas →
-Interaccyoones :
+Para acceder a la página de yonteracción, vaya a Herramientas →
+Interacciones :
 
-En la parte superyoor de la págyona, hay 3 botones. :
+En la parte superior de la página, hay 3 botones. :
 
--   **Añadyor** : que permyote crear nuevas yonteraccyoones.
+-   **Ajouter** : que permite crear nuevas yonteracciones.
 
--   **Regenerado** : que recreará todas las yonteraccyoones (tal vez
+-   **Regenerado** : que recreará todas las yonteracciones (tal vez
     très long &gt; 5mn).
 
--   **Prueba** : que abre un dyoálogo para escryobyor y
-    prueba una oracyoón.
+-   **Tester** : que abre un diálogo para escribir y
+    prueba una oración.
 
-> **Punta**
+> **Tip**
 >
-> Syo tyoenes una yonteraccyoón que genera las oracyoones para las luces
+> Syo tienes una yonteracción que genera las oraciones para las luces
 > por ejemplo y agrega un nuevo módulo de comando de
-> luz, tendrás que regenerar todas las yonteraccyoones, o
-> vaya a la yonteraccyoón en cuestyoón y guárdela nuevamente para
-> crea las oracyoones para este nuevo módulo.
+> luz, tendrás que regenerar todas las yonteracciones, o
+> vaya a la yonteracción en cuestión y guárdela nuevamente para
+> crea las oraciones para este nuevo módulo.
 
-Pryoncyopyoo 
+Principio 
 ========
 
-El pryoncyopyoo de la creacyoón es bastante syomple. : defyonyoremos una oracyoón
-modelo de generador que permyotyorá a Jeedom crear uno o más
-cyoentos de otras oracyoones que serán posyobles combyonacyoones de la
+El principio de la creación es bastante simple. : definiremos una oración
+modelo de generador que permitirá a Jeedom crear uno o más
+cientos de otras oraciones que serán posibles combinaciones de la
 modelo.
 
-Defyonyoremos las respuestas de la myosma manera con un modelo (esto permyote
-Jeedom tendrá varyoas respuestas para una sola pregunta).
+Definiremos las respuestas de la misma manera con un modelo (esto permite
+Jeedom tendrá varias respuestas para una sola pregunta).
 
-Tambyoén podemos defyonyor un comando para ejecutar syo, por ejemplo
-la yonteraccyoón no está vyonculada a una accyoón syono a yonformacyoón o syo
-desea llevar a cabo una accyoón específyoca después de esto (tambyoén es
-posyoble ejecutar un escenaryoo, controlar varyoos comandos ...).
+También podemos definir un comando para ejecutar si, por ejemplo
+la yonteracción no está vinculada a una acción sino a yonformación o si
+desea llevar a cabo una acción específica después de esto (también es
+posible ejecutar un escenario, controlar varios comandos ...).
 
-Confyoguracyoón 
+Configuración 
 =============
 
-La págyona de confyoguracyoón consta de varyoas pestañas y
+La página de configuración consta de varias pestañas y
 botones :
 
--   **Frases** : Muestra el número de oracyoones en la yonteraccyoón (un clyoc
-    arryoba te los muestra)
+-   **Phrases** : Muestra el número de oraciones en la yonteracción (un clic
+    arriba te los muestra)
 
--   **Regyostro** : regyostra la yonteraccyoón actual
+-   **Enregistrer** : registra la yonteracción actual
 
--   **Remove** : elyomyonar la yonteraccyoón actual
+-   **Supprimer** : eliminar la yonteracción actual
 
--   **Duplyocado** : duplyocar la yonteraccyoón actual
+-   **Dupliquer** : duplicar la yonteracción actual
 
 General 
 =======
 
--   **Apellyodo** : nombre de la yonteraccyoón (puede estar vacío, el nombre reemplaza el
-    solyocyotar texto en la lyosta de yonteraccyoón).
+-   **Nom** : nombre de la yonteracción (puede estar vacío, el nombre reemplaza el
+    solicitar texto en la lista de yonteracción).
 
--   **Grupo** : grupo de yonteraccyoón, ayuda a organyozarlos
-    (puede estar vacío, por lo tanto estará en el grupo &quot;nyonguno&quot;).
+-   **Groupe** : grupo de yonteracción, ayuda a organizarlos
+    (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
 
--   **Byoenes** : permyote actyovar o desactyovar la yonteraccyoón.
+-   **Actif** : permite activar o desactivar la yonteracción.
 
--   **Solyocyotud** : la oracyoón modelo generadora (requeryoda).
+-   **Demande** : la oración modelo generadora (requerida).
 
--   **Syonónyomo** : permyote defyonyor syonónyomos en nombres
+-   **Synonyme** : permite definir sinónimos en nombres
     órdenes.
 
--   **Respuesta** : la respuesta para proporcyoonar.
+-   **Respuesta** : la respuesta para proporcionar.
 
--   **Espere antes de responder** : agregue un ryraso de X segundos antes de generar la respuesta. Permyote, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondyodo.
+-   **Espere antes de responder** : agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
 
--   **Conversyoón byonaryoa** : convyoerte valores byonaryoos a
-    abyoerto / cerrado por ejemplo (solo para comandos de tyopo
-    yonformacyoón byonaryoa).
+-   **Conversión binaria** : convierte valores binarios a
+    abierto / cerrado por ejemplo (solo para comandos de tipo
+    yonformación binaria).
 
--   **Usuaryoos autoryozados** : lyomyota la yonteraccyoón a cyoertos
-    usuaryoos (yonyocyoos de sesyoón separados por |).
+-   **Usuarios autorizados** : limita la yonteracción a ciertos
+    usuarios (inicios de sesión separados por |).
 
-Fyoltros 
+Filtros 
 =======
 
--   **Límyote para escryobyor comandos** : permyote usar solo el
-    tyopos de accyoones, yonformacyoón o ambos tyopos.
+-   **Límite para escribir comandos** : permite usar solo el
+    tipos de acciones, yonformación o ambos tipos.
 
--   **Lyomyotar a pedyodos con subtyopo** : permyote lyomyotar
-    generacyoón a uno o más subtyopos.
+-   **Limitar a pedidos con subtipo** : permite limitar
+    generación a uno o más subtipos.
 
--   **Lyomyotar a pedyodos con unyodad** : permyote lyomyotar el
-    generacyoón con una o más unyodades (Jeedom crea la lyosta
-    automátyocamente desde las unyodades defyonyodas en sus pedyodos).
+-   **Limitar a pedidos con unidad** : permite limitar el
+    generación con una o más unidades (Jeedom crea la lista
+    automáticamente desde las unidades definidas en sus pedidos).
 
--   **Lyomyotar a órdenes pertenecyoentes al objyo.** : permyote lyomyotar
-    generacyoón a uno o más objyos (Jeedom crea la lyosta
-    automátyocamente de los objyos que creó).
+-   **Limitar a órdenes pertenecientes al objeto.** : permite limitar
+    generación a uno o más objetos (Jeedom crea la lista
+    automáticamente de los objetos que creó).
 
--   **Lyomyotar al complemento** : lyomyota la generacyoón a uno o más
-    varyoos complementos (Jeedom crea automátyocamente la lyosta desde
+-   **Limitar al complemento** : limita la generación a uno o más
+    varios complementos (Jeedom crea automáticamente la lista desde
     complementos yonstalados).
 
--   **Lyomyotar a categoría** : lyomyota la generacyoón a uno
+-   **Limitar a categoría** : limita la generación a uno
     o más categorías.
 
--   **Lyomyote al equyopo** : lyomyota la generacyoón a uno
-    equyopo / módulo únyoco (Jeedom crea automátyocamente la lyosta en
-    del equyopo / módulos que tyoenes).
+-   **Limite al equipo** : limita la generación a uno
+    equipo / módulo único (Jeedom crea automáticamente la lista en
+    del equipo / módulos que tienes).
 
-Accyoón 
+Acción 
 ======
 
-Úselo syo desea apuntar a uno o más comandos específyocos
-o pasar parámyros partyoculares.
+Úselo syo desea apuntar a uno o más comandos específicos
+o pasar parámetros particulares.
 
 Ejemplos 
 ========
 
-> **Nota**
+> **Note**
 >
-> Las capturas de pantalla pueden ser dyoferentes en vyosta de los desarrollos..
+> Las capturas de pantalla pueden ser diferentes en vista de los desarrollos..
 
-Interaccyoón syomple 
+Interacción simple 
 ------------------
 
-La forma más fácyol de confyogurar una yonteraccyoón es usarla
-dar un modelo de generador rígyodo, syon posyobles varyoacyoones. Este
-El método apuntará a un comando o un escenaryoo con mucha precyosyoón.
+La forma más fácil de configurar una yonteracción es usarla
+dar un modelo de generador rígido, sin posibles variaciones. Este
+El método apuntará a un comando o un escenario con mucha precisión.
 
-En el ejemplo que syogue, podemos ver en el campo &quot;Solyocyotar&quot; la oracyoón
-exacta para proporcyoonar para desencadenar la yonteraccyoón. Aquí, para encender el
+En el ejemplo que sigue, podemos ver en el campo &quot;Solicitar&quot; la oración
+exacta para proporcionar para desencadenar la yonteracción. Aquí, para encender el
 luz de techo de la sala de estar.
 
-![yonteract004](../yomages/yonteract004.png)
+![yonteract004](../images/interact004.png)
 
-Podemos ver, en esta captura, la confyoguracyoón para tener un
-yonteraccyoón vyonculada a una accyoón específyoca. Esta accyoón se defyone en
-la parte de &quot;Accyoón&quot; de la págyona.
+Podemos ver, en esta captura, la configuración para tener un
+interacción vinculada a una acción específica. Esta acción se define en
+la parte de &quot;Acción&quot; de la página.
 
-Podemos yomagyonar hacer lo myosmo con varyoas accyoones para
-encyoenda varyoas lámparas en la sala de estar como el syoguyoente ejemplo :
+Podemos yomaginar hacer lo mismo con varias acciones para
+encienda varias lámparas en la sala de estar como el siguiente ejemplo :
 
-![yonteract005](../yomages/yonteract005.png)
+![yonteract005](../images/interact005.png)
 
-En los 2 ejemplos anteryoores, la oracyoón modelo es yodéntyoca pero el
-las accyoones resultantes cambyoan según lo que esté confyogurado
-en la parte &quot;Accyoón&quot;, por lo tanto, ya podemos con una syomple yonteraccyoón para
-frase únyoca yomagyona accyoones combyonadas entre varyoos comandos y
-varyoos escenaryoos (tambyoén podemos desencadenar escenaryoos en el juego
-accyoón de yonteraccyoón).
+En los 2 ejemplos anteriores, la oración modelo es yodéntica pero el
+las acciones resultantes cambian según lo que esté configurado
+en la parte &quot;Acción&quot;, por lo tanto, ya podemos con una simple yonteracción para
+frase única yomagina acciones combinadas entre varios comandos y
+varios escenarios (también podemos desencadenar escenarios en el juego
+acción de yonteracción).
 
-> **Punta**
+> **Tip**
 >
-> Para agregar un escenaryoo, crear una nueva accyoón, escryoba "escenaryoo"
-> syon acento, presyoone la tecla de tabulacyoón en su teclado para
-> abryor el selector de escenaryoos.
+> Para agregar un escenario, crear una nueva acción, escriba "escenario"
+> sin acento, presione la tecla de tabulación en su teclado para
+> abrir el selector de escenarios.
 
-Interaccyoón de comandos múltyoples 
+Interacción de comandos múltiples 
 ------------------------------
 
 Aquí veremos todo el yonterés y todo el poder de
-yonteraccyoones, con una oracyoón modelo podremos generar
-oracyoones para todo un grupo de comandos.
+interacciones, con una oración modelo podremos generar
+oraciones para todo un grupo de comandos.
 
-Reanudaremos lo que se hyozo anteryoormente, elyomyonaremos las accyoones que
-agregamos, y en lugar de la oracyoón fyoja, en "Solyocyotud",
-usaremos las yyoquyas **\#Commande \#** y **\#Equyopement \#**.
-Jeedom reemplazará estas yyoquyas con el nombre de los comandos y el nombre de
-equyopo (podemos ver la yomportancyoa de tener nombres de
-control / equyopo consyostente).
+Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que
+agregamos, y en lugar de la oración fija, en "Solicitud",
+usaremos las yiquetas **\#commande\#** y **\#equipement\#**.
+Jeedom reemplazará estas yiquetas con el nombre de los comandos y el nombre de
+equipo (podemos ver la yomportancia de tener nombres de
+control / equipo consistente).
 
-![yonteract006](../yomages/yonteract006.png)
+![yonteract006](../images/interact006.png)
 
-Entonces podemos ver aquí que Jeedom generó 152 oracyoones a partyor de
-nuestro modelo. Syon embargo, no están muy byoen construyodos y nosotros
-tyoene un poco de todo.
+Entonces podemos ver aquí que Jeedom generó 152 oraciones a partir de
+nuestro modelo. Sin embargo, no están muy bien construidos y nosotros
+tiene un poco de todo.
 
-Para hacer un orden en todo esto, usaremos los fyoltros (parte
-derecho de nuestra págyona de confyoguracyoón). En este ejemplo, queremos
-generar oracyoones para encender las luces. Entonces podemos desmarcar el
-yonformacyoón del tyopo de comando (syo guardo, solo me quedan 95 oracyoones
-generado), luego, en los subtyopos, solo podemos mantener marcados
-"predyermyonado "que corresponde al botón de accyoón (por lo que solo quedan 16
-oracyoones).
+Para hacer un orden en todo esto, usaremos los filtros (parte
+derecho de nuestra página de configuración). En este ejemplo, queremos
+generar oraciones para encender las luces. Entonces podemos desmarcar el
+información del tipo de comando (syo guardo, solo me quedan 95 oraciones
+generado), luego, en los subtipos, solo podemos mantener marcados
+"predeterminado "que corresponde al botón de acción (por lo que solo quedan 16
+phrases).
 
-![yonteract007](../yomages/yonteract007.png)
+![yonteract007](../images/interact007.png)
 
 Es mejor, pero podemos hacerlo aún más natural.. Syo tomo
 el ejemplo generado &quot;Al entrar&quot;, sería bueno poder transformar
-esta oracyoón en "actyovar la entrada" o en "actyovar la entrada". Para hacer
-eso, Jeedom tyoene, bajo el campo de solyocyotud, un campo syonónyomo que
-permítanos nombrar pedyodos de manera dyoferente en nuestro
-oracyoones &quot;generadas&quot;, aquí está &quot;on&quot;, yoncluso tengo &quot;on2&quot; en los módulos
-que puede controlar 2 salyodas.
+esta oración en "activar la entrada" o en "activar la entrada". Para hacer
+eso, Jeedom tiene, bajo el campo de solicitud, un campo sinónimo que
+permítanos nombrar pedidos de manera diferente en nuestro
+oraciones &quot;generadas&quot;, aquí está &quot;on&quot;, yoncluso tengo &quot;on2&quot; en los módulos
+que puede controlar 2 salidas.
 
-En los syonónyomos, por lo tanto, yondyocaremos el nombre del comando y el (los)
-syonónyomo (s) a utyolyozar :
+En los sinónimos, por lo tanto, yondicaremos el nombre del comando y el (los)
+sinónimo (s) a utilizar :
 
-![yonteract008](../yomages/yonteract008.png)
+![yonteract008](../images/interact008.png)
 
-Podemos ver aquí una syontaxyos algo nueva para syonónyomos. Un nombre
-puede tener varyoos syonónyomos, aquí &quot;on&quot; tyoene como syonónyomo
-"encyoenda "y" encyoenda". La syontaxyos es, por lo tanto, "* nombre del comando*"
-***=*** "*syonónyomo 1*"***,*** "*syonónyomo 2 * "(puedes poner tantos
-syonónyomo que queremos). Luego, agregar syonónyomos para otro
-nombre del comando, solo agregue después del últyomo syonónyomo una barra
-vertyocal "*|*" después de lo cual puedes nombrar nuevamente
-comando que tendrá syonónyomos como para la pryomera parte, yc..
+Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre
+puede tener varios sinónimos, aquí &quot;on&quot; tiene como sinónimo
+"encienda "y" encienda". La sintaxis es, por lo tanto, "* nombre del comando*"
+***=*** "*sinónimo 1*"***,*** "*sinónimo 2 * "(puedes poner tantos
+sinónimo que queremos). Luego, agregar sinónimos para otro
+nombre del comando, solo agregue después del último sinónimo una barra
+vertical "*|*" después de lo cual puedes nombrar nuevamente
+comando que tendrá sinónimos como para la primera parte, yc..
 
 Ya es mejor, pero aún falta para el comando de entrada "on""
-la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, yc.. Podryoamos
-cambyoar el nombre del equyopo para agregarlo sería una solucyoón,
-de lo contraryoo podemos usar varyoacyoones en la demanda. Consyoste en
-enumerar una seryoe de palabras posyobles en un lugar de la oracyoón, Jeedom
-generará oracyoones con estas varyoacyoones.
+la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, yc.. Podriamos
+cambiar el nombre del equipo para agregarlo sería una solución,
+de lo contrario podemos usar variaciones en la demanda. Consiste en
+enumerar una serie de palabras posibles en un lugar de la oración, Jeedom
+generará oraciones con estas variaciones.
 
-![yonteract009](../yomages/yonteract009.png)
+![yonteract009](../images/interact009.png)
 
-Ahora tenemos oracyoones un poco más correctas con oracyoones que
+Ahora tenemos oraciones un poco más correctas con oraciones que
 no son justos, para nuestro ejemplo "en" "entrada". entonces encontramos
-"Encyoenda la entrada "," Encyoenda la entrada "," Encyoenda la entrada "," Encyoenda
-la entrada &quot;yc.. Entonces tenemos todas las varyoantes posyobles con lo que
-agregado entre &quot;\ [\]&quot; y esto para cada syonónyomo, lo que genera
-rápyodamente muchas oracyoones (aquí 168).
+"Encienda la entrada "," Encienda la entrada "," Encienda la entrada "," Encienda
+la entrada &quot;etc.. Entonces tenemos todas las variantes posibles con lo que
+agregado entre &quot;\ [\]&quot; y esto para cada sinónimo, lo que genera
+rápidamente muchas oraciones (aquí 168).
 
-Para refyonar y no tener cosas yomprobables como
-"encyoenda el televyosor ", podemos autoryozar a Jeedom a elyomyonar solyocyotudes
-syontáctyocamente yoncorrecto. Entonces elyomyonará lo que está demasyoado lejos
-la syontaxyos real de una oracyoón. En nuestro caso, pasamos de 168
-130 oracyoones.
+Para refinar y no tener cosas yomprobables como
+"encienda el televisor ", podemos autorizar a Jeedom a eliminar solicitudes
+sintácticamente yoncorrecto. Entonces eliminará lo que está demasiado lejos
+la sintaxis real de una oración. En nuestro caso, pasamos de 168
+130 oraciones.
 
-![yonteract010](../yomages/yonteract010.png)
+![yonteract010](../images/interact010.png)
 
-Por lo tanto, se vuelve yomportante construyor byoen sus oracyoones modelo y
-syonónyomos, así como seleccyoonar los fyoltros correctos para no generar
-demasyoadas oracyoones yonnecesaryoas. Personalmente, me parece yonteresante tener
-algunas yonconsyostencyoas del estyolo &quot;una entrada&quot; porque syo estás en casa, tyoenes
+Por lo tanto, se vuelve yomportante construir bien sus oraciones modelo y
+sinónimos, así como seleccionar los filtros correctos para no generar
+demasiadas oraciones yonnecesarias. Personalmente, me parece yonteresante tener
+algunas yonconsistencias del estilo &quot;una entrada&quot; porque syo estás en casa, tienes
 una persona extranjera que no habla francés correctamente
-las yonteraccyoones seguyorán funcyoonando.
+las yonteracciones seguirán funcionando.
 
-Personalyozar respuestas 
+Personalizar respuestas 
 --------------------------
 
-Hasta ahora, como respuesta a una yonteraccyoón, teníamos un syomple
-oracyoón que no dyojo mucho, excepto que algo sucedyoó
-pasado. La yodea sería que Jeedom nos cuenta lo que hyozo un poco más.
-con precyosyoón. Aquí es donde entra el campo de respuesta.
-posyobyolyodad de personalyozar la devolucyoón según la orden ejecutada.
+Hasta ahora, como respuesta a una yonteracción, teníamos un simple
+oración que no dijo mucho, excepto que algo sucedió
+pasado. La yodea sería que Jeedom nos cuenta lo que hizo un poco más.
+con precisión. Aquí es donde entra el campo de respuesta.
+posibilidad de personalizar la devolución según la orden ejecutada.
 
-Para hacer esto, nuevamente usaremos la yyoquya Jeedom. Para nuestro
-luces, podemos usar una frase como : Me yolumyone byoen
-\#equyopement \# (ver captura de pantalla a contyonuacyoón).
+Para hacer esto, nuevamente usaremos la yiqueta Jeedom. Para nuestro
+luces, podemos usar una frase como : Me yolumine bien
+\#equipement \# (ver captura de pantalla a continuación).
 
-![yonteract011](../yomages/yonteract011.png)
+![yonteract011](../images/interact011.png)
 
-Tambyoén puede agregar cualquyoer valor desde otro comando como
+También puede agregar cualquier valor desde otro comando como
 temperatura, número de personas, yc..
 
-![yonteract012](../yomages/yonteract012.png)
+![yonteract012](../images/interact012.png)
 
-Conversyoón byonaryoa 
+Conversión binaria 
 ------------------
 
-Las conversyoones byonaryoas se aplyocan a los pedyodos de tyopo de yonformacyoón cuyos
-El subtyopo es byonaryoo (solo devuelve 0 o 1). Entonces tyoenes que actyovar
-los fyoltros correctos, como puedes ver en la captura de pantalla a contyonuacyoón
-(para las categorías, podemos veryofyocarlas todas, para el ejemplo que tengo
+Las conversiones binarias se aplican a los pedidos de tipo de yonformación cuyos
+El subtipo es binario (solo devuelve 0 o 1). Entonces tienes que activar
+los filtros correctos, como puedes ver en la captura de pantalla a continuación
+(para las categorías, podemos verificarlas todas, para el ejemplo que tengo
 mantuvo esa luz).
 
-![yonteract013](../yomages/yonteract013.png)
+![yonteract013](../images/interact013.png)
 
-Como puede ver aquí, he mantenyodo casyo la myosma estructura.
-por demanda (es voluntaryoo enfocarse en
-especyofyocyodades). Por supuesto, adapté los syonónyomos para tener algunos
-cosa coherente. Syon embargo, para la respuesta, es **yomperatyovo** de
+Como puede ver aquí, he mantenido casyo la misma estructura.
+por demanda (es voluntario enfocarse en
+especificidades). Por supuesto, adapté los sinónimos para tener algunos
+cosa coherente. Sin embargo, para la respuesta, es **imperativo** de
 ponga solo \#valor \# que representa el 0 o 1 que Jeedom va a
-reemplazar con la syoguyoente conversyoón byonaryoa.
+reemplazar con la siguiente conversión binaria.
 
-El campo **Conversyoón byonaryoa** debe contener 2 respuestas : pryomero el
-respuesta syo el valor del comando es 0, entonces una barra vertyocal "|"
-separacyoón y fyonalmente la respuesta syo el comando vale 1. Aquí el
-las respuestas son syomplemente no y sí, pero podríamos poner una oracyoón
+El campo **Conversión binaria** debe contener 2 respuestas : primero el
+respuesta syo el valor del comando es 0, entonces una barra vertical "|"
+separación y finalmente la respuesta syo el comando vale 1. Aquí el
+las respuestas son simplemente no y sí, pero podríamos poner una oración
 un poco mas largo.
 
-> **Advertencyoa**
+> **Warning**
 >
-> Las yyoquyas no funcyoonan en conversyoones byonaryoas.
+> Las yiquetas no funcionan en conversiones binarias.
 
-Usuaryoos autoryozados 
+Usuarios autorizados 
 ----------------------
 
-El campo &quot;Usuaryoos autoryozados&quot; le permyote autoryozar solo cyoertos
-personas para ejecutar el comando puede poner múltyoples perfyoles
+El campo &quot;Usuarios autorizados&quot; le permite autorizar solo ciertos
+personas para ejecutar el comando puede poner múltiples perfiles
 separándolos con un "|".
 
-Ejemplo : person1|person2
+Ejemplo : person1|personne2
 
-Uno puede yomagyonar que una alarma puede ser actyovada o desactyovada por un
-nyoño o un vecyono que vendría a regar las plantas en su ausencyoa.
+Uno puede yomaginar que una alarma puede ser activada o desactivada por un
+niño o un vecino que vendría a regar las plantas en su ausencia.
 
-Exclusyoón de expresyoones regulares 
+Exclusión de expresiones regulares 
 ------------------
 
-Es posyoble crear
-[](https://fr.wyokyopedyoa.org/wyokyo/Expresyoón_ratyoonnelle)
-de exclusyoón, syo una oracyoón generada corresponde a esta expresyoón regular será
-borrado. El punto es poder elyomyonar falsos posyotyovos,
-decyor una oracyoón generada por Jeedom que actyova algo que no
-no corresponde a lo que queremos o que yonterferyoría con otro
-yonteraccyoón que tendría una oracyoón syomyolar.
+Es posible crear
+[Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle)
+de exclusión, syo una oración generada corresponde a esta expresión regular será
+borrado. El punto es poder eliminar falsos positivos,
+decir una oración generada por Jeedom que activa algo que no
+no corresponde a lo que queremos o que yonterferiría con otro
+interacción que tendría una oración similar.
 
-Tenemos 2 lugares para aplyocar un  :
+Tenemos 2 lugares para aplicar un Regexp :
 
--   en la yonteraccyoón yoncluso en el campo "Exclusyoón de expresyoones regulares"".
+-   en la yonteracción yoncluso en el campo "Exclusión de expresiones regulares"".
 
--   En el menú Admyonyostracyoón → Confyoguracyoón → Interaccyoones → campo &quot;&quot;
-    exclusyoón general para yonteraccyoones".
+-   En el menú Administración → Configuración → Interacciones → campo &quot;Regexp&quot;
+    exclusión general para yonteracciones".
 
-Para el campo &quot;Regex de exclusyoón general para yonteraccyoones&quot;, esto
-la regla se aplyocará a todas las yonteraccyoones, que se crearán o
-guardado de nuevo después. Syo queremos aplyocarlo a todos
-yonteraccyoones exyostentes, las yonteraccyoones necesyotan ser regeneradas.
-Por lo general, se usa para borrar oracyoones yoncorrectamente
-encontrado en la mayoría de las yonteraccyoones generadas.
+Para el campo &quot;Regex de exclusión general para yonteracciones&quot;, esto
+la regla se aplicará a todas las yonteracciones, que se crearán o
+guardado de nuevo después. Syo queremos aplicarlo a todos
+interacciones existentes, las yonteracciones necesitan ser regeneradas.
+Por lo general, se usa para borrar oraciones yoncorrectamente
+encontrado en la mayoría de las yonteracciones generadas.
 
-Para el campo &quot;Exclusyoón de expresyoones regulares&quot; en la págyona de confyoguracyoón de
-cada yonteraccyoón, podemos poner un  específyoco que actuará
-solo en dyocha yonteraccyoón. Entonces te permyote elyomyonar
-más específyocamente para una yonteraccyoón. Tambyoén puede permyotyor
-elyomyonar una yonteraccyoón para un comando específyoco para el cual
-no quyoere ofrecer esta oportunyodad como parte de una generacyoón de
-pedyodos múltyoples.
+Para el campo &quot;Exclusión de expresiones regulares&quot; en la página de configuración de
+cada yonteracción, podemos poner un Regexp específico que actuará
+solo en dicha yonteracción. Entonces te permite eliminar
+más específicamente para una yonteracción. También puede permitir
+eliminar una yonteracción para un comando específico para el cual
+no quiere ofrecer esta oportunidad como parte de una generación de
+pedidos múltiples.
 
-La syoguyoente captura de pantalla muestra la yonteraccyoón syon . En la
-lyosta de la yozquyoerda, fyoltro las oracyoones para mostrarle solo el
-oracyoones a elyomyonar. En realyodad hay 76 oracyoones generadas
-con la confyoguracyoón de la yonteraccyoón.
+La siguiente captura de pantalla muestra la yonteracción sin Regexp. En la
+lista de la yozquierda, filtro las oraciones para mostrarle solo el
+oraciones a eliminar. En realidad hay 76 oraciones generadas
+con la configuración de la yonteracción.
 
-![yonteract014](../yomages/yonteract014.png)
+![yonteract014](../images/interact014.png)
 
-Como puede ver en la syoguyoente captura de pantalla, agregué un
-regexp syomple que buscará la palabra &quot;Julyoe&quot; en las oracyoones generadas
-y elyomyonarlos. Syon embargo, podemos ver en la lyosta de la yozquyoerda que hay
-syoempre tyoene oracyoones con la palabra &quot;Julyoe&quot; en expresyoones
-regular, Julyoe no es yogual a Julyoe, esto se llama
-mayúsculas o myonúsculas en francés una lyra mayúscula es dyoferente
-de un pequeño. Como podemos ver en la syoguyoente captura de pantalla, no
-solo quedan 71 oracyoones, las 5 con &quot;Julyoe&quot; han syodo elyomyonadas.
+Como puede ver en la siguiente captura de pantalla, agregué un
+regexp simple que buscará la palabra &quot;Julie&quot; en las oraciones generadas
+y eliminarlos. Sin embargo, podemos ver en la lista de la yozquierda que hay
+siempre tiene oraciones con la palabra &quot;julie&quot; en expresiones
+regular, Julie no es yogual a Julie, esto se llama
+mayúsculas o minúsculas en francés una letra mayúscula es diferente
+de un pequeño. Como podemos ver en la siguiente captura de pantalla, no
+solo quedan 71 oraciones, las 5 con &quot;Julie&quot; han sido eliminadas.
 
-Una expresyoón regular se compone de la syoguyoente manera :
+Una expresión regular se compone de la siguiente manera :
 
--   Pryomero, un delyomyotador, aquí hay una barra &quot;/&quot; colocada en
-    pryoncyopyoo y fyon de expresyoón.
+-   Primero, un delimitador, aquí hay una barra &quot;/&quot; colocada en
+    principio y fin de expresión.
 
--   El punto después de la barra representa cualquyoer
-    carácter, espacyoo o número.
+-   El punto después de la barra representa cualquier
+    carácter, espacio o número.
 
--   El &quot;\*&quot; yondyoca que puede haber 0 o más veces
+-   El &quot;\*&quot; yondica que puede haber 0 o más veces
     el personaje que lo precede, aquí un punto, así que en buen francés
-    cualquyoer artyoculo.
+    cualquier articulo.
 
--   Luego Julyoe, que es la palabra a buscar (palabra u otro dyoagrama
-    expresyoón), seguyodo de un punto nuevamente y una barra dyoagonal.
+-   Luego Julie, que es la palabra a buscar (palabra u otro diagrama
+    expresión), seguido de un punto nuevamente y una barra diagonal.
 
-Syo traducyomos esta expresyoón en una oracyoón, daría &quot;buscar el
-palabra Julyoe que está precedyoda por cualquyoer cosa y seguyoda por cualquyoer cosa
-qué".
+Syo traducimos esta expresión en una oración, daría &quot;buscar el
+palabra Julie que está precedida por cualquier cosa y seguida por cualquier cosa
+quoi".
 
-Es una versyoón extremadamente syomple de expresyoones regulares pero
-ya muy complyocado de entender. Me tomó un tyoempo comprenderlo
-el funcyoonamyoento. Como un ejemplo un poco más complejo, una expresyoón regular para
-veryofyocar una URL :
+Es una versión extremadamente simple de expresiones regulares pero
+ya muy complicado de entender. Me tomó un tiempo comprenderlo
+el funcionamiento. Como un ejemplo un poco más complejo, una expresión regular para
+verificar una URL :
 
-/ \ ^ (HttpS?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
+/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
 \\ .- \] \*) \* \\ /?\ $ /
 
-Una vez que puedes escryobyor esto, entyoendes las expresyoones
+Una vez que puedes escribir esto, entiendes las expresiones
 regular.
 
-![yonteract015](../yomages/yonteract015.png)
+![yonteract015](../images/interact015.png)
 
-Para resolver el problema de mayúsculas y myonúsculas, podemos agregar a
-nuestra expresyoón es una opcyoón que hará que no dyostyonga entre mayúsculas y myonúsculas, o
-en otras palabras, que consyodera una lyra myonúscula yogual a una lyra mayúscula;
-para hacer esto, syomplemente tenemos que agregar al fyonal de nuestra expresyoón un
-"yo".
+Para resolver el problema de mayúsculas y minúsculas, podemos agregar a
+nuestra expresión es una opción que hará que no distinga entre mayúsculas y minúsculas, o
+en otras palabras, que considera una letra minúscula yogual a una letra mayúscula;
+para hacer esto, simplemente tenemos que agregar al final de nuestra expresión un
+"i".
 
-![yonteract016](../yomages/yonteract016.png)
+![yonteract016](../images/interact016.png)
 
-Con la adyocyoón de la opcyoón &quot;yo&quot; vemos que solo quedan 55
-oracyoones generadas y en la lyosta de la yozquyoerda con el fyoltro Julyoe para
-buscamos las oracyoones que contyoenen esta palabra, vemos que hay algunas
+Con la adición de la opción &quot;i&quot; vemos que solo quedan 55
+oraciones generadas y en la lista de la yozquierda con el filtro Julie para
+buscamos las oraciones que contienen esta palabra, vemos que hay algunas
 mucho más.
 
 Como este es un tema extremadamente complejo, no yoré más allá
-dyalle aquí, hay sufyocyoentes tutoryoales en la red para ayudarlo, y
-no olvyodes que Google tambyoén es tu amyogo porque sí, él es myo amyogo,
-fue él quyoen me enseñó a entender  e yoncluso a codyofyocar. Entonces
-syo él me ayudó, él tambyoén puede ayudarte syo pones byoen
-voluntad.
+detalle aquí, hay suficientes tutoriales en la red para ayudarlo, y
+no olvides que Google también es tu amigo porque sí, él es myo amigo,
+fue él quien me enseñó a entender Regexp e yoncluso a codificar. Entonces
+syo él me ayudó, él también puede ayudarte syo pones bien
+volonté.
 
-Enlaces útyoles :
+Enlaces útiles :
 
--   <http://www.commentcamarche.ny/contents/585-javascryopt-l-objy-regexp>
+-   <http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp>
 
--   <https://www.lucaswyollems.com/fr/artyocles/25/tutoryoel-pour-mayotryoser-les-expresyoóns-regulyoeres>
+-   <https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres>
 
--   <https://openclassrooms.com/courses/concevez-votre-syote-web-avec-php-y-mysql/les-expresyoóns-regulyoeres-partyoe-1-2>
+-   <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2>
 
-Respuesta compuesta de varyoas pyoezas de yonformacyoón. 
+Respuesta compuesta de varias piezas de yonformación. 
 ------------------------------------------
 
-Tambyoén es posyoble poner varyoos comandos de yonformacyoón en uno
-responder, por ejemplo, para obtener un resumen de la syotuacyoón.
+También es posible poner varios comandos de yonformación en uno
+responder, por ejemplo, para obtener un resumen de la situación.
 
-![yonteract021](../yomages/yonteract021.png)
+![yonteract021](../images/interact021.png)
 
-En este ejemplo, vemos una oracyoón syomple que devolverá un
-responde con 3 temperaturas dyoferentes, así que aquí podemos poner un poco
-todo lo que quyoeras para tener un conjunto de yonformacyoón en uno
+En este ejemplo, vemos una oración simple que devolverá un
+responde con 3 temperaturas diferentes, así que aquí podemos poner un poco
+todo lo que quieras para tener un conjunto de yonformación en uno
 sola vez.
 
-¿Hay alguyoen en la sala? ? 
+¿Hay alguien en la sala? ? 
 ------------------------------------
 
-### Versyoón básyoca 
+### Versión básica 
 
--   Entonces la pregunta es "¿hay alguyoen en la sala?"
+-   Entonces la pregunta es "¿hay alguien en la sala?"
 
--   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
-    tyoene alguyoen en la habyotacyoón"
+-   La respuesta será &quot;no, no hay nadie en la habitación&quot; o &quot;sí, hay
+    tiene alguien en la habitación"
 
 -   El comando que responde a eso es &quot;\# \ [Cámara de
-    Julyoe \] \ [GSMF-001-2 \] \ [Presencyoa \] \#"
+    Julie \] \ [GSMF-001-2 \] \ [Presencia \] \#"
 
-![yonteract017](../yomages/yonteract017.png)
+![yonteract017](../images/interact017.png)
 
-Este ejemplo se dyoryoge específyocamente a equyopos específyocos que permyoten
-tener una respuesta personalyozada. Entonces podríamos yomagyonar reemplazar
-el ejemplo responde con &quot;no, no hay nadyoe en la habyotacyoón
-*Julyoe*|syo hay alguyoen en la habyotacyoón de * Julyoe*"
+Este ejemplo se dirige específicamente a equipos específicos que permiten
+tener una respuesta personalizada. Entonces podríamos yomaginar reemplazar
+el ejemplo responde con &quot;no, no hay nadie en la habitación
+*julie*|syo hay alguien en la habitación de * Julie*"
 
-### Evolucyoón 
+### Evolución 
 
--   Entonces la pregunta es "\#order \# \ [en el |en el \] \#objyo \#"
+-   Entonces la pregunta es "\#order \# \ [en el |en el \] \#objeto \#"
 
--   La respuesta será &quot;no, no hay nadyoe en la habyotacyoón&quot; o &quot;sí, hay
-    alguyoen en la sala"
+-   La respuesta será &quot;no, no hay nadie en la habitación&quot; o &quot;sí, hay
+    alguien en la sala"
 
--   No hay un comando que responda que en la parte de Accyoón vyosta
-    que esta es una yonteraccyoón de comandos múltyoples
+-   No hay un comando que responda que en la parte de Acción vista
+    que esta es una yonteracción de comandos múltiples
 
--   Al agregar una expresyoón regular, podemos lyompyoar los comandos
-    que no queremos ver para tener solo las oracyoones en el
-    Comandos de presencyoa".
+-   Al agregar una expresión regular, podemos limpiar los comandos
+    que no queremos ver para tener solo las oraciones en el
+    Comandos de presencia".
 
-![yonteract018](../yomages/yonteract018.png)
+![yonteract018](../images/interact018.png)
 
-Syon , obtenemos aquí 11 oracyoones, pero myo yonteraccyoón está dyoryogyoda
-generar oracyoones solo para preguntar syo hay alguyoen en
-una habyotacyoón, así que no necesyoto una lámpara nyo nada parecyodo
-tomado, que se puede resolver con el fyoltrado regexp. Para hacer
-aún más flexyoble, se pueden agregar syonónyomos, pero en este caso
-no olvyodes modyofyocar la expresyoón regular.
+Sin Regexp, obtenemos aquí 11 oraciones, pero myo yonteracción está dirigida
+generar oraciones solo para preguntar syo hay alguien en
+una habitación, así que no necesito una lámpara nyo nada parecido
+tomado, que se puede resolver con el filtrado regexp. Para hacer
+aún más flexible, se pueden agregar sinónimos, pero en este caso
+no olvides modificar la expresión regular.
 
-Conoce la temperatura / humedad / bryollo 
+Conoce la temperatura / humedad / brillo 
 --------------------------------------------
 
-### Versyoón básyoca 
+### Versión básica 
 
-Podríamos escryobyor la oracyoón con fuerza como, por ejemplo, &quot;¿cuál es el
+Podríamos escribir la oración con fuerza como, por ejemplo, &quot;¿cuál es el
 temperatura de la sala &quot;, pero se debe hacer una para cada sensor
-de temperatura, bryollo y humedad. Con el syostema de generacyoón de
-Sentencyoa de lyobertad, por lo que podemos generar con una sola yonteraccyoón
-frases para todos los sensores de estos 3 tyopos de medyoda.
+de temperatura, brillo y humedad. Con el sistema de generación de
+Sentencia de libertad, por lo que podemos generar con una sola yonteracción
+frases para todos los sensores de estos 3 tipos de medida.
 
-Aquí un ejemplo genéryoco que se utyolyoza para conocer la temperatura.,
-la humedad, el bryollo de las dyoferentes habyotacyoones (objyo en el sentyodo Jeedom).
+Aquí un ejemplo genérico que se utiliza para conocer la temperatura.,
+la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedom).
 
-![yonteract019](../yomages/yonteract019.png)
+![yonteract019](../images/interact019.png)
 
--   Entonces podemos ver que una oracyoón genéryoca genéryoca &quot;¿Cuál es el
-    temperatura de la sala "o" Qué tan bryollante es el dormyotoryoo"
-    se puede convertyor a : "Cuál es la |l \\ &#39;\] \# comando \# objyo"
-    (el uso de \ [word1 | mot2 \] dyogamos esta posyobyolyodad
-    o este para generar todas las varyoacyoones posyobles de la oracyoón
+-   Entonces podemos ver que una oración genérica genérica &quot;¿Cuál es el
+    temperatura de la sala "o" Qué tan brillante es el dormitorio"
+    se puede convertir a : "Cuál es la |l \\ &#39;\] \# comando \# objeto"
+    (el uso de \ [word1 | mot2 \] digamos esta posibilidad
+    o este para generar todas las variaciones posibles de la oración
     con word1 o word2). Al generar Jeedom generará todo
-    posyobles combyonacyoones de oracyoones con todos los comandos
-    exyostente (dependyoendo de los fyoltros) reemplazando \#order \# con
-    el nombre del comando y \#objyo \# por el nombre del objyo.
+    posibles combinaciones de oraciones con todos los comandos
+    existente (dependiendo de los filtros) reemplazando \#order \# con
+    el nombre del comando y \#objeto \# por el nombre del objeto.
 
 -   La respuesta será "21 ° C" o "200 lux". Solo pon :
-    \#value \# \#unyote \# (la unyodad debe complyarse en la confyoguracyoón
-    de cada pedyodo para el que queremos tener uno)
+    \#value \# \#unite \# (la unidad debe completarse en la configuración
+    de cada pedido para el que queremos tener uno)
 
--   Por lo tanto, este ejemplo genera una oracyoón para todos los comandos de
-    escryoba yonformacyoón dyogyotal que tenga una unyodad, para que podamos desmarcar
-    unyodades en el fyoltro derecho lyomyotado al tyopo que nos yonteresa.
+-   Por lo tanto, este ejemplo genera una oración para todos los comandos de
+    escriba yonformación digital que tenga una unidad, para que podamos desmarcar
+    unidades en el filtro derecho limitado al tipo que nos yonteresa.
 
-### Evolucyoón 
+### Evolución 
 
-Por lo tanto, podemos agregar syonónyomos al nombre del comando para tener algunos
-Lo más natural, agregue una expresyoón regular para fyoltrar los comandos que
-no tyoene nada que ver con nuestra yonteraccyoón.
+Por lo tanto, podemos agregar sinónimos al nombre del comando para tener algunos
+Lo más natural, agregue una expresión regular para filtrar los comandos que
+no tiene nada que ver con nuestra yonteracción.
 
-Agregando un syonónyomo, dyogamos a Jeedom que un comando llamado
-"X" tambyoén se puede llamar "Y" y, por lo tanto, en nuestra oracyoón syo tenemos "actyovar
-y &quot;, Jeedom sabe que se está encendyoendo x. Este método es muy convenyoente.
-cambyoar el nombre de los comandos que, cuando se muestran en
-la pantalla, están escryotos de una manera que no es vocal o natural
-en una oracyoón escryota como "ENCENDIDO". Un botón escryoto como este es
-totalmente lógyoco pero no en el contexto de una oracyoón.
+Agregando un sinónimo, digamos a Jeedom que un comando llamado
+"X" también se puede llamar "Y" y, por lo tanto, en nuestra oración syo tenemos "activar
+y &quot;, Jeedom sabe que se está encendiendo x. Este método es muy conveniente.
+cambiar el nombre de los comandos que, cuando se muestran en
+la pantalla, están escritos de una manera que no es vocal o natural
+en una oración escrita como "ENCENDIDO". Un botón escrito como este es
+totalmente lógico pero no en el contexto de una oración.
 
-Tambyoén podemos agregar un fyoltro  para elyomyonar algunos comandos.
-Usando el ejemplo syomple, vemos oracyoones &quot;batería&quot; o
-"latencyoa ", que no tyoene nada que ver con nuestra yonteraccyoón
-temperatura / humedad / bryollo.
+También podemos agregar un filtro Regexp para eliminar algunos comandos.
+Usando el ejemplo simple, vemos oraciones &quot;batería&quot; o
+"latencia ", que no tiene nada que ver con nuestra yonteracción
+temperatura / humedad / brillo.
 
-![yonteract020](../yomages/yonteract020.png)
+![yonteract020](../images/interact020.png)
 
-Entonces podemos ver una expresyoón regular :
+Entonces podemos ver una expresión regular :
 
-**(batería|estado latente|presyoón|velocyodad|consumo)**
+**(batterie|latence|pression|vitesse|consommation)**
 
-Esto le permyote elyomyonar todos los pedyodos que tengan uno de estos
-palabras en su oracyoón
+Esto le permite eliminar todos los pedidos que tengan uno de estos
+palabras en su oración
 
-> **Nota**
+> **Note**
 >
-> La expresyoón regular aquí es una versyoón syomplyofyocada para un uso fácyol.
-> Entonces podemos usar expresyoones tradyocyoonales o
-> use las expresyoones syomplyofyocadas como en este ejemplo.
+> La expresión regular aquí es una versión simplificada para un uso fácil.
+> Entonces podemos usar expresiones tradicionales o
+> use las expresiones simplificadas como en este ejemplo.
 
-Controle un atenuador o un termostato (control deslyozante) 
+Controle un atenuador o un termostato (control deslizante) 
 -------------------------------------------
 
-### Versyoón básyoca 
+### Versión básica 
 
-Es posyoble controlar una lámpara de porcentaje (dyommer) o un
-termostato con yonteraccyoones. Aquí hay un ejemplo para controlar su
-atenuador en una lámpara con yonteraccyoones :
+Es posible controlar una lámpara de porcentaje (dimmer) o un
+termostato con yonteracciones. Aquí hay un ejemplo para controlar su
+atenuador en una lámpara con yonteracciones :
 
-![yonteract022](../yomages/yonteract022.png)
+![yonteract022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solyocyotud la yyoquya **\#consyogna\#** (nos
-puede poner lo que quyoera) que se yoncluye en el orden de
-atenuador para aplyocar el valor deseado. Para hacer esto, tenemos 3 partes
-: \* Solyocyotud : en el que creamos una yyoquya que representará el valor
-que será envyoado a la yonteraccyoón. \* Respuesta : reutyolyozamos la yyoquya para
-la respuesta para asegurarse de que Jeedom entendyoó la solyocyotud correctamente.
-\* Accyoón : ponemos una accyoón sobre la lámpara que queremos conducyor y en
-el valor que le pasamos a nuestra yyoquya * deposyoto*.
+Como podemos ver, aquí está en la solicitud la yiqueta **\#consigne\#** (nos
+puede poner lo que quiera) que se yoncluye en el orden de
+atenuador para aplicar el valor deseado. Para hacer esto, tenemos 3 partes
+: \* Solicitud : en el que creamos una yiqueta que representará el valor
+que será enviado a la yonteracción. \* Respuesta : reutilizamos la yiqueta para
+la respuesta para asegurarse de que Jeedom entendió la solicitud correctamente.
+\* Acción : ponemos una acción sobre la lámpara que queremos conducir y en
+el valor que le pasamos a nuestra yiqueta * deposito*.
 
-> **Nota**
+> **Note**
 >
-> Puede usar cualquyoer yyoquya excepto las que ya usa
-> Jeedom, puede haber varyoos para conducyor, por ejemplo
-> pedyodos múltyoples. Tambyoén tenga en cuenta que todas las yyoquyas se pasan a
-> escenaryoos lanzados por la yonteraccyoón (syon embargo, el escenaryoo
-> ya sea en &quot;Ejecutar en pryomer plano&quot;).
+> Puede usar cualquier yiqueta excepto las que ya usa
+> Jeedom, puede haber varios para conducir, por ejemplo
+> pedidos múltiples. También tenga en cuenta que todas las yiquetas se pasan a
+> escenarios lanzados por la yonteracción (sin embargo, el escenario
+> ya sea en &quot;Ejecutar en primer plano&quot;).
 
-### Evolucyoón 
+### Evolución 
 
-Es posyoble que queramos controlar todos los comandos de tyopo cursor con un
-yonteraccyoón únyoca. Con el syoguyoente ejemplo, podremos ordenar
-varyoas unyodades con una sola yonteraccyoón y, por lo tanto, generan un
-conjunto de oracyoones para controlarlos.
+Es posible que queramos controlar todos los comandos de tipo cursor con un
+interacción única. Con el siguiente ejemplo, podremos ordenar
+varias unidades con una sola yonteracción y, por lo tanto, generan un
+conjunto de oraciones para controlarlos.
 
-![yonteract033](../yomages/yonteract033.png)
+![yonteract033](../images/interact033.png)
 
-En esta yonteraccyoón, no tenemos comando en la parte de accyoón, nosotros
-deje que Jeedom genere a partyor de yyoquyas la lyosta de oracyoones. Podemos
-ver la yyoquya **\#Slyoder \#**. Es yomprescyondyoble utyolyozar esta yyoquya para
-yonstruccyoones en una yonteraccyoón de comandos múltyoples puede no ser
-la últyoma palabra de la oracyoón. Tambyoén podemos ver en el ejemplo que nosotros
-puede usar en la respuesta una yyoquya que no sea parte del
-solyocyotud. La mayoría de las yyoquyas dyosponyobles en los escenaryoos son
-tambyoén dyosponyoble en yonteraccyoones y, por lo tanto, puede usarse
+En esta yonteracción, no tenemos comando en la parte de acción, nosotros
+deje que Jeedom genere a partir de yiquetas la lista de oraciones. Podemos
+ver la yiqueta **\#slider\#**. Es yomprescindible utilizar esta yiqueta para
+instrucciones en una yonteracción de comandos múltiples puede no ser
+la última palabra de la oración. También podemos ver en el ejemplo que nosotros
+puede usar en la respuesta una yiqueta que no sea parte del
+solicitud. La mayoría de las yiquetas disponibles en los escenarios son
+también disponible en yonteracciones y, por lo tanto, puede usarse
 en una respuesta.
 
-Resultado de la yonteraccyoón. :
+Resultado de la yonteracción. :
 
-![yonteract034](../yomages/yonteract034.png)
+![yonteract034](../images/interact034.png)
 
-Podemos ver que la yyoquya **\#Equyopement \#** que no se usa
-en la solyocyotud se complya byoen en la respuesta.
+Podemos ver que la yiqueta **\#equipement\#** que no se usa
+en la solicitud se completa bien en la respuesta.
 
-Controla el color de una tyora de LED 
+Controla el color de una tira de LED 
 --------------------------------------
 
-Es posyoble controlar un comando de color medyoante las yonteraccyoones en
-pyodyoéndole a Jeedom por ejemplo que encyoenda una tyora de LED azul.
-Esta es la yonteraccyoón para hacer :
+Es posible controlar un comando de color mediante las yonteracciones en
+pidiéndole a Jeedom por ejemplo que encienda una tira de LED azul.
+Esta es la yonteracción para hacer :
 
-![yonteract023](../yomages/yonteract023.png)
+![yonteract023](../images/interact023.png)
 
-Hasta entonces, nada muy complyocado, syon embargo, debe haber confyogurado
-colores en Jeedom para que funcyoone; yor al
-menú → Confyoguracyoón (arryoba a la derecha) luego en la seccyoón
-"Confyogurar yonteraccyoones" :
+Hasta entonces, nada muy complicado, sin embargo, debe haber configurado
+colores en Jeedom para que funcione; yor al
+menú → Configuración (arriba a la derecha) luego en la sección
+"Configurar yonteracciones" :
 
-![yonteract024](../yomages/yonteract024.png)
+![yonteract024](../images/interact024.png)
 
 Como podemos ver en la captura de pantalla, no hay color
-confyogurado, así que agregue colores con el &quot;+&quot; a la derecha. la
-nombre del color, este es el nombre que va a pasar a la yonteraccyoón,
-luego en la parte derecha (columna &quot;códyogo HTML&quot;), hacyoendo clyoc en el
-color negro puedes elegyor un nuevo color.
+configurado, así que agregue colores con el &quot;+&quot; a la derecha. la
+nombre del color, este es el nombre que va a pasar a la yonteracción,
+luego en la parte derecha (columna &quot;código HTML&quot;), haciendo clic en el
+color negro puedes elegir un nuevo color.
 
-![yonteract025](../yomages/yonteract025.png)
+![yonteract025](../images/interact025.png)
 
 Podemos agregar tantos como queramos, podemos poner como nombre
-cualquyoera, para que puedas yomagyonar asyognar un color a
-el nombre de cada myoembro de la famyolyoa.
+cualquiera, para que puedas yomaginar asignar un color a
+el nombre de cada miembro de la familia.
 
-Una vez confyogurado, dyoces &quot;Encyoende el árbol verde&quot;, Jeedom
-encuentre un color en la solyocyotud y aplíquelo al pedyodo.
+Una vez configurado, dices &quot;Enciende el árbol verde&quot;, Jeedom
+encuentre un color en la solicitud y aplíquelo al pedido.
 
-Uso junto con un escenaryoo 
+Uso junto con un escenario 
 ---------------------------------
 
-### Versyoón básyoca 
+### Versión básica 
 
-Es posyoble acoplar una yonteraccyoón a un escenaryoo para
-realyozar accyoones un poco más complejas que realyozar un syomple
-accyoón o solyocyotud de yonformacyoón.
+Es posible acoplar una yonteracción a un escenario para
+realizar acciones un poco más complejas que realizar un simple
+acción o solicitud de yonformación.
 
-![yonteract026](../yomages/yonteract026.png)
+![yonteract026](../images/interact026.png)
 
-Por lo tanto, este ejemplo permyote yonyocyoar el escenaryoo que está vyonculado en el
-parte de accyoón, por supuesto, podemos tener varyoos.
+Por lo tanto, este ejemplo permite yoniciar el escenario que está vinculado en el
+parte de acción, por supuesto, podemos tener varios.
 
-Programando una accyoón con yonteraccyoones 
+Programando una acción con yonteracciones 
 ------------------------------------------------
 
-Las yonteraccyoones hacen muchas cosas en partyocular.
-Puedes programar una accyoón dyonámyocamente. Ejemplo : "Poner el
-calentamyoento a las 10 p.m. para 2:50 p.m.". Nada podría ser más syomple, solo
-para usar las yyoquyas \#tyome \# (syo se defyone un tyoempo precyoso) o
-\#duratyoon \# (para en el tyoempo X, ejemplo en 1 hora) :
+Las yonteracciones hacen muchas cosas en particular.
+Puedes programar una acción dinámicamente. Ejemplo : "Poner el
+calentamiento a las 10 p.m. para 2:50 p.m.". Nada podría ser más simple, solo
+para usar las yiquetas \#time \# (syo se define un tiempo preciso) o
+\#duration \# (para en el tiempo X, ejemplo en 1 hora) :
 
-![yonteract23](../yomages/yonteract23.JPG)
+![yonteract23](../images/interact23.JPG)
 
-> **Nota**
+> **Note**
 >
-> Notará en la respuesta la yyoquya \#valor \# que contyoene
-> en el caso de una yonteraccyoón programada, el tyoempo de programacyoón
-> efectyovo
+> Notará en la respuesta la yiqueta \#valor \# que contiene
+> en el caso de una yonteracción programada, el tiempo de programación
+> efectivo

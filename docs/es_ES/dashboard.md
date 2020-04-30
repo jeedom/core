@@ -4,7 +4,7 @@ autogenerado por Jeedom.
 
 Se puede acceder haciendo clic en **Inicio → Tablero**
 
-> **Punta**
+> **Tip**
 >
 > Es posible ir directamente a un objeto en su domótica.
 > Esto le permite tener solo el equipo que le interesa y
@@ -32,13 +32,13 @@ Se puede acceder haciendo clic en **Inicio → Tablero**
 -   Se muestra un clic en un comando de tipo de información
     el historial de pedidos (si es histórico)
 
-> **Punta**
+> **Tip**
 >
 > Es posible, desde su perfil, configurar Jeedom para
 > el árbol de objetos y / o los escenarios son visibles por defecto
 > cuando te subes al tablero
 
-> **Punta**
+> **Tip**
 >
 > En dispositivos móviles, una pulsación larga en un comando de tipo de información permite
 > mostrar un menú que ofrezca mostrar el historial de
@@ -61,10 +61,10 @@ También puede editar el diseño interno de los controles del widget
     -   **Configuración avanzada** : da acceso a la configuración
         progreso de la orden
 
-    -   **Estándar** : diseño predeterminado, todo es automático
+    -   **Standard** : diseño predeterminado, todo es automático
         con solo la capacidad de reorganizar el orden de las órdenes
 
-    -   **Mesa** : permite poner los comandos en una tabla :
+    -   **Tableau** : permite poner los comandos en una tabla :
         columnas y filas se agregan y eliminan haciendo clic
         en ese momento solo mueva los controles dentro
         cajas deseadas. Puedes poner múltiples pedidos por caja

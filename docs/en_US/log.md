@@ -11,16 +11,16 @@ The Logs page is quite simple, at the top left a drop-down list
 allowing the choice of the log to watch, at the top right you have 5
 buttons :
 
--   **Search** : allows to filter the log poster
+-   **Rechercher** : allows to filter the log poster
 
 -   **Pause / Resume** : allows you to pause / resume the setting
     real time log update
 
 -   **Download** : allows to download the current log,
 
--   **Empty** : allows to empty the current log,
+-   **Vider** : allows to empty the current log,
 
--   **Remove** : delete the current log, if Jeedom has any
+-   **Supprimer** : delete the current log, if Jeedom has any
     need it will recreate it automatically,
 
 -   **Delete all logs** : delete all logs present.
@@ -42,7 +42,7 @@ To access it, you must either go to the log page or in Analysis
 
 Once you have clicked on it, you will get a window
 updates in real time and displays all the events of your
-Automation.
+domotique.
 
 At the top right you have a search field (only works if you
 are not paused) and a button to pause (useful for

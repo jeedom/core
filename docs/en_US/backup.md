@@ -11,10 +11,10 @@ You will find, on the left, the parameters and action buttons. On the
 right, this is the real-time status of the current action (backup
 or restoration), if you have launched one.
 
-**Backups** 
+**Sauvegardes** 
 ---------------
 
--   **Backups** : Allows you to start a backup manually and
+-   **Sauvegardes** : Allows you to start a backup manually and
     immediately (useful if you want to make a critical change.
     This will allow you to go back). You also have a
     button to start a backup without sending the archive to the
@@ -87,9 +87,10 @@ or restoration), if you have launched one.
 -   **Restore backup** : Starts restoring the backup
     samba selected above.
 
-> **Important**
+> **IMPORTANT**
 >
->  !!! 
+> Jeedom backups must absolutely fall into a dedicated folder only
+ !!! It will delete everything that is not a jeedom backup from the folder
 
 
 What is saved ? 
@@ -104,7 +105,7 @@ different because it is not possible to save the inclusions.
 These are directly included in the controller, so you have to
 keep the same controller to find its Zwave modules.
 
-> **NOTE**
+> **Note**
 >
 > The system on which Jeedom is installed is not backed up. Yes
 > you have modified parameters of this system (notably via SSH),
@@ -117,7 +118,7 @@ Cloud backup allows Jeedom to send your backups
 directly on the Market. This allows you to restore them easily
 and be sure not to lose them. The Market keeps the last 6
 backups. To subscribe just go to your page
-**profile** on the Market, then in the tab **my backups**. You
+**profil** on the Market, then in the tab **my backups**. You
 can, from this page, retrieve a backup or buy a
 subscription (for 1, 3, 6 or 12 months).
 

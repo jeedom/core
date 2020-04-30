@@ -4,11 +4,11 @@ Ihre Fantasie.
 
 Es ist über Home → Design zugänglich
 
-> **Spitze**
+> **Tip**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
-> **Wichtig**
+> **Important**
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken
 > um es gut im Design zu machen. Während der Erstellung ist es daher notwendig,
@@ -17,9 +17,9 @@ Es ist über Home → Design zugänglich
 Im Menü (Rechtsklick also) finden wir die
 folgende Aktionen :
 
--   **Design** : Zeigt die Liste Ihrer Design an und greift darauf zu
+-   **Designs** : Zeigt die Liste Ihrer Design an und greift darauf zu
 
--   **Ausgabe** : Wechseln Sie in den Bearbeitungsmodus
+-   **Edition** : Wechseln Sie in den Bearbeitungsmodus
 
 -   **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite
     entfernt das Jeedom-Menü von oben
@@ -52,9 +52,9 @@ folgende Aktionen :
 -   **Zusammenfassung hinzufügen** : Fügt Informationen aus einer Objektzusammenfassung hinzu oder
     General
 
--   **Anzeigen**
+-   **Affichage**
 
-    -   **Keine** : Zeigt kein Raster an
+    -   **Aucune** : Zeigt kein Raster an
 
     -   **10x10** : Zeigt ein 10 x 10-Raster an
 
@@ -80,10 +80,10 @@ folgende Aktionen :
 
 -   **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration
 
--   **Speichern** : ermöglicht das Speichern des Design (Aufmerksamkeit gibt es
+-   **Sauvegarder** : ermöglicht das Speichern des Design (Aufmerksamkeit gibt es
     auch automatische Sicherungen bei bestimmten Aktionen)
 
-> **Wichtig**
+> **Important**
 >
 > Die Konfiguration der Gestaltungselemente erfolgt durch Klicken auf
 > diese.
@@ -95,7 +95,7 @@ Hier gefunden :
 
 -   **General**
 
-    -   **Name** : Der Name Ihres Design
+    -   **Nom** : Der Name Ihres Design
 
     -   **Transparenter Hintergrund** : macht den Hintergrund transparent. Seien Sie vorsichtig, wenn die
         Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet
@@ -103,19 +103,19 @@ Hier gefunden :
     -   **Hintergrundfarbe** : Design Hintergrundfarbe (weiß
         standardmäßig)
 
-    -   **CODE** : Zugriffscode für Ihr Design (falls leer, kein CODE
+    -   **Code** : Zugriffscode für Ihr Design (falls leer, kein CODE
         wird nicht angefordert)
 
     -   **Symbol** : Ein Symbol dafür (erscheint im Menü
         Wahl des Design)
 
-    -   **Bild**
+    -   **Image**
 
-        -   **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
+        -   **Envoyer** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
 
         -   **Bild löschen** : Bild löschen
 
--   **Größen**
+-   **Tailles**
 
     -   **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Design
         (grauer Rahmen im Bearbeitungsmodus)
@@ -123,11 +123,11 @@ Hier gefunden :
 Allgemeine Konfiguration der Elemente 
 ===================================
 
-> **Notiz**
+> **Note**
 >
 > Je nach Art des Elements können sich die Optionen ändern.
 
-> **Notiz**
+> **Note**
 >
 > Das ausgewählte Element wird rot (anstelle von grün) hervorgehoben
 > für alle anderen).
@@ -135,7 +135,7 @@ Allgemeine Konfiguration der Elemente
 Anzeigeeinstellung 
 ---------------------
 
--   **Tiefe** : ermöglicht die Auswahl der Tiefenstufe
+-   **Profondeur** : ermöglicht die Auswahl der Tiefenstufe
 
 -   **Position X (%)** :
 
@@ -159,7 +159,7 @@ Schloss
 -----------
 
 Sperrt das Element so, dass es nicht mehr beweglich ist oder
-resizable.
+redimensionnable.
 
 Grafik 
 =========
@@ -181,7 +181,7 @@ Anzeigeeinstellungen
 
 -   **Transparenter Hintergrund** : macht den Hintergrund transparent
 
--   **Grenze** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
+-   **Bordure** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
     HTML (Vorsicht, Sie müssen beispielsweise die CSS-Syntax verwenden :
     festes 1px schwarz)
 
@@ -193,7 +193,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen
 Text / html 
 =========
 
--   **Symbol** : Symbol, das vorne angezeigt werden soll
+-   **Icone** : Symbol, das vorne angezeigt werden soll
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
@@ -204,7 +204,7 @@ Text / html
 -   **Rund um die Winkel** : ermöglicht es Ihnen, die Winkel abzurunden (nicht
     vergiss%, ex 50% zu setzen)
 
--   **Grenze** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
+-   **Bordure** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
     HTML (verwenden Sie beispielsweise die CSS-Syntax : fest
     1px schwarz)
 
@@ -214,11 +214,11 @@ Text / html
 -   **Textausrichtung** : Hier können Sie die Ausrichtung der auswählen
     Text (links / rechts / zentriert)
 
--   **Fett** : fetter Text
+-   **Gras** : fetter Text
 
--   **Text** : Text im HTML-CODE, der sich im Element befindet
+-   **Texte** : Text im HTML-Code, der sich im Element befindet
 
-> **Wichtig**
+> **Important**
 >
 > Seien Sie vorsichtig, wenn Sie HTML-CODE (insbesondere Javascript) eingeben
 > um es vorher zu überprüfen, weil Sie können, wenn es einen Fehler darin gibt
@@ -239,9 +239,9 @@ Link
 Anzeigeeinstellungen 
 ---------------------
 
--   **Name** : Name des Links (angezeigter Text)
+-   **Nom** : Name des Links (angezeigter Text)
 
--   **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht
+-   **Lien** : Link zum betreffenden Design oder zur betreffenden Ansicht
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
@@ -261,7 +261,7 @@ Anzeigeeinstellungen
 -   **Textausrichtung** : Hier können Sie die Ausrichtung der auswählen
     Text (links / rechts / zentriert)
 
--   **Fett** : fetter Text
+-   **Gras** : fetter Text
 
 Ausrüstung 
 ==========
@@ -297,10 +297,10 @@ Bild / Kamera
 Anzeigeeinstellungen 
 ---------------------
 
--   **Anzeige** : definiert, was Sie anzeigen möchten, Standbild oder
+-   **Afficher** : definiert, was Sie anzeigen möchten, Standbild oder
     Stream von einer Kamera
 
--   **Bild** : ermöglicht es Ihnen, das betreffende Bild zu senden (falls vorhanden)
+-   **Image** : ermöglicht es Ihnen, das betreffende Bild zu senden (falls vorhanden)
     wähle ein Bild)
 
 -   **Kamera** : Kamera zum Anzeigen (wenn Sie Kamera gewählt haben)
@@ -339,7 +339,7 @@ für das Aus
 Wenn Sie in diesem Modus im Bereich Jeedom schweben oder klicken, werden Sie
 Zeigen Sie das betreffende Widget an
 
--   **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird
+-   **Equipement** : Widget, das beim Bewegen oder Klicken angezeigt wird
 
 -   **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
 
@@ -352,7 +352,7 @@ Zeigen Sie das betreffende Widget an
 Zusammenfassung 
 ======
 
--   **Link** : Wird verwendet, um die anzuzeigende Zusammenfassung anzugeben (Allgemein für die
+-   **Lien** : Wird verwendet, um die anzuzeigende Zusammenfassung anzugeben (Allgemein für die
     global, wenn nicht das Objekt angeben)
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
@@ -370,7 +370,7 @@ Zusammenfassung
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
     Mit dieser Option können Sie die Schriftgröße ändern
 
--   **Fett** : fetter Text
+-   **Gras** : fetter Text
 
 
 Faq 

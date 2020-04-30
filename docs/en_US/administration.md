@@ -20,17 +20,17 @@ In this tab we find general information about Jeedom :
     Jeedom on the market, it is advisable to click on the button
     **Reset**.
 
--   **Theanguage** : Theanguage used in your Jeedom.
+-   **Langue** : Theanguage used in your Jeedom.
 
 -   **Generate translations** : Generate translations,
     be careful, this can slow down your system. Most useful option
     for developers.
 
--   **Theifetime of sessions (hour)** : lifetime of sessions
+-   **Lifetime of sessions (hour)** : lifetime of sessions
     PHP, it is not recommended to touch this parameter.
 
 -   **Date and hour** : Choose your time zone. You can
-    click on **Force time synchronization** to rEastore
+    click on **Force time synchronization** to restore
     a bad time displayed at the top right.
 
 -   **Optional time server** : Indicates which time server should
@@ -64,18 +64,18 @@ TTS, you can define their scope :
 -   **White IP** : only a list of IPs is authorized (see
     Administration → Settings → Networks),
 
--   **Theocalhost** : only requEasts from the system on which is
+-   **Localhost** : only requests from the system on which is
     installed Jeedom are allowed,
 
--   **Activated** : no rEastrictions, any system with access
+-   **Activé** : no restrictions, any system with access
     your Jeedom will be able to access this API.
 
-&gt;\ _OS / DB 
+&gt;\_OS / DB 
 ===========
 
 Two parts reserved for experts are present in this tab.
 
-> **IMPORTANT**
+> **Important**
 >
 > WARNING : If you modify Jeedom with one of these two solutions,
 > Support may refuse to help you.
@@ -89,7 +89,7 @@ Two parts reserved for experts are present in this tab.
     from Jeedom. You can then launch commands in the field
     from the top. Two parameters are displayed below for information :
 
-    -   **User** : Username used by Jeedom in
+    -   **Utilisateur** : Username used by Jeedom in
         the database,
 
     -   **Password** : database access password
@@ -98,15 +98,15 @@ Two parts reserved for experts are present in this tab.
 Security 
 ========
 
-TheDAP 
+LDAP 
 ----
 
 -   **Enable TheDAP authentication** : enable authentication to
-    through an AD (TheDAP)
+    through an AD (LDAP)
 
 -   **Host** : server hosting the AD
 
--   **Field** : domain of your AD
+-   **Domaine** : domain of your AD
 
 -   **DN base** : DN base of your AD
 
@@ -122,10 +122,10 @@ TheDAP
 -   **Filter (optional)** : filter on the AD (for managing
     groups for example)
 
--   **Allow REMOTE \ _USER** : Activate REMOTE \ _USER (used in SSO
+-   **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO
     for example)
 
-Theog in 
+Log in 
 ---------
 
 -   **Number of failures tolerated** : sets the number of attempts
@@ -152,36 +152,36 @@ Networks
 It is absolutely necessary to correctly configure this important part of
 Jeedom, otherwise many Plugins may not work. he
 is possible to access Jeedom in two different ways : The'**access
-internal** (from the same local network as Jeedom) and l'**access
-external** (from another network, in particular from the Internet).
+interne** (from the same local network as Jeedom) and l'**access
+externe** (from another network, in particular from the Internet).
 
-> **IMPORTANT**
+> **Important**
 >
 > This part is just there to explain to Jeedom its environment :
 > changing the port or IP in this tab will not change the
 > Jeedom port or IP actually. To do this, you must log in
 > SSH and edit the / etc / network / interfaces file for the IP and
 > etc / apache2 / sites-available / default files and
-> etc / apache2 / sites-available / default \ _ssl (for HTTPS).However, in
+> etc / apache2 / sites-available / default\_ssl (for HTTPS).However, in
 > If your Jeedom is mishandled, the Jeedom team will not
 > may be held responsible and may refuse any requEast for
 > Support.
 
 -   **Internal access** : information for joining Jeedom from a
-    same network equipment as Jeedom (TheAN)
+    same network equipment as Jeedom (LAN)
 
     -   **OK / NOK** : indicates whether the internal network configuration is
         correct
 
-    -   **Protocol** : the protocol to use, often HTTP
+    -   **Protocole** : the protocol to use, often HTTP
 
-    -   **URThes or IP address** : Jeedom IP to enter
+    -   **URLs or IP address** : Jeedom IP to enter
 
-    -   **Harbor** : the port of the Jeedom web interface, generally 80.
+    -   **Port** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual port of
         Jeedom which will remain the same
 
-    -   **Complement** : the fragment of additional URThes (example
+    -   **Complement** : the fragment of additional URLs (example
         : / jeedom) to access Jeedom.
 
 -   **External access** : information to reach Jeedom from outside
@@ -191,12 +191,12 @@ external** (from another network, in particular from the Internet).
     -   **OK / NOK** : indicates whether the external network configuration is
         correct
 
-    -   **Protocol** : protocol used for outdoor access
+    -   **Protocole** : protocol used for outdoor access
 
-    -   **URThes or IP address** : External IP, if it is fixed. If not,
-        give the URThes pointing to the external IP address of your network.
+    -   **URLs or IP address** : External IP, if it is fixed. If not,
+        give the URLs pointing to the external IP address of your network.
 
-    -   **Complement** : the fragment of additional URThes (example
+    -   **Complement** : the fragment of additional URLs (example
         : / jeedom) to access Jeedom.
 
 > **Tip**
@@ -228,9 +228,9 @@ external** (from another network, in particular from the Internet).
 
     -   **DNS status** : DNS HTTP status
 
-    -   **Management** : allows to stop and rEastart the DNS service
+    -   **Gestion** : allows to stop and restart the DNS service
 
-> **IMPORTANT**
+> **Important**
 >
 > If you can&#39;t get Jeedom DNS to work, check the
 > configuration of the firewall and parental filter of your Internet box
@@ -280,11 +280,11 @@ Historical
     compatible, which is the case for most. It is also necessary that the
     command either digital.
 
--   **Calculationation period for min, max, average (in hours)** : Period
+-   **Calculation period for min, max, average (in hours)** : Period
     statistics calculation (24h by default). It is not possible
     to put less than an hour.
 
--   **Calculationation period for the trend (in hours)** : Period of
+-   **Calculation period for the trend (in hours)** : Period of
     trend calculation (2h by default). It is not possible to
     put less than an hour.
 
@@ -301,7 +301,7 @@ Historical
     store the new calculated value by deleting the
     averaged values.
 
--   **Theow trend calculation threshold** : This value indicates the
+-   **Low trend calculation threshold** : This value indicates the
     value from which Jeedom indicates that the trend is towards
     downward. It must be negative (default -0.1).
 
@@ -310,9 +310,9 @@ Historical
 -   **Default graphics display period** : Period which is
     used by default when you want to display the history
     of an order. The shorter the period, the faster Jeedom will be
-    to display the requEasted graph.
+    to display the requested graph.
 
-> **NOTE**
+> **Note**
 >
 > The first parameter **View widget statistics** East
 > possible but disabled by default because it significantly lengthens the
@@ -320,17 +320,17 @@ Historical
 > default, Jeedom relies on data from the past 24 hours to
 > calculate these statistics. The trend calculation method is based
 > on least squares calculation (see
-> [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
+> [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > for details).
 
 Push 
 ----
 
-**Global push URThes** : allows to add a URThes to call in case of
+**Global push URLs** : allows to add a URLs to call in case of
 order update. You can use the following tags :
-**\#Value \#** for the order value, **\#Cmd \ _name \#** for the
-command name, **\#Cmd \ _id \#** for the unique identifier of the
-ordered, **\#Humanname \#** for the full name of the order (ex :
+**\#value\#** for the order value, **\#Cmd\_name \#** for the
+command name, **\#Cmd\_id \#** for the unique identifier of the
+commande, **\#humanname\#** for the full name of the order (ex :
 \# \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \#), `# eq_name #` for the name of the equipment
 
 Hidden 
@@ -338,7 +338,7 @@ Hidden
 
 Allows monitoring and acting on the Jeedom cache :
 
--   **Statistics** : Number of objects currently cached
+-   **Statistiques** : Number of objects currently cached
 
 -   **Clean the cover** : Force the deletion of objects that are not
     more useful. Jeedom does this automatically every night.
@@ -369,7 +369,7 @@ General
 
 Here you have three parameters :
 
--   **Sensitivity** : there are 4 levels of correspondence (Sensitivity
+-   **Sensibilité** : there are 4 levels of correspondence (Sensitivity
     ranges from 1 (exactly matches) to 99)
 
     -   for 1 word : the level of correspondence for interactions at
@@ -406,21 +406,21 @@ Automatic interaction, contextual &amp; Warning
     and / or order to try to respond as bEast as possible.
 
 -   The **contextual interactions** allow you to chain
-    multiple requEasts without repeating everything, for example :
+    multiple requests without repeating everything, for example :
 
     -   *Jeedom keeping the context :*
 
-        -   *You* : How much is he in the room ?
+        -   *Vous* : How much is he in the room ?
 
         -   *Jeedom* : Temperature 25.2 ° C
 
-        -   *You* : and in the living room ?
+        -   *Vous* : and in the living room ?
 
         -   *Jeedom* : Temperature 27.2 ° C
 
-    -   *Ask two quEastions in one :*
+    -   *Ask two questions in one :*
 
-        -   *You* : What is it like in the bedroom and in the living room ?
+        -   *Vous* : What is it like in the bedroom and in the living room ?
 
         -   *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 
@@ -428,12 +428,12 @@ Automatic interaction, contextual &amp; Warning
     Jeedom to notify you if an order exceeds / descends or is worth a
     certain value.
 
-    -   *You* : Notify me if the living room temperature exceeds 25 ° C ?
+    -   *Vous* : Notify me if the living room temperature exceeds 25 ° C ?
 
     -   *Jeedom* : OK (* As soon as the living room temperature exceeds 25 ° C,
         Jeedom will tell you, only once *)
 
-> **NOTE**
+> **Note**
 >
 > By default Jeedom will answer you by the same channel as the one you
 > used to ask him to notify you. If he doesn&#39;t find one
@@ -454,8 +454,8 @@ Here are the different options available :
     several words separated by **;** ).
 
 -   **Cut an interaction in half if it contains** : Same thing for
-    the breakdown of an interaction containing several quEastions. You
-    give here the words that separate the different quEastions.
+    the breakdown of an interaction containing several questions. You
+    give here the words that separate the different questions.
 
 -   **Activate "Notify Me" interactions"** : Check to activate
     Type interactions **Warn me**.
@@ -546,22 +546,22 @@ Add object summaries. This information is displayed
 at the very top, on the right, in the Jeedom menu bar, or next to the
 objects :
 
--   **Key** : Key to the summary, especially not to touch.
+-   **Clef** : Key to the summary, especially not to touch.
 
--   **Theast name** : Abstract name.
+-   **Nom** : Abstract name.
 
--   **Calculation** : Calculationation method, can be of type :
+-   **Calcul** : Calculationation method, can be of type :
 
-    -   **Sum** : sum the different values,
+    -   **Somme** : sum the different values,
 
-    -   **Average** : averages values,
+    -   **Moyenne** : averages values,
 
-    -   **Text** : display the value verbatim (especially for those
+    -   **Texte** : display the value verbatim (especially for those
         string type).
 
--   **Icon** : Summary icon.
+-   **Icone** : Summary icon.
 
--   **Unit** : Summary unit.
+-   **Unité** : Summary unit.
 
 -   **Counting method** : If you count binary data then
     you have to set this value to binary, example if you count the
@@ -573,13 +573,13 @@ objects :
 -   **Show if value is 0** : Check this box to display the
     value, even when it is 0.
 
--   **Theink to a virtual** : Start creating virtual orders
+-   **Link to a virtual** : Start creating virtual orders
     having for value those of the summary.
 
 -   **Delete summary** : The last button, on the far right, allows
     to delete the summary from the line.
 
-Theogs 
+Logs 
 ====
 
 Timeline 
@@ -600,8 +600,8 @@ Posts
     you are sure not to miss it).
 
 -   **Action on Message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions : 
-        - #Message# : Message in quEastion
-        - #Plugin# : Plugin that triggered the Message
+        - #message# : Message in question
+        - #plugin# : Plugin that triggered the Message
 
 Notifications 
 -------
@@ -609,42 +609,42 @@ Notifications
 -   **Add a Message to each Timeout** : Add a Message in the
     Message center if equipment falls in **timeout**.
 
--   **Timeout order** : Type command **Message** use
+-   **Timeout order** : Type command **message** use
     if an equipment is in **timeout**.
 
 -   **Add a Message to each Battery in Warning** : Add a
     Message in the Message center if a device has its level of
-    battery in **Warning**.
+    battery in **warning**.
 
--   **Battery command in Warning** : Type command **Message**
-    to be used if equipment at its battery level **Warning**.
+-   **Battery command in Warning** : Type command **message**
+    to be used if equipment at its battery level **warning**.
 
 -   **Add a Message to each Battery in Danger** : Add a
     Message in the Message center if a device has its level of
-    battery in **Danger**.
+    battery in **danger**.
 
--   **Command on Battery in Danger** : Type command **Message** at
-    use if equipment at its battery level **Danger**.
+-   **Command on Battery in Danger** : Type command **message** at
+    use if equipment at its battery level **danger**.
 
 -   **Add a Message to each Warning** : Add a Message in the
-    Message center if an order goes on alert **Warning**.
+    Message center if an order goes on alert **warning**.
 
--   **Command on Warning** : Type command **Message** use
-    if an order goes on alert **Warning**.
+-   **Command on Warning** : Type command **message** use
+    if an order goes on alert **warning**.
 
 -   **Add a Message to each Danger** : Add a Message in the
-    Message center if an order goes on alert **Danger**.
+    Message center if an order goes on alert **danger**.
 
--   **Command on Danger** : Type command **Message** to use if
-    an order goes on alert **Danger**.
+-   **Command on Danger** : Type command **message** to use if
+    an order goes on alert **danger**.
 
-Theog 
+Log 
 ---
 
--   **Theog engine** : Allows you to change the log engine for, for
+-   **Log engine** : Allows you to change the log engine for, for
     example, send them to a syslog daemon (d).
 
--   **Theog format** : Theog format to use (Caution : it
+-   **Log format** : Theog format to use (Caution : it
     does not affect daemon logs).
 
 -   **Maximum number of lines in a log file** : Defines the
@@ -659,7 +659,7 @@ Theog
 
 Below you will find a table for finely managing the
 log level of the essential elements of Jeedom as well as that of
-Plugins.
+plugins.
 
 Facilities 
 ===========
@@ -717,7 +717,7 @@ Deposit used to connect Jeedom to the market, it is highly recommended
 to use this repository. WARNING : any Support requEast may be
 refused if you use a different deposit than this one.
 
--   **Address** : Market address.
+-   **Adresse** : Market address.
 
 -   **Username** : Your Username on the Market.
 
@@ -725,7 +725,7 @@ refused if you use a different deposit than this one.
 
 -   **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
 
--   **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will not be able to rEastore your Jeedom
+-   **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will not be able to restore your Jeedom
 
 -   **[Backup cloud] Frequency full backup** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month
 
@@ -739,7 +739,7 @@ a Samba share (ex : NAS Synology).
 -   **\ [Backup \] User** : Username for login
     (anonymous connections are not possible). There must be
     that the user has read and write rights on the
-    dEastination directory.
+    destination directory.
 
 -   **\ [Backup \] Password** : User password.
 
@@ -749,13 +749,13 @@ a Samba share (ex : NAS Synology).
 -   **\ [Backup \] Path** : Path in sharing (to set
     relative), it must exist.
 
-> **NOTE**
+> **Note**
 >
 > If the path to your samba backup folder is :
 > \\\\ 192.168.0.1 \\ Backups \\ Home automation \\ Jeedom Then IP = 192.168.0.1
 > , Sharing = //192.168.0.1 / Backups, Path = Home automation / Jeedom
 
-> **NOTE**
+> **Note**
 >
 > When validating the Samba share, as described above,
 > a new form of backup appears in the section
@@ -763,35 +763,35 @@ a Samba share (ex : NAS Synology).
 > when it is automatically sent at the next backup. A tEast is
 > possible by performing a manual backup.
 
-> **IMPORTANT**
+> **Important**
 >
 > You may need to install the smbclient package for the
 > deposit works.
 
-> **IMPORTANT**
+> **Important**
 >
 > The Samba protocol has several versions, the v1 is compromised level 
 > security and on some NAS you can force the client to use v2
 > or v3 to connect. So if you have a protocol negotiation error
 > failed: NT_STATUS_INVAID_NETWORK_RESPONSE there is a good chance that listed NAS
-> the rEastriction be in place. You must then modify on the OS of your Jeedom
+> the restriction be in place. You must then modify on the OS of your Jeedom
 > the / etc / samba / smb file.conf and add these two lines to it :
 > client max protocol = SMB3
 > client min protocol = SMB2
 > The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 in both only
-> SMB3. So it&#39;s up to you to adapt according to rEastrictions on the NAS or other Samba server
+> SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server
 
-> **IMPORTANT**
+> **Important**
 >
 > Jeedom should be the only one to write to this folder and it should be empty
 > by default (i.e. before configuring and sending the
 > first backup, the folder must not contain any file or
 > folder).
 
-### URThes 
+### URLs 
 
--   **Jeedom core URThes**
+-   **Jeedom core URLs**
 
--   **Jeedom core version URThes**
+-   **Jeedom core version URLs**
 
 

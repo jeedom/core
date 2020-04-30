@@ -9,7 +9,7 @@ Plug-In. Sobald wir darauf klicken, finden wir die Liste von
 Plugins in alphabetischer Reihenfolge und ein Link zum Markt. Plugins
 deaktiviert sind ausgegraut.
 
-> **Spitze**
+> **Tip**
 >
 > Setzen Sie die Maus wie an vielen Stellen auf Jeedom ganz links
 > ruft ein Schnellzugriffsmenü auf (Sie können
@@ -20,38 +20,38 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben du
 Suchen Sie den Namen des Plugins und dann in Klammern den Namen in Jeedom
 (ID) und schließlich die Art der installierten Version (Stable, Beta).
 
-> **Wichtig**
+> **Important**
 >
 > Beim Herunterladen eines Plugins ist es standardmäßig deaktiviert.
 > Sie müssen es also selbst aktivieren.
 
 Oben rechts einige Schaltflächen :
 
--   **Dokumentation** : Ermöglicht den direkten Zugriff auf die Seite von
+-   **Documentation** : Ermöglicht den direkten Zugriff auf die Seite von
     Plugin-Dokumentation
 
--   **Änderungsprotokoll** : ermöglicht das Anzeigen des Änderungsprotokolls des Plugins, falls vorhanden
+-   **Changelog** : ermöglicht das Anzeigen des Änderungsprotokolls des Plugins, falls vorhanden
 
 -   **Auf den Markt schicken** : ermöglicht das Senden des Plugins auf dem Markt
     (nur verfügbar, wenn Sie der Autor sind)
 
 -   **Details** : ermöglicht es, die Plugin-Seite auf dem Markt zu finden
 
--   **Entfernen** : Entfernen Sie das Plugin aus Ihrem Jeedom. Sei vorsichtig, das
+-   **Supprimer** : Entfernen Sie das Plugin aus Ihrem Jeedom. Sei vorsichtig, das
     entfernt auch dauerhaft alle Geräte von diesem Plugin
 
 Unten links befindet sich ein Statusbereich mit :
 
--   **Status** : ermöglicht die Anzeige des Status des Plugins (aktiv / inaktiv)
+-   **Statut** : ermöglicht die Anzeige des Status des Plugins (aktiv / inaktiv)
 
 -   **Version** : die Version des installierten Plugins
 
--   **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins
+-   **Action** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins
 
 -   **Jeedom Version** : Minimale Jeedom-Version erforderlich
     für den Betrieb des Plugins
 
--   **Lizenz** : Gibt die Lizenz des Plugins an, die im Allgemeinen sein wird
+-   **Licence** : Gibt die Lizenz des Plugins an, die im Allgemeinen sein wird
     AGPL
 
 Rechts finden wir die Protokoll- und Überwachungszone, die definiert werden kann 
@@ -70,9 +70,9 @@ Weitere werden unter den oben genannten Bereichen angezeigt.
 
 Nebengebäude :
 
--   **Name** : in der Regel wird lokal sein
+-   **Nom** : in der Regel wird lokal sein
 
--   **Status** : wird Ihnen sagen, ob die Abhängigkeiten OK oder KO sind
+-   **Statut** : wird Ihnen sagen, ob die Abhängigkeiten OK oder KO sind
 
 -   **Installation** : wird installiert oder neu installiert
     Abhängigkeiten (wenn Sie es nicht manuell tun und sie sind
@@ -83,11 +83,11 @@ Nebengebäude :
 
 Dämon :
 
--   **Name** : in der Regel wird lokal sein
+-   **Nom** : in der Regel wird lokal sein
 
--   **Status** : wird dir sagen, ob der Dämon in Ordnung oder KO ist
+-   **Statut** : wird dir sagen, ob der Dämon in Ordnung oder KO ist
 
--   **Konfiguration** : wird in Ordnung sein, wenn alle Kriterien für den Dämon
+-   **Configuration** : wird in Ordnung sein, wenn alle Kriterien für den Dämon
     Wendungen sind erfüllt oder geben Anlass zur Blockierung
 
 -   **(Re) Anfang** : Ermöglicht das Starten oder Neustarten des Dämons
@@ -102,7 +102,7 @@ Dämon :
 
 -   **Letzter Start** : Datum des letzten Starts des Dämons
 
-> **Spitze**
+> **Tip**
 >
 > Einige Plugins haben einen Konfigurationsteil. Wenn ja, es
 > wird unter den oben beschriebenen Abhängigkeiten und Dämonzonen angezeigt.
@@ -126,7 +126,7 @@ wenn das Plugin eine der Jeedom-Kernfunktionen verwendet, wie z :
 
 -   **CronDaily** : ein täglicher cron
 
-> **Spitze**
+> **Tip**
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies speziell tun
 > Verbieten Sie ihm dies, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren
@@ -143,7 +143,7 @@ Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche
 "Markt "(und dass Jeedom mit dem Internet verbunden ist). Nach kurzer Zeit von
 Beim Laden erhalten Sie die Seite.
 
-> **Spitze**
+> **Tip**
 >
 > Sie müssen Ihre Marktkontoinformationen in eingegeben haben
 > Administration (Konfiguration → Updates → Registerkarte Markt), um
@@ -163,13 +163,13 @@ Oben im Fenster befinden sich Filter :
 -   **Dropdown-Menü Kategorie** : wird nur angezeigt
     bestimmte Plugin-Kategorien
 
--   **Suche** : ermöglicht es Ihnen, nach einem Plugin zu suchen (im Namen oder
+-   **Rechercher** : ermöglicht es Ihnen, nach einem Plugin zu suchen (im Namen oder
     Beschreibung davon)
 
 -   **Benutzername** : Zeigt den Benutzernamen an, der für das verwendet wird
     Verbindung zum Markt und den Status der Verbindung
 
-> **Spitze**
+> **Tip**
 >
 > Das kleine Kreuz setzt den betreffenden Filter zurück
 
@@ -191,7 +191,7 @@ Informationen über das Plugin, einschließlich :
     -   **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr
         wenig gebraucht)
 
-    -   **Entfernen** : Wenn das Plugin derzeit installiert ist, ist dies
+    -   **Supprimer** : Wenn das Plugin derzeit installiert ist, ist dies
         Schaltfläche, um es zu löschen
 
 Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität
@@ -199,25 +199,25 @@ Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität
 auf dem Plugin (Sie können es hier bewerten) und Informationen
 komplementär (der Autor, die Person, die das letzte Update vorgenommen hat
 Tag, Link zum Dokument, Anzahl der Downloads). Rechts
-Sie finden einen "Änderungsprotokoll" -Button, mit dem Sie alles haben können
+Sie finden einen "Changelog" -Button, mit dem Sie alles haben können
 Änderungsverlauf, eine Schaltfläche "Dokumentation", die zurückkehrt
 zur Plugin-Dokumentation. Dann haben Sie die Sprache zur Verfügung
 und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
-> **Wichtig**
+> **Important**
 >
 > Es wird wirklich nicht empfohlen, ein Beta-Plugin auf ein zu setzen
 > Jeedom nicht Beta, viele Betriebsprobleme können
 > Ergebnis.
 
-> **Wichtig**
+> **Important**
 >
 > Einige Plugins sind kostenpflichtig, in diesem Fall wird das Plugin-Blatt
 > wird anbieten, es zu kaufen. Sobald dies erledigt ist, warten Sie auf a
 > zehn Minuten (Zahlungsvalidierungszeit), dann zurück
 > auf dem Plugin Sheet, um es normal zu installieren.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können Jeedom auch ein Plugin aus einer Datei oder hinzufügen
 > aus einem Github-Repository. Dies erfordert in der Konfiguration von
@@ -227,4 +227,4 @@ und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 > auf "Aus einer anderen Quelle hinzufügen". Sie können dann die auswählen
 > Quelle "Datei". Achtung, im Falle der Hinzufügung durch eine Datei
 > zip, der zip-Name muss mit der Plugin-ID und von übereinstimmen
-> Beim Öffnen der ZIP-Datei muss ein Plugin \ _info-Ordner vorhanden sein.
+> Beim Öffnen der ZIP-Datei muss ein Plugin\_info-Ordner vorhanden sein.

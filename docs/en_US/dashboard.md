@@ -64,7 +64,7 @@ You can also edit the internal layout of the widget controls
     -   **Standard** : default layout, everything is automatic
         with just the ability to rearrange the order of orders
 
-    -   **Board** : allows to put the commands in a table :
+    -   **Tableau** : allows to put the commands in a table :
         columns and rows are added and removed by click
         right then just move the controls within
         desired boxes. You can put multiple orders per box

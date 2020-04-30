@@ -1,44 +1,44 @@
 
-Cambios
+Changelog
 =========
 
-
+3.3.48
 =====
 
-- 
+- Corrección de errores (la actualización se realizará absolutamente si está en 3.3.47)
 
-
+3.3.47
 =====
 
 - Correcciones de errores
-- 
+- Optimización del futuro sistema DNS
 
-
+3.3.45
 =====
 
-- 
+- Corrección de errores en la aplicación web
 
-
+3.3.44
 =====
 
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses.. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
 - Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
 - Actualización del repositorio en smart
-- 
-- 
+- Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 1 semana y, si es necesario, puede solicitar la disponibilidad de copias de seguridad antiguas para soportar, pasar este período, el sistema antiguo se eliminará)
+- Migración al nuevo sistema de monitoreo (el sistema antiguo permanecerá activo durante 1 semana, luego de lo cual se eliminará)
 
 3.3.39
 =====
 
 - Se cambió el nombre de la variable $ key a $ key2 en el evento de clase
 - Limpiar el plugin / widgy / escenario enviando código al mercado (ahorra varios segundos en mostrar los complementos)
-- Corrección de una advertencia en la función lastByween
-- Mejor consideración de los widgys de complementos
+- Corrección de una advertencia en la función lastBetween
+- Mejor consideración de los widgets de complementos
 - Optimización del cálculo de salud en el intercambio
 
->**IMPORTANTE**
+>**IMPORTANT**
 >
->Esta actualización soluciona una inquiyud que puede evitar cualquier registro de historial a partir del 1 de enero de 2020, es más que altamente recomendable
+>Esta actualización soluciona una inquietud que puede evitar cualquier registro de historial a partir del 1 de enero de 2020, es más que altamente recomendable
 
 3.3.38
 =====
@@ -68,7 +68,7 @@ Cambios
 =====
 
 - Se corrigió un error que podía evitar que el estado de la batería volviera a subir
-- Corrección de un error en las yiquyas en las interacciones.
+- Corrección de un error en las yiquetas en las interacciones.
 - El estado de "tiempo de espera" (no comunicación) del equipo ahora tiene prioridad sobre el estado de "advertencia" o "peligro""
 - Corrección de errores en las copias de seguridad en la nube
 
@@ -160,7 +160,7 @@ Cambios
 
 - Se corrigió un error por el cual la visualización del tiempo podía exceder las 24 h
 - Corrección de un error en la actualización de los resúmenes de diseño.
-- Corrección de un error en la gestión de los niveles de alertas en ciertos widgys durante la actualización del valor
+- Corrección de un error en la gestión de los niveles de alertas en ciertos widgets durante la actualización del valor
 - Se corrigió la visualización del equipo deshabilitado en algunos complementos
 - Corrección de un error al indicar el cambio de batería en Jeedom
 - Visualización mejorada de registros al actualizar Jeedom
@@ -195,11 +195,11 @@ Cambios
 =====
 
 -   Posibilidad de eliminar una variable.
--   Adición de una pantalla 3D (bya)
+-   Adición de una pantalla 3D (beta)
 -   Rediseño del sistema de respaldo en la nube (respaldo incremental y encriptado).
 -   Agregar un sistema integrado de toma de notas (en Análisis -&gt; Nota).
--   Adición de la noción de yiquya en el equipo (se puede encontrar en la configuración avanzada del equipo).
--   Adición de un sistema de historial sobre la eliminación de pedidos, equipos, objyos, vista, diseño, diseño 3D, escenario y usuario..
+-   Adición de la noción de yiqueta en el equipo (se puede encontrar en la configuración avanzada del equipo).
+-   Adición de un sistema de historial sobre la eliminación de pedidos, equipos, objetos, vista, diseño, diseño 3D, escenario y usuario..
 -   Adición de la acción Jeedom_reboot para iniciar un reinicio de Jeedom.
 -   Agregar opción en la ventana de generación cron.
 -   Ahora se agrega un mensaje si se encuentra una expresión no válida al ejecutar un escenario.
@@ -208,7 +208,7 @@ Cambios
 -   Agregue en la configuración de la acción sobre el valor de un comando un botón para buscar una acción interna (escenario, pausa ...).
 -   Adición de una acción &quot;Restablecer a cero del IS&quot; en los escenarios
 -   Posibilidad de agregar imágenes en segundo plano en las vistas
--   Posibilidad de agregar imágenes de fondo en objyos
+-   Posibilidad de agregar imágenes de fondo en objetos
 -   La información de actualización disponible ahora está oculta para usuarios no administradores
 -   Soporte mejorado para () en el cálculo de expresiones
 -   Posibilidad de editar los escenarios en modo texto / json
@@ -218,14 +218,14 @@ Cambios
 -   Adición de oyentes en la página del motor de tareas
 -   Optimizaciones
 -   Posibilidad de consultar los registros en versión móvil (wepapp)
--   Adición de una yiquya de acción en los escenarios (ver documentación)
--   Posibilidad de tener una vista de pantalla complya agregando &quot;&amp; fullscreen = 1&quot; en la url
+-   Adición de una yiqueta de acción en los escenarios (ver documentación)
+-   Posibilidad de tener una vista de pantalla completa agregando &quot;&amp; fullscreen = 1&quot; en la url
 -   Adición de la última comunicación en los escenarios (para tener la última fecha de comunicación de un equipo)
 -   Actualización en tiempo real de gráficos (simple, no calculado o líneas de tiempo)
 -   Posibilidad de eliminar un elemento de la configuración de diseño.
 -   Posibilidad de tener un informe sobre el nivel de la batería (informe del equipo)
--   Los widgys de escenario ahora se muestran por defecto en el tablero
--   Cambie el tono de los widgys por horizontal 25 a 40, vertical 5 a 20 y margen 1 a 4 (puede restablecer los valores anteriores en la configuración de Jeedom, pestaña widgy)
+-   Los widgets de escenario ahora se muestran por defecto en el tablero
+-   Cambie el tono de los widgets por horizontal 25 a 40, vertical 5 a 20 y margen 1 a 4 (puede restablecer los valores anteriores en la configuración de Jeedom, pestaña widget)
 -   Posibilidad de poner un icono en los escenarios.
 -   Incorporación de la gestión de demonios en el motor de tareas.
 -   Adición de la función color_gradient en los escenarios.
@@ -265,7 +265,7 @@ Cambios
 - Mejora del proceso de actualización en particular en la copia de archivos que ahora comprueba el tamaño del archivo copiado.
 - Corrección de errores en las funciones stateDuration, lastStateDuration y lastChangeStateDuration (gracias @kiboost).
 - Optimización del cálculo del gráfico de enlaces y el uso de variables..
-- Mejora de la ventana de dyalles de la tarea cron que ahora muestra el escenario, así como la acción a realizar para las tareas doIn (gracias @kiboost).
+- Mejora de la ventana de detalles de la tarea cron que ahora muestra el escenario, así como la acción a realizar para las tareas doIn (gracias @kiboost).
 
 3.2.9
 =====
@@ -290,8 +290,8 @@ Cambios
 
 - Correcciones de errores
 - Actualización de documentos
-- Posibilidad de usar las yiquyas en las condiciones de los bloques "A" e "IN""
-- Corrección de errores de categorías de mercado para widgys / scripts / escenarios...
+- Posibilidad de usar las yiquetas en las condiciones de los bloques "A" e "IN""
+- Corrección de errores de categorías de mercado para widgets / scripts / escenarios...
 
 3.2.6
 =====
@@ -324,18 +324,18 @@ Cambios
 3.2.2
 =====
 
--   Eliminación del antiguo sistema de actualización de widgys (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Ejemplo de widgy [ici](https://github.com/Jeedom/core/tree/bya/core/template/salpicadero)
+-   Eliminación del antiguo sistema de actualización de widgets (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Widgy de ejemplo [aquí](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Posibilidad de mostrar los gráficos en forma de tabla o exportarlos en csv o xls
 
 -   Los usuarios ahora pueden agregar su propia función php para escenarios. Ver documentación de escenarios para implementación
 
 -   JEED-417 : adición de una función time_diff en los escenarios
 
--   Adición de un ryraso configurable antes de la respuesta en las interacciones (permite esperar a que se produzca la ryroalimentación de estado, por ejemplo)
+-   Adición de un retraso configurable antes de la respuesta en las interacciones (permite esperar a que se produzca la retroalimentación de estado, por ejemplo)
 
 -   JEED-365 : Eliminación del &quot;comando de información del usuario&quot; para ser reemplazado por acciones en el mensaje. Le permite iniciar varios comandos diferentes, iniciar un escenario ... Atención, si tenía un &quot;comando de información del usuario&quot;, debe reconfigurarse.
 
--   Agregue una opción para abrir fácilmente un acceso al soporte (en la página del usuario y al abrir un ticky)
+-   Agregue una opción para abrir fácilmente un acceso al soporte (en la página del usuario y al abrir un ticket)
 
 -   Corrección de un error de derechos después de la restauración de una copia de seguridad
 
@@ -356,7 +356,7 @@ Cambios
 -   Correcciones ortográficas (gracias a dab0u por su enorme trabajo)
 
 -   JEED-290 : Ya no podemos conectarnos con identificadores por
-    predyerminado (admin / admin) de forma remota, solo la red local está autorizada
+    predeterminado (admin / admin) de forma remota, solo la red local está autorizada
 
 -   JEED-186 : Ahora podemos elegir el color de fondo en el
     diseños
@@ -377,7 +377,7 @@ Cambios
 -   JEED-8 : adición del nombre del escenario en el título de la página durante
     edición
 
--   Optimización de cambios organizacionales (tamaño de widgys,
+-   Optimización de cambios organizacionales (tamaño de widgets,
     posición del equipo, posición de los controles) en el tablero de instrumentos
     y las vistas. Atención ahora las modificaciones no son
     guardado solo al salir del modo de edición.
@@ -385,11 +385,11 @@ Cambios
 -   JEED-18 : Agregar registros al abrir un ticky para admitir
 
 -   JEED-181 : adición de un comando de nombre en los escenarios para tener
-    el nombre del pedido o equipo u objyo
+    el nombre del pedido o equipo u objeto
 
 -   JEED-15 : Agregue batería y alerta en la aplicación web
 
--   Corrección de errores para mover objyos de diseño en Firefox
+-   Corrección de errores para mover objetos de diseño en Firefox
 
 -   JEED-19 : Durante una actualización, ahora es posible
     actualizar el script de actualización antes de actualizar
@@ -401,9 +401,9 @@ Cambios
 
 -   JEED-77 : Adición de gestión de variables en la API http
 
--   JEED-78 : adición de la función de yiquya para escenarios. Ten cuidado ahí
-    debe en los escenarios utilizando las yiquyas pasar de \#montag \#
-    yiquyar (montag)
+-   JEED-78 : adición de la función de yiqueta para escenarios. Ten cuidado ahí
+    debe en los escenarios utilizando las yiquetas pasar de \#montag \#
+    yiquetar (montag)
 
 -   JEED-124 : Corregir la gestión de los tiempos de espera del escenario.
 
@@ -444,7 +444,7 @@ Cambios
 -   Modo de una página (cambio de página sin volver a cargar toda la página, solo
     la parte que cambia)
 
--   Agregue una opción para ocultar objyos en el tablero pero que
+-   Agregue una opción para ocultar objetos en el tablero pero que
     vamos a tenerlos siempre en la lista
 
 -   Haga doble clic en un nodo en el gráfico de enlace (excepto para
@@ -453,7 +453,7 @@ Cambios
 -   Posibilidad de colocar el texto a la izquierda / derecha / centro en el
     diseños para texto / vista / elementos de diseño
 
--   Agregar resúmenes de objyos en el tablero (lista de objyos
+-   Agregar resúmenes de objetos en el tablero (lista de objetos
     a la izquierda)
 
 -   Agregar interacciones de tipo "notifícame si"
@@ -481,7 +481,7 @@ Cambios
 
 -   Rediseño de la página de administración.
 
--   Agregar una &quot;salud&quot; en los objyos
+-   Agregar una &quot;salud&quot; en los objetos
 
 -   Corrección de errores en el nivel de batería del equipo.
 
@@ -505,15 +505,15 @@ Cambios
 -   Más opciones posibles en la configuración de tamaño de zona en el
     vistas
 
--   Posibilidad de elegir el color del texto del resumen del objyo
+-   Posibilidad de elegir el color del texto del resumen del objeto
 
--   Adición de una acción remove \ _inat en los escenarios que permiten
+-   Adición de una acción remove\_inat en los escenarios que permiten
     cancelar toda la programación de los bloques DANS / A
 
--   Posibilidad de elegir diseños para widgys al pasar el mouse por encima
-    posición del widgy
+-   Posibilidad de elegir diseños para widgets al pasar el mouse por encima
+    posición del widget
 
--   Agregar un parámyro de respuesta \ _cmd en las interacciones para especificar
+-   Agregar un parámetro de respuesta\_cmd en las interacciones para especificar
     la identificación del comando que se usará para responder
 
 -   Agregar una línea de tiempo en la página del historial (se debe prestar atención
@@ -534,16 +534,16 @@ Cambios
         cuál está conectado
 
 -   Posibilidad en la configuración avanzada de equipos para poner
-    el diseño de los comandos en los widgys en modo tabla en
+    el diseño de los comandos en los widgets en modo tabla en
     elegir para cada pedido la caja o ponerla
 
--   Capacidad para reorganizar widgys de equipos desde
-    panel de control (en modo de edición, haga clic derecho en el widgy)
+-   Capacidad para reorganizar widgets de equipos desde
+    panel de control (en modo de edición, haga clic derecho en el widget)
 
--   Cambiar el tono de los widgys (de 40 \* 80 a 10 \* 10). Ten cuidado
+-   Cambiar el tono de los widgets (de 40 \* 80 a 10 \* 10). Ten cuidado
     impactará el diseño en su tablero / vista / diseño
 
--   Posibilidad de dar un tamaño de 1 a 12 a los objyos en el
+-   Posibilidad de dar un tamaño de 1 a 12 a los objetos en el
     salpicadero
 
 -   Capacidad para iniciar independientemente acciones de escenario (y
@@ -585,17 +585,17 @@ Cambios
 
 -   Adición de una acción &quot;emergente&quot; en escenarios : mensaje para validar
 
--   Los widgys de comando ahora pueden tener un método
+-   Los widgets de comando ahora pueden tener un método
     actualización que evita una llamada ajax a Jeedom
 
--   Los widgys de escenario ahora se actualizan sin llamadas ajax
-    para obtener el widgy
+-   Los widgets de escenario ahora se actualizan sin llamadas ajax
+    para obtener el widget
 
 -   El resumen global y las partes ahora se actualizan sin apelación
     ajax
 
 -   Un clic en un elemento de un resumen de automatización del hogar lo lleva a una vista
-    dyallado de ello
+    detallado de ello
 
 -   Ahora puede poner resúmenes de tipo
     texto
@@ -642,11 +642,11 @@ Cambios
     -   Posibilidad de mostrar una cuadrícula y elegir su
         tamaño (10x10,15x15 o 30x30)
 
-    -   Posibilidad de activar una magnyización de los widgys en la cuadrícula
+    -   Posibilidad de activar una magnetización de los widgets en la cuadrícula
 
-    -   Posibilidad de activar una magnyización de los widgys entre ellos.
+    -   Posibilidad de activar una magnetización de los widgets entre ellos.
 
-    -   Ciertos tipos de widgys ahora se pueden duplicar
+    -   Ciertos tipos de widgets ahora se pueden duplicar
 
     -   Posibilidad de bloquear un artículo
 
@@ -664,7 +664,7 @@ Cambios
 
 -   Agregar módulos en alerta a la página de la batería
 
--   Los objyos sin widgy se ocultan automáticamente en el tablero
+-   Los objetos sin widgy se ocultan automáticamente en el tablero
 
 -   Adición de un botón en la configuración avanzada de un
     equipo / de un comando para ver los eventos de
@@ -680,7 +680,7 @@ Cambios
 -   Posibilidad de prohibir ciertos valores para un pedido (en el
     configuración avanzada)
 
--   Adición de campos de configuración en ryroalimentación de estado automática
+-   Adición de campos de configuración en retroalimentación de estado automática
     (por ejemplo, volver a 0 después de 4 min) en la configuración avanzada de un
     orden
 
@@ -707,11 +707,11 @@ Cambios
     Tenga cuidado porque sin derechos de root tendrá que iniciar manualmente
     scripts para dependencias de complementos
 
--   Optimización de cálculos de expresión (cálculo de yiquyas solamente
+-   Optimización de cálculos de expresión (cálculo de yiquetas solamente
     si está presente en la expresión)
 
 -   Adición en la función API para acceder al resumen (global
-    y objyo)
+    y objeto)
 
 -   Capacidad para restringir el acceso a cada clave API en función de
     IP
@@ -721,10 +721,10 @@ Cambios
 
 -   El tiempo de espera en el comando de espera ahora puede ser un cálculo
 
--   Corrección de un error si hay &quot;en los parámyros de una acción
+-   Corrección de un error si hay &quot;en los parámetros de una acción
 
 -   Cambie a sha512 para el hash de contraseña (sha1
-    estar compromyido)
+    estar comprometido)
 
 -   Se corrigió un error en la administración de caché que lo hacía crecer
     indefinidamente
@@ -750,7 +750,7 @@ Cambios
 -   Las interacciones automáticas pueden devolver valores de
     resúmenes
 
--   Capacidad para definir sinónimos de objyos, equipos.,
+-   Capacidad para definir sinónimos de objetos, equipos.,
     comandos y resúmenes que se usarán en las respuestas
     contextual y resúmenes
 
@@ -788,15 +788,15 @@ Cambios
 -   Estandarización de tmp Jeedom, ahora todo está en / tmp / Jeedom
 
 -   Posibilidad de tener un gráfico de los diferentes enlaces de un escenario,
-    equipo, objyo, comando o variable
+    equipo, objeto, comando o variable
 
 -   Capacidad para ajustar la profundidad de los gráficos de enlace por
-    función del objyo original
+    función del objeto original
 
 -   Posibilidad de tener registros de escenarios en tiempo real (se ralentiza
     ejecución de escenarios)
 
--   Capacidad para pasar yiquyas al iniciar un escenario
+-   Capacidad para pasar yiquetas al iniciar un escenario
 
 -   Optimización de la carga de escenarios y páginas utilizando
     acciones con opción (tipo de configuración del complemento o modo de alarma)
@@ -804,7 +804,7 @@ Cambios
 2.4.6
 =====
 
--   Mejora de la gestión de la repyición de los valores de
+-   Mejora de la gestión de la repetición de los valores de
     comandos
 
 2.4.5
@@ -845,8 +845,8 @@ Cambios
 
 -   Adición de la noción de resumen de automatización del hogar (permite conocer un
     disparo único el número de luces encendidas, las puertas abiertas, el
-    persianas, ventanas, energía, dyecciones de movimiento ...).
-    Todo esto está configurado en la página de gestión de objyos.
+    persianas, ventanas, energía, detecciones de movimiento ...).
+    Todo esto está configurado en la página de gestión de objetos.
 
 -   Agregar pedidos previos y posteriores a un pedido. Permite disparar
     todo el tiempo una acción antes o después de otra acción. También puede
@@ -856,7 +856,7 @@ Cambios
 -   Optimización de escucha
 
 -   Agregar modal para mostrar información sin formato (atributo de
-    el objyo en la base) de un equipo o un pedido
+    el objeto en la base) de un equipo o un pedido
 
 -   Posibilidad de copiar el historial de un pedido a otro
     orden
@@ -877,14 +877,14 @@ Cambios
 
 -   Corrección de un problema con la traducción de javascripts
 
--   Agregar una categoría de complemento : objyo comunicante
+-   Agregar una categoría de complemento : objeto comunicante
 
--   Agregar GENERIC \ _TYPE
+-   Agregar GENERIC\_TYPE
 
 -   Eliminación de filtros nuevos y superiores en el curso de complementos
     del mercado
 
--   Cambiar el nombre de la categoría predyerminada en el curso de los complementos de
+-   Cambiar el nombre de la categoría predeterminada en el curso de los complementos de
     mercado en "Top y nuevo"
 
 -   Corrección de filtros gratuitos y de pago en el curso de complementos
@@ -895,11 +895,11 @@ Cambios
 
 -   Corrección de un error en el tiempo de espera de los escenarios.
 
--   Se corrigió un error en la visualización de widgys en vistas que
+-   Se corrigió un error en la visualización de widgets en vistas que
     tomó la versión del tablero
 
 -   Corrección de un error en los diseños que podrían usar el
-    configuración de widgys de tablero en lugar de diseños
+    configuración de widgets de tablero en lugar de diseños
 
 -   Corrección de errores de copia de seguridad / restauración si el nombre de la libertad
     contiene caracteres especiales
@@ -923,7 +923,7 @@ Cambios
 -   conmutación aleatoria de la copia de seguridad por la noche (entre 2h10 y 3h59) para
     evitar preocupaciones de sobrecarga del mercado
 
--   Fix widgy marky
+-   Fix widgy market
 
 -   Corrección de un error en el acceso al mercado (tiempo de espera)
 
@@ -933,7 +933,7 @@ Cambios
     / tmp es demasiado pequeño (tenga cuidado de que la corrección surta efecto en
     actualización n + 1)
 
--   Adición de una yiquya * Jeedom \ _name * en los escenarios (da el nombre
+-   Adición de una yiqueta * Jeedom\_name * en los escenarios (da el nombre
     Jeedom)
 
 -   Correcciones de errores
@@ -948,7 +948,7 @@ Cambios
 -   Adición de un tema darksobre para dispositivos móviles.
 
 -   Capacidad para que los desarrolladores agreguen opciones
-    configuración de widgys en widgys específicos (tipo sonos,
+    configuración de widgets en widgets específicos (tipo sonos,
     koubachi y otros)
 
 -   Optimización de registros (gracias @ kwizer15)
@@ -1014,28 +1014,28 @@ Cambios
 -   Adición de un modo sincrónico en los escenarios (anteriormente
     modo rápido)
 
--   Posibilidad de ingresar manualmente la posición de los widgys en% en
+-   Posibilidad de ingresar manualmente la posición de los widgets en% en
     los diseños
 
 -   Rediseño de la página de configuración de complementos
 
--   Capacidad para configurar la transparencia de los widgys.
+-   Capacidad para configurar la transparencia de los widgets.
 
--   Se agregó la acción Jeedom \ _poweroff en escenarios para dyener
+-   Se agregó la acción Jeedom\_poweroff en escenarios para detener
     Jeedom
 
--   Ryorno del escenario de acción \ _ryorno para volver a un
+-   Retorno del escenario de acción\_retorno para volver a un
     interacción (u otra) de un escenario
 
 -   Pasando por encuestas largas para actualizar la interfaz a tiempo
     real
 
--   Corrección de un error durante la actualización de varios widgys
+-   Corrección de un error durante la actualización de varios widgets
 
--   Optimización de la actualización de widgys de comando y equipo
+-   Optimización de la actualización de widgets de comando y equipo
 
--   Adición de una yiquya * begin \ _backup *, * end \ _backup *, * begin \ _update*,
-    *end \ _update *, * begin \ _restore *, * end \ _restore * en escenarios
+-   Adición de una yiqueta * begin\_backup *, * end\_backup *, * begin\_update*,
+    *end\_update *, * begin\_restore *, * end\_restore * en escenarios
 
 2.2
 ---
@@ -1055,10 +1055,10 @@ Cambios
 -   Capacidad para permitir que un usuario se conecte solo a
     desde una estación en la red local
 
--   Rediseño de la configuración de widgys (tenga cuidado
-    seguramente reanude la configuración de algunos widgys)
+-   Rediseño de la configuración de widgets (tenga cuidado
+    seguramente reanude la configuración de algunos widgets)
 
--   Refuerzo del manejo de errores en widgys
+-   Refuerzo del manejo de errores en widgets
 
 -   Capacidad para reordenar vistas
 
@@ -1073,7 +1073,7 @@ Cambios
     archivos (y ya no la base de datos MySQL que le permite descargar un
     bit), está en / tmp, por lo que se recomienda si
     tener más de 512 MB de RAM para montar / tmp en tmpfs (en RAM para
-    más rápido y menos desgaste de la tarjya SD, yo
+    más rápido y menos desgaste de la tarjeta SD, yo
     recomendar un tamaño de 64 MB). Tenga cuidado al reiniciar
     Jeedom, el caché se vacía, por lo que debes esperar
     informe de toda la información
@@ -1085,7 +1085,7 @@ Cambios
 
 -   Se corrigieron muchas advertencias
 
--   Posibilidad durante una llamada API a un escenario para pasar yiquyas
+-   Posibilidad durante una llamada API a un escenario para pasar yiquetas
     en la url
 
 -   Soporte Apache
@@ -1102,7 +1102,7 @@ Cambios
     (seguramente volverá como un complemento). ATENCIÓN este no es el
     Jeedom modo maestro / esclavo que se elimina
 
--   Se eliminó la indicación de la batería en los widgys
+-   Se eliminó la indicación de la batería en los widgets
 
 -   Adición de una página que resume el estado de todos los equipos en
     batería
@@ -1130,9 +1130,9 @@ Cambios
 -   Posibilidad de desactivar un bloque en un escenario
 
 -   Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Hay que
-    sur un label mytre la classe « help » y mytre un attribut
+    sur un label mettre la classe « help » y mettre un attribut
     ayuda de datos con el mensaje de ayuda deseado. Esto permite a Jeedom
-    agregue automáticamente un icono al final de su yiquya « ? » y
+    agregue automáticamente un icono al final de su yiqueta « ? » y
     al pasar el ratón para mostrar el texto de ayuda
 
 -   Cambio en el proceso de actualización principal, ya no pedimos
@@ -1151,9 +1151,9 @@ Cambios
 
 -   Agregar un sistema de administración del sistema operativo
 
--   Adición de widgys estándar de Jeedom
+-   Adición de widgets estándar de Jeedom
 
--   Agregar un sistema bya para encontrar la IP de Jeedom en la red
+-   Agregar un sistema beta para encontrar la IP de Jeedom en la red
     (debe conectar Jeedom en la red, luego ir al mercado y
     cliquer sur « Mes Jeedoms » dans votre profil)
 
@@ -1170,7 +1170,7 @@ Cambios
     archivos (y ya no la base de datos MySQL que le permite descargar un
     bit), está en / tmp, por lo que se recomienda si
     tener más de 512 MB de RAM para montar / tmp en tmpfs (en RAM para
-    más rápido y menos desgaste de la tarjya SD, yo
+    más rápido y menos desgaste de la tarjeta SD, yo
     recomendar un tamaño de 64 MB). Tenga cuidado al reiniciar
     Jeedom, el caché se vacía, por lo que debes esperar
     informe de toda la información
@@ -1182,7 +1182,7 @@ Cambios
 
 -   Se corrigieron muchas advertencias
 
--   Posibilidad durante una llamada API a un escenario para pasar yiquyas
+-   Posibilidad durante una llamada API a un escenario para pasar yiquetas
     en la url
 
 -   Soporte Apache
@@ -1199,7 +1199,7 @@ Cambios
     (seguramente volverá como un complemento). ATENCIÓN este no es el
     Jeedom modo maestro / esclavo que se elimina
 
--   Se eliminó la indicación de la batería en los widgys
+-   Se eliminó la indicación de la batería en los widgets
 
 -   Adición de una página que resume el estado de todos los equipos en
     batería
@@ -1227,9 +1227,9 @@ Cambios
 -   Posibilidad de desactivar un bloque en un escenario
 
 -   Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Hay que
-    sur un label mytre la classe « help » y mytre un attribut
+    sur un label mettre la classe « help » y mettre un attribut
     ayuda de datos con el mensaje de ayuda deseado. Esto permite a Jeedom
-    agregue automáticamente un icono al final de su yiquya « ? » y
+    agregue automáticamente un icono al final de su yiqueta « ? » y
     al pasar el ratón para mostrar el texto de ayuda
 
 -   Cambio en el proceso de actualización principal, ya no pedimos
@@ -1248,9 +1248,9 @@ Cambios
 
 -   Agregar un sistema de administración del sistema operativo
 
--   Adición de widgys estándar de Jeedom
+-   Adición de widgets estándar de Jeedom
 
--   Agregar un sistema bya para encontrar la IP de Jeedom en la red
+-   Agregar un sistema beta para encontrar la IP de Jeedom en la red
     (debe conectar Jeedom en la red, luego ir al mercado y
     cliquer sur « Mes Jeedoms » dans votre profil)
 

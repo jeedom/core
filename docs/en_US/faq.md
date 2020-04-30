@@ -4,7 +4,7 @@ Jeedom does it require a subscription ?
 No, Jeedom is fully usable without any need for any
 subscription whatsoever. However, there are services offered for
 backups or calls / SMS, but which actually remain
-optional.
+optionnels.
 
 Does Jeedom use outside servers to run ? 
 ==============================================================
@@ -13,7 +13,7 @@ No, Jeedom does not use "Cloud" type infrastructure". Everything is done in
 local and you don&#39;t need our servers for your
 installation works. Only services like the Market, the
 online backup or Jeedom DNS require the use of our
-servers.
+serveurs.
 
 Can we reorder equipment orders ? 
 ==================================================
@@ -45,7 +45,7 @@ How long does a backup take ?
 
 There is no standard duration, it depends on the system and the volume of
 data to be backed up, but it may take more than 5 minutes, that’s
-Normal.
+normal.
 
 Is there a dedicated mobile app ? 
 ========================================
@@ -65,12 +65,12 @@ Can we put Jeedom in https ?
 ================================
 
 Yes : Either you have a power pack or more, in this case you
-suffit d'utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
+just use the [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 How to connect in SSH ?
 =============================
 
-Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), part &quot;Under Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+Here's one [Documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
 - Username : "root ", password : "Mjeedom96"
 - Username : "jeedom ", password : "Mjeedom96"
@@ -83,11 +83,11 @@ How to reset rights ?
 
 In SSH do :
 
-``` {.bash}
+`` `{.bash}
 sudo su -
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-```
+`` ''
 
 Where are Jeedom&#39;s backups ? 
 ==========================================
@@ -99,12 +99,12 @@ How to update Jeedom in SSH ?
 
 In SSH do :
 
-``` {.bash}
+`` `{.bash}
 sudo su -
 php /var/www/html/install/update.php
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-```
+`` ''
 
 Is the Webapp compatible Symbian ? 
 =======================================
@@ -135,9 +135,9 @@ I have a blank page
 You have to connect in SSH to Jeedom and launch the script
 self-diagnosis :
 
-``` {.bash}
+`` `{.bash}
 sudo chmod + x / var / www / html / health.sh; sudo /var/www/html/health.sh
-```
+`` ''
 
 If there is a problem, the script will try to correct it. If he can&#39;t
 no, it will tell you.
@@ -150,7 +150,7 @@ I have a BDD identifier problem
 
 These must be reset :
 
-``` {.bash}
+`` `{.bash}
 bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9' | head -c 15)
 echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
 echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
@@ -159,7 +159,7 @@ cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # PASSWORD # / $ {bdd_password} / g&quot; core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
-```
+`` ''
 
 I have \ {\ {… \} \} everywhere 
 =======================
@@ -179,7 +179,7 @@ I no longer have access to Jeedom, neither through the web interface nor in cons
 
 This error is not due to Jeedom, but to a problem with the system.
 If it persists following a reinstallation, it is advisable to
-see with the after-sales service for a hardware concern. Voici la [documentation](https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) for the Smart
+see with the after-sales service for a hardware concern. Here is [Documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) for Smart
 
 My scenario does not stop any more 
 =================================
@@ -220,11 +220,11 @@ case, the best is to recover a backup (available in
 to restore the backup. You can also see why MySQL is not
 not want to boot from an SSH console :
 
-``` {.bash}
+`` `{.bash}
 sudo su -
 mysql stop service
 mysqld --verbose
-```
+`` ''
 
 Or consult the log : /var/log/mysql/error.log
 
@@ -232,12 +232,12 @@ The Shutdown / Restart buttons do not work
 ===================================================
 
 On a DIY installation it&#39;s Normal. In SSH, you have to order
-visudo and at the end of the file you have to add : www-data All = (All)
+visudo and at the end of the file you have to add : www-data All = (ALL)
 NOPASSWD: All.
 
-``` {.bash}
+`` `{.bash}
 sudo service apache2 restart
-```
+`` ''
 
 I don&#39;t see some plugins from the Market 
 =========================================
@@ -255,11 +255,11 @@ My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ?
 
 If you are DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If it is the case it is necessary to do :
 
-``` 
+`` '' 
 mkdir /etc/systemd/system/apache2.service.d
 echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
-``` 
+`` '' 
 
 I have a time concern on my history
 =========================================
@@ -287,14 +287,14 @@ I have errors of type &quot;Class &#39;eqLogic&#39; not found&quot;, files seem 
 =========================================
 It is a fairly serious error, the simplest is to make 
 
-``` 
+`` '' 
 mkdir -p / root / tmp /
 cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
 unzip master.zip
 cp -R / root / tmp / core-master / * / var / www / html
 rm -rf / root / tmp / core-master
-```
+`` ''
 
 # I cannot install the plugin dependencies I have an error of the type : "E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock / var / lib / dpkg / lock"
 

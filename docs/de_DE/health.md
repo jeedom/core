@@ -4,7 +4,7 @@ benutze es) Gesundheitszustand per Plugin.
 
 Die Seite ist über Analyse → Gesundheit zugänglich
 
-> **Notiz**
+> **Note**
 >
 > Klicken Sie auf das Symbol rechts, um auf den Benchmark Ihres zuzugreifen
 > Jeedom.
@@ -28,11 +28,11 @@ Finde die Symbole :
 
 -   Gesamtzustand des Plugins
 
-> **Notiz**
+> **Note**
 >
 > Die Symbole können je nach Plugin variieren
 
-> **Notiz**
+> **Note**
 >
 > Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung
 > und wenn es rot ist, gibt es ein Problem.

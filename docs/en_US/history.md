@@ -11,7 +11,7 @@ Here is described the principle of historicization of Jeedom. It is not
 necessary to understand that if you have any concerns
 or want to change the settings for
 historicization. The default settings are suitable for most
-case.
+cas.
 
 Archiving 
 ---------
@@ -40,7 +40,7 @@ when to do it (by default, these are packages
 > to avoid consuming resources unnecessarily, the task that makes
 > archiving takes place only once a day, in the evening.
 
-> **IMPORTANT**
+> **Important**
 >
 > Of course, this archiving principle only applies to orders from
 > digital type; on binary type commands, Jeedom does not keep
@@ -69,17 +69,17 @@ week because by default I want it to be only one week - see
 (these parameters are kept from one display to another; you therefore
 than configure them once).
 
--   **Staircasee** : displays the curve as a
-    staircasee or continuous display.
+-   **Escalier** : displays the curve as a
+    staircase or continuous display.
 
 -   **Variation** : displays the difference in value from
     previous point.
 
--   **Line** : displays the graph as lines.
+-   **Ligne** : displays the graph as lines.
 
--   **Area** : displays the graph as an area.
+-   **Aire** : displays the graph as an area.
 
--   **Column**\* : displays the graph as bars.
+-   **Colonne**\* : displays the graph as bars.
 
 Graphic on views and designs 
 =====================================
@@ -91,18 +91,18 @@ the options :
 
 Once a data is activated, you can choose :
 
--   **Color** : the color of the curve.
+-   **Couleur** : the color of the curve.
 
 -   **Type** : the type of graph (area, line or column).
 
--   **Ladder** : since you can put several curves (data)
+-   **Echelle** : since you can put several curves (data)
     on the same graph, it is possible to distinguish the scales
     (right or left).
 
--   **Staircasee** : displays the curve as a
-    staircasee or continuous display
+-   **Escalier** : displays the curve as a
+    staircase or continuous display
 
--   **Stack** : allows to stack the values of the curves (see in
+-   **Empiler** : allows to stack the values of the curves (see in
     below for the result).
 
 -   **Variation** : displays the difference in value from
@@ -135,7 +135,7 @@ Order history
 
 In front of each data that can be graphed, you will find two icons :
 
--   **Trash can** : allows to delete the recorded data; then
+-   **Poubelle** : allows to delete the recorded data; then
     of the click, Jeedom asks if it is necessary to delete the data before a
     certain date or all data.
 
@@ -155,7 +155,7 @@ Timeline
 ========
 
 The timeline displays certain events in your home automation in the form
-chronological.
+chronologique.
 
 To see them, you must first activate the tracking on the timeline of
 desired commands or scenarios :
@@ -163,7 +163,7 @@ desired commands or scenarios :
 -   **Scenario** : either directly on the scenario page, or on the
     scenario summary page to do it in "mass"
 
--   **Ordered** : either in the advanced configuration of the command,
+-   **Commande** : either in the advanced configuration of the command,
     either in the configuration of the history to do it in "mass"
 
 > **Tip**
@@ -175,7 +175,7 @@ desired commands or scenarios :
 Once you&#39;ve enabled tracking in the order timeline and
 desired scenarios, you can see them appear on the timeline.
 
-> **IMPORTANT**
+> **Important**
 >
 > You have to wait for new events after activating tracking
 > on the timeline before seeing them appear.

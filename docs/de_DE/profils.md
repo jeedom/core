@@ -61,12 +61,12 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
     -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
         die Ankunft auf den Entwürfen
         
--   **Armaturenbrett**
+-   **Dashboard**
 
     -   **Klappen Sie das Objektfenster auf** : ermöglicht sichtbar zu machen durch
         Standardmäßig das Objektmenü (links) im Armaturenbrett
 
--   **Ansicht**
+-   **Vue**
 
     -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
         Standardansichtsmenü (links) für Ansichten

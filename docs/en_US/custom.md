@@ -10,7 +10,7 @@ mobile version.
 For unsophisticated people who want to discover CSS
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **IMPORTANT**
+> **Important**
 >
 > Any error in one of these scripts can make Jeedom totally
 > unavailable and you will have to connect via SSH and delete the

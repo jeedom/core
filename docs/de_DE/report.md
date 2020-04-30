@@ -19,7 +19,7 @@ Die Verwendung ist sehr einfach, Sie wählen aus, wenn Sie sehen möchten :
 
 Anschließend wählen Sie den Namen des betreffenden Berichts aus und sehen alle Daten der Berichte im Speicher
 
-> **Wichtig**
+> **Important**
 >
 > Das automatische Löschen erfolgt standardmäßig für Berichte, die länger als 30 Tage dauern (Sie können diesen Zeitraum in der Konfiguration von Jeedom konfigurieren).
 
@@ -29,8 +29,8 @@ Sie können auch alle Sicherungen eines bestimmten Berichts löschen
 
 # Faq
 
-> **Wenn Sie einen Detailfehler haben : Cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.n: freigegebene Objektdatei kann nicht geöffnet werden: Keine nlche Datei oder Verzeichnis**
+> **Wenn Sie einen Detailfehler haben : Cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine nlche Datei oder Verzeichnis**
 >
 > Dies ist in ssh oder in Administration -> Konfiguration -> OS / DB -> System -> Administration erforderlich :
->sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.n.2 /usr/lib/aarch64-linux-gnu/libGLESv2.n
->sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.n.1 /usr/lib/aarch64-linux-gnu/libEGL.n
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so

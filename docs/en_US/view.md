@@ -55,12 +55,12 @@ his name and type.
 
 On each zone you have the following general options :
 
--   **Width** : defines the width of the area (in mode
+-   **Largeur** : defines the width of the area (in mode
     desktop only)
 
--   **Edit** : allows to change the name of the zone
+-   **Editer** : allows to change the name of the zone
 
--   **Remove** : allows to delete the zone
+-   **Supprimer** : allows to delete the zone
 
 Widget type area 
 -------------------
@@ -98,22 +98,22 @@ When you press the button &quot;Add curve&quot; Jeedom displays the list
 historical commands and you can choose the one (s) to add, a
 Once done you have access to the following options :
 
--   **Trash can** : remove command from chart
+-   **Poubelle** : remove command from chart
 
--   **Last name** : command name graphed
+-   **Nom** : command name graphed
 
--   **Color** : color of the curve
+-   **Couleur** : color of the curve
 
 -   **Type** : curve type
 
--   **Group** : allows grouping of data (maximum type
+-   **Groupement** : allows grouping of data (maximum type
     per day)
 
--   **Ladder** : scale (right or left) of the curve
+-   **Echelle** : scale (right or left) of the curve
 
--   **Staircase** : displays the stepped curve
+-   **Escalier** : displays the stepped curve
 
--   **Stack** : stack the curve with the other type curves
+-   **Empiler** : stack the curve with the other type curves
     Stack
 
 -   **Variation** : graph only variations with value
@@ -133,7 +133,7 @@ Here you have the buttons :
 
 -   **Add line** : add a row to the table
 
-> **NOTE**
+> **Note**
 >
 > It is possible to re-organize the lines by dragging and dropping but not
 > the columns
@@ -141,9 +141,9 @@ Here you have the buttons :
 Once you have added your rows / columns you can add
 information in the boxes :
 
--   **text** : just text to write
+-   **texte** : just text to write
 
--   **l'opération à mener** : any l'opération à mener code (javascript possible but
+-   **html** : any l'opération à mener code (javascript possible but
     strongly discouraged)
 
 -   **command widget** : the button on the right allows you to choose

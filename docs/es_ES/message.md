@@ -8,13 +8,13 @@ Es bastante simple. Le muestra la fecha y hora del mensaje, el
 plugin que lo emitió y el mensaje en cuestión. Puedes, presionando
 en el botón al comienzo de una línea de mensaje, elimine el
 mensaje en cuestión (volverá si el problema persiste)
-noticias).
+d'actualité).
 
 En la parte superior, hay un selector para filtrar mensajes en un
 plugin particular y bien un botón para vaciar todo
-mensajes.
+messages.
 
-> **Punta**
+> **Tip**
 >
 > Cuando tenga un error en el centro de mensajes, intente
 > primero elimine el mensaje y luego vea si el error regresa antes

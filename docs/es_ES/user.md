@@ -1,6 +1,6 @@
 Aquí es donde podremos definir la lista de usuarios
 permitido conectarse a Jeedom, pero también sus derechos
-director
+d'administrateur
 
 Accesible por Administración → Usuarios.
 
@@ -11,16 +11,16 @@ Abajo tienes una mesa :
 
 -   **Nombre del usuario** : ID de usuario
 
--   **Bienes** : permite desactivar la cuenta
+-   **Actif** : permite desactivar la cuenta
 
 -   **Solo local** : autorizar inicio de sesión de usuario
     solo si está en la red local de Jeedom
 
--   **Perfiles** : permite elegir el perfil de usuario :
+-   **Profils** : permite elegir el perfil de usuario :
 
-    -   **Administrador** : obtiene todos los derechos sobre Jeedom
+    -   **Administrateur** : obtiene todos los derechos sobre Jeedom
 
-    -   **Usuario** : puede ver el tablero, las vistas,
+    -   **Utilisateur** : puede ver el tablero, las vistas,
         diseño, etc.. y actuar sobre equipos / controles. En cambio,
         no tendrá acceso a la configuración de controles / equipos
         ni a la configuración de Jeedom.
@@ -42,7 +42,7 @@ Abajo tienes una mesa :
 -   **Cambiar contraseña** : permite cambiar la contraseña de
     usuario
 
--   **Remove** : eliminar usuario
+-   **Supprimer** : eliminar usuario
 
 -   **Regenerar clave API** : regenera la clave API del usuario
 
@@ -57,7 +57,7 @@ Al hacer clic en &quot;Administrar derechos&quot; aparece una ventana que le per
 administrar con precisión los derechos de los usuarios. La primera pestaña muestra
 los diferentes equipos. El segundo presenta los escenarios..
 
-> **Importante**
+> **Important**
 >
 > El perfil debe ser limitado, de lo contrario no se aplicarán restricciones aquí
 > se tendrá en cuenta
@@ -65,9 +65,9 @@ los diferentes equipos. El segundo presenta los escenarios..
 Obtiene una tabla que permite, para cada equipo y cada
 escenario, definir derechos de usuario :
 
--   **No** : el usuario no ve el equipo / escenario
+-   **Aucun** : el usuario no ve el equipo / escenario
 
--   **Visualización** : el usuario ve el equipo / escenario pero no ve
+-   **Visualisation** : el usuario ve el equipo / escenario pero no ve
     no puedo actuar en consecuencia
 
 -   **Visualización y ejecución** : el usuario ve

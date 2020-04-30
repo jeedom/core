@@ -2,13 +2,13 @@ Esta página le permite ver todos los informes generados por la acción del info
 
 # ¿Qué es un informe? ?
 
-Un informe es una captura de pantalla de la interfaz Jeedom en un instante T (la captura se adapta para no tomar la barra de menú y otros elementos innecesarios en este tipo de un).
+Un informe es una captura de pantalla de la interfaz Jeedom en un instante T (la captura se adapta para no tomar la barra de menú y otros elementos innecesarios en este tipo de uso).
 
 Puede hacer esto en vistas, diseño, página de panel....
 
 Se activa desde una secuencia de comandos con el comando de informe, puede elegir que se le envíe este informe mediante un comando de mensaje (correo electrónico, telegrama, etc.)
 
-# Un
+# Uso
 
 Su un es muy simple, selecciona si quieres ver :
 
@@ -19,7 +19,7 @@ Su un es muy simple, selecciona si quieres ver :
 
 Luego selecciona el nombre del informe en cuestión y verá todas las fechas de los informes en la memoria
 
-> **Importante**
+> **Important**
 >
 > La eliminación automática se realiza de forma predeterminada para informes de más de 30 días (puede configurar este período en la configuración de Jeedom)
 
@@ -29,8 +29,8 @@ También puede eliminar todas las copias de seguridad de un informe determinado
 
 # Preguntas frecuentes
 
-> **Si tienes un error de Detalles : cutycapt: error al cargar bibliotecas compartidas: libEGL.n: no se puede abrir el archivo de objeto compartido: No existe tal archivo o directorio**
+> **Si tienes un error de Detalles : cutycapt: error al cargar bibliotecas compartidas: libEGL.so: no se puede abrir el archivo de objeto compartido: No existe tal archivo o directorio**
 >
 > Es necesario en ssh o en Administración -&gt; Configuración -&gt; OS / DB -&gt; Sistema -&gt; Administración para hacer :
->sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.n.2 /usr/lib/aarch64-linux-gnu/libGLESv2.n
->sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.n.1 /usr/lib/aarch64-linux-gnu/libEGL.n
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so

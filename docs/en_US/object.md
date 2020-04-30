@@ -1,11 +1,11 @@
-The **objects** allow you to deende the tree structure of your home automation.
+The **objets** allow you to define the tree structure of your home automation.
 All the equipment you create must belong to an object and
 will be more easily identifiable. We then say that the object
-is the **relative** equipment. Object management is accessible
+is the **parent** equipment. Object management is accessible
 from the menu **Tools → Objects**.
 
 To give free choice to customization, you can name these
-objects as you want. Usually, we will deende the different
+objects as you want. Usually, we will define the different
 parts of his house, like the names of the rooms (this is
 recommended configuration).
 
@@ -14,7 +14,7 @@ Management
 
 You have two options :
 
--   **Add** : Create a new object.
+-   **Ajouter** : Create a new object.
 
 -   **Overview** : Displays the list of created objects
     as well as their configuration.
@@ -29,18 +29,18 @@ Object tab
 
 By clicking on an object, you access its configuration page. What
 whatever the changes made, don&#39;t forget to save at the
-end.
+fin.
 
 Here are the different characteristics to configure an object :
 
 -   **Object name** : The name of your object.
 
 -   **Dad** : Indicates the relative of the current object, this allows
-    deende a hierarchy between objects. For example : The living room has
+    define a hierarchy between objects. For example : The living room has
     to relative the apartment. An object can only have one relative
     but several objects can have the same relative.
 
--   **Jeedom** : Check this box to make this object visible.
+-   **Visible** : Check this box to make this object visible.
 
 -   **Hide on the dashboard** : Check this box to hide
     the object on the dashboard. It is still kept in the
@@ -59,7 +59,7 @@ Here are the different characteristics to configure an object :
 -   **Summary text color** : Allows you to choose the color of
     results of the object summary in the dashboard.
 
--   **Size on the dashboard (1 to 12)** : Allows you to deende the width
+-   **Size on the dashboard (1 to 12)** : Allows you to define the width
     the display of this object in the dashboard. For example : if you
     put `6` to two consecutive objects in the list, then it
     will be side by side on the dashboard. If you put `3` to four
@@ -74,13 +74,13 @@ Here are the different characteristics to configure an object :
 > **Tip**
 >
 > You can see a graph representing all the elements of Jeedom
-> attached to this object by clicking on the button **Connections**, up at
+> attached to this object by clicking on the button **Liens**, up at
 > right.
 
 > **Tip**
 >
-> When a device is created and no relative has been deended, it
-> will have as relative : **No** .
+> When a device is created and no relative has been defined, it
+> will have as relative : **Aucun** .
 
 Summary tab 
 -------------
@@ -105,7 +105,7 @@ lines are proposed to you :
 
 ### Orders 
 
-Each tab represents a type of summary deended in the configuration
+Each tab represents a type of summary defined in the configuration
 from Jeedom. Click on **Add an order** so that it is
 taken into account in the summary. You have the choice to select the
 order any Jeedom equipment, even if it is not for
@@ -124,17 +124,17 @@ Overview
 The overview allows you to view all the objects in
 Jeedom, as well as their configuration :
 
--   **Id** : Object Id.
+-   **ID** : Object Id.
 
--   **Object** : Object name.
+-   **Objet** : Object name.
 
 -   **Dad** : Name of relative object.
 
--   **Jeedom** : Object visibility.
+-   **Visible** : Object visibility.
 
--   **Mask** : Indicates if the object is hidden on the dashboard.
+-   **Masqué** : Indicates if the object is hidden on the dashboard.
 
--   **Summary Deended** : Indicates the number of orders per summary. This
+-   **Summary Defined** : Indicates the number of orders per summary. This
     which is in blue is taken into account in the global summary.
 
 -   **Hidden Dashboard Summary** : Show hidden summaries on

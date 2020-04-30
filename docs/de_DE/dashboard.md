@@ -4,7 +4,7 @@ selbst erzeugt von Jeedom.
 
 Sie können darauf zugreifen, indem Sie auf klicken **Home → Dashboard**
 
-> **Spitze**
+> **Tip**
 >
 > Es ist möglich, direkt zu einem Objekt in Ihrer Hausautomation zu gelangen.
 > Dies ermöglicht es Ihnen, nur die Ausrüstung zu haben, die Sie interessiert und
@@ -32,13 +32,13 @@ Sie können darauf zugreifen, indem Sie auf klicken **Home → Dashboard**
 -   Ein Klick auf einen Befehl vom Typ Information wird angezeigt
     die Bestellhistorie (falls historisch)
 
-> **Spitze**
+> **Tip**
 >
 > In Ihrem Profil können Sie Jeedom für konfigurieren
 > Der Objektbaum und / oder die Szenarien sind standardmäßig sichtbar
 > wenn Sie auf das Dashboard gelangen
 
-> **Spitze**
+> **Tip**
 >
 > In Mobilgeräten ermöglicht ein langes Drücken auf einen Befehl vom Typ Info
 > Zeigen Sie ein Menü an, das entweder den Verlauf des
@@ -64,7 +64,7 @@ Sie können auch das interne Layout der Widget-Steuerelemente bearbeiten
     -   **Standard** : Standardlayout, alles ist automatisch
         mit nur der Möglichkeit, die Reihenfolge der Bestellungen neu zu ordnen
 
-    -   **Tabelle** : ermöglicht das Einfügen der Befehle in eine Tabelle :
+    -   **Tableau** : ermöglicht das Einfügen der Befehle in eine Tabelle :
         Spalten und Zeilen werden durch Klicken hinzugefügt und entfernt
         Bewegen Sie dann einfach die Steuerelemente nach innen
         gewünschte Boxen. Sie können mehrere Bestellungen pro Box aufgeben
