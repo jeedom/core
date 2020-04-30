@@ -244,7 +244,7 @@ function addUpdate(_update) {
       tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a> ';
     }
   }else{
-    tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a> ';
+    tr += '<a class="btn btn-default btn-xs" href="https://doc.jeedom.com/fr_FR/core/3.3/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a> ';
   }
   if (_update.type != 'core') {
     if (_update.status == 'update') {
