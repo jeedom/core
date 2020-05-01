@@ -2,6 +2,11 @@
 Registro de Alterações Jeedom V4
 =========
 
+4.0.54
+=====
+
+- Início da atualização para o novo site de documentação
+
 4.0.53
 =====
 

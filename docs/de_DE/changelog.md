@@ -2,6 +2,11 @@
 Changelog Jeedom V4
 =========
 
+4.0.54
+=====
+
+- Start des Updates für die neue Dokumentationssite
+
 4.0.53
 =====
 

@@ -972,6 +972,8 @@
     },
     "changelog.md": {
         "Changelog Jeedom V4": "Registro de Alterações Jeedom V4",
+        "4.0.54": "4.0.54",
+        "Début de la mise à jour vers le nouveau site de documentation": "Início da atualização para o novo site de documentação",
         "4.0.53": "4.0.53",
         "Correction de bug": "Bug fix",
         "4.0.52": "4.0.52",
