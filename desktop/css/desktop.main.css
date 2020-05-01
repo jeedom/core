@@ -2356,6 +2356,9 @@ table.table-condensed tbody tr > td {
 #table_packages tbody td > span.label {
   display: block;
 }
+#table_ObjectSummary tbody td {
+  height: 25px !important;
+}
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
