@@ -963,6 +963,8 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "3.3.49": "3.3.49",
+        "Début de la mise à jour vers le nouveau site de documentation": "Début de la mise à jour vers le nouveau site de documentation",
         "3.3.48": "3.3.48",
         "Correction de bug (mise à jour à faire absolument si vous etes en 3.3.47)": "Correction de bug (mise à jour à faire absolument si vous etes en 3.3.47)",
         "3.3.47": "3.3.47",
