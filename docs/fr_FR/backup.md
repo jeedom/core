@@ -49,7 +49,7 @@ Vous y trouvez, à gauche, les paramètres et les boutons d’action. Sur la dro
 
 > **IMPORTANT**
 >
-> Les backups de jeedom doivent absolument tomber dans un dossier que pour lui !!! Il supprimera tous ce qui n'est pas un backup jeedom du dossier
+> Les backups de jeedom doivent être enregistrés absolument dans un dossier que pour lui ! Il supprimera tous ce qui n’est pas un backup jeedom du dossier.
 
 
 # Qu’est-ce qui est sauvegardé ?
