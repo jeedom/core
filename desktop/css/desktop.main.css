@@ -103,6 +103,11 @@ span,
   cursor: default !important;
   word-break: break-word;
 }
+#div_graphLinkRenderer text,
+#div_graphLinkRenderer image {
+  cursor: grab;
+}
+
 a,
 a i,
 a > span,
