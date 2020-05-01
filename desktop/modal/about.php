@@ -82,6 +82,7 @@ $(function(){
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
   jeedom.getDocumentationUrl({
     page: 'changelog',
+    theme: $('body').attr('data-theme'),
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -93,6 +94,7 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
 $('body').off('click','#bt_faq').on('click','#bt_faq',function() {
   jeedom.getDocumentationUrl({
     page: 'faq',
+    theme: $('body').attr('data-theme'),
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
