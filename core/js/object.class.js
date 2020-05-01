@@ -304,6 +304,9 @@ jeedom.object.getImgPath = function(_params){
       if(!isset(data.img)){
         return '';
       }
+      if (isset(data.configuration.useBackground) && data.configuration.useBackground == 1) {
+        return
+      }
       _params.success(data.img);
     }
   });

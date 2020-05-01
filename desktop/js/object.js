@@ -244,6 +244,10 @@ function loadObjectConfiguration(_id){
         })
       }
 
+      if (!isset(data.configuration.useBackground)) {
+        $('.objectAttr[data-l1key=configuration][data-l2key=useBackground]').prop('checked', false)
+      }
+
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
       $('.div_summary').empty();
       $('.tabnumber').empty();

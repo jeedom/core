@@ -47,11 +47,12 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 - **Couleurs personnalisées** : Active la prise en compte des deux paramètres de couleurs optionnels.
 - **Couleur du tag** : Permet de choisir la couleur de l’objet et des équipements qui lui sont rattachés.
 - **Couleur du texte du tag** : Permet de choisir la couleur du texte de l’objet. Ce texte sera par dessus la **couleur du tag**. A vous de choisir une couleur pour rendre le texte lisible.
-- **Image** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard.
+- **Image** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard. Elle sera aussi utilisée pour la vignette de la pièce sur la Synthèse.
+- **Seulement sur la synthèse** : Permet de mettre une image pour la Synthèse sans qu'elle soit utilisée comme image de fond.
 
 > **Tip**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble, sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
+> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble (ou par le Résumé Domotiqu), sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
 >

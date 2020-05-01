@@ -155,7 +155,7 @@ $allObject = jeeObject::all();
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{Image}}</label>
+							<label class="col-lg-2 col-xs-4 control-label">{{Image de fond}}</label>
 							<div class="col-lg-6 col-xs-6">
 								<span class="btn btn-default btn-file">
 									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
@@ -168,6 +168,14 @@ $allObject = jeeObject::all();
 							<div class="col-lg-2 col-xs-4"></div>
 							<div class="col-lg-6 col-xs-8 objectImg">
 								<img src="" width="240px" height="auto" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Seulement sur la synthèse}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{L'image de fond sera utilisée seulement sur la Synthèse.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-xs-2">
+								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useBackground"/>
 							</div>
 						</div>
 					</fieldset>
