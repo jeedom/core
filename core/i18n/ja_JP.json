@@ -1443,7 +1443,7 @@
         "Remise à zéro": "リセット",
         "Dernière date connue": "最終知ら日",
         "Les informations suivantes peuvent êtres utilisées par les plugins.": "",
-        "Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">site<\/a>": "GPS座標を取得するには、この<a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">サイト<\/a>を使用できます",
+        "Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">site.<\/a>": "",
         "Coordonnées": "接触",
         "Latitude": "緯度",
         "Longitude": "経度",

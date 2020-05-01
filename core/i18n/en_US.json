@@ -1443,7 +1443,7 @@
         "Remise à zéro": "Reset",
         "Dernière date connue": "Last known date",
         "Les informations suivantes peuvent êtres utilisées par les plugins.": "The following information may be used by plugins.",
-        "Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">site<\/a>": "To obtain your GPS coordinates, you can use this <a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">site<\/a>",
+        "Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">site.<\/a>": "To obtain your GPS coordinates, you can use this <a href=\"https:\/\/www.torop.net\/coordonnees-gps.php\" target=\"_blank\">site.<\/a>",
         "Coordonnées": "Contact information",
         "Latitude": "Latitude",
         "Longitude": "Longitude",
@@ -1748,7 +1748,7 @@
         "Afficher\/Masquer les objets": "Display\/Hide objects",
         "Afficher\/Masquer les résumés": "Show \/ Hide Summaries",
         "Retour à la Synthèse": "Back to Synthesis",
-        "Édition du Dashboard": "Dashboard Edition",
+        "Édition du Dashboard": "Dashboard edition",
         "Clic: hauteur max<br>CtrlClic: hauteur min": "Click: max height <br> CtrlClick: min height"
     },
     "desktop\/php\/log.php": {
