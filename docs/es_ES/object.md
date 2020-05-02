@@ -47,11 +47,12 @@ Aquí están las diferentes características para configurar un objeto. :
 - **Colores personalizados** : Activa la consideración de los dos parámetros de color opcionales..
 - **Etiqueta de color** : Le permite elegir el color del objeto y el equipo adjunto..
 - **Color del texto de la etiqueta** : Le permite elegir el color del texto del objeto.. Este texto estará sobre el **Etiqueta de color**. Eliges un color para que el texto sea legible.
-- **Image** : Tienes la opción de cargar una imagen o eliminarla. En formato jpeg, esta imagen será la imagen de fondo del objeto cuando lo muestre en el Tablero.
+- **Image** : Tienes la opción de cargar una imagen o eliminarla. En formato jpeg, esta imagen será la imagen de fondo del objeto cuando lo muestre en el Tablero. También se usará para la miniatura de la pieza en la Síntesis.
+- **Solo en síntesis** : Permite poner una imagen para la Síntesis sin que se use como imagen de fondo.
 
 > **Tip**
 >
-> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general, seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
+> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general (o en el Resumen de Domotiqu), seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
 
 > **Tip**
 >

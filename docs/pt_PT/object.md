@@ -47,11 +47,12 @@ Aqui estão as diferentes características para configurar um objeto :
 - **Cores personalizadas** : Ativa a consideração dos dois parâmetros de cores opcionais.
 - **Cor tag** : Permite escolher a cor do objeto e o equipamento a ele conectado.
 - **Texto tag Cor** : Permite escolher a cor do texto do objeto. Este texto estará sobre o **Cor tag**. Você escolhe uma cor para tornar o texto legível.
-- **Image** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel.
+- **Image** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
+- **Somente na síntese** : Permite colocar uma imagem para a síntese sem ser usada como imagem de fundo.
 
 > **Tip**
 >
-> Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral, selecione seu objeto com o mouse, arrastando e soltando, para dar um novo local.
+> Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral (ou no Resumo do Domotiqu), selecione seu objeto com o mouse e arraste e solte para dar um novo local.
 
 > **Tip**
 >

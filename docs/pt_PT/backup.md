@@ -49,7 +49,7 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 > **IMPORTANT**
 >
-> Os backups de Jeedom devem absolutamente cair em uma pasta apenas para ele !!! Ele excluirá tudo o que não for um backup jeedom da pasta
+> Os backups do Jeedom devem ser salvos absolutamente em uma pasta apenas para ele ! Ele excluirá tudo o que não for um backup jeedom da pasta.
 
 
 # O que é salvo ?

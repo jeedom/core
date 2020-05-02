@@ -49,7 +49,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 > **IMPORTANT**
 >
-> Las copias de seguridad de Jeedom deben caer absolutamente en una carpeta solo para él !!! Eliminará todo lo que no sea una copia de seguridad de la carpeta
+> Las copias de seguridad de Jeedom deben guardarse absolutamente en una carpeta solo para él ! Eliminará todo lo que no sea una copia de seguridad de la carpeta.
 
 
 # Lo que se guarda ?

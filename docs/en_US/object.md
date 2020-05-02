@@ -47,11 +47,12 @@ Here are the different characteristics to configure an object :
 - **Custom colors** : Activates the consideration of the two optional color parameters.
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
 - **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
-- **Image** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard.
+- **Image** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
+- **Only on synthesis** : Allows to put an image for the Synthesis without it being used as background image.
 
 > **Tip**
 >
-> You can change the display order of objects in the Dashboard. In the overview, select your object with the mouse with a drag and drop to give it a new place.
+> You can change the display order of objects in the Dashboard. In the overview (or by the Domotiqu Summary), select your object with the mouse with a drag and drop to give it a new place.
 
 > **Tip**
 >

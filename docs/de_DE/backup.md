@@ -49,7 +49,7 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 > **IMPORTANT**
 >
-> Jeedom-Backups dürfen nur für ihn in einen Ordner fallen !!! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht
+> Jeedom-Backups müssen unbedingt nur für ihn in einem Ordner gespeichert werden ! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht.
 
 
 # Was ist gespeichert ?
