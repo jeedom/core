@@ -1,105 +1,105 @@
-# 
+# Jeedom V4 - Atalhos de teclado / mouse
 
 ## Geral
 
-. .
+Ao abrir uma página (painel, cenários, etc.), o foco está no campo de pesquisa. Portanto, você pode digitar diretamente uma pesquisa sem ação adicional.
 
--  : .
--   :  ****.
--  ?    : .
--  : .
+- Clique no relógio (barra de menus) : Abra a linha do tempo.
+- Clique no nome do Jeedom (barra de menus)  : Aberto **Configurações → Sistema → Configuração**.
+- Clique em ?  (barra de menus)  : Abre a ajuda na página atual.
+- Escape em um campo de pesquisa : Esvazie o campo de pesquisa e cancele-o.
 
 ## Painel de instrumentos
-:
-	- .
-	- .
-	- .
-	- * : .
+No modo de edição:
+	- Arraste e solte nos ladrilhos para reorganizá-los.
+	- Redimensionar nas bordas do bloco para redimensioná-las.
+	- Menu contextual (clique direito) nos blocos.
+	- Ctrl Clique em um ícone * expandir* : Ajusta a altura dos blocos de objetos não em relação à mais alta, mas em relação à mais baixa.
 
--  : .
+- Ctrl Clique em um comando de informações : Abre todas as informações do histórico do bloco na janela do histórico.
 
-## 
--  : Salvar.
+## Configurações / Sistema / Configuração
+- Ctrl S : Salvar.
 
-## 
--  : Salvar.
+## Configurações / Sistema / Backups
+- Ctrl S : Salvar.
 
-## 
--  : Salvar.
+## Configurações / Sistema / Mecanismo de tarefas
+- Ctrl S : Salvar.
 
-## 
--  : Salvar.
+## Configurações / Sistema / Usuários
+- Ctrl S : Salvar.
 
-## 
--  : Salvar.
+## Configurações / Preferências
+- Ctrl S : Salvar.
 
-## 
--  : Salvar.
--  : .
--  : .
+## Ferramentas / Interações
+- Em uma interação, Ctrl S : Salvar.
+- Em uma interação, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outra interação.
+- Ctrl Clique ou Clique Central em uma interação ou no menu de contexto : Abra a interação em uma nova guia do navegador.
 
-## 
--  : Salvar.
--  : .
--  : .
+## Ferramentas / Objetos
+- Em um objeto, Ctrl S : Salvar.
+- Em um objeto, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro objeto.
+- Ctrl Clique ou Clique Central em um objeto ou no menu contextual : Abra o objeto em uma nova guia do navegador.
 
-## 
--  : Salvar.
--  : .
--  : .
+## Ferramentas / Widgets
+- Em um widget, Ctrl S : Salvar.
+- Em um widget, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro widget.
+- Ctrl Clique ou Clique em Central em um widget ou no menu de contexto : Abra o widget em uma nova guia do navegador.
 
-## 
--  : .
+## Ferramentas / cenários
+- Ctrl Clique ou Clique Central em um cenário ou no menu de contexto : Abra o cenário em uma nova guia do navegador.
 
- :
--  : Salvar.
--  : .
--  : .
--  : Cancelar.
--  : .
+Em um cenário :
+- Ctrl S : Salvar.
+- Clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro cenário.
+- Ctrl L : Exibição de log.
+- Ctrl Shift Z : Cancelar.
+- Ctrl Shift Y : Refazer.
 
--  : .
-- * : .
-- * : .
-- * : .
-- * : .
+- Ctrl Clique em Executar : Salve e execute o cenário e abra o log.
+- Ctrl Clique no ícone * Copie este bloco* : Corte este bloco.
+- Ctrl Clique no ícone * Colar um bloco* : Substitua este bloco.
+- Ctrl Clique no ícone * Excluir este bloco* : Excluir bloco sem confirmação.
+- Ctrl Clique no ícone * Ocultar este bloco* : Ocultar ou mostrar todos os blocos.
 
- :
--  : .
--  : .
+Em um bloco de código :
+- Ctrl F : Pesquise no código.
+- Ctrl G : Próxima ocorrência de pesquisa.
 
-## 
--  : Salvar.
--  : .
+## Plugins / Gerenciamento de Plugins
+- Ctrl S em uma configuração de plug-in : Salvar.
+- Ctrl Clique ou Clique Central em um plug-in : Abra o gerenciamento de plug-ins em uma nova guia do navegador.
 
-## *
--   : Salvar.
--  : .
-- : .
+## Plugins / * plugin*
+- Em um dispositivo, Ctrl S  : Salvar.
+- Em um dispositivo, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro dispositivo.
+- Ctrl Clique ou Clique Central em um dispositivo: Abra o equipamento do plug-in em uma nova guia do navegador.
 
-## 
--  : Salvar.
+## Início / Ver
+- Ctrl S na edição de uma vista : Salvar.
 
-## 
--  : Salvar.
--  : .
+## Home / Design
+- Ctrl S em um design : Salvar.
+- Ctrl Shift E em um design : Entrando ou saindo do modo de edição.
 
-## 
--  : .
--  : .
+## Análise / resumo de automação residencial
+- Ctrl Clique no ícone * Abrir * (pesquisa) : Abra todos os objetos e equipamentos.
+- Ctrl Clique no ícone * Fechar * (pesquisa) : Fecha todos os objetos e equipamentos.
 
-## 
- :
--  : .
--  : .
+## Análise / História
+Se várias curvas forem exibidas :
+- Ctrl Clique em uma legenda : Mostrar apenas este histórico.
+- Alt Clique em uma legenda : Mostrar todo o histórico.
 
-## 
- :
--  : .
--  : .
+## Janela Histórico
+Se várias curvas forem exibidas :
+- Ctrl Clique em uma legenda : Mostrar apenas este histórico.
+- Alt Clique em uma legenda : Mostrar todo o histórico.
 
-## 
--  : .
+## Janela Configuração do equipamento
+- Ctrl Clique em Salvar : Salvar e fechar janela.
 
-## 
--  : .
+## Janela Configuração de Comando
+- Ctrl Clique em Salvar : Salvar e fechar janela.

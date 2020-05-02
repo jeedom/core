@@ -3,7 +3,7 @@ $('#searchContainer').hide()
 
 function initHome() {
   refreshMessageNumber()
-  
+
   //set other analyse:
   $bottomPanelAnalyseActions = $('#bottompanel_analyseActionList')
   $bottomPanelAnalyseActions.empty()
@@ -14,7 +14,7 @@ function initHome() {
   $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug"></i> {{Démons}}</a>')
   $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3"></i> {{Santé}}</a>')
   $bottomPanelAnalyseActions.append('<br>')
-  
+
   //set other actions:
   $bottomPanelOtherActions = $('#bottompanel_otherActionList')
   $bottomPanelOtherActions.empty()
@@ -23,10 +23,11 @@ function initHome() {
   }
   $bottomPanelOtherActions.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fas fa-desktop"></i> {{Version desktop}}</a>')
   $bottomPanelOtherActions.append('<a id="bt_forceReload" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-retweet"></i> {{Forcer mise à jour}}</a>')
+  $bottomPanelOtherActions.append('<a href="https://doc.jeedom.com/" target="_blank" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-question-circle"></i> {{Documentation}}</a>')
   $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="about" data-title="<i class=\'fas fa-info-circle\'></i> {{A propos}}"><i class="fas fa-info-circle"></i> {{A propos}}</a>')
   $bottomPanelOtherActions.append('<a href="#" id="bt_logout" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sign-out-alt"></i> {{Déconnexion}}</a>')
   $bottomPanelOtherActions.append('<br>')
-  
+
   //fill bottom menus:
   jeedom.object.all({
     error: function (error) {
@@ -57,7 +58,7 @@ function initHome() {
       jeedom.object.summaryUpdate(summaries)
     }
   })
-  
+
   jeedom.view.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -76,7 +77,7 @@ function initHome() {
       }
     }
   })
-  
+
   jeedom.plan.allHeader({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -96,7 +97,7 @@ function initHome() {
       }
     }
   })
-  
+
   jeedom.plan3d.allHeader({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -116,8 +117,8 @@ function initHome() {
       }
     }
   })
-  
-  
+
+
   if (plugins.length > 0) {
     var li = ''
     for (var i in plugins) {
@@ -140,7 +141,7 @@ function initHome() {
   } else {
     $('#bt_listPlugin').hide()
   }
-  
+
   //buttons:
   $('#bt_logout').off('click').on('click', function () {
     $.ajax({
@@ -162,11 +163,11 @@ function initHome() {
       }
     })
   })
-  
+
   $('#bt_forceReload').off('click').on('click', function () {
     window.location.reload(true)
   })
-  
+
   jeedom.version({success : function(version) {
     $('#homeVersion').html(version)
   }

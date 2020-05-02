@@ -89,10 +89,10 @@ foreach ($cmds as $cmd) {
       }
       $tr .= '</td>';
       $tr .= '<td style="width:90px;">';
+      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       if ($cmd->getType() == 'info') {
         $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
-      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       $tr .= '</td>';
       $tr .= '</tr>';
     }
@@ -109,8 +109,7 @@ $("#table_cmdConfigureHistory").trigger("update");
 $("#table_cmdConfigureHistory").width('100%');
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
 });
 
 $(".bt_configureHistoryExportData").on('click', function () {
@@ -156,5 +155,6 @@ $('#bt_applytimeline').on('click',function(){
 
 $(function() {
   jeedom.timeline.autocompleteFolder()
+  initTooltips($("#table_cmdConfigureHistory"))
 })
 </script>

@@ -20,13 +20,13 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'eqLogic' => array(
 		'category' => array(
-			'heating' => array('name' => __('Chauffage',__FILE__), 'icon' => 'fa fa-fire'),
-			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fa fa-lock'),
-			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fa fa-bolt'),
-			'light' => array('name' => __('Lumière',__FILE__), 'icon' => 'fa fa-lightbulb-o'),
-			'automatism' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fa fa-magic'),
+			'heating' => array('name' => __('Chauffage',__FILE__), 'icon' => 'fas fa-fire'),
+			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fas fa-lock'),
+			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fas fa-bolt'),
+			'light' => array('name' => __('Lumière',__FILE__), 'icon' => 'far fa-lightbulb'),
+			'automatism' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fas fa-magic'),
 			'multimedia' => array('name' => __('Multimédia',__FILE__), 'icon' => 'fas fa-sliders-h'),
-			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'fa fa-circle-o'),
+			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'far fa-circle'),
 		),
 		'style' => array(
 			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
@@ -66,10 +66,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'alerts' => array(
 		'timeout' => array('name' => __('Timeout',__FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
-		'batterywarning' => array('name' => __('Batterie en Warning',__FILE__), 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
-		'batterydanger' => array('name' => __('Batterie en Danger',__FILE__), 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
-		'warning' => array('name' => __('Warning',__FILE__), 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
-		'danger' => array('name' => __('Danger',__FILE__), 'icon' => 'fa fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
+		'batterywarning' => array('name' => __('Batterie en Warning',__FILE__), 'icon' => 'fas fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
+		'batterydanger' => array('name' => __('Batterie en Danger',__FILE__), 'icon' => 'fas fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
+		'warning' => array('name' => __('Warning',__FILE__), 'icon' => 'fas fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
+		'danger' => array('name' => __('Danger',__FILE__), 'icon' => 'fas fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
 	),
 	'cmd' => array(
 		'widgets' => array(

@@ -346,7 +346,7 @@ class system {
 	public static function installPackage($_type,$_package){
 		switch ($_type) {
 			case 'apt':
-			return self::getCmdSudo().' apt install -y '.$_package;
+			return self::getCmdSudo().' apt install -o Dpkg::Options::="--force-confdef" -y '.$_package;
 			case 'pip2':
 			return self::getCmdSudo().' pip2 install '.$_package;
 			case 'pip3':

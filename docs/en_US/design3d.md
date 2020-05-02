@@ -10,17 +10,17 @@ This page allows you to create a 3D view of your home that can react depending o
 
 ## Importing the 3D model
 
-> **Important**
+> **IMPORTANT**
 >
-> You cannot create your 3D model directly in Jeedom, it must be done using third-party software. We recommend the very good SweetHome3d (http://www.sweethome3d.com/fr/).
+> You cannot create your 3D model directly in Jeedom, it must be done using third-party software. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Once your 3D model has been created, it must be exported in OBJ format. If you use SweetHome3d this is done from the "3D View" menu then "Export to OBJ format". Then take all the generated files and put them in a zip file (there may be a lot of files due to the textures).
 
-> **Important**
+> **IMPORTANT**
 >
 > The files must be at the root of the zip and not in a sub-folder.
 
-> **WARNING**
+> **ATTENTION**
 >
 > A 3D model is quite impressive (this can represent several hundred Mo). The larger it is, the longer the rendering time in Jeedom.
 
@@ -37,11 +37,11 @@ You can from this screen :
 
 Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and select your zip file
 
-> **WARNING**
+> **ATTENTION**
 >
 > Jeedom authorizes the import of a file of 150mo maximum !
 
-> **WARNING**
+> **ATTENTION**
 >
 > You must have a zip file.
 
@@ -52,7 +52,7 @@ Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and selec
 
 ## Configuration of elements
 
-> **Important**
+> **IMPORTANT**
 >
 > Configuration can only be done in edit mode.
 

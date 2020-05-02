@@ -33,6 +33,7 @@ $("#md_specifyUpdate").dialog({
   }
 });
 
+
 $('#bt_updateJeedom').off('click').on('click', function () {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"}).dialog('open')
 });
@@ -345,14 +346,15 @@ function addUpdate(_update) {
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
   jeedom.getDocumentationUrl({
     page: 'changelog',
+    theme: $('body').attr('data-theme'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(url) {
-      window.open(url,'_blank');
+      window.open(url,'_blank')
     }
-  });
-});
+  })
+})
 
 function updateProgressBar(){
   if(progress == -4){

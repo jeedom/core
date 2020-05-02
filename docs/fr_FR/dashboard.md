@@ -32,9 +32,13 @@ De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) 
 - Vous avez en haut à gauche une petite icône pour faire afficher/masquer l’arbre des objets.
 - La deuxième icône à gauche permet d'afficher seulement les informations des résumés des objets.
 - Au milieu, un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
-- A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile, 
+- A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile.
+
 - En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que les équipements ayant pour parent cet objet et qui concernent ce résumé d’objet.
+
 - Un clic sur une commande de type information permet d’afficher l’historique de la commande (si elle est historisée).
+- Un Ctrl+Clic sur une commande de type information permet d’afficher l’historique de toutes les commandes (historisées) de cette tuile.
+- Un clic sur l'information *time* d'une commande action permet d’afficher l’historique de la commande (si elle est historisée).
 
 > **Tip**
 >

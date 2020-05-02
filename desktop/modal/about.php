@@ -12,9 +12,9 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="40">
       <br>
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
-      <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> |
+      <a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
       <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-      <a class="badge cursor" href="https://jeedom.github.io/documentation/" target="_blank">Doc</a>
+      <a class="badge cursor" href="https://doc.jeedom.com/" target="_blank">Doc</a>
       <br><br>
       {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
       <br>
@@ -82,6 +82,7 @@ $(function(){
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
   jeedom.getDocumentationUrl({
     page: 'changelog',
+    theme: $('body').attr('data-theme'),
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -93,6 +94,7 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
 $('body').off('click','#bt_faq').on('click','#bt_faq',function() {
   jeedom.getDocumentationUrl({
     page: 'faq',
+    theme: $('body').attr('data-theme'),
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },

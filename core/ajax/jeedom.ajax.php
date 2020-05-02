@@ -79,6 +79,14 @@ try {
 	}
 
 	if (init('action') == 'getDocumentationUrl') {
+		$theme = 'light';
+		if (init('theme') != '' || init('theme') == 'false') {
+			if (strpos(init('theme'),'Dark') !== false)
+			$theme = 'dark';
+		} elseif (strpos(config::byKey('default_bootstrap_theme'),'Dark') !== false) {
+			$theme = 'dark';
+		}
+
 		$plugin = null;
 		if (init('plugin') != '' || init('plugin') == 'false') {
 			try {
@@ -89,7 +97,7 @@ try {
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			if ($plugin->getDocumentation() != '') {
-				ajax::success($plugin->getDocumentation());
+				ajax::success($plugin->getDocumentation().'?theme='.$theme);
 			}
 		} else {
 			$page = init('page');
@@ -102,10 +110,13 @@ try {
 			}else if (init('page') == 'plan3d') {
 				$page = 'design3d';
 			}
-			if(config::byKey('core::branch') == 'master'){
-				ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
+			$version = '3.3';
+			if(strpos(jeedom::version(),'4.0') !== false){
+				$version = '4.0';
+			}elseif(strpos(jeedom::version(),'4.1') !== false){
+				$version = '4.1';
 			}
-			ajax::success('https://github.com/jeedom/core/blob/'.config::byKey('core::branch').'/docs/' . config::byKey('language', 'core', 'fr_FR'). '/' . secureXSS($page).'.md');
+			ajax::success('https://doc.jeedom.com/' . config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page).'?theme='.$theme);
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}

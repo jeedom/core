@@ -13,11 +13,11 @@ El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados
 
 El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día.. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y los convierte en paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (de manera predeterminada, estos son paquetes de 1 hora con datos que tienen más de 2 horas).
 
-> **Punta**
+> **Tip**
 >
 > Si ha seguido bien, debe tener una alta precisión solo en las últimas 2 horas.. Sin embargo, cuando me conecto a las 5 p.m., tengo precisión en las últimas 17 horas. Por qué ? De hecho, para evitar consumir recursos innecesariamente, la tarea de archivo se lleva a cabo solo una vez al día, por la noche..
 
-> **Importante**
+> **Important**
 >
 > Por supuesto, este principio de archivo solo se aplica a los comandos de tipo digital; en comandos de tipo binario, Jeedom mantiene solo las fechas de cambio de estado.
 
@@ -36,13 +36,13 @@ Si muestra un gráfico junto a la página del historial, tiene acceso a varias o
 
 Encontramos en la parte superior derecha el período de visualización (aquí en la última semana porque, por defecto, quiero que sea solo una semana, ver 2 párrafos anteriores), luego vienen los parámetros de la curva (estos parámetros se mantienen de una pantalla a otra, por lo que solo tiene que configurarlas una vez).
 
-- **Escalera** : Muestra la curva como una escalera o una pantalla continua..
-- **Cambio** : Muestra la diferencia de valor del punto anterior..
-- **Línea** : Muestra el gráfico como líneas..
-- **área** : Muestra el gráfico como un área..
-- **Columna**\* : Muestra el gráfico como barras..
+- **Escalier** : Muestra la curva como una escalera o una pantalla continua..
+- **Variation** : Muestra la diferencia de valor del punto anterior..
+- **Ligne** : Muestra el gráfico como líneas..
+- **Aire** : Muestra el gráfico como un área..
+- **Colonne**\* : Muestra el gráfico como barras..
 
-> **Punta**
+> **Tip**
 >
 > Si visualiza varias curvas al mismo tiempo:
 > - Haga clic en una leyenda debajo del gráfico para mostrar / ocultar esta curva.
@@ -55,12 +55,12 @@ Encontramos en la parte superior derecha el período de visualización (aquí en
 También puede mostrar los gráficos en las vistas (veremos aquí las opciones de configuración y no cómo hacerlo, para eso debe ir a la documentación de las vistas o diseños en función). Estas son las opciones. :
 
 Una vez que se activan los datos, puede elegir :
-- **Color** : El color de la curva.
-- **Puntao** : El tipo de gráfico (área, fila o columna).
-- **Escala** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
-- **Escalera** : Muestra la curva como una escalera o una pantalla continua..
-- **Montón** : Se utiliza para apilar los valores de las curvas (ver el resultado a continuación).
-- **Cambio** : Muestra la diferencia de valor del punto anterior..
+- **Couleur** : El color de la curva.
+- **Type** : El tipo de gráfico (área, fila o columna).
+- **Echelle** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
+- **Escalier** : Muestra la curva como una escalera o una pantalla continua..
+- **Empiler** : Se utiliza para apilar los valores de las curvas (ver el resultado a continuación).
+- **Variation** : Muestra la diferencia de valor del punto anterior..
 
 ### Opción en la página del historial
 
@@ -68,13 +68,13 @@ La página del historial da acceso a algunas opciones adicionales.
 
 #### Historia calculada
 
-Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \ * valor absoluto ... consulte la documentación de PHP para ciertas funciones).
+Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
 Ex :
 abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio habitable \] \ [Higrometría \] \ [Temperatura \] *)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite guardarlas para volver a mostrarlas más fácilmente.
 
-> **Punta**
+> **Tip**
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo y muestre los comandos históricos que se pueden mostrar.
 
@@ -82,7 +82,7 @@ También tiene acceso a una gestión de fórmulas de cálculo que le permite gua
 
 Frente a cada dato que se puede mostrar, encontrará dos íconos :
 
-- **Cubo de basura** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
+- **Poubelle** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
 - **Flecha** : Permite la exportación CSV de datos históricos.
 
 ### Eliminación de valor inconsistente
@@ -95,29 +95,31 @@ La línea de tiempo muestra ciertos eventos en su domótica en forma cronológic
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 
-- **Guión** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
-- **Orden** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
+- **Scenario** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
+- **Commande** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
 La línea de tiempo * Principal * siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por * carpeta*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
 Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón * Actualizar.*.
 
-> **Nota**
+> **Note**
 >
 > Si ya no usa una carpeta, aparecerá en la lista mientras existan eventos vinculados a esta carpeta. Desaparecerá de la lista por sí mismo.
 
-> **Punta**
+> **Tip**
 >
 > Tiene acceso a las ventanas de resumen del escenario o de configuración del historial directamente desde la página de la línea de tiempo.
 
 Una vez que haya activado el seguimiento en la línea de tiempo de los comandos y escenarios que desee, podrá verlos aparecer en la línea de tiempo.
 
-> **Importante**
+> **Important**
 >
 > Debe esperar nuevos eventos después de activar el seguimiento en la línea de tiempo antes de verlos aparecer.
 
 ### Viendo
 
-La línea de tiempo muestra una tabla de eventos grabados en tres columnas.:
+La línea de tiempo muestra los eventos grabados, escalonados día a día verticalmente..
+
+Para cada evento, tienes:
 
 - La fecha y hora del evento.,
 - El tipo de evento.: Un comando de información o acción, o un escenario, con el complemento de comando para comandos.
@@ -126,3 +128,4 @@ La línea de tiempo muestra una tabla de eventos grabados en tres columnas.:
 - Un evento de tipo de comando muestra un icono a la derecha para abrir la configuración del comando.
 - Un evento de tipo de escenario muestra dos iconos a la derecha para ir al escenario o abrir el registro del escenario.
 
+En la esquina superior derecha, puede seleccionar una carpeta de línea de tiempo. Esto debe crearse antes y debe contener eventos.

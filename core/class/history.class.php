@@ -208,7 +208,7 @@ class history {
 					'archivePackage' => config::byKey('historyArchivePackage')*3600,
 					'archiveTime' => $archiveDatetime
 				);
-				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,`datetime`,' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
+				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
 				FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id
@@ -258,7 +258,11 @@ class history {
 			}else	if($goupingType[0] == 'sum'){
 				$function = 'SUM';
 			}
-			$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			if($goupingType[1] == 'hour'){
+				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}else{
+				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}
 		}
 		$sql .= ' FROM history
 		WHERE cmd_id=:cmd_id ';
@@ -271,11 +275,11 @@ class history {
 		if($_groupingType != null){
 			if($goupingType[1] == 'week'){
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			}else if($goupingType[1] == 'hour'){
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			}else{
 				$time='DATE';
-				if($goupingType[1] == 'hour'){
-					$time='HOUR';
-				}else if($goupingType[1] == 'month'){
+				if($goupingType[1] == 'month'){
 					$time='MONTH';
 				}else if($goupingType[1] == 'year'){
 					$time='YEAR';
@@ -297,7 +301,11 @@ class history {
 			}else	if($goupingType[0] == 'sum'){
 				$function = 'SUM';
 			}
-			$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			if($goupingType[1] == 'hour'){
+				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}else{
+				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}
 		}
 		$sql .= ' FROM historyArch
 		WHERE cmd_id=:cmd_id ';
@@ -310,11 +318,11 @@ class history {
 		if($_groupingType != null){
 			if($goupingType[1] == 'week'){
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			}else if($goupingType[1] == 'hour'){
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			}else{
 				$time='DATE';
-				if($goupingType[1] == 'hour'){
-					$time='HOUR';
-				}else if($goupingType[1] == 'month'){
+				if($goupingType[1] == 'month'){
 					$time='MONTH';
 				}else if($goupingType[1] == 'year'){
 					$time='YEAR';

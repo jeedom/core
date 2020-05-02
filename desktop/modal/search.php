@@ -85,9 +85,8 @@ sendVarToJS('__objectList', $objectLists);
 <br/>
 <!-- Results UI -->
 <div class="form-horizontal">
-	<hr class="hrPrimary">
 	<div>
-		<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
 					<th><i class="fas fa-cogs"></i> {{Scénario}}</th>
@@ -99,10 +98,9 @@ sendVarToJS('__objectList', $objectLists);
 
 			</tbody>
 		</table>
-		<hr class="hrPrimary">
 	</div>
 	<div>
-		<table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
 					<th><i class="fas fa-paint-brush"></i> {{Design}}</th>
@@ -114,10 +112,9 @@ sendVarToJS('__objectList', $objectLists);
 
 			</tbody>
 		</table>
-		<hr class="hrPrimary">
 	</div>
 	<div>
-		<table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
 					<th><i class="far fa-image"></i> {{Vue}}</th>
@@ -129,10 +126,9 @@ sendVarToJS('__objectList', $objectLists);
 
 			</tbody>
 		</table>
-		<hr class="hrPrimary">
 	</div>
 	<div>
-		<table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
 					<th><i class="far fa-comments"></i> {{Interaction}}</th>
@@ -144,13 +140,12 @@ sendVarToJS('__objectList', $objectLists);
 
 			</tbody>
 		</table>
-		<hr class="hrPrimary">
 	</div>
 	<div>
-		<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
-					<th><i class="fas fa-cog"></i></i> {{Equipement}}</th>
+					<th><i class="icon divers-svg"></i></i> {{Equipement}}</th>
 					<th>{{ID}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>
@@ -159,10 +154,9 @@ sendVarToJS('__objectList', $objectLists);
 
 			</tbody>
 		</table>
-		<hr class="hrPrimary">
 	</div>
 	<div>
-		<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+		<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
 			<thead>
 				<tr>
 					<th><i class="fas fa-terminal"></i></i> {{Commande}}</th>
@@ -174,7 +168,6 @@ sendVarToJS('__objectList', $objectLists);
 
 			</tbody>
 		</table>
-		<hr class="hrPrimary">
 	</div>
 </div>
 
