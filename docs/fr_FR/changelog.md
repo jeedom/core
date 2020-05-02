@@ -6,7 +6,6 @@ Changelog Jeedom V4
 =====
 - Synthèse : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
 - Recherche : Ajout d'un moteur de recherche dans **Outils → Recherche**.
-
 - Dashboard : Mode Édition maintenant en insertion de la tuile déplacée.
 - Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
@@ -51,7 +50,7 @@ Changelog Jeedom V4
 - Configuration : L'onglet *Informations* est maintenant dans l'onglet *Général*.
 - Configuration : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
-- Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
+- Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.<br/><br/>
 - WebApp : Intégration de la nouvelle page Synthèse.
 - WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
 - WebApp : On peux maintenant sélectionner / copier une partie d'un log.
@@ -59,11 +58,9 @@ Changelog Jeedom V4
 - WebApp : Persistance de la bascule de thème (8h).
 - WebApp : Sur un design, un click avec trois doights permet de revenir à l'accueil.
 - WebApp : Affichage des scénarios par groupe.
-- WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
-
+- WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).<br/><br/>
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
-
 - Corrections de bugs et optimisations.
 - Lib: Update HighStock v7.1.2 vers v8.0.4.
 
