@@ -2203,6 +2203,9 @@ input[type=checkbox].summaryAttr {
   overflow:auto;
   overflow-x: hidden;
 }
+#scenariotab {
+  min-height: 80vh;
+}
 .tab-content .tab-content,
 .tab-content pre {
   background-color: rgba(0,0,0,0)!important;
