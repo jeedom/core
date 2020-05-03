@@ -11,7 +11,7 @@ Changelog Jeedom V4
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - Dashboard : Ajout d'un bouton pour filtrer les éléments affichés par catégorie.
 - Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
-- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface).
+- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configuration -> Interface).
 - Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - Widgets : Possibilité d'ajouter des class css à un widget (voir documentation widget).
 - Widgets : Ajout d'un widget core *sliderVertical*.
@@ -54,10 +54,10 @@ Changelog Jeedom V4
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.<br/><br/>
 - WebApp : Intégration de la nouvelle page Synthèse.
 - WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
-- WebApp : On peux maintenant sélectionner / copier une partie d'un log.
+- WebApp : On peut maintenant sélectionner / copier une partie d'un log.
 - WebApp : Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
 - WebApp : Persistance de la bascule de thème (8h).
-- WebApp : Sur un design, un click avec trois doights permet de revenir à l'accueil.
+- WebApp : Sur un design, un click avec trois doigts permet de revenir à l'accueil.
 - WebApp : Affichage des scénarios par groupe.
 - WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).<br/><br/>
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
