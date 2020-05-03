@@ -150,11 +150,24 @@ $('#catFilterAll').on('click', function() {
   filterByCategory()
 })
 
+$('#categoryfilter .catFilterKey').off('mouseup').on('mouseup', function(event) {
+  event.preventDefault()
+  event.stopPropagation()
+
+  if (event.which == 2) {
+    $('#categoryfilter li .catFilterKey').prop("checked", false)
+    $(this).prop("checked", true)
+  }
+  filterByCategory()
+  if (event.which != 2) {
+    $(this).prop("checked", !$(this).prop("checked"))
+  }
+})
 $('#categoryfilter li a').on('mousedown', function(event) {
   event.preventDefault()
   var checkbox = $(this).find('.catFilterKey')
   if (!checkbox) return
-  if( event.which == 2 ) {
+  if (event.which == 2) {
     $('#categoryfilter li .catFilterKey').prop("checked", false)
     checkbox.prop("checked", true)
   } else {
