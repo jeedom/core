@@ -1953,7 +1953,7 @@ class cmd {
 
 	public function exportApi() {
 		$return = utils::o2a($this);
-		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
+		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd() : $this->getConfiguration('lastCmdValue', null);
 		return $return;
 	}
 
