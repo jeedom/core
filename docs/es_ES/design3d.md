@@ -67,7 +67,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 - Estatus : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
 - Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad)
 
-### Texto
+### Texte
 
 - Texto : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo)
 - Tamaño del texto
@@ -84,25 +84,25 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 #### Puerta / ventana
 
 - Estado : Estado de puerta / ventana, 1 cerrado y 0 abierto
-- Rotación
+- Rotation
 	- Activar : activa la rotación de la puerta / ventana al abrir
 	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
-- Traducción
+- Translation
 	- Activar : activa la traducción al abrir (puerta corredera / tipo de ventana)
 	- Significado : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
 	- Repetición : de forma predeterminada, la Puerta / Ventana se mueve una vez que su dimensión en la dirección dada, pero puede aumentar este valor
 - Ocultar cuando la puerta / ventana está abierta
 	- Activar : Oculta el elemento si la puerta / ventana está abierta
-- Color
+- Couleur
 	- Color abierto : Si marca, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : Si marca, el elemento tomará este color si la puerta / ventana está cerrada
 
-#### Solapa
+#### Volet
 
 - Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
 	- Activar : ocultar el elemento si el obturador está abierto
-- Color
+- Couleur
 	- Color cerrado : Si marca, el elemento tomará este color si el obturador está cerrado.
 
 ### Color condicional

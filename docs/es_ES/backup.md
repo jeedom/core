@@ -1,4 +1,4 @@
-# Copias de seguridad
+# Sauvegardes
 **Configuración → Sistema → Copias de seguridad**
 
 Jeedom ofrece la posibilidad de ser guardado y restaurado desde o desde diferentes ubicaciones.
@@ -7,7 +7,7 @@ Esta página permite la gestión de copias de seguridad, restaura.
 
 Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha está el estado en tiempo real de la acción en curso (copia de seguridad o restauración), si ha lanzado una..
 
-## Copias de seguridad
+## Sauvegardes
 
 - **Sauvegardes** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, ver más abajo). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo..
 

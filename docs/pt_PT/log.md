@@ -1,5 +1,5 @@
-# Toras
-**Análise → Toras**
+# Logs
+**Análise → Logs**
 
 Toras são arquivos de log, permitindo que você siga o que está acontecendo em sua automação residencial. Na maioria dos casos, os logs serão usados apenas para depuração e solução de problemas pela equipe de suporte.
 

@@ -5,7 +5,7 @@ Die Seite * Synthese * bietet eine schnelle und visuelle Synthese Ihrer Objekte 
 
 Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.
 
-## Anzeigen
+## Affichage
 
 Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezeigt (abhängig vom Schlüssel der Zusammenfassung, sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen**):
 - Oben links : Der Name des Objekts.
@@ -27,7 +27,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 >
 > Wenn ein Objekt keine Zusammenfassung definiert hat, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können..
 
-## Funktionen
+## Fonctions
 
 Für jedes Objekt können Sie klicken :
 - Auf dem Bild, um die Ausrüstungsseite dieses Objekts zu öffnen (auch über das Menü * Home → Dashboard → Objekt * zugänglich).

@@ -51,5 +51,5 @@ Tabela de resumo dos demônios com seu estado, a data do último lançamento, be
 - Pare um daemon se o gerenciamento automático estiver desativado.
 - Ativar / desativar o gerenciamento automático de um daemon.
 
-> Dica
+> Tip
 > Demônios de plugins desativados não aparecem nesta página.

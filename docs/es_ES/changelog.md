@@ -6,7 +6,6 @@ Registro de cambios Jeedom V4
 =====
 - Síntesis : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
 - Buscar : Adición de un motor de búsqueda en **Herramientas → Buscar**.
-
 - Salpicadero : El modo de edición ahora inserta el mosaico movido.
 - Salpicadero : Ahora podemos hacer clic en el * tiempo * de los widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada..
 - Salpicadero : El tamaño del mosaico de un equipo nuevo se adapta a su contenido..
@@ -51,7 +50,7 @@ Registro de cambios Jeedom V4
 - Configuración : La pestaña * Información * ahora está en la pestaña * General*.
 - Configuración : La pestaña * Pedidos * ahora está en la pestaña * Equipo*.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
-- Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.
+- Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.<br/><br/>
 - Aplicación web : Integración de la nueva página de resumen.
 - Aplicación web : Página de escenarios, un clic en el título del escenario muestra su registro.
 - Aplicación web : Ahora podemos seleccionar / copiar parte de un registro.
@@ -59,11 +58,9 @@ Registro de cambios Jeedom V4
 - Aplicación web : Persistencia del cambio de tema (8h).
 - Aplicación web : En un diseño, un clic con tres doights regresa a la página de inicio.
 - Aplicación web : Visualización de escenarios por grupo..
-- Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).
-
+- Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
-
 - Corrección de errores y optimizaciones..
 - Lib: Actualizar HighStock v7.1.2 a v8.0.4.
 
@@ -145,7 +142,7 @@ Registro de cambios Jeedom V4
 - Cada página de Jeedom ahora tiene un título en el idioma de la interfaz (pestaña del navegador).
 - Prevención del autocompletado en el código de acceso de los campos'.
 - Gestión de funciones * Página anterior / Página siguiente * del navegador.<br/><br/>
-- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Reproductores).
+- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Widgets).
 - Reproductores : Posibilidad de reemplazar un widget con otro en todos los comandos que lo usan.
 - Reproductores : Posibilidad de asignar un widget a múltiples comandos.
 - Reproductores : Agregar widget numérico de información horizontal.

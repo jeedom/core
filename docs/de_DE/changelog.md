@@ -6,7 +6,6 @@ Changelog Jeedom V4
 =====
 - Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
 - Suche : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
-
 - Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - Armaturenbrett : Wir können jetzt auf die * Zeit * der Zeitaktions-Widgets klicken, um das Verlaufsfenster des Befehls für verknüpfte Informationen zu öffnen..
 - Armaturenbrett : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
@@ -51,7 +50,7 @@ Changelog Jeedom V4
 - Konfiguration : Die Registerkarte * Informationen * befindet sich jetzt auf der Registerkarte * Allgemein*.
 - Konfiguration : Die Registerkarte * Bestellungen * befindet sich jetzt auf der Registerkarte * Ausrüstung*.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
-- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
+- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.<br/><br/>
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
@@ -59,11 +58,9 @@ Changelog Jeedom V4
 - WebApp : Persistenz des Themas umschalten (8h).
 - WebApp : Bei einem Design kehrt ein Klick mit drei Punkten zur Startseite zurück.
 - WebApp : Anzeige von Szenarien nach Gruppe.
-- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
-
+- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).<br/><br/>
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
-- Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
-
+- Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
 - Lib: Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
 

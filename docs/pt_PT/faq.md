@@ -1,5 +1,5 @@
-# Faq
-**Configurações → Versão : Faq**
+# FAQ
+**Configurações → Versão : FAQ**
 
 ### Jeedom requer uma assinatura ?
 Não, o Jeedom é totalmente utilizável sem a necessidade de qualquer assinatura. No entanto, existem serviços oferecidos para backups ou chamadas / SMS, mas que são realmente opcionais.

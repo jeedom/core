@@ -1,5 +1,5 @@
-# Preguntas frecuentes
-**Configuración → Versión : Preguntas frecuentes**
+# FAQ
+**Configuración → Versión : FAQ**
 
 ### Jeedom requiere una suscripción ?
 No, Jeedom es totalmente utilizable sin necesidad de suscripción.. Sin embargo, hay servicios ofrecidos para copias de seguridad o llamadas / SMS, pero que son realmente opcionales.
@@ -45,7 +45,7 @@ Sí : O tienes una fuente de alimentación o más, en este caso
 solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 ### Cómo conectarse en SSH ?
-Aquí hay un [Documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Aquí hay un [Documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
 - Nombre de usuario : "root ", contraseña : "Mjeedom96"
 - Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"

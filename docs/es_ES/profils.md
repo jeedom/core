@@ -5,7 +5,7 @@ La página de Preferencias le permite configurar ciertos comportamientos de Jeed
 
 ## Pestaña de preferencias
 
-### Interfaz
+### Interface
 
 Define ciertos comportamientos de interfaz
 
@@ -22,7 +22,7 @@ Define ciertos comportamientos de interfaz
 - **Diseño 3D por defecto** : Diseño 3D para mostrar por defecto al llegar al Tablero / móvil.
 - **Diseño de pantalla completa en 3D** : Visualización predeterminada en pantalla completa a la llegada en diseños 3D.
 
-### Notificaciones
+### Notifications
 
 - **Comando de notificación del usuario** : Comando predeterminado para comunicarse con usted (comando de tipo de mensaje).
 

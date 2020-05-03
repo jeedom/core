@@ -1,4 +1,4 @@
-# Troncos
+# Logs
 **Análisis → Registros**
 
 Los registros son archivos de registro, lo que le permite seguir lo que sucede en la automatización de su hogar.. En la mayoría de los casos, el equipo de soporte solo utilizará los registros para depurar y resolver problemas.

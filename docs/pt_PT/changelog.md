@@ -6,7 +6,6 @@ Registro de Alterações Jeedom V4
 =====
 - Síntese : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
 - Pesquisa : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
-
 - Painel de instrumentos : Modo de edição agora inserindo o bloco movido.
 - Painel de instrumentos : Agora, podemos clicar no widget de ações * time * para abrir a janela do histórico do comando info vinculado..
 - Painel de instrumentos : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
@@ -51,7 +50,7 @@ Registro de Alterações Jeedom V4
 - Configuração : A guia * Informações * está agora na guia * Geral*.
 - Configuração : A guia * Pedidos * agora está na guia * Equipamento*.
 - Janela de configuração avançada de equipamentos : Alteração dinâmica da configuração do quadro de distribuição.
-- Sobre a janela : Adição de atalhos ao Changelog e FAQ.
+- Sobre a janela : Adição de atalhos ao Changelog e FAQ.<br/><br/>
 - WebApp : Integração da nova página Resumo.
 - WebApp : Na página Cenários, um clique no título do cenário exibe seu log.
 - WebApp : Agora podemos selecionar / copiar parte de um log.
@@ -59,11 +58,9 @@ Registro de Alterações Jeedom V4
 - WebApp : Persistência da alternância do tema (8h).
 - WebApp : Em um design, um clique com três doights retorna à página inicial.
 - WebApp : Exibição de cenários por grupo.
-- WebApp : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).
-
+- WebApp : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).<br/><br/>
 - Documentação : Adaptações de acordo com v4 e v4.1.
 - Documentação : Nova página * Atalhos de teclado / mouse *, incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
-
 - Correções de bugs e otimizações.
 - Lib: Atualizar o HighStock v7.1.2 a v8.0.4.
 
@@ -184,9 +181,9 @@ Registro de Alterações Jeedom V4
 - Resumo Automation : Adição de IDs de equipamentos e pedidos, no display e na pesquisa.
 - Resumo Automation : Exportação CSV do objeto pai, ID, equipamento e seu ID, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais pedidos.<br/><br/>
-- Projeto : Capacidade de especificar a ordem (posição) de * Projetos * e * 3D Projetos * (Editar, configurar design).
+- Projeto : Capacidade de especificar a ordem (posição) de * Designs * e * 3D Designs * (Editar, configurar design).
 - Projeto : Adição de um campo CSS personalizado nos elementos de * design*.
-- Projeto : Deslocamento das opções de exibição em Projeto da configuração avançada, nas configurações de exibição de * Projeto*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam * Projeto*.
+- Projeto : Deslocamento das opções de exibição em Projeto da configuração avançada, nas configurações de exibição de * Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam * Design*.
 - Projeto : Mover e redimensionar componentes no * Projeto * leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
 - Redução geral (estilos css / inline, refatoração etc.) e melhorias de desempenho.
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.
