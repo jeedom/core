@@ -9,6 +9,7 @@ Changelog Jeedom V4
 - Dashboard : Mode Édition maintenant en insertion de la tuile déplacée.
 - Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
+- Dashboard : Ajout d'un bouton pour filtrer les éléments affichés par catégorie.
 - Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - Dashboard : Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface).
 - Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.

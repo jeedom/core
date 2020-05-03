@@ -71,7 +71,6 @@ var isEditing = false
 //searching
 $('#in_searchWidget').off('keyup').on('keyup',function() {
   if (isEditing) return
-  $('#bt_displaySummaries').attr('data-display', '0')
   var search = $(this).value()
   $('.div_object:not(.hideByObjectSel)').show()
   if (search == '') {
@@ -128,27 +127,63 @@ $('#in_searchWidget').off('keyup').on('keyup',function() {
     }
   })
 })
-
-$('#bt_displaySummaries').on('click', function () {
-  if (isEditing) return
-  $('.div_object').show()
-  if ($(this).attr('data-display') == 0) {
-    $('.eqLogic-widget').hide()
-    $('.scenario-widget').hide()
-    $('.div_displayEquipement').packery()
-    $(this).attr('data-display', '1')
-  } else {
-    $('.eqLogic-widget').show()
-    $('.scenario-widget').show()
-    $('.div_displayEquipement').packery()
-    $(this).attr('data-display', '0')
-  }
-})
-
 $('#bt_resetDashboardSearch').on('click', function () {
   if (isEditing) return
+  $('#categoryfilter li .catFilterKey').prop("checked", true)
   $('#in_searchWidget').val('').keyup()
 })
+
+//category filters
+$('#categoryfilter').on('click', function(event) {
+  event.stopPropagation()
+})
+$('#catFilterNone').on('click', function () {
+  $('#categoryfilter .catFilterKey').each(function() {
+    $(this).prop('checked', false)
+  })
+  filterByCategory()
+})
+$('#catFilterAll').on('click', function() {
+  $('#categoryfilter .catFilterKey').each(function() {
+    $(this).prop('checked', true)
+  })
+  filterByCategory()
+})
+
+$('#categoryfilter li a').on('mousedown', function(event) {
+  event.preventDefault()
+  var checkbox = $(this).find('.catFilterKey')
+  if (!checkbox) return
+  if( event.which == 2 ) {
+    $('#categoryfilter li .catFilterKey').prop("checked", false)
+    checkbox.prop("checked", true)
+  } else {
+    checkbox.prop("checked", !checkbox.prop("checked"))
+  }
+  filterByCategory()
+})
+
+function filterByCategory() {
+  var cats = []
+  $('#categoryfilter .catFilterKey').each(function() {
+    if ($(this).is(':checked')) {
+      cats.push($(this).attr('data-key'))
+    }
+  })
+  $('.eqLogic-widget').each(function() {
+    var cat = $(this).attr('data-category')
+    if (cats.includes(cat)) $(this).show()
+    else $(this).hide()
+  })
+  if (cats.includes('scenario')) {
+    $('.scenario-widget').show()
+  } else {
+    $('.scenario-widget').hide()
+  }
+  $('.div_displayEquipement').packery()
+}
+
+
 
 $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
   if(isEditing) return false
