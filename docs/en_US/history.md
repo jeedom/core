@@ -20,7 +20,7 @@ Data archiving allows Jeedom to reduce the amount of data
 kept in memory. This allows not to use too much space and
 not to slow down the system. Indeed, if you keep all the
 measures, this makes all the more points to display and therefore can
-dramatically lengthen times to make a graph. In casee
+dramatically lengthen times to make a graph. In case
 too many points, it can even crash
 graph display.
 

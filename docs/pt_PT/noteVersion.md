@@ -12,7 +12,7 @@ reabastecer.
 
 -   Observe que alteramos as etapas dos widgets, portanto isso pode ter
     um impacto no posicionamento de seus widgets em designs / visualizações e
-    Painel de instrumentos
+    dashboard
 
 -   Esta atualização torna obrigatória uma alteração no design
     plugins (alteração recomendada no 3.0). Alguns plugins

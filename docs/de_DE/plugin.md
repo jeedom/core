@@ -222,7 +222,7 @@ und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 > Sie können Jeedom auch ein Plugin aus einer Datei oder hinzufügen
 > aus einem Github-Repository. Dies erfordert in der Konfiguration von
 > Jeedom, aktiviere die entsprechende Funktion in den "Updates und
-> Dateien". Dies ist dann möglich, indem Sie die Maus vollständig platzieren
+> fichiers". Dies ist dann möglich, indem Sie die Maus vollständig platzieren
 > Klicken Sie links und rufen Sie das Plugin-Seitenmenü auf
 > auf "Aus einer anderen Quelle hinzufügen". Sie können dann die auswählen
 > Quelle "Datei". Achtung, im Falle der Hinzufügung durch eine Datei

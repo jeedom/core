@@ -205,7 +205,7 @@ Changelog
 -   Hinzufügen eines integrierten Notizen-Systems (unter Analyse -&gt; Notiz).
 -   Hinzufügung des Begriffs &quot;Tag&quot; auf Geräten (finden Sie in der erweiterten Konfiguration von Geräten).
 -   Hinzufügen eines Verlaufssystems zum Löschen von Aufträgen, Geräten, Objekten, Ansichten, Designs, 3D-Designs, Szenarien und Benutzern.
--   Hinzufügen der Aktion Jeedom_reboot, um einen Neustart von Jeedom zu starten.
+-   Hinzufügen der Aktion jeedom_reboot, um einen Neustart von Jeedom zu starten.
 -   Option im Cron-Generierungsfenster hinzufügen.
 -   Eine Nachricht wird jetzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
 -   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von Jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
@@ -221,7 +221,7 @@ Changelog
 -   Möglichkeit, Optionen in Berichten hinzuzufügen
 -   Hinzufügen eines Heartbeat durch Plugin und automatischer Neustart des Daemons bei Problemen
 -   Hinzufügen von Listenern auf der Task-Engine-Seite
--   Optimierungen
+-   Optimisations
 -   Möglichkeit, die Protokolle in der mobilen Version (wepapp) zu konsultieren
 -   Hinzufügen eines Aktions-Tags in den Szenarien (siehe Dokumentation)
 -   Möglichkeit einer Vollbildansicht durch Hinzufügen von &quot;&amp; fullscreen = 1&quot; in der URL
@@ -230,7 +230,7 @@ Changelog
 -   Möglichkeit, ein Element aus der Entwurfskonfiguration zu löschen
 -   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht)
 -   Szenario-Widgets werden jetzt standardmäßig im Dashboard angezeigt
--   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von Jeedom, Widget-Registerkarte zurücksetzen).
+-   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen).
 -   Möglichkeit, den Szenarien ein Symbol hinzuzufügen
 -   Hinzufügen der Daemon-Verwaltung in der Task-Engine
 -   Hinzufügen der Funktion color_gradient in den Szenarien
@@ -255,7 +255,7 @@ Changelog
 =====
 
 - Fehlerbehebungen
-- Optimierungen
+- Optimisations
 
 3.2.11
 =====
@@ -349,7 +349,7 @@ Changelog
 -   Bibliotheksaktualisierung (Abfrage und Highcharts)
 
 -   Möglichkeit, eine Bestellung in Interaktionen zu verbieten
-    automatisch
+    automatique
 
 -   Verbesserte automatische Interaktionen
 
@@ -364,14 +364,14 @@ Changelog
     Standardmäßig (admin / admin) remote ist nur das lokale Netzwerk autorisiert
 
 -   Jeed-186 : Wir können jetzt die Hintergrundfarbe in der auswählen
-    Design
+    designs
 
 -   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen.
     indem Sie einfach die Minuten eingeben (ex 30 für 00:30)
 
 -   Hinzufügen von aktiven Sitzungen und Geräten, die auf der registriert sind
     Benutzerprofilseite und Verwaltungsseite
-    Benutzer
+    utilisateurs
 
 -   Jeed-284 : Die dauerhafte Verbindung hängt jetzt von einem Schlüssel ab
     Einzelbenutzer und Gerät (statt Benutzer)
@@ -505,10 +505,10 @@ Changelog
     -   Alle Dokumente wurden überarbeitet
 
     -   Löschen von Bildern zur Erleichterung der Aktualisierung und
-        mehrsprachig
+        multilingue
 
 -   Weitere Auswahlmöglichkeiten für die Zonengrößeneinstellungen in der
-    Ansichten
+    vues
 
 -   Möglichkeit, die Farbe des Textes der Objektzusammenfassung zu wählen
 
@@ -549,7 +549,7 @@ Changelog
     wirkt sich auf das Layout Ihres Dashboards / Ihrer Ansicht / Ihres Designs aus
 
 -   Möglichkeit, Objekten auf dem eine Größe von 1 bis 12 zuzuweisen
-    Armaturenbrett
+    dashboard
 
 -   Möglichkeit zum unabhängigen Starten von Szenarioaktionen (und
     Plugin-Modus / Alarm (falls kompatibel) parallel zu den anderen
@@ -575,7 +575,7 @@ Changelog
 -   Unterdrückung des Slave-Modus
 
 -   Fähigkeit, ein Szenario bei einer Änderung von auszulösen
-    Variable
+    variable
 
 -   Variable Updates lösen jetzt das Update aus
     Bestellungen virtueller Geräte (Sie benötigen die neueste Version
@@ -586,7 +586,7 @@ Changelog
 -   Fähigkeit bei Befehlen, den Namen und das Symbol anzuzeigen
 
 -   Hinzufügen einer &quot;Alarm&quot; -Aktion für Szenarien : Nachricht in
-    Jeedom
+    jeedom
 
 -   Hinzufügen einer &quot;Popup&quot; -Aktion für Szenarien : Nachricht zu validieren
 
@@ -597,13 +597,13 @@ Changelog
     um das Widgund zu bekommen
 
 -   Die globale Zusammenfassung und Teile werden jetzt ohne Berufung aktualisiert
-    Ajax
+    ajax
 
 -   Ein Klick auf ein Element einer Zusammenfassung der Hausautomation bringt Sie zu einer Ansicht
     detailliert davon
 
 -   Sie können jetzt Typenzusammenfassungen einfügen
-    Text
+    texte
 
 -   Wechsel des Bootstraps-Schiebereglers zum Schieberegler (Fehlerbehebung
     Double Slider Event)
@@ -656,7 +656,7 @@ Changelog
     -   Möglichkeit, einen Gegenstand zu sperren
 
 -   Plugins können jetzt ihren API-Schlüssel verwenden
-    eigen
+    propre
 
 -   Jeedom fügt automatische Interaktionen hinzu und versucht zu verstehen
     den Satz, führen Sie die Aktion aus und antworten Sie
@@ -676,18 +676,18 @@ Changelog
     davon / letzteres
 
 -   Die Auslöser für ein Szenario können jetzt sein
-    Bedingungen
+    conditions
 
 -   Doppelklicken Sie auf die Befehlszeile (auf der Seite
     Konfiguration) öffnund nun die erweiterte Konfiguration von
-    dieses hier
+    celle-ci
 
 -   Möglichkeit, bestimmte Werte für eine Bestellung zu verbieten (in der
     erweiterte Konfiguration)
 
 -   Hinzufügen von Konfigurationsfeldern zur automatischen Statusrückmeldung
     (zB nach 4 min auf 0 zurückkehren) in der erweiterten Konfiguration von a
-    bestellen
+    commande
 
 -   Hinzufügen einer valueDate-Funktion in den Szenarien (siehe
     Szenariodokumentation)
@@ -696,7 +696,7 @@ Changelog
     mit der Aktion "Ereignis"
 
 -   Hinzufügen eines Kommentarfelds zur erweiterten Konfiguration von a
-    Ausrüstung
+    équipement
 
 -   Hinzufügung eines Warnsystems bei Bestellungen mit 2 Ebenen :
     Alarm und Gefahr. Die Konfiguration ist in der Konfiguration
@@ -719,7 +719,7 @@ Changelog
     und Objekt)
 
 -   Möglichkeit, den Zugriff auf jeden API-Schlüssel basierend auf zu beschränken
-    IP
+    l'IP
 
 -   Möglichkeit in der Historie, Gruppierungen nach Stunde oder Stunde vorzunehmen
     Jahr
@@ -750,7 +750,7 @@ Changelog
 
 -   Möglichkeit, auf der Plugins-Konfigurationsseite die zu sehen
     Funktionalität dieser (interagieren, cron ...) und deaktivieren Sie sie
-    einheitlich
+    unitairement
 
 -   Automatische Interaktionen können Werte von zurückgeben
     Zusammenfassungen
@@ -790,7 +790,7 @@ Changelog
 
 -   Optimierung des Update-Prozesses
 
--   Standardisierung der tmp Jeedom, jetzt ist alles in / tmp / Jeedom
+-   Standardisierung der tmp jeedom, jetzt ist alles in / tmp / jeedom
 
 -   Möglichkeit, ein Diagramm der verschiedenen Verknüpfungen eines Szenarios zu erstellen,
     Ausrüstung, Objekt, Befehl oder Variable
@@ -810,7 +810,7 @@ Changelog
 =====
 
 -   Verbesserung des Managements der Wiederholung der Werte von
-    Befehle
+    commandes
 
 2.4.5
 =====
@@ -864,7 +864,7 @@ Changelog
     das Objekt in der Basis) eines Geräts oder einer Bestellung
 
 -   Möglichkeit, die Historie einer Bestellung in eine andere zu kopieren
-    bestellen
+    commande
 
 -   Fähigkeit, eine Bestellung in ganz Jeedom durch eine andere zu ersetzen
     (auch wenn die zu ersetzende Bestellung nicht mehr existiert)
@@ -912,7 +912,7 @@ Changelog
 -   Optimierung der Organisation der generischen Typliste
 
 -   Verbesserte Anzeige der erweiterten Konfiguration von
-    Komfort
+    équipements
 
 -   Korrektur der Backup-Zugriffsschnittstelle von
 
@@ -938,8 +938,8 @@ Changelog
     / tmp ist zu klein (Vorsicht, die Korrektur wird bei wirksam
     Update n + 1)
 
--   Hinzufügen eines * Jeedom\_name * -Tags in den Szenarien (gibt den Namen an
-    Jeedom)
+-   Hinzufügen eines * jeedom\_name * -Tags in den Szenarien (gibt den Namen an
+    jeedom)
 
 -   Fehlerbehebungen
 
@@ -980,7 +980,7 @@ Changelog
     FTP-Server und Wiederherstellungs-Plugins)
 
 -   Ergänzung für bestimmte &quot;Repo&quot; der Möglichkeit der Wiederherstellung des Kerns von
-    Jeedom
+    jeedom
 
 -   Hinzufügen automatischer Codetests (danke @ kwizer15)
 
@@ -995,7 +995,7 @@ Changelog
 -   Leichte Neugestaltung des Update Centers
 
 -   Möglichkeit, die automatische Update-Prüfung zu deaktivieren
-    Tag
+    jour
 
 -   Es wurde ein Fehler behoben, durch den alle Daten nach a auf 0 zurückgesetzt wurden
     Wiederaufnahme
@@ -1027,7 +1027,7 @@ Changelog
 -   Möglichkeit zum Konfigurieren der Transparenz von Widgets
 
 -   Jeedom\_poweroff-Aktion in Szenarien zum Stoppen hinzugefügt
-    Jeedom
+    jeedom
 
 -   Rückkehr des Aktionsszenarios\_return, um zu a zurückzukehren
     Interaktion (oder andere) aus einem Szenario
@@ -1110,7 +1110,7 @@ Changelog
 -   Batterieanzeige bei Widgets entfernt
 
 -   Hinzufügen einer Seite, auf der der Status aller Geräte zusammengefasst ist
-    Batterie
+    batterie
 
 -   Neugestaltung von Jeedom DNS, Verwendung von openvpn (und damit von
     openvpn plugin)
@@ -1137,14 +1137,14 @@ Changelog
 -   Ergänzung für Entwickler eines Tooltips-Hilfesystems. Du musst
     sur un label mettre la classe « help » und mettre un attribut
     Datenhilfe mit der gewünschten Hilfemeldung. Dies ermöglicht Jeedom
-    Fügen Sie automatisch ein Symbol am Ende Ihres Etiketts hinzu « ? » und
+    Fügen Sie automatisch ein Symbol am Ende Ihres Etiketts hinzu « ? » et
     auf Hover, um den Hilfetext anzuzeigen
 
 -   Änderungen im Kern-Update-Prozess fragen wir nicht mehr
     das Archiv auf dem Markt, aber jetzt bei Github
 
 -   Hinzufügen eines zentralen Systems zum Installieren von Abhängigkeiten von
-    Plugins
+    plugins
 
 -   Neugestaltung der Plugins-Verwaltungsseite
 
@@ -1207,7 +1207,7 @@ Changelog
 -   Batterieanzeige bei Widgets entfernt
 
 -   Hinzufügen einer Seite, auf der der Status aller Geräte zusammengefasst ist
-    Batterie
+    batterie
 
 -   Neugestaltung von Jeedom DNS, Verwendung von openvpn (und damit von
     openvpn plugin)
@@ -1234,14 +1234,14 @@ Changelog
 -   Ergänzung für Entwickler eines Tooltips-Hilfesystems. Du musst
     sur un label mettre la classe « help » und mettre un attribut
     Datenhilfe mit der gewünschten Hilfemeldung. Dies ermöglicht Jeedom
-    Fügen Sie automatisch ein Symbol am Ende Ihres Etiketts hinzu « ? » und
+    Fügen Sie automatisch ein Symbol am Ende Ihres Etiketts hinzu « ? » et
     auf Hover, um den Hilfetext anzuzeigen
 
 -   Änderungen im Kern-Update-Prozess fragen wir nicht mehr
     das Archiv auf dem Markt, aber jetzt bei Github
 
 -   Hinzufügen eines zentralen Systems zum Installieren von Abhängigkeiten von
-    Plugins
+    plugins
 
 -   Neugestaltung der Plugins-Verwaltungsseite
 

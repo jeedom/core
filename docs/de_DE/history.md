@@ -178,7 +178,7 @@ gewünschten Szenarien können Sie sie auf der Zeitleiste sehen.
 > **Important**
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
-> auf der Zeitleiste, bevor sie angezeigt werden.
+> auf der Timeline, bevor sie angezeigt werden.
 
 Die Karten auf der Zeitleiste werden angezeigt :
 

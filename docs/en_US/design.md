@@ -10,14 +10,14 @@ It is accessible by Home → Design
 
 > **Important**
 >
-> All actions are done by right clickk on this page, attention
+> All actions are done by right click on this page, attention
 > to do it well in Design. During creation, it is therefore necessary to
-> do in the middle of the page (to be sure to be on the Design).
+> do in the middle of the page (to be sure to be on the design).
 
-In the menu (right clickk therefore), we find the
+In the menu (right click therefore), we find the
 following actions :
 
--   **Designs** : Displays the list of your Designs and access them
+-   **Designs** : Displays the list of your designs and access them
 
 -   **Edition** : Switch to edit mode
 
@@ -35,8 +35,8 @@ following actions :
 
     -   **Towards a view** : Add a link to a view
 
-    -   **Towards a Design** : Add a link to another
-        Design
+    -   **Towards a design** : Add a link to another
+        design
 
 -   **Add equipment** : Adds equipment
 
@@ -45,8 +45,8 @@ following actions :
 -   **Add image / camera** : Allows you to add an image or stream
     of a camera
 
--   **Add area** : Add a transparent clickkable area
-    who can execute a series of actions on a clickk (depending
+-   **Add area** : Add a transparent clickable area
+    who can execute a series of actions on a click (depending
     or not the status of another order)
 
 -   **Add summary** : Adds information from an object summary or
@@ -72,20 +72,20 @@ following actions :
     -   **Hide item highlighting** : Hide it
         highlight around items
 
--   **Delete Design** : delete Design
+-   **Delete design** : delete design
 
--   **Create a Design** : allows to add a Design
+-   **Create a design** : allows to add a design
 
--   **Duplicate Design** : duplicate the current Design
+-   **Duplicate design** : duplicate the current design
 
--   **Configure the Design** : access to Design configuration
+-   **Configure the design** : access to Design configuration
 
 -   **Sauvegarder** : allows to save the Design (attention, there are
     also automatic backups during certain actions)
 
 > **Important**
 >
-> The configuration of the Design elements is done by clickking on
+> The configuration of the Design elements is done by clicking on
 > these.
 
 Design configuration 
@@ -95,7 +95,7 @@ Found here :
 
 -   **General**
 
-    -   **Nom** : The name of your Design
+    -   **Nom** : The name of your design
 
     -   **Transparent background** : makes the background transparent. Be careful if the
         box is checked, the background color is not used
@@ -107,17 +107,17 @@ Found here :
         is not requested)
 
     -   **Icon** : An icon for it (appears in the menu
-        choice of Design)
+        choice of design)
 
     -   **Image**
 
-        -   **Envoyer** : allows to add a background image to the Design
+        -   **Envoyer** : allows to add a background image to the design
 
         -   **Delete image** : delete image
 
 -   **Tailles**
 
-    -   **Size (WxH)** : Allows you to fix the size of your Design
+    -   **Size (WxH)** : Allows you to fix the size of your design
         (gray frame in edit mode)
 
 General configuration of elements 
@@ -252,7 +252,7 @@ Display settings
 -   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : allows
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -316,9 +316,9 @@ Display settings
 
 ### Single macro 
 
-In this mode, a clickk on the zone performs one or more actions.
+In this mode, a click on the zone performs one or more actions.
 
-Here you just need to indicate the list of actions to do when clickking
+Here you just need to indicate the list of actions to do when clicking
 on the area
 
 ### Binary macro 
@@ -336,15 +336,15 @@ for the Off
 
 ### Hover widget 
 
-In this mode, when hovering or clickking in the Jeedom area, you
+In this mode, when hovering or clicking in the Jeedom area, you
 display the widget in question
 
--   **Equipement** : widget to display when hovering or clickking
+-   **Equipement** : widget to display when hovering or clicking
 
 -   **Show on flyover** : if checked, displays the widget on hover
 
--   **View on one clickk** : if checked, then the widget is displayed at
-    click
+-   **View on one click** : if checked, then the widget is displayed at
+    clic
 
 -   **Position** : allows you to choose the location where the
     widget (default bottom right)
@@ -364,7 +364,7 @@ Summary
 -   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : allows
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -376,9 +376,9 @@ Summary
 Faq 
 ======
 
->**I can no longer edit my Design**
+>**I can no longer edit my design**
 >
->If you have put a widget or an image that takes almost the entire Design, you must clickk outside the widget or image to access the menu by right-clicking.
+>If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
 >**Delete a Design that no longer works**
 >

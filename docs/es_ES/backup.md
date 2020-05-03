@@ -117,7 +117,7 @@ El respaldo en la nube le permite a Jeedom enviar sus respaldos
 directamente en el mercado. Esto le permite restaurarlos fácilmente
 y asegúrate de no perderlos. El mercado guarda los últimos 6
 copias de seguridad. Para suscribirte solo ve a tu página
-**profil** en el mercado, luego en la pestaña **mis copias de seguridad**. Vosotras
+**profil** en el mercado, luego en la pestaña **mis copias de seguridad**. Vous
 puede, desde esta página, recuperar una copia de seguridad o comprar un
 suscripción (por 1, 3, 6 o 12 meses).
 

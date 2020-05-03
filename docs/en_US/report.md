@@ -8,7 +8,7 @@ You can do this on views, design, panel page....
 
 It is triggered from a script with the report command, you can choose to have this report sent to you using a message command (email, telegram, etc.)
 
-# Use
+# Utilisation
 
 Its use is very simple you select if you want to see :
 
@@ -27,7 +27,7 @@ Once the report selected you can see it appear, redownload it or delete it.
 
 You can aln delete all backups of a given report
 
-# Faq
+# FAQ
 
 > **If you have a Details error : cutycapt: error while loading shared libraries: libEGL.so: cannot open shared object file: No such file or directory**
 >

@@ -112,14 +112,14 @@ Mis jeedoms
         configurar en Jeedom, si no pones nada estará allí
         última IP conocida
 
-    -   **DNS** : le permite personalizar el nombre de su Dns
+    -   **DNS** : le permite personalizar el nombre de su DNS
 
     -   **URL** : enumerar las diferentes URL de acceso de Jeedom.
 
-    -   **Servidor Dns** : le dice si el servidor Dns al que
+    -   **Servidor DNS** : le dice si el servidor Dns al que
         están adjuntos
 
-    -   **Estado Dns** : permite ver el estado del Dns
+    -   **Estado DNS** : permite ver el estado del DNS
 
     -   **Fecha de creación** : fecha de creación de este Jeedom en su
         cuenta de mercado (como recordatorio, esto se hace automáticamente cuando
@@ -128,7 +128,7 @@ Mis jeedoms
     -   **última actualización** : La última comunicación de Jeedom con
         el mercado
 
-    -   **Hardware** : Apellidobre de hardware Jeedom
+    -   **Hardware** : Nombre de hardware Jeedom
 
     -   **Version** : la versión de Jeedom instalada
 

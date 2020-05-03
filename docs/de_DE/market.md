@@ -46,7 +46,7 @@ Für die Profis :
 -   **Installer-E-Mail-Konto** : Ihre professionelle Kontakt-E-Mail
 
 -   **Supportanfragen Empfänger** : wissen, wer die erhalten wird
-    Unterstützung-E-Mails (Endkunde, Installer oder beides)
+    Support-E-Mails (Endkunde, Installer oder beides)
 
     -   **CGU**
 
@@ -61,7 +61,7 @@ Für die Profis :
 -   **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat
     sowie Ihr Limit
 
--   **Support** : Schaltfläche zum Senden einer Unterstützunganfrage (zugänglich
+-   **Support** : Schaltfläche zum Senden einer Supportanfrage (zugänglich
     auch durch das Ausrufezeichen oben rechts auf dem Markt oder
     auf deinem Jeedom)
 
@@ -116,7 +116,7 @@ Meine Jeedoms
 
     -   **URL** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
 
-    -   **DNS-Server** : sagt Ihnen, ob der Dns-Server, zu dem Sie
+    -   **DNS-Server** : sagt Ihnen, ob der DNS-Server, zu dem Sie
         sind beigefügt
 
     -   **DNS-Status** : ermöglicht es, den Status des Dns anzuzeigen

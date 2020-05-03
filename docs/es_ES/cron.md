@@ -72,6 +72,6 @@ página). En esta tabla, encontramos :
 -   **Suppression** : eliminar tarea
 
 
-# Oyente
+# Listener
 
 Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un pedido ...)

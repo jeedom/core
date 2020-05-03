@@ -12,8 +12,8 @@ This page is accessibThe by **Tools → Home automation summary**.
 The top of the page 
 ------------------
 
-On the top of the page, we find : \* **Number of objects** : Number
-total of objects configured in orr Jeedom, counting the elements
+On the top of the page, we find : \* **Number of objects** : Nombre
+total of objects configured in our Jeedom, counting the elements
 Inactive. \* **Number of equipments** : Ditto for the equipment. \*
 **Number of orders** : Same for orders. \* **Inactif** :
 Check this box if yor want the inactive items to be well
@@ -30,12 +30,12 @@ Below there is one frame per object. In each frame, we find
 the list of equipment (in blue) which have this object as parent. The
 first frame **Aucun** represents equipment that has no
 affected parent. For each object, next to its label, three buttons
-are available. From Theft to right :
+are available. From left to right :
 
 -   The first is used to open the object d'actualité page in a
     new tab,
 
--   the second provides some Information on the object,
+-   the second provides some information on the object,
 
 -   the last allows yor to display or hide the list of equipment
     attributed to him.
@@ -57,8 +57,8 @@ The equipments
 On each equipment we find :
 
 -   A **check box** to select the equipment (yor can
-    select multiple). If at Theast one device is selected
-    yor have Action buttons that appear at the top Theft
+    select multiple). If at least one device is selected
+    yor have Action buttons that appear at the top left
     for **supprimer**, return **visible**/**invisible**,
     **actif**/**inactif** selected equipment.
 
@@ -70,13 +70,13 @@ On each equipment we find :
 -   **Inactif** (small cross) : Means that the equipment is inactive
     (if it is not there, the equipment is active).
 
--   **Invisible** (crossed ort eye) : Means that the equipment is Invisible
-    (if not there, the equipment is Jeedom).
+-   **Invisible** (crossed out eye) : Means that the equipment is invisible
+    (if not there, the equipment is visible).
 
--   **External link** (square with arrow) : Thets open in a
+-   **External link** (square with arrow) : Lets open in a
     new tab the equipment d'actualité page.
 
--   **Advanced d'actualité** (toothed wheel) : opens the
+-   **Advanced configuration** (toothed wheel) : opens the
     advanced equipment d'actualité window.
 
 -   **List of commands** (the arrow) : allows yor to expand the list of
@@ -98,14 +98,14 @@ Advanced equipment d'actualité
 > this window from the equipment d'actualité page in
 > clicking on the advanced d'actualité button
 
-The window of **Advanced equipment d'actualité** allows the
+The window of **Advanced equipment configuration** allows the
 edit. First, at the top right, some buttons
 availabThe :
 
 -   **Liens** : Displays the links of the equipment with the
     objects, commands, scenarios, variables, interactions… in the form
     graphic (in this one, a doubThe click on an element brings yor to
-    its d'actualité).
+    its configuration).
 
 -   **Log** : displays the events of the equipment in Question.
 
@@ -119,17 +119,17 @@ availabThe :
 Information tab 
 -------------------
 
-The tab **Informations** contains the general Information of
+The tab **Informations** contains the general information of
 the equipment and its controls :
 
 -   **ID** : Unique identifier in the Jeedom database.
 
 -   **Nom** : Name of equipment.
 
--   **Logical Id** : Logical equipment identifier (can
+-   **Logical ID** : Logical equipment identifier (can
     be empty).
 
--   **Object Id** : Unique identifier of the parent object (can
+-   **Object ID** : Unique identifier of the parent object (can
     be empty).
 
 -   **Creation date** : Equipment creation date.
@@ -227,7 +227,7 @@ nothing to set in default mode. Here are the options availabThe in mode
 -   **TabThe styThe (CSS)** : Allows yor to define the styThe of the
     tabThe only.
 
-Below for each box, the **detailed d'actualité** It allows yor to
+Below for each box, the **detailed configuration** It allows yor to
 this :
 
 -   **Box text** : Add text in addition to the command (or
@@ -241,24 +241,24 @@ this :
 >
 > In a box in the table, if yor want to put 2 commands one in
 > below the other, don&#39;t forget to add a return to the
-> line after the premiere in the **Advanced d'actualité** of it.
+> line after the premiere in the **Advanced configuration** of it.
 
 Alerts tab 
 --------------
 
-This tab provides Information on the battery of
+This tab provides information on the battery of
 the equipment and define alerts in relation to it. Here are the
-types of Information that can be found :
+types of information that can be found :
 
--   **Battery Type**,
+-   **Battery type**,
 
 -   **Latest feedback**,
 
--   **Remaining Thevel**, (if of course your equipment works
+-   **Remaining level**, (if of course your equipment works
     on battery).
 
 Below, yor can also define specific alert thresholds for
-battery for this equipment. If yor Theave the boxes empty, those are
+battery for this equipment. If yor leave the boxes empty, those are
 the default thresholds that will be applied.
 
 Yor can also manage the timeout, in minutes, of the equipment. Through
@@ -304,29 +304,29 @@ First, at the top right, some buttons availabThe :
 
 > **Note**
 >
-> Depending on the Type of order, the Information / Actions displayed
+> Depending on the Type of order, the information / actions displayed
 > can change.
 
 Information tab 
 -------------------
 
-The tab **Informations** contains general Information about the
+The tab **Informations** contains general information about the
 ordered :
 
 -   **ID** : Unique identifier in the database.
 
--   **Logical Id** : Logical identifier of the command (can
+-   **Logical ID** : Logical identifier of the command (can
     be empty).
 
 -   **Nom** : Name of the order.
 
--   **Type** : Type of order (Action or Info).
+-   **Type** : Type of order (Action or info).
 
 -   **Sous-type** : Command subType (binary, digital, etc.).
 
 -   **Direct url** : Provides the URL to access this equipment. (click
     right, copy the link address) The URL will launch the command for a
-    **action** and return the Information for a **info**.
+    **action** and return the information for a **info**.
 
 -   **Unité** : Control unit.
 
@@ -346,7 +346,7 @@ ordered :
 
 Yor also have three other orange buttons underneath :
 
--   **This command replaces the Id** : Replace an Id of
+-   **This command replaces the ID** : Replace an Id of
     order by the order in Question. Useful if yor have deleted a
     equipment in Jeedom and yor have scenarios that use
     commands from it.
@@ -364,7 +364,7 @@ Yor also have three other orange buttons underneath :
 
 Below, yor will find the list of different equipment,
 commands, scenarios, or interactions that use this command. A
-click on it to go directly to their d'actualité
+click on it to go directly to their configuration
 respective.
 
 Configuration tab 
@@ -379,15 +379,15 @@ Configuration tab
         Jeedom treatment, exampThe : `# value # - 0.2` to entrench
         0.2 (offset on a temperature sensor).
 
-    -   **Rounded (number after decimal point)** : Thets round the
+    -   **Rounded (number after decimal point)** : Lets round the
         order value (ExampThe : put 2 to transform
         16.643345 in 16.64).
 
--   **Generic Type** : Allows yor to configure the generic Type of the
+-   **Generic type** : Allows yor to configure the generic Type of the
     command (Jeedom tries to find it by itself in auto mode).
-    This Information is used by the MobiThe application.
+    This information is used by the MobiThe application.
 
--   **Action on value, if** : Thets make kinds of
+-   **Action on value, if** : Lets make kinds of
     mini scenarios. Yor can, for example, say that if the value is worth
     more than 50 for 3 minutes, then yor have to do such Action. it
     allows, for example, to turn off a light X minutes after
@@ -404,15 +404,15 @@ Configuration tab
         **maximum**, The **minimum**, or **aucun**. **aucun** Allows
         tell Jeedom that it should not archive on this
         order (both during the first 5 min period and with the
-        archiving task). This option is Dangerous because Jeedom
+        archiving task). This option is dangerous because Jeedom
         keep everything : so there is going to be a lot more
         stored data.
 
-    -   **Purge history if older than** : Thets say to
+    -   **Purge history if older than** : Lets say to
         Jeedom to delete all data older than one
         certain period. May be handy for not keeping
         data if it is not necessary and therefore limit the quantity
-        of Information recorded by Jeedom.
+        of information recorded by Jeedom.
 
 -   **Values management**
 
@@ -431,7 +431,7 @@ Configuration tab
         command goes up 2 times the same value in a row, then Jeedom
         will not take into account the 2nd ascent (avoid triggering
         several times a scenario, unless the command is to
-        binary Type). Yor can force the value to repeat or
+        binary type). Yor can force the value to repeat or
         ban it completely.
 
     -   **Push URL** : Allows yor to add a URL to call in case of
@@ -443,11 +443,11 @@ Configuration tab
 
 ### For an Action command : 
 
--   **Generic Type** : Allows yor to configure the generic Type of the
+-   **Generic type** : Allows yor to configure the generic Type of the
     command (Jeedom tries to find it by itself in auto mode).
-    This Information is used by the MobiThe application.
+    This information is used by the MobiThe application.
 
--   **Confirm Action** : Check this box for Jeedom to request
+-   **Confirm action** : Check this box for Jeedom to request
     confirmation when the Action is launched from the interface
     of this command.
 
@@ -463,7 +463,7 @@ Configuration tab
 Alerts tab 
 --------------
 
-Allows yor to define an alert Thevel (**warning** or **danger**) in
+Allows yor to define an alert level (**warning** or **danger**) in
 depending on certain conditions. For example, if `value&gt; 8` for 30
 minutes then the equipment can go on alert **warning**.
 
@@ -489,7 +489,7 @@ mobile.
 -   **Show name** : Check to make the name of the
     command, depending on the context.
 
--   **Display name and icon** : Check to make the icon Jeedom
+-   **Display name and icon** : Check to make the icon visible
     in addition to the name of the command.
 
 -   **Wrapped line before widget** : Select **before
@@ -499,7 +499,7 @@ mobile.
     by default)
 
 Below, we find optional display parameters that we
-can switch to widget. These parameters depend on the widget in Question,
+can switch to widget. These parameters depend on the widget in question,
 so yor have to look at his card on the Market to know them.
 
 > **Tip**

@@ -203,7 +203,7 @@ left in the tree (you can configure it in your profile).
 I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock' 
 ====================================================================================================================================
 
-This is due to MySQL which stopped, it is not Normal, the cases
+This is due to MySQL which stopped, it is not normal, the cases
 currents are :
 
 -   Lack of space on the file system (can be checked by

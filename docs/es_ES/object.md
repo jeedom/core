@@ -2,7 +2,7 @@ La **objets** le permite definir la estructura de árbol de su domótica.
 Todo el equipo que cree debe pertenecer a un objeto y
 será más fácilmente identificable. Luego decimos que el objeto
 es el **parent** equipo. La gestión de objetos es accesible.
-del menú **Herramientas → Objetoos**.
+del menú **Herramientas → Objetos**.
 
 Para dar libre elección a la personalización, puede nombrar estos
 objetos como quieras. Por lo general, definiremos los diferentes
@@ -24,7 +24,7 @@ Mis objetos
 
 Una vez que haya creado un objeto, aparecerá en esta parte.
 
-Pestaña Objetoo 
+Pestaña Objeto 
 ------------
 
 Al hacer clic en un objeto, accede a su página de configuración. ¿Qué

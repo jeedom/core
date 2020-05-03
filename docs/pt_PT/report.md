@@ -8,7 +8,7 @@ Você pode fazer istão em vistas, design, página do painel....
 
 Ele é acionado a partir de um script com o comando report, você pode optar por enviar esse relatório usando um comando de mensagem (email, telegrama etc.)
 
-# Uso
+# Utilisation
 
 Seu utão é muito simples, você seleciona se deseja ver :
 
@@ -27,7 +27,7 @@ Depois que o relatório selecionado, você pode vê-lo aparecer, faça o downloa
 
 Você também pode excluir todos os backups de um determinado relatório
 
-# Faq
+# FAQ
 
 > **Se você tiver um erro de detalhes : cutycapt: erro ao carregar bibliotecas compartilhadas: libEGL.so: não é possível abrir o arquivo de objeto compartilhado: Esse arquivo ou diretório não existe**
 >

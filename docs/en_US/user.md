@@ -40,7 +40,7 @@ Below you have a table :
     connection is not updated every time you return to it.
 
 -   **To change the password** : allows to change the password from
-    the user
+    l'utilisateur
 
 -   **Supprimer** : delete user
 

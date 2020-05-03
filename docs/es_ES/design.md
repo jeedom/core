@@ -36,7 +36,7 @@ siguientes acciones :
     -   **Hacia una vista** : Agregar un enlace a una vista
 
     -   **Hacia un diseño** : Agregar un enlace a otro
-        diseño
+        design
 
 -   **Agregar equipo** : Agrega equipo
 
@@ -205,7 +205,7 @@ Text / html
     olvide poner%, ex 50%)
 
 -   **Bordure** : agregue un borde, tenga cuidado con la sintaxis
-    HTML (use la sintaxis CSS, por ejemplo : sólido
+    HTML (use la sintaxis CSS, por ejemplo : solid
     1px negro)
 
 -   **Tamaño de fuente** : le permite cambiar el tamaño de fuente
@@ -239,7 +239,7 @@ Enlace
 Configuraciones de pantalla 
 ---------------------
 
--   **Nom** : Apellidobre del enlace (texto mostrado)
+-   **Nom** : Nombre del enlace (texto mostrado)
 
 -   **Lien** : Enlace al diseño o vista en cuestión
 
@@ -252,7 +252,7 @@ Configuraciones de pantalla
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
+-   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
@@ -364,7 +364,7 @@ Resumen
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
+-   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :

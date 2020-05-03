@@ -114,9 +114,9 @@ Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 -   **Escalier** : zeigt die gestufte Kurve an
 
 -   **Empiler** : Stapeln Sie die Kurve mit den anderen Kurventypen
-    Stapel
+    empiler
 
--   **Variation** : Nur Veränderungen mit Wert grafisch darstellen
+-   **Variation** : Nur Variationen mit Wert grafisch darstellen
     früher
 
 > **Tip**

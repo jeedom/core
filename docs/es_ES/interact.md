@@ -1,30 +1,30 @@
-El sistema de yonteracción en Jeedom hace posible llevar a cabo acciones para
+El sistema de interacción en Jeedom hace posible llevar a cabo acciones para
 de texto o comandos de voz.
 
 Estas órdenes pueden ser obtenidas por :
 
--   SMS : enviar un SMS para yoniciar comandos (acción) o pedir un
+-   SMS : enviar un SMS para iniciar comandos (acción) o pedir un
     pregunta (información).
 
--   Gato : Telegram, Slack, yc..
+-   Gato : Telegram, Slack, etc..
 
--   Vocal : dicta una frase con Siri, Google Now, SARAH, yc. Para
-    yoniciar comandos (acción) o hacer una pregunta (información).
+-   Vocal : dicta una frase con Siri, Google Now, SARAH, etc. Para
+    iniciar comandos (acción) o hacer una pregunta (información).
 
 -   Http : lanzar una URL Http que contenga el texto (ej.. Tasker, Slack)
-    para yoniciar comandos (acción) o hacer una pregunta (información).
+    para iniciar comandos (acción) o hacer una pregunta (información).
 
-El yonterés de las yonteracciones radica en la yontegración simplificada en
-Otros sistemas como teléfonos yonteligentes, tabletas, otras cajas de automatización del hogar, yc..
+El interés de las interacciones radica en la integración simplificada en
+Otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc..
 
-Para acceder a la página de yonteracción, vaya a Herramientas →
+Para acceder a la página de interacción, vaya a Herramientas →
 Interacciones :
 
 En la parte superior de la página, hay 3 botones. :
 
--   **Ajouter** : que permite crear nuevas yonteracciones.
+-   **Ajouter** : que permite crear nuevas interacciones.
 
--   **Regenerado** : que recreará todas las yonteracciones (tal vez
+-   **Regenerado** : que recreará todas las interacciones (tal vez
     très long &gt; 5mn).
 
 -   **Tester** : que abre un diálogo para escribir y
@@ -32,10 +32,10 @@ En la parte superior de la página, hay 3 botones. :
 
 > **Tip**
 >
-> Syo tienes una yonteracción que genera las oraciones para las luces
+> Syo tienes una interacción que genera las oraciones para las luces
 > por ejemplo y agrega un nuevo módulo de comando de
-> luz, tendrás que regenerar todas las yonteracciones, o
-> vaya a la yonteracción en cuestión y guárdela nuevamente para
+> luz, tendrás que regenerar todas las interacciones, o
+> vaya a la interacción en cuestión y guárdela nuevamente para
 > crea las oraciones para este nuevo módulo.
 
 Principio 
@@ -50,7 +50,7 @@ Definiremos las respuestas de la misma manera con un modelo (esto permite
 Jeedom tendrá varias respuestas para una sola pregunta).
 
 También podemos definir un comando para ejecutar si, por ejemplo
-la yonteracción no está vinculada a una acción sino a yonformación o si
+la interacción no está vinculada a una acción sino a información o si
 desea llevar a cabo una acción específica después de esto (también es
 posible ejecutar un escenario, controlar varios comandos ...).
 
@@ -60,25 +60,25 @@ Configuración
 La página de configuración consta de varias pestañas y
 botones :
 
--   **Phrases** : Muestra el número de oraciones en la yonteracción (un clic
+-   **Phrases** : Muestra el número de oraciones en la interacción (un clic
     arriba te los muestra)
 
--   **Enregistrer** : registra la yonteracción actual
+-   **Enregistrer** : registra la interacción actual
 
--   **Supprimer** : eliminar la yonteracción actual
+-   **Supprimer** : eliminar la interacción actual
 
--   **Dupliquer** : duplicar la yonteracción actual
+-   **Dupliquer** : duplicar la interacción actual
 
 General 
 =======
 
--   **Nom** : nombre de la yonteracción (puede estar vacío, el nombre reemplaza el
-    solicitar texto en la lista de yonteracción).
+-   **Nom** : nombre de la interacción (puede estar vacío, el nombre reemplaza el
+    solicitar texto en la lista de interacción).
 
--   **Groupe** : grupo de yonteracción, ayuda a organizarlos
+-   **Groupe** : grupo de interacción, ayuda a organizarlos
     (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
 
--   **Actif** : permite activar o desactivar la yonteracción.
+-   **Actif** : permite activar o desactivar la interacción.
 
 -   **Demande** : la oración modelo generadora (requerida).
 
@@ -91,16 +91,16 @@ General
 
 -   **Conversión binaria** : convierte valores binarios a
     abierto / cerrado por ejemplo (solo para comandos de tipo
-    yonformación binaria).
+    información binaria).
 
--   **Usuarios autorizados** : limita la yonteracción a ciertos
+-   **Usuarios autorizados** : limita la interacción a ciertos
     usuarios (inicios de sesión separados por |).
 
 Filtros 
 =======
 
 -   **Límite para escribir comandos** : permite usar solo el
-    tipos de acciones, yonformación o ambos tipos.
+    tipos de acciones, información o ambos tipos.
 
 -   **Limitar a pedidos con subtipo** : permite limitar
     generación a uno o más subtipos.
@@ -115,7 +115,7 @@ Filtros
 
 -   **Limitar al complemento** : limita la generación a uno o más
     varios complementos (Jeedom crea automáticamente la lista desde
-    complementos yonstalados).
+    complementos instalados).
 
 -   **Limitar a categoría** : limita la generación a uno
     o más categorías.
@@ -140,12 +140,12 @@ Ejemplos
 Interacción simple 
 ------------------
 
-La forma más fácil de configurar una yonteracción es usarla
+La forma más fácil de configurar una interacción es usarla
 dar un modelo de generador rígido, sin posibles variaciones. Este
 El método apuntará a un comando o un escenario con mucha precisión.
 
 En el ejemplo que sigue, podemos ver en el campo &quot;Solicitar&quot; la oración
-exacta para proporcionar para desencadenar la yonteracción. Aquí, para encender el
+exacta para proporcionar para desencadenar la interacción. Aquí, para encender el
 luz de techo de la sala de estar.
 
 ![yonteract004](../images/interact004.png)
@@ -154,17 +154,17 @@ Podemos ver, en esta captura, la configuración para tener un
 interacción vinculada a una acción específica. Esta acción se define en
 la parte de &quot;Acción&quot; de la página.
 
-Podemos yomaginar hacer lo mismo con varias acciones para
+Podemos imaginar hacer lo mismo con varias acciones para
 encienda varias lámparas en la sala de estar como el siguiente ejemplo :
 
 ![yonteract005](../images/interact005.png)
 
-En los 2 ejemplos anteriores, la oración modelo es yodéntica pero el
+En los 2 ejemplos anteriores, la oración modelo es idéntica pero el
 las acciones resultantes cambian según lo que esté configurado
-en la parte &quot;Acción&quot;, por lo tanto, ya podemos con una simple yonteracción para
-frase única yomagina acciones combinadas entre varios comandos y
+en la parte &quot;Acción&quot;, por lo tanto, ya podemos con una simple interacción para
+frase única imagina acciones combinadas entre varios comandos y
 varios escenarios (también podemos desencadenar escenarios en el juego
-acción de yonteracción).
+acción de interacción).
 
 > **Tip**
 >
@@ -175,15 +175,15 @@ acción de yonteracción).
 Interacción de comandos múltiples 
 ------------------------------
 
-Aquí veremos todo el yonterés y todo el poder de
+Aquí veremos todo el interés y todo el poder de
 interacciones, con una oración modelo podremos generar
 oraciones para todo un grupo de comandos.
 
 Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que
 agregamos, y en lugar de la oración fija, en "Solicitud",
-usaremos las yiquetas **\#commande\#** y **\#equipement\#**.
-Jeedom reemplazará estas yiquetas con el nombre de los comandos y el nombre de
-equipo (podemos ver la yomportancia de tener nombres de
+usaremos las etiquetas **\#commande\#** y **\#equipement\#**.
+Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre de
+equipo (podemos ver la importancia de tener nombres de
 control / equipo consistente).
 
 ![yonteract006](../images/interact006.png)
@@ -207,10 +207,10 @@ el ejemplo generado &quot;Al entrar&quot;, sería bueno poder transformar
 esta oración en "activar la entrada" o en "activar la entrada". Para hacer
 eso, Jeedom tiene, bajo el campo de solicitud, un campo sinónimo que
 permítanos nombrar pedidos de manera diferente en nuestro
-oraciones &quot;generadas&quot;, aquí está &quot;on&quot;, yoncluso tengo &quot;on2&quot; en los módulos
+oraciones &quot;generadas&quot;, aquí está &quot;on&quot;, incluso tengo &quot;on2&quot; en los módulos
 que puede controlar 2 salidas.
 
-En los sinónimos, por lo tanto, yondicaremos el nombre del comando y el (los)
+En los sinónimos, por lo tanto, indicaremos el nombre del comando y el (los)
 sinónimo (s) a utilizar :
 
 ![yonteract008](../images/interact008.png)
@@ -222,10 +222,10 @@ puede tener varios sinónimos, aquí &quot;on&quot; tiene como sinónimo
 sinónimo que queremos). Luego, agregar sinónimos para otro
 nombre del comando, solo agregue después del último sinónimo una barra
 vertical "*|*" después de lo cual puedes nombrar nuevamente
-comando que tendrá sinónimos como para la primera parte, yc..
+comando que tendrá sinónimos como para la primera parte, etc..
 
 Ya es mejor, pero aún falta para el comando de entrada "on""
-la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, yc.. Podriamos
+la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, etc.. Podriamos
 cambiar el nombre del equipo para agregarlo sería una solución,
 de lo contrario podemos usar variaciones en la demanda. Consiste en
 enumerar una serie de palabras posibles en un lugar de la oración, Jeedom
@@ -240,45 +240,45 @@ la entrada &quot;etc.. Entonces tenemos todas las variantes posibles con lo que
 agregado entre &quot;\ [\]&quot; y esto para cada sinónimo, lo que genera
 rápidamente muchas oraciones (aquí 168).
 
-Para refinar y no tener cosas yomprobables como
+Para refinar y no tener cosas improbables como
 "encienda el televisor ", podemos autorizar a Jeedom a eliminar solicitudes
-sintácticamente yoncorrecto. Entonces eliminará lo que está demasiado lejos
+sintácticamente incorrecto. Entonces eliminará lo que está demasiado lejos
 la sintaxis real de una oración. En nuestro caso, pasamos de 168
 130 oraciones.
 
 ![yonteract010](../images/interact010.png)
 
-Por lo tanto, se vuelve yomportante construir bien sus oraciones modelo y
+Por lo tanto, se vuelve importante construir bien sus oraciones modelo y
 sinónimos, así como seleccionar los filtros correctos para no generar
-demasiadas oraciones yonnecesarias. Personalmente, me parece yonteresante tener
-algunas yonconsistencias del estilo &quot;una entrada&quot; porque syo estás en casa, tienes
+demasiadas oraciones innecesarias. Personalmente, me parece interesante tener
+algunas inconsistencias del estilo &quot;una entrada&quot; porque syo estás en casa, tienes
 una persona extranjera que no habla francés correctamente
-las yonteracciones seguirán funcionando.
+las interacciones seguirán funcionando.
 
 Personalizar respuestas 
 --------------------------
 
-Hasta ahora, como respuesta a una yonteracción, teníamos un simple
+Hasta ahora, como respuesta a una interacción, teníamos un simple
 oración que no dijo mucho, excepto que algo sucedió
-pasado. La yodea sería que Jeedom nos cuenta lo que hizo un poco más.
+pasado. La idea sería que Jeedom nos cuenta lo que hizo un poco más.
 con precisión. Aquí es donde entra el campo de respuesta.
 posibilidad de personalizar la devolución según la orden ejecutada.
 
-Para hacer esto, nuevamente usaremos la yiqueta Jeedom. Para nuestro
-luces, podemos usar una frase como : Me yolumine bien
+Para hacer esto, nuevamente usaremos la etiqueta Jeedom. Para nuestro
+luces, podemos usar una frase como : Me ilumine bien
 \#equipement \# (ver captura de pantalla a continuación).
 
 ![yonteract011](../images/interact011.png)
 
 También puede agregar cualquier valor desde otro comando como
-temperatura, número de personas, yc..
+temperatura, número de personas, etc..
 
 ![yonteract012](../images/interact012.png)
 
 Conversión binaria 
 ------------------
 
-Las conversiones binarias se aplican a los pedidos de tipo de yonformación cuyos
+Las conversiones binarias se aplican a los pedidos de tipo de información cuyos
 El subtipo es binario (solo devuelve 0 o 1). Entonces tienes que activar
 los filtros correctos, como puedes ver en la captura de pantalla a continuación
 (para las categorías, podemos verificarlas todas, para el ejemplo que tengo
@@ -301,7 +301,7 @@ un poco mas largo.
 
 > **Warning**
 >
-> Las yiquetas no funcionan en conversiones binarias.
+> Las etiquetas no funcionan en conversiones binarias.
 
 Usuarios autorizados 
 ----------------------
@@ -310,9 +310,9 @@ El campo &quot;Usuarios autorizados&quot; le permite autorizar solo ciertos
 personas para ejecutar el comando puede poner múltiples perfiles
 separándolos con un "|".
 
-Ejemplo : person1|personne2
+Ejemplo : personne1|personne2
 
-Uno puede yomaginar que una alarma puede ser activada o desactivada por un
+Uno puede imaginar que una alarma puede ser activada o desactivada por un
 niño o un vecino que vendría a regar las plantas en su ausencia.
 
 Exclusión de expresiones regulares 
@@ -323,43 +323,43 @@ Es posible crear
 de exclusión, syo una oración generada corresponde a esta expresión regular será
 borrado. El punto es poder eliminar falsos positivos,
 decir una oración generada por Jeedom que activa algo que no
-no corresponde a lo que queremos o que yonterferiría con otro
+no corresponde a lo que queremos o que interferiría con otro
 interacción que tendría una oración similar.
 
 Tenemos 2 lugares para aplicar un Regexp :
 
--   en la yonteracción yoncluso en el campo "Exclusión de expresiones regulares"".
+-   en la interacción incluso en el campo "Exclusión de expresiones regulares"".
 
 -   En el menú Administración → Configuración → Interacciones → campo &quot;Regexp&quot;
-    exclusión general para yonteracciones".
+    exclusión general para interacciones".
 
-Para el campo &quot;Regex de exclusión general para yonteracciones&quot;, esto
-la regla se aplicará a todas las yonteracciones, que se crearán o
+Para el campo &quot;Regex de exclusión general para interacciones&quot;, esto
+la regla se aplicará a todas las interacciones, que se crearán o
 guardado de nuevo después. Syo queremos aplicarlo a todos
-interacciones existentes, las yonteracciones necesitan ser regeneradas.
-Por lo general, se usa para borrar oraciones yoncorrectamente
-encontrado en la mayoría de las yonteracciones generadas.
+interacciones existentes, las interacciones necesitan ser regeneradas.
+Por lo general, se usa para borrar oraciones incorrectamente
+encontrado en la mayoría de las interacciones generadas.
 
 Para el campo &quot;Exclusión de expresiones regulares&quot; en la página de configuración de
-cada yonteracción, podemos poner un Regexp específico que actuará
-solo en dicha yonteracción. Entonces te permite eliminar
-más específicamente para una yonteracción. También puede permitir
-eliminar una yonteracción para un comando específico para el cual
+cada interacción, podemos poner un Regexp específico que actuará
+solo en dicha interacción. Entonces te permite eliminar
+más específicamente para una interacción. También puede permitir
+eliminar una interacción para un comando específico para el cual
 no quiere ofrecer esta oportunidad como parte de una generación de
 pedidos múltiples.
 
-La siguiente captura de pantalla muestra la yonteracción sin Regexp. En la
-lista de la yozquierda, filtro las oraciones para mostrarle solo el
+La siguiente captura de pantalla muestra la interacción sin Regexp. En la
+lista de la izquierda, filtro las oraciones para mostrarle solo el
 oraciones a eliminar. En realidad hay 76 oraciones generadas
-con la configuración de la yonteracción.
+con la configuración de la interacción.
 
 ![yonteract014](../images/interact014.png)
 
 Como puede ver en la siguiente captura de pantalla, agregué un
 regexp simple que buscará la palabra &quot;Julie&quot; en las oraciones generadas
-y eliminarlos. Sin embargo, podemos ver en la lista de la yozquierda que hay
+y eliminarlos. Sin embargo, podemos ver en la lista de la izquierda que hay
 siempre tiene oraciones con la palabra &quot;julie&quot; en expresiones
-regular, Julie no es yogual a Julie, esto se llama
+regular, Julie no es igual a Julie, esto se llama
 mayúsculas o minúsculas en francés una letra mayúscula es diferente
 de un pequeño. Como podemos ver en la siguiente captura de pantalla, no
 solo quedan 71 oraciones, las 5 con &quot;Julie&quot; han sido eliminadas.
@@ -372,7 +372,7 @@ Una expresión regular se compone de la siguiente manera :
 -   El punto después de la barra representa cualquier
     carácter, espacio o número.
 
--   El &quot;\*&quot; yondica que puede haber 0 o más veces
+-   El &quot;\*&quot; indica que puede haber 0 o más veces
     el personaje que lo precede, aquí un punto, así que en buen francés
     cualquier articulo.
 
@@ -398,21 +398,21 @@ regular.
 
 Para resolver el problema de mayúsculas y minúsculas, podemos agregar a
 nuestra expresión es una opción que hará que no distinga entre mayúsculas y minúsculas, o
-en otras palabras, que considera una letra minúscula yogual a una letra mayúscula;
+en otras palabras, que considera una letra minúscula igual a una letra mayúscula;
 para hacer esto, simplemente tenemos que agregar al final de nuestra expresión un
 "i".
 
 ![yonteract016](../images/interact016.png)
 
 Con la adición de la opción &quot;i&quot; vemos que solo quedan 55
-oraciones generadas y en la lista de la yozquierda con el filtro Julie para
+oraciones generadas y en la lista de la izquierda con el filtro Julie para
 buscamos las oraciones que contienen esta palabra, vemos que hay algunas
 mucho más.
 
-Como este es un tema extremadamente complejo, no yoré más allá
+Como este es un tema extremadamente complejo, no iré más allá
 detalle aquí, hay suficientes tutoriales en la red para ayudarlo, y
 no olvides que Google también es tu amigo porque sí, él es myo amigo,
-fue él quien me enseñó a entender Regexp e yoncluso a codificar. Entonces
+fue él quien me enseñó a entender Regexp e incluso a codificar. Entonces
 syo él me ayudó, él también puede ayudarte syo pones bien
 volonté.
 
@@ -424,17 +424,17 @@ Enlaces útiles :
 
 -   <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2>
 
-Respuesta compuesta de varias piezas de yonformación. 
+Respuesta compuesta de varias piezas de información. 
 ------------------------------------------
 
-También es posible poner varios comandos de yonformación en uno
+También es posible poner varios comandos de información en uno
 responder, por ejemplo, para obtener un resumen de la situación.
 
 ![yonteract021](../images/interact021.png)
 
 En este ejemplo, vemos una oración simple que devolverá un
 responde con 3 temperaturas diferentes, así que aquí podemos poner un poco
-todo lo que quieras para tener un conjunto de yonformación en uno
+todo lo que quieras para tener un conjunto de información en uno
 sola vez.
 
 ¿Hay alguien en la sala? ? 
@@ -453,9 +453,9 @@ sola vez.
 ![yonteract017](../images/interact017.png)
 
 Este ejemplo se dirige específicamente a equipos específicos que permiten
-tener una respuesta personalizada. Entonces podríamos yomaginar reemplazar
+tener una respuesta personalizada. Entonces podríamos imaginar reemplazar
 el ejemplo responde con &quot;no, no hay nadie en la habitación
-*julie*|syo hay alguien en la habitación de * Julie*"
+*julie*|syo hay alguien en la habitación de * julie*"
 
 ### Evolución 
 
@@ -465,7 +465,7 @@ el ejemplo responde con &quot;no, no hay nadie en la habitación
     alguien en la sala"
 
 -   No hay un comando que responda que en la parte de Acción vista
-    que esta es una yonteracción de comandos múltiples
+    que esta es una interacción de comandos múltiples
 
 -   Al agregar una expresión regular, podemos limpiar los comandos
     que no queremos ver para tener solo las oraciones en el
@@ -473,7 +473,7 @@ el ejemplo responde con &quot;no, no hay nadie en la habitación
 
 ![yonteract018](../images/interact018.png)
 
-Sin Regexp, obtenemos aquí 11 oraciones, pero myo yonteracción está dirigida
+Sin Regexp, obtenemos aquí 11 oraciones, pero myo interacción está dirigida
 generar oraciones solo para preguntar syo hay alguien en
 una habitación, así que no necesito una lámpara nyo nada parecido
 tomado, que se puede resolver con el filtrado regexp. Para hacer
@@ -488,7 +488,7 @@ Conoce la temperatura / humedad / brillo
 Podríamos escribir la oración con fuerza como, por ejemplo, &quot;¿cuál es el
 temperatura de la sala &quot;, pero se debe hacer una para cada sensor
 de temperatura, brillo y humedad. Con el sistema de generación de
-Sentencia de libertad, por lo que podemos generar con una sola yonteracción
+Sentencia de libertad, por lo que podemos generar con una sola interacción
 frases para todos los sensores de estos 3 tipos de medida.
 
 Aquí un ejemplo genérico que se utiliza para conocer la temperatura.,
@@ -511,14 +511,14 @@ la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedo
     de cada pedido para el que queremos tener uno)
 
 -   Por lo tanto, este ejemplo genera una oración para todos los comandos de
-    escriba yonformación digital que tenga una unidad, para que podamos desmarcar
-    unidades en el filtro derecho limitado al tipo que nos yonteresa.
+    escriba información digital que tenga una unidad, para que podamos desmarcar
+    unidades en el filtro derecho limitado al tipo que nos interesa.
 
 ### Evolución 
 
 Por lo tanto, podemos agregar sinónimos al nombre del comando para tener algunos
 Lo más natural, agregue una expresión regular para filtrar los comandos que
-no tiene nada que ver con nuestra yonteracción.
+no tiene nada que ver con nuestra interacción.
 
 Agregando un sinónimo, digamos a Jeedom que un comando llamado
 "X" también se puede llamar "Y" y, por lo tanto, en nuestra oración syo tenemos "activar
@@ -530,7 +530,7 @@ totalmente lógico pero no en el contexto de una oración.
 
 También podemos agregar un filtro Regexp para eliminar algunos comandos.
 Usando el ejemplo simple, vemos oraciones &quot;batería&quot; o
-"latencia ", que no tiene nada que ver con nuestra yonteracción
+"latencia ", que no tiene nada que ver con nuestra interacción
 temperatura / humedad / brillo.
 
 ![yonteract020](../images/interact020.png)
@@ -554,80 +554,80 @@ Controle un atenuador o un termostato (control deslizante)
 ### Versión básica 
 
 Es posible controlar una lámpara de porcentaje (dimmer) o un
-termostato con yonteracciones. Aquí hay un ejemplo para controlar su
-atenuador en una lámpara con yonteracciones :
+termostato con interacciones. Aquí hay un ejemplo para controlar su
+atenuador en una lámpara con interacciones :
 
 ![yonteract022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la yiqueta **\#consigne\#** (nos
-puede poner lo que quiera) que se yoncluye en el orden de
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (on
+puede poner lo que quiera) que se incluye en el orden de
 atenuador para aplicar el valor deseado. Para hacer esto, tenemos 3 partes
-: \* Solicitud : en el que creamos una yiqueta que representará el valor
-que será enviado a la yonteracción. \* Respuesta : reutilizamos la yiqueta para
+: \* Solicitud : en el que creamos una etiqueta que representará el valor
+que será enviado a la interacción. \* Respuesta : reutilizamos la etiqueta para
 la respuesta para asegurarse de que Jeedom entendió la solicitud correctamente.
 \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en
-el valor que le pasamos a nuestra yiqueta * deposito*.
+el valor que le pasamos a nuestra etiqueta * deposito*.
 
 > **Note**
 >
-> Puede usar cualquier yiqueta excepto las que ya usa
+> Puede usar cualquier etiqueta excepto las que ya usa
 > Jeedom, puede haber varios para conducir, por ejemplo
-> pedidos múltiples. También tenga en cuenta que todas las yiquetas se pasan a
-> escenarios lanzados por la yonteracción (sin embargo, el escenario
+> pedidos múltiples. También tenga en cuenta que todas las etiquetas se pasan a
+> escenarios lanzados por la interacción (sin embargo, el escenario
 > ya sea en &quot;Ejecutar en primer plano&quot;).
 
 ### Evolución 
 
 Es posible que queramos controlar todos los comandos de tipo cursor con un
 interacción única. Con el siguiente ejemplo, podremos ordenar
-varias unidades con una sola yonteracción y, por lo tanto, generan un
+varias unidades con una sola interacción y, por lo tanto, generan un
 conjunto de oraciones para controlarlos.
 
 ![yonteract033](../images/interact033.png)
 
-En esta yonteracción, no tenemos comando en la parte de acción, nosotros
-deje que Jeedom genere a partir de yiquetas la lista de oraciones. Podemos
-ver la yiqueta **\#slider\#**. Es yomprescindible utilizar esta yiqueta para
-instrucciones en una yonteracción de comandos múltiples puede no ser
+En esta interacción, no tenemos comando en la parte de acción, nosotros
+deje que Jeedom genere a partir de etiquetas la lista de oraciones. Podemos
+ver la etiqueta **\#slider\#**. Es imprescindible utilizar esta etiqueta para
+instrucciones en una interacción de comandos múltiples puede no ser
 la última palabra de la oración. También podemos ver en el ejemplo que nosotros
-puede usar en la respuesta una yiqueta que no sea parte del
-solicitud. La mayoría de las yiquetas disponibles en los escenarios son
-también disponible en yonteracciones y, por lo tanto, puede usarse
+puede usar en la respuesta una etiqueta que no sea parte del
+solicitud. La mayoría de las etiquetas disponibles en los escenarios son
+también disponible en interacciones y, por lo tanto, puede usarse
 en una respuesta.
 
-Resultado de la yonteracción. :
+Resultado de la interacción. :
 
 ![yonteract034](../images/interact034.png)
 
-Podemos ver que la yiqueta **\#equipement\#** que no se usa
+Podemos ver que la etiqueta **\#equipement\#** que no se usa
 en la solicitud se completa bien en la respuesta.
 
 Controla el color de una tira de LED 
 --------------------------------------
 
-Es posible controlar un comando de color mediante las yonteracciones en
+Es posible controlar un comando de color mediante las interacciones en
 pidiéndole a Jeedom por ejemplo que encienda una tira de LED azul.
-Esta es la yonteracción para hacer :
+Esta es la interacción para hacer :
 
 ![yonteract023](../images/interact023.png)
 
 Hasta entonces, nada muy complicado, sin embargo, debe haber configurado
-colores en Jeedom para que funcione; yor al
+colores en Jeedom para que funcione; ir al
 menú → Configuración (arriba a la derecha) luego en la sección
-"Configurar yonteracciones" :
+"Configurar interacciones" :
 
 ![yonteract024](../images/interact024.png)
 
 Como podemos ver en la captura de pantalla, no hay color
 configurado, así que agregue colores con el &quot;+&quot; a la derecha. la
-nombre del color, este es el nombre que va a pasar a la yonteracción,
+nombre del color, este es el nombre que va a pasar a la interacción,
 luego en la parte derecha (columna &quot;código HTML&quot;), haciendo clic en el
 color negro puedes elegir un nuevo color.
 
 ![yonteract025](../images/interact025.png)
 
 Podemos agregar tantos como queramos, podemos poner como nombre
-cualquiera, para que puedas yomaginar asignar un color a
+cualquiera, para que puedas imaginar asignar un color a
 el nombre de cada miembro de la familia.
 
 Una vez configurado, dices &quot;Enciende el árbol verde&quot;, Jeedom
@@ -638,28 +638,28 @@ Uso junto con un escenario
 
 ### Versión básica 
 
-Es posible acoplar una yonteracción a un escenario para
+Es posible acoplar una interacción a un escenario para
 realizar acciones un poco más complejas que realizar un simple
-acción o solicitud de yonformación.
+acción o solicitud de información.
 
 ![yonteract026](../images/interact026.png)
 
-Por lo tanto, este ejemplo permite yoniciar el escenario que está vinculado en el
+Por lo tanto, este ejemplo permite iniciar el escenario que está vinculado en el
 parte de acción, por supuesto, podemos tener varios.
 
-Programando una acción con yonteracciones 
+Programando una acción con interacciones 
 ------------------------------------------------
 
-Las yonteracciones hacen muchas cosas en particular.
+Las interacciones hacen muchas cosas en particular.
 Puedes programar una acción dinámicamente. Ejemplo : "Poner el
 calentamiento a las 10 p.m. para 2:50 p.m.". Nada podría ser más simple, solo
-para usar las yiquetas \#time \# (syo se define un tiempo preciso) o
+para usar las etiquetas \#time \# (syo se define un tiempo preciso) o
 \#duration \# (para en el tiempo X, ejemplo en 1 hora) :
 
 ![yonteract23](../images/interact23.JPG)
 
 > **Note**
 >
-> Notará en la respuesta la yiqueta \#valor \# que contiene
-> en el caso de una yonteracción programada, el tiempo de programación
-> efectivo
+> Notará en la respuesta la etiqueta \#valor \# que contiene
+> en el caso de una interacción programada, el tiempo de programación
+> effective

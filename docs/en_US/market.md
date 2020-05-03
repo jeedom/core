@@ -1,12 +1,12 @@
 Doc a bit special because it will only deal with your page
-market profilee.
+market profile.
 
-Available by going to your username and then profilee from
+Available by going to your username and then profile from
 market (a bit like on Jeedom).
 
 This is broken down into several parts :
 
-My profilee 
+My profile 
 ==========
 
 This is where you will be able to adjust different parameters of your
@@ -112,14 +112,14 @@ My jeedoms
         configure in Jeedom, if you don&#39;t put anything it will be there
         last known IP
 
-    -   **DNS** : allows you to customize the name of your Dns
+    -   **DNS** : allows you to customize the name of your DNS
 
-    -   **URL** : list the different Jeedom access URLss.
+    -   **URL** : list the different Jeedom access URLs.
 
     -   **Dns server** : tells you if the Dns server to which you
         are attached
 
-    -   **Dns status** : allows to see the status of the Dns
+    -   **Dns status** : allows to see the status of the DNS
 
     -   **Creation date** : date of creation of this Jeedom on your
         market account (as a reminder, this is done automatically when

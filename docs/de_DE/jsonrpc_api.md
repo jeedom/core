@@ -37,7 +37,7 @@ Einstellungen :
 -   String Plugin : (optional), Konfigurationswert-Plugin
 
 -   Zeichenfolge Standard : (optional), Wert, der zurückgegeben werden soll, wenn der Schlüssel nicht vorhanden ist
-    nicht
+    pas
 
 config::save
 ------------
@@ -51,7 +51,7 @@ Einstellungen :
 -   String-Schlüssel : Konfigurationswertschlüssel zum Speichern
 
 -   String Plugin : (optional), Plugin des Konfigurationswertes zu
-    Rekord
+    enregistrer
 
 JSON-Ereignis-API
 ==============
@@ -65,7 +65,7 @@ Jeedom&#39;s aktuelle Datumszeit (zur Wiederverwendung für die nächste Abfrage
 
 Einstellungen :
 
--   int Datetime
+-   int datetime
 
 JSON Plugin API
 ===============
@@ -73,7 +73,7 @@ JSON Plugin API
 plugin::listPlugin
 ------------------
 
-Gibt die Liste alleer Plugins zurück
+Gibt die Liste aller Plugins zurück
 
 Einstellungen :
 
@@ -88,13 +88,13 @@ Objekt-JSON-API
 object::all
 -----------
 
-Gibt die Liste alleer Objekte zurück
+Gibt die Liste aller Objekte zurück
 
 object::full
 ------------
 
-Gibt die Liste alleer Objekte zurück, wobei für jedes Objekt allee seine
-Ausrüstung und für jede Ausrüstung allee ihre Befehle sowie
+Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle seine
+Ausrüstung und für jede Ausrüstung alle ihre Befehle sowie
 Zustände dieser (für Info-Befehle)
 
 object::fullById
@@ -120,7 +120,7 @@ Einstellungen:
 object::fullById
 ----------------
 
-Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung allee seine zurück
+Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung alle seine zurück
 Befehle sowie die Zellenzustände (für Typbefehle
 info)
 
@@ -151,12 +151,12 @@ JSON-Zusammenfassungs-API
 summary::global
 ---------------
 
-Gibt die insgesamte Zusammenfassung für den im Parameter übergebenen Schlüssel zurück
+Gibt die globale Zusammenfassung für den im Parameter übergebenen Schlüssel zurück
 
 Einstellungen:
 
 -   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann Jeedom
-    sendet Ihnen die Zusammenfassung alleer Schlüssel
+    sendet Ihnen die Zusammenfassung aller Schlüssel
 
 summary::byId
 -------------
@@ -168,7 +168,7 @@ Einstellungen:
 -   int id : Objekt-ID
 
 -   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann Jeedom
-    sendet Ihnen die Zusammenfassung alleer Schlüssel
+    sendet Ihnen die Zusammenfassung aller Schlüssel
 
 JSON EqLogic API
 ================
@@ -176,7 +176,7 @@ JSON EqLogic API
 eqLogic::all
 ------------
 
-Gibt die Liste alleer Geräte zurück
+Gibt die Liste aller Geräte zurück
 
 eqLogic::fullById
 -----------------
@@ -200,7 +200,7 @@ Einstellungen:
 eqLogic::byType
 ---------------
 
-Gibt allee Geräte zurück, die zum angegebenen Typ gehören (Plugin).
+Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin).
 
 Einstellungen:
 
@@ -209,11 +209,11 @@ Einstellungen:
 eqLogic::byObjectId
 -------------------
 
-Gibt allee Geräte zurück, die zum angegebenen Objekt gehören
+Gibt alle Geräte zurück, die zum angegebenen Objekt gehören
 
 Einstellungen:
 
--   int Objekt\_id
+-   int object\_id
 
 eqLogic::byTypeAndId
 --------------------
@@ -243,9 +243,9 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge Protokollische ID = ''
+-   Zeichenfolge logische ID = ''
 
--   int Objekt\_id = null
+-   int object\_id = null
 
 -   int eqReal\_id = null
 
@@ -265,7 +265,7 @@ JSON Cmd API
 cmd::all
 --------
 
-Gibt die Liste alleer Befehle zurück
+Gibt die Liste aller Befehle zurück
 
 cmd::byId
 ---------
@@ -279,7 +279,7 @@ Einstellungen:
 cmd::byEqLogicId
 ----------------
 
-Gibt allee Bestellungen zurück, die zum angegebenen Gerät gehören
+Gibt alle Bestellungen zurück, die zum angegebenen Gerät gehören
 
 Einstellungen:
 
@@ -351,7 +351,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge Protokollische ID
+-   Zeichenfolge logische ID
 
 -   Zeichenfolge eqType
 
@@ -390,9 +390,9 @@ Einstellungen:
 
 -   int id
 
--   Zeichenfolgenwert : Wert
+-   Zeichenfolgenwert : valeur
 
--   Zeichenfolge Datetime : (optional) Wert Datetime
+-   Zeichenfolge Datetime : (optional) Wert datetime
 
 JSON-Szenario-API
 =================
@@ -400,7 +400,7 @@ JSON-Szenario-API
 scenario::all
 -------------
 
-Gibt die Liste alleer Szenarien zurück
+Gibt die Liste aller Szenarien zurück
 
 scenario::byId
 --------------
@@ -427,7 +427,7 @@ Ermöglicht das Importieren eines Szenarios.
 
 Einstellungen:
 
--   int id : ID des Szenarios, in das Importiert werden soll (leer, wenn erstellt)
+-   int id : ID des Szenarios, in das importiert werden soll (leer, wenn erstellt)
 
 -   Zeichenfolge humanName : menschlicher Name des Szenarios (leer bei Erstellung)
 
@@ -528,12 +528,12 @@ JSON-Nachrichten-API
 message::all
 ------------
 
-Gibt die Liste alleer Nachrichten zurück
+Gibt die Liste aller Nachrichten zurück
 
 message::removeAll
 ------------------
 
-Löschen Sie allee Nachrichten
+Löschen Sie alle Nachrichten
 
 JSON-Interaktions-API
 ====================
@@ -554,7 +554,7 @@ Einstellungen:
 interactQuery::all
 ------------------
 
-Gibt die vollständige Liste alleer Interaktionen zurück
+Gibt die vollständige Liste aller Interaktionen zurück
 
 JSON-System-API
 ===============
@@ -572,7 +572,7 @@ Starten Sie Jeedom neu
 jeedom::isOk
 ------------
 
-Lässt Sie wissen, ob der insgesamte Zustand von Jeedom in Ordnung ist
+Lässt Sie wissen, ob der globale Zustand von Jeedom in Ordnung ist
 
 jeedom::update
 --------------
@@ -672,7 +672,7 @@ JSON-Update-API
 update::all
 -----------
 
-Geben Sie die Liste alleer installierenierten Komponenten, deren Version und die zurück
+Geben Sie die Liste aller installierten Komponenten, deren Version und die zurück
 verwandte Informationen
 
 update::checkUpdate
@@ -683,15 +683,15 @@ Ermöglicht die Suche nach Updates
 update::update
 --------------
 
-Ermöglicht das Aktualisieren von Jeedom und alleen Plugins
+Ermöglicht das Aktualisieren von Jeedom und allen Plugins
 
 update::doUpdate
 --------------
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 JSON-Netzwerk-API
 ================
@@ -724,9 +724,9 @@ Abrufen der Objektliste :
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::alle &#39;, array ())){
-    print_r ($ jsonrpc-&gt; bekommenResult ());
+    print_r ($ jsonrpc-&gt; getResult ());
 }else{
-    echo $ jsonrpc-&gt; bekommenError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 
@@ -737,7 +737,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
     Echo &#39;OK&#39;;
 }else{
-    echo $ jsonrpc-&gt; bekommenError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 

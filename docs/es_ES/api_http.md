@@ -27,7 +27,7 @@ Guión
 Aquí está la URL =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
--   **id** : coincide con su identificación de escenario. La identificaciónentificación está en el
+-   **id** : coincide con su identificación de escenario. La identificación está en el
     página del escenario en cuestión, en &quot;herramientas&quot; → &quot;Escenarios&quot;, una vez que
     escenario seleccionado, junto al nombre de la pestaña &quot;General&quot;. otro
     manera de encontrarlo : en &quot;Herramientas&quot; → &quot;Escenarios&quot;, haga clic en
@@ -49,7 +49,7 @@ Comando de información / acción
 Aquí está la URL =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&id=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
 
--   **id** : corresponde a la identificaciónentificación de lo que desea conducir o desde qué
+-   **id** : corresponde a la identificación de lo que desea conducir o desde qué
     desea recibir información
 
 La forma más fácil de obtener esta URL es ir a la página Herramientas →
@@ -100,7 +100,7 @@ Aquí está la URL =
 
 -   **message** : mensaje en cuestión, tenga cuidado de pensar en la codificación
     el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar un
-    herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/)
+    outil, [aquí](https://meyerweb.com/eric/tools/dencoder/)
 
 Objeto 
 =====
@@ -117,7 +117,7 @@ Aquí está la URL =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&el objeto\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 -   **el objeto\_id** : ID del objeto del que queremos recuperar
-    comodidades
+    équipements
 
 Orden 
 ========
@@ -126,7 +126,7 @@ Aquí está la URL =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
 -   **eqLogic\_id** : Identificación del equipo del que queremos recuperar
-    comandos
+    commandes
 
 Datos completos 
 =========

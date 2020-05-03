@@ -37,7 +37,7 @@ Configuraciones :
 -   complemento de cadena : (opcional), complemento de valor de configuración
 
 -   cadena por defecto : (opcional), valor a devolver si la clave no existe
-    no
+    pas
 
 config::save
 ------------
@@ -51,21 +51,21 @@ Configuraciones :
 -   clave de cuerda : clave de valor de configuración para guardar
 
 -   complemento de cadena : (opcional), complemento del valor de configuración para
-    registro
+    enregistrer
 
-API de eventoos JSON
+API de eventos JSON
 ==============
 
 event::changes
 --------------
 
-Devuelve la listaa de cambios desde la fecha y hora noada en el parámetro
+Devuelve la lista de cambios desde la fecha y hora pasada en el parámetro
 (debe estar en microsegundos). También tendrás en la respuesta el
 Fecha y hora actual de Jeedom (se reutilizará para la próxima consulta)
 
 Configuraciones :
 
--   int fecha y hora
+-   int datetime
 
 API de complementos JSON
 ===============
@@ -73,13 +73,13 @@ API de complementos JSON
 plugin::listPlugin
 ------------------
 
-Devuelve la listaa de todos los complementos
+Devuelve la lista de todos los complementos
 
 Configuraciones :
 
--   int enableOnly = 0 (solo devuelve la listaa de complementos activados)
+-   int enableOnly = 0 (solo devuelve la lista de complementos activados)
 
--   int orderByCaterogy = 0 (devuelve la listaa de complementos ordenados
+-   int orderByCaterogy = 0 (devuelve la lista de complementos ordenados
     por categoría)
 
 API JSON de objetos
@@ -88,12 +88,12 @@ API JSON de objetos
 object::all
 -----------
 
-Devuelve la listaa de todos los objetos.
+Devuelve la lista de todos los objetos.
 
 object::full
 ------------
 
-Devuelve la listaa de todos los objetos, con para cada objeto todos sus
+Devuelve la lista de todos los objetos, con para cada objeto todos sus
 equipo y para cada equipo todos sus comandos, así como
 estados de estos (para comandos de tipo de información)
 
@@ -151,7 +151,7 @@ API de resumen JSON
 summary::global
 ---------------
 
-Devuelve el resumen total de la clave noada en el parámetro
+Devuelve el resumen total de la clave pasada en el parámetro
 
 Configuraciones:
 
@@ -176,7 +176,7 @@ API JSON EqLogic
 eqLogic::all
 ------------
 
-Devuelve la listaa de todos los equipos.
+Devuelve la lista de todos los equipos.
 
 eqLogic::fullById
 -----------------
@@ -265,7 +265,7 @@ JSON Cmd API
 cmd::all
 --------
 
-Devuelve la listaa de todos los comandos.
+Devuelve la lista de todos los comandos.
 
 cmd::byId
 ---------
@@ -390,9 +390,9 @@ Configuraciones:
 
 -   int id
 
--   valor de cadena : valor
+-   valor de cadena : valeur
 
--   cadena de fecha y hora : (opcional) valor fecha y hora
+-   cadena de fecha y hora : (opcional) valor datetime
 
 API de eguión JSON
 =================
@@ -400,7 +400,7 @@ API de eguión JSON
 scenario::all
 -------------
 
-Devuelve la listaa de todos los escenarios.
+Devuelve la lista de todos los escenarios.
 
 scenario::byId
 --------------
@@ -414,7 +414,7 @@ Configuraciones:
 scenario::export
 ----------------
 
-Devuelve la exportaciónación del escenario, así como el nombre humano del escenario.
+Devuelve la exportación del escenario, así como el nombre humano del escenario.
 
 Configuraciones:
 
@@ -423,15 +423,15 @@ Configuraciones:
 scenario::import
 ----------------
 
-Le permite importaciónar un escenario.
+Le permite importar un escenario.
 
 Configuraciones:
 
--   int id : ID del eguión en el que importaciónar (vacío si se crea)
+-   int id : ID del eguión en el que importar (vacío si se crea)
 
 -   string humanName : nombre humano del eguión (vacío si creación)
 
--   importaciónación de matriz : eguión (del campo eguión de exportaciónación::export)
+-   importación de matriz : eguión (del campo eguión de exportación::export)
 
 scenario::changeState
 ---------------------
@@ -463,7 +463,7 @@ Configuraciones:
 log::list
 ---------
 
-Obtenga la listaa de registros de Jeedom
+Obtenga la lista de registros de Jeedom
 
 Configuraciones:
 
@@ -528,7 +528,7 @@ API de mensajes JSON
 message::all
 ------------
 
-Devuelve la listaa de todos los mensajes.
+Devuelve la lista de todos los mensajes.
 
 message::removeAll
 ------------------
@@ -554,7 +554,7 @@ Configuraciones:
 interactQuery::all
 ------------------
 
-Devuelve la listaa completa de todas las interacciones.
+Devuelve la lista completa de todas las interacciones.
 
 API del sistema JSON
 ===============
@@ -672,7 +672,7 @@ API de actualización de JSON
 update::all
 -----------
 
-Devuelve la listaa de todos los componentes instalados, su versión y el
+Devuelve la lista de todos los componentes instalados, su versión y el
 información relacionada
 
 update::checkUpdate
@@ -690,7 +690,7 @@ update::doUpdate
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   registro de cadenaicalId (opcional) : nombre del complemento (nombre lógico)
 
 API de red JSON
@@ -719,14 +719,14 @@ Yo uso [esta clase
 php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
-Recuperando la listaa de objetos :
+Recuperando la lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest (objeto&#39;::todos &#39;, array ())){
-    print_r ($ jsonrpc-&gt; obtenerResult ());
+    print_r ($ jsonrpc-&gt; getResult ());
 }else{
-    echo $ jsonrpc-&gt; obtenerError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 
@@ -737,7 +737,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; mensaje &#39;=>&#39; Funciona &#39;)))){
     echo &#39;OK&#39;;
 }else{
-    echo $ jsonrpc-&gt; obtenerError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 

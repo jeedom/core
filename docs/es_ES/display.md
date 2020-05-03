@@ -12,14 +12,14 @@ Esta página es accesibLa por **Herramientas → Resumen de domótica**.
 La parte superior de la página 
 ------------------
 
-En la parte superior de la página, encontramos : \* **Numero de objetos** : Número
+En la parte superior de la página, encontramos : \* **Numero de objetos** : Nombre
 total de objetos configurados en nuestro Jeedom, contando los elementos
 Inactivo. \* **Numero de equipos** : Lo mismo para el equipo. \*
 **Numero de ordenes** : Lo mismo para pedidos. \* **Inactif** :
 Marque esta casilla si desea que los elementos inactivos estén bien
 mostrado en esta página. \* **Rechercher** : Busque un
-elemento particular. Puede ser el apellidobre de un equipo, un pedido
-o el apellidobre del complemento por el cual se creó el equipo.
+elemento particular. Puede ser el nombre de un equipo, un pedido
+o el nombre del complemento por el cual se creó el equipo.
 
 También tiene un botón &quot;Historial de eliminaciones&quot; que La permitirá mostrar el historial de pedidos, equipos, objetos, vista, diseño, diseño 3d, escenario y usuario eliminado..
 
@@ -35,7 +35,7 @@ están disponible. De izquierda a derecha :
 -   El primero se utiliza para abrir la página de configuración de objetos en un
     nueva pestaña,
 
--   el segundo proporciona Informaciónrmación sobre el objeto,
+-   el segundo proporciona información sobre el objeto,
 
 -   el último La permite mostrar u ocultar la lista de equipos
     atribuido a él.
@@ -116,10 +116,10 @@ disponibLa :
 
 -   **Supprimer** : Retirar equipo.
 
-Pestaña de Informaciónrmación 
+Pestaña de información 
 -------------------
 
-La pestaña **Informations** contiene la Informaciónrmación general de
+La pestaña **Informations** contiene la información general de
 el equipo y sus controles :
 
 -   **ID** : Identificador único en la base de datos Jeedom.
@@ -167,10 +167,10 @@ diseño tan bien como móvil.
 
 -   **Visible** : Marque la casilla para hacer visibLa el equipo.
 
--   **Mostrar apellidobre** : Marque la casilla para mostrar el apellidobre de
+-   **Mostrar nombre** : Marque la casilla para mostrar el nombre de
     equipo en el azulejo.
 
--   **Mostrar apellidobre de objeto** : Marque la casilla para mostrar el apellidobre
+-   **Mostrar nombre de objeto** : Marque la casilla para mostrar el nombre
     del objeto padre del equipo, al lado del azulejo.
 
 -   **Color de fondo** : Marque la casilla para mantener el color de fondo
@@ -196,7 +196,7 @@ diseño tan bien como móvil.
 ### Parámetros opcionales en el mosaico 
 
 A continuación, encontramos parámetros de visualización opcionales que
-puede aplicarse al equipo. Estos parámetros están compuestos de un apellidobre y
+puede aplicarse al equipo. Estos parámetros están compuestos de un nombre y
 vaLa la pena. Solo haz clic en **Ajouter** aplicar uno
 de nuevo. Para equipos, solo el valor **style** es para el
 momento utilizado, permite insertar código CSS en el equipo en
@@ -246,9 +246,9 @@ este :
 Pestaña Alertas 
 --------------
 
-Esta pestaña proporciona Informaciónrmación sobre la batería de
+Esta pestaña proporciona información sobre la batería de
 el equipo y definir alertas en relación con él. He aquí los
-tipos de Informaciónrmación que se pueden encontrar :
+tipos de información que se pueden encontrar :
 
 -   **Tipo de batería**,
 
@@ -304,13 +304,13 @@ Primero, en la parte superior derecha, algunos botones disponibLa :
 
 > **Note**
 >
-> Dependiendo del tipo de orden, la Informaciónrmación / / acciones mostradas
+> Dependiendo del tipo de orden, la información / / acciones mostradas
 > puede cambiar.
 
-Pestaña de Informaciónrmación 
+Pestaña de información 
 -------------------
 
-La pestaña **Informations** contiene Informaciónrmación general sobre el
+La pestaña **Informations** contiene información general sobre el
 orden :
 
 -   **ID** : Identificador único en la base de datos..
@@ -320,13 +320,13 @@ orden :
 
 -   **Nom** : Número de la orden.
 
--   **Type** : Puntao de orden (acción o Informaciónrmación).
+-   **Type** : Tipo de orden (acción o información).
 
 -   **Sous-type** : Subtipo de comando (binario, digital, etc.).
 
 -   **URL directa** : Proporciona la URL para acceder a este equipo. (haga clic
     derecha, copie la dirección del enlace) La URL iniciará el comando para un
-    **action** y devolver la Informaciónrmación para un **info**.
+    **action** y devolver la información para un **info**.
 
 -   **Unité** : Unidad de control.
 
@@ -339,14 +339,14 @@ orden :
 -   **Sigue en la línea de tiempo** : Marque esta casilla para tener esto
     el comando es visibLa en la línea de tiempo cuando se usa.
 
--   **Prohibir en interacciones automáticas** : Las prohíbe
+-   **Prohibir en interacciones automáticas** : les prohíbe
     interacciones automáticas en este comando
 
 -   **Icono** : La permite cambiar el ícono de comando.
 
 También tienes otros tres botones naranjas debajo :
 
--   **Este comando reemplaza la Identificación** : Reemplazar una Identificación de
+-   **Este comando reemplaza la ID** : Reemplazar una Identificación de
     ordenar por el orden en cuestión. Útil si ha eliminado un
     equipo en Jeedom y tienes escenarios que usan
     comandos de ella.
@@ -370,7 +370,7 @@ respective.
 Pestaña de configuración 
 --------------------
 
-### Para una orden de tipo de Informaciónrmación : 
+### Para una orden de tipo de información : 
 
 -   **Cálculo y redondeo.**
 
@@ -385,7 +385,7 @@ Pestaña de configuración
 
 -   **Tipo genérico** : La permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
-    Esta Informaciónrmación es utilizada por la aplicación móvil..
+    Esta información es utilizada por la aplicación móvil..
 
 -   **Acción sobre el valor, si** : Hagamos tipos de
     mini escenarios. Puede, por ejemplo, decir que si el valor vale
@@ -412,7 +412,7 @@ Pestaña de configuración
         Jeedom para eliminar todos los datos anteriores a uno
         cierto periodo. Puede ser útil para no guardar
         datos si no son necesarios y, por lo tanto, limitan la cantidad
-        de Informaciónrmación registrada por Jeedom.
+        de información registrada por Jeedom.
 
 -   **Gestión de valores**
 
@@ -437,15 +437,15 @@ Pestaña de configuración
     -   **URL de inserción** : La permite agregar una URL para llamar en caso de
         orden de actualización. Puedes usar etiquetas
         Próximo : `# value #` para el valor del pedido, `# cmd_name #`
-        para el apellidobre del comando, `# cmd_id #` para el identificador único
-        del comando, `# humanname #` para el apellidobre completo del comando
-        (por ejemplo, : `# [Baño] [Hidrometría] [Humedad] #`), `# eq_name #` para el apellidobre del equipo
+        para el nombre del comando, `# cmd_id #` para el identificador único
+        del comando, `# humanname #` para el nombre completo del comando
+        (por ejemplo, : `# [Baño] [Hidrometría] [Humedad] #`), `# eq_name #` para el nombre del equipo
 
 ### Para un comando de acción : 
 
 -   **Tipo genérico** : La permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
-    Esta Informaciónrmación es utilizada por la aplicación móvil..
+    Esta información es utilizada por la aplicación móvil..
 
 -   **Confirmar acción** : Marque esta casilla para solicitar Jeedom
     confirmación cuando la acción se inicia desde la interfaz
@@ -486,14 +486,14 @@ mobile.
 
 -   **Visible** : Marque para hacer visibLa el comando.
 
--   **Mostrar apellidobre** : Marque para hacer el apellidobre de la
+-   **Mostrar nombre** : Marque para hacer el nombre de la
     comando, dependiendo del contexto.
 
--   **Mostrar apellidobre e icono** : Marque para hacer visibLa el ícono
-    además del apellidobre del comando.
+-   **Mostrar nombre e icono** : Marque para hacer visibLa el ícono
+    además del nombre del comando.
 
--   **Línea envuelta antes del Reproductor** : Seleccionar **Antes de
-    Reproductor** o **después del Reproductor** para agregar un salto de línea
+-   **Línea envuelta antes del widget** : Seleccionar **Antes de
+    widget** o **después del widget** para agregar un salto de línea
     antes o después del Reproductor (para forzar, por ejemplo, una visualización en
     columna de diferentes comandos de equipo en lugar de líneas
     por defecto)
@@ -514,4 +514,4 @@ La permite modificar el código del Reproductor solo para el comando actual.
 > **Note**
 >
 > Si desea modificar el código, no olvide marcar la casilla
-> **Habilitar la personalización del Reproductor**
+> **Habilitar la personalización del widget**

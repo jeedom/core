@@ -118,7 +118,7 @@ Cloud backup allows Jeedom to send your backups
 directly on the Market. This allows you to restore them easily
 and be sure not to lose them. The Market keeps the last 6
 backups. To subscribe just go to your page
-**profil** on the Market, then in the tab **my backups**. You
+**profil** on the Market, then in the tab **my backups**. Vous
 can, from this page, retrieve a backup or buy a
 subscription (for 1, 3, 6 or 12 months).
 

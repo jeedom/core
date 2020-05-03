@@ -20,7 +20,7 @@ In this tab we find general information about Jeedom :
     Jeedom on the market, it is advisable to click on the button
     **Reset**.
 
--   **Langue** : Theanguage used in your Jeedom.
+-   **Langue** : Language used in your Jeedom.
 
 -   **Generate translations** : Generate translations,
     be careful, this can slow down your system. Most useful option
@@ -35,7 +35,7 @@ In this tab we find general information about Jeedom :
 
 -   **Optional time server** : Indicates which time server should
     be used if you click **Force synchronization of
-    time**. (to be reserved for experts)
+    l'heure**. (to be reserved for experts)
 
 -   **Skip time check** : tells Jeedom not to
     check if the time is consistent between itself and the system on
@@ -101,7 +101,7 @@ Security
 LDAP 
 ----
 
--   **Enable TheDAP authentication** : enable authentication to
+-   **Enable LDAP authentication** : enable authentication to
     through an AD (LDAP)
 
 -   **Host** : server hosting the AD
@@ -116,7 +116,7 @@ LDAP
 -   **Password** : password for Jeedom to connect to AD
 
 -   **User search fields** : search fields of
-    user login. Usually uid for TheDAP, samaccountname for
+    user login. Usually uid for LDAP, samaccountname for
     Windows AD
 
 -   **Filter (optional)** : filter on the AD (for managing
@@ -150,8 +150,8 @@ Networks
 =======
 
 It is absolutely necessary to correctly configure this important part of
-Jeedom, otherwise many Plugins may not work. he
-is possible to access Jeedom in two different ways : The'**access
+Jeedom, otherwise many plugins may not work. he
+is possible to access Jeedom in two different ways : L'**access
 interne** (from the same local network as Jeedom) and l'**access
 externe** (from another network, in particular from the Internet).
 
@@ -171,7 +171,7 @@ externe** (from another network, in particular from the Internet).
     same network equipment as Jeedom (LAN)
 
     -   **OK / NOK** : indicates whether the internal network configuration is
-        correct
+        correcte
 
     -   **Protocole** : the protocol to use, often HTTP
 
@@ -189,7 +189,7 @@ externe** (from another network, in particular from the Internet).
     Jeedom
 
     -   **OK / NOK** : indicates whether the external network configuration is
-        correct
+        correcte
 
     -   **Protocole** : protocol used for outdoor access
 
@@ -314,7 +314,7 @@ Historical
 
 > **Note**
 >
-> The first parameter **View widget statistics** East
+> The first parameter **View widget statistics** est
 > possible but disabled by default because it significantly lengthens the
 > dashboard display time. If you activate this option, for example
 > default, Jeedom relies on data from the past 24 hours to
@@ -326,7 +326,7 @@ Historical
 Push 
 ----
 
-**Global push URLs** : allows to add a URLs to call in case of
+**Global push URL** : allows to add a URLs to call in case of
 order update. You can use the following tags :
 **\#value\#** for the order value, **\#Cmd\_name \#** for the
 command name, **\#Cmd\_id \#** for the unique identifier of the
@@ -361,7 +361,7 @@ interactions which you will find in Tools → Interactions.
 > **Tip**
 >
 > To activate the interaction log, go to the tab
-> Administration → Configuration → Theogs, then tick **Debug** in the list
+> Administration → Configuration → Logs, then tick **Debug** in the list
 > bottom. WARNING : the logs will then be very verbose !
 
 General 
@@ -448,7 +448,7 @@ Here are the different options available :
 -   **Enable contextual responses** : Check to activate
     contextual interactions.
 
--   **Priority contextual response if the sentence begins with** : Yes
+-   **Priority contextual response if the sentence begins with** : Si
     the sentence begins with the word you enter here, Jeedom will
     then prioritize a contextual response (you can put
     several words separated by **;** ).
@@ -469,8 +469,8 @@ Here are the different options available :
     for a type interaction **Warn me** (used, in particular,
     if you have programmed the alert via the mobile interface)
 
--   **Synonym for objects** : Theist of synonyms for objects
-    (ex : ground floor|ground floor|basement|low; sdb|bathroom).
+-   **Synonym for objects** : List of synonyms for objects
+    (ex : rdc|ground floor|basement|low; sdb|bathroom).
 
 -   **Synonym for equipment** : Synonyms list for
     equipment.
@@ -478,7 +478,7 @@ Here are the different options available :
 -   **Synonym for orders** : Synonyms list for
     the orders.
 
--   **Synonym for abstracts** : Theist of synonyms for summaries.
+-   **Synonym for abstracts** : List of synonyms for summaries.
 
 -   **Synonym for maximum slider command** : Synonym for putting a
     maximum slider type command (ex opens to opens the shutter
@@ -534,7 +534,7 @@ equipment, objects, etc..
 
 -   **Depth for variables** : Same for variables.
 
--   **Parameter of prerender** : Theets act on the layout
+-   **Parameter of prerender** : Lets act on the layout
     of the graph.
 
 -   **Render parameter** : Same.
@@ -550,7 +550,7 @@ objects :
 
 -   **Nom** : Abstract name.
 
--   **Calcul** : Calculationation method, can be of type :
+-   **Calcul** : Calculation method, can be of type :
 
     -   **Somme** : sum the different values,
 
@@ -594,14 +594,14 @@ Timeline
 Posts 
 --------
 
--   **Add a Message to each error in the logs** : if a Plugin
+-   **Add a Message to each error in the logs** : if a plugin
     or Jeedom writes an error Message in a log, Jeedom adds
     automatically a Message in the Message center (at least
     you are sure not to miss it).
 
--   **Action on Message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions : 
+-   **Action on message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions : 
         - #message# : Message in question
-        - #plugin# : Plugin that triggered the Message
+        - #plugin# : Plugin that triggered the message
 
 Notifications 
 -------
@@ -644,7 +644,7 @@ Log
 -   **Log engine** : Allows you to change the log engine for, for
     example, send them to a syslog daemon (d).
 
--   **Log format** : Theog format to use (Caution : it
+-   **Log format** : Log format to use (Caution : ça
     does not affect daemon logs).
 
 -   **Maximum number of lines in a log file** : Defines the
@@ -664,7 +664,7 @@ plugins.
 Facilities 
 ===========
 
--   **Number of failures before deactivation of the equipment** : Number
+-   **Number of failures before deactivation of the equipment** : Nombre
     communication failure with the equipment before deactivation of
     this one (a Message will warn you if this happens).
 
@@ -691,12 +691,12 @@ Deposits
 ----------
 
 The depots are storage (and service) spaces to be able to
-move backups, recover Plugins, recover core
+move backups, recover plugins, recover core
 Jeedom, etc.
 
 ### File 
 
-Deposit used to activate the sending of Plugins by files.
+Deposit used to activate the sending of plugins by files.
 
 ### Github 
 
@@ -704,7 +704,7 @@ Deposit used to connect Jeedom to Github.
 
 -   **Token** : Token for access to private deposit.
 
--   **Jeedom core repository user or organization** : Theast name
+-   **Jeedom core repository user or organization** : Nom
     the user or the organization on github for the core.
 
 -   **Repository name for the Jeedom core** : Repository name for core.
@@ -790,8 +790,8 @@ a Samba share (ex : NAS Synology).
 
 ### URLs 
 
--   **Jeedom core URLs**
+-   **Jeedom core URL**
 
--   **Jeedom core version URLs**
+-   **Jeedom core version URL**
 
 

@@ -10,9 +10,9 @@ sua imaginação.
 
 > **Important**
 >
-> Todas as ações são feitas Clique emando com o botão direito nesta página, atenção
+> Todas as ações são feitas clicando com o botão direito nesta página, atenção
 > fazê-lo bem no Projeto. Durante a criação, é necessário, portanto,
-> faça no meio da página (para ter certeza de estar no Projeto).
+> faça no meio da página (para ter certeza de estar no design).
 
 No menu (clique com o botão direito do mouse), encontramos o
 seguintes ações :
@@ -36,7 +36,7 @@ seguintes ações :
     -   **Rumo a vista** : Adicionar um link a uma visualização
 
     -   **Para projetar** : Adicionar um link a outro
-        Projeto
+        design
 
 -   **Adicionar equipamento** : Adiciona equipamento
 
@@ -45,7 +45,7 @@ seguintes ações :
 -   **Adicionar imagem / câmera** : Permite adicionar uma imagem ou fluxo
     de uma camera
 
--   **Adicionar área** : Adicionar uma área Clique emável transparente
+-   **Adicionar área** : Adicionar uma área clicável transparente
     quem pode executar uma série de ações em um clique (dependendo
     ou não o status de outro pedido)
 
@@ -74,18 +74,18 @@ seguintes ações :
 
 -   **Limpar projeto** : Remover desenho
 
--   **Criar um Projeto** : permite adicionar um Projeto
+-   **Criar um design** : permite adicionar um design
 
 -   **Projeto duplicado** : Duplica o Projeto atual
 
--   **Cenografia** : Acesso à configuração do Projeto
+-   **Cenografia** : Acesso à configuração do design
 
 -   **Sauvegarder** : permite salvar o Projeto (atenção, existem
     também backups automáticos durante determinadas ações)
 
 > **Important**
 >
-> A configuração dos elementos de Projeto é feita Clique emando em
+> A configuração dos elementos de Projeto é feita clicando em
 > estes.
 
 Configuração do projeto 
@@ -95,7 +95,7 @@ Encontrado aqui :
 
 -   **Geral**
 
-    -   **Nom** : O nome do seu Projeto
+    -   **Nom** : O nome do seu design
 
     -   **Fundo transparente** : Torna o plano de fundo transparente. Tenha cuidado se o
         caixa estiver marcada, a cor do plano de fundo não será usada
@@ -107,17 +107,17 @@ Encontrado aqui :
         não é solicitado)
 
     -   **ícone** : Um ícone para ele (aparece no menu
-        escolha do Projeto)
+        escolha do design)
 
     -   **Image**
 
-        -   **Envoyer** : Permite adicionar uma imagem de plano de fundo ao Projeto
+        -   **Envoyer** : Permite adicionar uma imagem de plano de fundo ao design
 
         -   **Excluir imagem** : Excluir imagem
 
 -   **Tailles**
 
-    -   **Tamanho (LxA)** : Permite corrigir o tamanho do seu Projeto
+    -   **Tamanho (LxA)** : Permite corrigir o tamanho do seu design
         (moldura cinza no modo de edição)
 
 Configuração geral de elementos 
@@ -205,7 +205,7 @@ Texto / html
     esqueça de colocar%, ex 50%)
 
 -   **Bordure** : adicione uma borda, cuidado com a sintaxe
-    HTML (use a sintaxe CSS, por exemplo : sólido
+    HTML (use a sintaxe CSS, por exemplo : solid
     1 px preto)
 
 -   **Tamanho da fonte** : Permite alterar o tamanho da fonte
@@ -239,7 +239,7 @@ Link
 Configurações de exibição 
 ---------------------
 
--   **Nom** : Nomee do link (texto exibido)
+-   **Nom** : Nome do link (texto exibido)
 
 -   **Lien** : Link para o Projeto ou exibição em questão
 
@@ -252,7 +252,7 @@ Configurações de exibição
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : permite
+-   **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
@@ -318,7 +318,7 @@ Configurações de exibição
 
 Nesse modo, um clique na zona executa uma ou mais ações.
 
-Aqui você só precisa indicar a lista de ações a serem executadas ao Clique emar em
+Aqui você só precisa indicar a lista de ações a serem executadas ao clicar em
 na área
 
 ### Macro binário 
@@ -336,15 +336,15 @@ para o Off
 
 ### Viaduto widget 
 
-Nesse modo, ao passar o mouse ou Clique emar na área Jeedom, você
+Nesse modo, ao passar o mouse ou clicar na área Jeedom, você
 exibir o widget em questão
 
--   **Equipement** : Widget a ser exibido ao passar o mouse ou Clique emar em
+-   **Equipement** : Widget a ser exibido ao passar o mouse ou clicar em
 
 -   **Mostrar no viaduto** : Se marcado, exibe o widget em foco
 
 -   **Vista em um clique** : se marcado, o widget será exibido em
-    Clique em
+    clic
 
 -   **Position** : permite escolher o local em que o
     widget (canto inferior direito padrão)
@@ -364,7 +364,7 @@ Resumo
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : permite
+-   **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
@@ -376,9 +376,9 @@ Resumo
 Faq 
 ======
 
->**Não consigo mais editar meu Projeto**
+>**Não consigo mais editar meu design**
 >
->Se você colocou um widget ou uma imagem que ocupa quase todo o Projeto, clique fora do widget ou imagem para acessar o menu Clique emando com o botão direito do mouse.
+>Se você colocou um widget ou uma imagem que ocupa quase todo o design, clique fora do widget ou imagem para acessar o menu clicando com o botão direito do mouse.
 
 >**Excluir um Projeto que não funciona mais**
 >

@@ -26,7 +26,7 @@ folgende Aktionen :
 
 -   **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu
 
--   **Fügen Sie Text / HTML hinzu** : Ermöglicht das Hinzufügen von Text oder CODE
+-   **Fügen Sie Text / HTML hinzu** : Ermöglicht das Hinzufügen von Text oder Code
     html / javascript
 
 -   **Szenario hinzufügen** : Fügen Sie ein Szenario hinzu
@@ -36,7 +36,7 @@ folgende Aktionen :
     -   **Auf dem Weg zu einer Aussicht** : Fügen Sie einer Ansicht einen Link hinzu
 
     -   **Auf dem Weg zu einem Design** : Fügen Sie einen Link zu einem anderen hinzu
-        Design
+        design
 
 -   **Ausrüstung hinzufügen** : Fügt Ausrüstung hinzu
 
@@ -74,7 +74,7 @@ folgende Aktionen :
 
 -   **Design löschen** : Design löschen
 
--   **Erstellen Sie ein Design** : ermöglicht das Hinzufügen eines Design
+-   **Erstellen Sie ein Design** : ermöglicht das Hinzufügen eines Designs
 
 -   **Doppeltes Design** : Dupliziere das aktuelle Design
 
@@ -95,7 +95,7 @@ Hier gefunden :
 
 -   **General**
 
-    -   **Nom** : Der Name Ihres Design
+    -   **Nom** : Der Name Ihres Designs
 
     -   **Transparenter Hintergrund** : macht den Hintergrund transparent. Seien Sie vorsichtig, wenn die
         Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet
@@ -103,11 +103,11 @@ Hier gefunden :
     -   **Hintergrundfarbe** : Design Hintergrundfarbe (weiß
         standardmäßig)
 
-    -   **Code** : Zugriffscode für Ihr Design (falls leer, kein CODE
+    -   **Code** : Zugriffscode für Ihr Design (falls leer, kein Code
         wird nicht angefordert)
 
     -   **Symbol** : Ein Symbol dafür (erscheint im Menü
-        Wahl des Design)
+        Wahl des Designs)
 
     -   **Image**
 
@@ -117,7 +117,7 @@ Hier gefunden :
 
 -   **Tailles**
 
-    -   **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Design
+    -   **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs
         (grauer Rahmen im Bearbeitungsmodus)
 
 Allgemeine Konfiguration der Elemente 
@@ -205,7 +205,7 @@ Text / html
     vergiss%, ex 50% zu setzen)
 
 -   **Bordure** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
-    HTML (verwenden Sie beispielsweise die CSS-Syntax : fest
+    HTML (verwenden Sie beispielsweise die CSS-Syntax : solid
     1px schwarz)
 
 -   **Schriftgröße** : Mit dieser Option können Sie die Schriftgröße ändern
@@ -252,7 +252,7 @@ Anzeigeeinstellungen
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : erlaubt
+-   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
@@ -344,7 +344,7 @@ Zeigen Sie das betreffende Widget an
 -   **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
 
 -   **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
-    klicken
+    clic
 
 -   **Position** : Hier können Sie den Ort auswählen, an dem die
     Widget (Standard unten rechts)
@@ -364,7 +364,7 @@ Zusammenfassung
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : erlaubt
+-   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :

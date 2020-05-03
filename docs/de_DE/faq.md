@@ -2,7 +2,7 @@ Jeedom benötigt ein Abonnement ?
 =====================================
 
 Nein, Jeedom ist voll nutzbar, ohne dass es eines braucht
-Abonnement überhaupt. E.s werden jedoch Dienstleistungen für angeboten
+Abonnement überhaupt. Es werden jedoch Dienstleistungen für angeboten
 Backups oder Anrufe / SMS, die aber tatsächlich bleiben
 optionnels.
 
@@ -50,8 +50,8 @@ normal.
 Gibt es eine dedizierte mobile App ? 
 ========================================
 
-Jeedom hat eine mobile Version, die für den E.insatz auf Mobilgeräten geeignet ist
-Tablette. E.s gibt auch eine native App für Android und iOS.
+Jeedom hat eine mobile Version, die für den Einsatz auf Mobilgeräten geeignet ist
+Tablette. Es gibt auch eine native App für Android und iOS.
 
 Was sind die Anmeldeinformationen, um sich beim ersten Mal anzumelden? ? 
 ================================================================
@@ -64,13 +64,13 @@ Es wird empfohlen, diese Kennungen für mehr Sicherheit zu ändern.
 Können wir Jeedom in https setzen? ? 
 ================================
 
-Ja : E.ntweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). E.ntweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
+benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 So verbinden Sie sich in SSH ?
 =============================
 
-Hier ist ein [Dokumentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Kitt". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
+Hier ist ein [Dokumentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
 - Benutzername : "root ", Passwort : "Mjeedom96"
 - Benutzername : "jeedom ", Passwort : "Mjeedom96"
@@ -109,13 +109,13 @@ chown -R www-Daten:www-data / var / www / html
 Ist das Webapp-kompatible Symbian ? 
 =======================================
 
-Für die Webanwendung ist ein Smartphone erforderlich, das HTML5 und CSS3 unterstützt. E.s ist daher leider nicht Symbian-kompatibel.
+Für die Webanwendung ist ein Smartphone erforderlich, das HTML5 und CSS3 unterstützt. Es ist daher leider nicht Symbian-kompatibel.
 
 Auf welchen Plattformen kann Jeedom laufen? ? 
 ====================================================
 
 Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit den Rechten
-root oder ein Docker-System. E.s funktioniert daher nicht auf einem
+root oder ein Docker-System. Es funktioniert daher nicht auf einem
 reine Android-Plattform.
 
 Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)...." ? 
@@ -154,7 +154,7 @@ Diese müssen zurückgesetzt werden :
 bdd_password = $ (cat / dev / urandom | tr-cd &#39;a-f0-9' | Kopf -c 15)
 echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
 echo "CREATE. USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
-echo &quot;GEWÄHRLEISTUNG AlleER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
+echo &quot;GEWÄHRLEISTUNG ALLER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
 sudo sed -i -e &quot;s / # PASSWORT # / $ {bdd_password} / g&quot; core / config / common.config.php
@@ -197,7 +197,7 @@ Ich sehe nicht alle meine Geräte auf dem Armaturenbrett
 ====================================================
 
 Dies liegt häufig daran, dass das Gerät einem Objekt zugeordnet ist
-Dies ist nicht das untergeordnete E.lement oder das Objekt selbst des ersten ausgewählten Objekts
+Dies ist nicht das untergeordnete Element oder das Objekt selbst des ersten ausgewählten Objekts
 links im Baum (Sie können es in Ihrem Profil konfigurieren).
 
 Ich habe den folgenden Fehler : SQLSTATE. \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden' 
@@ -232,7 +232,7 @@ Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
 ===================================================
 
 Bei einer DIY-Installation ist das normal. In SSH müssen Sie bestellen
-visudo und am E.nde der Datei müssen Sie hinzufügen : www-data Alle = (ALL)
+visudo und am Ende der Datei müssen Sie hinzufügen : www-data Alle = (ALL)
 NOPASSWD: Alle.
 
 `` `{.bash}
@@ -273,15 +273,15 @@ Jeedom kann das Gateway nicht finden oder anpingen. Im Allgemeinen passiert es, 
 
 Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist."
 =========================================
-Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann.. E.s gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir
+Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann.. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir
 
-- E.ine beschädigte Basistabelle =&gt; Sie ist schlecht gestartet. Sie müssen versuchen, sie zu reparieren. Wenn sie nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf SD Guard befinden, ist es der richtige Zeitpunkt, sie zu ändern).
+- Eine beschädigte Basistabelle =&gt; Sie ist schlecht gestartet. Sie müssen versuchen, sie zu reparieren. Wenn sie nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf SD Guard befinden, ist es der richtige Zeitpunkt, sie zu ändern).
 - Nicht genügend Speicherplatz im Dateisystem =&gt; Schauen Sie sich die Gesundheitsseite an, die Sie darüber informieren können
 
 
 Ich kann mich nicht mehr mit meinem Jeedom verbinden
 =========================================
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Die Admin / Admin-IDs funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. E.s wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Die Admin / Admin-IDs funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
 
 Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
 =========================================

@@ -100,7 +100,7 @@ Here is the URLs =
 
 -   **message** : Message in question, be careful to think about encoding
     the Message (space becomes% 20, =% 3D…). You can use a
-    tool, [here](https://meyerweb.com/eric/tools/dencoder/)
+    outil, [here](https://meyerweb.com/eric/tools/dencoder/)
 
 Object 
 =====
@@ -117,7 +117,7 @@ Here is the URLs =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 -   **object\_id** : ID of the object from which we want to retrieve
-    amenities
+    équipements
 
 Ordered 
 ========
@@ -126,7 +126,7 @@ Here is the URLs =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
 -   **eqLogic\_id** : ID of the equipment from which we want to recover
-    orders
+    commandes
 
 Full Data 
 =========

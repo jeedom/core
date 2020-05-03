@@ -114,7 +114,7 @@ Once done you have access to the following options :
 -   **Escalier** : displays the stepped curve
 
 -   **Empiler** : stack the curve with the other type curves
-    Stack
+    empiler
 
 -   **Variation** : graph only variations with value
     previous

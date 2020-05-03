@@ -62,7 +62,7 @@ ou restauração), se você lançou um.
 ----------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
-    backups na nuvem do Mercado, cuidado com o fato de ter
+    backups na nuvem do Market, cuidado com o fato de ter
     conseguiu a assinatura.
 
 -   **Enviar cópia de segurança** : Permite enviar um
@@ -117,7 +117,7 @@ O backup na nuvem permite que o Jeedom envie seus backups
 diretamente no mercado. Isso permite que você os restaure facilmente
 e certifique-se de não perdê-los. O mercado mantém os últimos 6
 backups. Para se inscrever basta ir à sua página
-**profil** no mercado e depois na guia **meus backups**. Você
+**profil** no mercado e depois na guia **meus backups**. Vous
 pode, nesta página, recuperar um backup ou comprar um
 assinatura (por 1, 3, 6 ou 12 meses).
 

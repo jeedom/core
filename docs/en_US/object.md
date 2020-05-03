@@ -37,7 +37,7 @@ Here are the different characteristics to configure an object :
 
 -   **Dad** : Indicates the relative of the current object, this allows
     define a hierarchy between objects. For example : The living room has
-    to relative the apartment. An object can only have one relative
+    to relative the apartment. An object can only have one parent
     but several objects can have the same relative.
 
 -   **Visible** : Check this box to make this object visible.

@@ -48,7 +48,7 @@ Changelog
 3.3.38
 =====
 
-- Adição de compatibilidade global do DNS Jeedom com uma conexão à Interne 4G. (Importante se você usa o DNS Jeedom é que você tem uma conexão 4G, verifique na caixa correspondente configure dns Jeedom).
+- Adição de compatibilidade global do DNS Jeedom com uma conexão à Interne 4G. (Importante se você usa o DNS Jeedom é que você tem uma conexão 4G, verifique na caixa correspondente configure dns jeedom).
 - Correções ortográficas.
 - Correção de segurança
 
@@ -86,7 +86,7 @@ Changelog
 =====
 
 - Correções de bugs
-- Suporte móvel para sliders em Projetos
+- Suporte móvel para sliders em designs
 - SMART : otimização do gerenciamento de swap
 
 3.3.31
@@ -125,7 +125,7 @@ Changelog
 - Correção de um erro na tradução dos dias em francês
 - Estabilidade aprimorada (reinício automático do serviço MySql e watchdog para verificar o horário na inicialização)
 - Correções de bugs
-- Desativando ações em pedidos ao editar Projetos, visualizações ou painéis
+- Desativando ações em pedidos ao editar designs, visualizações ou painéis
 
 3.3.26
 =====
@@ -166,7 +166,7 @@ Changelog
 - Corrigido um erro em que a exibição da hora podia exceder 24h
 - Correção de um bug na atualização de resumos de design
 - Correção de um bug no gerenciamento dos níveis de alertas em determinados widgets durante a atualização do valor
-- Exibição fixa de equipamento desativado em alguns Plugins
+- Exibição fixa de equipamento desativado em alguns plugins
 - Correção de um erro ao indicar troca de bateria no Jeedom
 - Exibição aprimorada de logs ao atualizar o Jeedom
 - Correção de bug durante a atualização da variável (que nem sempre iniciava os cenários ou não acionava uma atualização dos comandos em todos os casos)
@@ -203,9 +203,9 @@ Changelog
 -   Adição de uma tela 3D (beta)
 -   Redesign do sistema de backup em nuvem (backup incremental e criptografado).
 -   Adicionando um sistema integrado de anotações (em Análise -> Nota).
--   Adição da noção de eiqueta no equipamento (pode ser encontrada na configuração avançada do equipamento).
+-   Adição da noção de etiqueta no equipamento (pode ser encontrada na configuração avançada do equipamento).
 -   Adição de um sistema de histórico para exclusão de pedidos, equipamentos, objetos, visualização, design, design 3d, cenário e usuário.
--   Adição da ação Jeedom_reboot para iniciar uma reinicialização do Jeedom.
+-   Adição da ação jeedom_reboot para iniciar uma reinicialização do Jeedom.
 -   Adicionar opção na janela de geração do cron.
 -   Uma mensagem é adicionada agora se uma expressão inválida for encontrada ao executar um cenário.
 -   Adicionando um comando nos cenários : value (order) permite ter o valor de um pedido se não for fornecido automaticamente pelo Jeedom (caso ao armazenar o nome do pedido em uma variável).
@@ -221,7 +221,7 @@ Changelog
 -   Capacidade de adicionar opções nos relatórios
 -   Adição de uma pulsação pelo plug-in e reinicialização automática do daemon em caso de problemas
 -   Adição de ouvintes na página do mecanismo de tarefas
--   Otimizações
+-   Optimisations
 -   Possibilidade de consultar os logs na versão móvel (wepapp)
 -   Adição de uma tag de ação nos cenários (consulte a documentação)
 -   Possibilidade de ter uma visualização em tela cheia adicionando "& fullscreen = 1" no URL
@@ -230,7 +230,7 @@ Changelog
 -   Capacidade de excluir um elemento da configuração do design
 -   Possibilidade de ter um relatório sobre o nível da bateria (relatório do equipamento)
 -   Agora, os widgets de cenário são exibidos por padrão no painel
--   Altere a afinação dos widgets pelas horizontais 25 a 40, vertical 5 a 20 e margem 1 a 4 (você pode redefinir os valores antigos na configuração de Jeedom, guia widget)
+-   Altere a afinação dos widgets pelas horizontais 25 a 40, vertical 5 a 20 e margem 1 a 4 (você pode redefinir os valores antigos na configuração de jeedom, guia widget)
 -   Possibilidade de colocar um ícone nos cenários
 -   Adição de gerenciamento de daemon no mecanismo de tarefas
 -   Adição da função color_gradient nos cenários
@@ -255,7 +255,7 @@ Changelog
 =====
 
 - Correções de bugs
-- Otimizações
+- Optimisations
 
 3.2.11
 =====
@@ -349,7 +349,7 @@ Changelog
 -   Atualização da biblioteca (jquery e highcharts)
 
 -   Possibilidade de proibir uma ordem nas interações
-    Automático
+    automatique
 
 -   Interações automáticas aprimoradas
 
@@ -364,14 +364,14 @@ Changelog
     padrão (admin / admin) remotamente, somente a rede local está autorizada
 
 -   JEED-186 : Agora podemos escolher a cor de fundo no
-    Projetos
+    designs
 
 -   Para o bloco A, possibilidade de definir uma hora entre as 12h01 e as 12h59.
     simplesmente colocando os minutos (ex 30 para 00:30)
 
 -   Adicionando sessões e dispositivos ativos registrados no
     página de perfil do usuário e página de gerenciamento
-    Usuários
+    utilisateurs
 
 -   JEED-284 : conexão permanente agora depende de uma chave
     único usuário e dispositivo (em vez de usuário)
@@ -442,7 +442,7 @@ Changelog
 -   Correções de bugs
 
 -   Otimização global do Jeedom (nas classes de carregamento de
-    Plugins, tempo quase dividido por 3)
+    plugins, tempo quase dividido por 3)
 
 -   Suporte do Debian 9
 
@@ -508,7 +508,7 @@ Changelog
         multilingue
 
 -   Mais opções são possíveis nas configurações de tamanho da zona no
-    Visualizações
+    vues
 
 -   Possibilidade de escolher a cor do texto do resumo do objeto
 
@@ -549,7 +549,7 @@ Changelog
     impactará o layout em seu painel / visualização / design
 
 -   Possibilidade de atribuir um tamanho de 1 a 12 a objetos no
-    Painel de instrumentos
+    dashboard
 
 -   Capacidade de lançar independentemente ações de cenário (e
     plug-in modo / alarme, se compatível) em paralelo com os outros
@@ -575,7 +575,7 @@ Changelog
 -   Supressão do modo escravo
 
 -   Capacidade de desencadear um cenário em uma mudança de
-    Variável
+    variable
 
 -   Atualizações variáveis agora acionam a atualização
     pedidos de equipamentos virtuais (você precisa da versão mais recente
@@ -586,7 +586,7 @@ Changelog
 -   Capacidade de comandos para exibir o nome e o ícone
 
 -   Adição de uma ação de "alerta" em cenários : mensagem em
-    Jeedom
+    jeedom
 
 -   Adição de uma ação "pop-up" em cenários : mensagem para validar
 
@@ -603,7 +603,7 @@ Changelog
     detalhado disso
 
 -   Agora você pode inserir resumos de tipo
-    Texto
+    texte
 
 -   Mudança do controle deslizante de bootstraps para controle deslizante
     evento de controle deslizante duplo)
@@ -656,7 +656,7 @@ Changelog
     -   Capacidade de bloquear um item
 
 -   Agora, os plug-ins podem usar sua chave de API
-    limpo
+    propre
 
 -   Adicionando interações automáticas, o Jeedom tentará entender
     sentença, execute a ação e responda
@@ -676,18 +676,18 @@ Changelog
     esse aqui
 
 -   Os gatilhos para um cenário agora podem ser
-    Condições
+    conditions
 
 -   Clique duas vezes na linha de comando (na página
     agora abre a configuração avançada do
-    esse aqui
+    celle-ci
 
 -   Possibilidade de proibir certos valores para um pedido (no
     configuração avançada)
 
 -   Adição de campos de configuração no feedback automático de status
     (por exemplo, retorne a 0 após 4 min) na configuração avançada de um
-    Ordem
+    commande
 
 -   Adicionando uma função valueDate nos cenários (consulte
     documentação do cenário)
@@ -696,7 +696,7 @@ Changelog
     com o evento action ""
 
 -   Adição de um campo de comentário na configuração avançada de um
-    Equipamento
+    équipement
 
 -   Adição de um sistema de alerta para pedidos com 2 níveis :
     alerta e perigo. A configuração está na configuração
@@ -710,7 +710,7 @@ Changelog
 
 -   O Jeedom agora pode ser executado sem direitos de root (experimental).
     Tenha cuidado, porque sem direitos de root você terá que iniciar manualmente
-    scripts para dependências de Plugins
+    scripts para dependências de plugins
 
 -   Otimização de cálculos de expressão (cálculo apenas de tags
     se presente na expressão)
@@ -719,7 +719,7 @@ Changelog
     e objeto)
 
 -   Capacidade de restringir o acesso a cada chave de API com base em
-    o ip
+    l'IP
 
 -   Possibilidade na história de fazer agrupamentos por hora ou
     Ano
@@ -750,7 +750,7 @@ Changelog
 
 -   Possibilidade de ver na página de configuração dos Plugins o
     funcionalidade destes (interagir, cron…) e desativá-los
-    individualmente
+    unitairement
 
 -   Interações automáticas podem retornar valores de
     Sumários
@@ -790,7 +790,7 @@ Changelog
 
 -   Otimização do processo de atualização
 
--   Padronização do tmp Jeedom, agora tudo está em / tmp / Jeedom
+-   Padronização do tmp jeedom, agora tudo está em / tmp / jeedom
 
 -   Possibilidade de ter um gráfico dos diferentes links de um cenário,
     equipamento, objeto, comando ou variável
@@ -810,7 +810,7 @@ Changelog
 =====
 
 -   Melhoria da gestão da repetição dos valores de
-    Comandos
+    commandes
 
 2.4.5
 =====
@@ -864,7 +864,7 @@ Changelog
     objeto na base) de um equipamento ou ordem
 
 -   Capacidade de copiar o histórico de um pedido para outro
-    Ordem
+    commande
 
 -   Capacidade de substituir um pedido por outro em todos os Jeedom
     (mesmo que o pedido a ser substituído não exista mais)
@@ -886,13 +886,13 @@ Changelog
 
 -   Adicionando GENERIC\_TYPE
 
--   Remoção de filtros novos e principais no curso de Plugins
+-   Remoção de filtros novos e principais no curso de plugins
     do mercado
 
 -   Renomeando a categoria padrão no curso dos plug-ins do
     mercado em "Principais e novos"
 
--   Correção de filtros gratuitos e pagos no curso de Plugins
+-   Correção de filtros gratuitos e pagos no curso de plugins
     do mercado
 
 -   Correção de um bug que pode levar à duplicação das curvas
@@ -904,23 +904,23 @@ Changelog
     pegou a versão do painel
 
 -   Correção de um bug nos desenhos que poderiam usar o
-    configuração de widgets do painel em vez de Projetos
+    configuração de widgets do painel em vez de designs
 
--   Correção de erros de backup / restauração se o nome do Jeedom
+-   Correção de erros de backup / restauração se o nome do jeedom
     contém caracteres especiais
 
 -   Otimização da organização da lista de tipos genéricos
 
 -   Exibição aprimorada da configuração avançada de
-    Instalações
+    équipements
 
 -   Correção da interface de acesso de backup de
 
 -   Salvando a configuração durante o teste de mercado
 
--   Preparação para a remoção do bootstrapswtich nos Plugins
+-   Preparação para a remoção do bootstrapswtich nos plugins
 
--   Correção de um bug no tipo de widge solicitado para Projetos
+-   Correção de um bug no tipo de widge solicitado para designs
     (painel em vez de dplan)
 
 -   correção de bug no manipulador de eventos
@@ -938,8 +938,8 @@ Changelog
     / tmp é muito pequeno (cuidado, a correção entra em vigor em
     atualização n + 1)
 
--   Adição de uma tag * Jeedom\_name * nos cenários (fornece o nome
-    Jeedom)
+-   Adição de uma tag * jeedom\_name * nos cenários (fornece o nome
+    jeedom)
 
 -   Correções de bugs
 
@@ -974,13 +974,13 @@ Changelog
 -   Adição de um "repo" de URL (permite usar o URL como fonte do plug-in)
 
 -   Adição de um "repositório" do Samba (utilizável para enviar backups em um
-    servidor samba e recuperar Plugins)
+    servidor samba e recuperar plugins)
 
 -   Adição de um "repositório" de FTP (utilizável para enviar backups em um
-    Servidor FTP e recuperar Plugins)
+    Servidor FTP e recuperar plugins)
 
 -   Aditamento a certos "acordos de recompra" da possibilidade de recuperar o núcleo de
-    Jeedom
+    jeedom
 
 -   Adicionando testes automáticos de código (obrigado @ kwizer15)
 
@@ -990,12 +990,12 @@ Changelog
 -   Capacidade de desativar atualizações de plug-ins (bem como
     verificação)
 
--   Capacidade de forçar a versificação das atualizações de Plugins
+-   Capacidade de forçar a versificação das atualizações de plugins
 
 -   Pequena reformulação do centro de atualização
 
 -   Possibilidade de desativar a verificação automática de atualização
-    Dia
+    jour
 
 -   Corrigido um erro que redefinia todos os dados para 0 após uma
     Reiniciar
@@ -1026,8 +1026,8 @@ Changelog
 
 -   Capacidade de configurar a transparência dos widgets
 
--   Adicionada ação Jeedom\_poweroff nos cenários para parar
-    Jeedom
+-   Adicionada ação jeedom\_poweroff nos cenários para parar
+    jeedom
 
 -   Retorno do cenário de ação\_return para retornar a um
     interação (ou outra) de um cenário
@@ -1110,7 +1110,7 @@ Changelog
 -   Indicação de bateria removida nos widgets
 
 -   Adição de uma página que resume o status de todos os equipamentos
-    bateria
+    batterie
 
 -   Redesenho do DNS Jeedom, uso do openvpn (e, portanto, do
     plugin openvpn)
@@ -1137,14 +1137,14 @@ Changelog
 -   Adição para desenvolvedores de um sistema de ajuda de dicas de ferramentas. Você deve
     sur un label mettre la classe « help » e mettre un attribut
     ajuda de dados com a mensagem de ajuda desejada. Isso permite que o Jeedom
-    adicione automaticamente um ícone no final do seu marcador « ? » e
+    adicione automaticamente um ícone no final do seu marcador « ? » et
     ao passar o mouse para exibir o texto de ajuda
 
 -   Mudança no processo principal de atualização, não solicitamos mais
     o arquivo no Market, mas agora no Github agora
 
 -   Adição de um sistema centralizado para instalar dependências em
-    Plugins
+    plugins
 
 -   Redesign da página de gerenciamento de plug-ins
 
@@ -1207,7 +1207,7 @@ Changelog
 -   Indicação de bateria removida nos widgets
 
 -   Adição de uma página que resume o status de todos os equipamentos
-    bateria
+    batterie
 
 -   Redesenho do DNS Jeedom, uso do openvpn (e, portanto, do
     plugin openvpn)
@@ -1234,14 +1234,14 @@ Changelog
 -   Adição para desenvolvedores de um sistema de ajuda de dicas de ferramentas. Você deve
     sur un label mettre la classe « help » e mettre un attribut
     ajuda de dados com a mensagem de ajuda desejada. Isso permite que o Jeedom
-    adicione automaticamente um ícone no final do seu marcador « ? » e
+    adicione automaticamente um ícone no final do seu marcador « ? » et
     ao passar o mouse para exibir o texto de ajuda
 
 -   Mudança no processo principal de atualização, não solicitamos mais
     o arquivo no Market, mas agora no Github agora
 
 -   Adição de um sistema centralizado para instalar dependências em
-    Plugins
+    plugins
 
 -   Redesign da página de gerenciamento de plug-ins
 

@@ -12,7 +12,7 @@ Diese Seite ist zugänglich von **Extras → Zusammenfassung der Hausautomation*
 Der obere Rand der Seite 
 ------------------
 
-Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Anzahl
+Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Nombre
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die Elemente gezählt werden
 Inaktiv. \.* **Anzahl der Ausrüstungen** : Das Gleiche gilt für die Ausrüstung. \.*
 **Anzahl der Bestellungen** : Gleiches gilt für Bestellungen. \.* **Inactif** :
@@ -37,7 +37,7 @@ sind verfügbar. Von links nach rechts :
 
 -   Die zweite enthält einige Informationen zum Objekt,
 
--   Mit dem Dietzten können Sie die Liste der Geräte ein- oder ausblenden
+-   Mit dem letzten können Sie die Liste der Geräte ein- oder ausblenden
     ihm zugeschrieben.
 
 > **Tip**
@@ -126,11 +126,11 @@ die Ausrüstung und ihre Kontrollen :
 
 -   **Nom** : Name der Ausrüstung.
 
--   **Logische Identifikation** : Kennung der logischen Ausrüstung (can
-    Dieer sein).
+-   **Logische ID** : Kennung der logischen Ausrüstung (can
+    leer sein).
 
 -   **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (can
-    Dieer sein).
+    leer sein).
 
 -   **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
 
@@ -145,10 +145,10 @@ die Ausrüstung und ihre Kontrollen :
 -   **Versuch fehlgeschlagen** : Anzahl der Kommunikationsversuche
     konsekutiv mit ausgefallener Ausrüstung.
 
--   **Datum der Dietzten Mitteilung** : Datum des Dietzten
+-   **Datum der letzten Mitteilung** : Datum des letzten
     Gerätekommunikation.
 
--   **Letztes Update** : Datum der Dietzten Mitteilung
+-   **Letztes Update** : Datum der letzten Mitteilung
     mit Ausrüstung.
 
 -   **Tags** : Geräteetiketten, die durch zu trennen sind ','. Auf dem Dashboard können personalisierte Filter erstellt werden
@@ -258,7 +258,7 @@ Arten von Informationen, die gefunden werden können :
     auf Batterie).
 
 Im Folgenden können Sie auch bestimmte Alarmschwellenwerte für definieren
-Batterie für dieses Gerät. Wenn Sie die Kästchen Dieer lassen, sind dies
+Batterie für dieses Gerät. Wenn Sie die Kästchen leer lassen, sind dies
 Die Standardschwellenwerte, die angewendet werden.
 
 Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. durch
@@ -315,8 +315,8 @@ bestellen :
 
 -   **ID** : Eindeutiger Bezeichner in der Datenbank.
 
--   **Logische Identifikation** : Logische Kennung des Befehls (can
-    Dieer sein).
+-   **Logische ID** : Logische Kennung des Befehls (can
+    leer sein).
 
 -   **Nom** : Name der Bestellung.
 
@@ -346,7 +346,7 @@ bestellen :
 
 Sie haben auch drei andere orangefarbene Knöpfe darunter :
 
--   **Dieser Befehl ersetzt die Identifikation** : Ersetzen Sie eine Identifikation von
+-   **Dieser Befehl ersetzt die ID** : Ersetzen Sie eine Identifikation von
     Bestellung nach Bestellung. Nützlich, wenn Sie a gelöscht haben
     Ausrüstung in Jeedom und Sie haben Szenarien, die verwenden
     BefehDie davon.
@@ -385,7 +385,7 @@ Registerkarte Konfiguration
 
 -   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
-    Diese Informationen werden von der Handyn Anwendung verwendet.
+    Diese Informationen werden von der mobilen Anwendung verwendet.
 
 -   **Aktion auf Wert, wenn** : Lass uns Arten von machen
     Mini-Szenarien. Sie können zum Beispiel sagen, wenn der Wert wert ist
@@ -445,7 +445,7 @@ Registerkarte Konfiguration
 
 -   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
-    Diese Informationen werden von der Handyn Anwendung verwendet.
+    Diese Informationen werden von der mobilen Anwendung verwendet.
 
 -   **Aktion bestätigen** : Aktivieren Sie dieses Kontrollkästchen, damit Jeedom dies anfordert
     Bestätigung, wenn die Aktion über die SchnittstelDie gestartet wird
@@ -493,7 +493,7 @@ mobile.
     zusätzlich zum Namen des Befehls.
 
 -   **Umbrochene ZeiDie vor dem Widget** : Wählen **vorher
-    Widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
+    widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
     Spalte mit verschiedenen Gerätebefehlen anstelDie von Zeilen
     standardmäßig)

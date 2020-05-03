@@ -110,7 +110,7 @@ Changelog
 
 - Correction of the disappearance of the date of the last update check
 - Fixed a bug that could block cloud backups
-- Correction of a bug on the calculation of the use of the Variables if they are in the form : Variable (foo, myvalue)
+- Correction of a bug on the calculation of the use of the variables if they are in the form : Variable (foo, myvalue)
 
 
 3.3.28
@@ -125,7 +125,7 @@ Changelog
 - Correction of a bug on the translation of the days in French
 - Improved stability (auto restart of the MySql service and watchdog to check the time on startup)
 - Bugfix
-- Disabling actions on orders when editing designs, views or Dashboards
+- Disabling actions on orders when editing designs, views or dashboards
 
 3.3.26
 =====
@@ -205,10 +205,10 @@ Changelog
 -   Adding an integrated note taking system (in Analysis -&gt; Note).
 -   Addition of the notion of tag on equipment (can be found in the advanced configuration of equipment).
 -   Addition of a history system on the deletion of orders, equipment, objects, view, design, 3d design, scenario and user.
--   Addition of the Jeedom_reboot action to launch a restart of Jeedom.
+-   Addition of the jeedom_reboot action to launch a restart of Jeedom.
 -   Add option in the cron generation window.
 -   A message is now added if an invalid expression is found when executing a scenario.
--   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a Variable).
+-   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a variable).
 -   Addition of a button to refresh the messages of the message center.
 -   Add in the configuration of action on value of a command a button to search for an internal action (scenario, pause ...).
 -   Addition of an action “Resand to zero of the IS” on the scenarios
@@ -221,7 +221,7 @@ Changelog
 -   Ability to add options in reports
 -   Addition of a heartbeat by plugin and automatic restart of daemon in case of problems
 -   Addition of listeners on the task engine page
--   Optimizations
+-   Optimisations
 -   Possibility to consult the logs in mobile version (wepapp)
 -   Addition of an action tag in the scenarios (see documentation)
 -   Possibility to have a full screen view by adding &quot;&amp; fullscreen = 1&quot; in the url
@@ -229,8 +229,8 @@ Changelog
 -   Real-time update of graphs (simple, not calculated or timelines)
 -   Ability to delete an element from the design configuration
 -   Possibility of having a report on the battery level (equipment report)
--   Scenario widgets are now displayed by default on the Dashboard
--   Change the pitch of the widgets by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can resand the old values in the configuration of Jeedom, widgand tab)
+-   Scenario widgets are now displayed by default on the dashboard
+-   Change the pitch of the widgets by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can resand the old values in the configuration of jeedom, widgand tab)
 -   Possibility to put an icon on the scenarios
 -   Addition of daemon management on the task engine
 -   Addition of the color_gradient function in the scenarios
@@ -255,7 +255,7 @@ Changelog
 =====
 
 - Bugfix
-- Optimizations
+- Optimisations
 
 3.2.11
 =====
@@ -269,7 +269,7 @@ Changelog
 - Improved synchronization with the market.
 - Improvement of the update process in particular in the copying of files which now checks the size of the copied file.
 - Bug fixes on the stateDuration, lastStateDuration and lastChangeStateDuration functions (thanks @kiboost).
-- Optimization of the link graph calculation and the use of Variables.
+- Optimization of the link graph calculation and the use of variables.
 - Improvement of the cron task details window which now displays the scenario as well as the action to be taken for doIn tasks (thanks @kiboost).
 
 3.2.9
@@ -286,7 +286,7 @@ Changelog
 
 - Bugfix
 - Addition of an option in the Jeedom administration to specify the local ip range (useful in docker type installations)
-- Correction of a bug on the calculation of the use of Variables
+- Correction of a bug on the calculation of the use of variables
 - Addition of an indicator on the health page giving the number of processes killed by lack of memory (overall indicates that the Jeedom is too loaded)
 - Improved file editor
 
@@ -349,7 +349,7 @@ Changelog
 -   Library update (jquery and highcharts)
 
 -   Possibility to prohibit an order in interactions
-    automatic
+    automatique
 
 -   Improved automatic interactions
 
@@ -371,7 +371,7 @@ Changelog
 
 -   Adding active sessions and devices registered on the
     user profile page and management page
-    users
+    utilisateurs
 
 -   JEED-284 : permanent connection now depends on a key
     single user and device (rather than user)
@@ -383,7 +383,7 @@ Changelog
     edition
 
 -   Optimization of organizational changes (size of widgets,
-    position of equipment, position of controls) on the Dashboard
+    position of equipment, position of controls) on the dashboard
     and the views. Attention now the modifications are not
     saved only when exiting edit mode.
 
@@ -453,7 +453,7 @@ Changelog
     lets always have them in the list
 
 -   Double-click on a node on the link graph (except for
-    Variables) brings on its configuration page
+    variables) brings on its configuration page
 
 -   Ability to put the text left / right / center on the
     designs for text / view / design elements
@@ -505,10 +505,10 @@ Changelog
     -   All the documents have been revised
 
     -   Deletion of images to facilitate updating and
-        multilingual
+        multilingue
 
 -   More choices possible on the zone size settings in the
-    views
+    vues
 
 -   Possibility to choose the color of the text of the object summary
 
@@ -549,7 +549,7 @@ Changelog
     will impact the layout on your Dashboard / view / design
 
 -   Possibility to give a size from 1 to 12 to objects on the
-    Dashboard
+    dashboard
 
 -   Ability to independently launch scenario actions (and
     plugin type mode / alarm if compatible) in parallel with the others
@@ -575,7 +575,7 @@ Changelog
 -   Suppression of slave mode
 
 -   Ability to trigger a scenario on a change of
-    Variable
+    variable
 
 -   Variable updates now trigger the update
     virtual equipment orders (you need the latest version
@@ -586,7 +586,7 @@ Changelog
 -   Ability on commands to display the name and icon
 
 -   Addition of an &quot;alert&quot; action on scenarios : message up in
-    Jeedom
+    jeedom
 
 -   Addition of a &quot;popup&quot; action on scenarios : message to validate
 
@@ -603,7 +603,7 @@ Changelog
     detailed of it
 
 -   You can now put in type summaries
-    text
+    texte
 
 -   Change of bootstraps slider to slider (bug fix
     double slider event)
@@ -656,7 +656,7 @@ Changelog
     -   Ability to lock an item
 
 -   Plugins can now use their API key
-    clean
+    propre
 
 -   Adding automatic interactions, Jeedom will try to understand
     the sentence, execute the action and respond
@@ -669,25 +669,25 @@ Changelog
 
 -   Adding modules on alert to the battery page
 
--   Objects without a widgand are automatically hidden on the Dashboard
+-   Objects without a widgand are automatically hidden on the dashboard
 
 -   Addition of a button in the advanced configuration of a
     equipment / of a command to see the events of
     thereof / the latter
 
 -   The triggers for a scenario can now be
-    terms
+    conditions
 
 -   Double click on the command line (on the page
     configuration) now opens the advanced configuration of
-    this one
+    celle-ci
 
 -   Possibility to prohibit certain values for an order (in the
     advanced configuration)
 
 -   Addition of configuration fields on automatic status feedback
     (eg return to 0 after 4 min) in the advanced configuration of a
-    ordered
+    commande
 
 -   Adding a valueDate function in the scenarios (see
     scenario documentation)
@@ -696,7 +696,7 @@ Changelog
     with the action "event"
 
 -   Addition of a comment field on the advanced configuration of a
-    equipment
+    équipement
 
 -   Addition of an alert system on orders with 2 levels :
     alert and danger. The configuration is in the configuration
@@ -719,7 +719,7 @@ Changelog
     and object)
 
 -   Ability to restrict access to each API key based on
-    IP
+    l'IP
 
 -   Possibility on the history to make groupings by hour or
     year
@@ -750,7 +750,7 @@ Changelog
 
 -   Possibility to see on the plugins configuration page the
     functionality of these (interact, cron…) and deactivate them
-    unitary
+    unitairement
 
 -   Automatic interactions can return values from
     summaries
@@ -790,10 +790,10 @@ Changelog
 
 -   Optimization of the update process
 
--   Standardization of the tmp Jeedom, now everything is in / tmp / Jeedom
+-   Standardization of the tmp jeedom, now everything is in / tmp / jeedom
 
 -   Possibility of having a graph of the different links of a scenario,
-    equipment, object, command or Variable
+    equipment, object, command or variable
 
 -   Ability to adjust the depth of link graphics by
     function of the original object
@@ -810,7 +810,7 @@ Changelog
 =====
 
 -   Improvement of the management of the repetition of the values of
-    orders
+    commandes
 
 2.4.5
 =====
@@ -864,7 +864,7 @@ Changelog
     the object in base) of an equipment or an order
 
 -   Ability to copy the history of one order to another
-    ordered
+    commande
 
 -   Ability to replace an order with another in all Jeedom
     (even if the order to be replaced no longer exists)
@@ -906,13 +906,13 @@ Changelog
 -   Correction of a bug on the designs which could use the
     configuration of Dashboard widgets instead of designs
 
--   Correction of backup / restore bugs if the name of the Jeedom
+-   Correction of backup / restore bugs if the name of the jeedom
     contains special characters
 
 -   Optimization of the organization of the generic type list
 
 -   Improved display of advanced configuration of
-    amenities
+    équipements
 
 -   Correction of the backup access interface from
 
@@ -938,8 +938,8 @@ Changelog
     / tmp is too small (be careful the correction takes effect at
     update n + 1)
 
--   Addition of a * Jeedom\_name * tag in the scenarios (gives the name
-    Jeedom)
+-   Addition of a * jeedom\_name * tag in the scenarios (gives the name
+    jeedom)
 
 -   Bugfix
 
@@ -980,7 +980,7 @@ Changelog
     FTP server and recover plugins)
 
 -   Addition for certain &quot;repo&quot; of the possibility of recovering the core of
-    Jeedom
+    jeedom
 
 -   Adding automatic code tests (thanks @ kwizer15)
 
@@ -995,7 +995,7 @@ Changelog
 -   Slight redesign of the update center
 
 -   Possibility to deactivate the automatic update check
-    day
+    jour
 
 -   Fixed a bug that resand all data to 0 following a
     restart
@@ -1026,8 +1026,8 @@ Changelog
 
 -   Ability to configure the transparency of widgets
 
--   Added Jeedom\_poweroff action in scenarios to stop
-    Jeedom
+-   Added jeedom\_poweroff action in scenarios to stop
+    jeedom
 
 -   Return of the action scenario\_return to return to a
     interaction (or other) from a scenario
@@ -1110,7 +1110,7 @@ Changelog
 -   Removed battery indication on widgets
 
 -   Addition of a page which summarizes the status of all equipment on
-    drums
+    batterie
 
 -   Redesign of Jeedom DNS, use of openvpn (and therefore of
     openvpn plugin)
@@ -1137,7 +1137,7 @@ Changelog
 -   Addition for developers of a tooltips help system. It is necessary
     sur un label mettre la classe « help » and mettre un attribut
     data-help with the desired help message. This allows Jeedom
-    automatically add an icon at the end of your label « ? » and
+    automatically add an icon at the end of your label « ? » et
     on hover to display the help text
 
 -   Change in the core update process, we no longer ask
@@ -1207,7 +1207,7 @@ Changelog
 -   Removed battery indication on widgets
 
 -   Addition of a page which summarizes the status of all equipment on
-    drums
+    batterie
 
 -   Redesign of Jeedom DNS, use of openvpn (and therefore of
     openvpn plugin)
@@ -1234,7 +1234,7 @@ Changelog
 -   Addition for developers of a tooltips help system. It is necessary
     sur un label mettre la classe « help » and mettre un attribut
     data-help with the desired help message. This allows Jeedom
-    automatically add an icon at the end of your label « ? » and
+    automatically add an icon at the end of your label « ? » et
     on hover to display the help text
 
 -   Change in the core update process, we no longer ask

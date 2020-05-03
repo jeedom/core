@@ -12,7 +12,7 @@ nachfüllen.
 
 -   Bitte beachten Sie, dass wir die Schritte der Widgets geändert haben, damit dies möglich ist
     Auswirkungen auf die Positionierung Ihrer Widgets auf Designs / Ansichten und
-    Armaturenbrett
+    dashboard
 
 -   Dieses Update macht eine Designänderung obligatorisch
     Plugins (Änderung in 3.0 empfohlen). Einige Plugins

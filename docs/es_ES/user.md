@@ -40,7 +40,7 @@ Abajo tienes una mesa :
     la conexión no se actualiza cada vez que vuelve a ella.
 
 -   **Cambiar contraseña** : permite cambiar la contraseña de
-    usuario
+    l'utilisateur
 
 -   **Supprimer** : eliminar usuario
 

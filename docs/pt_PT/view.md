@@ -104,7 +104,7 @@ Depois de concluído, você terá acesso às seguintes opções :
 
 -   **Couleur** : Cor da curva
 
--   **Type** : Dicao de curva
+-   **Type** : Tipo de curva
 
 -   **Groupement** : permite agrupar dados (tipo máximo
     por dia)
@@ -114,7 +114,7 @@ Depois de concluído, você terá acesso às seguintes opções :
 -   **Escalier** : Exibe a curva da escada
 
 -   **Empiler** : Empilha a curva com as outras curvas de tipo
-    Pilha
+    empiler
 
 -   **Variation** : representar graficamente apenas variações com valor
     anterior

@@ -117,7 +117,7 @@ Mit Cloud-Backups kann Jeedom Ihre Backups senden
 direkt auf dem Markt. Auf diese Weise können Sie sie einfach wiederherstellen
 und seien Sie sicher, sie nicht zu verlieren. Der Markt behält die letzten 6
 Backups. Um sich anzumelden, gehen Sie einfach auf Ihre Seite
-**profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Sie
+**profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Vous
 kann auf dieser Seite ein Backup abrufen oder ein kaufen
 Abonnement (für 1, 3, 6 oder 12 Monate).
 

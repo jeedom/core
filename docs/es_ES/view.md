@@ -114,7 +114,7 @@ Una vez hecho esto, tiene acceso a las siguientes opciones :
 -   **Escalier** : muestra la curva escalonada
 
 -   **Empiler** : apilar la curva con las curvas de otro tipo
-    Montón
+    empiler
 
 -   **Variation** : grafica solo variaciones con valor
     anterior

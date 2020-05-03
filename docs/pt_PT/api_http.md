@@ -3,14 +3,14 @@ completo para que você possa controlar o Jeedom de qualquer objeto
 connecté.
 
 Duas APIs estão disponíveis : um piloto orientado ao desenvolvedor
-JSON RPC 2.0 e outro via solicitação de URL   e HTTP.
+JSON RPC 2.0 e outro via solicitação de URL  e HTTP.
 
 Essa API é muito facilmente usada por solicitações HTTP simples via
 URL.
 
 > **Note**
 >
-> Para toda esta documentação, \#IP\_JEEDOM \# corresponde ao seu URL  
+> Para toda esta documentação, \#IP\_JEEDOM \# corresponde ao seu URL
 > acesso ao Jeedom. Isso é (a menos que você esteja conectado à sua rede
 > local) do endereço da Internet usado para acessar o Jeedom
 > do lado de fora.
@@ -24,7 +24,7 @@ URL.
 Cenas 
 ========
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
 -   **id** : corresponde ao seu ID do cenário. O ID está no
@@ -46,15 +46,15 @@ Aqui está o URL   =
 Comando Info / Ação 
 ====================
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&id=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
 
 -   **id** : corresponde ao ID do que você deseja dirigir ou do qual
     você deseja receber informações
 
-A maneira mais fácil de obter esse URL   é ir para a página Ferramentas →
+A maneira mais fácil de obter esse URL  é ir para a página Ferramentas →
 Resumo da automação residencial, para procurar o comando e abrir sua configuração
-avançado (o ícone "engrenagem") e você verá um URL   que contém
+avançado (o ícone "engrenagem") e você verá um URL  que contém
 já tudo o que você precisa, dependendo do tipo e subtipo do
 commande.
 
@@ -67,13 +67,13 @@ commande.
 
 > **Note**
 >
-> Os parâmetros devem ser codificados para o URL  , você pode usar
+> Os parâmetros devem ser codificados para o URL, você pode usar
 > uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/)
 
 Interação 
 ===========
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
 -   **query** : pergunta a Jeedom
@@ -93,19 +93,19 @@ Aqui está o URL   =
 Mensagem 
 =======
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
 -   **category** : categoria de mensagem para adicionar ao centro de mensagens
 
 -   **message** : mensagem em questão, tenha cuidado ao pensar em codificação
     a mensagem (o espaço se torna% 20, =% 3D…). Você pode usar um
-    ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/)
+    outil, [aqui](https://meyerweb.com/eric/tools/dencoder/)
 
 Objeto 
 =====
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Retorna em json a lista de todos os objetos Jeedom
@@ -113,25 +113,25 @@ Retorna em json a lista de todos os objetos Jeedom
 Equipamento 
 ==========
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&objeto\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 -   **objeto\_id** : ID do objeto do qual queremos recuperar
-    Instalações
+    équipements
 
 Ordem 
 ========
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
 -   **eqLogic\_id** : ID do equipamento do qual queremos recuperar
-    Comandos
+    commandes
 
 Dados completos 
 =========
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
 Retorna todos os objetos, equipamentos, comandos (e seu valor se este
@@ -140,7 +140,7 @@ são informações) em json
 Variável 
 ========
 
-Aqui está o URL   =
+Aqui está o URL  =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 
 -   **name** : nome da variável cujo valor é desejado (leitura de

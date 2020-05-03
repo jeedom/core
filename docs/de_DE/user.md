@@ -40,7 +40,7 @@ Unten haben Sie eine Tabelle :
     Die Verbindung wird nicht jedes Mal aktualisiert, wenn Sie zu ihr zurückkehren.
 
 -   **Passwort ändern** : ermöglicht das Ändern des Passworts von
-    Benutzer
+    l'utilisateur
 
 -   **Supprimer** : Benutzer löschen
 

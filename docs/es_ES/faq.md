@@ -70,7 +70,7 @@ solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise
 Cómo conectarse en SSH ?
 =============================
 
-Aquí hay un [Documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Aquí hay un [Documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
 - Nombre de usuario : "root ", contraseña : "Mjeedom96"
 - Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"

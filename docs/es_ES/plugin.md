@@ -222,7 +222,7 @@ y la diversa información sobre la fecha de la última versión estable.
 > También puede agregar un complemento a Jeedom desde un archivo o
 > de un repositorio de Github. Esto requiere, en la configuración de
 > Jeedom, active la función apropiada en &quot;Actualizaciones y
-> archivos". Entonces será posible, colocando el mouse completamente
+> fichiers". Entonces será posible, colocando el mouse completamente
 > izquierda, y cuando aparezca el menú de la página de complementos, haga clic en
 > en "Agregar desde otra fuente". Luego puedes elegir el
 > fuente "Archivo". Atención, en el caso de la adición por un archivo

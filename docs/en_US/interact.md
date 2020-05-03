@@ -6,16 +6,16 @@ These orders can be obtained by :
 -   SMS : send an SMS to launch commands (action) or ask a
     question (info).
 
--   Cat : Telegram, Slack, andc.
+-   Cat : Telegram, Slack, etc.
 
--   Vocal : dictate a phrase with Siri, Google Now, SARAH, andc. For
+-   Vocal : dictate a phrase with Siri, Google Now, SARAH, etc. For
     launch commands (action) or ask a question (info).
 
 -   D'informations sont indispensables à la bonne compréhension of : launch an D'informations sont indispensables à la bonne compréhension of URL containing the text (ex. Tasker, Slack)
     to launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
-other systems like smartphone, tablet, other home automation box, andc..
+other systems like smartphone, tablet, other home automation box, etc..
 
 To access the interaction page, go to Tools →
 Interactions :
@@ -41,15 +41,15 @@ At the top of the page, there are 3 buttons :
 Principle 
 ========
 
-The principle of creation is quite simple : we will offine a sentence
+The principle of creation is quite simple : we will define a sentence
 generator model which will allow Jeedom to create one or more
 hundreds of other sentences that will be possible combinations of the
 model.
 
-We will offine responses in the same way with a model (this allows
+We will define responses in the same way with a model (this allows
 Jeedom to have several answers for a single question).
 
-We can also offine a command to execute if for example
+We can also define a command to execute if for example
 the interaction is not linked to an action but to information or if we
 wish to carry out a specific action after it (it is also
 possible to execute a scenario, to control several commands…).
@@ -60,12 +60,12 @@ D'actualité
 The configuration page consists of several tabs and
 buttons :
 
--   **Phrases** : Displays the number of sentences in the interaction (wee click
+-   **Phrases** : Displays the number of sentences in the interaction (one click
     above shows them to you)
 
 -   **Enregistrer** : records the current interaction
 
--   **Supprimer** : oflete current interaction
+-   **Supprimer** : delete current interaction
 
 -   **Dupliquer** : duplicate the current interaction
 
@@ -78,19 +78,19 @@ General
 -   **Groupe** : interaction group, it helps organize them
     (can be empty, will therefore be in the &quot;none&quot; group).
 
--   **Actif** : allows to activate or ofactivate the interaction.
+-   **Actif** : allows to activate or deactivate the interaction.
 
 -   **Demande** : the generating model sentence (required).
 
--   **Synonyme** : allows to offine synonyms on names
+-   **Synonyme** : allows to define synonyms on names
     some orders.
 
 -   **Reply** : the answer to provide.
 
--   **Wait before answering (s)** : add a oflay of X seconds before generating the response. It allows for example to wait for the return of a lamp status before being answered.
+-   **Wait before answering (s)** : add a delay of X seconds before generating the response. It allows for example to wait for the return of a lamp status before being answered.
 
 -   **Binary conversion** : converts binary values to
-    open / closed for example (wely for type commands
+    open / closed for example (only for type commands
     binary info).
 
 -   **Authorized users** : limits interaction to certain
@@ -107,7 +107,7 @@ Filters
 
 -   **Limit to orders with unit** : allows to limit the
     generation with one or more units (Jeedom creates the list
-    automatically from the units offined in your orders).
+    automatically from the units defined in your orders).
 
 -   **Limit to orders belonging to the object** : allows to limit
     generation to one or more objects (Jeedom creates the list
@@ -135,7 +135,7 @@ Examples
 
 > **Note**
 >
-> The screenshots may be different in view of ofvelopments.
+> The screenshots may be different in view of developments.
 
 Simple interaction 
 ------------------
@@ -151,7 +151,7 @@ living room ceiling light.
 ![interact004](../images/interact004.png)
 
 We can see, on this capture, the configuration to have a
-interaction linked to a specific action. This action is offined in
+interaction linked to a specific action. This action is defined in
 the &quot;Action&quot; part of the page.
 
 We can very well imagine doing the same with several actions to
@@ -160,7 +160,7 @@ turn on several lamps in the living room as the following example :
 ![interact005](../images/interact005.png)
 
 In the 2 examples above, the model sentence is identical but the
-resulting actions change ofpending on what is configured
+resulting actions change depending on what is configured
 in the &quot;Action&quot; part, we can therefore already with a simple interaction to
 single sentence imagine combined actions between various commands and
 various scenarios (we can also trigger scenarios in the game
@@ -179,7 +179,7 @@ Here we will see all the interest and all the power of
 interactions, with a model sentence we will be able to generate
 sentences for a whole group of commands.
 
-We will resume what was done above, oflete the actions that
+We will resume what was done above, delete the actions that
 we had added, and instead of the fixed sentence, in "Request",
 we will use the tags **\#commande\#** and **\#equipement\#**.
 Jeedom will replace these tags with the name of the commands and the name of
@@ -222,12 +222,12 @@ can have several synonyms, here &quot;on&quot; has as synonym
 synonym we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
 vertical "*|*" after which you can again name the
-command which will have synonyms like for the first part, andc..
+command which will have synonyms like for the first part, etc..
 
 It&#39;s already better, but it is still missing for the "on" "input command"
-the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, andc.. We could
+the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, etc.. We could
 changing the name of the equipment to add it would be a solution,
-otherwise we can use variations in ofmand. It consists of
+otherwise we can use variations in demand. It consists of
 list a series of possible words at a location in the sentence, Jeedom
 will generate sentences with these variations.
 
@@ -241,8 +241,8 @@ added between &quot;\ [\]&quot; and this for each synonym, which generates
 quickly many sentences (here 168).
 
 In order to refine and not have improbable things such as
-"turn on the TV ", we can authorize Jeedom to oflete requests
-syntactically incorrect. So it will oflete what is too far away
+"turn on the TV ", we can authorize Jeedom to delete requests
+syntactically incorrect. So it will delete what is too far away
 the actual syntax of a sentence. In our case, we go from 168
 130 sentence sentences.
 
@@ -271,7 +271,7 @@ lights, we can use a phrase like : I lit well
 ![interact011](../images/interact011.png)
 
 You can also add any value from another command like
-temperature, number of people, andc..
+temperature, number of people, etc..
 
 ![interact012](../images/interact012.png)
 
@@ -287,9 +287,9 @@ kept that light).
 ![interact013](../images/interact013.png)
 
 As you can see here, I have kept almost the same structure
-for ofmand (it&#39;s voluntary to focus on
+for demand (it&#39;s voluntary to focus on
 specificities). Of course, I adapted the synonyms to have some
-coherent thing. However, for the answer, it is **imperative** of
+coherent thing. However, for the answer, it is **imperative** de
 put only \#value \# which represents the 0 or 1 that Jeedom is going to
 replace with the following binary conversion.
 
@@ -310,9 +310,9 @@ The &quot;Authorized users&quot; field allows you to authorize only certain
 people to execute the command you can put multiple profiles
 separating them with a "|".
 
-Example : person1|personne2
+Example : personne1|personne2
 
-One can imagine that an alarm can be activated or ofactivated by a
+One can imagine that an alarm can be activated or deactivated by a
 child or a neighbor who would come to water the plants in your absence.
 
 Regexp exclusion 
@@ -342,7 +342,7 @@ found in most of the interactions generated.
 
 For the &quot;Regexp exclusion&quot; field in the configuration page of
 each interaction, we can put a specific Regexp that will act
-only on said interaction. So it allows you to oflete
+only on said interaction. So it allows you to delete
 more specifically for an interaction. It can also allow
 delete an interaction for a specific command for which
 does not want to offer this opportunity as part of a generation of
@@ -350,23 +350,23 @@ multiple orders.
 
 The following screenshot shows the interaction without the Regexp. In the
 left list, I filter the sentences to show you only the
-sentences to be ofleted. In reality there are 76 sentences generated
+sentences to be deleted. In reality there are 76 sentences generated
 with the configuration of the interaction.
 
 ![interact014](../images/interact014.png)
 
 As you can see on the following screenshot, I added a
 regexp simple which will search for the word &quot;Julie&quot; in the generated sentences
-and oflete them. However, we can see in the list on the left that there
+and delete them. However, we can see in the list on the left that there
 always has sentences with the word &quot;julie&quot; in expressions
 regular, Julie is not equal to julie, this is called a
 case sensitivity or in good French a capital letter is different
 of a tiny. As we can see in the following screenshot, it does not
-only 71 sentences left, the 5 with a &quot;Julie&quot; have been ofleted.
+only 71 sentences left, the 5 with a &quot;Julie&quot; have been deleted.
 
 A regular expressure is composed as follows :
 
--   First, a oflimiter, here it is a slash &quot;/&quot; placed in
+-   First, a delimiter, here it is a slash &quot;/&quot; placed in
     beginning and end of expression.
 
 -   The dot after the slash represents any
@@ -539,7 +539,7 @@ So we can see a regexp :
 
 **(batterie|latence|pression|vitesse|consommation)**
 
-This allows you to oflete all orders that have one of these
+This allows you to delete all orders that have one of these
 words in their sentence
 
 > **Note**
@@ -559,14 +559,14 @@ dimmer on a lamp with interactions :
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **\#consigne\#** (we
+As we can see, there is here in the request the tag **\#consigne\#** (on
 can put what you want) which is included in the order of the
-dimmer to apply the ofsired value. To do this, we have 3 parts
+dimmer to apply the desired value. To do this, we have 3 parts
 : \* Request : in which we create a tag that will represent the value
 which will be sent to the interaction. \* Reply : we reuse the tag for
 the answer to make sure Jeedom understood the request correctly.
 \* ACTION : we put an action on the lamp that we want to drive and in
-the value we pass our tag * ofposit*.
+the value we pass our tag * deposit*.
 
 > **Note**
 >
@@ -653,7 +653,7 @@ Programming an action with interactions
 Interactions do a lot of things in particular.
 You can program an action dynamically. Example : "Put it on
 heating at 10 p.m. for 2:50 p.m.". Nothing could be simpler, just
-to use the tags \#time \# (if a precise time is offined) or
+to use the tags \#time \# (if a precise time is defined) or
 \#duration \# (for in X time, example in 1 hour) :
 
 ![interact23](../images/interact23.JPG)

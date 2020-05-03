@@ -222,7 +222,7 @@ and the various information on the date of the last stable version.
 > You can also add a plugin to Jeedom from a file or
 > from a Github repository. This requires, in the configuration of
 > Jeedom, activate the appropriate function in the &quot;Updates and
-> files". It will then be possible, by placing the mouse completely
+> fichiers". It will then be possible, by placing the mouse completely
 > left, and bringing up the plugin page menu, click
 > on "Add from another source". You can then choose the
 > source "File". Attention, in the case of the addition by a file

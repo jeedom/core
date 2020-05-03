@@ -8,7 +8,7 @@ Sie können dies für Ansichten, Design und Bedienfeldseite tun....
 
 Es wird von einem Skript mit dem Befehl report ausgelöst. Sie können festlegen, dass dieser Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie gesendet wird.
 
-# Verwendung
+# Utilisation
 
 Die Verwendung ist sehr einfach, Sie wählen aus, wenn Sie sehen möchten :
 
@@ -27,9 +27,9 @@ Sobald der Bericht ausgewählt ist, können Sie ihn sehen, erneut herunterladen 
 
 Sie können auch alle Sicherungen eines bestimmten Berichts löschen
 
-# Faq
+# FAQ
 
-> **Wenn Sie einen Detailfehler haben : Cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine nlche Datei oder Verzeichnis**
+> **Wenn Sie einen Detailfehler haben : cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine solche Datei oder Verzeichnis**
 >
 > Dies ist in ssh oder in Administration -> Konfiguration -> OS / DB -> System -> Administration erforderlich :
 >sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so

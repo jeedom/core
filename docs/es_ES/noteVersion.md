@@ -12,7 +12,7 @@ rellenar.
 
 -   Tenga en cuenta que hemos cambiado los pasos de los widgets, por lo que esto puede tener
     un impacto en el posicionamiento de sus widgets en diseños / vistas y
-    salpicadero
+    dashboard
 
 -   Esta actualización hace que un cambio de diseño sea obligatorio
     complementos (cambio recomendado en 3.0). Algunos complementos

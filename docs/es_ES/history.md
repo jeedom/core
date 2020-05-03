@@ -20,7 +20,7 @@ El archivo de datos le permite a Jeedom reducir la cantidad de datos
 guardado en la memoria. Esto permite no usar demasiado espacio y
 no ralentizar el sistema. De hecho, si mantiene todos los
 medidas, esto hace más puntos para mostrar y por lo tanto puede
-alargar drásticamente los tiempos para hacer un gráfico. En casoo
+alargar drásticamente los tiempos para hacer un gráfico. En caso
 demasiados puntos, incluso puede bloquearse
 visualización gráfica.
 
@@ -117,7 +117,7 @@ Historia calculada
 ------------------
 
 Se usa para mostrar una curva basada en un cálculo en varios
-comando (puedes hacer casoi todo, + - / \* valor absoluto ... ver
+comando (puedes hacer casi todo, + - / \* valor absoluto ... ver
 Documentación PHP para ciertas funciones). Ex :
 abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio de
 La vida \] \ [Humedad \] \ [Temperatura \] *)

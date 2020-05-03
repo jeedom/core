@@ -2,7 +2,7 @@ O **objets** permitem definir a estrutura em árvore da sua automação residenc
 Todo o equipamento que você cria deve pertencer a um objeto e
 será mais facilmente identificável. Dizemos então que o objeto
 é o **parent** equipamento. O gerenciamento de objetos está acessível
-do menu **Ferramentas → Objetoos**.
+do menu **Ferramentas → Objetos**.
 
 Para dar livre escolha à personalização, você pode nomear esses
 objetos como você deseja. Geralmente, definiremos os diferentes
@@ -24,7 +24,7 @@ Meus objetos
 
 Depois de criar um objeto, ele aparecerá nesta parte.
 
-Guia Objetoo 
+Guia Objeto 
 ------------
 
 Ao clicar em um objeto, você acessa sua página de configuração. O que

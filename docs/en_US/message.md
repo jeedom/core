@@ -1,7 +1,7 @@
 The message center groups all the important posts that you
 must watch. It is next to the time at the top right.
 
-It is only accessible when there are posts, by clicking on the
+It is only accessible when there are messages, by clicking on the
 number of posts.
 
 It is quite simple. It shows you the date and time of the message, the

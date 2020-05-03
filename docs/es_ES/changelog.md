@@ -73,7 +73,7 @@ Changelog
 =====
 
 - Se corrigió un error que podía evitar que el estado de la batería volviera a subir
-- Corrección de un error en las yiquetas en las interacciones.
+- Corrección de un error en las etiquetas en las interacciones.
 - El estado de "tiempo de espera" (no comunicación) del equipo ahora tiene prioridad sobre el estado de "advertencia" o "peligro""
 - Corrección de errores en las copias de seguridad en la nube
 
@@ -203,9 +203,9 @@ Changelog
 -   Adición de una pantalla 3D (beta)
 -   Rediseño del sistema de respaldo en la nube (respaldo incremental y encriptado).
 -   Agregar un sistema integrado de toma de notas (en Análisis -&gt; Nota).
--   Adición de la noción de yiqueta en el equipo (se puede encontrar en la configuración avanzada del equipo).
+-   Adición de la noción de etiqueta en el equipo (se puede encontrar en la configuración avanzada del equipo).
 -   Adición de un sistema de historial sobre la eliminación de pedidos, equipos, objetos, vista, diseño, diseño 3D, escenario y usuario..
--   Adición de la acción Jeedom_reboot para iniciar un reinicio de Jeedom.
+-   Adición de la acción jeedom_reboot para iniciar un reinicio de Jeedom.
 -   Agregar opción en la ventana de generación cron.
 -   Ahora se agrega un mensaje si se encuentra una expresión no válida al ejecutar un escenario.
 -   Agregar un comando en los escenarios : value (orden) permite tener el valor de una orden si no está dada automáticamente por Jeedom (caso cuando se almacena el nombre de la orden en una variable).
@@ -221,16 +221,16 @@ Changelog
 -   Posibilidad de agregar opciones en informes
 -   Adición de un latido por complemento y reinicio automático de daemon en caso de problemas
 -   Adición de oyentes en la página del motor de tareas
--   Optimizaciones
+-   Optimisations
 -   Posibilidad de consultar los registros en versión móvil (wepapp)
--   Adición de una yiqueta de acción en los escenarios (ver documentación)
+-   Adición de una etiqueta de acción en los escenarios (ver documentación)
 -   Posibilidad de tener una vista de pantalla completa agregando &quot;&amp; fullscreen = 1&quot; en la url
 -   Adición de la última comunicación en los escenarios (para tener la última fecha de comunicación de un equipo)
 -   Actualización en tiempo real de gráficos (simple, no calculado o líneas de tiempo)
 -   Posibilidad de eliminar un elemento de la configuración de diseño.
 -   Posibilidad de tener un informe sobre el nivel de la batería (informe del equipo)
 -   Los widgets de escenario ahora se muestran por defecto en el tablero
--   Cambie el tono de los widgets por horizontal 25 a 40, vertical 5 a 20 y margen 1 a 4 (puede restablecer los valores anteriores en la configuración de Jeedom, pestaña widget)
+-   Cambie el tono de los widgets por horizontal 25 a 40, vertical 5 a 20 y margen 1 a 4 (puede restablecer los valores anteriores en la configuración de jeedom, pestaña widget)
 -   Posibilidad de poner un icono en los escenarios.
 -   Incorporación de la gestión de demonios en el motor de tareas.
 -   Adición de la función color_gradient en los escenarios.
@@ -255,7 +255,7 @@ Changelog
 =====
 
 - Correcciones de errores
-- Optimizaciones
+- Optimisations
 
 3.2.11
 =====
@@ -295,7 +295,7 @@ Changelog
 
 - Correcciones de errores
 - Actualización de documentos
-- Posibilidad de usar las yiquetas en las condiciones de los bloques "A" e "IN""
+- Posibilidad de usar las etiquetas en las condiciones de los bloques "A" e "IN""
 - Corrección de errores de categorías de mercado para widgets / scripts / escenarios...
 
 3.2.6
@@ -349,7 +349,7 @@ Changelog
 -   Actualización de la biblioteca (jquery y highcharts)
 
 -   Posibilidad de prohibir un orden en interacciones
-    automático
+    automatique
 
 -   Interacciones automáticas mejoradas
 
@@ -364,14 +364,14 @@ Changelog
     predeterminado (admin / admin) de forma remota, solo la red local está autorizada
 
 -   JEED-186 : Ahora podemos elegir el color de fondo en el
-    diseños
+    designs
 
 -   Para el bloque A, posibilidad de establecer una hora entre las 12:01 a.m. y las 12:59 a.m.
     simplemente poniendo los minutos (ex 30 para 00:30)
 
 -   Agregar sesiones activas y dispositivos registrados en el
     página de perfil de usuario y página de administración
-    usuarios
+    utilisateurs
 
 -   JEED-284 : la conexión permanente ahora depende de una clave
     usuario único y dispositivo (en lugar de usuario)
@@ -406,9 +406,9 @@ Changelog
 
 -   JEED-77 : Adición de gestión de variables en la API http
 
--   JEED-78 : adición de la función de yiqueta para escenarios. Ten cuidado ahí
-    debe en los escenarios utilizando las yiquetas pasar de \#montag \#
-    yiquetar (montag)
+-   JEED-78 : adición de la función de etiqueta para escenarios. Ten cuidado ahí
+    debe en los escenarios utilizando las etiquetas pasar de \#montag \#
+    etiquetar (montag)
 
 -   JEED-124 : Corregir la gestión de los tiempos de espera del escenario.
 
@@ -505,10 +505,10 @@ Changelog
     -   Todos los documentos han sido revisados
 
     -   Eliminación de imágenes para facilitar la actualización y
-        plurilingüe
+        multilingue
 
 -   Más opciones posibles en la configuración de tamaño de zona en el
-    vistas
+    vues
 
 -   Posibilidad de elegir el color del texto del resumen del objeto
 
@@ -549,7 +549,7 @@ Changelog
     impactará el diseño en su tablero / vista / diseño
 
 -   Posibilidad de dar un tamaño de 1 a 12 a los objetos en el
-    salpicadero
+    dashboard
 
 -   Capacidad para iniciar independientemente acciones de escenario (y
     modo de tipo de complemento / alarma si es compatible) en paralelo con los demás
@@ -586,7 +586,7 @@ Changelog
 -   Habilidad en los comandos para mostrar el nombre y el ícono
 
 -   Adición de una acción &quot;alerta&quot; sobre escenarios : mensaje arriba en
-    Jeedom
+    jeedom
 
 -   Adición de una acción &quot;emergente&quot; en escenarios : mensaje para validar
 
@@ -603,7 +603,7 @@ Changelog
     detallado de ello
 
 -   Ahora puede poner resúmenes de tipo
-    texto
+    texte
 
 -   Cambio del control deslizante bootstraps a control deslizante (corrección de errores
     evento de doble control deslizante)
@@ -656,7 +656,7 @@ Changelog
     -   Posibilidad de bloquear un artículo
 
 -   Los complementos ahora pueden usar su clave API
-    propio
+    propre
 
 -   Al agregar interacciones automáticas, Jeedom intentará comprender
     la oración, ejecuta la acción y responde
@@ -676,18 +676,18 @@ Changelog
     del mismo / la última
 
 -   Los disparadores para un escenario ahora pueden ser
-    condiciones
+    conditions
 
 -   Haga doble clic en la línea de comando (en la página
     configuración) ahora abre la configuración avanzada de
-    esta
+    celle-ci
 
 -   Posibilidad de prohibir ciertos valores para un pedido (en el
     configuración avanzada)
 
 -   Adición de campos de configuración en retroalimentación de estado automática
     (por ejemplo, volver a 0 después de 4 min) en la configuración avanzada de un
-    orden
+    commande
 
 -   Agregar una función valueDate en los escenarios (ver
     documentación del escenario)
@@ -696,7 +696,7 @@ Changelog
     con la acción "evento"
 
 -   Adición de un campo de comentario sobre la configuración avanzada de un
-    equipo
+    équipement
 
 -   Adición de un sistema de alerta en pedidos de 2 niveles. :
     alerta y peligro. La configuración está en la configuración
@@ -712,14 +712,14 @@ Changelog
     Tenga cuidado porque sin derechos de root tendrá que iniciar manualmente
     scripts para dependencias de complementos
 
--   Optimización de cálculos de expresión (cálculo de yiquetas solamente
+-   Optimización de cálculos de expresión (cálculo de etiquetas solamente
     si está presente en la expresión)
 
 -   Adición en la función API para acceder al resumen (global
     y objeto)
 
 -   Capacidad para restringir el acceso a cada clave API en función de
-    IP
+    l'IP
 
 -   Posibilidad en la historia de hacer agrupaciones por hora o
     año
@@ -750,7 +750,7 @@ Changelog
 
 -   Posibilidad de ver en la página de configuración de complementos el
     funcionalidad de estos (interactuar, cron ...) y desactivarlos
-    unitario
+    unitairement
 
 -   Las interacciones automáticas pueden devolver valores de
     resúmenes
@@ -790,7 +790,7 @@ Changelog
 
 -   Optimización del proceso de actualización.
 
--   Estandarización de tmp Jeedom, ahora todo está en / tmp / Jeedom
+-   Estandarización de tmp jeedom, ahora todo está en / tmp / jeedom
 
 -   Posibilidad de tener un gráfico de los diferentes enlaces de un escenario,
     equipo, objeto, comando o variable
@@ -801,7 +801,7 @@ Changelog
 -   Posibilidad de tener registros de escenarios en tiempo real (se ralentiza
     ejecución de escenarios)
 
--   Capacidad para pasar yiquetas al iniciar un escenario
+-   Capacidad para pasar etiquetas al iniciar un escenario
 
 -   Optimización de la carga de escenarios y páginas utilizando
     acciones con opción (tipo de configuración del complemento o modo de alarma)
@@ -810,7 +810,7 @@ Changelog
 =====
 
 -   Mejora de la gestión de la repetición de los valores de
-    comandos
+    commandes
 
 2.4.5
 =====
@@ -864,7 +864,7 @@ Changelog
     el objeto en la base) de un equipo o un pedido
 
 -   Posibilidad de copiar el historial de un pedido a otro
-    orden
+    commande
 
 -   Posibilidad de reemplazar un pedido con otro en todo Jeedom
     (incluso si el pedido para ser reemplazado ya no existe)
@@ -912,7 +912,7 @@ Changelog
 -   Optimización de la organización de la lista de tipos genéricos.
 
 -   Visualización mejorada de la configuración avanzada de
-    comodidades
+    équipements
 
 -   Corrección de la interfaz de acceso de respaldo desde
 
@@ -938,8 +938,8 @@ Changelog
     / tmp es demasiado pequeño (tenga cuidado de que la corrección surta efecto en
     actualización n + 1)
 
--   Adición de una yiqueta * Jeedom\_name * en los escenarios (da el nombre
-    Jeedom)
+-   Adición de una etiqueta * jeedom\_name * en los escenarios (da el nombre
+    jeedom)
 
 -   Correcciones de errores
 
@@ -980,7 +980,7 @@ Changelog
     Servidor FTP y recuperar complementos)
 
 -   Además de cierto &quot;repositorio&quot; de la posibilidad de recuperar el núcleo de
-    Jeedom
+    jeedom
 
 -   Agregar pruebas de código automáticas (gracias @ kwizer15)
 
@@ -995,7 +995,7 @@ Changelog
 -   Ligero rediseño del centro de actualizaciones
 
 -   Posibilidad de desactivar la verificación automática de actualizaciones
-    día
+    jour
 
 -   Se corrigió un error que restablecía todos los datos a 0 después de un
     reanudar
@@ -1026,8 +1026,8 @@ Changelog
 
 -   Capacidad para configurar la transparencia de los widgets.
 
--   Se agregó la acción Jeedom\_poweroff en escenarios para detener
-    Jeedom
+-   Se agregó la acción jeedom\_poweroff en escenarios para detener
+    jeedom
 
 -   Retorno del escenario de acción\_retorno para volver a un
     interacción (u otra) de un escenario
@@ -1039,7 +1039,7 @@ Changelog
 
 -   Optimización de la actualización de widgets de comando y equipo
 
--   Adición de una yiqueta * begin\_backup *, * end\_backup *, * begin\_update*,
+-   Adición de una etiqueta * begin\_backup *, * end\_backup *, * begin\_update*,
     *end\_update *, * begin\_restore *, * end\_restore * en escenarios
 
 2.2
@@ -1090,7 +1090,7 @@ Changelog
 
 -   Se corrigieron muchas advertencias
 
--   Posibilidad durante una llamada API a un escenario para pasar yiquetas
+-   Posibilidad durante una llamada API a un escenario para pasar etiquetas
     en la url
 
 -   Soporte Apache
@@ -1110,7 +1110,7 @@ Changelog
 -   Se eliminó la indicación de la batería en los widgets
 
 -   Adición de una página que resume el estado de todos los equipos en
-    batería
+    batterie
 
 -   Rediseño de Jeedom DNS, uso de openvpn (y por lo tanto de
     plugin openvpn)
@@ -1137,7 +1137,7 @@ Changelog
 -   Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Hay que
     sur un label mettre la classe « help » y mettre un attribut
     ayuda de datos con el mensaje de ayuda deseado. Esto permite a Jeedom
-    agregue automáticamente un icono al final de su yiqueta « ? » y
+    agregue automáticamente un icono al final de su etiqueta « ? » et
     al pasar el ratón para mostrar el texto de ayuda
 
 -   Cambio en el proceso de actualización principal, ya no pedimos
@@ -1187,7 +1187,7 @@ Changelog
 
 -   Se corrigieron muchas advertencias
 
--   Posibilidad durante una llamada API a un escenario para pasar yiquetas
+-   Posibilidad durante una llamada API a un escenario para pasar etiquetas
     en la url
 
 -   Soporte Apache
@@ -1207,7 +1207,7 @@ Changelog
 -   Se eliminó la indicación de la batería en los widgets
 
 -   Adición de una página que resume el estado de todos los equipos en
-    batería
+    batterie
 
 -   Rediseño de Jeedom DNS, uso de openvpn (y por lo tanto de
     plugin openvpn)
@@ -1234,7 +1234,7 @@ Changelog
 -   Adición para desarrolladores de un sistema de ayuda de información sobre herramientas. Hay que
     sur un label mettre la classe « help » y mettre un attribut
     ayuda de datos con el mensaje de ayuda deseado. Esto permite a Jeedom
-    agregue automáticamente un icono al final de su yiqueta « ? » y
+    agregue automáticamente un icono al final de su etiqueta « ? » et
     al pasar el ratón para mostrar el texto de ayuda
 
 -   Cambio en el proceso de actualización principal, ya no pedimos

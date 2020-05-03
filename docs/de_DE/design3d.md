@@ -65,7 +65,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 - Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
 - Macht : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt)
 
-## Text
+## Texte
 
 - Text : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
 - Textgröße
@@ -82,25 +82,25 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 ### Tür / Fenster
 
 - Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
-- Drehung
+- Rotation
 	- Activate : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
 	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
-- Übersetzung
+- Translation
 	- Activate : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp)
 	- Bedeutung : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
 	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
 - Verstecken, wenn die Tür / das Fenster geöffnet ist
 	- Activate : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
-- Farbe
+- Couleur
 	- Farbe öffnen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
 
-### Klappe
+### Volet
 
 - Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
 	- Activate : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
-- Farbe
+- Couleur
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 
 ## Bedingte Farbe

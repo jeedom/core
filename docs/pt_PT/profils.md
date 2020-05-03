@@ -23,7 +23,7 @@ O painel de temas permite ajustar os parâmetros da interface :
 -   **Gráficos móveis** : permite definir o tema padrão para
     gráficos para celular
 
--   **Widgets Opacity by Painel de instrumentos** : permite dar opacidade
+-   **Widgets Opacity by Dashboard** : permite dar opacidade
     (entre 0 e 1) widgets no painel
 
 -   **Opacidade por widgets de Design** : permite dar opacidade

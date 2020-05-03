@@ -34,10 +34,10 @@ Settings :
 
 -   string key : configuration value key to return
 
--   string Plugin : (optional), configuration value Plugin
+-   string Plugin : (optional), configuration value plugin
 
 -   string default : (optional), value to return if the key does not exist
-    not
+    pas
 
 config::save
 ------------
@@ -51,7 +51,7 @@ Settings :
 -   string key : configuration value key to save
 
 -   string Plugin : (optional), Plugin of the configuration value to
-    save
+    enregistrer
 
 JSON Event API
 ==============
@@ -59,7 +59,7 @@ JSON Event API
 event::changes
 --------------
 
-Returns the list of exchange since the datetime notsed in parameter
+Returns the list of exchange since the datetime passed in parameter
 (must be in microseconds). You will also have in the answer the
 Jeedom&#39;s current datetime (to be reused for the next query)
 
@@ -73,13 +73,13 @@ JSON Plugin API
 plugin::listPlugin
 ------------------
 
-Returns the list of ALL Plugins
+Returns the list of ALL plugins
 
 Settings :
 
--   int activateOnly = 0 (only returns the list of activated Plugins)
+-   int activateOnly = 0 (only returns the list of activated plugins)
 
--   int orderByCaterogy = 0 (returns the list of sorted Plugins
+-   int orderByCaterogy = 0 (returns the list of sorted plugins
     by category)
 
 Object JSON API
@@ -151,7 +151,7 @@ JSON Summary API
 summary::global
 ---------------
 
-Return the global summary for the key notsed in parameter
+Return the global summary for the key passed in parameter
 
 Settings:
 
@@ -390,7 +390,7 @@ Settings:
 
 -   int id
 
--   string value : value
+-   string value : valeur
 
 -   string datetime : (optional) value datetime
 
@@ -400,12 +400,12 @@ JSON Scenario API
 scenario::all
 -------------
 
-Returns the list of ALL Scenarios
+Returns the list of ALL scenarios
 
 scenario::byId
 --------------
 
-Returns the specified Scenario
+Returns the specified scenario
 
 Settings:
 
@@ -414,7 +414,7 @@ Settings:
 scenario::export
 ----------------
 
-Returns the export of the Scenario as well as the human name of the Scenario
+Returns the export of the Scenario as well as the human name of the scenario
 
 Settings:
 
@@ -497,10 +497,10 @@ Get the value of a variable stored in the datastore
 
 Settings:
 
--   string type : type of stored value (for Scenarios
-    it&#39;s Scenario)
+-   string type : type of stored value (for scenarios
+    it&#39;s scenario)
 
--   id linkId : -1 for global (value for default Scenarios,
+-   id linkId : -1 for global (value for default scenarios,
     or the Scenario id)
 
 -   string key : value name
@@ -512,10 +512,10 @@ Stores the value of a variable in the datastore
 
 Settings:
 
--   string type : type of stored value (for Scenarios
-    it&#39;s Scenario)
+-   string type : type of stored value (for scenarios
+    it&#39;s scenario)
 
--   id linkId : -1 for global (value for default Scenarios,
+-   id linkId : -1 for global (value for default scenarios,
     or the Scenario id)
 
 -   string key : value name
@@ -528,12 +528,12 @@ JSON Message API
 message::all
 ------------
 
-Returns the list of ALL Messages
+Returns the list of ALL messages
 
 message::removeAll
 ------------------
 
-Delete ALL Messages
+Delete ALL messages
 
 JSON Interaction API
 ====================
@@ -541,7 +541,7 @@ JSON Interaction API
 interact::tryToReply
 --------------------
 
-Try to match a request with an Interaction, execute
+Try to match a request with an interaction, execute
 action and responds accordingly
 
 Settings:
@@ -554,7 +554,7 @@ Settings:
 interactQuery::all
 ------------------
 
-Returns the complete list of ALL Interactions
+Returns the complete list of ALL interactions
 
 JSON System API
 ===============
@@ -595,20 +595,20 @@ JSON Plugin API
 plugin::install
 ---------------
 
-Installation / Update of a given Plugin
+Installation / Update of a given plugin
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::remove
 --------------
 
-Deletion of a given Plugin
+Deletion of a given plugin
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::dependancyInfo
 ----------------------
@@ -617,7 +617,7 @@ Returns information on the status of Plugin dependencies
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::dependancyInstall
 -------------------------
@@ -626,7 +626,7 @@ Force installation of Plugin dependencies
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::deamonInfo
 ------------------
@@ -635,7 +635,7 @@ Returns information about the status of the Plugin daemon
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::deamonStart
 -------------------
@@ -644,7 +644,7 @@ Force the demon to start
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::deamonStop
 ------------------
@@ -653,7 +653,7 @@ Force demon stop
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 plugin::deamonChangeAutoMode
 ----------------------------
@@ -662,7 +662,7 @@ Change the management mode of the daemon
 
 Settings:
 
--   string Plugin\_id : Plugin name (logical name)
+-   string plugin\_id : Plugin name (logical name)
 
 -   int mode : 1 for automatic, 0 for manual
 
@@ -683,14 +683,14 @@ Allows you to check for updates
 update::update
 --------------
 
-Allows you to update Jeedom and ALL Plugins
+Allows you to update Jeedom and ALL plugins
 
 update::doUpdate
 --------------
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 JSON network API
@@ -730,7 +730,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;object::ALL &#39;, array ())){
 }
 `` ''
 
-Execution of an order (with the option of a title and a Message)
+Execution of an order (with the option of a title and a message)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);

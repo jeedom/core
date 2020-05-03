@@ -65,7 +65,7 @@ To configure an element on the 3D design, double click on the element you want t
 - Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
 - Power : bulb power (please note this may not reflect reality)
 
-## Text
+## Texte
 
 - Text : text to display (you can put commands there, the text will be automatically updated on change of it)
 - Text size
@@ -91,16 +91,16 @@ To configure an element on the 3D design, double click on the element you want t
 	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
 - Hide when the Door / Window is open
 	- Activate : Hides the element if the Door / Window is open
-- Color
+- Couleur
 	- Open color : if checked the element will take on this color if the Door / Window is open
 	- Color closed : if checked the element will take on this color if the Door / Window is closed
 
-### Shutter
+### Volet
 
 - State : shutter status, 0 open other value closed
 - Hide when the shutter is open
 	- Activate : hide the element if the shutter is open
-- Color
+- Couleur
 	- Color closed : if checked the element will take on this color if the shutter is closed
 
 ## Conditional color

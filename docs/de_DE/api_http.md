@@ -10,7 +10,7 @@ URL.
 
 > **Note**
 >
-> Bei all dieser Dokumentation entspricht \#IP\_JEEDOM \# Ihrer URLs
+> Bei all dieser Dokumentation entspricht \#IP\_JEEDOM \# Ihrer URL
 > Zugang zu Jeedom. Dies ist (es sei denn, Sie sind mit Ihrem Netzwerk verbunden
 > lokal) der Internetadresse, mit der Sie auf Jeedom zugreifen
 > von außen.
@@ -54,7 +54,7 @@ Hier ist die URLs =
 
 Der einfachste Weg, um diese URLs zu erhalten, ist die Seite Extras →
 Zusammenfassung der Hausautomation, um nach dem Befehl zu suchen und dann seine Konfiguration zu öffnen
-Erweitert (das &quot;Zahnrad&quot; -Symbol) und dort sehen Sie eine URLs, die enthält
+Erweitert (das &quot;Zahnrad&quot; -Symbol) und dort sehen Sie eine URL, die enthält
 schon alles was du brauchst je nach typ und subtyp des
 commande.
 
@@ -100,7 +100,7 @@ Hier ist die URLs =
 
 -   **message** : Nachricht in Frage, denken Sie sorgfältig über die Codierung
     die Nachricht (Leerzeichen wird% 20, =% 3D…). Sie können eine verwenden
-    Werkzeug, [hier](https://meyerweb.com/eric/tools/dencoder/)
+    outil, [hier](https://meyerweb.com/eric/tools/dencoder/)
 
 Objekt 
 =====
@@ -117,7 +117,7 @@ Hier ist die URLs =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&Objekt\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 -   **Objekt\_id** : ID des Objekts, von dem wir abrufen möchten
-    Komfort
+    équipements
 
 Bestellen 
 ========
@@ -126,7 +126,7 @@ Hier ist die URLs =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
 -   **eqLogic\_id** : ID der Ausrüstung, von der wir wiederherstellen möchten
-    Befehle
+    commandes
 
 Vollständige Daten 
 =========

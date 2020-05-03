@@ -40,7 +40,7 @@ Abaixo você tem uma tabela :
     a conexão não é atualizada toda vez que você volta a ela.
 
 -   **Alterar senha** : permite alterar a senha de
-    o usuário
+    l'utilisateur
 
 -   **Supprimer** : Remover usuário
 

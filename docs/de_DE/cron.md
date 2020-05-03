@@ -58,7 +58,7 @@ Seite). In dieser Tabelle finden wir :
 
 -   **Timeout** : maximale Laufzeit der Aufgabe. Wenn die
     Aufgabe ist ein Dämon, dann wird es automatisch gestoppt und
-    am Ende des Zeitüberschreitungs neu gestartet
+    am Ende des Timeouts neu gestartet
 
 -   **Letzter Start** : Datum des letzten Taskstarts
 
@@ -72,6 +72,6 @@ Seite). In dieser Tabelle finden wir :
 -   **Suppression** : Aufgabe löschen
 
 
-# Zuhörer
+# Listener
 
 Die Zuhörer sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)

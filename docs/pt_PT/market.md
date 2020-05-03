@@ -114,7 +114,7 @@ Minhas jeedoms
 
     -   **DNS** : Permite que você personalize o nome do seu DNS
 
-    -   **URL** : Listar os diferentes URL s de acesso Jeedom.
+    -   **URL** : Listar os diferentes URLs de acesso Jeedom.
 
     -   **Servidor DNS** : informa se o servidor DNS ao qual você está
         estão anexados
@@ -128,7 +128,7 @@ Minhas jeedoms
     -   **Última atualização** : A última comunicação de Jeedom com
         o mercado
 
-    -   **Hardware** : Nomee do hardware Jeedom
+    -   **Hardware** : Nome do hardware Jeedom
 
     -   **Version** : Versão Jeedom instalada
 
