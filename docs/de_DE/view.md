@@ -1,4 +1,4 @@
-# Ansichten
+# Vues
 **Home → Anzeigen**
 
 Mit Ansichten können Sie eine benutzerdefinierte Ansicht erstellen.
@@ -8,7 +8,7 @@ Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Mi
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
 
-## Prinzip
+## Principe
 
 Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die die Befehls-Widgets enthalten) einfügen..
 
@@ -70,7 +70,7 @@ Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeed
 - **Echelle** : Skala (rechts oder links) der Kurve.
 - **Escalier** : Zeigt die gestufte Kurve an.
 - **Empiler** : Stapeln Sie die Kurve mit den anderen Kurventypen.
-- **Variation** : Zeichnen Sie nur Veränderungen mit dem vorherigen Wert.
+- **Variation** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
 
 > **Tip**
 >

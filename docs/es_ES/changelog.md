@@ -84,7 +84,7 @@ Registro de cambios Jeedom V4
 - Cada página de Jeedom ahora tiene un título en el idioma de la interfaz (pestaña del navegador).
 - Prevención del autocompletado en el código de acceso de los campos'.
 - Gestión de funciones * Página anterior / Página siguiente * del navegador.<br/><br/>
-- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Reproductores).
+- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Widgets).
 - Reproductores : Posibilidad de reemplazar un widget con otro en todos los comandos que lo usan.
 - Reproductores : Posibilidad de asignar un widget a múltiples comandos.
 - Reproductores : Agregar widget numérico de información horizontal.

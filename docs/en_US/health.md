@@ -1,4 +1,4 @@
-# Health
+# Santé
 **Analysis → Health**
 
 The Jeedom Health page allows you to have a quick overview of the health status of your Jeedom.

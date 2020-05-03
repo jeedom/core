@@ -55,19 +55,19 @@ Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&t
 - **category** : Message category to add to Message center.
 - **message** : Message in question, be careful to think about encoding the Message (space becomes% 20, =% 3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
 
-## Object
+## Objet
 
 Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Returns in json the list of all Jeedom objects.
 
-## Equipment
+## Equipement
 
 Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 - **object\_id** : ID of the object whose equipment we want to recover.
 
-## Ordered
+## Commande
 
 Here is the URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 

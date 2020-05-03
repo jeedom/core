@@ -59,11 +59,11 @@ Para los profesionales :
     - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
     - **DNS** : Le permite personalizar el nombre de su Dns.
     - **URL** : Enumerar las diferentes URL de acceso de Jeedom.
-    - **Servidor Dns** : Le informa el servidor Dns al que está conectado.
-    - **Estado Dns** : Permite ver el estado del Dns.
+    - **Servidor DNS** : Le informa el servidor Dns al que está conectado.
+    - **Estado DNS** : Permite ver el estado del Dns.
     - **Fecha de creación** : Fecha de creación de este Jeedom en su cuenta de Market (como recordatorio, esto se hace automáticamente cuando lo vincula al Market).
     - **última actualización** : Última comunicación de Jeedom con el mercado.
-    - **Hardware** : Apellidobre de hardware Jeedom.
+    - **Hardware** : Nombre de hardware Jeedom.
     - **Version** : La versión de Jeedom instalada.
 
 > **Tip**

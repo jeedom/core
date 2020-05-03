@@ -123,9 +123,9 @@ Registro de Alterações Jeedom V4
 - Resumo Automation : Adição de IDs de equipamentos e pedidos, no display e na pesquisa.
 - Resumo Automation : Exportação CSV do objeto pai, ID, equipamento e seu ID, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais pedidos.<br/><br/>
-- Projeto : Capacidade de especificar a ordem (posição) de * Projetos * e * 3D Projetos * (Editar, configurar design).
+- Projeto : Capacidade de especificar a ordem (posição) de * Designs * e * 3D Designs * (Editar, configurar design).
 - Projeto : Adição de um campo CSS personalizado nos elementos de * design*.
-- Projeto : Deslocamento das opções de exibição em Projeto da configuração avançada, nas configurações de exibição de * Projeto*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam * Projeto*.
+- Projeto : Deslocamento das opções de exibição em Projeto da configuração avançada, nas configurações de exibição de * Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam * Design*.
 - Projeto : Mover e redimensionar componentes no * Projeto * leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
 - Redução geral (estilos css / inline, refatoração etc.) e melhorias de desempenho.
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.

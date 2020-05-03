@@ -52,17 +52,17 @@ Configuraciones :
 
 -   complemento de cadena : (opcional), complemento del valor de configuración para guardar
 
-API de eventoos JSON
+API de eventos JSON
 ==============
 
 event::changes
 --------------
 
-Devuelve la listaa de cambios desde la fecha y hora pasada en el parámetro (debe estar en microsegundos). También tendrá en la respuesta la fecha y hora actual de Jeedom (que se reutilizará para la próxima consulta)
+Devuelve la lista de cambios desde la fecha y hora pasada en el parámetro (debe estar en microsegundos). También tendrá en la respuesta la fecha y hora actual de Jeedom (que se reutilizará para la próxima consulta)
 
 Configuraciones :
 
--   int fecha y hora
+-   int datetime
 
 API de complementos JSON
 ===============
@@ -70,13 +70,13 @@ API de complementos JSON
 plugin::listPlugin
 ------------------
 
-Devuelve la listaa de todos los complementos
+Devuelve la lista de todos los complementos
 
 Configuraciones :
 
--   int enableOnly = 0 (solo devuelve la listaa de complementos activados)
+-   int enableOnly = 0 (solo devuelve la lista de complementos activados)
 
--   int orderByCaterogy = 0 (devuelve la listaa de complementos ordenados por categoría)
+-   int orderByCaterogy = 0 (devuelve la lista de complementos ordenados por categoría)
 
 API JSON de objetos
 ==============
@@ -84,12 +84,12 @@ API JSON de objetos
 jeeObject::all
 -----------
 
-Devuelve la listaa de todos los objetos.
+Devuelve la lista de todos los objetos.
 
 jeeObject::full
 ------------
 
-Devuelve la listaa de todos los objetos, para cada objeto todo su equipo y para cada equipo todos sus comandos, así como sus estados (para comandos de tipo de información)
+Devuelve la lista de todos los objetos, para cada objeto todo su equipo y para cada equipo todos sus comandos, así como sus estados (para comandos de tipo de información)
 
 jeeObject::fullById
 ----------------
@@ -164,7 +164,7 @@ API JSON EqLogic
 eqLogic::all
 ------------
 
-Devuelve la listaa de todos los equipos.
+Devuelve la lista de todos los equipos.
 
 eqLogic::fullById
 -----------------
@@ -253,7 +253,7 @@ JSON Cmd API
 cmd::all
 --------
 
-Devuelve la listaa de todos los comandos.
+Devuelve la lista de todos los comandos.
 
 cmd::byId
 ---------
@@ -334,7 +334,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   string Id. lógico
+-   registro de cadenaicalId
 
 -   string eqType
 
@@ -373,9 +373,9 @@ Configuraciones:
 
 -   int id
 
--   valor de cadena : valor
+-   valor de cadena : valeur
 
--   cadena de fecha y hora : (opcional) valor fecha y hora
+-   cadena de fecha y hora : (opcional) valor datetime
 
 API de eguión JSON
 =================
@@ -383,7 +383,7 @@ API de eguión JSON
 scenario::all
 -------------
 
-Devuelve la listaa de todos los escenarios.
+Devuelve la lista de todos los escenarios.
 
 scenario::byId
 --------------
@@ -397,7 +397,7 @@ Configuraciones:
 scenario::export
 ----------------
 
-Devuelve la exportaciónación del escenario, así como el * nombre humano * del escenario
+Devuelve la exportación del escenario, así como el * nombre humano * del escenario
 
 Configuraciones:
 
@@ -406,15 +406,15 @@ Configuraciones:
 scenario::import
 ----------------
 
-Le permite importaciónar un escenario.
+Le permite importar un escenario.
 
 Configuraciones:
 
--   int id : ID del eguión en el que importaciónar (vacío si se crea)
+-   int id : ID del eguión en el que importar (vacío si se crea)
 
 -   string humanName : *nombre humano * del eguión (vacío si creación)
 
--   importaciónación de matriz : eguión (del campo eguión de exportaciónación::export)
+-   importación de matriz : eguión (del campo eguión de exportación::export)
 
 scenario::changeState
 ---------------------
@@ -462,7 +462,7 @@ Configuraciones:
 log::list
 ---------
 
-Obtenga la listaa de registros de Jeedom
+Obtenga la lista de registros de Jeedom
 
 Configuraciones:
 
@@ -525,7 +525,7 @@ API de mensajes JSON
 message::all
 ------------
 
-Devuelve la listaa de todos los mensajes.
+Devuelve la lista de todos los mensajes.
 
 message::add
 --------
@@ -536,11 +536,11 @@ Configuraciones:
 
 -   tipo de cadena : tipo de registro (depuración, información, advertencia, error)
 
--   mensaje de cadena : mensaje
+-   mensaje de cadena : message
 
--   acción de cuerda : acción
+-   acción de cuerda : action
 
--   string Id. lógico : Id. lógico
+-   string Id. lógico : logicalId
 
 message::removeAll
 ------------------
@@ -565,7 +565,7 @@ Configuraciones:
 interactQuery::all
 ------------------
 
-Devuelve la listaa completa de todas las interacciones.
+Devuelve la lista completa de todas las interacciones.
 
 API del sistema JSON
 ===============
@@ -610,7 +610,7 @@ Instalación / Actualización de un complemento dado
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::remove
@@ -620,7 +620,7 @@ Eliminación de un complemento dado
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::dependancyInfo
@@ -630,7 +630,7 @@ Devuelve información sobre el estado de dependencia del complemento
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::dependancyInstall
@@ -640,7 +640,7 @@ Forzar la instalación de dependencias de complementos
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonInfo
@@ -650,7 +650,7 @@ Devuelve información sobre el estado del demonio del complemento.
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonStart
@@ -660,7 +660,7 @@ Forzar al demonio a comenzar
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonStop
@@ -670,7 +670,7 @@ Fuerza demonio parada
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonChangeAutoMode
@@ -680,7 +680,7 @@ Cambiar el modo de gestión del demonio
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 -   modo int : 1 para automático, 0 para manual
 
@@ -690,7 +690,7 @@ API de actualización de JSON
 update::all
 -----------
 
-Volver a la listaa de todos los componentes instalados, sus versiónes y la información asociada.
+Volver a la lista de todos los componentes instalados, sus versiones y la información asociada.
 
 update::checkUpdate
 -------------------
@@ -707,7 +707,7 @@ update::doUpdate
 
 Configuraciones:
 
--   int Plugin\_id (opcional) : ID del complemento
+-   int plugin\_id (opcional) : ID del complemento
 -   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
 
 API de red JSON
@@ -735,14 +735,14 @@ Aquí hay un ejemplo del uso de la API. Para el siguiente ejemplo
 Yo uso [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
-Recuperando la listaa de objetos :
+Recuperando la lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::todos &#39;, array ())){
-    print_r ($ jsonrpc-&gt; obtenerResult ());
+    print_r ($ jsonrpc-&gt; getResult ());
 }else{
-    echo $ jsonrpc-&gt; obtenerError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 
@@ -753,7 +753,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; mensaje &#39;=>&#39; Funciona &#39;)))){
     echo &#39;OK&#39;;
 }else{
-    echo $ jsonrpc-&gt; obtenerError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 

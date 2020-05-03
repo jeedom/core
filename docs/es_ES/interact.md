@@ -1,4 +1,4 @@
-# Interacciones
+# Interactions
 **Herramientas → Interacciones**
 
 El sistema de interacción en Jeedom le permite realizar acciones desde texto o comandos de voz..
@@ -6,11 +6,11 @@ El sistema de interacción en Jeedom le permite realizar acciones desde texto o 
 Estas órdenes pueden ser obtenidas por :
 
 - SMS : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
-- Gato : Telegram, Slack, yc..
-- Vocal : dicta una frase con Siri, Google Now, SARAH, yc.. Para iniciar comandos (acción) o hacer una pregunta (información).
+- Gato : Telegram, Slack, etc..
+- Vocal : dicta una frase con Siri, Google Now, SARAH, etc.. Para iniciar comandos (acción) o hacer una pregunta (información).
 - Http : lanzar una URL Http que contenga el texto (ej.. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
 
-El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, yc..
+El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc..
 
 > **Tip**
 >
@@ -26,7 +26,7 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 
 Una vez en la configuración de una interacción, tiene un menú contextual con el botón derecho en las pestañas de la interacción. También puede usar Ctrl Click o Click Center para abrir directamente otra interacción en una nueva pestaña del navegador.
 
-## Interacciones
+## Interactions
 
 En la parte superior de la página, hay 3 botones. :
 
@@ -38,7 +38,7 @@ En la parte superior de la página, hay 3 botones. :
 >
 > Si tiene una interacción que genera las oraciones para las luces, por ejemplo, y agrega un nuevo módulo de control de luz, tendrá que regenerar todas las interacciones o ir a la interacción en cuestión y guardarla nuevamente para crear las oraciones de este nuevo módulo.
 
-## Principio
+## Principe
 
 El principio de la creación es bastante simple. : definiremos una oración modelo generadora que permitirá a Jeedom crear una o más cientos de otras oraciones que serán posibles combinaciones del modelo.
 
@@ -46,7 +46,7 @@ Vamos a definir respuestas de la misma manera con un modelo (esto le permite a J
 
 También podemos definir un comando para ejecutar si, por ejemplo, la interacción no está vinculada a una acción sino a una información o si deseamos llevar a cabo una acción particular después de esta (también es posible ejecutar un escenario, controlar varias órdenes ...).
 
-## Configuración
+## Configuration
 
 La página de configuración consta de varias pestañas y botones. :
 
@@ -57,7 +57,7 @@ La página de configuración consta de varias pestañas y botones. :
 
 ### Pestaña General
 
-- **Nom** : Apellidobre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
+- **Nom** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
 - **Groupe** : Grupo de interacción, esto les permite organizarse (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
 - **Actif** : Permite activar o desactivar la interacción.
 - **Demande** : La oración modelo generadora (requerida).
@@ -81,7 +81,7 @@ La página de configuración consta de varias pestañas y botones. :
 
 Úselo si desea apuntar a uno o más comandos específicos o pasar parámetros específicos.
 
-#### Ejemplos
+#### Exemples
 
 > **Note**
 >
@@ -111,7 +111,7 @@ En los 2 ejemplos anteriores, la oración modelo es idéntica, pero las acciones
 
 Aquí veremos todo el interés y todo el poder de las interacciones, con una oración modelo podremos generar oraciones para un grupo completo de comandos.
 
-Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos agregado y, en lugar de la oración fija, en &quot;Solicitud&quot;, usaremos las yiquetas **\#commande\#** y **\#equipement\#**. Por lo tanto, Jeedom reemplazará estas yiquetas con el nombre de los comandos y el nombre del equipo (podemos ver la importancia de tener nombres de comando / equipo consistentes).
+Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos agregado y, en lugar de la oración fija, en &quot;Solicitud&quot;, usaremos las etiquetas **\#commande\#** y **\#equipement\#**. Por lo tanto, Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre del equipo (podemos ver la importancia de tener nombres de comando / equipo consistentes).
 
 ![interact006](../images/interact006.png)
 
@@ -127,13 +127,13 @@ Por lo tanto, en sinónimos, indicaremos el nombre del comando y los sinónimos 
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es, por lo tanto, "* nombre del comando*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2 * "(puede agregar tantos sinónimos como desee). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue una barra vertical después del último sinónimo "*|*" después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos en la primera parte, yc..
+Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es, por lo tanto, "* nombre del comando*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2 * "(puede agregar tantos sinónimos como desee). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue una barra vertical después del último sinónimo "*|*" después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos en la primera parte, etc..
 
-Ya es mejor, pero aún le falta el comando &quot;en&quot; &quot;entrada&quot; la &quot;l&quot; y para otros la &quot;la&quot; o &quot;le&quot; o &quot;a&quot;, yc.. Podríamos cambiar el nombre del equipo para agregarlo, sería una solución, de lo contrario, podemos usar las variaciones en la solicitud. Esto consiste en enumerar una serie de palabras posibles en un lugar de la oración, por lo tanto, Jeedom generará oraciones con estas variaciones.
+Ya es mejor, pero aún le falta el comando &quot;en&quot; &quot;entrada&quot; la &quot;l&quot; y para otros la &quot;la&quot; o &quot;le&quot; o &quot;a&quot;, etc.. Podríamos cambiar el nombre del equipo para agregarlo, sería una solución, de lo contrario, podemos usar las variaciones en la solicitud. Esto consiste en enumerar una serie de palabras posibles en un lugar de la oración, por lo tanto, Jeedom generará oraciones con estas variaciones.
 
 ![interact009](../images/interact009.png)
 
-Ahora tenemos oraciones un poco más correctas con oraciones que no son correctas, para nuestro ejemplo de entrada "on" "". así que encontramos &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, yc.. Entonces, tenemos todas las variantes posibles con lo que agregamos entre &quot;\ [\]&quot; y esto para cada sinónimo, que rápidamente genera muchas oraciones (aquí 168).
+Ahora tenemos oraciones un poco más correctas con oraciones que no son correctas, para nuestro ejemplo de entrada "on" "". así que encontramos &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, etc.. Entonces, tenemos todas las variantes posibles con lo que agregamos entre &quot;\ [\]&quot; y esto para cada sinónimo, que rápidamente genera muchas oraciones (aquí 168).
 
 Para refinar y no tener cosas improbables como &quot;encender el televisor&quot;, podemos permitir que Jeedom elimine solicitudes sintácticamente incorrectas. Por lo tanto, eliminará lo que está demasiado lejos de la sintaxis real de una oración. En nuestro caso, pasamos de 168 oraciones a 130 oraciones.
 
@@ -145,11 +145,11 @@ Por lo tanto, se vuelve importante construir bien sus oraciones y sinónimos mod
 
 Hasta ahora, como respuesta a una interacción, teníamos una oración simple que no decía mucho, excepto que algo sucedió.. La idea sería que Jeedom nos diga qué hizo con un poco más de precisión.. Aquí es donde entra el campo de respuesta, donde podremos personalizar el retorno de acuerdo con el comando ejecutado..
 
-Para hacer esto, nuevamente usaremos la yiqueta Jeedom. Para nuestras luces, podemos usar una frase del estilo : Encendí \#equipement \# (ver captura de pantalla a continuación).
+Para hacer esto, nuevamente usaremos la etiqueta Jeedom. Para nuestras luces, podemos usar una frase del estilo : Encendí \#equipement \# (ver captura de pantalla a continuación).
 
 ![interact011](../images/interact011.png)
 
-También puede agregar cualquier valor desde otro comando, como temperatura, número de personas, yc..
+También puede agregar cualquier valor desde otro comando, como temperatura, número de personas, etc..
 
 ![interact012](../images/interact012.png)
 
@@ -165,13 +165,13 @@ El campo **Conversión binaria** debe contener 2 respuestas : primero la respues
 
 > **Warning**
 >
-> Las yiquetas no funcionan en conversiones binarias.
+> Las etiquetas no funcionan en conversiones binarias.
 
 ### Usuarios autorizados
 
 El campo "Usuarios autorizados" permite autorizar solo a ciertas personas para que ejecuten el comando, puede poner varios perfiles separándolos por "|".
 
-Ejemplo : person1|personne2
+Ejemplo : personne1|personne2
 
 Podemos imaginar que una alarma puede ser activada o desactivada por un niño o un vecino que vendría a regar las plantas en su ausencia.
 
@@ -244,7 +244,7 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Por lo tanto, podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la habitación de * julie*|si hay alguien en la habitación de * julie*"
 
-#### Evolución
+#### Evolution
 
 - Entonces la pregunta es "\#order \# \ [en el |en el \] \#objeto \#"
 - La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación"."
@@ -269,7 +269,7 @@ Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humeda
 - La respuesta será "21 ° C" o "200 lux". Solo pon : \#valeur \# \#unite \# (la unidad debe completarse en la configuración de cada pedido para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
-#### Evolución
+#### Evolution
 
 Por lo tanto, podemos agregar sinónimos al nombre del comando para tener algo más natural, agregar una expresión regular para filtrar los comandos que no tienen nada que ver con nuestra interacción.
 
@@ -297,25 +297,25 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la yiqueta **\#consigne\#** (puede poner lo que quiera) que se usa en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una yiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la yiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor pasamos nuestra yiqueta * instrucción*.
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se usa en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor pasamos nuestra etiqueta * instrucción*.
 
 > **Note**
 >
-> Podemos usar cualquier yiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las yiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en &quot;Ejecutar en primer plano&quot;).
+> Podemos usar cualquier etiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en &quot;Ejecutar en primer plano&quot;).
 
-#### Evolución
+#### Evolution
 
 Es posible que queramos controlar todos los comandos de tipo cursor con una sola interacción. Con el siguiente ejemplo, podremos controlar varias unidades con una sola interacción y, por lo tanto, generar un conjunto de oraciones para controlarlas..
 
 ![interact033](../images/interact033.png)
 
-En esta interacción, no tenemos comando en la parte de acción, dejamos que Jeedom genere a partir de yiquetas la lista de oraciones. Podemos ver la yiqueta **\#slider\#**. Es imprescindible utilizar esta yiqueta para obtener instrucciones en un comando de interacción múltiple, puede que no sea la última palabra de la oración. También podemos ver en el ejemplo que podemos usar en la respuesta una yiqueta que no es parte de la solicitud. La mayoría de las yiquetas disponibles en los escenarios también están disponibles en las interacciones y, por lo tanto, se pueden usar en una respuesta.
+En esta interacción, no tenemos comando en la parte de acción, dejamos que Jeedom genere a partir de etiquetas la lista de oraciones. Podemos ver la etiqueta **\#slider\#**. Es imprescindible utilizar esta etiqueta para obtener instrucciones en un comando de interacción múltiple, puede que no sea la última palabra de la oración. También podemos ver en el ejemplo que podemos usar en la respuesta una etiqueta que no es parte de la solicitud. La mayoría de las etiquetas disponibles en los escenarios también están disponibles en las interacciones y, por lo tanto, se pueden usar en una respuesta.
 
 Resultado de la interacción. :
 
 ![interact034](../images/interact034.png)
 
-Podemos ver que la yiqueta **\#equipement\#** que no se utiliza en la solicitud se completa bien en la respuesta.
+Podemos ver que la etiqueta **\#equipement\#** que no se utiliza en la solicitud se completa bien en la respuesta.
 
 ### Controla el color de una tira de LED
 
@@ -346,10 +346,10 @@ Por lo tanto, este ejemplo permite lanzar el escenario que está vinculado en la
 
 ### Programando una acción con interacciones
 
-Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. Ejemplo : "Enciende el calor a las 22 para las 2:50 p.m.". Para eso, nada más simple, es suficiente usar las yiquetas \#time \# (si se define una hora precisa) o \#duration \# (para tiempo X, ejemplo en 1 hora) :
+Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. Ejemplo : "Enciende el calor a las 22 para las 2:50 p.m.". Para eso, nada más simple, es suficiente usar las etiquetas \#time \# (si se define una hora precisa) o \#duration \# (para tiempo X, ejemplo en 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 
 > **Note**
 >
-> Notará en la respuesta la yiqueta \#valor \# que contiene en el caso de una interacción programada el tiempo de programación efectivo
+> Notará en la respuesta la etiqueta \#valor \# que contiene en el caso de una interacción programada el tiempo de programación efectivo

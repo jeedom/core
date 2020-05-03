@@ -51,5 +51,5 @@ Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei ein
 - Stoppen Sie einen Daemon, wenn die automatische Verwaltung deaktiviert ist.
 - Aktivieren / Deaktivieren der automatischen Verwaltung eines Daemons.
 
-> Spitze
+> Tip
 > Dämonen deaktivierter Plugins werden auf dieser Seite nicht angezeigt.

@@ -88,7 +88,7 @@ Die möglichen Parameter sind :
 
 Hier ist ein Beispiel für die Syntax, um ein erzwungenes Update durchzuführen, indem die Änderungen seit 4.0 erneut angewendet werden.04 :
 
-``````sudo php  /var/www/html/install/update.php Modus=force Version=4.0.04``````
+``````sudo php  /var/www/html/install/update.php mode=force version=4.0.04``````
 
 Achtung, nach einem Update in der Befehlszeile müssen die Rechte für den Jeedom-Ordner erneut angewendet werden :
 

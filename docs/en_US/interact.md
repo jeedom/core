@@ -6,11 +6,11 @@ The interaction system in Jeedom allows you to perform actions from text or voic
 These orders can be obtained by :
 
 - SMS : send an SMS to launch commands (action) or ask a question (info).
-- Cat : Telegram, Slack, andc.
-- Vocal : dictate a phrase with Siri, Google Now, SARAH, andc.. To launch commands (action) or ask a question (info).
+- Cat : Telegram, Slack, etc.
+- Vocal : dictate a phrase with Siri, Google Now, SARAH, etc.. To launch commands (action) or ask a question (info).
 - D'informations sont indispensables à la bonne compréhension de : launch an D'informations sont indispensables à la bonne compréhension de URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
 
-The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, andc..
+The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, etc..
 
 > **Tip**
 >
@@ -38,7 +38,7 @@ At the top of the page, there are 3 buttons :
 >
 > If you have an interaction that generates sentences for lights for example and you add a new light control module, you will either have to regenerate all the interactions, or go to the interaction in question and save it again to create the sentences of this new module.
 
-## Principle
+## Principe
 
 The principle of creation is quite simple : we will define a generating model sentence which will allow Jeedom to create one or more hundreds of other sentences which will be possible combinations of the model.
 
@@ -46,7 +46,7 @@ We are going to define answers in the same way with a model (this allows Jeedom 
 
 We can also define a command to execute if for example the interaction is not linked to an action but an information or if we wish to carry out a particular action after this one (it is also possible to execute a scenario, to control several orders…).
 
-## D'actualité
+## Configuration
 
 The configuration page consists of several tabs and buttons :
 
@@ -81,7 +81,7 @@ The configuration page consists of several tabs and buttons :
 
 Use if you want to targand one or more specific commands or pass specific parameters.
 
-#### Examples
+#### Exemples
 
 > **Note**
 >
@@ -127,13 +127,13 @@ In synonyms, we will therefore indicate the name of the command and the synonym 
 
 ![interact008](../images/interact008.png)
 
-We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "* name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can add as many synonyms as you want). Then, to add synonyms for another command name, just add a vertical bar after the last synonym "*|*" after which you can again name the command which will have synonyms as for the first part, andc..
+We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "* name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can add as many synonyms as you want). Then, to add synonyms for another command name, just add a vertical bar after the last synonym "*|*" after which you can again name the command which will have synonyms as for the first part, etc..
 
-It&#39;s already better, but it still lacks for the command &quot;on&quot; &quot;input&quot; the &quot;l&quot; and for others the &quot;la&quot; or &quot;le&quot; or &quot;a&quot;, andc.. We could change the name of the equipment to add it, it would be a solution, otherwise we can use the variations in the request. This consists of listing a series of possible words at a location in the sentence, Jeedom will therefore generate sentences with these variations.
+It&#39;s already better, but it still lacks for the command &quot;on&quot; &quot;input&quot; the &quot;l&quot; and for others the &quot;la&quot; or &quot;le&quot; or &quot;a&quot;, etc.. We could change the name of the equipment to add it, it would be a solution, otherwise we can use the variations in the request. This consists of listing a series of possible words at a location in the sentence, Jeedom will therefore generate sentences with these variations.
 
 ![interact009](../images/interact009.png)
 
-We now have slightly more correct sentences with sentences that are not correct, for our example "on" "entry". so we find &quot;Turn on entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on the entry&quot; andc. So we have all the possible variants with what we added between the &quot;\ [\]&quot; and this for each synonym, which quickly generates a lot of sentences (here 168).
+We now have slightly more correct sentences with sentences that are not correct, for our example "on" "entry". so we find &quot;Turn on entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on the entry&quot; etc. So we have all the possible variants with what we added between the &quot;\ [\]&quot; and this for each synonym, which quickly generates a lot of sentences (here 168).
 
 In order to refine and not have improbable things like &quot;turn on the TV&quot;, we can allow Jeedom to delete syntactically incorrect requests. It will therefore delete what is too far from the actual syntax of a sentence. In our case, we go from 168 sentences to 130 sentences.
 
@@ -149,7 +149,7 @@ To do this, we will again use the Jeedom Tag. For our lights, we can use a phras
 
 ![interact011](../images/interact011.png)
 
-You can also add any value from another command such as temperature, number of people, andc..
+You can also add any value from another command such as temperature, number of people, etc..
 
 ![interact012](../images/interact012.png)
 
@@ -171,7 +171,7 @@ Field **Binary conversion** must contain 2 answers : first the answer if the val
 
 The field "Authorized users" allows to authorize only certain people to execute the command, you can put several profiles by separating them by a "|".
 
-Example : person1|personne2
+Example : personne1|personne2
 
 We can imagine that an alarm can be activated or deactivated by a child or a neighbor who would come to water the plants in your absence.
 

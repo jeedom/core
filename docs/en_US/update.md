@@ -27,7 +27,7 @@ Once you click on it, you get these different options :
 - **Update plugins** : Allows you to include plugins in the update.
 - **Update the core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
-- **Forced fashion** : Perform the update in forced fashion, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This fashion disables saving!).
+- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This fashion disables saving!).
 - **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
 > **Important**
@@ -40,9 +40,9 @@ Once you click on it, you get these different options :
 
 ## Core and Plugins tabs
 
-The table contains the Versions of the Core and installed plugins.
+The table contains the versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their Version, green in * stable *, or orange in * beta * or other.
+The plugins have a badge next to their name, specifying their version, green in * stable *, or orange in * beta * or other.
 
 - **Statut** : OK or NOK.
 - **Nom** : Name and origin of the plugin
@@ -88,7 +88,7 @@ The possible parameters are :
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 
-``````sudo php  /var/www/html/install/update.php fashion=force Version=4.0.04``````
+``````sudo php  /var/www/html/install/update.php mode=force version=4.0.04``````
 
 Attention, after an update on command line, it is necessary to re-apply the rights on the Jeedom folder :
 

@@ -1,4 +1,4 @@
-# Interações
+# Interactions
 **Ferramentas → Interações**
 
 O sistema de interação no Jeedom permite executar ações a partir de comandos de texto ou voz.
@@ -6,11 +6,11 @@ O sistema de interação no Jeedom permite executar ações a partir de comandos
 Esses pedidos podem ser obtidos por :
 
 - SMS : envie um SMS para iniciar comandos (ação) ou faça uma pergunta (informações).
-- Cat : Telegrama, Slack, ec.
-- Vocal : dite uma frase com Siri, Google Now, SARAH ec.. Iniciar comandos (ação) ou fazer uma pergunta (informações).
+- Cat : Telegrama, Slack, etc.
+- Vocal : dite uma frase com Siri, Google Now, SARAH etc.. Iniciar comandos (ação) ou fazer uma pergunta (informações).
 - HTTP : inicie uma URL HTTP contendo o texto (ex. Tasker, Slack) para iniciar comandos (ação) ou fazer uma pergunta (informações).
 
-O valor das interações reside na integração simplificada em outros sistemas, como smartphones, tablets, outras caixas de automação residencial, ec..
+O valor das interações reside na integração simplificada em outros sistemas, como smartphones, tablets, outras caixas de automação residencial, etc..
 
 > **Tip**
 >
@@ -26,7 +26,7 @@ Você tem um mecanismo de pesquisa para filtrar a exibição de interações. A 
 
 Uma vez na configuração de uma interação, você tem um menu contextual com o botão direito do mouse nas guias da interação. Você também pode usar um Ctrl Click ou Click Center para abrir diretamente outra interação em uma nova guia do navegador.
 
-## Interações
+## Interactions
 
 No topo da página, existem 3 botões :
 
@@ -38,7 +38,7 @@ No topo da página, existem 3 botões :
 >
 > Se você possui uma interação que gera sentenças para luzes, por exemplo, e adiciona um novo módulo de controle de luz, precisará regenerar todas as interações ou ir para a interação em questão e salvá-la novamente para criar as frases deste novo módulo.
 
-## Princípio
+## Principe
 
 O princípio da criação é bastante simples : definiremos uma sentença de modelo geradora que permitirá ao Jeedom criar uma ou mais centenas de outras sentenças, que serão possíveis combinações do modelo.
 
@@ -46,7 +46,7 @@ Vamos definir respostas da mesma maneira com um modelo (isso permite que o Jeedo
 
 Também podemos definir um comando a ser executado se, por exemplo, a interação não estiver vinculada a uma ação, mas a uma informação ou se desejarmos executar uma ação específica após esta (também é possível executar um cenário, controlar várias ordens…).
 
-## Configuração
+## Configuration
 
 A página de configuração consiste em várias guias e botões :
 
@@ -57,7 +57,7 @@ A página de configuração consiste em várias guias e botões :
 
 ### Guia Geral
 
-- **Nom** : Nomee da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
+- **Nom** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
 - **Groupe** : Grupo de interação, isso permite que eles sejam organizados (podem estar vazios; portanto, estarão no grupo "nenhum").
 - **Actif** : Permite ativar ou desativar a interação.
 - **Demande** : A sentença do modelo de geração (obrigatório).
@@ -81,7 +81,7 @@ A página de configuração consiste em várias guias e botões :
 
 Use se você deseja direcionar um ou mais comandos específicos ou passar parâmetros específicos.
 
-#### Exemplos
+#### Exemples
 
 > **Note**
 >
@@ -105,7 +105,7 @@ Nos 2 exemplos acima, a sentença modelo é idêntica, mas as ações resultante
 
 > **Tip**
 >
-> Para adicionar um cenário, crie uma nova ação, escreva "cenário" sem acento, pressãoe a tecla Tab no teclado para abrir o seletor de cenário.
+> Para adicionar um cenário, crie uma nova ação, escreva "cenário" sem acento, pressione a tecla Tab no teclado para abrir o seletor de cenário.
 
 #### Interação com múltiplos comandos
 
@@ -127,13 +127,13 @@ Nos sinônimos, indicaremos o nome do comando e os sinônimos a serem usados :
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome de comando pode ter vários sinônimos, aqui "on" tem o sinônimo "ativar" e "ativar". A sintaxe é, portanto, "* nome do comando*" ***=*** "*sinônimo 1*"***,*** "*sinônimo 2 * "(você pode adicionar quantos sinônimos quiser). Em seguida, para adicionar sinônimos para outro nome de comando, basta adicionar uma barra vertical após o último sinônimo "*|*" após o qual você pode novamente nomear o comando que terá sinônimos como para a primeira parte ec..
+Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome de comando pode ter vários sinônimos, aqui "on" tem o sinônimo "ativar" e "ativar". A sintaxe é, portanto, "* nome do comando*" ***=*** "*sinônimo 1*"***,*** "*sinônimo 2 * "(você pode adicionar quantos sinônimos quiser). Em seguida, para adicionar sinônimos para outro nome de comando, basta adicionar uma barra vertical após o último sinônimo "*|*" após o qual você pode novamente nomear o comando que terá sinônimos como para a primeira parte etc..
 
-Já é melhor, mas ainda falta o comando "on" "input" the "l" e para outros o "la" ou "le" ou "a" ec.. Poderíamos mudar o nome do equipamento para adicioná-lo, seria uma solução, caso contrário, podemos usar as variações na solicitação. Isso consiste em listar uma série de palavras possíveis em um local da sentença, portanto, o Jeedom irá gerar sentenças com essas variações.
+Já é melhor, mas ainda falta o comando "on" "input" the "l" e para outros o "la" ou "le" ou "a" etc.. Poderíamos mudar o nome do equipamento para adicioná-lo, seria uma solução, caso contrário, podemos usar as variações na solicitação. Isso consiste em listar uma série de palavras possíveis em um local da sentença, portanto, o Jeedom irá gerar sentenças com essas variações.
 
 ![interact009](../images/interact009.png)
 
-Agora temos frases um pouco mais corretas com frases que não estão corretas, para o nosso exemplo "on" "entry". encontramos "Ativar entrada", "Ativar entrada", "Ativar entrada", "Ativar entrada" ec.. Portanto, temos todas as variantes possíveis com o que adicionamos entre o "\ [\]" e este para cada sinônimo, o que gera rapidamente muitas frases (aqui 168).
+Agora temos frases um pouco mais corretas com frases que não estão corretas, para o nosso exemplo "on" "entry". encontramos "Ativar entrada", "Ativar entrada", "Ativar entrada", "Ativar entrada" etc.. Portanto, temos todas as variantes possíveis com o que adicionamos entre o "\ [\]" e este para cada sinônimo, o que gera rapidamente muitas frases (aqui 168).
 
 Para refinar e não ter coisas improváveis como "ligar a TV", podemos permitir que o Jeedom exclua solicitações sintaticamente incorretas. Portanto, excluirá o que está muito longe da sintaxe real de uma frase. No nosso caso, passamos de 168 para 130 frases.
 
@@ -149,7 +149,7 @@ Para fazer isso, usaremos novamente a tag Jeedom. Para nossas luzes, podemos usa
 
 ![interact011](../images/interact011.png)
 
-Você também pode adicionar qualquer valor de outro comando, como temperatura, número de pessoas, ec..
+Você também pode adicionar qualquer valor de outro comando, como temperatura, número de pessoas, etc..
 
 ![interact012](../images/interact012.png)
 
@@ -171,7 +171,7 @@ O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se
 
 O campo "Usuários autorizados" permite autorizar apenas determinadas pessoas a executar o comando. Você pode colocar vários perfis, separando-os por um "|".
 
-Exemplo : person1|personne2
+Exemplo : personne1|personne2
 
 Podemos imaginar que um alarme pode ser ativado ou desativado por uma criança ou um vizinho que viria a regar as plantas na sua ausência.
 
@@ -244,7 +244,7 @@ Neste exemplo, vemos uma frase simples que retornará uma resposta com três tem
 
 Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Por isso, poderíamos imaginar substituir a resposta do exemplo por "não, não há ninguém no quarto de julie"*|sim, tem alguém no quarto da * julie*"
 
-#### Evolução
+#### Evolution
 
 - Portanto, a pergunta é "\#order \# \ [no |no \] \#objeto \#"
 - A resposta será "não, não há ninguém na sala" ou "sim, há alguém na sala"
@@ -269,7 +269,7 @@ Aqui está um exemplo genérico usado para conhecer a temperatura, umidade e bri
 - A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur \# \#unite \# (a unidade deve ser concluída na configuração de cada pedido para o qual queremos ter um)
 - Portanto, este exemplo gera uma sentença para todos os comandos do tipo de informação digital que possuem uma unidade, para que possamos desmarcar as unidades no filtro certo, limitadas ao tipo que nos interessa.
 
-#### Evolução
+#### Evolution
 
 Podemos, portanto, adicionar sinônimos ao nome do comando para ter algo mais natural, adicionar um regexp para filtrar os comandos que nada têm a ver com a nossa interação.
 
@@ -303,7 +303,7 @@ Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode coloc
 >
 > Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano").
 
-#### Evolução
+#### Evolution
 
 Podemos querer controlar todos os comandos de tipo de cursor com uma única interação. Com o exemplo a seguir, poderemos controlar várias unidades com uma única interação e, portanto, gerar um conjunto de sentenças para controlá-las..
 

@@ -1,4 +1,4 @@
-# Vistas
+# Vues
 **Inicio → Ver**
 
 Las vistas le permiten crear una vista personalizada.
@@ -8,7 +8,7 @@ No es tan potente como los diseños, pero permite en unos minutos tener una pant
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic en el menú de vista.
 
-## Principio
+## Principe
 
 También podemos poner widgets, gráficos (que pueden estar compuestos de varios datos) o zonas de tabla (que contienen los widgets de comando).
 
@@ -63,9 +63,9 @@ Un área de tipo gráfico le permite agregar gráficos a su vista, tiene las sig
 Cuando presiona el botón &quot;Agregar curva&quot;, Jeedom muestra la lista de comandos históricos y puede elegir los que desea agregar, una vez hecho esto tiene acceso a las siguientes opciones :
 
 - **Poubelle** : Eliminar comando del gráfico.
-- **Nom** : Apellidobre del comando para dibujar.
+- **Nom** : Nombre del comando para dibujar.
 - **Couleur** : Color de la curva.
-- **Type** : Puntao de curva.
+- **Type** : Tipo de curva.
 - **Groupement** : Le permite agrupar datos (tipo máximo por día).
 - **Echelle** : escala (derecha o izquierda) de la curva.
 - **Escalier** : Muestra la curva escalonada.

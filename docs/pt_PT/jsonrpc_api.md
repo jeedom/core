@@ -52,17 +52,17 @@ Configurações :
 
 -   plugin de string : (opcional), plug-in do valor de configuração a ser salvo
 
-API de Eventoos JSON
+API de eventos JSON
 ==============
 
 event::changes
 --------------
 
-Retorna a listaa de alterações desde a data / hora passada no parâmetro (deve estar em microssegundos). Você também terá na resposta a data e hora atual do Jeedom (a ser reutilizado para a próxima consulta)
+Retorna a lista de alterações desde a data / hora passada no parâmetro (deve estar em microssegundos). Você também terá na resposta a data e hora atual do Jeedom (a ser reutilizado para a próxima consulta)
 
 Configurações :
 
--   int data e hora
+-   int datetime
 
 API de plug-in JSON
 ===============
@@ -70,13 +70,13 @@ API de plug-in JSON
 plugin::listPlugin
 ------------------
 
-Retorna a listaa de todos os plugins
+Retorna a lista de todos os plugins
 
 Configurações :
 
--   int activOnOnly = 0 (retorna apenas a listaa de plugins ativados)
+-   int activOnOnly = 0 (retorna apenas a lista de plugins ativados)
 
--   int orderByCaterogy = 0 (retorna a listaa de plugins classificados por categoria)
+-   int orderByCaterogy = 0 (retorna a lista de plugins classificados por categoria)
 
 API JSON do objeto
 ==============
@@ -84,12 +84,12 @@ API JSON do objeto
 jeeObject::all
 -----------
 
-Retorna a listaa de todos os objetos
+Retorna a lista de todos os objetos
 
 jeeObject::full
 ------------
 
-Retorna a listaa de todos os objetos, com para cada objeto todo o seu equipamento e para cada equipamento todos os seus comandos e seus estados (para comandos do tipo info)
+Retorna a lista de todos os objetos, com para cada objeto todo o seu equipamento e para cada equipamento todos os seus comandos e seus estados (para comandos do tipo info)
 
 jeeObject::fullById
 ----------------
@@ -164,7 +164,7 @@ API JSON EqLogic
 eqLogic::all
 ------------
 
-Retorna a listaa de todos os equipamentos
+Retorna a lista de todos os equipamentos
 
 eqLogic::fullById
 -----------------
@@ -253,7 +253,7 @@ API JSON Cmd
 cmd::all
 --------
 
-Retorna a listaa de todos os comandos
+Retorna a lista de todos os comandos
 
 cmd::byId
 ---------
@@ -373,9 +373,9 @@ Configurações:
 
 -   int id
 
--   valor da string : Valor
+-   valor da string : valeur
 
--   data e hora da string : (opcional) valor data e hora
+-   data e hora da string : (opcional) valor datetime
 
 API do cenário JSON
 =================
@@ -383,7 +383,7 @@ API do cenário JSON
 scenario::all
 -------------
 
-Retorna a listaa de todos os cenários
+Retorna a lista de todos os cenários
 
 scenario::byId
 --------------
@@ -397,7 +397,7 @@ Configurações:
 scenario::export
 ----------------
 
-Retorna a exportaração do cenário, bem como o * nome humano * do cenário
+Retorna a exportação do cenário, bem como o * nome humano * do cenário
 
 Configurações:
 
@@ -406,15 +406,15 @@ Configurações:
 scenario::import
 ----------------
 
-Permite importarar um cenário.
+Permite importar um cenário.
 
 Configurações:
 
--   int id : ID do cenário no qual importarar (vazio se criação)
+-   int id : ID do cenário no qual importar (vazio se criação)
 
 -   string humanName : *nome humano * do cenário (vazio se criação)
 
--   importaração de matriz : cenário (do campo cenário de exportaração::export)
+-   importação de matriz : cenário (do campo cenário de exportação::export)
 
 scenario::changeState
 ---------------------
@@ -433,7 +433,7 @@ API de Log JSON
 log::get
 --------
 
-Permite recuperar um Log
+Permite recuperar um log
 
 Configurações:
 
@@ -446,7 +446,7 @@ Configurações:
 log::add
 --------
 
-Permite escrever em um Log
+Permite escrever em um log
 
 Configurações:
 
@@ -456,22 +456,22 @@ Configurações:
 
 -   mensagem de string : mensagem de texto para escrever
 
--   Log de stringicId : LogicId da mensagem gerada
+-   Log de stringicId : logicId da mensagem gerada
 
 
 log::list
 ---------
 
-Obtenha a listaa de Logs do Jeedom
+Obtenha a lista de logs do Jeedom
 
 Configurações:
 
--   filtro de string : (opcional) filtro no nome dos Logs para recuperar 
+-   filtro de string : (opcional) filtro no nome dos logs para recuperar 
 
 log::empty
 ----------
 
-Esvaziar um Log
+Esvaziar um log
 
 Configurações:
 
@@ -480,7 +480,7 @@ Configurações:
 log::remove
 -----------
 
-Permite excluir um Log
+Permite excluir um log
 
 Configurações:
 
@@ -525,22 +525,22 @@ API de mensagem JSON
 message::all
 ------------
 
-Retorna a listaa de todas as mensagens
+Retorna a lista de todas as mensagens
 
 message::add
 --------
 
-Permite escrever em um Log
+Permite escrever em um log
 
 Configurações:
 
 -   tipo de string : tipo de Log (depuração, informações, aviso, erro)
 
--   mensagem de string : Mensagem
+-   mensagem de string : message
 
--   ação de string : Ação
+-   ação de string : action
 
--   Log de stringicId : LogicId
+-   Log de stringicId : logicalId
 
 message::removeAll
 ------------------
@@ -565,7 +565,7 @@ Configurações:
 interactQuery::all
 ------------------
 
-Retorna a listaa completa de todas as interações
+Retorna a lista completa de todas as interações
 
 API do sistema JSON
 ===============
@@ -690,7 +690,7 @@ API de atualização JSON
 update::all
 -----------
 
-Voltar à listaa de todos os componentes instalados, suas versões e informações associadas
+Voltar à lista de todos os componentes instalados, suas versões e informações associadas
 
 update::checkUpdate
 -------------------
@@ -735,14 +735,14 @@ Aqui está um exemplo de uso da API. Para o exemplo abaixo
 eu uso [esta classe php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 o que simplifica o uso da API.
 
-Recuperando a listaa de objetos :
+Recuperando a lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-> sendRequest ('jeeObject::TODOS ', array ())){
-    print_r ($ jsonrpc-> obterResult ());
+    print_r ($ jsonrpc-> getResult ());
 }else{
-    echo $ jsonrpc-> obterError ();
+    echo $ jsonrpc-> getError ();
 }
 `` ''
 
@@ -753,7 +753,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id '=> # cmd_id #,' options '=> array (' title '=>' Cuckoo ',' Mensagem '=>' Funciona '))){
     eco 'OK';
 }else{
-    echo $ jsonrpc-> obterError ();
+    echo $ jsonrpc-> getError ();
 }
 `` ''
 

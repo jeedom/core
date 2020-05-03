@@ -51,5 +51,5 @@ Tabla resumen de los demonios con su estado, la fecha del último lanzamiento y 
 - Detener un demonio si la gestión automática está desactivada.
 - Habilitar / deshabilitar la gestión automática de un demonio.
 
-> Punta
+> Tip
 > Los demonios de complementos deshabilitados no aparecen en esta página.

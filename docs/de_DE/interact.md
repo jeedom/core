@@ -1,4 +1,4 @@
-# Wechselwirkungen
+# Interactions
 **Werkzeuge → Interaktionen**
 
 Mit dem Interaktionssystem in Jeedom können Sie Aktionen über Text- oder Sprachbefehle ausführen.
@@ -8,7 +8,7 @@ Diese Bestellungen erhalten Sie von :
 - SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info).
 - Katze : Telegramm, Slack usw..
 - Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw.. Befehle starten (Aktion) oder eine Frage stellen (Info).
-- Http : Starten Sie eine Http-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
+- Http : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw..
 
@@ -26,7 +26,7 @@ Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Ste
 
 Sobald Sie eine Interaktion konfiguriert haben, haben Sie ein Kontextmenü mit dem rechten Klick auf die Registerkarten der Interaktion. Sie können auch eine Strg-Klick- oder Klick-Mitte verwenden, um eine andere Interaktion direkt in einer neuen Browser-Registerkarte zu öffnen.
 
-## Wechselwirkungen
+## Interactions
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
@@ -38,7 +38,7 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 >
 > Wenn Sie eine Interaktion haben, die beispielsweise die Sätze für Lichter generiert, und Sie ein neues Lichtsteuermodul hinzufügen, müssen Sie entweder alle Interaktionen neu generieren oder zur betreffenden Interaktion gehen und sie erneut erstellen, um sie zu erstellen die Sätze dieses neuen Moduls.
 
-## Prinzip
+## Principe
 
 Das Prinzip der Schöpfung ist recht einfach : Wir werden einen generierenden Modellsatz definieren, der es Jeedom ermöglicht, einen oder mehrere Hunderte anderer Sätze zu erstellen, die mögliche Kombinationen des Modells darstellen.
 
@@ -46,7 +46,7 @@ Wir werden Antworten auf die gleiche Weise mit einem Modell definieren (dies erm
 
 Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise die Interaktion nicht mit einer Aktion, sondern mit einer Information verknüpft ist oder wenn wir danach eine bestimmte Aktion ausführen möchten (es ist auch möglich, ein Szenario auszuführen, um es zu steuern mehrere Bestellungen…).
 
-## Konfiguration
+## Configuration
 
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
@@ -61,7 +61,7 @@ Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 - **Groupe** : Interaktionsgruppe, dies ermöglicht es ihnen, organisiert zu werden (kann leer sein, wird daher in der Gruppe &quot;keine&quot; sein).
 - **Actif** : Ermöglicht das Aktivieren oder Deaktivieren der Interaktion.
 - **Demande** : Der generierende Modellsatz (erforderlich).
-- **Synonyme** : Ermöglicht das Definieren von Synonymn für die Namen der Befehle.
+- **Synonyme** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
 - **Warten Sie, bevor Sie antworten.** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortund werden.
 - **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo).
@@ -81,7 +81,7 @@ Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
 Verwenden Sie diese Option, wenn Sie einen oder mehrere bestimmte Befehle als Ziel festlegen oder bestimmte Parameter übergeben möchten.
 
-#### Beispiele
+#### Exemples
 
 > **Note**
 >
@@ -115,7 +115,7 @@ Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugef�
 
 ![interact006](../images/interact006.png)
 
-Wir können hier also sehen, dass Jeedom aus unserem Modell 152 Sätze generiert hat. Sie sind jedoch nicht sehr gut gebaut und wir haben von allem undwas.
+Wir können hier also sehen, dass Jeedom aus unserem Modell 152 Sätze generiert hat. Sie sind jedoch nicht sehr gut gebaut und wir haben von allem etwas.
 
 Um Ordnung zu schaffen, verwenden wir die Filter (rechter Teil unserer Konfigurationsseite).. In diesem Beispiel möchten wir Sätze generieren, um das Licht einzuschalten. Wir können daher die Art des Infobefehls deaktivieren (wenn ich speichere, habe ich nur noch 95 Sätze übrig), dann können wir in den Untertypen nur &quot;Standard&quot; aktivieren, das der Aktionsschaltfläche entspricht ( es bleiben nur 16 Sätze übrig).
 
@@ -123,17 +123,17 @@ Um Ordnung zu schaffen, verwenden wir die Filter (rechter Teil unserer Konfigura
 
 Es ist besser, aber wir können es noch natürlicher machen. Wenn ich das generierte Beispiel "Bei Eingabe" nehme, wäre es schön, diesen Satz in "Eintrag einschalten" oder "Eintrag einschalten" umwandeln zu können". Zu diesem Zweck hat Jeedom unter dem Anforderungsfeld ein Synonymfeld, mit dem wir den Namen der Befehle in unseren &quot;generierten&quot; Sätzen unterschiedlich benennen können. Hier ist es &quot;on&quot;, ich habe sogar &quot;on2&quot; &quot;in Modulen, die 2 Ausgänge steuern können.
 
-In Synonymn geben wir daher den Namen des Befehls und die zu verwendenden Synonym an :
+In Synonymen geben wir daher den Namen des Befehls und die zu verwendenden Synonym an :
 
 ![interact008](../images/interact008.png)
 
-Wir können hier eine undwas neue Syntax für Synonym sehen. Ein Befehlsname kann mehrere Synonym haben, hier hat "Ein" das Synonym "Einschalten" und "Einschalten"". Die Syntax lautund daher "* Name des Befehls*" ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele Synonym hinzufügen, wie Sie möchten). Um dann Synonym für einen anderen Befehlsnamen hinzuzufügen, fügen Sie einfach einen vertikalen Balken nach dem letzten Synonym hinzu "*|*" Danach können Sie den Befehl erneut benennen, der Synonym für den ersten Teil usw. enthält..
+Wir können hier eine etwas neue Syntax für Synonym sehen. Ein Befehlsname kann mehrere Synonym haben, hier hat "Ein" das Synonym "Einschalten" und "Einschalten"". Die Syntax lautund daher "* Name des Befehls*" ***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele Synonym hinzufügen, wie Sie möchten). Um dann Synonym für einen anderen Befehlsnamen hinzuzufügen, fügen Sie einfach einen vertikalen Balken nach dem letzten Synonym hinzu "*|*" Danach können Sie den Befehl erneut benennen, der Synonym für den ersten Teil usw. enthält..
 
 Es ist schon besser, aber es fehlt immer noch für den Befehl &quot;on&quot; &quot;input&quot; das &quot;l&quot; und für andere das &quot;la&quot; oder &quot;le&quot; oder &quot;a&quot; usw.. Wir könnten den Namen des Geräts ändern, um es hinzuzufügen, es wäre eine Lösung, andernfalls könnten wir die Variationen in der Anfrage verwenden. Dies besteht aus der Auflistung einer Reihe möglicher Wörter an einer Stelle im Satz. Jeedom generiert daher Sätze mit diesen Variationen.
 
 ![interact009](../images/interact009.png)
 
-Wir haben jetzt undwas korrektere Sätze mit Sätzen, die nicht korrekt sind, für unser Beispiel "on" "". so finden wir &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot; usw.. Wir haben also alle möglichen Varianten mit dem, was wir zwischen &quot;\ [\]&quot; und diesem für jedes Synonym hinzugefügt haben, was schnell viele Sätze erzeugt (hier 168)..
+Wir haben jetzt etwas korrektere Sätze mit Sätzen, die nicht korrekt sind, für unser Beispiel "on" "". so finden wir &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot; usw.. Wir haben also alle möglichen Varianten mit dem, was wir zwischen &quot;\ [\]&quot; und diesem für jedes Synonym hinzugefügt haben, was schnell viele Sätze erzeugt (hier 168)..
 
 Um zu verfeinern und keine unwahrscheinlichen Dinge wie &quot;Schalten Sie den Fernseher ein&quot; zu haben, können wir Jeedom erlauben, syntaktisch falsche Anfragen zu löschen. Es wird daher gelöscht, was zu weit von der tatsächlichen Syntax eines Satzes entfernt ist. In unserem Fall gehen wir von 168 Sätzen auf 130 Sätze.
 
@@ -143,7 +143,7 @@ Es ist daher wichtig, dass Sie Ihre Modellsätze und Synonym gut erstellen und d
 
 ### Passen Sie die Antworten an
 
-Bis jetzt hatten wir als Antwort auf eine Interaktion einen einfachen Satz, der nicht viel sagte, außer dass undwas passiert ist. Die Idee wäre, dass Jeedom uns undwas genauer sagt, was er getan hat. Hier kommt das Antwortfeld ins Spiel, in dem wir die Rückgabe gemäß dem ausgeführten Befehl anpassen können..
+Bis jetzt hatten wir als Antwort auf eine Interaktion einen einfachen Satz, der nicht viel sagte, außer dass etwas passiert ist. Die Idee wäre, dass Jeedom uns etwas genauer sagt, was er getan hat. Hier kommt das Antwortfeld ins Spiel, in dem wir die Rückgabe gemäß dem ausgeführten Befehl anpassen können..
 
 Dazu verwenden wir wieder das Jeedom Tag. Für unsere Lichter können wir eine Phrase des Stils verwenden : Ich habe \#Equipement \# aktiviert (siehe Screenshot unten).
 
@@ -155,13 +155,13 @@ Sie können auch einen beliebigen Wert aus einem anderen Befehl hinzufügen, z. 
 
 ### Binäre Konvertierung
 
-Binäre Konvertierungen gelten für Befehle vom Typ info, deren Subtyp binär ist (gibt nur 0 oder 1 zurück).. Sie müssen also die richtigen Filter aktivieren, wie wir auf dem Screenshot undwas unten sehen können (für die Kategorien können wir alle überprüfen, für das Beispiel habe ich nur Licht gehalten)..
+Binäre Konvertierungen gelten für Befehle vom Typ info, deren Subtyp binär ist (gibt nur 0 oder 1 zurück).. Sie müssen also die richtigen Filter aktivieren, wie wir auf dem Screenshot etwas unten sehen können (für die Kategorien können wir alle überprüfen, für das Beispiel habe ich nur Licht gehalten)..
 
 ![interact013](../images/interact013.png)
 
-Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die Synonym angepasst, um undwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \#value \# zu setzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersetzt.
+Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren).. Natürlich habe ich die Synonym angepasst, um etwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** um nur \#value \# zu setzen, was die 0 oder 1 darstellt, die Jeedom durch die folgende binäre Konvertierung ersetzt.
 
-Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 wert ist, dann ein vertikaler Balken "|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen undwas längeren Satz setzen.
+Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 wert ist, dann ein vertikaler Balken "|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen etwas längeren Satz setzen.
 
 > **Warning**
 >
@@ -171,13 +171,13 @@ Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwo
 
 Im Feld "Autorisierte Benutzer" können nur bestimmte Personen zur Ausführung des Befehls autorisiert werden. Sie können mehrere Profile erstellen, indem Sie sie durch a trennen "|".
 
-Beispiel : person1|personne2
+Beispiel : personne1|personne2
 
 Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn aktiviert oder deaktiviert werden kann, der in Ihrer Abwesenheit kommen würde, um die Pflanzen zu gießen.
 
 ### Regexp-Ausschluss
 
-Es ist möglich zu erstellen [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der undwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
+Es ist möglich zu erstellen [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der etwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
 
 Wir haben 2 Stellen, an denen Sie einen Regexp anwenden können :
 - In der Interaktion auch im Feld "Regexp-Ausschluss"".
@@ -202,7 +202,7 @@ Ein regulärer Ausdruck setzt sich wie folgt zusammen :
 
 Wenn wir diesen Ausdruck in einen Satz übersetzen, würde er "nach dem Wort Julie suchen, dem alles vorausgeht und dem alles folgt".
 
-Es ist eine extrem einfache Version von regulären Ausdrücken, aber bereits sehr kompliziert zu verstehen. Ich habe eine Weile gebraucht, um zu verstehen, wie es funktioniert. Als undwas komplexeres Beispiel ein regulärer Ausdruck zum Überprüfen einer URL :
+Es ist eine extrem einfache Version von regulären Ausdrücken, aber bereits sehr kompliziert zu verstehen. Ich habe eine Weile gebraucht, um zu verstehen, wie es funktioniert. Als etwas komplexeres Beispiel ein regulärer Ausdruck zum Überprüfen einer URL :
 
 /\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \ \\* /?\ $ /
 
@@ -271,7 +271,7 @@ Hier ein allgemeines Beispiel, anhand dessen die Temperatur, Luftfeuchtigkeit un
 
 #### Evolution
 
-Wir können daher dem Befehlsnamen Synonym hinzufügen, um undwas Natürlicheres zu erhalten. Fügen Sie einen regulären Ausdruck hinzu, um die Befehle zu filtern, die nichts mit unserer Interaktion zu tun haben.
+Wir können daher dem Befehlsnamen Synonym hinzufügen, um etwas Natürlicheres zu erhalten. Fügen Sie einen regulären Ausdruck hinzu, um die Befehle zu filtern, die nichts mit unserer Interaktion zu tun haben.
 
 Wenn wir ein Synonym hinzufügen, sagen wir zu Jeedom, dass ein Befehl mit dem Namen &quot;X&quot; auch als &quot;Y&quot; bezeichnund werden kann. Wenn wir also in unserem Satz &quot;y einschalten&quot; haben, weiß Jeedom, dass es x einschaltet. Diese Methode ist sehr praktisch, um Befehlsnamen umzubenennen, die, wenn sie auf dem Bildschirm angezeigt werden, auf unnatürliche Weise, stimmlich oder in einem geschriebenen Satz wie "EIN" geschrieben werden.". Ein so geschriebener Button ist völlig logisch, aber nicht im Kontext eines Satzes.
 
@@ -338,7 +338,7 @@ Nach der Konfiguration sagen Sie &quot;Beleuchten Sie den Baum in Grün&quot;. J
 
 #### Basisversion
 
-Es ist möglich, eine Interaktion mit einem Szenario zu koppeln, um undwas komplexere Aktionen auszuführen als die Ausführung einer einfachen Aktion oder eine Informationsanforderung..
+Es ist möglich, eine Interaktion mit einem Szenario zu koppeln, um etwas komplexere Aktionen auszuführen als die Ausführung einer einfachen Aktion oder eine Informationsanforderung..
 
 ![interact026](../images/interact026.png)
 

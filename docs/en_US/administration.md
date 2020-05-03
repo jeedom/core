@@ -1,5 +1,5 @@
-# Setup
-**Settings → System → Setup**
+# Configuration
+**Settings → System → Configuration**
 
 This is where most of the configuration parameters are found..
 Although many, a majority of parameters are configured by default.
@@ -10,7 +10,7 @@ Although many, a majority of parameters are configured by default.
 In this tab we find general information about Jeedom :
 
 - **Name of your Jeedom** : Identify your Jeedom, especially in the Market. It can be reused in scenarios or to identify a backup.
-- **Langue** : Theanguage used in your Jeedom.
+- **Langue** : Language used in your Jeedom.
 - **System** : Type of hardware on which the system where your Jeedom runs is installed.
 - **Generate translations** : Generate translations, beware, this can slow down your system. Option especially useful for developers.
 - **Date and hour** : Choose your time zone. You can click on **Force time synchronization** to restore the wrong time displayed at the top right.
@@ -26,19 +26,19 @@ In this tab you will find the display customization parameters.
 
 ### Themes
 
-- **Light and dark desktop** : Theets you choose a light and dark theme for the Desktop.
+- **Light and dark desktop** : Lets you choose a light and dark theme for the Desktop.
 - **Light and dark mobile** : same as above for the Mobile version.
 - **Clear theme from / to** : Allows you to define a time period during which the previously chosen clear theme will be used. However, check the option **Toggle theme based on time**.
 - **Brightness sensor**   : Only in mobile interface, requires activating * generic extra sensor * in chrome, chrome page://flags.
 - **Hide background images** : Allows you to hide the background images found in the scenarios, objects, interactions pages, etc..
 
-### Roof tiles
+### Tuiles
 
 - **Tiles Not horizontal** : Constrains the width of the tiles every x pixels.
 - **Tiles Not vertical** : Constrains the height of the tiles every x pixels.
 - **Margin tiles** : Vertical and horizontal space between tiles, in pixels.
 
-### Personalization
+### Personnalisation
 
 - **Activer** : Activate the use of the options below.
 - **Transparence** : Displays Dashboard tiles and some content with transparency. 1 : totally opaque, 0 : totally transparent.
@@ -49,7 +49,7 @@ In this tab you will find the display customization parameters.
 
 ## Networks tab
 
-It is absolutely necessary to correctly configure this important part of Jeedom otherwise a lot of Plugins may not work. There are two ways to access Jeedom : The'**Internal access** (from the same local network as Jeedom) and l'**External access** (from another network, in particular from the Internet).
+It is absolutely necessary to correctly configure this important part of Jeedom otherwise a lot of plugins may not work. There are two ways to access Jeedom : L'**Internal access** (from the same local network as Jeedom) and l'**External access** (from another network, in particular from the Internet).
 
 > **Important**
 >
@@ -98,21 +98,21 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 > If you cannot get Jeedom DNS to work, look at the configuration of the firewall and parental filter of your Internet box (on livebox you need for example the firewall at medium level).
 - **Lifetime of sessions (hour)** : lifetime of PHP sessions, it is not recommended to touch this parameter.
 
-## Theogs tab
+## Logs tab
 
 ### Timeline
 
 - **Maximum number of events** : Defines the maximum number of events to display in the timeline.
 - **Delete all events** : Empty the timeline of all its recorded events.
 
-### Posts
+### Messages
 
 - **Add a Message to each error in the logs** : if a Plugin or Jeedom writes an error Message in a log, Jeedom automatically adds a Message in the Message center (at least you are sure not to miss it).
-- **Action on Message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions :
+- **Action on message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions :
         - #subject# : Message in question.
         - #plugin# : Plugin that triggered the Message.
 
-### Notifications
+### Alertes
 
 - **Add a Message to each Timeout** : Add a Message in the Message center if a device falls in **timeout**.
 - **Timeout order** : Type command **message** to be used if an equipment is in **timeout**.
@@ -125,20 +125,20 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Add a Message to each Danger** : Add a Message in the Message center if an order goes on alert **danger**.
 - **Command on Danger** : Type command **message** to use if an order goes on alert **danger**.
 
-### Theogs
+### Logs
 
 - **Log engine** : Allows you to change the log engine to, for example, send them to a syslog daemon (d).
-- **Log format** : Theog format to use (Caution : it doesn&#39;t affect daemon logs).
+- **Log format** : Log format to use (Caution : it doesn&#39;t affect daemon logs).
 - **Maximum number of lines in a log file** : Defines the maximum number of lines in a log file. It is recommended not to touch this value, as a too large value could fill the file system and / or make Jeedom unable to display the log..
 - **Default log level** : When you select &quot;Default&quot;, for the level of a log in Jeedom, this will be used.
 
-Below you will find a table for finely managing the log level of essential elements of Jeedom as well as that of Plugins.
+Below you will find a table for finely managing the log level of essential elements of Jeedom as well as that of plugins.
 
 ## Orders Tab
 
 Many orders can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
 
-### Historical
+### Historique
 
 - **View widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
 - **Calculation period for min, max, average (in hours)** : Statistics calculation period (24h by default). It is not possible to take less than an hour.
@@ -156,7 +156,7 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 
 ### Push
 
-- **Global push URLs** : allows you to add a URLs to call in the event of an order update. You can use the following tags :
+- **Global push URL** : allows you to add a URLs to call in the event of an order update. You can use the following tags :
 **\#value\#** for the order value, **\#Cmd\_name \#** for the name of the command,
 **\#Cmd\_id \#** for the unique identifier of the order,
 **\#humanname\#** for the full name of the order (ex : \# \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \#),
@@ -168,7 +168,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 
 - **Clef** : Key to the summary, especially not to touch.
 - **Nom** : Abstract name.
-- **Calcul** : Calculationation method, can be of type :
+- **Calcul** : Calculation method, can be of type :
     - **Somme** : sum the different values,
     - **Moyenne** : averages values,
     - **Texte** : display the value verbatim (especially for those of type string).
@@ -176,7 +176,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 - **Unité** : Summary unit.
 - **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
 - **Show if value is 0** : Check this box to display the value, even when it is 0.
-- **Link to a virtual** : Theaunches the creation of virtual orders having for value those of the summary.
+- **Link to a virtual** : Launches the creation of virtual orders having for value those of the summary.
 - **Delete summary** : The last button, on the far right, deletes the summary from the line.
 
 ## Equipment tab
@@ -191,7 +191,7 @@ Configure the generation and management of reports
 - **Timeout after page generation (in ms)** : Waiting time after loading the report to take the &quot;photo&quot;, to change if your report is incomplete for example.
 - **Clean older reports from (days)** : Defines the number of days before deleting a report (the reports take up a little space so be careful not to put too much conservation).
 
-## Theinks tab
+## Links tab
 
 Configure link graphics. These links allow you to see, in the form of a graph, the relationships between objects, equipment, objects, etc..
 
@@ -209,7 +209,7 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Setup tab. : Theogs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Setup tab. : Logs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
 
 ### General
 
@@ -223,7 +223,7 @@ Here you have three parameters :
 - **Do not respond if interaction is not understood** : by default Jeedom responds &quot;I did not understand&quot; if no interaction corresponds. It is possible to deactivate this operation so that Jeedom does not respond. Check the box to disable the response.
 - **General exclusion regex for interactions** : allows to define a regexp which, if it corresponds to an interaction, will automatically delete this sentence from the generation (reserved for experts). For more information see explanations in chapter **Regexp exclusion** documentation on interactions.
 
-### Automatic interaction, contextual &amp; Warning
+### Automatic interaction, contextual &amp; warning
 
 -   The **automatic interactions** allow Jeedom to try to understand an interaction request even if there is none defined. He will then look for an object name and / or equipment and / or order to try to respond as best as possible..
 
@@ -253,30 +253,30 @@ Here are the different options available :
 - **Activate "Notify Me" interactions"** : Check to enable type interactions **Warn me**.
 - **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **;** ).
 - **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
-- **Synonym for objects** : Theist of synonyms for objects (ex : ground floor|ground floor|basement|low; sdb|bathroom).
-- **Synonym for equipment** : Theist of synonyms for equipment.
-- **Synonym for orders** : Theist of synonyms for commands.
-- **Synonym for abstracts** : Theist of synonyms for summaries.
+- **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|bathroom).
+- **Synonym for equipment** : List of synonyms for equipment.
+- **Synonym for orders** : List of synonyms for commands.
+- **Synonym for abstracts** : List of synonyms for summaries.
 - **Synonym for maximum slider command** : Synonym for placing a slider type command to the maximum (ex opens to opens the bedroom shutter ⇒ bedroom shutter at 100%).
 - **Synonym for minimum slider command** : Synonym for placing a slider type command at minimum (ex closes to close the bedroom shutter ⇒ bedroom shutter at 0%).
 
 ## Security tab
 
-### TheDAP
+### LDAP
 
-- **Enable TheDAP authentication** : enables authentication through an AD (LDAP).
+- **Enable LDAP authentication** : enables authentication through an AD (LDAP).
 - **Host** : server hosting the AD.
 - **Domaine** : domain of your AD.
 - **DN base** : DN base of your AD.
 - **Username** : username for Jeedom to log into AD.
 - **Password** : password for Jeedom to connect to AD.
-- **User search fields** : user login search fields. Usually uid for TheDAP, SamAccountName for Windows AD.
+- **User search fields** : user login search fields. Usually uid for LDAP, SamAccountName for Windows AD.
 - **Filter administrators (optional)** : AD administrators filter (for group management for example)
 - **Filter users (optional)** : AD users filter (for group management for example)
 - **Filter limited users (optional)** : AD limited users filter (for group management for example)
 - **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO for example).
 
-### Theog in
+### Connexion
 
 - **Number of failures tolerated** : defines the number of successive attempts allowed before banning the IP
 - **Maximum time between failures (in seconds)** : maximum time for 2 attempts to be considered successive
@@ -296,11 +296,11 @@ The list of banned IPs is at the bottom of this page. You will find the IP, the 
 
 ### Deposits
 
-The repositories are storage (and service) spaces to be able to move backups, recover Plugins, recover the core of Jeedom, etc..
+The repositories are storage (and service) spaces to be able to move backups, recover plugins, recover the core of Jeedom, etc..
 
-### File
+### Fichier
 
-Deposit used to activate the sending of Plugins by files.
+Deposit used to activate the sending of plugins by files.
 
 #### Github
 
@@ -356,10 +356,10 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 >
 > Jeedom must be the only one to write in this folder and it must be empty by default (i.e. before the configuration and the sending of the first backup, the folder must not contain any file or folder).
 
-#### URLs
+#### URL
 
-- **Jeedom core URLs**
-- **Jeedom core version URLs**
+- **Jeedom core URL**
+- **Jeedom core version URL**
 
 ## Cache tab
 
@@ -396,7 +396,7 @@ For each API Plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 > If you modify Jeedom with one of these two solutions, the support may refuse to help you.
 
 - **General** :
-    - **General verification** : Theets launch Jeedom consistency test.
+    - **General verification** : Lets launch Jeedom consistency test.
 - **&gt;\_System** :
     - **Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
     - Reinstatement of rights : Enables you to reapply the correct rights to the Jeedom Core directories and files.
@@ -404,6 +404,6 @@ For each API Plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 - **Database** :
     - **Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
     - **Verification** : Allows to launch a verification on the Jeedom database and to correct errors if necessary
-    - **Nettoyage** : Theaunches a database check and cleans up any unused entries.
+    - **Nettoyage** : Launches a database check and cleans up any unused entries.
     - **Utilisateur** : Username used by Jeedom in the database,
     - **Password** : password to access the database used by Jeedom.
