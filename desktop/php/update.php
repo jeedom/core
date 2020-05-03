@@ -71,7 +71,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="alert alert-warning">
-				{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du core de Jeedom}}.
+				{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
 			</div>
 
 			<div class="form-group">
@@ -132,7 +132,8 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 			</div>
 		</fieldset>
 	</form>
-	<a class="btn btn-success pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+	<br>
+	<a class="btn btn-warning pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>
