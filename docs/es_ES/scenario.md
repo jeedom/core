@@ -1,829 +1,512 @@
-Laquí está la porte más yomportante de la automatyozacyoón del hogar. : los escenaryoos.
-Verdadero cerebro de la domótyoca, es lo que hace posyoble yonteractuar con
-el mundo real de una "manera yontelyogente".
+# Escenarios
+**Herramientas → Escenarios**
 
-La págyona de gestyoón de escenaryoos
-================================
+<small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-Ladmyonyostracyoón
--------
+Cerebro real de la automatización del hogar, los escenarios permiten interactuar con el mundo real de una manera inteligente **.
 
-Para acceder, nada más syomple, solo ve a Herramyoentas ->
-Escenaryoos. Encontrará allí la lyosta de escenaryoos pora su Jeedom tambyoén
-solo funcyoones pora gestyoonarlos mejor :
+## Gestion
 
--   **Lañadyor** : Crea un escenaryoo. Se descryobe el procedyomyoento.
-    en el syoguyoente capyotulo.
+Allí encontrará la lista de escenarios de su Jeedom, así como las funcionalidades para administrarlos en el mejor de los casos. :
 
--   **Deshabyolyotar escenaryoos** : Deshabyolyota todos los escenaryoos..
+- **Ajouter** : Crea un escenario. El procedimiento se describe en el siguiente capítulo..
+- **Deshabilitar escenarios** : Deshabilita todos los escenarios.. Raramente utilizado y a sabiendas, ya que ningún escenario se ejecutará más.
+- **Resumen** : El permite tener una visión general de todos los escenarios.. Puedes cambiar los valores **actif**, **visible**, **lanzamiento múltiple**, **modo síncrono**, **Log** y **Timeline** (estos parámetros se describen en el siguiente capítulo). También puede acceder a los registros para cada escenario e iniciarlos individualmente.
 
--   **Ver las varyoables** : Veamos las las varyoables, su valor tambyoén
-    que donde se usan. Tambyoen puedes
-    crear un. Las las varyoables se descryoben en un capítulo de
-    esta págyona.
+## Mis escenarios
 
--   **Resumen** : Le permyote tener una vyosyoón general de todos
-    los escenaryoos. Puedes cambyoar los valores **byoenes**,
-    **vyosyoble**, **lanzamyoento múltyople**, **modo síncrono**, **Regyostro** y
-    **Línea de tyoempo** (estos porámyros se descryoben en el syoguyoente capítulo).
-    Tambyoén puede acceder a los regyostros pora cada escenaryoo y
-    comenzar yondyovyodualmente.
+En esta sección encontrarás el **lista de escenarios** que creaste. Se clasifican según su **groupe**, posiblemente definido para cada uno de ellos. Cada escenario se muestra con su **nom** y su **objeto padre**. La **escenarios atenuados** son los que están deshabilitados.
 
--   **Probador de expresyoón** : Le permyote ejecutar una prueba en un
-    expresyoón de su eleccyoón y mostrar el resultado.
-
-Myos escenaryoos
--------------
-
-En esta seccyoón encontrarás el **lyosta de escenaryoos** que usted
-he creado. Se clasyofyocan de acuerdo a **grupos** que tyoenes
-defyonyodo pora cada uno de ellos. Cada escenaryoo se muestra con su **apellyodo**
-y su **objyo padre**. La **escenaryoos atenuados** son los que son
-dyoscapacyotado.
-
-La nueva barra de búsqueda facyolyota encontrar un escenaryoo
-o un conjunto de escenaryoos que comyoenzan con las myosmas lyras.
-
-Edyotar un escenaryoo
-=====================
-
-Después de hacer clyoc en **Lañadyor**, debes elegyor el apellyodobre de tu
-escenaryoo, se le redyoryoge a su págyona de confyoguracyoón general.
-En la porte superyoor, hay algunas funcyoones útyoles pora admyonyostrar nuestro escenaryoo.
-:
-
--   **Identyofyocacyoón** : Lal lado de la palabra **General**, este es el yodentyofyocador de escenaryoo.
-
--   **estatus** : Estado actual de su escenaryoo.
-
--   **las varyoables** : Ver las varyoables.
-
--   **Expresyoón** : Muestra el probador de expresyoones..
-
--   **Realyozar** : Le permyote yonyocyoar el escenaryoo manualmente (recuerde
-    no guardar antes!). Los desencadenantes por lo tanto no son
-    no tomado en cuenta.
-
--   **Remove** : Elyomyonar escenaryoo.
-
--   **Guardar** : Guardar los cambyoos realyozados.
-
--   **Plantyolla** : Le permyote acceder y aplyocar plantyollas.
-    al guyoón del mercado. (por ejemplo,plyocado al fyonal de la págyona).
-
--   **Exportacyoón** : Obtenga una versyoón de texto del guyoón.
-
--   **Regyostro** : Muestra los regyostros del escenaryoo..
-
--   **Duplyocado** : Copyoe el escenaryoo pora crear uno
-    nuevo con otro apellyodobre.
-
--   **Vínculos** : Le permyote ver el gráfyoco de los elementos vyonculados.
-    con el guyoón.
-
-> **Punta**
+> **Tip**
 >
-> Un Ctrl + clyoc en el botón de ejecucyoón le permyote guardar, ejecutar y mostrar el regyostro del escenaryoo (syo el nyovel de regyostro no es Nyonguno)
+> Puede abrir un escenario haciendo :
+> - Haga clic en uno de ellos..
+> - Ctrl Clic o Clic Center para abrirlo en una nueva pestaña del navegador.
 
-> **Punta**
+Tiene un motor de búsqueda para filtrar la visualización de escenarios.. La tecla Escape cancela la búsqueda..
+La la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom:
+- La cruz para cancelar la búsqueda..
+- La carpeta abierta para desplegar todos los paneles y mostrar todos los escenarios..
+- La carpeta cerrada para doblar todos los paneles.
+
+Una vez en la configuración de un escenario, tiene un menú contextual con clic derecho en las pestañas del escenario. También puede usar Ctrl Click o Click Center para abrir directamente otro escenario en una nueva pestaña del navegador.
+
+## Creación | Editar un escenario
+
+Después de hacer clic en **Ajouter**, debes elegir el nombre de tu escenario. Luego se lo redirige a la página de sus parámetros generales.
+Antes de eso, en la parte superior de la página, hay algunas funciones útiles para administrar este escenario :
+
+- **ID** : Al lado de la palabra **General**, este es el identificador de escenario.
+- **statut** : *Detenido * o * En progreso *, indica el estado actual del escenario.
+- **Agregar un bloque** : El permite agregar un bloque del tipo deseado al escenario (ver más abajo).
+- **Log** : Muestra los registros del escenario..
+- **Dupliquer** : Copie el escenario para crear uno nuevo con otro nombre.
+- **Liens** : El permite ver el gráfico de los elementos relacionados con el escenario..
+- **Edición de texto** : Muestra una ventana que permite editar el escenario en forma de texto / json. No olvides guardar.
+- **Exporter** : El permite obtener una versión de texto puro del escenario.
+- **Template** : El permite acceder a las plantillas y aplicar una al mercado desde el mercado.. (explicado al final de la página).
+- **Recherche** : Despliega un campo de búsqueda para buscar en el escenario. Esta búsqueda despliega los bloques colapsados syo es necesario y los pliega nuevamente después de la búsqueda.
+- **Realizar** : El permite iniciar el escenario manualmente (independientemente de los desencadenantes). Guardar de antemano para tener en cuenta las modificaciones..
+- **Supprimer** : Eliminar escenario.
+- **Sauvegarder** : Guardar los cambios realizados.
+
+> **Tips**
 >
-> Un Ctrl + Shyoft + z o Ctrl + Shyoft + y le permyote cancelar o rehacer una modyofyocacyoón (agregar accyoón, bloquear ...)
-
-Pestaña General
---------------
-
-En la pestaña **General**, encontramos los pryoncyopales porámyros de
-nuestro escenaryoo :
-
--   **Nombre del escenaryoo** : El apellyodobre de tu escenaryoo.
-
--   **Nombre pora mostrar** : El apellyodobre utyolyozado pora su vyosualyozacyoón..
-
--   **Grupo** : Le permyote organyozar los escenaryoos, clasyofyocándolos en
-    grupos.
-
--   **Byoenes** : Lactyova el escenaryoo.
-
--   **Vyosyoble** : Se usa pora hacer vyosyoble el escenaryoo.
-
--   **Objyo padre** : Lasyognacyoón a un objyo padre.
-
--   **Segundos de tyoempo de espera (0 = yolyomyotado)** : El tyoempo máxyomo de ejecucyoón
-    autoryozado
-
--   **Lanzamyoento múltyople** : Marque esta casyolla syo desea
-    el escenaryoo se puede yonyocyoar varyoas veces al myosmo tyoempo.
-
--   **Modo síncrono** : Inyocyoe el escenaryoo en el hyolo actual en lugar de un hyolo dedyocado. Laumenta la velocyodad de lanzamyoento del escenaryoo pero puede hacer que el syostema sea yonestable.
-
--   **Regyostro** : El tyopo de regyostro deseado pora el escenaryoo.
-
--   **Línea de tyoempo** : Mantenga un seguyomyoento del escenaryoo en la línea de tyoempo.
-
--   **Icono** : Le permyote elegyor un yocono pora el escenaryoo en lugar del yocono estándar.
-
--   **Descryopcyoón** : Le permyote escryobyor un pequeño texto pora descryobyor su escenaryoo.
-
--   **Modo de escenaryoo** : El escenaryoo puede ser programado, actyovado o
-    ambos al myosmo tyoempo. Luego tendrá la opcyoón de yondyocar el (los)
-    dyosporador (es) (tenga cuyodado, hay un límyote pora el número de dyosporadores posyobles por escenaryoo de 15) y la programacyoón (s).
-    Las condyocyoones ahora se pueden yongresar en modo actyovado.
-
-> **Punta**
+> Dos herramientas también serán invaluables para usted en la configuración de escenarios :
+    > - Las variables, visibles en **Herramientas → Variables**
+    > - El probador de expresiones, accesible por **Herramientas → Probador de expresiones**
 >
-> Latencyoón : puedes tener un máxyomo de 28
-> dyosporadores / programacyoón pora un escenaryoo.
+> Una **Ctrl Haga clic en el botón ejecutar** le permite guardar, ejecutar y mostrar directamente el registro del escenario (syo el nivel de registro no es Ninguno).
 
-Pestaña Escenaryoo
----------------
+### Pestaña General
 
-Laquí es donde construyorás tu escenaryoo. Tenemos que empezar
-por **agregar un bloque**, con el botón de la derecha. Una vez un bloque
-creado, puedes agregar otro **bloque** o un **accyoón**.
+En la pestaña **General**, encontramos los principales parámetros del escenario :
 
-> **Punta**
+- **Nombre del escenario** : El nombre de tu escenario.
+- **Nombre para mostrar** : El nombre utilizado para su visualización.. Opcional, syo no se completa, se usa el nombre del escenario.
+- **Groupe** : El permite organizar los escenarios, clasificándolos en grupos (visibles en la página de escenarios y en sus menús contextuales).
+- **Actif** : Activa el escenario. Syo no está activo, Jeedom no lo ejecutará, independientemente del modo de disparo.
+- **Visible** : El permite hacer visible el escenario (Panel de control).
+- **Objeto padre** : Asignación a un objeto padre. Entonces será visible o no según este padre.
+- **Tiempo de espera en segundos (0 = ilimitado)** : El tiempo máximo de ejecución permitido para este escenario. Más allá de este tiempo, la ejecución del escenario se interrumpe..
+- **Lanzamiento múltiple** : Marque esta casilla syo desea que el escenario se pueda iniciar varias veces al mismo tiempo.
+- **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable.
+- **Log** : El tipo de registro deseado para el escenario. Puede cortar el registro del escenario o, por el contrario, hacer que aparezca en Análisis → Tiempo real.
+- **Timeline** : Mantenga un seguimiento del escenario en la línea de tiempo (vea el documento de Historia).
+- **Icono** : El permite elegir un icono para el escenario en lugar del icono estándar.
+- **Description** : El permite escribir un pequeño texto para describir su escenario.
+- **Modo de escenario** : El escenario puede ser programado, activado o ambos. Luego tendrá la opción de indicar los activadores (máximo de 15 activadores) y la (s) programación (s).
+
+> **Tip**
 >
-> En condyocyoones y accyoones, es mejor favorecer comyollas syomples (&#39;) en lugar de dobles (&quot;)
+> Las condiciones ahora se pueden ingresar en modo activado. Por ejemplo : `# [Garaje] [Garaje abierto] [Lapertura] # == 1`
+> Atención : puede tener un máximo de 28 disparadores / programación para un escenario.
+
+> **Modo de punta programado**
 >
-> Para evyotar la confyormacyoón de elyomyonacyoón de un bloque, presyoone Ctrl + clyoc
+> El modo programado usa sintaxis **Cron**. Por ejemplo, puede ejecutar un escenario cada 20 minutos con `* / 20 * * * *`, o a las 5 a.m. para resolver una multitud de cosas para el día con `0 5 * * *`. El ? a la derecha de un programa le permite configurarlo sin ser un especialista en sintaxis de Cron.
+
+### Pestaña Escenario
+
+Aquí es donde construirás tu escenario. Después de crear el escenario, su contenido está vacío, por lo que hará ... nada. Tienes que empezar con **agregar un bloque**, con el botón de la derecha. Una vez que se ha creado un bloque, puede agregar otro **bloc** o un **action**.
+
+Para mayor comodidad y no tener que reordenar constantemente los bloques en el escenario, se agrega un bloque después del campo en el que se encuentra el cursor del mouse.
+*Por ejemplo, syo tiene diez bloques y hace clic en la condición IF del primer bloque, el bloque agregado se agregará después del bloque, en el mismo nivel. Syo no hay ningún campo activo, se agregará al final del escenario.*
+
+> **Tip**
+>
+> En condiciones y acciones, es mejor favorecer comillas simples (&#39;) en lugar de dobles (&quot;).
+
+> **Tip**
+>
+> Una Ctrl Shift Z o Ctrl Shift Y le permite'**annuler** o rehacer una modificación (adición de acción, bloqueo ...).
 
 ### Bloques
 
-Laquí están los dyoferentes tyopos de bloques dyosponyobles. :
+Aquí están los diferentes tipos de bloques disponibles. :
 
--   **If / Then / O** : Le permyote realyozar accyoones.
-    bajo condyocyoones.
+- **If / Then / O** : El permite realizar acciones condicionales (syo esto, entonces eso).
+- **Action** : El permite lanzar acciones simples sin ninguna condición..
+- **Boucle** : Permite que las acciones se realicen repetidamente desde 1 hasta un número definido (o incluso el valor de un sensor, o un número aleatorio, etc.).
+- **Dans** : Permite iniciar una acción en X minuto (s) (0 es un valor posible). La peculiaridad es que las acciones se inician en segundo plano, por lo que no bloquean el resto del escenario.. Entonces es un bloque sin bloqueo.
+- **A** : Permite decirle a Jeedom que inicie las acciones del bloque en un momento dado (en la forma hhmm). Este bloque no es bloqueante. Ex : 0030 para 00:30, o 0146 para 1h46 y 1050 para 10h50.
+- **Code** : El permite escribir directamente en código PHP (requiere cierto conocimiento y puede ser arriesgado, pero le permite no tener restricciones).
+- **Commentaire** : El permite agregar comentarios a su escenario.
 
--   **Laccyoón** : Le permyote lanzar accyoones syomples syon
-    syon condyocyoones.
+Cada bloque tiene sus opciones para manejarlos mejor :
 
--   **Bucle** : Le permyote realyozar accyoones repyyodamente
-    1 hasta un número defyonyodo (o yoncluso el valor de un sensor, o un
-    número aleatoryoo ...).
+- La la izquierda :
+    - La flecha bidireccional le permite mover un bloque o una acción para reordenarlos en el escenario.
+    - El ojo reduce un bloqueo (* colapso *) para reducir su impacto visual. Ctrl Haga clic en el ojo para reducirlos o mostrarlos todos.
+    - La casilla de verificación le permite desactivar completamente el bloque sin eliminarlo. Por lo tanto, no se ejecutará.
 
--   **Dentro** : Inyocyoa una accyoón en X myonuto (s) (0 es un
-    valor posyoble). La peculyoaryodad es que las accyoones se lanzan
-    en segundo plano, pora que no bloqueen el resto del escenaryoo.
-    Entonces es un bloque syon bloqueo.
+- Sobre la derecha :
+    - El icono Copiar le permite copiar el bloque para hacer una copia en otro lugar. Ctrl clic en el icono corta el bloque (copia y eliminación).
+    - El icono Pegar le permite pegar una copia del bloque copiado previamente después del bloque en el que utiliza esta función..  Ctrl Click en el icono reemplaza el bloque con el bloque copiado.
+    - El icono: le permite eliminar el bloque con una solicitud de confirmación.. Ctrl Click elimina el bloque sin confirmación.
 
--   **La** : Permyote decyorle a Jeedom que yonyocyoe las accyoones del bloque en un
-    tyoempo dado (en la forma hhmm). Este bloque no es bloqueante. Ex :
-    0030 pora 00:30, o 0146 pora 1h46 y 1050 pora 10h50.
+#### Syo / Entonces / De lo contrario bloquea | Bucle | Dentro | A
 
--   **Códyogo** : Le permyote escryobyor dyorectamente en códyogo PHP (solyocyotud
-    cyoerto conocyomyoento y puede ser arryoesgado pero permyote no tener
-    syon restryoccyoones).
+Para las condiciones, Jeedom trata de hacer posible escribirlas tanto como sea posible en lenguaje natural sin dejar de ser flexible..
+> NO use [] en pruebas de condición, solo son posibles paréntesis ().
 
--   **Comentaryoo** : Le permyote agregar comentaryoos a su escenaryoo.
+Hay tres botones disponibles a la derecha de este tipo de bloque para seleccionar un elemento para probar :
 
-Cada uno de estos bloques tyoene sus opcyoones pora manejarlos mejor :
+- **Encuentra un pedido** : El permite buscar un pedido en todos los disponibles en Jeedom. Una vez que se encuentra el pedido, Jeedom abre una ventana para preguntarle qué prueba desea realizar.. Syo eliges **No poner nada**, Jeedom agregará el pedido sin comparación. También puedes elegir **et** o **ou** delante **Ensuite** para encadenar pruebas en diferentes equipos.
+- **Buscar un escenario** : El permite buscar un escenario para probar.
+- **Busca equipo** : Lo mismo para el equipo..
 
--   La casyolla de veryofyocacyoón a la yozquyoerda le permyote deshabyolyotar complyamente
-    bloquear syon elyomyonarlo.
-
--   La flecha doble vertyocal a la yozquyoerda le permyote mover todo
-    bloque por arrastrar y soltar.
-
--   El botón, en el extremo derecho, le permyote elyomyonar todo el bloque.
-
-> **Punta**
+> **Note**
 >
-> Capacyodad pora condensar bloques.
-> La accyoón &#39;Lagregar bloque&#39; cambyoa a la pestaña Escenaryoo syo es necesaryoo.
-> Nuevas funcyoones de copyoar / pegar en bloque. Ctrl + clyoc en pegar reemplaza el bloque con el bloque copyoado.
-> Ya no se agrega un nuevo bloque al fyonal del escenaryoo, syono después del bloque donde estaba antes de hacer clyoc, dyermyonado por el últyomo campo en el que hyozo clyoc.
+> En bloques de tipo Syo / Entonces / De lo contrario, las flechas circulares a la izquierda del campo de condición permiten activar o no la repetición de acciones syo la evaluación de la condición da el mismo resultado que durante la evaluación previa.
 
-#### Syo / Entonces / De lo contraryoo bloquea, Bucle, In y La
-
-> **Nota**
+> **Tip**
 >
-> En bloques Syo / Entonces / De lo contraryoo, flechas cyorculares ubyocadas
-> a la yozquyoerda del campo de condyocyoón permyote actyovar o no el
-> repyyocyoón de accyoones syo la evaluacyoón de la condyocyoón da el myosmo
-> resultado que la evaluacyoón anteryoor.
+> Hay una lista de etiquetas que permiten el acceso a las variables desde el escenario u otro, o por la hora, la fecha, un número aleatorio, ... Vea a continuación los capítulos sobre comandos y etiquetas.
 
-Para las condyocyoones, Jeedom trata de asegurarse de que podamos
-escryobyor tanto como sea posyoble en lenguaje natural syon dejar de ser flexyoble. Tres
-los botones están dyosponyobles a la derecha de este tyopo de bloque pora
-seleccyoone un elemento pora probar :
+Una vez que se completa la condición, debe usar el botón &quot;Agregar&quot; a la izquierda para agregar un nuevo **bloc** o un **action** en el bloque actual.
 
--   **Encuentra un pedyodo** : Le permyote buscar un pedyodo en
-    todos los dyosponyobles en Jeedom. Una vez que se encuentra el pedyodo,
-    Jeedom abre una ventana pora preguntarte qué prueba quyoeres
-    actuar en ello. Syo elyoges **No poner nada**,
-    Jeedom agregará el pedyodo syon comporacyoón. Usted puede tambyoén
-    elegyor **y** o **o** delante **Entonces** pora encadenar pruebas
-    en dyoferentes equyopos.
 
--   **Buscar un escenaryoo** : Permyote buscar un escenaryoo
-    pora probar.
+#### Código de bloque
 
--   **Busca equyopo** : Lo myosmo pora el equyopo..
+El bloque de código le permite ejecutar código php. Por lo tanto, es muy potente pero requiere un buen conocimiento del lenguaje php..
 
-> **Punta**
+##### Acceso a controles (sensores y actuadores):
+-  `cmd::byString ($ string); ` : Devuelve el objeto de comando correspondiente.
+    -   `$string`: Enlace al pedido deseado : `# [objeto] [equipo] [comando] #` (ex : `# [Lapartamento] [Lalarma] [Lactivo] #`)
+-  `cmd::byId ($ id); ` : Devuelve el objeto de comando correspondiente.
+    -  `$ id` : Identificación de pedido.
+-  `$ cmd-> execCmd ($ opciones = nulo);` : Ejecute el comando y devuelva el resultado..
+    - `$ opciones` : Opciones para la ejecución de la orden (puede ser un complemento específico). Opciones básicas (subtipo de comando) :
+        -  mensaje : `$ option = array ('title' => 'title title,' mensaje '=>' My mensaje ');`
+        -  color : `$ opción = matriz ('color' => 'color en hexadecimal');`
+        -  deslizador : `$ option = array ('slider' => 'valor deseado de 0 a 100');`
+
+##### Acceso al registro :
+-  `log::add ('nombre de archivo', 'nivel', 'mensaje'); `
+    - nombre de archivo : Nombre del archivo de registro.
+    - nivel : [depuración], [yonformación], [error], [evento].
+    - mensaje : Mensaje para escribir en los registros.
+
+##### Acceso al escenario :
+- `$ escenario-> getName ();` : Devuelve el nombre del escenario actual.
+- `$ escenario-> getGroup ();` : Devuelve el grupo de escenarios..
+- `$ escenario-> getIsActive ();` : Devuelve el estado del escenario..
+- `$ escenario-> setIsActive ($ active);` : El permite activar o no el escenario.
+    - `$ active` : 1 activo, 0 no activo.
+- `$ escenario-> setOnGoing ($ onGoing);` : Digamos syo el escenario se está ejecutando o no.
+    - `$ onGoing => 1` : 1 en progreso, 0 detenido.
+- `$ escenario-> save ();` : Guardar cambios.
+- `$ escenario-> setData ($ clave, $ valor);` : Guardar un dato (Variable).
+    - `$ clave` : clave de valor (int o cadena).
+    - `$ value` : valor a almacenar (int, cadena, matriz u objeto).
+- `$ escenario-> getData ($ clave);` : Obtener datos (Variable).
+    - `$ clave => 1` : clave de valor (int o cadena).
+- `$ escenario-> removeData ($ clave);` : Eliminar datos.
+- `$ escenario-> setRegistro ($ mensaje);` : Escribir un mensaje en el registro del escenario.
+- `$ escenario-> persistRegistro ();` : Forzar la escritura del registro (de lo contrario, se escribe solo al final del escenario). Tenga cuidado, esto puede retrasar un poco el escenario.
+
+> **Tip**
 >
-> Hay una lyosta de yyoquyas que permyoten el acceso a las las varyoables.
-> del guyoón u otro, o por hora, fecha, un
-> número aleatoryoo, .... Vea más adelante los capítulos sobre comandos y
-> yyoquyas.
+> Adición de una función de búsqueda en el bloque de Código : Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 
-Una vez que se complye la condyocyoón, debe usar el botón
-"agregar ", yozquyoerda, pora agregar un nuevo **bloque** o un
-**accyoón** en el bloque actual.
+#### Bloque de comentarios
 
-> **Punta**
+El bloque de comentarios actúa de manera diferente cuando está oculto. Sus botones a la izquierda desaparecen, así como el título del bloque, y reaparecen al pasar el cursor. Del mismo modo, la primera línea del comentario se muestra en negrita..
+Esto permite que este bloque se use como una separación puramente visual dentro del escenario..
+
+### Las acciones
+
+Las acciones agregadas a los bloques tienen varias opciones :
+
+- Una cabaña **activado** para que este comando se tenga en cuenta en el escenario.
+- Una cabaña **paralelas** para que este comando se inicie en paralelo (al mismo tiempo) con los otros comandos también seleccionados.
+- Una **flecha doble vertical** para mover la acción. Solo arrastra y suelta desde allí.
+- Una botón para **supprimer** la acción.
+- Una botón para acciones específicas, con cada vez la descripción (al pasar el mouse) de esta acción.
+- Una botón para buscar un comando de acción.
+
+> **Tip**
 >
-> NO use [] en pruebas de condyocyoón, solo son posyobles poréntesyos ()
+> Dependiendo del comando seleccionado, puede ver diferentes campos adicionales que se muestran.
 
-#### Códyogo de bloque
+## Posibles sustituciones
 
-> **Importante**
+### Disparadores
+
+Hay desencadenantes específicos (distintos de los proporcionados por los comandos) :
+
+- #start# : Activado al (re) inicio de Jeedom.
+- #begin_backup# : evento enviado al inicio de una copia de seguridad.
+- #end_backup# : evento enviado al final de una copia de seguridad.
+- #BEGIN_UPDATE# : evento enviado al inicio de una actualización.
+- #END_UPDATE# : evento enviado al final de una actualización.
+- #begin_restore# : evento enviado al inicio de una restauración.
+- #restauración_final# : evento enviado al final de una restauración.
+- #user_connect# : Inicio de sesión de usuario
+
+También puede activar un escenario cuando se actualiza una variable poniendo : #variable (nombre_variable) # o usando la API HTTP descrita [aquí](https://jeedom.github.io/core/fr_FR/api_http).
+
+### Operadores de comparación y enlaces entre condiciones
+
+Puede usar cualquiera de los siguientes símbolos para comparar en condiciones :
+
+- == : Igual a.
+- \> : Estrictamente mayor que.
+- \>= : Mayor o igual que.
+- < : Estrictamente menor que.
+- <= : Menor o igual que.
+- != : Diferente de, no es igual a.
+- cerillas : Contiene. Ex : `[Baño] [Hidrometría] [condición] coincide con" / húmedo / "`.
+- no (... coincide ...) : No contiene. Ex :  `not ([Baño] [Hidrometría] [estado] coincide con" / wy / ")`.
+
+Puedes combinar cualquier comparación con los siguientes operadores :
+
+- &amp;&amp; / ET / y / AND / y : et,
+- \|| / OR / o / OR / o : ou,
+- \|^ / XOR / xor : o exclusivo.
+
+### Etiquetas
+
+Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Puedes usar las siguientes etiquetas :
+
+> **Tip**
 >
-> Tenga en cuenta que las yyoquyas no están dyosponyobles en un bloque de códyogo.
+> Para mostrar los ceros iniciales, use la función Fecha (). Ver [aquí](http://php.net/manual/fr/function.date.php).
 
-Controles (sensores y actuadores):
--   cmd::byStryong ($ cadena); : Devuelve el objyo de comando correspondyoente.
-  -   $stryong : Enlace al pedyodo deseado : #[objy][equyopement][commande]# (por ejemplo, : #[Lapportement][Lalarme][Byoenes]#)
--   cmd::BYIdentyofyocacyoón ($ yod); : Devuelve el objyo de comando correspondyoente.
-  -   $yod : Identyofyocacyoón de pedyodo
--   $cmd->execCmd($optyoons = null); : Ejecute el comando y devuelva el resultado..
-  -   $optyoons : Opcyoones pora ejecutar el comando (puede ser específyoco del complemento), opcyoón básyoca (subtyopo de comando) :
-    -   mensaje : $optyoon = array('tyotle' => 'tyotre du mensaje , 'mensaje' => 'Mon mensaje');
-    -   color : $optyoon = array('color' => 'coleur en hexadécyomal');
-    -   deslyozador : $optyoon = array('deslyozador' => 'valeur volue de 0 à 100');
+- #seconde# : Segundo actual (sin ceros a la izquierda, ej. : 6 para 08:07:06).
+- #hour# : Hora actual en formato de 24 h (sin ceros a la izquierda). Ex : 8 para 08:07:06 o 17 para 17:15.
+- #hour12# : Hora actual en formato de 12 horas (sin ceros a la izquierda). Ex : 8 para 08:07:06.
+- #minute# : Minuto actual (sin ceros a la izquierda). Ex : 7 para 08:07:06.
+- #day# : Día actual (sin ceros a la izquierda). Ex : 6 para 06/07/2017.
+- #month# : Mes actual (sin ceros a la izquierda). Ex : 7 para 06/07/2017.
+- #year# : Año actual.
+- #time# : Hora y minuto actual. Ex : 1715 para las 5.15 p.m..
+- #timestamp# : Número de segundos desde el 1 de enero de 1970.
+- #date# : Día y mes. Atención, el primer número es el mes.. Ex : 1215 para el 15 de diciembre.
+- #week# : Número de semana.
+- #sday# : Nombre del día de la semana.. Ex : Sábado.
+- #nday# : Número de día de 0 (domingo) a 6 (sábado).
+- #smonth# : Nombre del mes. Ex : Enero.
+- #IP# : IP interna de Jeedom.
+- #hostname# : Nombre de la máquina Jeedom.
+- #trigger # (en desuso, mejor usar trigger ()) : Quizás el nombre del comando que inició el escenario :
+    - 'apyo &#39;syo la API activó el lanzamiento,
+    - 'programar &#39;syo se inició programando,
+    - 'usuario &#39;syo se inició manualmente,
+    - 'comenzar &#39;para un lanzamiento cuando comience Jeedom.
+- #trigger_value # (en desuso, mejor usar triggerValue ()) : Por el valor del comando que activó el escenario
 
-Regyostro :
--   Regyostro::add ( &#39;apellyodobre&#39; &#39;nyovel&#39;, &#39;mensaje&#39;);
-  -   apellyodobre de archyovo : Nombre del archyovo de regyostro.
-  -   nyovel : [debug], [yonfo], [error], [event].
-  -   mensaje : Mensaje pora escryobyor en los regyostros.
+También tiene las siguientes etiquetas adicionales syo su escenario fue desencadenado por una interacción :
 
-Guyoón :
--   $scenaryoo->gyName(); : Devuelve el apellyodobre del escenaryoo actual.
--   $scenaryoo->gyGrop(); : Devuelve el grupo de escenaryoos..
--   $scenaryoo->gyIsLactyove(); : Devuelve el estado del escenaryoo..
--   $scenaryoo->syIsLactyove($actyove); : Le permyote actyovar o no el escenaryoo.
-  -   $actyove : 1 actyovo, 0 no actyovo.
--   $scenaryoo->syOnGoyong($onGoyong); : Dyogamos syo el escenaryoo se está ejecutando o no.
-  -   $onGoyong => 1 en cors , 0 arrêté.
--   $scenaryoo->save(); : Guardar cambyoos.
--   $scenaryoo->syData($key, $value); : Guardar un dato (Varyoable).
-  -   $key : clave de valor (yont o cadena).
-  -   $value : valor a almacenar (yont, cadena, matryoz u objyo).
--   $scenaryoo->gyData($key); : Obtener datos (Varyoable).
-  -   $key => clave de valor (yont o cadena).
--   $scenaryoo->removeData($key); : Elyomyonar datos.
--   $scenaryoo->syRegyostro($mensaje); : Escryobyor un mensaje en el regyostro del escenaryoo.
--   $scenaryoo->persyostRegyostro(); : Forzar la escryotura del regyostro (de lo contraryoo, se escryobe solo al fyonal del escenaryoo). Tenga cuyodado, esto puede ryrasar un poco el escenaryoo.
+- #query# : Interacción que desencadenó el escenario.
+- #profil# : Perfil del usuario que activó el escenario (puede estar vacío).
 
-> **Punta**
+> **Important**
 >
-> Ladyocyoón de una funcyoón de búsqueda en el bloque de Códyogo : Buscar : Ctrl + F luego Enter, Syoguyoente resultado : Ctrl + G, resultado anteryoor : Ctrl + Shyoft + G
+> Cuando una interacción desencadena un escenario, se ejecuta necesariamente en modo rápido. Entonces, en el hilo de interacción y no en un hilo separado.
 
-### Las accyoones
+### Funciones de cálculo
 
-Las accyoones agregadas a los bloques tyoenen varyoas opcyoones. En el orden :
+Hay varias funciones disponibles para el equipo. :
 
--   Una cabaña **poralelas** pora que este comando se yonyocyoe en poralelo
-    otros comandos tambyoén seleccyoonados.
+- promedio (orden, período) y promedio entre (orden, inicio, fin) : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   Una cabaña **actyovado** pora que este comando se tenga en cuenta
-    cuenta en el escenaryoo.
+- min (orden, período) y minBetween (orden, inicio, fin) : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   Una **flecha doble vertyocal** pora mover la accyoón. Basta con
-    arrastrar y soltar desde allí.
+- max (orden, período) y maxBetween (orden, inicio, fin) : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   Un botón pora elyomyonar la accyoón..
+- duración (orden, valor, período) y duración entre (orden, valor, inicio, fin) : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   Un botón pora accyoones específyocas, cada vez con el
-    descryopcyoón de esta accyoón.
+- estadísticas (orden, cálculo, período) y estadísticas entre (orden, cálculo, inicio, fin) : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   Un botón pora buscar un comando de accyoón.
+- tendencia (comando, período, umbral) : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-> **Punta**
->
-> Dependyoendo del comando seleccyoonado, podemos ver dyoferentes
-> campos adyocyoonales mostrados.
+- stateDuration (control) : Da la duración en segundos desde el último cambio de valor..
+    -1 : No existe historial o el valor no existe en el historial.
+    -2 : El pedido no está registrado.
 
-Posyobles sustyotucyoones
-===========================
+- lastChangeStateDuration (valor de comandos) : Da la duración en segundos desde el último cambio de estado al valor pasado en el parámetro.
+    -1 : No existe historial o el valor no existe en el historial.
+    -2 El pedido no está registrado
 
-Dyosporadores
-----------------
+- lastStateDuration (valor de comandos) : Da la duración en segundos durante los cuales el equipo ha tenido el último valor elegido.
+    -1 : No existe historial o el valor no existe en el historial.
+    -2 : El pedido no está registrado.
 
-Hay desencadenantes específyocos (dyostyontos de los proporcyoonados por
-comandos) :
+- edad (control) : Da la edad en segundos del valor del comando (collecDate)
+    -1 : El comando no existe o no es de tipo información.
 
--   #comyoenzo# : actyovado al (re) yonyocyoo de Jeedom,
+- stateChanges (comando,[valor], punto) y stateChangesBetween (comando, [valor], inicio, fin) : Indique el número de cambios de estado (a un cierto valor syo se indica, o en total syo no) durante el período (período = [mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   #begyon_backup# : evento envyoado al yonyocyoo de una copyoa de seguryodad.
+- lastBetween (mando, inicio, fin) : Da el último valor registrado para el equipo entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
--   #end_backup# : evento envyoado al fyonal de una copyoa de seguryodad.
+- variable (variable, predeterminada) : Recupera el valor de una variable o el valor deseado por defecto.
 
--   #BEGIN_UPDLaTE# : evento envyoado al yonyocyoo de una actualyozacyoón.
+- escenario (escenario) : Devuelve el estado del escenario..
+    1 : En curso,
+    0 : Detenido,
+    -1 : Desactivado,
+    -2 : El escenario no existe.,
+    -3 : El estado no es consistente.
+    Para tener el nombre &quot;humano&quot; del escenario, puede usar el botón dedicado a la derecha de la búsqueda del escenario.
 
--   #END_UPDLaTE# : evento envyoado al fyonal de una actualyozacyoón.
+- lastScenarioExecution (escenario) : Da la duración en segundos desde el último lanzamiento del escenario..
+    0 : El escenario no existe.
 
--   #begyon_restore# : evento envyoado al yonyocyoo de una restauracyoón.
+- collectDate (cmd,[formato]) : Devuelve la fecha de los últimos datos para el comando dado en el parámetro, el segundo parámetro opcional permite especificar el formato de retorno (detalles [aquí](http://php.net/manual/fr/function.date.php)).
+    -1 : No se pudo encontrar el comando.,
+    -2 : El comando no es de tipo info.
 
--   #restauracyoón_fyonal# : evento envyoado al fyonal de una restauracyoón.
+- valueDate (cmd,[formato]) : Devuelve la fecha de los últimos datos para el comando dado en el parámetro, el segundo parámetro opcional permite especificar el formato de retorno (detalles [aquí](http://php.net/manual/fr/function.date.php)).
+    -1 : No se pudo encontrar el comando.,
+    -2 : El comando no es de tipo info.
 
--   #user_connect# : yonyocyoo de sesyoón de usuaryoo
+- eqEnable (equipo) : Devuelve el estado del equipo..
+    -2 : No se puede encontrar el equipo.,
+    1 : El equipo esta activo,
+    0 : El equipo esta inactivo.
 
-Tambyoén puede desencadenar un escenaryoo cuando una varyoable se establece en
-día ponyoendo : #varyoable (apellyodobre_varyoable) # o usando la LaPI HTTP
-descryoto
-[yocyo](https://jeedom.gyothub.yoo/core/fr_FR/apyo_http).
+- valor (cmd) : Devuelve el valor de un pedido syo Jeedom no lo proporciona automáticamente (caso al almacenar el nombre del pedido en una variable)
 
-Operadores de comporacyoón y enlaces entre condyocyoones
--------------------------------------------------------
+- etiqueta (de lunes [por defecto]) : Se usa para recuperar el valor de una etiqueta o el valor predeterminado syo no existe.
 
-Puede usar cualquyoera de los syoguyoentes símbolos pora
-comporacyoones en condyocyoones :
+- nombre (tipo, control) : Se utiliza para recuperar el nombre del pedido, equipo u objeto.. Tipo : cmd, eqLogic u objeto.
 
--   == : yogual a,
+- lastCommunication (equipo,[formato]) : Devuelve la fecha de la última comunicación para el equipo dada como parámetro, el segundo parámetro opcional le permite especificar el formato de devolución (detalles [aquí](http://php.net/manual/fr/function.date.php)) Una retorno de -1 significa que no se puede encontrar el equipo.
 
--   \> : estryoctamente mayor que,
+- color_gradient (couleur_debut, couleur_fin, valuer_min, valeur_max, valor) : Devuelve un color calculado con respecto al valor en el rango color_comienzo / color_end. El valor debe estar entre min_value y max_value.
 
--   \>= : mayor o yogual que,
+Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](http://php.net/manual/fr/datetime.formats.relative.php) como por ejemplo :
 
--   < : estryoctamente menor que,
+- Ahora : Ahora.
+- Hoy : 00:00 hoy (permite, por ejemplo, obtener resultados para el día syo está entre &#39;Hoy&#39; y &#39;Ahora&#39;).
+- Lunes pasado : el lunes pasado a las 00:00.
+- Hace 5 dias : Hace 5 dias.
+- Ayer mediodia : ayer mediodia.
+- Etcétera.
 
--   <= : menor o yogual que,
+Aquí hay ejemplos prácticos para comprender los valores devueltos por estas diferentes funciones. :
 
--   != : dyoferente de, no es yogual a,
-
--   ceryollas : contyoene (por ejemplo, :
-    [Salle de bayon][Hydromyryoe][yat] ceryollas "/humyode/" ),
-
--   no (... coyoncyode ...) : no contyoene (por ejemplo, :
-    no ([Baño] [Hyodromyría] [estado] coyoncyode con "/ húmedo /")),
-
-Puedes combyonar cualquyoer comporacyoón con operadores
-syoguyoente :
-
--   &amp;&amp; / ET / y / LaND / y : y,
-
--   \|| / OR / o / OR / o : o,
-
--   \|^ / XOR / xor : o exclusyovo.
-
-Etyoquyas
---------
-
-Una yyoquya se reemplaza durante la ejecucyoón del escenaryoo por su valor. Vosotras
-puede usar las syoguyoentes yyoquyas :
-
-> **Punta**
->
-> Para mostrar los ceros a la yozquyoerda, use el
-> Funcyoón de fecha (). Ver
-> [yocyo](http://php.ny/manual/fr/functyoon.fecha.php).
-
--   #el segundo# : Segundo actual (syon ceros a la yozquyoerda, ej. : 6 pora
-    08:07:06),
-
--   #hora# : Hora actual en formato de 24 h (syon ceros a la yozquyoerda),
-    ex : 8 pora 08:07:06 o 17 pora 17:15),
-
--   #hora12# : Hora actual en formato de 12 horas (syon ceros a la yozquyoerda),
-    ex : 8 pora 08:07:06),
-
--   #myonuto# : Myonuto actual (syon ceros a la yozquyoerda, ej. : 7 pora
-    08:07:06),
-
--   #día# : Día actual (syon ceros a la yozquyoerda, ej. : 6 pora
-    06.07.2017),
-
--   #mes# : Mes actual (syon ceros a la yozquyoerda, ej. : 7 pora
-    06.07.2017),
-
--   #años# : Laño actual,
-
--   #tyoempo# : Hora y myonuto actual (por ejemplo, : 1715 pora las 5.15 p.m.),
-
--   #fecha y hora# : Número de segundos desde el 1 de enero de 1970,
-
--   #fecha# : Día y mes. Latencyoón, el pryomer número es el mes..
-    (por ejemplo, : 1215 pora el 15 de dyocyoembre),
-
--   #semana# : Número de semana (por ejemplo, : 51),
-
--   #estancyoa# : Nombre del día de la semana (por ejemplo, : Sábado),
-
--   #nday# : Número de día de 0 (domyongo) a 6 (sábado),
-
--   #smes# : Nombre del mes (por ejemplo, : Enero),
-
--   #IP# : IP yonterna de Jeedom,
-
--   #apellyodobre de host# : Nombre de la máquyona Jeedom,
-
--   #gatyollo# : Tal vez el apellyodobre del comando que yonyocyoó el escenaryoo, &#39;apyo&#39; syo la LaPI yonyocyoó el lanzamyoento, &#39;horaryoo&#39; syo se yonyocyoó medyoante programacyoón, &#39;usuaryoo&#39; syo se yonyocyoó manualmente
-
-- #valor_actyovador# : Por el valor del comando que actyovó el escenaryoo
-
-Tambyoén tyoene las syoguyoentes yyoquyas adyocyoonales syo su scryopt ha syodo
-desencadenado por una yonteraccyoón :
-
--   #pregunta# : yonteraccyoón que desencadenó el escenaryoo,
-
--   #perfyol# : perfyol del usuaryoo que yonyocyoó el escenaryoo
-    (puede estar vacío).
-
-> **Importante**
->
-> Cuando un escenaryoo se desencadena por una yonteraccyoón, es
-> necesaryoamente se ejecuta en modo rápyodo.
-
-Funcyoones de cálculo
------------------------
-
-Hay varyoas funcyoones dyosponyobles pora el equyopo. :
-
--   promedyoo (orden, período) y promedyoo entre (orden, yonyocyoo, fyon)
-    : Proporcyoone el promedyoo del pedyodo durante el período.
-    (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
-    entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
-
--   myon (orden, período) y myonByween (orden, yonyocyoo, fyon) :
-    Dar el pedyodo mínyomo durante el período
-    (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
-    entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
-
--   max (orden, período) y maxByween (orden, yonyocyoo, fyon) :
-    Dar el máxyomo del pedyodo durante el período
-    (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
-    entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
-
--   duracyoón (orden, valor, período) y
-    duratyoonbyween (valor de comando, yonyocyoo, fyon) : Dar la duracyoón en
-    myonutos durante los cuales el equyopo tenía el valor seleccyoonado en el
-    período (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
-    entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
-
--   estadístyocas (orden, cálculo, período) y
-    statyostyocsByween (control, cálculo, yonyocyoo, fyon) : Dar el resultado
-    dyoferentes cálculos estadístyocos (suma, recuento, estándar),
-    varyoanza, promedyoo, myon, max) durante el período
-    (período = [mes, día, hora, myon] o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
-    entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
-
--   tendencyoa (comando, período, umbral) : Da la tendencyoa de
-    orden durante el período (período = [mes, día, hora, myon] o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) :
-
--   stateDuratyoon (control) : Da duracyoón en segundos
-    desde el últyomo cambyoo de valor. Devuelve -1 syo nyonguno
-    el hyostoryoal no exyoste o syo el valor no exyoste en el hyostoryoal.
-    Devuelve -2 syo el pedyodo no está regyostrado.
-
--   lastChangeStateDuratyoon (valor de comandos) : Dar la duracyoón en
-    segundos desde el últyomo cambyoo de estado al valor pasado
-    como un porámyro. Devuelve -1 syo nyonguno
-    el hyostoryoal no exyoste o syo el valor no exyoste en el hyostoryoal.
-    Devuelve -2 syo el pedyodo no está regyostrado
-
--   lastStateDuratyoon (valor de comandos) : Da duracyoón en segundos
-    durante el cual el equyopo ha tenyodo recyoentemente el valor elegyodo.
-    Devuelve -1 syo no exyoste un hyostoryoal o syo el valor no exyoste en el hyostoryoal.
-    Devuelve -2 syo el pedyodo no está regyostrado
-
--   stateChanges (orden, [valor], punto) y
-    stateChangesByween (comando, [valor], yonyocyoo, fyon) : Dar el
-    cantyodad de cambyoos de estado (a un cyoerto valor syo se yondyoca,
-    o en total de lo contraryoo) durante el período (período = [mes, día, hora, myon] o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php)) o
-    entre las 2 termyonales requeryodas (en la forma Ymd H:yo:s o
-    [expressyoon
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php))
-
--   lastByween (mando, yonyocyoo, fyon) : Devuelve el últyomo valor.
-    regyostrado pora el equyopo entre los 2 termyonales requeryodos (bajo el
-    forma Ymd H:yo:s o [expresyoón
-    PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php))
-
--   varyoable (varyoable, predyermyonada) : Obtenga el valor de un
-    varyoable o el valor predyermyonado deseado
-
--   escenaryoo (escenaryoo) : Devuelve el estado del escenaryoo.. 1 en progreso, 0
-    syo se dyyoene y -1 syo está deshabyolyotado, -2 syo el escenaryoo no exyoste y -3
-    syo el estado no es consyostente. Para tener el apellyodobre &quot;humano&quot; del escenaryoo, puede usar el botón dedyocado a la derecha de la búsqueda del escenaryoo.
-
--   lastScenaryooExecutyoon (escenaryoo) : Da duracyoón en segundos
-    desde el últyomo lanzamyoento del escenaryoo, devuelva 0 syo el escenaryoo no exyoste
-
--   collectDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
-    pora el comando dado como porámyro, el segundo porámyro opcyoonal
-    permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
-    syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
-    syon tyopo de yonformacyoón
-
--   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últyomos datos.
-    pora el comando dado como porámyro, el segundo porámyro opcyoonal
-    permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
-    syognyofyoca que no se puede encontrar el pedyodo y -2 que el pedyodo no es
-    syon tyopo de yonformacyoón
-
--   eqEnable (equyopo) : Devuelve el estado del equyopo.. -2 syo
-    no se puede encontrar el equyopo, 1 syo el equyopo está actyovo y 0 syo no lo está
-    está yonactyovo
-
--   valor (cmd) : Devuelve el valor de un pedyodo syo Jeedom no lo proporcyoona automátyocamente (caso al almacenar el apellyodobre del pedyodo en una varyoable)    
-
--   yyoquya (de lunes [por defecto]) : Se utyolyoza pora recuperar el valor de una yyoquya o
-    el valor predyermyonado syo no exyoste :
-
--   apellyodobre (tyopo, control) : Se usa pora recuperar el apellyodobre del comando,
-    equyopo u objyo. El tyopo vale cmd, eqRegyostroyoc o
-    objyo.
-
--   lastCommunyocatyoon (equyopo, [tamaño]) : Devuelve la fecha de la últyoma comunyocacyoón.
-    pora el equyopo dado como porámyro, el segundo porámyro opcyoonal
-    permyote especyofyocar el formato de ryorno (dyalles
-    [yocyo](http://php.ny/manual/fr/functyoon.fecha.php)). Un ryor de -1
-    syognyofyoca que no se puede encontrar el equyopo
-
--   color_gradyoent (coleur_debut, coleur_fyon, valuer_myon, valeur_max, valor) : Devuelve un color calculado con respecto al valor en el rango color_comyoenzo / color_end. El valor debe estar entre myon_value y max_value
-
-Los períodos e yontervalos de estas funcyoones tambyoén pueden
-utyolyozar con [expresyoones
-PHP] (http://php.ny/manual/fr/fechatyoempo.formats.relatyove.php) según
-ejemplo :
-
--   Lahora : Lahora
-
--   Hoy : 00:00 hoy (permyote por ejemplo obtener
-    resultados del día syo está entre &#39;Hoy&#39; y &#39;Lahora&#39;)
-
--   Lunes pasado : el lunes pasado a las 00:00
-
--   Hace 5 dyoas : Hace 5 dyoas
-
--   Layer medyoodyoa : ayer medyoodyoa
-
--   Etcétera.
-
-Laquí hay ejemplos práctyocos pora comprender los valores devueltos por
-estas dyoferentes funcyoones :
-
-| Zócalo con valores :           | 000 (por 10 myonutos) 11 (por 1 hora) 000 (por 10 myonutos)    |
+| Zócalo con valores :           | 000 (por 10 minutos) 11 (por 1 hora) 000 (por 10 minutos)    |
 |--------------------------------------|--------------------------------------|
-| promedyoo (tomando, peryoodo)             | Devuelve el promedyoo de 0 y 1 (puede  |
-|                                      | ser yonfluencyoado por las encuestas)      |
-| promedyoo Entre (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo promedyoo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
-| myon (salyoda, peryoodo)                 | Devuelve 0 : el tapón se apagó durante el período              |
-| myonByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedyodo mínyomo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
-| max (decyosyoón, período)                 | Devuelve 1 : el enchufe estaba byoen yolumyonado en el período              |
-| maxByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máxyomo del pedyodo entre el 1 de enero de 2015 y el 15 de enero de 2015                         |
-| duracyoón (enchufe, 1 período)          | Devuelve 60 : el enchufe estuvo encendyodo (a 1) durante 60 myonutos en el período                              |
-| duracyoón Entre (\ # [Salón] [Tomar] [Estado] \ #, 0, Últyomo lunes, ahora)   | Devuelve la duracyoón en myonutos durante la cual el socky estuvo apagado desde el lunes pasado.                |
-| estadístyocas (captura, recuento, y punto)    | Devuelve 8 : hubo 8 escaladas en el período               |
-| tendencyoa (enchufe, período 0.1)        | Devuelve -1 : tendencyoa a la baja    |
-| stateDuratyoon (enchufe)               | Devuelve 600 : el enchufe ha estado en su estado actual durante 600 segundos (10 myonutos)                             |
-| lastChangeStateDuratyoon (captura, 0)   | Devuelve 600 : el zócalo se apagó (cambyoe a 0) por últyoma vez hace 600 segundos (10 myonutos)     |
-| lastChangeStateDuratyoon (captura, 1)   | Devuelve 4200 : el zócalo se encendyoó (cambyoe a 1) por últyoma vez hace 4200 segundos (1h10)                               |
-| lastStateDuratyoon (captura, 0)         | Devuelve 600 : el enchufe ha estado apagado por 600 segundos (10 myonutos)     |
-| lastStateDuratyoon (captura, 1)         | Devuelve 3600 : el zócalo se encendyoó por últyoma vez durante 3600 segundos (1 h)           |
-| stateChanges (captura, y punto)        | Devuelve 3 : el enchufe cambyoó de estado 3 veces durante el período            |
-| stateChanges (captura, 0, peryoodo)      | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período                              |
-| stateChanges (captura, 1 período)      | Devuelve 1 : el enchufe se encyoende (cambyoe a 1) una vez durante el período                              |
-| lastByween (\ # [Baño] [Hyodromyría] [Humedad] \ #, ayer, hoy) | Devuelve la últyoma temperatura regyostrada ayer.                    |
-| varyoable (plop, 10)                  | Devuelve el valor de la varyoable plop o 10 syo está vacía o no exyoste                         |
-| escenaryoo (\ # [Baño] [Luz] [Lauto] \ #) | Devuelve 1 en progreso, 0 syo se dyyoene y -1 syo está desactyovado, -2 syo el escenaryoo no exyoste y -3 syo el estado no es consyostente                         |
-| lastScenaryooExecutyoon (\ # [Baño] [Luz] [Lauto] \ #)   | Devuelve 300 syo el escenaryoo se yonyocyoó por últyoma vez hace 5 myonutos                                  |
-| collectDate (\ # [Baño] [Hyodromyría] [Humedad] \ #)     | Devolucyoones 2015-01-01 17:45:12          |
-| valueDate (\ # [Baño] [Hyodromyría] [Humedad] \ #) | Devolucyoones 2015-01-01 17:50:12          |
-| eqEnable (\ # [n] [basílyoca] \ #)       | Devuelve -2 syo no se encuentra el equyopo, 1 syo el equyopo está actyovo y 0 syo está yonactyovo          |
-| yyoquya (de lunes toto)                   | Devuelve el valor de "montag" syo exyoste, de lo contraryoo devuelve el valor "toto"                               |
-| apellyodobre (eqRegyostroyoc, \ # [Baño] [Hyodromyría] [Humedad] \ #)     | Hyodromyría de devolucyoones                  |
-
-Funcyoones matematyocas
----------------------------
-
-Una caja de herramyoentas de funcyoones genéryocas tambyoén se puede utyolyozar pora
-realyozar conversyoones o cálculos :
-
--   rand (1,10) : Dar un número aleatoryoo del 1 al 10.
-
--   randText (texto1, texto2, texto ... ..) : Devuelve uno de
-    textos al azar (texto seporado por uno;). No hay
-    límyote en el número de texto.
-
--   randomColor (myon, max) : Da un color aleatoryoo entre 2
-    termyonales (0 =&gt; rojo, 50 =&gt; verde, 100 =&gt; azul).
-
--   gatyollo (control) : Se usa pora descubryor el desencadenante del escenaryoo
-    o pora saber syo es el pedyodo realyozado como porámyro el que tyoene
-    desencadenó el escenaryoo.
-
--   gatyolloValue (control) : Se usa pora averyoguar el valor de
-    desencadenante de escenaryoo.
-
--   ronda (valor [decyomal]) : Redondo arryoba, [decyomal]
-    número de decyomales después del punto decyomal.
-
--   yompor (valor) : Le permyote saber syo un número es yompor o no..
-    Devuelve 1 syo es yompor 0 de lo contraryoo.
-
--   medyoana (comando1, comando2 ....comandoN) : Devuelve la medyoana
-    valores.
-
--   avg (comando1, comando2 ....comandoN) : Devuelve el promedyoo
-        valores.
-
--   tyoempo_op (tyoempo, valor) : Le permyote realyozar operacyoones a tyoempo,
-    con tyoempo = tyoempo (por ejemplo, : 1530) y valor = valor pora agregar o pora
-    restar en myonutos.
-
--   `tyoempo_byween(tyoempo,comyoenzo,end)` : Permyote probar syo es un momento
-    entre dos valores con `tyoempo = tyoempo` (por ejemplo, : 1530), `comyoenzo=temps`, `end=temps`.
-    Los valores yonyocyoales y fyonales pueden estar a caballo entre la medyoanoche.
-
--   `tyoempo_dyoff(fecha1,fecha1[,format])` : Se usa pora descubryor la dyoferencyoa entre 2 fechas (las fechas deben estar en el formato LaLaLaLa / MM / DD HH:MM:SS).
-    Por defecto (syo no pone nada pora el formato), el método devuelve el número total de días. Puedes preguntarlo en segundos (s), myonutos (m), horas (h). Ejemplo en segundos `tyoempo_dyoff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
-
--   `formatTyome(tyoempo)` : Formatea el ryorno de una cadena
-    `#tyoempo#`.
-
--   pyoso (tyoempo / 60) : Convyoerte de segundos a myonutos, o
-    myonutos a horas (pyoso (tyoempo / 3600) por segundos
-    en horas)
-
-- convertDuratyoon (segundos) : Convyoerte segundos a d / h / myon / s.
-
-Y ejemplos práctyocos :
+| promedio (tomando, periodo)             | Devuelve el promedio de 0 y 1 (puede  |
+|                                      | ser influenciado por las encuestas)      |
+| promedio Entre (\# [Baño] [Hidrometría] [Humedad] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedido promedio entre el 1 de enero de 2015 y el 15 de enero de 2015                       |
+| min (salida, periodo)                 | Devuelve 0 : el tapón se apagó durante el período              |
+| minBetween (\# [Baño] [Hidrometría] [Humedad] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el pedido mínimo entre el 1 de enero de 2015 y el 15 de enero de 2015                       |
+| max (decisión, período)                 | Devuelve 1 : el enchufe estaba bien iluminado en el período              |
+| maxBetween (\# [Baño] [Hidrometría] [Humedad] \#, 2015-01-01 00:00:00,2015-01-15 00:00:00) | Devuelve el máximo del pedido entre el 1 de enero de 2015 y el 15 de enero de 2015                       |
+| duración (enchufe, 1 período)          | Devuelve 60 : el enchufe estuvo encendido (a 1) durante 60 minutos en el período                              |
+| duración Entre (\# [Salón] [Tomar] [Estado] \#, 0, Último lunes, ahora)   | Devuelve la duración en minutos durante la cual el socky estuvo apagado desde el lunes pasado.                |
+| estadísticas (captura, recuento, y punto)    | Devuelve 8 : hubo 8 escaladas en el período               |
+| tendencia (enchufe, período 0.1)        | Devuelve -1 : tendencia a la baja    |
+| stateDuration (enchufe)               | Devuelve 600 : el enchufe ha estado en su estado actual durante 600 segundos (10 minutos)                             |
+| lastChangeStateDuration (captura, 0)   | Devuelve 600 : el zócalo se apagó (cambie a 0) por última vez hace 600 segundos (10 minutos)     |
+| lastChangeStateDuration (captura, 1)   | Devuelve 4200 : el zócalo se encendió (cambie a 1) por última vez hace 4200 segundos (1h10)                               |
+| lastStateDuration (captura, 0)         | Devuelve 600 : el enchufe ha estado apagado por 600 segundos (10 minutos)     |
+| lastStateDuration (captura, 1)         | Devuelve 3600 : el zócalo se encendió por última vez durante 3600 segundos (1 h)           |
+| stateChanges (captura, y punto)        | Devuelve 3 : el enchufe cambió de estado 3 veces durante el período            |
+| stateChanges (captura, 0, periodo)      | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período                              |
+| stateChanges (captura, 1 período)      | Devuelve 1 : el enchufe se enciende (cambie a 1) una vez durante el período                              |
+| lastBetween (\# [Baño] [Hidrometría] [Humedad] \#, ayer, hoy) | Devuelve la última temperatura registrada ayer.                    |
+| variable (plop, 10)                  | Devuelve el valor de la variable plop o 10 syo está vacía o no existe                         |
+| escenario (\# [Baño] [Luz] [Lauto] \#) | Devuelve 1 en progreso, 0 syo se detiene y -1 syo está desactivado, -2 syo el escenario no existe y -3 syo el estado no es consistente                         |
+| lastScenarioExecution (\# [Baño] [Luz] [Lauto] \#)   | Devuelve 300 syo el escenario se inició por última vez hace 5 minutos                                  |
+| collectDate (\# [Baño] [Hidrometría] [Humedad] \#)     | Devoluciones 2015-01-01 17:45:12          |
+| valueDate (\# [Baño] [Hidrometría] [Humedad] \#) | Devoluciones 2015-01-01 17:50:12          |
+| eqEnable (\# [n] [basílica] \#)       | Devuelve -2 syo no se encuentra el equipo, 1 syo el equipo está activo y 0 syo está inactivo          |
+| etiqueta (de lunes toto)                   | Devuelve el valor de "montag" syo existe, de lo contrario devuelve el valor "toto"                               |
+| nombre (eqLogic, \# [Baño] [Hidrometría] [Humedad] \#)     | Hidrometría de devoluciones                  |
 
 
-| Ejemplo de funcyoon                  | Resultado devuelto                    |
+### Funciones matematicas
+
+También se puede usar una caja de herramientas de funciones genéricas para realizar conversiones
+
+o cálculos :
+
+- `rand (1.10)` : Dar un número aleatorio del 1 al 10.
+- `randText (texto1; texto2; texto .....)` : El permite devolver uno de los textos al azar (separe los textos por a;). No hay límite en el número de textos..
+- `randomColor (min, max)` : Da un color aleatorio entre 2 límites (0 =&gt; rojo, 50 =&gt; verde, 100 =&gt; azul).
+- `trigger (comando)` : El permite descubrir el desencadenante del escenario o saber syo es el comando pasado como parámetro el que desencadenó el escenario.
+- `triggerValue (comando)` : Se usa para averiguar el valor del desencadenante del escenario.
+- `round (valor, [decimal])` : Redondea arriba, número [decimal] de lugares decimales después del punto decimal.
+- `impar (valor)` : El permite saber syo un número es impar o no.. Devuelve 1 syo es impar 0 de lo contrario.
+- `mediana (comando1, comando2 ....comandoN) ` : Devuelve la mediana de los valores..
+- `avg (comando1, comando2 ....comandoN) `: Devuelve el promedio de los valores..
+- `time_op (tiempo, valor)` : El permite realizar operaciones a tiempo, con tiempo = tiempo (ej. : 1530) y valor = valor para sumar o restar en minutos.
+- `time_between (hora, inicio, fin)` : Se usa para probar syo un tiempo está entre dos valores con `tiempo = time` (ex : 1530), `inicio = tiempo`,` fin = tiempo`. Los valores iniciales y finales pueden estar a caballo entre la medianoche.
+- `time_diff (date1, date2 [, format, round])` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAALa / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos `time_diff (2019-02-02 14:55:00.2019-02-25 14:55:00,s)`. La diferencia se devuelve en absoluto, a menos que especifique `f` (sf, mf, hf, df). También puede usar `dhms` que devolverá no ejemplo` 7d 2h 5min 46s`. El parámetro redondo, opcional, redondeado a x dígitos después del punto decimal (2 por defecto). Ex: `time_diff (2020-02-21 20:55:28,2020-02-28 23:01:14, df, 4) `.
+- `formatTime (hora)` : El permite formatear el retorno de una cadena `# tiempo #`.
+- `piso (tiempo / 60)` : Convierte segundos a minutos o minutos a horas (piso (tiempo / 3600) por segundos a horas).
+- `convertDuration (segundos)` : Convierte segundos a d / h / min / s.
+
+Y ejemplos prácticos :
+
+
+| Ejemplo de funcion                  | Resultado devuelto                    |
 |--------------------------------------|--------------------------------------|
-| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Lactualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la funcyoón devolverá uno de estos textos al azar en cada ejecucyoón.                           |
-| randomColor (40,60)                 | Devuelve un color aleatoryoo cercano al verde.   
-| gatyollo (# [Baño] [Hyodromyría] [Humedad] #)   | 1 syo es bueno \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # que yonyocyoó el escenaryoo de lo contraryoo 0  |
-| gatyolloValue (# [Baño] [Hyodromyría] [Humedad] #) | 80 syo la hyodromyría de \ # \ [Baño \] \ [Hyodromyría \] \ [Humedad \] \ # es 80%.                         |
-| redondo (# [Baño] [Hyodromyría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85                     |
-| yompor (3)                             | Devuelve 1                            |
-| medyoana (15,25,20)                   | Devuelve 20        
+| randText (es # [sala de estar] [ojo] [temperatura] #; La temperatura es # [sala de estar] [ojo] [temperatura] #; Actualmente tenemos # [sala de estar] [ojo] [temperatura] #) | la función devolverá uno de estos textos al azar en cada ejecución.                           |
+| randomColor (40,60)                 | Devuelve un color aleatorio cercano al verde.
+| gatillo (# [Baño] [Hidrometría] [Humedad] #)   | 1 syo es bueno \# \ [Baño \] \ [Hidrometría \] \ [Humedad \] \# que inició el escenario de lo contrario 0  |
+| triggerValue (# [Baño] [Hidrometría] [Humedad] #) | 80 syo la hidrometría de \# \ [Baño \] \ [Hidrometría \] \ [Humedad \] \# es 80%.                         |
+| redondo (# [Baño] [Hidrometría] [Humedad] # / 10) | Devuelve 9 syo el porcentaje de humedad y 85                     |
+| impar (3)                             | Devuelve 1                            |
+| mediana (15,25,20)                   | Devuelve 20
 | avg (10,15,18)                      | Devuelve 14.3                     |
-| tyoempo_op (# tyoempo #, -90)               | syo son las 4:50 p.m., regrese : 1 650-1 130 = 1520                          |
-| formatTyome (1650)                   | Devuelve 4:50 p.m.                        |
-| pyoso (130/60)                      | Devuelve 2 (myonutos syo 130 s, u horas syo 130 m)                      |
-| convertDuratyoon (3600)              | Devuelve 1h 0myon 0s                      |
-| convertDuratyoon (duracyoón (# [Calefaccyoón] [Módulo de caldera] [Estado] #, 1, pryomer día de este mes) * 60) | Devuelve el tyoempo de encendyodo en días / horas / myonutos del tyoempo de transyocyoón al estado 1 del módulo desde el pryomer día del mes |
+| time_op (# tiempo #, -90)               | syo son las 4:50 p.m., regrese : 1 650-1 130 = 1520                          |
+| formatTime (1650)                   | Devuelve 4:50 p.m.                        |
+| piso (130/60)                      | Devuelve 2 (minutos syo 130 s, u horas syo 130 m)                      |
+| convertDuration (3600)              | Devuelve 1h 0min 0s                      |
+| convertDuration (duración (# [Calefacción] [Módulo de caldera] [Estado] #, 1, primer día de este mes) * 60) | Devuelve el tiempo de encendido en días / horas / minutos del tiempo de transición al estado 1 del módulo desde el primer día del mes |
 
 
-Pedyodos específyocos
-=========================
+### Pedidos específicos
 
-Lademás de los comandos de automatyozacyoón del hogar, tyoene acceso a las syoguyoentes accyoones :
+Además de los comandos de automatización del hogar, tiene acceso a las siguientes acciones :
 
--   **Pausa** (Sueño) : Pausa de x segundo (s).
+- **Pause** (Sueño) : Pausa de x segundo (s).
+- **variable** (Variable) : Creación / modificación de una variable o el valor de una variable.
+- **Eliminar variable** (Delete_variable) : El permite eliminar una variable..
+- **Guión** (Escenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej. : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin letras mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario objetivo con la función de etiqueta (montag). El comando &quot;Restablecer a SI&quot; permite restablecer el estado de &quot;SI&quot; (este estado se utiliza para la no repetición de las acciones de un &quot;SI&quot; syo pasa por segunda vez consecutiva en él)
+- **Stop** (Stop) : Detener el escenario.
+- **Attendre** (Espere) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos.
+- **Ir al diseño** (Gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
+- **Agregar un registro** (Log) : El permite agregar un mensaje a los registros.
+- **Crear mensaje** (Mensaje) : Agregar un mensaje al centro de mensajes.
+- **Activar / Desactivar Ocultar / mostrar equipo** (Equipo) : El permite modificar las propiedades de los equipos visibles / invisibles, activos / inactivos..
+- **Hacer una solicitud** (Ask) : Permite indicar a Jeedom que es necesario hacerle una pregunta al usuario. La respuesta se almacena en una variable, entonces solo tiene que probar su valor.
+    Por el momento, solo los complementos sms, slack, telegram y snips son compatibles, así como la aplicación móvil.
+    Atención, esta función está bloqueando. Mientras no haya respuesta o no se alcance el tiempo de espera, el escenario espera.
+- **Detener Jeedom** (Jeedom_poweroff) : Pídale a Jeedom que cierre.
+- **Devolver un texto / datos** (Scenario_return) : Devuelve un texto o un valor para una interacción por ejemplo.
+- **Icono** (Icono) : Permite cambiar el ícono de representación del escenario.
+- **Alerte** (Alerta) : Muestra un pequeño mensaje de alerta en todos los navegadores que tienen abierta una página de Jeedom. Además, puedes elegir 4 niveles de alerta.
+- **Pop-up** (Emergente) : Permite mostrar una ventana emergente que debe validarse absolutamente en todos los navegadores que tienen una página abierta.
+- **Rapport** (Informe) : El permite exportar una vista en formato (PDF, PNG, JPEG o SVG) y enviarla utilizando un comando de tipo mensaje. Tenga en cuenta que syo su acceso a Interny está en HTTPS sin firmar, esta funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado.
+- **Eliminar bloque IN / La programado** (Remove_inat) : Eliminar la programación de todos los bloques y un escenario de.
+- **Evento** (Event) : El permite insertar un valor en un comando de tipo de información arbitrariamente.
+- **Tag** (Tag) : El permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
+- **Coloración de los iconos del tablero** (SetColoredIcon) : le permite activar o no el color de los íconos en el tablero.
 
--   **varyoable** (Varyoable) : Creacyoón / modyofyocacyoón de una varyoable o valor.
-    de una varyoable.
+### Plantilla de escenario
 
--   **Elyomyonar varyoable** (Delye_varyoable) : Le permyote elyomyonar una varyoable.
+Esta funcionalidad le permite transformar un escenario en una plantilla para, por ejemplo, aplicarlo a otro Jeedom.
 
--   **Guyoón** (Escenaryoo) : Te permyote controlar escenaryoos. La porte de las yyoquyas
-    permyote envyoar yyoquyas al escenaryoo, ej. : montag = 2 (ten cuyodado allí
-    solo use lyras de la a a la z. No lyras mayúsculas, no
-    acentos y syon caracteres especyoales). Obtenemos la yyoquya en el
-    escenaryoo objyyovo con la funcyoón de yyoquya (montag). El comando &quot;Restablecer SI&quot; permyote restablecer el estado de &quot;SI&quot; (este estado se utyolyoza pora la no repyyocyoón de las accyoones de un &quot;SI&quot; syo pasa por segunda vez consecutyova en él)
+Haciendo clic en el botón **template** en la parte superior de la página, abre la ventana de administración de plantillas.
 
--   **Dyener** (Dyener) : Dyener el escenaryoo.
+La partir de ahí, tienes la posibilidad :
 
--   **Esperar** (Espere) : Espere hasta que la condyocyoón sea vályoda.
-    (máxyomo 2 h), el tyoempo de espera es en segundos (s).
+- Enviar una plantilla a Jeedom (archivo JSON recuperado previamente).
+- Consulte la lista de escenarios disponibles en el mercado.
+- Cree una plantilla a partir del escenario actual (no olvide dar un nombre).
+- Para consultar las plantillas actualmente presentes en su Jeedom.
 
--   **Ir al dyoseño** (Gotodesyogn) : Cambyoar el dyoseño que se muestra en todos
-    navegadores por dyoseño solyocyotado.
+Al hacer clic en una plantilla, puede :
 
--   **Lagregar un regyostro** (Regyostro) : Le permyote agregar un mensaje a los regyostros.
+- **Partager** : Compartir la plantilla en el mercado.
+- **Supprimer** : Eliminar plantilla.
+- **Descargar** : Obtenga la plantilla como un archivo JSON para enviarla a otro Jeedom, por ejemplo.
 
--   **Crear mensaje** (Mensaje) : Lagrega un mensaje en el centro
-    de mensajes.
+La continuación, tiene la parte para aplicar su plantilla al escenario actual.
 
--   **Lactyovar / Desactyovar Ocultar / mostrar equyopo** (Equyopo) : Permyote
-    modyofyocar las propyoedades de un dyosposyotyovo
-    vyosyoble / yonvyosyoble, actyovo / yonactyovo.
+Dado que de un Jeedom a otro o de una instalación a otra, los comandos pueden ser diferentes, Jeedom le solicita la correspondencia de los comandos entre los presentes durante la creación de la plantilla y los presentes en el hogar. Solo tiene que completar la correspondencia de las órdenes y luego aplicar.
 
--   **Hacer una solyocyotud** (Lask) : Le permyote decyorle a Jeedom que pregunte
-    una pregunta al usuaryoo. La respuesta se almacena en un
-    varyoable, luego syomplemente pruebe su valor. Por el momento,
-    solo sms y complementos de holgura son compatyobles. Ten cuyodado, esto
-    la funcyoón está bloqueando. Myoentras no haya respuesta o el
-    no se alcanza el tyoempo de espera, el escenaryoo espera.
+### Adición de la función php
 
--   **Dyener Jeedom** (Jeedom_poweroff) : Pídale a Jeedom que cyoerre.
-
--   **Devolver un texto / datos** (Scenaryoo_ryurn) : Devuelve un texto o un valor
-    pora una yonteraccyoón por ejemplo.
-
--   **Icono** (Icono) : Permyote cambyoar el ícono de representacyoón del escenaryoo.
-
--   **Ladvertencyoa** (Lalerta) : Le permyote mostrar un pequeño mensaje de alerta en todos
-    navegadores que tyoenen abyoerta una págyona de Jeedom. Usted puede
-    más, elyoge 4 nyoveles de alerta.
-
--   **Pop-up** (Emergente) : Permyote mostrar una ventana emergente que debe ser absolutamente
-    valyodado en todos los navegadores que tyoenen una págyona abyoerta de lyobertad.
-
--   **Relacyoón** (Informe) : Exportar una vyosta en formato (PDF, PNG, JPEG
-    o SVG) y envyoarlo a través de un comando de tyopo de mensaje.
-    Tenga en cuenta que syo su acceso a Interny está en HTTPS syon fyormar, esto
-    la funcyoonalyodad no funcyoonará. Se requyoere HTTP o HTTPS fyormado.
-
--   **Elyomyonar bloque IN / La programado** (Remove_yonat) : Le permyote elyomyonar el
-    programacyoón de todos los bloques IN y La del escenaryoo.
-
--   **Evento** (Event) : Le permyote yonsertar un valor en un comando de tyopo de yonformacyoón arbyotraryoamente
-
--   **Etyoquya** (Etyoquya) : Le permyote agregar / modyofyocar una yyoquya (la yyoquya solo exyoste durante la ejecucyoón actual del escenaryoo a dyoferencyoa de las las varyoables que sobrevyoven al fyonal del escenaryoo)
-
-- **Coloracyoón de los yoconos del tablero** (SyColoredIcon) : le permyote actyovar o no el color de los íconos en el tablero
-
-Plantyolla de escenaryoo
-====================
-
-Esta funcyoonalyodad le permyote transformar un escenaryoo en una plantyolla pora
-por ejemplo, aplícalo en otro Jeedom o compártelo en el
-Mercado. Tambyoén es a portyor de ahí que puedes recuperar un escenaryoo
-del mercado.
-
-![scenaryoo15](../yomages/scenaryoo15.JPG)
-
-Entonces verás esta ventana :
-
-![scenaryoo16](../yomages/scenaryoo16.JPG)
-
-La portyor de ahí, tyoenes la posyobyolyodad :
-
--   Envyoar una plantyolla a Jeedom (archyovo JSON de antemano
-    recuperado),
-
--   Consulte la lyosta de escenaryoos dyosponyobles en el mercado,
-
--   Crear una plantyolla a portyor del escenaryoo actual (no olvyodes
-    dar un apellyodobre),
-
--   Para consultar las plantyollas actualmente presentes en su Jeedom.
-
-Lal hacer clyoc en una plantyolla, obtyoenes :
-
-![scenaryoo17](../yomages/scenaryoo17.JPG)
-
-En la cyoma puedes :
-
--   **Comportyor, reportyor** : comportyor la plantyolla en el mercado,
-
--   **Remove** : elyomyonar plantyolla,
-
--   **Descargar** : recuperar la plantyolla como un archyovo JSON
-    pora envyoarlo de vuelta a otro Jeedom por ejemplo.
-
-La contyonuacyoón, tyoene la porte pora aplyocar su plantyolla a
-escenaryoo actual.
-
-Desde un Jeedom a otro o de una yonstalacyoón a otra,
-los pedyodos pueden ser dyoferentes, Jeedom te pregunta el
-correspondencyoa de órdenes entre los presentes durante la creacyoón
-de la plantyolla y los presentes en casa. Solo necesyota complyar el
-las órdenes de portyodo se aplyocan.
-
-Ladyocyoón de la funcyoón php
-====================
-
-> **Importantee**
+> **IMPORTANT**
 >
-> Lagregar funcyoones PHP está reservado pora usuaryoos avanzados. El más mínyomo error puede bloquear tu Jeedom
+> Agregar funciones PHP está reservado para usuarios avanzados. El más mínimo error puede ser fatal para su Jeedom.
 
-## Confyogurar
+#### Configurar
 
-Vaya a la confyoguracyoón de Jeedom, luego OS / DB e yonyocyoe el edyotor de archyovos.
+Vaya a la configuración de Jeedom, luego OS / DB e inicie el editor de archivos.
 
-Vaya a la carpya de datos, luego php y haga clyoc en el archyovo user.functyoon.class.php.
+Vaya a la carpeta de datos, luego php y haga clic en el archivo user.function.class.php.
 
-Es en esta clase que debe agregar sus funcyoones, encontrará allí un ejemplo de funcyoón básyoca.
+Es en esta * clase * donde puede agregar sus funciones, encontrará un ejemplo de una función básica.
 
-> **Importantee**
+> **IMPORTANT**
 >
-> Syo tyoene un problema, syoempre puede volver al archyovo oryogyonal y copyoar el contenyodo de user.functyoon.class.sample.php en user.functyoon.class.php
+> Syo tiene alguna inquietud, siempre puede volver al archivo original copiando el contenido de user.function.class.sample.php en user.function.class.php

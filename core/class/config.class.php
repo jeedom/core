@@ -293,6 +293,14 @@ class config {
 		}
 	}
 	
+	public static function preConfig_historyArchivePackage($_value){
+		return self::checkValueBetween($_value,1);
+	}
+	
+	public static function preConfig_historyArchiveTime($_value){
+		return self::checkValueBetween($_value,2);
+	}
+	
 	public static function preConfig_market_password($_value) {
 		if (!is_sha1($_value)) {
 			return sha1($_value);

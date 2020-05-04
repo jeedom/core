@@ -1,50 +1,84 @@
-The wIDgets page allows you to create custom and unique wIDgets for your Jeedom.
+# Widgets
+**Tools → Widgets**
 
-There are 2 possibilities :
+The widgets page allows you to create custom widgets for your Jeedom.
 
-- Either by clicking on the code button and directly writing your html code for your wIDget (this is not necessarily what we recommend because during jeedom updates your code may become incompatible with jeedom)
-- Either by making a wIDget based on a template that we provIDe
+There are two types of custom widgets :
 
-# But what is a template ?
+- Widget based on a template (managed by the Jeedom Core).
+- Widget based on user code.
 
-To make it simple it is code (here html) where we have predefined certain parts that you will be able to configure as you want.
+> **Note**
+>
+> If template-based widgets are integrated into the Core and therefore monitored by the development team, the latter has no way of ensuring the compatibility of widgets based on user code according to Jeedom developments.
 
-In the case of wIDgets, we often suggest customizing the icons or putting the images you want.
+## Gestion
 
-# The templates
+You have four options :
+- **Ajouter** : Allows you to create a new widget.
+- **Importer** : Allows you to import a widget as a previously exported json file.
+- **Code** : Opens a file editor for editing code widgets.
+- **Remplacement** : Opens a window allowing you to replace a widget with another on all devices using it.
 
-There are 2 types of templates :
+## My widgets
 
-- The "simple" : type an icon / image for the "on" and an icon / image for the "off"
-- The "multistates" : this allows you to define for example an image if the command has the value "XX" and another if> to "YY" and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if it is &quot;plop&quot; and so on.
+Once you have created a widget, it will appear in this part.
 
-# How to do ?
+> **Tip**
+>
+> You can open a widget by doing :
+> - Click on one of them.
+> - Ctrl Clic or Clic Center to open it in a new browser tab.
 
-Wece on the Tools -&gt; WIDget page, click on &quot;Add&quot; and give a name to your new wIDget.
+You have a search engine to filter the display of widgets. The Escape key cancels the search.
+To the right of the search field, three buttons found in several places in Jeedom:
+
+- The cross to cancel the search.
+- The open folder to unfold all the panels and display all the widgets.
+- The closed folder to fold all the panels.
+
+Once on the configuration of a widget, you have a contextual menu with the Right Click on the tabs of the widget. You can also use a Ctrl Click or Clic Center to directly open another widget in a new browser tab.
+
+
+## Principe
+
+But what is a template ?
+To put it simply, it is code (here html / js) integrated into the Core, some parts of which are configurable by the user with the graphical interface of the Core.
+
+Depending on the type of widget, you can generally customize icons or put images of your choice.
+
+## The templates
+
+There are two types of templates :
+
+- The "**simples**" : Type an icon / image for the "on" and an icon / image for the "off"
+- The "**multistates**" : This allows you to define for example an image if the command is set to "XX" and another if> to "YY", and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if &quot;plop&quot;, and so on.
+
+## Creating a widget
+
+Once on the Tools -&gt; Widget page, click on &quot;Add&quot; and give a name to your new widget.
 
 Then :
-- You choose if it applies to an action or info type order
-- Depending on your previous choice, you will have to choose the subtype of the command (binary, digital, other ...)
-- Then finally the template in question (we plan to give you examples of renderings for each template)
-- Wece the template has been chosen, jeedom gives you the options for configuring it
+- You choose if it applies to an action or info type order.
+- Depending on your previous choice, you will have to choose the subtype of the command (binary, digital, other ...).
+- Then finally the template in question (we plan to put examples of renderings for each template).
+- Once the template has been chosen, jeedom gives you the options for configuring it.
 
-## Replacement
+### Remplacement
 
-This is what is called a simple wIDget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one ec. Then depending on the template, you may also be asked for the wIDth and the height.. This is only valID for images.
+This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc.. Then depending on the template, you can be offered the width and the height. This is only valID for images.
 
->**NOTE**
->
+>**Note**
 >We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us.. We had no choice
 
->**Tips**
->
->For advanced users it is possible in the replacement values to put tags and specify their value in the advanced configuration of the command, display tab and "Optional settings wIDget". For example if in wIDth you put as value # wIDth # (be careful to put the # around) instead of a number, in &quot;Optional wIDget settings&quot; you can add wIDth (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different wIDget for each image size you want.
+>**TIPS**
+>For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value # width # (be careful to put the # around) instead of a number, in &quot;Optional widget settings&quot; you can add width (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want.
 
-## Test
+### Test
 
-This is called the multistate part, you often have, as for simple wIDgets, the choice of &quot;height&quot; / &quot;wIDth&quot; for the images only then below the test part.
+This is called the multistate part, you often have, as for simple widgets, the choice of &quot;height&quot; / &quot;width&quot; for the images only then below the test part.
 
-It&#39;s quite simple. Instead of putting an image for the &quot;on&quot; and / or for the &quot;off&quot; as in the previous case, you go before giving a test to do. If this is true then the wIDget will display the icon / image in question.
+It&#39;s quite simple. Instead of putting an image for the &quot;on&quot; and / or for the &quot;off&quot; as in the previous case, you go before giving a test to do. If this is true then the widget will display the icon / image in question.
 
 The tests are in the form : #value # == 1, # value # will be automatically replaced by the system with the current value of the order. You can also do for example :
 
@@ -52,118 +86,129 @@ The tests are in the form : #value # == 1, # value # will be automatically repla
 - #value# >= 1 && #value# <= 5
 - #value # == &#39;toto'
 
->**NOTE**
->
+>**Note**
 >It is important to note the &#39;around the text to compare if the value is a text
 
->**NOTE**
->
+>**Note**
 >For advanced users, it is possible here to also use javascript functions type #value#.match (&quot;^ plop&quot;), here we test if the text starts with plop
 
+>**Note**
+>It is possible to display the value of the command in the widget by putting for example next to the HTML code of the #value icon#
+
+## Description of widgets
+
+We are going to describe here some widgets which have a somewhat particular functioning.
+
+### Equipement
+
+The equipments have certain configuration parameters :
+
+- dashboard_class / mobile_class : allows to add a class to the equipment. For example col2 for equipment in mobile version, which allows to double the width of the widget
+
+### Frequent settings
+
+- Time widget : displays the time since which the system has been in the display state.
+- We : icon to display if the equipment is on / 1.
+- Off : icon to display if the equipment is off / 0.
+- Light on : icon to display if the equipment is on / 1 and the theme is light (if empty then jeedom takes the dark img on).
+- Light off : icon to display if the equipment is off / 0 and the theme is light (if empty then jeedom takes the dark img off).
+- Dark on : icon to display if the equipment is on / 1 and the theme is dark (if empty then jeedom takes the light img on).
+- Dark off : icon to display if the equipment is off / 0 and the theme is dark (if empty then jeedom takes the img light off).
+- Desktop width : width of the image on desktop in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
+- Movable width : width of the image on mobile in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
+
+### HygroThermographe
+
+This widget is a bit special because it is a multi-command widget, that is to say that it assembles on its display the value of several commands. Here he takes temperature and humidity commands.
+
+To configure it it&#39;s quite simple you have to assign the widget to the temperature control of your equipment and to the humidity control.
+
+>**IMPORTANT**
+>It is ABSOLUTELY necessary that your orders have the generic type temperature on the temperature control and humidity on the humidity control (this is configured in the advanced configuration of the command tab configuration).
+
+##### Optional parameter (s)
+
+- scale : Allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller.
+
 >**NOTE**
->
->It is possible to display the value of the command in the wIDget by putting for example next to the HTML code of the #value icon#
+> Attention on a design it is important not to put a command alone with this widget it will not work since it is a widget using the value of several commands, it is absolutely necessary to put the complete widget
 
-# Description of wIDgets
+### Multiline
 
-We are going to describe here some wIDget which have a rather particular functioning.
+##### Optional parameter (s)
 
-## Frequent settings
+- maxHeight : Allows you to define its maximum height (scrollbar on the side if the text exceeds this value).
 
-- Time wIDget : displays the time since which the system has been in the display state.
-- We : icon to display if the equipment is on / 1
-- Off : icon to display if the equipment is off / 0
-- Light on : icon to display if the equipment is on / 1 and the theme is light (if empty then jeedom takes the dark img on)
-- Light off : icon to display if the equipment is off / 0 and the theme is light (if empty then jeedom takes the dark img off)
-- Dark on : icon to display if the equipment is on / 1 and the theme is dark (if empty then jeedom takes the light img on)
-- Dark off : icon to display if the equipment is off / 0 and the theme is dark (if empty then jeedom takes the img light off)
-- Desktop wIDth : wIDth of the image on desktop in px (just put the number not the px). Important only the wIDth is required, jeedom will calculate the height so as not to distort the image
-- Movable wIDth : wIDth of the image on mobile in px (just put the number not the px). Important only the wIDth is required, jeedom will calculate the height so as not to distort the image
+### Slider Button
 
-## Hygrothermograph
+##### Optional parameter (s)
 
-This wIDget is a bit special because it is a multi-command wIDget, that is to say that it assembles on its display the value of several commands. Here he takes temperature and humIDity commands.
+- Step : Allows to adjust the Step of an action on a button (0.5 by default).
 
-To configure it it&#39;s quite simple you have to assign the wIDget to the temperature control of your equipment and to the humIDity control.
+### Rain
 
->**Important**
->
->It is ABSOLUTELY necessary that your orders have the generic type temperature on the temperature and humIDity control on the humIDity control (this is configured in the advanced configuration of the command tab configuration).
+##### Optional parameter (s)
 
-The wIDget has an optional parameter : scale which allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller
+- scale : Allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller.
+- showRange : Displays the min / max values of the command.
 
->**NOTE**
->
-> Attention on a design it is especially important not to put an order alone with this wIDget that will not work since it is a wIDget using the value of several orders it is absolutely necessary to put the complete wIDget
 
-## SlIDer Button
+## CODE Widget
 
-- Step : allows to adjust the Step of an action on a button (0.5 by default)
-
-## Compass
-
-- needle : set to 1 for display in compass mode
-
-# Code WIDget
-
-## Tags
+### Tags
 
 In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive) :
 
 - #name# : command name
 - #valueName# : name of the command value, and = # name # when it is an info type command
-- ## : 
-- ## : 
-- #hIDe_name# : empty or hIDden if the user asked to hIDe the name of the wIDget, to put it directly in a class tag
-- #ID# : order ID
+- #minValue# : minimum value that the command can have(if the command is of type slider)
+- #maxValue# : maximum value that the command can have(if the command is of type slider)
+- #hide_name# : empty or hidden if the user asked to hide the name of the widget, to put it directly in a class tag
+- #id# : order id
 - #state# : value of the command, empty for an action type command if it is not linked to a status command
-- #UID# : unique IDentifier for this generation of the wIDget (if there is several times the same command, case of designs only this IDentifier is really unique)
+- #uid# : unique identifier for this generation of the widget (if there is several times the same command, case of designs:  only this identifier is really unique)
 - #valueDate# : date of the order value
 - #collectDate# : date of order collection
-- #alertLevel# : alert level (see [here] (https:// github.com/jeedom/core/blob/alpha/core/config/jeedom.config.php # L67) for the list)
-- #hIDe_history# : whether the history (max, min, average, trend) should be hIDden or not. As for # hIDe_name # it is empty or hIDden, and can therefore be used directly in a class. Important if this tag is not found on your wIDget then the # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # and # trend # tags will not be replaced by Jeedom.
-- #minHistoryValue# : minimum value over the period (period defined in the configuration of jeedom by the user)
-- #averageHistoryValue# : average value over the period (period defined in the configuration of jeedom by the user)
-- #maxHistoryValue# : maximum value over the period (period defined in the configuration of jeedom by the user)
-- #trend# : trend over the period (period defined in the configuration of jeedom by the user). Attention the trend is directly a class for icon : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
+- #alertLevel# : alert level (see [here](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) for the list)
+- #hide_history# : whether the history (max, min, average, trend) should be hidden or not. As for # hide_name # it is empty or hidden, and can therefore be used directly in a class. Important if this tag is not found on your widget then the tags # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # and # trend # will not be replaced by Jeedom.
+- #minHistoryValue# : minimum value over the period (period defined in the Jeedom configuration by the user)
+- #averageHistoryValue# : average value over the period (period defined in the Jeedom configuration by the user)
+- #maxHistoryValue# : maximum value over the period (period defined in the Jeedom configuration by the user)
+- #tendance# : trend over the period (period defined in the Jeedom configuration by the user). Attention the trend is directly a class for icon : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
 
-## Update values
+### Update values
 
-When a new value jeedom will look in the web page if the command is there and in jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
+When a new value Jeedom will look in the html page, if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
 
-```
+`` ''
 {display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'}
-```
+`` ''
 
-Here is a simple example of javascript code to put in your wIDget :
+Here is a simple example of javascript code to put in your widget :
 
-```
+`` ''
 <script>
-    jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
-      $('.cmd[data-cmd_ID=#ID#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      $('.cmd[data-cmd_ID=#ID#] .state').empty().append(_options.display_value +' #unite#');
+    Jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    jeedom.cmd.update [ &#39;# ID #&#39;] ({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
+    Jeedom.cmd.update['#id#']({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
 </script>
-```
+`` ''
 
-Here 2 important thing :
+Here are two important things :
 
-```
-jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
-  $('.cmd[data-cmd_ID=#ID#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-  $('.cmd[data-cmd_ID=#ID#] .state').empty().append(_options.display_value +' #unite#');
+`` ''
+Jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
-```
+`` ''
+The function called when updating the widget. It then updates the html code of the widget_template.
 
-The function called when updating the wIDget which takes care of updating the html code of the wIDget_template
+`` ''
+Jeedom.cmd.update['#id#']({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+`` ''
+ The call to this function for the initialization of the widget.
 
-And :
-
-```
-jeedom.cmd.update [ &#39;# ID #&#39;] ({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel # &#39;});
- ```
-
- The call to this function for the initialization of the wIDget.
-
- You will find [here] (https:// github.com / jeedom / core / tree / V4-stable / core / template) examples of wIDgets (in the dashboard and mobile folders)
+ You will find [here](https://github.com/Jeedom/core/tree/V4-stable/core/template) examples of widgets (in dashboard and mobile folders)

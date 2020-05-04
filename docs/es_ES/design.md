@@ -1,383 +1,230 @@
-Esta página le permite configurar la visualización de toda su domótica
-muy bien. Lleva tiempo pero su único límite es
-tu imaginación.
+# Design
+**Inicio → Diseño**
 
-Es accesible por Inicio → Diseño
+Esta página le permite configurar la visualización de toda su domótica de una manera muy fina.
+Lleva tiempo pero su único límite es tu imaginación.
 
-> **Punta**
+> **Tip**
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
-> **Importante**
+> **Important**
 >
-> Todas las acciones se realizan haciendo clic derecho en esta página, atención
-> hacerlo bien en diseño. Durante la creación, por lo tanto, es necesario
-> hacer en el medio de la página (para asegurarse de estar en el diseño).
+> Todas las acciones se realizan haciendo clic derecho en esta página, tenga cuidado de hacerlo bien en el diseño. Al crear, debe hacerlo en el medio de la página (para asegurarse de estar en el diseño).
 
-En el menú (clic derecho, por lo tanto), encontramos el
-siguientes acciones :
+En el menú (clic derecho), encontramos las siguientes acciones :
 
--   **Diseños** : Muestra la lista de sus diseños y le permite acceder a ellos.
+- **Designs** : Muestra la lista de sus diseños y le permite acceder a ellos..
+- **Edition** : Cambiar al modo de edición.
+- **Pantalla completa** : Le permite usar toda la página web, lo que eliminará el menú Jeedom de la parte superior.
+- **Añadir gráfico** : Agregar un gráfico.
+- **Añadir texto / html** : Le permite agregar texto o código html / JavaScript.
+- **Agregar escenario** : Agregar un escenario.
+- **Agregar enlace**
+    - **Hacia una vista** : Agregar un enlace a una vista.
+    - **Hacia un diseño** : Agregar un enlace a otro diseño.
+- **Agregar equipo** : Agrega equipo.
+- **Añadir pedido** : Agregar un pedido.
+- **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
+- **Agregar área** : Le permite agregar un área transparente en la que se puede hacer clic que puede ejecutar una serie de acciones al hacer clic (dependiendo o no del estado de otro comando).
+- **Agregar resumen** : Agrega información de un objeto o resumen general.
+- **Affichage**
+    - **Aucune** : No muestra ninguna cuadrícula.
+    - **10x10** : Muestra una cuadrícula de 10 por 10.
+    - **15x15** : Muestra una cuadrícula de 15 por 15.
+    - **20x20** : Muestra una cuadrícula de 20 por 20.
+    - **Magnetizar los elementos** : Agrega magnetización entre los elementos para que sea más fácil pegarlos.
+    - **Imán en la rejilla** : Agregue una magnetización de los elementos a la cuadrícula (atención : dependiendo del zoom del elemento, esta funcionalidad puede funcionar más o menos).
+    - **Ocultar elemento resaltado** : Ocultar resaltado alrededor de elementos.
+- **Eliminar diseño** : Eliminar diseño.
+- **Crea un diseño** : Permite agregar un nuevo diseño.
+- **Diseño duplicado** : Duplicar el diseño actual.
+- **Configura el diseño** : Acceso a la configuración de diseño.
+- **Sauvegarder** : Guarde el diseño (tenga en cuenta que también hay copias de seguridad automáticas durante ciertas acciones).
 
--   **Edición** : Cambiar al modo de edición
-
--   **Pantalla completa** : Le permite usar toda la página web, que
-    eliminará el menú Jeedom de la parte superior
-
--   **Añadir gráfico** : Agregar un gráfico
-
--   **Añadir texto / html** : Le permite agregar texto o código
-    html / javascript
-
--   **Agregar escenario** : Agregar un escenario
-
--   **Agregar enlace**
-
-    -   **Hacia una vista** : Agregar un enlace a una vista
-
-    -   **Hacia un diseño** : Agregar un enlace a otro
-        diseño
-
--   **Agregar equipo** : Agrega equipo
-
--   **Añadir pedido** : Agregar un pedido
-
--   **Añadir imagen / cámara** : Le permite agregar una imagen o transmisión
-    de una camara
-
--   **Agregar área** : Agregar un área transparente en la que se pueda hacer clic
-    quién puede ejecutar una serie de acciones con un clic (dependiendo
-    o no el estado de otro pedido)
-
--   **Agregar resumen** : Agrega información de un resumen de objeto o
-    general
-
--   **Viendo**
-
-    -   **No** : No muestra ninguna cuadrícula
-
-    -   **10x10** : Muestra una cuadrícula de 10 por 10
-
-    -   **15x15** : Muestra una cuadrícula de 15 por 15
-
-    -   **20x20** : Muestra una cuadrícula de 20 por 20
-
-    -   **Magnetizar los elementos** : Añadir una magnetización entre
-        elementos para que sea más fácil pegarlos
-
-    -   **Imán en la rejilla** : Agregue una magnetización de los elementos a
-        la cuadrícula (atención : dependiendo del zoom del artículo esto
-        la funcionalidad puede funcionar más o menos)
-
-    -   **Ocultar elemento resaltado** : Ocultarlo
-        resaltar alrededor de elementos
-
--   **Eliminar diseño** : eliminar diseño
-
--   **Crea un diseño** : permite agregar un nuevo diseño
-
--   **Diseño duplicado** : duplicar el diseño actual
-
--   **Configura el diseño** : acceso a la configuración de diseño
-
--   **Guardar** : permite guardar el diseño (atención, hay
-    también copias de seguridad automáticas durante ciertas acciones)
-
-> **Importante**
+> **Important**
 >
-> La configuración de los elementos de diseño se realiza haciendo clic en
-> estos.
+> La configuración de los elementos de diseño se realiza haciendo clic en ellos..
 
-Configuración de diseño 
-=======================
+## Configuración de diseño
 
 Encontrado aquí :
 
--   **General**
+- **General**
+    - **Nom** : El nombre de su diseño.
+    - **Position** : La posición del diseño en el menú.. Le permite ordenar los diseños..
+    - **Fondo transparente** : Hace que el fondo sea transparente. Atención si la casilla está marcada, no se usa el color de fondo.
+    - **Color de fondo** : Diseño de color de fondo.
+    - **Código de acceso* : Código de acceso a su diseño (si está vacío, no se requiere código).
+    - **Icono** : Un icono para ello (aparece en el menú de opciones de diseño).
+    - **Image**
+        - **Envoyer** : Permite agregar una imagen de fondo al diseño.
+        - **Eliminar imagen** : Borrar imagen.
+- **Tailles**
+    - **Tamaño (WxH)** : Le permite establecer el tamaño en píxeles de su diseño..
 
-    -   **Apellido** : El nombre de su diseño
+## Configuración general de elementos.
 
-    -   **Fondo transparente** : hace que el fondo sea transparente. Tenga cuidado si el
-        la casilla está marcada, no se utiliza el color de fondo
-
-    -   **Color de fondo** : diseño de color de fondo (blanco
-        por defecto)
-
-    -   **Código** : Código de acceso a su diseño (si está vacío, sin código
-        no es solicitado)
-
-    -   **Icono** : Un icono para ello (aparece en el menú
-        elección de diseño)
-
-    -   **Imagen**
-
-        -   **Enviar a** : permite agregar una imagen de fondo al diseño
-
-        -   **Eliminar imagen** : borrar imagen
-
--   **Tamaños**
-
-    -   **Tamaño (WxH)** : Le permite fijar el tamaño de su diseño.
-        (marco gris en modo edición)
-
-Configuración general de elementos. 
-===================================
-
-> **Nota**
+> **Note**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
-> **Nota**
->
-> El elemento seleccionado se resalta en rojo (en lugar de verde
-> para todos los demás).
+### Configuraciones de pantalla comunes
 
-Ajuste de la pantalla 
----------------------
+- **Profondeur** : Permite elegir el nivel de profundidad
+- **Posición X (%)** : Coordenada horizontal del elemento..
+- **Posición Y (%)** : Coordenada vertical del elemento..
+- **Ancho (px)** : Ancho del elemento en píxeles.
+- **Altura (px)** : Altura del elemento en píxeles.
 
--   **Profundidad** : permite elegir el nivel de profundidad
-
--   **Posición X (%)** :
-
--   **Posición Y (%)** :
-
--   **Ancho (px)** :
-
--   **Altura (px)** :
-
-Remove 
----------
+### Supprimer
 
 Eliminar elemento
 
-Duplicado 
----------
+### Dupliquer
 
 Le permite duplicar el elemento.
 
-Cerradura 
------------
+### Verrouiller
 
-Bloquea el elemento para que ya no sea móvil o
-de tamaño variable.
+Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tamaño.
 
-Gráfico 
-=========
+## Graphique
 
-Configuraciones de pantalla 
----------------------
+### Configuraciones de pantalla específicas
 
--   **Período** : le permite elegir el período de visualización
+- **Período** : Le permite elegir el período de visualización
+- **Mostrar subtítulo** : Mostrar leyenda.
+- **Mostrar navegador** : Muestra el navegador (segundo gráfico más claro debajo del primero).
+- **Mostrar selector de período** : Muestra el selector de período en la esquina superior izquierda..
+- **Mostrar barra de desplazamiento** : Muestra la barra de desplazamiento.
+- **Fondo transparente** : Hace que el fondo sea transparente.
+- **Bordure** : Le permite agregar un borde, tenga cuidado, la sintaxis es HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 
--   **Mostrar subtítulo** : mostrar leyenda
+### Configuración avanzada
 
--   **Mostrar navegador** : mostrar el navegador (segundo gráfico
-    más claro debajo del primero)
+Le permite elegir los comandos para graficar.
 
--   **Mostrar selector de período** : muestra el selector
-    periodo arriba a la izquierda
+## Text / html
 
--   **Mostrar barra de desplazamiento** : muestra la barra de desplazamiento
+### Configuraciones de pantalla específicas
 
--   **Fondo transparente** : hace que el fondo sea transparente
+- **Icono** : Icono que se muestra delante del nombre del diseño.
+- **Color de fondo** : le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
+- **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No)..
+- **Alrededor de los ángulos** : permite redondear los ángulos (no olvides poner%, ex 50%).
+- **Bordure** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
+- **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
+- **Alineación de texto** : permite elegir la alineación del texto (izquierda / derecha / centrado).
+- **Gras** : texto en negrita.
+- **Texte** : Texto en código HTML que estará en el elemento.
 
--   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
-    HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo :
-    sólido 1px negro)
-
-Configuración avanzada 
----------------------
-
-Le permite elegir los comandos para graficar
-
-Text / html 
-=========
-
--   **Icono** : Icono para mostrar en frente
-
--   **Color de fondo** : le permite cambiar el color de fondo o
-    poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
-
--   **Color del texto** : le permite cambiar el color de los íconos y
-    textos (tenga cuidado de pasar Predeterminado a No)
-
--   **Alrededor de los ángulos** : le permite redondear los ángulos (no
-    olvide poner%, ex 50%)
-
--   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
-    HTML (use la sintaxis CSS, por ejemplo : sólido
-    1px negro)
-
--   **Tamaño de fuente** : le permite cambiar el tamaño de fuente
-    (ex 50%, debe poner el signo%)
-
--   **Alineación de texto** : le permite elegir la alineación de
-    texto (izquierda / derecha / centrado)
-
--   **Grasa** : texto en negrita
-
--   **Texto** : Texto en código HTML que estará en el elemento
-
-> **Importante**
+> **Important**
 >
-> Si coloca código HTML (especialmente Javascript), tenga cuidado
-> para comprobarlo antes porque puedes hacerlo si hay un error
-> o si sobrescribe un componente de Jeedom que bloquea completamente el diseño y
-> todo lo que tienes que hacer es eliminarlo directamente de la base de datos
+> Si coloca código HTML (especialmente Javascript), tenga cuidado de verificarlo antes porque puede hacerlo si hay un error o si sobrescribe un componente de Jeedom y bloquea completamente el diseño y solo tendrá que eliminarlo. directamente en la base de datos.
 
-Guión 
-========
+## Guión
 
-Configuraciones de pantalla 
----------------------
+*No hay configuraciones de visualización específicas*
 
-No hay configuraciones de visualización específicas
+## Lien
 
-Enlace 
-====
+### Configuraciones de pantalla específicas
 
-Configuraciones de pantalla 
----------------------
+- **Nom** : Nombre del enlace (texto mostrado).
+- **Lien** : Enlace al diseño o vista en cuestión.
+- **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
+- **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
+- **Redondee los ángulos (no olvide poner%, ex 50%)** : Le permite redondear los ángulos, no olvide poner el%.
+- **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
+- **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
+- **Alineación de texto** : Permite elegir la alineación del texto (izquierda / derecha / centrado).
+- **Gras** : Texto en negrita.
 
--   **Apellido** : Apellidobre del enlace (texto mostrado)
+## Equipement
 
--   **Enlace** : Enlace al diseño o vista en cuestión
+### Configuraciones de pantalla específicas
 
--   **Color de fondo** : le permite cambiar el color de fondo o
-    poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
+- **Mostrar nombre de objeto** : Marque para mostrar el nombre del objeto principal del dispositivo.
+- **Ocultar nombre** : Marque para ocultar el nombre del equipo.
+- **Color de fondo** : Le permite elegir un color de fondo personalizado, mostrar el equipo con un fondo transparente o usar el color predeterminado.
+- **Color del texto** : Le permite elegir un color de fondo personalizado o usar el color predeterminado.
+- **Arrondis** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo..
+- **Bordure** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
+- **Opacité** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
+- **CSS personalizado** : Reglas CSS para aplicar en el equipo.
+- **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
 
--   **Color del texto** : le permite cambiar el color de los íconos y
-    textos (tenga cuidado de pasar Predeterminado a No)
+### Commandes
 
--   **Redondee los ángulos (no olvide poner%, ex 50%)** :
-    le permite redondear los ángulos, no olvide poner el%
+La lista de comandos presentes en el equipo le permite, para cada comando,:
+- Ocultar nombre del comando.
+- Comando Ocultar.
+- Mostrar el pedido con un fondo transparente.
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
-    agregue un borde, tenga cuidado con la sintaxis es HTML
+### Configuración avanzada
 
--   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
-    le permite cambiar el tamaño de fuente
+Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
--   **Alineación de texto** : le permite elegir la alineación de
-    texto (izquierda / derecha / centrado)
+## Commande
 
--   **Grasa** : texto en negrita
+*No hay configuraciones de visualización específicas*
 
-Equipo 
-==========
+### Configuración avanzada
 
-Configuraciones de pantalla 
----------------------
+Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-No hay configuraciones de visualización específicas
+## Imagen / Cámara
 
-Configuración avanzada 
----------------------
+### Configuraciones de pantalla específicas
 
-Muestra la ventana de configuración avanzada del equipo (ver
-documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
+- **Afficher** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
+- **Image** : Le permite enviar la imagen en cuestión (si ha elegido una imagen).
+- **Cámara** : Cámara para mostrar (si elige cámara).
 
-Orden 
-========
+## Zone
 
-Configuraciones de pantalla 
----------------------
+### Configuraciones de pantalla específicas
 
-No hay configuraciones de visualización específicas
+- **Tipo de area** : Aquí es donde eliges el tipo de área : Macro individual, macro binaria o widget al pasar el mouse.
 
-Configuración avanzada 
----------------------
+### Macro individual
 
-Muestra la ventana de configuración avanzada del comando (ver
-documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
+En este modo, un clic en la zona realiza una o más acciones. Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic en el área.
 
-Imagenn / Cámara 
-============
+### Macro binaria
 
-Configuraciones de pantalla 
----------------------
+En este modo, Jeedom ejecutará las acciones de encendido o apagado dependiendo del estado del comando que usted indique.. Ex : si el comando vale 0, entonces Jeedom ejecutará la (s) acción (es) activada (s) de lo contrario ejecutará la (s) acción (es) desactivada (s)
 
--   **Visualización** : define lo que desea mostrar, imagen fija o
-    transmitir desde una cámara
+- **Información binaria** : Comando que proporciona el estado que se debe verificar para decidir qué acción hacer (activar o desactivar).
 
--   **Imagen** : le permite enviar la imagen en cuestión (si tiene
-    elige una imagen)
+Solo tiene que poner las acciones a realizar para Activar y Desactivar.
 
--   **Cámara** : cámara para mostrar (si elige cámara)
+### Widget de desplazamiento
 
-Zona 
-====
+En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, se mostrará el widget en cuestión.
 
-Configuraciones de pantalla 
----------------------
+- **Equipement** : Widget para mostrar al pasar el mouse o al hacer clic.
+- **Mostrar en paso elevado** : Si está marcado, muestra el widget al pasar el mouse.
+- **Ver en un clic** : Si está marcado, el widget se muestra al hacer clic.
+- **Position** : Le permite elegir dónde aparecerá el widget (predeterminado abajo a la derecha).
 
--   **Puntao de area** : Aquí es donde eliges el tipo de área :
-    Macro individual, macro binaria o widget al pasar el mouse
+## Resumen
 
-### Macro individual 
+### Configuraciones de pantalla específicas
 
-En este modo, un clic en la zona realiza una o más acciones. Aquí solo debe indicar la lista de acciones que debe hacer al hacer clic
-en la zona
+- **Lien** : Le permite indicar el resumen a mostrar (General para el global, de lo contrario indique el asunto).
+- **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
+- **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
+- **Redondee los ángulos (no olvide poner%, ex 50%)** : Le permite redondear los ángulos, no olvide poner el%.
+- **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
+- **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
+- **Gras** : Texto en negrita.
 
-### Macro binaria 
-
-En este modo, Jeedom ejecutará las acciones de encendido o apagado en
-dependiendo del estado del pedido que da. Ex : si el pedido
-es 0, entonces Jeedom ejecutará la (s) acción (es) On (s) de lo contrario se ejecutará
-la (s) acción (es) Off
-
--   **Información binaria** : Comando que da el estado a verificar
-    decidir qué acción tomar (activar o desactivar)
-
-Solo tiene que poner las acciones a realizar para
-para el apagado
-
-### Widget de desplazamiento 
-
-En este modo, al pasar el mouse o al hacer clic en el área Jeedom, usted
-mostrar el widget en cuestión
-
--   **Equipo** : widget para mostrar al pasar el mouse o al hacer clic
-
--   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
-
--   **Ver en un clic** : si está marcado, el widget se muestra en
-    clic
-
--   **Posición** : le permite elegir la ubicación donde
-    widget (predeterminado abajo a la derecha)
-
-Resumen 
-======
-
--   **Enlace** : Se utiliza para indicar el resumen que se mostrará (General para
-    global si no indica el objeto)
-
--   **Color de fondo** : le permite cambiar el color de fondo o
-    poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
-
--   **Color del texto** : le permite cambiar el color de los íconos y
-    textos (tenga cuidado de pasar Predeterminado a No)
-
--   **Redondee los ángulos (no olvide poner%, ex 50%)** :
-    le permite redondear los ángulos, no olvide poner el%
-
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
-    agregue un borde, tenga cuidado con la sintaxis es HTML
-
--   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
-    le permite cambiar el tamaño de fuente
-
--   **Grasa** : texto en negrita
-
-
-Preguntas frecuentes 
-======
+## FAQ
 
 >**Ya no puedo editar mi diseño**
->
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
 >**Eliminar un diseño que ya no funciona**
->
 >En la parte de administración y luego en OS / DB, &quot;seleccione * de planHeader&quot;, obtenga la identificación del diseño en cuestión y haga una &quot;eliminación de planHeader donde id = # TODO #&quot; y &quot;eliminar del plan donde planHeader_id = # todo # &quot;reemplazando # TODO # con la identificación de diseño encontrada previamente.

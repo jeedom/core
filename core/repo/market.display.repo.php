@@ -234,11 +234,11 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			<div class='col-sm-2'>
 				<label class="control-label">{{Lien}}</label><br/>
 				<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br/>
 				<?php }
 				?>
 				<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br/>
 				<?php }
 				?>
 			</div>

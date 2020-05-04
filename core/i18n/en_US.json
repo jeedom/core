@@ -1688,7 +1688,7 @@
         "Source de mise à jour du core": "Core update source",
         "Version du core": "Core version",
         "Version installée du core, pour la vérification de mise à jour disponible.": "Installed version of the core, for update check available.",
-        "Stable v4": "",
+        "Stable v4": "Stable v4",
         "Beta (Pas de support)": "Beta (No support)",
         "Alpha (Pas de support)": "Alpha (No support)",
         "Vérification automatique des mises à jour": "Automatic check for updates",
@@ -1705,7 +1705,7 @@
         "Rechercher": "Search",
         "Afficher\/Masquer les objets": "Display\/Hide objects",
         "Afficher\/Masquer les résumés": "Show \/ Hide Summaries",
-        "Édition du Dashboard": "Publishing of Dashboard"
+        "Édition du Dashboard": "Dashboard edition"
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",

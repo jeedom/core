@@ -321,6 +321,16 @@ class user {
 		);
 		$user->setOptions('registerDevice', $registerDevice);
 		$user->save();
+		try {
+			$sessions = listSession();
+			foreach ($sessions as $id => $session) {
+				if($session['user_id'] == $user->getId()){
+					deleteSession($id);
+				}
+			}
+		} catch (\Exception $e) {
+			
+		}
 		return $user->getHash() . '-' . $key;
 	}
 	

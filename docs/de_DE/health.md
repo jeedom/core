@@ -1,38 +1,31 @@
-Auf der Jeedom Health-Seite erhalten Sie einen schnellen Überblick über
-der Gesundheitszustand Ihres Jeedom. Es zeigt auch an (ob die Plugins
-benutze es) Gesundheitszustand per Plugin.
+# Santé
+**Analyse → Gesundheit**
 
-Die Seite ist über Analyse → Gesundheit zugänglich
+Auf der Seite Jeedom Health erhalten Sie einen schnellen Überblick über den Gesundheitszustand Ihres Jeedom.
+Es zeigt auch (wenn Plugins es verwenden) den Gesundheitszustand des Plugins an.
 
-> **Notiz**
+> **Note**
 >
-> Ein Klick auf das Symbol oben rechts ermöglicht den Zugriff auf den Benchmark Ihres
-> Jeedom.
+> Klicken Sie auf das Symbol oben rechts, um auf den Benchmark Ihres Jeedom zuzugreifen.
 
-Die Gesundheitsseite von Jeedom wird in Form einer Tabelle dargestellt. Der 1 ..
-In der Spalte finden Sie eine Beschreibung dessen, was Jeedom überprüft und wessen Status
-wird in der 2. Spalte angezeigt. Endlich kann die letzte Spalte
-Geben Sie einen Lösungshinweis, wenn die Überprüfung nicht in Ordnung ist.
+Die Gesundheitsseite von Jeedom wird in Form einer Doppeltabelle dargestellt.
+In der ersten Spalte finden Sie eine Beschreibung dessen, was Jeedom überprüft. Der Status wird in der zweiten Spalte angezeigt.
+Tooltips können Ihnen Tipps zur Auflösung geben, wenn die Überprüfung nicht in Ordnung ist.
 
-Unten finden Sie den Zustand für jedes Plugin, klicken Sie auf
-Der Name des Plugins gibt das Gesundheitsdetail an. Richtig du
-Finde die Symbole :
+Unten finden Sie den Zustand für jedes Plugin. Ein Klick auf den Namen des Plugins gibt die Gesundheitsdetails an.
 
--   Zugangsport für Plugin-Hardware (Zwave-Schlüsseltyp)
+Rechts finden Sie die Symbole :
 
--   Dämonenmodus
+-   Zugangsport für Plugin-Hardware (Zwave-Schlüsseltyp).
+-   Dämonenmodus.
+-   Anzeige der Gerätegesundheitsseite des Plugins.
+-   Anzeige der Plugin-Konfigurationsseite.
+-   Gesamtzustand des Plugins.
 
--   Anzeige der Gerätegesundheitsseite des Plugins
-
--   Anzeige der Plugin-Konfigurationsseite
-
--   Gesamtzustand des Plugins
-
-> **Notiz**
+> **Note**
 >
-> Die Symbole können je nach Plugin variieren
+> Die Symbole können je nach Plugin variieren.
 
-> **Notiz**
+> **Note**
 >
-> Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung
-> und wenn es rot ist, gibt es ein Problem.
+> Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung und wenn sie rot ist, gibt es ein Problem.

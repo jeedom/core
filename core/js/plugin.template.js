@@ -17,6 +17,8 @@
 //contextMenu
 $(function(){
   try{
+    if ('undefined' !== typeof Core_noEqContextMenu) return false
+    if ($('.nav.nav-tabs').length == 0) return false
     $.contextMenu('destroy', $('.nav.nav-tabs'));
     pluginId =  $('body').attr('data-page')
     jeedom.eqLogic.byType({

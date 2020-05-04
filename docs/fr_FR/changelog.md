@@ -1,39 +1,50 @@
-Changelog
+
+Changelog Jeedom V4
 =========
+
+4.0.54
+=====
+
+- Début de la mise à jour vers le nouveau site de documentation
+
+4.0.53
+=====
+
+- Correction de bug.
 
 4.0.52
 =====
 
-- Correction de bug (mise à jour à faire absolument si vous etes en 4.0.51)
+- Correction de bug (mise à jour à faire absolument si vous êtes en 4.0.51).
 
 4.0.51
 =====
 
-- Correction de bugs
-- Optimisation du futur systeme de DNS
+- Correction de bugs.
+- Optimisation du futur système de DNS.
 
 4.0.49
 =====
 
-- Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS
-- Amélioration du support dans la webwien dans l'application mobile
-- Correction de bugs
-- Mise à jour de la doc
+- Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS.
+- Amélioration du support de la webview dans l'application mobile.
+- Correction de bugs.
+- Mise à jour de la doc.
 
 4.0.47
 =====
 
-- Amélioration du testeur d'expression
-- Mise à jour du repository sur smart
-- Correction de bugs
+- Amélioration du testeur d'expression.
+- Mise à jour du repository sur smart.
+- Correction de bugs.
 
 4.0.44
 =====
 
-- Amélioration des traductions (oui encore).
+- Amélioration des traductions.
 - Correction de bugs.
-- Amélioration de la restoration de backup cloud.
-- La restoration cloud ne repatrie plus que le backup en local maintenant vous laissant le choix de le télécharger ou de le restaurer.
+- Amélioration de la restauration de backup cloud.
+- La restauration cloud ne rapatrie plus maintenant que le backup en local, laissant le choix de le télécharger ou de le restaurer.
 
 4.0.43
 =====
@@ -51,12 +62,12 @@ Changelog
 - Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
 - Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
 - Les champs de recherche supportent maintenant les accents.
-- Les champs de recherche (dashboard, scénarios, objets, widgets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
+- Les champs de recherche (Dashboard, scénarios, objets, widgets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
 - Lors d'une recherche, la touche *echap* annule la recherche.
 - Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe.
 - Dashboard : En mode édition, un clic sur un bouton *expand* à droite des objets redimensionne les tuiles de l'objet à la hauteur de la plus haute. Ctrl+clic les réduit à la hauteur de la moins haute.
-- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaitra le temps de l’exécution.
+- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaîtra le temps de l’exécution.
 - Dashboard : Les tuiles indiquent une commande info (historisée, qui ouvrira la fenêtre Historique) ou action au survol.
 - Dashboard : La fenêtre d'historique permet maintenant d'ouvrir cet historique dans Analyse/Historique.
 - Dashboard : La fenêtre d'historique conserve ses position/dimensions à la réouverture d'un autre historique.
@@ -126,8 +137,9 @@ Changelog
 
 >**IMPORTANT**
 >
->Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+>Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte.
 
 >**IMPORTANT**
 >
->Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
+>Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+

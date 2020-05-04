@@ -1,38 +1,31 @@
-The Jeedom Health page gives you a quick overview of
-the state of health of your Jeedom. It also indicates (if the plugins
-use it) state of health by plugin.
+# Santé
+**Analysis → Health**
 
-The page is accessible by Analysis → Health
+The Jeedom Health page allows you to have a quick overview of the health status of your Jeedom.
+It also indicates (if plugins use it) the state of health by plugin.
 
-> **NOTE**
+> **Note**
 >
-> A click on the icon at the top right gives access to the benchmark of your
-> Jeedom.
+> Click on the icon at the top right to access the benchmark of your Jeedom.
 
-Jeedom&#39;s health page is presented in the form of a table. The 1st
-column gives you a description of what Jeedom checks and whose status
-is displayed in the 2nd column. Finally the last column can
-give resolution advice if verification is not OK.
+Jeedom&#39;s health page is presented in the form of a double table.
+The 1st column gives you a description of what Jeedom checks, the status is displayed in the 2nd column.
+Tooltips can give you resolution tips if the verification is not OK.
 
-Below you find the health for each plugin, click on the
-plugin name gives the health detail of it. Right you
-find the icons :
+Below you find the health for each plugin, a click on the name of the plugin gives the health detail of it.
 
--   Access port for plugin hardware (Zwave key type)
+On the right you find the icons :
 
--   Demon mode
+-   Access port for plugin hardware (Zwave key type).
+-   Demon mode.
+-   Display of the plugin&#39;s equipment health page.
+-   Display of the plugin configuration page.
+-   Overall state of the plugin.
 
--   Display of the plugin&#39;s equipment health page
-
--   Display of the plugin configuration page
-
--   Overall state of the plugin
-
-> **NOTE**
+> **Note**
 >
-> Icons may vary depending on plugin
+> Icons may vary depending on plugin.
 
-> **NOTE**
+> **Note**
 >
-> Generally when the line is green, everything is fine
-> and when it’s red, there’s a problem.
+> Generally when the line is green, everything is fine and when it is red, there is a problem.

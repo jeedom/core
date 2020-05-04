@@ -1,194 +1,128 @@
-Wichtiger Teil in der Software : der Historisierungsteil, real
-Erinnerung daran. In Jeedom ist es möglich, jeden zu historisieren
-welcher Informationstyp Befehl (binär oder digital). Das du
-ermöglicht es daher beispielsweise, eine Temperaturkurve zu historisieren,
-Verbrauch oder Türöffnungen usw.
+# Historique
+**Analyse → Geschichte**
 
-Prinzip 
-========
+Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren.. Auf diese Weise können Sie beispielsweise eine Temperatur-, Verbrauchs- oder Türöffnungskurve usw. protokollieren.
 
-Hier wird das Prinzip der Historisierung von Jeedom beschrieben. Es ist nicht
-notwendig, um das zu verstehen, wenn Sie irgendwelche Bedenken haben
-oder möchten die Einstellungen für ändern
-Historisierung. Die Standardeinstellungen sind für die meisten geeignet
-Fall.
+### Principe
 
-Archivierung 
----------
+Hier wird das Prinzip der Historisierung von Jeedom beschrieben. Sie müssen dies nur verstehen, wenn Sie Probleme mit der Historisierung haben oder die Historisierungseinstellungen ändern möchten.. Die Standardeinstellungen sind in den meisten Fällen in Ordnung.
 
-Durch die Datenarchivierung kann Jeedom die Datenmenge reduzieren
-in Erinnerung behalten. Dies ermöglicht es, nicht zu viel Platz zu verbrauchen und
-das System nicht zu verlangsamen. In der Tat, wenn Sie alle behalten
-Maßnahmen, dies macht umso mehr Punkte anzuzeigen und kann daher
-verlängern Sie die Zeiten dramatisch, um ein Diagramm zu erstellen. Für den Fall
-zu viele Punkte, es kann sogar abstürzen
-Grafikanzeige.
+### Archivage
 
-Die Archivierung ist eine Aufgabe, die nachts beginnt und komprimiert
-Daten während des Tages wiederhergestellt. Standardmäßig stellt Jeedom alle wieder her
-2h ältere Daten und macht 1h Pakete (eins
-Durchschnitt, Minimum oder Maximum je nach Einstellung). Also haben wir
-hier 2 Parameter, einer für die Paketgröße und einer für das Wissen
-wann es zu tun ist (standardmäßig sind dies Pakete
-1 Stunde mit Daten, die mehr als 2 Stunden Dienstalter haben).
+Durch die Datenarchivierung kann Jeedom die im Speicher gespeicherte Datenmenge reduzieren. Dies ermöglicht es, nicht zu viel Platz zu beanspruchen und das System nicht zu verlangsamen. Wenn Sie alle Messungen beibehalten, werden umso mehr Punkte angezeigt, und daher kann die Zeit zum Rendern eines Diagramms erheblich verlängert werden. Wenn zu viele Punkte vorhanden sind, kann dies sogar zum Absturz der Diagrammanzeige führen.
 
-> **Spitze**
+Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellten Daten. Standardmäßig ruft Jeedom alle älteren Daten von 2 Stunden ab und verarbeitet sie zu 1-Stunden-Paketen (entweder ein Durchschnitt, ein Minimum oder ein Maximum, abhängig von den Einstellungen).. Hier haben wir also zwei Parameter, einen für die Paketgröße und einen, um zu wissen, wann dies zu tun ist (standardmäßig sind dies 1-Stunden-Pakete mit Daten, die älter als 2 Stunden sind)..
+
+> **Tip**
 >
-> Wenn Sie gut gefolgt sind, sollten Sie eine hohe Präzision auf dem haben
-> Nur die letzten 2 Stunden. Doch wenn ich mich um 17 Uhr anmelde.,
-> Ich habe eine Klarstellung zu den letzten 17 Stunden. Warum ? In der Tat,
-> um unnötigen Ressourcenverbrauch zu vermeiden, ist die Aufgabe, die macht
-> Die Archivierung erfolgt nur einmal am Tag, abends.
+> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Warum ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
-> **Wichtig**
+> **Important**
 >
-> Dieses Archivierungsprinzip gilt natürlich nur für Bestellungen von
-> digitaler Typ; Bei Befehlen vom Typ Binär behält Jeedom nicht bei
-> dass die Daten der Zustandsänderung.
+> Dieses Archivierungsprinzip gilt natürlich nur für digitale Befehle. Bei Befehlen vom Typ Binär behält Jeedom nur die Daten der Zustandsänderung bei.
 
-Anzeigen eines Diagramms 
-========================
+### Anzeigen eines Diagramms
 
 Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
--   indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten),
+- Durch Klicken auf den gewünschten Befehl in einem Widget,
+- Gehen Sie zur Verlaufsseite, auf der Sie verschiedene Kurven überlagern und Stile (Fläche, Kurve, Balken) kombinieren können.,
+- Auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben,
+- Indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten).
 
--   durch Klicken auf den gewünschten Befehl in einem Widget,
+## Registerkarte &quot;Verlauf&quot;
 
--   indem Sie zur Verlaufsseite gehen, die das Überlagern ermöglicht
-    verschiedene Kurven und kombinieren Stile (Fläche, Kurve, Balken)
+Wenn Sie auf der Verlaufsseite ein Diagramm anzeigen, haben Sie Zugriff auf mehrere Anzeigeoptionen :
 
--   auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben
+Wir finden oben rechts den Anzeigezeitraum (hier in der letzten Woche, weil ich standardmäßig nur eine Woche haben möchte - siehe 2 Absätze oben), dann kommen die Parameter der Kurve (diese Parameter werden beibehalten von einem Display zum anderen, so dass Sie sie nur einmal konfigurieren müssen).
 
-Wenn Sie ein Diagramm auf der Verlaufsseite oder durch Klicken auf anzeigen
-Über das Widget haben Sie Zugriff auf mehrere Anzeigeoptionen :
+- **Escalier** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
+- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
+- **Ligne** : Zeigt das Diagramm als Linien an.
+- **Aire** : Zeigt das Diagramm als Fläche an.
+- **Colonne**\.* : Zeigt das Diagramm als Balken an.
 
-Oben rechts finden wir den Anzeigezeitraum (hier am letzten
-Woche, weil ich standardmäßig nur eine Woche haben möchte - siehe
-2 Absätze oben), dann kommen die Parameter der Kurve
-(Diese Parameter werden von einer Anzeige zur anderen gehalten; Sie daher
-nur einmal konfigurieren).
+> **Tip**
+>
+> Wenn Sie mehrere Kurven gleichzeitig anzeigen:
+> - Klicken Sie auf eine Legende unter dem Diagramm, um diese Kurve anzuzeigen / auszublenden.
+> - Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen.
+> - Alt Klicken Sie auf eine Legende, um alle anzuzeigen.
 
--   **Treppe** : zeigt die Kurve als an
-    Treppe oder kontinuierliche Anzeige.
 
--   **Veränderung** : zeigt die Wertdifferenz von an
-    vorheriger Punkt.
+### Grafik zu Ansichten und Designs
 
--   **Linie** : zeigt das Diagramm als Linien an.
-
--   **Bereich** : Zeigt das Diagramm als Fläche an.
-
--   **Spalte**\.* : Zeigt das Diagramm als Balken an.
-
-Grafik zu Ansichten und Designs 
-=====================================
-
-Sie können die Grafiken auch in den Ansichten anzeigen (wir werden hier sehen
-die Konfigurationsoptionen und nicht wie es geht, dafür muss man
-Ansichten oder Designs basierend auf der Dokumentation rendern). hier ist
-die Optionen :
+Sie können die Grafiken auch in den Ansichten anzeigen (wir sehen hier die Konfigurationsoptionen und nicht, wie es geht, dafür müssen Sie zur Dokumentation der Ansichten oder Entwürfe in Funktion gehen).. Hier sind die Optionen :
 
 Sobald eine Daten aktiviert sind, können Sie auswählen :
+- **Couleur** : Die Farbe der Kurve.
+- **Type** : Die Art des Diagramms (Fläche, Linie oder Spalte).
+- **Echelle** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden..
+- **Escalier** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
+- **Empiler** : Wird verwendet, um die Werte der Kurven zu stapeln (siehe unten für das Ergebnis).
+- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
 
--   **Farbe** : die Farbe der Kurve.
-
--   **Typ** : die Art des Diagramms (Fläche, Linie oder Spalte).
-
--   **Maßstab** : da kann man mehrere kurven (daten) setzen
-    Im selben Diagramm ist es möglich, die Skalen zu unterscheiden
-    (rechts oder links).
-
--   **Treppe** : zeigt die Kurve als an
-    Treppe oder kontinuierliche Anzeige
-
--   **Stapel** : ermöglicht das Stapeln der Kurvenwerte (siehe in
-    unten für das Ergebnis).
-
--   **Veränderung** : zeigt die Wertdifferenz von an
-    vorheriger Punkt.
-
-Option auf der Verlaufsseite 
-===============================
+### Option auf der Verlaufsseite
 
 Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
-Berechnete Geschichte 
-------------------
+#### Berechnete Geschichte
 
-Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung für mehrere
-Befehl (Sie können fast alles tun, + - / \. * absoluter Wert ... siehe
-PHP-Dokumentation für bestimmte Funktionen). Ex :
-abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Raum von
-Das Leben \.] \. [Luftfeuchtigkeit \.] \. [Temperatur \.] *)
+Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \.* absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
+Ex :
+abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Wohnraum \.] \. [Hygrometrie \.] \. [Temperatur \.] *)
 
-Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht
-Speichern Sie sie zur einfacheren Anzeige
+Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie diese zur einfacheren erneuten Anzeige speichern können.
 
-> **Spitze**
+> **Tip**
 >
-> Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten.
-> erscheinen die historischen Befehle, die grafisch dargestellt werden können.
+> Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten, und rufen Sie die historischen Befehle auf, die angezeigt werden können.
 
-Bestellhistorie 
-----------------------
+#### Bestellhistorie
 
-Vor allen Daten, die grafisch dargestellt werden können, befinden sich zwei Symbole :
+Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 
--   **Mülleimer** : ermöglicht das Löschen der aufgezeichneten Daten; dann
-    Jeedom fragt, ob die Daten vor a gelöscht werden müssen
-    bestimmtes Datum oder alle Daten.
+- **Poubelle** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
+- **Pfeil** : Ermöglicht einen CSV-Export historischer Daten.
 
--   **Pfeil** : Ermöglicht einen CSV-Export historischer Daten.
+### Inkonsistente Wertentfernung
 
-Inkonsistente Wertentfernung 
-=================================
+Manchmal haben Sie inkonsistente Werte in den Diagrammen. Dies ist häufig auf Bedenken hinsichtlich der Interpretation des Werts zurückzuführen. Sie können den Wert des betreffenden Punkts löschen oder ändern, indem Sie direkt in der Grafik darauf klicken. Darüber hinaus können Sie das zulässige Minimum und Maximum anpassen, um zukünftige Probleme zu vermeiden.
 
-Manchmal haben Sie möglicherweise inkonsistente Werte auf dem
-Grafiken. Dies ist häufig auf Bedenken hinsichtlich der Auslegung des
-Wert. Es ist möglich, den Punktwert um zu löschen oder zu ändern
-Frage, indem Sie direkt in der Grafik darauf klicken; von
-Darüber hinaus können Sie das zulässige Minimum und Maximum festlegen
-Vermeiden Sie zukünftige Probleme.
+## Registerkarte &quot;Zeitleiste&quot;
 
-Zeitleiste 
-========
+In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation in chronologischer Form angezeigt.
 
-In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation im Formular angezeigt
-chronologisch.
+Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle oder Szenarien auf der Zeitachse aktivieren. Anschließend treten diese Ereignisse auf.
 
-Um sie zu sehen, müssen Sie zuerst das Tracking auf der Zeitleiste von aktivieren
-gewünschte Befehle oder Szenarien :
+- **Scenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies in großen Mengen zu tun".
+- **Commande** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in "Masse" zu tun".
 
--   **Szenario** : entweder direkt auf der Szenarioseite oder auf der
-    Szenario-Übersichtsseite, um dies in "Masse" zu tun"
+Die * Main * -Zeitleiste enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach * Ordner filtern*. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
+Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche * Aktualisieren auswählen.*.
 
--   **Bestellen** : entweder in der erweiterten Konfiguration des Befehls,
-    entweder in der Konfiguration der Geschichte, um es in "Masse" zu tun"
-
-> **Spitze**
+> **Note**
 >
-> Sie haben Zugriff auf die Zusammenfassungsfenster der Szenarien oder der
-> Konfiguration des Verlaufs direkt von der Seite
-> Zeitleiste.
+> Wenn Sie keinen Ordner mehr verwenden, wird dieser in der Liste angezeigt, solange Ereignisse vorhanden sind, die mit diesem Ordner verknüpft sind. Es wird von selbst aus der Liste verschwinden.
 
-Sobald Sie die Nachverfolgung in der Bestellzeitleiste aktiviert haben und
-gewünschten Szenarien können Sie sie auf der Zeitleiste sehen.
-
-> **Wichtig**
+> **Tip**
 >
-> Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
-> auf der Zeitleiste, bevor sie angezeigt werden.
+> Sie haben Zugriff auf die Fenster &quot;Szenarioübersicht&quot; oder &quot;Verlaufskonfiguration&quot; direkt über die Timeline-Seite.
 
-Die Karten auf der Zeitleiste werden angezeigt :
+Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenarien aktiviert haben, können Sie sie in der Zeitleiste anzeigen.
 
--   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
-    Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
+> **Important**
+>
+> Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking auf der Timeline aktiviert haben, bevor sie angezeigt werden.
 
--   **Info Befehl** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
-    Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
+### Affichage
 
--   **Szenario** : In grauem Hintergrund haben Sie 2 Symbole : eine anzuzeigen
-    das Szenario-Protokoll und eines, um zum Szenario zu gelangen
+In der Zeitleiste wird eine Tabelle mit aufgezeichneten Ereignissen in drei Spalten angezeigt:
 
+- Datum und Uhrzeit der Veranstaltung,
+- Die Art des Ereignisses: Ein Info- oder Aktionsbefehl oder ein Szenario mit dem Befehls-Plugin für Befehle.
+- Der Name des übergeordneten Objekts, der Name und je nach Typ, Status oder Auslöser.
+
+- Ein Befehlstypereignis zeigt rechts ein Symbol zum Öffnen der Befehlskonfiguration an.
+- Bei einem Ereignis vom Typ Szenario werden rechts zwei Symbole angezeigt, mit denen Sie zum Szenario wechseln oder das Szenarioprotokoll öffnen können.
 

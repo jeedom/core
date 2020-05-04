@@ -1,194 +1,128 @@
-Parte importante en el software : la parte de historización, real
-recuerdo de ello. En Jeedom es posible historizar cualquier
-qué comando de tipo de información (binario o digital). Que tu
-por lo tanto, permitirá, por ejemplo, historizar una curva de temperatura,
-consumo o apertura de puertas, etc.
+# Historique
+**Análisis → Historia**
 
-Principio 
-========
+Parte importante en el software : la parte de la historización, un verdadero recuerdo de ella. En Jeedom es posible registrar cualquier comando de tipo de información (binario o digital). Esto le permitirá, por ejemplo, registrar una temperatura, consumo o curva de apertura de puerta, etc.
 
-Aquí se describe el principio de historización de Jeedom. No es
-necesario entender que si tiene alguna inquietud
-o desea cambiar la configuración de
-historización. La configuración predeterminada es adecuada para la mayoría
-caso.
+### Principe
 
-Archivado 
----------
+Aquí se describe el principio de historización de Jeedom. Solo necesita comprender esto si tiene problemas de historización o si desea cambiar la configuración de historización.. La configuración predeterminada está bien en la mayoría de los casos.
 
-El archivo de datos le permite a Jeedom reducir la cantidad de datos
-guardado en la memoria. Esto permite no usar demasiado espacio y
-no ralentizar el sistema. De hecho, si mantiene todos los
-medidas, esto hace más puntos para mostrar y por lo tanto puede
-alargar drásticamente los tiempos para hacer un gráfico. En casoo
-demasiados puntos, incluso puede bloquearse
-visualización gráfica.
+### Archivage
 
-Archivar es una tarea que comienza de noche y compacta
-datos recuperados durante el día. Por defecto, Jeedom recupera todo
-Datos 2h más antiguos y paquetes de 1h (uno
-promedio, mínimo o máximo según la configuración). Entonces tenemos
-Aquí 2 parámetros, uno para el tamaño del paquete y otro para conocer
-cuándo hacerlo (por defecto, estos son paquetes
-1 hora con datos que tienen más de 2 horas de antigüedad).
+El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite no utilizar demasiado espacio y no ralentiza el sistema.. De hecho, si mantiene todas las mediciones, esto aumenta la cantidad de puntos para mostrar y, por lo tanto, puede alargar considerablemente los tiempos para representar un gráfico. Si hay demasiados puntos, incluso puede hacer que la pantalla del gráfico se bloquee.
 
-> **Punta**
+El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día.. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y los convierte en paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (de manera predeterminada, estos son paquetes de 1 hora con datos que tienen más de 2 horas).
+
+> **Tip**
 >
-> Si ha seguido bien, debe tener una alta precisión en el
-> Últimas 2 horas solamente. Sin embargo, cuando inicio sesión a las 5 p.m.,
-> Tengo una aclaración sobre las últimas 17 horas.. Por qué ? De hecho,
-> para evitar consumir recursos innecesariamente, la tarea que hace
-> el archivo se realiza solo una vez al día, por la tarde.
+> Si ha seguido bien, debe tener una alta precisión solo en las últimas 2 horas.. Sin embargo, cuando me conecto a las 5 p.m., tengo precisión en las últimas 17 horas. Por qué ? De hecho, para evitar consumir recursos innecesariamente, la tarea de archivo se lleva a cabo solo una vez al día, por la noche..
 
-> **Importante**
+> **Important**
 >
-> Por supuesto, este principio de archivo solo se aplica a pedidos de
-> tipo digital; en comandos de tipo binario, Jeedom no mantiene
-> que las fechas de cambio de estado.
+> Por supuesto, este principio de archivo solo se aplica a los comandos de tipo digital; en comandos de tipo binario, Jeedom mantiene solo las fechas de cambio de estado.
 
-Ver un gráfico 
-========================
+### Ver un gráfico
 
 Hay varias formas de acceder al historial. :
 
--   poniendo un área de gráfico en una vista (ver más abajo),
+- Haciendo clic en el comando deseado en un widget,
+- Al ir a la página del historial que permite superponer diferentes curvas y combinar estilos (área, curva, barra),
+- En el dispositivo móvil mientras permanece presionado en el widget en cuestión,
+- Poniendo un área de gráfico en una vista (ver más abajo).
 
--   haciendo clic en el comando deseado en un widget,
+## Pestaña Historial
 
--   yendo a la página del historial que permite superponer
-    diferentes curvas y estilos combinados (área, curva, barra)
+Si muestra un gráfico junto a la página del historial, tiene acceso a varias opciones de visualización :
 
--   en el dispositivo móvil mientras permanece presionado en el widget en cuestión
+Encontramos en la parte superior derecha el período de visualización (aquí en la última semana porque, por defecto, quiero que sea solo una semana, ver 2 párrafos anteriores), luego vienen los parámetros de la curva (estos parámetros se mantienen de una pantalla a otra, por lo que solo tiene que configurarlas una vez).
 
-Si muestra un gráfico junto a la página histórica o haciendo clic en
-el widget, tiene acceso a varias opciones de visualización :
+- **Escalier** : Muestra la curva como una escalera o una pantalla continua..
+- **Variation** : Muestra la diferencia de valor del punto anterior..
+- **Ligne** : Muestra el gráfico como líneas.
+- **Aire** : Muestra el gráfico como un área.
+- **Colonne**\* : Muestra el gráfico como barras.
 
-Encontramos en la parte superior derecha el período de visualización (aquí en el último
-semana porque por defecto quiero que sea solo una semana - ver
-2 párrafos anteriores), luego vienen los parámetros de la curva
-(estos parámetros se guardan de una pantalla a otra; por lo tanto,
-solo configúrelos una vez).
+> **Tip**
+>
+> Si visualiza varias curvas al mismo tiempo:
+> - Haga clic en una leyenda debajo del gráfico para mostrar / ocultar esta curva.
+> - Ctrl Haga clic en una leyenda le permite mostrar solo esta.
+> - Alt Click en una leyenda le permite mostrarlos todos.
 
--   **Escalera** : muestra la curva como un
-    escalera o pantalla continua.
 
--   **Cambio** : muestra la diferencia en valor de
-    punto anterior.
+### Gráfico sobre vistas y diseños.
 
--   **Línea** : muestra el gráfico como líneas.
-
--   **área** : muestra el gráfico como un área.
-
--   **Columna**\* : muestra el gráfico como barras.
-
-Gráfico sobre vistas y diseños. 
-=====================================
-
-También puede mostrar los gráficos en las vistas (veremos aquí
-las opciones de configuración y no cómo hacerlo, para eso tienes que
-renderizar vistas o diseños basados en la documentación). aquí está
-las opciones :
+También puede mostrar los gráficos en las vistas (veremos aquí las opciones de configuración y no cómo hacerlo, para eso debe ir a la documentación de las vistas o diseños en función). Estas son las opciones. :
 
 Una vez que se activan los datos, puede elegir :
+- **Couleur** : El color de la curva.
+- **Type** : El tipo de gráfico (área, línea o columna).
+- **Echelle** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
+- **Escalier** : Muestra la curva como una escalera o una pantalla continua..
+- **Empiler** : Se utiliza para apilar los valores de las curvas (ver el resultado a continuación).
+- **Variation** : Muestra la diferencia de valor del punto anterior..
 
--   **Color** : el color de la curva.
-
--   **Puntao** : El tipo de gráfico (área, línea o columna).
-
--   **Escala** : ya que puedes poner varias curvas (datos)
-    en el mismo gráfico, es posible distinguir las escalas
-    (derecha o izquierda).
-
--   **Escalera** : muestra la curva como un
-    escalera o pantalla continua
-
--   **Montón** : permite apilar los valores de las curvas (ver en
-    a continuación para el resultado).
-
--   **Cambio** : muestra la diferencia en valor de
-    punto anterior.
-
-Opción en la página del historial 
-===============================
+### Opción en la página del historial
 
 La página del historial da acceso a algunas opciones adicionales.
 
-Historia calculada 
-------------------
+#### Historia calculada
 
-Permite mostrar una curva de acuerdo con un cálculo en varios
-comando (puede hacer casoi todo, + - / \ * valor absoluto ... ver
-Documentación PHP para ciertas funciones). Ex :
-abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio de
-La vida \] \ [Humedad \] \ [Temperatura \] *)
+Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
+Ex :
+abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio habitable \] \ [Higrometría \] \ [Temperatura \] *)
 
-También tiene acceso a una gestión de fórmulas de cálculo que le permite
-guárdelos para verlos más fácilmente
+También tiene acceso a una gestión de fórmulas de cálculo que le permite guardarlas para volver a mostrarlas más fácilmente.
 
-> **Punta**
+> **Tip**
 >
-> Simplemente haga clic en el nombre del objeto para desplegarlo;
-> aparecen los comandos históricos que se pueden graficar.
+> Simplemente haga clic en el nombre del objeto para desplegarlo y muestre los comandos históricos que se pueden mostrar.
 
-Historial de pedidos 
-----------------------
+#### Historial de pedidos
 
-Frente a cada dato que se puede graficar, encontrará dos íconos :
+Frente a cada dato que se puede mostrar, encontrará dos íconos :
 
--   **Cubo de basura** : permite eliminar los datos grabados; entonces
-    del clic, Jeedom pregunta si es necesario eliminar los datos antes de un
-    cierta fecha o todos los datos.
+- **Poubelle** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
+- **Flecha** : Permite tener una exportación CSV de datos históricos.
 
--   **Flecha** : permite tener una exportación CSV de datos históricos.
+### Eliminación de valor inconsistente
 
-Eliminación de valor inconsistente 
-=================================
+A veces puede tener valores inconsistentes en los gráficos.. Esto a menudo se debe a una preocupación por interpretar el valor. Es posible eliminar o cambiar el valor del punto en cuestión, haciendo clic directamente en el gráfico; Además, puede ajustar el mínimo y el máximo permitido para evitar problemas futuros.
 
-A veces puede tener valores inconsistentes en el
-gráficos. Esto a menudo se debe a una preocupación con la interpretación de la
-valor. Es posible eliminar o cambiar el valor del punto por
-pregunta, haciendo clic directamente en el gráfico; de
-más, puede establecer el mínimo y el máximo permitidos para
-evitar problemas futuros.
+## Pestaña Línea de tiempo
 
-Línea de tiempo 
-========
+La línea de tiempo muestra ciertos eventos en su domótica en forma cronológica.
 
-La línea de tiempo muestra ciertos eventos en su domótica en el formulario
-cronológico.
+Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 
-Para verlos, primero debe activar el seguimiento en la línea de tiempo de
-comandos o escenarios deseados :
+- **Scenario** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
+- **Commande** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
--   **Guión** : ya sea directamente en la página del escenario o en el
-    página de resumen del escenario para hacerlo en "masa"
+La línea de tiempo * Principal * siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por * carpeta*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
+Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón * Actualizar.*.
 
--   **Orden** : ya sea en la configuración avanzada del comando,
-    ya sea en la configuración de la historia para hacerlo en "masa"
-
-> **Punta**
+> **Note**
 >
-> Tiene acceso a las ventanas de resumen de los escenarios o al
-> configuración del historial directamente desde la página
-> Línea de tiempo.
+> Si ya no usa una carpeta, aparecerá en la lista mientras existan eventos vinculados a esta carpeta. Desaparecerá de la lista por sí mismo.
 
-Una vez que haya habilitado el seguimiento en la línea de tiempo del pedido y
-escenarios deseados, puede verlos aparecer en la línea de tiempo.
-
-> **Importante**
+> **Tip**
 >
-> Debe esperar nuevos eventos después de activar el seguimiento
-> en la línea de tiempo antes de verlos aparecer.
+> Tiene acceso a las ventanas de resumen del escenario o de configuración del historial directamente desde la página de la línea de tiempo.
 
-Las tarjetas en la pantalla de la línea de tiempo :
+Una vez que haya activado el seguimiento en la línea de tiempo de los comandos y escenarios que desee, podrá verlos aparecer en la línea de tiempo.
 
--   **Comando de acción** : en fondo rojo, un ícono a la derecha le permite
-    muestra la ventana de configuración avanzada del comando
+> **Important**
+>
+> Debe esperar nuevos eventos después de activar el seguimiento en la línea de tiempo antes de verlos aparecer.
 
--   **Comando de información** : en fondo azul, un icono a la derecha le permite
-    muestra la ventana de configuración avanzada del comando
+### Affichage
 
--   **Guión** : en fondo gris, tienes 2 iconos : uno para mostrar
-    el registro del escenario y uno para ir al escenario
+La línea de tiempo muestra una tabla de eventos grabados en tres columnas.:
 
+- La fecha y hora del evento.,
+- El tipo de evento.: Un comando de información o acción, o un escenario, con el complemento de comando para comandos.
+- El nombre del objeto principal, el nombre y, según el tipo, el estado o el desencadenante.
+
+- Un evento de tipo de comando muestra un icono a la derecha para abrir la configuración del comando.
+- Un evento de tipo de escenario muestra dos iconos a la derecha para ir al escenario o abrir el registro del escenario.
 

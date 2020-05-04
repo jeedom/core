@@ -1,110 +1,46 @@
-Auf der Profilseite können Sie ein bestimmtes Verhalten von konfigurieren
-Benutzerspezifisches Jeedom : Homepage-Themen der
-Desktop-Version, mobile Version, Grafik ... Es erlaubt
-auch um dein Passwort zu ändern.
+# Vorlieben
+**Einstellungen → Einstellungen**
 
-Sie finden es oben rechts, indem Sie auf das Schneemannsymbol klicken
-dann Profil (gefolgt von Ihrem Benutzernamen).
+Auf der Seite &quot;Einstellungen&quot; können Sie bestimmte benutzerspezifische Jeedom-Verhaltensweisen konfigurieren.
 
-Themen
-======
+## Registerkarte &quot;Einstellungen&quot;
 
-Im Themenbereich können Sie die Schnittstellenparameter anpassen :
+### Interface
 
--   **Desktop** : Themen, die im Desktop-Modus verwendet werden sollen, achten Sie nur auf die
-    Das Standardthema wird offiziell von Jeedom unterstützt
+Definiert bestimmte Schnittstellenverhalten
 
--   **Farbe mobil** : ermöglicht die Auswahl der Schnittstellenfarbe
-    (hier wird alles unterstützt)
+- **Objektbedienfeld im Dashboard** : Zeigt das Objektfenster (links) im Dashboard an, ohne auf die entsprechende Schaltfläche klicken zu müssen.
+- **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
+- **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 
--   **Desktop-Grafiken** : Mit dieser Option können Sie das Standarddesign für definieren
-    Grafiken im Desktop-Modus
+- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Klappen Sie das Ansichtsfenster auf** : Wird verwendet, um das Ansichtsmenü (links) standardmäßig in den Ansichten sichtbar zu machen.
 
--   **Mobiler Graph** : Mit dieser Option können Sie das Standarddesign für definieren
-    mobile Grafik
+- **Standarddesign** : Design, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Vollbild-Design** : Standardanzeige im Vollbildmodus bei Ankunft bei Designs.
 
--   **Deckkraft durch Armaturenbrett-Widgets** : erlaubt, Deckkraft zu geben
-    (zwischen 0 und 1) Widgets im Armaturenbrett
+- **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Dashboard / Handy ankommen.
+- **Vollbild-3D-Design** : Standardanzeige im Vollbildmodus bei Ankunft in 3D-Designs.
 
--   **Deckkraft durch Design-Widgets** : erlaubt, Deckkraft zu geben
-    (zwischen 0 und 1) Widgets für Designs
+### Notifications
 
--   **Deckkraft nach Ansichts-Widgets** : erlaubt, Deckkraft zu geben (zwischen
-    0 und 1) Widgets in den Ansichten
+- **Benutzerbenachrichtigungsbefehl** : Standardbefehl, um Sie zu erreichen (Nachrichtentyp Befehl).
 
--   **Deckkraft durch mobile Widgets** : erlaubt, Deckkraft zu geben
-    (zwischen 0 und 1) mobile Widgets
+## Registerkarte &quot;Sicherheit&quot;
 
-Schnittstelle
----------
+- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird. Geben Sie * google authentificator * ein.). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert..
 
-Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
+  **Important** Wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, müssen Sie überprüfen, ob Jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert)..
 
--   **General**
+- **Passwort** : Ermöglicht das Ändern Ihres Passworts (vergessen Sie nicht, es unten erneut einzugeben).
 
-    -   **Menüs anzeigen** : Sagen Sie Jeedom, dass er das Panel anzeigen soll
-        links, wenn es existiert, als Erinnerung ist dieses Panel
-        verfügbar auf den meisten Plugin-Seiten sowie
-        Seite mit Szenarien, Interaktionen, Objekten….
-
--   **Standardseite** : Standardseite, die angezeigt wird, wenn
-    Desktop / Mobile-Verbindung
-
--   **Standardobjekt im Armaturenbrett** : Standardanzeigeobjekt
-    bei der Ankunft auf dem Armaturenbrett / Handy
-
--   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
-    das Armaturenbrett / Handy
-
--   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
-    die Ankunft auf dem Armaturenbrett / Handy
-
-    -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
-        die Ankunft auf den Entwürfen
-
--   **Armaturenbrett**
-
-    -   **Klappen Sie das Szenario-Bedienfeld auf** : ermöglicht sichtbar zu machen
-        Standardmäßig das Szenario-Menü (rechts) im Armaturenbrett
-
-    -   **Klappen Sie das Objektfenster auf** : ermöglicht sichtbar zu machen durch
-        Standardmäßig das Objektmenü (links) im Armaturenbrett
-
--   **Ansicht**
-
-    -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
-        Standardansichtsmenü (links) für Ansichten
-
-Sicherheit
---------
-
--   **2-stufige Authentifizierung** : ermöglicht zu konfigurieren
-    2-Schritt-Authentifizierung (zur Erinnerung, dies ist ein sich ändernder Code
-    wird alle X Sekunden in einer mobilen Anwendung angezeigt, geben Sie ein
-    Google Authentifikator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Für eine lokale Verbindung wird der Code daher nicht angefordert. Wichtig, wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, überprüfen Sie, ob jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert).
-
--   **Passwort** : ermöglicht es Ihnen, Ihr Passwort zu ändern (nicht
-    vergessen Sie es unten erneut einzugeben)
-
--   **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel
+- **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel.
 
 ### Aktive Sitzungen
 
-Hier haben Sie die Liste Ihrer aktuell verbundenen Sitzungen, deren ID,
-ihre IP sowie das Datum der letzten Kommunikation. Durch Klicken auf
-"Trennen "Dadurch wird der Benutzer getrennt. Achtung wenn es an ist
-Bei einem registrierten Gerät wird die Aufzeichnung gelöscht.
+Hier haben Sie die Liste Ihrer aktuell verbundenen Sitzungen, ihre ID, ihre IP sowie das Datum der letzten Kommunikation. Durch Klicken auf &quot;Trennen&quot; wird der Benutzer getrennt. Achtung, wenn es sich auf einem registrierten Gerät befindet, wird dadurch auch die Aufzeichnung gelöscht.
 
 ### Registriertes Gerät
 
-Hier finden Sie die Liste aller registrierten Geräte (welche sind
-Verbindung ohne Authentifizierung) mit Ihrem Jeedom und dem Datum von
-letzte Verwendung. Hier können Sie die Aufnahme von a löschen
-peripher. Achtung, es trennt es nicht, sondern verhindert es nur
-seine automatische Wiederverbindung.
-
-Benachrichtigungen
--------------
-
--   **Benutzerbenachrichtigungsbefehl** : Standardbefehl für
-    mach mit (Nachrichtentyp Befehl)
+Hier finden Sie die Liste aller registrierten Geräte (die ohne Authentifizierung eine Verbindung herstellen) zu Ihrem Jeedom sowie das Datum der letzten Verwendung.
+Hier können Sie die Registrierung eines Geräts löschen. Achtung, es trennt es nicht, sondern verhindert nur die automatische Wiederverbindung.

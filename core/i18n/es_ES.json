@@ -3262,7 +3262,7 @@
         "Version Jeedom": "Versión Jeedom",
         "Version PHP": "Versión PHP",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "Si está en la versión 5.4.x le diremos cuándo será obligatoria la versión 5.5",
-        "Apache": "",
+        "Apache": "Apache",
         "Version OS": "Versión del sistema operativo",
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">ici<\/a>)": "No está en un sistema operativo oficialmente compatible con el equipo de Jeedom (por lo tanto, cualquier solicitud de soporte puede ser rechazada). Los SO oficialmente compatibles son Debian Jessie y Debian Strech (ver <a href=\"https:\/\/jeedom.github.io\/documentation\/compatibility\/fr_FR\/index\" target=\"_blank\">aquí<\/a> )",
         "Version database": "Versión de la base de datos",

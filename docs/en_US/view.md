@@ -1,153 +1,96 @@
-Views simply allow you to create a custom view. This
-is not as powerful as the designs but it allows in a few
-minutes to have a more personalized display.
+# Vues
+**Home → View**
 
-The views are accessible from the Home → View menu. :
-
-> **Tip**
->
-> It is possible to go directly to a view thanks to the submenu.
+Views allow you to create a custom view.
+It is not as powerful as the designs but it allows in a few minutes to have a more personalized display.
 
 > **Tip**
 >
-> You can choose the default view in your profile when clicking
-> on the views menu.
+> You can choose the default view in your profile when clicking on the view menu.
 
-The views 
-========
+## Principe
 
-We can also put widgets, graphics (which can be
-composed of several data) or table fields (which contain the
-command widgets).
+We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the command widgets).
 
-On this page, there is a button at the top left to show or
-hide the list of views and the button to add one
-(Jeedom will ask for its name and send you to the edit page) :
+On this page, there is a button at the top left to show or hide the list of views as well as the button to add one (Jeedom will ask for its name and send you to the edit page) :
 
 > **Tip**
 >
-> You can modify this option in your profile so that the list
-> views to be visible by default.
+> You can modify this option in your profile so that the list of views is visible by default.
 
-A button at the top right allows you to edit the current view.
+## Adding / Editing a view
 
-Adding / Editing a view 
-=======================
-
-The principle is quite simple : a view is made up of areas (you can
-put as much as you want). Each zone is of graphic type, widget
-or table, depending on the type you can put widgets
-of equipment, control or graphics in it.
+The principle is quite simple : a view is made up of zones (you can put as many as you want). Each zone is of graphic, widget or table type, depending on the type you can put equipment, control or graphic widgets in it.
 
 > **Tip**
 >
 > You can move the order of the zones by dragging and dropping.
 
-On the left of the page we find the list of views and a
-add button.
+- On the left of the page we find the list of views and an add button.
+- A button at the top right allows you to edit the current view.
+- In the center you have a button to rename a view, a button to add an area, a button to see the result, a button to save and a button to delete the view..
 
-In the center you have a button to rename a view, an add button
-of zone, a button to see the result, a button to save and
-a button to delete the view.
-
-After clicking on the add zone button, Jeedom will ask you
-his name and type.
-
+After clicking on the add zone button, Jeedom will ask for its name and type.
 On each zone you have the following general options :
 
--   **Width** : defines the width of the area (in mode
-    desktop only)
+- **Largeur** : Defines the width of the area (in desktop mode only).
+- **Editer** : Allows to change the name of the zone.
+- **Supprimer** : Allows to delete the zone.
 
--   **Edit** : allows to change the name of the zone
-
--   **Remove** : allows to delete the zone
-
-Widget type area 
--------------------
+### Widget type area
 
 A widget type area allows you to add widgets :
 
--   **Add widget** : add / edit widgets to
-    display in the area
+- **Add widget** : Add / edit widgets to display in the area.
 
 > **Tip**
 >
-> You can delete a widget directly by clicking on the
-> trash can in front of this one.
+> You can delete a widget directly by clicking on the trash can in front of it.
 
 > **Tip**
 >
-> It is possible to change the order of widgets in the area by
-> drag / drop.
+> You can change the order of widgets in the area by dragging and dropping.
 
-Once the add widget button is pressed, you get a window
-which will ask you for the widget to add
+Once the add widget button is pressed, you get a window that will ask you for the widget to add
 
-Graphic type area 
-----------------------
+### Graphic type area
 
-A graphics-type area allows you to add graphics to your view,
-she has the following options :
+A graphics type area allows you to add graphics to your view, it has the following options :
 
--   **Period** : allows you to choose the display period for
-    graphics (30 min, 1 day, 1 week, 1 month, 1 year or all)
+- **Period** : Allows you to choose the graphics display period (30 min, 1 day, 1 week, 1 month, 1 year or all).
+- **Add curve** : Allows to add / modify graphics.
 
--   **Add curve** : allows to add / modify graphics
+When you press the &quot;Add curve&quot; button Jeedom displays the list of historical commands and you can choose the one (s) to add, once done you have access to the following options :
 
-When you press the button &quot;Add curve&quot; Jeedom displays the list
-historical commands and you can choose the one (s) to add, a
-Once done you have access to the following options :
-
--   **Trash can** : remove command from chart
-
--   **Last name** : command name graphed
-
--   **Color** : color of the curve
-
--   **Type** : curve type
-
--   **Group** : allows grouping of data (maximum type
-    per day)
-
--   **Ladder** : scale (right or left) of the curve
-
--   **Staircase** : displays the stepped curve
-
--   **Stack** : stack the curve with the other type curves
-    Stack
-
--   **Variation** : graph only variations with value
-    previous
+- **Poubelle** : Remove command from chart.
+- **Nom** : Name of the command to draw.
+- **Couleur** : Color of the curve.
+- **Type** : Curve type.
+- **Groupement** : Allows you to group data (maximum type per day).
+- **Echelle** : scale (right or left) of the curve.
+- **Escalier** : Displays the stepped curve.
+- **Empiler** : Stack the curve with the other type curves.
+- **Variation** : Only draw variations with the previous value.
 
 > **Tip**
 >
-> It is possible to change the order of the graphics in the area by
-> drag / drop.
+> You can change the order of the graphics in the area by dragging and dropping.
 
-Array type area 
---------------------
+### Array type area
 
 Here you have the buttons :
 
--   **Add column** : add a column to the table
+- **Add column** : Add a column to the table.
+- **Add line** : Add a row to the table.
 
--   **Add line** : add a row to the table
-
-> **NOTE**
+> **Note**
 >
-> It is possible to re-organize the lines by dragging and dropping but not
-> the columns
+> It is possible to reorganize the rows by dragging and dropping but not the columns.
 
-Once you have added your rows / columns you can add
-information in the boxes :
+Once you have added your rows / columns you can add information in the boxes :
 
--   **text** : just text to write
-
--   **l'opération à mener** : any l'opération à mener code (javascript possible but
-    strongly discouraged)
-
--   **command widget** : the button on the right allows you to choose
-    the command to display (beware this displays the widget
-    the command)
+- **texte** : just text to write.
+- **html** : any l'opération à mener code (javascript possible but strongly discouraged).
+- **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
 
 

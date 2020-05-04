@@ -1,17 +1,17 @@
-Diese Seite ist für Experten reserviert und ermöglicht das Hinzufügen von CSS- oder JS-Skripten
-zusätzlich in Jeedom, das auf jeder Seite ausgeführt wird.
+# Erweiterte Anpassung
+**Einstellungen → System → Erweiterte Anpassung**
+
+Auf dieser Seite (für Experten reserviert) können Sie Jeedom CSS- oder JS-Skripte hinzufügen, die auf jeder Seite ausgeführt werden.
 
 Zugänglich durch **Einstellungen → System → Erweiterte Anpassung**
 
-Sie können daher auf dieser Seite JS- und CSS-Skripte hinzufügen
-überall in Jeedom ausgeführt, unterscheidet die Desktop-Version von der
-mobile Version.
+Sie können daher auf dieser Seite JS- und CSS-Skripte hinzufügen, die überall in Jeedom ausgeführt werden, indem Sie die Desktop-Version von der mobilen Version unterscheiden.
 
-Für anspruchslose Menschen, die CSS entdecken möchten
+Für anspruchslose Menschen, die CSS entdecken möchten :
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **Wichtig**
+> **Important**
 >
-> Jeder Fehler in einem dieser Skripte kann Jeedom total machen
-> nicht verfügbar und Sie müssen eine Verbindung über SSH herstellen und die löschen
-> Anpassungsdateien, um es wiederherstellen zu können
+> Jeder Fehler in einem dieser Skripte kann dazu führen, dass Jeedom vollständig funktionsunfähig wird. 
+>
+> Um dieses Problem zu beheben, müssen Sie eine Verbindung zu SSH herstellen und die Anpassungsdateien löschen, um den normalen Betrieb von Jeedom wiederherzustellen.

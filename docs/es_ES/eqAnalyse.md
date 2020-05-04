@@ -1,126 +1,73 @@
-La página de Análisis de equipo accesible desde el menú Análisis → Equipo le permite ver mucha información
-en relación con el equipo centralmente :
+# Análisis de equipos
+**Análisis → Equipo**
 
--   el estado de tus baterías
+La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada. :
 
--   módulos en alerta
+- El estado de tus baterías
+- Módulos en alerta
+- Acciones definidas
+- Alertas definidas
+- órdenes huérfanas
 
--   acciones definidas
+## Pestaña Baterías
 
--   alertas definidas
 
--   órdenes huérfanas
+Puede ver en esta pestaña la lista de sus módulos de batería, su nivel restante (el color del mosaico depende de este nivel), el tipo y la cantidad de baterías que deben colocarse en el módulo, el tipo de módulo también que la fecha en que se actualizó la información del nivel de batería. También puede ver si se ha establecido un umbral específico para el módulo en particular (representado por una mano)
 
-La pestaña Baterías 
-==================
-
-Puede ver en esta pestaña la lista de sus módulos con batería,
-su nivel restante (el color del mosaico depende de este nivel), el
-tipo y número de baterías que se insertarán en el módulo, el tipo de
-módulo, así como la fecha en que la información del nivel de batería
-ha sido actualizado. También puede ver si se ha establecido un umbral específico
-banco de trabajo para el módulo particular (representado por una mano)
-
-> **Punta**
+> **Tip**
 >
-> Los umbrales de alerta / advertencia en los niveles de batería son
-> configurable globalmente en la configuración de Jeedom
-> (Administración → pestaña Equipo), o por equipo en la página
-> configuración avanzada de estos en la pestaña de alertas.
+> Los umbrales de alerta / advertencia en los niveles de batería se pueden configurar globalmente en la configuración de Jeedom (Configuración → Sistemas → Configuración : Equipo), o por equipo en la página de configuración avanzada de estos en la pestaña de alertas.
 
-Módulos en la pestaña de alerta 
-==========================
+## Módulos en la pestaña de alerta
 
-En esta pestaña verá en tiempo real los módulos en alerta. la
-las alertas pueden ser de diferentes tipos :
+En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos. :
 
--   tiempo de espera (configurado en la pestaña de alertas definidas)
-
--   batería en advertencia o en peligro
-
--   comando en advertencia o peligro (configurable en los parámetros
-    comandos avanzados)
+- Tiempo de espera (configurado en la pestaña de alertas definidas).
+- Batería en advertencia o en peligro.
+- Comando de advertencia o peligro (configurable en los parámetros del comando avanzado).
 
 Otros tipos de alertas se pueden encontrar aquí.
-Cada alerta estará representada por el color del mosaico (el nivel
-alerta) y un logotipo en la parte superior izquierda (el tipo de alerta)
+Cada alerta estará representada por el color del mosaico (el nivel de alerta) y un logotipo en la parte superior izquierda (el tipo de alerta).
 
-> **Punta**
+> **Tip**
 >
-> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en
-> "no visible". Sin embargo, es interesante notar que si el módulo
-> está &quot;visible&quot;, la alerta también estará visible en el panel de control (en
-> el objeto en cuestión)
+> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
 
-La pestaña Acciones definidas 
-=========================
+## Pestaña Acciones definidas
 
-Esta pestaña le permite ver las acciones definidas directamente en un
-mando. De hecho, podemos hacer diferentes pedidos y
-puede ser difícil de recordar todo. Esta pestaña está ahí para eso
-y sintetiza varias cosas :
+Esta pestaña le permite ver las acciones definidas directamente en un pedido. De hecho, podemos poner diferentes comandos y puede ser difícil recordar todos. Esta pestaña está ahí para eso y sintetiza varias cosas :
 
--   acciones en estado (encontradas en parámetros avanzados
-    comandos de información y se utilizan para realizar uno o más
-    acciones sobre el valor de un pedido, inmediatamente o después
-    un retraso)
+- Acciones en estado (se encuentran en los parámetros avanzados de los comandos de información y permiten realizar una o más acciones sobre el valor de un pedido, inmediatamente o después de un retraso).
+- Confirmaciones de acciones (configurables en el mismo lugar en un comando de información y permitiendo solicitar una confirmación para ejecutar una acción).
+- Confirmaciones con código (igual que el anterior pero con la introducción de un código).
+- Acciones previas y posteriores (siempre configurables en el mismo lugar en un comando de acción y permitiendo ejecutar una o más acciones antes o después de la acción en cuestión).
 
--   confirmaciones de acciones (configurables en el mismo lugar en un
-    información del comando y permitir solicitar una confirmación para
-    realizar una acción)
-
--   confirmaciones con código (igual que el anterior pero con
-    ingresando un código)
-
--   acciones pre y post (siempre configurables en el mismo lugar en
-    un comando de acción y que permite ejecutar uno o más otros
-    acciones antes o después de la acción en cuestión)
-
-> **Punta**
+> **Tip**
 >
-> La tabla le permite ver muy textualmente las acciones.
-> definido. Se pueden agregar otros tipos de acciones definidas.
+> La tabla proporciona una vista muy textual de las acciones definidas.. Se pueden agregar otros tipos de acciones definidas.
 
-La pestaña Alertas definidas 
-=========================
+## Pestaña Alertas definidas
 
-Esta pestaña le permite ver todas las alertas definidas, usted
-encuentra en una tabla la siguiente información si existe :
+Esta pestaña le permite ver todas las alertas definidas, encontrará en una tabla la siguiente información si existen :
 
--   alertas de retraso de comunicación
+- Alertas de retraso de comunicación.
+- Umbrales de batería específicos definidos en un dispositivo.
+- Las diversas alertas de peligro y comandos de advertencia.
 
--   umbrales de batería específicos definidos en un dispositivo
+## Pestaña Orphan Orders
 
--   las diversas alertas de peligro y comandos de advertencia
+Esta pestaña le permite ver de un vistazo si ha utilizado comandos huérfanos a través de Jeedom. Un comando huérfano es un comando utilizado en algún lugar pero que ya no existe. Encontraremos aquí todos estos comandos, como por ejemplo :
 
-La pestaña Orphan Orders 
-=============================
-
-Esta pestaña le permite ver de un vistazo si tiene alguna
-comandos huérfanos utilizados a través de Jeedom. Un pedido
-huérfano es un comando utilizado en algún lugar pero que ya no existe.
-Encontraremos aquí todos estos comandos, como por ejemplo :
-
--   comandos huérfanos utilizados en el cuerpo de un escenario
-
--   los utilizados para desencadenar un escenario
+- Comandos huérfanos utilizados en el cuerpo de un escenario.
+- los utilizados para desencadenar un escenario.
 
 Y se usa en muchos otros lugares como (no exhaustivo) :
+- Interacciones.
+- Configuraciones de libertad.
+- En pre o post acción de una orden.
+- En acción sobre el estado del pedido.
+- En algunos complementos.
 
--   interacciones
-
--   configuraciones de libertad
-
--   en pre o post acción de una orden
-
--   en acción sobre el estado del pedido
-
--   en algunos complementos
-
-> **Punta**
+> **Tip**
 >
-> La tabla proporciona una vista muy textual de los comandos.
-> huérfano. Su propósito es poder identificar rápidamente todos los
-> comandos &quot;huérfanos&quot; a través de todos los complementos y libertad. El se
-> algunas áreas pueden no ser analizadas, la tabla será
-> ser cada vez más exhaustivo con el tiempo.
+> La tabla proporciona una vista muy textual de los comandos huérfanos.. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.
