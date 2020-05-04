@@ -30,7 +30,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 > Isso permite que você tenha apenas o equipamento que lhe interessa e carregue a página mais rapidamente.
 
 - Você tem no topo um pequeno ícone para mostrar / ocultar a árvore de objetos.
-- O segundo ícone à esquerda permite exibir apenas as informações dos resumos dos objetos.
+- O segundo ícone à esquerda permite filtrar o equipamento exibido de acordo com sua categoria. Um clique no centro permite selecionar rapidamente uma única categoria.
 - No meio, um campo de pesquisa permite pesquisar equipamentos por nome, categoria, plug-in, tag, etc..
 - À direita, um botão permite alternar para o modo de edição, modificar a ordem dos blocos (clicar e soltar no widget) ou redimensioná-los. Você também pode reorganizar a ordem dos pedidos em um bloco.
 

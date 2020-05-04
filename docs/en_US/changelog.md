@@ -9,6 +9,7 @@ Changelog Jeedom V4
 - Dashboard : Edit mode now inserting the moved tile.
 - Dashboard : We can now click on the *time* of actions widgets to open the history window of the linked info command..
 - Dashboard : The size of a new equipment&#39;s tile adapts to its content.
+- Dashboard : Addition of a button to filter the displayed items by category.
 - Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
 - Dashboard : Ability to blur background images (Configuration -> Interface).
 - Tools / Widget : The *Apply on* function shows the linked commands checked, unchecking one will apply the default core widget on this command.

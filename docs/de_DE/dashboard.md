@@ -30,7 +30,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 > Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
 
 - Oben links befindet sich ein kleines Symbol zum Ein- und Ausblenden des Objektbaums.
-- Mit dem zweiten Symbol links können nur die Informationen der Zusammenfassungen der Objekte angezeigt werden.
+- Mit dem zweiten Symbol links können Sie die angezeigten Geräte nach ihrer Kategorie filtern. Mit einem mittleren Klick können Sie schnell eine einzelne Kategorie auswählen.
 - In der Mitte können Sie in einem Suchfeld nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen..
 - Auf der rechten Seite können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen.
 

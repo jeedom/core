@@ -30,7 +30,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 > Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
 
 - Tienes en la parte superior izquierda un pequeño icono para mostrar / ocultar el árbol de objetos.
-- El segundo icono a la izquierda permite mostrar solo la información de los resúmenes de los objetos..
+- El segundo ícono a la izquierda le permite filtrar el equipo que se muestra según su categoría. Un clic central permite seleccionar rápidamente una sola categoría.
 - En el medio, un campo de búsqueda le permite buscar equipos por nombre, categoría, complemento, etiqueta, etc..
 - A la derecha, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic - soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
 

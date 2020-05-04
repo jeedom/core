@@ -38,6 +38,7 @@ Antes de eso, en la parte superior de la página, hay algunas funciones útiles 
 
 - **ID** : Al lado de la palabra **General**, este es el identificador de escenario.
 - **statut** : *Detenido * o * En progreso *, indica el estado actual del escenario.
+- **Estado anterior / siguiente** : Cancelar / rehacer una acción.
 - **Agregar bloque** : La permite agregar un bloque del tipo deseado al escenario (ver más abajo).
 - **Log** : Muestra los registros del escenario..
 - **Dupliquer** : Copie el escenario para crear uno nuevo con otro nombre.
@@ -58,7 +59,7 @@ Antes de eso, en la parte superior de la página, hay algunas funciones útiles 
 >
 > Una **Ctrl Haga clic en el botón ejecutar** le permite guardar, ejecutar y mostrar directamente el registro del escenario (syo el nivel de registro no es Ninguno).
 
-### Pestaña General
+## Pestaña General
 
 En la pestaña **General**, encontramos los principales parámetros del escenario :
 
@@ -86,7 +87,7 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 >
 > El modo programado usa sintaxis **Cron**. Por ejemplo, puede ejecutar un escenario cada 20 minutos con `* / 20 * * * *`, o a las 5 a.m. para resolver una multitud de cosas para el día con `0 5 * * *`. La ? a la derecha de un programa le permite configurarlo sin ser un especialista en sintaxis de Cron.
 
-### Pestaña Escenario
+## Pestaña Escenario
 
 Aquí es donde construirás tu escenario. Después de crear el escenario, su contenido está vacío, por lo que hará ... nada. Tienes que empezar con **Agregar bloque**, con el botón de la derecha. Una vez que se ha creado un bloque, puede agregar otro **bloc** o un **action**.
 
@@ -101,7 +102,7 @@ Para mayor comodidad y no tener que reordenar constantemente los bloques en el e
 >
 > Una Ctrl Shift Z o Ctrl Shift Y le permite'**annuler** o rehacer una modificación (adición de acción, bloqueo ...).
 
-### Bloques
+## Bloques
 
 Aquí están los diferentes tipos de bloques disponibles. :
 
@@ -125,7 +126,7 @@ Cada bloque tiene sus opciones para manejarlos mejor :
     - El icono Pegar le permite pegar una copia del bloque copiado previamente después del bloque en el que utiliza esta función..  Ctrl Click en el icono reemplaza el bloque con el bloque copiado.
     - El icono: le permite eliminar el bloque con una solicitud de confirmación.. Ctrl Click elimina el bloque sin confirmación.
 
-#### Syo / Entonces / De lo contrario bloquea | Bucle | Dentro | A
+### Syo / Entonces / De lo contrario bloquea | Bucle | Dentro | A
 
 Para las condiciones, Jeedom trata de hacer posible escribirlas tanto como sea posible en lenguaje natural sin dejar de ser flexible..
 > NO use [] en pruebas de condición, solo son posibles paréntesis ().
@@ -147,11 +148,11 @@ Hay tres botones disponibles a la derecha de este tipo de bloque para selecciona
 Una vez que se completa la condición, debe usar el botón &quot;Agregar&quot; a la izquierda para agregar un nuevo **bloc** o un **action** en el bloque actual.
 
 
-#### Código de bloque
+### Código de bloque
 
 El bloque de código le permite ejecutar código php. Por lo tanto, es muy potente pero requiere un buen conocimiento del lenguaje php..
 
-##### Acceso a controles (sensores y actuadores):
+#### Acceso a controles (sensores y actuadores):
 -  `cmd::byString ($ string); ` : Devuelve el objeto de comando correspondiente.
     -   `$string`: Enlace al pedido deseado : `# [objeto] [equipo] [comando] #` (ex : `# [Lapartamento] [Lalarma] [Lactivo] #`)
 -  `cmd::byId ($ id); ` : Devuelve el objeto de comando correspondiente.
@@ -162,13 +163,13 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
         -  color : `$ opción = matriz ('color' => 'color en hexadecimal');`
         -  deslizador : `$ option = array ('slider' => 'valor deseado de 0 a 100');`
 
-##### Acceso al registro :
+#### Acceso al registro :
 -  `log::add ('nombre de archivo', 'nivel', 'mensaje'); `
     - nombre de archivo : Nombre del archivo de registro.
     - nivel : [depuración], [yonformación], [error], [evento].
     - mensaje : Mensaje para escribir en los registros.
 
-##### Acceso al escenario :
+#### Acceso al escenario :
 - `$ escenario-> getName ();` : Devuelve el nombre del escenario actual.
 - `$ escenario-> getGroup ();` : Devuelve el grupo de escenarios..
 - `$ escenario-> getIsActive ();` : Devuelve el estado del escenario..
@@ -190,7 +191,9 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 >
 > Adición de una función de búsqueda en el bloque de Código : Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 
-#### Bloque de comentarios
+[Escenarios : Pequeños códigos con amigos](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
+
+### Bloque de comentarios
 
 El bloque de comentarios actúa de manera diferente cuando está oculto. Sus botones a la izquierda desaparecen, así como el título del bloque, y reaparecen al pasar el cursor. Del mismo modo, la primera línea del comentario se muestra en negrita..
 Esto permite que este bloque se use como una separación puramente visual dentro del escenario..
@@ -493,13 +496,13 @@ La continuación, tiene la parte para aplicar su plantilla al escenario actual.
 
 Dado que de un Jeedom a otro o de una instalación a otra, los comandos pueden ser diferentes, Jeedom le solicita la correspondencia de los comandos entre los presentes durante la creación de la plantilla y los presentes en el hogar. Solo tiene que completar la correspondencia de las órdenes y luego aplicar.
 
-### Adición de la función php
+## Adición de la función php
 
 > **IMPORTANT**
 >
 > Agregar funciones PHP está reservado para usuarios avanzados. El más mínimo error puede ser fatal para su Jeedom.
 
-#### Configurar
+### Configurar
 
 Vaya a la configuración de Jeedom, luego OS / DB e inicie el editor de archivos.
 

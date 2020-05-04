@@ -9,6 +9,7 @@ Registro de Alterações Jeedom V4
 - Painel de instrumentos : Modo de edição agora inserindo o bloco movido.
 - Painel de instrumentos : Agora, podemos clicar no widget de ações * time * para abrir a janela do histórico do comando info vinculado..
 - Painel de instrumentos : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
+- Painel de instrumentos : Adição de um botão para filtrar os itens exibidos por categoria.
 - Painel de instrumentos : Ctrl Clique em uma informação para abrir a janela do histórico com todos os comandos históricos do equipamento visíveis no bloco. Ctrl Clique em uma legenda para exibir apenas esta, Alt Clique para exibir todas.
 - Painel de instrumentos : Capacidade de desfocar imagens de fundo (Configuração -> Interface).
 - Ferramentas / Widgets : A função * Aplicar em * mostra os comandos vinculados marcados, desmarcando um aplicará o widget principal padrão neste comando.
@@ -56,7 +57,7 @@ Registro de Alterações Jeedom V4
 - WebApp : Agora podemos selecionar / copiar parte de um log.
 - WebApp : Na pesquisa em um log, adição de um botão x para cancelar a pesquisa.
 - WebApp : Persistência da alternância do tema (8h).
-- WebApp : Em um design, um clique com três doights retorna à página inicial.
+- WebApp : Em um design, um clique com três dedos retorna à página inicial.
 - WebApp : Exibição de cenários por grupo.
 - WebApp : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).<br/><br/>
 - Documentação : Adaptações de acordo com v4 e v4.1.

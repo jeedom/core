@@ -38,6 +38,7 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 
 - **ID** : Ao lado da palavra **Geral**, este é o identificador de cenário.
 - **statut** : *Parado * onde * Em andamento *, indica o estado atual do cenário.
+- **Estado anterior / seguinte** : Cancelar / refazer uma ação.
 - **Adicionar bloco** : Permite adicionar um bloco do tipo desejado ao cenário (veja abaixo).
 - **Log** : Exibe os logs do cenário.
 - **Dupliquer** : Copie o cenário para criar um novo com outro nome.
@@ -58,7 +59,7 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 >
 > Um **Ctrl Clique no botão executar** permite salvar, executar e exibir diretamente o log do cenário (se o nível do log não for Nenhum).
 
-### Guia Geral
+## Guia Geral
 
 Na aba **Geral**, encontramos os principais parâmetros do cenário :
 
@@ -86,7 +87,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 >
 > O modo agendado usa sintaxe **Cron**. Você pode, por exemplo, executar um cenário a cada 20 minutos com `* / 20 * * * *` onde às 5 da manhã para acertar várias coisas do dia com `0 5 * * *`. O ? à direita de um programa permite configurá-lo sem ser um especialista em sintaxe do Cron.
 
-### Guia Cenário
+## Guia Cenário
 
 É aquEu que você criará seu cenário. Depois de criar o cenário, seu conteúdo está vazio, então ele fará ... nada. Você tem que começar com **Adicionar bloco**, com o botão à direita. Após a criação de um bloco, você pode adicionar outro **bloc** onde um **action**.
 
@@ -101,7 +102,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 >
 > Ctrl Shift Z onde Ctrl Shift Y permite que você'**annuler** onde refazer uma modificação (adição de ação, bloco ...).
 
-### Blocos
+## Blocos
 
 AquEu estão os diferentes tipos de blocos disponíveis :
 
@@ -125,7 +126,7 @@ Cada bloco tem suas opções para lidar melhor com eles :
     - O ícone Colar permite colar uma cópia do bloco copiado anteriormente após o bloco no qual você usa esta função..  Ctrl Clique no ícone substituEu o bloco pelo bloco copiado.
     - O ícone - permite excluir o bloco, com uma solicitação de confirmação. Ctrl Clique excluEu o bloco sem confirmação.
 
-#### Se / Então / Caso contrário, bloqueia | Laço | Dans | A
+### Se / Então / Caso contrário, bloqueia | Laço | Dans | A
 
 Pelas condições, o Jeedom tenta torná-las possíveis o máximo possível em linguagem natural, mantendo-se flexível.
 > NÃO use [] em testes de condição, apenas parênteses () são possíveis.
@@ -147,11 +148,11 @@ Três botões estão disponíveis à direita deste tipo de bloco para selecionar
 Depois que a condição estiver concluída, você deve usar o botão "adicionar" à esquerda para adicionar um novo **bloc** onde um **action** no bloco atual.
 
 
-#### Código de bloco
+### Código de bloco
 
 O bloco CÓDIGO permite executar código php. Portanto, é muito poderoso, mas requer um bom conhecimento da linguagem php.
 
-##### Acesso a controles (sensores e atuadores):
+#### Acesso a controles (sensores e atuadores):
 -  `cmd::byString ($ string); ` : Retorna o objeto de comando correspondente.
     -   `$string`: Link para o pedido desejado : `# [objeto] [equipamento] [comando] #` (ex : `# [àpartamento] [àlarme] [àtivo] #`)
 -  `cmd::byId ($ id); ` : Retorna o objeto de comando correspondente.
@@ -162,13 +163,13 @@ O bloco CÓDIGO permite executar código php. Portanto, é muito poderoso, mas r
         -  cor : `$ option = array ('color' => 'cor em hexadecimal');`
         -  controle deslizante : `$ option = array ('slider' => 'valor desejado de 0 a 100');`
 
-##### Acesso ao log :
+#### Acesso ao log :
 -  `log::add ('nome do arquivo', 'nível', 'mensagem'); `
     - filename : Nome do arquivo de log.
     - nível : [depuração], [Eunformações], [erro], [evento].
     - Mensagem : Mensagem para escrever nos logs.
 
-##### Acesso ao cenário :
+#### Acesso ao cenário :
 - `$ cenário-> getName ();` : Retorna o nome do cenário atual.
 - `$ cenário-> getGroup ();` : Retorna o grupo de cenários.
 - `$ cenário-> getIsActive ();` : Retorna o estado do cenário.
@@ -190,7 +191,9 @@ O bloco CÓDIGO permite executar código php. Portanto, é muito poderoso, mas r
 >
 > Adição de uma função de pesquisa no bloco Código : Pesquisa : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 
-#### Bloco de comentários
+[Cenas : Pequenos códigos com amigos](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
+
+### Bloco de comentários
 
 O bloco de comentários age de maneira diferente quando está oculto. Seus botões à esquerda desaparecem, assim como o título do bloco, e reaparecem ao passar o mouse.. Da mesma forma, a primeira linha do comentário é exibida em negrito.
 Isso permite que esse bloco seja usado como uma separação puramente visual dentro do cenário.
@@ -493,13 +496,13 @@ Abaixo, você tem a parte para aplicar seu modelo ao cenário atual.
 
 Como, de um Jeedom para outro onde de uma instalação para outro, os comandos podem ser diferentes, o Jeedom solicita a correspondência dos comandos entre os presentes durante a criação do modelo e os presentes em casa. Você só precisa preencher a correspondência dos pedidos e aplicar.
 
-### Adição da função php
+## Adição da função php
 
 > **IMPORTANT**
 >
 > à adição da função PHP é reservada para usuários avançados. O menor erro pode ser fatal para o seu Jeedom.
 
-#### Configurar
+### Configurar
 
 Vá para a configuração do Jeedom, então OS / DB e inicie o editor de arquivos.
 

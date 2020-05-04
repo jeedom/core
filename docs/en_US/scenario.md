@@ -38,6 +38,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 
 - **ID** : Next to the word **General**, this is the scenario identifier.
 - **statut** : *Stopped * or * In progress *, it indicates the current state of the scenario.
+- **Previous / next state** : Cancel / redo an Action.
 - **Add block** : Allows yor to add a block of the desired type to the scenario (see below).
 - **Log** : Displays the scenario logs.
 - **Dupliquer** : Copy the scenario to create a new one with another name.
@@ -58,7 +59,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 >
 > AT **Ctrl Click on the execute button** allows yor to directly save, execute and display the scenario log (if the log level is not None).
 
-### General tab
+## General tab
 
 In the tab **General**, we find the main parameters of the scenario :
 
@@ -86,7 +87,7 @@ In the tab **General**, we find the main parameters of the scenario :
 >
 > Scheduled mode uses syntax **Cron**. Yor can for example execute a scenario every 20 minutes with `* / 20 * * * *`, or at 5am to settle a multitude of things for the day with `0 5 * * *`. The ? to the right of a program allows yor to sand it without being a specialist in Cron syntax.
 
-### Scenario tab
+## Scenario tab
 
 This is where yor will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. Yor have to Start with **Add block**, with the button on the right. Once a block has been created, yor can add another **bloc** or a **action**.
 
@@ -101,7 +102,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 >
 > AT Ctrl Shift Z or Ctrl Shift Y allows yor to'**annuler** or redo a modification (addition of action, block ...).
 
-### Blocks
+## Blocks
 
 Here are the different types of blocks available :
 
@@ -125,7 +126,7 @@ Each block has its options to better handle them :
     - The Paste icon allows yor to paste a copy of the block previously copied after the block on which yor use this function..  Ctrl Click on the icon replaces the block with the copied block.
     - The icon - allows yor to delete the block, with a confirmation request. Ctrl Click deletes the block without confirmation.
 
-#### If / Then / Otherwise blocks | Loop | In | A
+### If / Then / Otherwise blocks | Loop | In | A
 
 For the conditions, Jeedom tries to make it possible to write them as much as possible in natural language while remaining flexible.
 > DO NOT use [] in condition tests, only parentheses () are possible.
@@ -147,11 +148,11 @@ Three buttons are available on the right of this type of block to select an item
 Once the condition is completed, yor must use the &quot;add&quot; button on the left to add a new **bloc** or a **action** in the current block.
 
 
-#### Block Code
+### Block Code
 
 The Coded block allows yor to execute php code. It is therefore very powerful but requires a good knowledge of the php language.
 
-##### Access to controls (sensors and actuators):
+#### Access to controls (sensors and actuators):
 -  `cmd::byString ($ string); ` : Returns the corresponding command object.
     -   `$string`: Link to the desired order : `# [object] [equipment] [command] #` (ex : `# [ATpartment] [ATlarm] [ATctive] #`)
 -  `cmd::byId ($ id); ` : Returns the corresponding command object.
@@ -162,13 +163,13 @@ The Coded block allows yor to execute php code. It is therefore very powerful bu
         -  color : `$ option = array ('color' => 'color in hexadecimal');`
         -  slider : `$ option = array ('slider' => 'desired value from 0 to 100');`
 
-##### Access to log :
+#### Access to log :
 -  `log::add ('filename', 'level', 'message'); `
     - filename : Log file name.
     - level : [debug], [info], [error], [event].
     - Message : Message to write in the logs.
 
-##### Access to scenario :
+#### Access to scenario :
 - `$ scenario-> getName ();` : Returns the name of the current scenario.
 - `$ scenario-> getGroup ();` : Returns the scenario group.
 - `$ scenario-> getIsActive ();` : Returns the state of the scenario.
@@ -190,7 +191,9 @@ The Coded block allows yor to execute php code. It is therefore very powerful bu
 >
 > Addition of a search function in the Coded block : Search : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl + Shift + G
 
-#### Comment block
+[Scenarios : Little codes with friends](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
+
+### Comment block
 
 Comment block acts differently when it is hidden. Its buttons on the left disappear as well as the title of the block, and reappear on hover. Similarly, the first line of the comment is displayed in bold type.
 This allows this block to be used as a purely visual separation within the scenario.
@@ -493,13 +496,13 @@ Below, yor have the part to apply your template to the current scenario.
 
 Given that from one Jeedom to another or from one installation to another, the commands can be different, Jeedom asks yor for the correspondence of the commands between those present during the creation of the template and those present at home. Yor just have to fill in the correspondence of the orders then to apply.
 
-### Addition of php function
+## Addition of php function
 
 > **IMPORTANT**
 >
 > Adding PHP function is reserved for advanced users. The slightest error can be fatal for your Jeedom.
 
-#### Sand up
+### Sand up
 
 Go to the Jeedom configuration, then OS / DB and launch the file editor.
 

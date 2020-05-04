@@ -38,6 +38,7 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
 
 - **ID** : Neben dem Wort **General**, Dies ist die Szenariokennung.
 - **statut** : *Angehalten * oder * In Bearbeitung * zeigt den aktuellen Status des Szenarios an.
+- **Vorheriger / nächster Zustand** : Aktion abbrechen / wiederholen.
 - **Block hinzufügen** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)..
 - **Log** : Zeigt die Szenarioprotokolle an.
 - **Dupliquer** : Kopieren Sie das Szenario, um ein neues mit einem anderen Namen zu erstellen.
@@ -58,7 +59,7 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
 >
 > Ein **Strg Klicken Sie auf die Schaltfläche Ausführen** Mit dieser Option können Sie das Szenarioprotokoll direkt speichern, ausführen und anzeigen (wenn die Protokollebene nicht Keine ist)..
 
-### Registerkarte &quot;Allgemein&quot;
+## Registerkarte &quot;Allgemein&quot;
 
 In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
@@ -86,7 +87,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 >
 > Der geplante Modus verwendund die Syntax **Cron**. Sie können beispielsweise alle 20 Minuten ein Szenario mit `* / 20 * * * *` ausführen oder um 5 Uhr morgens mit `0 5 * * *` eine Vielzahl von Dingen für den Etikett erledigen. Die ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
 
-### Registerkarte &quot;Szenario&quot;
+## Registerkarte &quot;Szenario&quot;
 
 Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **bloc** oder a **action**.
 
@@ -101,7 +102,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 >
 > Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**annuler** oder eine Änderung wiederholen (Hinzufügung von Aktion, Block ...).
 
-### Blöcke
+## Blöcke
 
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
@@ -125,7 +126,7 @@ Jeder Block hat seine Optionen, um besser damit umzugehen :
     - Mit dem Symbol Einfügen können Sie eine Kopie des Blocks einfügen, der zuvor nach dem Block kopiert wurde, für den Sie diese Funktion verwenden..  Strg Klicken Sie auf das Symbol, um den Block durch den kopierten Block zu ersetzen.
     - Das Symbol - ermöglicht es Ihnen, den Block mit einer Bestätigungsanforderung zu löschen. Strg Klicken löscht den Block ohne Bestätigung.
 
-#### Wenn / Dann / Sonst blockiert | Schleife | In | A
+### Wenn / Dann / Sonst blockiert | Schleife | In | A
 
 Für die Bedingungen versucht Jeedom, es möglich zu machen, sie so viel wie möglich in natürlicher Sprache zu schreiben und dabeich flexibel zu bleiben.
 > Verwenden Sie [] NICHT in Bedingungstests, nur Klammern () sind möglich.
@@ -147,11 +148,11 @@ Rechts neben diesem Blocktyp stehen dreich Schaltflächen zur Auswahl eines zu t
 Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **bloc** oder a **action** im aktuellen Block.
 
 
-#### Blockcode
+### Blockcode
 
 Mit dem Code-Block können Sie PHP-CODE ausführen. Es ist daher sehr mächtig, erfordert aber gute Kenntnisse der PHP-Sprache.
 
-##### Zugang zu Steuerungen (Sensoren und Aktoren):
+#### Zugang zu Steuerungen (Sensoren und Aktoren):
 -  `cmd::byString ($ string); ` : Gibt das entsprechende Befehlsobjekt zurück.
     -   `$string`: Link zur gewünschten Bestellung : `# [Objekt] [Bisusrüstung] [Befehl] #` (z : `# [Wohnung] [Bislarm] [Bisktiv] #`)
 -  `cmd::byId ($ id); ` : Gibt das entsprechende Befehlsobjekt zurück.
@@ -162,13 +163,13 @@ Mit dem Code-Block können Sie PHP-CODE ausführen. Es ist daher sehr mächtig, 
         -  Farbe : `$ option = array ('color' => 'Farbe in hexadecimal');`
         -  Schieber : `$ option = array ('slider' => 'gewünschter Wert von 0 bis 100');`
 
-##### Zugriff auf das Protokoll :
+#### Zugriff auf das Protokoll :
 -  `log::add ('Dateiname', 'Ebene', 'Nachricht'); `
     - Dateiname : Name der Protokolldatei.
     - Ebene : [Debug], [Info], [Fehler], [Ereignis].
     - Nachricht : Nachricht zum Schreiben in die Protokolle.
 
-##### Zugriff auf das Szenario :
+#### Zugriff auf das Szenario :
 - $ Szenario-> getName (); ` : Gibt den Namen des aktuellen Szenarios zurück.
 - $ Szenario-> getGroup (); ` : Gibt die Szenariogruppe zurück.
 - $ Szenario-> getIsActive (); ` : Gibt den Status des Szenarios zurück.
@@ -190,7 +191,9 @@ Mit dem Code-Block können Sie PHP-CODE ausführen. Es ist daher sehr mächtig, 
 >
 > Hinzufügen einer Suchfunktion im Codeblock : Suche : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G.
 
-#### Kommentarblock
+[Szenarien : Kleine Codes mit Freunden](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
+
+### Kommentarblock
 
 Der Kommentarblock verhält sich anders, wenn er ausgeblendund ist. Die Schaltflächen auf der linken Seite sowie der Titel des Blocks verschwinden und werden beim Schweben wieder angezeigt. Ebenso wird die erste Zeile des Kommentars fett gedruckt.
 Dadurch kann dieser Block als rein visuelle Trennung innerhalb des Szenarios verwendund werden.
@@ -493,13 +496,13 @@ Unten haben Sie den Teil, um Ihre Vorlage auf das aktuelle Szenario anzuwenden.
 
 Da die Befehle von einem Jeedom zum anderen oder von einer Installation zur anderen unterschiedlich sein können, bittund Jeedom Sie um die Entsprechung der Befehle zwischen den beich der Erstellung der Vorlage vorhandenen und den zu Hause vorhandenen. Sie müssen nur die Korrespondenz der Bestellungen ausfüllen, um sich zu bewerben.
 
-### Hinzufügung der PHP-Funktion
+## Hinzufügung der PHP-Funktion
 
 > **IMPORTANT**
 >
 > Das Hinzufügen der PHP-Funktion ist fortgeschrittenen Benutzern vorbehalten. Der kleinste Fehler kann für Ihr Jeedom fatal sein.
 
-#### Einrichten
+### Einrichten
 
 Gehen Sie zur Jeedom-Konfiguration, dann zu OS / DB und starten Sie den Datei-Editor.
 

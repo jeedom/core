@@ -9,6 +9,7 @@ Changelog Jeedom V4
 - Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - Armaturenbrett : Wir können jetzt auf die * Zeit * der Zeitaktions-Widgets klicken, um das Verlaufsfenster des Befehls für verknüpfte Informationen zu öffnen..
 - Armaturenbrett : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
+- Armaturenbrett : Hinzufügen einer Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
 - Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - Armaturenbrett : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche).
 - Tools / Widgets : Die Funktion * Anwenden auf * zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
@@ -56,7 +57,7 @@ Changelog Jeedom V4
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
 - WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
 - WebApp : Persistenz des Themas umschalten (8h).
-- WebApp : Bei einem Design kehrt ein Klick mit drei Punkten zur Startseite zurück.
+- WebApp : Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
 - WebApp : Anzeige von Szenarien nach Gruppe.
 - WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).<br/><br/>
 - Dokumentation : Anpassungen gemäß v4 und v4.1.

@@ -9,6 +9,7 @@ Registro de cambios Jeedom V4
 - Salpicadero : El modo de edición ahora inserta el mosaico movido.
 - Salpicadero : Ahora podemos hacer clic en el * tiempo * de los widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada..
 - Salpicadero : El tamaño del mosaico de un equipo nuevo se adapta a su contenido..
+- Salpicadero : Agregar un botón para filtrar los elementos mostrados por categoría.
 - Salpicadero : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
 - Salpicadero : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - Herramientas / widgets : La función * Aplicar en * muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado en este comando.
@@ -56,7 +57,7 @@ Registro de cambios Jeedom V4
 - Aplicación web : Ahora podemos seleccionar / copiar parte de un registro.
 - Aplicación web : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
 - Aplicación web : Persistencia del cambio de tema (8h).
-- Aplicación web : En un diseño, un clic con tres doights regresa a la página de inicio.
+- Aplicación web : En un diseño, un clic con tres dedos vuelve a la página de inicio.
 - Aplicación web : Visualización de escenarios por grupo..
 - Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
 - Documentación : Adaptaciones en línea con v4 y v4.1.
