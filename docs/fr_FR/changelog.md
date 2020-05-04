@@ -1,5 +1,5 @@
 
-Changelog Jeedom V4
+Changelog Jeedom V4.1
 =========
 
 4.1.0
