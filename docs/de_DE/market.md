@@ -1,5 +1,5 @@
 Doc etwas Besonderes, weil es nur Ihre Seite behandelt
-MarktProfil.
+Marktprofil.
 
 Verfügbar, indem Sie zu Ihrem Benutzernamen und dann zu Ihrem Profil gehen
 Markt (ein bisschen wie bei Jeedom).
@@ -16,7 +16,7 @@ Profil :
 
     -   **Login** : Ihr Login auf dem Markt kann nicht geändert werden
 
-    -   **Name** : Ihr Name (diese Informationen sind nur nützlich für
+    -   **Nom** : Ihr Name (diese Informationen sind nur nützlich für
         E-Mails mehr Spaß machen)
 
     -   **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich
@@ -24,9 +24,9 @@ Profil :
 
     -   **Benutzername im Forum** : Dein Benutzername im Forum
 
-    -   **E-Mail** : Deine Mail
+    -   **Email** : Deine Mail
 
-    -   **Sprache** : Deine Sprache
+    -   **Langue** : Deine Sprache
 
     -   **Passwort &amp;&amp; Passwort bestätigen** : lass uns
         Ändern Sie Ihr Passwort
@@ -45,15 +45,15 @@ Für die Profis :
 
 -   **Installer-E-Mail-Konto** : Ihre professionelle Kontakt-E-Mail
 
--   **Unterstützunganfragen Empfänger** : wissen, wer die erhalten wird
-    Unterstützung-E-Mails (Endkunde, Installer oder beides)
+-   **Supportanfragen Empfänger** : wissen, wer die erhalten wird
+    Support-E-Mails (Endkunde, Installer oder beides)
 
-    -   **TOS**
+    -   **CGU**
 
--   **Benutzer** : Allgemeine Nutzungsbedingungen (beachten Sie
+-   **Utilisateur** : Allgemeine Nutzungsbedingungen (beachten Sie
     lies sie gut, weil sie dich verpflichten)
 
--   **Entwickler** : Allgemeine Nutzungsbedingungen für
+-   **Developpeur** : Allgemeine Nutzungsbedingungen für
     Entwickler
 
     -   **Tickets**
@@ -61,7 +61,7 @@ Für die Profis :
 -   **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat
     sowie Ihr Limit
 
--   **Unterstützung** : Schaltfläche zum Senden einer Unterstützunganfrage (zugänglich
+-   **Support** : Schaltfläche zum Senden einer Supportanfrage (zugänglich
     auch durch das Ausrufezeichen oben rechts auf dem Markt oder
     auf deinem Jeedom)
 
@@ -73,14 +73,14 @@ Für die Profis :
     -   **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen
         Rechte und Dienstleistungen
 
-> **Spitze**
+> **Tip**
 >
 > Vergiss nicht zu sparen
 
 Meine Jeedoms 
 ===========
 
--   **Ebene**
+-   **Niveau**
 
     -   **Jeedom** : Ihr Service Pack
 
@@ -94,7 +94,7 @@ Meine Jeedoms
         of Jeedom-Installationen, die derzeit ebenfalls mit Ihrem Konto verknüpft sind
         dass die Grenze erlaubt
 
-> **Spitze**
+> **Tip**
 >
 > Manchmal werden Sie vom Markt zum Zurücksetzen aufgefordert
 > Ihre Installationsschlüssel, es ist normal, folgen Sie einfach was es ist
@@ -102,24 +102,24 @@ Meine Jeedoms
 
 -   **Meine Jeedoms** : Hier sind alle deine Jeedoms aufgelistet
 
-    -   **Name** : den Namen, den du deinem Jeedom geben willst (
+    -   **Nom** : den Namen, den du deinem Jeedom geben willst (
         im Namen der Sicherung gefunden, wenn Sie das Abonnement von haben
         Cloud-Backup)
 
-    -   **Zustand** : ermöglicht es, den Zustand der fraglichen Jeedom zu sehen
+    -   **Etat** : ermöglicht es, den Zustand der fraglichen Jeedom zu sehen
 
     -   **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom,
         Konfigurieren Sie in Jeedom, wenn Sie nichts setzen, wird es dort sein
         letzte bekannte IP
 
-    -   **Dns** : Mit dieser Option können Sie den Namen Ihres Dns anpassen
+    -   **DNS** : Mit dieser Option können Sie den Namen Ihres Dns anpassen
 
-    -   **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLss auf.
+    -   **URL** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
 
-    -   **Dns-Server** : sagt Ihnen, ob der Dns-Server, zu dem Sie
+    -   **DNS-Server** : sagt Ihnen, ob der DNS-Server, zu dem Sie
         sind beigefügt
 
-    -   **Dns-Status** : ermöglicht es, den Status des Dns anzuzeigen
+    -   **DNS-Status** : ermöglicht es, den Status des Dns anzuzeigen
 
     -   **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem
         Marktkonto (zur Erinnerung, dies erfolgt automatisch, wenn
@@ -132,7 +132,7 @@ Meine Jeedoms
 
     -   **Version** : die Version von Jeedom installiert
 
-> **Spitze**
+> **Tip**
 >
 > Vergiss nicht zu sparen
 
@@ -156,7 +156,7 @@ Meine Einkäufe / Aktionen / Spenden
 Hier finden Sie alle Ihre Einkäufe und können die Rückgabe der
 Rechnung oder Quittungs-E-Mail
 
-> **Wichtig**
+> **Important**
 >
 > Wenn Sie ein offizielles Plugin kaufen, erhalten Sie eine Rechnung. in
 > Für ein Plugin eines Drittanbieters ist es jedoch eine Quittung, für die Rechnung ist es erforderlich

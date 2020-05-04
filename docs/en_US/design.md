@@ -8,18 +8,18 @@ It is accessible by Home → Design
 >
 > It is possible to go directly to a Design thanks to the submenu.
 
-> **IMPORTANT**
+> **Important**
 >
-> All actions are done by right clickk on this page, attention
+> All actions are done by right click on this page, attention
 > to do it well in Design. During creation, it is therefore necessary to
-> do in the middle of the page (to be sure to be on the Design).
+> do in the middle of the page (to be sure to be on the design).
 
-In the menu (right clickk therefore), we find the
+In the menu (right click therefore), we find the
 following actions :
 
--   **Designs** : Displays the list of your Designs and access them
+-   **Designs** : Displays the list of your designs and access them
 
--   **Editing** : Switch to edit mode
+-   **Edition** : Switch to edit mode
 
 -   **Full screen** : Allows you to use the entire web page, which
     will remove Jeedom menu from the top
@@ -35,8 +35,8 @@ following actions :
 
     -   **Towards a view** : Add a link to a view
 
-    -   **Towards a Design** : Add a link to another
-        Design
+    -   **Towards a design** : Add a link to another
+        design
 
 -   **Add equipment** : Adds equipment
 
@@ -45,16 +45,16 @@ following actions :
 -   **Add image / camera** : Allows you to add an image or stream
     of a camera
 
--   **Add area** : Add a transparent clickkable area
-    who can execute a series of actions on a clickk (depending
+-   **Add area** : Add a transparent clickable area
+    who can execute a series of actions on a click (depending
     or not the status of another order)
 
 -   **Add summary** : Adds information from an object summary or
     general
 
--   **Viewing**
+-   **Affichage**
 
-    -   **Any** : Does not display any grid
+    -   **Aucune** : Does not display any grid
 
     -   **10x10** : Displays a 10 by 10 grid
 
@@ -72,20 +72,20 @@ following actions :
     -   **Hide item highlighting** : Hide it
         highlight around items
 
--   **Delete Design** : delete Design
+-   **Delete design** : delete design
 
--   **Create a Design** : allows to add a Design
+-   **Create a design** : allows to add a design
 
--   **Duplicate Design** : duplicate the current Design
+-   **Duplicate design** : duplicate the current design
 
--   **Configure the Design** : access to Design configuration
+-   **Configure the design** : access to Design configuration
 
--   **Save** : allows to save the Design (attention, there are
+-   **Sauvegarder** : allows to save the Design (attention, there are
     also automatic backups during certain actions)
 
-> **IMPORTANT**
+> **Important**
 >
-> The configuration of the Design elements is done by clickking on
+> The configuration of the Design elements is done by clicking on
 > these.
 
 Design configuration 
@@ -95,7 +95,7 @@ Found here :
 
 -   **General**
 
-    -   **Last name** : The name of your Design
+    -   **Nom** : The name of your design
 
     -   **Transparent background** : makes the background transparent. Be careful if the
         box is checked, the background color is not used
@@ -103,31 +103,31 @@ Found here :
     -   **Background color** : Design background color (white
         by default)
 
-    -   **Coded** : Access code to your Design (if empty, no code
+    -   **Code** : Access code to your Design (if empty, no code
         is not requested)
 
     -   **Icon** : An icon for it (appears in the menu
-        choice of Design)
+        choice of design)
 
-    -   **Picture**
+    -   **Image**
 
-        -   **To send** : allows to add a background image to the Design
+        -   **Envoyer** : allows to add a background image to the design
 
         -   **Delete image** : delete image
 
--   **Sizes**
+-   **Tailles**
 
-    -   **Size (WxH)** : Allows you to fix the size of your Design
+    -   **Size (WxH)** : Allows you to fix the size of your design
         (gray frame in edit mode)
 
 General configuration of elements 
 ===================================
 
-> **NOTE**
+> **Note**
 >
 > Depending on the type of item, options may change.
 
-> **NOTE**
+> **Note**
 >
 > The selected item is highlighted in red (instead of green
 > for everyone else).
@@ -135,7 +135,7 @@ General configuration of elements
 Display setting 
 ---------------------
 
--   **Depth** : allows to choose the depth level
+-   **Profondeur** : allows to choose the depth level
 
 -   **Position X (%)** :
 
@@ -159,7 +159,7 @@ Lock
 -----------
 
 Locks the element so that it is no longer movable or
-resizable.
+redimensionnable.
 
 Graphic 
 =========
@@ -181,7 +181,7 @@ Display settings
 
 -   **Transparent background** : makes the background transparent
 
--   **Border** : add a border, beware the syntax is
+-   **Bordure** : add a border, beware the syntax is
     HTML (be careful, you must use CSS syntax, for example :
     solid 1px black)
 
@@ -193,7 +193,7 @@ Allows you to choose the commands to grapher
 Text / html 
 =========
 
--   **Icon** : Icon to display in front
+-   **Icone** : Icon to display in front
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
@@ -204,7 +204,7 @@ Text / html
 -   **Smooth it out** : allows you to round off the angles (do not
     forget to put%, ex 50%)
 
--   **Border** : add a border, beware the syntax is
+-   **Bordure** : add a border, beware the syntax is
     HTML (use CSS syntax, for example : solid
     1px black)
 
@@ -214,11 +214,11 @@ Text / html
 -   **Text alignment** : allows you to choose the alignment of the
     text (left / right / centered)
 
--   **Fat** : bold text
+-   **Gras** : bold text
 
--   **Text** : Text in HTML code that will be in the element
+-   **Texte** : Text in HTML code that will be in the element
 
-> **IMPORTANT**
+> **Important**
 >
 > If you put HTML code (especially Javascript), be careful
 > to check it before because you can if there is an error in it
@@ -239,9 +239,9 @@ Link
 Display settings 
 ---------------------
 
--   **Last name** : Name of the link (displayed text)
+-   **Nom** : Name of the link (displayed text)
 
--   **Link** : Link to the Design or view in question
+-   **Lien** : Link to the Design or view in question
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
@@ -252,7 +252,7 @@ Display settings
 -   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : allows
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -261,7 +261,7 @@ Display settings
 -   **Text alignment** : allows you to choose the alignment of the
     text (left / right / centered)
 
--   **Fat** : bold text
+-   **Gras** : bold text
 
 Equipment 
 ==========
@@ -297,10 +297,10 @@ Picture / Camera
 Display settings 
 ---------------------
 
--   **Pin up** : defines what you want to display, still image or
+-   **Afficher** : defines what you want to display, still image or
     stream from a camera
 
--   **Picture** : allows you to send the image in question (if you have
+-   **Image** : allows you to send the image in question (if you have
     choose an image)
 
 -   **Camera** : camera to display (if you chose camera)
@@ -316,9 +316,9 @@ Display settings
 
 ### Single macro 
 
-In this mode, a clickk on the zone performs one or more actions.
+In this mode, a click on the zone performs one or more actions.
 
-Here you just need to indicate the list of actions to do when clickking
+Here you just need to indicate the list of actions to do when clicking
 on the area
 
 ### Binary macro 
@@ -336,15 +336,15 @@ for the Off
 
 ### Hover widget 
 
-In this mode, when hovering or clickking in the Jeedom area, you
+In this mode, when hovering or clicking in the Jeedom area, you
 display the widget in question
 
--   **Equipment** : widget to display when hovering or clickking
+-   **Equipement** : widget to display when hovering or clicking
 
 -   **Show on flyover** : if checked, displays the widget on hover
 
--   **View on one clickk** : if checked, then the widget is displayed at
-    click
+-   **View on one click** : if checked, then the widget is displayed at
+    clic
 
 -   **Position** : allows you to choose the location where the
     widget (default bottom right)
@@ -352,7 +352,7 @@ display the widget in question
 Summary 
 ======
 
--   **Link** : Used to indicate the summary to be displayed (General for the
+-   **Lien** : Used to indicate the summary to be displayed (General for the
     global if not indicate the object)
 
 -   **Background color** : allows you to change the background color or
@@ -364,21 +364,21 @@ Summary
 -   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : allows
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
     allows you to change the font size
 
--   **Fat** : bold text
+-   **Gras** : bold text
 
 
 Faq 
 ======
 
->**I can no longer edit my Design**
+>**I can no longer edit my design**
 >
->If you have put a widget or an image that takes almost the entire Design, you must clickk outside the widget or image to access the menu by right-clickking.
+>If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
 >**Delete a Design that no longer works**
 >

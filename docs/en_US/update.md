@@ -10,10 +10,10 @@ The Update Center page
 ================================
 
 It is accessible from the menu **Administration → Updating center
-day**.
+jour**.
 
 You will find, on the left, all the functionalities of
-Jeedom and on the right part **Information** who describes what he
+Jeedom and on the right part **Informations** who describes what he
 happened, when you launched an update.
 
 Functions at the top of the page. 
@@ -45,7 +45,7 @@ Jeedoms Sources :
 -   **Update to reapply** : Allows you to reapply a bet
     up to date. (NB : Not all updates can be reapplied.)
 
-> **IMPORTANT**
+> **Important**
 >
 > Before an update, by default, Jeedom will make a backup. In
 > if there is a problem when applying an update, Jeedom will
@@ -65,12 +65,12 @@ The table consists of two tabs :
 -   **Core and Plugins** : Contains basic Jeedom software and
     list of installed plugins.
 
--   **Other** : Contains widgets, scripts, etc..
+-   **Autre** : Contains widgets, scripts, etc..
 
-You will find the following information : \* **Status** : OK or NOK.
-Allows to know the current state of the plugin. \* **Last name** : You there
+You will find the following information : \* **Statut** : OK or NOK.
+Allows to know the current state of the plugin. \* **Nom** : You there
 find the source of the element, the type of element and its name. \*
-**Version** : Indicates the specific version of the item. \* **Jeedoms Sources** :
+**Version** : Indicates the specific version of the item. \* **Options** :
 Check this box if you do not want this item to be updated.
 day during the general update (Button **Update**).
 
@@ -84,7 +84,7 @@ every element :
 
 -   **Reinstate** : Force resettlement.
 
--   **Remove** : Allows you to uninstall it.
+-   **Supprimer** : Allows you to uninstall it.
 
 -   **Check** : Query source for updates to find out if
     a new update is available.
@@ -95,7 +95,7 @@ every element :
 -   **Changelog** : Access the list of changes in the
     update.
 
-> **IMPORTANT**
+> **Important**
 >
 > If the changelog is empty but you still have an update
 > update means that the documentation has been updated.
@@ -118,7 +118,7 @@ Once connected, this is the command to perform :
 
 The possible parameters are :
 
--   **`mode`** : `force`, pour lancer une update en mode forcé (ne
+-   **`mode`** : `force`, to launch an update in forced mode (do not
     ignores errors).
 
 -   **`version`** : followed by the version number, to reapply the

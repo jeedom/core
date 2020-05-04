@@ -2,7 +2,7 @@ Es informiert über alle Jeedom-Anwendungsaufgaben, die auf dem ausgeführt werd
 Server. Dieses Menü ist wissentlich oder am zu verwenden
 Technischen Support anfordern.
 
-> **Wichtig**
+> **Important**
 >
 > Im Falle eines Missbrauchs auf dieser Seite jede Anfrage für
 > Unterstützung kann Ihnen verweigert werden.
@@ -20,9 +20,9 @@ Oben rechts haben Sie :
 
 -   **Cool** : eine Schaltfläche zum Aktualisieren der Aufgabentabelle
 
--   **Hinzufügen** : eine Schaltfläche zum Hinzufügen eines Cron-Jobs
+-   **Ajouter** : eine Schaltfläche zum Hinzufügen eines Cron-Jobs
 
--   **Rekord** : eine Schaltfläche zum Speichern Ihrer Änderungen.
+-   **Enregistrer** : eine Schaltfläche zum Speichern Ihrer Änderungen.
 
 Unten finden Sie die Tabelle aller vorhandenen Aufgaben
 (Seien Sie vorsichtig, einige Aufgaben können Unteraufgaben starten, so ist es
@@ -32,10 +32,10 @@ Seite). In dieser Tabelle finden wir :
 -   **\.#** : Aufgaben-ID, kann zum Verknüpfen von a hilfreich sein
     Prozess, der läuft und was er wirklich tut
 
--   **Aktion** : eine Schaltfläche zum Starten oder Stoppen der Funktion
+-   **Action** : eine Schaltfläche zum Starten oder Stoppen der Funktion
     seinen Status und eine Schaltfläche, um den Cron im Detail zu sehen (wie in der Datenbank gespeichert)
 
--   **Aktiva** : Gibt an, ob die Aufgabe aktiv ist (kann gestartet werden
+-   **Actif** : Gibt an, ob die Aufgabe aktiv ist (kann gestartet werden
     von Jeedom) oder nicht
 
 -   **PID** : gibt die aktuelle Prozess-ID an
@@ -45,20 +45,20 @@ Seite). In dieser Tabelle finden wir :
     Es wird empfohlen, diesen Wert niemals zu berühren und insbesondere niemals
     verringern Sie es
 
--   **Single** : Wenn es "Ja" ist, wird die Aufgabe einmal gestartet
+-   **Unique** : Wenn es "Ja" ist, wird die Aufgabe einmal gestartet
     dann wird gelöscht
 
--   **Klasse** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (can
+-   **Classe** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (can
     leer sein)
 
--   **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht)
+-   **Fonction** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht)
     wenn die Klasse leer ist)
 
--   **Programmierung** : Programmieren der Aufgabe im CRON-Format
+-   **Programmation** : Programmieren der Aufgabe im CRON-Format
 
--   **Zeitüberschreitung** : maximale Laufzeit der Aufgabe. Wenn die
+-   **Timeout** : maximale Laufzeit der Aufgabe. Wenn die
     Aufgabe ist ein Dämon, dann wird es automatisch gestoppt und
-    am Ende des Zeitüberschreitungs neu gestartet
+    am Ende des Timeouts neu gestartet
 
 -   **Letzter Start** : Datum des letzten Taskstarts
 
@@ -66,12 +66,12 @@ Seite). In dieser Tabelle finden wir :
     Dämon wird immer bei 0 sein, also mach dir keine Sorgen über andere Aufgaben
     kann 0s sein)
 
--   **Status** : aktueller Status der Aufgabe (zur Erinnerung eine Daemon-Aufgabe
+-   **Statut** : aktueller Status der Aufgabe (zur Erinnerung eine Daemon-Aufgabe
     ist immer noch "laufen")
 
--   **Unterdrückung** : Aufgabe löschen
+-   **Suppression** : Aufgabe löschen
 
 
-# Zuhörer
+# Listener
 
 Die Zuhörer sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)

@@ -10,10 +10,10 @@ La página del Centro de actualizaciones
 ================================
 
 Se puede acceder desde el menú. **Administración → Centro de actualización
-día**.
+jour**.
 
 Encontrará, a la izquierda, todas las funcionalidades de
-Jeedom y en la parte correcta **Información** quien describe lo que el
+Jeedom y en la parte correcta **Informations** quien describe lo que el
 sucedió, cuando lanzaste una actualización.
 
 Funciones en la parte superior de la página.. 
@@ -45,14 +45,14 @@ opciones :
 -   **Actualización para volver a aplicar** : La permite volver a aplicar una apuesta.
     al día. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
-> **Importante**
+> **Important**
 >
 > Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. en
 > si hay un problema al aplicar una actualización, Jeedom lo hará
 > restaurar automáticamente la copia de seguridad realizada justo antes. Este principio
 > solo es válido para las actualizaciones de Jeedom y no para los complementos.
 
-> **Punta**
+> **Tip**
 >
 > Puede forzar una actualización de Jeedom, incluso si no lo hace
 > no ofrezcas ninguna.
@@ -65,16 +65,16 @@ La tabla consta de dos pestañas. :
 -   **Núcleo y complementos** : Contiene software básico Jeedom y
     lista de complementos instalados.
 
--   **Otro** : Contiene widgets, scripts, etc..
+-   **Autre** : Contiene widgets, scripts, etc..
 
-Encontrará la siguiente información : \* **Estatus** : OK o NOK.
-Permite conocer el estado actual del complemento. \* **Apellido** : Tu ahi
+Encontrará la siguiente información : \* **Statut** : OK o NOK.
+Permite conocer el estado actual del complemento. \* **Nom** : Tu ahi
 encuentre la fuente del elemento, el tipo de elemento y su nombre. \*
-**Versión** : Indica la versión específica del artículo.. \* **Opciones** :
+**Version** : Indica la versión específica del artículo.. \* **Options** :
 Marque esta casilla si no desea que este artículo se actualice.
 día durante la actualización general (Botón **Poner al día**).
 
-> **Punta**
+> **Tip**
 >
 > Para cada tabla, la primera línea permite el siguiente filtro
 > El estado, nombre o versión de los elementos presentes..
@@ -84,7 +84,7 @@ cada elemento :
 
 -   **Restablecer** : Reasentamiento forzado.
 
--   **Remove** : La permite desinstalarlo.
+-   **Supprimer** : La permite desinstalarlo.
 
 -   **Comprobar** : Consulte la fuente de actualizaciones para averiguar si
     hay una nueva actualización disponible.
@@ -92,10 +92,10 @@ cada elemento :
 -   **Poner al día** : La permite actualizar el elemento (si tiene
     una actualización).
 
--   **Cambios** : Acceda a la lista de cambios en el
+-   **Changelog** : Acceda a la lista de cambios en el
     actualización.
 
-> **Importante**
+> **Important**
 >
 > Si el registro de cambios está vacío pero aún tiene una actualización
 > actualización significa que la documentación ha sido actualizada.
@@ -103,7 +103,7 @@ cada elemento :
 > cambios, ya que no necesariamente hay. (a menudo es una apuesta
 > traducción de documentación)
 
-> **Punta**
+> **Tip**
 >
 > Tenga en cuenta que &quot;núcleo : jeedom &quot;significa&quot; actualizar el software
 > Base Jeedom".
@@ -118,7 +118,7 @@ Una vez conectado, este es el comando para realizar :
 
 Los posibles parámetros son :
 
--   **`mode`** : `force`, pour lancer une actualización en mode forcé (ne
+-   **`mode`** : `force`, para iniciar una actualización en modo forzado (no
     ignora los errores).
 
 -   **`version`** : seguido del número de versión, para volver a aplicar el

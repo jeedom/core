@@ -21,7 +21,7 @@ módulo, así como la fecha en que la información del nivel de batería
 ha sido actualizado. También puede ver si se ha establecido un umbral específico
 banco de trabajo para el módulo particular (representado por una mano)
 
-> **Punta**
+> **Tip**
 >
 > Los umbrales de alerta / advertencia en los niveles de batería son
 > configurable globalmente en la configuración de Jeedom
@@ -45,7 +45,7 @@ Otros tipos de alertas se pueden encontrar aquí.
 Cada alerta estará representada por el color del mosaico (el nivel
 alerta) y un logotipo en la parte superior izquierda (el tipo de alerta)
 
-> **Punta**
+> **Tip**
 >
 > Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en
 > "no visible". Sin embargo, es interesante notar que si el módulo
@@ -76,7 +76,7 @@ y sintetiza varias cosas :
     un comando de acción y que permite ejecutar uno o más otros
     acciones antes o después de la acción en cuestión)
 
-> **Punta**
+> **Tip**
 >
 > La tabla le permite ver muy textualmente las acciones.
 > definido. Se pueden agregar otros tipos de acciones definidas.
@@ -117,7 +117,7 @@ Y se usa en muchos otros lugares como (no exhaustivo) :
 
 -   en algunos complementos
 
-> **Punta**
+> **Tip**
 >
 > La tabla proporciona una vista muy textual de los comandos.
 > huérfano. Su propósito es poder identificar rápidamente todos los

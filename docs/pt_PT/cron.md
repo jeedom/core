@@ -1,77 +1,77 @@
+Informa todas as tarefas de aplicativos Jeedom executadas no
+garçom. Este menu deve ser usado conscientemente ou no
+solicitar suporte técnico.
 
-
-.
-
-> ****
+> **Important**
 >
-> 
-> .
+> Em caso de manuseio incorreto nesta página, qualquer solicitação de
+> suporte pode ser negado você.
 
- ****
+Para acessá-lo, vá para **Administração → Mecanismo de Tarefas**
 :
 
-# 
+# Cron
 
- :
+No canto superior direito, você tem :
 
--   **Desativar o sistema cron** : 
-    
-    
+-   **Desativar o sistema cron** : um botão para desativar ou
+    reative todas as tarefas (se você desabilitar todas, mais
+    nada funcionará no seu Jeedom)
 
--   **Legal** : 
+-   **Legal** : um botão para atualizar a tabela de tarefas
 
--   **Adicionar** : 
+-   **Ajouter** : um botão para adicionar um trabalho cron
 
--   **Registro** : .
+-   **Enregistrer** : um botão para salvar suas alterações.
 
+Abaixo você tem a tabela de todas as tarefas existentes
+(tenha cuidado, algumas tarefas podem iniciar subtarefas, por isso é
+É altamente recomendável nunca modificar informações sobre este
+página). Nesta tabela, encontramos :
 
+-   **\#** : ID da tarefa, pode ser útil para vincular um
+    processo em execução e o que realmente faz
 
+-   **Action** : um botão para iniciar ou parar a tarefa em função
+    seu status e um botão para ver o cron em detalhes (conforme armazenado no banco de dados)
 
- :
+-   **Actif** : indica se a tarefa está ativa (pode ser iniciada
+    por Jeedom) ou não
 
--   **#** : 
-    
+-   **PID** : Indica o ID do processo atual
 
--   **Ação** : 
-    
+-   **Demônio** : se esta caixa for "sim", a tarefa deve sempre
+    estar em progresso. Em seguida, você encontra a frequência do demônio, é
+    aconselhado a nunca tocar nesse valor e, especialmente, nunca
+    diminua
 
--   **Ativos** : 
-    
+-   **Unique** : se for "sim", a tarefa será iniciada uma vez
+    então excluirá
 
--   **** : 
+-   **Classe** : Class PHP chamada para executar a tarefa (pode
+    estar vazio)
 
--   **Demônio** : 
-    . 
-    
-    
+-   **Fonction** : Função PHP chamada na classe chamada (ou não
+    se a turma estiver vazia)
 
--   **único** : 
-    
+-   **Programmation** : programando a tarefa no formato CRON
 
--   **** : 
-    
+-   **Timeout** : Tempo máximo de execução da tarefa. Se o
+    Se a tarefa for um demônio, ela será automaticamente interrompida e
+    reiniciado no final do tempo limite
 
--   **Função** : 
-    
+-   **último lançamento** : Data do último lançamento da tarefa
 
--   **Programação** : 
+-   **Última duração** : última vez para concluir a tarefa (um
+    demon sempre estará no zero, então não se preocupe com outras tarefas
+    pode ser 0s)
 
--   **Tempo limite** : . 
-    
-    
+-   **Statut** : status atual da tarefa (como lembrete, uma tarefa daemon
+    ainda está "executado")
 
--   **último lançamento** : 
-
--   **** : 
-    
-    
-
--   **Estado** : 
-    
-
--   **** : 
-
-
-# 
+-   **Suppression** : Excluir tarefa
 
 
+# Listener
+
+Os ouvintes são apenas visíveis na leitura e permitem que você veja as funções chamadas em um evento (atualização de um comando ...)

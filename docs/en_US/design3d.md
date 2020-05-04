@@ -8,17 +8,17 @@ It is accessible by Home → Dashboard
 
 # Importing the 3D model
 
-> **Important**
+> **IMPORTANT**
 >
-> You cannot create your 3D model directly in Jeedom, it must be done using third-party software. We recommend the very good SweetHome3d (http://www.sweethome3d.com/fr/).
+> You cannot create your 3D model directly in Jeedom, it must be done using third-party software. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Once your 3D model has been created, it must be exported in OBJ format. If you use SweetHome3d this is done from the "3D View" menu then "Export to OBJ format". Then take all the generated files and put them in a zip file (there may be a lot of files due to the textures).
 
-> **Important**
+> **IMPORTANT**
 >
 > Files must be at the root of the zip is not in a subfolder
 
-> **WARNING**
+> **ATTENTION**
 >
 > A 3D model is quite impressive (this can represent several hundred MB). The bigger it is the longer the rendering time in Jeedom.
 
@@ -35,11 +35,11 @@ You can from this screen :
 
 Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and select your zip file
 
-> **WARNING**
+> **ATTENTION**
 >
 > Jeedom authorizes the import of a file of 150mo maximum !
 
-> **WARNING**
+> **ATTENTION**
 >
 > You must have a zip file
 
@@ -50,7 +50,7 @@ Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and selec
 
 # Configuration of elements
 
-> **Important**
+> **IMPORTANT**
 >
 > Configuration can only be done in edit mode
 
@@ -65,7 +65,7 @@ To configure an element on the 3D design, double click on the element you want t
 - Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
 - Power : bulb power (please note this may not reflect reality)
 
-## Text
+## Texte
 
 - Text : text to display (you can put commands there, the text will be automatically updated on change of it)
 - Text size
@@ -91,16 +91,16 @@ To configure an element on the 3D design, double click on the element you want t
 	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
 - Hide when the Door / Window is open
 	- Activate : Hides the element if the Door / Window is open
-- Color
+- Couleur
 	- Open color : if checked the element will take on this color if the Door / Window is open
 	- Color closed : if checked the element will take on this color if the Door / Window is closed
 
-### Shutter
+### Volet
 
 - State : shutter status, 0 open other value closed
 - Hide when the shutter is open
 	- Activate : hide the element if the shutter is open
-- Color
+- Couleur
 	- Color closed : if checked the element will take on this color if the shutter is closed
 
 ## Conditional color

@@ -11,21 +11,21 @@ Die Seite Protokolle ist recht einfach. Oben links befindet sich eine Dropdown-L
 Wenn Sie die Auswahl des Protokolls anzeigen möchten, haben Sie oben rechts 5
 Tasten :
 
--   **Suche** : Ermöglicht das Filtern des Protokollplakats
+-   **Rechercher** : Ermöglicht das Filtern des Protokollplakats
 
 -   **Pause / Resume** : Mit dieser Option können Sie die Einstellung anhalten / fortsetzen
     Echtzeit-Protokollaktualisierung
 
 -   **Download** : ermöglicht das Herunterladen des aktuellen Protokolls,
 
--   **Leer** : ermöglicht das Leeren des aktuellen Protokolls,
+-   **Vider** : ermöglicht das Leeren des aktuellen Protokolls,
 
--   **Entfernen** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
+-   **Supprimer** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
     brauche es wird es automatisch neu erstellen,
 
 -   **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 
-> **Spitze**
+> **Tip**
 >
 > Beachten Sie, dass das http-Protokoll.Fehler kann nicht gelöscht werden. Es ist wichtig
 > ! Wenn Sie es löschen (zum Beispiel in der Befehlszeile), wird es nicht
@@ -42,7 +42,7 @@ Um darauf zuzugreifen, müssen Sie entweder zur Protokollseite oder in Analysis 
 
 Sobald Sie darauf geklickt haben, erhalten Sie ein Fenster
 Aktualisierungen in Echtzeit und Anzeige aller Ereignisse Ihres
-Automatisierung.
+domotique.
 
 Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie
 werden nicht angehalten) und eine Schaltfläche zum Anhalten (nützlich für

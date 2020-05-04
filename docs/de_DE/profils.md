@@ -23,8 +23,8 @@ Im Themenbereich können Sie die Schnittstellenparameter anpassen :
 -   **Mobiler Graph** : Mit dieser Option können Sie das Standarddesign für definieren
     mobile Grafik
 
--   **Deckkraft durch Armaturenbrett-Widgets** : erlaubt, Deckkraft zu geben
-    (zwischen 0 und 1) Widgets im Armaturenbrett
+-   **Deckkraft durch Dashboard-Widgets** : erlaubt, Deckkraft zu geben
+    (zwischen 0 und 1) Widgets im Dashboard
 
 -   **Deckkraft durch Design-Widgets** : erlaubt, Deckkraft zu geben
     (zwischen 0 und 1) Widgets für Designs
@@ -49,7 +49,7 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
 -   **Standardseite** : Standardseite, die angezeigt wird, wenn
     Desktop / Mobile-Verbindung
 
--   **Standardobjekt im Armaturenbrett** : Standardanzeigeobjekt
+-   **Standardobjekt im Dashboard** : Standardanzeigeobjekt
     bei der Ankunft auf dem Armaturenbrett / Handy
 
 -   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
@@ -61,12 +61,12 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
     -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
         die Ankunft auf den Entwürfen
         
--   **Armaturenbrett**
+-   **Dashboard**
 
     -   **Klappen Sie das Objektfenster auf** : ermöglicht sichtbar zu machen durch
-        Standardmäßig das Objektmenü (links) im Armaturenbrett
+        Standardmäßig das Objektmenü (links) im Dashboard
 
--   **Ansicht**
+-   **Vue**
 
     -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
         Standardansichtsmenü (links) für Ansichten

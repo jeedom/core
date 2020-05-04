@@ -1,22 +1,22 @@
 Doc a bit special because it will only deal with your page
-market profilee.
+market profile.
 
-Available by going to your username and then profilee from
+Available by going to your username and then profile from
 market (a bit like on Jeedom).
 
 This is broken down into several parts :
 
-My profilee 
+My profile 
 ==========
 
 This is where you will be able to adjust different parameters of your
 profile :
 
--   **Profile**
+-   **Profil**
 
     -   **Login** : Your login on the market, it cannot be changed
 
-    -   **Last name** : Your name (this information is only useful for
+    -   **Nom** : Your name (this information is only useful for
         make emails more fun)
 
     -   **First name** : Your first name (this information is only useful
@@ -24,9 +24,9 @@ profile :
 
     -   **Username on the forum** : Your username on the forum
 
-    -   **E-mail** : Your mail
+    -   **Email** : Your mail
 
-    -   **Language** : Your language
+    -   **Langue** : Your language
 
     -   **Password &amp;&amp; Confirm password** : allows
         change your password
@@ -48,12 +48,12 @@ For the pros :
 -   **Support requests recipient** : know who will receive the
     support emails (end customer, installer or both)
 
-    -   **TOS**
+    -   **CGU**
 
--   **User** : general conditions of use (pay attention to
+-   **Utilisateur** : general conditions of use (pay attention to
     read them well because they commit you)
 
--   **Developer** : general conditions of use for
+-   **Developpeur** : general conditions of use for
     developers
 
     -   **Tickets**
@@ -80,7 +80,7 @@ For the pros :
 My jeedoms 
 ===========
 
--   **Level**
+-   **Niveau**
 
     -   **Jeedom** : your level of service pack
 
@@ -102,24 +102,24 @@ My jeedoms
 
 -   **My jeedoms** : this is where all your Jeedoms are listed
 
-    -   **Last name** : the name you want to give to your Jeedom (
+    -   **Nom** : the name you want to give to your Jeedom (
         found in the name of the backup if you have the subscription of
         cloud backup)
 
-    -   **State** : allows to see the state of the Jeedom in question
+    -   **Etat** : allows to see the state of the Jeedom in question
 
     -   **Local / remote IP** : IP or address of this Jeedom,
         configure in Jeedom, if you don&#39;t put anything it will be there
         last known IP
 
-    -   **Dns** : allows you to customize the name of your Dns
+    -   **DNS** : allows you to customize the name of your DNS
 
-    -   **URLs** : list the different Jeedom access URLss.
+    -   **URL** : list the different Jeedom access URLs.
 
     -   **Dns server** : tells you if the Dns server to which you
         are attached
 
-    -   **Dns status** : allows to see the status of the Dns
+    -   **Dns status** : allows to see the status of the DNS
 
     -   **Creation date** : date of creation of this Jeedom on your
         market account (as a reminder, this is done automatically when
@@ -156,7 +156,7 @@ My purchases / promotions / donations
 Here you find all your purchases and you can request the return of the
 invoice or receipt email
 
-> **IMPORTANT**
+> **Important**
 >
 > If you buy an official plugin you will receive an invoice. In
 > however for a third party plugin it is a receipt, for the invoice it is necessary

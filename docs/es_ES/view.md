@@ -4,11 +4,11 @@ minutos para tener una pantalla más personalizada.
 
 Se puede acceder a las vistas desde el menú Inicio → Ver. :
 
-> **Punta**
+> **Tip**
 >
 > Es posible ir directamente a una vista gracias al submenú.
 
-> **Punta**
+> **Tip**
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic
 > en el menú de vistas.
@@ -24,7 +24,7 @@ En esta página, hay un botón en la parte superior izquierda para mostrar o
 ocultar la lista de vistas y el botón para agregar uno
 (Jeedom le preguntará su nombre y lo enviará a la página de edición) :
 
-> **Punta**
+> **Tip**
 >
 > Puede modificar esta opción en su perfil para que la lista
 > las vistas serán visibles por defecto.
@@ -39,7 +39,7 @@ pon todo lo que quieras). Cada zona es de tipo gráfico, widget
 o tabla, dependiendo del tipo que pueda poner widgets
 de equipo, control o gráficos en él.
 
-> **Punta**
+> **Tip**
 >
 > Puede mover el orden de las zonas arrastrando y soltando.
 
@@ -55,12 +55,12 @@ su nombre y tipo.
 
 En cada zona tienes las siguientes opciones generales :
 
--   **Ancho** : define el ancho del área (en modo
+-   **Largeur** : define el ancho del área (en modo
     solo escritorio)
 
--   **Editar** : permite cambiar el nombre de la zona
+-   **Editer** : permite cambiar el nombre de la zona
 
--   **Remove** : permite eliminar la zona
+-   **Supprimer** : permite eliminar la zona
 
 Área de tipo de widget 
 -------------------
@@ -70,12 +70,12 @@ Un área de tipo de widget le permite agregar widgets :
 -   **Agregar widget** : agregar / editar widgets a
     mostrar en el área
 
-> **Punta**
+> **Tip**
 >
 > Puede eliminar un widget directamente haciendo clic en el
 > bote de basura en frente de este.
 
-> **Punta**
+> **Tip**
 >
 > Es posible cambiar el orden de los widgets en el área por
 > arrastrar / soltar.
@@ -98,28 +98,28 @@ Cuando presiona el botón &quot;Agregar curva&quot;, Jeedom muestra la lista
 comandos históricos y puede elegir los que desea agregar, un
 Una vez hecho esto, tiene acceso a las siguientes opciones :
 
--   **Cubo de basura** : eliminar comando del gráfico
+-   **Poubelle** : eliminar comando del gráfico
 
--   **Apellido** : nombre del comando graficado
+-   **Nom** : nombre del comando graficado
 
--   **Color** : color de la curva
+-   **Couleur** : color de la curva
 
--   **Puntao** : tipo de curva
+-   **Type** : tipo de curva
 
--   **Grupo** : permite la agrupación de datos (tipo máximo
+-   **Groupement** : permite la agrupación de datos (tipo máximo
     por día)
 
--   **Escala** : escala (derecha o izquierda) de la curva
+-   **Echelle** : escala (derecha o izquierda) de la curva
 
--   **Escalera** : muestra la curva escalonada
+-   **Escalier** : muestra la curva escalonada
 
--   **Montón** : apilar la curva con las curvas de otro tipo
-    Montón
+-   **Empiler** : apilar la curva con las curvas de otro tipo
+    empiler
 
--   **Cambio** : grafica solo variaciones con valor
+-   **Variation** : grafica solo variaciones con valor
     anterior
 
-> **Punta**
+> **Tip**
 >
 > Es posible cambiar el orden de los gráficos en el área por
 > arrastrar / soltar.
@@ -133,7 +133,7 @@ Aqui tienes los botones :
 
 -   **Agregar línea** : agregar una fila a la mesa
 
-> **Nota**
+> **Note**
 >
 > Es posible reorganizar las líneas arrastrando y soltando, pero no
 > las columnas
@@ -141,9 +141,9 @@ Aqui tienes los botones :
 Una vez que haya agregado sus filas / columnas, puede agregar
 información en las cajas :
 
--   **texto** : solo texto para escribir
+-   **texte** : solo texto para escribir
 
--   **HTML** : cualquier código HTML (javascript posible pero
+-   **html** : cualquier código HTML (javascript posible pero
     fuertemente desanimado)
 
 -   **widget de comando** : el botón de la derecha te permite elegir

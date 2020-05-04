@@ -4,11 +4,11 @@ tu imaginación.
 
 Es accesible por Inicio → Diseño
 
-> **Punta**
+> **Tip**
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
-> **Importante**
+> **Important**
 >
 > Todas las acciones se realizan haciendo clic derecho en esta página, atención
 > hacerlo bien en diseño. Durante la creación, por lo tanto, es necesario
@@ -17,9 +17,9 @@ Es accesible por Inicio → Diseño
 En el menú (clic derecho, por lo tanto), encontramos el
 siguientes acciones :
 
--   **Diseños** : Muestra la lista de tus diseños y accede a ellos.
+-   **Designs** : Muestra la lista de tus diseños y accede a ellos.
 
--   **Edición** : Cambiar al modo de edición
+-   **Edition** : Cambiar al modo de edición
 
 -   **Pantalla completa** : Le permite usar toda la página web, que
     eliminará el menú Jeedom de la parte superior
@@ -36,7 +36,7 @@ siguientes acciones :
     -   **Hacia una vista** : Agregar un enlace a una vista
 
     -   **Hacia un diseño** : Agregar un enlace a otro
-        diseño
+        design
 
 -   **Agregar equipo** : Agrega equipo
 
@@ -52,9 +52,9 @@ siguientes acciones :
 -   **Agregar resumen** : Agrega información de un resumen de objeto o
     general
 
--   **Viendo**
+-   **Affichage**
 
-    -   **No** : No muestra ninguna cuadrícula
+    -   **Aucune** : No muestra ninguna cuadrícula
 
     -   **10x10** : Muestra una cuadrícula de 10 por 10
 
@@ -80,10 +80,10 @@ siguientes acciones :
 
 -   **Configura el diseño** : acceso a la configuración de diseño
 
--   **Guardar** : permite guardar el diseño (atención, hay
+-   **Sauvegarder** : permite guardar el diseño (atención, hay
     también copias de seguridad automáticas durante ciertas acciones)
 
-> **Importante**
+> **Important**
 >
 > La configuración de los elementos de diseño se realiza haciendo clic en
 > estos.
@@ -95,7 +95,7 @@ Encontrado aquí :
 
 -   **General**
 
-    -   **Apellido** : El nombre de su diseño
+    -   **Nom** : El nombre de su diseño
 
     -   **Fondo transparente** : hace que el fondo sea transparente. Tenga cuidado si el
         la casilla está marcada, no se utiliza el color de fondo
@@ -103,19 +103,19 @@ Encontrado aquí :
     -   **Color de fondo** : diseño de color de fondo (blanco
         por defecto)
 
-    -   **Código** : Código de acceso a su diseño (si está vacío, sin código
+    -   **Code** : Código de acceso a su diseño (si está vacío, sin código
         no es solicitado)
 
     -   **Icono** : Un icono para ello (aparece en el menú
         elección de diseño)
 
-    -   **Imagen**
+    -   **Image**
 
-        -   **Enviar a** : permite agregar una imagen de fondo al diseño
+        -   **Envoyer** : permite agregar una imagen de fondo al diseño
 
         -   **Eliminar imagen** : borrar imagen
 
--   **Tamaños**
+-   **Tailles**
 
     -   **Tamaño (WxH)** : Le permite fijar el tamaño de su diseño.
         (marco gris en modo edición)
@@ -123,11 +123,11 @@ Encontrado aquí :
 Configuración general de elementos. 
 ===================================
 
-> **Nota**
+> **Note**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
-> **Nota**
+> **Note**
 >
 > El elemento seleccionado se resalta en rojo (en lugar de verde
 > para todos los demás).
@@ -135,7 +135,7 @@ Configuración general de elementos.
 Ajuste de la pantalla 
 ---------------------
 
--   **Profundidad** : permite elegir el nivel de profundidad
+-   **Profondeur** : permite elegir el nivel de profundidad
 
 -   **Posición X (%)** :
 
@@ -159,7 +159,7 @@ Cerradura
 -----------
 
 Bloquea el elemento para que ya no sea móvil o
-de tamaño variable.
+redimensionnable.
 
 Gráfico 
 =========
@@ -181,7 +181,7 @@ Configuraciones de pantalla
 
 -   **Fondo transparente** : hace que el fondo sea transparente
 
--   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
+-   **Bordure** : agregue un borde, tenga cuidado con la sintaxis
     HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo :
     sólido 1px negro)
 
@@ -193,7 +193,7 @@ Le permite elegir los comandos para graficar
 Text / html 
 =========
 
--   **Icono** : Icono para mostrar en frente
+-   **Icone** : Icono para mostrar en frente
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
@@ -204,8 +204,8 @@ Text / html
 -   **Alrededor de los ángulos** : le permite redondear los ángulos (no
     olvide poner%, ex 50%)
 
--   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
-    HTML (use la sintaxis CSS, por ejemplo : sólido
+-   **Bordure** : agregue un borde, tenga cuidado con la sintaxis
+    HTML (use la sintaxis CSS, por ejemplo : solid
     1px negro)
 
 -   **Tamaño de fuente** : le permite cambiar el tamaño de fuente
@@ -214,11 +214,11 @@ Text / html
 -   **Alineación de texto** : le permite elegir la alineación de
     texto (izquierda / derecha / centrado)
 
--   **Grasa** : texto en negrita
+-   **Gras** : texto en negrita
 
--   **Texto** : Texto en código HTML que estará en el elemento
+-   **Texte** : Texto en código HTML que estará en el elemento
 
-> **Importante**
+> **Important**
 >
 > Si coloca código HTML (especialmente Javascript), tenga cuidado
 > para comprobarlo antes porque puedes hacerlo si hay un error
@@ -239,9 +239,9 @@ Enlace
 Configuraciones de pantalla 
 ---------------------
 
--   **Apellido** : Apellidobre del enlace (texto mostrado)
+-   **Nom** : Nombre del enlace (texto mostrado)
 
--   **Enlace** : Enlace al diseño o vista en cuestión
+-   **Lien** : Enlace al diseño o vista en cuestión
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
@@ -252,7 +252,7 @@ Configuraciones de pantalla
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
+-   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
@@ -261,7 +261,7 @@ Configuraciones de pantalla
 -   **Alineación de texto** : le permite elegir la alineación de
     texto (izquierda / derecha / centrado)
 
--   **Grasa** : texto en negrita
+-   **Gras** : texto en negrita
 
 Equipo 
 ==========
@@ -291,16 +291,16 @@ Configuración avanzada
 Muestra la ventana de configuración avanzada del comando (ver
 documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
 
-Imagenn / Cámara 
+Imagen / Cámara 
 ============
 
 Configuraciones de pantalla 
 ---------------------
 
--   **Visualización** : define lo que desea mostrar, imagen fija o
+-   **Afficher** : define lo que desea mostrar, imagen fija o
     transmitir desde una cámara
 
--   **Imagen** : le permite enviar la imagen en cuestión (si tiene
+-   **Image** : le permite enviar la imagen en cuestión (si tiene
     elige una imagen)
 
 -   **Cámara** : cámara para mostrar (si elige cámara)
@@ -311,7 +311,7 @@ Zona
 Configuraciones de pantalla 
 ---------------------
 
--   **Puntao de area** : Aquí es donde eliges el tipo de área :
+-   **Tipo de area** : Aquí es donde eliges el tipo de área :
     Macro individual, macro binaria o widget al pasar el mouse
 
 ### Macro individual 
@@ -339,20 +339,20 @@ para el apagado
 En este modo, al pasar el mouse o al hacer clic en el área Jeedom, usted
 mostrar el widget en cuestión
 
--   **Equipo** : widget para mostrar al pasar el mouse o al hacer clic
+-   **Equipement** : widget para mostrar al pasar el mouse o al hacer clic
 
 -   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
 
 -   **Ver en un clic** : si está marcado, el widget se muestra en
     clic
 
--   **Posición** : le permite elegir la ubicación donde
+-   **Position** : le permite elegir la ubicación donde
     widget (predeterminado abajo a la derecha)
 
 Resumen 
 ======
 
--   **Enlace** : Se utiliza para indicar el resumen que se mostrará (General para
+-   **Lien** : Se utiliza para indicar el resumen que se mostrará (General para
     global si no indica el objeto)
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
@@ -364,13 +364,13 @@ Resumen
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permite
+-   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
     le permite cambiar el tamaño de fuente
 
--   **Grasa** : texto en negrita
+-   **Gras** : texto en negrita
 
 
 Preguntas frecuentes 

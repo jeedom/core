@@ -11,7 +11,7 @@ Temas
 
 El panel de temas le permite ajustar los parámetros de la interfaz. :
 
--   **Escritorio** : tema para usar en modo de escritorio, tenga cuidado solo
+-   **Desktop** : tema para usar en modo de escritorio, tenga cuidado solo
     el tema predeterminado es oficialmente compatible con Jeedom
 
 -   **Color móvil** : permite elegir el color de la interfaz
@@ -61,12 +61,12 @@ Le permite definir ciertos comportamientos de interfaz :
     -   **Pantalla completa** : visualización predeterminada en pantalla completa cuando
         la llegada de los diseños
         
--   **Salpicadero**
+-   **Dashboard**
 
     -   **Desdobla el panel de objetos** : permite hacer visible por
         predeterminado el menú de objetos (a la izquierda) en el tablero
 
--   **Vista**
+-   **Vue**
 
     -   **Despliegue el panel de vista** : permite hacer visible por
         menú de vistas predeterminado (izquierda) en vistas

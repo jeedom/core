@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.49
+=====
+
+- Début de la mise à jour vers le nouveau site de documentation
+
 3.3.48
 =====
 

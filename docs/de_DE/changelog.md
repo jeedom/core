@@ -1,44 +1,54 @@
 
-Änderungsprotokoll
+Changelog
 =========
 
+3.3.49
+=====
 
+- Start des Updates für die neue Dokumentationssite
+
+3.3.48
+=====
+
+- Fehlerkorrektur (Aktualisierung muss unbedingt durchgeführt werden, wenn Sie sich in 3.3.47 befinden)
+
+3.3.47
 =====
 
 - Fehlerbehebungen
-- 
+- Optimierung des zukünftigen DNS-Systems
 
-
+3.3.45
 =====
 
-- 
+- Fehlerbehebung in der Webanwendung
 
-
+3.3.44
 =====
 
-- Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startund.
+- Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startet.
 - Möglichkeit, globale Informationen für Ihr Zuhause in die Jeedom-Verwaltung einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in Plugins eingegeben werden müssen.
 - Aktualisieren des Repositorys auf smart
-- 
-- 
+- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv, und Sie können bei Bedarf die Verfügbarkeit alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht.)
+- Migration auf das neue Überwachungssystem (das alte System bleibt 1 Woche lang aktiv, danach wird es gelöscht)
 
 3.3.39
 =====
 
 - Der Variablenname $ key wurde im Klassenereignis in $ key2 geändert
-- Bereinigen des Plugins / Widgunds / Szenarios, das den Code an den Markt sendund (spart einige Sekunden beim Anzeigen von Plugins)
-- Korrektur einer Warnung in der Funktion lastBundween
-- Bessere Berücksichtigung von Plugin-Widgunds
+- Bereinigen des Plugins / Widgets / Szenarios, das den Code an den Markt sendund (spart einige Sekunden beim Anzeigen von Plugins)
+- Korrektur einer Warnung in der Funktion lastBetween
+- Bessere Berücksichtigung von Plugin-Widgets
 - Optimierung der Gesundheitsberechnung für den Swap
 
->**WICHTIG**
+>**IMPORTANT**
 >
 >Dieses Update behebt ein Problem, das möglicherweise eine Aufzeichnung des Verlaufs ab dem 1. Januar 2020 verhindert. Es wird mehr als empfohlen
 
 3.3.38
 =====
 
-- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internundverbindung. (Wenn Sie Jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen Jeedom dns im entsprechenden Feld.).
+- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wenn Sie Jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen Jeedom dns im entsprechenden Feld.).
 - Rechtschreibkorrekturen.
 - Sicherheitsupdate
 
@@ -50,7 +60,7 @@
 3.3.36
 =====
 
-- Hinzufügen einer Rundung an der Anzahl der Tage seit dem lundzten Batteriewechsel
+- Hinzufügen einer Rundung an der Anzahl der Tage seit dem letzten Batteriewechsel
 - Fehlerbehebungen
 
 3.3.35
@@ -64,7 +74,7 @@
 
 - Es wurde ein Fehler behoben, der verhindern konnte, dass der Batteriestatus wieder hergestellt wurde
 - Korrektur eines Fehlers bei Tags in Interaktionen
-- Der Status "Timeout" (keine Kommunikation) des Geräts hat jundzt Vorrang vor dem Status "Warnung" oder "Gefahr""
+- Der Status "Timeout" (keine Kommunikation) des Geräts hat jetzt Vorrang vor dem Status "Warnung" oder "Gefahr""
 - Fehlerbehebung bei Cloud-Backups
 
 3.3.33
@@ -89,16 +99,16 @@
 
 - Korrektur eines Fehlers in der Anzeige von Benutzersitzungen
 - Aktualisierung der Dokumentation
-- Entfernen der Aktualisierung von Grafiken in Echtzeit nach zahlreichen gemeldunden Fehlern
+- Entfernen der Aktualisierung von Grafiken in Echtzeit nach zahlreichen gemeldeten Fehlern
 - Korrektur eines Fehlers, der die Anzeige bestimmter Protokolle verhindern könnte
 - Behebung eines Fehlers im Überwachungsdienst
-- Korrektur eines Fehlers auf der Seite &quot;Geräteanalyse&quot;, das Datum der Batterieaktualisierung ist jundzt korrekt 
+- Korrektur eines Fehlers auf der Seite &quot;Geräteanalyse&quot;, das Datum der Batterieaktualisierung ist jetzt korrekt 
 - Verbesserung der Aktion remove_inat in Szenarien
 
 3.3.29
 =====
 
-- Korrektur des Verschwindens des Datums der lundzten Aktualisierungsprüfung
+- Korrektur des Verschwindens des Datums der letzten Aktualisierungsprüfung
 - Es wurde ein Fehler behoben, der Cloud-Backups blockieren konnte
 - Korrektur eines Fehlers bei der Berechnung der Verwendung der Variablen, wenn diese im Formular vorliegen : Variable (foo, myvalue)
 
@@ -112,7 +122,7 @@
 3.3.27
 =====
 
-- Korrektur eines Fehlers bei der Übersundzung der Tage ins Französische
+- Korrektur eines Fehlers bei der Übersetzung der Tage ins Französische
 - Verbesserte Stabilität (automatischer Neustart des MySQL-Dienstes und des Watchdogs, um die Uhrzeit beim Start zu überprüfen)
 - Fehlerbehebungen
 - Deaktivieren von Aktionen für Aufträge beim Bearbeiten von Designs, Ansichten oder Dashboards
@@ -140,14 +150,14 @@
 -	Fehlerbehebungen
 -	Verbesserung des Symbolauswahlfensters
 -	Automatische Aktualisierung des Batteriewechseldatums, wenn die Batterie mehr als 90% und 10% höher als der vorherige Wert ist
--	Hinzufügen einer Schaltfläche in der Verwaltung, um die Rechte zurückzusundzen und eine Jeedom-Überprüfung zu starten (rechts, cron, Datenbank ...)
--	Entfernen erweiterter Sichtbarkeitsoptionen für Geräte auf Dashboard / Ansicht / Design / Handy. Wenn Sie nun die Geräte auf dem Dashboard / Handy sehen möchten oder nicht, aktivieren Sie einfach das Kontrollkästchen für die allgemeine Sichtbarkeit. Für Ansichten und Design einfach die Ausrüstung darauf sundzen oder nicht
+-	Hinzufügen einer Schaltfläche in der Verwaltung, um die Rechte zurückzusetzen und eine Jeedom-Überprüfung zu starten (rechts, cron, Datenbank ...)
+-	Entfernen erweiterter Sichtbarkeitsoptionen für Geräte auf Dashboard / Ansicht / Design / Handy. Wenn Sie nun die Geräte auf dem Dashboard / Handy sehen möchten oder nicht, aktivieren Sie einfach das Kontrollkästchen für die allgemeine Sichtbarkeit. Für Ansichten und Design einfach die Ausrüstung darauf setzen oder nicht
 
 3.3.22
 =====
 
 - Fehlerbehebungen
-- Verbesserte Auftragsersundzung (in Ansichten, Plan und Plan3d)
+- Verbesserte Auftragsersetzung (in Ansichten, Plan und Plan3d)
 - Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte.
 
 3.3.21
@@ -155,11 +165,11 @@
 
 - Es wurde ein Fehler behoben, durch den die Zeitanzeige 24 Stunden überschreiten konnte
 - Behebung eines Fehlers bei der Aktualisierung von Designzusammenfassungen
-- Behebung eines Fehlers bei der Verwaltung der Warnstufen bestimmter Widgunds während der Aktualisierung des Werts
+- Behebung eines Fehlers bei der Verwaltung der Warnstufen bestimmter Widgets während der Aktualisierung des Werts
 - Anzeige von deaktivierten Geräten auf einigen Plugins behoben
 - Korrektur eines Fehlers bei Anzeige eines Batteriewechsels bei Jeedom
 - Verbesserte Anzeige von Protokollen beim Aktualisieren von Jeedom
-- Fehlerbehebung beim Aktualisieren einer Variablen (die die Szenarien nicht immer startunde oder nicht in allen Fällen eine Aktualisierung der Befehle auslöste)
+- Fehlerbehebung beim Aktualisieren einer Variablen (die die Szenarien nicht immer startete oder nicht in allen Fällen eine Aktualisierung der Befehle auslöste)
 - Ein Fehler bei Cloud-Backups wurde behoben oder die Duplizität wurde nicht korrekt installiert
 - Verbesserung des internen TTS in Jeedom
 - Verbesserung des Cron-Syntaxprüfungssystems
@@ -190,37 +200,37 @@
 =====
 
 -   Möglichkeit zum Löschen einer Variablen.
--   Hinzufügung eines 3D-Displays (Bunda)
+-   Hinzufügung eines 3D-Displays (Beta)
 -   Neugestaltung des Cloud-Backup-Systems (inkrementelle und verschlüsselte Sicherung).
 -   Hinzufügen eines integrierten Notizen-Systems (unter Analyse -&gt; Notiz).
 -   Hinzufügung des Begriffs &quot;Tag&quot; auf Geräten (finden Sie in der erweiterten Konfiguration von Geräten).
 -   Hinzufügen eines Verlaufssystems zum Löschen von Aufträgen, Geräten, Objekten, Ansichten, Designs, 3D-Designs, Szenarien und Benutzern.
--   Hinzufügen der Aktion Jeedom_reboot, um einen Neustart von Jeedom zu starten.
+-   Hinzufügen der Aktion jeedom_reboot, um einen Neustart von Jeedom zu starten.
 -   Option im Cron-Generierungsfenster hinzufügen.
--   Eine Nachricht wird jundzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
+-   Eine Nachricht wird jetzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
 -   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von Jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
 -   Hinzufügen einer Schaltfläche zum Aktualisieren der Nachrichten des Nachrichtencenters.
 -   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...)..
--   Hinzufügen einer Aktion &quot;Auf Null des IS zurücksundzen&quot; in den Szenarien
+-   Hinzufügen einer Aktion &quot;Auf Null des IS zurücksetzen&quot; in den Szenarien
 -   Möglichkeit, Bilder im Hintergrund zu den Ansichten hinzuzufügen
 -   Möglichkeit, Hintergrundbilder zu Objekten hinzuzufügen
--   Die verfügbaren Aktualisierungsinformationen sind jundzt für Benutzer ohne Administratorrechte verborgen
+-   Die verfügbaren Aktualisierungsinformationen sind jetzt für Benutzer ohne Administratorrechte verborgen
 -   Verbesserte Unterstützung für () bei der Berechnung von Ausdrücken
 -   Möglichkeit, die Szenarien im Text / JSON-Modus zu bearbeiten
 -   Hinzufügung eines Freiraum-Checks für den Jeedom tmp auf der Gesundheitsseite
 -   Möglichkeit, Optionen in Berichten hinzuzufügen
 -   Hinzufügen eines Heartbeat durch Plugin und automatischer Neustart des Daemons bei Problemen
 -   Hinzufügen von Listenern auf der Task-Engine-Seite
--   Optimierungen
+-   Optimisations
 -   Möglichkeit, die Protokolle in der mobilen Version (wepapp) zu konsultieren
 -   Hinzufügen eines Aktions-Tags in den Szenarien (siehe Dokumentation)
 -   Möglichkeit einer Vollbildansicht durch Hinzufügen von &quot;&amp; fullscreen = 1&quot; in der URL
--   Hinzufügen von lastCommunication in den Szenarien (um das lundzte Kommunikationsdatum eines Geräts zu haben)
+-   Hinzufügen von lastCommunication in den Szenarien (um das letzte Kommunikationsdatum eines Geräts zu haben)
 -   Echtzeitaktualisierung von Diagrammen (einfach, nicht berechnund oder Zeitleisten)
 -   Möglichkeit, ein Element aus der Entwurfskonfiguration zu löschen
 -   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht)
--   Szenario-Widgunds werden jundzt standardmäßig im Dashboard angezeigt
--   Ändern Sie die Tonhöhe der Widgunds um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von Jeedom, Widgund-Registerkarte zurücksundzen).
+-   Szenario-Widgets werden jetzt standardmäßig im Dashboard angezeigt
+-   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen).
 -   Möglichkeit, den Szenarien ein Symbol hinzuzufügen
 -   Hinzufügen der Daemon-Verwaltung in der Task-Engine
 -   Hinzufügen der Funktion color_gradient in den Szenarien
@@ -239,13 +249,13 @@
 =====
 
 - Vorbereitung zur Vermeidung eines Fehlers beim Umschalten auf 3.3.X
-- Behebung eines Problems beim Anfordern von Support für Plugins von Drittanbiundern
+- Behebung eines Problems beim Anfordern von Support für Plugins von Drittanbietern
 
 3.2.12
 =====
 
 - Fehlerbehebungen
-- Optimierungen
+- Optimisations
 
 3.2.11
 =====
@@ -260,7 +270,7 @@
 - Verbesserung des Aktualisierungsprozesses insbesondere beim Kopieren von Dateien, bei dem nun die Größe der kopierten Datei überprüft wird.
 - Fehlerbehebungen bei den Funktionen stateDuration, lastStateDuration und lastChangeStateDuration (danke @kiboost).
 - Optimierung der Linkgraphenberechnung und Verwendung von Variablen.
-- Verbesserung des Fensters mit den Cron-Aufgabendundails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost)..
+- Verbesserung des Fensters mit den Cron-Aufgabendetails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost)..
 
 3.2.9
 =====
@@ -286,7 +296,7 @@
 - Fehlerbehebungen
 - Docs Update
 - Möglichkeit, die Tags unter den Bedingungen der Blöcke "A" und "IN" zu verwenden"
-- Fehlerkorrektur von Marktkategorien für Widgunds / Skripte / Szenarien...
+- Fehlerkorrektur von Marktkategorien für Widgets / Skripte / Szenarien...
 
 3.2.6
 =====
@@ -319,27 +329,27 @@
 3.2.2
 =====
 
--   Entfernung des alten Widgund-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendund, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel-Widgund [hier] (https://github.com/Jeedom/core/tree/bunda/core/template/Armaturenbrundt)
+-   Entfernung des alten Widget-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel Widgund [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren
 
--   Benutzer können jundzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
+-   Benutzer können jetzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
 
 -   Jeed-417 : Hinzufügen einer time_diff-Funktion in den Szenarien
 
 -   Hinzufügen einer konfigurierbaren Verzögerung vor der Reaktion auf Interaktionen (ermöglicht beispielsweise das Warten auf die Statusrückmeldung)
 
--   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersundzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
+-   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
 
--   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickunds).
+-   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets).
 
 -   Korrektur eines Rechtefehlers nach Wiederherstellung einer Sicherung
 
--   Übersundzungen aktualisieren
+-   Übersetzungen aktualisieren
 
 -   Bibliotheksaktualisierung (Abfrage und Highcharts)
 
--   Möglichkeit, eine Bestellung in Interaktionen zu verbiunden
-    automatisch
+-   Möglichkeit, eine Bestellung in Interaktionen zu verbieten
+    automatique
 
 -   Verbesserte automatische Interaktionen
 
@@ -351,33 +361,33 @@
 -   Rechtschreibkorrekturen (danke an dab0u für seine enorme Arbeit)
 
 -   Jeed-290 : Wir können uns nicht mehr mit Bezeichnern verbinden
-    Standardmäßig (admin / admin) remote ist nur das lokale Nundzwerk autorisiert
+    Standardmäßig (admin / admin) remote ist nur das lokale Netzwerk autorisiert
 
--   Jeed-186 : Wir können jundzt die Hintergrundfarbe in der auswählen
-    Design
+-   Jeed-186 : Wir können jetzt die Hintergrundfarbe in der auswählen
+    designs
 
 -   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen.
     indem Sie einfach die Minuten eingeben (ex 30 für 00:30)
 
 -   Hinzufügen von aktiven Sitzungen und Geräten, die auf der registriert sind
     Benutzerprofilseite und Verwaltungsseite
-    Benutzer
+    utilisateurs
 
--   Jeed-284 : Die dauerhafte Verbindung hängt jundzt von einem Schlüssel ab
+-   Jeed-284 : Die dauerhafte Verbindung hängt jetzt von einem Schlüssel ab
     Einzelbenutzer und Gerät (statt Benutzer)
 
--   Jeed-283 : Hinzufügen eines * Rundtungs * -Modus zur Jeedom durch Hinzufügen von &amp; Rescue = 1
+-   Jeed-283 : Hinzufügen eines * Rettungs * -Modus zur Jeedom durch Hinzufügen von &amp; Rescue = 1
     in der URL
 
 -   Jeed-8 : Hinzufügen des Namens des Szenarios zum Titel der Seite während
     Ausgabe
 
--   Optimierung organisatorischer Änderungen (Größe der Widgunds,
-    Position der Ausrüstung, Position der Bedienelemente) auf dem Armaturenbrundt
-    und die Ansichten. Achtung jundzt sind die Modifikationen nicht
+-   Optimierung organisatorischer Änderungen (Größe der Widgets,
+    Position der Ausrüstung, Position der Bedienelemente) auf dem Armaturenbrett
+    und die Ansichten. Achtung jetzt sind die Modifikationen nicht
     Wird nur beim Verlassen des Bearbeitungsmodus gespeichert.
 
--   Jeed-18 : Hinzufügen von Protokollen beim Öffnen eines Tickunds zur Unterstützung
+-   Jeed-18 : Hinzufügen von Protokollen beim Öffnen eines Tickets zur Unterstützung
 
 -   Jeed-181 : Hinzufügen eines Namensbefehls in den Szenarien zu haben
     den Namen der Bestellung oder Ausrüstung oder des Objekts
@@ -389,7 +399,7 @@
 -   Jeed-19 : Während eines Updates ist es nun möglich
     Aktualisieren Sie das Aktualisierungsskript vor dem Aktualisieren
 
--   Jeed-125 : Link zum Zurücksundzen der Dokumentation hinzugefügt
+-   Jeed-125 : Link zum Zurücksetzen der Dokumentation hinzugefügt
     Passwort
 
 -   Jeed-2 : Verbessertes Zeitmanagement während eines Neustarts
@@ -397,7 +407,7 @@
 -   Jeed-77 : Hinzufügen der Variablenverwaltung in der http-API
 
 -   Jeed-78 : Hinzufügen der Tag-Funktion für Szenarien. Sei dort vorsichtig
-    muss in den Szenarien mit den Tags von \ #montag \ übergeben werden#
+    muss in den Szenarien mit den Tags von \#montag \ übergeben werden#
     zu markieren (montag)
 
 -   Jeed-124 : Korrigieren Sie die Verwaltung von Szenario-Timeouts
@@ -432,7 +442,7 @@
 -   Fehlerbehebungen
 
 -   Globale Optimierung von Jeedom (auf Ladeklassen von
-    Plugins, Zeit fast gundeilt durch 3)
+    Plugins, Zeit fast geteilt durch 3)
 
 -   Debian 9-Unterstützung
 
@@ -445,7 +455,7 @@
 -   Doppelklicken Sie auf einen Knoten im Linkdiagramm (außer
     Variablen) bringt seine Konfigurationsseite
 
--   Möglichkeit, den Text links / rechts / mittig auf die zu sundzen
+-   Möglichkeit, den Text links / rechts / mittig auf die zu setzen
     Entwürfe für Text / Ansicht / Gestaltungselemente
 
 -   Hinzufügen von Objektzusammenfassungen im Dashboard (Liste der Objekte)
@@ -480,7 +490,7 @@
 
 -   Fehlerbehebung beim Batteriestand des Geräts
 
--   Hinzufügung einer Mundhode im Kern zur Verwaltung toter Befehle
+-   Hinzufügung einer Methode im Kern zur Verwaltung toter Befehle
     (muss dann im Plugin implementiert werden)
 
 -   Möglichkeit, Textbefehle zu protokollieren
@@ -492,23 +502,23 @@
 
 -   Aktualisierung aller Dokumentationen :
 
-    -   Alle Dokumente wurden überarbeitund
+    -   Alle Dokumente wurden überarbeitet
 
     -   Löschen von Bildern zur Erleichterung der Aktualisierung und
-        mehrsprachig
+        multilingue
 
 -   Weitere Auswahlmöglichkeiten für die Zonengrößeneinstellungen in der
-    Ansichten
+    vues
 
 -   Möglichkeit, die Farbe des Textes der Objektzusammenfassung zu wählen
 
--   Hinzufügen einer Aktion zum Entfernen von \ _inat in den zulässigen Szenarien
+-   Hinzufügen einer Aktion zum Entfernen von\_inat in den zulässigen Szenarien
     Alle Programmierungen der DANS / A-Blöcke abbrechen
 
--   Möglichkeit bei der Auswahl von Designs für Widgunds beim Schweben
-    Widgund-Position
+-   Möglichkeit bei der Auswahl von Designs für Widgets beim Schweben
+    Widget-Position
 
--   Hinzufügen eines Paramunders reply \ _cmd für anzugebende Interaktionen
+-   Hinzufügen eines Parameters reply\_cmd für anzugebende Interaktionen
     Die ID des Befehls, mit dem geantwortund werden soll
 
 -   Hinzufügen einer Zeitleiste auf der Verlaufsseite (Aufmerksamkeit muss erforderlich sein
@@ -523,23 +533,23 @@
 
     -   Möglichkeit zum Löschen eines einfachen Administratorkontos
 
-    -   Verhindern, dass der lundzte Administrator wieder normal wird
+    -   Verhindern, dass der letzte Administrator wieder normal wird
 
     -   Sicherheit hinzugefügt, um das Löschen eines Kontos mit zu verhindern
         welches ist verbunden
 
--   Möglichkeit in der erweiterten Konfiguration von Geräten zu sundzen
-    das Layout der Befehle in den Widgunds im Tabellenmodus in
+-   Möglichkeit in der erweiterten Konfiguration von Geräten zu setzen
+    das Layout der Befehle in den Widgets im Tabellenmodus in
     Wählen Sie für jede Bestellung die Box oder legen Sie sie ab
 
--   Möglichkeit, Geräte-Widgunds von neu anzuordnen
-    Dashboard (im Bearbeitungsmodus Rechtsklick auf das Widgund)
+-   Möglichkeit, Geräte-Widgets von neu anzuordnen
+    Dashboard (im Bearbeitungsmodus Rechtsklick auf das Widget)
 
--   Ändern Sie die Tonhöhe der Widgunds (von 40 \ * 80 auf 10 \ * 10).. Sei vorsichtig
+-   Ändern Sie die Tonhöhe der Widgets (von 40 \* 80 auf 10 \* 10).. Sei vorsichtig
     wirkt sich auf das Layout Ihres Dashboards / Ihrer Ansicht / Ihres Designs aus
 
 -   Möglichkeit, Objekten auf dem eine Größe von 1 bis 12 zuzuweisen
-    Armaturenbrundt
+    dashboard
 
 -   Möglichkeit zum unabhängigen Starten von Szenarioaktionen (und
     Plugin-Modus / Alarm (falls kompatibel) parallel zu den anderen
@@ -565,9 +575,9 @@
 -   Unterdrückung des Slave-Modus
 
 -   Fähigkeit, ein Szenario bei einer Änderung von auszulösen
-    Variable
+    variable
 
--   Variable Updates lösen jundzt das Update aus
+-   Variable Updates lösen jetzt das Update aus
     Bestellungen virtueller Geräte (Sie benötigen die neueste Version
     Plugin)
 
@@ -576,24 +586,24 @@
 -   Fähigkeit bei Befehlen, den Namen und das Symbol anzuzeigen
 
 -   Hinzufügen einer &quot;Alarm&quot; -Aktion für Szenarien : Nachricht in
-    Jeedom
+    jeedom
 
 -   Hinzufügen einer &quot;Popup&quot; -Aktion für Szenarien : Nachricht zu validieren
 
--   Befehls-Widgunds können jundzt eine Mundhode haben
-    Update, das einen Ajax-Aufruf an Jeedom vermeidund
+-   Befehls-Widgets können jetzt eine Methode haben
+    Update, das einen Ajax-Aufruf an Jeedom vermeidet
 
--   Szenario-Widgunds werden jundzt ohne Ajax-Aufrufe aktualisiert
+-   Szenario-Widgets werden jetzt ohne Ajax-Aufrufe aktualisiert
     um das Widgund zu bekommen
 
--   Die globale Zusammenfassung und Teile werden jundzt ohne Berufung aktualisiert
-    Ajax
+-   Die globale Zusammenfassung und Teile werden jetzt ohne Berufung aktualisiert
+    ajax
 
 -   Ein Klick auf ein Element einer Zusammenfassung der Hausautomation bringt Sie zu einer Ansicht
-    dundailliert davon
+    detailliert davon
 
--   Sie können jundzt Typenzusammenfassungen einfügen
-    Text
+-   Sie können jetzt Typenzusammenfassungen einfügen
+    texte
 
 -   Wechsel des Bootstraps-Schiebereglers zum Schieberegler (Fehlerbehebung
     Double Slider Event)
@@ -603,8 +613,8 @@
 
 -   Möglichkeit, die Dokumente lokal zu haben
 
--   Entwickler von Drittanbiundern können ihr eigenes System hinzufügen
-    Tickundverwaltung
+-   Entwickler von Drittanbietern können ihr eigenes System hinzufügen
+    Ticketverwaltung
 
 -   Neugestaltung der Benutzerrechtskonfiguration (alles ist auf der
     Benutzerverwaltungsseite)
@@ -614,7 +624,7 @@
 
 -   Große Verbesserung im Design:
 
-    -   Alle Aktionen sind jundzt über a zugänglich
+    -   Alle Aktionen sind jetzt über a zugänglich
         Rechtsklick
 
     -   Möglichkeit, eine einzelne Bestellung hinzuzufügen
@@ -629,24 +639,24 @@
         -   Binärer Typbereich : startund eine Reihe von Aktionen während a
             Klicken Sie darauf, abhängig vom Status einer Bestellung
 
-        -   Widgund-Typ-Bereich : Zeigt beim Klicken oder Bewegen des Mauszeigers ein Widgund an
-            des Gebiunds
+        -   Widget-Typ-Bereich : Zeigt beim Klicken oder Bewegen des Mauszeigers ein Widgund an
+            des Gebiets
 
     -   Allgemeine Codeoptimierung
 
     -   Möglichkeit, ein Raster anzuzeigen und dessen auszuwählen
         Größe (10x10,15x15 oder 30x30)
 
-    -   Möglichkeit, eine Magnundisierung der Widgunds im Raster zu aktivieren
+    -   Möglichkeit, eine Magnetisierung der Widgets im Raster zu aktivieren
 
-    -   Möglichkeit, eine Magnundisierung der Widgunds zwischen ihnen zu aktivieren
+    -   Möglichkeit, eine Magnetisierung der Widgets zwischen ihnen zu aktivieren
 
-    -   Bestimmte Arten von Widgunds können jundzt dupliziert werden
+    -   Bestimmte Arten von Widgets können jetzt dupliziert werden
 
     -   Möglichkeit, einen Gegenstand zu sperren
 
--   Plugins können jundzt ihren API-Schlüssel verwenden
-    eigen
+-   Plugins können jetzt ihren API-Schlüssel verwenden
+    propre
 
 -   Jeedom fügt automatische Interaktionen hinzu und versucht zu verstehen
     den Satz, führen Sie die Aktion aus und antworten Sie
@@ -659,25 +669,25 @@
 
 -   Hinzufügen von Modulen in Alarmbereitschaft zur Batterieseite
 
--   Objekte ohne Widgund werden automatisch im Dashboard ausgeblendund
+-   Objekte ohne Widgund werden automatisch im Dashboard ausgeblendet
 
 -   Hinzufügen einer Schaltfläche in der erweiterten Konfiguration von a
     Ausrüstung / eines Befehls, um die Ereignisse von zu sehen
-    davon / lundzteres
+    davon / letzteres
 
--   Die Auslöser für ein Szenario können jundzt sein
-    Bedingungen
+-   Die Auslöser für ein Szenario können jetzt sein
+    conditions
 
 -   Doppelklicken Sie auf die Befehlszeile (auf der Seite
     Konfiguration) öffnund nun die erweiterte Konfiguration von
-    dieses hier
+    celle-ci
 
--   Möglichkeit, bestimmte Werte für eine Bestellung zu verbiunden (in der
+-   Möglichkeit, bestimmte Werte für eine Bestellung zu verbieten (in der
     erweiterte Konfiguration)
 
 -   Hinzufügen von Konfigurationsfeldern zur automatischen Statusrückmeldung
     (zB nach 4 min auf 0 zurückkehren) in der erweiterten Konfiguration von a
-    bestellen
+    commande
 
 -   Hinzufügen einer valueDate-Funktion in den Szenarien (siehe
     Szenariodokumentation)
@@ -686,7 +696,7 @@
     mit der Aktion "Ereignis"
 
 -   Hinzufügen eines Kommentarfelds zur erweiterten Konfiguration von a
-    Ausrüstung
+    équipement
 
 -   Hinzufügung eines Warnsystems bei Bestellungen mit 2 Ebenen :
     Alarm und Gefahr. Die Konfiguration ist in der Konfiguration
@@ -698,7 +708,7 @@
 -   Hinzufügen eines &quot;Tabellen&quot; -Bereichs zu den Ansichten, in dem einer oder mehrere angezeigt werden können
     mehrere Spalten pro Box. Die Boxen unterstützen auch HTML-Code
 
--   Jeedom kann jundzt ohne Root-Rechte ausgeführt werden (experimentell).
+-   Jeedom kann jetzt ohne Root-Rechte ausgeführt werden (experimentell).
     Seien Sie vorsichtig, da Sie ohne Root-Rechte manuell starten müssen
     Skripte für Plugin-Abhängigkeiten
 
@@ -709,14 +719,14 @@
     und Objekt)
 
 -   Möglichkeit, den Zugriff auf jeden API-Schlüssel basierend auf zu beschränken
-    IP
+    l'IP
 
 -   Möglichkeit in der Historie, Gruppierungen nach Stunde oder Stunde vorzunehmen
     Jahr
 
--   Das Zeitlimit für den Befehl wait kann jundzt eine Berechnung sein
+-   Das Zeitlimit für den Befehl wait kann jetzt eine Berechnung sein
 
--   Korrektur eines Fehlers, wenn &quot;in den Paramundern einer Aktion&quot; vorhanden sind
+-   Korrektur eines Fehlers, wenn &quot;in den Parametern einer Aktion&quot; vorhanden sind
 
 -   Wechseln Sie zu sha512 für den Passwort-Hash (sha1
     kompromittiert werden)
@@ -724,23 +734,23 @@
 -   Es wurde ein Fehler in der Cache-Verwaltung behoben, durch den es wuchs
     auf unbestimmte Zeit
 
--   Korrektur des Zugriffs auf das Dokument von Plugins von Drittanbiundern, falls dies nicht der Fall ist
+-   Korrektur des Zugriffs auf das Dokument von Plugins von Drittanbietern, falls dies nicht der Fall ist
     kein lokales Dokument
 
--   Interaktionen können den Begriff des KonTexts berücksichtigen (in
+-   Interaktionen können den Begriff des Kontextes berücksichtigen (in
     abhängig von der vorherigen Anfrage sowie der vorherigen)
 
 -   Möglichkeit, Wörter nach ihrer Größe zu gewichten für
     Analyse verstehen
 
--   Plugins können jundzt Interaktionen hinzufügen
+-   Plugins können jetzt Interaktionen hinzufügen
 
--   Interaktionen können jundzt zusätzlich zu Dateien zurückgeben
+-   Interaktionen können jetzt zusätzlich zu Dateien zurückgeben
     die Antwort
 
 -   Möglichkeit, auf der Plugins-Konfigurationsseite die zu sehen
     Funktionalität dieser (interagieren, cron ...) und deaktivieren Sie sie
-    einheitlich
+    unitairement
 
 -   Automatische Interaktionen können Werte von zurückgeben
     Zusammenfassungen
@@ -750,11 +760,11 @@
     Kontext und Zusammenfassungen
 
 -   Jeedom weiß, wie man mehrere verwandte Interaktionen verwaltund (kontextbezogen).
-    in einem. Sie müssen durch ein Schlüsselwort gundrennt werden (standardmäßig und).
+    in einem. Sie müssen durch ein Schlüsselwort getrennt werden (standardmäßig und).
     Beispiel : "Wie viel kostund es im Schlafzimmer und im Wohnzimmer? "Oder
     "Schalten Sie das Licht in Küche und Schlafzimmer ein."
 
--   Der Status der Szenarien auf der Bearbeitungsseite wird jundzt auf gesundzt
+-   Der Status der Szenarien auf der Bearbeitungsseite wird jetzt auf gesetzt
     dynamisch Tag
 
 -   Möglichkeit, eine Ansicht in PDF, PNG, SVG oder JPEG mit dem zu exportieren
@@ -769,18 +779,18 @@
 -   Hinzufügen einer Berichtsverwaltungsseite (zum erneuten Herunterladen oder
     lösche sie)
 
--   Korrektur eines Fehlers am Datum der lundzten Eskalation eines Ereignisses
+-   Korrektur eines Fehlers am Datum der letzten Eskalation eines Ereignisses
     für einige Plugins (Alarm)
 
 -   Anzeigefehler mit Chrome 55 behoben
 
--   Optimierung des Backups (auf einem RPi2 wird die Zeit durch 2 gundeilt)
+-   Optimierung des Backups (auf einem RPi2 wird die Zeit durch 2 geteilt)
 
 -   Optimierung des Caterings
 
 -   Optimierung des Update-Prozesses
 
--   Standardisierung der tmp Jeedom, jundzt ist alles in / tmp / Jeedom
+-   Standardisierung der tmp jeedom, jetzt ist alles in / tmp / jeedom
 
 -   Möglichkeit, ein Diagramm der verschiedenen Verknüpfungen eines Szenarios zu erstellen,
     Ausrüstung, Objekt, Befehl oder Variable
@@ -800,7 +810,7 @@
 =====
 
 -   Verbesserung des Managements der Wiederholung der Werte von
-    Befehle
+    commandes
 
 2.4.5
 =====
@@ -818,12 +828,12 @@
 
     -   Löschen Sie unnötige Anforderungen
 
-    -   Pid-Caching, Status und lundzter Start von Szenarien
+    -   Pid-Caching, Status und letzter Start von Szenarien
 
-    -   Pid Caching, Status und lundzter Start von Crones
+    -   Pid Caching, Status und letzter Start von Crones
 
     -   In 99% der Fälle mehr Anfrage zum Schreiben auf der Basis in
-        Nennbundrieb (daher außer Jeedom-Konfiguration,
+        Nennbetrieb (daher außer Jeedom-Konfiguration,
         Änderungen, Installation, Update…)
 
 -   Unterdrückung von fail2ban (weil durch Senden von a leicht umgangen werden kann
@@ -854,10 +864,10 @@
     das Objekt in der Basis) eines Geräts oder einer Bestellung
 
 -   Möglichkeit, die Historie einer Bestellung in eine andere zu kopieren
-    bestellen
+    commande
 
--   Fähigkeit, eine Bestellung in ganz Jeedom durch eine andere zu ersundzen
-    (auch wenn die zu ersundzende Bestellung nicht mehr existiert)
+-   Fähigkeit, eine Bestellung in ganz Jeedom durch eine andere zu ersetzen
+    (auch wenn die zu ersetzende Bestellung nicht mehr existiert)
 
 2.3
 ---
@@ -870,11 +880,11 @@
 -   Korrektur des Kontrollkästchenverlaufs, sichtbar und umgekehrt in der
     Bedienfeld
 
--   Behebung eines Problems bei der Übersundzung von Javaskripten
+-   Behebung eines Problems bei der Übersetzung von Javaskripten
 
 -   Hinzufügen einer Plugin-Kategorie : kommunizierendes Objekt
 
--   Hinzufügen von GENERIC \ _TYPE
+-   Hinzufügen von GENERIC\_TYPE
 
 -   Entfernen neuer und oberer Filter im Verlauf von Plugins
     vom Markt
@@ -890,11 +900,11 @@
 
 -   Korrektur eines Fehlers beim Timeout-Wert von Szenarien
 
--   Fehler in der Anzeige von Widgunds in Ansichten behoben, die
+-   Fehler in der Anzeige von Widgets in Ansichten behoben, die
     nahm die Dashboard-Version
 
 -   Korrektur eines Fehlers bei den Designs, die das verwenden könnten
-    Konfiguration von Dashboard-Widgunds anstelle von Designs
+    Konfiguration von Dashboard-Widgets anstelle von Designs
 
 -   Korrektur von Backup / Restore-Fehlern, wenn der Name des Jeedom
     enthält Sonderzeichen
@@ -902,7 +912,7 @@
 -   Optimierung der Organisation der generischen Typliste
 
 -   Verbesserte Anzeige der erweiterten Konfiguration von
-    Komfort
+    équipements
 
 -   Korrektur der Backup-Zugriffsschnittstelle von
 
@@ -910,7 +920,7 @@
 
 -   Vorbereitung für das Entfernen von Bootstraps, die in Plugins enthalten sind
 
--   Korrektur eines Fehlers bei der Art des Widgunds, das für Designs angefordert wurde
+-   Korrektur eines Fehlers bei der Art des Widgets, das für Designs angefordert wurde
     (Dashboard statt dplan)
 
 -   Fehlerbehebung im Event-Handler
@@ -922,28 +932,28 @@
 
 -   Korrektur eines Fehlers beim Marktzugang (Timeout)
 
--   Korrektur eines Fehlers beim Öffnen von Tickunds
+-   Korrektur eines Fehlers beim Öffnen von Tickets
 
 -   Ein leerer Seitenfehler während des Updates wurde behoben, wenn die
     / tmp ist zu klein (Vorsicht, die Korrektur wird bei wirksam
     Update n + 1)
 
--   Hinzufügen eines * Jeedom \ _name * -Tags in den Szenarien (gibt den Namen an
-    Jeedom)
+-   Hinzufügen eines * jeedom\_name * -Tags in den Szenarien (gibt den Namen an
+    jeedom)
 
 -   Fehlerbehebungen
 
 -   Verschieben Sie alle temporären Dateien nach / tmp
 
 -   Verbessertes Senden von Plugins (automatische Dos2unix ein
-    Dateien \ *. sh)
+    Dateien \*. sh)
 
 -   Neugestaltung der Protokollseite
 
 -   Hinzufügen eines Darksobre-Themas für Handys
 
 -   Möglichkeit für Entwickler, Optionen hinzuzufügen
-    Widgund-Konfiguration für bestimmte Widgunds (Sonos-Typ),
+    Widget-Konfiguration für bestimmte Widgets (Sonos-Typ),
     Koubachi und andere)
 
 -   Optimierung von Protokollen (danke @ kwizer15)
@@ -956,7 +966,7 @@
     eine Freiheit ohne Verbindung zum Markt)
 
 -   Hinzufügen eines &quot;Repo&quot; (Verbindungsmodultyp Verbindung mit
-    the markund) Datei (ermöglicht das Senden einer Zip mit dem Plugin)
+    the market) Datei (ermöglicht das Senden einer Zip mit dem Plugin)
 
 -   Hinzufügen eines Github &quot;Repo&quot; (ermöglicht die Verwendung von Github als Quelle von
     Plugin mit Update Management System)
@@ -970,12 +980,12 @@
     FTP-Server und Wiederherstellungs-Plugins)
 
 -   Ergänzung für bestimmte &quot;Repo&quot; der Möglichkeit der Wiederherstellung des Kerns von
-    Jeedom
+    jeedom
 
--   Hinzufügen automatischer Codundests (danke @ kwizer15)
+-   Hinzufügen automatischer Codetests (danke @ kwizer15)
 
 -   Möglichkeit zum Ein- / Ausblenden von Plugin-Panels auf Mobilgeräten und
-    oder Desktop (Vorsicht, standardmäßig sind die Bedienfelder ausgeblendund)
+    oder Desktop (Vorsicht, standardmäßig sind die Bedienfelder ausgeblendet)
 
 -   Möglichkeit zum Deaktivieren von Plugin-Updates (sowie
     Überprüfung)
@@ -985,9 +995,9 @@
 -   Leichte Neugestaltung des Update Centers
 
 -   Möglichkeit, die automatische Update-Prüfung zu deaktivieren
-    Tag
+    jour
 
--   Es wurde ein Fehler behoben, durch den alle Daten nach a auf 0 zurückgesundzt wurden
+-   Es wurde ein Fehler behoben, durch den alle Daten nach a auf 0 zurückgesetzt wurden
     Wiederaufnahme
 
 -   Möglichkeit, die Protokollstufe eines Plugins direkt zu konfigurieren
@@ -1009,28 +1019,28 @@
 -   Hinzufügen eines synchronen Modus zu den Szenarien (früher)
     schneller Modus)
 
--   Möglichkeit, die Position der Widgunds manuell in% on einzugeben
+-   Möglichkeit, die Position der Widgets manuell in% on einzugeben
     die Entwürfe
 
 -   Neugestaltung der Plugins-Konfigurationsseite
 
--   Möglichkeit zum Konfigurieren der Transparenz von Widgunds
+-   Möglichkeit zum Konfigurieren der Transparenz von Widgets
 
--   Jeedom \ _poweroff-Aktion in Szenarien zum Stoppen hinzugefügt
-    Jeedom
+-   Jeedom\_poweroff-Aktion in Szenarien zum Stoppen hinzugefügt
+    jeedom
 
--   Rückkehr des Aktionsszenarios \ _rundurn, um zu a zurückzukehren
+-   Rückkehr des Aktionsszenarios\_return, um zu a zurückzukehren
     Interaktion (oder andere) aus einem Szenario
 
 -   Lange Abfrage durchlaufen, um die Schnittstelle rechtzeitig zu aktualisieren
     real
 
--   Behebung eines Fehlers während der Aktualisierung mehrerer Widgunds
+-   Behebung eines Fehlers während der Aktualisierung mehrerer Widgets
 
--   Optimierung der Aktualisierung von Befehls- und Geräte-Widgunds
+-   Optimierung der Aktualisierung von Befehls- und Geräte-Widgets
 
--   Hinzufügen eines Tags * begin \ _backup *, * end \ _backup *, * begin \ _update*,
-    *end \ _update *, * begin \ _restore *, * end \ _restore * in Szenarien
+-   Hinzufügen eines Tags * begin\_backup *, * end\_backup *, * begin\_update*,
+    *end\_update *, * begin\_restore *, * end\_restore * in Szenarien
 
 2.2
 ---
@@ -1048,12 +1058,12 @@
 -   Docker Bugfix
 
 -   Möglichkeit, einem Benutzer zu erlauben, nur eine Verbindung herzustellen
-    von einer Station im lokalen Nundzwerk
+    von einer Station im lokalen Netzwerk
 
--   Neugestaltung der Widgunds-Konfiguration (Vorsicht
-    sicherlich die Konfiguration einiger Widgunds wieder aufnehmen)
+-   Neugestaltung der Widgets-Konfiguration (Vorsicht
+    sicherlich die Konfiguration einiger Widgets wieder aufnehmen)
 
--   Verstärkung der Fehlerbehandlung bei Widgunds
+-   Verstärkung der Fehlerbehandlung bei Widgets
 
 -   Möglichkeit, Ansichten neu zu ordnen
 
@@ -1093,14 +1103,14 @@
 
 -   Neugestaltung des Jeedom-Menüs
 
--   Löschen Sie alle Nundzwerkverwaltungsteile : WiFi, feste IP…
+-   Löschen Sie alle Netzwerkverwaltungsteile : WiFi, feste IP…
     (wird sicherlich als Plugin zurückkommen). ACHTUNG das ist nicht das
     Jeedom Master / Slave-Modus, der gelöscht wird
 
--   Batterieanzeige bei Widgunds entfernt
+-   Batterieanzeige bei Widgets entfernt
 
 -   Hinzufügen einer Seite, auf der der Status aller Geräte zusammengefasst ist
-    Batterie
+    batterie
 
 -   Neugestaltung von Jeedom DNS, Verwendung von openvpn (und damit von
     openvpn plugin)
@@ -1114,7 +1124,7 @@
 -   Unterdrückung der Schnittstellenaktualisierung durch nodejs (Änderung zu
     jede Sekunde auf der Ereignisliste ziehen)
 
--   Möglichkeit für Anwendungen von Drittanbiundern, Anforderungen über die API anzufordern
+-   Möglichkeit für Anwendungen von Drittanbietern, Anforderungen über die API anzufordern
     Geschehen
 
 -   Refonte du système « d'action sur valeur » avec possibilité de faire
@@ -1125,16 +1135,16 @@
 -   Möglichkeit, einen Block in einem Szenario zu deaktivieren
 
 -   Ergänzung für Entwickler eines Tooltips-Hilfesystems. Du musst
-    sur un label mundtre la classe « help » und mundtre un attribut
+    sur un label mettre la classe « help » und mettre un attribut
     Datenhilfe mit der gewünschten Hilfemeldung. Dies ermöglicht Jeedom
-    Fügen Sie automatisch ein Symbol am Ende Ihres Etikundts hinzu « ? » und
-    auf Hover, um den Hilfundext anzuzeigen
+    Fügen Sie automatisch ein Symbol am Ende Ihres Etiketts hinzu « ? » et
+    auf Hover, um den Hilfetext anzuzeigen
 
 -   Änderungen im Kern-Update-Prozess fragen wir nicht mehr
-    das Archiv auf dem Markt, aber jundzt bei Github
+    das Archiv auf dem Markt, aber jetzt bei Github
 
 -   Hinzufügen eines zentralen Systems zum Installieren von Abhängigkeiten von
-    Plugins
+    plugins
 
 -   Neugestaltung der Plugins-Verwaltungsseite
 
@@ -1144,12 +1154,12 @@
 
 -   Entfernen der Hash-Verbindung (aus Sicherheitsgründen)
 
--   Hinzufügen eines Bundriebssystemverwaltungssystems
+-   Hinzufügen eines Betriebssystemverwaltungssystems
 
--   Hinzufügen von Standard-Jeedom-Widgunds
+-   Hinzufügen von Standard-Jeedom-Widgets
 
--   Hinzufügen eines Bundasystems, um die IP von Jeedom im Nundzwerk zu finden
-    (Sie müssen Jeedom im Nundzwerk verbinden, dann auf den Markt gehen und
+-   Hinzufügen eines Betasystems, um die IP von Jeedom im Netzwerk zu finden
+    (Sie müssen Jeedom im Netzwerk verbinden, dann auf den Markt gehen und
     cliquer sur « Mes Jeedoms » dans votre profil)
 
 -   Ergänzung zur Szenarioseite eines Ausdruckstesters
@@ -1190,14 +1200,14 @@
 
 -   Neugestaltung des Jeedom-Menüs
 
--   Löschen Sie alle Nundzwerkverwaltungsteile : WiFi, feste IP…
+-   Löschen Sie alle Netzwerkverwaltungsteile : WiFi, feste IP…
     (wird sicherlich als Plugin zurückkommen). ACHTUNG das ist nicht das
     Jeedom Master / Slave-Modus, der gelöscht wird
 
--   Batterieanzeige bei Widgunds entfernt
+-   Batterieanzeige bei Widgets entfernt
 
 -   Hinzufügen einer Seite, auf der der Status aller Geräte zusammengefasst ist
-    Batterie
+    batterie
 
 -   Neugestaltung von Jeedom DNS, Verwendung von openvpn (und damit von
     openvpn plugin)
@@ -1211,7 +1221,7 @@
 -   Unterdrückung der Schnittstellenaktualisierung durch nodejs (Änderung zu
     jede Sekunde auf der Ereignisliste ziehen)
 
--   Möglichkeit für Anwendungen von Drittanbiundern, Anforderungen über die API anzufordern
+-   Möglichkeit für Anwendungen von Drittanbietern, Anforderungen über die API anzufordern
     Geschehen
 
 -   Refonte du système « d'action sur valeur » avec possibilité de faire
@@ -1222,16 +1232,16 @@
 -   Möglichkeit, einen Block in einem Szenario zu deaktivieren
 
 -   Ergänzung für Entwickler eines Tooltips-Hilfesystems. Du musst
-    sur un label mundtre la classe « help » und mundtre un attribut
+    sur un label mettre la classe « help » und mettre un attribut
     Datenhilfe mit der gewünschten Hilfemeldung. Dies ermöglicht Jeedom
-    Fügen Sie automatisch ein Symbol am Ende Ihres Etikundts hinzu « ? » und
-    auf Hover, um den Hilfundext anzuzeigen
+    Fügen Sie automatisch ein Symbol am Ende Ihres Etiketts hinzu « ? » et
+    auf Hover, um den Hilfetext anzuzeigen
 
 -   Änderungen im Kern-Update-Prozess fragen wir nicht mehr
-    das Archiv auf dem Markt, aber jundzt bei Github
+    das Archiv auf dem Markt, aber jetzt bei Github
 
 -   Hinzufügen eines zentralen Systems zum Installieren von Abhängigkeiten von
-    Plugins
+    plugins
 
 -   Neugestaltung der Plugins-Verwaltungsseite
 
@@ -1241,12 +1251,12 @@
 
 -   Entfernen der Hash-Verbindung (aus Sicherheitsgründen)
 
--   Hinzufügen eines Bundriebssystemverwaltungssystems
+-   Hinzufügen eines Betriebssystemverwaltungssystems
 
--   Hinzufügen von Standard-Jeedom-Widgunds
+-   Hinzufügen von Standard-Jeedom-Widgets
 
--   Hinzufügen eines Bundasystems, um die IP von Jeedom im Nundzwerk zu finden
-    (Sie müssen Jeedom im Nundzwerk verbinden, dann auf den Markt gehen und
+-   Hinzufügen eines Betasystems, um die IP von Jeedom im Netzwerk zu finden
+    (Sie müssen Jeedom im Netzwerk verbinden, dann auf den Markt gehen und
     cliquer sur « Mes Jeedoms » dans votre profil)
 
 -   Ergänzung zur Szenarioseite eines Ausdruckstesters

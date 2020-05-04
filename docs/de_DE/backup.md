@@ -11,10 +11,10 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf dem
 Richtig, dies ist der Echtzeitstatus der aktuellen Aktion (Sicherung)
 oder Wiederherstellung), wenn Sie eine gestartet haben.
 
-**Sicherungen** 
+**Sauvegardes** 
 ---------------
 
--   **Sicherungen** : Ermöglicht das manuelle Starten einer Sicherung und
+-   **Sauvegardes** : Ermöglicht das manuelle Starten einer Sicherung und
     sofort (nützlich, wenn Sie eine kritische Änderung vornehmen möchten.
     Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine
     Schaltfläche, um eine Sicherung zu starten, ohne das Archiv an das zu senden
@@ -87,9 +87,9 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 -   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
     Samba oben ausgewählt.
 
-> **Wichtig**
+> **IMPORTANT**
 >
->  !!! 
+> Jeedom-Backups dürfen nur für ihn in einen Ordner fallen !!! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht
 
 
 Was ist gespeichert ? 
@@ -104,7 +104,7 @@ anders, weil es nicht möglich ist, die Einschlüsse zu speichern.
 Diese sind direkt im Controller enthalten, also müssen Sie
 Behalten Sie den gleichen Controller bei, um die Zwave-Module zu finden.
 
-> **Notiz**
+> **Note**
 >
 > Das System, auf dem Jeedom installiert ist, wird nicht gesichert. wenn
 > Sie haben die Parameter dieses Systems geändert (insbesondere über SSH).,
@@ -117,11 +117,11 @@ Mit Cloud-Backups kann Jeedom Ihre Backups senden
 direkt auf dem Markt. Auf diese Weise können Sie sie einfach wiederherstellen
 und seien Sie sicher, sie nicht zu verlieren. Der Markt behält die letzten 6
 Backups. Um sich anzumelden, gehen Sie einfach auf Ihre Seite
-**Profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Sie
+**profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Vous
 kann auf dieser Seite ein Backup abrufen oder ein kaufen
 Abonnement (für 1, 3, 6 oder 12 Monate).
 
-> **Spitze**
+> **Tip**
 >
 > Sie können den Namen der Sicherungsdateien von anpassen
 > der Registerkarte **Meine Jeedoms**, Vermeiden Sie jedoch die Zeichen
@@ -134,4 +134,4 @@ Jeedom führt jeden Tag zur gleichen Zeit eine automatische Sicherung durch
 Stunde. Es ist möglich, dies über die &quot;Engine&quot; zu ändern
 Aufgaben &quot;(die Aufgabe heißt **Jeedom Backup**), aber es ist nicht
 empfohlen. In der Tat wird es in Bezug auf die Last der berechnet
-Markt.
+Market.

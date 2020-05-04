@@ -66,7 +66,7 @@ Allows you to define certain interface behaviors :
     -   **Unfold the objects panel** : allows to make visible by
         default the objects menu (on the left) on the dashboard
 
--   **View**
+-   **Vue**
 
     -   **Unfold the view panel** : allows to make visible by
         default views menu (left) on views

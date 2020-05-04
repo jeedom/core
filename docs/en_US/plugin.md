@@ -20,7 +20,7 @@ By clicking on a plugin, you access its configuration. Upstairs you
 find the name of the plugin, then in brackets, its name in Jeedom
 (ID) and finally, the type of version installed (stable, beta).
 
-> **IMPORTANT**
+> **Important**
 >
 > When downloading a plugin, it is disabled by default.
 > So you have to activate it by yourself.
@@ -37,16 +37,16 @@ At the top right, some buttons :
 
 -   **Details** : allows to find the plugin page on the market
 
--   **Remove** : Remove the plugin from your Jeedom. Be careful, this
+-   **Supprimer** : Remove the plugin from your Jeedom. Be careful, this
     also permanently removes all equipment from this plugin
 
 Below left, there is a status area with :
 
--   **Status** : allows to see the status of the plugin (active / inactive)
+-   **Statut** : allows to see the status of the plugin (active / inactive)
 
 -   **Version** : the version of the plugin installed
 
--   **ACTION** : Allows you to enable or disable the plugin
+-   **Action** : Allows you to enable or disable the plugin
 
 -   **Jeedom version** : Minimum Jeedom version required
     for the operation of the plugin
@@ -70,11 +70,11 @@ additional are displayed under the areas mentioned above.
 
 Dependencies :
 
--   **Last name** : generally will be local
+-   **Nom** : generally will be local
 
--   **Status** : will tell you if the dependencies are OK or KO
+-   **Statut** : will tell you if the dependencies are OK or KO
 
--   **Setup** : will install or reinstall
+-   **Installation** : will install or reinstall
     dependencies (if you don&#39;t do it manually and they are
     KO, Jeedom will take care of itself after a while)
 
@@ -83,11 +83,11 @@ Dependencies :
 
 Devil :
 
--   **Last name** : generally will be local
+-   **Nom** : generally will be local
 
--   **Status** : will tell you if the demon is OK or KO
+-   **Statut** : will tell you if the demon is OK or KO
 
--   **D'actualité** : will be OK if all the criteria for the demon
+-   **Configuration** : will be OK if all the criteria for the demon
     turns are met or will give cause for blocking
 
 -   **(To restart** : allows to launch or relaunch the demon
@@ -163,7 +163,7 @@ At the top of the window you have filters :
 -   **Category drop-down menu** : displays only
     certain plugin categories
 
--   **Search** : allows you to search for a plugin (in the name or
+-   **Rechercher** : allows you to search for a plugin (in the name or
     description of it)
 
 -   **Username** : displays the username used for the
@@ -191,7 +191,7 @@ information about the plugin, including :
     -   **Install pro** : allows to install the pro version (very
         little used)
 
-    -   **Remove** : if the plugin is currently installed, this
+    -   **Supprimer** : if the plugin is currently installed, this
         button to delete it
 
 Below, you will find the description of the plugin, the compatibility
@@ -204,13 +204,13 @@ change history, a &quot;Documentation&quot; button which returns
 to the plugin documentation. Then you have the language available
 and the various information on the date of the last stable version.
 
-> **IMPORTANT**
+> **Important**
 >
 > It is really not recommended to put a beta plugin on a
 > Jeedom non beta, many operating problems can
 > result.
 
-> **IMPORTANT**
+> **Important**
 >
 > Some plugins are chargeable, in this case the plugin sheet will
 > will offer to buy it. Once this is done, wait for a
@@ -222,9 +222,9 @@ and the various information on the date of the last stable version.
 > You can also add a plugin to Jeedom from a file or
 > from a Github repository. This requires, in the configuration of
 > Jeedom, activate the appropriate function in the &quot;Updates and
-> files". It will then be possible, by placing the mouse completely
+> fichiers". It will then be possible, by placing the mouse completely
 > left, and bringing up the plugin page menu, click
 > on "Add from another source". You can then choose the
 > source "File". Attention, in the case of the addition by a file
 > zip, the zip name must be the same as the plugin ID and from
-> opening the ZIP a plugin \ _info folder must be present.
+> opening the ZIP a plugin\_info folder must be present.

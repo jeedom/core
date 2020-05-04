@@ -1,23 +1,23 @@
-Jeedom provIDes developers and users with an API
+Jeedom provides developers and users with an API
 complete so you can control Jeedom from any object
-connected.
+connecté.
 
 Two APIs are available : a developer oriented pilot
 JSON RPC 2.0 and another via URLs and HTTP request.
 
 This API is very easily used by simple HTTP requests via
-URLs.
+URL.
 
-> **NOTE**
+> **Note**
 >
-> For all this documentation, \ #IP \ _JEEDOM \ # corresponds to your url
+> For all this documentation, \#IP\_JEEDOM \# corresponds to your url
 > access to Jeedom. This is (unless you are connected to your network
 > local) of the internet address you use to access Jeedom
-> from the outsIDe.
+> from the outside.
 
-> **NOTE**
+> **Note**
 >
-> For all this documentation, \ #API \ _KEY \ # corresponds to your key
+> For all this documentation, \#API\_KEY \# corresponds to your key
 > API, specific to your installation. To find it, you have to go to
 > the "General" menu → "Configuration" → "General" tab".
 
@@ -25,15 +25,15 @@ Scenario
 ========
 
 Here is the URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&ID=\#ID\#&Action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&ID=#ID#&Action=#ACTION#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
--   **ID** : matches your scenario ID. The ID is on the
+-   **id** : matches your scenario ID. The ID is on the
     page of the scenario concerned, in &quot;tools&quot; → &quot;Scenarios&quot;, once the
     selected scenario, next to the name of the &quot;General&quot; tab. Other
     way to find it : in &quot;Tools&quot; → &quot;Scenarios&quot;, click on
     "Overview".
 
--   **Action** : corresponds to the Action you want to apply. The
+-   **action** : corresponds to the Action you want to apply. The
     available orders are : "start "," stop "," deactivate "and
     "activate "to start, stop, deactivate or
     activate the scenario.
@@ -47,28 +47,28 @@ Info / Action command
 ====================
 
 Here is the URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&ID=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&ID=#ID#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&id=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
 
--   **ID** : corresponds to the ID of what you want to drive or from which
+-   **id** : corresponds to the ID of what you want to drive or from which
     you wish to receive information
 
 The easiest way to get this URLs is to go to the Tools page →
 Home automation summary, to search for the command then to open its configuration
 advanced (the &quot;gear&quot; icon) and there you will see a URLs that contains
 already all you need depending on the type and subtype of the
-ordered.
+commande.
 
-> **NOTE**
+> **Note**
 >
-> It is possible for the \ #ID \ # field to place multiple commands
+> It is possible for the \#ID \# field to place multiple commands
 > at once. To do this, you must pass an array in json (ex
 > % 5B12,58,23% 5D, note that \ [and \] must be encoded, hence the% 5B
 > and% 5D). Jeedom&#39;s return will be a json
 
-> **NOTE**
+> **Note**
 >
 > Parameters must be encoded for url, You can use
-> a tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
+> a tool, [here](https://meyerweb.com/eric/tools/dencoder/)
 
 InterAction 
 ===========
@@ -85,22 +85,22 @@ Here is the URLs =
     dID not understand, 1 otherwise
 
 -   **profile** \[optional\] : person&#39;s username
-    triggering interAction
+    triggering interaction
 
--   **reply \ _cmd** \[optional\] : Command ID to use for
+-   **reply\_cmd** \[optional\] : Command ID to use for
     respond to the request
 
 Message 
 =======
 
 Here is the URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=Message&category=\#CATEGORY\#&Message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=Message&category=#CATEGORY#&Message=#MESSAGE#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
 -   **category** : Message category to add to Message center
 
--   **Message** : Message in question, be careful to think about encoding
+-   **message** : Message in question, be careful to think about encoding
     the Message (space becomes% 20, =% 3D…). You can use a
-    tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
+    outil, [here](https://meyerweb.com/eric/tools/dencoder/)
 
 Object 
 =====
@@ -114,19 +114,19 @@ Equipment
 ==========
 
 Here is the URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object \ _ID=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_ID=#OBJECT_ID#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
--   **object \ _ID** : ID of the object from which we want to retrieve
-    amenities
+-   **object\_id** : ID of the object from which we want to retrieve
+    équipements
 
 Ordered 
 ========
 
 Here is the URLs =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic \ _ID=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_ID=#EQLOGIC_ID#)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
--   **eqLogic \ _ID** : ID of the equipment from which we want to recover
-    orders
+-   **eqLogic\_id** : ID of the equipment from which we want to recover
+    commandes
 
 Full Data 
 =========

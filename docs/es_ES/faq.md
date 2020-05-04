@@ -4,7 +4,7 @@ Jeedom requiere una suscripción ?
 No, Jeedom es totalmente utilizable sin necesidad de ningún
 suscripción alguna. Sin embargo, hay servicios ofrecidos para
 copias de seguridad o llamadas / SMS, pero que en realidad permanecen
-opcional.
+optionnels.
 
 ¿Jeedom utiliza servidores externos para ejecutar ? 
 ==============================================================
@@ -13,7 +13,7 @@ No, Jeedom no utiliza la infraestructura de tipo "Cloud"". Todo se hace en
 local y no necesita nuestros servidores para su
 trabajos de instalación. Solo servicios como Market, the
 la copia de seguridad en línea o Jeedom DNS requieren el uso de nuestro
-servidores.
+serveurs.
 
 ¿Podemos reordenar pedidos de equipos? ? 
 ==================================================
@@ -65,12 +65,12 @@ recomienda modificar estos identificadores para mayor seguridad.
 ================================
 
 Sí : O tienes una fuente de alimentación o más, en este caso
-solo use el [Jeedom DNS] (https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
+solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 Cómo conectarse en SSH ?
 =============================
 
-Aquí hay una [documentación] (https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), parte &quot;En Windows : Masilla". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Aquí hay un [Documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
 - Nombre de usuario : "root ", contraseña : "Mjeedom96"
 - Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"
@@ -83,11 +83,11 @@ Cómo restablecer derechos ?
 
 En SSH hacer :
 
-``` {.bash}
+`` `{.bash}
 sudo su -
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-```
+`` ''
 
 ¿Dónde están las copias de seguridad de Jeedom? ? 
 ==========================================
@@ -99,12 +99,12 @@ Cómo actualizar Jeedom en SSH ?
 
 En SSH hacer :
 
-``` {.bash}
+`` `{.bash}
 sudo su -
 php /var/www/html/install/update.php
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-```
+`` ''
 
 ¿Es compatible con Webapp Symbian? ? 
 =======================================
@@ -135,9 +135,9 @@ Tengo una pagina en blanco
 Tienes que conectarte en SSH a Jeedom y ejecutar el script
 autodiagnóstico :
 
-``` {.bash}
+`` `{.bash}
 sudo chmod + x / var / www / html / health.sh; sudo /var/www/html/health.sh
-```
+`` ''
 
 Si hay un problema, el script intentará corregirlo. Si no puede
 no, te dirá.
@@ -150,7 +150,7 @@ Tengo un problema con el identificador de BDD
 
 Estos deben restablecerse :
 
-``` {.bash}
+`` `{.bash}
 bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9' | cabeza -c 15)
 echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
 echo "CREAR USUARIO &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFICADO POR &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
@@ -159,7 +159,7 @@ cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e &quot;s / # CONTRASEÑA # / $ {bdd_password} / g&quot; core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
-```
+`` ''
 
 Tengo \ {\ {… \} \} en todas partes 
 =======================
@@ -179,7 +179,7 @@ Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a 
 
 Este error no se debe a Jeedom, sino a un problema con el sistema..
 Si persiste después de una reinstalación, es recomendable
-ver con el servicio postventa para una inquietud de hardware. Aquí está la [documentación] (https://jeedom.github.io / documentation / howto / en_FR / recovery_mode_jeedom_smart) para Smart
+ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) para inteligente
 
 Mi escenario ya no se detiene 
 =================================
@@ -220,11 +220,11 @@ caso, lo mejor es recuperar una copia de seguridad (disponible en
 para restaurar la copia de seguridad. También puede ver por qué MySQL no es
 no quiere arrancar desde una consola SSH :
 
-``` {.bash}
+`` `{.bash}
 sudo su -
 servicio de parada mysql
 mysqld --verbose
-```
+`` ''
 
 O consultar el log : /var/log/mysql/error.log
 
@@ -232,12 +232,12 @@ Los botones de apagado / reinicio no funcionan
 ===================================================
 
 En una instalación de bricolaje es normal. En SSH, tienes que pedir
-visudo y al final del archivo tienes que agregar : www-data TODO = (TODO)
+visudo y al final del archivo tienes que agregar : www-data TODO = (ALL)
 NOPASSWD: TODO.
 
-``` {.bash}
+`` `{.bash}
 servicio sudo apache2 reiniciar
-```
+`` ''
 
 No veo algunos complementos del mercado 
 =========================================
@@ -253,13 +253,13 @@ Las alertas se clasifican por prioridad, desde las menos importantes hasta las m
 My Jeedom muestra permanentemente &quot;Iniciando&quot; incluso después de 1 hora ? 
 =====================================
 
-Si es DIY y tiene Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \ * Apache). Si es el caso, es necesario hacer :
+Si es DIY y tiene Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \* Apache). Si es el caso, es necesario hacer :
 
-``` 
+`` '' 
 mkdir /etc/systemd/system/apache2.service.d
 echo &quot;[Servicio]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
-``` 
+`` '' 
 
 Tengo una preocupación por el tiempo en mi historia
 =========================================
@@ -287,14 +287,14 @@ Tengo errores de tipo &quot;Clase &#39;eqLogic&#39; no encontrada&quot;, parece 
 =========================================
 Es un error bastante serio, el más simple es 
 
-``` 
+`` '' 
 mkdir -p / root / tmp /
 cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
 descomprimir master.zip
 cp -R / root / tmp / core-master / * / var / www / html
 rm -rf / root / tmp / core-master
-```
+`` ''
 
 # No puedo instalar las dependencias del complemento. Tengo un error del tipo : "E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: No se pudo obtener lock / var / lib / dpkg / lock"
 

@@ -11,7 +11,7 @@ Aquí se describe el principio de historización de Jeedom. No es
 necesario entender que si tiene alguna inquietud
 o desea cambiar la configuración de
 historización. La configuración predeterminada es adecuada para la mayoría
-caso.
+cas.
 
 Archivado 
 ---------
@@ -20,7 +20,7 @@ El archivo de datos le permite a Jeedom reducir la cantidad de datos
 guardado en la memoria. Esto permite no usar demasiado espacio y
 no ralentizar el sistema. De hecho, si mantiene todos los
 medidas, esto hace más puntos para mostrar y por lo tanto puede
-alargar drásticamente los tiempos para hacer un gráfico. En casoo
+alargar drásticamente los tiempos para hacer un gráfico. En caso
 demasiados puntos, incluso puede bloquearse
 visualización gráfica.
 
@@ -32,7 +32,7 @@ Aquí 2 parámetros, uno para el tamaño del paquete y otro para conocer
 cuándo hacerlo (por defecto, estos son paquetes
 1 hora con datos que tienen más de 2 horas de antigüedad).
 
-> **Punta**
+> **Tip**
 >
 > Si ha seguido bien, debe tener una alta precisión en el
 > Últimas 2 horas solamente. Sin embargo, cuando inicio sesión a las 5 p.m.,
@@ -40,7 +40,7 @@ cuándo hacerlo (por defecto, estos son paquetes
 > para evitar consumir recursos innecesariamente, la tarea que hace
 > el archivo se realiza solo una vez al día, por la tarde.
 
-> **Importante**
+> **Important**
 >
 > Por supuesto, este principio de archivo solo se aplica a pedidos de
 > tipo digital; en comandos de tipo binario, Jeedom no mantiene
@@ -69,17 +69,17 @@ semana porque por defecto quiero que sea solo una semana - ver
 (estos parámetros se guardan de una pantalla a otra; por lo tanto,
 que configurarlos una vez).
 
--   **Escalera** : muestra la curva como un
+-   **Escalier** : muestra la curva como un
     escalera o pantalla continua.
 
--   **Cambio** : muestra la diferencia en valor de
+-   **Variation** : muestra la diferencia en valor de
     punto anterior.
 
--   **Línea** : muestra el gráfico como líneas.
+-   **Ligne** : muestra el gráfico como líneas.
 
--   **área** : muestra el gráfico como un área.
+-   **Aire** : muestra el gráfico como un área.
 
--   **Columna**\* : muestra el gráfico como barras.
+-   **Colonne**\* : muestra el gráfico como barras.
 
 Gráfico sobre vistas y diseños. 
 =====================================
@@ -91,21 +91,21 @@ las opciones :
 
 Una vez que se activan los datos, puede elegir :
 
--   **Color** : el color de la curva.
+-   **Couleur** : el color de la curva.
 
--   **Puntao** : El tipo de gráfico (área, línea o columna).
+-   **Type** : El tipo de gráfico (área, línea o columna).
 
--   **Escala** : ya que puedes poner varias curvas (datos)
+-   **Echelle** : ya que puedes poner varias curvas (datos)
     en el mismo gráfico, es posible distinguir las escalas
     (derecha o izquierda).
 
--   **Escalera** : muestra la curva como un
+-   **Escalier** : muestra la curva como un
     escalera o pantalla continua
 
--   **Montón** : permite apilar los valores de las curvas (ver en
+-   **Empiler** : permite apilar los valores de las curvas (ver en
     a continuación para el resultado).
 
--   **Cambio** : muestra la diferencia en valor de
+-   **Variation** : muestra la diferencia en valor de
     punto anterior.
 
 Opción en la página del historial 
@@ -117,7 +117,7 @@ Historia calculada
 ------------------
 
 Se usa para mostrar una curva basada en un cálculo en varios
-comando (puedes hacer casoi todo, + - / \ * valor absoluto ... ver
+comando (puedes hacer casi todo, + - / \* valor absoluto ... ver
 Documentación PHP para ciertas funciones). Ex :
 abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio de
 La vida \] \ [Humedad \] \ [Temperatura \] *)
@@ -125,7 +125,7 @@ La vida \] \ [Humedad \] \ [Temperatura \] *)
 También tiene acceso a una gestión de fórmulas de cálculo que le permite
 guárdelos para verlos más fácilmente
 
-> **Punta**
+> **Tip**
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo;
 > aparecen los comandos históricos que se pueden graficar.
@@ -135,7 +135,7 @@ Historial de pedidos
 
 Frente a cada dato que se puede graficar, encontrará dos íconos :
 
--   **Cubo de basura** : permite eliminar los datos grabados; entonces
+-   **Poubelle** : permite eliminar los datos grabados; entonces
     del clic, Jeedom pregunta si es necesario eliminar los datos antes de un
     cierta fecha o todos los datos.
 
@@ -155,18 +155,18 @@ Línea de tiempo
 ========
 
 La línea de tiempo muestra ciertos eventos en su domótica en el formulario
-cronológico.
+chronologique.
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de
 comandos o escenarios deseados :
 
--   **Guión** : ya sea directamente en la página del escenario o en el
+-   **Scenario** : ya sea directamente en la página del escenario o en el
     página de resumen del escenario para hacerlo en "masa"
 
--   **Orden** : ya sea en la configuración avanzada del comando,
+-   **Commande** : ya sea en la configuración avanzada del comando,
     ya sea en la configuración de la historia para hacerlo en "masa"
 
-> **Punta**
+> **Tip**
 >
 > Tiene acceso a las ventanas de resumen de los escenarios o del
 > configuración del historial directamente desde la página
@@ -175,7 +175,7 @@ comandos o escenarios deseados :
 Una vez que haya habilitado el seguimiento en la línea de tiempo del pedido y
 escenarios deseados, puede verlos aparecer en la línea de tiempo.
 
-> **Importante**
+> **Important**
 >
 > Debe esperar nuevos eventos después de activar el seguimiento
 > en la línea de tiempo antes de verlos aparecer.

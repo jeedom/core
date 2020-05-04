@@ -2,7 +2,7 @@ It informs of all Jeedom application tasks that run on the
 server. This menu is to be used knowingly, or at the
 request technical support.
 
-> **IMPORTANT**
+> **Important**
 >
 > In case of mishandling on this page, any request for
 > support may be denied you.
@@ -20,9 +20,9 @@ At the top right, you have :
 
 -   **Refresh** : a button to refresh the task table
 
--   **Add** : a button to add a cron job
+-   **Ajouter** : a button to add a cron job
 
--   **Save** : a button to save your changes.
+-   **Enregistrer** : a button to save your changes.
 
 Below you have the table of all existing tasks
 (be careful, some tasks can launch subtasks, so it is
@@ -32,10 +32,10 @@ page). In this table, we find :
 -   **\#** : Task ID, can be useful for linking a
     process that is running and what it really does
 
--   **ACTION** : a button to start or stop the task in function
+-   **Action** : a button to start or stop the task in function
     its status and a button to see the cron in detail (as stored in the database)
 
--   **Active** : indicates if the task is active (can be launched
+-   **Actif** : indicates if the task is active (can be launched
     by Jeedom) or not
 
 -   **PID** : indicates the current process ID
@@ -48,13 +48,13 @@ page). In this table, we find :
 -   **Unique** : if it is &quot;yes&quot; then the task will launch once
     then will delete
 
--   **Class** : PHP class called to execute the task (can
+-   **Classe** : PHP class called to execute the task (can
     be empty)
 
--   **Function** : PHP function called in the called class (or not
+-   **Fonction** : PHP function called in the called class (or not
     if the class is empty)
 
--   **Programming** : programming the task in CRON format
+-   **Programmation** : programming the task in CRON format
 
 -   **Timeout** : maximum task run time. If the
     task is a demon then it will be automatically stopped and
@@ -66,7 +66,7 @@ page). In this table, we find :
     demon will always be at 0s, so don&#39;t worry about other tasks
     can be 0s)
 
--   **Status** : current status of the task (as a reminder, a daemon task
+-   **Statut** : current status of the task (as a reminder, a daemon task
     is still &quot;run&quot;)
 
 -   **Suppression** : delete task

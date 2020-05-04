@@ -11,21 +11,21 @@ La página de registros es bastante simple, en la parte superior izquierda hay u
 permitiendo la elección del registro para ver, en la parte superior derecha tienes 5
 botones :
 
--   **Buscar** : permite filtrar el cartel de registro
+-   **Rechercher** : permite filtrar el cartel de registro
 
 -   **Pausa / Reanudar** : le permite pausar / reanudar la configuración
     actualización de registro en tiempo real
 
 -   **Descargar** : permite descargar el registro actual,
 
--   **Vaciar** : permite vaciar el registro actual,
+-   **Vider** : permite vaciar el registro actual,
 
--   **Remove** : eliminar el registro actual, si Jeedom tiene alguna
+-   **Supprimer** : eliminar el registro actual, si Jeedom tiene alguna
     necesitarlo lo recreará automáticamente,
 
 -   **Eliminar todos los registros** : eliminar todos los registros presentes.
 
-> **Punta**
+> **Tip**
 >
 > Tenga en cuenta que el registro http.el error no se puede eliminar. Es esencial
 > ! si lo elimina (en la línea de comando, por ejemplo) no lo hará
@@ -42,7 +42,7 @@ Para acceder a él, debe ir a la página de registro o en Análisis
 
 Una vez que haya hecho clic en él, obtendrá una ventana
 se actualiza en tiempo real y muestra todos los eventos de su
-automatización.
+domotique.
 
 En la parte superior derecha tiene un campo de búsqueda (solo funciona si
 no están en pausa) y un botón para pausar (útil para

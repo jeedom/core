@@ -8,7 +8,7 @@ You can do this on views, design, panel page....
 
 It is triggered from a script with the report command, you can choose to have this report sent to you using a message command (email, telegram, etc.)
 
-# Use
+# Utilisation
 
 Its use is very simple you select if you want to see :
 
@@ -19,7 +19,7 @@ Its use is very simple you select if you want to see :
 
 Then you select the name of the report in question then you will see all the dates of the reports in memory
 
-> **IMPORTANT**
+> **Important**
 >
 > Automatic deletion is made by default for reports longer than 30 days (you can configure this period in the configuration of Jeedom)
 
@@ -27,10 +27,10 @@ Once the report selected you can see it appear, redownload it or delete it.
 
 You can aln delete all backups of a given report
 
-# Faq
+# FAQ
 
-> **If you have a Details error : cutycapt: error while loading shared libraries: libEGL.n: cannot open shared object file: No such file or directory**
+> **If you have a Details error : cutycapt: error while loading shared libraries: libEGL.so: cannot open shared object file: No such file or directory**
 >
 > It is necessary in ssh or in Administration -&gt; Configuration -&gt; OS / DB -&gt; System -&gt; Administration to do :
->sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.n.2 /usr/lib/aarch64-linux-gnu/libGLESv2.n
->sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.n.1 /usr/lib/aarch64-linux-gnu/libEGL.n
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so

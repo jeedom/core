@@ -1,11 +1,11 @@
-Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation deEndeieren.
+Die **objets** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und
 wird leichter zu identifizieren sein. Wir sagen dann, dass das Objekt
-ist das **relativ** Ausrüstung. Auf die Objektverwaltung kann zugegriffen werden
+ist das **parent** Ausrüstung. Auf die Objektverwaltung kann zugegriffen werden
 aus dem Menü **Werkzeuge → Objekte**.
 
 Um die Anpassung frei wählen zu können, können Sie diese benennen
-Objekte wie Sie wollen. Normalerweise werden wir die verschiedenen deEndeieren
+Objekte wie Sie wollen. Normalerweise werden wir die verschiedenen definieren
 Teile seines Hauses, wie die Namen der Zimmer (das ist
 empfohlene Konfiguration).
 
@@ -14,7 +14,7 @@ Management
 
 Sie haben zwei Möglichkeiten :
 
--   **Hinzufügen** : Erstellen Sie ein neues Objekt.
+-   **Ajouter** : Erstellen Sie ein neues Objekt.
 
 -   **Übersicht** : Zeigt die Liste der erstellten Objekte an
     sowie deren Konfiguration.
@@ -29,18 +29,18 @@ Registerkarte &quot;Objekt&quot;
 
 Durch Klicken auf ein Objekt gelangen Sie auf dessen Konfigurationsseite. Was
 Vergessen Sie nicht, die Änderungen an der zu speichern
-Ende.
+fin.
 
 Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 -   **Objektname** : Der Name Ihres Objekts.
 
 -   **Vater** : Gibt das übergeordnete Objekt des aktuellen Objekts an
-    DeEndeieren Sie eine Hierarchie zwischen Objekten. Zum Beispiel : Das Wohnzimmer hat
+    Definieren Sie eine Hierarchie zwischen Objekten. Zum Beispiel : Das Wohnzimmer hat
     die Wohnung zu erziehen. Ein Objekt kann nur ein übergeordnetes Objekt haben
     Es können jedoch mehrere Objekte dasselbe übergeordnete Objekt haben.
 
--   **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
+-   **Visible** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 
 -   **Verstecke dich auf dem Armaturenbrett** : Aktivieren Sie dieses Kontrollkästchen, um es auszublenden
     das Objekt auf dem Dashboard. Es wird immer noch in der aufbewahrt
@@ -59,28 +59,28 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 -   **Zusammenfassende Textfarbe** : Ermöglicht die Auswahl der Farbe von
     Ergebnisse der Objektzusammenfassung im Dashboard.
 
--   **Größe auf dem Armaturenbrett (1 bis 12)** : Hier können Sie die Breite deEndeieren
+-   **Größe auf dem Armaturenbrett (1 bis 12)** : Hier können Sie die Breite definieren
     die Anzeige dieses Objekts im Dashboard. Zum Beispiel : wenn du
     Setzen Sie &quot;6&quot; auf zwei aufeinanderfolgende Objekte in der Liste, dann auf
     wird nebeneinander auf dem Armaturenbrett angezeigt. Wenn Sie &quot;3&quot; auf vier setzen
     Objekte, die aufeinander folgen, werden auch nebeneinander stehen.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern.
 > Verwenden Sie im Menü links auf Ihrer Seite die vertikalen Pfeile
 > Ziehen und Ablegen, um ihnen einen neuen Platz zu geben.
 
-> **Spitze**
+> **Tip**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt
-> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Verbindungen**, bis um
+> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Liens**, bis um
 > Recht.
 
-> **Spitze**
+> **Tip**
 >
-> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät deEndeiert wurde, wird es
-> wird als Elternteil haben : **Keine** .
+> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es
+> wird als Elternteil haben : **Aucun** .
 
 Registerkarte &quot;Zusammenfassung&quot; 
 -------------
@@ -105,13 +105,13 @@ Linien werden Ihnen vorgeschlagen :
 
 ### Befehle 
 
-Jede Registerkarte repräsentiert einen in der Konfiguration deEndeierten Zusammenfassungstyp
+Jede Registerkarte repräsentiert einen in der Konfiguration definierten Zusammenfassungstyp
 von Jeedom. Klicken Sie auf **Bestellung hinzufügen** so dass es ist
 in der Zusammenfassung berücksichtigt. Sie haben die Wahl, die auszuwählen
 Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
 übergeordnetes Objekt.
 
-> **Spitze**
+> **Tip**
 >
 > Wenn Sie einen Zusammenfassungstyp hinzufügen oder die konfigurieren möchten
 > Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung,
@@ -124,17 +124,17 @@ Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
 In der Übersicht können Sie alle Objekte in anzeigen
 Jeedom sowie deren Konfiguration :
 
--   **Identifikation** : Objekt-Identifikation.
+-   **ID** : Objekt-ID.
 
--   **Objekt** : Objektname.
+-   **Objet** : Objektname.
 
 -   **Vater** : Name des übergeordneten Objekts.
 
--   **Sichtbar** : Objektsichtbarkeit.
+-   **Visible** : Objektsichtbarkeit.
 
--   **Maskiert** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
+-   **Masqué** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
 
--   **Zusammenfassung deEndeiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. diese
+-   **Zusammenfassung definiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. diese
     Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.
 
 -   **Versteckte Dashboard-Zusammenfassung** : Versteckte Zusammenfassungen anzeigen auf
