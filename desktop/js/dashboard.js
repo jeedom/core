@@ -176,6 +176,16 @@ $('#categoryfilter li a').on('mousedown', function(event) {
   filterByCategory()
 })
 
+function resetCategoryFilter() {
+  $('#categoryfilter .catFilterKey').each(function() {
+    $(this).prop("checked", true)
+  })
+  $('.eqLogic-widget, .scenario-widget').each(function() {
+    $(this).show()
+  })
+  $('.div_displayEquipement').packery()
+}
+
 function filterByCategory() {
   var cats = []
   $('#categoryfilter .catFilterKey').each(function() {
@@ -245,6 +255,7 @@ function editWidgetMode(_mode,_save){
   if (_mode == 0) {
     jeedom.cmd.disableExecute = false
     isEditing = false
+    $('#dashTopBar').removeClass('disabled')
     if (!isset(_save) || _save) {
       saveWidgetDisplay({dashboard : 1})
     }
@@ -258,6 +269,8 @@ function editWidgetMode(_mode,_save){
   } else {
     jeedom.cmd.disableExecute = true
     isEditing = true
+    resetCategoryFilter()
+    $('#dashTopBar').addClass('disabled')
 
     //show orders:
     $('.ui-draggable').each( function() {

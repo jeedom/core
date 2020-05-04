@@ -73,7 +73,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		<?php } else { ?>
 			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
 		<?php } ?>
-		</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
 			<i class="fas fa-filter"></i></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
 		</button>
 		<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:unset;left:unset;">
@@ -93,12 +93,12 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	</div>
 	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
-		<a id="bt_resetDashboardSearch" class="btn"><i class="fas fa-times"></i></a>
+		<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
 	</div>
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<div class="input-group-btn">
-			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
+			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn enabled roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
 		</div>
 	<?php } ?>
 </div>
