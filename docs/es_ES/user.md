@@ -1,4 +1,4 @@
-# Usuarios
+# Utilisateurs
 **Configuración → Sistema → Usuarios**
 
 Esta página le permite definir la lista de usuarios autorizados para conectarse a Jeedom, así como sus derechos de administrador..

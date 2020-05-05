@@ -1,17 +1,15 @@
+# Changelog Jeedom V4.1
 
-Changelog Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Synthèse : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
 - Recherche : Ajout d'un moteur de recherche dans **Outils → Recherche**.
-
 - Dashboard : Mode Édition maintenant en insertion de la tuile déplacée.
 - Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
+- Dashboard : Ajout d'un bouton pour filtrer les éléments affichés par catégorie.
 - Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
-- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configurtion -> Interface).
+- Dashboard : Possibilité de flouter les arrières plan des images de fond (Configuration -> Interface).
 - Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - Widgets : Possibilité d'ajouter des class css à un widget (voir documentation widget).
 - Widgets : Ajout d'un widget core *sliderVertical*.
@@ -51,70 +49,60 @@ Changelog Jeedom V4
 - Configuration : L'onglet *Informations* est maintenant dans l'onglet *Général*.
 - Configuration : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
-- Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
+- Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.<br/><br/>
 - WebApp : Intégration de la nouvelle page Synthèse.
 - WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
-- WebApp : On peux maintenant sélectionner / copier une partie d'un log.
+- WebApp : On peut maintenant sélectionner / copier une partie d'un log.
 - WebApp : Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
 - WebApp : Persistance de la bascule de thème (8h).
-- WebApp : Sur un design, un click avec trois doights permet de revenir à l'accueil.
+- WebApp : Sur un design, un click avec trois doigts permet de revenir à l'accueil.
 - WebApp : Affichage des scénarios par groupe.
-- WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
-
+- WebApp : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).<br/><br/>
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
-
 - Corrections de bugs et optimisations.
 - Lib: Update HighStock v7.1.2 vers v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Correction de bug.
 
-4.0.52
-=====
+### 4.0.52
 
 - Correction de bug (mise à jour à faire absolument si vous êtes en 4.0.51).
 
-4.0.51
-=====
+### 4.0.51
 
 - Correction de bugs.
 - Optimisation du futur système de DNS.
 
-4.0.49
-=====
+### 4.0.49
 
 - Possibilité de choisir le moteur TTS de jeedom et possibilité d'avoir des plugins qui propose un nouveau moteur TTS.
 - Amélioration du support de la webview dans l'application mobile.
 - Correction de bugs.
 - Mise à jour de la doc.
 
-4.0.47
-=====
+### 4.0.47
 
 - Amélioration du testeur d'expression.
 - Mise à jour du repository sur smart.
 - Correction de bugs.
 
-4.0.44
-=====
+### 4.0.44
 
 - Amélioration des traductions.
 - Correction de bugs.
 - Amélioration de la restauration de backup cloud.
 - La restauration cloud ne rapatrie plus maintenant que le backup en local, laissant le choix de le télécharger ou de le restaurer.
 
-4.0.43
-=====
+### 4.0.43
 
 - Amélioration des traductions.
 - Correction de bugs sur les templates de scénario.
 
-4.0.0
-=====
+## 4.0.0
 - Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile, le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).<br/><br/>

@@ -1,15 +1,13 @@
+# Registro de alterações Jeedom V4.1
 
-Registro de Alterações Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Síntese : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
 - Pesquisa : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
-
 - Painel de instrumentos : Modo de edição agora inserindo o bloco movido.
 - Painel de instrumentos : Agora, podemos clicar no widget de ações * time * para abrir a janela do histórico do comando info vinculado..
 - Painel de instrumentos : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
+- Painel de instrumentos : Adição de um botão para filtrar os itens exibidos por categoria.
 - Painel de instrumentos : Ctrl Clique em uma informação para abrir a janela do histórico com todos os comandos históricos do equipamento visíveis no bloco. Ctrl Clique em uma legenda para exibir apenas esta, Alt Clique para exibir todas.
 - Painel de instrumentos : Capacidade de desfocar imagens de fundo (Configuração -> Interface).
 - Ferramentas / Widgets : A função * Aplicar em * mostra os comandos vinculados marcados, desmarcando um aplicará o widget principal padrão neste comando.
@@ -51,70 +49,60 @@ Registro de Alterações Jeedom V4
 - Configuração : A guia * Informações * está agora na guia * Geral*.
 - Configuração : A guia * Pedidos * agora está na guia * Equipamento*.
 - Janela de configuração avançada de equipamentos : Alteração dinâmica da configuração do quadro de distribuição.
-- Sobre a janela : Adição de atalhos ao Changelog e FAQ.
+- Sobre a janela : Adição de atalhos ao Changelog e FAQ.<br/><br/>
 - WebApp : Integração da nova página Resumo.
 - WebApp : Na página Cenários, um clique no título do cenário exibe seu log.
 - WebApp : Agora podemos selecionar / copiar parte de um log.
 - WebApp : Na pesquisa em um log, adição de um botão x para cancelar a pesquisa.
 - WebApp : Persistência da alternância do tema (8h).
-- WebApp : Em um design, um clique com três doights retorna à página inicial.
+- WebApp : Em um design, um clique com três dedos retorna à página inicial.
 - WebApp : Exibição de cenários por grupo.
-- WebApp : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).
-
+- WebApp : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).<br/><br/>
 - Documentação : Adaptações de acordo com v4 e v4.1.
 - Documentação : Nova página * Atalhos de teclado / mouse *, incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
-
 - Correções de bugs e otimizações.
 - Lib: Atualizar o HighStock v7.1.2 a v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Bug fix.
 
-4.0.52
-=====
+### 4.0.52
 
 - Correção de bug (atualização a ser feita absolutamente se você estiver na versão 4.0.51).
 
-4.0.51
-=====
+### 4.0.51
 
 - Correções de bugs.
 - Otimização do futuro sistema DNS.
 
-4.0.49
-=====
+### 4.0.49
 
 - Possibilidade de escolher o mecanismo Jeedom TTS e possibilidade de ter plug-ins que oferecem um novo mecanismo TTS.
 - Suporte aprimorado para visualização na web no aplicativo móvel.
 - Correções de bugs.
 - Atualizando o documento.
 
-4.0.47
-=====
+### 4.0.47
 
 - Melhoria do testador de expressão.
 - Atualizando o repositório no smart.
 - Correções de bugs.
 
-4.0.44
-=====
+### 4.0.44
 
 - Traduções melhoradas.
 - Correções de bugs.
 - Restauração aprimorada de backup em nuvem.
 - Agora, a restauração na nuvem repatria apenas o backup local, deixando a opção de fazer o download ou restaurá-lo.
 
-4.0.43
-=====
+### 4.0.43
 
 - Traduções melhoradas.
 - Correções de bugs em modelos de cenário.
 
-4.0.0
-=====
+## 4.0.0
 - Redesign completo de temas (Core 2019 Light / Dark / Legacy).
 - Possibilidade de alterar o tema automaticamente de acordo com o tempo.
 - No celular, o tema pode mudar dependendo do brilho (requer a ativação de * sensor extra genérico * no chrome, página chrome://flags).<br/><br/>
@@ -184,9 +172,9 @@ Registro de Alterações Jeedom V4
 - Resumo Automation : Adição de IDs de equipamentos e pedidos, no display e na pesquisa.
 - Resumo Automation : Exportação CSV do objeto pai, ID, equipamento e seu ID, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais pedidos.<br/><br/>
-- Projeto : Capacidade de especificar a ordem (posição) de * Projetos * e * 3D Projetos * (Editar, configurar design).
+- Projeto : Capacidade de especificar a ordem (posição) de * Designs * e * 3D Designs * (Editar, configurar design).
 - Projeto : Adição de um campo CSS personalizado nos elementos de * design*.
-- Projeto : Deslocamento das opções de exibição em Projeto da configuração avançada, nas configurações de exibição de * Projeto*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam * Projeto*.
+- Projeto : Deslocamento das opções de exibição em Projeto da configuração avançada, nas configurações de exibição de * Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam * Design*.
 - Projeto : Mover e redimensionar componentes no * Projeto * leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
 - Redução geral (estilos css / inline, refatoração etc.) e melhorias de desempenho.
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.

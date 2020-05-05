@@ -38,7 +38,7 @@ Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analy
 >
 > Die Parameter müssen für die URL codiert sein. Sie können ein Tool verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
-## Interaktion
+## Interaction
 
 Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
@@ -48,26 +48,26 @@ Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&
 - **profile** \ [Optional \] : BenutzerName der Person, die die Interaktion initiiert.
 - **antworten\_cmd** \ [Optional \] : Bestellnummer zur Beantwortung der Anfrage.
 
-## Nachricht
+## Message
 
 Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
 - **message** : Denken Sie bei der betreffenden Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen werden zu% 20, =% 3D…).. Sie können ein Werkzeug verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
-## Objekt
+## Objet
 
 Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Gibt in json die Liste aller Jeedom-Objekte zurück.
 
-## Ausrüstung
+## Equipement
 
 Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&Objekt\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 - **Objekt\_id** : ID des Objekts, dessen Ausrüstung wir wiederherstellen möchten.
 
-## Bestellen
+## Commande
 
 Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 

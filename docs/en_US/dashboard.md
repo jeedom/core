@@ -30,14 +30,14 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 > This allows you to have only the equipment that interests you, and to load the page faster.
 
 - You have at the top left a small icon to show / hide the tree of objects.
-- The second icon on the left allows to display only the information of the summaries of the objects.
+- The second icon on the left allows you to filter the displayed equipment according to their category. A center click allows you to quickly select a single category.
 - In the middle, a search field allows you to search for equipment by name, category, plugin, tag, etc..
 - On the right, a button allows you to switch to edit mode, to modify the order of the tiles (click - drop on the widget), or resize them. You can also rearrange the order of orders in a tile.
 
 - By clicking on an object summary, you filter to display only the equipment related to this object and which relate to this object summary.
 
 - A click on an information type order displays the history of the order (if it is historical).
-- A Ctrl + Clickk on an information type command displays the history of all (historical) commands for this tile.
+- A Ctrl + Click on an information type command displays the history of all (historical) commands for this tile.
 - A click on the * time * information of an action command displays the history of the command (if it is logged).
 
 > **Tip**
@@ -68,13 +68,13 @@ You can also edit the internal layout of the controls on the tile :
 To the right of each object, an icon allows you to :
 
 - Click : All the tiles of this object will adopt a height equal to the highest tile.
-- Ctrl Clickk : All the tiles of this object will adopt a height equal to the lowest tile.
+- Ctrl Click : All the tiles of this object will adopt a height equal to the lowest tile.
 
 ## Jeedom menu bar
 
 > **Tip**
 >
-> - Clickk on the clock (menu bar) : Open the Timeline.
-> - Clickk on the name of the Jeedom (menu bar) : Opens Settings → System → Configuration.
-> - Clickk on ? (toolbar) : Opens help on the current page.
+> - Click on the clock (menu bar) : Open the Timeline.
+> - Click on the name of the Jeedom (menu bar) : Opens Settings → System → Configuration.
+> - Click on ? (toolbar) : Opens help on the current page.
 > - Escape on a research field : Clear the field and cancel this search .

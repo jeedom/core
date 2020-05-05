@@ -1,13 +1,13 @@
-# Historical
+# Historique
 **Analysis → History**
 
 IMPORTANT part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
 
-### Principle
+### Principe
 
 Here is described the principle of historicization of Jeedom. You only need to understand this if you are having historization issues or want to change the historization settings.. Default settings are fine in most cases.
 
-### Archiving
+### Archivage
 
 Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
@@ -115,7 +115,7 @@ Once you have activated tracking in the timeline of the commands and scenarios y
 >
 > You have to wait for new events after activating the tracking on the timeline before seeing them appear.
 
-### Viewing
+### Affichage
 
 The timeline displays the recorded events, staggered day by day vertically.
 

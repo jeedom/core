@@ -22,9 +22,9 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a href="#" class="btn btn-sm btn-warning roundedLeft" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
-		</a><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
-		</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+		<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+		</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+		</a><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 	</span>
 </div>
 <br/><br/>
@@ -70,9 +70,10 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 <div id="md_specifyUpdate" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
-			<div class="alert alert-danger">
-				{{Avant toute mise à jour, merci de consulter}} <a class="warning" style="color:var(--al-warning-color)!important" target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{la note de version}}</a> {{du core de Jeedom}}.
+			<div class="alert alert-warning">
+				{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
 			</div>
+
 			<div class="form-group">
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Pré-update}}
@@ -131,7 +132,8 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 			</div>
 		</fieldset>
 	</form>
-	<a class="btn btn-success pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+	<br>
+	<a class="btn btn-warning pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>

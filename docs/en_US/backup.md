@@ -1,4 +1,4 @@
-# Backups
+# Sauvegardes
 **Settings → System → Backups**
 
 Jeedom offers the possibility of being saved and restored from or from different locations.
@@ -7,7 +7,7 @@ This page allows the management of backups, restores.
 
 You will find, on the left, the parameters and action buttons. On the right is the real-time status of the action in progress (backup or restore), if you have launched one.
 
-## Backups
+## Sauvegardes
 
 - **Sauvegardes** : Allows you to start a backup manually and immediately (useful if you want to make a critical change. This will allow you to go back). You also have a button to launch a backup without sending the archive to the cloud (requires a subscription see below). Sending a backup to the cloud can take a while. This option therefore avoids excessive loss of time.
 
@@ -49,8 +49,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 > **IMPORTANT**
 >
-> Jeedom backups must absolutely fall into a dedicated folder only
- !!! It will delete everything that is not a jeedom backup from the folder
+> Jeedom backups must be saved absolutely in a folder only for him ! It will delete everything that is not a jeedom backup from the folder.
 
 
 # What is saved ?

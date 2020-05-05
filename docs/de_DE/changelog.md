@@ -1,15 +1,13 @@
+# Changelog Jeedom V4.1
 
-Changelog Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
 - Suche : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
-
 - Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - Armaturenbrett : Wir können jetzt auf die * Zeit * der Zeitaktions-Widgets klicken, um das Verlaufsfenster des Befehls für verknüpfte Informationen zu öffnen..
 - Armaturenbrett : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
+- Armaturenbrett : Hinzufügen einer Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
 - Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - Armaturenbrett : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche).
 - Tools / Widgets : Die Funktion * Anwenden auf * zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
@@ -51,70 +49,60 @@ Changelog Jeedom V4
 - Konfiguration : Die Registerkarte * Informationen * befindet sich jetzt auf der Registerkarte * Allgemein*.
 - Konfiguration : Die Registerkarte * Bestellungen * befindet sich jetzt auf der Registerkarte * Ausrüstung*.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
-- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
+- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.<br/><br/>
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
 - WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
 - WebApp : Persistenz des Themas umschalten (8h).
-- WebApp : Bei einem Design kehrt ein Klick mit drei Punkten zur Startseite zurück.
+- WebApp : Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
 - WebApp : Anzeige von Szenarien nach Gruppe.
-- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
-
+- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).<br/><br/>
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
-- Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
-
+- Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
 - Lib: Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Fehlerbehebung.
 
-4.0.52
-=====
+### 4.0.52
 
 - Fehlerkorrektur (Update muss unbedingt durchgeführt werden, wenn Sie sich in 4.0.51 befinden).
 
-4.0.51
-=====
+### 4.0.51
 
 - Fehlerbehebungen.
 - Optimierung des zukünftigen DNS-Systems.
 
-4.0.49
-=====
+### 4.0.49
 
 - Möglichkeit, den Jeedom TTS-Motor zu wählen und Plugins zu haben, die einen neuen TTS-Motor bieten.
 - Verbesserte Unterstützung für Webview in der mobilen Anwendung.
 - Fehlerbehebungen.
 - Aktualisieren des Dokuments.
 
-4.0.47
-=====
+### 4.0.47
 
 - Verbesserung des Expressionstesters.
 - Aktualisieren des Repositorys auf smart.
 - Fehlerbehebungen.
 
-4.0.44
-=====
+### 4.0.44
 
 - Verbesserte Übersetzungen.
 - Fehlerbehebungen.
 - Verbesserte Wiederherstellung von Cloud-Backups.
 - Die Cloud-Wiederherstellung repatriiert nur noch das lokale Backup und lässt die Wahl, es herunterzuladen oder wiederherzustellen.
 
-4.0.43
-=====
+### 4.0.43
 
 - Verbesserte Übersetzungen.
 - Fehlerbehebungen bei Szenariovorlagen.
 
-4.0.0
-=====
+## 4.0.0
 - Komplette Neugestaltung der Themen (Core 2019 Light / Dark / Legacy).
 - Möglichkeit, das Thema automatisch nach Zeit zu ändern.
 - In Mobilgeräten kann sich das Thema je nach Helligkeit ändern (Erfordert die Aktivierung des * generischen zusätzlichen Sensors * in Chrom, Chromseite://flags).<br/><br/>

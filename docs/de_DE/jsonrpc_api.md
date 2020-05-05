@@ -62,7 +62,7 @@ Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzei
 
 Einstellungen :
 
--   int Datetime
+-   int datetime
 
 JSON Plugin API
 ===============
@@ -70,7 +70,7 @@ JSON Plugin API
 plugin::listPlugin
 ------------------
 
-Gibt die Liste alleer Plugins zurück
+Gibt die Liste aller Plugins zurück
 
 Einstellungen :
 
@@ -84,17 +84,17 @@ Objekt-JSON-API
 jeeObject::all
 -----------
 
-Gibt die Liste alleer Objekte zurück
+Gibt die Liste aller Objekte zurück
 
 jeeObject::full
 ------------
 
-Gibt die Liste alleer Objekte zurück, wobei für jedes Objekt allee Geräte und für jedes Gerät allee Befehle sowie deren Status angegeben werden (für Befehle vom Typ Info).
+Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle Geräte und für jedes Gerät alle Befehle sowie deren Status angegeben werden (für Befehle vom Typ Info).
 
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt mit alle seinen Geräten und für jedes Gerät allee seine Befehle und deren Status zurück (für Befehle vom Typ Info).
+Gibt ein Objekt mit alle seinen Geräten und für jedes Gerät alle seine Befehle und deren Status zurück (für Befehle vom Typ Info).
 
 Einstellungen :
 
@@ -112,7 +112,7 @@ Einstellungen:
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung allee seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info).
+Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung alle seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info).
 
 jeeObject::save
 ------------
@@ -141,11 +141,11 @@ JSON-Zusammenfassungs-API
 summary::global
 ---------------
 
-Gibt die insgesamte Zusammenfassung für den im Parameter übergebenen Schlüssel zurück
+Gibt die globale Zusammenfassung für den im Parameter übergebenen Schlüssel zurück
 
 Einstellungen:
 
--   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung alleer Schlüssel
+-   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung aller Schlüssel
 
 summary::byId
 -------------
@@ -156,7 +156,7 @@ Einstellungen:
 
 -   int id : Objekt-ID
 
--   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung alleer Schlüssel
+-   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung aller Schlüssel
 
 JSON EqLogic API
 ================
@@ -164,7 +164,7 @@ JSON EqLogic API
 eqLogic::all
 ------------
 
-Gibt die Liste alleer Geräte zurück
+Gibt die Liste aller Geräte zurück
 
 eqLogic::fullById
 -----------------
@@ -187,7 +187,7 @@ Einstellungen:
 eqLogic::byType
 ---------------
 
-Gibt allee Geräte zurück, die zum angegebenen Typ gehören (Plugin).
+Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin).
 
 Einstellungen:
 
@@ -196,7 +196,7 @@ Einstellungen:
 eqLogic::byObjectId
 -------------------
 
-Gibt allee Geräte zurück, die zum angegebenen Objekt gehören
+Gibt alle Geräte zurück, die zum angegebenen Objekt gehören
 
 Einstellungen:
 
@@ -231,7 +231,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge Protokollische ID = ''
+-   Zeichenfolge logische ID = ''
 
 -   int object\_id = null
 
@@ -253,7 +253,7 @@ JSON Cmd API
 cmd::all
 --------
 
-Gibt die Liste alleer Befehle zurück
+Gibt die Liste aller Befehle zurück
 
 cmd::byId
 ---------
@@ -267,7 +267,7 @@ Einstellungen:
 cmd::byEqLogicId
 ----------------
 
-Gibt allee Bestellungen zurück, die zum angegebenen Gerät gehören
+Gibt alle Bestellungen zurück, die zum angegebenen Gerät gehören
 
 Einstellungen:
 
@@ -334,7 +334,7 @@ Einstellungen:
 
 -   Zeichenfolgenname
 
--   Zeichenfolge Protokollische ID
+-   Zeichenfolge logische ID
 
 -   Zeichenfolge eqType
 
@@ -373,9 +373,9 @@ Einstellungen:
 
 -   int id
 
--   Zeichenfolgenwert : Wert
+-   Zeichenfolgenwert : valeur
 
--   Zeichenfolge Datetime : (optional) Wert Datetime
+-   Zeichenfolge Datetime : (optional) Wert datetime
 
 JSON-Szenario-API
 =================
@@ -383,7 +383,7 @@ JSON-Szenario-API
 scenario::all
 -------------
 
-Gibt die Liste alleer Szenarien zurück
+Gibt die Liste aller Szenarien zurück
 
 scenario::byId
 --------------
@@ -410,7 +410,7 @@ Ermöglicht das Importieren eines Szenarios.
 
 Einstellungen:
 
--   int id : ID des Szenarios, in das Importiert werden soll (leer, wenn erstellt)
+-   int id : ID des Szenarios, in das importiert werden soll (leer, wenn erstellt)
 
 -   Zeichenfolge humanName : *menschlicher Name * des Szenarios (leer bei Erstellung)
 
@@ -456,7 +456,7 @@ Einstellungen:
 
 -   Zeichenfolge Nachricht : SMS zu schreiben
 
--   Zeichenfolge Protokollische ID : Protokollische ID der generierten Nachricht
+-   Zeichenfolge logische ID : logische ID der generierten Nachricht
 
 
 log::list
@@ -498,7 +498,7 @@ Einstellungen:
 
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien ist es Szenario)
     
--   id linkId : -1 für das insgesamte (Wert für die Standardszenarien oder die Szenario-ID)
+-   id linkId : -1 für das globale (Wert für die Standardszenarien oder die Szenario-ID)
     
 -   String-Schlüssel : Wertname
 
@@ -525,7 +525,7 @@ JSON-Nachrichten-API
 message::all
 ------------
 
-Gibt die Liste alleer Nachrichten zurück
+Gibt die Liste aller Nachrichten zurück
 
 message::add
 --------
@@ -536,16 +536,16 @@ Einstellungen:
 
 -   Zeichenfolgentyp : Protokolltyp (Debug, Info, Warnung, Fehler)
 
--   Zeichenfolge Nachricht : Nachricht
+-   Zeichenfolge Nachricht : message
 
--   String-Aktion : Aktion
+-   String-Aktion : action
 
--   Zeichenfolge Protokollische ID : Protokollische ID
+-   Zeichenfolge logische ID : logicalId
 
 message::removeAll
 ------------------
 
-Löschen Sie allee Nachrichten
+Löschen Sie alle Nachrichten
 
 JSON-Interaktions-API
 ====================
@@ -565,7 +565,7 @@ Einstellungen:
 interactQuery::all
 ------------------
 
-Gibt die vollständige Liste alleer Interaktionen zurück
+Gibt die vollständige Liste aller Interaktionen zurück
 
 JSON-System-API
 ===============
@@ -583,7 +583,7 @@ Starten Sie Jeedom neu
 jeedom::isOk
 ------------
 
-Lässt Sie wissen, ob der insgesamte Zustand von Jeedom in Ordnung ist
+Lässt Sie wissen, ob der globale Zustand von Jeedom in Ordnung ist
 
 jeedom::update
 --------------
@@ -610,8 +610,8 @@ Installation / Update eines bestimmten Plugins
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::remove
 --------------
@@ -620,8 +620,8 @@ Löschen eines bestimmten Plugins
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::dependancyInfo
 ----------------------
@@ -630,8 +630,8 @@ Gibt Informationen zum Plugin-Abhängigkeitsstatus zurück
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::dependancyInstall
 -------------------------
@@ -640,8 +640,8 @@ Erzwingen Sie die Installation von Plugin-Abhängigkeiten
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::deamonInfo
 ------------------
@@ -650,8 +650,8 @@ Gibt Informationen zum Status des Plugin-Daemons zurück
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::deamonStart
 -------------------
@@ -660,8 +660,8 @@ Zwinge den Dämon zu starten
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::deamonStop
 ------------------
@@ -670,8 +670,8 @@ Dämonenstopp erzwingen
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 plugin::deamonChangeAutoMode
 ----------------------------
@@ -680,8 +680,8 @@ plugin::deamonChangeAutoMode
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 -   int-Modus : 1 für automatisch, 0 für manuell
 
 JSON-Update-API
@@ -690,7 +690,7 @@ JSON-Update-API
 update::all
 -----------
 
-Zurück zur Liste alleer installierenierten Komponenten, ihrer Versionen und der zugehörigen Informationen
+Zurück zur Liste aller installierten Komponenten, ihrer Versionen und der zugehörigen Informationen
 
 update::checkUpdate
 -------------------
@@ -700,15 +700,15 @@ Ermöglicht die Suche nach Updates
 update::update
 --------------
 
-Ermöglicht das Aktualisieren von Jeedom und alleen Plugins
+Ermöglicht das Aktualisieren von Jeedom und allen Plugins
 
 update::doUpdate
 --------------
 
 Einstellungen:
 
--   int Plugin\_id (optional) : Plugin ID
--   Zeichenfolge Protokollische ID (optional) : Plugin Name (logischer Name)
+-   int plugin\_id (optional) : Plugin ID
+-   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
 
 JSON-Netzwerk-API
 ================
@@ -740,9 +740,9 @@ Abrufen der Objektliste :
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())){
-    print_r ($ jsonrpc-&gt; bekommenResult ());
+    print_r ($ jsonrpc-&gt; getResult ());
 }else{
-    echo $ jsonrpc-&gt; bekommenError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 
@@ -753,7 +753,7 @@ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
     Echo &#39;OK&#39;;
 }else{
-    echo $ jsonrpc-&gt; bekommenError ();
+    echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 

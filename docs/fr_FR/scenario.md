@@ -38,6 +38,7 @@ Avant cela, en haut de page, on retrouve certaines fonctions utiles pour gérer 
 
 - **ID** : A côté du mot **Général**, c’est l’identifiant du scénario.
 - **statut** : *Arrêté* ou *En cours*, il indique l'état actuel du scénario.
+- **Etat précédent / suivant** : Permet d'annuler / refaire une action.
 - **Ajouter un bloc** : Permet d'ajouter un bloc du type souhaité au scénario (voir plus bas).
 - **Log** : Permet d’afficher les logs du scénario.
 - **Dupliquer** : Permet de copier le scénario pour en créer un nouveau avec un autre nom.
@@ -58,7 +59,7 @@ Avant cela, en haut de page, on retrouve certaines fonctions utiles pour gérer 
 >
 > Un **Ctrl Clic sur le bouton exécuter** vous permet directement de sauvegarder, exécuter et afficher le log du scénario (si le niveau de log n'est pas sur Aucun).
 
-### Onglet Général
+## Onglet Général
 
 Dans l’onglet **Général**, on retrouve les paramètres principaux du scénario :
 
@@ -86,7 +87,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 >
 > Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuté un scénario toutes les 20 minutes avec  `*/20 * * * * `, ou à 5h du matin pour régler une multitude de choses pour la journée avec `0 5 * * *`. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron.
 
-### Onglet Scénario
+## Onglet Scénario
 
 C’est ici que vous allez construire votre scénario. Après la création du scénario, son contenu est vide, il ne fera donc ... rien. Il faut commencer par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
 
@@ -101,7 +102,7 @@ Pour plus de praticité et ne pas avoir à constamment réordonner les blocs dan
 >
 > Un Ctrl Shift Z ou Ctrl Shift Y vous permet d'**annuler** ou de refaire une modification (ajout d'action, de bloc...).
 
-### Les blocs
+## Les blocs
 
 Voici les différents types de blocs disponibles :
 
@@ -125,7 +126,7 @@ Chaque bloc a ses options pour mieux les manipuler :
     - L’icône Coller permet de coller une copie du bloc précédemment copié après le bloc sur lequel vous utilisez cette fonction.  Ctrl Clic sur l’icône remplace le bloc par le bloc copié.
     - L'icône - permet de supprimer le bloc, avec une demande de confirmation. Ctrl Clic supprime le bloc sans confirmation.
 
-#### Blocs Si/Alors/Sinon | Boucle | Dans | A
+### Blocs Si/Alors/Sinon | Boucle | Dans | A
 
 Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple.
 > Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seules les parenthèses () sont possibles.
@@ -147,11 +148,11 @@ Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionn
 Une fois la condition renseignée, vous devez utiliser le bouton "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une **action** dans le bloc actuel.
 
 
-#### Bloc Code
+### Bloc Code
 
 Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais nécessite une bonne connaissance du langage php.
 
-##### Accès aux commandes (capteurs et actionneurs):
+#### Accès aux commandes (capteurs et actionneurs):
 -  `cmd::byString($string);` : Retourne l’objet commande correspondant.
     -   `$string`: Lien vers la commande voulue : `#[objet][equipement][commande]#` (ex : `#[Appartement][Alarme][Actif]#`)
 -  `cmd::byId($id);` : Retourne l’objet commande correspondant.
@@ -162,13 +163,13 @@ Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais n
         -  color : `$option = array('color' => 'couleur en hexadécimal');`
         -  slider : `$option = array('slider' => 'valeur voulue de 0 à 100');`
 
-##### Accès aux log :
+#### Accès aux log :
 -  `log::add('filename','level','message');`
     - filename : Nom du fichier de log.
     - level : [debug], [info], [error], [event].
     - message : Message à écrire dans les logs.
 
-##### Accès aux scénario :
+#### Accès aux scénario :
 - `$scenario->getName();` : Retourne le nom du scénario courant.
 - `$scenario->getGroup();` : Retourne le groupe du scénario.
 - `$scenario->getIsActive();` : Retourne l’état du scénario.
@@ -190,7 +191,9 @@ Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais n
 >
 > Ajout d'une fonction recherche dans le bloc Code : Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 
-#### Bloc Commentaire
+[Scénarios : Petits codes entre amis](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
+
+### Bloc Commentaire
 
 Le Bloc commentaire agît différemment quand il est masqué. Ses boutons sur la gauche disparaissent ainsi que le titre du bloc, et réapparaissent au survol. De même, la première ligne du commentaire est affichée en caractères gras.
 Ceci permet d'utiliser ce bloc comme séparation purement visuel au sein du scénario.
@@ -493,13 +496,13 @@ En-dessous, vous avez la partie pour appliquer votre template au scénario coura
 
 Etant donné que d’un Jeedom à l’autre ou d’une installation à une autre, les commandes peuvent être différentes, Jeedom vous demande la correspondance des commandes entre celles présentes lors de la création du template et celles présentes chez vous. Il vous suffit de remplir la correspondance des commandes puis de faire appliquer.
 
-### Ajout de fonction php
+## Ajout de fonction php
 
 > **IMPORTANT**
 >
 > L'ajout de fonction PHP est réservé aux utilisateurs avancés. La moindre erreur peut être fatale pour votre Jeedom.
 
-#### Mise en place
+### Mise en place
 
 Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichier.
 

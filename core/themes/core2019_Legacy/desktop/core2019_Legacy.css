@@ -155,11 +155,8 @@ div.cmd-widget div[class^="content"] {
   color: var(--linkHoverLight-color) !important;
 }
 
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject,
-#bt_displaySummaries,
-#bt_backOverview {
+#dashTopBar > div > a,
+#dashTopBar button {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
 }

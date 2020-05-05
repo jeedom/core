@@ -9,7 +9,7 @@ Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suc
 - Klicken Sie auf ?  (Menüleiste)  : Öffnet die Hilfe auf der aktuellen Seite.
 - Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.
 
-## Armaturenbrett
+## Dashboard
 Im Bearbeitungsmodus:
 	- Ziehen Sie n Drop auf Kacheln, um sie neu anzuordnen.
 	- Ändern Sie die Größe der Kachelränder, um deren Größe zu ändern.

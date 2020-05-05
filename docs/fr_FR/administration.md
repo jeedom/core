@@ -1,6 +1,4 @@
-# Administration
-
-## Configuration
+# Configuration
 **Réglages → Système → Configuration**
 
 C’est sur cette page que se trouvent la plupart des paramètres de configuration.
@@ -49,7 +47,7 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 ### Personnalisation
 
 - **Activer** : Active l'utilisation des options en dessous.
-- **Transparence** : Affiche les tuiles du Dashboard et certains contenu avec une transparence. 1 : totalement opaque, 0 : totalement transparent.
+- **Transparence** : Affiche les tuiles du Dashboard et certains contenus avec une transparence. 1 : totalement opaque, 0 : totalement transparent.
 - **Arrondi** : Affiche les éléments de l'interface avec des angles arrondis. 0 : aucun arrondi, 1 : arrondi maximal.
 - **Désactiver les ombres** : Désactive les ombres des tuiles sur le Dashboard, des menus, et de certains éléments de l'interface.
 
@@ -92,7 +90,7 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 
 > **Tip**
 >
-> Pour savoir si vous avez besoin de définir une valeur dans le champs **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
+> Pour savoir si vous avez besoin de définir une valeur dans le champ **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
 
 - **Gestion avancée** : Cette partie peut ne pas apparaître, en fonction de la compatibilité avec votre matériel.
     Vous y trouverez la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom de ne pas monitorer le réseau en cliquant sur **désactiver la gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à aucun réseau). Vous pouvez aussi y préciser la plage d'ip locale sous la forme 192.168.1.* (à n'utiliser que dans des installations de type docker).
@@ -223,8 +221,8 @@ Cet onglet permet de fixer des paramètres globaux concernant les interactions q
 
 Vous avez ici trois paramètres :
 
-- **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99)
-    -   pour 1 mot : le niveau de correspondance pour les interactions à un seul mot.
+- **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99) pour
+    -   1 mot : le niveau de correspondance pour les interactions à un seul mot.
     -   2 mots : le niveau de correspondance pour les interactions à deux mots.
     -   3 mots : le niveau de correspondance pour les interactions à trois mots.
     -   + de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots.
@@ -233,7 +231,7 @@ Vous avez ici trois paramètres :
 
 ### Interaction automatique, contextuelle & avertissement
 
--   Les **interactions automatiques** permettent à Jeedom de tenter de comprendre une demande d’interaction même si il n’y en a aucune de définie. Il va alors chercher un nom d’objet et/ou d’équipement et/ou de commande pour essayer de répondre au mieux.
+-   Les **interactions automatiques** permettent à Jeedom de tenter de comprendre une demande d’interaction même si aucune n'est définie. Il va alors chercher un nom d’objet et/ou d’équipement et/ou de commande pour essayer de répondre au mieux.
 
 -   Les **interactions contextuelles** vous permettent d’enchaîner plusieurs demandes sans tout répéter, par exemple :
     - *Jeedom gardant le contexte :*
@@ -250,7 +248,7 @@ Vous avez ici trois paramètres :
 
 > **Note**
 >
-> Par défaut Jeedom vous répondra par le même canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n’en trouve pas, il utilisera alors la commande par défaut spécifiée dans cet onglet : **Commande de retour par défaut**.
+> Par défaut Jeedom vous répondra par le même canal que celui que vous avez utilisé pour lui demander de vous prévenir. S'il n’en trouve pas, il utilisera alors la commande par défaut spécifiée dans cet onglet : **Commande de retour par défaut**.
 
 Voici donc les différentes options disponibles :
 
@@ -264,7 +262,7 @@ Voici donc les différentes options disponibles :
 - **Synonyme pour les objets** : Liste des synonymes pour les objets (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 - **Synonyme pour les équipements** : Liste des synonymes pour les équipements.
 - **Synonyme pour les commandes** : Liste des synonymes pour les commandes.
-- **Synonyme pour les résumé** : Liste des synonymes pour les résumés.
+- **Synonyme pour les résumés** : Liste des synonymes pour les résumés.
 - **Synonyme commande slider maximum** : Synonyme pour mettre une commande de type slider au maximum (ex ouvre pour ouvre le volet de la chambre ⇒ volet chambre à 100%).
 - **Synonyme commande slider minimum** : Synonyme pour mettre une commande de type slider au minimu (ex ferme pour fermer le volet de la chambre ⇒ volet chambre à 0%).
 
@@ -300,7 +298,7 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l’IP,
 
 - **Source de mise à jour** : Choisissez la source de mise à jour du core de Jeedom.
 - **Version du core** : Version du core à récupérer.
-- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement si il y a de nouvelles mises à jour (attention pour éviter de surcharger le market, l’heure de vérification peut changer).
+- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement s'il y a de nouvelles mises à jour (attention pour éviter de surcharger le market, l’heure de vérification peut changer).
 
 ### Les dépôts
 
@@ -378,8 +376,8 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
 - **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
 - **Vider le cache des widgets** : Vide le cache dédié aux widgets.
-- **Désactiver le cache des widgets** : Cocher la case pour désactiver le caches des widgets.
-- **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie si il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir Jeedom.
+- **Désactiver le cache des widgets** : Cocher la case pour désactiver le cache des widgets.
+- **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre-partie cela utilise plus de ressources et peut donc ralentir Jeedom.
 
 ## Onglet API
 
@@ -400,7 +398,7 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 
 > **Important**
 >
-> Cet onglet est réservée aux experts.
+> Cet onglet est réservé aux experts.
 > Si vous modifiez Jeedom avec l’une de ces deux solutions, le support peut refuser de vous aider.
 
 ### Vérifications Système
@@ -409,14 +407,14 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 - **Rétablissement des droits** : Permet de réappliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
 - **Vérification des packages système** : Permet de lancer une vérification des packages installés.
 - **Vérification de la base de données** : Permet de lancer une vérification sur la base de données de Jeedom et de corriger si nécessaire les erreurs.
-- **Nettoyage de la base de données** : Lance une vérification de la base de donnée et nettoie d'éventuelles entrées non utilisées.
+- **Nettoyage de la base de données** : Lance une vérification de la base de données et nettoie d'éventuelles entrées non utilisées.
 
 
 ### Outils Système
 
 - **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système d'exploitation et de les éditer ou supprimer ou d'en créer.
 - **Administration Système** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
-- **Administration Base de données** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champs du haut.
+- **Administration Base de données** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champ du haut.
 - **Utilisateur / Mot de passe** : Nom de l’utilisateur et mot de passe d’accès à la base de données utilisé par Jeedom.
 
 

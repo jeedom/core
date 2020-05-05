@@ -22,7 +22,7 @@ Define certos comportamentos da interface
 - **Design 3D padrão** : Design 3D a ser exibido por padrão ao chegar no Painel / dispositivo móvel.
 - **Design 3D em tela cheia** : Exibição padrão em tela cheia na chegada em projetos 3D.
 
-### Notificações
+### Notifications
 
 - **Comando de notificação do usuário** : Comando padrão para alcançá-lo (comando do tipo de mensagem).
 

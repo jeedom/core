@@ -40,12 +40,12 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 
 ## Pestañas Core y Plugins
 
-La tabla contiene las Versiónes de Core y los complementos instalados..
+La tabla contiene las versiones de Core y los complementos instalados..
 
 Los complementos tienen una insignia al lado de su nombre, especificando su versión, verde en * estable *, o naranja en * beta * u otro.
 
 - **Statut** : OK o NOK.
-- **Nom** : Apellidobre y origen del complemento.
+- **Nom** : Nombre y origen del complemento.
 - **Version** : Indica la versión precisa del núcleo o complemento.
 - **Options** : Marque esta casilla si no desea que este complemento se actualice durante la actualización global (Botón **Poner al día**).
 
@@ -88,7 +88,7 @@ Los posibles parámetros son :
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :
 
-``````sudo php  /var/www/html/install/update.php modo=force Versión=4.0.04``````
+``````sudo php  /var/www/html/install/update.php mode=force version=4.0.04``````
 
 Atención, después de una actualización en la línea de comando, es necesario volver a aplicar los derechos en la carpeta Jeedom :
 

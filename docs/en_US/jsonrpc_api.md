@@ -35,7 +35,7 @@ Settings :
 
 -   string key : configuration value key to return
 
--   string Plugin : (optional), configuration value Plugin
+-   string Plugin : (optional), configuration value plugin
 
 -   string default : (optional), value to return if the key does not exist
 
@@ -70,13 +70,13 @@ JSON Plugin API
 plugin::listPlugin
 ------------------
 
-Returns the list of ALL Plugins
+Returns the list of ALL plugins
 
 Settings :
 
--   int activateOnly = 0 (only returns the list of activated Plugins)
+-   int activateOnly = 0 (only returns the list of activated plugins)
 
--   int orderByCaterogy = 0 (returns the list of Plugins sorted by category)
+-   int orderByCaterogy = 0 (returns the list of plugins sorted by category)
 
 Object JSON API
 ==============
@@ -373,7 +373,7 @@ Settings:
 
 -   int id
 
--   string value : value
+-   string value : valeur
 
 -   string datetime : (optional) value datetime
 
@@ -383,12 +383,12 @@ JSON Scenario API
 scenario::all
 -------------
 
-Returns the list of ALL Scenarios
+Returns the list of ALL scenarios
 
 scenario::byId
 --------------
 
-Returns the specified Scenario
+Returns the specified scenario
 
 Settings:
 
@@ -397,7 +397,7 @@ Settings:
 scenario::export
 ----------------
 
-Returns the export of the Scenario as well as the * human name * of the Scenario
+Returns the export of the Scenario as well as the * human name * of the scenario
 
 Settings:
 
@@ -456,7 +456,7 @@ Settings:
 
 -   string Message : text Message to write
 
--   string logicalId : logicalId of the generated Message
+-   string logicalId : logicalId of the generated message
 
 
 log::list
@@ -496,9 +496,9 @@ Get the value of a variable stored in the datastore
 
 Settings:
 
--   string type : type of stored value (for Scenarios it is Scenario)
+-   string type : type of stored value (for scenarios it is scenario)
     
--   id linkId : -1 for the global (value for the default Scenarios, or the Scenario id)
+-   id linkId : -1 for the global (value for the default scenarios, or the Scenario id)
     
 -   string key : value name
 
@@ -509,10 +509,10 @@ Stores the value of a variable in the datastore
 
 Settings:
 
--   string type : type of stored value (for Scenarios
-    it&#39;s Scenario)
+-   string type : type of stored value (for scenarios
+    it&#39;s scenario)
 
--   id linkId : -1 for global (value for default Scenarios,
+-   id linkId : -1 for global (value for default scenarios,
     or the Scenario id)
 
 -   string key : value name
@@ -525,7 +525,7 @@ JSON Message API
 message::all
 ------------
 
-Returns the list of ALL Messages
+Returns the list of ALL messages
 
 message::add
 --------
@@ -536,16 +536,16 @@ Settings:
 
 -   string type : log type (debug, info, warning, error)
 
--   string Message : Message
+-   string Message : message
 
--   string Action : Action
+-   string Action : action
 
 -   string logicalId : logicalId
 
 message::removeAll
 ------------------
 
-Delete ALL Messages
+Delete ALL messages
 
 JSON InterAction API
 ====================
@@ -553,7 +553,7 @@ JSON InterAction API
 interact::tryToReply
 --------------------
 
-Try to match a request with an Interaction, execute the Action and respond accordingly
+Try to match a request with an interaction, execute the Action and respond accordingly
 
 Settings:
 
@@ -565,7 +565,7 @@ Settings:
 interactQuery::all
 ------------------
 
-Returns the complete list of ALL Interactions
+Returns the complete list of ALL interactions
 
 JSON System API
 ===============
@@ -606,21 +606,21 @@ JSON Plugin API
 plugin::install
 ---------------
 
-Installation / Update of a given Plugin
+Installation / Update of a given plugin
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::remove
 --------------
 
-Deletion of a given Plugin
+Deletion of a given plugin
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::dependancyInfo
@@ -630,7 +630,7 @@ Returns information on the Plugin dependency status
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::dependancyInstall
@@ -640,7 +640,7 @@ Force installation of Plugin dependencies
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::deamonInfo
@@ -650,7 +650,7 @@ Returns information about the status of the Plugin daemon
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::deamonStart
@@ -660,7 +660,7 @@ Force the demon to start
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::deamonStop
@@ -670,7 +670,7 @@ Force demon stop
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 plugin::deamonChangeAutoMode
@@ -680,7 +680,7 @@ Change the management mode of the daemon
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 -   int mode : 1 for automatic, 0 for manual
 
@@ -690,7 +690,7 @@ JSON update API
 update::all
 -----------
 
-Back to the list of ALL installed components, their Versions and associated information
+Back to the list of ALL installed components, their versions and associated information
 
 update::checkUpdate
 -------------------
@@ -700,14 +700,14 @@ Allows you to check for updates
 update::update
 --------------
 
-Allows you to update Jeedom and ALL Plugins
+Allows you to update Jeedom and ALL plugins
 
 update::doUpdate
 --------------
 
 Settings:
 
--   int Plugin\_id (optional) : Plugin id
+-   int plugin\_id (optional) : Plugin id
 -   string logicalId (optional) : Plugin name (logical name)
 
 JSON network API
@@ -746,7 +746,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::ALL &#39;, array ())){
 }
 `` ''
 
-Execution of an order (with the option of a title and a Message)
+Execution of an order (with the option of a title and a message)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);

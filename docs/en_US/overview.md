@@ -5,7 +5,7 @@ The * Synthesis * page offers a quick and visual synthesis of your objects and t
 
 You can configure it as the default page in **Settings → Preferences**, in desktop and / or mobile.
 
-## Viewing
+## Affichage
 
 On each object, its background image and its summaries are displayed (depending on the key of the summary, visible in **Settings → System → Configuration / Summaries**):
 - On the top corner left : The name of the object.
@@ -27,7 +27,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 >
 > If an object has not defined a summary, a button is displayed at the top right to access the configuration / summaries of the object..
 
-## Functions
+## Fonctions
 
 For each object, you can click :
 - On the image, to open the equipment page of this object (also accessible via the menu * Home → Dashboard → Object *).

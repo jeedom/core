@@ -103,6 +103,11 @@ span,
   cursor: default !important;
   word-break: break-word;
 }
+#div_graphLinkRenderer text,
+#div_graphLinkRenderer image {
+  cursor: grab;
+}
+
 a,
 a i,
 a > span,
@@ -2031,6 +2036,17 @@ input:disabled {
   opacity: 0.35 !important;
 }
 
+.disabled .btn:not(.enabled),
+.disabled input:not(.enabled),
+.disabled button:not(.enabled),
+.disabled span:not(.enabled),
+.disabled button:not(.enabled) i,
+.disabled a:not(.enabled) > i {
+  cursor: not-allowed !important;
+  filter: alpha(opacity=65);
+  opacity: .65;
+}
+
 /* custom universal select */
 select,
 input[type=color] {
@@ -2198,6 +2214,9 @@ input[type=checkbox].summaryAttr {
   overflow:auto;
   overflow-x: hidden;
 }
+#scenariotab {
+  min-height: 80vh;
+}
 .tab-content .tab-content,
 .tab-content pre {
   background-color: rgba(0,0,0,0)!important;
@@ -2355,6 +2374,9 @@ table.table-condensed tbody tr > td {
 }
 #table_packages tbody td > span.label {
   display: block;
+}
+#table_ObjectSummary tbody td {
+  height: 25px !important;
 }
 
 :not(.eqLogic-widget) + table.tableCmd td {

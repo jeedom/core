@@ -119,7 +119,7 @@ function render(){
 			.attr("fill", 'black');
 		}
 		if(typeof node.data.title != 'undefined' && $.trim(node.data.title) != ''){
-			ui.append(Viva.Graph.svg('title').text(node.data.title));
+			ui.attr('title',node.data.title)
 		}
 		ui.append(text);
 		ui.append(img);
@@ -137,7 +137,7 @@ function render(){
 	}).placeNode(function (nodeUI, pos) {
 		nodeUI.attr('transform','translate(' + (pos.x) + ',' + (pos.y) +')');
 	});
-	
+
 	var layout = Viva.Graph.Layout.forceDirected(graph, {
 		springLength: 200,
 		stableThreshold: 0.9,
@@ -166,8 +166,9 @@ function render(){
 	});
 	renderer.run();
 	setTimeout(function () {
-		renderer.pause();
-		renderer.reset();
+		renderer.pause()
+		renderer.reset()
+		initTooltips()
 	}, parseInt(renderGraph));
 }
 </script>

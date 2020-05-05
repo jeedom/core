@@ -5,7 +5,7 @@ La página * Synthesis * ofrece una síntesis rápida y visual de sus objetos y 
 
 Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
-## Viendo
+## Affichage
 
 En cada objeto, se muestran su imagen de fondo y sus resúmenes (dependiendo de la clave del resumen, visible en **Preferencias → Sistema → Configuración / Resúmenes**):
 - Arriba a la izquierda : El nombre del objeto..
@@ -27,7 +27,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 >
 > Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto..
 
-## Funciones
+## Fonctions
 
 Para cada objeto, puede hacer clic :
 - En la imagen, para abrir la página del equipo de este objeto (también accesible a través del menú * Inicio → Panel de control → Objeto *).

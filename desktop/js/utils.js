@@ -475,6 +475,7 @@ $(function () {
     jeedom.getDocumentationUrl({
       plugin: $(this).attr('data-plugin'),
       page: $(this).attr('data-page'),
+      theme: $('body').attr('data-theme'),
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
@@ -717,6 +718,7 @@ $(function () {
 setTimeout(function() {
   $("body").on('keydown',"input[id^='in_search']",function(event) {
     if(event.key == 'Escape') {
+      $('#categoryfilter li .catFilterKey').prop("checked", true)
       $(this).val('').keyup();
     }
   })

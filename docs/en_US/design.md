@@ -77,19 +77,19 @@ Found here :
 - **Width (px)** : Element width in pixels.
 - **Height (px)** : Element height in pixels.
 
-### Remove
+### Supprimer
 
 Remove item
 
-### Duplicate
+### Dupliquer
 
 Allows you to duplicate the element
 
-### Lock
+### Verrouiller
 
 Allows you to lock the element so that it is no longer movable or resizable.
 
-## Graphic
+## Graphique
 
 ### Specific display settings
 
@@ -127,7 +127,7 @@ Allows you to choose the commands to grapher.
 
 *No specific display settings*
 
-## Link
+## Lien
 
 ### Specific display settings
 
@@ -141,7 +141,7 @@ Allows you to choose the commands to grapher.
 - **Text alignment** : Allows to choose the alignment of the text (left / right / centered).
 - **Gras** : Bold text.
 
-## Equipment
+## Equipement
 
 ### Specific display settings
 
@@ -155,7 +155,7 @@ Allows you to choose the commands to grapher.
 - **Custom CSS** : CSS rules to apply on the equipment.
 - **Apply custom css on** : CSS selector on which to apply custom CSS.
 
-### Orders
+### Commandes
 
 The list of commands present on the equipment allows you, for each command, to:
 - Hide command name.
@@ -166,7 +166,7 @@ The list of commands present on the equipment allows you, for each command, to:
 
 Displays the advanced equipment configuration window (see documentation **Home automation summary**).
 
-## Ordered
+## Commande
 
 *No specific display settings*
 
@@ -182,7 +182,7 @@ Displays the advanced equipment configuration window (see documentation **Home a
 - **Image** : Allows you to send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 
-## Zoned
+## Zone
 
 ### Specific display settings
 
@@ -221,7 +221,7 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
 - **Gras** : Bold text.
 
-## Faq
+## FAQ
 
 >**I can no longer edit my design**
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.

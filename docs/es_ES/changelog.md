@@ -1,15 +1,13 @@
+# Registro de cambios Jeedom V4.1
 
-Registro de cambios Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Síntesis : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
 - Buscar : Adición de un motor de búsqueda en **Herramientas → Buscar**.
-
 - Salpicadero : El modo de edición ahora inserta el mosaico movido.
 - Salpicadero : Ahora podemos hacer clic en el * tiempo * de los widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada..
 - Salpicadero : El tamaño del mosaico de un equipo nuevo se adapta a su contenido..
+- Salpicadero : Agregar un botón para filtrar los elementos mostrados por categoría.
 - Salpicadero : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
 - Salpicadero : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - Herramientas / widgets : La función * Aplicar en * muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado en este comando.
@@ -51,70 +49,60 @@ Registro de cambios Jeedom V4
 - Configuración : La pestaña * Información * ahora está en la pestaña * General*.
 - Configuración : La pestaña * Pedidos * ahora está en la pestaña * Equipo*.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
-- Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.
+- Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.<br/><br/>
 - Aplicación web : Integración de la nueva página de resumen.
 - Aplicación web : Página de escenarios, un clic en el título del escenario muestra su registro.
 - Aplicación web : Ahora podemos seleccionar / copiar parte de un registro.
 - Aplicación web : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
 - Aplicación web : Persistencia del cambio de tema (8h).
-- Aplicación web : En un diseño, un clic con tres doights regresa a la página de inicio.
+- Aplicación web : En un diseño, un clic con tres dedos vuelve a la página de inicio.
 - Aplicación web : Visualización de escenarios por grupo..
-- Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).
-
+- Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página * Accesos directos de teclado / mouse * que incluye un resumen de todos los accesos directos en Jeedom. Accesible desde el Salpicadero doc o las preguntas frecuentes.
-
 - Corrección de errores y optimizaciones..
 - Lib: Actualizar HighStock v7.1.2 a v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Corrección de errores.
 
-4.0.52
-=====
+### 4.0.52
 
 - Corrección de errores (la actualización debe hacerse absolutamente si está en 4.0.51).
 
-4.0.51
-=====
+### 4.0.51
 
 - Correcciones de errores.
 - Optimización del futuro sistema DNS.
 
-4.0.49
-=====
+### 4.0.49
 
 - Posibilidad de elegir el motor Jeedom TTS y posibilidad de tener complementos que ofrecen un nuevo motor TTS.
 - Soporte mejorado para webview en la aplicación móvil.
 - Correcciones de errores.
 - Actualizando el documento.
 
-4.0.47
-=====
+### 4.0.47
 
 - Mejora del probador de expresión.
 - Actualización del repositorio en smart.
 - Correcciones de errores.
 
-4.0.44
-=====
+### 4.0.44
 
 - Traducciones mejoradas.
 - Correcciones de errores.
 - Restauración de copia de seguridad en la nube mejorada.
 - La restauración en la nube ahora solo repatria la copia de seguridad local, dejando la opción de descargarla o restaurarla.
 
-4.0.43
-=====
+### 4.0.43
 
 - Traducciones mejoradas.
 - Corrección de errores en plantillas de escenarios..
 
-4.0.0
-=====
+## 4.0.0
 - Rediseño completo de temas (Core 2019 Light / Dark / Legacy).
 - Posibilidad de cambiar el tema automáticamente según la hora.
 - En dispositivos móviles, el tema puede cambiar según el brillo (requiere activar * sensor adicional genérico * en cromo, página de cromo://flags).<br/><br/>
@@ -145,7 +133,7 @@ Registro de cambios Jeedom V4
 - Cada página de Jeedom ahora tiene un título en el idioma de la interfaz (pestaña del navegador).
 - Prevención del autocompletado en el código de acceso de los campos'.
 - Gestión de funciones * Página anterior / Página siguiente * del navegador.<br/><br/>
-- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Reproductores).
+- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Widgets).
 - Reproductores : Posibilidad de reemplazar un widget con otro en todos los comandos que lo usan.
 - Reproductores : Posibilidad de asignar un widget a múltiples comandos.
 - Reproductores : Agregar widget numérico de información horizontal.

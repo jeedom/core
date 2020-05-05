@@ -1,4 +1,4 @@
-# Visualizações
+# Vues
 **Página inicial → Visualizar**
 
 As visualizações permitem criar uma visualização personalizada.
@@ -8,7 +8,7 @@ Não é tão poderoso quanto os designs, mas permite em poucos minutos ter uma e
 >
 > Você pode escolher a visualização padrão no seu perfil ao clicar no menu de visualização.
 
-## Princípio
+## Principe
 
 Também podemos colocar widgets, gráficos (que podem ser compostos por vários dados) ou zonas de tabela (que contêm os widgets de comando).
 
@@ -63,9 +63,9 @@ Uma área do tipo gráfico permite adicionar gráficos à sua visualização, e 
 Quando você pressiona o botão "Adicionar curva", o Jeedom exibe a lista de comandos históricos e você pode escolher os que deseja adicionar, uma vez concluído, você tem acesso às seguintes opções :
 
 - **Poubelle** : Remover comando do gráfico.
-- **Nom** : Nomee do comando para desenhar.
+- **Nom** : Nome do comando para desenhar.
 - **Couleur** : Cor da curva.
-- **Type** : Dicao de curva.
+- **Type** : Tipo de curva.
 - **Groupement** : Permite agrupar dados (tipo máximo por dia).
 - **Echelle** : Escala (direita ou esquerda) da curva.
 - **Escalier** : Exibe a curva da escada.

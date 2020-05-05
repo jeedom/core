@@ -58,7 +58,7 @@ For the pros :
     - **Etat** : Lets see the state of the Jeedom in question.
     - **Local / remote IP** : IP or address of this Jeedom, configure in Jeedom, if you do not put anything it will be the last known IP.
     - **DNS** : Allows you to customize the name of your Dns.
-    - **URL** : List the different Jeedom access URLss.
+    - **URL** : List the different Jeedom access URLs.
     - **Dns server** : Tells you the Dns server to which you are attached.
     - **Dns status** : Allows you to see the status of the Dns.
     - **Creation date** : Date of creation of this Jeedom on your Market account (as a reminder, this is done automatically when you link it to the Market).

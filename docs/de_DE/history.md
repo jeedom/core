@@ -1,13 +1,13 @@
-# Historisch
+# Historique
 **Analyse → Geschichte**
 
 Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren.. Auf diese Weise können Sie beispielsweise eine Temperatur-, Verbrauchs- oder Türöffnungskurve usw. protokollieren.
 
-### Prinzip
+### Principe
 
 Hier wird das Prinzip der Historisierung von Jeedom beschrieben. Sie müssen dies nur verstehen, wenn Sie Probleme mit der Historisierung haben oder die Historisierungseinstellungen ändern möchten.. Die Standardeinstellungen sind in den meisten Fällen in Ordnung.
 
-### Archivierung
+### Archivage
 
 Durch die Datenarchivierung kann Jeedom die im Speicher gespeicherte Datenmenge reduzieren. Dies ermöglicht es, nicht zu viel Platz zu beanspruchen und das System nicht zu verlangsamen. Wenn Sie alle Messungen beibehalten, werden umso mehr Punkte angezeigt, und daher kann die Zeit zum Rendern eines Diagramms erheblich verlängert werden. Wenn zu viele Punkte vorhanden sind, kann dies sogar zum Absturz der Diagrammanzeige führen.
 
@@ -115,7 +115,7 @@ Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenari
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking auf der Timeline aktiviert haben, bevor sie angezeigt werden.
 
-### Anzeigen
+### Affichage
 
 Die Zeitleiste zeigt die aufgezeichneten Ereignisse an, die Tag für Tag vertikal versetzt sind.
 

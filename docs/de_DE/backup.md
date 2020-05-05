@@ -1,4 +1,4 @@
-# Sicherungen
+# Sauvegardes
 **Einstellungen → System → Backups**
 
 Jeedom bietet die Möglichkeit, von oder von verschiedenen Orten aus gerettet und wiederhergestellt zu werden.
@@ -7,7 +7,7 @@ Diese Seite ermöglicht die Verwaltung von Backups und Wiederherstellungen.
 
 Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite sehen Sie den Echtzeitstatus der laufenden Aktion (Sicherung oder Wiederherstellung), falls Sie eine gestartet haben.
 
-## Sicherungen
+## Sauvegardes
 
 - **Sauvegardes** : Ermöglicht das manuelle und sofortige Starten einer Sicherung (nützlich, wenn Sie eine kritische Änderung vornehmen möchten. Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine Schaltfläche zum Starten eines Backups, ohne das Archiv an die Cloud zu senden (erfordert ein Abonnement, siehe unten).. Das Senden eines Backups an die Cloud kann eine Weile dauern. Diese Option vermeidet daher übermäßigen Zeitverlust.
 
@@ -49,7 +49,7 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 > **IMPORTANT**
 >
-> Jeedom-Backups dürfen nur für ihn in einen Ordner fallen !!! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht
+> Jeedom-Backups müssen unbedingt nur für ihn in einem Ordner gespeichert werden ! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht.
 
 
 # Was ist gespeichert ?

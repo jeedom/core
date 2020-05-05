@@ -1,4 +1,4 @@
-# Saúde
+# Santé
 **Análise → Saúde**
 
 A página Jeedom Health permite que você tenha uma visão geral rápida do status de saúde de seu Jeedom.

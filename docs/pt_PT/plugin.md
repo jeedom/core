@@ -84,7 +84,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 >
 > Se o plug-in usa uma dessas funções, você pode proibi-lo especificamente desmarcando a caixa "ativar" que estará presente ao lado dele.
 
-### Painel
+### Panel
 
 Podemos encontrar uma seção Painel que habilitará ou desabilitará a exibição do painel no painel ou no celular, se o plug-in oferecer um.
 

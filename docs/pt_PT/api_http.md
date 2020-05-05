@@ -38,7 +38,7 @@ A maneira mais fácil de obter esse URL é ir para a página **Análise → Resu
 >
 > Os parâmetros devem ser codificados para o URL, você pode usar uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
 
-## Interação
+## Interaction
 
 Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
@@ -48,26 +48,26 @@ Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&
 - **profile** \ [opcional \] : nome de usuário da pessoa que iniciou a interação.
 - **reply\_cmd** \ [opcional \] : ID do pedido a ser usado para responder à solicitação.
 
-## Mensagem
+## Message
 
 Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : categoria de mensagem para adicionar ao centro de mensagens.
 - **message** : mensagem em questão, tenha cuidado ao pensar em codificá-la (o espaço se torna% 20, =% 3D…). Você pode usar uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
 
-## Objeto
+## Objet
 
 Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
 Retorna em json a lista de todos os objetos Jeedom.
 
-## Equipamento
+## Equipement
 
 Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&objeto\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
 - **objeto\_id** : ID do objeto cujo equipamento queremos recuperar.
 
-## Ordem
+## Commande
 
 Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
@@ -79,7 +79,7 @@ Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&
 
 Retorna todos os objetos, equipamentos, comandos (e seus valores se forem informações) em json.
 
-## Variável
+## Variable
 
 Aqui está o URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 

@@ -99,11 +99,8 @@ ul[role="tablist"] li:not(.active) a {
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject,
-#bt_displaySummaries,
-#bt_backOverview {
+#dashTopBar > div > a,
+#dashTopBar button {
   background-color: var(--btnEq-default-color) !important;
 }
 

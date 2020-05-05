@@ -1,4 +1,4 @@
-# Objekte
+# Objets
 **Werkzeuge → Objekte**
 
 Die **objets** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
@@ -7,7 +7,7 @@ Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind dahe
 
 Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihren Wünschen benennen. Normalerweise definieren wir die verschiedenen Teile seines Hauses, wie die Namen der Räume (dies ist übrigens die empfohlene Konfiguration)..
 
-## Management
+## Gestion
 
 Sie haben zwei Möglichkeiten :
 - **Ajouter** : Erstellen Sie ein neues Objekt.
@@ -47,11 +47,12 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Benutzerdefinierte Farben** : Aktiviert die Berücksichtigung der beiden optionalen Farbparameter.
 - **Tag Farbe** : Ermöglicht die Auswahl der Farbe des Objekts und der daran angeschlossenen Ausrüstung.
 - **Tag-Textfarbe** : Hier können Sie die Farbe des Textes des Objekts auswählen. Dieser Text wird über dem **Tag Farbe**. Sie wählen eine Farbe, um den Text lesbar zu machen.
-- **Image** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen.
+- **Image** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
+- **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird.
 
 > **Tip**
 >
-> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht Ihr Objekt mit der Maus per Drag &amp; Drop aus, um ihm einen neuen Platz zu geben.
+> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht (oder in der Zusammenfassung der Hausautomation) Ihr Objekt mit der Maus per Drag & Drop aus, um ihm einen neuen Platz zu geben.
 
 > **Tip**
 >
@@ -73,7 +74,7 @@ Die Spalten stellen die Zusammenfassungen dar, die dem aktuellen Objekt zugewies
 - **Auf dem Desktop ausblenden** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung nicht neben dem Objektnamen im Dashboard angezeigt werden soll.
 - **Auf dem Handy verstecken** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung nicht angezeigt werden soll, wenn Sie sie von einem Mobiltelefon aus anzeigen.
 
-### Befehle
+### Commandes
 
 Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration von Jeedom definiert ist. Klicken Sie auf **Bestellung hinzufügen** so dass es in der Zusammenfassung berücksichtigt wird. Sie haben die Wahl, den Befehl eines Jeedom-Geräts auszuwählen, auch wenn dieses Objekt nicht als übergeordnetes Objekt vorhanden ist.
 

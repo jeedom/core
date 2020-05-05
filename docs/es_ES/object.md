@@ -1,5 +1,5 @@
-# Objetoos
-**Herramientas → Objetoos**
+# Objets
+**Herramientas → Objetos**
 
 La **objets** le permite definir la estructura de árbol de su domótica.
 
@@ -7,7 +7,7 @@ Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fá
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como los nombres de las habitaciones (por cierto, esta es la configuración recomendada).
 
-## Administración
+## Gestion
 
 Tienes dos opciones :
 - **Ajouter** : Crea un nuevo objeto.
@@ -32,7 +32,7 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 
 Una vez en la configuración de un objeto, tiene un menú contextual con el botón derecho en las pestañas del objeto. También puede usar Ctrl Click o Center Click para abrir directamente otro objeto en una nueva pestaña del navegador.
 
-## Pestaña Objetoo
+## Pestaña Objeto
 
 Al hacer clic en un objeto, accede a su página de configuración. Independientemente de los cambios que realice, no olvide guardar sus cambios..
 
@@ -47,11 +47,12 @@ Aquí están las diferentes características para configurar un objeto. :
 - **Colores personalizados** : Activa la consideración de los dos parámetros de color opcionales..
 - **Etiqueta de color** : Le permite elegir el color del objeto y el equipo adjunto..
 - **Color del texto de la etiqueta** : Le permite elegir el color del texto del objeto.. Este texto estará sobre el **Etiqueta de color**. Eliges un color para que el texto sea legible.
-- **Image** : Tienes la opción de cargar una imagen o eliminarla. En formato jpeg, esta imagen será la imagen de fondo del objeto cuando lo muestre en el Tablero.
+- **Image** : Tienes la opción de cargar una imagen o eliminarla. En formato jpeg, esta imagen será la imagen de fondo del objeto cuando lo muestre en el Tablero. También se usará para la miniatura de la pieza en la Síntesis.
+- **Solo en síntesis** : Permite poner una imagen para la Síntesis sin que se use como imagen de fondo.
 
 > **Tip**
 >
-> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general, seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
+> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general (o en el Resumen de automatización del hogar), seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
 
 > **Tip**
 >
@@ -73,7 +74,7 @@ Las columnas representan los resúmenes asignados al objeto actual.. Se te propo
 - **Ocultar en el escritorio** : Marque la casilla si no desea que el resumen aparezca junto al nombre del objeto en el Tablero.
 - **Ocultar en el móvil** : Marque la casilla si no desea que aparezca el resumen cuando lo vea desde un dispositivo móvil.
 
-### Comandos
+### Commandes
 
 Cada pestaña representa un tipo de resumen definido en la configuración de Jeedom. Haga clic en **Agregar un pedido** para que se tenga en cuenta en el resumen. Tiene la opción de seleccionar el comando de cualquier equipo Jeedom, incluso si no tiene este objeto como padre.
 
