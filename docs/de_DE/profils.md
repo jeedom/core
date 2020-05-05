@@ -9,17 +9,17 @@ Auf der Seite &quot;Einstellungen&quot; können Sie bestimmte benutzerspezifisch
 
 Definiert bestimmte Schnittstellenverhalten
 
-- **Objektbedienfeld im Dashboard** : Zeigt das Objektfenster (links) im Dashboard an, ohne auf die entsprechende Schaltfläche klicken zu müssen.
+- **Objektbedienfeld im Dashboard** : Zeigt das Objektfenster (links) im Armaturenbrett an, ohne auf die entsprechende Schaltfläche klicken zu müssen.
 - **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
-- **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Armaturenbrett / Handy angezeigt wird.
 
-- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Armaturenbrett / Handy angezeigt wird.
 - **Klappen Sie das Ansichtsfenster auf** : Wird verwendet, um das Ansichtsmenü (links) standardmäßig in den Ansichten sichtbar zu machen.
 
-- **Standarddesign** : Design, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Standarddesign** : Design, das standardmäßig bei der Ankunft im Armaturenbrett / Handy angezeigt wird.
 - **Vollbild-Design** : Standardanzeige im Vollbildmodus bei Ankunft bei Designs.
 
-- **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Dashboard / Handy ankommen.
+- **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Armaturenbrett / Handy ankommen.
 - **Vollbild-3D-Design** : Standardanzeige im Vollbildmodus bei Ankunft in 3D-Designs.
 
 ### Notifications
@@ -35,6 +35,53 @@ Definiert bestimmte Schnittstellenverhalten
 - **Passwort** : Ermöglicht das Ändern Ihres Passworts (vergessen Sie nicht, es unten erneut einzugeben).
 
 - **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel.
+
+-   **Menüs anzeigen** : Sagen Sie Jeedom, dass er das Panel anzeigen soll
+    links, wenn es existiert, als Erinnerung ist dieses Panel
+    verfügbar auf den meisten Plugin-Seiten sowie
+    Seite mit Szenarien, Interaktionen, Objekten….
+
+-   **Standardseite** : Standardseite, die angezeigt wird, wenn
+    Desktop / Mobile-Verbindung
+
+-   **Standardobjekt auf dem Armaturenbrett** : Standardanzeigeobjekt
+    bei der Ankunft auf dem Armaturenbrett / Handy
+
+-   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
+    das Armaturenbrett / Handy
+
+-   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
+    die Ankunft auf dem Armaturenbrett / Handy
+
+    -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
+        die Ankunft auf den Entwürfen
+
+-   **Dashboard**
+
+    -   **Klappen Sie das Szenario-Bedienfeld auf** : ermöglicht sichtbar zu machen
+        Standardmäßig das Szenario-Menü (rechts) im Dashboard
+
+    -   **Das Objekt-Panel anzeigen** : ermöglicht sichtbar zu machen durch
+        Standardmäßig das Objektmenü (links) im Dashboard
+
+-   **Vue**
+
+    -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
+        Standardansichtsmenü (links) für Ansichten
+
+Sicherheit
+--------
+
+-   **2-stufige Authentifizierung** : ermöglicht zu konfigurieren
+    2-Schritt-Authentifizierung (zur Erinnerung, dies ist ein sich ändernder Code
+    wird alle X Sekunden in einer mobilen Anwendung angezeigt, geben Sie ein
+    Google Authentificator oder Microsoft Authenticator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Für eine lokale Verbindung wird der Code daher nicht angefordert. Wichtig, wenn Sie während der Konfiguration der doppelten Authentifizierung eine Fehlerprüfung haben, dass jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert).
+
+-   **Passwort** : ermöglicht es Ihnen, Ihr Passwort zu ändern (nicht
+    vergessen Sie es unten erneut einzugeben)
+
+-   **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel
+
 
 ### Aktive Sitzungen
 

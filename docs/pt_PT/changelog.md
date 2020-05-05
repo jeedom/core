@@ -131,7 +131,9 @@ Registro de Alterações Jeedom V4
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.
 - Atualização de libs : jquery 3.4.1, CodeMiror 5.46.0, editor de tabelas 2.31.1.
 - Várias correções de bugs.
-- Adicionando um sistema de configuração em massa (usado na página Equipamento para configurar o Alerta de Comunicação neles)
+- Adicionando um sistema de configuração em massa (usado na página Equipamento para configurar os Alertas de Comunicação neles)
+- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G.
+- Correção de segurança
 
 >**IMPORTANT**
 >

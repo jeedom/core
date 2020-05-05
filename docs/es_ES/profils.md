@@ -36,6 +36,53 @@ Define ciertos comportamientos de interfaz
 
 - **Hash de usuario** : Su clave de API de usuario.
 
+-   **Ver los menús** : dile a Jeedom que muestre el panel
+    izquierda, cuando existe, como recordatorio de que este panel es
+    disponible en la mayoría de las páginas de complementos, así como en
+    página de escenarios, interacciones, objetos ....
+
+-   **Página predeterminada** : página predeterminada para mostrar cuando
+    conexión de escritorio / móvil
+
+-   **Objeto predeterminado en el dashboard** : objeto de visualización predeterminado
+    a su llegada en el tablero de instrumentos / móvil
+
+-   **Vista predeterminada** : ver para mostrar por defecto al llegar
+    el tablero de instrumentos / móvil
+
+-   **Diseño por defecto** : diseño para mostrar por defecto cuando
+    la llegada al tablero / móvil
+
+    -   **Pantalla completa** : visualización predeterminada en pantalla completa cuando
+        la llegada de los diseños
+
+-   **Dashboard**
+
+    -   **Desplegar el panel de escenarios** : permite hacer visible
+        de manera predeterminada, el menú de escenario (a la derecha) en el tablero
+
+    -   **Desplegar el panel de los objetos** : permite hacer visible por
+        predeterminado el menú de objetos (a la izquierda) en el tablero
+
+-   **Vue**
+
+    -   **Despliegue el panel de vista** : permite hacer visible por
+        menú de vistas predeterminado (izquierda) en vistas
+
+Seguridad
+--------
+
+-   **Autenticación de 2 pasos** : permite configurar
+    Autenticación en 2 pasos (como recordatorio, este es un código cambiante
+    aparece cada X segundos en una aplicación móvil, escriba
+    Autenticador de Google o Autenticador de Microsoft). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para la conexión local, el código no será solicitado. Importante si durante la configuración de la autenticación doble tiene un error, compruebe que la libertad (consulte la página de estado) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione)
+
+-   **Contraseña** : le permite cambiar su contraseña (no
+    olvide volver a escribirlo a continuación)
+
+-   **Hash de usuario** : su clave de API de usuario
+
+
 ### Sesiones activas
 
 Aquí tiene la lista de sus sesiones conectadas actualmente, su ID, su IP, así como la fecha de la última comunicación.. Al hacer clic en &quot;Desconectar&quot; esto desconectará al usuario. Atención, si está en un dispositivo registrado, esto también eliminará la grabación..

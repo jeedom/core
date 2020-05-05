@@ -36,6 +36,53 @@ Defines certain interface behaviors
 
 - **User hash** : Your user API key.
 
+-   **View the menus** : tell Jeedom to display the panel
+    left, when it exists, as a reminder this panel is
+    available on most plugin pages, as well as
+    page of scenarios, interactions, objects….
+
+-   **Default page** : default page to display when
+    desktop / mobile connection
+
+-   **Default object on the dashboard** : default display object
+    upon arrival on the dashboard / mobile
+
+-   **Default view** : view to display by default when arriving on
+    the dashboard / mobile
+
+-   **Default design** : design to display by default when
+    the arrival on the dashboard / mobile
+
+    -   **Full screen** : default display in full screen when
+        the arrival on the designs
+
+-   **Dashboard**
+
+    -   **Unfold the scenario panel** : allows to make visible
+        by default the scenario menu (on the right) on the dashboard
+
+    -   **Open the objects pane** : allows to make visible by
+        default the objects menu (on the left) on the dashboard
+
+-   **Vue**
+
+    -   **Unfold the view panel** : allows to make visible by
+        default views menu (left) on views
+
+Security
+--------
+
+-   **2-step authentication** : allows to configure
+    2-step authentication (as a reminder, this is a changing code
+    displayed every X seconds on a mobile application, type
+    google authentificator or Microsoft Authenticator). Note that double authentication will only be requested for external connections. For local connection the code will therefore not be requested. Important if during the configuration of double authentication you have an error check that jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work)
+
+-   **Password** : allows you to change your password (do not
+    forget to retype it below)
+
+-   **User hash** : your user API key
+
+
 ### Active sessions
 
 Here you have the list of your currently connected sessions, their ID, their IP as well as the date of last communication. By clicking on &quot;Disconnect&quot; this will disconnect the user. Attention if it is on a registered device this will also delete the recording.

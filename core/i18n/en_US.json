@@ -2073,7 +2073,7 @@
         "Nom de l'objet": "Object name",
         "Père": "Parent object",
         "Aucun": "None",
-        "Visible": "Jeedom",
+        "Visible": "Visible",
         "Rendre cet objet visible ou non.": "Make this object visible or not.",
         "Masquer sur le dashboard": "Hide on the dashboard",
         "Masquer cet objet uniquement sur le dashboard. Il restera visible, notemment dans la liste des objets.": "Hide this object only in the dashboard. It will remain visible, especially in the list of objects.",

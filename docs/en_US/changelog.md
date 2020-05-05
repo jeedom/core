@@ -131,7 +131,9 @@ Changelog Jeedom V4
 - Remove Font Awesome 4 to keep only Font Awesome 5.
 - Libs update : jquery 3.4.1, CodeMiror 5.46.0, tablesorter 2.31.1.
 - Numerous bug fixes.
-- Adding a mass configuration system (used on the Equipment page to configure the Communication Alert on these)
+- Adding a mass configuration system (used on the Equipment page to configure Communications Alerts on them)
+- Addition of global compatibility of Jeedom DNS with a 4G internet connection.
+- Security fix
 
 >**IMPORTANT**
 >

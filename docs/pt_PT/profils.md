@@ -36,6 +36,53 @@ Define certos comportamentos da interface
 
 - **Hash Usuário** : Sua chave de API do usuário.
 
+-   **Menus de exibição** : diga ao Jeedom para exibir o painel
+    esquerda, quando existir, como lembrete, este painel é
+    disponível na maioria das páginas de plug-ins, bem como
+    página de cenários, interações, objetos ....
+
+-   **Página padrão** : página padrão a ser exibida quando
+    conexão desktop / móvel
+
+-   **Painel padrão Assunto** : objeto de exibição padrão
+    na chegada no painel / móvel
+
+-   **Modo de exibição padrão** : para exibir por padrão ao chegar em
+    o painel / móvel
+
+-   **Projeto padrão** : design para exibir por padrão quando
+    a chegada no painel / celular
+
+    -   **Tela cheia** : exibição padrão em tela cheia quando
+        a chegada dos desenhos
+
+-   **Dashboard**
+
+    -   **Desdobre o painel do cenário** : permite tornar visível
+        por padrão, o menu de cenário (à direita) no painel
+
+    -   **Desdobrar os objectos de painel** : permite tornar visível por
+        padronize o menu de objetos (à esquerda) no painel
+
+-   **Vue**
+
+    -   **Desdobrar o painel de vista** : permite tornar visível por
+        menu de visualizações padrão (esquerda) nas visualizações
+
+Segurança
+--------
+
+-   **Autenticação em duas etapas** : permite configurar
+    Autenticação em duas etapas (como lembrete, esse é um código alterado
+    exibido a cada X segundos em um aplicativo móvel, digite
+    google authentificator ou Microsoft Authenticator). Observe que a autenticação dupla só será solicitada para conexões externas. Para conexão local, o código não será solicitado. Importante se durante a configuração da autenticação dupla você tiver um erro, verifique se o jeedom (consulte a página de integridade) e o telefone estão ao mesmo tempo (1 min de diferença é suficiente para que não funcione)
+
+-   **Senha** : permite que você altere sua senha (não
+    esqueça de redigitá-lo abaixo)
+
+-   **Hash Usuário** : Sua chave de API do usuário
+
+
 ### Sessões ativas
 
 Aqui você tem a lista de suas sessões atualmente conectadas, seu ID, seu IP e a data da última comunicação. Ao clicar em "Desconectar", isso desconectará o usuário. Atenção, se estiver em um dispositivo registrado, isso também excluirá a gravação.
