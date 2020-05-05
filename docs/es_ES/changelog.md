@@ -1,9 +1,7 @@
+# Registro de cambios Jeedom V4.1
 
-Registro de cambios Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Síntesis : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
 - Buscar : Adición de un motor de búsqueda en **Herramientas → Buscar**.
 - Salpicadero : El modo de edición ahora inserta el mosaico movido.
@@ -66,53 +64,45 @@ Registro de cambios Jeedom V4
 - Lib: Actualizar HighStock v7.1.2 a v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Corrección de errores.
 
-4.0.52
-=====
+### 4.0.52
 
 - Corrección de errores (la actualización debe hacerse absolutamente si está en 4.0.51).
 
-4.0.51
-=====
+### 4.0.51
 
 - Correcciones de errores.
 - Optimización del futuro sistema DNS.
 
-4.0.49
-=====
+### 4.0.49
 
 - Posibilidad de elegir el motor Jeedom TTS y posibilidad de tener complementos que ofrecen un nuevo motor TTS.
 - Soporte mejorado para webview en la aplicación móvil.
 - Correcciones de errores.
 - Actualizando el documento.
 
-4.0.47
-=====
+### 4.0.47
 
 - Mejora del probador de expresión.
 - Actualización del repositorio en smart.
 - Correcciones de errores.
 
-4.0.44
-=====
+### 4.0.44
 
 - Traducciones mejoradas.
 - Correcciones de errores.
 - Restauración de copia de seguridad en la nube mejorada.
 - La restauración en la nube ahora solo repatria la copia de seguridad local, dejando la opción de descargarla o restaurarla.
 
-4.0.43
-=====
+### 4.0.43
 
 - Traducciones mejoradas.
 - Corrección de errores en plantillas de escenarios..
 
-4.0.0
-=====
+## 4.0.0
 - Rediseño completo de temas (Core 2019 Light / Dark / Legacy).
 - Posibilidad de cambiar el tema automáticamente según la hora.
 - En dispositivos móviles, el tema puede cambiar según el brillo (requiere activar * sensor adicional genérico * en cromo, página de cromo://flags).<br/><br/>

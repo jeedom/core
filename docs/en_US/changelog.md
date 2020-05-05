@@ -1,9 +1,7 @@
+# Changelog Jeedom V4.1
 
-Changelog Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Synthesis : New page **Home → Synthesis** offering a global visual synthesis of objects (rooms).
 - Research : Add of a search engine in **Tools → Search**.
 - Dashboard : Edit mode now inserting the moved tile.
@@ -66,53 +64,45 @@ Changelog Jeedom V4
 - Lib: Update HighStock v7.1.2 to v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Bug fix.
 
-4.0.52
-=====
+### 4.0.52
 
 - Bug correction (update to be absolutely done if you are in 4.0.51).
 
-4.0.51
-=====
+### 4.0.51
 
 - Bugfix.
 - Optimization of the next DNS system.
 
-4.0.49
-=====
+### 4.0.49
 
 - Possibility of choosing Jeedom's TTS engine and possibility of having plugins that offer a new TTS engine.
 - Improved support for webview in the mobile application.
 - Bugfix.
 - Updating the doc.
 
-4.0.47
-=====
+### 4.0.47
 
 - Improvement of the expression tester.
 - Updating the repository on smart.
 - Bugfix.
 
-4.0.44
-=====
+### 4.0.44
 
 - Improved translations.
 - Bugfix.
 - Improved cloud backup restore.
 - Cloud restoration now only get the local backup, leaving the choice to download or restore it.
 
-4.0.43
-=====
+### 4.0.43
 
 - Improved translations.
 - Bug fixes on scenario templates.
 
-4.0.0
-=====
+## 4.0.0
 - Complete redesign of themes (Core 2019 Light / Dark / Legacy).
 - Possibility to change the theme automatically according to the time.
 - In mobile, the theme can change depending on the brightness (Requires activating * generic extra sensor * in chrome, chrome page://flags).<br/><br/>

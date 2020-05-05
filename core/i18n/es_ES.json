@@ -1749,9 +1749,11 @@
         "Rechercher": "Buscar",
         "Afficher\/Masquer les objets": "Mostrar \/ Ocultar los objetos",
         "Retour à la Synthèse": "Regresar al resumen",
+        "Filtre par catégorie": "Filtrar por categoría",
         "Toutes": "Todas",
         "Aucune": "Ninguna",
         "Scenario": "Escenario",
+        "Vider le champ de recherche": "Borrar el campo de búsqueda",
         "Édition du Dashboard": "Edición del tablero",
         "Clic: hauteur max<br>CtrlClic: hauteur min": "Click: altura máxima <br> CtrlClick: altura mínima"
     },

@@ -1,9 +1,7 @@
+# Registro de alterações Jeedom V4.1
 
-Registro de Alterações Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Síntese : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
 - Pesquisa : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - Painel de instrumentos : Modo de edição agora inserindo o bloco movido.
@@ -66,53 +64,45 @@ Registro de Alterações Jeedom V4
 - Lib: Atualizar o HighStock v7.1.2 a v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Bug fix.
 
-4.0.52
-=====
+### 4.0.52
 
 - Correção de bug (atualização a ser feita absolutamente se você estiver na versão 4.0.51).
 
-4.0.51
-=====
+### 4.0.51
 
 - Correções de bugs.
 - Otimização do futuro sistema DNS.
 
-4.0.49
-=====
+### 4.0.49
 
 - Possibilidade de escolher o mecanismo Jeedom TTS e possibilidade de ter plug-ins que oferecem um novo mecanismo TTS.
 - Suporte aprimorado para visualização na web no aplicativo móvel.
 - Correções de bugs.
 - Atualizando o documento.
 
-4.0.47
-=====
+### 4.0.47
 
 - Melhoria do testador de expressão.
 - Atualizando o repositório no smart.
 - Correções de bugs.
 
-4.0.44
-=====
+### 4.0.44
 
 - Traduções melhoradas.
 - Correções de bugs.
 - Restauração aprimorada de backup em nuvem.
 - Agora, a restauração na nuvem repatria apenas o backup local, deixando a opção de fazer o download ou restaurá-lo.
 
-4.0.43
-=====
+### 4.0.43
 
 - Traduções melhoradas.
 - Correções de bugs em modelos de cenário.
 
-4.0.0
-=====
+## 4.0.0
 - Redesign completo de temas (Core 2019 Light / Dark / Legacy).
 - Possibilidade de alterar o tema automaticamente de acordo com o tempo.
 - No celular, o tema pode mudar dependendo do brilho (requer a ativação de * sensor extra genérico * no chrome, página chrome://flags).<br/><br/>

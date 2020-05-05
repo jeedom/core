@@ -1749,9 +1749,11 @@
         "Rechercher": "Cerca",
         "Afficher\/Masquer les objets": "Mostra\/Nascondi oggetti",
         "Retour à la Synthèse": "Torna al sommario",
+        "Filtre par catégorie": "",
         "Toutes": "",
         "Aucune": "No",
         "Scenario": "Scena",
+        "Vider le champ de recherche": "",
         "Édition du Dashboard": "Edizione Dashboard",
         "Clic: hauteur max<br>CtrlClic: hauteur min": "Clic: altezza massima <br> CtrlClick: altezza minima"
     },

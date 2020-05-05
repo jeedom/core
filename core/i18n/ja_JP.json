@@ -1749,9 +1749,11 @@
         "Rechercher": "検索する",
         "Afficher\/Masquer les objets": "表示\/非表示のオブジェクト",
         "Retour à la Synthèse": "概要に戻る",
+        "Filtre par catégorie": "",
         "Toutes": "",
         "Aucune": "いいえ",
         "Scenario": "シナリオ",
+        "Vider le champ de recherche": "",
         "Édition du Dashboard": "ダッシュボード版",
         "Clic: hauteur max<br>CtrlClic: hauteur min": "クリック：最大高さ<br> CtrlClick：最小の高さ"
     },

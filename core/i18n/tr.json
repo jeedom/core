@@ -1749,9 +1749,11 @@
         "Rechercher": "Arayın",
         "Afficher\/Masquer les objets": "Nesneleri Aç\/Gizle",
         "Retour à la Synthèse": "",
+        "Filtre par catégorie": "",
         "Toutes": "",
         "Aucune": "Hayır",
         "Scenario": "Senaryo",
+        "Vider le champ de recherche": "",
         "Édition du Dashboard": "",
         "Clic: hauteur max<br>CtrlClic: hauteur min": ""
     },

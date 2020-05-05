@@ -1,9 +1,7 @@
+# Changelog Jeedom V4.1
 
-Changelog Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
 - Suche : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
 - Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
@@ -66,53 +64,45 @@ Changelog Jeedom V4
 - Lib: Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Fehlerbehebung.
 
-4.0.52
-=====
+### 4.0.52
 
 - Fehlerkorrektur (Update muss unbedingt durchgeführt werden, wenn Sie sich in 4.0.51 befinden).
 
-4.0.51
-=====
+### 4.0.51
 
 - Fehlerbehebungen.
 - Optimierung des zukünftigen DNS-Systems.
 
-4.0.49
-=====
+### 4.0.49
 
 - Möglichkeit, den Jeedom TTS-Motor zu wählen und Plugins zu haben, die einen neuen TTS-Motor bieten.
 - Verbesserte Unterstützung für Webview in der mobilen Anwendung.
 - Fehlerbehebungen.
 - Aktualisieren des Dokuments.
 
-4.0.47
-=====
+### 4.0.47
 
 - Verbesserung des Expressionstesters.
 - Aktualisieren des Repositorys auf smart.
 - Fehlerbehebungen.
 
-4.0.44
-=====
+### 4.0.44
 
 - Verbesserte Übersetzungen.
 - Fehlerbehebungen.
 - Verbesserte Wiederherstellung von Cloud-Backups.
 - Die Cloud-Wiederherstellung repatriiert nur noch das lokale Backup und lässt die Wahl, es herunterzuladen oder wiederherzustellen.
 
-4.0.43
-=====
+### 4.0.43
 
 - Verbesserte Übersetzungen.
 - Fehlerbehebungen bei Szenariovorlagen.
 
-4.0.0
-=====
+## 4.0.0
 - Komplette Neugestaltung der Themen (Core 2019 Light / Dark / Legacy).
 - Möglichkeit, das Thema automatisch nach Zeit zu ändern.
 - In Mobilgeräten kann sich das Thema je nach Helligkeit ändern (Erfordert die Aktivierung des * generischen zusätzlichen Sensors * in Chrom, Chromseite://flags).<br/><br/>
