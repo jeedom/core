@@ -431,7 +431,6 @@ class update {
 			echo 'Cleaning '.$folder."\n";
 			shell_exec('find '.$cibDir. '/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 		}
-		
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {
 			case 'plugin':
