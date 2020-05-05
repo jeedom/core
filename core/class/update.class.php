@@ -425,10 +425,14 @@ class update {
 			@chgrp(__DIR__ . '/../../plugins', system::get('www-gid'));
 			@chmod(__DIR__ . '/../../plugins', 0775);
 		}
+		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
+		log::add('update', 'alert',  __('Supression des fichiers inutiles...', __FILE__));
+		foreach (array('3rdparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
+			shell_exec('find '.$cibDir. '/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
+		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {
 			case 'plugin':
-			$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 			if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 				throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 			}
