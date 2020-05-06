@@ -62,7 +62,7 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 ----------------------
 
 -   **Senden von Backups** : Weist Jeedom an, das zu senden
-    Backups in der Markt Cloud, Vorsicht, Sie müssen haben
+    Backups in der Market Cloud, Vorsicht, Sie müssen haben
     habe das Abonnement bekommen.
 
 -   **Senden Sie ein Backup** : Ermöglicht das Senden eines

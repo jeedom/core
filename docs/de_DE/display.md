@@ -14,8 +14,8 @@ Der obere Rand der Seite
 
 Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Nombre
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die Elemente gezählt werden
-Inaktiv. \.* **Anzahl der Ausrüstungen** : Das Gleiche gilt für die Ausrüstung. \.*
-**Anzahl der Bestellungen** : Gleiches gilt für Bestellungen. \.* **Inactif** :
+Inaktiv. \* **Anzahl der Ausrüstungen** : Das Gleiche gilt für die Ausrüstung. \*
+**Anzahl der Bestellungen** : Das Gleiche gilt für Bestellungen. \.* **Inactif** :
 Aktivieren Sie dieses Kontrollkästchen, wenn die inaktiven Elemente korrekt sein sollen
 auf dieser Seite angezeigt. \.* **Rechercher** : Suche nach a
 bestimmtes Element. Es kann der Name eines Geräts sein, eine Bestellung
@@ -47,7 +47,7 @@ sind verfügbar. Von links nach rechts :
 
 > **Tip**
 >
-> Durch Klicken /. Ablegen auf das Gerät können Sie dessen ändern
+> Durch Klicken / Ablegen auf das Gerät können Sie dessen ändern
 > bestellen oder sogar einem anderen Objekt zuordnen. Es ist aus der Bestellung
 > Auf dieser Seite wurde festgelegt, dass die Dashboard-Anzeige berechnet wird.
 
@@ -80,7 +80,7 @@ Auf jeder Ausrüstung finden wir :
     Fenster zur erweiterten Gerätekonfiguration.
 
 -   **Liste der Befehle** (Pfeil) : ermöglicht es Ihnen, die Liste von zu erweitern
-    BefehDie (auf orangefarbenem Hintergrund).
+    Befehle (auf orangefarbenem Hintergrund).
 
 Wenn Sie die Befehlsliste erweitern, entspricht jeder orangefarbene Block
 eine Bestellung für Ihre Ausrüstung (ein neuer Klick auf den kleinen Pfeil
@@ -153,7 +153,7 @@ die Ausrüstung und ihre Kontrollen :
 
 -   **Tags** : Geräteetiketten, die durch zu trennen sind ','. Auf dem Dashboard können personalisierte Filter erstellt werden
 
-Unten finden Sie eine TabelDie mit der Liste der BefehDie für
+Unten finden Sie eine Tabelle mit der Liste der Befehle für
 die Ausrüstung mit jeweils einem Link zu ihrer Konfiguration.
 
 Registerkarte &quot;Ansicht&quot; 
@@ -191,11 +191,11 @@ Design sowie mobil.
 
 -   **Abgerundete Kanten** (in px) : Aktivieren Sie das Kontrollkästchen, um es zu behalten
     die Standardrundung. Andernfalls müssen Sie den CSS-Code und die Eigenschaft eingeben
-    "Randradius" (z : `10px`)
+    "Randradius" (z : ``10px``)
 
-### OptionaDie Parameter auf der Kachel 
+### Optionale Parameter auf der Kachel 
 
-Unten finden wir optionaDie Anzeigeparameter, die wir
+Unten finden wir optionale Anzeigeparameter, die wir
 kann für Geräte gelten. Diese Parameter bestehen aus einem Namen und
 wert. Klicken Sie einfach auf **Ajouter** einen anwenden
 wieder. Für Geräte nur den Wert **style** ist für die
@@ -210,7 +210,7 @@ Registerkarte Layout
 ------------------
 
 In diesem Teil können Sie zwischen der Standardanordnung von wählen
-BefehDie (nebeneinander im Widget) oder im Tabellenmodus. Es gibt
+Befehle (nebeneinander im Widget) oder im Tabellenmodus. Es gibt
 Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
 **Tableau** :
 
@@ -219,7 +219,7 @@ Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Op
 -   **Anzahl der Spalten**
 
 -   **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen, um das zu zentrieren
-    BefehDie in den Feldern.
+    Befehle in den Feldern.
 
 -   **Allgemeiner Boxstil (CSS)** : Ermöglicht das Definieren des Stils
     Allgemein im CSS-Code.
@@ -239,7 +239,7 @@ diese :
 
 > **Tip**
 >
-> Wenn Sie in einem Feld in der TabelDie zwei BefehDie eingeben möchten, geben Sie einen ein
+> Wenn Sie in einem Feld in der Tabelle zwei Befehle eingeben möchten, geben Sie einen ein
 > Vergessen Sie nicht, unter dem anderen eine Rückgabe hinzuzufügen
 > Linie nach der Premiere in der **Erweiterte Konfiguration** davon.
 
@@ -291,7 +291,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 -   **Informations** : Zeigt die Roheigenschaften des Geräts an.
 
--   Bewerben Sie sich bei \.* : Wenden Sie dieselbe Konfiguration auf an
+-   Bewerben Sie sich bei \* : Wenden Sie dieselbe Konfiguration auf an
     Mehrfachbestellungen.
 
 -   **Enregistrer** : Speichern Sie die vorgenommenen Änderungen an
@@ -304,7 +304,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 > **Note**
 >
-> Abhängig von der Art der Bestellung werden die Informationen /. Aktionen angezeigt
+> Abhängig von der Art der Bestellung werden die Informationen / Aktionen angezeigt
 > kann sich ändern.
 
 Registerkarte Informationen 
@@ -346,20 +346,20 @@ bestellen :
 
 Sie haben auch drei andere orangefarbene Knöpfe darunter :
 
--   **Dieser Befehl ersetzt die ID** : Ersetzen Sie eine Identifikation von
+-   **Dieser Befehl ersetzt die ID** : Ersetzen Sie eine ID von
     Bestellung nach Bestellung. Nützlich, wenn Sie a gelöscht haben
     Ausrüstung in Jeedom und Sie haben Szenarien, die verwenden
-    BefehDie davon.
+    Befehle davon.
 
 -   **Dieser Befehl ersetzt den Befehl** : Ersetzen Sie eine Bestellung durch
-    der aktuelDie Befehl.
+    der aktuelle Befehl.
 
 -   **Ersetzen Sie diesen Befehl durch den Befehl** : Das Gegenteil ersetzt
     die Bestellung durch eine andere Bestellung.
 
 > **Note**
 >
-> Diese Art von Aktion ersetzt BefehDie in ganz Jeedom
+> Diese Art von Aktion ersetzt Befehle in ganz Jeedom
 > (Szenario, Interaktion, Reihenfolge, Ausrüstung….)
 
 Nachfolgend finden Sie die Liste der verschiedenen Geräte,
@@ -374,9 +374,9 @@ Registerkarte Konfiguration
 
 -   **Berechnung und Rundung**
 
-    -   **Berechnungsformel (\.#Wert \.# für den Wert)** : Ermöglicht
+    -   **Berechnungsformel (\#value\.# für Wert)** : Ermöglicht
         Machen Sie eine Operation mit dem Wert der Bestellung vor
-        Jeedom Behandlung, Beispiel : `# value # - 0.2` zu verschanzen
+        Jeedom Behandlung, Beispiel : ``#value# - 0.2` zu verschanzen
         0,2 (Offset an einem Temperatursensor).
 
     -   **Abgerundet (Zahl nach Dezimalpunkt)** : Lass uns umrunden
@@ -409,7 +409,7 @@ Registerkarte Konfiguration
         gespeicherte Daten.
 
     -   **Verlauf löschen, wenn älter als** : Sagen wir mal
-        Jeedom, um alDie Daten zu löschen, die älter als eins sind
+        Jeedom, um alle Daten zu löschen, die älter als eins sind
         bestimmte Zeit. Kann nützlich sein, um nicht zu behalten
         Daten, wenn es nicht notwendig ist und daher die Menge begrenzen
         von Informationen von Jeedom aufgezeichnet.
@@ -434,12 +434,12 @@ Registerkarte Konfiguration
         binärer Typ). Sie können die Wiederholung des Werts erzwingen oder
         verbiete es komplett.
 
-    -   **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im FalDie von aufgerufen werden soll
-        Bestellaktualisierung. Sie können Stichworte verwenden
-        folgende : `# value #` für den Bestellwert `# cmd_name #`
-        für den Namen des Befehls &quot;# cmd_id #&quot; für die eindeutige Kennung
-        des Befehls `# humanname #` für den vollständigen Namen des Befehls
-        (zB : `# [Badezimmer] [Hydrometrie] [Luftfeuchtigkeit] #`), `# eq_name #` für den Namen des Geräts
+    -   **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle von aufgerufen werden soll
+        Bestellaktualisierung. Sie können Tags verwenden
+        folgende : ``#value#"für den Wert der Bestellung"#cmd_name#``
+        für den Namen des Befehls `#cmd_id#`für die eindeutige Kennung
+        des Befehls, `#humanname#`für den vollständigen Namen des Befehls
+        (zB : ``#[SalDie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts
 
 ### Für einen Aktionsbefehl : 
 
@@ -448,17 +448,17 @@ Registerkarte Konfiguration
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
 -   **Aktion bestätigen** : Aktivieren Sie dieses Kontrollkästchen, damit Jeedom dies anfordert
-    Bestätigung, wenn die Aktion über die SchnittstelDie gestartet wird
+    Bestätigung, wenn die Aktion über die Schnittstelle gestartet wird
     dieses Befehls.
 
 -   **Zugangscode** : Ermöglicht das Definieren eines Codes, den Jeedom anfordert
-    wenn die Aktion über die SchnittstelDie dieses Befehls gestartet wird.
+    wenn die Aktion über die Schnittstelle dieses Befehls gestartet wird.
 
 -   **Aktion vor Ausführung des Befehls** : Ermöglicht das Hinzufügen
-    BefehDie **avant** jede Ausführung des Auftrags.
+    Befehle **avant** jede Ausführung des Auftrags.
 
 -   **Aktion nach Ausführung des Auftrags** : Ermöglicht das Hinzufügen
-    BefehDie **nach** jede Ausführung des Auftrags.
+    Befehle **nach** jede Ausführung des Auftrags.
 
 Registerkarte &quot;Warnungen&quot; 
 --------------
@@ -471,7 +471,7 @@ Minuten dann kann das Gerät in Alarmbereitschaft gehen **warning**.
 >
 > Auf der Seite **Administration → Konfiguration → Protokolle**, du kannst
 > Konfigurieren Sie einen Befehl vom Typ Nachricht, mit dem Jeedom Sie abrufen kann
-> warnen, wenn die Warn- oder GefahrenschwelDie erreicht ist.
+> warnen, wenn die Warn- oder Gefahrenschwelle erreicht ist.
 
 Registerkarte &quot;Ansicht&quot; 
 ----------------
@@ -492,13 +492,13 @@ mobile.
 -   **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol sichtbar zu machen
     zusätzlich zum Namen des Befehls.
 
--   **Umbrochene ZeiDie vor dem Widget** : Wählen **vorher
+-   **Umbrochene Zeile vor dem Widget** : Wählen **vorher
     widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
-    Spalte mit verschiedenen Gerätebefehlen anstelDie von Zeilen
+    Spalte mit verschiedenen Gerätebefehlen anstelle von Zeilen
     standardmäßig)
 
-Unten finden wir optionaDie Anzeigeparameter, die wir
+Unten finden wir optionale Anzeigeparameter, die wir
 kann zum Widget wechseln. Diese Parameter hängen vom jeweiligen Widget ab,
 Sie müssen sich also seine Karte auf dem Markt ansehen, um sie zu kennen.
 

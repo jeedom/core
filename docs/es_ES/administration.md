@@ -8,7 +8,7 @@ General
 
 En esta pestaña encontramos información general sobre Jeedom :
 
--   **Número de tu Jeedom** : Identifica tu Jeedom,
+-   **Nombre de tu Jeedom** : Identifica tu Jeedom,
     especialmente en el mercado. Se puede reutilizar en escenarios
     o identificar una copia de seguridad.
 
@@ -89,7 +89,7 @@ Dos partes reservadas para expertos están presentes en esta pestaña.
     de Jeedom. Luego puede ejecutar comandos en el campo
     desde lo alto. A continuación se muestran dos parámetros para obtener información. :
 
-    -   **Utilisateur** : Número de usuario utilizado por Jeedom en
+    -   **Utilisateur** : Nombre de usuario utilizado por Jeedom en
         la base de datos,
 
     -   **Contraseña** : contraseña de acceso a la base de datos
@@ -110,7 +110,7 @@ LDAP
 
 -   **DN base** : DN base de su AD
 
--   **Número del usuario** : nombre de usuario para que Jeedom
+-   **Nombre del usuario** : nombre de usuario para que Jeedom
     conectarse a AD
 
 -   **Contraseña** : contraseña para que Jeedom se conecte a AD
@@ -175,13 +175,13 @@ externe** (desde otra red, en particular desde Internet).
 
     -   **Protocole** : el protocolo a usar, a menudo HTTP
 
-    -   **URLa o dirección IP** : Jeedom IP para entrar
+    -   **URL o dirección IP** : Jeedom IP para entrar
 
     -   **Port** : el puerto de la interfaz web de Jeedom, generalmente 80.
         Tenga en cuenta que cambiar el puerto aquí no cambia el puerto real de
         Jeedom que seguirá siendo el mismo
 
-    -   **Complementar** : el fragmento de URLa adicional (ejemplo
+    -   **Complementar** : el fragmento de URL adicional (ejemplo
         : / jeedom) para acceder a Jeedom.
 
 -   **Acceso externo** : información para llegar a Jeedom desde afuera
@@ -193,10 +193,10 @@ externe** (desde otra red, en particular desde Internet).
 
     -   **Protocole** : protocolo utilizado para acceso al exterior
 
-    -   **URLa o dirección IP** : IP externa, si es fija. por lo demás,
-        proporcione la URLa que apunta a la dirección IP externa de su red.
+    -   **URL o dirección IP** : IP externa, si es fija. por lo demás,
+        proporcione la URL que apunta a la dirección IP externa de su red.
 
-    -   **Complementar** : el fragmento de URLa adicional (ejemplo
+    -   **Complementar** : el fragmento de URL adicional (ejemplo
         : / jeedom) para acceder a Jeedom.
 
 > **Tip**
@@ -326,12 +326,12 @@ Histórico
 Empuje 
 ----
 
-**URLa de inserción global** : permite agregar una URLa para llamar en caso de
+**URL de inserción global** : permite agregar una URL para llamar en caso de
 orden de actualización. Puedes usar las siguientes etiquetas :
-**\#value\#** por el valor del pedido, **\#Cmd\_name \#** para el
-nombre del comando, **\#Cmd\_id \#** para el identificador único de la
+**\#value\#** por el valor del pedido, **\#cmd\_name\#** para el
+nombre del comando, **\#cmd\_id\#** para el identificador único de la
 commande, **\#humanname\#** para el nombre completo de la orden (ej. :
-\# \ [Baño \] \ [Hidrometría \] \ [Humedad \] \#), `# eq_name #` para el nombre del equipo
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`para el nombre del equipo
 
 Cubierta 
 =====
@@ -548,7 +548,7 @@ objetos :
 
 -   **Clef** : Clave para el resumen, especialmente para no tocar.
 
--   **Nom** : Número abstracto.
+-   **Nom** : Nombre abstracto.
 
 -   **Calcul** : Método de cálculo, puede ser de tipo :
 
@@ -702,12 +702,12 @@ Depósito utilizado para activar el envío de complementos por archivos.
 
 Depósito utilizado para conectar Jeedom a Github.
 
--   **Token** : Simbólico para acceder al depósito privado.
+-   **Token** : Token para acceder al depósito privado.
 
 -   **Usuario u organización del repositorio principal de Jeedom** : Nom
     el usuario o la organización en github para el núcleo.
 
--   **Número del repositorio para el núcleo Jeedom** : Número del repositorio para core.
+-   **Nombre del repositorio para el núcleo Jeedom** : Nombre del repositorio para core.
 
 -   **Industria central de Jeedom** : Rama del repositorio central.
 
@@ -719,11 +719,11 @@ rechazado si utiliza un depósito diferente a este.
 
 -   **Adresse** : Dirección del mercado.
 
--   **Número del usuario** : Su nombre de usuario en el mercado.
+-   **Nombre del usuario** : Su nombre de usuario en el mercado.
 
 -   **Contraseña** : Tu contraseña de mercado.
 
--   **Número [nube de respaldo]** : Número de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos)
+-   **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos)
 
 -   **[Copia de seguridad de la nube] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella no podrás restaurar tu Jeedom
 
@@ -732,11 +732,11 @@ rechazado si utiliza un depósito diferente a este.
 ### Samba 
 
 Deposite para enviar automáticamente una copia de seguridad de Jeedom a
-una parte de Samba (por ejemplo, : NAS Synology).
+una parte de Samba (ex : NAS Synology).
 
 -   **\ [Copia de seguridad \] IP** : IP del servidor Samba.
 
--   **\ [Copia de seguridad \] Usuario** : Número de usuario para iniciar sesión
+-   **\ [Copia de seguridad \] Usuario** : Nombre de usuario para iniciar sesión
     (las conexiones anónimas no son posibles). Debe haber
     que el usuario tiene derechos de lectura y escritura en el
     directorio de destino.
@@ -788,10 +788,10 @@ una parte de Samba (por ejemplo, : NAS Synology).
 > primera copia de seguridad, la carpeta no debe contener ningún archivo o
 > carpetas).
 
-### URLa 
+### URL 
 
--   **URLa central de Jeedom**
+-   **URL central de Jeedom**
 
--   **URLa de la versión principal de Jeedom**
+-   **URL de la versión principal de Jeedom**
 
 

@@ -6,12 +6,12 @@ sua imaginação.
 
 > **Tip**
 >
-> É possível ir diretamente a um Projeto graças ao submenu.
+> É possível ir diretamente a um design graças ao submenu.
 
 > **Important**
 >
 > Todas as ações são feitas clicando com o botão direito nesta página, atenção
-> fazê-lo bem no Projeto. Durante a criação, é necessário, portanto,
+> fazê-lo bem no design. Durante a criação, é necessário, portanto,
 > faça no meio da página (para ter certeza de estar no design).
 
 No menu (clique com o botão direito do mouse), encontramos o
@@ -29,7 +29,7 @@ seguintes ações :
 -   **Adicionar text / html** : Permite adicionar texto ou código
     html / javascript
 
--   **Ajouter Cenas** : Adicionar um cenário
+-   **Ajouter Scénario** : Adicionar um cenário
 
 -   **Adicionar link**
 
@@ -76,16 +76,16 @@ seguintes ações :
 
 -   **Criar um design** : permite adicionar um design
 
--   **Projeto duplicado** : Duplica o Projeto atual
+-   **Projeto duplicado** : Duplica o design atual
 
 -   **Cenografia** : Acesso à configuração do design
 
--   **Sauvegarder** : permite salvar o Projeto (atenção, existem
+-   **Sauvegarder** : permite salvar o design (atenção, existem
     também backups automáticos durante determinadas ações)
 
 > **Important**
 >
-> A configuração dos elementos de Projeto é feita clicando em
+> A configuração dos elementos de design é feita clicando em
 > estes.
 
 Configuração do projeto 
@@ -100,10 +100,10 @@ Encontrado aqui :
     -   **Fundo transparente** : Torna o plano de fundo transparente. Tenha cuidado se o
         caixa estiver marcada, a cor do plano de fundo não será usada
 
-    -   **Cor de fundo** : cor de fundo do Projeto (branco
+    -   **Cor de fundo** : cor de fundo do design (branco
         por padrão)
 
-    -   **Code** : Código de acesso ao seu Projeto (se vazio, nenhum código
+    -   **Code** : Código de acesso ao seu design (se vazio, nenhum código
         não é solicitado)
 
     -   **ícone** : Um ícone para ele (aparece no menu
@@ -222,7 +222,7 @@ Texto / html
 >
 > Se você colocar código HTML (especialmente Javascript), tenha cuidado
 > para verificá-lo antes, porque você pode, se houver um erro nele
-> ou se substituir um componente Jeedom que trava completamente o Projeto e
+> ou se substituir um componente Jeedom que trava completamente o design e
 > tudo o que você precisa fazer é excluí-lo diretamente do banco de dados
 
 Cenas 
@@ -241,7 +241,7 @@ Configurações de exibição
 
 -   **Nom** : Nome do link (texto exibido)
 
--   **Lien** : Link para o Projeto ou exibição em questão
+-   **Lien** : Link para o design ou exibição em questão
 
 -   **Cor de fundo** : permite alterar a cor do plano de fundo ou
     coloque transparente, não esqueça de passar "Default" em NO
@@ -312,7 +312,7 @@ Configurações de exibição
 ---------------------
 
 -   **Sala de jantar** : É aqui que você escolhe o tipo de área :
-    único macros, macro binária ou Widget ao passar o mouse
+    Macro simples, macro binária ou Widget ao passar o mouse
 
 ### único macro 
 
@@ -380,6 +380,6 @@ Faq
 >
 >Se você colocou um widget ou uma imagem que ocupa quase todo o design, clique fora do widget ou imagem para acessar o menu clicando com o botão direito do mouse.
 
->**Excluir um Projeto que não funciona mais**
+>**Excluir um design que não funciona mais**
 >
->Na parte da administração, em seguida, no OS / DB, faça "select * from planHeader", recupere o ID do Projeto em questão e faça "delete from planHeader where id = # TODO #" e "delete from plan where planHeader_id = # todo # "substituindo # TODO # pelo ID do Projeto encontrado anteriormente.
+>Na parte da administração e no OS / DB, faça "select * from planHeader", recupere o ID do design em questão e faça "delete from planHeader where id=#TODO#" e "excluir do plano em que planHeader_id=#todo#" substituindo bem #TODO# pelo ID do design encontrado anteriormente.

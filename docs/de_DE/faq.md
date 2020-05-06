@@ -65,7 +65,7 @@ Können wir Jeedom in https setzen? ?
 ================================
 
 Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 So verbinden Sie sich in SSH ?
 =============================
@@ -153,11 +153,11 @@ Diese müssen zurückgesetzt werden :
 `` `{.bash}
 bdd_password = $ (cat / dev / urandom | tr-cd &#39;a-f0-9' | Kopf -c 15)
 echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
-echo "CREATE. USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
+echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
 echo &quot;GEWÄHRLEISTUNG ALLER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
-sudo sed -i -e &quot;s / # PASSWORT # / $ {bdd_password} / g&quot; core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -179,7 +179,7 @@ Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch üb
 
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
 Wenn es nach einer Neuinstallation weiterhin besteht, ist es ratsam,
-Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) für Smart
+Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/de_DE/recovery_mode_jeedom_smart) für Smart
 
 Mein Szenario hört nicht mehr auf 
 =================================
@@ -200,7 +200,7 @@ Dies liegt häufig daran, dass das Gerät einem Objekt zugeordnet ist
 Dies ist nicht das untergeordnete Element oder das Objekt selbst des ersten ausgewählten Objekts
 links im Baum (Sie können es in Ihrem Profil konfigurieren).
 
-Ich habe den folgenden Fehler : SQLSTATE. \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden' 
+Ich habe den folgenden Fehler : SQLSTATE \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden' 
 ====================================================================================================================================
 
 Dies liegt an MySQL, das gestoppt hat, es ist nicht normal, die Fälle
@@ -232,7 +232,7 @@ Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
 ===================================================
 
 Bei einer DIY-Installation ist das normal. In SSH müssen Sie bestellen
-visudo und am Ende der Datei müssen Sie hinzufügen : www-data Alle = (ALL)
+visudo und am Ende der Datei müssen Sie hinzufügen : www-data ALL = (ALL)
 NOPASSWD: Alle.
 
 `` `{.bash}

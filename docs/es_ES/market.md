@@ -116,7 +116,7 @@ Mis jeedoms
 
     -   **URL** : enumerar las diferentes URL de acceso de Jeedom.
 
-    -   **Servidor DNS** : le dice si el servidor Dns al que
+    -   **Servidor DNS** : le dice si el servidor DNS al que
         están adjuntos
 
     -   **Estado DNS** : permite ver el estado del DNS

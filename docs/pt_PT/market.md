@@ -35,7 +35,7 @@ Para desenvolvedores :
 
 -   **Nome de usuário no fórum** : Seu nome de usuário no fórum
 
--   **E-mail público** : Seu email para receber qualquer
+-   **Email público** : Seu email para receber qualquer
     comunicações de nós
 
 -   **Conta Paypal** : O email da sua conta Paypal (usado apenas

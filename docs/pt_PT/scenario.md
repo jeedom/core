@@ -1,8 +1,8 @@
-AquEu está a parte mais importante da automação residencial : os cenários.
+Aqui está a parte mais importante da automação residencial : os cenários.
 Verdadeiro cérebro da domótica, é o que torna possível interagir com
 o mundo real de uma "maneira inteligente".
 
-à página de gerenciamento de cenários
+A página de gerenciamento de cenários
 ================================
 
 Gestion
@@ -24,7 +24,7 @@ apenas funciona para gerenciá-los melhor :
 
 -   **Visão global** : Permite que você tenha uma visão geral de todos
     os cenários. Você pode alterar os valores **actif**,
-    **visible**, **MultEu lançamento**, **Sincronicamente**, **Log** et
+    **visible**, **Multi lançamento**, **Sincronicamente**, **Log** et
     **Timeline** (esses parâmetros são descritos no próximo capítulo).
     Você também pode acessar os logs para cada cenário e
     comece individualmente.
@@ -42,7 +42,7 @@ e o dele **Objeto pai**. O **cenários esmaecidos** são aqueles que são
 desabilitado.
 
 Como em muitas páginas Jeedom, coloque o mouse à esquerda de
-a tela exibe um cardápio de acesso rápido (de
+a tela exibe um menu de acesso rápido (de
 seu perfil, você sempre pode deixá-lo visível). Você pode
 ENTÃO **chercher** seu cenário, mas também em **ajouter** um por isso
 menu.
@@ -106,12 +106,12 @@ nosso cenário :
 -   **Segundos de tempo limite (0 = ilimitado)** : O tempo máximo de execução
     autorizado
 
--   **MultEu lançamento** : Marque esta caixa se desejar
+-   **Multi lançamento** : Marque esta caixa se desejar
     cenário pode ser iniciado várias vezes ao mesmo tempo.
 
 -   **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade de lançamento do cenário, mas pode tornar o sistema instável.
 
--   **Log** : O tipo de Log desejado para o cenário.
+-   **Log** : O tipo de log desejado para o cenário.
 
 -   **Siga na Timeline** : Acompanha o cenário
     na linha do tempo.
@@ -131,9 +131,9 @@ nosso cenário :
 Guia Cenário
 ---------------
 
-É aquEu que você criará seu cenário. Nós temos que começar
+É aqui que você criará seu cenário. Nós temos que começar
 por **Adicionar bloco**, com o botão à direita. Uma vez um bloco
-criado, você pode adicionar outro **bloc** onde um **action**.
+criado, você pode adicionar outro **bloc** ou um **action**.
 
 > **Tip**
 >
@@ -141,7 +141,7 @@ criado, você pode adicionar outro **bloc** onde um **action**.
 
 ### Blocos
 
-AquEu estão os diferentes tipos de blocos disponíveis :
+Aqui estão os diferentes tipos de blocos disponíveis :
 
 -   **If / Then / Ou** : Permite que você execute ações
     sob condição (s).
@@ -150,17 +150,17 @@ AquEu estão os diferentes tipos de blocos disponíveis :
     sem condições.
 
 -   **Boucle** : Permite executar ações repetidamente
-    1 até um número definido (onde mesmo o valor de um sensor onde um
+    1 até um número definido (ou mesmo o valor de um sensor ou um
     número aleatório…).
 
 -   **Dans** : Inicia uma ação em X minuto (s) (0 é um
-    valor possível). à peculiaridade é que as ações são lançadas
+    valor possível). A peculiaridade é que as ações são lançadas
     em segundo plano, para que eles não bloqueiem o restante do cenário.
     Portanto, é um bloco sem bloqueio.
 
 -   **A** : Permite que o Jeedom inicie as ações do bloco em um momento
     tempo determinado (no formato hhmm). Este bloco é sem bloqueio. Ex :
-    0030 para 00:30 onde 0146 para 1h46 e 1050 para 10h50.
+    0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.
 
 -   **Code** : Permite escrever diretamente no código PHP (solicitação
     algum conhecimento e pode ser arriscado, mas permite não ter
@@ -170,10 +170,10 @@ AquEu estão os diferentes tipos de blocos disponíveis :
 
 Cada um desses blocos tem suas opções para lidar melhor com eles :
 
--   à caixa de seleção à esquerda permite desativar completamente o
+-   A caixa de seleção à esquerda permite desativar completamente o
     bloquear sem excluí-lo.
 
--   à seta dupla vertical à esquerda permite mover todo o
+-   A seta dupla vertical à esquerda permite mover todo o
     bloquear por arrastar e soltar.
 
 -   O botão, na extrema direita, permite excluir todo o bloco.
@@ -182,8 +182,8 @@ Cada um desses blocos tem suas opções para lidar melhor com eles :
 
 > **Note**
 >
-> Nos blocos SEu / Então / Caso contrário, setas circulares localizadas
-> à esquerda do campo de condição permitem ativar onde não o
+> Nos blocos Si / Então / Caso contrário, setas circulares localizadas
+> à esquerda do campo de condição permitem ativar ou não o
 > repetição de ações se a avaliação da condição fornecer o mesmo
 > resultado que a avaliação anterior.
 
@@ -208,12 +208,12 @@ selecione um item para testar :
 > **Tip**
 >
 > Há uma lista de tags que permitem acesso a variáveis
-> do script onde de outro, onde por hora, data, um
+> do script ou de outro, ou por hora, data, um
 > número aleatório,…. Veja mais os capítulos sobre comandos e
 > Tags.
 
 Depois de concluída a condição, você deve usar o botão
-"adicionar ", à esquerda, para adicionar um novo **bloc** onde um
+"adicionar ", à esquerda, para adicionar um novo **bloc** ou um
 **action** no bloco atual.
 
 > **Tip**
@@ -228,7 +228,7 @@ Depois de concluída a condição, você deve usar o botão
 
 Controles (sensores e atuadores):
 -   cmd::byString ($ string); : Retorna o objeto de comando correspondente.
-  -   $string : Link para o pedido desejado : #[objeto] [equipamento] [comando] # (ex : #[àpartamento] [àlarme] [àtivo] #)
+  -   $string : Link para o pedido desejado : #[obje][equipement][commande]# (ex : #[àppartement][àlarme][Ativos]#)
 -   cmd::byId ($ id); : Retorna o objeto de comando correspondente.
   -   $id : ID do pedido
 -   $cmd->execCmd($options = null); : Execute o comando e retorne o resultado.
@@ -239,27 +239,27 @@ Controles (sensores e atuadores):
 
 Log :
 -   log::add ('nome do arquivo', 'nível', 'mensagem');
-  -   filename : Nome do arquivo de Log.
-  -   nível : [depuração], [Eunformações], [erro], [evento].
+  -   filename : Nome do arquivo de log.
+  -   nível : [depuração], [informações], [erro], [evento].
   -   Mensagem : Mensagem para escrever nos logs.
 
 Cenas :
 -   $scenario->getName(); : Retorna o nome do cenário atual.
 -   $scenario->getGroup(); : Retorna o grupo de cenários.
 -   $scenario->getIsActive(); : Retorna o estado do cenário.
--   $scenario->setIsActive($active); : Permite ativar onde não o cenário.
+-   $scenario->setIsActive($active); : Permite ativar ou não o cenário.
   -   $active : 1 ativo, 0 inativo.
--   $scenario->setOnGoing($onGoing); : Vamos dizer se o cenário está em execução onde não.
+-   $scenario->setOnGoing($onGoing); : Vamos dizer se o cenário está em execução ou não.
   -   $onGoing => 1 en cours , 0 arrêté.
 -   $scenario->save(); : Salvar alterações.
 -   $scenario->setData($key, $value); : Salvar um dado (variável).
-  -   $key : chave de valor (int onde string).
-  -   $value : valor a armazenar (int, string, array onde objeto).
+  -   $key : chave de valor (int ou string).
+  -   $value : valor a armazenar (int, string, array ou objeto).
 -   $scenario->getData($key); : Obter dados (variável).
-  -   $key => chave de valor (int onde string).
+  -   $key => chave de valor (int ou string).
 -   $scenario->removeData($key); : Excluir dados.
--   $scenario->setLog($message); : Escreva uma mensagem no Log de script.
--   $scenario->persistLog(); : Forçar a gravação do Log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
+-   $scenario->setLog($message); : Escreva uma mensagem no log de script.
+-   $scenario->persistLog(); : Forçar a gravação do log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
 
 ### Acções
 
@@ -312,9 +312,9 @@ Pedidos) :
 -   #user_connect# : Login do usuário
 
 Você também pode disparar um cenário quando uma variável estiver definida como
-dia colocando : #variável (nome_da variável) # onde usando a API HTTP
+dia colocando : #variable(nom_variable)# ou usando a API HTTP
 descrito
-[aquEu](https://jeedom.github.io/core/fr_FR/api_http).
+[aqui](https://jeedom.github.io/core/pt_PT/api_http).
 
 Operadores de comparação e links entre condições
 -------------------------------------------------------
@@ -326,11 +326,11 @@ comparações em condições :
 
 -   \> : Estritamente maior que,
 
--   \>= : Maior onde igual a,
+-   \>= : Maior ou igual a,
 
 -   < : Estritamente menor que,
 
--   <= : Menor onde igual a,
+-   <= : Menor ou igual a,
 
 -   != : Diferente de, não é igual a,
 
@@ -345,9 +345,9 @@ seguindo :
 
 -   && / ET / e / AND / e : et,
 
--   \|| / OU / onde / OU / onde : ou,
+-   \|| / OU / ou / OU / ou : ou,
 
--   \|^ / XOR / xor : onde exclusivo.
+-   \|^ / XOR / xor : ou exclusivo.
 
 Tags
 --------
@@ -359,13 +359,13 @@ pode usar as seguintes tags :
 >
 > Para exibir os zeros à esquerda, use o
 > Função Date (). Veja
-> [aquEu](http://php.net/manual/fr/function.date.php).
+> [aqui](http://php.net/manual/fr/function.date.php).
 
 -   #seconde# : Segundo atual (sem zeros à esquerda, ex : 6 para
     08:07:06),
 
 -   #heure# : Hora atual no formato 24h (sem zeros à esquerda),
-    ex : 8 para 08:07:06 onde 17 para 17:15),
+    ex : 8 para 08:07:06 ou 17 para 17:15),
 
 -   #heure12# : Hora atual no formato de 12 horas (sem zeros à esquerda),
     ex : 8 para 08:07:06),
@@ -400,14 +400,14 @@ pode usar as seguintes tags :
 
 -   #hostname# : Nome da máquina Jeedom,
 
--   #trigger# : Talvez o nome do comando que inicionde o cenário, 'api', se o lançamento foEu iniciado pela API, 'schedule', se foEu iniciado pela programação, 'user', se iniciado manualmente
+-   #trigger# : Talvez o nome do comando que iniciou o cenário, 'api', se o lançamento foi iniciado pela API, 'schedule', se foi iniciado pela programação, 'user', se iniciado manualmente
 
-Você também possuEu as seguintes tags adicionais se o seu script tiver sido
+Você também possui as seguintes tags adicionais se o seu script tiver sido
 desencadeado por uma interação :
 
--   #query# : Interação que aciononde o cenário,
+-   #query# : Interação que acionou o cenário,
 
--   #profil# : perfil do usuário que inicionde o cenário
+-   #profil# : perfil do usuário que iniciou o cenário
     (pode estar vazio).
 
 > **Important**
@@ -422,7 +422,7 @@ Várias funções estão disponíveis para o equipamento :
 
 -   average (order, period) and averageBetween (order, start, end)
     : Dê a média do pedido ao longo do período
-    (período = [mês, dia, hora, min] onde [expressão
+    (período = [mês, dia, hora, min] ou [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre os 2 terminais necessários (no formato Ymd H:i:s ou
     [expressão
@@ -430,7 +430,7 @@ Várias funções estão disponíveis para o equipamento :
 
 -   min (ordem, período) e minBetween (ordem, início, fim) :
     Dê o pedido mínimo durante o período
-    (período = [mês, dia, hora, min] onde [expressão
+    (período = [mês, dia, hora, min] ou [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre os 2 terminais necessários (no formato Ymd H:i:s ou
     [expressão
@@ -438,7 +438,7 @@ Várias funções estão disponíveis para o equipamento :
 
 -   max (ordem, período) e maxBetween (ordem, início, fim) :
     Forneça o máximo do pedido durante o período
-    (período = [mês, dia, hora, min] onde [expressão
+    (período = [mês, dia, hora, min] ou [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre os 2 terminais necessários (no formato Ymd H:i:s ou
     [expressão
@@ -447,7 +447,7 @@ Várias funções estão disponíveis para o equipamento :
 -   duração (ordem, valor, período) e
     durationbetween (comando, valor, início, fim) : Indique a duração em
     minutos durante os quais o equipamento teve o valor selecionado no
-    período (período = [mês, dia, hora, min] onde [expressão
+    período (período = [mês, dia, hora, min] ou [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre os 2 terminais necessários (no formato Ymd H:i:s ou
     [expressão
@@ -457,7 +457,7 @@ Várias funções estão disponíveis para o equipamento :
     statisticsBetween (comando, cálculo, início, fim) : Dê o resultado
     cálculos estatísticos diferentes (soma, contagem, padrão,
     variação, média, mín. e máx.) durante o período
-    (período = [mês, dia, hora, min] onde [expressão
+    (período = [mês, dia, hora, min] ou [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre os 2 terminais necessários (no formato Ymd H:i:s ou
     [expressão
@@ -470,24 +470,24 @@ Várias funções estão disponíveis para o equipamento :
 
 -   stateDuration (comando) : Dá duração em segundos
     desde a última mudança de valor. Retorna -1 se nenhum
-    o histórico não existe onde se o valor não existe no histórico.
+    o histórico não existe ou se o valor não existe no histórico.
     Retorna -2 se o pedido não estiver registrado.
 
 -   lastChangeStateDuration (comando, valor) : Indique a duração em
     segundos desde a última mudança de estado para o valor passado
     como parâmetro. Retorna -1 se nenhum
-    o histórico não existe onde se o valor não existe no histórico.
+    o histórico não existe ou se o valor não existe no histórico.
     Retorna -2 se o pedido não estiver registrado
 
 -   lastStateDuration (comando, valor) : Dá duração em segundos
     durante o qual o equipamento teve recentemente o valor escolhido.
-    Retorna -1 se não houver histórico onde se o valor não existir no histórico.
+    Retorna -1 se não houver histórico ou se o valor não existir no histórico.
     Retorna -2 se o pedido não estiver registrado
 
 -   stateChanges (ordem, [valor], período) e
     stateChangesBetween (comando, [valor], início, fim) : Dê o
     número de alterações de estado (para um determinado valor, se indicado,
-    onde no total, de outra forma) durante o período (período = [mês, dia, hora, min] ou
+    ou no total, de outra forma) durante o período (período = [mês, dia, hora, min] ou
     [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre os 2 terminais necessários (no formato Ymd H:i:s ou
@@ -496,11 +496,11 @@ Várias funções estão disponíveis para o equipamento :
 
 -   lastBetween (comando, início, fim) : Retorna o último valor
     registrado para o equipamento entre os 2 terminais necessários (sob o
-    formulário Ymd H:i:s onde [expressão
+    formulário Ymd H:i:s ou [expressão
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   variável (variável, padrão) : Obtenha o valor de um
-    variável onde o valor padrão desejado :
+    variável ou o valor padrão desejado :
 
 -   cenário : Retorna o status do cenário. 1 em andamento, 0
     se parado e -1 se desativado, -2 se o cenário não existir e -3
@@ -512,14 +512,14 @@ Várias funções estão disponíveis para o equipamento :
 -   collectDate (cmd, [formato]) : Retorna a data dos últimos dados
     para o comando fornecido como parâmetro, o segundo parâmetro opcional
     permite especificar o formato de retorno (detalhes
-    [aquEu](http://php.net/manual/fr/function.date.php)) Um retorno de -1
+    [aqui](http://php.net/manual/fr/function.date.php)) Um retorno de -1
     significa que o pedido não pode ser encontrado e -2 que o pedido não é
     nenhum tipo de informação
 
 -   valueDate (cmd, [formato]) : Retorna a data dos últimos dados
     para o comando fornecido como parâmetro, o segundo parâmetro opcional
     permite especificar o formato de retorno (detalhes
-    [aquEu](http://php.net/manual/fr/function.date.php)) Um retorno de -1
+    [aqui](http://php.net/manual/fr/function.date.php)) Um retorno de -1
     significa que o pedido não pode ser encontrado e -2 que o pedido não é
     nenhum tipo de informação
 
@@ -533,16 +533,16 @@ Várias funções estão disponíveis para o equipamento :
     o padrão se não existir :
 
 -   nome (tipo, comando) : Usado para recuperar o nome do comando,
-    equipamento onde objeto. O tipo vale cmd, eqLogic ou
+    equipamento ou objeto. O tipo vale cmd, eqLogic ou
     objeto.
 
 -   lastCommunication (equipamento, [formato]) : Retorna a data da última comunicação
     para o equipamento dado como parâmetro, o segundo parâmetro opcional
     permite especificar o formato de retorno (detalhes
-    [aquEu](http://php.net/manual/fr/function.date.php)) Um retorno de -1
+    [aqui](http://php.net/manual/fr/function.date.php)) Um retorno de -1
     significa que o equipamento não pode ser encontrado
 
--   color_gradient (start_colour, end_colour, min_value, max_value, value) : Retorna uma cor calculada com relação ao valor no intervalo color_Começo / color_end. O valor deve estar entre min_value e max_value
+-   color_gradient (start_colour, end_colour, min_value, max_value, value) : Retorna uma cor calculada com relação ao valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value
 
 Os períodos e intervalos dessas funções também podem
 use com [expressões
@@ -562,45 +562,45 @@ Exemplo :
 
 -   Etc.
 
-AquEu estão exemplos práticos para entender os valores retornados por
+Aqui estão exemplos práticos para entender os valores retornados por
 essas diferentes funções :
 
 | Soquete com valores :           | 000 (por 10 minutos) 11 (por 1 hora) 000 (por 10 minutos)    |
 |--------------------------------------|--------------------------------------|
 | média (captura, período)             | Retorna a média de 0 e 1 (pode  |
 |                                      | ser influenciado pela pesquisa)      |
-| averageBetween (\# [Banheiro] [Hidrometria] [Umidade] \#, 01-01-2015 00:00:00,2015-01-15 00:00:00) | Retorna o pedido médio entre 1 de janeiro de 2015 e 15 de janeiro de 2015                         |
-| min (captura, período)                 | Retorna 0 : o plugue foEu extinto durante o período              |
-| minBetween (\# [Banheiro] [Hidrometria] [Umidade] \#, 01-01-2015 00:00:00,2015-01-15 00:00:00) | Retorna o pedido mínimo entre 1 de janeiro de 2015 e 15 de janeiro de 2015                         |
+| averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,01-01 2015 00:00:00,2015-01-15 00:00:00) | Retorna o pedido médio entre 1 de janeiro de 2015 e 15 de janeiro de 2015                         |
+| min (captura, período)                 | Retorna 0 : o plugue foi extinto durante o período              |
+| minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,01-01 2015 00:00:00,2015-01-15 00:00:00) | Retorna o pedido mínimo entre 1 de janeiro de 2015 e 15 de janeiro de 2015                         |
 | max (captura, período)                 | Retorna 1 : o plugue estava bem iluminado no período              |
-| maxBetween (\# [Banheiro] [Hidrometria] [Umidade] \#, 01-01-2015 00:00:00,2015-01-15 00:00:00) | Retorna o máximo do pedido entre 1 de janeiro de 2015 e 15 de janeiro de 2015                         |
-| duração (tomada, 1, período)          | Retorna 60 : o plugue ficonde (em 1) por 60 minutos no período                              |
-| durationBetween (\# [Salon] [Take] [State] \#, 0, última segunda-feira, agora)   | Retorna a duração em minutos durante os quais o soquete estava desativado desde a última segunda-feira.                |
+| maxBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,01-01 2015 00:00:00,2015-01-15 00:00:00) | Retorna o máximo do pedido entre 1 de janeiro de 2015 e 15 de janeiro de 2015                         |
+| duração (tomada, 1, período)          | Retorna 60 : o plugue ficou (em 1) por 60 minutos no período                              |
+| durationBetween(\#[Salon][Prise][Etat]\#,0, última segunda-feira, agora)   | Retorna a duração em minutos durante os quais o soquete estava desativado desde a última segunda-feira.                |
 | estatísticas (captura, contagem, período)    | Retorna 8 : houve 8 escalações no período               |
 | tendência (captura, período, 0.1)        | Retorna -1 : tendência descendente    |
 | stateDuration (captura)               | Retorna 600 : o plugue está em seu estado atual por 600 segundos (10 minutos)                             |
 | lastChangeStateDuration (obtido, 0)   | Retorna 600 : o soquete saiu (mude para 0) pela última vez há 600 segundos (10 minutos) atrás     |
 | lastChangeStateDuration (take, 1)   | Retorna 4200 : a tomada ligada (mude para 1) pela última vez há 4200 segundos (1h10)                               |
 | lastStateDuration (obtido, 0)         | Retorna 600 : o soquete está desligado por 600 segundos (10 minutos)     |
-| lastStateDuration (take, 1)         | Retorna 3600 : o soquete foEu ligado pela última vez por 3600 segundos (1h)           |
-| stateChanges (tomada, período)        | Retorna 3 : o plugue mudonde de estado 3 vezes durante o período            |
-| stateChanges (take, 0, período)      | Retorna 2 : o soquete apagonde (passando para 0) duas vezes durante o período                              |
+| lastStateDuration (take, 1)         | Retorna 3600 : o soquete foi ligado pela última vez por 3600 segundos (1h)           |
+| stateChanges (tomada, período)        | Retorna 3 : o plugue mudou de estado 3 vezes durante o período            |
+| stateChanges (take, 0, período)      | Retorna 2 : o soquete apagou (passando para 0) duas vezes durante o período                              |
 | stateChanges (take, 1, period)      | Retorna 1 : o plugue está aceso (mude para 1) uma vez durante o período                              |
-| lastBetween (\# [Banheiro] [Hidrometria] [Umidade] \#, ontem, hoje) | Retorna a última temperatura registrada ontem.                    |
-| variável (plop, 10)                  | Retorna o valor da variável plop onde 10 se estiver vazia onde não existir                         |
-| cenário (\# [Banheiro] [Leve] [àutomático] \#) | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
-| lastScenarioExecution (\# [Banheiro] [Leve] [àutomático] \#)   | Retorna 300 se o cenário foEu iniciado pela última vez há 5 minutos                                  |
-| collectDate (\# [Banheiro] [Hidrometria] [Umidade] \#)     | Devoluções 01-01-2015 17:45:12          |
-| valueDate (\# [Banheiro] [Hidrometria] [Umidade] \#) | Devoluções 01-01-2015 17:50:12          |
-| eqEnable (\# [Nenhum] [Basílica] \#)       | Retorna -2 se o equipamento não for encontrado, 1 se o equipamento estiver ativo e 0 se estiver inativo          |
+| lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Ontem, hoje) | Retorna a última temperatura registrada ontem.                    |
+| variável (plop, 10)                  | Retorna o valor da variável plop ou 10 se estiver vazia ou não existir                         |
+| scenario(\#[Salle de bain][Lumière][àuto]\#) | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
+| lastScenarioExecution(\#[Salle de bain][Lumière][àuto]\#)   | Retorna 300 se o cenário foi iniciado pela última vez há 5 minutos                                  |
+| collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devoluções 01-01-2015 17:45:12          |
+| valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devoluções 01-01-2015 17:50:12          |
+| eqEnable(\#[àucun][Basilique]\#)       | Retorna -2 se o equipamento não for encontrado, 1 se o equipamento estiver ativo e 0 se estiver inativo          |
 | tag (montag, toto)                   | Retorna o valor de "montag" se existir, caso contrário, retorna o valor "para"                               |
-| nome (eqLogic, \# [Banheiro] [Hidrometria] [Umidade] \#)     | Retorna Hidrometria                  |
+| nome (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Retorna Hidrometria                  |
 
 Funções matemáticas
 ---------------------------
 
 Uma caixa de ferramentas de funções genéricas também pode ser usada para
-realizar conversões onde cálculos :
+realizar conversões ou cálculos :
 
 -   rand (1,10) : Dê um número aleatório de 1 a 10.
 
@@ -612,8 +612,8 @@ realizar conversões onde cálculos :
     terminais (0 => vermelho, 50 => verde, 100 => azul).
 
 -   gatilho (comando) : Usado para descobrir o gatilho para o cenário
-    onde para saber se é o pedido feito como um parâmetro que possui
-    desencadeonde o cenário.
+    ou para saber se é o pedido feito como um parâmetro que possui
+    desencadeou o cenário.
 
 -   triggerValue (comando) : Usado para descobrir o valor de
     gatilho de cenário.
@@ -621,25 +621,25 @@ realizar conversões onde cálculos :
 -   round (valor, [decimal]) : Arredondar acima, [decimal]
     número de casas decimais após o ponto decimal.
 
--   ímpor (valor) : Permite saber se um número é ímpor onde não.
-    Retorna 1 se ímpor 0, caso contrário.
+-   ímpar (valor) : Permite saber se um número é ímpar ou não.
+    Retorna 1 se ímpar 0, caso contrário.
 
 -   mediana (comando1, comando2….commandN) : Retorna a mediana
     valores.
 
 -   time_op (hora, valor) : Permite que você execute operações no prazo,
-    com Tempo = Tempo (ex : 1530) e value = value para adicionar onde adicionar
+    com time = time (ex : 1530) e value = value para adicionar ou adicionar
     subtrair em minutos.
 
 -   `time_between (hora, início, fim)` : Permite testar se é uma hora
-    entre dois valores com `Tempo = time` (ex : 1530), `Começo = time`,` end = time`.
+    entre dois valores com `time = time` (ex : 1530), `start = time`,` end = time`.
     Os valores inicial e final podem chegar à meia-noite.
 
--   `time_diff (data1, data1 [, formato])` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAà / MM / DD HH:MM:SS).
-    Por padrão (se você não colocar nada no formato), o método retornará o número total de dias. Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos `time_diff (02-02 2018 14:55:00,2018-02-25 14:55:00,s)`
+-   `time_diff (data1, data1 [, formato])` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAA / MM / DD HH:MM:SS).
+    Por padrão (se você não colocar nada no formato), o método retornará o número total de dias. Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos `time_diff (02-02 2018 14:55:00,2018-02-25 14:55:00,s)``
 
 -   `formatTime (time)` : Formata o retorno de uma cadeia
-    `# tempo #`.
+    ``#time#``.
 
 -   andar (hora / 60) : Converte de segundos para minutos ou
     minutos a horas (piso (tempo / 3600) por segundos
@@ -650,16 +650,16 @@ E exemplos práticos :
 
 | Exemplo de função                  | Resultado retornado                    |
 |--------------------------------------|--------------------------------------|
-| randText (é # [sala] [olho] [temperatura] #; à temperatura é # [sala] [olho] [temperatura] #; Atualmente, temos # [sala] [olho] [temperatura] #) | a função retornará um desses textos aleatoriamente a cada execução.                           |
+| randText (faz #[salon][oeil][température]#; A temperatura é #[salon][oeil][température]#; Atualmente, temos #[salon][oeil][température]#) | a função retornará um desses textos aleatoriamente a cada execução.                           |
 | randomColor (40,60)                 | Retorna uma cor aleatória próxima ao verde.   
-| gatilho (# [Banheiro] [Hidrometria] [Umidade] #)   | 1 se estiver bom \# \ [Banheiro \] \ [Hidrometria \] \ [Umidade \] \# que inicionde o cenário caso contrário 0  |
-| triggerValue (# [Banheiro] [Hidrometria] [Umidade] #) | 80 se a hidrometria de \# \ [Banheiro \] \ [Hidrometria \] \ [Umidade \] \# for 80%.                         |
-| redondo (# [Banheiro] [Hidrometria] [Umidade] # / 10) | Retorna 9 se a porcentagem de umidade e 85                     |
-| ímpor (3)                             | Retorna 1                            |
+| trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 se isso é bom \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# quem iniciou o cenário caso contrário 0  |
+| triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 se a hidrometria de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# é 80%.                         |
+| round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Retorna 9 se a porcentagem de umidade e 85                     |
+| ímpar (3)                             | Retorna 1                            |
 | mediana (15,25,20)                   | Retorna 20                           |
-| time_op (# Tempo #, -90)               | se forem 16h50, retorne : 1 650 - 1 130 = 1520                          |
+| time_op (#time#, -90)               | se forem 16h50, retorne : 1 650 - 1 130 = 1520                          |
 | formatTime (1650)                   | Retorna 16:50                        |
-| de piso (130/60)                      | Retorna 2 (minutos se 130s onde horas se 130m)                      |
+| de piso (130/60)                      | Retorna 2 (minutos se 130s ou horas se 130m)                      |
 
 Pedidos específicos
 =========================
@@ -668,26 +668,26 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 
 -   **Pause** (dormir) : Pausa x segundo (s).
 
--   **variable** (variável) : Criação / modificação de uma variável onde valor
+-   **variable** (variável) : Criação / modificação de uma variável ou valor
     de uma variável.
 
 -   **Remover variável** (delete_variable) : Permite excluir uma variável
 
--   **Cenas** (cenário) : Permite controlar cenários. à parte de tags
+-   **Cenas** (cenário) : Permite controlar cenários. A parte de tags
     permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado lá
     use apenas letras de a a z. Sem letras maiúsculas, sem
     acentos e sem caracteres especiais). Recebemos a tag no
-    cenário de destino com a função tag (montag). O comando "Rese SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva)
+    cenário de destino com a função tag (montag). O comando "Reset SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva)
 
 -   **Stop** (parar) : Pára o script.
 
 -   **Attendre** (espera) : Aguarde até que a condição seja válida
     (máximo de 2h), o tempo limite está em segundo (s).
 
--   **VaEu o projeto** (gotodesign) : Mude o design exibido em todos
+-   **Vai o projeto** (gotodesign) : Mude o design exibido em todos
     navegadores por design solicitado.
 
--   **Adicionar um registro** (log) : Permite adicionar uma mensagem no Log.
+-   **Adicionar um registro** (log) : Permite adicionar uma mensagem no log.
 
 -   **Criar mensagem** (mensagem) : Adicione uma mensagem no centro
     de mensagens.
@@ -697,17 +697,17 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     visível / invisível, ativo / inativo.
 
 -   **Aplicar** (pergunte) : Permite que você diga ao Jeedom para perguntar
-    uma pergunta para o usuário. à resposta é armazenada em um
+    uma pergunta para o usuário. A resposta é armazenada em um
     variável, então apenas teste seu valor. Por enquanto,
     apenas plugins sms e slack são compatíveis. Tenha cuidado, isso
-    função está bloqueando. Enquanto não houver resposta onde o
+    função está bloqueando. Enquanto não houver resposta ou o
     timeout não for atingido, o cenário aguarda.
 
--   **Pare Jeedom** (jeedom_poweroff) : Peça ao Jeedom para desligar.
+-   **Stop Jeedom** (jeedom_poweroff) : Peça ao Jeedom para desligar.
 
 -   **Reiniciar o Jeedom** (jeedom_reboot) : Peça ao Jeedom para reiniciar.
 
--   **Retornar um texto / um dado** (cenário_retorno) : Retorna um texto onde um valor
+-   **Retornar um texto / um dado** (cenário_retorno) : Retorna um texto ou um valor
     para uma interação, por exemplo.
 
 -   **ícone** (ícone) : Permite alterar o ícone de representação do cenário.
@@ -720,22 +720,22 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     validado em todos os navegadores que possuem uma página jeedom aberta.
 
 -   **Rapport** (relatório) : Exportar uma visualização em formato (PDF, PNG, JPEG
-    onde SVG) e envie-o através de um comando de tipo de mensagem.
-    Observe que, se seu acesso à Interne estiver em HTTPS não assinado, isso
-    funcionalidade não funcionará. HTTP onde HTTPS assinado é necessário.
+    ou SVG) e envie-o através de um comando de tipo de mensagem.
+    Observe que, se seu acesso à Internet estiver em HTTPS não assinado, isso
+    funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
 
--   **Excluir bloco IN / à agendado** (remove_inat) : Permite excluir o
-    programação de todos os blocos IN e à do cenário.
+-   **Excluir bloco IN / A agendado** (remove_inat) : Permite excluir o
+    programação de todos os blocos IN e A do cenário.
 
 -   **Evento** (evento) : Permite inserir um valor em um comando de tipo de informação arbitrariamente
 
 -   **Tag** (tag) : Permite adicionar / modificar uma tag (a tag existe apenas durante a execução atual do cenário, diferente das variáveis que sobrevivem ao final do cenário)
 
-Modelo cenário
+Template cenário
 ====================
 
 Essa funcionalidade permite transformar um cenário em um modelo para
-por exemplo, aplique-o em outro Jeedom onde compartilhe-o no
+por exemplo, aplique-o em outro Jeedom ou compartilhe-o no
 Mercado. É também a partir daí que você pode recuperar um cenário
 do mercado.
 
@@ -745,7 +745,7 @@ Você verá esta janela :
 
 ![scenario16](../images/scenario16.JPG)
 
-à partir daí, você tem a possibilidade :
+A partir daí, você tem a possibilidade :
 
 -   Envie um modelo para o Jeedom (arquivo JSON antecipadamente
     recuperado),
@@ -773,7 +773,7 @@ No topo você pode :
 Abaixo, você tem a parte para aplicar seu modelo a
 cenário atual.
 
-Desde de um Jeedom para outro onde de uma instalação para outra,
+Desde de um Jeedom para outro ou de uma instalação para outra,
 os pedidos podem ser diferentes, Jeedom solicita a
 correspondência de ordens entre os presentes durante a criação
 do modelo e os presentes em casa. Você só precisa preencher o
@@ -784,7 +784,7 @@ Adição da função php
 
 > **IMPORTANT**
 >
-> à adição da função PHP é reservada para usuários avançados. O menor erro pode travar o seu Jeedom
+> A adição da função PHP é reservada para usuários avançados. O menor erro pode travar o seu Jeedom
 
 ## Configurar
 

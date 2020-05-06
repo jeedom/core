@@ -312,7 +312,7 @@ Configuraciones de pantalla
 ---------------------
 
 -   **Tipo de area** : Aquí es donde eliges el tipo de área :
-    Macro individual, macro binaria o widget al pasar el mouse
+    Macro simple, macro binaria o widget al pasar el mouse
 
 ### Macro individual 
 
@@ -382,4 +382,4 @@ Preguntas frecuentes
 
 >**Eliminar un diseño que ya no funciona**
 >
->En la parte de administración y luego en OS / DB, &quot;seleccione * de planHeader&quot;, obtenga la identificación del diseño en cuestión y haga una &quot;eliminación de planHeader donde id = # TODO #&quot; y &quot;eliminar del plan donde planHeader_id = # todo # &quot;reemplazando # TODO # con la identificación de diseño encontrada previamente.
+>En la parte de administración, luego OS / DB, haga "select * from planHeader", recupere la identificación del diseño en cuestión y haga una "eliminación de planHeader donde id=#TODO#" y "eliminar del plan donde planHeader_id=#todo#" reemplazando bien #TODO# por la identificación de diseño encontrada previamente.

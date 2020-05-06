@@ -2,7 +2,7 @@ Auf dieser Seite können Sie alle Berichte anzeigen, die durch die Berichtsaktio
 
 # Was ist ein Bericht? ?
 
-Ein Bericht ist ein Screenshot der Jeedom-Benutzeroberfläche zu einem Zeitpunkt T (die Erfassung wird n angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht übernommen werden)..
+Ein Bericht ist ein Screenshot der Jeedom-Benutzeroberfläche zu einem Zeitpunkt T (die Erfassung wird so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht übernommen werden)..
 
 Sie können dies für Ansichten, Design und Bedienfeldseite tun....
 

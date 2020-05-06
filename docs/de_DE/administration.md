@@ -159,7 +159,7 @@ externe** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 >
 > Dieser Teil ist nur dazu da, Jeedom seine Umgebung zu erklären :
 > Durch Ändern des Ports oder der IP auf dieser Registerkarte wird das nicht geändert
-> Jeedom Hafen oder IP eigentlich. Dazu müssen Sie sich anmelden
+> Jeedom Port oder IP eigentlich. Dazu müssen Sie sich anmelden
 > SSH und bearbeiten Sie die Datei / etc / network / interfaces für die IP und
 > etc / apache2 / sites-available / default files und
 > etc / apache2 / sites-available / default\_ssl (für HTTPS).In
@@ -170,39 +170,39 @@ externe** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 -   **Interner Zugang** : Informationen für den Beitritt zu Jeedom von a
     gleiche Netzwerkausrüstung wie Jeedom (LAN)
 
-    -   **OK / NOK** : Gibt an, ob die intern Netzwerkkonfiguration ist
+    -   **OK / NOK** : Gibt an, ob die interne Netzwerkkonfiguration ist
         correcte
 
     -   **Protocole** : das zu verwendende Protokoll, oft HTTP
 
-    -   **URLs oder IP-Adresse** : Jeedom IP eingeben
+    -   **URL oder IP-Adresse** : Jeedom IP eingeben
 
-    -   **Port** : der Hafen der Jeedom-Weboberfläche, in der Regel 80.
-        Bitte beachten Sie, dass durch Ändern des Ports hier nicht der tatsächliche Hafen von geändert wird
+    -   **Port** : der Port der Jeedom-Weboberfläche, in der Regel 80.
+        Bitte beachten Sie, dass durch Ändern des Ports hier nicht der tatsächliche Port von geändert wird
         Freiheit, die gleich bleiben wird
 
-    -   **Ergänzen** : das Fragment einer zusätzlichen URLs (Beispiel
+    -   **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel
         : / jeedom), um auf Jeedom zuzugreifen.
 
 -   **Externer Zugang** : Informationen, um Jeedom von außen zu erreichen
     lokales Netzwerk. Nur auszufüllen, wenn Sie kein DNS verwenden
     Jeedom
 
-    -   **OK / NOK** : Gibt an, ob die extern Netzwerkkonfiguration ist
+    -   **OK / NOK** : Gibt an, ob die externe Netzwerkkonfiguration ist
         correcte
 
     -   **Protocole** : Protokoll für den Zugang im Freien
 
-    -   **URLs oder IP-Adresse** : Externe IP, wenn es fist ist. andernfalls,
-        Geben Sie die URLs an, die auf die extern IP-Adresse Ihres Netzwerks verweist.
+    -   **URL oder IP-Adresse** : Externe IP, wenn es fest ist. andernfalls,
+        Geben Sie die URL an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
 
-    -   **Ergänzen** : das Fragment einer zusätzlichen URLs (Beispiel
+    -   **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel
         : / jeedom), um auf Jeedom zuzugreifen.
 
 > **Tip**
 >
-> Wenn Sie sich in HTTPS befinden, ist der Hafen 443 (standardmäßig) und in HTTP der
-> Hafen ist 80 (Standard). HTTPS von außen verwenden,
+> Wenn Sie sich in HTTPS befinden, ist der Port 443 (standardmäßig) und in HTTP der
+> Port ist 80 (Standard). HTTPS von außen verwenden,
 > Ein Letsencrypt-Plugin ist jetzt auf dem Markt erhältlich.
 
 > **Tip**
@@ -326,17 +326,17 @@ Historisch
 Druck 
 ----
 
-**Globale Push-URL** : ermöglicht das Hinzufügen einer URLs zum Aufrufen im Falle von
+**Globale Push-URL** : ermöglicht das Hinzufügen einer URL zum Aufrufen im Falle von
 Bestellaktualisierung. Sie können die folgenden Tags verwenden :
-**\#value\#** für den Bestellwert, **\#Cmd\_name \#** für die
-Befehlsname, **\#Cmd\_id \#** für die eindeutige Kennung des
-commande, **\#humanname\#** für den vollständigen Namen der Bestellung (z :
-\# \ [Badezimmer \] \ [Hydrometrie \] \ [Dieuftfeuchtigkeit \] \#), `# eq_name #` für den Namen des Geräts
+**\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für die
+Befehlsname, **\.#cmd\._id\.#** für die eindeutige Kennung des
+commande, **\.#humanname\.#** für den vollständigen Namen der Bestellung (z :
+\.#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.#), `#eq_name#`für den Namen des Geräts
 
 Abdeckung 
 =====
 
-Ermöglicht die Überwachung und Bearbeitung des Jeedom-Abdeckung :
+Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
 
 -   **Statistiques** : Anzahl der aktuell zwischengespeicherten Objekte
 
@@ -385,7 +385,7 @@ Hier haben Sie drei Parameter :
         mehr als drei Wörter
 
 -   **Antworten Sie nicht, wenn die Interaktion nicht verstanden wird** : Standard
-    Jeedom antwortet &quot;;Ich habe es nicht verstanden&quot;;, wenn keine Interaktion erfolgt
+    Jeedom antwortet &quot;Ich habe es nicht verstanden&quot;, wenn keine Interaktion erfolgt
     stimmt nicht überein. Es ist möglich, diese Funktion für zu deaktivieren
     dass Jeedom nichts beantwortet. Aktivieren Sie das Kontrollkästchen zum Deaktivieren
     die Antwort.
@@ -397,7 +397,7 @@ Hier haben Sie drei Parameter :
     Kapitel **Regexp-Ausschluss** Dokumentation zu
     Wechselwirkungen.
 
-Automatische Interaktion, Kontext &amp;; Warnung 
+Automatische Interaktion, Kontext &amp; Warnung 
 -----------------------------------------------------
 
 -   Die **automatische Interaktionen** Erlaube Jeedom, es zu versuchen
@@ -460,7 +460,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 -   **Aktivieren Sie die Interaktionen "Benachrichtigen""** : Zum Aktivieren aktivieren
     Typ Interaktionen **Lassen Sie uns wissen**.
 
--   **Antwort &quot;;Sag es mir&quot;;, wenn der Satz mit beginnt** : Wenn die
+-   **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn die
     Satz beginnt mit diesen Wörtern, dann wird Jeedom versuchen, ein zu machen
     Typ Interaktion **Lassen Sie uns wissen** (Sie können mehrere setzen
     Wörter getrennt durch **;;** ).
@@ -470,7 +470,7 @@ Hier sind die verschiedenen Optionen verfügbar :
     wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
 
 -   **Synonym für Objekte** : Liste der Synonyme für Objekte
-    (zB : rdc|Erdgeschoss|unterirdisch|niedrig;; sdb|Badezimmer).
+    (zB : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
     Ausrüstung.
@@ -481,11 +481,11 @@ Hier sind die verschiedenen Optionen verfügbar :
 -   **Synonym für Abstracts** : Liste der Synonyme für Zusammenfassungen.
 
 -   **Synonym für maximalen Schiebereglerbefehl** : Synonym für setzen a
-    Befehl für den maximalen Schiebereglertyp (zB öffnet sich, um den Verschluss zu öffnen
+    Befehl für den maximalen Schiebereglertyp (ex öffnet sich, um den Verschluss zu öffnen
     der Raum ⇒ 100% Raumverschluss).
 
 -   **Synonym für minimalen Schiebereglerbefehl** : Synonym für setzen a
-    Schieberegler-Befehl mindestens (zB schließt, um den Verschluss zu schließen
+    Schieberegler-Befehl mindestens (ex schließt, um den Verschluss zu schließen
     der Raum ⇒ Raumkomponente bei 0%).
 
 Farben 
@@ -506,7 +506,7 @@ Verhältnis
 Konfigurieren Sie die Erstellung und Verwaltung von Berichten
 
 -   **Zeitüberschreitung nach Seitengenerierung (in ms)** : Bekanntmachung
-    Warten nach dem Laden des Berichts, um das &quot;;Foto&quot;; aufzunehmen, um
+    Warten nach dem Laden des Berichts, um das &quot;Foto&quot; aufzunehmen, um
     Ändern Sie dies beispielsweise, wenn Ihr Bericht unvollständig ist.
 
 -   **Bereinigen Sie ältere Berichte von (Tagen)** : Definiert die
@@ -702,7 +702,7 @@ Einzahlung verwendet, um das Senden von Plugins durch Dateien zu aktivieren.
 
 Kaution verwendet, um Jeedom mit Github zu verbinden.
 
--   **Token** : Zeichen für den Zugang zur privaten Kaution.
+-   **Token** : Token für den Zugang zur privaten Kaution.
 
 -   **Jeedom Core Repository Benutzer oder Organisation** : Nom
     der Benutzer oder die Organisation auf Github für den Kern.
@@ -760,7 +760,7 @@ eine Samba-Aktie (z : NAS-Synologie).
 > Bei der Validierung der Samba-Freigabe wie oben beschrieben,
 > In diesem Abschnitt wird eine neue Form der Sicherung angezeigt
 > Administration → Jeedom-Backups. Durch Aktivieren wird Jeedom fortfahren
-> wenn es beim nächsten Backup automatisch gesendet wird. Ein Tist ist
+> wenn es beim nächsten Backup automatisch gesendet wird. Ein Test ist
 > möglich durch manuelle Sicherung.
 
 > **Important**
@@ -792,6 +792,6 @@ eine Samba-Aktie (z : NAS-Synologie).
 
 -   **Jeedom-Kern-URL**
 
--   **URLs der Jeedom-Kernversion**
+-   **URL der Jeedom-Kernversion**
 
 

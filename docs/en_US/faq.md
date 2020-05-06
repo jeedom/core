@@ -65,7 +65,7 @@ Can we put Jeedom in https ?
 ================================
 
 Yes : Either you have a power pack or more, in this case you
-just use the [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
+just use the [DNS Jeedom](https://jeedom.github.io/documentation/howto/en_US/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 How to connect in SSH ?
 =============================
@@ -76,7 +76,7 @@ Here's one [Documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-
 - Username : "jeedom ", password : "Mjeedom96"
 - Or what you put in the installation if you are in DIY
 
-Note that when you write the password you will not see anything written on the screen it&#39;s Normal.
+Note that when you write the password you will not see anything written on the screen it&#39;s normal.
 
 How to reset rights ? 
 ====================================
@@ -154,10 +154,10 @@ These must be reset :
 bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9' | head -c 15)
 echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
 echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
-echo &quot;GRANT All PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
+echo &quot;GRANT ALL PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e &quot;s / # PASSWORD # / $ {bdd_password} / g&quot; core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -179,7 +179,7 @@ I no longer have access to Jeedom, neither through the web interface nor in cons
 
 This error is not due to Jeedom, but to a problem with the system.
 If it persists following a reinstallation, it is advisable to
-see with the after-sales service for a hardware concern. Here is [Documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) for Smart
+see with the after-sales service for a hardware concern. Here is [Documentation](https://jeedom.github.io/documentation/howto/en_US/recovery_mode_jeedom_smart) for Smart
 
 My scenario does not stop any more 
 =================================
@@ -231,8 +231,8 @@ Or consult the log : /var/log/mysql/error.log
 The Shutdown / Restart buttons do not work 
 ===================================================
 
-On a DIY installation it&#39;s Normal. In SSH, you have to order
-visudo and at the end of the file you have to add : www-data All = (ALL)
+On a DIY installation it&#39;s normal. In SSH, you have to order
+visudo and at the end of the file you have to add : www-data ALL = (ALL)
 NOPASSWD: All.
 
 `` `{.bash}

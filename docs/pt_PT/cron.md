@@ -48,7 +48,7 @@ página). Nesta tabela, encontramos :
 -   **Unique** : se for "sim", a tarefa será iniciada uma vez
     então excluirá
 
--   **Classe** : Class PHP chamada para executar a tarefa (pode
+-   **Classe** : Classe PHP chamada para executar a tarefa (pode
     estar vazio)
 
 -   **Fonction** : Função PHP chamada na classe chamada (ou não

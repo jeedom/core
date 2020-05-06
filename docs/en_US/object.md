@@ -35,10 +35,10 @@ Here are the different characteristics to configure an object :
 
 -   **Object name** : The name of your object.
 
--   **Dad** : Indicates the relative of the current object, this allows
+-   **Dad** : Indicates the parent of the current object, this allows
     define a hierarchy between objects. For example : The living room has
-    to relative the apartment. An object can only have one parent
-    but several objects can have the same relative.
+    to parent the apartment. An object can only have one parent
+    but several objects can have the same parent.
 
 -   **Visible** : Check this box to make this object visible.
 
@@ -79,8 +79,8 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> When a device is created and no relative has been defined, it
-> will have as relative : **Aucun** .
+> When a device is created and no parent has been defined, it
+> will have as parent : **Aucun** .
 
 Summary tab 
 -------------
@@ -109,7 +109,7 @@ Each tab represents a type of summary defined in the configuration
 from Jeedom. Click on **Add an order** so that it is
 taken into account in the summary. You have the choice to select the
 order any Jeedom equipment, even if it is not for
-relative this object.
+parent this object.
 
 > **Tip**
 >
@@ -124,11 +124,11 @@ Overview
 The overview allows you to view all the objects in
 Jeedom, as well as their configuration :
 
--   **ID** : Object Id.
+-   **ID** : Object ID.
 
 -   **Objet** : Object name.
 
--   **Dad** : Name of relative object.
+-   **Dad** : Name of parent object.
 
 -   **Visible** : Object visibility.
 

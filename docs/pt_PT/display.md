@@ -14,12 +14,12 @@ O topo da página
 
 No topo da página, encontramos : \* **Número de objetos** : Nombre
 total de objetos configurados em nosso Jeedom, contando os elementos
-inativo. \* **Número de equipamentos** : O mesmo vaO para o equipamento. \*
-**Número de pedidos** : Mesmo para pedidos. \* **Inactif** :
+inativo. \* **Número de equipamentos** : O mesmo vale para o equipamento. \*
+**Número de pedidos** : O mesmo vale para pedidos. \* **Inactif** :
 Marque esta caixa se desejar que os itens inativos estejam bem
 exibido nesta página. \* **Rechercher** : Procure um
 elemento particular. Pode ser o nome de um equipamento, um pedido
-onde o nome do plugin pelo qual o equipamento foi criado.
+ou o nome do plugin pelo qual o equipamento foi criado.
 
 Você também tem um botão "Histórico de exclusões", que permite exibir o histórico de pedidos, equipamentos, objetos, visualização, design, design 3d, cenário e usuário excluído.
 
@@ -37,7 +37,7 @@ estão disponíveis. Da esquerda para a direita :
 
 -   O segundo fornece algumas informações sobre o objeto,
 
--   o último permite exibir onde ocultar a lista de equipamentos
+-   o último permite exibir ou ocultar a lista de equipamentos
     atribuído a ele.
 
 > **Tip**
@@ -48,7 +48,7 @@ estão disponíveis. Da esquerda para a direita :
 > **Tip**
 >
 > Ao clicar / soltar no equipamento, você pode alterar sua
-> encomendar onde mesmo atribuí-los a outro objeto. É da ordem
+> encomendar ou mesmo atribuí-los a outro objeto. É da ordem
 > estabelecido nesta página que a exibição do painel é calculada.
 
 Os equipamentos 
@@ -86,7 +86,7 @@ Se você expandir a lista de comandos, cada bloco laranja corresponderá a
 um pedido do seu equipamento (um novo clique na pequena seta
 equipamento pode escondê-los).
 
-Se você clicar duas vezes no pedido onde clicar no pequeno
+Se você clicar duas vezes no pedido ou clicar no pequeno
 roda dentada isso abrirá sua janela de configuração.
 
 Configuração avançada de equipamentos 
@@ -140,7 +140,7 @@ o equipamento e seus controles :
 -   **Visible** : Marque a caixa para tornar o equipamento visível (sem
     esqueça de salvar).
 
--   **Type** : Identificador do plug-in pelo qual eO foi criado.
+-   **Type** : Identificador do plug-in pelo qual ele foi criado.
 
 -   **Tentativa fracassada** : Número de tentativas de comunicação
     consecutivo com falha do equipamento.
@@ -151,7 +151,7 @@ o equipamento e seus controles :
 -   **Última atualização** : Data da última chamada
     com equipamento.
 
--   **Tags** : etiquetas de equipamento, a serem separadas por ','. EO permite que o painel faça filtros personalizados
+-   **Tags** : etiquetas de equipamento, a serem separadas por ','. Ele permite que o painel faça filtros personalizados
 
 Abaixo, você encontrará uma tabela com a lista de comandos para
 o equipamento com, para cada um, um link para sua configuração.
@@ -191,13 +191,13 @@ design, bem como móvel.
 
 -   **Arestas arredondadas** (em px) : Marque a caixa para manter
     o arredondamento padrão. Caso contrário, você deve colocar o código CSS, propriedade
-    "raio da borda" (ex : `10px`)
+    "raio da borda" (ex : ``10px``)
 
 ### Parâmetros opcionais na telha 
 
 Abaixo, encontramos parâmetros opcionais de exibição que
 pode aplicar-se ao equipamento. Esses parâmetros são compostos por um nome e
-vaO a pena. Basta clicar em **Ajouter** aplicar um
+vale a pena. Basta clicar em **Ajouter** aplicar um
 novo. Para equipamentos, apenas o valor **style** é para o
 momento utilizado, permite inserir código CSS no equipamento em
 question.
@@ -210,7 +210,7 @@ Guia Layout
 ------------------
 
 Esta parte permite que você escolha entre o arranjo padrão de
-comandos (lado a lado no widget) onde no modo de tabela. Existe
+comandos (lado a lado no widget) ou no modo de tabela. Existe
 nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 **Tableau** :
 
@@ -268,7 +268,7 @@ por 30 minutos, então você deve colocá-lo em alerta.
 > **Tip**
 >
 > Os parâmetros globais estão em **Administração → Configuração → Logs**
-> (onde **Equipements**)
+> (ou **Equipements**)
 
 Guia de comentários 
 ------------------
@@ -320,7 +320,7 @@ Ordem :
 
 -   **Nom** : Nome do comando.
 
--   **Type** : Tipo de pedido (ação onde informação).
+-   **Type** : Tipo de pedido (ação ou informação).
 
 -   **Sous-type** : Subtipo de comando (binário, digital etc.).
 
@@ -363,8 +363,8 @@ Você também tem três outros botões laranja embaixo :
 > (cenário, interação, pedido, equipamento ...)
 
 Abaixo, você encontrará a lista de diferentes equipamentos,
-comandos, cenários onde interações que usam este comando. Um
-clique neO para ir diretamente à sua configuração
+comandos, cenários ou interações que usam este comando. Um
+clique nele para ir diretamente à sua configuração
 respective.
 
 Guia Configuração 
@@ -374,9 +374,9 @@ Guia Configuração
 
 -   **Cálculo e arredondamento**
 
-    -   **Fórmula de cálculo (\#value \# para o valor)** : Deixa
+    -   **Fórmula de cálculo (\#value\# por valor)** : Deixa
         faça uma operação sobre o valor do pedido antes
-        Tratamento Jeedom, exemplo : `# valor # - 0.2` para entrincheirar
+        Tratamento Jeedom, exemplo : ``#value# - 0.2` para entrincheirar
         0,2 (deslocamento em um sensor de temperatura).
 
     -   **Arredondamento (decimal)** : Permite arredondar o
@@ -388,7 +388,7 @@ Guia Configuração
     Esta informação é usada pelo aplicativo móvel.
 
 -   **Ação em valor, se** : Vamos fazer tipos de
-    mini cenários. Você pode, por exemplo, dizer que se o valor vaO a pena
+    mini cenários. Você pode, por exemplo, dizer que se o valor vale a pena
     mais de 50 por 3 minutos, você deve executar uma ação dessas. Que
     permite, por exemplo, apagar uma luz X minutos depois
     está aceso.
@@ -396,13 +396,13 @@ Guia Configuração
 -   **Historique**
 
     -   **Historiser** : Marque a caixa para ter os valores para este
-        ordem ser gravada. (Veja **Análise → História**)
+        pedido seja gravado. (Veja **Análise → História**)
 
-    -   **Suavização moda** : Modo de **lissage** onde d'**archivage**
+    -   **Suavização moda** : Modo de **lissage** ou d'**archivage**
         permite escolher como arquivar os dados. Por padrão,
         é um **moyenne**. Também é possível escolher o
         **maximum**, O **minimum**, onde **aucun**. **aucun** deixa
-        diga ao Jeedom que eO não deve arquivar neste
+        diga ao Jeedom que ele não deve arquivar neste
         ordem (durante o primeiro período de 5 minutos e com o
         tarefa de arquivamento). Essa opção é perigosa porque o Jeedom
         mantenha tudo : então haverá muito mais
@@ -436,10 +436,10 @@ Guia Configuração
 
     -   **URL impulso** : Permite adicionar um URL para chamar em caso de
         atualização do pedido. Você pode usar tags
-        Seguinte : `# value #` para o valor do pedido, `# cmd_name #`
-        para o nome do comando, `# cmd_id #` para o identificador exclusivo
-        do comando, `# humanname #` para o nome completo do comando
-        (ex : `# [Banheiro] [Hidrometria] [Umidade] #`), `# eq_name #` para o nome do equipamento
+        Seguinte : ``#value#`para o valor do pedido '#cmd_name#``
+        para o nome do comando, `#cmd_id#`para o identificador exclusivo
+        do comando, `#humanname#`para o nome completo do comando
+        (ex : ``#[SalO de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento
 
 ### Para um comando de ação : 
 
@@ -471,17 +471,17 @@ minutos, então o equipamento pode ficar em alerta **warning**.
 >
 > Na página **Administração → Configuração → Logs**, Você pode
 > configure um comando de tipo de mensagem que permitirá que o Jeedom o obtenha
-> avise se o limite de aviso onde perigo for atingido.
+> avise se o limite de aviso ou perigo for atingido.
 
 Guia Exibir 
 ----------------
 
 Nesta parte, você poderá configurar certos comportamentos
-exibição do Widget no painel, visualizações, design e
+exibição do widget no painel, visualizações, design e
 mobile.
 
--   **Widget** : Permite escolher o Widget no dekstop onde no celular (em
-    Observe que você precisa do plug-in do Widget e também pode fazer isso
+-   **Widget** : Permite escolher o widget no dekstop ou no celular (em
+    Observe que você precisa do plug-in do widget e também pode fazer isso
     dele).
 
 -   **Visible** : Marque para tornar o comando visível.
@@ -494,13 +494,13 @@ mobile.
 
 -   **Envoltório forçado antes Widget** : Tick **antes
     widget** onde **após o widget** para adicionar uma quebra de linha
-    antes onde depois do Widget (para forçar, por exemplo, uma exibição em
+    antes ou depois do widget (para forçar, por exemplo, uma exibição em
     coluna de comandos de equipamentos diferentes em vez de linhas
     por padrão)
 
 Abaixo, encontramos parâmetros opcionais de exibição que
-pode mudar para o Widget. Esses parâmetros dependem do Widget em questão,
-então você tem que olhar para o cartão deO no mercado para conhecê-los.
+pode mudar para o widget. Esses parâmetros dependem do widget em questão,
+então você tem que olhar para o cartão dele no mercado para conhecê-los.
 
 > **Tip**
 >
@@ -509,7 +509,7 @@ então você tem que olhar para o cartão deO no mercado para conhecê-los.
 Guia Código 
 -----------
 
-Permite modificar o código do Widget apenas para o comando atual.
+Permite modificar o código do widget apenas para o comando atual.
 
 > **Note**
 >

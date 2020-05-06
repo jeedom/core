@@ -54,9 +54,9 @@ your Jeedom. Core has two API keys :
 -   and another for professionals : used for management
     of park. It can be empty.
 
--   Then you will find one API key per Plugin that needs it.
+-   Then you will find one API key per plugin that needs it.
 
-For each Plugin API key, as well as for the HTTP, JsonRPC and APIs
+For each plugin API key, as well as for the HTTP, JsonRPC and APIs
 TTS, you can define their scope :
 
 -   **Disabled** : API key cannot be used,
@@ -78,7 +78,7 @@ Two parts reserved for experts are present in this tab.
 > **Important**
 >
 > WARNING : If you modify Jeedom with one of these two solutions,
-> Support may refuse to help you.
+> support may refuse to help you.
 
 -   **&gt;\_System** : Allows access to an interface
     system administration. It&#39;s a kind of shell console in
@@ -164,7 +164,7 @@ externe** (from another network, in particular from the Internet).
 > etc / apache2 / sites-available / default files and
 > etc / apache2 / sites-available / default\_ssl (for HTTPS).However, in
 > If your Jeedom is mishandled, the Jeedom team will not
-> may be held responsible and may refuse any requEast for
+> may be held responsible and may refuse any request for
 > Support.
 
 -   **Internal access** : information for joining Jeedom from a
@@ -175,13 +175,13 @@ externe** (from another network, in particular from the Internet).
 
     -   **Protocole** : the protocol to use, often HTTP
 
-    -   **URLs or IP address** : Jeedom IP to enter
+    -   **URL or IP address** : Jeedom IP to enter
 
     -   **Port** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual port of
         Jeedom which will remain the same
 
-    -   **Complement** : the fragment of additional URLs (example
+    -   **Complement** : the fragment of additional URL (example
         : / jeedom) to access Jeedom.
 
 -   **External access** : information to reach Jeedom from outside
@@ -193,17 +193,17 @@ externe** (from another network, in particular from the Internet).
 
     -   **Protocole** : protocol used for outdoor access
 
-    -   **URLs or IP address** : External IP, if it is fixed. If not,
-        give the URLs pointing to the external IP address of your network.
+    -   **URL or IP address** : External IP, if it is fixed. If not,
+        give the URL pointing to the external IP address of your network.
 
-    -   **Complement** : the fragment of additional URLs (example
+    -   **Complement** : the fragment of additional URL (example
         : / jeedom) to access Jeedom.
 
 > **Tip**
 >
 > If you are in HTTPS the port is 443 (by default) and in HTTP the
 > port is 80 (default). To use HTTPS from outside,
-> a letsencrypt Plugin is now available on the market.
+> a letsencrypt plugin is now available on the market.
 
 > **Tip**
 >
@@ -326,12 +326,12 @@ Historical
 Push 
 ----
 
-**Global push URL** : allows to add a URLs to call in case of
+**Global push URL** : allows to add a URL to call in case of
 order update. You can use the following tags :
-**\#value\#** for the order value, **\#Cmd\_name \#** for the
-command name, **\#Cmd\_id \#** for the unique identifier of the
+**\#value\#** for the order value, **\#cmd\_name\#** for the
+command name, **\#cmd\_id\#** for the unique identifier of the
 commande, **\#humanname\#** for the full name of the order (ex :
-\# \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \#), `# eq_name #` for the name of the equipment
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`for the name of the equipment
 
 Hidden 
 =====
@@ -397,13 +397,13 @@ Here you have three parameters :
     chapter **Regexp exclusion** documentation on
     the interactions.
 
-Automatic interaction, contextual &amp; Warning 
+Automatic interaction, contextual &amp; warning 
 -----------------------------------------------------
 
 -   The **automatic interactions** allow Jeedom to attempt to
-    understand an interaction requEast even if there is none
+    understand an interaction request even if there is none
     of defined. He will then look for an object and / or equipment name
-    and / or order to try to respond as bEast as possible.
+    and / or order to try to respond as best as possible.
 
 -   The **contextual interactions** allow you to chain
     multiple requests without repeating everything, for example :
@@ -594,46 +594,46 @@ Timeline
 Posts 
 --------
 
--   **Add a Message to each error in the logs** : if a plugin
-    or Jeedom writes an error Message in a log, Jeedom adds
-    automatically a Message in the Message center (at least
+-   **Add a message to each error in the logs** : if a plugin
+    or Jeedom writes an error message in a log, Jeedom adds
+    automatically a message in the message center (at least
     you are sure not to miss it).
 
--   **Action on message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions : 
-        - #message# : Message in question
-        - #plugin# : Plugin that triggered the message
+-   **Action on message** : Allows you to take an action when adding a message to the message center. You have 2 tags for these actions : 
+        - #message# : message in question
+        - #plugin# : plugin that triggered the message
 
 Notifications 
 -------
 
--   **Add a Message to each Timeout** : Add a Message in the
-    Message center if equipment falls in **timeout**.
+-   **Add a message to each Timeout** : Add a message in the
+    message center if equipment falls in **timeout**.
 
 -   **Timeout order** : Type command **message** use
     if an equipment is in **timeout**.
 
--   **Add a Message to each Battery in Warning** : Add a
-    Message in the Message center if a device has its level of
+-   **Add a message to each Battery in Warning** : Add a
+    message in the message center if a device has its level of
     battery in **warning**.
 
 -   **Battery command in Warning** : Type command **message**
     to be used if equipment at its battery level **warning**.
 
--   **Add a Message to each Battery in Danger** : Add a
-    Message in the Message center if a device has its level of
+-   **Add a message to each Battery in Danger** : Add a
+    message in the message center if a device has its level of
     battery in **danger**.
 
 -   **Command on Battery in Danger** : Type command **message** at
     use if equipment at its battery level **danger**.
 
--   **Add a Message to each Warning** : Add a Message in the
-    Message center if an order goes on alert **warning**.
+-   **Add a message to each Warning** : Add a message in the
+    message center if an order goes on alert **warning**.
 
 -   **Command on Warning** : Type command **message** use
     if an order goes on alert **warning**.
 
--   **Add a Message to each Danger** : Add a Message in the
-    Message center if an order goes on alert **danger**.
+-   **Add a message to each Danger** : Add a message in the
+    message center if an order goes on alert **danger**.
 
 -   **Command on Danger** : Type command **message** to use if
     an order goes on alert **danger**.
@@ -666,7 +666,7 @@ Facilities
 
 -   **Number of failures before deactivation of the equipment** : Nombre
     communication failure with the equipment before deactivation of
-    this one (a Message will warn you if this happens).
+    this one (a message will warn you if this happens).
 
 -   **Battery thresholds** : Allows you to manage global alert thresholds
     on the batteries.
@@ -714,7 +714,7 @@ Deposit used to connect Jeedom to Github.
 ### Market 
 
 Deposit used to connect Jeedom to the market, it is highly recommended
-to use this repository. WARNING : any Support requEast may be
+to use this repository. WARNING : any support request may be
 refused if you use a different deposit than this one.
 
 -   **Adresse** : Market address.
@@ -760,7 +760,7 @@ a Samba share (ex : NAS Synology).
 > When validating the Samba share, as described above,
 > a new form of backup appears in the section
 > Administration → Jeedom backups. By activating it, Jeedom will proceed
-> when it is automatically sent at the next backup. A tEast is
+> when it is automatically sent at the next backup. A test is
 > possible by performing a manual backup.
 
 > **Important**

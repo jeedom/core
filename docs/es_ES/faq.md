@@ -65,7 +65,7 @@ recomienda modificar estos identificadores para mayor seguridad.
 ================================
 
 Sí : O tienes una fuente de alimentación o más, en este caso
-solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
+solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/es_ES/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 Cómo conectarse en SSH ?
 =============================
@@ -157,7 +157,7 @@ echo "CREAR USUARIO &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFICADO POR &#39
 echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e &quot;s / # CONTRASEÑA # / $ {bdd_password} / g&quot; core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -179,7 +179,7 @@ Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a 
 
 Este error no se debe a Jeedom, sino a un problema con el sistema..
 Si persiste después de una reinstalación, es recomendable
-ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) para inteligente
+ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
 
 Mi escenario ya no se detiene 
 =================================
@@ -232,7 +232,7 @@ Los botones de apagado / reinicio no funcionan
 ===================================================
 
 En una instalación de bricolaje es normal. En SSH, tienes que pedir
-visudo y al final del archivo tienes que agregar : www-data TODO = (ALL)
+visudo y al final del archivo tienes que agregar : www-data ALL = (ALL)
 NOPASSWD: TODO.
 
 `` `{.bash}

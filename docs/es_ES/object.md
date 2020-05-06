@@ -124,7 +124,7 @@ Resumen
 La vista general le permite ver todos los objetos en
 Jeedom, así como su configuración :
 
--   **ID** : Identificación de objeto.
+-   **ID** : ID de objeto.
 
 -   **Objet** : Nombre del objeto.
 

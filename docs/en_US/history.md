@@ -1,4 +1,4 @@
-IMPORTANT part in software : the historization part, real
+Important part in software : the historization part, real
 memory of it. It is possible in Jeedom to historize any
 which information type command (binary or digital). This will
 will therefore allow for example to historicize a temperature curve,
@@ -119,7 +119,7 @@ Calculated history
 Used to display a curve based on a calculation on several
 command (you can pretty much do everything, + - / \* absolute value… see
 PHP documentation for certain functions). Ex :
-abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Space of
+abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Space of
 Life \] \ [Humidity \] \ [Temperature \] *)
 
 You also have access to a management of calculation formulas which allows you

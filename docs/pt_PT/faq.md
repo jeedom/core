@@ -65,7 +65,7 @@ Podemos colocar o Jeedom em https ?
 ================================
 
 Sim : Você tem um pacote de força ou mais, nesse caso, você
-basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
+basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/pt_PT/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
 
 Como se conectar no SSH ?
 =============================
@@ -157,7 +157,7 @@ echo "CREATE USER 'jeedom' @ 'localhost' IDENTIFICADO POR '$ {bdd_password}';" |
 eco "CONCEDE TODOS OS PRIVILÉGIOS NO jeedom.* TO 'jeedom' @ 'localhost';" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e "s / # SENHA # / $ {bdd_password} / g" core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -179,7 +179,7 @@ Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via S
 
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
 Se persistir após uma reinstalação, é aconselhável
-consulte o serviço pós-venda para obter informações sobre problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) para Smart
+consulte o serviço pós-venda para obter informações sobre problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
 
 Meu cenário não para mais 
 =================================
@@ -232,7 +232,7 @@ Os botões Desligar / Reiniciar não funcionam
 ===================================================
 
 Em uma instalação DIY é normal. No SSH, você precisa solicitar
-visudo e no final do arquivo você deve adicionar : www-data TODOS = (ALL)
+visudo e no final do arquivo você deve adicionar : www-data ALL = (ALL)
 NOPASSWD: TODOS.
 
 `` `{.bash}

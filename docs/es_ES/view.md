@@ -143,7 +143,7 @@ información en las cajas :
 
 -   **texte** : solo texto para escribir
 
--   **html** : cualquier código HTML (javascript posible pero
+-   **html** : cualquier código html (javascript posible pero
     fuertemente desanimado)
 
 -   **widget de comando** : el botón de la derecha te permite elegir

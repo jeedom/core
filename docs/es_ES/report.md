@@ -10,7 +10,7 @@ Se activa desde una secuencia de comandos con el comando de informe, puede elegi
 
 # Utilisation
 
-Su un es muy simple, selecciona si quieres ver :
+Su uso es muy simple, selecciona si quieres ver :
 
 -	ver informes
 -	informes de degins

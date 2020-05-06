@@ -6,12 +6,12 @@ It is accessible by Home → Design
 
 > **Tip**
 >
-> It is possible to go directly to a Design thanks to the submenu.
+> It is possible to go directly to a design thanks to the submenu.
 
 > **Important**
 >
 > All actions are done by right click on this page, attention
-> to do it well in Design. During creation, it is therefore necessary to
+> to do it well in design. During creation, it is therefore necessary to
 > do in the middle of the page (to be sure to be on the design).
 
 In the menu (right click therefore), we find the
@@ -78,14 +78,14 @@ following actions :
 
 -   **Duplicate design** : duplicate the current design
 
--   **Configure the design** : access to Design configuration
+-   **Configure the design** : access to design configuration
 
--   **Sauvegarder** : allows to save the Design (attention, there are
+-   **Sauvegarder** : allows to save the design (attention, there are
     also automatic backups during certain actions)
 
 > **Important**
 >
-> The configuration of the Design elements is done by clicking on
+> The configuration of the design elements is done by clicking on
 > these.
 
 Design configuration 
@@ -100,10 +100,10 @@ Found here :
     -   **Transparent background** : makes the background transparent. Be careful if the
         box is checked, the background color is not used
 
-    -   **Background color** : Design background color (white
+    -   **Background color** : design background color (white
         by default)
 
-    -   **Code** : Access code to your Design (if empty, no code
+    -   **Code** : Access code to your design (if empty, no code
         is not requested)
 
     -   **Icon** : An icon for it (appears in the menu
@@ -222,7 +222,7 @@ Text / html
 >
 > If you put HTML code (especially Javascript), be careful
 > to check it before because you can if there is an error in it
-> or if it overwrites a Jeedom component completely crashing the Design and
+> or if it overwrites a Jeedom component completely crashing the design and
 > all you have to do is delete it directly from the database
 
 Scenario 
@@ -241,7 +241,7 @@ Display settings
 
 -   **Nom** : Name of the link (displayed text)
 
--   **Lien** : Link to the Design or view in question
+-   **Lien** : Link to the design or view in question
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
@@ -380,6 +380,6 @@ Faq
 >
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
->**Delete a Design that no longer works**
+>**Delete a design that no longer works**
 >
->In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the Design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the Design id previously found.
+>In the administration part then OS / DB, make "select * from planHeader", recover the id of the design in question and make a "delete from planHeader where id=#TODO#" and "delete from plan where planHeader_id=#todo#" replacing well #TODO# by the design id previously found.

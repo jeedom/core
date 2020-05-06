@@ -74,4 +74,4 @@ Seite). In dieser Tabelle finden wir :
 
 # Listener
 
-Die Zuhörer sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)
+Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)

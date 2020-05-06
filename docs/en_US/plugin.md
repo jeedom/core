@@ -57,7 +57,7 @@ Below left, there is a status area with :
 On the right, we find the Log and surveillance zone which allows to define 
 
 -   the level of logs specific to the plugin (we find this same possibility in
-Administration → D'actualité on the logs tab, at the bottom of the page)
+Administration → Configuration on the logs tab, at the bottom of the page)
 
 -   see the plugin logs
 
@@ -146,7 +146,7 @@ loading you will get the page.
 > **Tip**
 >
 > You must have entered your Market account information in
-> administration (D'actualité → Updates → Market tab) in order to
+> administration (Configuration → Updates → Market tab) in order to
 > find the plugins you have already purchased for example.
 
 At the top of the window you have filters :

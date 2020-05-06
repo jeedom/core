@@ -68,7 +68,7 @@ Für die Profis :
     -   **Zugang zu Betas**
 
 -   **Aktivieren Sie den Zugriff auf Beta-Plugins** : ermöglicht den Zugriff auf
-    Beta-Plugins (bitte beachten Sie, dass Sie dadurch nicht auf den Unterstützung zugreifen können)
+    Beta-Plugins (bitte beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können)
 
     -   **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen
         Rechte und Dienstleistungen
@@ -112,14 +112,14 @@ Meine Jeedoms
         Konfigurieren Sie in Jeedom, wenn Sie nichts setzen, wird es dort sein
         letzte bekannte IP
 
-    -   **DNS** : Mit dieser Option können Sie den Namen Ihres Dns anpassen
+    -   **DNS** : Mit dieser Option können Sie den Namen Ihres DNS anpassen
 
     -   **URL** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
 
     -   **DNS-Server** : sagt Ihnen, ob der DNS-Server, zu dem Sie
         sind beigefügt
 
-    -   **DNS-Status** : ermöglicht es, den Status des Dns anzuzeigen
+    -   **DNS-Status** : ermöglicht es, den Status des DNS anzuzeigen
 
     -   **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem
         Marktkonto (zur Erinnerung, dies erfolgt automatisch, wenn

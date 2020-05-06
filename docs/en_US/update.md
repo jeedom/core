@@ -68,7 +68,7 @@ The table consists of two tabs :
 -   **Autre** : Contains widgets, scripts, etc..
 
 You will find the following information : \* **Statut** : OK or NOK.
-Allows to know the current state of the plugin. \* **Nom** : You there
+Allows you to know the current state of the plugin. \* **Nom** : You there
 find the source of the element, the type of element and its name. \*
 **Version** : Indicates the specific version of the item. \* **Options** :
 Check this box if you do not want this item to be updated.

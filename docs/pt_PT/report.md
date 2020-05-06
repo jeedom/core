@@ -4,13 +4,13 @@ Esta página permite que você veja todos os relatórios que foram gerados pela 
 
 Um relatório é uma captura de tela da interface Jeedom em um instante T (a captura é adaptada para não assumir a barra de menus e outros elementos desnecessários nesse tipo de uso).
 
-Você pode fazer istão em vistas, design, página do painel....
+Você pode fazer isso em vistas, design, página do painel....
 
 Ele é acionado a partir de um script com o comando report, você pode optar por enviar esse relatório usando um comando de mensagem (email, telegrama etc.)
 
 # Utilisation
 
-Seu utão é muito simples, você seleciona se deseja ver :
+Seu uso é muito simples, você seleciona se deseja ver :
 
 -	Ver relatórios
 -	relatórios de deginas

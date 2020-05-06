@@ -95,7 +95,7 @@ Duas partes reservadas para especialistas estão presentes nesta guia.
     -   **Senha** : senha de acesso ao banco de dados
         usado por Jeedom.
 
-Seguranque 
+Segurança 
 ========
 
 LDAP 
@@ -108,7 +108,7 @@ LDAP
 
 -   **Domaine** : domínio do seu anúncio
 
--   **DN base** : DN base do seu AD
+-   **DN base** : Base DN do seu AD
 
 -   **Nome de Usuário** : nome de usuário para o Jeedom
     conectar ao AD
@@ -150,7 +150,7 @@ Redes
 =======
 
 É absolutamente necessário configurar corretamente essa parte importante do
-Jeedom, caso contrário, muitos Plugins podem não funcionar. Ele
+Jeedom, caso contrário, muitos plugins podem não funcionar. Ele
 é possível acessar o Jeedom de duas maneiras diferentes : L'**acesso
 interne** (da mesma rede local que Jeedom) e l'**acesso
 externe** (de outra rede, em particular da Internet).
@@ -175,13 +175,13 @@ externe** (de outra rede, em particular da Internet).
 
     -   **Protocole** : o protocolo a ser usado, geralmente HTTP
 
-    -   **URL  ou endereço IP** : IP Jeedom para entrar
+    -   **URL ou endereço IP** : IP Jeedom para entrar
 
     -   **Port** : a porta da interface da web Jeedom, geralmente 80.
         Observe que alterar a porta aqui não altera a porta real do
         Jeedom que permanecerá o mesmo
 
-    -   **Complemento** : o fragmento de URL  adicional (exemplo
+    -   **Complemento** : o fragmento de URL adicional (exemplo
         : / Jeedom) para acessar o Jeedom.
 
 -   **Acesso externo** : informações para alcançar Jeedom de fora
@@ -193,10 +193,10 @@ externe** (de outra rede, em particular da Internet).
 
     -   **Protocole** : protocolo usado para acesso ao ar livre
 
-    -   **URL  ou endereço IP** : IP externo, se for fixo. Caso contrário,
-        forneque o URL  apontando para o endereço IP externo da sua rede.
+    -   **URL ou endereço IP** : IP externo, se for fixo. Caso contrário,
+        forneça o URL apontando para o endereço IP externo da sua rede.
 
-    -   **Complemento** : o fragmento de URL  adicional (exemplo
+    -   **Complemento** : o fragmento de URL adicional (exemplo
         : / Jeedom) para acessar o Jeedom.
 
 > **Tip**
@@ -262,7 +262,7 @@ não coloque transparência, deixe 1.0 .
 
 > **Tip**
 >
-> Não se esqueque de salvar após qualquer modificação.
+> Não se esqueça de salvar após qualquer modificação.
 
 Comandos 
 =========
@@ -326,12 +326,12 @@ Histórico
 Empurrão 
 ----
 
-**URL  esforço global** : permite adicionar um URL  para chamar em caso de
+**URL esforço global** : permite adicionar um URL para chamar em caso de
 atualização do pedido. Você pode usar as seguintes tags :
-**\#value\#** para o valor do pedido, **\#cmd\_name \#** para o
-nome do comando, **\#cmd\_id \#** para o identificador exclusivo do
+**\#value\#** para o valor do pedido, **\#cmd\_name\#** para o
+nome do comando, **\#cmd\_id\#** para o identificador exclusivo do
 commande, **\#humanname\#** para o nome completo do pedido (ex :
-\# \ [Banheiro \] \ [Hidrometria \] \ [Umidade \] \#), `# eq_name #` para o nome do equipamento
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`para o nome do equipamento
 
 Cobertura 
 =====
@@ -340,7 +340,7 @@ Permite monitorar e agir no cache Jeedom :
 
 -   **Statistiques** : Número de objetos atualmente armazenados em cache
 
--   **Cobertura de limpo** : Forçar a exclusão de objetos que não são
+-   **Cache de limpo** : Forçar a exclusão de objetos que não são
     mais útil. Jeedom faz isso automaticamente todas as noites.
 
 -   **Vazio todos os dados de cache** : Esvazie a tampa completamente.
@@ -361,7 +361,7 @@ interações que você encontrará em Ferramentas → Interações.
 > **Tip**
 >
 > Para ativar o log de interação, vá para a guia
-> Administração → Configuração → Toras e marque **Debug** na lista
+> Administração → Configuração → Logs e marque **Debug** na lista
 > de baixo. Atenção : os logs serão muito detalhados !
 
 Geral 
@@ -418,7 +418,7 @@ Interação automática, contextual e aviso
 
         -   *Jeedom* : Temperatura 27.2 ° C
 
-    -   *Faque duas perguntas em uma :*
+    -   *Faça duas perguntas em uma :*
 
         -   *Vous* : Como é no quarto e na sala de estar ?
 
@@ -448,8 +448,8 @@ Aqui estão as diferentes opções disponíveis :
 -   **Ativar respostas contextuais** : Marque para ativar
     interações contextuais.
 
--   **Prioridade resposta contextual se a sentenque começa** : Si
-    a frase comeque com a palavra que você digita aqui, Jeedom
+-   **Prioridade resposta contextual se a sentença começa** : Si
+    a frase começa com a palavra que você digita aqui, Jeedom
     priorize uma resposta contextual (você pode colocar
     várias palavras separadas por **;** ).
 
@@ -644,7 +644,7 @@ Log
 -   **Log Motor** : Permite alterar o mecanismo de log para, por
     Por exemplo, envie-os para um daemon syslog (d).
 
--   **Toras de formato** : Formato de log a ser usado (Cuidado : ça
+-   **Logs de formato** : Formato de log a ser usado (Cuidado : ça
     não afeta os logs do daemon).
 
 -   **O número máximo de linhas em um arquivo de log** : Define o
@@ -696,7 +696,7 @@ Jeedom, etc.
 
 ### Ficheiro 
 
-Depósito usado para ativar o envio de Plugins por arquivos.
+Depósito usado para ativar o envio de plugins por arquivos.
 
 ### Github 
 
@@ -721,7 +721,7 @@ recusado se você usar um depósito diferente deste.
 
 -   **Nome de Usuário** : Seu nome de usuário no mercado.
 
--   **Senha** : Sua senha do Mercado.
+-   **Senha** : Sua senha do Market.
 
 -   **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom com risco de travar entre eles)
 
@@ -771,7 +771,7 @@ uma participação do Samba (ex : NAS Synology).
 > **Important**
 >
 > O protocolo Samba possui várias versões, o v1 está comprometido 
-> seguranque e em alguns NAS, você pode forçar o cliente a usar a v2
+> segurança e em alguns NAS, você pode forçar o cliente a usar a v2
 > ou v3 para conectar. Então, se você tiver um erro de negociação de protocolo
 > failed: NT_STATUS_INVAID_NETWORK_RESPONSE, existe uma boa chance de que o NAS listado
 > a restrição esteja em vigor. Você deve modificar no SO do seu Jeedom
@@ -790,8 +790,8 @@ uma participação do Samba (ex : NAS Synology).
 
 ### URL  
 
--   **URL  principal do Jeedom**
+-   **URL principal do Jeedom**
 
--   **URL  da versão principal do Jeedom**
+-   **URL da versão principal do Jeedom**
 
 

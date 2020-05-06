@@ -79,7 +79,7 @@ or restoration), if you have launched one.
 
 -   **Sending backups** : Instructs Jeedom to send the
     backups on the samba share configured here
-    Administration → D'actualité → Updates tab.
+    Administration → Configuration → Updates tab.
 
 -   **Available backups** : List of backups
     samba available.

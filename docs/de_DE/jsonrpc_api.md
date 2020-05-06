@@ -2,7 +2,7 @@ Hier finden Sie eine Dokumentation zu API-Methoden. Zuerst ist hier
 die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM * / core / api / jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -392,7 +392,7 @@ Einstellungen:
 
 -   Zeichenfolgenwert : valeur
 
--   Zeichenfolge Datetime : (optional) Wert datetime
+-   Zeichenfolge datetime : (optional) Wert datetime
 
 JSON-Szenario-API
 =================
@@ -500,7 +500,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für insgesamt (Wert für Standardszenarien,
+-   id linkId : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -515,7 +515,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für insgesamt (Wert für Standardszenarien,
+-   id linkId : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -723,7 +723,7 @@ Abrufen der Objektliste :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::alle &#39;, array ())){
+if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::all &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -734,7 +734,7 @@ Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
+if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'Optionen '=> Array (' Titel '=>' Kuckuck ',' Nachricht '=>' Es funktioniert ')))){
     Echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

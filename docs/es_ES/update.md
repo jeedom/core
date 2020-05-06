@@ -32,17 +32,17 @@ opciones :
 -   **Ahorre antes** : Copia de seguridad de Jeedom antes
     realizar la actualización.
 
--   **Actualizar complementos** : La permite incluir complementos en
+-   **Actualizar complementos** : Le permite incluir complementos en
     actualización.
 
--   **Actualiza el núcleo** : La permite incluir el núcleo Jeedom en
+-   **Actualiza el núcleo** : Le permite incluir el núcleo Jeedom en
     la actualización.
 
 -   **Modo forzado** : Actualización en modo forzado, es decir
     que, incluso si hay un error, Jeedom continúa y no restaurará
     la salvaguardia.
 
--   **Actualización para volver a aplicar** : La permite volver a aplicar una apuesta.
+-   **Actualización para volver a aplicar** : Le permite volver a aplicar una apuesta.
     al día. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
 > **Important**
@@ -68,9 +68,9 @@ La tabla consta de dos pestañas. :
 -   **Autre** : Contiene widgets, scripts, etc..
 
 Encontrará la siguiente información : \* **Statut** : OK o NOK.
-Permite conocer el estado actual del complemento. \* **Nom** : Tu ahi
+Le permite conocer el estado actual del complemento. \* **Nom** : Tu ahi
 encuentre la fuente del elemento, el tipo de elemento y su nombre. \*
-**Version** : Indica la versión específica del artículo.. \* **Options** :
+**Version** : Indica la versión específica del artículo. \* **Options** :
 Marque esta casilla si no desea que este artículo se actualice.
 día durante la actualización general (Botón **Poner al día**).
 
@@ -84,12 +84,12 @@ cada elemento :
 
 -   **Restablecer** : Reasentamiento forzado.
 
--   **Supprimer** : La permite desinstalarlo.
+-   **Supprimer** : Le permite desinstalarlo.
 
 -   **Comprobar** : Consulte la fuente de actualizaciones para averiguar si
     hay una nueva actualización disponible.
 
--   **Poner al día** : La permite actualizar el elemento (si tiene
+-   **Poner al día** : Le permite actualizar el elemento (si tiene
     una actualización).
 
 -   **Changelog** : Acceda a la lista de cambios en el

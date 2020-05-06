@@ -68,7 +68,7 @@ A tabela consiste em duas guias :
 -   **Autre** : Contém widgets, scripts etc..
 
 Você encontrará as seguintes informações : \* **Statut** : OK ou NOK.
-Permite saber o estado atual do plug-in. \* **Nom** : Voce ai
+Permite que você saiba o estado atual do plug-in. \* **Nom** : Voce ai
 encontre a fonte do elemento, o tipo de elemento e seu nome. \*
 **Version** : Indica a versão específica do item. \* **Options** :
 Marque esta caixa se não desejar que este item seja atualizado.

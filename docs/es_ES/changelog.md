@@ -36,7 +36,7 @@ Changelog
 =====
 
 - Se cambió el nombre de la variable $ key a $ key2 en el evento de clase
-- Limpiar el plugin / widgy / escenario enviando código al mercado (ahorra varios segundos en mostrar los complementos)
+- Limpiar el plugin / widget / escenario enviando código al mercado (ahorra varios segundos en mostrar los complementos)
 - Corrección de una advertencia en la función lastBetween
 - Mejor consideración de los widgets de complementos
 - Optimización del cálculo de salud en el intercambio
@@ -48,7 +48,7 @@ Changelog
 3.3.38
 =====
 
-- Adición de compatibilidad global de Jeedom DNS con una conexión a interny 4G. (Importante si usa Jeedom DNS es que tiene una conexión 4g, debe marcar la casilla configurar Jeedom dns en la casilla correspondiente).
+- Adición de compatibilidad global de Jeedom DNS con una conexión a internet 4G. (Importante si usa jeedom DNS es que tiene una conexión 4g, debe marcar la casilla configurar jeedom dns en la casilla correspondiente).
 - Correcciones ortográficas.
 - Arreglo de seguridad
 
@@ -208,7 +208,7 @@ Changelog
 -   Adición de la acción jeedom_reboot para iniciar un reinicio de Jeedom.
 -   Agregar opción en la ventana de generación cron.
 -   Ahora se agrega un mensaje si se encuentra una expresión no válida al ejecutar un escenario.
--   Agregar un comando en los escenarios : value (orden) permite tener el valor de una orden si no está dada automáticamente por Jeedom (caso cuando se almacena el nombre de la orden en una variable).
+-   Agregar un comando en los escenarios : value (orden) permite tener el valor de una orden si no está dada automáticamente por jeedom (caso cuando se almacena el nombre de la orden en una variable).
 -   Adición de un botón para actualizar los mensajes del centro de mensajes..
 -   Agregue en la configuración de la acción sobre el valor de un comando un botón para buscar una acción interna (escenario, pausa ...).
 -   Adición de una acción &quot;Restablecer a cero del IS&quot; en los escenarios
@@ -329,7 +329,7 @@ Changelog
 3.2.2
 =====
 
--   Eliminación del antiguo sistema de actualización de widgets (en desuso desde la versión 3.0). Atención, si su widgy no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Widgy de ejemplo [aquí](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Eliminación del antiguo sistema de actualización de widgets (en desuso desde la versión 3.0). Atención, si su widget no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Widget de ejemplo [aquí](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Posibilidad de mostrar los gráficos en forma de tabla o exportarlos en csv o xls
 
 -   Los usuarios ahora pueden agregar su propia función php para escenarios. Ver documentación de escenarios para implementación
@@ -376,7 +376,7 @@ Changelog
 -   JEED-284 : la conexión permanente ahora depende de una clave
     usuario único y dispositivo (en lugar de usuario)
 
--   JEED-283 : agregando un modo * rescate * a la libertad agregando &amp; rescue = 1
+-   JEED-283 : agregando un modo *rescue* a la libertad agregando & rescue = 1
     en la url
 
 -   JEED-8 : adición del nombre del escenario en el título de la página durante
@@ -387,7 +387,7 @@ Changelog
     y las vistas. Atención ahora las modificaciones no son
     guardado solo al salir del modo de edición.
 
--   JEED-18 : Agregar registros al abrir un ticky para admitir
+-   JEED-18 : Agregar registros al abrir un ticket para admitir
 
 -   JEED-181 : adición de un comando de nombre en los escenarios para tener
     el nombre del pedido o equipo u objeto
@@ -407,7 +407,7 @@ Changelog
 -   JEED-77 : Adición de gestión de variables en la API http
 
 -   JEED-78 : adición de la función de etiqueta para escenarios. Ten cuidado ahí
-    debe en los escenarios utilizando las etiquetas pasar de \#montag \#
+    debe en los escenarios utilizando las etiquetas pasar de \#montag\#
     etiquetar (montag)
 
 -   JEED-124 : Corregir la gestión de los tiempos de espera del escenario.
@@ -545,7 +545,7 @@ Changelog
 -   Capacidad para reorganizar widgets de equipos desde
     panel de control (en modo de edición, haga clic derecho en el widget)
 
--   Cambiar el tono de los widgets (de 40 \* 80 a 10 \* 10). Ten cuidado
+-   Cambiar el tono de los widgets (de 40 \*80 a 10 \*10) Ten cuidado
     impactará el diseño en su tablero / vista / diseño
 
 -   Posibilidad de dar un tamaño de 1 a 12 a los objetos en el
@@ -639,7 +639,7 @@ Changelog
         -   Área de tipo binario : lanza una serie de acciones durante un
             haga clic en él según el estado de un pedido
 
-        -   Área de tipo de widgy : muestra un widgy al hacer clic o al pasar el mouse
+        -   Área de tipo de widget : muestra un widget al hacer clic o al pasar el mouse
             de la zona
 
     -   Optimización general de código
@@ -669,7 +669,7 @@ Changelog
 
 -   Agregar módulos en alerta a la página de la batería
 
--   Los objetos sin widgy se ocultan automáticamente en el tablero
+-   Los objetos sin widget se ocultan automáticamente en el tablero
 
 -   Adición de un botón en la configuración avanzada de un
     equipo / de un comando para ver los eventos de
@@ -920,7 +920,7 @@ Changelog
 
 -   Preparación para la eliminación de bootstrapswtich en complementos
 
--   Corrección de un error en el tipo de widgy solicitado para los diseños.
+-   Corrección de un error en el tipo de widget solicitado para los diseños.
     (tablero en lugar de dplan)
 
 -   corrección de errores en el controlador de eventos
@@ -928,7 +928,7 @@ Changelog
 -   conmutación aleatoria de la copia de seguridad por la noche (entre 2h10 y 3h59) para
     evitar preocupaciones de sobrecarga del mercado
 
--   Fix widgy market
+-   Fix widget market
 
 -   Corrección de un error en el acceso al mercado (tiempo de espera)
 
@@ -938,7 +938,7 @@ Changelog
     / tmp es demasiado pequeño (tenga cuidado de que la corrección surta efecto en
     actualización n + 1)
 
--   Adición de una etiqueta * jeedom\_name * en los escenarios (da el nombre
+-   Agregar una etiqueta *jeedom\_name* en los escenarios (dar el nombre
     jeedom)
 
 -   Correcciones de errores
@@ -1039,8 +1039,8 @@ Changelog
 
 -   Optimización de la actualización de widgets de comando y equipo
 
--   Adición de una etiqueta * begin\_backup *, * end\_backup *, * begin\_update*,
-    *end\_update *, * begin\_restore *, * end\_restore * en escenarios
+-   Agregar una etiqueta *comenzar\_atrás*, *end\_backup*, *comenzar\_actualizar*,
+    *fin\_actualizar*, *comenzar\_restaurar*, *end\_restore* en los escenarios
 
 2.2
 ---

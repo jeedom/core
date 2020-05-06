@@ -116,10 +116,10 @@ My jeedoms
 
     -   **URL** : list the different Jeedom access URLs.
 
-    -   **Dns server** : tells you if the Dns server to which you
+    -   **DNS server** : tells you if the DNS server to which you
         are attached
 
-    -   **Dns status** : allows to see the status of the DNS
+    -   **DNS status** : allows to see the status of the DNS
 
     -   **Creation date** : date of creation of this Jeedom on your
         market account (as a reminder, this is done automatically when

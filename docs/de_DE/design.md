@@ -17,7 +17,7 @@ Es ist über Home → Design zugänglich
 Im Menü (Rechtsklick also) finden wir die
 folgende Aktionen :
 
--   **Designs** : Zeigt die Liste Ihrer Design an und greift darauf zu
+-   **Designs** : Zeigt die Liste Ihrer Designs an und greift darauf zu
 
 -   **Edition** : Wechseln Sie in den Bearbeitungsmodus
 
@@ -80,7 +80,7 @@ folgende Aktionen :
 
 -   **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration
 
--   **Sauvegarder** : ermöglicht das Speichern des Design (Aufmerksamkeit gibt es
+-   **Sauvegarder** : ermöglicht das Speichern des Designs (Aufmerksamkeit gibt es
     auch automatische Sicherungen bei bestimmten Aktionen)
 
 > **Important**
@@ -199,7 +199,7 @@ Text / html
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
 
 -   **Textfarbe** : Mit dieser Option können Sie die Farbe der Symbole und ändern
-    Text (achten Sie darauf, Default an No zu übergeben)
+    Texte (achten Sie darauf, Default an No zu übergeben)
 
 -   **Rund um die Winkel** : ermöglicht es Ihnen, die Winkel abzurunden (nicht
     vergiss%, ex 50% zu setzen)
@@ -220,7 +220,7 @@ Text / html
 
 > **Important**
 >
-> Seien Sie vorsichtig, wenn Sie HTML-CODE (insbesondere Javascript) eingeben
+> Seien Sie vorsichtig, wenn Sie HTML-Code (insbesondere Javascript) eingeben
 > um es vorher zu überprüfen, weil Sie können, wenn es einen Fehler darin gibt
 > oder wenn es eine Jeedom-Komponente überschreibt, die das Design vollständig zum Absturz bringt und
 > Alles was Sie tun müssen, ist es direkt aus der Datenbank zu löschen
@@ -247,7 +247,7 @@ Anzeigeeinstellungen
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
 
 -   **Textfarbe** : Mit dieser Option können Sie die Farbe der Symbole und ändern
-    Text (achten Sie darauf, Default an No zu übergeben)
+    Texte (achten Sie darauf, Default an No zu übergeben)
 
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
@@ -316,7 +316,7 @@ Anzeigeeinstellungen
 
 ### Einzelne Makro 
 
-In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus.
+In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus.
 
 Hier müssen Sie nur die Liste der Aktionen angeben, die beim Klicken ausgeführt werden sollen
 auf dem Gebiet
@@ -359,7 +359,7 @@ Zusammenfassung
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
 
 -   **Textfarbe** : Mit dieser Option können Sie die Farbe der Symbole und ändern
-    Text (achten Sie darauf, Default an No zu übergeben)
+    Texte (achten Sie darauf, Default an No zu übergeben)
 
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
@@ -382,4 +382,4 @@ Faq
 
 >**Löschen Sie ein Design, das nicht mehr funktioniert**
 >
->Führen Sie im Verwaltungsteil und dann in OS / DB &quot;select * from planHeader&quot; aus, rufen Sie die ID des betreffenden Design ab und führen Sie &quot;delete from planHeader where id = # TODO #&quot; und &quot;delete from plan where planHeader_id = # todo #&quot; aus. &quot;durch Ersetzen von # TODO # durch die zuvor gefundene Design-ID.
+>Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

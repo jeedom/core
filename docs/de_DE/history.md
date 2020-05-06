@@ -117,10 +117,10 @@ Berechnete Geschichte
 ------------------
 
 Wird verwendet, um eine Kurve anzuzeigen, die auf einer Berechnung für mehrere basiert
-Befehl (Sie können so ziemlich alles tun, + - / \.* absoluter Wert ... siehe
+Befehl (Sie können so ziemlich alles tun, + - / \* absoluter Wert ... siehe
 PHP-Dokumentation für bestimmte Funktionen). Ex :
-abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Raum von
-Das Leben \.] \. [Luftfeuchtigkeit \.] \. [Temperatur \.] *)
+abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Raum von
+Das Leben \] \ [Luftfeuchtigkeit \] \ [Temperatur \] *)
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht
 Speichern Sie sie zur einfacheren Anzeige
@@ -157,7 +157,7 @@ Zeitleiste
 In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation im Formular angezeigt
 chronologique.
 
-Um sie zu sehen, müssen Sie zuerst das Tracking auf der Zeitleiste von aktivieren
+Um sie zu sehen, müssen Sie zuerst das Tracking auf der Timeline von aktivieren
 gewünschte Befehle oder Szenarien :
 
 -   **Scenario** : entweder direkt auf der Szenarioseite oder auf der
@@ -173,14 +173,14 @@ gewünschte Befehle oder Szenarien :
 > Zeitleiste.
 
 Sobald Sie die Nachverfolgung in der Bestellzeitleiste aktiviert haben und
-gewünschten Szenarien können Sie sie auf der Zeitleiste sehen.
+gewünschten Szenarien können Sie sie auf der Timeline sehen.
 
 > **Important**
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
 > auf der Timeline, bevor sie angezeigt werden.
 
-Die Karten auf der Zeitleiste werden angezeigt :
+Die Karten auf der Timeline werden angezeigt :
 
 -   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
     Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an

@@ -53,7 +53,7 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
     bei der Ankunft auf dem Armaturenbrett / Handy
 
 -   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
-    das Armaturenbrett / Handy
+    das Dashboard / Handy
 
 -   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
     die Ankunft auf dem Armaturenbrett / Handy

@@ -72,7 +72,7 @@ botões :
 Geral 
 =======
 
--   **Nom** : nome da interação (pode estar vazio, o nome substituEu o
+-   **Nom** : nome da interação (pode estar vazio, o nome substitui o
     solicitar texto na lista de interação).
 
 -   **Groupe** : grupo de interação, ajuda a organizá-los
@@ -175,11 +175,11 @@ ação de interação).
 Interação com múltiplos comandos 
 ------------------------------
 
-AquEu veremos todo o interesse e todo o poder de
+Aqui veremos todo o interesse e todo o poder de
 interações, com uma sentença modelo poderemos gerar
 frases para um grupo inteiro de comandos.
 
-Vamos retomar o que foEu feito acima, excluir as ações que
+Vamos retomar o que foi feito acima, excluir as ações que
 nós adicionamos e, em vez da frase fixa, em "Solicitação",
 vamos usar as tags **\#commande\#** e **\#equipement\#**.
 Jeedom substituirá essas tags pelo nome dos comandos e pelo nome de
@@ -188,7 +188,7 @@ controle / equipamento consistente).
 
 ![Eunteract006](../images/interact006.png)
 
-Então, podemos ver aquEu que Jeedom gerou 152 frases de
+Então, podemos ver aqui que Jeedom gerou 152 frases de
 nosso modelo. No entanto, eles não são muito bem construídos e nós
 tem um pouco de tudo.
 
@@ -207,7 +207,7 @@ o exemplo gerado "Na entrada", seria bom poder transformar
 esta frase em "ativar a entrada" ou em "ativar a entrada". Fazer
 que, Jeedom possui, sob o campo de solicitação, um campo sinônimo que
 nos permitem nomear pedidos de maneira diferente em nossa
-frases "geradas", aquEu está "on", eu até tenho "on2" nos módulos
+frases "geradas", aqui está "on", eu até tenho "on2" nos módulos
 que pode controlar 2 saídas.
 
 Nos sinônimos, indicaremos o nome do comando e o (s)
@@ -215,10 +215,10 @@ sinônimo (s) de usar :
 
 ![Eunteract008](../images/interact008.png)
 
-Podemos ver aquEu uma sintaxe um pouco nova para sinônimos. Um nome
-pode ter vários sinônimos, aquEu "on" tem como sinônimo
-"ligue "e" ligue". A sintaxe é, portanto, "* nome do comando*"
-***=*** "*sinônimo 1*"***,*** "*sinônimo 2 * "(você pode colocar quantas
+Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome
+pode ter vários sinônimos, aqui "on" tem como sinônimo
+"ligue "e" ligue". A sintaxe é, portanto, "*nome do comando*"
+***=*** "*sinônimo 1*"***,*** "*sinônimo 2*" (podemos colocar o máximo
 sinônimo que queremos). Em seguida, adicione sinônimos para outro
 nome do comando, basta adicionar após o último sinônimo uma barra
 vertical "*|*" após o qual você pode novamente nomear o
@@ -238,7 +238,7 @@ não são justos, por exemplo, na entrada "on" "". então encontramos
 "Ligar a entrada "," Ligar a entrada "," Ligar a entrada "," Ligar
 a entrada "etc. Portanto, temos todas as variantes possíveis com o que
 adicionado entre "\ [\]" e este para cada sinônimo, o que gera
-rapidamente muitas frases (aquEu 168).
+rapidamente muitas frases (aqui 168).
 
 Para refinar e não ter coisas improváveis, como
 "ligue a TV ", podemos autorizar o Jeedom a excluir solicitações
@@ -261,12 +261,12 @@ Personalizar respostas
 Até agora, como resposta a uma interação, tivemos uma simples
 frase que não falou muito, exceto que algo aconteceu
 passado. A ideia seria que Jeedom nos dissesse o que ele fez um pouco mais
-precisamente. É aquEu que o campo de resposta entra.
+precisamente. É aqui que o campo de resposta entra.
 capacidade de personalizar o retorno com base na ordem executada.
 
 Para fazer isso, usaremos novamente a tag Jeedom. Para o nosso
-luzes, podemos usar uma frase como : Eu acendEu bem
-\#equipement \# (veja a captura de tela abaixo).
+luzes, podemos usar uma frase como : Eu acendi bem
+\#equipement\# (veja a captura de tela abaixo).
 
 ![Eunteract011](../images/interact011.png)
 
@@ -288,14 +288,14 @@ manteve essa luz).
 
 Como você pode ver aqui, eu mantive quase a mesma estrutura
 demanda (é voluntário se concentrar em
-específicos). Obviamente, eu adapteEu os sinônimos para ter
+específicos). Obviamente, eu adaptei os sinônimos para ter
 coisa coerente. No entanto, para a resposta, é **imperativo** de
-coloque apenas \#value \#, que representa o 0 ou 1 que o Jeedom vai
+colocar apenas \#valeur\# que representa o 0 ou 1 que o Jeedom vai
 substitua pela seguinte conversão binária.
 
 O campo **Conversão binária** deve conter 2 respostas : primeiro o
 resposta se o valor do comando for 0, uma barra vertical "|"
-separação e, finalmente, a resposta se o comando vale 1. AquEu o
+separação e, finalmente, a resposta se o comando vale 1. Aqui o
 as respostas são simplesmente não e sim, mas poderíamos colocar uma frase
 um pouco mais.
 
@@ -355,7 +355,7 @@ com a configuração da interação.
 
 ![Eunteract014](../images/interact014.png)
 
-Como você pode ver na captura de tela a seguir, adicioneEu um
+Como você pode ver na captura de tela a seguir, adicionei um
 regexp simple, que procurará a palavra "Julie" nas frases geradas
 e exclua-os. No entanto, podemos ver na lista à esquerda que existem
 sempre tem frases com a palavra "julie" em expressões
@@ -366,14 +366,14 @@ apenas 71 frases restantes, as 5 com uma "Julie" foram excluídas.
 
 Uma expressão regular é composta da seguinte maneira :
 
--   Primeiro, um delimitador, aquEu está uma barra "/" colocada em
+-   Primeiro, um delimitador, aqui está uma barra "/" colocada em
     início e fim da expressão.
 
 -   O ponto após a barra representa qualquer
     caractere, espaço ou número.
 
 -   O "\*" indica que pode haver 0 ou mais vezes
-    o personagem que o precede, aquEu um ponto, então, em bom francês
+    o personagem que o precede, aqui um ponto, então, em bom francês
     qualquer item.
 
 -   Julie, que é a palavra a procurar (palavra ou outro diagrama
@@ -384,12 +384,12 @@ Julie palavra que é precedida por qualquer coisa e seguida por qualquer coisa
 quoi".
 
 É uma versão extremamente simples de expressões regulares, mas
-já é muito complicado de entender. LeveEu um tempo para entender
+já é muito complicado de entender. Levei um tempo para entender
 a operação. Como um exemplo um pouco mais complexo, uma regexp para
 verificar um URL :
 
 /\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w
-\\ .- \] \*) \* \\ /?\ $ /
+\\ .- \] \*) \*\\ /?\ $ /
 
 Depois de escrever isso, você entende as expressões
 regular.
@@ -409,10 +409,10 @@ sentenças geradas e na lista à esquerda com o filtro julie para
 procurar as frases que contenham essa palavra, vemos que existem algumas
 muito mais.
 
-Como este é um assunto extremamente complexo, não ireEu além
+Como este é um assunto extremamente complexo, não irei além
 Como detalhes aqui, existem tutoriais suficientes na rede para ajudá-lo e
 não esqueça que o Google também é seu amigo, porque sim, ele é meu amigo,
-foEu ele quem me ensinou a entender o Regexp e até a codificar. Então
+foi ele quem me ensinou a entender o Regexp e até a codificar. Então
 se ele me ajudou, ele também pode ajudá-lo se você colocar bem
 volonté.
 
@@ -433,7 +433,7 @@ resposta, por exemplo, para obter um resumo da situação.
 ![Eunteract021](../images/interact021.png)
 
 Neste exemplo, vemos uma frase simples que retornará um
-responda com 3 temperaturas diferentes, então aquEu podemos colocar um pouco
+responda com 3 temperaturas diferentes, então aqui podemos colocar um pouco
 tudo o que você deseja para ter um conjunto de informações em um
 tempo único.
 
@@ -455,11 +455,11 @@ Existe alguém na sala ?
 Este exemplo visa especificamente equipamentos específicos que permitem
 ter uma resposta personalizada. Então poderíamos imaginar substituir
 o exemplo responde com "não, não há ninguém na sala
-*julie*|sim, tem alguém no quarto da * julie*"
+*julie*|sim tem alguém na sala *julie*"
 
 ### Evolução 
 
--   Portanto, a pergunta é "\#order \# \ [no |no \] \#objeto \#"
+-   Então a pergunta é "\#commande\# \ [no |no \] \#objet\#"
 
 -   A resposta será "não, não há ninguém na sala" ou "sim, existe
     alguém na sala"
@@ -473,7 +473,7 @@ o exemplo responde com "não, não há ninguém na sala
 
 ![Eunteract018](../images/interact018.png)
 
-Sem o Regexp, chegamos aquEu 11 sentenças, mas minha interação é direcionada
+Sem o Regexp, chegamos aqui 11 sentenças, mas minha interação é direcionada
 gerar sentenças apenas para perguntar se há alguém em
 uma sala, então eu não preciso de uma condição de lâmpada ou algo parecido com o
 tomadas, que podem ser resolvidas com a filtragem regexp. Fazer
@@ -491,23 +491,23 @@ de temperatura, brilho e umidade. Com o sistema de geração de
 Sentença Jeedom, para que possamos gerar com uma única interação
 sentenças para todos os sensores desses 3 tipos de medição.
 
-AquEu está um exemplo genérico usado para saber a temperatura,
+Aqui está um exemplo genérico usado para saber a temperatura,
 a umidade, o brilho das diferentes salas (objeto no sentido Jeedom).
 
 ![Eunteract019](../images/interact019.png)
 
 -   Assim, podemos ver que uma frase genérica genérica "Qual é o
     temperatura da sala de estar "ou" quão brilhante é o quarto"
-    pode ser convertido para : "o que é \ |l \\ '\] \# command \# objeto"
+    pode ser convertido para : "o que é \ |l \\ '\] \#commande\# objet"
     (o uso de \ [word1 | mot2 \] digamos essa possibilidade
     ou este para gerar todas as variações possíveis da frase
     com word1 ou word2). Ao gerar o Jeedom irá gerar tudo
     combinações possíveis de frases com todos os comandos
-    existente (dependendo dos filtros) substituindo \#order \# por
-    o nome do comando e \#object \# pelo nome do objeto.
+    existente (dependendo dos filtros) substituindo \#commande\# par
+    o nome do comando e \#objet\# pelo nome do objeto.
 
 -   A resposta será "21 ° C" ou "200 lux". Basta colocar :
-    \#value \# \#unite \# (a unidade deve ser concluída na configuração
+    \#valeur\# \#unite\# (a unidade deve ser concluída na configuração
     de cada pedido para o qual queremos ter um)
 
 -   Este exemplo, portanto, gera uma sentença para todos os comandos de
@@ -544,7 +544,7 @@ palavras em sua frase
 
 > **Note**
 >
-> O regexp aquEu é uma versão simplificada para fácil utilização.
+> O regexp aqui é uma versão simplificada para fácil utilização.
 > Portanto, podemos usar expressões tradicionais ou
 > use as expressões simplificadas como neste exemplo.
 
@@ -554,19 +554,19 @@ Controlar um dimmer ou um termostato (controle deslizante)
 ### Versão básica 
 
 É possível controlar uma lâmpada de porcentagem (dimmer) ou um
-termostato com interações. AquEu está um exemplo para controlar sua
+termostato com interações. Aqui está um exemplo para controlar sua
 dimmer em uma lâmpada com interações :
 
 ![Eunteract022](../images/interact022.png)
 
-Como podemos ver, existe aquEu no pedido a tag **\#consigne\#** (on
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (on
 pode colocar o que você deseja), que está incluído na ordem do
 dimmer para aplicar o valor desejado. Para fazer isso, temos 3 partes
 : \* Solicitação : em que criamos uma tag que representará o valor
 que será enviado para a interação. \* Resposta : reutilizamos a tag para
 a resposta para garantir que Jeedom entendeu a solicitação corretamente.
 \* Ação : nós colocamos uma ação na lâmpada que queremos dirigir e
-o valor que passamos nossa tag * deposit*.
+o valor que passamos nossa tag *consigne*.
 
 > **Note**
 >
@@ -653,13 +653,13 @@ Programando uma ação com interações
 As interações fazem muitas coisas em particular.
 Você pode programar uma ação dinamicamente. Exemplo : "Coloque o
 aquecimento às 22h às 14h50". Nada poderia ser mais simples, apenas
-para usar as tags \#time \# (se for definido um horário preciso) ou
-\#duration \# (no X tempo, por exemplo, em 1 hora) :
+usar tags \#time\# (se um horário específico estiver definido) ou
+\#duration\# (no X tempo, exemplo em 1 hora) :
 
 ![Eunteract23](../images/interact23.JPG)
 
 > **Note**
 >
-> Você notará na resposta a tag \#value \# que ela contém
+> Você notará na resposta a tag \#value\# este contém
 > no caso de uma interação agendada, o tempo de programação
 > effective

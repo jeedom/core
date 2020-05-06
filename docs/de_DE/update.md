@@ -68,8 +68,8 @@ Die Tabelle besteht aus zwei Registerkarten :
 -   **Autre** : Enthält Widgets, Skripte usw..
 
 Sie finden folgende Informationen : \.* **Statut** : OK oder NOK.
-Ermöglicht den aktuellen Status des Plugins. \.* **Nom** : Du da
-Suchen Sie die Quelle des Elements, den Elementtyp und seinen Namen. \.*
+Ermöglicht es Ihnen, den aktuellen Status des Plugins zu kennen. \.* **Nom** : Du da
+Suchen Sie die Quelle des Elements, den Elementtyp und seinen Namen. \*
 **Version** : Gibt die spezifische Version des Elements an. \.* **Options** :
 Aktivieren Sie dieses Kontrollkästchen, wenn dieses Element nicht aktualisiert werden soll.
 Tag während des allgemeinen Updates (Button **Update**).
