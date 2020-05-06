@@ -24,6 +24,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fas fa-lock'),
 			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fas fa-bolt'),
 			'light' => array('name' => __('Lumière',__FILE__), 'icon' => 'far fa-lightbulb'),
+            'opening' => array('name' => __('Ouvrant',__FILE__), 'icon' => 'fas fa-door-open'),
 			'automatism' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fas fa-magic'),
 			'multimedia' => array('name' => __('Multimédia',__FILE__), 'icon' => 'fas fa-sliders-h'),
 			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'far fa-circle'),

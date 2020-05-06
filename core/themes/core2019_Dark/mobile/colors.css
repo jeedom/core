@@ -41,10 +41,11 @@ colors Dark Mobile
   --cat-heating-color: 46, 98, 138;
   --cat-automatism-color: 100, 100, 100;
   --cat-light-color: 153, 100, 40;
+    --cat-opening-color: 58, 58, 58;
   --cat-multimedia-color: 54, 73, 94;
   --cat-energy-color: 50, 120, 60;
   --cat-other-color: 58, 90, 85;
-  --cat-scenario-color: 65, 70, 76;
+  --cat-scenario-color: 55, 55, 62;
 
   --url-iconsDark: url(../img/ui-icons-black.png);
   --url-iconsLight: url(../img/ui-icons-white.png);

@@ -37,6 +37,9 @@ Mobile Light
 [data-category=light] .widget-name {
 	background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+[data-category=opening] .widget-name {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 [data-category=multimedia] .widget-name {
 	background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }

@@ -49,6 +49,7 @@
 - Configuration : L'onglet *Informations* est maintenant dans l'onglet *Général*.
 - Configuration : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - Fenêtre de configuration avancée d'équipement : Changement dynamique de la configuration tableau.
+- Equipements : Nouvelle catégorie *Ouvrant*.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.<br/><br/>
 - WebApp : Intégration de la nouvelle page Synthèse.
 - WebApp : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
