@@ -605,6 +605,9 @@ sup i {
   line-height: 1.6;
   margin-top: -4px;
 }
+.objectPreview > .topPreview > .name:first-letter {
+  text-transform: uppercase;
+}
 .objectPreview > .topPreview > .bt_config {
   position: absolute;
   right: 20px;
