@@ -1006,26 +1006,10 @@ class eqLogic {
 	}
 
 	public function getPrimaryCategory() {
-		if ($this->getCategory('security', 0) == 1) {
-			return 'security';
-		}
-		if ($this->getCategory('heating', 0) == 1) {
-			return 'heating';
-		}
-		if ($this->getCategory('light', 0) == 1) {
-			return 'light';
-		}
-		if ($this->getCategory('opening', 0) == 1) {
-			return 'opening';
-		}
-		if ($this->getCategory('automatism', 0) == 1) {
-			return 'automatism';
-		}
-		if ($this->getCategory('energy', 0) == 1) {
-			return 'energy';
-		}
-		if ($this->getCategory('multimedia', 0) == 1) {
-			return 'multimedia';
+		foreach ($this->category as $cat => $value) {
+			if ($value == 1) {
+				return $cat;
+			}
 		}
 		return '';
 	}
