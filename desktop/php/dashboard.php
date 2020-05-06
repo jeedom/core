@@ -85,10 +85,10 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			<?php
             	foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
             		if ($key=='default') $key = '';
-	            	echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;'.$value['name'].'</a></li>';
+	            	echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
             	}
             ?>
-            <li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;{{Scenario}}</a></li>
+            <li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
 		</ul>
 	</div>
 	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
