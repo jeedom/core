@@ -3,11 +3,11 @@
 
 # Jeedom - La domotique innovante
 <p align="center">
-<a href="https://www.jeedom.com/site">Site</a>  -
-<a href="https://www.jeedom.com/blog">Blog</a>  -
-<a href="https://community.jeedom.com">Community</a>  -
-<a href="https://www.jeedom.com/market">Market</a>  -
-<a href="https://www.jeedom.com/doc">Doc</a>
+<a href="https://www.jeedom.com/">Site</a>  -
+<a href="https://blog.jeedom.com/">Blog</a>  -
+<a href="https://community.jeedom.com/">Community</a>  -
+<a href="https://market.jeedom.com/">Market</a>  -
+<a href="https://doc.jeedom.com/">Doc</a>
 </p>
 
 #### Jeedom permet de nombreuses possibilités dont :
