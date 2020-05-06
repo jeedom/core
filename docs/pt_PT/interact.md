@@ -127,7 +127,7 @@ Nos sinônimos, indicaremos o nome do comando e os sinônimos a serem usados :
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome de comando pode ter vários sinônimos, aqui "on" tem o sinônimo "ativar" e "ativar". A sintaxe é, portanto, "* nome do comando*" ***=*** "*sinônimo 1*"***,*** "*sinônimo 2 * "(você pode adicionar quantos sinônimos quiser). Em seguida, para adicionar sinônimos para outro nome de comando, basta adicionar uma barra vertical após o último sinônimo "*|*" após o qual você pode novamente nomear o comando que terá sinônimos como para a primeira parte etc..
+Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome de comando pode ter vários sinônimos, aqui "on" tem o sinônimo "ativar" e "ativar". A sintaxe é, portanto, "*nome do comando*" ***=*** "*sinônimo 1*"***,*** "*sinônimo 2*" (podemos colocar quantos sinónimos quisermos). Em seguida, para adicionar sinônimos para outro nome de comando, basta adicionar uma barra vertical após o último sinônimo "*|*" após o qual você pode novamente nomear o comando que terá sinônimos como para a primeira parte etc..
 
 Já é melhor, mas ainda falta o comando "on" "input" the "l" e para outros o "la" ou "le" ou "a" etc.. Poderíamos mudar o nome do equipamento para adicioná-lo, seria uma solução, caso contrário, podemos usar as variações na solicitação. Isso consiste em listar uma série de palavras possíveis em um local da sentença, portanto, o Jeedom irá gerar sentenças com essas variações.
 
@@ -145,7 +145,7 @@ Torna-se, portanto, importante criar bem suas frases e sinônimos de modelo e se
 
 Até agora, como resposta a uma interação, tínhamos uma frase simples que não falava muito, exceto que algo aconteceu. A idéia seria que Jeedom nos diga o que ele fez um pouco mais precisamente. É aqui que entra o campo de resposta, onde poderemos personalizar o retorno de acordo com o comando executado..
 
-Para fazer isso, usaremos novamente a tag Jeedom. Para nossas luzes, podemos usar uma frase do estilo : Liguei \#equipement \# (veja a captura de tela abaixo).
+Para fazer isso, usaremos novamente a tag Jeedom. Para nossas luzes, podemos usar uma frase do estilo : Eu liguei \#equipement\# (veja a captura de tela abaixo).
 
 ![interact011](../images/interact011.png)
 
@@ -159,7 +159,7 @@ Conversões binárias se aplicam a comandos do tipo info cujo subtipo é binári
 
 ![interact013](../images/interact013.png)
 
-Como podemos ver aqui, mantive quase a mesma estrutura para a solicitação (é voluntário focar nos detalhes). Claro, eu adaptei os sinônimos para ter algo coerente. No entanto, para a resposta, é **imperativo** colocar apenas \#value \# que representa o 0 ou 1 que o Jeedom substituirá pela seguinte conversão binária.
+Como podemos ver aqui, mantive quase a mesma estrutura para a solicitação (é voluntário focar nos detalhes). Claro, eu adaptei os sinônimos para ter algo coerente. No entanto, para a resposta, é **imperativo** colocar apenas \#valeur\# que representa o 0 ou 1 que o Jeedom substituirá pela seguinte conversão binária.
 
 O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se o valor do comando vale 0, depois uma barra vertical "|" separação e, finalmente, a resposta se o comando vale 1. Aqui as respostas são simplesmente não e sim, mas poderíamos colocar uma frase um pouco mais longa.
 
@@ -204,7 +204,7 @@ Se traduzirmos esta expressão em uma frase, daria "procure a palavra Julie que 
 
 É uma versão extremamente simples de expressões regulares, mas já muito complicada de entender. Demorei um pouco para entender como funciona. Como um exemplo um pouco mais complexo, uma regexp para verificar um URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \* \\ /?\ $ /
+/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \*\\ /?\ $ /
 
 Depois de escrever isso, você entende as expressões regulares.
 
@@ -238,15 +238,15 @@ Neste exemplo, vemos uma frase simples que retornará uma resposta com três tem
 
 - Então a pergunta é "existe alguém na sala"
 - A resposta será "não, não há ninguém na sala" ou "sim, há alguém na sala"
-- O comando que responde a isso é "\# \ [Sala de Julie \] \ [FGMS-001-2 \] \ [Presença \] \#"
+- O comando que responde a isso é "\#\[Chambre de julie\]\[FGMS-001-2\]\[Présence\]\#"
 
 ![interact017](../images/interact017.png)
 
-Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Por isso, poderíamos imaginar substituir a resposta do exemplo por "não, não há ninguém no quarto de julie"*|sim, tem alguém no quarto da * julie*"
+Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *julie*|sim tem alguém na sala *julie*"
 
 #### Evolution
 
-- Portanto, a pergunta é "\#order \# \ [no |no \] \#objeto \#"
+- Então a pergunta é "\#commande\# \ [no |no \] \#objet\#"
 - A resposta será "não, não há ninguém na sala" ou "sim, há alguém na sala"
 - Não há nenhum comando que responda a isso na parte Ação, pois é uma interação de Vários Comandos
 - Ao adicionar uma expressão regular, podemos limpar os comandos que não queremos ver, para ter apenas as frases nos comandos "Presença".".
@@ -265,8 +265,8 @@ Aqui está um exemplo genérico usado para conhecer a temperatura, umidade e bri
 
 ![interact019](../images/interact019.png)
 
-- Assim, podemos ver que uma frase genérica como "Qual é a temperatura na sala de estar" ou "Qual é o brilho do quarto" pode ser convertida em : "o que é \ |l \\ '\] \# command \# object "(usando \ [word1 | word2 \] permite que você diga essa possibilidade ou que gere todas as variantes possíveis da frase com a palavra1 ou a palavra2). Durante a geração, o Jeedom irá gerar todas as combinações possíveis de frases com todos os comandos existentes (dependendo dos filtros), substituindo \#command \# pelo nome do comando e \#object \# pelo nome do objeto.
-- A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur \# \#unite \# (a unidade deve ser concluída na configuração de cada pedido para o qual queremos ter um)
+- Assim, podemos ver que uma frase genérica como "Qual é a temperatura na sala de estar" ou "Qual é o brilho do quarto" pode ser convertida em : "o que é \ |l \\ '\] \#commande\# objeto "(o uso de \ [word1 | word2 \] permite que você diga essa possibilidade ou que gere todas as variantes possíveis da frase com a palavra1 ou a palavra2). Ao gerar o Jeedom, todas as combinações possíveis de frases serão geradas com todos os comandos existentes (dependendo dos filtros) substituindo \#commande\# pelo nome do comando e \#objet\# pelo nome do objeto.
+- A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur\# \#unite\# (a unidade deve ser concluída na configuração de cada pedido para o qual queremos ter um)
 - Portanto, este exemplo gera uma sentença para todos os comandos do tipo de informação digital que possuem uma unidade, para que possamos desmarcar as unidades no filtro certo, limitadas ao tipo que nos interessa.
 
 #### Evolution
@@ -297,7 +297,7 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), que é usado no controle do inversor para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Solicitação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que Jeedom entendeu corretamente a solicitação. \* Ação : colocamos uma ação na lâmpada que queremos acionar e no valor passamos nossa instrução tag **.
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), que é usado no controle do inversor para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Aplicação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Réponse  : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ação : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *consigne*.
 
 > **Note**
 >
@@ -346,10 +346,10 @@ Este exemplo, portanto, permite iniciar o cenário que está vinculado na parte 
 
 ### Programando uma ação com interações
 
-As interações fazem muitas coisas em particular. Você pode programar uma ação dinamicamente. Exemplo : "Liga o calor às 22 para 14:50". Para que nada mais simples, basta usar as tags \#time \# (se definir uma hora precisa) ou \#duration \# (pois no X tempo, por exemplo, em 1 hora) :
+As interações fazem muitas coisas em particular. Você pode programar uma ação dinamicamente. Exemplo : "Liga o calor às 22 para 14:50". Nada poderia ser mais simples, basta usar as tags \#time\# (se um horário específico estiver definido) ou \#duration\# (no X tempo, exemplo em 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 
 > **Note**
 >
-> Você notará na resposta que a tag \#value \# que contém, no caso de uma interação agendada, o tempo efetivo de programação
+> Você notará na resposta a tag \#value\# isto contém, no caso de uma interação programada, o tempo efetivo de programação

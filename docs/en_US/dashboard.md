@@ -47,7 +47,7 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 
 ## Edit mode
 
-In edit mode (* the pencil at the top right *), you can change the size of the tiles and their arrangement on the Dashboard.
+In edit mode (*the pencil at the top right*), you can change the size of the tiles and their arrangement on the Dashboard.
 
 You can also edit the internal layout of the controls on the tile :
 

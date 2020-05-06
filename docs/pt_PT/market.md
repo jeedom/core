@@ -21,7 +21,7 @@ Isso é dividido em várias partes :
 
 Para desenvolvedores :
 - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
-- **E-mail público** : Seu e-mail para receber nossas comunicações.
+- **Email público** : Seu e-mail para receber nossas comunicações.
 - **Conta Paypal** : O e-mail da sua conta Paypal (usado apenas para pagar desenvolvedores).
 
 Para os profissionais :

@@ -9,7 +9,7 @@ A report is a screenshot of the Jeedom interface at a time t.
 
 > **Note**
 >
-> This capture is adapted n as not to take the menu bar and other unnecessary elements on this type of use..
+> This capture is adapted so as not to take the menu bar and other unnecessary elements on this type of use..
 
 You can do this on views, designs, panel pages....
 
@@ -33,7 +33,7 @@ Then select the name of the report in question. You will then see all the dates 
 
 Once the report is selected, you can view it, download it or delete it.
 
-You can aln delete all backups of a given report
+You can also delete all backups of a given report
 
 ## FAQ
 

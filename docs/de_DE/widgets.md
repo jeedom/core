@@ -52,11 +52,11 @@ Abhängig von der Art des Widgets können Sie im Allgemeinen Symbole anpassen od
 Es gibt zwei Arten von Vorlagen :
 
 - Die "**simples**" : Geben Sie ein Symbol / Bild für das "Ein" und ein Symbol / Bild für das "Aus" ein"
-- Die "**multistates**" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl auf "XX" gesetzt ist, und ein anderes, wenn> auf "YY" und erneut, wenn <auf "ZZ"". Oder sogar ein Bild, wenn der Wert &quot;;toto&quot;; ist, ein anderes, wenn &quot;;plop&quot;;, und so weiter.
+- Die "**multistates**" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl auf "XX" gesetzt ist, und ein anderes, wenn> auf "YY" und erneut, wenn <auf "ZZ"". Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn &quot;plop&quot;, und so weiter.
 
 ## Widget erstellen
 
-Klicken Sie auf der Seite Extras -&gt;; Widget auf &quot;;Hinzufügen&quot;; und geben Sie Ihrem neuen Widget einen Namen.
+Klicken Sie auf der Seite Extras -&gt; Widget auf &quot;Hinzufügen&quot; und geben Sie Ihrem neuen Widget einen Namen.
 
 Dann :
 - Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt.
@@ -66,34 +66,34 @@ Dann :
 
 ### Remplacement
 
-Dies wird als einfaches Widget bezeichnet. Hier muss man nur sagen, dass das &quot;;Ein&quot;; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;;Aus&quot;; ist dieses usw.. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
+Dies wird als einfaches Widget bezeichnet. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist dieses usw.. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
 
 >**Note**
 >Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns.. Wir hatten keine Wahl
 
 >**TIPS**
->Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkartenanzeige und des Widgets "Optionale Parameter" anzugeben". Wenn Sie beispielsweise in width als Wert # width # (achten Sie darauf, das # herum zu setzen) anstelle einer Zahl eingeben, können Sie in &quot;;Optionale Widget-Einstellungen&quot;; width (ohne #) hinzufügen und den Wert angeben. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes Widget erstellen.
+>Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkartenanzeige und des Widgets "Optionale Parameter" anzugeben". Zum Beispiel, wenn Sie in der Breite als Wert eingeben #width# (Achten Sie darauf, die # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) und geben Sie den Wert an. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes Widget erstellen.
 
 ### Test
 
-Dies wird als mehrstufiger Teil bezeichnet. Bei einfachen Widgets haben Sie häufig die Wahl zwischen &quot;;Höhe&quot;; / &quot;;Breite&quot;; für die Bilder nur dann unterhalb des Testteils.
+Dies wird als mehrstufiger Teil bezeichnet. Bei einfachen Widgets haben Sie häufig die Wahl zwischen &quot;Höhe&quot; / &quot;Breite&quot; für die Bilder nur dann unterhalb des Testteils.
 
-Es ist ganz einfach. Anstatt wie im vorherigen Fall ein Bild für &quot;;Ein&quot;; und / oder &quot;;Aus&quot;; zu setzen, müssen Sie einen Test durchführen. Wenn dies zutrifft, zeigt das Widget das betreffende Symbol / Bild an.
+Es ist ganz einfach. Anstatt wie im vorherigen Fall ein Bild für &quot;Ein&quot; und / oder &quot;Aus&quot; zu setzen, müssen Sie einen Test durchführen. Wenn dies zutrifft, zeigt das Widget das betreffende Symbol / Bild an.
 
-Die Tests sind in der Form : #Wert # == 1, # Wert # wird vom System automatisch durch den aktuellen Wert der Bestellung ersetzt. Sie können zum Beispiel auch tun :
+Die Tests sind in der Form : #value# == 1, #value# wird vom System automatisch durch den aktuellen Wert der Bestellung ersetzt. Sie können zum Beispiel auch tun :
 
-- #Wert #&gt;; 1
+- #value# > 1
 - #value# >= 1 && #value# <= 5
-- #Wert # == &#39;;toto'
+- #value# == 'toto'
 
 >**Note**
->Es ist wichtig, das &#39;;um den Text herum zu notieren, um zu vergleichen, ob der Wert ein Text ist
+>Es ist wichtig, das &#39;um den Text herum zu notieren, um zu vergleichen, ob der Wert ein Text ist
 
 >**Note**
->Für fortgeschrittene Benutzer ist es hier möglich, auch Javascript-Funktionen vom Typ #value zu verwenden#.match (&quot;;^ plop&quot;;), hier testen wir, ob der Text mit plop beginnt
+>Für fortgeschrittene Benutzer ist es hier auch möglich, Funktionen vom Typ Javascript zu verwenden #value#.match (&quot;^ plop&quot;), hier testen wir, ob der Text mit plop beginnt
 
 >**Note**
->Es ist möglich, den Wert des Befehls im Widget anzuzeigen, indem Sie beispielsweise neben den HTML-Code des Symbols #value setzen#
+>Es ist möglich, den Wert des Befehls im Widget anzuzeigen, indem Sie beispielsweise neben den HTML-Code des Symbols setzen #value#
 
 ## Beschreibung der Widgets
 
@@ -160,17 +160,17 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig). :
 
 - #name# : Befehlsname
-- #valueName# : Name des Befehlswertes und = # Name #, wenn es sich um einen Befehl vom Typ Info handelt
+- #valueName# : Name des Bestellwerts und = #name# wenn es sich um einen Info-Befehl handelt
 - #minValue# : Mindestwert, den der Befehl annehmen kann (wenn der Befehl vom Typ Schieberegler ist)
 - #maxValue# : Maximalwert, den der Befehl annehmen kann (wenn der Befehl vom Typ Schieberegler ist)
-- #Versteckname# : leer oder ausgeblendet, wenn der Benutzer den Namen des Widgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
+- #hide_name# : leer oder ausgeblendet, wenn der Benutzer den Namen des Widgets ausblenden möchte, um es direkt in ein Klassen-Tag einzufügen
 - #id# : Bestellnummer
 - #state# : Wert des Befehls, leer für einen Aktionstypbefehl, wenn er nicht mit einem Statusbefehl verknüpft ist
 - #uid# : eindeutige Kennung für diese Generation des Widgets (wenn es mehrmals den gleichen Befehl gibt, bei Entwürfen:  nur diese Kennung ist wirklich eindeutig)
 - #valueDate# : Datum des Bestellwertes
 - #collectDate# : Datum der Auftragserfassung
 - #alertLevel# : Alarmstufe (siehe [hier](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) für die Liste)
-- #hide_history# : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. # Hide_Name # ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem Widget gefunden wird, werden die Tags # minHistoryValue #, # durchschnittlichHistoryValue #, # maxHistoryValue # und # trend # nicht durch Jeedom ersetzt.
+- #hide_history# : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. Wie für die #hide_name# Es ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem Widget gefunden wird, dann die Tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# und #tendance# wird nicht durch Jeedom ersetzt.
 - #minHistoryValue# : Mindestwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
 - #averageHistoryValue# : Durchschnittswert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
 - #maxHistoryValue# : Maximalwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
@@ -181,33 +181,33 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 Wenn ein neuer Wert Jeedom auf der HTML-Seite angezeigt wird, wenn der Befehl vorhanden ist und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
 
 `` ''
-{display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel#'}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 `` ''
 
 Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr Widget einfügen können :
 
 `` ''
 <script>
-    Jeedom.cmd.update [&#39;;# Identifikation #&#39;;] = function (_options){
+    Jeedom.cmd.update ['#id#'] = Funktion (_Optionen){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Datum der Abholung : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');;
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel#'});;
+    Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 `` ''
 
 Hier sind zwei wichtige Dinge :
 
 `` ''
-Jeedom.cmd.update [&#39;;# Identifikation #&#39;;] = function (_options){
+Jeedom.cmd.update ['#id#'] = Funktion (_Optionen){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Datum der Abholung : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');;
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
 `` ''
 Die Funktion, die beim Aktualisieren des Widgets aufgerufen wird. Anschließend wird der HTML-Code der Widget-Vorlage aktualisiert.
 
 `` ''
-Jeedom.cmd.update['#id#']({display_value:'#Zustand # ‚valueDate:'#valueDate # ‚collectDate:'#collectDate # ‚alertLevel:'#alertLevel#'});;
+Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 `` ''
  Der Aufruf dieser Funktion zur Initialisierung des Widgets.
 

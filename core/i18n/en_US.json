@@ -3676,6 +3676,7 @@
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "Unable to install the plugin. The files could not be decompressed:",
         "Impossible de décompresser l\\'archive zip : ": "Unable to decompress the zip archive:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "You cannot delete the core of Jeedom",
+        "Supression des fichiers inutiles...": "Delete unnecessary files ...",
         "Début de la mise à jour de : ": "Start of the update of:",
         "Action de pré-update...": "Pre-update action ...",
         "Post-installation de ": "Post-installation of",

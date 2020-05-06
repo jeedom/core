@@ -27,7 +27,7 @@ Once you click on it, you get these different options :
 - **Update plugins** : Allows you to include plugins in the update.
 - **Update the core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
-- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This fashion disables saving!).
+- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving!).
 - **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
 > **Important**
@@ -42,11 +42,11 @@ Once you click on it, you get these different options :
 
 The table contains the versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their version, green in * stable *, or orange in * beta * or other.
+The plugins have a badge next to their name, specifying their version, green in color *stable*, or orange in *beta* Or other.
 
 - **Statut** : OK or NOK.
 - **Nom** : Name and origin of the plugin
-- **Version** : Indicates the precise Version of the Core or plugin.
+- **Version** : Indicates the precise version of the Core or plugin.
 - **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
 On each line, you can use the following functions:
@@ -72,7 +72,7 @@ During or after an update, this tab allows you to read the log of this update in
 
 > **Note**
 >
-> This log normally ends with * [END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this..
+> This log normally ends with *[END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this..
 
 ## Command line update
 
@@ -83,8 +83,8 @@ Once connected, this is the command to perform :
 
 The possible parameters are :
 
-- **mode** : ``force``, to launch an update in forced fashion (ignores errors).
-- **version** : Version number tracking, to re-apply changes from this Version.
+- **mode** : `force`, to launch an update in forced mode (ignores errors).
+- **version** : Version number tracking, to re-apply changes from this version.
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 

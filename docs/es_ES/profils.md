@@ -28,7 +28,7 @@ Define ciertos comportamientos de interfaz
 
 ## Pestaña de seguridad
 
-- **Autenticación de 2 pasos** : le permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba * google authentificator *). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código..
+- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*) Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código..
 
   **Important** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (vea en la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
 

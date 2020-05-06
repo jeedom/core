@@ -6,7 +6,7 @@ You can also manipulate the plugins, namely : download, update and activate them
 
 There is therefore a list of plugins in alphabetical order and a link to the market..
 - Disabled plugins are grayed out.
-- Plugins that are not * stable * have an orange dot in front of their name.
+- Plugins that are not in version *stable* we have an orange dot in front of their name.
 
 By clicking on a plugin, you access its configuration. At the top, you find the name of the plugin, then in brackets, its name in Jeedom (ID) and finally, the type of installed version (stable, beta).
 
@@ -38,7 +38,7 @@ By clicking on a plugin, you access its configuration. At the top, you find the 
 
 ### On the right, we find the area **Log and monitoring** which allows to define :
 
-- The level of logs specific to the plugin (we find this same possibility in Administration → D'actualité on the logs tab, at the bottom of the page).
+- The level of logs specific to the plugin (we find this same possibility in Administration → Configuration on the logs tab, at the bottom of the page).
 - View plugin logs.
 - Heartbeat : Every 5 mins, Jeedom checks if at least one plugin device has communicated in the last X minutes (if you want to deactivate the functionality, just put 0).
 - Restart demon : If the hertbeat goes wrong then Jeedom will restart the daemon.
@@ -94,7 +94,7 @@ To install a new plugin, just click on the &quot;Market&quot; button (and Jeedom
 
 > **Tip**
 >
-> You must have entered your Market account information in the administration (D'actualité → Updates → Market tab) in order to find the plugins you have already purchased, for example.
+> You must have entered your Market account information in the administration (Configuration → Updates → Market tab) in order to find the plugins you have already purchased, for example.
 
 At the top of the window you have filters :
 - **Free / Pay** : displays only free or paid.

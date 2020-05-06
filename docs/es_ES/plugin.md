@@ -6,7 +6,7 @@ También puede manipular los complementos, a saber : descárguelos, actualícelo
 
 Por lo tanto, hay una lista de complementos en orden alfabético y un enlace al mercado..
 - Los complementos deshabilitados están atenuados.
-- Los complementos que no son * estables * tienen un punto naranja delante de su nombre.
+- Complementos que no están en la versión *stable* tenemos un punto naranja delante de su nombre.
 
 Al hacer clic en un complemento, accede a su configuración. En la parte superior, encontrará el nombre del complemento, luego entre paréntesis, su nombre en Jeedom (ID) y, finalmente, el tipo de versión instalada (estable, beta).
 

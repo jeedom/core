@@ -1,7 +1,7 @@
 # Historique
 **Analysis → History**
 
-IMPORTANT part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
+Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
 
 ### Principe
 
@@ -70,7 +70,7 @@ The history page gives access to some additional options
 
 Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
 Ex :
-abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Living space \] \ [Hygrometry \] \ [Temperature \] *)
+abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)
 
 You also have access to a management of calculation formulas which allows you to save them for easier re-display.
 
@@ -98,8 +98,8 @@ To see them, you must first activate the tracking on the timeline of the desired
 - **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
 - **Commande** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
-The * Main * timeline always contains all the events. However, you can filter the timeline by * folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
-You can then filter the timeline by this folder by selecting it to the left of the * Refresh button.*.
+The timeline *Principal* always contains all the events. However, you can filter the timeline by *dossier*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
+You can then filter the timeline by this folder by selecting it to the left of the button *Rafraichir*.
 
 > **Note**
 >

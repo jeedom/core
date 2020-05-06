@@ -19,7 +19,7 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Tela cheia** : Permite usar a página da Web inteira, o que removerá o menu Jeedom da parte superior.
 - **Adicionar gráfico** : Adicionar um gráfico.
 - **Adicionar text / html** : Permite adicionar texto ou código html / JavaScript.
-- **Ajouter Cenas** : Adicionar um cenário.
+- **Ajouter Scénario** : Adicionar um cenário.
 - **Adicionar link**
     - **Rumo a vista** : Adicionar um link a uma visualização.
     - **Para projetar** : Adicionar um link a outro design.
@@ -186,7 +186,7 @@ Exibe a janela de configuração avançada do equipamento (consulte a documenta�
 
 ### Configurações de exibição específicas
 
-- **Sala de jantar** : É aqui que você escolhe o tipo de área : único macros, macro binária ou Widget ao passar o mouse.
+- **Sala de jantar** : É aqui que você escolhe o tipo de área : Macro simples, macro binária ou Widget ao passar o mouse.
 
 ### único macro
 
@@ -227,4 +227,4 @@ Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget
 >Se você colocou um widget ou uma imagem que ocupa quase todo o design, clique fora do widget ou imagem para acessar o menu clicando com o botão direito do mouse.
 
 >**Excluir um design que não funciona mais**
->Na parte da administração, em seguida, no OS / DB, faça "select * from planHeader", recupere o ID do design em questão e faça "delete from planHeader where id = # TODO #" e "delete from plan where planHeader_id = # todo # "substituindo # TODO # pelo ID do design encontrado anteriormente.
+>Na parte da administração e no OS / DB, faça "select * from planHeader", recupere o ID do design em questão e faça "delete from planHeader where id=#TODO#" e "excluir do plano em que planHeader_id=#todo#" substituindo bem #TODO# pelo ID do design encontrado anteriormente.

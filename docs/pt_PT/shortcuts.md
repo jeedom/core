@@ -53,10 +53,10 @@ Em um cenário :
 - Ctrl Shift Y : Refazer.
 
 - Ctrl Clique em Executar : Salve e execute o cenário e abra o log.
-- Ctrl Clique no ícone * Copie este bloco* : Corte este bloco.
-- Ctrl Clique no ícone * Colar um bloco* : Substitua este bloco.
-- Ctrl Clique no ícone * Excluir este bloco* : Excluir bloco sem confirmação.
-- Ctrl Clique no ícone * Ocultar este bloco* : Ocultar ou mostrar todos os blocos.
+- Ctrl Clique no ícone *Copie este bloco* : Corte este bloco.
+- Ctrl Clique no ícone *Colar um bloco* : Substitua este bloco.
+- Ctrl Clique no ícone *Excluir este bloco* : Excluir bloco sem confirmação.
+- Ctrl Clique no ícone *Ocultar este bloco* : Ocultar ou mostrar todos os blocos.
 
 Em um bloco de código :
 - Ctrl F : Pesquise no código.
@@ -65,7 +65,7 @@ Em um bloco de código :
 ## Plugins / Gerenciamento de Plugins
 - Ctrl S em uma configuração de plug-in : Salvar.
 
-## Plugins / * plugin*
+## Plugins / *plugin*
 - Em um dispositivo, Ctrl S  : Salvar.
 - Em um dispositivo, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro dispositivo.
 

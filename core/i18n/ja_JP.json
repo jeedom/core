@@ -3676,6 +3676,7 @@
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "プラグインをインストールできません。ファイルを解凍できませんでした：",
         "Impossible de décompresser l\\'archive zip : ": "Zipアーカイブを解凍できません：",
         "Vous ne pouvez pas supprimer le core de Jeedom": "Jeedomのコアを削除することはできません",
+        "Supression des fichiers inutiles...": "",
         "Début de la mise à jour de : ": "アップデートの開始：",
         "Action de pré-update...": "",
         "Post-installation de ": "インストール後",

@@ -53,10 +53,10 @@ En un escenario :
 - Ctrl Shift Y : Nueva versión.
 
 - Ctrl Haga clic en Ejecutar : Guarde y ejecute el escenario, luego abra el registro.
-- Ctrl Haga clic en el icono * Copie este bloque* : Cortar este bloque.
-- Ctrl Haga clic en el icono * Pegar un bloque* : Reemplace este bloque.
-- Ctrl Haga clic en el icono * Eliminar este bloque* : Eliminar bloque sin confirmación.
-- Ctrl Haga clic en el icono * Ocultar este bloque* : Ocultar o mostrar todos los bloques.
+- Ctrl Haga clic en el icono *Copia este bloque* : Cortar este bloque.
+- Ctrl Haga clic en el icono *Pegar un bloque* : Reemplace este bloque.
+- Ctrl Haga clic en el icono *Eliminar este bloque* : Eliminar bloque sin confirmación.
+- Ctrl Haga clic en el icono *Ocultar este bloque* : Ocultar o mostrar todos los bloques.
 
 En un bloque de código :
 - Ctrl F : Busca en el código.
@@ -65,7 +65,7 @@ En un bloque de código :
 ## Complementos / Gestión de complementos
 - Ctrl S en una configuración de complemento : Guardar.
 
-## Complementos / * complemento*
+## Complementos / *plugin*
 - En un dispositivo, Ctrl S  : Guardar.
 - En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
 

@@ -28,7 +28,7 @@ Defines certain interface behaviors
 
 ## Security tab
 
-- **2-step authentication** : allows you to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type * google authentificator *). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested..
+- **2-step authentication** : allows to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type *google authentificator*). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested..
 
   **Important** if during the configuration of double authentication you have an error, you must check that Jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work).
 

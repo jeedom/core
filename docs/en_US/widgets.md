@@ -5,8 +5,8 @@ The widgets page allows you to create custom widgets for your Jeedom.
 
 There are two types of custom widgets :
 
-- Widget based on a template (managed by the Jeedom Core).
-- Widget based on user code.
+- Widgets based on a template (managed by the Jeedom Core).
+- Widgets based on user code.
 
 > **Note**
 >
@@ -66,13 +66,13 @@ Then :
 
 ### Remplacement
 
-This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc.. Then depending on the template, you can be offered the width and the height. This is only valID for images.
+This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc.. Then depending on the template, you can be offered the width and the height. This is only valid for images.
 
 >**Note**
 >We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us.. We had no choice
 
 >**TIPS**
->For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value # width # (be careful to put the # around) instead of a number, in &quot;Optional widget settings&quot; you can add width (without the #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want.
+>For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value #width# (be careful to put the # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want.
 
 ### Test
 
@@ -80,20 +80,20 @@ This is called the multistate part, you often have, as for simple widgets, the c
 
 It&#39;s quite simple. Instead of putting an image for the &quot;on&quot; and / or for the &quot;off&quot; as in the previous case, you go before giving a test to do. If this is true then the widget will display the icon / image in question.
 
-The tests are in the form : #value # == 1, # value # will be automatically replaced by the system with the current value of the order. You can also do for example :
+The tests are in the form : #value# == 1, #value# will be automatically replaced by the system by the current value of the order. You can also do for example :
 
-- #value #&gt; 1
+- #value# > 1
 - #value# >= 1 && #value# <= 5
-- #value # == &#39;toto'
+- #value# == 'toto'
 
 >**Note**
 >It is important to note the &#39;around the text to compare if the value is a text
 
 >**Note**
->For advanced users, it is possible here to also use javascript functions type #value#.match (&quot;^ plop&quot;), here we test if the text starts with plop
+>For advanced users, it is also possible to use javascript type functions here #value#.match (&quot;^ plop&quot;), here we test if the text starts with plop
 
 >**Note**
->It is possible to display the value of the command in the widget by putting for example next to the HTML code of the #value icon#
+>It is possible to display the value of the command in the widget by putting for example next to the HTML code of the icon #value#
 
 ## Description of widgets
 
@@ -143,7 +143,7 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ##### Optional parameter (s)
 
-- Step : Allows to adjust the Step of an action on a button (0.5 by default).
+- Step : Allows to adjust the step of an action on a button (0.5 by default).
 
 ### Rain
 
@@ -153,14 +153,14 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 - showRange : Displays the min / max values of the command.
 
 
-## CODE Widget
+## Code Widget
 
 ### Tags
 
 In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive) :
 
 - #name# : command name
-- #valueName# : name of the command value, and = # name # when it is an info type command
+- #valueName# : name of the order value, and = #name# when it's an info type command
 - #minValue# : minimum value that the command can have(if the command is of type slider)
 - #maxValue# : maximum value that the command can have(if the command is of type slider)
 - #hide_name# : empty or hidden if the user asked to hide the name of the widget, to put it directly in a class tag
@@ -170,7 +170,7 @@ In code mode you have access to different tags for orders, here is a list (not n
 - #valueDate# : date of the order value
 - #collectDate# : date of order collection
 - #alertLevel# : alert level (see [here](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) for the list)
-- #hide_history# : whether the history (max, min, average, trend) should be hidden or not. As for # hide_name # it is empty or hidden, and can therefore be used directly in a class. Important if this tag is not found on your widget then the tags # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # and # trend # will not be replaced by Jeedom.
+- #hide_history# : whether the history (max, min, average, trend) should be hidden or not. As for the #hide_name# it is empty or hidden, and can therefore be used directly in a class. IMPORTANT if this tag is not found on your widget then the tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# and #tendance# will not be replaced by Jeedom.
 - #minHistoryValue# : minimum value over the period (period defined in the Jeedom configuration by the user)
 - #averageHistoryValue# : average value over the period (period defined in the Jeedom configuration by the user)
 - #maxHistoryValue# : maximum value over the period (period defined in the Jeedom configuration by the user)
@@ -181,25 +181,25 @@ In code mode you have access to different tags for orders, here is a list (not n
 When a new value Jeedom will look in the html page, if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
 
 `` ''
-{display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 `` ''
 
 Here is a simple example of javascript code to put in your widget :
 
 `` ''
 <script>
-    Jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
+    Jeedom.cmd.update ['#id#'] = function (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 `` ''
 
 Here are two important things :
 
 `` ''
-Jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
+Jeedom.cmd.update ['#id#'] = function (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
   $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
@@ -207,7 +207,7 @@ Jeedom.cmd.update [&#39;# ID #&#39;] = function (_options){
 The function called when updating the widget. It then updates the html code of the widget_template.
 
 `` ''
-Jeedom.cmd.update['#id#']({display_value:'#state # &#39;valueDate:'#valueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 `` ''
  The call to this function for the initialization of the widget.
 

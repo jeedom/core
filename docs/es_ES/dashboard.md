@@ -47,7 +47,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 ## Modo de edición
 
-En el modo de edición (* el lápiz en la esquina superior derecha *), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
+En modo de edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Panel de control.
 
 También puede editar el diseño interno de los controles en el mosaico :
 

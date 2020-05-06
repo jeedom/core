@@ -18,7 +18,7 @@ Puede elegir que se le envíe este informe utilizando un comando de mensaje (cor
 
 ## Utilisation
 
-Su un es muy sencillo.. Seleccione a la izquierda si quiere ver :
+Su uso es muy sencillo.. Seleccione a la izquierda si quiere ver :
 
 - Ver informes.
 - Informes de diseño.
@@ -29,7 +29,7 @@ Luego seleccione el nombre del informe en cuestión. Luego verá todas las fecha
 
 > **Important**
 >
-> La eliminación automática se realiza de forma predeterminada para informes de más de 30 días. Puede configurar este retran en la configuración de Jeedom.
+> La eliminación automática se realiza de forma predeterminada para informes de más de 30 días. Puede configurar este retraso en la configuración de Jeedom.
 
 Una vez que se selecciona el informe, puede verlo, descargarlo o eliminarlo..
 

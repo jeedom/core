@@ -47,7 +47,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 ## Modo de edição
 
-No modo de edição (* o lápis no canto superior direito *), você pode alterar o tamanho dos ladrilhos e sua organização no Painel.
+No modo de edição (*o lápis no canto superior direito*), você pode alterar o tamanho dos blocos e sua organização no Painel.
 
 Você também pode editar o layout interno dos controles no bloco :
 

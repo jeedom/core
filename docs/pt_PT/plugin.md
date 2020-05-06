@@ -6,7 +6,7 @@ Você também pode manipular os plugins, a saber : baixar, atualizar e ativá-lo
 
 Existe, portanto, uma lista de plugins em ordem alfabética e um link para o mercado..
 - Os plug-ins desativados ficam acinzentados.
-- Os plug-ins que não são * estáveis * têm um ponto laranja na frente do nome.
+- Plugins que não estão na versão *stable* temos um ponto laranja na frente do nome.
 
 Ao clicar em um plug-in, você acessa sua configuração. No topo, você encontra o nome do plug-in, depois entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 

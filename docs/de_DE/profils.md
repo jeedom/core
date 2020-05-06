@@ -9,17 +9,17 @@ Auf der Seite &quot;Einstellungen&quot; können Sie bestimmte benutzerspezifisch
 
 Definiert bestimmte Schnittstellenverhalten
 
-- **Objektbedienfeld im Dashboard** : Zeigt das Objektfenster (links) im Armaturenbrett an, ohne auf die entsprechende Schaltfläche klicken zu müssen.
+- **Objektbedienfeld im Dashboard** : Zeigt das Objektfenster (links) im Dashboard an, ohne auf die entsprechende Schaltfläche klicken zu müssen.
 - **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
-- **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Armaturenbrett / Handy angezeigt wird.
+- **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 
-- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Armaturenbrett / Handy angezeigt wird.
+- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 - **Klappen Sie das Ansichtsfenster auf** : Wird verwendet, um das Ansichtsmenü (links) standardmäßig in den Ansichten sichtbar zu machen.
 
-- **Standarddesign** : Design, das standardmäßig bei der Ankunft im Armaturenbrett / Handy angezeigt wird.
+- **Standarddesign** : Design, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 - **Vollbild-Design** : Standardanzeige im Vollbildmodus bei Ankunft bei Designs.
 
-- **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Armaturenbrett / Handy ankommen.
+- **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Dashboard / Handy ankommen.
 - **Vollbild-3D-Design** : Standardanzeige im Vollbildmodus bei Ankunft in 3D-Designs.
 
 ### Notifications
@@ -28,7 +28,7 @@ Definiert bestimmte Schnittstellenverhalten
 
 ## Registerkarte &quot;Sicherheit&quot;
 
-- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird. Geben Sie * google authentificator * ein.). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert..
+- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird *Google Authentifikator*). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert..
 
   **Important** Wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, müssen Sie überprüfen, ob Jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert)..
 
@@ -48,7 +48,7 @@ Definiert bestimmte Schnittstellenverhalten
     bei der Ankunft auf dem Armaturenbrett / Handy
 
 -   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
-    das Armaturenbrett / Handy
+    das Dashboard / Handy
 
 -   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
     die Ankunft auf dem Armaturenbrett / Handy

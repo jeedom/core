@@ -53,7 +53,7 @@ Found here :
 - **General**
     - **Nom** : The name of your design.
     - **Position** : The position of the design in the menu. Allows you to order the designs.
-    - **Transparent background** : Makes the background transparent. Be careful if the box is checked, the background color is not used.
+    - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
     - **Access code* : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
@@ -227,4 +227,4 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
 >**Delete a design that no longer works**
->In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the design id previously found.
+>In the administration part then OS / DB, make "select * from planHeader", recover the id of the design in question and make a "delete from planHeader where id=#TODO#" and "delete from plan where planHeader_id=#todo#" replacing well #TODO# by the design id previously found.

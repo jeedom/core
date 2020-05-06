@@ -1,7 +1,7 @@
 # Domotic overview
 **Analysis → Home automation summary**
 
-This page allows yor to gather on a singThe page the different elements configured on your Jeedom. It also gives access to functions for organizing equipment and controls, to their advanced configuration and to display configuration possibilities..
+This page allows you to gather on a single page the different elements configured on your Jeedom. It also gives access to functions for organizing equipment and controls, to their advanced configuration and to display configuration possibilities..
 
 ## Informations
 
@@ -9,11 +9,11 @@ On the top of the page, we find :
 - **Number of objects** : Total number of objects configured in our Jeedom, including inactive elements.
 - **Number of equipments** : Same for the equipment.
 - **Number of orders** : Same for orders.
-- **Inactif** : Check this box if yor want inactive items to be displayed on this page.
+- **Inactif** : Check this box if you want inactive items to be displayed on this page.
 - **Rechercher** : Search for a particular item. It can be the name of a device, an order or the name of the plugin by which the device was created.
-- **CSV export** : Allows yor to export all objects, equipment and their commands to a CSV file.
+- **CSV export** : Allows you to export all objects, equipment and their commands to a CSV file.
 
-Yor also have a tab **Historique**, displaying the history of orders, equipment, objects, views, design, 3d design, scenarios and deleted users.
+You also have a tab **Historique**, displaying the history of orders, equipment, objects, views, design, 3d design, scenarios and deleted users.
 
 ## Object frames
 
@@ -30,35 +30,35 @@ For each object, next to its label, two buttons are available.
 
 > **Tip**
 >
-> With a click and drop on the objects or equipment, yor can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
+> With a click and drop on the objects or equipment, you can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
 
 ## The equipments
 
 On each equipment we find :
 
-- A **check box** to select the equipment (yor can select several). If at least one device is selected, yor have Action buttons that appear in the upper left to **supprimer**, return **visible**/**invisible**,  **actif**/**inactif** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **supprimer**, return **visible**/**invisible**,  **actif**/**inactif** selected equipment.
 - L'**id** equipment.
 - The **type** equipment : Identifier of the plugin to which it belongs.
 - The **nom** equipment.
 - **Inactif** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
-- **Invisible** (crossed out eye) : Means that the equipment is InJeedom (if it is not there, the equipment is visible).
+- **Invisible** (crossed out eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
 If the equipment plugin is disabled, the two icons on the right do not appear:
 - **External link** (square with arrow) : Allows to open in a new tab the equipment configuration page.
 - **Advanced configuration** (toothed wheel) : opens the advanced equipment configuration window.
 
-> By clicking on the line containing the name of the equipment, yor will display all the commands for this equipment. By clicking on an order, yor will access the order configuration window.
+> By clicking on the line containing the name of the equipment, you will display all the commands for this equipment. By clicking on an order, you will access the order configuration window.
 
 ## Advanced equipment configuration
 
 > **Tip**
 >
-> It is possibThe to access (if the plugin supports it) directly to this window from the equipment configuration page by clicking on the advanced configuration button
+> It is possible to access (if the plugin supports it) directly to this window from the equipment configuration page by clicking on the advanced configuration button
 
-The window of **Advanced equipment configuration** allows to modify it. First, at the top right, some buttons availabThe :
+The window of **Advanced equipment configuration** allows to modify it. First, at the top right, some buttons available :
 
 - **Informations** : displays the raw properties of the equipment.
-- **Liens** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a doubThe click on an element will take yor to its configuration).
+- **Liens** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a double click on an element will take you to its configuration).
 - **Log** : displays the events of the equipment in question.
 - **Sauvegarder** : Save the modifications made on the equipment.
 - **Supprimer** : Remove equipment.
@@ -73,22 +73,22 @@ The tab **Informations** contains general information about the equipment and it
 - **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
 - **Activer** : Check the box to activate the equipment (don&#39;t forget to save).
-- **Visible** : Check the box to make the equipment Jeedom (don&#39;t forget to save).
+- **Visible** : Check the box to make the equipment visible (don&#39;t forget to save).
 - **Type** : Identifier of the plugin by which it was created.
 - **Failed attempt** : Number of failed consecutive communications attempts with the equipment.
 - **Date of last communication** : Date of the last communication of the equipment.
 - **Last update** : Date of last communication with the equipment.
 - **Tags** : equipment tags, to be separated by ','. It allows on the Dashboard to make custom filters
 
-Below yor will find a tabThe with the list of equipment commands with, for each, a link to their configuration.
+Below you will find a table with the list of equipment commands with, for each, a link to their configuration.
 
 ### View tab
 
-In the tab **Affichage**, yor will be abThe to configure certain tiThe display behaviors on the Dashboard or on mobile.
+In the tab **Affichage**, you will be able to configure certain tile display behaviors on the Dashboard or on mobile.
 
 #### Widget
 
--  **Visible** : Check the box to make the equipment Jeedom.
+-  **Visible** : Check the box to make the equipment visible.
 - **Show name** : Check the box to display the name of the equipment on the tile.
 - **Display object name** : Check the box to display the name of the parent object of the equipment, next to the tile.
 
@@ -103,34 +103,34 @@ new. For equipment, only the value **style** is currently used, it allows to ins
 
 ### Layout tab
 
-This part allows yor to choose between the standard layout of the commands (side by side in the widget), or in tabThe mode. Nothing to set in default mode. Here are the options availabThe in mode
+This part allows you to choose between the standard layout of the commands (side by side in the widget), or in table mode. Nothing to set in default mode. Here are the options available in mode
 **Tableau** :
 - **Number of lines**
 - **Number of columns**
 - **Center in boxes** : Check the box to center the orders in the boxes.
-- **General styThe of boxes (CSS)** : Allows yor to define the general styThe in CSS code.
-- **TabThe styThe (CSS)** : Allows yor to define the styThe of the tabThe only.
+- **General style of boxes (CSS)** : Allows you to define the general style in CSS code.
+- **Table style (CSS)** : Allows you to define the style of the table only.
 
-Below for each box, the **detailed configuration** It allows yor to
+Below for each box, the **detailed configuration** It allows you to
 this :
 - **Box text** : Add text in addition to the command (or on its own, if there is no command in the box).
-- **Box styThe (CSS)** : Modify the specific CSS styThe of the box (note that it overwrites and replaces the general CSS of the boxes).
+- **Box style (CSS)** : Modify the specific CSS style of the box (note that it overwrites and replaces the general CSS of the boxes).
 
 > **Tip**
 >
-> In a box in the table, if yor want to put 2 commands one below the other, don&#39;t forget to add a line break after the first in the **Advanced configuration** of it.
+> In a box in the table, if you want to put 2 commands one below the other, don&#39;t forget to add a line break after the first in the **Advanced configuration** of it.
 
 ### Alerts tab
 
-This tab allows yor to have information on the battery of the equipment and to define alerts in relation to it. Here are the types of information that can be found :
+This tab allows you to have information on the battery of the equipment and to define alerts in relation to it. Here are the types of information that can be found :
 
 - **Battery type**,
 - **Latest feedback**,
 - **Remaining level**, (if of course your equipment runs on battery).
 
-Below, yor can also define the specific battery alert thresholds for this equipment. If yor leave the boxes empty, those are the default thresholds that will be applied.
+Below, you can also define the specific battery alert thresholds for this equipment. If you leave the boxes empty, those are the default thresholds that will be applied.
 
-Yor can also manage the timeout, in minutes, of the equipment. For example, 30 tells jeedom that if the equipment has not communicated for 30 minutes, then it must be put on alert.
+You can also manage the timeout, in minutes, of the equipment. For example, 30 tells jeedom that if the equipment has not communicated for 30 minutes, then it must be put on alert.
 
 > **Tip**
 >
@@ -138,11 +138,11 @@ Yor can also manage the timeout, in minutes, of the equipment. For example, 30 t
 
 ### Comment tab
 
-Allows yor to write a comment about the equipment.
+Allows you to write a comment about the equipment.
 
 ## Advanced configuration of an order
 
-First, at the top right, some buttons availabThe :
+First, at the top right, some buttons available :
 
 - **Tester** : Used to test the command.
 - **Liens** : Allows to display the links of the equipment with objects, commands, scenarios, variables, interactions…. in graphic form.
@@ -153,11 +153,11 @@ First, at the top right, some buttons availabThe :
 
 > **Tip**
 >
-> In a graphic, a doubThe click on an element brings yor to its configuration.
+> In a graphic, a double click on an element brings you to its configuration.
 
 > **Note**
 >
-> Depending on the Type of order, the information / actions displayed may change.
+> Depending on the type of order, the information / actions displayed may change.
 
 ### Information tab
 
@@ -166,41 +166,41 @@ The tab **Informations** contains general information about the order :
 - **ID** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the order (can be empty).
 - **Nom** : Name of the order.
-- **Type** : Type of order (Action or info).
-- **Sous-type** : Command subType (binary, digital, etc.).
-- **Direct url** : Provides the URThe to access this equipment. (right click, copy the link address) The URThe will launch the command for a **action** and return the information for a **info**.
+- **Type** : Type of order (action or info).
+- **Sous-type** : Command subtype (binary, digital, etc.).
+- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **info**.
 - **Unité** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
-- **Visible** : Check this box to make the command Jeedom.
-- **Follow in the timeline** : Check this box to make this command Jeedom in the timeline when it is used. Yor can specify a specific timeline in the field that appears if the option is checked.
+- **Visible** : Check this box to make the command visible.
+- **Follow in the timeline** : Check this box to make this command visible in the timeline when it is used. You can specify a specific timeline in the field that appears if the option is checked.
 - **Prohibit in automatic interactions** : prohibits automatic interactions on this command
-- **Icon** : Allows yor to change the command icon.
+- **Icon** : Allows you to change the command icon.
 
-Yor also have three other orange buttons underneath :
+You also have three other orange buttons underneath :
 
-- **This command replaces the ID** : Allows yor to replace an order Id with the order in question. Useful if yor have deleted an equipment in Jeedom and yor have scenarios that use commands from it.
+- **This command replaces the ID** : Allows you to replace an order ID with the order in question. Useful if you have deleted an equipment in Jeedom and you have scenarios that use commands from it.
 - **This command replaces the command** : Replace command with current command.
 - **Replace this command with the command** : Conversely, replace the command with another command.
 
 > **Note**
 >
-> This kind of Action replaces the commands everywhere in Jeedom (scenario, interaction, command, equipment….).
+> This kind of action replaces the commands everywhere in Jeedom (scenario, interaction, command, equipment….).
 
-Below, yor will find the list of the different equipment, commands, scenarios or interactions that use this command. Click on it to go directly to their respective configuration.
+Below, you will find the list of the different equipment, commands, scenarios or interactions that use this command. Click on it to go directly to their respective configuration.
 
 ### Configuration tab
 
-#### For an Info Type order :
+#### For an info type order :
 
 - **Calculation and rounding**
-    - **Calculation formula (\#value \# for the value)** : Allows yor to make an operation on the value of the order before processing by Jeedom, exampThe : `# value # - 0.2` to subtract 0.2 (offset on a temperature sensor).
-    - **Rounded (number after decimal point)** : Used to round the value of the command (ExampThe : put 2 to transform 16.643 345 in 16.64).
-- **Generic type** : Allows yor to configure the generic Type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobiThe application.
-- **Action on value, if** : Lets do some sort of mini scenarios. Yor can, for example, say that if the value is worth more than 50 for 3 minutes, then yor have to do such Action. This allows, for example, to turn off a light X minutes after it has turned on.
+    - **Algorithm (\#value\# for value)** : Allows you to make an operation on the value of the order before processing by Jeedom, example : ``#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
+    - **Rounded (number after decimal point)** : Used to round the value of the command (Example : put 2 to transform 16.643 345 in 16.64).
+- **Generic type** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
+- **Action on value, if** : Lets do some sort of mini scenarios. You can, for example, say that if the value is worth more than 50 for 3 minutes, then you have to do such action. This allows, for example, to turn off a light X minutes after it has turned on.
 
 - **Historique**
-    - **Historiser** : Check the box so that the values of this command are logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **lissage** or d'**archivage** allows yor to choose how to archive the data. By default, this is a **moyenne**. It is also possibThe to choose the **maximum**, The **minimum**, or **aucun**. **aucun** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Historiser** : Check the box to have the values of this command logged. (See **Analysis → History**)
+    - **Smoothing mode** : Mode of **lissage** or d'**archivage** allows you to choose how to archive the data. By default, this is a **moyenne**. It is also possible to choose the **maximum**, The **minimum**, or **aucun**. **aucun** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
@@ -209,36 +209,36 @@ Below, yor will find the list of the different equipment, commands, scenarios or
     - **Duration before status return (min)** : Time before return to the above value.
 
 - **Autres**
-    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). Yor can force the repetition of the value or prohibit it completely.
-    - **Push URL** : Allows to add a URThe to call in case of update of the order. Yor can use the following tags : `# value #` for the value of the order, `# cmd_name #` for the name of the order, `# cmd_Id #` for the unique identifier of the order, `# humanname #` for the full name of the order (ex : `# [Bathroom] [Hydrometry] [Humidity] #`), `# eq_name #` for the name of the equipment.
+    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
+    - **Push URL** : Allows to add a URL to call in case of update of the order. You can use the following tags : ``#value#`for the value of the order,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the order,`#humanname#`for the full name of the command (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
 
-#### For an Action command :
+#### For an action command :
 
--  **Generic type** : Allows yor to configure the generic Type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobiThe application.
-- **Confirm action** : Check this box to have Jeedom request confirmation when the Action is launched from the interface of this command.
-- **Access code** : Allows to define a code that Jeedom will ask when the Action is launched from the interface of this command.
+-  **Generic type** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
+- **Confirm action** : Check this box to have Jeedom request confirmation when the action is launched from the interface of this command.
+- **Access code** : Allows to define a code that Jeedom will ask when the action is launched from the interface of this command.
 - **Action before execution of the command** : Add commands **avant** each execution of the order.
 - **Action after execution of the order** : Add commands **after** each execution of the order.
 
 ### Alerts tab
 
-Allows yor to define an alert level (**warning** or **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
+Allows you to define an alert level (**warning** or **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
 
 > **Note**
 >
-> On the page **→ Settings → System Configuration : Logs**, yor can configure a message Type command that will allow Jeedom to notify yor if the Warning or Danger threshold is reached.
+> On the page **→ Settings → System Configuration : Logs**, you can configure a message type command that will allow Jeedom to notify you if the warning or danger threshold is reached.
 
 ### View tab
 
-In this part, yor will be abThe to configure certain widget display behaviors on the Dashboard, views, design and on mobile..
+In this part, you will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile..
 
-- **Widget** : Allows yor to choose the widget on desktop or mobiThe (note that yor need the widget plugin and that yor can also do it from there).
-- **Visible** : Check to make the command Jeedom.
+- **Widget** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from there).
+- **Visible** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
-- **Display name and icon** : Check to make the icon Jeedom in addition to the command name.
-- **Wrapped line before widget** : Select **before the widget** or **after the widget** to add a line break before or after the widget (to force for exampThe a display in column of the various commands of the equipment instead of lines by default)
+- **Display name and icon** : Check to make the icon visible in addition to the command name.
+- **Wrapped line before widget** : Select **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a display in column of the various commands of the equipment instead of lines by default)
 
-Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so yor have to look at its fiThe on the Market to know them.
+Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 
 > **Tip**
 >

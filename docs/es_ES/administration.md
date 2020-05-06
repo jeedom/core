@@ -29,7 +29,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **Escritorio claro y oscuro** : Le permite elegir un tema claro y oscuro para el escritorio.
 - **Móvil claro y oscuro** : igual que el anterior para la versión móvil.
 - **Borrar tema de / a** : Le permite definir un período de tiempo durante el cual se utilizará el tema claro previamente elegido. Sin embargo, marque la opción **Cambiar el tema según el tiempo**.
-- **Sensor de brillo**   : Solo en la interfaz móvil, requiere activar * sensor adicional genérico * en Chrome, página de Chrome://flags.
+- **Sensor de brillo**   : Interfaz móvil solamente, requiere activación *sensor adicional genérico* en cromo, página de cromo://flags.
 - **Ocultar imágenes de fondo** : Le permite ocultar las imágenes de fondo encontradas en los escenarios, objetos, páginas de interacciones, etc..
 
 ### Tuiles
@@ -60,16 +60,16 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Acceso interno** : información para unirse a Jeedom desde equipos en la misma red que Jeedom (LAN)
     - **OK / NOK** : indica si la configuración de la red interna es correcta.
     - **Protocole** : el protocolo a usar, a menudo HTTP.
-    - **URLa o dirección IP** : Jeedom IP para entrar.
+    - **URL o dirección IP** : Jeedom IP para entrar.
     - **Port** : el puerto de la interfaz web de Jeedom, generalmente 80.
         Tenga en cuenta que cambiar el puerto aquí no cambia el puerto real de Jeedom, que seguirá siendo el mismo..
-    - **Complementar** : el fragmento de URLa adicional (ejemplo : / jeedom) para acceder a Jeedom.
+    - **Complementar** : el fragmento de URL adicional (ejemplo : / jeedom) para acceder a Jeedom.
 
 - **Acceso externo** : información para llegar a Jeedom desde fuera de la red local. Para completar solo si no está utilizando Jeedom DNS.
     - **OK / NOK** : indica si la configuración de red externa es correcta.
     - **Protocole** : protocolo utilizado para acceso al exterior.
-    - **URLa o dirección IP** : IP externa, si está fija. De lo contrario, proporcione la URLa que apunta a la dirección IP externa de su red.
-    - **Complementar** : el fragmento de URLa adicional (ejemplo : / jeedom) para acceder a Jeedom.
+    - **URL o dirección IP** : IP externa, si está fija. De lo contrario, proporcione la URL que apunta a la dirección IP externa de su red.
+    - **Complementar** : el fragmento de URL adicional (ejemplo : / jeedom) para acceder a Jeedom.
 
 - **Proxy para el mercado** : activación proxy.
     - Marque la casilla habilitar proxy.
@@ -156,11 +156,11 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 
 ### Push
 
-- **URLa de inserción global** : le permite agregar una URLa para llamar en caso de una actualización del pedido. Puedes usar las siguientes etiquetas :
-**\#value\#** por el valor del pedido, **\#Cmd\_name \#** para el nombre del comando,
-**\#Cmd\_id \#** para el identificador único del pedido,
-**\#humanname\#** para el nombre completo de la orden (ej. : \# \ [Baño \] \ [Hidrometría \] \ [Humedad \] \#),
-**\#Eq_name \#** para el nombre del equipo
+- **URL de inserción global** : le permite agregar una URL para llamar en caso de una actualización del pedido. Puedes usar las siguientes etiquetas :
+**\#value\#** por el valor del pedido, **\#cmd\_name\#** para el nombre del comando,
+**\#cmd\_id\#** para el identificador único del pedido,
+**\#humanname\#** para el nombre completo de la orden (ej. : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
+**\#eq_name\#** para el nombre del equipo
 
 ## Pestaña Resúmenes
 
@@ -238,7 +238,7 @@ Aquí tienes tres parámetros :
         - *Jeedom* : Temperatura 23.6 ° C, temperatura 27.2 ° C
 -   Interacciones de tipo **Avísame** permita pedirle a Jeedom que le avise si un pedido excede / cae o vale un cierto valor.
     - *Vous* : Notificarme si la temperatura de la sala supera los 25 ° C ?
-    - *Jeedom* : OK (* Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, solo una vez *)
+    - *Jeedom* : OK (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
 
 > **Note**
 >
@@ -306,7 +306,7 @@ Depósito utilizado para activar el envío de complementos por archivos.
 
 Depósito utilizado para conectar Jeedom a Github.
 
-- **Token** : Simbólico para acceder al depósito privado.
+- **Token** : Token para acceder al depósito privado.
 - **Usuario u organización del repositorio principal de Jeedom** : Nombre de usuario u organización en github para el núcleo.
 - **Nombre del repositorio para el núcleo Jeedom** : Nombre del repositorio para core.
 - **Industria central de Jeedom** : Rama del repositorio central.
@@ -347,7 +347,7 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 
 > **Important**
 >
-> El protocolo Samba tiene varias versiones, el v1 tiene un nivel de seguridad comprometido y en algunos NAS puede obligar al cliente a usar v2 o v3 para conectarse. Entonces, si tiene un error * la negociación del protocolo falló: NT_STATUS_INVAID_NETWORK_RESPONSE * existe una buena posibilidad de que en el lado del NAS la restricción esté en su lugar. Luego debe modificar el archivo / etc / samba / smb en su sistema operativo Jeedom.conf y agregue estas dos líneas :
+> El protocolo Samba tiene varias versiones, el v1 tiene un nivel de seguridad comprometido y en algunos NAS puede obligar al cliente a usar v2 o v3 para conectarse. Entonces si tienes un error *negociación de protocolo fallida: NT_STATUS_INVAID_NETWORK_RESPONSE* hay una buena posibilidad de que en el lado del NAS la restricción esté en su lugar. Luego debe modificar el archivo / etc / samba / smb en su sistema operativo Jeedom.conf y agregue estas dos líneas :
 > protocolo max del cliente = SMB3
 > protocolo min del cliente = SMB2
 > El smbclient del lado de Jeedom usará v2 donde v3 y al poner SMB3 en ambos solo SMB3. Entonces, depende de usted adaptarse según las restricciones en el NAS u otro servidor Samba
@@ -358,8 +358,8 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 
 #### URL
 
-- **URLa central de Jeedom**
-- **URLa de la versión principal de Jeedom**
+- **URL central de Jeedom**
+- **URL de la versión principal de Jeedom**
 
 ## Pestaña Caché
 

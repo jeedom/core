@@ -29,7 +29,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Área de trabalho clara e escura** : Permite escolher um tema claro e escuro para a área de trabalho.
 - **Celular claro e escuro** : mesmo que acima para a versão Mobile.
 - **Limpar tema de / para** : Permite definir um período de tempo durante o qual o tema claro escolhido anteriormente será usado. No entanto, marque a opção **Alternar tema com base no tempo**.
-- **Sensor de brilho**   : Somente na interface móvel, é necessário ativar * sensor extra genérico * no chrome, chrome page://flags.
+- **Sensor de brilho**   : Somente interface móvel, requer ativação *sensor extra genérico* no chrome, página chrome://flags.
 - **Ocultar imagens de fundo** : Permite ocultar as imagens de plano de fundo encontradas nos cenários, objetos, páginas de interações etc..
 
 ### Tuiles
@@ -60,16 +60,16 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Acesso interno** : informações para ingressar na Jeedom a partir de equipamentos na mesma rede que Jeedom (LAN)
     - **OK / NOK** : indica se a configuração interna da rede está correta.
     - **Protocole** : o protocolo a ser usado, geralmente HTTP.
-    - **URL  ou endereço IP** : IP Jeedom para entrar.
+    - **URL ou endereço IP** : IP Jeedom para entrar.
     - **Port** : a porta da interface da web Jeedom, geralmente 80.
         Observe que alterar a porta aqui não altera a porta Jeedom real, que permanecerá a mesma.
-    - **Complemento** : o fragmento de URL  adicional (exemplo : / Jeedom) para acessar o Jeedom.
+    - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
 
 - **Acesso externo** : informações para acessar o Jeedom de fora da rede local. A ser concluído apenas se você não estiver usando o Jeedom DNS.
     - **OK / NOK** : indica se a configuração de rede externa está correta.
     - **Protocole** : protocolo usado para acesso ao ar livre.
-    - **URL  ou endereço IP** : IP externo, se fixo. Caso contrário, forneça o URL  apontando para o endereço IP externo da sua rede.
-    - **Complemento** : o fragmento de URL  adicional (exemplo : / Jeedom) para acessar o Jeedom.
+    - **URL ou endereço IP** : IP externo, se fixo. Caso contrário, forneça o URL apontando para o endereço IP externo da sua rede.
+    - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
 
 - **Proxy para o mercado** : ativação de proxy.
     - Marque a caixa ativar proxy.
@@ -128,7 +128,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 ### Logs
 
 - **Log Motor** : Permite alterar o mecanismo de log para, por exemplo, enviá-los para um daemon syslog (d).
-- **Toras de formato** : Formato de log a ser usado (Cuidado : isso não afeta os logs do daemon).
+- **Logs de formato** : Formato de log a ser usado (Cuidado : isso não afeta os logs do daemon).
 - **O número máximo de linhas em um arquivo de log** : Define o número máximo de linhas em um arquivo de log. Recomenda-se não tocar nesse valor, pois um valor muito grande pode preencher o sistema de arquivos e / ou tornar o Jeedom incapaz de exibir o log..
 - **Nível de log padrão** : Quando você seleciona "Padrão", para o nível de um log no Jeedom, isso será usado.
 
@@ -156,11 +156,11 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 
 ### Push
 
-- **URL  esforço global** : permite adicionar um URL  para chamar no caso de uma atualização do pedido. Você pode usar as seguintes tags :
-**\#value\#** para o valor do pedido, **\#cmd\_name \#** para o nome do comando,
-**\#cmd\_id \#** para o identificador exclusivo do pedido,
-**\#humanname\#** para o nome completo do pedido (ex : \# \ [Banheiro \] \ [Hidrometria \] \ [Umidade \] \#),
-**\#eq_name \#** para o nome do equipamento
+- **URL esforço global** : permite adicionar um URL para chamar no caso de uma atualização do pedido. Você pode usar as seguintes tags :
+**\#value\#** para o valor do pedido, **\#cmd\_name\#** para o nome do comando,
+**\#cmd\_id\#** para o identificador exclusivo do pedido,
+**\#humanname\#** para o nome completo do pedido (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
+**\#eq_name\#** para o nome do equipamento
 
 ## Guia Resumos
 
@@ -209,7 +209,7 @@ Essa guia permite definir parâmetros globais relativos às interações que voc
 
 > **Tip**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração. : Toras e verifique **Debug** na lista inferior. Atenção : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração. : Logs e verifique **Debug** na lista inferior. Atenção : os logs serão muito detalhados !
 
 ### Geral
 
@@ -238,7 +238,7 @@ Aqui você tem três parâmetros :
         - *Jeedom* : Temperatura 23.6 ° C, Temperatura 27.2 ° C
 -   Interações de tipo **Avise-me** permita que a Jeedom avise se um pedido excede / cai ou vale algum valor.
     - *Vous* : Notifique-me se a temperatura da sala exceder 25 ° C ?
-    - *Jeedom* : OK (* Assim que a temperatura da sala exceder 25 ° C, Jeedom informará apenas uma vez *)
+    - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
 > **Note**
 >
@@ -267,7 +267,7 @@ Aqui estão as diferentes opções disponíveis :
 - **Habilitar a autenticação LDAP** : permite autenticação através de um AD (LDAP).
 - **Anfitrião** : servidor que hospeda o AD.
 - **Domaine** : domínio do seu anúncio.
-- **DN base** : DN base do seu AD.
+- **DN base** : Base DN do seu AD.
 - **Nome de Usuário** : nome de usuário para o Jeedom para entrar no AD.
 - **Senha** : senha para o Jeedom se conectar ao AD.
 - **Usuário pesquisar Campos** : campos de pesquisa de login do usuário. Geralmente uid para LDAP, SamAccountName para Windows AD.
@@ -317,7 +317,7 @@ Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável us
 
 - **Adresse** : Morada du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.
-- **Senha** : Sua senha do Mercado.
+- **Senha** : Sua senha do Market.
 - **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom com risco de travar entre eles).
 - **Senha da [nuvem de backup]** : Senha de backup na nuvem. IMPORTANTE, você não deve perdê-lo, não há como recuperá-lo. Sem ele, você não poderá mais restaurar seu Jeedom.
 - **[Nuvem de backup] Backup completo de frequência** : Frequência de backup completo na nuvem. Um backup completo é maior que um incremental (que envia apenas as diferenças). Recomenda-se fazer 1 por mês.
@@ -347,7 +347,7 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 
 > **Important**
 >
-> O protocolo Samba possui várias versões, a v1 está comprometida em termos de segurança e, em alguns NAS, você pode forçar o cliente a usar a v2 ou v3 para conectar-se. Portanto, se você tiver um erro * a negociação do protocolo falhou: NT_STATUS_INVAID_NETWORK_RESPONSE * há uma boa chance de que, no lado do NAS, a restrição esteja em vigor. Você deve modificar o arquivo / etc / samba / smb no seu Jeedom OS.conf e adicione essas duas linhas a ele :
+> O protocolo Samba possui várias versões, a v1 está comprometida em termos de segurança e, em alguns NAS, você pode forçar o cliente a usar a v2 ou v3 para conectar-se. Então, se você tiver um erro *falha na negociação do protocolo: NT_STATUS_INVAID_NETWORK_RESPONSE* existe uma boa chance de que, no lado do NAS, a restrição esteja em vigor. Você deve modificar o arquivo / etc / samba / smb no seu Jeedom OS.conf e adicione essas duas linhas a ele :
 > protocolo máximo do cliente = SMB3
 > protocolo min de cliente = SMB2
 > O smbclient do lado do Jeedom usará v2 em que v3 e colocando SMB3 em ambos apenas SMB3. Cabe a você adaptar de acordo com as restrições no servidor NAS ou outro servidor Samba
@@ -358,8 +358,8 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 
 #### URL
 
-- **URL  principal do Jeedom**
-- **URL  da versão principal do Jeedom**
+- **URL principal do Jeedom**
+- **URL da versão principal do Jeedom**
 
 ## Guia Cache
 
