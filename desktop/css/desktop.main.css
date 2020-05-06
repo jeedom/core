@@ -93,6 +93,10 @@ header a.navbar-brand {
   height: calc(100% - 5px) !important;
 }
 
+#categoryfilter i {
+  width: 15px;
+}
+
 /* __________________________________________________________________________________________________________LINKS */
 
 .widget-name,
