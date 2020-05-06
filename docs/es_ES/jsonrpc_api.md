@@ -3,7 +3,7 @@ Aquí hay documentación sobre métodos API.
 Primero, aquí están las especificaciones (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-El acceso a la API es a través de la url : *URL\_JEEDOM * / core / api / jeeApi.php
+El acceso a la API es a través de la url : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -141,7 +141,7 @@ API de resumen JSON
 summary::global
 ---------------
 
-Devuelve el resumen total de la clave pasada en el parámetro
+Devuelve el resumen global de la clave pasada en el parámetro
 
 Configuraciones:
 
@@ -231,7 +231,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   string Id. lógico = ''
+-   string logicalId = ''
 
 -   int objeto\_id = nulo
 
@@ -293,7 +293,7 @@ Configuraciones:
 
 -   int id
 
--   inicio de cadenaTime : fecha de inicio del cálculo de estadísticas
+-   string startTime : fecha de inicio del cálculo de estadísticas
 
 -   string endTime : fecha de finalización del cálculo de estadísticas
 
@@ -306,7 +306,7 @@ Configuraciones:
 
 -   int id
 
--   inicio de cadenaTime : fecha de inicio del cálculo de tendencia
+-   string startTime : fecha de inicio del cálculo de tendencia
 
 -   string endTime : fecha de finalización del cálculo de tendencia
 
@@ -319,7 +319,7 @@ Configuraciones:
 
 -   int id
 
--   inicio de cadenaTime : fecha de inicio de la historia
+-   string startTime : fecha de inicio de la historia
 
 -   string endTime : fecha de finalización de la historia
 
@@ -334,7 +334,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   registro de cadenaicalId
+-   string logicalId
 
 -   string eqType
 
@@ -377,7 +377,7 @@ Configuraciones:
 
 -   cadena de fecha y hora : (opcional) valor datetime
 
-API de eguión JSON
+API de escenario JSON
 =================
 
 scenario::all
@@ -388,7 +388,7 @@ Devuelve la lista de todos los escenarios.
 scenario::byId
 --------------
 
-Devuelve el eguión especificado
+Devuelve el escenario especificado
 
 Configuraciones:
 
@@ -397,7 +397,7 @@ Configuraciones:
 scenario::export
 ----------------
 
-Devuelve la exportación del escenario, así como el * nombre humano * del escenario
+Devuelve la exportación del escenario, así como la *nombre humano* del guión
 
 Configuraciones:
 
@@ -410,16 +410,16 @@ Le permite importar un escenario.
 
 Configuraciones:
 
--   int id : ID del eguión en el que importar (vacío si se crea)
+-   int id : ID del escenario en el que importar (vacío si se crea)
 
--   string humanName : *nombre humano * del eguión (vacío si creación)
+-   string humanName : *nombre humano* del escenario (vacío si creación)
 
--   importación de matriz : eguión (del campo eguión de exportación::export)
+-   importación de matriz : escenario (del campo escenario de exportación::export)
 
 scenario::changeState
 ---------------------
 
-Cambia el estado del eguión especificado..
+Cambia el estado del escenario especificado..
 
 Configuraciones:
 
@@ -456,7 +456,7 @@ Configuraciones:
 
 -   mensaje de cadena : mensaje de texto para escribir
 
--   string Id. lógico : Id. lógico del mensaje generado
+-   string logicalId : Id. lógico del mensaje generado
 
 
 log::list
@@ -498,7 +498,7 @@ Configuraciones:
 
 -   tipo de cadena : tipo de valor almacenado (para escenarios es escenario)
     
--   id linkId : -1 para el total (valor para los escenarios predeterminados o el id del escenario)
+-   id linkId : -1 para el global (valor para los escenarios predeterminados o el id del escenario)
     
 -   clave de cuerda : nombre del valor
 
@@ -512,7 +512,7 @@ Configuraciones:
 -   tipo de cadena : tipo de valor almacenado (para escenarios
     es escenario)
 
--   id linkId : -1 para total (valor para escenarios predeterminados,
+-   id linkId : -1 para global (valor para escenarios predeterminados,
     o el id del escenario)
 
 -   clave de cuerda : nombre del valor
@@ -540,7 +540,7 @@ Configuraciones:
 
 -   acción de cuerda : action
 
--   string Id. lógico : logicalId
+-   string logicalId : logicalId
 
 message::removeAll
 ------------------
@@ -583,7 +583,7 @@ Reiniciar Jeedom
 jeedom::isOk
 ------------
 
-Le permite saber si el estado total de Jeedom está bien
+Le permite saber si el estado global de Jeedom está bien
 
 jeedom::update
 --------------
@@ -611,7 +611,7 @@ Instalación / Actualización de un complemento dado
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::remove
 --------------
@@ -621,7 +621,7 @@ Eliminación de un complemento dado
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::dependancyInfo
 ----------------------
@@ -631,7 +631,7 @@ Devuelve información sobre el estado de dependencia del complemento
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::dependancyInstall
 -------------------------
@@ -641,7 +641,7 @@ Forzar la instalación de dependencias de complementos
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonInfo
 ------------------
@@ -651,7 +651,7 @@ Devuelve información sobre el estado del demonio del complemento.
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonStart
 -------------------
@@ -661,7 +661,7 @@ Forzar al demonio a comenzar
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonStop
 ------------------
@@ -671,7 +671,7 @@ Fuerza demonio parada
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 plugin::deamonChangeAutoMode
 ----------------------------
@@ -681,7 +681,7 @@ Cambiar el modo de gestión del demonio
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 -   modo int : 1 para automático, 0 para manual
 
 API de actualización de JSON
@@ -708,7 +708,7 @@ update::doUpdate
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   string Id. lógico (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 API de red JSON
 ================
@@ -739,7 +739,7 @@ Recuperando la lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::todos &#39;, array ())){
+if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -750,7 +750,7 @@ Ejecución de una orden (con la opción de un título y un mensaje)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; mensaje &#39;=>&#39; Funciona &#39;)))){
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'opciones '=> array (' title '=>' Cuckoo ',' message '=>' Funciona ')))){
     echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

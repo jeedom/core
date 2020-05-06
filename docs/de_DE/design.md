@@ -14,7 +14,7 @@ Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
 Im Menü (Rechtsklick) finden wir folgende Aktionen :
 
-- **Designs** : Zeigt die Liste Ihrer Design an und ermöglicht Ihnen den Zugriff darauf.
+- **Designs** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
 - **Edition** : Wechseln Sie in den Bearbeitungsmodus.
 - **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite, wodurch das Jeedom-Menü von oben entfernt wird.
 - **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu.
@@ -37,9 +37,9 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
     - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Je nach Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren..
     - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
 - **Design löschen** : Design entfernen.
-- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Design.
+- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
-- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Design.
+- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
 - **Sauvegarder** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden)..
 
 > **Important**
@@ -51,8 +51,8 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **Nom** : Der Name Ihres Design.
-    - **Position** : Die Position des Design im Menü. Ermöglicht die Bestellung der Design.
+    - **Nom** : Der Name Ihres Designs.
+    - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode* : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
@@ -61,7 +61,7 @@ Hier gefunden :
         - **Envoyer** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Tailles**
-    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Design in Pixel.
+    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
 
 ## Allgemeine Konfiguration der Elemente
 
@@ -190,7 +190,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 
 ### Einzelne Makro
 
-In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus. Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
+In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus. Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
 
 ### Binäres Makro
 
@@ -227,4 +227,4 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
 >**Löschen Sie ein Design, das nicht mehr funktioniert**
->Machen Sie im Administrationsteil dann OS / DB &quot;select * from planHeader&quot;, stellen Sie die ID des betreffenden Design wieder her und führen Sie &quot;delete from planHeader where id = # TODO #&quot; und &quot;delete from plan where planHeader_id = # todo #&quot; aus. &quot;durch Ersetzen von # TODO # durch die zuvor gefundene Design-ID.
+>Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

@@ -5,8 +5,8 @@ La página de widgets te permite crear widgets personalizados para tu Jeedom.
 
 Hay dos tipos de widgets personalizados. :
 
-- Reproductores basados en una plantilla (administrado por Jeedom Core).
-- Reproductores basados en código de usuario.
+- Widgets basados en una plantilla (administrado por Jeedom Core).
+- Widgets basados en código de usuario.
 
 > **Note**
 >
@@ -72,7 +72,7 @@ Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quo
 >Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidad y eficiencia, tanto para usted como para nosotros.. No tuvimos otra opción
 
 >**TIPS**
->Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo, si en el ancho pones como valor # ancho # (ten cuidado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widget diferente para cada tamaño de imagen que desee
+>Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo si en ancho pones como valor #width# (tenga cuidado de poner el # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widget diferente para cada tamaño de imagen que desee
 
 ### Test
 
@@ -80,17 +80,17 @@ Esto se llama la parte multiestatal, a menudo tiene, como para widgets simples, 
 
 Es bastante simple. En lugar de poner una imagen para el &quot;encendido&quot; y / o el &quot;apagado&quot; como en el caso anterior, vaya antes de hacer una prueba para hacer. Si esto es cierto, el widget mostrará el icono / imagen en cuestión.
 
-Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automáticamente por el sistema con el valor actual de la orden. También puedes hacer por ejemplo :
+Las pruebas están en forma : #value# == 1, #value# será reemplazado automáticamente por el sistema por el valor actual de la orden. También puedes hacer por ejemplo :
 
-- #valor #&gt; 1
+- #value# > 1
 - #value# >= 1 && #value# <= 5
-- #valor # == &#39;toto'
+- #value# == 'toto'
 
 >**Note**
 >Es importante tener en cuenta el &quot;alrededor del texto para comparar si el valor es un texto
 
 >**Note**
->Para usuarios avanzados, aquí también es posible usar funciones de JavaScript tipo #valor#.match (&quot;^ plop&quot;), aquí probamos si el texto comienza con plop
+>Para usuarios avanzados, también es posible usar funciones de tipo javascript aquí #value#.match (&quot;^ plop&quot;), aquí probamos si el texto comienza con plop
 
 >**Note**
 >Es posible mostrar el valor del comando en el widget colocando, por ejemplo, al lado del código HTML del icono #value#
@@ -160,7 +160,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí hay una lista (no necesariamente exhaustiva) :
 
 - #name# : nombre del comando
-- #valueName# : nombre del valor del comando y = # nombre # cuando se trata de un comando de tipo de información
+- #valueName# : nombre del valor del pedido, y = #name# cuando es un comando de tipo de información
 - #minValue# : valor mínimo que puede tomar el comando (si el comando es de tipo deslizador)
 - #maxValue# : valor máximo que puede tomar el comando (si el comando es de tipo deslizador)
 - #hide_name# : vacío u oculto si el usuario solicitó ocultar el nombre del widget, ponerlo directamente en una etiqueta de clase
@@ -170,7 +170,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 - #valueDate# : fecha del valor del pedido
 - #collectDate# : fecha de recogida del pedido
 - #alertLevel# : nivel de alerta (ver [aquí](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
-- #hide_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a # hide_nombre #, está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # y # trend # no serán reemplazadas por Jeedom.
+- #hide_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# y #tendance# no será reemplazado por Jeedom.
 - #minHistoryValue# : valor mínimo durante el período (período definido en la configuración de Jeedom por el usuario)
 - #averageHistoryValue# : valor promedio durante el período (período definido en la configuración de Jeedom por el usuario)
 - #maxHistoryValue# : valor máximo durante el período (período definido en la configuración de Jeedom por el usuario)
@@ -181,25 +181,25 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 Cuando un nuevo valor Jeedom buscará en la página html, si el comando está allí y en Jeedom.cmd.actualizar si hay una función de actualización. En caso afirmativo, lo llama con un solo argumento que es un objeto en la forma :
 
 `` ''
-{display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 `` ''
 
 Aquí hay un ejemplo simple de código JavaScript para poner en su widget :
 
 `` ''
 <script>
-    Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
+    Jeedom.cmd.update ['#id#'] = función (_opciones){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Fecha de recogida : '+ _options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 `` ''
 
 Aquí hay dos cosas importantes :
 
 `` ''
-Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
+Jeedom.cmd.update ['#id#'] = función (_opciones){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Fecha de recogida : '+ _options.collectDate)
   $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
@@ -207,7 +207,7 @@ Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
 La función llamada al actualizar el widget. Luego actualiza el código html del widget_template.
 
 `` ''
-Jeedom.cmd.update['#id#']({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 `` ''
  La llamada a esta función para la inicialización del widget.
 

@@ -4002,6 +4002,7 @@
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "No se puede instalar el complemento. Los archivos no se pudieron descomprimir:",
         "Impossible de décompresser l\\'archive zip : ": "No se puede descomprimir el archivo zip:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "No puedes eliminar el núcleo de Jeedom",
+        "Supression des fichiers inutiles...": "Eliminar archivos innecesarios ...",
         "Début de la mise à jour de : ": "Comience la actualización:",
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "No se puede crear la carpeta: '. $ cibDir. . Cuestión de derechos?",
         "Action de pré-update...": "Acción previa a la actualización ...",

@@ -14,7 +14,7 @@ No modo de edição:
 	- Arraste e solte nos ladrilhos para reorganizá-los.
 	- Redimensionar nas bordas do bloco para redimensioná-las.
 	- Menu contextual (clique direito) nos blocos.
-	- Ctrl Clique em um ícone * expandir* : Ajusta a altura dos blocos de objetos não em relação à mais alta, mas em relação à mais baixa.
+	- Ctrl Clique em um ícone *expand* : Ajusta a altura dos blocos de objetos não em relação à mais alta, mas em relação à mais baixa.
 
 - Ctrl Clique em um comando de informações : Abre todas as informações do histórico do bloco na janela do histórico.
 
@@ -59,10 +59,10 @@ Em um cenário :
 - Ctrl Shift Y : Refazer.
 
 - Ctrl Clique em Executar : Salve e execute o cenário e abra o log.
-- Ctrl Clique no ícone * Copie este bloco* : Corte este bloco.
-- Ctrl Clique no ícone * Colar um bloco* : Substitua este bloco.
-- Ctrl Clique no ícone * Excluir este bloco* : Excluir bloco sem confirmação.
-- Ctrl Clique no ícone * Ocultar este bloco* : Ocultar ou mostrar todos os blocos.
+- Ctrl Clique no ícone *Copie este bloco* : Corte este bloco.
+- Ctrl Clique no ícone *Colar um bloco* : Substitua este bloco.
+- Ctrl Clique no ícone *Excluir este bloco* : Excluir bloco sem confirmação.
+- Ctrl Clique no ícone *Ocultar este bloco* : Ocultar ou mostrar todos os blocos.
 
 Em um bloco de código :
 - Ctrl F : Pesquise no código.
@@ -72,7 +72,7 @@ Em um bloco de código :
 - Ctrl S em uma configuração de plug-in : Salvar.
 - Ctrl Clique ou Clique Central em um plug-in : Abra o gerenciamento de plug-ins em uma nova guia do navegador.
 
-## Plugins / * plugin*
+## Plugins / *plugin*
 - Em um dispositivo, Ctrl S  : Salvar.
 - Em um dispositivo, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro dispositivo.
 - Ctrl Clique ou Clique Central em um dispositivo: Abra o equipamento do plug-in em uma nova guia do navegador.
@@ -85,8 +85,8 @@ Em um bloco de código :
 - Ctrl Shift E em um design : Entrando ou saindo do modo de edição.
 
 ## Análise / resumo de automação residencial
-- Ctrl Clique no ícone * Abrir * (pesquisa) : Abra todos os objetos e equipamentos.
-- Ctrl Clique no ícone * Fechar * (pesquisa) : Fecha todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Ouvrir* (pesquisa) : Abra todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Fermer* (pesquisa) : Fecha todos os objetos e equipamentos.
 
 ## Análise / História
 Se várias curvas forem exibidas :

@@ -3,20 +3,20 @@
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-Das Armaturenbrett ist eine der Hauptseiten von Jeedom. Es zeigt einen Bericht über Ihre gesamte Hausautomation an.
+Das Dashboard ist eine der Hauptseiten von Jeedom. Es zeigt einen Bericht über Ihre gesamte Hausautomation an.
 Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst erstellt und enthält alle sichtbaren Objekte und deren Ausrüstung.
 
 > **Tip**
 >
-> Die Anzeigereihenfolge der Objekte im Armaturenbrett ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.
+> Die Anzeigereihenfolge der Objekte im Dashboard ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.
 
-Damit Geräte im Armaturenbrett angezeigt werden, muss dies der Fall sein :
+Damit Geräte im Dashboard angezeigt werden, muss dies der Fall sein :
 - Sei aktiv.
 - Sei sichtbar.
-- Haben Sie als übergeordnetes Objekt ein Objekt im Armaturenbrett sichtbar.
+- Haben Sie als übergeordnetes Objekt ein Objekt im Dashboard sichtbar.
 
-Beim ersten Erscheinen der Ausrüstung im Armaturenbrett versucht Jeedom, die Größe der Kachel korrekt anzupassen, um alle Befehle und ihre Widgets anzuzeigen.
-Um ein ausgewogenes Armaturenbrett zu erhalten, können Sie mit dem Stift oben rechts in der Suchleiste in den Bearbeitungsmodus wechseln, um die Größe der Gerätekacheln zu ändern und / oder sie neu zu ordnen.
+Beim ersten Erscheinen der Ausrüstung im Dashboard versucht Jeedom, die Größe der Kachel korrekt anzupassen, um alle Befehle und ihre Widgets anzuzeigen.
+Um ein ausgewogenes Dashboard zu erhalten, können Sie mit dem Stift oben rechts in der Suchleiste in den Bearbeitungsmodus wechseln, um die Größe der Gerätekacheln zu ändern und / oder sie neu zu ordnen.
 
 Wenn Sie die Maus über eine Bestellung bewegen, wird unten links auf der Kachel eine farbige Markierung angezeigt:
 - Blau für eine Info-Bestellung. Wenn es protokolliert ist, öffnet ein Klick darauf das Protokollfenster.
@@ -26,7 +26,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 > **Tip**
 >
-> Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Armaturenbrett → Objektname**.
+> Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Dashboard → Objektname**.
 > Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
 
 - Oben links befindet sich ein kleines Symbol zum Ein- und Ausblenden des Objektbaums.
@@ -38,11 +38,11 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 - Ein Klick auf einen Auftrag vom Informationstyp zeigt den Verlauf des Auftrags an (falls er historisch ist)..
 - Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
-- Ein Klick auf die * Zeit * -Informationen eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls dieser protokolliert ist)..
+- Ein Klick auf die Informationen *time* eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
 
 > **Tip**
 >
-> In Ihrem Profil können Sie Jeedom so konfigurieren, dass der Baum der Objekte und / oder die Szenarien standardmäßig sichtbar sind, wenn Sie im Armaturenbrett ankommen.
+> In Ihrem Profil können Sie Jeedom so konfigurieren, dass der Baum der Objekte und / oder die Szenarien standardmäßig sichtbar sind, wenn Sie im Dashboard ankommen.
 
 > **Tip**
 >
@@ -51,7 +51,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 ## Bearbeitungsmodus
 
-Im Bearbeitungsmodus (* der Stift oben rechts *) können Sie die Größe der Kacheln und ihre Anordnung im Armaturenbrett ändern.
+Im Bearbeitungsmodus (*der Bleistift oben rechts*) können Sie die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
 
 Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten :
 

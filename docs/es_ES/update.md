@@ -22,13 +22,13 @@ El botón **Sauvegarder** se utilizará cuando cambie las opciones en la tabla a
 
 El botón **Poner al día** le permite actualizar el Core, los complementos o ambos.
 Una vez que haces clic en él, obtienes estas diferentes opciones :
-- **Pre-actualización** : La permite actualizar el script de actualización antes de aplicar las nuevas actualizaciones. Generalmente se usa a pedido del soporte.
+- **Pre-actualización** : Le permite actualizar el script de actualización antes de aplicar las nuevas actualizaciones. Generalmente se usa a pedido del soporte.
 - **Ahorre antes** : Haga una copia de seguridad de Jeedom antes de actualizar.
-- **Actualizar complementos** : La permite incluir complementos en la actualización.
-- **Actualiza el núcleo** : La permite incluir el núcleo Jeedom (el núcleo) en la actualización.
+- **Actualizar complementos** : Le permite incluir complementos en la actualización.
+- **Actualiza el núcleo** : Le permite incluir el núcleo Jeedom (el núcleo) en la actualización.
 
 - **Modo forzado** : Realice la actualización en modo forzado, es decir, incluso si hay un error, Jeedom continuará y no restaurará la copia de seguridad.. (¡Este modo desactiva el guardado!).
-- **Actualización para volver a aplicar** : La permite volver a aplicar una actualización. (NB : No todas las actualizaciones se pueden volver a aplicar).
+- **Actualización para volver a aplicar** : Le permite volver a aplicar una actualización. (NB : No todas las actualizaciones se pueden volver a aplicar).
 
 > **Important**
 >
@@ -42,7 +42,7 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 
 La tabla contiene las versiones de Core y los complementos instalados..
 
-Los complementos tienen una insignia al lado de su nombre, especificando su versión, verde en * estable *, o naranja en * beta * u otro.
+Los complementos tienen una insignia al lado de su nombre, especificando su versión, de color verde *stable*, o naranja en *beta* u otro.
 
 - **Statut** : OK o NOK.
 - **Nom** : Nombre y origen del complemento.
@@ -52,9 +52,9 @@ Los complementos tienen una insignia al lado de su nombre, especificando su vers
 En cada línea, puede usar las siguientes funciones:
 
 - **Restablecer** : Reasentamiento forzado.
-- **Supprimer** : La permite desinstalarlo.
+- **Supprimer** : Le permite desinstalarlo.
 - **Comprobar** : Consulte la fuente de actualizaciones para averiguar si hay una nueva actualización disponible.
-- **Poner al día** : La permite actualizar el elemento (si tiene una actualización).
+- **Poner al día** : Le permite actualizar el elemento (si tiene una actualización).
 - **Changelog** : Permite el acceso a la lista de cambios en la actualización..
 
 > **Important**
@@ -72,7 +72,7 @@ Durante o después de una actualización, esta pestaña le permite leer el regis
 
 > **Note**
 >
-> Este registro normalmente termina con * [FINALIZAR ÉXITO DE ACTUALIZACIÓN]*. Puede haber algunas líneas de error en este tipo de registro, sin embargo, a menos que haya un problema real después de la actualización, no siempre es necesario contactar al soporte para esto..
+> Este registro normalmente termina con *[FINALIZAR ÉXITO ACTUALIZADO]*. Puede haber algunas líneas de error en este tipo de registro, sin embargo, a menos que haya un problema real después de la actualización, no siempre es necesario contactar al soporte para esto..
 
 ## Actualización de línea de comando
 
@@ -83,7 +83,7 @@ Una vez conectado, este es el comando para realizar :
 
 Los posibles parámetros son :
 
-- **mode** : ``force``, para iniciar una actualización en modo forzado (ignora los errores).
+- **mode** : `force`, para iniciar una actualización en modo forzado (ignora los errores).
 - **version** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :

@@ -38,7 +38,7 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 
 - A click on an information type order displays the history of the order (if it is historical).
 - A Ctrl + Click on an information type command displays the history of all (historical) commands for this tile.
-- A click on the * time * information of an action command displays the history of the command (if it is logged).
+- One click on the information *time* of an action command displays the history of the command (if it is historized).
 
 > **Tip**
 >
@@ -51,7 +51,7 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 
 ## Edit mode
 
-In edit mode (* the pencil at the top right *), you can change the size of the tiles and their arrangement on the Dashboard.
+In edit mode (*the pencil at the top right*), you can change the size of the tiles and their arrangement on the Dashboard.
 
 You can also edit the internal layout of the controls on the tile :
 

@@ -3,7 +3,7 @@ Aqui está a documentação sobre métodos de API.
 Primeiro, aqui estão as especificações (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-O acesso à API é via URL : *URL\_JEEDOM * / core / api / jeeApi.php
+O acesso à API é via URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -231,7 +231,7 @@ Configurações:
 
 -   nome da string
 
--   registro de stringicId = ''
+-   string logicId = ''
 
 -   int objeto\_id = nulo
 
@@ -293,7 +293,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do cálculo das estatísticas
+-   string startTime : data de início do cálculo das estatísticas
 
 -   string endTime : data final do cálculo das estatísticas
 
@@ -306,7 +306,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do cálculo de tendência
+-   string startTime : data de início do cálculo de tendência
 
 -   string endTime : data de término do cálculo de tendência
 
@@ -319,7 +319,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do histórico
+-   string startTime : data de início do histórico
 
 -   string endTime : data final do histórico
 
@@ -334,7 +334,7 @@ Configurações:
 
 -   nome da string
 
--   registro de stringicId
+-   string logicId
 
 -   string eqType
 
@@ -397,7 +397,7 @@ Configurações:
 scenario::export
 ----------------
 
-Retorna a exportação do cenário, bem como o * nome humano * do cenário
+Retorna a exportação do cenário, bem como o *nome humano* do script
 
 Configurações:
 
@@ -412,7 +412,7 @@ Configurações:
 
 -   int id : ID do cenário no qual importar (vazio se criação)
 
--   string humanName : *nome humano * do cenário (vazio se criação)
+-   string humanName : *nome humano* do cenário (vazio se criação)
 
 -   importação de matriz : cenário (do campo cenário de exportação::export)
 
@@ -427,7 +427,7 @@ Configurações:
 
 -   estado da string: \ [executar, parar, ativar, desativar \]
 
-API de registro JSON
+API de log JSON
 ============
 
 log::get
@@ -437,7 +437,7 @@ Permite recuperar um log
 
 Configurações:
 
--   registro de string : nome do registro a recuperar 
+-   log de string : nome do log a recuperar 
 
 -   início da corda : número da linha na qual começar a ler
 
@@ -450,13 +450,13 @@ Permite escrever em um log
 
 Configurações:
 
--   registro de string : nome do registro a recuperar 
+-   log de string : nome do log a recuperar 
 
--   tipo de string : tipo de registro (depuração, informações, aviso, erro)
+-   tipo de string : tipo de log (depuração, informações, aviso, erro)
 
 -   mensagem de string : mensagem de texto para escrever
 
--   registro de stringicId : logicId da mensagem gerada
+-   string logicId : logicId da mensagem gerada
 
 
 log::list
@@ -475,7 +475,7 @@ Esvaziar um log
 
 Configurações:
 
--   registro de string : nome do registro para esvaziar
+-   log de string : nome do log para esvaziar
 
 log::remove
 -----------
@@ -484,7 +484,7 @@ Permite excluir um log
 
 Configurações:
 
--   registro de string : nome do registro a ser excluído
+-   log de string : nome do log a ser excluído
 
 API de armazenamento de dados JSON (variável)
 =============================
@@ -534,13 +534,13 @@ Permite escrever em um log
 
 Configurações:
 
--   tipo de string : tipo de registro (depuração, informações, aviso, erro)
+-   tipo de string : tipo de log (depuração, informações, aviso, erro)
 
 -   mensagem de string : message
 
 -   ação de string : action
 
--   registro de stringicId : logicalId
+-   string logicId : logicalId
 
 message::removeAll
 ------------------
@@ -739,7 +739,7 @@ Recuperando a lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', array ())){
+if ($ jsonrpc-> sendRequest ('jeeObject::all ', array ())){
     print_r ($ jsonrpc-> getResult ());
 }else{
     echo $ jsonrpc-> getError ();
@@ -750,7 +750,7 @@ Execução de uma ordem (com a opção de um título e uma mensagem)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id '=> # cmd_id #,' options '=> array (' title '=>' Cuckoo ',' Mensagem '=>' Funciona '))){
+if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id' => #cmd_id#, 'opções '=> array (' title '=>' Cuckoo ',' message '=>' Funciona ')))){
     eco 'OK';
 }else{
     echo $ jsonrpc-> getError ();

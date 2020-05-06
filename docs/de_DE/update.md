@@ -42,7 +42,7 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
 Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 
-Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt, grün in * stabil * oder orange in * beta * oder anderen.
+Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stable*, oder orange in *beta* oder andere.
 
 - **Statut** : OK oder NOK.
 - **Nom** : Name und Herkunft des Plugins
@@ -60,7 +60,7 @@ In jeder Zeile können Sie die folgenden Funktionen verwenden:
 > **Important**
 >
 > Wenn das Änderungsprotokoll leer ist, Sie aber noch ein Update haben, bedeutet dies, dass die Dokumentation aktualisiert wurde. Es ist daher nicht erforderlich, den Entwickler um Änderungen zu bitten, da diese nicht unbedingt vorhanden sind. (Es ist oft eine Aktualisierung der Übersetzung, der Dokumentation).
-> In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes vornehmen, für die nicht unbedingt das Änderungsprotokoll aktualisiert werden muss.
+> In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes vornehmen, für die nicht unbedingt das Changelog aktualisiert werden muss.
 
 > **Tip**
 >
@@ -72,7 +72,7 @@ Während oder nach einem Update können Sie auf dieser Registerkarte das Protoko
 
 > **Note**
 >
-> Dieses Protokoll endet normalerweise mit * [END UPDATE SUCCESS]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren..
+> Dieses Protokoll endet normalerweise mit *[END UPDATE SUCCESS]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren..
 
 ## Befehlszeilenaktualisierung
 
@@ -83,7 +83,7 @@ Sobald die Verbindung hergestellt ist, ist dies der auszuführende Befehl :
 
 Die möglichen Parameter sind :
 
-- **mode** : ``force``, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
+- **mode** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
 - **version** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
 
 Hier ist ein Beispiel für die Syntax, um ein erzwungenes Update durchzuführen, indem die Änderungen seit 4.0 erneut angewendet werden.04 :

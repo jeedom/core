@@ -68,9 +68,9 @@ Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
 #### Berechnete Geschichte
 
-Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \.* absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
+Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \* absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
 Ex :
-abs (* \. [Garten \.] \. [Hygrometrie \.] \. [Temperatur \.] * - * \. [Wohnraum \.] \. [Hygrometrie \.] \. [Temperatur \.] *)
+abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Wohnraum \] \ [Hygrometrie \] \ [Temperatur \]*)
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie diese zur einfacheren erneuten Anzeige speichern können.
 
@@ -98,8 +98,8 @@ Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle od
 - **Scenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies in großen Mengen zu tun".
 - **Commande** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in "Masse" zu tun".
 
-Die * Main * -Zeitleiste enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach * Ordner filtern*. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
-Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche * Aktualisieren auswählen.*.
+Die Zeitleiste *Principal* enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach filtern *dossier*. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
+Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche auswählen *Rafraichir*.
 
 > **Note**
 >

@@ -42,7 +42,7 @@ Eles estão na pasta / var / www / html / backup
 
 ### Podemos colocar o Jeedom em https ?
 Sim : Você tem um pacote de força ou mais, nesse caso, você
-basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
+basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/pt_PT/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
 
 ### Como se conectar no SSH ?
 Aqui está um [Documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
@@ -56,21 +56,21 @@ Observe que quando você escreve a senha, não verá nada escrito na tela, isso 
 ### Como redefinir direitos ?
 No ssh do :
 
-```` ``{.bash}
+`` `{.bash}
 sudo su -
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-```` ''
+`` ''
 
 ### Como atualizar o Jeedom no SSH ?
 No ssh do :
 
-```` ``{.bash}
+`` `{.bash}
 sudo su -
 php /var/www/html/install/update.php
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-```` ''
+`` ''
 
 ### O Symbian é compatível com Webapp ?
 O aplicativo da web requer um smartphone compatível com HTML5 e CSS3. Por conseguinte, infelizmente, não é compatível com Symbian.
@@ -88,9 +88,9 @@ Isso pode ser devido a várias coisas, :
 
 ### Eu tenho uma página em branco
 É necessário conectar-se no SSH ao Jeedom e iniciar o script de auto-diagnóstico :
-```` ``{.bash}
+`` `{.bash}
 sudo chmod + x / var / www / html / saúde.sh; sudo /var/www/html/health.sh
-```` ''
+`` ''
 Se houver algum problema, o script tentará corrigi-lo. Se não puder, dirá a você.
 
 Você também pode consultar o log /var/www/html/log/http.error. Muitas vezes, isso indica a preocupação.
@@ -98,16 +98,16 @@ Você também pode consultar o log /var/www/html/log/http.error. Muitas vezes, i
 ### Estou com um problema no identificador BDD
 Estes devem ser redefinidos :
 
-```` ``{.bash}
+`` `{.bash}
 bdd_password = $ (cat / dev / urandom | tr -cd 'a-f0-9' | cabeça -c 15)
 echo "DROP USER 'jeedom' @ 'localhost'" | mysql -uroot -p
 echo "CREATE USER 'jeedom' @ 'localhost' IDENTIFICADO POR '$ {bdd_password}';" | mysql -uroot -p
 eco "CONCEDE TODOS OS PRIVILÉGIOS NO jeedom.* TO 'jeedom' @ 'localhost';" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e "s / # SENHA # / $ {bdd_password} / g" core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
-```` ''
+`` ''
 
 ### Eu tenho \ {\ {… \} \} em todo lugar
 A causa mais frequente é o uso de um plug-in na versão beta e o Jeedom na versão estável, ou o contrário. Para obter os detalhes do erro, você deve examinar o log http.erro (em / var / www / html / log).
@@ -117,13 +117,13 @@ Novamente, isso geralmente ocorre devido a um plug-in na versão beta, enquanto 
 
 ### Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via SSH
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
-Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware.. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) para Smart
+Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware.. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
 
 ### Meu cenário não para mais
 É aconselhável olhar para os comandos executados pelo cenário, geralmente vem de um comando que não termina.
 
 ### Tenho instabilidades ou erros 504
-Verifique se o seu sistema de arquivos não está corrompido, no SSH o comando é : ```` ''sudo dmesg | grep error```` ''.
+Verifique se o seu sistema de arquivos não está corrompido, no SSH o comando é : `` ''sudo dmesg | grep error`` ''.
 
 ### Eu tenho o seguinte erro : SQLSTATE \ [HY000 \] \ [2002 \] Não é possível conectar ao servidor MySQL local através do soquete '/var/run/mysqld/mysqld.sock'
 Isso ocorre porque o MySQL parou, não é normal, os casos comuns são :
@@ -133,20 +133,20 @@ Isso ocorre porque o MySQL parou, não é normal, os casos comuns são :
 - A memória está preocupada, o sistema não possui memória e mata o processo que mais consome (geralmente o banco de dados). Isso pode ser visto na administração do sistema operacional e, em seguida, dmesg, você deve ver uma morte por "oom". Se for esse o caso, reduza o consumo do Jeedom desativando plugins.
 
 Infelizmente, não há muita solução se for o segundo caso, o melhor é recuperar um backup (disponível em / var / www / html / backup por padrão), reinstalar o Jeedom e restaurar o backup. Você também pode ver por que o MySQL não deseja inicializar a partir de um console SSH :
-```` ``{.bash}
+`` `{.bash}
 sudo su -
 serviço de parada do mysql
 mysqld --verbose
-```` ''
+`` ''
 Ou consulte o log : /var/log/mysql/error.log
 
 ### Os botões Desligar / Reiniciar não funcionam
-Em uma instalação DIY é normal. No SSH, você deve fazer o comando visudo e, no final do arquivo, adicionar : www-data TODOS = (ALL)
+Em uma instalação DIY é normal. No SSH, você deve fazer o comando visudo e, no final do arquivo, adicionar : www-data ALL = (ALL)
 NOPASSWD: TODOS.
 
-```` ``{.bash}
+`` `{.bash}
 serviço sudo reinício apache2
-```` ''
+`` ''
 
 ### Não vejo alguns plugins do Market
 Esse tipo de caso acontece se o seu Jeedom não for compatível com o plugin. Em geral, uma atualização Jeedom corrige o problema.
@@ -155,12 +155,12 @@ Esse tipo de caso acontece se o seu Jeedom não for compatível com o plugin. Em
 Os alertas são classificados por prioridade, do menos importante ao mais importante : tempo limite, aviso de bateria, perigo de bateria, alerta de alerta, alerta de perigo
 
 ### O My Jeedom exibe permanentemente "Inicializando" mesmo após 1 hora ?
-Se você está no DIY e no Debian 9 ou mais, verifique se não houve uma atualização do Apache e, portanto, o retorno do privateTmp (visível fazendo ``ls / tmp`` e veja se há uma pasta privada \* Apache). Se for esse o caso, você tem que fazer :
-```` ''
+Se você está no DIY e no Debian 9 ou mais, verifique se não houve uma atualização do Apache e, portanto, o retorno do privateTmp (visível fazendo `ls / tmp` e veja se há uma pasta privada \* Apache). Se for esse o caso, você tem que fazer :
+`` ''
 mkdir /etc/systemd/system/apache2.service.d
 echo "[Service]"> /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo "PrivateTmp = no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
-```` ''
+`` ''
 
 ### Eu tenho uma preocupação de tempo na minha história
 Tente limpar o cache do Chrome, a exibição dos históricos é calculada em relação ao tempo do navegador.
@@ -176,20 +176,20 @@ Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode
 
 ### Estou com erros do tipo "Classe 'eqLogic' não encontrado", os arquivos parecem estar ausentes ou tenho uma página em branco
 É um erro bastante sério, o mais simples é
-```` ''
+`` ''
 mkdir -p / root / tmp /
 cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
 descompacte master.zip
 cp -R / root / tmp / core-master / * / var / www / html
 rm -rf / root / tmp / núcleo-mestre
-```` ''
+`` ''
 
 ### Estou com o erro no cenário_execução MYSQL_ATTR_INIT_COMMAND
 Na administração do Jeedom parte OS / DB, no console do sistema, é necessário fazer :
-```` ''
+`` ''
 sim | O comando sudo apt-install -y php-mysql-php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-zip php-ssh2 php-mbstring php-ldap
-```` ''
+`` ''
 
 ### Não consigo instalar as dependências do plug-in. Tenho um erro do tipo : "E: dpkg foi descontinuado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Não foi possível obter o bloqueio / var / lib / dpkg / lock"
 
@@ -207,9 +207,9 @@ Você deve :
 
 É necessário no console do sistema do Jeedom ou no ssh para fazer 
 
-```` ''``
+`` ''``
 sudo easy_install pip
 sudo easy_install3 pip
-```` ''``
+`` ''``
 
 Em seguida, reinicie as dependências

@@ -6,7 +6,7 @@ Sie können nämlich auch die Plugins manipulieren : herunterladen, aktualisiere
 
 Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Link zum Markt..
 - Deaktivierte Plugins sind ausgegraut.
-- Plugins, die nicht * stabil * sind, haben einen orangefarbenen Punkt vor ihrem Namen.
+- Plugins, die nicht in der Version sind *stable* Wir haben einen orangefarbenen Punkt vor ihrem Namen.
 
 Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)..
 

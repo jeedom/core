@@ -86,7 +86,7 @@ Cada pestaña representa un tipo de resumen definido en la configuración de Jee
 
 La descripción general le permite ver todos los objetos en Jeedom, así como su configuración :
 
-- **ID** : Identificación de objeto.
+- **ID** : ID de objeto.
 - **Objet** : Nombre del objeto.
 - **Padre** : Nombre del objeto padre.
 - **Visible** : Visibilidad del objeto.

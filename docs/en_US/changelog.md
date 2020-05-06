@@ -5,38 +5,38 @@
 - Synthesis : New page **Home → Synthesis** offering a global visual synthesis of objects (rooms).
 - Research : Add of a search engine in **Tools → Search**.
 - Dashboard : Edit mode now inserting the moved tile.
-- Dashboard : We can now click on the *time* of actions widgets to open the history window of the linked info command..
+- Dashboard : We can now click on the *time* time actions widgets to open the history window of the linked info command.
 - Dashboard : The size of a new equipment&#39;s tile adapts to its content.
 - Dashboard : Addition of a button to filter the displayed items by category.
 - Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
 - Dashboard : Ability to blur background images (Configuration -> Interface).
-- Tools / Widget : The *Apply on* function shows the linked commands checked, unchecking one will apply the default core widget on this command.
+- Tools / Widgets : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
 - Widget : Ability to add class css to a widget (see widget documentation).
-- Widget : Adding a core * sliderVertical widget*.
+- Widget : Adding a core widget *sliderVertical*.
 - Update Center : Updates are checked automatically when opening this page and update check is older than 120mins.
-- Update Center : The progress bar is now on the *Core and plugins* tab, and the log open by default on the *Information* tab*.
+- Update Center : The progress bar is now on the tab *Core and plugins*, and the log open by default on the tab *Informations*.
 - Update Center : If you open another browser during an update, the progress bar and the log indicate it.
 - Update Center : If the update finishes correctly, display of a window asking to reload the page.
 - Core updates : Implementation of a system for cleaning up old unused Core files.
-- Widget / Objects / Scenarios / Interactions / Plugins Pages :
+- Widgets / Objects / Scenarios / Interactions / Plugins Pages :
 	- Ctrl Clic / Clic Center on a Widget, Object, Scenarios, Interaction, plugin equipment : Opens in a new tab.
 	- Ctrl Clic / Clic Center also available in their context menus (on the tabs).
 - New ModalDisplay page:
-	- Analysis menu : Ctrl Click / Click Center on * Real time* : Open the window in a new tab, in full screen.
-	- Tools menu : Ctrl Clic / Clic Center on * Notes *, * Expression tester *, * Variables *, * Search* : Open the window in a new tab, in full screen.
+	- Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
+	- Tools menu : Ctrl Click / Click Center on *Notes*, *Expression tester*, *Variables*, *Recherche* : Open the window in a new tab, in full screen.
 - Scenario : Adding a search engine (on the left of Execute button).
 - Scenario : Addition of the age function (gives the age of the value of the order).
-- Scenario : *stateChanges () * now accepts the period * today * (from midnight to now), * yesterday * and * day * (for 1 day).
-- Scenario : Functions * statistics(), average(), max(), min(), trend(), duration()* : Bugfix for the period *yesterday*, and now accepts *day* (for 1 day).
+- Scenario : *stateChanges()* now accept the period *today* (from midnight to now), *yesterday* and *day* (for 1 day).
+- Scenario : Functions *statistics (), average (), max (), min (), trend (), duration ()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
 - Scenario : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commands).
-- Scenario : Display of a *warning* if no trigger is configured.
+- Scenario : Viewing a *warning* if no trigger is configured.
 - Scenario : Bugfix of select on block copy / paste.
 - Scenario : Copy / paste of block between different scenarios.
 - Scenario : The undo/redo functions are now available in the form of buttons (next to the block creation button).
 - Scenario variables window : alphabetical sort at opening.
 - Analysis / History : Ctrl Click on a legend to display only this history, Alt Click to display them all.
-- Analysis / History : The options *grouping, type, variation, step* are active only with a single curve displayed.
-- Analysis / History : We can now use the *Area* option with the *Step* option*.
+- Analysis / History : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
+- Analysis / History : We can now use the option *Aire* with the option *Escalier*.
 - View : possibility to put scenarios.
 - History : Integration of the Timeline in DB for reliability reasons.
 - History : Management of multiple timelines.
@@ -45,9 +45,9 @@
 - Domotic overview : Ability to search on equipment categories.
 - Domotic overview : Possibility to move several pieces of equipment from one object to another.
 - Domotic overview : Possibility to select all the equipment of an object.
-- Task engine : On the *Daemon* tab, disabled plugins no longer appear.
-- Configuration : The *Information* tab is now in the *General* tab*.
-- Configuration : The *Commands* tab is now in the *Equipments* tab*.
+- Task engine : On the tab *Daemon*, disabled plugins no longer appear.
+- Configuration : The tab *Informations* is now in the tab *Main*.
+- Configuration : The tab *Commandes* is now in the tab *Equipements*.
 - Advanced equipment configuration window : Dynamic change of table configuration.
 - About window : Addition of links to Changelog and FAQ.<br/><br/>
 - WebApp : Integration of the new Synthesis page.
@@ -105,7 +105,7 @@
 ## 4.0.0
 - Complete redesign of themes (Core 2019 Light / Dark / Legacy).
 - Possibility to change the theme automatically according to the time.
-- In mobile, the theme can change depending on the brightness (Requires activating * generic extra sensor * in chrome, chrome page://flags).<br/><br/>
+- In mobile, the theme can change depending on the brightness (Requires activating *generic extra sensor* in chrome, chrome page://flags).<br/><br/>
 - Improvement and reorganization of the main menu.
 - Plugins menu : The list of categories and plugins is now sorted alphabetically.
 - Tools menu : Addition of a button to access the expression tester.
@@ -113,10 +113,10 @@
 - Search fields now support accents.
 - The search fields (Dashboard, scenarios, objects, widgets, interactions, plugins) are now active when the page opens, allowing you to type a search directly.
 - Add an X button on the search fields to cancel the search.
-- During a search, the * escape * key cancels the search.
+- During a search, the key *echap* cancel search.
 - Dashboard : In edit mode, the search field and its buttons are disabled and become fixed.
-- Dashboard : In edit mode, a click on an * expand * button to the right of the objects resizes the tiles of the object to the height of the highest. Ctrl + click reduces them to the height of the lowest.
-- Dashboard : Order execution on a tile is now indicated by the * refresh button*. If there is none on the tile, it will appear during the execution.
+- Dashboard : In edit mode, click on a button *expand* to the right of the objects resizes the tiles of the object to the height of the highest. Ctrl + click reduces them to the height of the lowest.
+- Dashboard : The command execution on a tile is now signaled by the button *refresh*. If there is none on the tile, it will appear during the execution.
 - Dashboard : The tiles indicate an info command (history, which will open the History window) or action on hover.
 - Dashboard : The history window now allows you to open this history in Analysis / History.
 - Dashboard : History window retains its position / dimensions when another history reopens.
@@ -132,8 +132,8 @@
 - Ability to assign an icon to an interaction.
 - Each Jeedom page now has a title in the interface language (browser tab).
 - Prevention of auto-filling on fields&#39; Access code'.
-- Management of functions * Previous page / Next page * of the browser.<br/><br/>
-- Widget : Redesign of the widget system (Tools / Widget menu).
+- Functions management *Previous page / Next page* browser.<br/><br/>
+- Widget : Redesign of the widget system (Tools / Widgets menu).
 - Widget : Ability to replace a widget with another on all commands using it.
 - Widget : Ability to assign a widget to multiple commands.
 - Widget : Add horizontal info numeric widget.
@@ -142,16 +142,16 @@
 - Widget : Adding an info numeric rain widget (thanks @thanaus)
 - Widget : Display of the info / action shutter widget proportional to the value.<br/><br/>
 - Configuration : Improvement and reorganization of tabs.
-- Configuration : Added many * tooltips * (help).
+- Configuration : Adding many *tooltips* (help).
 - Configuration : Adding a search engine.
 - Configuration : Adding a button to empty the widget cache (Cache tab).
 - Configuration : Added option to disable widget cache (Cache tab).
 - Configuration : Ability to center the content of the tiles vertically (Interface tab).
 - Configuration : Addition of a parameter for the global purging of the histories (Tab Commands).
-- Configuration : Change from # message # to # subject # in Configuration / Logs / Messages to avoid duplication of the message.
+- Configuration : Change of  #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
 - Configuration : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
-- Scenario : Possibility by Ctrl + click on the button * execution * to save it, launch it, and display the log (if the log level is not on * None *).
+- Scenario : Possibility by Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *Aucun*).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.
 - Scenario : Addition of a search function in the Code blocks. Search : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl + Shift + G
 - Scenario : Ability to condense blocks.
@@ -172,10 +172,10 @@
 - Domotic overview : Addition of equipment and order IDs, in display and in search.
 - Domotic overview : CSV export of parent object, id, equipment and their id, command.
 - Domotic overview : Possibility of making visible or not one or more orders.<br/><br/>
-- Design : Ability to specify the order (position) of * Designs * and * 3D Designs * (Edit, Configure Design).
-- Design : Addition of a custom CSS field on the elements of * design*.
-- Design : Displacement of display options in Design of the advanced configuration, in the display settings from * Design*. This in order to simplify the interface, and allow to have different parameters by * Design*.
-- Design : Moving and resizing components on * Design * takes their size into account, with or without magnetization.<br/><br/>
+- Design : Ability to specify the order (position) of *Designs* and *3D designs* (Edit, Configure Design).
+- Design : Addition of a custom CSS field on the elements of the *design*.
+- Design : Displacement of display options in Design of the advanced configuration, in the display parameters from the *Design*. This in order to simplify the interface, and to allow to have different parameters by *Design*.
+- Design : Moving and resizing components on *Design* takes into account their size, with or without magnetization.<br/><br/>
 - General reduction (css / inline styles, refactoring, etc.) and performance improvements.
 - Remove Font Awesome 4 to keep only Font Awesome 5.
 - Libs update : jquery 3.4.1, CodeMiror 5.46.0, tablesorter 2.31.1.

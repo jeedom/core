@@ -10,7 +10,7 @@ No topo da página, encontramos :
 - **Número de equipamentos** : O mesmo para o equipamento.
 - **Número de pedidos** : Mesmo para pedidos.
 - **Inactif** : Marque esta caixa se desejar que os itens inativos sejam exibidos nesta página.
-- **Rechercher** : Procure um item em particular. Pode ser o nome de um dispositivo, um pedido onde o nome do plug-in pelo qual o dispositivo foi criado.
+- **Rechercher** : Procure um item em particular. Pode ser o nome de um dispositivo, um pedido ou o nome do plug-in pelo qual o dispositivo foi criado.
 - **Exportação de CSV** : Permite exportar todos os objetos, equipamentos e seus comandos para um arquivo CSV.
 
 Você também tem uma guia **Historique**, exibindo o histórico de pedidos, equipamentos, objetos, visualizações, design, design 3D, cenários e usuários excluídos.
@@ -30,7 +30,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 
 > **Tip**
 >
-> Com um clique e soltar nos objetos onde equipamentos, você pode alterar a ordem deles onde até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
+> Com um clique e soltar nos objetos ou equipamentos, você pode alterar a ordem deles ou até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
 
 ## Os equipamentos
 
@@ -38,7 +38,7 @@ Em cada equipamento encontramos :
 
 - Um **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **supprimer**, devolver **visible**/**invisible**,  **actif**/**inactif** equipamento selecionado.
 - L'**id** equipamento.
-- O **type** equipamento : Identificador do plug-in ao qual eO pertence.
+- O **type** equipamento : Identificador do plug-in ao qual ele pertence.
 - O **nom** equipamento.
 - **Inactif** (cruz pequena) : Significa que o equipamento está inativo (se não estiver lá, o equipamento está ativo).
 - **Invisible** (olho riscado) : Significa que o equipamento está invisível (se não estiver lá, o equipamento está visível).
@@ -74,7 +74,7 @@ A guia **Informations** contém informações gerais sobre o equipamento e seus 
 - **Data de criação** : Data de criação do equipamento.
 - **Activer** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
 - **Visible** : Marque a caixa para tornar o equipamento visível (não esqueça de salvar).
-- **Type** : Identificador do plug-in pelo qual eO foi criado.
+- **Type** : Identificador do plug-in pelo qual ele foi criado.
 - **Tentativa fracassada** : Número de falhas consecutivas de tentativas de comunicação com o equipamento.
 - **Data da última chamada** : Data da última comunicação do equipamento.
 - **Última atualização** : Data da última comunicação com o equipamento.
@@ -84,7 +84,7 @@ Abaixo você encontrará uma tabela com a lista de comandos do equipamento com, 
 
 ### Guia Exibir
 
-Na aba **Affichage**, você poderá configurar certos comportamentos de exibição de bloco no painel onde no celular.
+Na aba **Affichage**, você poderá configurar certos comportamentos de exibição de bloco no painel ou no celular.
 
 #### Widget
 
@@ -103,7 +103,7 @@ novo. Para equipamentos, apenas o valor **style** atualmente utilizado, permite 
 
 ### Guia Layout
 
-Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no widget) onde no modo de tabela. Nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
+Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no widget) ou no modo de tabela. Nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 **Tableau** :
 - **Número de linhas**
 - **Número de Colunas**
@@ -113,8 +113,8 @@ Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no 
 
 Abaixo para cada caixa, o **Configuração detalhada** permite que você
 isto :
-- **Caixa de texto** : Adicione texto além do comando (onde sozinho, se não houver comando na caixa).
-- **Caixa de estilo (CSS)** : Modifique o estilo CSS específico da caixa (observe que eO substitui e substitui o CSS geral das caixas).
+- **Caixa de texto** : Adicione texto além do comando (ou sozinho, se não houver comando na caixa).
+- **Caixa de estilo (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
 
 > **Tip**
 >
@@ -130,7 +130,7 @@ Essa guia permite que você tenha informações sobre a bateria do equipamento e
 
 Abaixo, você também pode definir os limites de alerta de bateria específicos para este equipamento. Se você deixar as caixas vazias, esses serão os limites padrão que serão aplicados.
 
-Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exemplo, 30 informa ao jeedom que se o equipamento não se comunicar por 30 minutos, eO deve ser colocado em alerta.
+Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exemplo, 30 informa ao jeedom que se o equipamento não se comunicar por 30 minutos, ele deve ser colocado em alerta.
 
 > **Tip**
 >
@@ -166,13 +166,13 @@ A guia **Informations** contém informações gerais sobre o pedido :
 - **ID** : Identificador exclusivo no banco de dados.
 - **ID lógico** : Identificador lógico do pedido (pode estar vazio).
 - **Nom** : Nome do comando.
-- **Type** : Tipo de pedido (ação onde informação).
+- **Type** : Tipo de pedido (ação ou informação).
 - **Sous-type** : Subtipo de comando (binário, digital etc.).
 - **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **action** e retorne as informações para um **info**.
 - **Unité** : Unidade de controle.
 - **Comando provocando uma atualização** : Fornece o identificador de outro comando que, se esse outro comando for alterado, forçará a atualização do comando exibido.
 - **Visible** : Marque esta caixa para tornar o comando visível.
-- **Siga na Timeline** : Marque esta caixa para tornar este comando visível na linha do tempo quando eO é usado. Você pode especificar uma linha do tempo específica no campo que aparece se a opção estiver marcada.
+- **Siga na Timeline** : Marque esta caixa para tornar este comando visível na linha do tempo quando ele é usado. Você pode especificar uma linha do tempo específica no campo que aparece se a opção estiver marcada.
 - **Proibir a interação automática em** : proíbe interações automáticas neste comando
 - **ícone** : Permite alterar o ícone do comando.
 
@@ -186,21 +186,21 @@ Você também tem três outros botões laranja embaixo :
 >
 > Esse tipo de ação substitui os comandos em todo o Jeedom (cenário, interação, comando, equipamento ...)..
 
-Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenários onde interações que usam este comando. Clique neO para ir diretamente para a respectiva configuração.
+Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenários ou interações que usam este comando. Clique nele para ir diretamente para a respectiva configuração.
 
 ### Guia Configuração
 
 #### Para um pedido de tipo de informação :
 
 - **Cálculo e arredondamento**
-    - **Fórmula de cálculo (\#value \# para o valor)** : Permite que você faça uma operação com o valor do pedido antes do processamento por Jeedom, exemplo : `# valor # - 0.2` para subtrair 0.2 (deslocamento em um sensor de temperatura).
+    - **Fórmula de cálculo (\#value\# por valor)** : Permite que você faça uma operação com o valor do pedido antes do processamento por Jeedom, exemplo : ``#value# - 0.2` para subtrair 0.2 (deslocamento em um sensor de temperatura).
     - **Arredondamento (decimal)** : Usado para arredondar o valor do comando (exemplo : colocar 2 para transformar 16.643 345 em 16,64).
 - **Tipo genérico** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
-- **Ação em valor, se** : Vamos fazer algum tipo de mini cenários. Você pode, por exemplo, dizer que, se o valor vaO mais de 50 por 3 minutos, você deve executar essa ação. Isso permite, por exemplo, apagar uma luz X minutos depois de acender.
+- **Ação em valor, se** : Vamos fazer algum tipo de mini cenários. Você pode, por exemplo, dizer que, se o valor vale mais de 50 por 3 minutos, você deve executar essa ação. Isso permite, por exemplo, apagar uma luz X minutos depois de acender.
 
 - **Historique**
-    - **Historiser** : Marque a caixa para que os valores deste comando sejam registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **lissage** onde d'**archivage** permite escolher como arquivar os dados. Por padrão, este é um **moyenne**. Também é possível escolher o **maximum**, O **minimum**, onde **aucun**. **aucun** vamos dizer ao Jeedom que eO não deve executar o arquivamento neste comando (durante os primeiros 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Historiser** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
+    - **Suavização moda** : Modo de **lissage** ou d'**archivage** permite escolher como arquivar os dados. Por padrão, este é um **moyenne**. Também é possível escolher o **maximum**, O **minimum**, onde **aucun**. **aucun** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante os primeiros 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**
@@ -209,8 +209,8 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
     - **Tempo para indicar realimentação (min)** : Tempo antes de retornar ao valor acima.
 
 - **Autres**
-    - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita acionar um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor onde proibi-lo completamente.
-    - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : `# value #` para o valor do pedido, `# cmd_name #` para o nome do pedido, `# cmd_ID #` para o identificador exclusivo da ordem, `# humanname #` para o nome completo do pedido (ex : `# [Banheiro] [Hidrometria] [Umidade] #`), `# eq_name #` para o nome do equipamento.
+    - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita acionar um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
+    - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[SalO de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
 
 #### Para um comando de ação :
 
@@ -226,17 +226,17 @@ Permite definir um nível de alerta (**warning** onde **danger**) dependendo de 
 
 > **Note**
 >
-> Na página **Configurações → Sistema → Configuração : Logs**, você pode configurar um comando de tipo de mensagem que permitirá que o Jeedom o notifique se o limite de aviso onde perigo for atingido.
+> Na página **Configurações → Sistema → Configuração : Logs**, você pode configurar um comando de tipo de mensagem que permitirá que o Jeedom o notifique se o limite de aviso ou perigo for atingido.
 
 ### Guia Exibir
 
 Nesta parte, você poderá configurar determinados comportamentos de exibição do widget no Painel, visualizações, design e no celular..
 
-- **Widget** : Permite escolher o widget no computador onde no celular (observe que você precisa do plugin do widget e também pode fazê-lo a partir daí).
+- **Widget** : Permite escolher o widget no computador ou no celular (observe que você precisa do plugin do widget e também pode fazê-lo a partir daí).
 - **Visible** : Marque para tornar o comando visível.
 - **Mostrar nome** : Marque para tornar o nome do comando visível, dependendo do contexto.
 - **Imprimir o nome eo ícone** : Marque para tornar o ícone visível, além do nome do comando.
-- **Envoltório forçado antes Widget** : Tick **antes do widget** onde **após o widget** adicionar uma quebra de linha antes onde depois do widget (para forçar, por exemplo, uma exibição na coluna dos vários comandos do equipamento em vez de linhas por padrão)
+- **Envoltório forçado antes Widget** : Tick **antes do widget** onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição na coluna dos vários comandos do equipamento em vez de linhas por padrão)
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los..
 

@@ -38,7 +38,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
-- Um clique nas informações * time * de um comando de ação exibe o histórico do comando (se estiver registrado).
+- Um clique na informação *time* de um comando de ação exibe o histórico do comando (se for historizado).
 
 > **Tip**
 >
@@ -51,7 +51,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 ## Modo de edição
 
-No modo de edição (* o lápis no canto superior direito *), você pode alterar o tamanho dos ladrilhos e sua organização no Painel.
+No modo de edição (*o lápis no canto superior direito*), você pode alterar o tamanho dos blocos e sua organização no Painel.
 
 Você também pode editar o layout interno dos controles no bloco :
 

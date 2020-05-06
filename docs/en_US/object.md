@@ -39,7 +39,7 @@ By clicking on an object, you access its configuration page. Whatever changes yo
 Here are the different characteristics to configure an object :
 
 - **Object name** : The name of your object.
-- **Dad** : Indicates the relative of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one relative but several objects can have the same relative.
+- **Dad** : Indicates the parent of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one parent but several objects can have the same parent.
 - **Visible** : Check this box to make this object visible.
 - **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly..
 - **Hide on summary'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly..
@@ -60,7 +60,7 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> When a device is created and no relative has been defined, it will have as relative : **Aucun**.
+> When a device is created and no parent has been defined, it will have as parent : **Aucun**.
 
 ## Summary tab
 
@@ -76,7 +76,7 @@ The columns represent the summaries assigned to the current object. Three lines 
 
 ### Commandes
 
-Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add an order** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as relative.
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add an order** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 
 > **Tip**
 >
@@ -86,9 +86,9 @@ Each tab represents a type of summary defined in the configuration of Jeedom. Cl
 
 The overview allows you to view all the objects in Jeedom, as well as their configuration :
 
-- **ID** : Object Id.
+- **ID** : Object ID.
 - **Objet** : Object name.
-- **Dad** : Name of relative object.
+- **Dad** : Name of parent object.
 - **Visible** : Object visibility.
 - **Masqué** : Indicates if the object is hidden on the Dashboard.
 - **Summary Defined** : Indicates the number of orders per summary. What is in blue is taken into account in the global summary.

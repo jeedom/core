@@ -20,7 +20,7 @@ In this tab we find general information about Jeedom :
 - **Installation key** : Hardware key of your Jeedom on the Market. If your Jeedom does not appear in the list of your Jeedom on the Market, it is advisable to click on the button. **Reset**.
 - **Last known date** : Date recorded by Jeedom, used after a restart for systems without a PSTN battery.
 
-Below, several parameters that centralize information that can be used by plugins, avoiding having to enter them in each Plugin.
+Below, several parameters that centralize information that can be used by plugins, avoiding having to enter them in each plugin.
 
 - Contact information : Latitude, Longitude and Altitude of your home / site.
 - Address : Mailing address of your home / site.
@@ -35,7 +35,7 @@ In this tab you will find the display customization parameters.
 - **Light and dark desktop** : Lets you choose a light and dark theme for the Desktop.
 - **Light and dark mobile** : same as above for the Mobile version.
 - **Clear theme from / to** : Allows you to define a time period during which the previously chosen clear theme will be used. However, check the option **Toggle theme based on time**.
-- **Brightness sensor**   : Only in mobile interface, requires activating * generic extra sensor * in chrome, chrome page://flags.
+- **Brightness sensor**   : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
 - **Hide background images** : Allows you to hide the background images found in the scenarios, objects, interactions pages, etc..
 
 ### Tuiles
@@ -66,16 +66,16 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Internal access** : information for joining Jeedom from equipment on the same network as Jeedom (LAN)
     - **OK / NOK** : indicates if the internal network configuration is correct.
     - **Protocole** : the protocol to use, often HTTP.
-    - **URThe or IP address** : Jeedom IP to enter.
+    - **URL or IP address** : Jeedom IP to enter.
     - **Port** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual Jeedom port which will remain the same.
-    - **Complement** : the fragment of additional URThe (example : / jeedom) to access Jeedom.
+    - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
 - **External access** : information to reach Jeedom from outside the local network. To be completed only if you are not using Jeedom DNS.
     - **OK / NOK** : indicates whether the external network configuration is correct.
     - **Protocole** : protocol used for outdoor access.
-    - **URThe or IP address** : External IP, if fixed. Otherwise, give the URThe pointing to the external IP address of your network.
-    - **Complement** : the fragment of additional URThe (example : / jeedom) to access Jeedom.
+    - **URL or IP address** : External IP, if fixed. Otherwise, give the URL pointing to the external IP address of your network.
+    - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
 - **Proxy for market** : proxy activation.
     - Check the enable proxy box.
@@ -86,7 +86,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 > **Tip**
 >
-> If you are in HTTPS the port is 443 (by default) and in HTTP the port is 80 (by default). To use HTTPS from outside, a letsencrypt Plugin is now available on the market.
+> If you are in HTTPS the port is 443 (by default) and in HTTP the port is 80 (by default). To use HTTPS from outside, a letsencrypt plugin is now available on the market.
 
 > **Tip**
 >
@@ -113,22 +113,22 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 ### Messages
 
-- **Add a Message for each log error** : if a Plugin or Jeedom writes an error Message in a log, Jeedom automatically adds a Message in the Message center (at least you are sure not to miss it).
-- **Action on message** : Allows you to take an action when adding a Message to the Message center. You have 2 tags for these actions :
-        - #subject# : Message in question.
-        - #plugin# : Plugin that triggered the Message.
+- **Add a message for each log error** : if a plugin or Jeedom writes an error message in a log, Jeedom automatically adds a message in the message center (at least you are sure not to miss it).
+- **Action on message** : Allows you to take an action when adding a message to the message center. You have 2 tags for these actions :
+        - #subject# : message in question.
+        - #plugin# : plugin that triggered the message.
 
 ### Alertes
 
-- **Add a Message to each Timeout** : Add a Message in the Message center if a device falls in **timeout**.
+- **Add a message to each Timeout** : Add a message in the message center if a device falls in **timeout**.
 - **Timeout order** : Type command **message** to be used if an equipment is in **timeout**.
-- **Add a Message to each Battery in Warning** : Add a Message in the Message center if a device has its battery level in **warning**.
+- **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **warning**.
 - **Battery command in Warning** : Type command **message** to be used if equipment at its battery level **warning**.
-- **Add a Message to each Battery in Danger** : Add a Message in the Message center if a device has its battery level in **danger**.
+- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **danger**.
 - **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **danger**.
-- **Add a Message to each Warning** : Add a Message in the Message center if an order goes on alert **warning**.
+- **Add a message to each Warning** : Add a message in the message center if an order goes on alert **warning**.
 - **Command on Warning** : Type command **message** to use if an order goes on alert **warning**.
-- **Add a Message to each Danger** : Add a Message in the Message center if an order goes on alert **danger**.
+- **Add a message to each Danger** : Add a message in the message center if an order goes on alert **danger**.
 - **Command on Danger** : Type command **message** to use if an order goes on alert **danger**.
 
 ### Logs
@@ -161,7 +161,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 
 ### Equipements
 
-- **Number of failures before deactivation of the equipment** : Number of communication failures with the equipment before deactivation of the equipment (a Message will warn you if this happens).
+- **Number of failures before deactivation of the equipment** : Number of communication failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
 - **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
 
 Many orders can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
@@ -184,11 +184,11 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 
 ### Push
 
-- **Global push URL** : allows you to add a URThe to call in the event of an order update. You can use the following tags :
-**\#value\#** for the order value, **\#Cmd\_name \#** for the name of the command,
-**\#Cmd\_id \#** for the unique identifier of the order,
-**\#humanname\#** for the full name of the order (ex : \# \ [Bathroom \] \ [Hydrometry \] \ [Humidity \] \#),
-**\#Eq_name \#** for the name of the equipment
+- **Global push URL** : allows you to add a URL to call in the event of an order update. You can use the following tags :
+**\#value\#** for the order value, **\#cmd\_name\#** for the name of the command,
+**\#cmd\_id\#** for the unique identifier of the order,
+**\#humanname\#** for the full name of the order (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
+**\#eq_name\#** for the name of the equipment
 
 ## Reports tab
 
@@ -215,7 +215,7 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Setup tab. : Logs, then check **Debug** in the bottom list. Be careful : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Configuration tab. : Logs, then check **Debug** in the bottom list. Be careful : the logs will then be very verbose !
 
 ### Main
 
@@ -229,7 +229,7 @@ Here you have three parameters :
 - **Do not answer if the interaction is not understood** : by default Jeedom responds &quot;I did not understand&quot; if no interaction corresponds. It is possible to deactivate this operation so that Jeedom does not respond. Check the box to disable the response.
 - **General exclusion regex for interactions** : allows to define a regexp which, if it corresponds to an interaction, will automatically delete this sentence from the generation (reserved for experts). For more information see explanations in chapter **Regexp exclusion** documentation on interactions.
 
-### Automatic, contextual & Warning interaction
+### Automatic, contextual & warning interaction
 
 -   The **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or order to try to respond as best as possible..
 
@@ -244,7 +244,7 @@ Here you have three parameters :
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 -   Type interactions **Warn me** allow to ask Jeedom to warn you if an order exceeds / falls or is worth a certain value.
     - *Vous* : Notify me if the living room temperature exceeds 25 ° C ?
-    - *Jeedom* : OK (* As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, only once *)
+    - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
 > **Note**
 >
@@ -353,7 +353,7 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 > **Important**
 >
-> The Samba protocol has several versions, the v1 is compromised in terms of security and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error * protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE * there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
+> The Samba protocol has several versions, the v1 is compromised in terms of security and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
 > client max protocol = SMB3
 > client min protocol = SMB2
 > The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 to both only SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server
@@ -385,12 +385,12 @@ Here you find the list of the different API keys available in your Jeedom. Core 
 
 -   a general : as much as possible, avoid using it,
 -   and another for professionals : used for fleet management. It can be empty.
--   Then you will find one API key per Plugin that needs it.
+-   Then you will find one API key per plugin that needs it.
 
-For each API Plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can define their scope :
+For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can define their scope :
 
 - **Disabled** : API key cannot be used,
-- **Whitelist** : only a list of IPs is authorized (see Settings → System → Setup : Networks),
+- **Whitelist** : only a list of IPs is authorized (see Settings → System → Configuration : Networks),
 - **Localhost** : only requests from the system on which Jeedom is installed are allowed,
 - **Activé** : no restrictions, any system with access to your Jeedom will be able to access this API.
 

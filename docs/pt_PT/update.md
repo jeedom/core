@@ -42,7 +42,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 
 A tabela contém as versões dos núcleos e plug-ins instalados.
 
-Os plug-ins têm um crachá ao lado do nome, especificando sua versão, verde em * estável * ou laranja em * beta * ou outro.
+Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *stable*, ou laranja em *beta* ou outro.
 
 - **Statut** : OK ou NOK.
 - **Nom** : Nome e origem do plug-in
@@ -72,7 +72,7 @@ Durante ou após uma atualização, essa guia permite que você leia o log dessa
 
 > **Note**
 >
-> Esse log normalmente termina com * [END UPDATE SUCCESS]*. Pode haver algumas linhas de erro nesse tipo de log, no entanto, a menos que haja um problema real após a atualização, nem sempre é necessário entrar em contato com o suporte para isso..
+> Esse log normalmente termina com *[FINALIZAR SUCESSO DE ATUALIZAÇÃO]*. Pode haver algumas linhas de erro nesse tipo de log, no entanto, a menos que haja um problema real após a atualização, nem sempre é necessário entrar em contato com o suporte para isso..
 
 ## Atualização da linha de comando
 
@@ -83,7 +83,7 @@ Uma vez conectado, este é o comando para executar :
 
 Os possíveis parâmetros são :
 
-- **mode** : ``force ', para iniciar uma atualização no modo forçado (ignora erros).
+- **mode** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
 - **version** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :

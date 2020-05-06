@@ -1,7 +1,7 @@
 # Síntese
 **Home → Resumo**
 
-A página * Synthesis * oferece uma síntese rápida e visual de seus objetos e seus resumos.
+A página *Síntese* oferece uma síntese rápida e visual de seus objetos e seus resumos.
 
 Você pode configurá-lo como a página padrão em **Configurações → Preferências**, no computador e / ou celular.
 
@@ -9,19 +9,19 @@ Você pode configurá-lo como a página padrão em **Configurações → Prefer�
 
 Em cada objeto, sua imagem de plano de fundo e seus resumos são exibidos (dependendo da chave do resumo, visível em **Configurações → Sistema → Configuração / Resumos**):
 - Canto superior esquerdo : O nome do objeto.
-- Canto superior direito : Temperatura (* temperatura *) e umidade (* umidade *).
-- Sob o título : Alerta (* segurança *) e Movimento (* movimento *), colorido em verde ou vermelho, dependendo da existência de um ou mais alertas / movimento em andamento.
+- Canto superior direito : A temperatura (*temperature*) e umidade (*humidity*).
+- Sob o título : Alerta (*security*) e Movimento (*motion*), verde ou vermelho, dependendo da existência de alertas / movimentos em andamento.
 - Downstairs : Todos os outros resumos de assuntos.
 
 A configuração da exibição do objeto é feita em **Ferramentas → Objetos** :
 - O nome dele.
-- Se for visível. No entanto, você pode manter um objeto visível mesmo no painel, mas marque * Ocultar no resumo*.
+- Se for visível. No entanto, você pode manter um objeto visível mesmo no painel, mas marque *Ocultar no resumo*.
 - Sua imagem de fundo.
 - Elementos de seus resumos.
 
 > **Tip**
 >
-> A ordem de exibição dos objetos é a do * resumo da automação residencial *, que você pode reordenar (Análise → Resumo da automação residencial).
+> A ordem de exibição dos objetos é a de *Resumo Automation*, que você pode reordenar (Análise → Resumo da automação residencial).
 
 > **Note**
 >
@@ -30,7 +30,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 ## Fonctions
 
 Para cada objeto, você pode clicar em :
-- Na imagem, para abrir a página de equipamento deste objeto (também acessível através do menu * Início → Painel de controle → Objeto *).
+- Na imagem, para abrir a página de equipamento deste objeto (também acessível no menu *Página inicial → Painel de controle → Objeto*).
 - Em um elemento de resumo para exibir os elementos deste objeto, deste tipo.
 - No ícone na parte inferior esquerda do objeto para abrir a configuração desse objeto (disponível apenas na área de trabalho).
 

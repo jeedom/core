@@ -90,7 +90,7 @@ Aqui tienes los botones :
 Una vez que haya agregado sus filas / columnas, puede agregar información en los cuadros :
 
 - **texte** : solo texto para escribir.
-- **html** : cualquier código HTML (javascript posible pero desaconsejado).
+- **html** : cualquier código html (javascript posible pero desaconsejado).
 - **widget de comando** : el botón de la derecha le permite elegir el comando para mostrar (tenga en cuenta que esto muestra el widget para el comando).
 
 

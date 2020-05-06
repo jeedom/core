@@ -1,9 +1,9 @@
 # Personalización avanzada
 **Configuración → Sistema → Personalización avanzada**
 
-Esta página, reservada para expertos, le permite agregar scripts Css o JS a Jeedom, que se ejecutará en cada página.
+Esta página, reservada para expertos, le permite agregar scripts CSS o JS a Jeedom, que se ejecutará en cada página.
 
-Puede agregar sus propias funciones JS y agregar o modificar clases Css.
+Puede agregar sus propias funciones JS y agregar o modificar clases CSS.
 
 Las dos partes, JS y CSS, se diferencian de acuerdo con la pantalla de escritorio o móvil.
 
@@ -17,7 +17,7 @@ Las dos partes, JS y CSS, se diferencian de acuerdo con la pantalla de escritori
 
 ## En caso de problema
 
-Inyectar JS y / o Css puede hacer que Jeedom no funcione.
+Inyectar JS y / o CSS puede hacer que Jeedom no funcione.
 
 En este caso, dos soluciones.:
 

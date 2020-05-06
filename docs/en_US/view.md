@@ -90,7 +90,7 @@ Here you have the buttons :
 Once you have added your rows / columns you can add information in the boxes :
 
 - **texte** : just text to write.
-- **html** : any l'opération à mener code (javascript possible but strongly discouraged).
+- **html** : any html code (javascript possible but strongly discouraged).
 - **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
 
 

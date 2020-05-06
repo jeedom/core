@@ -34,7 +34,7 @@ Für die Profis :
 - **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat und Ihr Limit.
 - **Support** : Schaltfläche zum Senden einer Supportanfrage (auch über das Ausrufezeichen oben rechts auf dem Markt oder auf Ihrem Jeedom zugänglich).
     - **Zugang zu Betas**
-- **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Unterstützung zugreifen können)..
+- **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können)..
     - **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen Rechte und Dienste.
 
 > **Tip**
@@ -57,10 +57,10 @@ Für die Profis :
     - **Nom** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Namen des Backups, wenn Sie über ein Cloud-Backup-Abonnement verfügen)..
     - **Etat** : Sehen wir uns den Zustand des fraglichen Jeedom an.
     - **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom, konfigurieren Sie in Jeedom. Wenn Sie nichts eingeben, ist dies die letzte bekannte IP.
-    - **DNS** : Ermöglicht das Anpassen des Namens Ihres Dns.
+    - **DNS** : Ermöglicht das Anpassen des Namens Ihres DNS.
     - **URL** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
     - **DNS-Server** : Zeigt Ihnen den DNS-Server an, an den Sie angeschlossen sind.
-    - **DNS-Status** : Hier können Sie den Status des Dns anzeigen.
+    - **DNS-Status** : Hier können Sie den Status des DNS anzeigen.
     - **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem Marktkonto (zur Erinnerung, dies erfolgt automatisch, wenn Sie es mit dem Markt verknüpfen).
     - **Letztes Update** : Jeedom&#39;s letzte Kommunikation mit dem Markt.
     - **Hardware** : Jeedom Hardware-Name.

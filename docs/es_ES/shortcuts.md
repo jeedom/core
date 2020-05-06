@@ -14,7 +14,7 @@ En modo edición:
 	- Arrastra y suelta en los mosaicos para reorganizarlos.
 	- Cambiar el tamaño de los bordes del mosaico para cambiar su tamaño.
 	- Menú contextual (clic derecho) en los mosaicos.
-	- Ctrl Haga clic en un icono * expandir* : Ajusta la altura de los mosaicos del objeto no en relación con el más alto, sino en relación con el más bajo.
+	- Ctrl Haga clic en un ícono *expand* : Ajusta la altura de los mosaicos del objeto no en relación con el más alto, sino en relación con el más bajo.
 
 - Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial..
 
@@ -59,10 +59,10 @@ En un escenario :
 - Ctrl Shift Y : Nueva versión.
 
 - Ctrl Haga clic en Ejecutar : Guarde y ejecute el escenario, luego abra el registro.
-- Ctrl Haga clic en el icono * Copie este bloque* : Cortar este bloque.
-- Ctrl Haga clic en el icono * Pegar un bloque* : Reemplace este bloque.
-- Ctrl Haga clic en el icono * Eliminar este bloque* : Eliminar bloque sin confirmación.
-- Ctrl Haga clic en el icono * Ocultar este bloque* : Ocultar o mostrar todos los bloques.
+- Ctrl Haga clic en el icono *Copia este bloque* : Cortar este bloque.
+- Ctrl Haga clic en el icono *Pegar un bloque* : Reemplace este bloque.
+- Ctrl Haga clic en el icono *Eliminar este bloque* : Eliminar bloque sin confirmación.
+- Ctrl Haga clic en el icono *Ocultar este bloque* : Ocultar o mostrar todos los bloques.
 
 En un bloque de código :
 - Ctrl F : Busca en el código.
@@ -72,7 +72,7 @@ En un bloque de código :
 - Ctrl S en una configuración de complemento : Guardar.
 - Ctrl Click o Click Center en un complemento : Abra la administración de complementos en una nueva pestaña del navegador.
 
-## Complementos / * complemento*
+## Complementos / *plugin*
 - En un dispositivo, Ctrl S  : Guardar.
 - En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
 - Ctrl Click o Center Click en un dispositivo: Abra el equipo del complemento en una nueva pestaña del navegador.
@@ -85,8 +85,8 @@ En un bloque de código :
 - Ctrl Shift E en un diseño : Entrar o salir del modo de edición.
 
 ## Análisis / resumen de domótica
-- Ctrl Haga clic en el icono * Abrir * (buscar) : Abra todos los objetos y equipos..
-- Ctrl Haga clic en el icono * Cerrar * (buscar) : Cierra todos los objetos y equipos..
+- Ctrl Haga clic en el icono *Ouvrir* (investigación) : Abra todos los objetos y equipos..
+- Ctrl Haga clic en el icono *Fermer* (investigación) : Cierra todos los objetos y equipos..
 
 ## Análisis / Historia
 Si se muestran varias curvas :

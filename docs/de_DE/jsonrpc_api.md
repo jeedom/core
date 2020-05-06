@@ -3,7 +3,7 @@ Hier finden Sie eine Dokumentation zu API-Methoden.
 Hier sind zunächst die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM * / core / api / jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -94,7 +94,7 @@ Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle Geräte und f
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt mit alle seinen Geräten und für jedes Gerät alle seine Befehle und deren Status zurück (für Befehle vom Typ Info).
+Gibt ein Objekt mit all seinen Geräten und für jedes Gerät alle seine Befehle und deren Status zurück (für Befehle vom Typ Info).
 
 Einstellungen :
 
@@ -375,7 +375,7 @@ Einstellungen:
 
 -   Zeichenfolgenwert : valeur
 
--   Zeichenfolge Datetime : (optional) Wert datetime
+-   Zeichenfolge datetime : (optional) Wert datetime
 
 JSON-Szenario-API
 =================
@@ -397,7 +397,7 @@ Einstellungen:
 scenario::export
 ----------------
 
-Gibt den Export des Szenarios sowie den * menschlichen Namen * des Szenarios zurück
+Gibt den Export des Szenarios sowie das zurück *menschlicher Name* aus dem Skript
 
 Einstellungen:
 
@@ -412,7 +412,7 @@ Einstellungen:
 
 -   int id : ID des Szenarios, in das importiert werden soll (leer, wenn erstellt)
 
--   Zeichenfolge humanName : *menschlicher Name * des Szenarios (leer bei Erstellung)
+-   Zeichenfolge humanName : *menschlicher Name* des Szenarios (leer bei Erstellung)
 
 -   Array-Import : Szenario (aus dem Feld Exportszenario::export)
 
@@ -512,7 +512,7 @@ Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     es ist Szenario)
 
--   id linkId : -1 für insgesamt (Wert für Standardszenarien,
+-   id linkId : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -739,7 +739,7 @@ Abrufen der Objektliste :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())){
+if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::all &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -750,7 +750,7 @@ Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
+if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'Optionen '=> Array (' Titel '=>' Kuckuck ',' Nachricht '=>' Es funktioniert ')))){
     Echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

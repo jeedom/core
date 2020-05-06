@@ -9,7 +9,7 @@ Ein Bericht ist ein Screenshot der Jeedom-Schnittstelle zu einem Zeitpunkt t.
 
 > **Note**
 >
-> Diese Erfassung ist n angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden..
+> Diese Erfassung ist so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden..
 
 Sie können dies für Ansichten, Designs und Bedienfeldseiten tun....
 

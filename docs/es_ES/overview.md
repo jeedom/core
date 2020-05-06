@@ -1,7 +1,7 @@
 # Síntesis
 **Inicio → Resumen**
 
-La página * Synthesis * ofrece una síntesis rápida y visual de sus objetos y sus resúmenes..
+La página *Síntesis* le ofrece una síntesis rápida y visual de sus objetos y sus resúmenes.
 
 Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
@@ -9,19 +9,19 @@ Puede configurarlo como la página predeterminada en **Configuración → Prefer
 
 En cada objeto, se muestran su imagen de fondo y sus resúmenes (dependiendo de la clave del resumen, visible en **Preferencias → Sistema → Configuración / Resúmenes**):
 - Arriba a la izquierda : El nombre del objeto..
-- Arriba a la derecha : Temperatura (* temperatura *) y humedad (* humedad *).
-- Bajo el título : Alerta (* seguridad *) y Movimiento (* movimiento *), de color verde o rojo, dependiendo de si hay una o más alertas / movimiento en progreso.
+- Arriba a la derecha : La temperatura (*temperature*) y humedad (*humidity*).
+- Bajo el título : Alerta (*security*) y Movimiento (*motion*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
 - Abajo : Todos los otros resúmenes de materias.
 
 La configuración de la visualización del objeto se realiza en **Herramientas → Objetos** :
 - Su nombre.
-- Si es visible. Sin embargo, puede mantener un Objeto visible incluso en el Tablero, pero marque * Ocultar en resumen*.
+- Si es visible. Sin embargo, puede mantener un Objeto visible incluso en el Tablero, pero marque *Ocultar en resumen*.
 - Su imagen de fondo.
 - Elementos de sus resúmenes..
 
 > **Tip**
 >
-> El orden de visualización de los objetos es el del * resumen de automatización del hogar *, que puede reordenar (Análisis → Resumen de automatización del hogar).
+> El orden de visualización de los objetos es el de *Resumen de domótica*, que puede reordenar (Análisis → Resumen de automatización del hogar).
 
 > **Note**
 >
@@ -30,7 +30,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 ## Fonctions
 
 Para cada objeto, puede hacer clic :
-- En la imagen, para abrir la página del equipo de este objeto (también accesible a través del menú * Inicio → Panel de control → Objeto *).
+- En la imagen, para abrir la página del equipo de este objeto (también accesible desde el menú *Inicio → Panel de control → Objeto*).
 - En un elemento de resumen para mostrar los elementos de este objeto, de este tipo.
 - En el icono en la parte inferior izquierda del objeto para abrir la configuración de este objeto (disponible solo en el escritorio).
 
