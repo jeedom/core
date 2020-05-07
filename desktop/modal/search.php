@@ -253,6 +253,11 @@ $('#in_searchFor_variable').change(function() {
 $('#bt_search').off().on('click',function() {
 	searchFor()
 })
+$('#in_searchFor_value').on('keypress', function(event) {
+	if (event.which === 13) {
+		searchFor()
+	}
+})
 
 function searchFor() {
 	emptyResultTables()
