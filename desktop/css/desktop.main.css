@@ -314,7 +314,7 @@ legend .pull-right:not(.input-group) {
 }
 .div_object legend .objectDashLegend {
   padding: 3px 20px;
-  background-color: rgba(var(--bg-color), 0.85) !important;
+  background-color: rgba(var(--bg-color), var(--opacity)) !important;
   width: 100%;
   display: inline-block;
 }
