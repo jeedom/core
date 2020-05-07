@@ -49,6 +49,7 @@
 - Configuration : The tab *Informations* is now in the tab *Main*.
 - Configuration : The tab *Commandes* is now in the tab *Equipements*.
 - Advanced equipment configuration window : Dynamic change of table configuration.
+- Equipments : New Category *Ouvrant*.
 - About window : Addition of links to Changelog and FAQ.<br/><br/>
 - WebApp : Integration of the new Synthesis page.
 - WebApp : Scenarios page, a click on the scenario title displays its log.
@@ -61,7 +62,8 @@
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
-- Lib: Update HighStock v7.1.2 to v8.0.4.
+- Lib : Update HighStock v7.1.2 to v8.0.4.
+- Lib : Update jQuery v3.4.1 to v3.5.1.
 
 
 ### 4.0.53
