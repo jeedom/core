@@ -1006,7 +1006,6 @@ class eqLogic {
 	}
 
 	public function getPrimaryCategory() {
-
 		foreach ($this->category as $cat => $value) {
 			if ($value == 1) {
 				return ($cat != 'default' ? $cat : '');
