@@ -204,8 +204,12 @@ function filterByCategory() {
     $('.scenario-widget').hide()
   }
   $('.div_displayEquipement').packery()
+  if (cats.length == $('#categoryfilter .catFilterKey').length) {
+    $('#dashTopBar button.dropdown-toggle').removeClass('warning')
+  } else {
+    $('#dashTopBar button.dropdown-toggle').addClass('warning')
+  }
 }
-
 
 
 $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
