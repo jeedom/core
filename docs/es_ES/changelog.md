@@ -49,6 +49,7 @@
 - Configuración : La pestaña *Informations* ahora está en la pestaña *Principal*.
 - Configuración : La pestaña *Commandes* ahora está en la pestaña *Equipements*.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
+- Dispositivos : Nueva categoría *Ouvrant*.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.<br/><br/>
 - Aplicación web : Integración de la nueva página de resumen.
 - Aplicación web : Página de escenarios, un clic en el título del escenario muestra su registro.
@@ -61,7 +62,8 @@
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
-- Lib: Actualizar HighStock v7.1.2 a v8.0.4.
+- Lib : Actualizar HighStock v7.1.2 a v8.0.4.
+- Lib : Actualizar jQuery v3.4.1 a v3.5.1.
 
 
 ### 4.0.53

@@ -49,6 +49,7 @@
 - Configuração : A guia *Informations* agora está na guia *Geral*.
 - Configuração : A guia *Commandes* agora está na guia *Equipements*.
 - Janela de configuração avançada de equipamentos : Alteração dinâmica da configuração do quadro de distribuição.
+- Instalações : Nova categoria *Ouvrant*.
 - Sobre a janela : Adição de atalhos ao Changelog e FAQ.<br/><br/>
 - WebApp : Integração da nova página Resumo.
 - WebApp : Na página Cenários, um clique no título do cenário exibe seu log.
@@ -61,7 +62,8 @@
 - Documentação : Adaptações de acordo com v4 e v4.1.
 - Documentação : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - Correções de bugs e otimizações.
-- Lib: Atualizar o HighStock v7.1.2 a v8.0.4.
+- Lib : Atualizar o HighStock v7.1.2 a v8.0.4.
+- Lib : Atualizar o jQuery v3.4.1 a v3.5.1.
 
 
 ### 4.0.53

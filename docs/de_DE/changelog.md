@@ -49,6 +49,7 @@
 - Konfiguration : Die Registerkarte *Informations* ist jetzt in der Registerkarte *Allgemein*.
 - Konfiguration : Die Registerkarte *Commandes* ist jetzt in der Registerkarte *Equipements*.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
+- Geräte : Neue Kategorie *Ouvrant*.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.<br/><br/>
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
@@ -61,7 +62,8 @@
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
-- Lib: Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
+- Lib : Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
+- Lib : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 
 
 ### 4.0.53
