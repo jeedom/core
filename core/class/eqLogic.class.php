@@ -206,6 +206,16 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function searchByString($_search) {
+		$values = array(
+				'search' => '%'.$_search.'%'
+			);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM eqLogic
+			WHERE name LIKE :search or logicalId LIKE :search or eqType_name LIKE :search or comment LIKE :search or tags LIKE :search';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function searchConfiguration($_configuration, $_type = null) {
 		if (!is_array($_configuration)) {
 			$values = array(

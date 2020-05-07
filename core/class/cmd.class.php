@@ -205,6 +205,16 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function searchByString($_search) {
+		$values = array(
+				'search' => '%'.$_search.'%'
+			);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM cmd
+			WHERE eqType LIKE :search or logicalId LIKE :search or generic_type LIKE :search or name LIKE :search';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function searchConfiguration($_configuration, $_eqType = null) {
 		if (!is_array($_configuration)) {
 			$values = array(
