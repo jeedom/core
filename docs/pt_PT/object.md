@@ -9,7 +9,7 @@ objetos como você deseja. Geralmente, definiremos os diferentes
 partes de sua casa, como os nomes dos quartos (isto é
 configuração recomendada).
 
-Gestão 
+Gerência 
 =======
 
 Você tem duas opções :
@@ -75,7 +75,7 @@ Aqui estão as diferentes características para configurar um objeto :
 >
 > Você pode ver um gráfico representando todos os elementos do Jeedom
 > anexado a este objeto clicando no botão **Liens**, em às
-> Direito.
+> certo.
 
 > **Tip**
 >
@@ -103,7 +103,7 @@ linhas são propostas para você :
 -   **Esconder móvel** : Marque a caixa se você não quiser
     o resumo é exibido quando você o exibe de um celular.
 
-### Comandos 
+### Encomendas 
 
 Cada guia representa um tipo de resumo definido na configuração
 de Jeedom. Clique em **Adicionar comando** para que seja

@@ -77,7 +77,7 @@ Duas partes reservadas para especialistas estão presentes nesta guia.
 
 > **Important**
 >
-> Atenção : Se você modificar o Jeedom com uma dessas duas soluções,
+> TENHA CUIDADO : Se você modificar o Jeedom com uma dessas duas soluções,
 > o suporte pode se recusar a ajudá-lo.
 
 -   **&gt;\_System** : Permite o acesso a uma interface
@@ -125,7 +125,7 @@ LDAP
 -   **Permitir REMOTE\_USER** : Ative REMOTE\_USER (usado no SSO
     por exemplo)
 
-Logar 
+Entrar 
 ---------
 
 -   **Número de falhas tolerada** : define o número de tentativas
@@ -165,7 +165,7 @@ externe** (de outra rede, em particular da Internet).
 > etc / apache2 / sites-available / default\_ssl (para HTTPS).No entanto, em
 > Se o seu Jeedom for maltratado, a equipe do Jeedom não
 > responsabilizado e pode recusar qualquer pedido de
-> Suporte.
+> apoio.
 
 -   **Acesso interno** : informações para ingressar no Jeedom de um
     mesmo equipamento de rede que o Jeedom (LAN)
@@ -264,7 +264,7 @@ não coloque transparência, deixe 1.0 .
 >
 > Não se esqueça de salvar após qualquer modificação.
 
-Comandos 
+Encomendas 
 =========
 
 Muitos pedidos podem ser registrados. Então em
@@ -272,7 +272,7 @@ Análise → Histórico, você obtém gráficos representando suas
 use. Essa guia permite definir parâmetros globais para
 histórico de pedidos.
 
-Histórico 
+História 
 ----------
 
 -   **Mostrar estatísticas sobre os widgets** : Permite exibir
@@ -323,7 +323,7 @@ Histórico
 > [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > para detalhes).
 
-Empurrão 
+Push 
 ----
 
 **URL esforço global** : permite adicionar um URL para chamar em caso de
@@ -333,7 +333,7 @@ nome do comando, **\#cmd\_id\#** para o identificador exclusivo do
 commande, **\#humanname\#** para o nome completo do pedido (ex :
 \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`para o nome do equipamento
 
-Cobertura 
+Cache 
 =====
 
 Permite monitorar e agir no cache Jeedom :
@@ -362,7 +362,7 @@ interações que você encontrará em Ferramentas → Interações.
 >
 > Para ativar o log de interação, vá para a guia
 > Administração → Configuração → Logs e marque **Debug** na lista
-> de baixo. Atenção : os logs serão muito detalhados !
+> de baixo. Tenha cuidado : os logs serão muito detalhados !
 
 Geral 
 -------
@@ -500,7 +500,7 @@ palavras vermelho / azul / preto… Para adicionar uma cor :
 
 -   Escolha a cor associada clicando na caixa à direita.
 
-Relações 
+Relatórios 
 ========
 
 Configurar a geração e gerenciamento de relatórios
@@ -514,7 +514,7 @@ Configurar a geração e gerenciamento de relatórios
     um pouco de espaço, então tome cuidado para não colocar muito
     conservação).
 
-Conexões 
+Ligações 
 =====
 
 Configurar gráficos de link. Esses links permitem que você
@@ -544,7 +544,7 @@ Sumários
 
 Adicionar resumos de objetos. Esta informação é exibida
 no topo, à direita, na barra de menus do Jeedom ou ao lado do
-Objetos :
+objetos :
 
 -   **Clef** : Chave para o resumo, especialmente para não tocar.
 
@@ -579,10 +579,10 @@ Objetos :
 -   **Excluir resumo** : O último botão, na extrema direita, permite
     para excluir o resumo da linha.
 
-Toras 
+Logs 
 ====
 
-Cronograma 
+Linha do tempo 
 --------
 
 -   **O número máximo de eventos** : Define o número máximo para
@@ -603,7 +603,7 @@ Mensagens
         - #message# : mensagem em questão
         - #plugin# : plugin que acionou a mensagem
 
-Notificações 
+Alertas 
 -------
 
 -   **Adicione uma mensagem a cada tempo limite** : Adicione uma mensagem no
@@ -623,7 +623,7 @@ Notificações
     mensagem no centro de mensagens se um dispositivo tiver seu nível de
     bateria em **danger**.
 
--   **Comando na bateria em perigo** : Comando de tipo **message** à
+-   **Comando na bateria em perigo** : Comando de tipo **message** às
     use se o equipamento estiver no nível da bateria **danger**.
 
 -   **Adicione uma mensagem a cada aviso** : Adicione uma mensagem no
@@ -661,7 +661,7 @@ Abaixo, você encontrará uma tabela para gerenciar com precisão o
 nível de log dos elementos essenciais do Jeedom, bem como do
 plugins.
 
-Instalações 
+Equipamento 
 ===========
 
 -   **Falha Contagem off equipamentos** : Nombre
@@ -714,7 +714,7 @@ Depósito usado para conectar o Jeedom ao Github.
 ### Mercado 
 
 Depósito usado para conectar o Jeedom ao mercado, é altamente recomendado
-usar este repositório. Atenção : qualquer solicitação de suporte pode ser
+usar este repositório. Tenha cuidado : qualquer solicitação de suporte pode ser
 recusado se você usar um depósito diferente deste.
 
 -   **Adresse** : Endereço do mercado.
@@ -788,7 +788,7 @@ uma participação do Samba (ex : NAS Synology).
 > primeiro backup, a pasta não deve conter nenhum arquivo ou
 > pasta).
 
-### URL  
+### URL 
 
 -   **URL principal do Jeedom**
 

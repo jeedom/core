@@ -125,7 +125,7 @@ LDAP
 -   **Permitir REMOTO\_USER** : Active REMOTE\_USER (usado en SSO
     por ejemplo)
 
-Acceder 
+Iniciar sesión 
 ---------
 
 -   **Número de fallas toleradas** : establece el número de intentos
@@ -264,7 +264,7 @@ no ponga transparencia, deje 1.0 .
 >
 > No olvide guardar después de cualquier modificación..
 
-Comandos 
+Órdenes 
 =========
 
 Se pueden registrar muchos pedidos. Entonces en
@@ -272,7 +272,7 @@ Análisis → Historia, obtienes gráficos que representan sus
 utilizar. Esta pestaña le permite establecer parámetros globales para
 historial de pedidos.
 
-Histórico 
+Historia 
 ----------
 
 -   **Ver estadísticas de widgets** : Muestra
@@ -320,10 +320,10 @@ Histórico
 > por defecto, Jeedom se basa en datos de las últimas 24 horas para
 > calcular estas estadísticas. El método de cálculo de tendencia se basa
 > en el cálculo de mínimos cuadrados (ver
-> [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
+> [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > para más detalles).
 
-Empuje 
+Empujar 
 ----
 
 **URL de inserción global** : permite agregar una URL para llamar en caso de
@@ -333,7 +333,7 @@ nombre del comando, **\#cmd\_id\#** para el identificador único de la
 commande, **\#humanname\#** para el nombre completo de la orden (ej. :
 \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`para el nombre del equipo
 
-Cubierta 
+Caché 
 =====
 
 Permite monitorear y actuar en el caché Jeedom :
@@ -362,7 +362,7 @@ interacciones que encontrarás en Herramientas → Interacciones.
 >
 > Para activar el registro de interacción, vaya a la pestaña
 > Administración → Configuración → Registros, luego marque **Debug** en la lista
-> de abajo. ATENCIÓN : los registros serán muy detallados !
+> de abajo. Atención : los registros serán muy detallados !
 
 General 
 -------
@@ -394,18 +394,18 @@ Aquí tienes tres parámetros :
     definir una expresión regular que, si corresponde a una interacción,
     eliminará automáticamente esta oración de la generación (reservado
     a expertos). Para obtener más información, consulte las explicaciones en
-    capítulo **Exclusión de expresiones regulares** documentación sobre
+    capitulo **Exclusión de expresiones regulares** documentación sobre
     interacciones.
 
 Interacción automática, contextual y advertencia 
 -----------------------------------------------------
 
--   La **interacciones automáticas** permitir que Jeedom intente
+-   El **interacciones automáticas** permitir que Jeedom intente
     entender una solicitud de interacción incluso si no hay ninguna
     de definido. Luego buscará un objeto y / o nombre del equipo
     y / o para tratar de responder lo mejor posible.
 
--   La **interacciones contextuales** permitirte encadenar
+-   El **interacciones contextuales** permitirte encadenar
     múltiples solicitudes sin repetir todo, por ejemplo :
 
     -   *Jeedom manteniendo el contexto :*
@@ -470,7 +470,7 @@ Aquí están las diferentes opciones disponibles. :
     si ha programado la alerta a través de la interfaz móvil)
 
 -   **Sinónimo de objetos** : Lista de sinónimos para objetos
-    (por ejemplo, : rdc|planta baja|bajo tierra|bajo; sdb|cuarto de baño).
+    (ex : rdc|planta baja|bajo tierra|bajo; sdb|cuarto de baño).
 
 -   **Sinónimo de equipamiento** : Lista de sinónimos para
     los equipos.
@@ -500,7 +500,7 @@ palabras rojo / azul / negro ... Para agregar un color :
 
 -   Elija el color asociado haciendo clic en el cuadro de la derecha.
 
-Relaciones 
+Informes 
 ========
 
 Configurar la generación y gestión de informes.
@@ -537,7 +537,7 @@ equipos, objetos, etc..
 -   **Parámetro de prerender** : Vamos a actuar sobre el diseño
     del gráfico.
 
--   **Parámetro de procesamiento** : ídem.
+-   **Parámetro de procesamiento** : Lo mismo.
 
 Resúmenes 
 =======
@@ -579,10 +579,10 @@ objetos :
 -   **Eliminar resumen** : El último botón, en el extremo derecho, permite
     para eliminar el resumen de la línea.
 
-Troncos 
+Registros 
 ====
 
-Línea de tiempo 
+Cronograma 
 --------
 
 -   **Numero maximo de eventos** : Establece el número máximo en
@@ -591,7 +591,7 @@ Línea de tiempo
 -   **Eliminar todos los eventos** : Vaciar la línea de tiempo de
     todos sus eventos grabados.
 
-Mensajes 
+Publicaciones 
 --------
 
 -   **Agregue un mensaje a cada error en los registros** : si un complemento
@@ -603,7 +603,7 @@ Mensajes
         - #message# : mensaje en cuestión
         - #plugin# : complemento que activó el mensaje
 
-Notificaciones 
+Alertas 
 -------
 
 -   **Agregar un mensaje a cada tiempo de espera** : Agregue un mensaje en el
@@ -661,7 +661,7 @@ A continuación encontrará una tabla para administrar finamente el
 nivel de registro de los elementos esenciales de Jeedom, así como el de
 plugins.
 
-Comodidades 
+Equipo 
 ===========
 
 -   **Número de fallas antes de la desactivación del equipo.** : Nombre
@@ -694,7 +694,7 @@ Los depósitos son espacios de almacenamiento (y servicio) para poder
 mover copias de seguridad, recuperar complementos, recuperar núcleo
 Jeedom, etc..
 
-### Expediente 
+### Archivo 
 
 Depósito utilizado para activar el envío de complementos por archivos.
 
@@ -714,7 +714,7 @@ Depósito utilizado para conectar Jeedom a Github.
 ### Mercado 
 
 Depósito utilizado para conectar Jeedom al mercado, es muy recomendable
-para usar este repositorio. ATENCIÓN : cualquier solicitud de soporte puede ser
+para usar este repositorio. Atención : cualquier solicitud de soporte puede ser
 rechazado si utiliza un depósito diferente a este.
 
 -   **Adresse** : Dirección del mercado.

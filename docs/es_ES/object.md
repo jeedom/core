@@ -1,4 +1,4 @@
-La **objets** le permite definir la estructura de árbol de su domótica.
+El **objets** le permite definir la estructura de árbol de su domótica.
 Todo el equipo que cree debe pertenecer a un objeto y
 será más fácilmente identificable. Luego decimos que el objeto
 es el **parent** equipo. La gestión de objetos es accesible.
@@ -9,7 +9,7 @@ objetos como quieras. Por lo general, definiremos los diferentes
 partes de su casa, como los nombres de las habitaciones (esto es
 configuración recomendada).
 
-Administración 
+Gestión 
 =======
 
 Tienes dos opciones :
@@ -103,7 +103,7 @@ te proponen líneas :
 -   **Ocultar en el móvil** : Marque la casilla si no quiere
     el resumen se muestra cuando lo ve desde un dispositivo móvil.
 
-### Comandos 
+### Órdenes 
 
 Cada pestaña representa un tipo de resumen definido en la configuración
 de Jeedom. Haga clic en **Agregar un pedido** para que sea

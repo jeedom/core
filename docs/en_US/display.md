@@ -300,7 +300,7 @@ First, at the top right, some buttons available :
 > **Tip**
 >
 > In a graph, a double click on an element brings you to its
-> d'actualité.
+> configuration.
 
 > **Note**
 >
@@ -401,7 +401,7 @@ Configuration tab
     -   **Smoothing mode** : Mode of **lissage** or d'**archivage**
         allows you to choose how to archive the data. By default,
         it&#39;s a **moyenne**. It is also possible to choose the
-        **maximum**, The **minimum**, or **aucun**. **aucun** Allows
+        **maximum**, the **minimum**, or **aucun**. **aucun** Allows
         tell Jeedom that it should not archive on this
         order (both during the first 5 min period and with the
         archiving task). This option is dangerous because Jeedom
@@ -436,10 +436,10 @@ Configuration tab
 
     -   **Push URL** : Allows you to add a URL to call in case of
         order update. You can use tags
-        next : ``#value#`for the value of the order,`#cmd_name#``
+        following : ``#value#`for the value of the order,`#cmd_name#``
         for the name of the command, `#cmd_id#`for the unique identifier
         of the command, `#humanname#`for the full name of the command
-        (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment
+        (ex : ``#[Salthe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment
 
 ### For an action command : 
 
@@ -492,7 +492,7 @@ mobile.
 -   **Display name and icon** : Check to make the icon visible
     in addition to the name of the command.
 
--   **Wrapped line before widget** : Select **before
+-   **Wrapped line before widget** : Tick **before
     widget** or **after the widget** to add a line break
     before or after the widget (to force for example a display in
     column of different equipment commands instead of lines

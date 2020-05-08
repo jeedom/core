@@ -68,7 +68,7 @@ commande.
 > **Note**
 >
 > Los parámetros deben estar codificados para url, puede usar
-> un utensilio, [aquí](https://meyerweb.com/eric/tools/dencoder/)
+> un utensilio, [aqui](https://meyerweb.com/eric/tools/dencoder/)
 
 Interacción 
 ===========
@@ -100,9 +100,9 @@ Aquí está la URL =
 
 -   **message** : mensaje en cuestión, tenga cuidado de pensar en la codificación
     el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar un
-    outil, [aquí](https://meyerweb.com/eric/tools/dencoder/)
+    outil, [aqui](https://meyerweb.com/eric/tools/dencoder/)
 
-Objeto 
+Asunto 
 =====
 
 Aquí está la URL =

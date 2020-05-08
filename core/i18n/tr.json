@@ -286,7 +286,7 @@
         "SQL": "",
         "Action": "Eylem",
         "Corriger": "",
-        "Etes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
+        "Etes-vous sûr de vouloir corriger la table ": "",
         "Vérification base de données": ""
     },
     "desktop\/modal\/eqLogic.displayWidget.php": {
@@ -1261,7 +1261,7 @@
         "Installer mon Backup": "",
         "Informations Importantes": "",
         "- Il vous faut une clé USB de plus de 8Go.": "",
-        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom.",
+        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "",
         "- Accéder à votre Jeedom depuis sont adresse interne.": "",
         "- Pouvoir laisser cette page ouverte au minimum 1h30.": "",
         "C'est Partie": ""
@@ -2040,7 +2040,7 @@
     },
     "desktop\/js\/editor.js": {
         "Fichier enregistré avec succès": "",
-        "Etes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier : "
+        "Etes-vous sûr de vouloir supprimer ce fichier : ": ""
     },
     "desktop\/js\/plugin.js": {
         "Synchronisation réussi. Nombre de plugins installé : ": "",
@@ -2149,7 +2149,7 @@
         "Configuration de l'équipement": "Cihazın ayarları",
         "Configuration de l'objet": "Nesnenin ayarları",
         "Configuration de la commande": "Komutanın ayarları",
-        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "",
         "Historique des suppressions": ""
     },
     "desktop\/js\/cron.js": {
@@ -2266,7 +2266,7 @@
         "Merci": "",
         "Clé USB vérifié passage à l\\'étape 2 en cours": "",
         "Début de la restauration du backup !": "",
-        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...",
+        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "",
         "test de l\\'image": "",
         "Mise à jour de votre Jeedom réussi": "",
         "L\\'opération a échoué": "Operasyon başarısız sonuçlandı",
@@ -2359,7 +2359,7 @@
         "Résumé Objets": ""
     },
     "desktop\/js\/system.js": {
-        "Etes-vous sûr de vouloir exécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
+        "Etes-vous sûr de vouloir exécuter cette commande : ": "",
         "Celle-ci est classée en dangereuse": "",
         "Commande : ": "Komuta :",
         "Remise à plat des droits fait avec succès": "",
@@ -2367,15 +2367,15 @@
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Kayıt başarılı",
-        "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
+        "Etes-vous sûr de vouloir faire une sauvegarde de": "",
         "? Une fois lancée cette opération ne peut être annulée": "",
-        "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
+        "Etes-vous sûr de vouloir restaurer": "",
         "avec la sauvegarde": "",
         "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez.",
         "Etes-vous sûr de vouloir supprimer la sauvegarde": "Kaydı silmek istediğinizden eminmisiniz",
         "Sauvegarde supprimée avec succès": "Kayıt başarıyla silindi",
         "Fichier(s) ajouté(s) avec succès": "Dosya(lar) başarıyla eklendi(ler)",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "",
         "avec la sauvegarde Cloud": "",
         "Une fois lancée cette opération ne peut être annulée": "Başlatıldiķtan sonra bu işlem iptal edilemez",
@@ -2498,7 +2498,7 @@
     },
     "core\/js\/cmd.class.js": {
         "Veuillez indiquer le code ?": "Pin i girin",
-        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
+        "Etes-vous sûr de vouloir faire cette action ?": "",
         "Résultat de la commande : ": "Komutanın sonucu :",
         "Action exécutée avec succès": "İşlem başarıyla gerçekleştirildi",
         "[Jeedom] Message de test": "[jeedom] Test mesajı",
@@ -2700,7 +2700,7 @@
         "Aucun plan correspondant": "",
         "Objet inconnu. Vérifiez l\\'ID": "Bilinmeyen nesne. Kimliği kontrol edin",
         "Plan header inconnu. Vérifiez l\\'ID ": "",
-        "Code d\\'acces invalide": "Code d\\'acces invalide",
+        "Code d\\'acces invalide": "",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Dosya bulunamadı. PHP ayarını kontrol edin (yazı boyutu sınırı)",
         "Le fichier est trop gros (maximum 5Mo)": "",
         "Impossible de sauvegarder l\\'image": "",
@@ -2747,9 +2747,9 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Ulaşım yetkisiz",
         "Aucun plan3d correspondant": "",
-        "Objet inconnu verifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
-        "Code d\\'acces invalide": "Code d\\'acces invalide",
+        "Objet inconnu verifiez l\\'id": "",
+        "plan3d header inconnu verifiez l\\'id : ": "",
+        "Code d\\'acces invalide": "",
         "Objet inconnu. Vérifiez l\\'ID": "Bilinmeyen nesne. Kimliği kontrol edin",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Dosya bulunamadı. PHP ayarını kontrol edin (yazı boyutu sınırı)",
         "Le fichier est trop gros (maximum 150Mo)": "Dosya çok büyük (maksimum 150 MB)",
@@ -2927,7 +2927,7 @@
         "Le type de la commande ne peut pas être vide :": "Komutun türü boş olamaz:",
         "Le sous-type de la commande ne peut pas être vide :": "Komut alt türü boş bırakılamaz:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Bir cihaza eklemeden sipariş oluşturamazsınız",
-        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
+        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "",
         "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
         ". Sur preExec de la commande": ". Sipariş öncesi",
         ". Détails : ": ". Detaylar:",

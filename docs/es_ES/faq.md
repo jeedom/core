@@ -64,13 +64,13 @@ recomienda modificar estos identificadores para mayor seguridad.
 ¿Podemos poner Jeedom en https? ? 
 ================================
 
-Sí : O tienes una fuente de alimentación o más, en este caso
+Si : O tienes una fuente de alimentación o más, en este caso
 solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/es_ES/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 Cómo conectarse en SSH ?
 =============================
 
-Aquí hay un [Documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
+Aquí hay un [documentación](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". El &quot;nombre de host&quot; es la ip de su Jeedom, los identificadores son :
 
 - Nombre de usuario : "root ", contraseña : "Mjeedom96"
 - Nombre de usuario : "jeedom ", contraseña : "Mjeedom96"
@@ -179,7 +179,7 @@ Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a 
 
 Este error no se debe a Jeedom, sino a un problema con el sistema..
 Si persiste después de una reinstalación, es recomendable
-ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
+ver con el servicio postventa para una inquietud de hardware. Aquí esta el [documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
 
 Mi escenario ya no se detiene 
 =================================
@@ -233,7 +233,7 @@ Los botones de apagado / reinicio no funcionan
 
 En una instalación de bricolaje es normal. En SSH, tienes que pedir
 visudo y al final del archivo tienes que agregar : www-data ALL = (ALL)
-NOPASSWD: TODO.
+NOPASSWD: TODOS.
 
 `` `{.bash}
 servicio sudo apache2 reiniciar

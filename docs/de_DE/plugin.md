@@ -1,5 +1,5 @@
 Im Untermenü Plugins-Verwaltung können Sie Plugins bearbeiten, außer
-wissen : Laden Sie sie herunter, aktualisieren und aktivieren Sie sie usw.
+zu wissen : Laden Sie sie herunter, aktualisieren und aktivieren Sie sie usw.
 
 Plugins-Verwaltung 
 ===================

@@ -1,4 +1,4 @@
-Descrição 
+Descrição do produto 
 ===========
 
 Esta página permite reunir em uma única página os diferentes
@@ -59,7 +59,7 @@ Em cada equipamento encontramos :
 -   Um **caixa de seleção** para selecionar o equipamento (você pode
     selecione vários). Se pelo menos um dispositivo estiver selecionado
     você tem botões de ação que aparecem no canto superior esquerdo
-    PARA **supprimer**, devolver **visible**/**invisible**,
+    para **supprimer**, devolver **visible**/**invisible**,
     **actif**/**inactif** equipamento selecionado.
 
 -   O **nom** equipamento.
@@ -300,7 +300,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 > **Tip**
 >
 > Em um gráfico, um clique duplo em um elemento leva você ao seu
-> Configuração.
+> configuração.
 
 > **Note**
 >
@@ -311,7 +311,7 @@ Guia Informações
 -------------------
 
 A guia **Informations** contém informações gerais sobre o
-Ordem :
+comando :
 
 -   **ID** : Identificador exclusivo no banco de dados.
 
@@ -401,7 +401,7 @@ Guia Configuração
     -   **Suavização moda** : Modo de **lissage** ou d'**archivage**
         permite escolher como arquivar os dados. Por padrão,
         é um **moyenne**. Também é possível escolher o
-        **maximum**, O **minimum**, onde **aucun**. **aucun** deixa
+        **maximum**, o **minimum**, onde **aucun**. **aucun** deixa
         diga ao Jeedom que ele não deve arquivar neste
         ordem (durante o primeiro período de 5 minutos e com o
         tarefa de arquivamento). Essa opção é perigosa porque o Jeedom
@@ -436,10 +436,10 @@ Guia Configuração
 
     -   **URL impulso** : Permite adicionar um URL para chamar em caso de
         atualização do pedido. Você pode usar tags
-        Seguinte : ``#value#`para o valor do pedido '#cmd_name#``
+        próximo : ``#value#`para o valor do pedido '#cmd_name#``
         para o nome do comando, `#cmd_id#`para o identificador exclusivo
         do comando, `#humanname#`para o nome completo do comando
-        (ex : ``#[SalO de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento
+        (ex : ``#[Salo de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento
 
 ### Para um comando de ação : 
 
@@ -455,10 +455,10 @@ Guia Configuração
     quando a ação é iniciada a partir da interface deste comando.
 
 -   **Ação antes de executar o comando** : Permite adicionar
-    Comandos **avant** cada execução da ordem.
+    pedidos **avant** cada execução da ordem.
 
 -   **Ação após a execução da ordem** : Permite adicionar
-    Comandos **depois** cada execução da ordem.
+    pedidos **depois** cada execução da ordem.
 
 Guia Alertas 
 --------------

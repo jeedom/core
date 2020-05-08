@@ -1,4 +1,4 @@
-Viendo 
+Display 
 =========
 
 El menú Registros le permite seguir lo que está sucediendo en su domótica. En la

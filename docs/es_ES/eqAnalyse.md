@@ -120,7 +120,7 @@ Y se usa en muchos otros lugares como (no exhaustivo) :
 > **Tip**
 >
 > La tabla proporciona una vista muy textual de los comandos.
-> huérfano. Su propósito es poder identificar rápidamente todos los
+> huérfanos. Su propósito es poder identificar rápidamente todos los
 > comandos &quot;huérfanos&quot; a través de todos los complementos y libertad. El se
 > algunas áreas pueden no ser analizadas, la tabla será
 > ser cada vez más exhaustivo con el tiempo.

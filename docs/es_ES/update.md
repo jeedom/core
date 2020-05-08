@@ -1,7 +1,7 @@
 Descripción 
 ===========
 
-La **centro de actualizaciones** le permite actualizar todo
+El **centro de actualizaciones** le permite actualizar todo
 Características de Jeedom, incluido el software central,
 complementos, widgets, etc.. Otras funciones de administración de extensiones
 están disponibles (eliminar, reinstalar, verificar, etc.)
@@ -19,7 +19,7 @@ sucedió, cuando lanzaste una actualización.
 Funciones en la parte superior de la página.. 
 ---------------------------------
 
-En la parte superior de la tabla están los botones de control.. Jeedom se
+En la parte superior de la tabla están los botones de control.. Jeedom se encuentra
 conectarse periódicamente con Market para ver si hay actualizaciones
 están disponibles (la fecha de la última verificación se indica en la parte superior
 izquierda de la mesa). Si desea realizar una verificación manual,

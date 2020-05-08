@@ -56,15 +56,15 @@ Los equipos
 
 En cada equipo encontramos :
 
--   Una **casilla de verificación** para seleccionar el equipo (puedes
+-   Un **casilla de verificación** para seleccionar el equipo (puedes
     seleccione múltiple). Si se selecciona al menos un dispositivo
     tienes botones de acción que aparecen en la esquina superior izquierda
-    para **supprimer**, maquillaje **visible**/ /**invisible**,
+    para **supprimer**, devolver **visible**/ /**invisible**,
     **actif**/ /**inactif** equipo seleccionado.
 
--   La **nom** equipo.
+-   El **nom** equipo.
 
--   La **type** equipo : Identificador del complemento al que
+-   El **type** equipo : Identificador del complemento al que
     pertenece.
 
 -   **Inactif** (cruz pequeña) : Significa que el equipo está inactivo.
@@ -163,7 +163,7 @@ En la pestaña **Affichage**, podrás configurar algunos
 mostrar el comportamiento del mosaico en el tablero, las vistas, el
 diseño tan bien como móvil.
 
-### Reproductor 
+### Widget 
 
 -   **Visible** : Marque la casilla para hacer visible el equipo.
 
@@ -228,7 +228,7 @@ nada que configurar en modo predeterminado. Aquí están las opciones disponible
     solo mesa.
 
 A continuación para cada cuadro, el **configuración detallada** te permite
-este :
+esto :
 
 -   **Cuadro de texto** : Agregue texto además del comando (o
     solo, si no hay orden en la caja).
@@ -300,7 +300,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 > **Tip**
 >
 > En un gráfico, un doble clic en un elemento lo lleva a su
-> configuración.
+> configuracion.
 
 > **Note**
 >
@@ -311,7 +311,7 @@ Pestaña de información
 -------------------
 
 La pestaña **Informations** contiene información general sobre el
-orden :
+comando :
 
 -   **ID** : Identificador único en la base de datos..
 
@@ -401,7 +401,7 @@ Pestaña de configuración
     -   **Modo de suavizado** : Modo de **lissage** o d'**archivage**
         le permite elegir cómo archivar los datos. Por defecto,
         es una **moyenne**. También es posible elegir el
-        **maximum**, La **minimum**, o **aucun**. **aucun** Permite
+        **maximum**, el **minimum**, donde **aucun**. **aucun** Permite
         dile a Jeedom que no debe archivar en esto
         orden (tanto durante los primeros 5 minutos como con el
         tarea de archivo). Esta opción es peligrosa porque Jeedom
@@ -439,7 +439,7 @@ Pestaña de configuración
         Próximo : ``#value#`por el valor de la orden,`#cmd_name#``
         para el nombre del comando, `#cmd_id#`para el identificador único
         del comando, `#humanname#`para el nombre completo del comando
-        (por ejemplo, : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo
+        (ex : ``#[Salel de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo
 
 ### Para un comando de acción : 
 
@@ -455,15 +455,15 @@ Pestaña de configuración
     cuando la acción se inicia desde la interfaz de este comando.
 
 -   **Acción antes de la ejecución del comando** : Le permite agregar
-    comandos **avant** cada ejecución de la orden.
+    órdenes **avant** cada ejecución de la orden.
 
 -   **Acción después de la ejecución de la orden.** : Le permite agregar
-    comandos **después** cada ejecución de la orden.
+    órdenes **después** cada ejecución de la orden.
 
 Pestaña Alertas 
 --------------
 
-Le permite definir un nivel de alerta (**warning** o **danger**) en
+Le permite definir un nivel de alerta (**warning** donde **danger**) en
 dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` para 30
 minutos, entonces el equipo puede ponerse en alerta **warning**.
 
@@ -492,8 +492,8 @@ mobile.
 -   **Mostrar nombre e icono** : Marque para hacer visible el ícono
     además del nombre del comando.
 
--   **Línea envuelta antes del widget** : Seleccionar **Antes de
-    widget** o **después del widget** para agregar un salto de línea
+-   **Línea envuelta antes del widget** : Garrapata **Antes de
+    widget** donde **después del widget** para agregar un salto de línea
     antes o después del widget (para forzar, por ejemplo, una visualización en
     columna de diferentes comandos de equipo en lugar de líneas
     por defecto)

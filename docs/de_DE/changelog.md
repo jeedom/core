@@ -334,11 +334,11 @@ Changelog
 
 -   Benutzer können jetzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
 
--   Jeed-417 : Hinzufügen einer time_diff-Funktion in den Szenarien
+-   JEED-417 : Hinzufügen einer time_diff-Funktion in den Szenarien
 
 -   Hinzufügen einer konfigurierbaren Verzögerung vor der Reaktion auf Interaktionen (ermöglicht beispielsweise das Warten auf die Statusrückmeldung)
 
--   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
+-   JEED-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
 
 -   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets).
 
@@ -360,10 +360,10 @@ Changelog
 
 -   Rechtschreibkorrekturen (danke an dab0u für seine enorme Arbeit)
 
--   Jeed-290 : Wir können uns nicht mehr mit Bezeichnern verbinden
+-   JEED-290 : Wir können uns nicht mehr mit Bezeichnern verbinden
     Standardmäßig (admin / admin) remote ist nur das lokale Netzwerk autorisiert
 
--   Jeed-186 : Wir können jetzt die Hintergrundfarbe in der auswählen
+-   JEED-186 : Wir können jetzt die Hintergrundfarbe in der auswählen
     designs
 
 -   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen.
@@ -373,13 +373,13 @@ Changelog
     Benutzerprofilseite und Verwaltungsseite
     utilisateurs
 
--   Jeed-284 : Die dauerhafte Verbindung hängt jetzt von einem Schlüssel ab
+-   JEED-284 : Die dauerhafte Verbindung hängt jetzt von einem Schlüssel ab
     Einzelbenutzer und Gerät (statt Benutzer)
 
--   Jeed-283 : Hinzufügen eines Modus *rescue* zur Freiheit durch Hinzufügen & Rettung = 1
+-   JEED-283 : Hinzufügen eines Modus *rescue* zur Freiheit durch Hinzufügen & Rettung = 1
     in der URL
 
--   Jeed-8 : Hinzufügen des Namens des Szenarios zum Titel der Seite während
+-   JEED-8 : Hinzufügen des Namens des Szenarios zum Titel der Seite während
     Ausgabe
 
 -   Optimierung organisatorischer Änderungen (Größe der Widgets,
@@ -387,30 +387,30 @@ Changelog
     und die Ansichten. Achtung jetzt sind die Modifikationen nicht
     Wird nur beim Verlassen des Bearbeitungsmodus gespeichert.
 
--   Jeed-18 : Hinzufügen von Protokollen beim Öffnen eines Tickets zur Unterstützung
+-   JEED-18 : Hinzufügen von Protokollen beim Öffnen eines Tickets zur Unterstützung
 
--   Jeed-181 : Hinzufügen eines Namensbefehls in den Szenarien zu haben
+-   JEED-181 : Hinzufügen eines Namensbefehls in den Szenarien zu haben
     den Namen der Bestellung oder Ausrüstung oder des Objekts
 
--   Jeed-15 : Batterie hinzufügen und Alarm auf Webapp
+-   JEED-15 : Batterie hinzufügen und Alarm auf Webapp
 
 -   Korrektur von Fehlern beim Verschieben von Designobjekten in Firefox
 
--   Jeed-19 : Während eines Updates ist es nun möglich
+-   JEED-19 : Während eines Updates ist es nun möglich
     Aktualisieren Sie das Aktualisierungsskript vor dem Aktualisieren
 
--   Jeed-125 : Link zum Zurücksetzen der Dokumentation hinzugefügt
+-   JEED-125 : Link zum Zurücksetzen der Dokumentation hinzugefügt
     Passwort
 
--   Jeed-2 : Verbessertes Zeitmanagement während eines Neustarts
+-   JEED-2 : Verbessertes Zeitmanagement während eines Neustarts
 
--   Jeed-77 : Hinzufügen der Variablenverwaltung in der http-API
+-   JEED-77 : Hinzufügen der Variablenverwaltung in der http-API
 
--   Jeed-78 : Hinzufügen der Tag-Funktion für Szenarien. Sei dort vorsichtig
+-   JEED-78 : Hinzufügen der Tag-Funktion für Szenarien. Sei dort vorsichtig
     muss in den Szenarien mit den Tags von \ übergeben werden#montag\#
     zu markieren (montag)
 
--   Jeed-124 : Korrigieren Sie die Verwaltung von Szenario-Timeouts
+-   JEED-124 : Korrigieren Sie die Verwaltung von Szenario-Timeouts
 
 -   Fehlerbehebungen
 

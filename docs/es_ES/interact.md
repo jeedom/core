@@ -8,10 +8,10 @@ Estas órdenes pueden ser obtenidas por :
 
 -   Gato : Telegram, Slack, etc..
 
--   Vocal : dicta una frase con Siri, Google Now, SARAH, etc. Para
+-   Voz : dicta una frase con Siri, Google Now, SARAH, etc. Para
     iniciar comandos (acción) o hacer una pregunta (información).
 
--   Http : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack)
+-   HTTP : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack)
     para iniciar comandos (acción) o hacer una pregunta (información).
 
 El interés de las interacciones radica en la integración simplificada en
@@ -54,7 +54,7 @@ la interacción no está vinculada a una acción sino a información o si
 desea llevar a cabo una acción específica después de esto (también es
 posible ejecutar un escenario, controlar varios comandos ...).
 
-Configuración 
+Configuracion 
 =============
 
 La página de configuración consta de varias pestañas y

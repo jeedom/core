@@ -102,7 +102,7 @@ Aqui está o URL =
     a mensagem (o espaço se torna% 20, =% 3D…). Você pode usar um
     outil, [aqui](https://meyerweb.com/eric/tools/dencoder/)
 
-Objeto 
+Assunto 
 =====
 
 Aqui está o URL =
@@ -119,7 +119,7 @@ Aqui está o URL =
 -   **objeto\_id** : ID do objeto do qual queremos recuperar
     équipements
 
-Ordem 
+Encomendar 
 ========
 
 Aqui está o URL =

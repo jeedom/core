@@ -151,7 +151,7 @@ pergunta, clicando diretamente no gráfico; de
 Além disso, você pode definir o mínimo e o máximo permitido para
 evitar problemas futuros.
 
-Cronograma 
+Linha do tempo 
 ========
 
 A linha do tempo exibe certos eventos em sua automação residencial no formato
@@ -170,7 +170,7 @@ comandos ou cenários desejados :
 >
 > Você tem acesso às janelas de resumo dos cenários ou do
 > configuração do histórico diretamente da página
-> Cronograma.
+> linha do tempo.
 
 Depois de ativar o rastreamento na linha do tempo do pedido e
 cenários desejados, você pode vê-los aparecer na linha do tempo.

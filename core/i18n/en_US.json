@@ -109,7 +109,7 @@
         "Nom": "Name",
         "Status": "STATUS",
         "Date lancement": "Date start",
-        "Action": "ACTION"
+        "Action": "Action"
     },
     "mobile\/html\/health.html": {
         "Nom": "Name",
@@ -139,7 +139,7 @@
         "Nom": "Name",
         "Status": "STATUS",
         "Date lancement": "Date start",
-        "Action": "ACTION"
+        "Action": "Action"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Delete all",
@@ -184,7 +184,7 @@
         "Type": "Type",
         "ID du lien": "Link id",
         "Lien": "Link",
-        "Action": "ACTION",
+        "Action": "Action",
         "Supprimer": "Delete",
         "Composant supprimée": "Component removed",
         "Image supprimée": "Picture deleted",
@@ -198,7 +198,7 @@
         "Type": "Type",
         "Groupement": "Grouping",
         "Escalier": "Steps",
-        "Action": "ACTION",
+        "Action": "Action",
         "Sauvegarde effectuée": "Backup completed",
         "Formule de calcul": "Algorithm",
         "Sélectionner la commande": "Select command",
@@ -298,7 +298,7 @@
         "Nom": "Name",
         "Valeur": "Value",
         "Utilisée dans": "Used in",
-        "Action": "ACTION",
+        "Action": "Action",
         "Dépôt de données supprimé": "Deleted data deposit",
         "Dépôt de données sauvegardé": "Saved data repository",
         "Graphique de lien(s)": "Link(s) chart"
@@ -576,7 +576,7 @@
         "inférieur": "lower than",
         "différent": "different",
         "plus de (min)": "more (min)",
-        "Action": "ACTION",
+        "Action": "Action",
         "Ajouter": "Add",
         "Action avant exécution de la commande": "Action before command execution",
         "Action après exécution de la commande": "Action after command execution",
@@ -673,7 +673,7 @@
         "Plugin": "Plugin",
         "Mode de lissage": "Mode smoothing",
         "Purge de l'historique si plus vieux": "Purge history if oldest",
-        "Action": "ACTION",
+        "Action": "Action",
         "Moyenne": "Average",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
@@ -762,7 +762,7 @@
         "Dernière mise à jour": "Last update",
         "Tag": "Tag",
         "Commandes": "Commands",
-        "Action": "ACTION",
+        "Action": "Action",
         "Widget": "Widget",
         " . $value['name'] . ": ". $ value ['name'].",
         "Afficher le nom": "Display name",
@@ -824,7 +824,7 @@
         "Nom object": "Name object",
         "Type": "Type",
         "ID du lien": "Link id",
-        "Action": "ACTION",
+        "Action": "Action",
         "Composant supprimée": "Component removed",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Successful loading thank you to reload the page to see the result"
     },
@@ -1071,7 +1071,7 @@
         "Macro simple": "Simple macro",
         "Macro binaire": "Binary macro",
         "Widget au survol": "Widget in the flyover",
-        "Action": "ACTION",
+        "Action": "Action",
         "Equipement": "Device",
         "Afficher au survol": "Show on flyover",
         "Afficher sur un clic": "Display on click",
@@ -1625,7 +1625,7 @@
         "Supprimer tout": "Delete all",
         "Identification": "Identification",
         "Date dernière utilisation": "Last use date",
-        "Action": "ACTION",
+        "Action": "Action",
         "Supprimer": "Delete",
         "Commande de notification utilisateur": "User notification command"
     },
@@ -1725,7 +1725,7 @@
         "Enregistrer": "Save",
         "Ajouter élément": "Add element",
         "Si\/Alors\/Sinon": "If\/Then\/Else",
-        "Action": "ACTION",
+        "Action": "Action",
         "Boucle": "Loop",
         "Dans": "Within",
         "A": "To",
@@ -1755,7 +1755,7 @@
         "Date et heure": "Date and time",
         "Plugin": "Plugin",
         "Description": "Description",
-        "Action": "ACTION"
+        "Action": "Action"
     },
     "desktop\/php\/interact.php": {
         "401 - Accès non autorisé": "401 - Access not allowed",
@@ -1847,7 +1847,7 @@
         "Déconnecter": "Disconnect",
         "Périphériques enregistrés": "Registred devices",
         "Supprimer tout": "Delete all",
-        "Action": "ACTION",
+        "Action": "Action",
         "Supprimer": "Delete",
         "Identifiant": "Login",
         "Mot de passe": "Password",
@@ -1885,7 +1885,7 @@
         "Nom": "Name",
         "Status": "STATUS",
         "Date lancement": "Date start",
-        "Action": "ACTION"
+        "Action": "Action"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Access not allowed",
@@ -2057,7 +2057,7 @@
         "Statut": "Status",
         "Actif": "Enabled",
         "Inactif": "Inactives",
-        "Action": "ACTION",
+        "Action": "Action",
         "Désactiver": "Disable",
         "Votre version de": "Your version of",
         "ne permet pas d\\'activer ce plugin": "does not allow you to enable this plugin",
@@ -2249,7 +2249,7 @@
         "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?": "Are you sure you want to regenerate all interactions (this might take a while)?",
         "Toutes les interations ont été regénérées": "All interactions have been regenerated",
         "Etes-vous sûr de vouloir supprimer l\\'interaction": "Do you really want to delete the interaction",
-        "Action": "ACTION",
+        "Action": "Action",
         "Sélectionner un mot-clé": "Select a keyword"
     },
     "desktop\/js\/report.js": {
@@ -2440,7 +2440,7 @@
         "Ajouter": "Add",
         "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI\/ALORS….)": "Adds essential functional elements to create your scenarios (eg. IF \/ THEN ...)",
         "Bloc": "Block",
-        "Action": "ACTION",
+        "Action": "Action",
         "SINON": "ELSE",
         "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI\/ALORS….)": "Allows you to add essential functional elements to create your scenarios (eg IF \/ THEN ...)",
         "Décocher pour désactiver l\\'élément": "Uncheck to disable the item",
@@ -2504,7 +2504,7 @@
         "[Jeedom] Message de test": "[Jeedom] Test message",
         "Ceci est un test de message pour la commande": "This is a test message for the command",
         "Info": "Info",
-        "Action": "ACTION",
+        "Action": "Action",
         "Sélectionner la commande": "Select command"
     },
     "core\/js\/scenario.class.js": {
@@ -3127,7 +3127,7 @@
         "POUR": "FOR",
         "FAIRE": "DO",
         "CODE": "CODED",
-        "ACTION": "Action",
+        "ACTION": "ACTION",
         "DANS": "IN",
         "A": "To"
     },
@@ -3381,7 +3381,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "ACTION",
+        "Action": "Action",
         "Start": "Start",
         "Start (sync)": "Start (sync)",
         "Stop": "STOP",
@@ -3419,7 +3419,7 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Device",
         "Selectionner un équipement": "Select equipment",
-        "Action": "ACTION",
+        "Action": "Action",
         "Visible": "Jeedom",
         "Masquer": "Hide",
         "Activer": "Activate",

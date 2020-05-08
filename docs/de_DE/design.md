@@ -145,17 +145,17 @@ Anzeigeeinstellung
 
 -   **Höhe (px)** :
 
-Entfernen 
+Löschen 
 ---------
 
 Gegenstand entfernen
 
-Duplikat 
+Duplizieren 
 ---------
 
 Ermöglicht das Duplizieren des Elements
 
-Schloss 
+Sperren 
 -----------
 
 Sperrt das Element so, dass es nicht mehr beweglich ist oder
@@ -277,7 +277,7 @@ Erweiterte Konfiguration
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe
 Dokumentation Zusammenfassung der Hausautomation (&quot;Anzeige&quot;))
 
-Bestellen 
+Bestellung 
 ========
 
 Anzeigeeinstellungen 
@@ -324,7 +324,7 @@ auf dem Gebiet
 ### Binäres Makro 
 
 In diesem Modus führt Jeedom die Ein- oder Ausschaltaktion (en) in aus
-abhängig vom Status der Bestellung, die Sie geben. Ex : wenn die Bestellung
+abhängig vom Status der Bestellung, die Sie geben. Bsp : wenn die Bestellung
 ist 0 wert, dann führt Jeedom die Aktion (en) aus. Andernfalls wird sie ausgeführt
 die Aktion (en) Aus
 

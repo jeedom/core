@@ -1,7 +1,7 @@
 Jeedom has the possibility to be saved and restored from or from
 from different locations.
 
-D'actualité 
+Configuration 
 =============
 
 Accessible from **Administration → Backups**, this page allows the

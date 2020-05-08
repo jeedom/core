@@ -151,7 +151,7 @@ pregunta, haciendo clic directamente en el gráfico; de
 más, puede establecer el mínimo y el máximo permitidos para
 evitar problemas futuros.
 
-Línea de tiempo 
+Cronograma 
 ========
 
 La línea de tiempo muestra ciertos eventos en su domótica en el formulario
@@ -170,7 +170,7 @@ comandos o escenarios deseados :
 >
 > Tiene acceso a las ventanas de resumen de los escenarios o del
 > configuración del historial directamente desde la página
-> Línea de tiempo.
+> cronograma.
 
 Una vez que haya habilitado el seguimiento en la línea de tiempo del pedido y
 escenarios deseados, puede verlos aparecer en la línea de tiempo.

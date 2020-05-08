@@ -118,7 +118,7 @@ Berechnete Geschichte
 
 Wird verwendet, um eine Kurve anzuzeigen, die auf einer Berechnung für mehrere basiert
 Befehl (Sie können so ziemlich alles tun, + - / \* absoluter Wert ... siehe
-PHP-Dokumentation für bestimmte Funktionen). Ex :
+PHP-Dokumentation für bestimmte Funktionen). Bsp :
 abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Raum von
 Das Leben \] \ [Luftfeuchtigkeit \] \ [Temperatur \] *)
 
