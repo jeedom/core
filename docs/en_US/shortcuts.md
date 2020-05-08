@@ -5,7 +5,7 @@
 When opening a page (Dashboard, Scenarios, etc.) the focus is on the search field. You can therefore directly type a search without further action.
 
 - Click on the clock (menu bar) : Open the Timeline.
-- Click on the name of the Jeedom (menu bar)  : Opens **Settings → System → Configuration**.
+- Click on the name of the Jeedom (menu bar)  : Open **Settings → System → Configuration**.
 - Click on ?  (toolbar)  : Opens help on the current page.
 - Escape on a research field : Empty the search field and cancel it.
 
@@ -49,7 +49,7 @@ On a scenario :
 - Ctrl S : Save.
 - Right click on a tab : Contextual menu to go directly to another scenario.
 - Ctrl L : Log display.
-- Ctrl Shift Z : Cancel.
+- Ctrl Shift Z : To cancel.
 - Ctrl Shift Y : Remake.
 
 - Ctrl Click on Execute : Save and execute the scenario, then open the log.

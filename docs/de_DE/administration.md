@@ -201,7 +201,7 @@ Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramm
 - **Tiefe für Kontrollen** : Gleiches gilt für Bestellungen.
 - **Tiefe für Variablen** : Gleiches gilt für Variablen.
 - **Parameter des Prerenders** : Ermöglicht es Ihnen, auf das Layout des Diagramms zu reagieren.
-- **Parameter rendern** : Idem.
+- **Parameter rendern** : Gleiches.
 
 ## Registerkarte &quot;Interaktionen&quot;
 
@@ -209,7 +209,7 @@ Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen fe
 
 > **Tip**
 >
-> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration. : Protokolle, dann überprüfen **Debug** in der unteren Liste. Aufmerksamkeit : Die Protokolle sind dann sehr ausführlich !
+> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration. : Protokolle, dann überprüfen **Debug** in der unteren Liste. Sei vorsichtig : Die Protokolle sind dann sehr ausführlich !
 
 ### General
 
@@ -313,7 +313,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 #### Market
 
-Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Aufmerksamkeit : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
+Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Sei vorsichtig : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
 - **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
 - **Benutzername** : Ihr Benutzername auf dem Markt.

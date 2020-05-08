@@ -158,7 +158,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
     -  `$ id` : Order ID.
 -  `$ cmd-> execCmd ($ options = null);` : Execute the command and return the result.
     - `$ options` : Options for order execution (may be plugin specific). Basic options (command subtype) :
-        -  Message : `$ option = array ('title' => 'message title,' message '=>' My message ');`
+        -  message : `$ option = array ('title' => 'message title,' message '=>' My message ');`
         -  color : `$ option = array ('color' => 'color in hexadecimal');`
         -  slider : `$ option = array ('slider' => 'desired value from 0 to 100');`
 
@@ -166,7 +166,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 -  ``log::add ('filename', 'level', 'message'); `
     - filename : Log file name.
     - level : [debug], [info], [error], [event].
-    - Message : Message to write in the logs.
+    - message : Message to write in the logs.
 
 ##### Access to scenario :
 - `$ scenario-> getName ();` : Returns the name of the current scenario.
@@ -364,7 +364,7 @@ The periods and intervals of these functions can also be used with [PHP expressi
 - Last monday : last Monday at 00:00.
 - 5 days ago : 5 days ago.
 - Yesterday noon : yesterday afternoon.
-- Etc..
+- Etc.
 
 Here are practical examples to understand the values returned by these different functions :
 
@@ -428,7 +428,7 @@ And practical examples :
 | Example of function                  | Returned result                    |
 |--------------------------------------|--------------------------------------|
 | randText (it does #[salon][oeil][température]#; The temperature is #[salon][oeil][température]#; Currently we have #[salon][oeil][température]#) | the function will return one of these texts randomly at each execution.                           |
-| randomColor (40,60)                 | Returns a random color close to green.
+| randomColor (40.60)                 | Returns a random color close to green.
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 if that's good \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# who started the scenario otherwise 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 if the hydrometry of \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# is 80%.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Returns 9 if the humidity percentage and 85                     |
@@ -446,29 +446,29 @@ And practical examples :
 
 In addition to home automation commands, you have access to the following actions :
 
-- **Pause** (Sleep) : Pause of x second (s).
+- **Pause** (sleep) : Pause of x second (s).
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (Delete_variable) : Allows you to delete a variable.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command &quot;Reset to SI&quot; allows to reset the status of &quot;SI&quot; (this status is used for the non-repetition of the actions of an &quot;SI&quot; if you pass for the 2nd consecutive time in it)
 - **Stop** (stop) : Stop the scenario.
-- **Attendre** (Wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds.
-- **Go to design** (Gotodesign) : Change the design displayed on all browsers by the requested design.
-- **Add a log** (Log) : Allows you to add a message to the logs.
+- **Attendre** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds.
+- **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
+- **Add a log** (log) : Allows you to add a message to the logs.
 - **Create message** (message) : Add a message to the message center.
 - **Activate / Deactivate Hide / display equipment** (equipment) : Allows you to modify the properties of visible / invisible, active / inactive equipment.
-- **To make a request** (Ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
+- **To make a request** (ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
     For the moment, only sms, slack, telegram and snips plugins are compatible, as well as the mobile application.
     Attention, this function is blocking. As long as there is no response or the timeout is not reached, the scenario waits.
 - **Stop Jeedom** (Jeedom_poweroff) : Ask Jeedom to shut down.
 - **Return a text / data** (Scenario_return) : Returns a text or a value for an interaction for example.
-- **Icon** (Icon) : Allows to change the icon of representation of the scenario.
-- **Alerte** (Alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
-- **Pop-up** (Popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
-- **Rapport** (Report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
+- **Icon** (icon) : Allows to change the icon of representation of the scenario.
+- **Alerte** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
+- **Pop-up** (popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
+- **Rapport** (report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
 - **Delete programmed IN / A block** (Remove_inat) : Allows you to delete the programming of all IN and AT blocks of the scenario.
-- **Event** (Event) : Allows you to push a value in an information type command arbitrarily.
-- **Tag** (Tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
-- **Coloring of dashboard icons** (SetColoredIcon) : allows you to activate or not the coloring of icons on the dashboard.
+- **Event** (event) : Allows you to push a value in an information type command arbitrarily.
+- **Tag** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
+- **Coloring of dashboard icons** (setColoredIcon) : allows you to activate or not the coloring of icons on the dashboard.
 
 ### Scenario template
 

@@ -148,7 +148,7 @@
         "Scénario": "Escenario",
         "Analyse": "Análisis",
         "Autre": "Otro",
-        "Plugins": "Plugins"
+        "Plugins": "Complementos"
     },
     "mobile\/html\/cron.html": {
         "Nom": "Nombre",
@@ -480,7 +480,7 @@
         "Gauche": "Izquierda",
         "Droite": "Derecha",
         "Devant": "Delante",
-        "Derriere": "Derriere",
+        "Derriere": "Detras",
         "Normal": "Normal",
         "Inversé": "Invertida",
         "Translation": "Traducción",
@@ -1178,7 +1178,7 @@
         "Configuration du plugin": "Configuración del complemento",
         "Santé de Jeedom": "Jeedom Health",
         ".$datas['comment'].": ". $ Datas [ 'comentario'].",
-        "Plugins": "Plugins",
+        "Plugins": "Complementos",
         "Vous pouvez voir les détails des plugins sur la partie basse de cette page": "Puedes ver los detalles de los complementos en la parte inferior de esta página",
         "et": "y",
         "Extensions php": "Extensiones de php"
@@ -1230,7 +1230,7 @@
         "Notes": "Notas",
         "Testeur expression": "Probador de expresión",
         "Variables": "Las variables",
-        "Plugins": "Plugins",
+        "Plugins": "Complementos",
         "Gestion des plugins": "Gestión de plugins",
         "Réglages": "Ajustes",
         "Système": "Sistema",
@@ -1274,7 +1274,7 @@
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Plugins": "Plugins",
+        "Plugins": "Complementos",
         "Synchroniser": "Sincronizar",
         "Mes plugins": "Mis complementos",
         "Rechercher": "Buscar",
@@ -1958,7 +1958,7 @@
         "Commandes par unité": "Pedidos por unidad",
         "Sans unité": "Sin unidad",
         "Commandes des objets": "Controles de objetos",
-        "Plugins": "Plugins",
+        "Plugins": "Complementos",
         "Catégories": "Categorías",
         "Sans catégorie": "Sin categoría",
         "Visibles": "Visible",
@@ -2825,7 +2825,7 @@
         "Météo": "Tiempo",
         "Communication": "Comunicación",
         "Objets connectés": "Objetos conectados",
-        "Confort": "Confort",
+        "Confort": "Comodidad",
         "Monitoring": "Monitoreo",
         "Santé": "Salud",
         "Nature": "Naturaleza",

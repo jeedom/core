@@ -152,7 +152,7 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 > **Note**
 >
 > El primer parámetro **Ver estadísticas de widgets** es posible pero está deshabilitado de manera predeterminada porque extiende significativamente el tiempo de visualización del tablero. Si activa esta opción, de manera predeterminada, Jeedom se basa en los datos de las últimas 24 horas para calcular estas estadísticas..
-> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para más detalles).
+> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para más detalles).
 
 ### Push
 
@@ -201,7 +201,7 @@ Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráf
 - **Profundidad para controles** : Lo mismo para pedidos.
 - **Profundidad para variables** : Lo mismo para las variables..
 - **Parámetro de prerender** : Le permite actuar sobre el diseño del gráfico..
-- **Parámetro de procesamiento** : ídem.
+- **Parámetro de procesamiento** : Lo mismo.
 
 ## Pestaña interacciones
 
@@ -225,9 +225,9 @@ Aquí tienes tres parámetros :
 
 ### Interacción automática, contextual y advertencia
 
--   La **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible..
+-   El **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible..
 
--   La **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
+-   El **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
     - *Jeedom manteniendo el contexto :*
         - *Vous* : Cuanto esta el en el cuarto ?
         - *Jeedom* : Temperatura 25.2 ° C

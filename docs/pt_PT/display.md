@@ -200,7 +200,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - **Historique**
     - **Historiser** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **lissage** ou d'**archivage** permite escolher como arquivar os dados. Por padrão, este é um **moyenne**. Também é possível escolher o **maximum**, O **minimum**, onde **aucun**. **aucun** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante os primeiros 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Suavização moda** : Modo de **lissage** ou d'**archivage** permite escolher como arquivar os dados. Por padrão, este é um **moyenne**. Também é possível escolher o **maximum**, o **minimum**, onde **aucun**. **aucun** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante os primeiros 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**
@@ -210,7 +210,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - **Autres**
     - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita acionar um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
-    - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[SalO de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
+    - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[Salo de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
 
 #### Para um comando de ação :
 

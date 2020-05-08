@@ -84,23 +84,23 @@ Changelog Jeedom V4
 - Each Jeedom page now has a title in the interface language (browser tab).
 - Prevention of auto-filling on fields&#39; Access code'.
 - Functions management *Previous page / Next page* browser.<br/><br/>
-- Widget : Redesign of the widget system (Tools / Widgets menu).
-- Widget : Ability to replace a widget with another on all commands using it.
-- Widget : Ability to assign a widget to multiple commands.
-- Widget : Add horizontal info numeric widget.
-- Widget : Adding an info numeric vertical widget.
-- Widget : Addition of an info numeric compass / wind widget (thanks @thanaus).
-- Widget : Adding an info numeric rain widget (thanks @thanaus)
-- Widget : Display of the info / action shutter widget proportional to the value.<br/><br/>
-- D'actualité : Improvement and reorganization of tabs.
-- D'actualité : Adding many *tooltips* (help).
-- D'actualité : Adding a search engine.
-- D'actualité : Adding a button to empty the widget cache (Cache tab).
-- D'actualité : Added option to disable widget cache (Cache tab).
-- D'actualité : Ability to center the content of the tiles vertically (Interface tab).
-- D'actualité : Addition of a parameter for the global purging of the histories (Tab Commands).
-- D'actualité : Change of  #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
-- D'actualité : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
+- Widgets : Redesign of the widget system (Tools / Widgets menu).
+- Widgets : Ability to replace a widget with another on all commands using it.
+- Widgets : Ability to assign a widget to multiple commands.
+- Widgets : Add horizontal info numeric widget.
+- Widgets : Adding an info numeric vertical widget.
+- Widgets : Addition of an info numeric compass / wind widget (thanks @thanaus).
+- Widgets : Adding an info numeric rain widget (thanks @thanaus)
+- Widgets : Display of the info / action shutter widget proportional to the value.<br/><br/>
+- Configuration : Improvement and reorganization of tabs.
+- Configuration : Adding many *tooltips* (help).
+- Configuration : Adding a search engine.
+- Configuration : Adding a button to empty the widget cache (Cache tab).
+- Configuration : Added option to disable widget cache (Cache tab).
+- Configuration : Ability to center the content of the tiles vertically (Interface tab).
+- Configuration : Addition of a parameter for the global purging of the histories (Tab Commands).
+- Configuration : Change of  #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
+- Configuration : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
 - Scenario : Possibility by Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *Aucun*).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.

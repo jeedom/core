@@ -65,18 +65,18 @@ Changelog Jeedom V4
 - Die Suchfelder (Dashboard, Szenarien, Objekte, Widgets, Interaktionen, Plugins) sind jetzt beim Öffnen der Seite aktiv, sodass Sie eine Suche direkt eingeben können.
 - Fügen Sie den Suchfeldern eine X-Schaltfläche hinzu, um die Suche abzubrechen.
 - Während einer Suche wird der Schlüssel *echap* Suche abbrechen.
-- Armaturenbrett : Im Bearbeitungsmodus sind das Suchfeld und seine Schaltflächen deaktiviert und werden behoben.
-- Armaturenbrett : Klicken Sie im Bearbeitungsmodus auf eine Schaltfläche *expand* Rechts neben den Objekten werden die Kacheln des Objekts auf die höchste Höhe angepasst. Strg + Klick reduziert sie auf die niedrigste Höhe.
-- Armaturenbrett : Die Befehlsausführung auf einer Kachel wird nun durch die Schaltfläche signalisiert *refresh*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
-- Armaturenbrett : Die Kacheln zeigen einen Info-Befehl (Verlauf, der das Verlaufsfenster öffnet) oder eine Aktion beim Schweben an.
-- Armaturenbrett : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
-- Armaturenbrett : Das Verlaufsfenster behält seine Position / Dimensionen bei, wenn ein anderer Verlauf erneut geöffnet wird.
+- Dashboard : Im Bearbeitungsmodus sind das Suchfeld und seine Schaltflächen deaktiviert und werden behoben.
+- Dashboard : Klicken Sie im Bearbeitungsmodus auf eine Schaltfläche *expand* Rechts neben den Objekten werden die Kacheln des Objekts auf die höchste Höhe angepasst. Strg + Klick reduziert sie auf die niedrigste Höhe.
+- Dashboard : Die Befehlsausführung auf einer Kachel wird nun durch die Schaltfläche signalisiert *refresh*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
+- Dashboard : Die Kacheln zeigen einen Info-Befehl (Verlauf, der das Verlaufsfenster öffnet) oder eine Aktion beim Schweben an.
+- Dashboard : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
+- Dashboard : Das Verlaufsfenster behält seine Position / Dimensionen bei, wenn ein anderer Verlauf erneut geöffnet wird.
 - Befehlskonfigurationsfenster: Strg + Klick auf &quot;Speichern&quot; schließt das Fenster danach.
 - Fenster Gerätekonfiguration: Strg + Klick auf &quot;Speichern&quot; schließt das Fenster danach.
 - Hinzufügen von Nutzungsinformationen beim Löschen von Geräten.
 - Objekte : Option zur Verwendung benutzerdefinierter Farben hinzugefügt.
 - Objekte : Kontextmenü auf Registerkarten hinzufügen (schnelle Objektänderung).
-- Wechselwirkungen : Kontextmenü auf Registerkarten hinzufügen (schnelle Änderung der Interaktion).
+- Interaktionen : Kontextmenü auf Registerkarten hinzufügen (schnelle Änderung der Interaktion).
 - Plugins : Kontextmenü auf Registerkarten hinzufügen (schneller Gerätewechsel).
 - Plugins : Auf der Plugins-Verwaltungsseite zeigt ein orangefarbener Punkt nicht stabile Plugins an.
 - Tabellenverbesserungen mit Filter- und Sortieroption.

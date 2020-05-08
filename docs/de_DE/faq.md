@@ -142,7 +142,7 @@ Oder konsultieren Sie das Protokoll : /var/log/mysql/error.log
 
 ### Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
 Bei einer DIY-Installation ist das normal. In SSH müssen Sie den Befehl visudo ausführen und am Ende der Datei hinzufügen : www-data ALL = (ALL)
-NOPASSWD: Alle.
+NOPASSWD: ALLES.
 
 `` `{.bash}
 sudo service apache2 neu starten

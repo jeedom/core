@@ -37,7 +37,7 @@ Nach dem Klicken auf **Ajouter**, Sie müssen den Namen Ihres Szenarios auswähl
 Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dieses Szenarios :
 
 - **ID** : Neben dem Wort **General**, Dies ist die Szenariokennung.
-- **statut** : *Verhaftet* oder *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
+- **statut** : *Verhaftet* wo *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
 - **Fügen Sie einen Block hinzu** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)..
 - **Log** : Zeigt die Szenarioprotokolle an.
 - **Dupliquer** : Kopieren Sie das Szenario, um ein neues mit einem anderen Namen zu erstellen.
@@ -56,7 +56,7 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
     > - Die Variablen, sichtbar in **Werkzeuge → Variablen**
     > - Der Ausdruckstester, auf den über zugegriffen werden kann **Werkzeuge → Ausdruckstester**
 >
-> Ein **Strg Klicken Sie auf die Schaltfläche Ausführen** Mit dieser Option können Sie das Szenarioprotokoll direkt speichern, ausführen und anzeigen (wenn die Protokollebene nicht Keine ist)..
+> A. **Strg Klicken Sie auf die Schaltfläche Ausführen** Mit dieser Option können Sie das Szenarioprotokoll direkt speichern, ausführen und anzeigen (wenn die Protokollebene nicht Keine ist)..
 
 ### Registerkarte &quot;Allgemein&quot;
 
@@ -80,7 +80,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 > **Tip**
 >
 > Bedingungen können jetzt im ausgelösten Modus eingegeben werden. Zum Beispiel : ``#[Garage][Open Garage][Ouverture]# == 1`
-> Aufmerksamkeit : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
+> Sei vorsichtig : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
 
 > **Tippmodus programmiert**
 >
@@ -109,7 +109,7 @@ Hier sind die verschiedenen Arten von Blöcken verfügbar :
 - **Action** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
 - **Boucle** : Ermöglicht die wiederholte Ausführung von Aktionen von 1 bis zu einer definierten Zahl (oder sogar dem Wert eines Sensors oder einer Zufallszahl usw.).
 - **Dans** : Ermöglicht das Starten einer Aktion in X Minute (n) (0 ist ein möglicher Wert). Die Besonderheit ist, dass die Aktionen im Hintergrund gestartet werden, sodass sie den Rest des Szenarios nicht blockieren. Es ist also ein nicht blockierender Block.
-- **A** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt zu starten (in der Form hhmm).. Dieser Block ist nicht blockierend. Ex : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
+- **A** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt zu starten (in der Form hhmm).. Dieser Block ist nicht blockierend. Bsp : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
 - **Code** : Ermöglicht das direkte Schreiben in PHP-Code (erfordert bestimmte Kenntnisse und kann riskant sein, ermöglicht Ihnen jedoch keine Einschränkungen).
 - **Commentaire** : Ermöglicht das Hinzufügen von Kommentaren zu Ihrem Szenario.
 
@@ -125,14 +125,14 @@ Jeder Block hat seine Optionen, um besser damit umzugehen :
     - Mit dem Symbol Einfügen können Sie eine Kopie des Blocks einfügen, der zuvor nach dem Block kopiert wurde, für den Sie diese Funktion verwenden..  Strg Klicken Sie auf das Symbol, um den Block durch den kopierten Block zu ersetzen.
     - Das Symbol - ermöglicht es Ihnen, den Block mit einer Bestätigungsanforderung zu löschen. Strg Klicken löscht den Block ohne Bestätigung.
 
-#### Wenn / Dann / Sonst blockiert | Schleife | In | A
+#### Wenn / Dann / Sonst blockiert | Schnalle | In | A
 
 Für die Bedingungen versucht Jeedom, es möglich zu machen, sie so viel wie möglich in natürlicher Sprache zu schreiben und dabei flexibel zu bleiben.
 > Verwenden Sie [] NICHT in Bedingungstests, nur Klammern () sind möglich.
 
 Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu testenden Elements zur Verfügung :
 
-- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **et** oder **ou** Front **Ensuite** Kettenprüfungen an verschiedenen Geräten.
+- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **et** wo **ou** vor **Ensuite** Kettenprüfungen an verschiedenen Geräten.
 - **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
 - **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
@@ -153,19 +153,19 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 
 ##### Zugang zu Steuerungen (Sensoren und Aktoren):
 -  ``cmd::byString ($ string); ` : Gibt das entsprechende Befehlsobjekt zurück.
-    -   ``$string``: Link zur gewünschten Bestellung : ``#[objund][equipement][commande]#`` (ex : ``#[Bisppartement][Bislarme][Aktiva]#`)
+    -   ``$string``: Link zur gewünschten Bestellung : ``#[objund][equipement][commande]#`` (ex : ``#[A.ppartement][A.larme][Aktiv]#`)
 -  ``cmd::byId ($ id); ` : Gibt das entsprechende Befehlsobjekt zurück.
     -  `$ id` : Bestellnummer.
 -  $ cmd-> execCmd ($ options = null); ` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
     - `$ options` : Optionen für die Auftragsausführung (möglicherweise Plugin-spezifisch). Grundlegende Optionen (Befehlssubtyp) :
         -  Nachricht : `$ option = array ('title' => 'Nachrichtentitel,' Nachricht '=>' Meine Nachricht ');`
         -  Farbe : `$ option = array ('color' => 'color in hexadecimal');`
-        -  Schieber : `$ option = array ('slider' => 'gewünschter Wert von 0 bis 100');`
+        -  Schieberegler : `$ option = array ('slider' => 'gewünschter Wert von 0 bis 100');`
 
 ##### Zugriff auf das Protokoll :
 -  ``log::add ('Dateiname', 'Ebene', 'Nachricht'); `
     - Dateiname : Name der Protokolldatei.
-    - Ebene : [Debug], [Info], [Fehler], [Ereignis].
+    - Niveau : [Debug], [Info], [Fehler], [Ereignis].
     - Nachricht : Nachricht zum Schreiben in die Protokolle.
 
 ##### Zugriff auf das Szenario :
@@ -201,7 +201,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 
 - Eine Kiste **aktiviert** damit dieser Befehl im Szenario berücksichtigt wird.
 - Eine Kiste **parallel** so dass dieser Befehl parallel (gleichzeitig) mit den anderen ebenfalls ausgewählten Befehlen gestartet wird.
-- Ein **vertikaler Doppelpfeil** um die Aktion zu verschieben. Einfach von dort ziehen und ablegen.
+- A. **vertikaler Doppelpfeil** um die Aktion zu verschieben. Einfach von dort ziehen und ablegen.
 - Ein Knopf für **supprimer** die Aktion.
 - Eine Schaltfläche für bestimmte Aktionen, bei der jedes Mal die Beschreibung (beim Bewegen des Mauszeigers) dieser Aktion angezeigt wird.
 - Eine Schaltfläche zum Suchen nach einem Aktionsbefehl.
@@ -237,8 +237,8 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 - < : Streng weniger als.
 - <= : Kleiner als oder gleich.
 - != : Anders als, ist nicht gleich.
-- Streichhölzer : Enthält. Ex : `[Badezimmer] [Hydrometrie] [Bedingung] entspricht" / wet / "`.
-- nicht (… passt…) : Enthält nicht. Ex :  `not ([Badezimmer] [Hydrometrie] [Zustand] stimmt mit" / wet / "überein)`.
+- Streichhölzer : Enthält. Bsp : `[Badezimmer] [Hydrometrie] [Bedingung] entspricht" / wet / "`.
+- nicht (… passt…) : Enthält nicht. Bsp :  `not ([Badezimmer] [Hydrometrie] [Zustand] stimmt mit" / wet / "überein)`.
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
@@ -255,19 +255,19 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 > Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [hier](http://php.net/manual/fr/function.date.php).
 
 - #seconde# : Aktuelle Sekunde (ohne führende Nullen, z : 6 für 08:07:06).
-- #hour# : Aktuelle Zeit im 24h Format (ohne führende Nullen). Ex : 8 für 08:07:06 oder 17 für 17:15.
-- #hour12# : Aktuelle Zeit im 12-Stunden-Format (ohne führende Nullen). Ex : 8 für 08:07:06.
-- #minute# : Aktuelle Minute (ohne führende Nullen). Ex : 7 für 08:07:06.
-- #day# : Aktueller Tag (ohne führende Nullen). Ex : 6 für 06/07/2017.
-- #month# : Aktueller Monat (ohne führende Nullen). Ex : 7 für 06/07/2017.
+- #hour# : Aktuelle Zeit im 24h Format (ohne führende Nullen). Bsp : 8 für 08:07:06 oder 17 für 17:15.
+- #hour12# : Aktuelle Zeit im 12-Stunden-Format (ohne führende Nullen). Bsp : 8 für 08:07:06.
+- #minute# : Aktuelle Minute (ohne führende Nullen). Bsp : 7 für 08:07:06.
+- #day# : Aktueller Tag (ohne führende Nullen). Bsp : 6 für 06/07/2017.
+- #month# : Aktueller Monat (ohne führende Nullen). Bsp : 7 für 06/07/2017.
 - #year# : Laufendes Jahr.
-- #time# : Aktuelle Stunde und Minute. Ex : 1715 für 17.15 Uhr.
+- #time# : Aktuelle Stunde und Minute. Bsp : 1715 für 17.15 Uhr.
 - #timestamp# : Anzahl der Sekunden seit dem 1. Januar 1970.
-- #date# : Tag und Monat. Achtung, die erste Zahl ist der Monat. Ex : 1215 für den 15. Dezember.
+- #date# : Tag und Monat. Achtung, die erste Zahl ist der Monat. Bsp : 1215 für den 15. Dezember.
 - #week# : Wochennummer.
-- #sday# : Name des Wochentags. Ex : Samstag.
+- #sday# : Name des Wochentags. Bsp : Samstag.
 - #nday# : Tagesnummer von 0 (Sonntag) bis 6 (Samstag).
-- #smonth# : Name des Monats. Ex : Januar.
+- #smonth# : Name des Monats. Bsp : Januar.
 - #IP# : Jeedom&#39;s interne IP.
 - #hostname# : Name der Jeedom-Maschine.
 - #trigger# (veraltet, besser Trigger verwenden ()) : Möglicherweise der Name des Befehls, der das Szenario gestartet hat :
@@ -391,11 +391,11 @@ Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschieden
 | stateChanges (Fang, 1 Punkt)      | Rückgabe 1 : Der Stecker leuchtet während des Zeitraums einmal (auf 1 ändern)                              |
 | lastBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,Gestern, heute) | Gibt die zuletzt gestern aufgezeichnete Temperatur zurück.                    |
 | Variable (Plopp, 10)                  | Gibt den Wert der Variablen plop oder 10 zurück, wenn sie leer ist oder nicht existiert                         |
-| scenario(\.#[Salle de bain][Lumière][Bisuto]\.#) | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
-| lastScenarioExecution(\.#[Salle de bain][Lumière][Bisuto]\.#)   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
+| scenario(\.#[Salle de bain][Lumière][A.uto]\.#) | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
+| lastScenarioExecution(\.#[Salle de bain][Lumière][A.uto]\.#)   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
 | collectDate(\.#[Salle de bain][Hydrometrie][Humidité]\.#)     | Rückgabe 2015-01-01 17:45:12          |
 | valueDate(\.#[Salle de bain][Hydrometrie][Humidité]\.#) | Rückgabe 2015-01-01 17:50:12          |
-| eqEnable(\.#[Bisucun][Basilique]\.#)       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
+| eqEnable(\.#[A.ucun][Basilique]\.#)       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
 | Tag (Montag toto)                   | Gibt den Wert von "montag" zurück, falls vorhanden, andernfalls wird der Wert "toto" zurückgegeben"                               |
 | Name (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\.#)     | Gibt Hydrometrie zurück                  |
 
@@ -434,10 +434,10 @@ Und praktische Beispiele :
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Gibt 9 zurück, wenn der Feuchtigkeitsprozentsatz und 85                     |
 | ungerade (3)                             | Rückgabe 1                            |
 | Median (15,25,20)                   | Rückgabe 20
-| avg (10,15,18)                      | Rückgabe 14.3                     |
+| Durchschnitt (10,15,18)                      | Rückgabe 14.3                     |
 | time_op (#time#, -90)               | Wenn es 16:50 Uhr ist, kehren Sie zurück : 1 650-1 130 = 1520                          |
-| Formattime (1650)                   | Rückgabe 16:50 Uhr                        |
-| Stock (130/60)                      | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
+| formatTime (1650)                   | Rückgabe 16:50 Uhr                        |
+| Boden (130/60)                      | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
 | convertDuration (3600)              | Gibt 1h 0min 0s zurück                      |
 | convertDuration (Dauer (#[Chauffage][Module chaudière][Etat]#,1, erster Tag dieses Monats) * 60) | Gibt die Zündzeit in Tagen / Stunden / Minuten der Übergangszeit auf Zustand 1 des Moduls seit dem 1. Tag des Monats zurück |
 
@@ -446,29 +446,29 @@ Und praktische Beispiele :
 
 Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die folgenden Aktionen :
 
-- **Pause** (Sleep) : Pause von x Sekunde (n).
-- **variable** (Variabel) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
+- **Pause** (Schlaf) : Pause von x Sekunde (n).
+- **variable** (variabel) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
 - **Variable entfernen** (Delete_variable) : Ermöglicht das Löschen einer Variablen.
 - **Szenario** (Szenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her.. Mit dem Befehl &quot;Auf SI zurücksetzen&quot; kann der Status von &quot;SI&quot; zurückgesetzt werden (dieser Status wird verwendet, um die Aktionen eines &quot;SI&quot; nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben).
-- **Stop** (Stop) : Stoppen Sie das Szenario.
-- **Attendre** (WAIT) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden.
-- **Gehe zum Design** (Gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
-- **Fügen Sie ein Protokoll hinzu** (Log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
-- **Nachricht erstellen** (Message) : Fügen Sie dem Nachrichtencenter eine Nachricht hinzu.
-- **Geräte ausblenden / deaktivieren** (Ausstattung) : Ermöglicht das Ändern der Eigenschaften von sichtbaren / unsichtbaren, aktiven / inaktiven Geräten.
-- **Stellen Sie eine Anfrage** (Ask) : Wird verwendet, um Jeedom anzuzeigen, dass dem Benutzer eine Frage gestellt werden soll. Die Antwort wird in einer Variablen gespeichert, dann müssen Sie nur noch ihren Wert testen.
+- **Stop** (Halt) : Stoppen Sie das Szenario.
+- **Attendre** (warte) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden.
+- **Gehe zum Design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
+- **Fügen Sie ein Protokoll hinzu** (Protokoll) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
+- **Nachricht erstellen** (Nachricht) : Fügen Sie dem Nachrichtencenter eine Nachricht hinzu.
+- **Geräte ausblenden / deaktivieren** (Ausrüstung) : Ermöglicht das Ändern der Eigenschaften von sichtbaren / unsichtbaren, aktiven / inaktiven Geräten.
+- **Stellen Sie eine Anfrage** (fragen) : Wird verwendet, um Jeedom anzuzeigen, dass dem Benutzer eine Frage gestellt werden soll. Die Antwort wird in einer Variablen gespeichert, dann müssen Sie nur noch ihren Wert testen.
     Momentan sind nur SMS-, Slack-, Telegramm- und Snips-Plugins sowie die mobile Anwendung kompatibel.
     Achtung, diese Funktion blockiert. Solange keine Antwort erfolgt oder das Zeitlimit nicht erreicht wird, wartet das Szenario.
 - **Stoppen Sie Jeedom** (Jeedom_poweroff) : Bitten Sie Jeedom, herunterzufahren.
 - **Geben Sie einen Text / Daten zurück** (Scenario_return) : Gibt beispielsweise einen Text oder einen Wert für eine Interaktion zurück.
 - **Symbol** (Symbol) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
-- **Alerte** (Alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
+- **Alerte** (Alarm) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
 - **Pop-up** (Popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
 - **Rapport** (Bericht) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich.
 - **Programmierten IN / A-Block löschen** (Remove_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
-- **Ereignis** (Ereignis) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
+- **Ereignis** (Veranstaltung) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **Tag** (Tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben)..
-- **Färbung von Dashboard-Symbolen** (SetColoredIcon) : Mit dieser Option können Sie die Farbgebung von Symbolen im Dashboard aktivieren oder nicht.
+- **Färbung von Dashboard-Symbolen** (setColoredIcon) : Mit dieser Option können Sie die Farbgebung von Symbolen im Dashboard aktivieren oder nicht.
 
 ### Szenariovorlage
 

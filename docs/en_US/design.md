@@ -151,7 +151,7 @@ Allows you to choose the commands to grapher.
 - **Text color** : Lets you choose a custom background color, or use the default color.
 - **Arrondis** : Value in pixels of the rounding of the angles of the equipment tile.
 - **Bordure** : CSS definition of an equipment tile border. Ex : 1px solid black.
-- **Opacité** : Opacity of the equipment tile, between 0 and 1. Be careful : a background color must be defined.
+- **Opacité** : Opacity of the equipment tile, between 0 and 1. Warning : a background color must be defined.
 - **Custom CSS** : CSS rules to apply on the equipment.
 - **Apply custom css on** : CSS selector on which to apply custom CSS.
 

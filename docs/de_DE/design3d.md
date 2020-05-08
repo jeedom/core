@@ -83,25 +83,25 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Tür / Fenster
 
-- Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
+- Staat : Tür- / Fensterstatus, 1 geschlossen und 0 offen
 - Rotation
-	- Activate : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
-	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
+	- Aktivieren : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
+	- Öffnen : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
 - Translation
-	- Activate : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp)
+	- Aktivieren : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp)
 	- Bedeutung : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
 	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
 - Verstecken, wenn die Tür / das Fenster geöffnet ist
-	- Activate : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
+	- Aktivieren : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
 - Couleur
 	- Farbe öffnen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
 
 #### Volet
 
-- Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
+- Staat : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
-	- Activate : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
+	- Aktivieren : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Couleur
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 
