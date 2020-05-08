@@ -3,16 +3,16 @@
 ## 4.1.0
 
 - Síntesis : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
-- Buscar : Adición de un motor de búsqueda en **Herramientas → Buscar**.
-- Salpicadero : El modo de edición ahora inserta el mosaico movido.
-- Salpicadero : Ahora podemos hacer clic en el *time* widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
-- Salpicadero : El tamaño del mosaico de un equipo nuevo se adapta a su contenido..
-- Salpicadero : Agregar un botón para filtrar los elementos mostrados por categoría.
-- Salpicadero : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
-- Salpicadero : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
+- Investigación : Adición de un motor de búsqueda en **Herramientas → Buscar**.
+- Tablero de instrumentos : El modo de edición ahora inserta el mosaico movido.
+- Tablero de instrumentos : Ahora podemos hacer clic en el *time* widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
+- Tablero de instrumentos : El tamaño del mosaico de un equipo nuevo se adapta a su contenido..
+- Tablero de instrumentos : Agregar un botón para filtrar los elementos mostrados por categoría.
+- Tablero de instrumentos : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
+- Tablero de instrumentos : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - Herramientas / widgets : La funcion *Aplicar en* muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado a este comando.
-- Reproductores : Posibilidad de agregar la clase CSS a un widget (consulte la documentación del widget).
-- Reproductores : Agregar un widget principal *sliderVertical*.
+- Widgets : Posibilidad de agregar la clase CSS a un widget (consulte la documentación del widget).
+- Widgets : Agregar un widget principal *sliderVertical*.
 - Centro de actualizaciones : Las actualizaciones se verifican automáticamente cuando se abre la página si tiene 120 minutos de antigüedad.
 - Centro de actualizaciones : La barra de progreso ahora está en la pestaña *Core y plugins*, y el registro se abre por defecto en la pestaña *Informations*.
 - Centro de actualizaciones : Si abre otro navegador durante una actualización, la barra de progreso y el registro lo indican.
@@ -27,8 +27,8 @@
 - Guión : Agregar un motor de búsqueda (a la izquierda del botón Ejecutar).
 - Guión : Adición de la función de edad (da la edad del valor del pedido).
 - Guión : *stateChanges()* ahora acepta el periodo *today* (desde la medianoche hasta ahora), *yesterday* y *day* (por 1 día).
-- Guión : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración ()* : Bugfix durante el período *yesterday*, y acepta ahora *day* (por 1 día).
-- Guión : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Comandos).
+- Guión : Las funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración ()* : Bugfix durante el período *yesterday*, y acepta ahora *day* (por 1 día).
+- Guión : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Pedidos).
 - Guión : Viendo un *warning* si no se configura ningún activador.
 - Guión : Corrección de errores de seleccionar en el bloque copiar / pegar.
 - Guión : Copiar / pegar bloque entre diferentes escenarios.
@@ -37,28 +37,28 @@
 - Análisis / Historia : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - Análisis / Historia : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - Análisis / Historia : Ahora podemos usar la opción *Aire* con la opción *Escalier*.
-- Vista : posibilidad de poner escenarios.
-- Historial : Integración de la línea de tiempo en DB por razones de confiabilidad.
-- Historial : Gestión de múltiples líneas de tiempo..
-- Historial : Revisión gráfica del cronograma.
+- Ver : posibilidad de poner escenarios.
+- Historia : Integración de la línea de tiempo en DB por razones de confiabilidad.
+- Historia : Gestión de múltiples líneas de tiempo..
+- Historia : Revisión gráfica del cronograma.
 - Resumen de domótica : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
 - Resumen de domótica : Posibilidad de buscar en categorías de equipos.
 - Resumen de domótica : Posibilidad de mover varios equipos de un objeto a otro.
 - Resumen de domótica : Posibilidad de seleccionar todo el equipo de un objeto..
 - Motor de tareas : En la pestaña *Demonio*, los complementos deshabilitados ya no aparecen.
-- Configuración : La pestaña *Informations* ahora está en la pestaña *Principal*.
-- Configuración : La pestaña *Commandes* ahora está en la pestaña *Equipements*.
+- Configuracion : La pestaña *Informations* ahora está en la pestaña *Principal*.
+- Configuracion : La pestaña *Commandes* ahora está en la pestaña *Equipements*.
 - Ventana de configuración avanzada del equipo : Cambio dinámico de la configuración de la centralita.
-- Dispositivos : Nueva categoría *Ouvrant*.
+- Equipo : Nueva categoría *Ouvrant*.
 - Sobre ventana : Adición de accesos directos al registro de cambios y preguntas frecuentes.<br/><br/>
-- Aplicación web : Integración de la nueva página de resumen.
-- Aplicación web : Página de escenarios, un clic en el título del escenario muestra su registro.
-- Aplicación web : Ahora podemos seleccionar / copiar parte de un registro.
-- Aplicación web : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
-- Aplicación web : Persistencia del cambio de tema (8h).
-- Aplicación web : En un diseño, un clic con tres dedos vuelve a la página de inicio.
-- Aplicación web : Visualización de escenarios por grupo..
-- Aplicación web : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
+- WebApp : Integración de la nueva página de resumen.
+- WebApp : Página de escenarios, un clic en el título del escenario muestra su registro.
+- WebApp : Ahora podemos seleccionar / copiar parte de un registro.
+- WebApp : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
+- WebApp : Persistencia del cambio de tema (8h).
+- WebApp : En un diseño, un clic con tres dedos vuelve a la página de inicio.
+- WebApp : Visualización de escenarios por grupo..
+- WebApp : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
 - Documentación : Adaptaciones en línea con v4 y v4.1.
 - Documentación : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - Corrección de errores y optimizaciones..
@@ -116,42 +116,42 @@
 - Los campos de búsqueda (Panel de control, escenarios, objetos, widgets, interacciones, complementos) ahora están activos cuando se abre la página, lo que le permite escribir una búsqueda directamente.
 - Agregue un botón X en los campos de búsqueda para cancelar la búsqueda..
 - Durante una búsqueda, la clave *echap* cancelar búsqueda.
-- Salpicadero : En el modo de edición, el campo de búsqueda y sus botones están deshabilitados y se arreglan.
-- Salpicadero : En el modo de edición, haga clic en un botón. *expand* a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
-- Salpicadero : La ejecución del comando en un mosaico ahora se señala mediante el botón *refresh*. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.
-- Salpicadero : Los mosaicos indican un comando de información (historial, que abrirá la ventana Historial) o acción al pasar el mouse.
-- Salpicadero : La ventana de historial ahora le permite abrir este historial en Análisis / Historial.
-- Salpicadero : La ventana de historial conserva su posición / dimensiones cuando se vuelve a abrir otro historial.
+- Tablero de instrumentos : En el modo de edición, el campo de búsqueda y sus botones están deshabilitados y se arreglan.
+- Tablero de instrumentos : En el modo de edición, haga clic en un botón. *expand* a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
+- Tablero de instrumentos : La ejecución del comando en un mosaico ahora se señala mediante el botón *refresh*. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.
+- Tablero de instrumentos : Los mosaicos indican un comando de información (historial, que abrirá la ventana Historial) o acción al pasar el mouse.
+- Tablero de instrumentos : La ventana de historial ahora le permite abrir este historial en Análisis / Historial.
+- Tablero de instrumentos : La ventana de historial conserva su posición / dimensiones cuando se vuelve a abrir otro historial.
 - Ventana de configuración de comandos: Ctrl + clic en &quot;Guardar&quot; cierra la ventana después.
 - Ventana de configuración del equipo: Ctrl + clic en &quot;Guardar&quot; cierra la ventana después.
 - Agregar información de uso al eliminar equipos.
 - Objetos : Opción agregada para usar colores personalizados.
 - Objetos : Agregar menú contextual en pestañas (cambio rápido de objeto).
 - Interacciones : Agregar menú contextual en pestañas (cambio rápido de interacción).
-- Plugins : Agregar menú contextual en pestañas (cambio rápido de equipo).
-- Plugins : En la página de administración de complementos, un punto naranja indica complementos no estables.
+- Complementos : Agregar menú contextual en pestañas (cambio rápido de equipo).
+- Complementos : En la página de administración de complementos, un punto naranja indica complementos no estables.
 - Mejoras de tabla con filtro y opción de clasificación.
 - Posibilidad de asignar un ícono a una interacción.
 - Cada página de Jeedom ahora tiene un título en el idioma de la interfaz (pestaña del navegador).
 - Prevención del autocompletado en el código de acceso de los campos'.
 - Gestión de funciones *Página anterior / Página siguiente* navegador.<br/><br/>
-- Reproductores : Rediseño del sistema de widgets (menú Herramientas / Widgets).
-- Reproductores : Posibilidad de reemplazar un widget con otro en todos los comandos que lo usan.
-- Reproductores : Posibilidad de asignar un widget a múltiples comandos.
-- Reproductores : Agregar widget numérico de información horizontal.
-- Reproductores : Agregar un widget vertical numérico de información.
-- Reproductores : Adición de una brújula de información numérica / widget de viento (gracias @thanaus).
-- Reproductores : Agregar un widget de lluvia de información numérica (gracias @thanaus)
-- Reproductores : Visualización del widget de obturador de información / acción proporcional al valor.<br/><br/>
-- Configuración : Mejora y reorganización de pestañas.
-- Configuración : Agregando muchos *tooltips* (Ayuda).
-- Configuración : Agregar un motor de búsqueda.
-- Configuración : Agregar un botón para vaciar el caché del widget (pestaña Caché).
-- Configuración : Opción agregada para deshabilitar el caché del widget (pestaña Caché).
-- Configuración : Capacidad para centrar el contenido de los mosaicos verticalmente (pestaña Interfaz).
-- Configuración : Adición de un parámetro para la purga global de las historias (Comandos Tab).
-- Configuración : Cambio de #message# A las #subject# en Configuración / Registros / Mensajes para evitar la duplicación del mensaje.
-- Configuración : Posibilidad en los resúmenes de agregar una exclusión de los pedidos que no se han actualizado durante más de XX minutos (ejemplo para el cálculo de los promedios de temperatura si un sensor no ha elevado nada durante más de 30 minutos, se excluirá del cálculo )<br/><br/>
+- Widgets : Rediseño del sistema de widgets (menú Herramientas / Widgets).
+- Widgets : Posibilidad de reemplazar un widget con otro en todos los comandos que lo usan.
+- Widgets : Posibilidad de asignar un widget a múltiples comandos.
+- Widgets : Agregar widget numérico de información horizontal.
+- Widgets : Agregar un widget vertical numérico de información.
+- Widgets : Adición de una brújula de información numérica / widget de viento (gracias @thanaus).
+- Widgets : Agregar un widget de lluvia de información numérica (gracias @thanaus)
+- Widgets : Visualización del widget de obturador de información / acción proporcional al valor.<br/><br/>
+- Configuracion : Mejora y reorganización de pestañas.
+- Configuracion : Agregando muchos *tooltips* (Ayuda).
+- Configuracion : Agregar un motor de búsqueda.
+- Configuracion : Agregar un botón para vaciar el caché del widget (pestaña Caché).
+- Configuracion : Opción agregada para deshabilitar el caché del widget (pestaña Caché).
+- Configuracion : Capacidad para centrar el contenido de los mosaicos verticalmente (pestaña Interfaz).
+- Configuracion : Adición de un parámetro para la purga global de las historias (Comandos Tab).
+- Configuracion : Cambio de #message# A las #subject# en Configuración / Registros / Mensajes para evitar la duplicación del mensaje.
+- Configuracion : Posibilidad en los resúmenes de agregar una exclusión de los pedidos que no se han actualizado durante más de XX minutos (ejemplo para el cálculo de los promedios de temperatura si un sensor no ha elevado nada durante más de 30 minutos, se excluirá del cálculo )<br/><br/>
 - Guión : La coloración de los bloques ya no es aleatoria, sino por tipo de bloque..
 - Guión : Posibilidad mediante Ctrl + clic en el botón *ejecución* guárdelo, ejecútelo y muestre el registro (si el nivel de registro no está activado *Aucun*).
 - Guión : Confirmación de eliminación de bloque. Ctrl + clic para evitar la confirmación.
@@ -190,4 +190,4 @@
 
 >**IMPORTANT**
 >
->El complemento de widgets no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han asumido internamente en el núcleo). Más información [aquí](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+>El complemento de widgets no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han asumido internamente en el núcleo). Más información [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

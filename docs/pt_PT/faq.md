@@ -45,7 +45,7 @@ Sim : Você tem um pacote de força ou mais, nesse caso, você
 basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/pt_PT/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
 
 ### Como se conectar no SSH ?
-Aqui está um [Documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
+Aqui está um [documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
 
 - Nome de usuário : "root ", senha : "Mjeedom96"
 - Nome de usuário : "jeedom ", senha : "Mjeedom96"
@@ -117,7 +117,7 @@ Novamente, isso geralmente ocorre devido a um plug-in na versão beta, enquanto 
 
 ### Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via SSH
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
-Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware.. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
+Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware.. Aqui está o [documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
 
 ### Meu cenário não para mais
 É aconselhável olhar para os comandos executados pelo cenário, geralmente vem de um comando que não termina.

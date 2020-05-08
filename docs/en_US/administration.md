@@ -24,7 +24,7 @@ Below, several parameters that centralize information that can be used by plugin
 
 - Contact information : Latitude, Longitude and Altitude of your home / site.
 - Address : Mailing address of your home / site.
-- Miscellaneous : Surface and number of occupants of your home / site.
+- Various : Surface and number of occupants of your home / site.
 
 ## Interface tab
 
@@ -215,7 +215,7 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Configuration tab. : Logs, then check **Debug** in the bottom list. Be careful : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Configuration tab. : Logs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
 
 ### Main
 
@@ -319,7 +319,7 @@ Deposit used to connect Jeedom to Github.
 
 #### Market
 
-Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Be careful : any request for support may be refused if you use a deposit other than this one.
+Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
 - **Adresse** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.

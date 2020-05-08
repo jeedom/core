@@ -536,6 +536,7 @@
         "Design": "Design",
         "Vue": "Vue",
         "Interaction": "Interaction",
+        "Note": "Note",
         "Voir les logs": "Voir les logs",
         "Aller sur la page du scénario.": "Aller sur la page du scénario.",
         "Aller sur le design.": "Aller sur le design.",
@@ -543,6 +544,7 @@
         "Aller sur l\\'interaction.": "Aller sur l\\'interaction.",
         "Aller sur l\\'équipement.": "Aller sur l\\'équipement.",
         "Ouvrir configuration de la commande.": "Ouvrir configuration de la commande.",
+        "Ouvrir la note.": "Ouvrir la note.",
         "Log d'exécution du scénario": "Log d'exécution du scénario",
         "Configuration de la commande": "Configuration de la commande"
     },

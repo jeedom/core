@@ -5,7 +5,7 @@
 Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können daher ohne weitere Aktion direkt eine Suche eingeben.
 
 - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-- Klicken Sie auf den Namen des Jeedom (Menüleiste)  : Öffnet **Einstellungen → System → Konfiguration**.
+- Klicken Sie auf den Namen des Jeedom (Menüleiste)  : Öffnen **Einstellungen → System → Konfiguration**.
 - Klicken Sie auf ?  (Menüleiste)  : Öffnet die Hilfe auf der aktuellen Seite.
 - Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.
 
@@ -55,8 +55,8 @@ In einem Szenario :
 - Strg S. : Speichern.
 - Klicken Sie mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Szenario zu gelangen.
 - Strg L. : Protokollanzeige.
-- Strg Shift Z. : Stornieren.
-- Strg Shift Y. : Remake.
+- Strg Shift Z. : Abbrechen.
+- Strg Shift Y. : Wiederholen.
 
 - Strg Klicken Sie auf Ausführen : Speichern Sie das Szenario, führen Sie es aus und öffnen Sie das Protokoll.
 - Strg Klicken Sie auf das Symbol *Kopieren Sie diesen Block* : Schneiden Sie diesen Block.

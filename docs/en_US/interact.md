@@ -8,7 +8,7 @@ These orders can be obtained by :
 - SMS : send an SMS to launch commands (action) or ask a question (info).
 - Cat : Telegram, Slack, etc.
 - Vocal : dictate a phrase with Siri, Google Now, SARAH, etc.. To launch commands (action) or ask a question (info).
-- D'informations sont indispensables à la bonne compréhension de : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
+- HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
 
 The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, etc..
 

@@ -58,7 +58,7 @@ Existem dois tipos de modelos :
 
 Uma vez na página Ferramentas -> Widget, clique em "Adicionar" e dê um nome ao seu novo widget.
 
-Em seguida :
+Então :
 - Você escolhe se aplica a um pedido de ação ou tipo de informação.
 - Dependendo da sua escolha anterior, você terá que escolher o subtipo do comando (binário, digital, outro ...).
 - Finalmente, o modelo em questão (planejamos colocar exemplos de renderizações para cada modelo).
@@ -109,7 +109,7 @@ Os equipamentos têm certos parâmetros de configuração :
 
 - Widget de tempo : exibe o tempo desde que o sistema esteve no estado de exibição.
 - Nós : ícone para exibir se o equipamento estiver ligado / 1.
-- Fora : ícone para exibir se o equipamento estiver desligado / 0.
+- Desligado : ícone para exibir se o equipamento estiver desligado / 0.
 - Luz acesa : ícone para exibir se o equipamento está ligado / 1 e o tema é claro (se vazio, o Jeedom acende a imagem escura).
 - Luz apagada : ícone para exibir se o equipamento está desligado / 0 e o tema é claro (se vazio, o Jeedom tira o img escuro).
 - Escuro em : ícone para exibir se o equipamento está ligado / 1 e o tema está escuro (se vazio, o Jeedom acende a luz).
@@ -128,7 +128,7 @@ Para configurá-lo, é bastante simples: você deve atribuir o widget ao control
 
 ##### Parâmetros opcionais
 
-- Escala : Permite alterar seu tamanho, por exemplo, definindo a escala como 0.5 será 2 vezes menor.
+- escala : Permite alterar seu tamanho, por exemplo, definindo a escala como 0.5 será 2 vezes menor.
 
 >**NOTE**
 > Atenção em um design, é especialmente importante não fazer um pedido sozinho com esse widget que não funcionará, pois é um widget usando o valor de vários comandos; é absolutamente necessário colocar o widget completo
@@ -149,7 +149,7 @@ Para configurá-lo, é bastante simples: você deve atribuir o widget ao control
 
 ##### Parâmetros opcionais
 
-- Escala : Permite alterar seu tamanho, por exemplo, definindo a escala como 0.5 será 2 vezes menor.
+- escala : Permite alterar seu tamanho, por exemplo, definindo a escala como 0.5 será 2 vezes menor.
 - showRange : Exibe os valores mínimo / máximo do comando.
 
 

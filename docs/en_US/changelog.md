@@ -11,8 +11,8 @@
 - Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
 - Dashboard : Ability to blur background images (Configuration -> Interface).
 - Tools / Widgets : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
-- Widget : Ability to add class css to a widget (see widget documentation).
-- Widget : Adding a core widget *sliderVertical*.
+- Widgets : Ability to add class css to a widget (see widget documentation).
+- Widgets : Adding a core widget *sliderVertical*.
 - Update Center : Updates are checked automatically when opening this page and update check is older than 120mins.
 - Update Center : The progress bar is now on the tab *Core and plugins*, and the log open by default on the tab *Informations*.
 - Update Center : If you open another browser during an update, the progress bar and the log indicate it.
@@ -28,7 +28,7 @@
 - Scenario : Addition of the age function (gives the age of the value of the order).
 - Scenario : *stateChanges()* now accept the period *today* (from midnight to now), *yesterday* and *day* (for 1 day).
 - Scenario : Functions *statistics (), average (), max (), min (), trend (), duration ()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
-- Scenario : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commands).
+- Scenario : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Orders).
 - Scenario : Viewing a *warning* if no trigger is configured.
 - Scenario : Bugfix of select on block copy / paste.
 - Scenario : Copy / paste of block between different scenarios.
@@ -38,9 +38,9 @@
 - Analysis / History : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - Analysis / History : We can now use the option *Aire* with the option *Escalier*.
 - View : possibility to put scenarios.
-- History : Integration of the Timeline in DB for reliability reasons.
-- History : Management of multiple timelines.
-- History : Timeline graphic overhaul.
+- Historical : Integration of the Timeline in DB for reliability reasons.
+- Historical : Management of multiple timelines.
+- Historical : Timeline graphic overhaul.
 - Domotic overview : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
 - Domotic overview : Ability to search on equipment categories.
 - Domotic overview : Possibility to move several pieces of equipment from one object to another.
@@ -49,7 +49,7 @@
 - Configuration : The tab *Informations* is now in the tab *Main*.
 - Configuration : The tab *Commandes* is now in the tab *Equipements*.
 - Advanced equipment configuration window : Dynamic change of table configuration.
-- Equipments : New Category *Ouvrant*.
+- Equipment : New Category *Ouvrant*.
 - About window : Addition of links to Changelog and FAQ.<br/><br/>
 - WebApp : Integration of the new Synthesis page.
 - WebApp : Scenarios page, a click on the scenario title displays its log.
@@ -135,14 +135,14 @@
 - Each Jeedom page now has a title in the interface language (browser tab).
 - Prevention of auto-filling on fields&#39; Access code'.
 - Functions management *Previous page / Next page* browser.<br/><br/>
-- Widget : Redesign of the widget system (Tools / Widgets menu).
-- Widget : Ability to replace a widget with another on all commands using it.
-- Widget : Ability to assign a widget to multiple commands.
-- Widget : Add horizontal info numeric widget.
-- Widget : Adding an info numeric vertical widget.
-- Widget : Addition of an info numeric compass / wind widget (thanks @thanaus).
-- Widget : Adding an info numeric rain widget (thanks @thanaus)
-- Widget : Display of the info / action shutter widget proportional to the value.<br/><br/>
+- Widgets : Redesign of the widget system (Tools / Widgets menu).
+- Widgets : Ability to replace a widget with another on all commands using it.
+- Widgets : Ability to assign a widget to multiple commands.
+- Widgets : Add horizontal info numeric widget.
+- Widgets : Adding an info numeric vertical widget.
+- Widgets : Addition of an info numeric compass / wind widget (thanks @thanaus).
+- Widgets : Adding an info numeric rain widget (thanks @thanaus)
+- Widgets : Display of the info / action shutter widget proportional to the value.<br/><br/>
 - Configuration : Improvement and reorganization of tabs.
 - Configuration : Adding many *tooltips* (help).
 - Configuration : Adding a search engine.

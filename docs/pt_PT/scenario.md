@@ -81,7 +81,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 > **Tip**
 >
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1`
-> Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
+> Tenha cuidado : você pode ter no máximo 28 gatilhos / programação para um cenário.
 
 > **Modo de ponta programado**
 >
@@ -126,14 +126,14 @@ Cada bloco tem suas opções para lidar melhor com eles :
     - O ícone Colar permite colar uma cópia do bloco copiado anteriormente após o bloco no qual você usa esta função..  Ctrl Clique no ícone substitui o bloco pelo bloco copiado.
     - O ícone - permite excluir o bloco, com uma solicitação de confirmação. Ctrl Clique exclui o bloco sem confirmação.
 
-### Se / Então / Caso contrário, bloqueia | Laço | Dans | A
+### Se / Então / Caso contrário, bloqueia | Fivela | Em | A
 
 Pelas condições, o Jeedom tenta torná-las possíveis o máximo possível em linguagem natural, mantendo-se flexível.
 > NÃO use [] em testes de condição, apenas parênteses () são possíveis.
 
 Três botões estão disponíveis à direita deste tipo de bloco para selecionar um item para testar :
 
-- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **et** onde **ou** Na frente **Ensuite** para encadear testes em diferentes equipamentos.
+- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **et** onde **ou** na frente **Ensuite** para encadear testes em diferentes equipamentos.
 - **Pesquisa cenário** : Permite procurar um cenário para testar.
 - **Procure equipamento** : O mesmo para equipamentos.
 
@@ -154,12 +154,12 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 
 #### Acesso a controles (sensores e atuadores):
 -  ``cmd::byString ($ string); ` : Retorna o objeto de comando correspondente.
-    -   ``$string``: Link para o pedido desejado : ``#[obje][equipement][commande]#`` (ex : ``#[àppartement][àlarme][Ativos]#`)
+    -   ``$string``: Link para o pedido desejado : ``#[obje][equipement][commande]#`` (ex : ``#[Umppartement][Umlarme][Ativo]#`)
 -  ``cmd::byId ($ id); ` : Retorna o objeto de comando correspondente.
     -  `$ id` : ID do pedido.
 -  $ cmd-> execCmd ($ options = null); ` : Execute o comando e retorne o resultado.
     - `$ opções` : Opções para execução de pedidos (pode ser específico ao plugin). Opções básicas (subtipo de comando) :
-        -  Mensagem : `$ option = array ('title' => 'título da mensagem,' message '=>' Minha mensagem ');`
+        -  mensagem : `$ option = array ('title' => 'título da mensagem,' message '=>' Minha mensagem ');`
         -  cor : `$ option = array ('color' => 'cor em hexadecimal');`
         -  controle deslizante : `$ option = array ('slider' => 'valor desejado de 0 a 100');`
 
@@ -167,7 +167,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 -  ``log::add ('nome do arquivo', 'nível', 'mensagem'); `
     - filename : Nome do arquivo de log.
     - nível : [depuração], [informações], [erro], [evento].
-    - Mensagem : Mensagem para escrever nos logs.
+    - mensagem : Mensagem para escrever nos logs.
 
 #### Acesso ao cenário :
 - `$ cenário-> getName ();` : Retorna o nome do cenário atual.
@@ -189,7 +189,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 
 > **Tip**
 >
-> Adição de uma função de pesquisa no bloco Código : Pesquisa : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
+> Adição de uma função de pesquisa no bloco Código : Pesquisar : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 
 [Cenas : Pequenos códigos com amigos](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
 
@@ -394,11 +394,11 @@ Aqui estão exemplos práticos para entender os valores retornados por essas dif
 | stateChanges (take, 1, period)      | Retorna 1 : o plugue está aceso (mude para 1) uma vez durante o período                              |
 | lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Ontem, hoje) | Retorna a última temperatura registrada ontem.                    |
 | variável (plop, 10)                  | Retorna o valor da variável plop ou 10 se estiver vazia ou não existir                         |
-| scenario(\#[Salle de bain][Lumière][àuto]\#) | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
-| lastScenarioExecution(\#[Salle de bain][Lumière][àuto]\#)   | Retorna 300 se o cenário foi iniciado pela última vez há 5 minutos                                  |
+| scenario(\#[Salle de bain][Lumière][Umuto]\#) | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
+| lastScenarioExecution(\#[Salle de bain][Lumière][Umuto]\#)   | Retorna 300 se o cenário foi iniciado pela última vez há 5 minutos                                  |
 | collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devoluções 01-01-2015 17:45:12          |
 | valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devoluções 01-01-2015 17:50:12          |
-| eqEnable(\#[àucun][Basilique]\#)       | Retorna -2 se o equipamento não for encontrado, 1 se o equipamento estiver ativo e 0 se estiver inativo          |
+| eqEnable(\#[Umucun][Basilique]\#)       | Retorna -2 se o equipamento não for encontrado, 1 se o equipamento estiver ativo e 0 se estiver inativo          |
 | tag (montag, toto)                   | Retorna o valor de "montag" se existir, caso contrário, retorna o valor "para"                               |
 | nome (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Retorna Hidrometria                  |
 

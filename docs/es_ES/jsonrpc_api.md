@@ -125,7 +125,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   int father\_id = null
+-   int padre\_id = nulo
 
 -   int isVisible = 0
 
@@ -732,7 +732,7 @@ Ejemplos de API JSON
 =================
 
 Aquí hay un ejemplo del uso de la API. Para el siguiente ejemplo
-Yo uso [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+yo uso [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
 Recuperando la lista de objetos :

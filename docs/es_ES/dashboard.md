@@ -67,7 +67,7 @@ También puede editar el diseño interno de los controles en el mosaico :
 
 A la derecha de cada objeto, un icono le permite :
 
-- Clic : Todas las fichas de este objeto adoptarán una altura igual a la ficha más alta.
+- Haga clic en : Todas las fichas de este objeto adoptarán una altura igual a la ficha más alta.
 - Ctrl Click : Todos los mosaicos de este objeto adoptarán una altura igual al mosaico más bajo..
 
 ## Barra de menú Jeedom

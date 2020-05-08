@@ -7,7 +7,9 @@ Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellun
 
 ## Affichage
 
-Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezeigt (abhängig vom Schlüssel der Zusammenfassung, sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen**):
+Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezeigt :
+
+Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
 - Oben links : Der Name des Objekts.
 - Oben rechts : Die Temperatur (*temperature*) und Luftfeuchtigkeit (*humidity*).
 - Unter dem Titel : Alarm (*security*) und Bewegung (*motion*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
@@ -17,7 +19,8 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 - Sein Name.
 - Wenn es sichtbar ist. Sie können ein Objekt jedoch auch im Dashboard sichtbar lassen, aber ankreuzen *Zusammenfassung ausblenden*.
 - Sein Hintergrundbild.
-- Elemente seiner Zusammenfassungen.
+- Wenn das Hintergrundbild nur auf der Zusammenfassungsseite oder auch einmal im Hintergrund auf dem Objekt verwendet werden soll.
+- Die Elemente seiner Zusammenfassungen in der Registerkarte *Zusammenfassung*.
 
 > **Tip**
 >
@@ -30,12 +33,14 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 ## Fonctions
 
 Für jedes Objekt können Sie klicken :
-- Auf dem Bild, um die Ausrüstungsseite dieses Objekts zu öffnen (auch über das Menü zugänglich *Home → Dashboard → Objekt*).
+- Über den Titel des Objekts wird das Dashboard dieses Objekts mit seinen untergeordneten Objekten angezeigt (auch über das Menü zugänglich *Home → Dashboard → Objekt*).
+- Auf dem Bild nur die Ausrüstungsseite dieses Objekts öffnen.
 - Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen.
-- Klicken Sie auf das Symbol unten links im Objekt, um die Konfiguration dieses Objekts zu öffnen (nur in Desktop verfügbar)..
+
 
 > **Tip**
 >
 > Strg Klicken oder Mitte Klicken Sie auf das Objekt oder ein Zusammenfassungselement öffnet eine weitere Registerkarte Ihres Browsers.
 
-Wenn Sie in der Zusammenfassung auf ein Objekt klicken, werden die beiden Schaltflächen links in der Suchleiste durch eine Schaltfläche ersetzt, mit der Sie zur Zusammenfassung zurückkehren können. Außerdem werden untergeordnete Objekte nicht angezeigt.
+Wenn Sie in der Zusammenfassung auf ein Objekt klicken, wird die Schaltfläche links in der Suchleiste durch eine Schaltfläche ersetzt, mit der Sie zur Zusammenfassung zurückkehren können.
+

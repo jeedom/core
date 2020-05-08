@@ -536,6 +536,7 @@
         "Design": "設計",
         "Vue": "眺望",
         "Interaction": "対話",
+        "Note": "",
         "Voir les logs": "ログを見る",
         "Aller sur la page du scénario.": "",
         "Aller sur le design.": "",
@@ -543,6 +544,7 @@
         "Aller sur l\\'interaction.": "",
         "Aller sur l\\'équipement.": "",
         "Ouvrir configuration de la commande.": "",
+        "Ouvrir la note.": "",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Configuration de la commande": "設定された制御"
     },

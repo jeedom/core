@@ -7,7 +7,9 @@ Você pode configurá-lo como a página padrão em **Configurações → Prefer�
 
 ## Affichage
 
-Em cada objeto, sua imagem de plano de fundo e seus resumos são exibidos (dependendo da chave do resumo, visível em **Configurações → Sistema → Configuração / Resumos**):
+Em cada objeto, sua imagem de plano de fundo e seus resumos são exibidos :
+
+Dependendo do tipo de resumo (chave), visível em **Configurações → Sistema → Configuração / Resumos** :
 - Canto superior esquerdo : O nome do objeto.
 - Canto superior direito : A temperatura (*temperature*) e umidade (*humidity*).
 - Sob o título : Alerta (*security*) e Movimento (*motion*), verde ou vermelho, dependendo da existência de alertas / movimentos em andamento.
@@ -17,7 +19,8 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 - O nome dele.
 - Se for visível. No entanto, você pode manter um objeto visível mesmo no painel, mas marque *Ocultar no resumo*.
 - Sua imagem de fundo.
-- Elementos de seus resumos.
+- Se a imagem de plano de fundo deve ser usada apenas na página Resumo ou também em segundo plano uma vez no objeto.
+- Os elementos de seus resumos, na guia *Sumário*.
 
 > **Tip**
 >
@@ -30,12 +33,14 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 ## Fonctions
 
 Para cada objeto, você pode clicar em :
-- Na imagem, para abrir a página de equipamento deste objeto (também acessível no menu *Página inicial → Painel de controle → Objeto*).
+- No título do objeto para exibir o Painel desse objeto com seus objetos filhos (também acessível no menu *Página inicial → Painel de controle → Objeto*).
+- Na imagem, para abrir apenas a página de equipamento deste objeto.
 - Em um elemento de resumo para exibir os elementos deste objeto, deste tipo.
-- No ícone na parte inferior esquerda do objeto para abrir a configuração desse objeto (disponível apenas na área de trabalho).
+
 
 > **Tip**
 >
 > Ctrl Clique ou Clique Central no objeto ou um elemento de resumo abre outra guia do seu navegador.
 
-Quando você clica em um objeto do resumo, os dois botões à esquerda da barra de pesquisa são substituídos por um botão que permite retornar ao resumo. Além disso, objetos filho não são exibidos.
+Quando você clica em um objeto do resumo, o botão à esquerda da barra de pesquisa é substituído por um botão que permite retornar ao resumo.
+

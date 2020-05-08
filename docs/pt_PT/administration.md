@@ -24,7 +24,7 @@ Abaixo, vários parâmetros que centralizam as informações que podem ser usada
 
 - Informações para contato : Latitude, longitude e altitude da sua casa / site.
 - Morada : Endereço para correspondência da sua casa / site.
-- Vário : Superfície e número de ocupantes da sua casa / local.
+- Diversos : Superfície e número de ocupantes da sua casa / local.
 
 ## Guia Interface
 
@@ -215,7 +215,7 @@ Essa guia permite definir parâmetros globais relativos às interações que voc
 
 > **Tip**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração. : Logs e verifique **Debug** na lista inferior. Atenção : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração. : Logs e verifique **Debug** na lista inferior. Tenha cuidado : os logs serão muito detalhados !
 
 ### Geral
 
@@ -319,7 +319,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Tenha cuidado : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Adresse** : Morada du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.

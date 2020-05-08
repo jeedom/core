@@ -1,6 +1,6 @@
 # ModalDisplay
 
-Die Seite **ModalDisplay** ist ein einfacher Container zum Laden des Inhalts eines Fensters (*modal* oder *dialog*) ganze Seite.
+Die Seite **ModalDisplay** ist ein einfacher Container zum Laden des Inhalts eines Fensters (*modal* wo *dialog*) ganze Seite.
 
 Es wird insbesondere in den folgenden Fällen verwendet:
 - Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit*

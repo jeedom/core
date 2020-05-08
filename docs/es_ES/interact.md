@@ -7,8 +7,8 @@ Estas órdenes pueden ser obtenidas por :
 
 - SMS : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
 - Gato : Telegram, Slack, etc..
-- Vocal : dicta una frase con Siri, Google Now, SARAH, etc.. Para iniciar comandos (acción) o hacer una pregunta (información).
-- Http : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
+- Voz : dicta una frase con Siri, Google Now, SARAH, etc.. Para iniciar comandos (acción) o hacer una pregunta (información).
+- HTTP : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
 
 El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc..
 
