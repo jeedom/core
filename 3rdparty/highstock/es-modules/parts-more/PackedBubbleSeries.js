@@ -175,18 +175,6 @@ H.layouts.packedbubble = extendClass(Reingold, {
             }
         }
         Reingold.prototype.applyLimitBox.apply(this, arguments);
-    },
-    isStable: function () {
-        return Math.abs(this.systemTemperature -
-            this.prevSystemTemperature) < 0.00001 ||
-            this.temperature <= 0 ||
-            (
-            // In first iteration system does not move:
-            this.systemTemperature > 0 &&
-                (this.systemTemperature /
-                    this.nodes.length < 0.02 &&
-                    this.enableSimulation) // Use only when simulation is enabled
-            );
     }
 });
 /**
@@ -250,6 +238,7 @@ seriesType('packedbubble', 'bubble',
     maxSize: '50%',
     sizeBy: 'area',
     zoneAxis: 'y',
+    crisp: false,
     tooltip: {
         pointFormat: 'Value: {point.value}'
     },
@@ -360,7 +349,10 @@ seriesType('packedbubble', 'bubble',
          * @extends   plotOptions.series.dataLabels.textPath
          * @apioption plotOptions.packedbubble.dataLabels.textPath
          */
-        padding: 0
+        padding: 0,
+        style: {
+            transition: 'opacity 2000ms'
+        }
     },
     /**
      * Options for layout algorithm when simulation is enabled. Inside there

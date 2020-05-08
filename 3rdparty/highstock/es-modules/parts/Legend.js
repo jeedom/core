@@ -78,7 +78,7 @@ import H from './Globals.js';
 * @type {"legendItemClick"}
 */
 import U from './Utilities.js';
-var addEvent = U.addEvent, css = U.css, defined = U.defined, discardElement = U.discardElement, find = U.find, fireEvent = U.fireEvent, format = U.format, isNumber = U.isNumber, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength, setAnimation = U.setAnimation, stableSort = U.stableSort, syncTimeout = U.syncTimeout, wrap = U.wrap;
+var addEvent = U.addEvent, animObject = U.animObject, css = U.css, defined = U.defined, discardElement = U.discardElement, find = U.find, fireEvent = U.fireEvent, format = U.format, isNumber = U.isNumber, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength, setAnimation = U.setAnimation, stableSort = U.stableSort, syncTimeout = U.syncTimeout, wrap = U.wrap;
 var isFirefox = H.isFirefox, marginNames = H.marginNames, win = H.win;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
@@ -526,9 +526,9 @@ var Legend = /** @class */ (function () {
         // Take care of max width and text overflow (#6659)
         if (chart.styledMode || !itemStyle.width) {
             li.css({
-                width: (options.itemWidth ||
+                width: ((options.itemWidth ||
                     legend.widthOption ||
-                    chart.spacingBox.width) - itemExtraWidth
+                    chart.spacingBox.width) - itemExtraWidth) + 'px'
             });
         }
         // Always update the text
@@ -832,31 +832,43 @@ var Legend = /** @class */ (function () {
         legend.legendWidth = legendWidth;
         legend.legendHeight = legendHeight;
         if (display) {
-            // If aligning to the top and the layout is horizontal, adjust for
-            // the title (#7428)
-            var alignTo = chart.spacingBox;
-            var y = alignTo.y;
-            if (/(lth|ct|rth)/.test(legend.getAlignment()) &&
-                chart.titleOffset[0] > 0) {
-                y += chart.titleOffset[0];
-            }
-            else if (/(lbh|cb|rbh)/.test(legend.getAlignment()) &&
-                chart.titleOffset[2] > 0) {
-                y -= chart.titleOffset[2];
-            }
-            if (y !== alignTo.y) {
-                alignTo = merge(alignTo, { y: y });
-            }
-            legendGroup.align(merge(options, {
-                width: legendWidth,
-                height: legendHeight,
-                verticalAlign: this.proximate ? 'top' : options.verticalAlign
-            }), true, alignTo);
+            legend.align();
         }
         if (!this.proximate) {
             this.positionItems();
         }
         fireEvent(this, 'afterRender');
+    };
+    /**
+     * Align the legend to chart's box.
+     *
+     * @private
+     * @function Highcharts.align
+     * @param {Highcharts.BBoxObject} alignTo
+     * @return {void}
+     */
+    Legend.prototype.align = function (alignTo) {
+        if (alignTo === void 0) { alignTo = this.chart.spacingBox; }
+        var chart = this.chart, options = this.options;
+        // If aligning to the top and the layout is horizontal, adjust for
+        // the title (#7428)
+        var y = alignTo.y;
+        if (/(lth|ct|rth)/.test(this.getAlignment()) &&
+            chart.titleOffset[0] > 0) {
+            y += chart.titleOffset[0];
+        }
+        else if (/(lbh|cb|rbh)/.test(this.getAlignment()) &&
+            chart.titleOffset[2] > 0) {
+            y -= chart.titleOffset[2];
+        }
+        if (y !== alignTo.y) {
+            alignTo = merge(alignTo, { y: y });
+        }
+        this.group.align(merge(options, {
+            width: this.legendWidth,
+            height: this.legendHeight,
+            verticalAlign: this.proximate ? 'top' : options.verticalAlign
+        }), true, alignTo);
     };
     /**
      * Set up the overflow handling by adding navigation with up and down arrows
@@ -1067,7 +1079,7 @@ var Legend = /** @class */ (function () {
             this.currentPage = currentPage;
             this.positionCheckboxes();
             // Fire event after scroll animation is complete
-            var animOptions = H.animObject(pick(animation, chart.renderer.globalAnimation, true));
+            var animOptions = animObject(pick(animation, chart.renderer.globalAnimation, true));
             syncTimeout(function () {
                 fireEvent(_this, 'afterScroll', { currentPage: currentPage });
             }, animOptions.duration || 0);

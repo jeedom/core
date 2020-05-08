@@ -103,23 +103,6 @@ seriesType('column', 'line',
      * @apioption plotOptions.column.colors
      */
     /**
-     * When true, each column edge is rounded to its nearest pixel in order
-     * to render sharp on screen. In some cases, when there are a lot of
-     * densely packed columns, this leads to visible difference in column
-     * widths or distance between columns. In these cases, setting `crisp`
-     * to `false` may look better, even though each column is rendered
-     * blurry.
-     *
-     * @sample {highcharts} highcharts/plotoptions/column-crisp-false/
-     *         Crisp is false
-     *
-     * @since   5.0.10
-     * @product highcharts highstock gantt
-     *
-     * @private
-     */
-    crisp: true,
-    /**
      * Padding between each value groups, in x axis units.
      *
      * @sample {highcharts} highcharts/plotoptions/column-grouppadding-default/
@@ -492,7 +475,7 @@ seriesType('column', 'line',
                 }
             });
         }
-        var categoryWidth = Math.min(Math.abs(xAxis.transA) * (xAxis.ordinalSlope ||
+        var categoryWidth = Math.min(Math.abs(xAxis.transA) * ((xAxis.ordinal && xAxis.ordinal.slope) ||
             options.pointRange ||
             xAxis.closestPointRange ||
             xAxis.tickInterval ||
@@ -591,10 +574,12 @@ seriesType('column', 'line',
                     (yAxis.reversed && point.negative);
                 // Reverse zeros if there's no positive value in the series
                 // in visible range (#7046)
-                if (point.y === threshold &&
-                    series.dataMax <= threshold &&
+                if (isNumber(threshold) &&
+                    isNumber(dataMax) &&
+                    point.y === threshold &&
+                    dataMax <= threshold &&
                     // and if there's room for it (#7311)
-                    yAxis.min < threshold &&
+                    (yAxis.min || 0) < threshold &&
                     // if all points are the same value (i.e zero) not draw
                     // as negative points (#10646)
                     dataMin !== dataMax) {

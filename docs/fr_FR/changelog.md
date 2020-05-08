@@ -62,7 +62,7 @@
 - Documentation : Adaptations en adéquation avec la v4 et v4.1.
 - Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
-- Lib : Update HighStock v7.1.2 vers v8.0.4.
+- Lib : Update HighStock v7.1.2 vers v8.1.0.
 - Lib : Update jQuery v3.4.1 vers v3.5.1.
 
 

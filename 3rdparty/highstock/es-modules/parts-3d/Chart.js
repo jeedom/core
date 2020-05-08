@@ -10,9 +10,12 @@
  *
  * */
 'use strict';
+import Axis from '../parts/Axis.js';
+import Axis3D from './Axis3D.js';
 import H from '../parts/Globals.js';
 import U from '../parts/Utilities.js';
-var addEvent = U.addEvent, isArray = U.isArray, merge = U.merge, pick = U.pick, wrap = U.wrap;
+var addEvent = U.addEvent, Fx = U.Fx, isArray = U.isArray, merge = U.merge, pick = U.pick, wrap = U.wrap;
+import ZAxis from './ZAxis.js';
 import '../parts/Chart.js';
 var Chart = H.Chart, perspective = H.perspective;
 /**
@@ -1522,7 +1525,7 @@ Chart.prototype.get3dFrame = function () {
     return ret;
 };
 // Animation setter for matrix property.
-H.Fx.prototype.matrixSetter = function () {
+Fx.prototype.matrixSetter = function () {
     var interpolated;
     if (this.pos < 1 &&
         (isArray(this.start) || isArray(this.end))) {
@@ -1538,6 +1541,8 @@ H.Fx.prototype.matrixSetter = function () {
     }
     this.elem.attr(this.prop, interpolated, null, true);
 };
+ZAxis.ZChartComposition.compose(Chart);
+Axis3D.compose(Axis);
 /**
  * Note: As of v5.0.12, `frame.left` or `frame.right` should be used instead.
  *
