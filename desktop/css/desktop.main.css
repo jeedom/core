@@ -2019,41 +2019,6 @@ textarea {
   margin-top: -2px;
 }
 
-.checkbox-inline.disabled,
-.checkbox.disabled label,
-.radio-inline.disabled,
-.radio.disabled label,
-fieldset[disabled] .checkbox label,
-fieldset[disabled] .checkbox-inline,
-fieldset[disabled] .radio label,
-fieldset[disabled] .radio-inline,
-fieldset[disabled] input[type=checkbox],
-fieldset[disabled] input[type=radio],
-input[type=checkbox].disabled,
-input[type=checkbox][disabled],
-input[type=radio].disabled,
-input[type=radio][disabled],
-select.disabled,
-select[disabled] {
-  cursor: not-allowed !important;
-}
-
-select:disabled,
-input:disabled {
-  opacity: 0.35 !important;
-}
-
-.disabled .btn:not(.enabled),
-.disabled input:not(.enabled),
-.disabled button:not(.enabled),
-.disabled span:not(.enabled),
-.disabled button:not(.enabled) i,
-.disabled a:not(.enabled) > i {
-  cursor: not-allowed !important;
-  filter: alpha(opacity=65);
-  opacity: .65;
-}
-
 /* custom universal select */
 select,
 input[type=color] {
@@ -2209,6 +2174,41 @@ input[type=checkbox].summaryAttr {
 .custom-select {
   font-size: 14px !important;
   padding: 0 !important;
+}
+
+.checkbox-inline.disabled,
+.checkbox.disabled label,
+.radio-inline.disabled,
+.radio.disabled label,
+fieldset[disabled] .checkbox label,
+fieldset[disabled] .checkbox-inline,
+fieldset[disabled] .radio label,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] input[type=checkbox],
+fieldset[disabled] input[type=radio],
+input[type=checkbox].disabled,
+input[type=checkbox][disabled],
+input[type=radio].disabled,
+input[type=radio][disabled],
+select.disabled,
+select[disabled] {
+  cursor: not-allowed !important;
+}
+
+select:disabled,
+input:disabled {
+  opacity: 0.7 !important;
+}
+
+.disabled .btn:not(.enabled),
+.disabled input:not(.enabled),
+.disabled button:not(.enabled),
+.disabled span:not(.enabled),
+.disabled button:not(.enabled) i,
+.disabled a:not(.enabled) > i {
+  cursor: not-allowed !important;
+  filter: alpha(opacity=65);
+  opacity: .65;
 }
 
 /* __________________________________________________________________________________________________________TABS */
