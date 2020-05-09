@@ -20,7 +20,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 - Se for visível. No entanto, você pode manter um objeto visível mesmo no painel, mas marque *Ocultar no resumo*.
 - Sua imagem de fundo.
 - Se a imagem de plano de fundo deve ser usada apenas na página Resumo ou também em segundo plano uma vez no objeto.
-- Os elementos de seus resumos, na guia *Sumário*.
+- Os elementos de seus resumos, na guia *Resumo*.
 
 > **Tip**
 >

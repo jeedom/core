@@ -150,8 +150,8 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Hintergrundfarbe** : Ermöglicht die Auswahl einer benutzerdefinierten Hintergrundfarbe oder die Anzeige des Geräts mit transparentem Hintergrund oder die Verwendung der Standardfarbe.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
 - **Arrondis** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
-- **Bordure** : CSS-Definition einer Gerätekachelgrenze. Bsp : 1px festes Schwarz.
-- **Opacité** : Deckkraft der Gerätekachel zwischen 0 und 1. Sei vorsichtig : Es muss eine Hintergrundfarbe definiert werden.
+- **Bordure** : CSS-Definition einer Gerätekachelgrenze. Ex : 1px festes Schwarz.
+- **Opacité** : Deckkraft der Gerätekachel zwischen 0 und 1. Aufmerksamkeit : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
@@ -194,7 +194,7 @@ In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus. Hi
 
 ### Binäres Makro
 
-In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. Bsp : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
+In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. Ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
 
 - **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus).
 

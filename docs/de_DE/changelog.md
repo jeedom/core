@@ -3,13 +3,13 @@
 ## 4.1.0
 
 - Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
-- Forschung : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
-- Dashboard : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
-- Dashboard : Wir können jetzt auf die klicken *time* Zeitaktions-Widgets zum Öffnen des Verlaufsfensters des Befehls "Verknüpfte Informationen".
-- Dashboard : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
-- Dashboard : Hinzufügen einer Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
-- Dashboard : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
-- Dashboard : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche).
+- Suche : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
+- Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
+- Armaturenbrett : Wir können jetzt auf die klicken *time* Zeitaktions-Widgets zum Öffnen des Verlaufsfensters des Befehls "Verknüpfte Informationen".
+- Armaturenbrett : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
+- Armaturenbrett : Hinzufügen einer Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
+- Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
+- Armaturenbrett : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche).
 - Tools / Widgets : Die Funktion *Bewerben Sie sich am* Zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
 - Widgets : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - Widgets : Hinzufügen eines Kern-Widgets *sliderVertical*.
@@ -28,7 +28,7 @@
 - Szenario : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
 - Szenario : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum *today* (von Mitternacht bis jetzt), *yesterday* und *day* (für 1 Tag).
 - Szenario : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer ()* : Bugfix über den Zeitraum *yesterday*, und jetzt akzeptieren *day* (für 1 Tag).
-- Szenario : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Bestellungen).
+- Szenario : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Befehle).
 - Szenario : Anzeigen a *warning* wenn kein Trigger konfiguriert ist.
 - Szenario : Bugfix von Select auf Copy / Paste Block.
 - Szenario : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
@@ -37,10 +37,10 @@
 - Analyse / Geschichte : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - Analyse / Geschichte : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - Analyse / Geschichte : Wir können jetzt die Option verwenden *Aire* mit der Option *Escalier*.
-- Anzeigen : Möglichkeit, Szenarien zu setzen.
-- Geschichte : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
-- Geschichte : Verwaltung mehrerer Zeitleisten.
-- Geschichte : Überarbeitung der Timeline-Grafik.
+- Ansicht : Möglichkeit, Szenarien zu setzen.
+- Chronik : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
+- Chronik : Verwaltung mehrerer Zeitleisten.
+- Chronik : Überarbeitung der Timeline-Grafik.
 - Zusammenfassung der Hausautomation : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)..
 - Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien.
 - Zusammenfassung der Hausautomation : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
@@ -49,7 +49,7 @@
 - Konfiguration : Die Registerkarte *Informations* ist jetzt in der Registerkarte *Allgemein*.
 - Konfiguration : Die Registerkarte *Commandes* ist jetzt in der Registerkarte *Equipements*.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
-- Ausrüstung : Neue Kategorie *Ouvrant*.
+- Geräte : Neue Kategorie *Ouvrant*.
 - Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.<br/><br/>
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
@@ -62,7 +62,7 @@
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
 - Dokumentation : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
-- Lib : Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
+- Lib : Aktualisieren Sie HighStock v7.1.2 bis v8.1.0.
 - Lib : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 
 
@@ -116,18 +116,18 @@
 - Die Suchfelder (Dashboard, Szenarien, Objekte, Widgets, Interaktionen, Plugins) sind jetzt beim Öffnen der Seite aktiv, sodass Sie eine Suche direkt eingeben können.
 - Fügen Sie den Suchfeldern eine X-Schaltfläche hinzu, um die Suche abzubrechen.
 - Während einer Suche wird der Schlüssel *echap* Suche abbrechen.
-- Dashboard : Im Bearbeitungsmodus sind das Suchfeld und seine Schaltflächen deaktiviert und werden behoben.
-- Dashboard : Klicken Sie im Bearbeitungsmodus auf eine Schaltfläche *expand* Rechts neben den Objekten werden die Kacheln des Objekts auf die höchste Höhe angepasst. Strg + Klick reduziert sie auf die niedrigste Höhe.
-- Dashboard : Die Befehlsausführung auf einer Kachel wird nun durch die Schaltfläche signalisiert *refresh*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
-- Dashboard : Die Kacheln zeigen einen Info-Befehl (Verlauf, der das Verlaufsfenster öffnet) oder eine Aktion beim Schweben an.
-- Dashboard : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
-- Dashboard : Das Verlaufsfenster behält seine Position / Dimensionen bei, wenn ein anderer Verlauf erneut geöffnet wird.
+- Armaturenbrett : Im Bearbeitungsmodus sind das Suchfeld und seine Schaltflächen deaktiviert und werden behoben.
+- Armaturenbrett : Klicken Sie im Bearbeitungsmodus auf eine Schaltfläche *expand* Rechts neben den Objekten werden die Kacheln des Objekts auf die höchste Höhe angepasst. Strg + Klick reduziert sie auf die niedrigste Höhe.
+- Armaturenbrett : Die Befehlsausführung auf einer Kachel wird nun durch die Schaltfläche signalisiert *refresh*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
+- Armaturenbrett : Die Kacheln zeigen einen Info-Befehl (Verlauf, der das Verlaufsfenster öffnet) oder eine Aktion beim Schweben an.
+- Armaturenbrett : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
+- Armaturenbrett : Das Verlaufsfenster behält seine Position / Dimensionen bei, wenn ein anderer Verlauf erneut geöffnet wird.
 - Befehlskonfigurationsfenster: Strg + Klick auf &quot;Speichern&quot; schließt das Fenster danach.
 - Fenster Gerätekonfiguration: Strg + Klick auf &quot;Speichern&quot; schließt das Fenster danach.
 - Hinzufügen von Nutzungsinformationen beim Löschen von Geräten.
 - Objekte : Option zur Verwendung benutzerdefinierter Farben hinzugefügt.
 - Objekte : Kontextmenü auf Registerkarten hinzufügen (schnelle Objektänderung).
-- Interaktionen : Kontextmenü auf Registerkarten hinzufügen (schnelle Änderung der Interaktion).
+- Wechselwirkungen : Kontextmenü auf Registerkarten hinzufügen (schnelle Änderung der Interaktion).
 - Plugins : Kontextmenü auf Registerkarten hinzufügen (schneller Gerätewechsel).
 - Plugins : Auf der Plugins-Verwaltungsseite zeigt ein orangefarbener Punkt nicht stabile Plugins an.
 - Tabellenverbesserungen mit Filter- und Sortieroption.

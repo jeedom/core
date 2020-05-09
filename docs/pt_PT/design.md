@@ -151,7 +151,7 @@ Permite escolher os comandos para grapher.
 - **Cor do texto** : Permite escolher uma cor de plano de fundo personalizada ou usar a cor padrão.
 - **Arrondis** : Valor em pixels do arredondamento dos ângulos do bloco do equipamento.
 - **Bordure** : Definição CSS de uma borda de bloco de equipamento. Ex : 1px preto sólido.
-- **Opacité** : Opacidade do ladrilho do equipamento, entre 0 e 1. Tenha cuidado : uma cor de fundo deve ser definida.
+- **Opacité** : Opacidade do ladrilho do equipamento, entre 0 e 1. Atenção : uma cor de fundo deve ser definida.
 - **CSS personalizado** : Regras CSS a serem aplicadas no equipamento.
 - **Aplicar css personalizado em** : Seletor de CSS no qual aplicar CSS personalizado.
 
@@ -209,7 +209,7 @@ Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget
 - **Vista em um clique** : Se marcado, o widget será exibido no clique.
 - **Position** : Permite escolher onde o widget aparecerá (canto inferior direito padrão).
 
-## Sumário
+## Resumo
 
 ### Configurações de exibição específicas
 

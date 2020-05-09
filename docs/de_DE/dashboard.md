@@ -67,7 +67,7 @@ Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten
 
 Rechts von jedem Objekt können Sie ein Symbol verwenden :
 
-- Klicken Sie auf : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der höchsten Kachel entspricht.
+- Klicken : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der höchsten Kachel entspricht.
 - Strg Klicken Sie auf : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der niedrigsten Kachel entspricht.
 
 ## Jeedom Menüleiste

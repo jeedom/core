@@ -22,7 +22,7 @@ Often this is due to the fact that the equipment is assigned to an object which 
 ### Jeedom interface has shortcuts ?
 Yes, the list of keyboard / mouse shortcuts is [here](shortcuts.md).
 
-### Can we reorder equipment orders ?
+### Can we reorder equipment commands ?
 Yes it is possible, just drag and drop the commands of your object on its configuration.
 
 ### Can we edit the style of the widgets ?
@@ -32,7 +32,7 @@ For each command you can choose its display between different Core widgets, or c
 No it&#39;s not possible, but you can duplicate it thanks to the virtual plugin.
 
 ### How to change wrong historical data ?
-It is enough, on a historical curve of the order, to click on the point in question. If you leave the field blank, then the value will be deleted.
+It is enough, on a historical curve of the command, to click on the point in question. If you leave the field blank, then the value will be deleted.
 
 ### How long does a backup take ?
 There is no standard duration, it depends on the system and the volume of data to be backed up, but it can take more than 5 minutes, this is normal.
@@ -45,7 +45,7 @@ Yes : Either you have a power pack or more, in this case you
 just use the [DNS Jeedom](https://jeedom.github.io/documentation/howto/en_US/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 ### How to connect in SSH ?
-Here's one [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+Here's one [Documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
 
 - Username : "root ", password : "Mjeedom96"
 - Username : "jeedom ", password : "Mjeedom96"
@@ -112,12 +112,12 @@ sudo chown www-data:www-data core / config / common.config.php
 ### I have \ {\ {… \} \} everywhere
 The most frequent cause is the use of a plugin in beta version and Jeedom in stable, or the reverse. To get the details of the error, you have to look at the http log.error (in / var / www / html / log).
 
-### When ordering I have a wheel that turns without stopping
+### On command I have a wheel that turns without stopping
 Again this is often due to a plugin in beta while Jeedom is in stable. To see the error, you must do F12 then console.
 
 ### I no longer have access to Jeedom, neither through the web interface nor in console via SSH
 This error is not due to Jeedom, but to a problem with the system.
-If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns.. Here is [documentation](https://jeedom.github.io/documentation/howto/en_US/recovery_mode_jeedom_smart) for Smart
+If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns.. Here is [Documentation](https://jeedom.github.io/documentation/howto/en_US/recovery_mode_jeedom_smart) for Smart
 
 ### My scenario does not stop any more
 It is advisable to look at the commands executed by the scenario, often it comes from a command that does not end.
@@ -142,7 +142,7 @@ Or consult the log : /var/log/mysql/error.log
 
 ### The Shutdown / Restart buttons do not work
 On a DIY installation it&#39;s normal. In SSH, you must make the visudo command and at the end of the file you must add : www-data ALL = (ALL)
-NOPASSWD: ALL.
+NOPASSWD: All.
 
 `` `{.bash}
 sudo service apache2 restart

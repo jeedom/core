@@ -36,10 +36,10 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles..
 
 En cada equipo encontramos :
 
-- Un **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **supprimer**, devolver **visible**/ /**invisible**,  **actif**/ /**inactif** equipo seleccionado.
+- Una **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **supprimer**, maquillaje **visible**/ /**invisible**,  **actif**/ /**inactif** equipo seleccionado.
 - L'**id** equipo.
-- El **type** equipo : Identificador del complemento al que pertenece.
-- El **nom** equipo.
+- La **type** equipo : Identificador del complemento al que pertenece.
+- La **nom** equipo.
 - **Inactif** (cruz pequeña) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
 - **Invisible** (ojo tachado) : Significa que el equipo es invisible (si no está allí, el equipo es visible).
 
@@ -112,7 +112,7 @@ Esta parte le permite elegir entre el diseño estándar de los comandos (uno al 
 - **Estilo de tabla (CSS)** : Le permite definir solo el estilo de la tabla.
 
 A continuación para cada cuadro, el **configuración detallada** te permite
-esto :
+este :
 - **Cuadro de texto** : Agregue texto además del comando (o solo, si no hay un comando en el cuadro).
 - **Estilo de caja (CSS)** : Modifique el estilo CSS específico del cuadro (tenga en cuenta que sobrescribe y reemplaza el CSS general de los cuadros).
 
@@ -134,7 +134,7 @@ También puede administrar el tiempo de espera, en minutos, del equipo. Por ejem
 
 > **Tip**
 >
-> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Logs** donde **Equipements**
+> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Logs** o **Equipements**
 
 ### Pestaña de comentarios
 
@@ -200,7 +200,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Historique**
     - **Historiser** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
-    - **Modo de suavizado** : Modo de **lissage** o d'**archivage** le permite elegir cómo archivar los datos. Por defecto, este es un **moyenne**. También es posible elegir el **maximum**, el **minimum**, donde **aucun**. **aucun** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Modo de suavizado** : Modo de **lissage** o d'**archivage** le permite elegir cómo archivar los datos. Por defecto, este es un **moyenne**. También es posible elegir el **maximum**, La **minimum**, o **aucun**. **aucun** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
     - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom.
 
 - **Gestión de valores**
@@ -210,7 +210,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Autres**
     - **Gestión de la repetición de valores.** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario). Puede forzar la repetición del valor o prohibirlo por completo.
-    - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedido. Puedes usar las siguientes etiquetas : ``#value#`por el valor de la orden,`#cmd_name#`para el nombre del comando,`#cmd_id#`para el identificador único de la orden,`#humanname#`para el nombre completo del comando (ex : ``#[Salel de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo.
+    - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedido. Puedes usar las siguientes etiquetas : ``#value#`por el valor de la orden,`#cmd_name#`para el nombre del comando,`#cmd_id#`para el identificador único de la orden,`#humanname#`para el nombre completo del comando (ex : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo.
 
 #### Para un comando de acción :
 
@@ -222,7 +222,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 ### Pestaña Alertas
 
-Le permite definir un nivel de alerta (**warning** donde **danger**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **warning**.
+Le permite definir un nivel de alerta (**warning** o **danger**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **warning**.
 
 > **Note**
 >
@@ -236,7 +236,7 @@ En esta parte, podrá configurar ciertos comportamientos de visualización de wi
 - **Visible** : Marque para hacer visible el comando.
 - **Mostrar nombre** : Marque para hacer visible el nombre del comando, dependiendo del contexto.
 - **Mostrar nombre e icono** : Marque para que el icono sea visible además del nombre del comando.
-- **Línea envuelta antes del widget** : Garrapata **antes del widget** donde **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización en la columna de los diversos comandos del equipo en lugar de líneas por defecto)
+- **Línea envuelta antes del widget** : Seleccionar **antes del widget** o **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización en la columna de los diversos comandos del equipo en lugar de líneas por defecto)
 
 A continuación, hay parámetros de visualización opcionales que se pueden pasar al widget. Estos parámetros dependen del widget en cuestión, por lo que debe consultar su archivo en Market para conocerlos..
 

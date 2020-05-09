@@ -6,9 +6,9 @@ Mit dem Interaktionssystem in Jeedom können Sie Aktionen über Text- oder Sprac
 Diese Bestellungen erhalten Sie von :
 
 - SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info).
-- Cat : Telegramm, Slack usw..
-- Gesang : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw.. Befehle starten (Aktion) oder eine Frage stellen (Info).
-- HTTP : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
+- Katze : Telegramm, Slack usw..
+- Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw.. Befehle starten (Aktion) oder eine Frage stellen (Info).
+- Http : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw..
 
@@ -297,7 +297,7 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können setzen, was Sie wollen), die in der Antriebssteuerung verwendet wird, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \.* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \.* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *consigne*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können setzen, was Sie wollen), die in der Antriebssteuerung verwendet wird, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anwendung : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \.* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \.* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *consigne*.
 
 > **Note**
 >

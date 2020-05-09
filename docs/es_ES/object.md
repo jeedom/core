@@ -1,7 +1,7 @@
 # Objets
 **Herramientas → Objetos**
 
-El **objets** le permite definir la estructura de árbol de su domótica.
+La **objets** le permite definir la estructura de árbol de su domótica.
 
 Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar.. Luego decimos que el objeto es el **parent** equipo.
 

@@ -24,7 +24,7 @@ Nachfolgend einige Parameter, die Informationen zentralisieren, die von Plugins 
 
 - Kontakt : Breite, Länge und Höhe Ihres Hauses / Standorts.
 - Adresse : Postanschrift Ihres Hauses / Ihrer Website.
-- Verschiedenes : Oberfläche und Anzahl der Bewohner Ihres Hauses / Standorts.
+- Verschiedene : Oberfläche und Anzahl der Bewohner Ihres Hauses / Standorts.
 
 ## Registerkarte &quot;Schnittstelle&quot;
 
@@ -207,7 +207,7 @@ Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramm
 - **Tiefe für Befehle** : Gleiches gilt für Bestellungen.
 - **Tiefe für Variablen** : Gleiches gilt für Variablen.
 - **Parameter Prerender** : Ermöglicht es Ihnen, auf das Layout des Diagramms zu reagieren.
-- **Parameter machen** : Gleiches.
+- **Parameter machen** : Idem.
 
 ## Registerkarte &quot;Interaktionen&quot;
 
@@ -215,7 +215,7 @@ Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen fe
 
 > **Tip**
 >
-> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration. : Protokolle, dann überprüfen **Debug** in der unteren Liste. Sei vorsichtig : Die Protokolle sind dann sehr ausführlich !
+> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration. : Protokolle, dann überprüfen **Debug** in der unteren Liste. Achtung : Die Protokolle sind dann sehr ausführlich !
 
 ### Allgemein
 
@@ -319,7 +319,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 #### Market
 
-Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Sei vorsichtig : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
+Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Achtung : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
 - **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
 - **Benutzername** : Ihr Benutzername auf dem Markt.

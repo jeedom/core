@@ -3,12 +3,12 @@
 
 The interaction system in Jeedom allows you to perform actions from text or voice commands.
 
-These orders can be obtained by :
+These commands can be obtained by :
 
 - SMS : send an SMS to launch commands (action) or ask a question (info).
 - Cat : Telegram, Slack, etc.
 - Vocal : dictate a phrase with Siri, Google Now, SARAH, etc.. To launch commands (action) or ask a question (info).
-- HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
+- D'informations sont indispensables à la bonne compréhension de : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
 
 The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, etc..
 
@@ -44,7 +44,7 @@ The principle of creation is quite simple : we will define a generating model se
 
 We are going to define answers in the same way with a model (this allows Jeedom to have several answers for a single question).
 
-We can also define a command to execute if for example the interaction is not linked to an action but an information or if we wish to carry out a particular action after this one (it is also possible to execute a scenario, to control several orders…).
+We can also define a command to execute if for example the interaction is not linked to an action but an information or if we wish to carry out a particular action after this one (it is also possible to execute a scenario, to control several commands…).
 
 ## Configuration
 
@@ -70,9 +70,9 @@ The configuration page consists of several tabs and buttons :
 ### Filters tab
 
 - **Limit to type commands** : Allows you to use only the types of actions, info or the 2 types.
-- **Limit to orders with subtype** : Limits generation to one or more subtypes.
-- **Limit to orders with unit** : Used to limit generation to one or more units (Jeedom automatically creates the list from the units defined in your orders).
-- **Limit to orders belonging to the object** : Allows you to limit generation to one or more objects (Jeedom automatically creates the list from the objects you have created).
+- **Limit to commands with subtype** : Limits generation to one or more subtypes.
+- **Limit to commands with unit** : Used to limit generation to one or more units (Jeedom automatically creates the list from the units defined in your commands).
+- **Limit to commands belonging to the object** : Allows you to limit generation to one or more objects (Jeedom automatically creates the list from the objects you have created).
 - **Limit to plugin** : Limits generation to one or more plugins (Jeedom automatically creates the list from installed plugins).
 - **Limit to category** : Limits generation to one or more categories.
 - **Limit to equipment** : Allows you to limit generation to a single device / module (Jeedom automatically creates the list from the devices / modules you have).
@@ -89,7 +89,7 @@ Use if you want to target one or more specific commands or pass specific paramet
 
 #### Simple interaction
 
-The simplest way to configure an interaction is to give it a rigid generator model, with no variation possible.. This method will very precisely target an order or a scenario.
+The simplest way to configure an interaction is to give it a rigid generator model, with no variation possible.. This method will very precisely target a command or a scenario.
 
 In the following example, we can see in the &quot;Request&quot; field the exact sentence to provide to trigger the interaction. Here, to turn on the living room ceiling light.
 
@@ -127,7 +127,7 @@ In synonyms, we will therefore indicate the name of the command and the synonym 
 
 ![interact008](../images/interact008.png)
 
-We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "*Name of the order*" ***=*** "*synonym 1*"***,*** "*synonym 2*" (we can put as many synonym as we want). Then, to add synonyms for another command name, just add a vertical bar after the last synonym "*|*" after which you can again name the command which will have synonyms as for the first part, etc..
+We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "*Name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2*" (we can put as many synonym as we want). Then, to add synonyms for another command name, just add a vertical bar after the last synonym "*|*" after which you can again name the command which will have synonyms as for the first part, etc..
 
 It&#39;s already better, but it still lacks for the command &quot;on&quot; &quot;input&quot; the &quot;l&quot; and for others the &quot;la&quot; or &quot;le&quot; or &quot;a&quot;, etc.. We could change the name of the equipment to add it, it would be a solution, otherwise we can use the variations in the request. This consists of listing a series of possible words at a location in the sentence, Jeedom will therefore generate sentences with these variations.
 
@@ -185,7 +185,7 @@ We have 2 places to apply a Regexp :
 
 For the &quot;General exclusion regex for interactions&quot; field, this rule will be applied to all interactions, which will be created or saved again later.. If we want to apply it to all existing interactions, we must regenerate the interactions. Generally, it is used to erase incorrectly formed sentences found in most interactions generated.
 
-For the &quot;Regexp exclusion&quot; field in the configuration page of each interaction, you can put a specific Regexp which will act only on said interaction. It therefore allows you to delete more precisely for an interaction. It can also make it possible to delete an interaction for a specific order for which one does not want to offer this possibility within the framework of a generation of multiple orders.
+For the &quot;Regexp exclusion&quot; field in the configuration page of each interaction, you can put a specific Regexp which will act only on said interaction. It therefore allows you to delete more precisely for an interaction. It can also make it possible to delete an interaction for a specific command for which one does not want to offer this possibility within the framework of a generation of multiple commands.
 
 The following screenshot shows the interaction without the Regexp. In the list on the left, I filter the sentences to show you only the sentences that will be deleted. In reality there are 76 sentences generated with the configuration of the interaction.
 
@@ -266,7 +266,7 @@ Here a generic example which is used to know the temperature, humidity, brightne
 ![interact019](../images/interact019.png)
 
 - So we can see that a generic sentence like &quot;What is the temperature in the living room&quot; or &quot;What is the brightness of the bedroom&quot; can be converted into : "what is the |l \\ '\] \#commande\# object "(the use of \ [word1 | word2 \] allows you to say this possibility or that to generate all possible variants of the sentence with word1 or word2). When generating Jeedom will generate all possible combinations of sentences with all existing commands (depending on the filters) by replacing \#commande\# by the name of the command and \#objet\# by the name of the object.
-- The answer will be "21 ° C" or "200 lux". Just put : \#valeur\# \#unite\# (the unit must be completed in the configuration of each order for which we want to have one)
+- The answer will be "21 ° C" or "200 lux". Just put : \#valeur\# \#unite\# (the unit must be completed in the configuration of each command for which we want to have one)
 - This example therefore generates a sentence for all digital info type commands that have a unit, so we can uncheck units in the right filter limited to the type that interests us.
 
 #### Evolution

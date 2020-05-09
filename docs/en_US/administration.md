@@ -24,7 +24,7 @@ Below, several parameters that centralize information that can be used by plugin
 
 - Contact information : Latitude, Longitude and Altitude of your home / site.
 - Address : Mailing address of your home / site.
-- Various : Surface and number of occupants of your home / site.
+- Miscellaneous : Surface and number of occupants of your home / site.
 
 ## Interface tab
 
@@ -121,15 +121,15 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 ### Alertes
 
 - **Add a message to each Timeout** : Add a message in the message center if a device falls in **timeout**.
-- **Timeout order** : Type command **message** to be used if an equipment is in **timeout**.
+- **Timeout command** : Type command **message** to be used if an equipment is in **timeout**.
 - **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **warning**.
 - **Battery command in Warning** : Type command **message** to be used if equipment at its battery level **warning**.
 - **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **danger**.
 - **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **danger**.
-- **Add a message to each Warning** : Add a message in the message center if an order goes on alert **warning**.
-- **Command on Warning** : Type command **message** to use if an order goes on alert **warning**.
-- **Add a message to each Danger** : Add a message in the message center if an order goes on alert **danger**.
-- **Command on Danger** : Type command **message** to use if an order goes on alert **danger**.
+- **Add a message to each Warning** : Add a message in the message center if a command goes on alert **warning**.
+- **Command on Warning** : Type command **message** to use if a command goes on alert **warning**.
+- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **danger**.
+- **Command on Danger** : Type command **message** to use if a command goes on alert **danger**.
 
 ### Logs
 
@@ -154,7 +154,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 - **Unité** : Summary unit.
 - **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
 - **Show if value is 0** : Check this box to display the value, even when it is 0.
-- **Link to a virtual** : Launches the creation of virtual orders having for value those of the summary.
+- **Link to a virtual** : Launches the creation of virtual command having for value those of the summary.
 - **Delete summary** : The last button, on the far right, deletes the summary from the line.
 
 ## Equipment tab
@@ -164,7 +164,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 - **Number of failures before deactivation of the equipment** : Number of communication failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
 - **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
 
-Many orders can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
+Many command can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
 
 ### Command history
 
@@ -175,7 +175,7 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 - **Archive by package from (in hours)** : This parameter gives the size of the packets (1 hour by default). This means for example that Jeedom will take periods of 1 hour, average and store the new calculated value by deleting the averaged values.
 - **Low trend calculation threshold** : This value indicates the value from which Jeedom indicates that the trend is downward. It must be negative (default -0.1).
 - **Upper trend calculation threshold** : Same thing for the rise.
-- **Display period graphics by default** : Period which is used by default when you want to display the history of an order. The shorter the period, the faster Jeedom will display the requested graph.
+- **Display period graphics by default** : Period which is used by default when you want to display the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
 
 > **Note**
 >
@@ -184,10 +184,10 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 
 ### Push
 
-- **Global push URL** : allows you to add a URL to call in the event of an order update. You can use the following tags :
-**\#value\#** for the order value, **\#cmd\_name\#** for the name of the command,
-**\#cmd\_id\#** for the unique identifier of the order,
-**\#humanname\#** for the full name of the order (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
+- **Global push URL** : allows you to add a URL to call in the event of acommand update. You can use the following tags :
+**\#value\#** for the command value, **\#cmd\_name\#** for the name of the command,
+**\#cmd\_id\#** for the unique identifier of the command,
+**\#humanname\#** for the full name of the command (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
 **\#eq_name\#** for the name of the equipment
 
 ## Reports tab
@@ -204,7 +204,7 @@ Configure link graphics. These links allow you to see, in the form of a graph, t
 - **Scenario depth** : Allows to define, when displaying a graph of links of a scenario, the maximum number of elements to display (the more there are elements the more the graph will be slow to generate and the more it will be difficult to read ).
 - **Objects depth** : Same for objects.
 - **Equipments depth** : Same for the equipment.
-- **Commands depth** : Same for orders.
+- **Commands depth** : Same for commands.
 - **Variables depth** : Same for variables.
 - **Prerender parameter** : Allows you to act on the layout of the graph.
 - **Render parameter** : Same.
@@ -215,7 +215,7 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Configuration tab. : Logs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Configuration tab. : Logs, then check **Debug** in the bottom list. Be careful : the logs will then be very verbose !
 
 ### Main
 
@@ -231,7 +231,7 @@ Here you have three parameters :
 
 ### Automatic, contextual & warning interaction
 
--   The **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or order to try to respond as best as possible..
+-   The **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible..
 
 -   The **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
     - *Jeedom keeping the context :*
@@ -242,7 +242,7 @@ Here you have three parameters :
     - *Ask two questions in one :*
         - *Vous* : What is it like in the bedroom and in the living room ?
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
--   Type interactions **Warn me** allow to ask Jeedom to warn you if an order exceeds / falls or is worth a certain value.
+-   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
     - *Vous* : Notify me if the living room temperature exceeds 25 ° C ?
     - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
@@ -261,7 +261,7 @@ Here are the different options available :
 - **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
 - **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|bathroom).
 - **Synonym for equipment** : List of synonyms for equipment.
-- **Synonym for orders** : List of synonyms for commands.
+- **Synonym for commands** : List of synonyms for commands.
 - **Synonym for summaries** : List of synonyms for summaries.
 - **Synonym maximum slider command** : Synonym for placing a slider type command to the maximum (ex opens to opens the bedroom shutter ⇒ bedroom shutter at 100%).
 - **Synonym minimum slider command** : Synonym for placing a slider type command at minimum (ex closes to close the bedroom shutter ⇒ bedroom shutter at 0%).
@@ -319,7 +319,7 @@ Deposit used to connect Jeedom to Github.
 
 #### Market
 
-Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
+Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Be careful : any request for support may be refused if you use a deposit other than this one.
 
 - **Adresse** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.

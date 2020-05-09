@@ -76,7 +76,7 @@ The columns represent the summaries assigned to the current object. Three lines 
 
 ### Commandes
 
-Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add an order** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add a command** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 
 > **Tip**
 >
@@ -91,6 +91,6 @@ The overview allows you to view all the objects in Jeedom, as well as their conf
 - **Dad** : Name of parent object.
 - **Visible** : Object visibility.
 - **Masqué** : Indicates if the object is hidden on the Dashboard.
-- **Summary Defined** : Indicates the number of orders per summary. What is in blue is taken into account in the global summary.
+- **Summary Defined** : Indicates the number of commands per summary. What is in blue is taken into account in the global summary.
 - **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
 - **Hidden Mobile Summary** : Show hidden summaries on mobile.

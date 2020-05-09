@@ -108,7 +108,7 @@ Die Geräte haben bestimmte Konfigurationsparameter :
 ### Häufige Einstellungen
 
 - Zeit-Widget : Zeigt die Zeit an, seit sich das System im Anzeigezustand befindet.
-- Wir : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1.
+- Ein : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1.
 - Aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0.
 - Licht an : Symbol zur Anzeige, wenn das Gerät eingeschaltet ist / 1 und das Thema hell ist (wenn leer, nimmt Jeedom das dunkle Bild an).
 - Licht aus : Symbol zur Anzeige, wenn das Gerät ausgeschaltet ist / 0 und das Thema hell ist (wenn leer, nimmt Jeedom das dunkle Bild aus).
@@ -150,7 +150,7 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 ##### Optionale Parameter
 
 - Skala : Ermöglicht das Ändern der Größe, indem Sie beispielsweise die Skalierung auf 0 setzen.5 es wird 2 mal kleiner sein.
-- showRange : Zeigt die Min / Max-Werte des Befehls an.
+- anzeigen Radius : Zeigt die Min / Max-Werte des Befehls an.
 
 
 ## Code-Widget

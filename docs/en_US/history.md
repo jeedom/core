@@ -78,7 +78,7 @@ You also have access to a management of calculation formulas which allows you to
 >
 > Just click on the name of the object to unfold it, and bring up the historical commands that can be displayed.
 
-#### Order history
+#### Command history
 
 In front of each data that can be displayed, you will find two icons :
 

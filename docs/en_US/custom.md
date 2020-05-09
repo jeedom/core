@@ -9,7 +9,7 @@ The two parts, JS and CSS, are differentiated according to the Desktop or Mobile
 
 ## Ressources
 
-[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[Css: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 

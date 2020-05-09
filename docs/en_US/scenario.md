@@ -133,7 +133,7 @@ For the conditions, Jeedom tries to make it possible to write them as much as po
 
 Three buttons are available on the right of this type of block to select an item to test :
 
-- **Find an order** : Allows you to search for an order in all those available in Jeedom. Once the order is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the order without comparison. You can also choose **et** or **ou** in front of **Ensuite** to chain tests on different equipment.
+- **Find a command** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose **et** or **ou** in front of **Ensuite** to chain tests on different equipment.
 - **Search a scenario** : Allows you to search for a scenario to test.
 - **Search for equipment** : Same for equipment.
 
@@ -154,12 +154,12 @@ The Code block allows you to execute php code. It is therefore very powerful but
 
 #### Access to controls (sensors and actuators):
 -  ``cmd::byString ($ string); ` : Returns the corresponding command object.
-    -   ``$string``: Link to the desired order : ``#[objand][equipement][commande]#`` (ex : ``#[ATppartement][ATlarme][Active]#`)
+    -   ``$string``: Link to the desired command : ``#[objand][equipement][commande]#`` (ex : ``#[ATppartement][ATlarme][Active]#`)
 -  ``cmd::byId ($ id); ` : Returns the corresponding command object.
-    -  `$ id` : Order ID.
+    -  `$ id` : Command ID.
 -  `$ cmd-> execCmd ($ options = null);` : Execute the command and return the result.
-    - `$ options` : Options for order execution (may be plugin specific). Basic options (command subtype) :
-        -  message : `$ option = array ('title' => 'message title,' message '=>' My message ');`
+    - `$ options` : Options for command execution (may be plugin specific). Basic options (command subtype) :
+        -  Message : `$ option = array ('title' => 'message title,' message '=>' My message ');`
         -  color : `$ option = array ('color' => 'color in hexadecimal');`
         -  slider : `$ option = array ('slider' => 'desired value from 0 to 100');`
 
@@ -167,7 +167,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 -  ``log::add ('filename', 'level', 'message'); `
     - filename : Log file name.
     - level : [debug], [info], [error], [event].
-    - message : Message to write in the logs.
+    - Message : Message to write in the logs.
 
 #### Access to scenario :
 - `$ scenario-> getName ();` : Returns the name of the current scenario.
@@ -293,29 +293,29 @@ You also have the following additional tags if your scenario was triggered by an
 
 Several functions are available for the equipment :
 
-- average (order, period) and averageBetween (order, start, end) : Give the average of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- average (command, period) and averageBetween (command, start, end) : Give the average of the commandover the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- min (order, period) and minBetween (order, start, end) : Give the minimum order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- min (command, period) and minBetween (command, start, end) : Give the minimum command over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- max (order, period) and maxBetween (order, start, end) : Give the maximum of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- max (command, period) and maxBetween (command, start, end) : Give the maximum of the commandover the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- duration (order, value, period) and durationbetween (order, value, start, end) : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- duration (command, value, period) and durationbetween (command, value, start, end) : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- statistics (order, calculation, period) and statisticsBetween (order, calculation, start, end) : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- statistics (command, calculation, period) and statisticsBetween (command, calculation, start, end) : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 terminals requested (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- trend (command, period, threshold) : Gives the trend of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- trend (command, period, threshold) : Gives the trend of the command over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - stateDuration (control) : Gives the duration in seconds since the last change in value.
     -1 : No history exists or value does not exist in history.
-    -2 : The order is not logged.
+    -2 : The command is not historized.
 
 - lastChangeStateDuration (command value) : Gives the duration in seconds since the last change of state to the value passed in parameter.
     -1 : No history exists or value does not exist in history.
-    -2 The order is not logged
+    -2 The command is not historized
 
 - lastStateDuration (command value) : Gives the duration in seconds during which the equipment has last had the chosen value.
     -1 : No history exists or value does not exist in history.
-    -2 : The order is not logged.
+    -2 : The command is not historized.
 
 - age (control) : Gives the age in seconds of the value of the command (collecDate)
     -1 : The command does not exist or it is not of type info.
@@ -350,11 +350,11 @@ Several functions are available for the equipment :
     1 : Equipment is active,
     0 : The equipment is inactive.
 
-- value (cmd) : Returns the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a variable)
+- value (cmd) : Returns the value of a command if it is not automatically given by Jeedom (case when storing the name of the command in a variable)
 
 - tag (Monday [default]) : Used to retrieve the value of a tag or the default value if it does not exist.
 
-- name (type, control) : Used to retrieve the name of the order, equipment or object. Type : cmd, eqLogic or object.
+- name (type, control) : Used to retrieve the name of the command, equipment or object. Type : cmd, eqLogic or object.
 
 - lastCommunication (equipment,[format]) : Returns the date of the last communication for the equipment given as a parameter, the 2nd optional parameter allows you to specify the return format (details [here](http://php.net/manual/fr/function.date.php)). A return of -1 means that the equipment cannot be found.
 
@@ -367,7 +367,7 @@ The periods and intervals of these functions can also be used with [PHP expressi
 - Last monday : last Monday at 00:00.
 - 5 days ago : 5 days ago.
 - Yesterday noon : yesterday afternoon.
-- Etc.
+- Etc..
 
 Here are practical examples to understand the values returned by these different functions :
 
@@ -375,11 +375,11 @@ Here are practical examples to understand the values returned by these different
 |--------------------------------------|--------------------------------------|
 | average (taking, period)             | Returns the average of 0 and 1 (can  |
 |                                      | be influenced by polling)      |
-| averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Returns the average order between January 1, 2015 and January 15, 2015                       |
+| averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Returns the average of the command between January 1, 2015 and January 15, 2015                       |
 | min (outlet, period)                 | Returns 0 : the plug was extinguished during the period              |
-| minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Returns the minimum order between January 1, 2015 and January 15, 2015                       |
+| minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Returns the minimum command between January 1, 2015 and January 15, 2015                       |
 | max (decision, period)                 | Returns 1 : the plug was well lit in the period              |
-| maxBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Returns the maximum of the order between January 1, 2015 and January 15, 2015                       |
+| maxBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Returns the maximum of the command between January 1, 2015 and January 15, 2015                       |
 | duration (plug, 1 period)          | Returns 60 : the plug was on (at 1) for 60 minutes in the period                              |
 | durationBetween(\#[Salon][Prise][Etat]\#,0, Last Monday, Now)   | Returns the duration in minutes during which the socket was off since last Monday.                |
 | statistics (catch, count, period)    | Returns 8 : there were 8 escalations in the period               |
@@ -431,7 +431,7 @@ And practical examples :
 | Example of function                  | Returned result                    |
 |--------------------------------------|--------------------------------------|
 | randText (it does #[salon][oeil][température]#; The temperature is #[salon][oeil][température]#; Currently we have #[salon][oeil][température]#) | the function will return one of these texts randomly at each execution.                           |
-| randomColor (40.60)                 | Returns a random color close to green.
+| randomColor (40,60)                 | Returns a random color close to green.
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 if that's good \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# who started the scenario otherwise 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 if the hydrometry of \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# is 80%.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Returns 9 if the humidity percentage and 85                     |
@@ -445,33 +445,33 @@ And practical examples :
 | convertDuration (duration (#[Chauffage][Module chaudière][Etat]#,1, first day of this month) * 60) | Returns the ignition time in Days / Hours / minutes of the time of transition to state 1 of the module since the 1st day of the month |
 
 
-### Specific orders
+### Specific commands
 
 In addition to home automation commands, you have access to the following actions :
 
-- **Pause** (sleep) : Pause of x second (s).
+- **Pause** (Sleep) : Pause of x second (s).
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (Delete_variable) : Allows you to delete a variable.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command &quot;Reset to SI&quot; allows to reset the status of &quot;SI&quot; (this status is used for the non-repetition of the actions of an &quot;SI&quot; if you pass for the 2nd consecutive time in it)
 - **Stop** (stop) : Stop the scenario.
-- **Attendre** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds.
-- **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
-- **Add a log** (log) : Allows you to add a message to the logs.
+- **Attendre** (Wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds.
+- **Go to design** (Gotodesign) : Change the design displayed on all browsers by the requested design.
+- **Add a log** (Log) : Allows you to add a message to the logs.
 - **Create message** (message) : Add a message to the message center.
 - **Activate / Deactivate Hide / display equipment** (equipment) : Allows you to modify the properties of visible / invisible, active / inactive equipment.
-- **To make a request** (ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
+- **To make a request** (Ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
     For the moment, only sms, slack, telegram and snips plugins are compatible, as well as the mobile application.
     Attention, this function is blocking. As long as there is no response or the timeout is not reached, the scenario waits.
 - **Stop Jeedom** (Jeedom_poweroff) : Ask Jeedom to shut down.
 - **Return a text / data** (Scenario_return) : Returns a text or a value for an interaction for example.
-- **Icon** (icon) : Allows to change the icon of representation of the scenario.
-- **Alerte** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
-- **Pop-up** (popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
-- **Rapport** (report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
+- **Icon** (Icon) : Allows to change the icon of representation of the scenario.
+- **Alerte** (Alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
+- **Pop-up** (Popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
+- **Rapport** (Report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
 - **Delete programmed IN / A block** (Remove_inat) : Allows you to delete the programming of all IN and A blocks of the scenario.
-- **Event** (event) : Allows you to push a value in an information type command arbitrarily.
-- **Tag** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
-- **Coloring of dashboard icons** (setColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
+- **Event** (Event) : Allows you to push a value in an information type command arbitrarily.
+- **Tag** (Tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
+- **Coloring of dashboard icons** (SetColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
 
 ### Scenario template
 
@@ -494,7 +494,7 @@ By clicking on a template, you can :
 
 Below, you have the part to apply your template to the current scenario.
 
-Given that from one Jeedom to another or from one installation to another, the commands can be different, Jeedom asks you for the correspondence of the commands between those present during the creation of the template and those present at home. You just have to fill in the correspondence of the orders then to apply.
+Given that from one Jeedom to another or from one installation to another, the commands can be different, Jeedom asks you for the correspondence of the commands between those present during the creation of the template and those present at home. You just have to fill in the correspondence of the commands then to apply.
 
 ## Addition of php function
 

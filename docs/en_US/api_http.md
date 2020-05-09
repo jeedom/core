@@ -28,11 +28,11 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 - **id** : corresponds to the id of what you want to control or from which you want to receive information.
 
-The easiest way to get this URL is to go to the page **Analysis → Home automation summary**, to search for the order then to open its advanced configuration (the "gear" icon) and there, you will see a URL which already contains everything you need depending on the type and subtype of the order.
+The easiest way to get this URL is to go to the page **Analysis → Home automation summary**, to search for the command then to open its advanced configuration (the "gear" icon) and there, you will see a URL which already contains everything you need depending on the type and subtype of the command.
 
 > **Note**
 >
-> It is possible for the field \#ID\# place multiple orders at once. To do this, you must pass an array in json (ex% 5B12,58,23% 5D, note that \ [and \] must be encoded, hence the% 5B and% 5D). Jeedom&#39;s return will be a json.
+> It is possible for the field \#ID\# place multiple commands at once. To do this, you must pass an array in json (ex% 5B12,58,23% 5D, note that \ [and \] must be encoded, hence the% 5B and% 5D). Jeedom&#39;s return will be a json.
 
 > **Note**
 >
@@ -46,7 +46,7 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 - **utf8** \[optional\] : tells Jeedom whether to encode query in utf8 before trying to answer.
 - **emptyReply** \[optional\] : 0 for Jeedom to respond even if he did not understand, 1 otherwise.
 - **profile** \[optional\] : username of the person initiating the interaction.
-- **reply\_cmd** \[optional\] : Order ID to use to respond to the request.
+- **reply\_cmd** \[optional\] : Command ID to use to respond to the request.
 
 ## Message
 
@@ -71,7 +71,7 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = command & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = command & eqLogic_id=#EQLOGIC_ID#)
 
-- **eqLogic\_id** : ID of the equipment from which orders are to be retrieved.
+- **eqLogic\_id** : ID of the equipment from which command are to be retrieved.
 
 ## Full Data
 

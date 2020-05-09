@@ -267,7 +267,7 @@ Settings:
 cmd::byEqLogicId
 ----------------
 
-Returns all orders belonging to the specified equipment
+Returns all commands belonging to the specified equipment
 
 Settings:
 
@@ -287,7 +287,7 @@ Settings:
 cmd::getStatistique
 -------------------
 
-Returns statistics on the order (only works on info and historical orders)
+Returns statistics on the command (only works on info and historized commands)
 
 Settings:
 
@@ -300,7 +300,7 @@ Settings:
 cmd::getTendance
 ----------------
 
-Returns the trend on the order (only works on info and historical orders)
+Returns the trend on the command(only works on info and historized commands)
 
 Settings:
 
@@ -313,7 +313,7 @@ Settings:
 cmd::getHistory
 ---------------
 
-Returns the order history (only works on info and historical orders)
+Returns the command history (only works on info and historized commands)
 
 Settings:
 
@@ -367,7 +367,7 @@ Settings:
 cmd::event
 -------------------
 
-Allows you to send a value to an order
+Allows you to send a value to a command
 
 Settings:
 
@@ -732,7 +732,7 @@ JSON API Examples
 =================
 
 Here is an example of using the API. For the example below
-i use [this php class](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+I use [this php class](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 which simplifies the use of the API.
 
 Retrieving the list of objects :
@@ -746,7 +746,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all &#39;, array ())){
 }
 `` ''
 
-Execution of an order (with the option of a title and a message)
+Execution of a command (with the option of a title and a message)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);

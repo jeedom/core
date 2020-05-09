@@ -11,8 +11,8 @@
 - Dashboard : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
 - Dashboard : Ability to blur background images (Configuration -> Interface).
 - Tools / Widgets : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
-- Widgets : Ability to add class css to a widget (see widget documentation).
-- Widgets : Adding a core widget *sliderVertical*.
+- Widget : Ability to add class css to a widget (see widget documentation).
+- Widget : Adding a core widget *sliderVertical*.
 - Update Center : Updates are checked automatically when opening this page and update check is older than 120mins.
 - Update Center : The progress bar is now on the tab *Core and plugins*, and the log open by default on the tab *Informations*.
 - Update Center : If you open another browser during an update, the progress bar and the log indicate it.
@@ -25,10 +25,10 @@
 	- Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
 	- Tools menu : Ctrl Click / Click Center on *Notes*, *Expression tester*, *Variables*, *Recherche* : Open the window in a new tab, in full screen.
 - Scenario : Adding a search engine (on the left of Execute button).
-- Scenario : Addition of the age function (gives the age of the value of the order).
+- Scenario : Addition of the age function (gives the age of the value of the command).
 - Scenario : *stateChanges()* now accept the period *today* (from midnight to now), *yesterday* and *day* (for 1 day).
 - Scenario : Functions *statistics (), average (), max (), min (), trend (), duration ()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
-- Scenario : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Orders).
+- Scenario : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commands).
 - Scenario : Viewing a *warning* if no trigger is configured.
 - Scenario : Bugfix of select on block copy / paste.
 - Scenario : Copy / paste of block between different scenarios.
@@ -38,9 +38,9 @@
 - Analysis / History : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - Analysis / History : We can now use the option *Aire* with the option *Escalier*.
 - View : possibility to put scenarios.
-- Historical : Integration of the Timeline in DB for reliability reasons.
-- Historical : Management of multiple timelines.
-- Historical : Timeline graphic overhaul.
+- History : Integration of the Timeline in DB for reliability reasons.
+- History : Management of multiple timelines.
+- History : Timeline graphic overhaul.
 - Domotic overview : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
 - Domotic overview : Ability to search on equipment categories.
 - Domotic overview : Possibility to move several pieces of equipment from one object to another.
@@ -49,7 +49,7 @@
 - Configuration : The tab *Informations* is now in the tab *Main*.
 - Configuration : The tab *Commandes* is now in the tab *Equipements*.
 - Advanced equipment configuration window : Dynamic change of table configuration.
-- Equipment : New Category *Ouvrant*.
+- Equipments : New Category *Ouvrant*.
 - About window : Addition of links to Changelog and FAQ.<br/><br/>
 - WebApp : Integration of the new Synthesis page.
 - WebApp : Scenarios page, a click on the scenario title displays its log.
@@ -62,7 +62,7 @@
 - Documentation : Adaptations in line with v4 and v4.1.
 - Documentation : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - Bug fixes and optimizations.
-- Lib : Update HighStock v7.1.2 to v8.0.4.
+- Lib : Update HighStock v7.1.2 to v8.1.0.
 - Lib : Update jQuery v3.4.1 to v3.5.1.
 
 
@@ -135,14 +135,14 @@
 - Each Jeedom page now has a title in the interface language (browser tab).
 - Prevention of auto-filling on fields&#39; Access code'.
 - Functions management *Previous page / Next page* browser.<br/><br/>
-- Widgets : Redesign of the widget system (Tools / Widgets menu).
-- Widgets : Ability to replace a widget with another on all commands using it.
-- Widgets : Ability to assign a widget to multiple commands.
-- Widgets : Add horizontal info numeric widget.
-- Widgets : Adding an info numeric vertical widget.
-- Widgets : Addition of an info numeric compass / wind widget (thanks @thanaus).
-- Widgets : Adding an info numeric rain widget (thanks @thanaus)
-- Widgets : Display of the info / action shutter widget proportional to the value.<br/><br/>
+- Widget : Redesign of the widget system (Tools / Widgets menu).
+- Widget : Ability to replace a widget with another on all commands using it.
+- Widget : Ability to assign a widget to multiple commands.
+- Widget : Add horizontal info numeric widget.
+- Widget : Adding an info numeric vertical widget.
+- Widget : Addition of an info numeric compass / wind widget (thanks @thanaus).
+- Widget : Adding an info numeric rain widget (thanks @thanaus)
+- Widget : Display of the info / action shutter widget proportional to the value.<br/><br/>
 - Configuration : Improvement and reorganization of tabs.
 - Configuration : Adding many *tooltips* (help).
 - Configuration : Adding a search engine.
@@ -151,7 +151,7 @@
 - Configuration : Ability to center the content of the tiles vertically (Interface tab).
 - Configuration : Addition of a parameter for the global purging of the histories (Tab Commands).
 - Configuration : Change of  #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
-- Configuration : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
+- Configuration : Possibility in the summaries to add an exclusion of the command which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
 - Scenario : Possibility by Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *Aucun*).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.
@@ -170,10 +170,10 @@
 - Update Center : differentiation by version (stable, beta, ...).
 - Update Center : addition of a progress bar during the update.<br/><br/>
 - Domotic overview : The deletion history is now available in a tab (Summary - History).
-- Domotic overview : Complete overhaul, possibility of ordering objects, equipment, orders.
-- Domotic overview : Addition of equipment and order IDs, in display and in search.
+- Domotic overview : Complete overhaul, possibility of ordering objects, equipment, commands.
+- Domotic overview : Addition of equipment and command IDs, in display and in search.
 - Domotic overview : CSV export of parent object, id, equipment and their id, command.
-- Domotic overview : Possibility of making visible or not one or more orders.<br/><br/>
+- Domotic overview : Possibility of making visible or not one or more command.<br/><br/>
 - Design : Ability to specify the order (position) of *Designs* and *3D designs* (Edit, Configure Design).
 - Design : Addition of a custom CSS field on the elements of the *design*.
 - Design : Displacement of display options in Design of the advanced configuration, in the display parameters from the *Design*. This in order to simplify the interface, and to allow to have different parameters by *Design*.

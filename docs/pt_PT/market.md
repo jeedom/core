@@ -35,7 +35,7 @@ Para os profissionais :
 - **Support** : Botão para enviar uma solicitação de suporte (também acessível pelo ponto de exclamação no canto superior direito do Market ou no seu Jeedom).
     - **Acesso a betas**
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
-    - **Sumário** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
+    - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
 
 > **Tip**
 >

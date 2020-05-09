@@ -59,7 +59,7 @@ There are two types of templates :
 Once on the Tools -&gt; Widget page, click on &quot;Add&quot; and give a name to your new widget.
 
 Then :
-- You choose if it applies to an action or info type order.
+- You choose if it applies to an action or info type command.
 - Depending on your previous choice, you will have to choose the subtype of the command (binary, digital, other ...).
 - Then finally the template in question (we plan to put examples of renderings for each template).
 - Once the template has been chosen, Jeedom gives you the options for configuring it.
@@ -72,7 +72,7 @@ This is what is called a simple widget, here you just have to say that the &quot
 >We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us.. We had no choice
 
 >**TIPS**
->For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value #width# (be careful to put the # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) and give the value. This allows you to change the image size according to the order and therefore saves you from making a different widget for each image size you want
+>For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value #width# (be careful to put the # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) and give the value. This allows you to change the image size according to the command and therefore saves you from making a different widget for each image size you want
 
 ### Test
 
@@ -80,7 +80,7 @@ This is called the multistate part, you often have, as for simple widgets, the c
 
 It&#39;s quite simple. Instead of putting an image for the &quot;on&quot; and / or for the &quot;off&quot; as in the previous case, you go before giving a test to do. If this is true then the widget will display the icon / image in question.
 
-The tests are in the form : #value# == 1, #value# will be automatically replaced by the system by the current value of the order. You can also do for example :
+The tests are in the form : #value# == 1, #value# will be automatically replaced by the system by the current value of the command. You can also do for example :
 
 - #value# > 1
 - #value# >= 1 && #value# <= 5
@@ -124,7 +124,7 @@ This widget is a bit special because it is a multi-command widget, that is to sa
 To configure it it&#39;s quite simple you have to assign the widget to the temperature control of your equipment and to the humidity control.
 
 >**IMPORTANT**
->It is ABSOLUTELY necessary that your orders have the generic type temperature on the temperature control and humidity on the humidity control (this is configured in the advanced configuration of the command tab configuration).
+>It is ABSOLUTELY necessary that your commands have the generic type temperature on the temperature control and humidity on the humidity control (this is configured in the advanced configuration of the command tab configuration).
 
 ##### Optional parameter (s)
 
@@ -143,7 +143,7 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ##### Optional parameter (s)
 
-- step : Allows you to adjust the step of a button action (0.5 by default).
+- Step : Allows you to adjust the step of a button action (0.5 by default).
 
 ### Rain
 
@@ -157,18 +157,18 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ### Tags
 
-In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive) :
+In code mode you have access to different tags for commands, here is a list (not necessarily exhaustive) :
 
 - #name# : command name
-- #valueName# : name of the order value, and = #name# when it's an info type command
+- #valueName# : name of the command value, and = #name# when it's an info type command
 - #minValue# : minimum value that the command can take (if the command is of type slider)
 - #maxValue# : maximum value that the command can take (if the command is of type slider)
 - #hide_name# : empty or hidden if the user asked to hide the name of the widget, to put it directly in a class tag
-- #id# : order id
+- #id# : command id
 - #state# : value of the command, empty for an action type command if it is not linked to a status command
 - #uid# : unique identifier for this generation of the widget (if there is several times the same command, case of designs:  only this identifier is really unique)
-- #valueDate# : date of the order value
-- #collectDate# : date of order collection
+- #valueDate# : date of the command value
+- #collectDate# : date of the command collect
 - #alertLevel# : alert level (see [here](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) for the list)
 - #hide_history# : whether the history (max, min, average, trend) should be hidden or not. As for the #hide_name# it is empty or hidden, and can therefore be used directly in a class. IMPORTANT if this tag is not found on your widget then the tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# and #tendance# will not be replaced by Jeedom.
 - #minHistoryValue# : minimum value over the period (period defined in the Jeedom configuration by the user)

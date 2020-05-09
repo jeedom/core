@@ -24,7 +24,7 @@ In the menu (right click), we find the following actions :
     - **Towards a view** : Add a link to a view.
     - **Towards a design** : Add a link to another design.
 - **Add equipment** : Adds equipment.
-- **Add order** : Add an order.
+- **Add command** : Add a command.
 - **Add image / camera** : Allows you to add a picture or a stream from a camera.
 - **Add area** : Allows you to add a clickable transparent area which can execute a series of actions when clicking (depending on or not the status of another command).
 - **Add summary** : Adds information from an object or general summary.
