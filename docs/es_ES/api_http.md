@@ -16,7 +16,7 @@ Esta API es muy fácil de usar mediante simples solicitudes HTTP a través de UR
 
 ## Guión
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = escenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = escenario e id=#ID#&action=#ACTION#)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = escenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = escenario e id=#ID#&action=#ACTION#)
 
 - **id** : coincide con su id de escenario. El ID se puede encontrar en la página de escenario relevante, en "Herramientas" → "Escenarios", una vez que se ha seleccionado el escenario, junto al nombre de la pestaña "General"". Otra forma de encontrarlo : en "Herramientas" → "Escenarios", haga clic en "Descripción general".
 - **action** : corresponde a la acción que desea aplicar. Los comandos disponibles son : "iniciar "," detener "," desactivar "y" activar "para iniciar, detener, desactivar o activar el escenario, respectivamente.
@@ -24,7 +24,7 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 ##  Comando de información / acción
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cmd e id=#ID#)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cmd e id=#ID#)
 
 - **id** : corresponde a la identificación de lo que desea controlar o del que desea recibir información.
 
@@ -36,11 +36,11 @@ La forma más fácil de obtener esta URL es ir a la página **Análisis → Resu
 
 > **Note**
 >
-> Los parámetros deben estar codificados para url. Puede usar una herramienta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
+> Los parámetros deben estar codificados para url. Puede usar una herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interactuar y consultar = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interactuar y consultar=#QUERY#)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interactuar y consultar = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interactuar y consultar=#QUERY#)
 
 - **query** : pregunta para hacerle a Jeedom.
 - **utf8** \ [Opcional \] : le dice a Jeedom si codifica la consulta en utf8 antes de intentar responder.
@@ -50,38 +50,38 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 ## Message
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = mensaje y categoría = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = mensaje y categoría=#CATEGORY#&message=#MESSAGE#)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = mensaje y categoría = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = mensaje y categoría=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : categoría de mensaje para agregar al centro de mensajes.
-- **message** : mensaje en cuestión, tenga cuidado de pensar en codificar el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar una herramienta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
+- **message** : mensaje en cuestión, tenga cuidado de pensar en codificar el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar una herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = objeto)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = objeto)
 
 Devuelve en json la lista de todos los objetos Jeedom.
 
 ## Equipement
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = eqLogic & object\_id = \#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = eqLogic & object_id=#OBJECT_ID#)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = eqLogic & object\_id = \#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = eqLogic & object_id=#OBJECT_ID#)
 
 - **el objeto\_id** : Identificación del objeto cuyo equipo queremos recuperar.
 
 ## Commande
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = comando & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = comando & eqLogic_id=#EQLOGIC_ID#)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = comando & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = comando & eqLogic_id=#EQLOGIC_ID#)
 
 - **eqLogic\_id** : Identificación del equipo del que se deben recuperar los pedidos.
 
 ## Datos completos
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
 
 Devuelve todos los objetos, equipos, comandos (y su valor si son información) en json.
 
 ## Variable
 
-Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALUE*
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALUE*
 
 - **name** : nombre de la variable cuyo valor se desea (lectura del valor).
 - **value** \ [Opcional \] : si se especifica &quot;valor&quot;, la variable tomará este valor (escribir un valor).

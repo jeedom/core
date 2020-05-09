@@ -5,7 +5,7 @@
 Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de búsqueda. Por lo tanto, puede escribir directamente una búsqueda sin más acciones.
 
 - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
-- Haga clic en el nombre de Jeedom (barra de menú)  : Abierto **Preferencias → Sistema → Configuración**.
+- Haga clic en el nombre de Jeedom (barra de menú)  : Abre **Preferencias → Sistema → Configuración**.
 - Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual..
 - Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo..
 
@@ -49,8 +49,8 @@ En un escenario :
 - Ctrl S : Guardar.
 - Haga clic derecho en una pestaña : Menú contextual para ir directamente a otro escenario.
 - Ctrl L : Pantalla de registro.
-- Ctrl Shift Z : Anular.
-- Ctrl Shift Y : Rehacer.
+- Ctrl Shift Z : Cancelar.
+- Ctrl Shift Y : Nueva versión.
 
 - Ctrl Haga clic en Ejecutar : Guarde y ejecute el escenario, luego abra el registro.
 - Ctrl Haga clic en el icono *Copia este bloque* : Cortar este bloque.

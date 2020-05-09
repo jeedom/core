@@ -118,9 +118,9 @@
     },
     "mobile\/html\/deamon.html": {
         "Nom": "Name",
-        "Status": "Status",
+        "Status": "STATUS",
         "Date lancement": "Date start",
-        "Action": "Action"
+        "Action": "ACTION"
     },
     "mobile\/html\/timeline.html": {
         "Date": "Dated",
@@ -129,7 +129,7 @@
     },
     "mobile\/html\/health.html": {
         "Nom": "Name",
-        "Status": "Status"
+        "Status": "STATUS"
     },
     "mobile\/html\/connection.html": {
         "Nom d'utilisateur": "Username",
@@ -152,9 +152,9 @@
     },
     "mobile\/html\/cron.html": {
         "Nom": "Name",
-        "Status": "Status",
+        "Status": "STATUS",
         "Date lancement": "Date start",
-        "Action": "Action"
+        "Action": "ACTION"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Delete all",
@@ -172,7 +172,7 @@
         "ID": "Id",
         "Objet": "Object",
         "Père": "Parent object",
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Masqué sur le dashboard": "Hidden on the dashboard",
         "Résumé Défini": "Summary Defined",
         "Résumé Dashboard Masqué": "Hidden Dashboard Summary",
@@ -200,7 +200,7 @@
         "Type": "Type",
         "ID du lien": "Link id",
         "Lien": "Link",
-        "Action": "Action",
+        "Action": "ACTION",
         "Lien mort ou absent": "Dead or missing link",
         "Supprimer": "Delete",
         "Configuration": "Setup",
@@ -217,7 +217,7 @@
         "Type": "Type",
         "Groupement": "Group",
         "Escalier": "Steps",
-        "Action": "Action",
+        "Action": "ACTION",
         "Sauvegarde effectuée": "Backup completed",
         "Formule de calcul": "Algorithm",
         "Sélectionner la commande": "Select command",
@@ -300,11 +300,11 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Corriger tout": "Fix all",
         "Table": "Table",
-        "Status": "Status",
+        "Status": "STATUS",
         "Champs": "Fields",
         "Index": "Index",
         "SQL": "SQL",
-        "Action": "Action",
+        "Action": "ACTION",
         "Corriger": "Correct",
         "Êtes-vous sûr de vouloir corriger la table ": "Are you sure you want to correct the table",
         "Vérification base de données": "Check database"
@@ -315,7 +315,7 @@
         "Nom": "Name",
         "Valeur": "Value",
         "Utilisée dans": "Used in",
-        "Action": "Action",
+        "Action": "ACTION",
         "Dépôt de données supprimé": "Data repository deleted",
         "Dépôt de données sauvegardé": "Data repository saved",
         "Graphique de lien(s)": "Link graphic"
@@ -360,7 +360,7 @@
         "Informations": "Information",
         "ID": "Id",
         "Nom": "Name",
-        "Visible": "Visible"
+        "Visible": "Jeedom"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -567,7 +567,7 @@
         "Date valeur": "Value date",
         "URL directe": "Direct URL",
         "Unité": "Unit",
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Valeur minimum (défaut : 0)": "Minimum value (default: 0)",
         "Valeur maximum (défaut : 100)": "Maximum value (default: 100)",
         "Suivre dans la timeline": "Follow in the timeline",
@@ -598,7 +598,7 @@
         "inférieur": "lower than",
         "différent": "different",
         "plus de (min)": "more (min)",
-        "Action": "Action",
+        "Action": "ACTION",
         "Ajouter": "Add",
         "Action avant exécution de la commande": "Action before execution of the command",
         "Action après exécution de la commande": "Action after execution of the command",
@@ -717,7 +717,7 @@
         "Plugin": "Plugin",
         "Mode de lissage": "Mode smoothing",
         "Purge si plus vieux": "Purge if older",
-        "Action": "Action",
+        "Action": "ACTION",
         "Moyenne": "Average",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
@@ -803,13 +803,13 @@
         "Changement de pile": "Battery change",
         "Tag(s)": "Tag (s)",
         "Activer": "Activate",
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Type": "Type",
         "Tentative échouée": "Failed attempt",
         "Dernière communication": "Last communication",
         "Dernière sauvegarde": "Last backup",
         "Commandes": "Commands",
-        "Action": "Action",
+        "Action": "ACTION",
         "Widget": "Widget",
         " . $value['name'] . ": ". $ value ['name'].",
         "Defaut": "Default",
@@ -863,7 +863,7 @@
         "Nom object": "Name object",
         "Type": "Type",
         "ID du lien": "Link id",
-        "Action": "Action",
+        "Action": "ACTION",
         "Configuration": "Setup",
         "Composant supprimée": "Component removed",
         "Configuration du composant": "Component configuration",
@@ -912,7 +912,7 @@
         "Statut": "Status",
         "Dernier lancement": "Last launch",
         "Actif": "Active",
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Multi lancement": "Multi launch",
         "Mode synchrone": "Synchronous mode",
         "Log": "Log",
@@ -1118,7 +1118,7 @@
         "Macro simple": "Single macro",
         "Macro binaire": "Binary macro",
         "Widget au survol": "Hover widget",
-        "Action": "Action",
+        "Action": "ACTION",
         "Equipement": "Device",
         "Afficher au survol": "Show on flyover",
         "Afficher sur un clic": "View on one click",
@@ -1758,7 +1758,7 @@
         "Supprimer tout": "Delete all",
         "Identification": "Identification",
         "Date dernière utilisation": "Date last used",
-        "Action": "Action",
+        "Action": "ACTION",
         "Supprimer": "Delete"
     },
     "desktop\/php\/widgets.php": {
@@ -1771,7 +1771,7 @@
         "Mes widgets": "My widgets",
         "Rechercher": "Search",
         "Info": "Info",
-        "Action": "Action",
+        "Action": "ACTION",
         "Appliquer sur": "Apply on",
         "Exporter": "Export",
         "Sauvegarder": "Save",
@@ -1856,7 +1856,7 @@
         "Groupe": "Group",
         "Groupe du scénario": "Scenario group",
         "Actif": "Active",
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Objet parent": "Parent object",
         "Aucun": "None",
         "Timeout en secondes (0 = illimité)": "Timeout in seconds (0 = unlimited)",
@@ -1885,7 +1885,7 @@
         "Enregistrer": "Save",
         "Ajouter un bloc": "Add block",
         "Si\/Alors\/Sinon": "If \/ Then \/ Or",
-        "Action": "Action",
+        "Action": "ACTION",
         "Boucle": "Loop",
         "Dans": "In",
         "A": "AT",
@@ -1916,7 +1916,7 @@
         "Date et heure": "Date and time",
         "Source": "Source",
         "Description": "Description",
-        "Action": "Action",
+        "Action": "ACTION",
         "Occurrences": "Occurrences"
     },
     "desktop\/php\/interact.php": {
@@ -2014,7 +2014,7 @@
         "Déconnecter": "Disconnect",
         "Périphérique(s) enregistré(s)": "Registered device (s)",
         "Supprimer tout": "Delete all",
-        "Action": "Action",
+        "Action": "ACTION",
         "Supprimer": "Delete",
         "Identifiant": "Login",
         "Mot de passe": "Password",
@@ -2054,9 +2054,9 @@
         "Actions": "Stock",
         "Event": "Event",
         "Nom": "Name",
-        "Status": "Status",
+        "Status": "STATUS",
         "Date lancement": "Date start",
-        "Action": "Action"
+        "Action": "ACTION"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2166,7 +2166,7 @@
     "desktop\/php\/display.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Supprimer": "Delete",
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Invisible": "Invisible",
         "Actif": "Active",
         "Inactif": "Inactive",
@@ -2243,7 +2243,7 @@
         "Statut": "Status",
         "Actif": "Active",
         "Inactif": "Inactive",
-        "Action": "Action",
+        "Action": "ACTION",
         "Désactiver": "Deactivate",
         "Votre version de": "Your version of",
         "ne permet pas d\\'activer ce plugin": "does not allow to activate this plugin",
@@ -2445,7 +2445,7 @@
         "Êtes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?": "Are you sure you want to regenerate all the interactions (this can be very long)?",
         "Toutes les interations ont été regénérées": "All interactions have been regenerated",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Are you sure you want to delete the interaction",
-        "Action": "Action",
+        "Action": "ACTION",
         "Sélectionner un mot-clé": "Select a keyword"
     },
     "desktop\/js\/report.js": {
@@ -2763,7 +2763,7 @@
         "[Jeedom] Message de test": "[Jeedom] Test message",
         "Ceci est un test de message pour la commande": "This is a message test for the command",
         "Info": "Info",
-        "Action": "Action",
+        "Action": "ACTION",
         "Sélectionner la commande": "Select command"
     },
     "core\/js\/scenario.class.js": {
@@ -2837,7 +2837,7 @@
         "Info": "Info",
         "Numérique": "Digital",
         "Binaire": "Binary",
-        "Action": "Action",
+        "Action": "ACTION",
         "Défaut": "Fault",
         "Curseur": "Cursor",
         "Message": "Message",
@@ -3716,7 +3716,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "Action",
+        "Action": "ACTION",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",
         "Arrêter": "Stop",
@@ -3744,7 +3744,7 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/widget.default.html": {
-        "Visible": "Visible",
+        "Visible": "Jeedom",
         "Masquer": "Hide",
         "Activer": "Activate",
         "Désactiver": "Deactivate"
@@ -3755,8 +3755,8 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Device",
         "Selectionner un équipement": "Select equipment",
-        "Action": "Action",
-        "Visible": "Visible",
+        "Action": "ACTION",
+        "Visible": "Jeedom",
         "Masquer": "Hide",
         "Activer": "Activate",
         "Désactiver": "Deactivate"

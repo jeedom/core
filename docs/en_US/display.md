@@ -200,7 +200,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historique**
     - **Historiser** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **lissage** or d'**archivage** allows you to choose how to archive the data. By default, this is a **moyenne**. It is also possible to choose the **maximum**, the **minimum**, or **aucun**. **aucun** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **lissage** or d'**archivage** allows you to choose how to archive the data. By default, this is a **moyenne**. It is also possible to choose the **maximum**, The **minimum**, or **aucun**. **aucun** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
@@ -210,7 +210,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Autres**
     - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
-    - **Push URL** : Allows to add a URL to call in case of update of the order. You can use the following tags : ``#value#`for the value of the order,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the order,`#humanname#`for the full name of the command (ex : ``#[Salthe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
+    - **Push URL** : Allows to add a URL to call in case of update of the order. You can use the following tags : ``#value#`for the value of the order,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the order,`#humanname#`for the full name of the command (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
 
 #### For an action command :
 
@@ -236,7 +236,7 @@ In this part, you will be able to configure certain widget display behaviors on 
 - **Visible** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Tick **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a display in column of the various commands of the equipment instead of lines by default)
+- **Wrapped line before widget** : Select **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a display in column of the various commands of the equipment instead of lines by default)
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 

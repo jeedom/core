@@ -787,7 +787,7 @@
     "desktop\/modal\/eqLogic.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Informations": "Informationen",
-        "Log": "Protokoll",
+        "Log": "Log",
         "Liens": "Links",
         "Enregistrer": "Speichern",
         "Supprimer": "Löschen",
@@ -915,7 +915,7 @@
         "Visible": "Sichtbar",
         "Multi lancement": "Mehrfachstart",
         "Mode synchrone": "Synchroner Modus",
-        "Log": "Protokoll",
+        "Log": "Log",
         "Timeline": "Zeitleiste",
         "Actions": "Lager",
         "Erreur": "Fehler",
@@ -1258,7 +1258,7 @@
         "Editeur": "Herausgeber",
         "Personnalisation": "Personalisierung",
         "Sauvegarde": "Schutz",
-        "Log": "Protokoll",
+        "Log": "Log",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "startet, bitte warten. Die Seite wird nach Abschluss des Startvorgangs automatisch neu geladen."
     },
     "desktop\/php\/reboot.php": {
@@ -1860,7 +1860,7 @@
         "Objet parent": "Übergeordnetes Objekt",
         "Aucun": "Ohne",
         "Timeout en secondes (0 = illimité)": "Zeitüberschreitung in Sekunden (0 = unbegrenzt)",
-        "Log": "Protokoll",
+        "Log": "Log",
         "Défaut": "Standard",
         "Temps réel": "Echtzeit",
         "Multi-lancement": "Multi-Launch",

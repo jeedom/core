@@ -2,7 +2,7 @@
 **Configuración → Sistema → Centro de actualizaciones**
 
 
-El **centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
+La **centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
 Otras funciones de administración de extensiones están disponibles (eliminar, reinstalar, verificar, etc.).
 
 

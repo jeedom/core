@@ -15,7 +15,7 @@ Allí encontrará la lista de escenarios de su Jeedom, así como las funcionalid
 
 ## Mis escenarios
 
-En esta sección encontrarás el **lista de escenarios** que creaste. Se clasifican según su **groupe**, posiblemente definido para cada uno de ellos. Cada escenario se muestra con su **nom** y su **objeto padre**. El **escenarios atenuados** son los que están deshabilitados.
+En esta sección encontrarás el **lista de escenarios** que creaste. Se clasifican según su **groupe**, posiblemente definido para cada uno de ellos. Cada escenario se muestra con su **nom** y su **objeto padre**. La **escenarios atenuados** son los que están deshabilitados.
 
 > **Tip**
 >
@@ -37,7 +37,7 @@ Después de hacer clic en **Ajouter**, debes elegir el nombre de tu escenario. L
 Antes de eso, en la parte superior de la página, hay algunas funciones útiles para administrar este escenario :
 
 - **ID** : Al lado de la palabra **General**, este es el identificador de escenario.
-- **statut** : *Detenido* donde *En curso*, indica el estado actual del escenario.
+- **statut** : *Detenido* o *En curso*, indica el estado actual del escenario.
 - **Agregar un bloque** : Le permite agregar un bloque del tipo deseado al escenario (ver más abajo).
 - **Log** : Muestra los registros del escenario..
 - **Dupliquer** : Copie el escenario para crear uno nuevo con otro nombre.
@@ -56,7 +56,7 @@ Antes de eso, en la parte superior de la página, hay algunas funciones útiles 
     > - Las variables, visibles en **Herramientas → Variables**
     > - El probador de expresiones, accesible por **Herramientas → Probador de expresiones**
 >
-> Un **Ctrl Haga clic en el botón ejecutar** le permite guardar, ejecutar y mostrar directamente el registro del escenario (si el nivel de registro no es Ninguno).
+> Una **Ctrl Haga clic en el botón ejecutar** le permite guardar, ejecutar y mostrar directamente el registro del escenario (si el nivel de registro no es Ninguno).
 
 ### Pestaña General
 
@@ -125,14 +125,14 @@ Cada bloque tiene sus opciones para manejarlos mejor :
     - El icono Pegar le permite pegar una copia del bloque copiado previamente después del bloque en el que utiliza esta función..  Ctrl Click en el icono reemplaza el bloque con el bloque copiado.
     - El icono: le permite eliminar el bloque con una solicitud de confirmación.. Ctrl Click elimina el bloque sin confirmación.
 
-#### Si / Entonces / De lo contrario bloquea | Hebilla | Dentro | A
+#### Si / Entonces / De lo contrario bloquea | Bucle | Dentro | A
 
 Para las condiciones, Jeedom trata de hacer posible escribirlas tanto como sea posible en lenguaje natural sin dejar de ser flexible..
 > NO use [] en pruebas de condición, solo son posibles paréntesis ().
 
 Hay tres botones disponibles a la derecha de este tipo de bloque para seleccionar un elemento para probar :
 
-- **Encuentra un pedido** : Le permite buscar un pedido en todos los disponibles en Jeedom. Una vez que se encuentra el pedido, Jeedom abre una ventana para preguntarle qué prueba desea realizar.. Si eliges **No poner nada**, Jeedom agregará el pedido sin comparación. También puedes elegir **et** donde **ou** delante **Ensuite** para encadenar pruebas en diferentes equipos.
+- **Encuentra un pedido** : Le permite buscar un pedido en todos los disponibles en Jeedom. Una vez que se encuentra el pedido, Jeedom abre una ventana para preguntarle qué prueba desea realizar.. Si eliges **No poner nada**, Jeedom agregará el pedido sin comparación. También puedes elegir **et** o **ou** delante **Ensuite** para encadenar pruebas en diferentes equipos.
 - **Buscar un escenario** : Le permite buscar un escenario para probar.
 - **Busca equipo** : Lo mismo para el equipo..
 
@@ -153,14 +153,14 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 
 ##### Acceso a controles (sensores y actuadores):
 -  ``cmd::byString ($ string); ` : Devuelve el objeto de comando correspondiente.
-    -   ``$string``: Enlace al pedido deseado : ``#[objy][equipement][commande]#`` (ex : ``#[Unppartement][Unlarme][Activo]#`)
+    -   ``$string``: Enlace al pedido deseado : ``#[objy][equipement][commande]#`` (ex : ``#[Lappartement][Lalarme][Bienes]#`)
 -  ``cmd::byId ($ id); ` : Devuelve el objeto de comando correspondiente.
     -  `$ id` : ID de pedido.
 -  `$ cmd-> execCmd ($ opciones = nulo);` : Ejecute el comando y devuelva el resultado..
     - `$ opciones` : Opciones para la ejecución de la orden (puede ser un complemento específico). Opciones básicas (subtipo de comando) :
         -  mensaje : `$ option = array ('title' => 'title title,' message '=>' My message ');`
         -  color : `$ opción = matriz ('color' => 'color en hexadecimal');`
-        -  control deslizante : `$ option = array ('slider' => 'valor deseado de 0 a 100');`
+        -  deslizador : `$ option = array ('slider' => 'valor deseado de 0 a 100');`
 
 ##### Acceso al registro :
 -  ``log::add ('nombre de archivo', 'nivel', 'mensaje'); `
@@ -201,8 +201,8 @@ Las acciones agregadas a los bloques tienen varias opciones :
 
 - Una cabaña **activado** para que este comando se tenga en cuenta en el escenario.
 - Una cabaña **paralelas** para que este comando se inicie en paralelo (al mismo tiempo) con los otros comandos también seleccionados.
-- Un **flecha doble vertical** para mover la acción. Solo arrastra y suelta desde allí.
-- Un botón para **supprimer** la accion.
+- Una **flecha doble vertical** para mover la acción. Solo arrastra y suelta desde allí.
+- Un botón para **supprimer** la acción.
 - Un botón para acciones específicas, con cada vez la descripción (al pasar el mouse) de esta acción.
 - Un botón para buscar un comando de acción.
 
@@ -225,7 +225,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - #end_restore# : evento enviado al final de una restauración.
 - #user_connect# : Inicio de sesión de usuario
 
-También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o usando la API HTTP descrita [aqui](https://jeedom.github.io/core/es_ES/api_http).
+También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o usando la API HTTP descrita [aquí](https://jeedom.github.io/core/es_ES/api_http).
 
 ### Operadores de comparación y enlaces entre condiciones
 
@@ -237,7 +237,7 @@ Puede usar cualquiera de los siguientes símbolos para comparar en condiciones :
 - < : Estrictamente menor que.
 - <= : Menor o igual que.
 - != : Diferente de, no es igual a.
-- partidos : Contiene. Ex : `[Baño] [Hidrometría] [condición] coincide con" / húmedo / "`.
+- cerillas : Contiene. Ex : `[Baño] [Hidrometría] [condición] coincide con" / húmedo / "`.
 - no (... coincide ...) : No contiene. Ex :  `not ([Baño] [Hidrometría] [estado] coincide con" / wet / ")`.
 
 Puedes combinar cualquier comparación con los siguientes operadores :
@@ -252,7 +252,7 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 
 > **Tip**
 >
-> Para mostrar los ceros iniciales, use la función Fecha (). Ver [aqui](http://php.net/manual/fr/function.date.php).
+> Para mostrar los ceros iniciales, use la función Fecha (). Ver [aquí](http://php.net/manual/fr/function.date.php).
 
 - #seconde# : Segundo actual (sin ceros a la izquierda, ej. : 6 para 08:07:06).
 - #hour# : Hora actual en formato de 24 h (sin ceros a la izquierda). Ex : 8 para 08:07:06 o 17 para 17:15.
@@ -265,7 +265,7 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 - #timestamp# : Número de segundos desde el 1 de enero de 1970.
 - #date# : Día y mes. Atención, el primer número es el mes.. Ex : 1215 para el 15 de diciembre.
 - #week# : Número de semana.
-- #sday# : Nombre del día de la semana.. Ex : Sabado.
+- #sday# : Nombre del día de la semana.. Ex : Sábado.
 - #nday# : Número de día de 0 (domingo) a 6 (sábado).
 - #smonth# : Nombre del mes. Ex : Enero.
 - #IP# : IP interna de Jeedom.
@@ -364,7 +364,7 @@ Los períodos e intervalos de estas funciones también se pueden usar con [Expre
 - Lunes pasado : el lunes pasado a las 00:00.
 - Hace 5 dias : Hace 5 dias.
 - Ayer mediodia : ayer mediodia.
-- Etc.
+- Etcétera.
 
 Aquí hay ejemplos prácticos para comprender los valores devueltos por estas diferentes funciones. :
 
@@ -391,11 +391,11 @@ Aquí hay ejemplos prácticos para comprender los valores devueltos por estas di
 | stateChanges (captura, 1 período)      | Devuelve 1 : el enchufe se enciende (cambie a 1) una vez durante el período                              |
 | lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Ayer, hoy) | Devuelve la última temperatura registrada ayer.                    |
 | variable (plop, 10)                  | Devuelve el valor de la variable plop o 10 si está vacía o no existe                         |
-| scenario(\#[Salle de bain][Lumière][Unuto]\#) | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
-| lastScenarioExecution(\#[Salle de bain][Lumière][Unuto]\#)   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
+| scenario(\#[Salle de bain][Lumière][Lauto]\#) | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
+| lastScenarioExecution(\#[Salle de bain][Lumière][Lauto]\#)   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
 | collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devoluciones 2015-01-01 17:45:12          |
 | valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devoluciones 2015-01-01 17:50:12          |
-| eqEnable(\#[Unucun][Basilique]\#)       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
+| eqEnable(\#[Laucun][Basilique]\#)       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
 | etiqueta (de lunes toto)                   | Devuelve el valor de "montag" si existe, de lo contrario devuelve el valor "toto"                               |
 | nombre (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Hidrometría de devoluciones                  |
 
@@ -428,13 +428,13 @@ Y ejemplos prácticos :
 | Ejemplo de funcion                  | Resultado devuelto                    |
 |--------------------------------------|--------------------------------------|
 | randText (lo hace #[salon][oeil][température]#; La temperatura es #[salon][oeil][température]#; Actualmente tenemos #[salon][oeil][température]#) | la función devolverá uno de estos textos al azar en cada ejecución.                           |
-| randomColor (40.60)                 | Devuelve un color aleatorio cercano al verde.
+| randomColor (40,60)                 | Devuelve un color aleatorio cercano al verde.
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si eso es bueno \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# quien inició el escenario de lo contrario 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si la hidrometría de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# es 80%.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Devuelve 9 si el porcentaje de humedad y 85                     |
 | impar (3)                             | Devuelve 1                            |
 | mediana (15,25,20)                   | Devuelve 20
-| promedio (10,15,18)                      | Devuelve 14.3                     |
+| avg (10,15,18)                      | Devuelve 14.3                     |
 | time_op (#time#, -90)               | si son las 4:50 p.m., regrese : 1 650-1 130 = 1520                          |
 | formatTime (1650)                   | Devuelve 4:50 p.m.                        |
 | piso (130/60)                      | Devuelve 2 (minutos si 130 s, u horas si 130 m)                      |
@@ -446,29 +446,29 @@ Y ejemplos prácticos :
 
 Además de los comandos de automatización del hogar, tiene acceso a las siguientes acciones :
 
-- **Pause** (dormir) : Pausa de x segundo (s).
-- **variable** (variable) : Creación / modificación de una variable o el valor de una variable.
+- **Pause** (Sueño) : Pausa de x segundo (s).
+- **variable** (Variable) : Creación / modificación de una variable o el valor de una variable.
 - **Eliminar variable** (Delete_variable) : Le permite eliminar una variable..
-- **Guión** (escenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej. : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin letras mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario objetivo con la función de etiqueta (montag). El comando &quot;Restablecer a SI&quot; permite restablecer el estado de &quot;SI&quot; (este estado se utiliza para la no repetición de las acciones de un &quot;SI&quot; si pasa por segunda vez consecutiva en él)
-- **Stop** (parada) : Detener el escenario.
-- **Attendre** (espera) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos.
-- **Ir al diseño** (diseño de goto) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
-- **Agregar un registro** (registro) : Le permite agregar un mensaje a los registros.
-- **Crear mensaje** (mensaje) : Agregar un mensaje al centro de mensajes.
-- **Activar / Desactivar Ocultar / mostrar equipo** (equipo) : Le permite modificar las propiedades de los equipos visibles / invisibles, activos / inactivos..
-- **Hacer una solicitud** (preguntar) : Permite indicar a Jeedom que es necesario hacerle una pregunta al usuario. La respuesta se almacena en una variable, entonces solo tiene que probar su valor.
+- **Guión** (Escenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej. : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin letras mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario objetivo con la función de etiqueta (montag). El comando &quot;Restablecer a SI&quot; permite restablecer el estado de &quot;SI&quot; (este estado se utiliza para la no repetición de las acciones de un &quot;SI&quot; si pasa por segunda vez consecutiva en él)
+- **Stop** (Stop) : Detener el escenario.
+- **Attendre** (Espere) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos.
+- **Ir al diseño** (Gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
+- **Agregar un registro** (Log) : Le permite agregar un mensaje a los registros.
+- **Crear mensaje** (Mensaje) : Agregar un mensaje al centro de mensajes.
+- **Activar / Desactivar Ocultar / mostrar equipo** (Equipo) : Le permite modificar las propiedades de los equipos visibles / invisibles, activos / inactivos..
+- **Hacer una solicitud** (Ask) : Permite indicar a Jeedom que es necesario hacerle una pregunta al usuario. La respuesta se almacena en una variable, entonces solo tiene que probar su valor.
     Por el momento, solo los complementos sms, slack, telegram y snips son compatibles, así como la aplicación móvil.
     Atención, esta función está bloqueando. Mientras no haya respuesta o no se alcance el tiempo de espera, el escenario espera.
 - **Stop Jeedom** (Jeedom_poweroff) : Pídale a Jeedom que cierre.
 - **Devolver un texto / datos** (Scenario_return) : Devuelve un texto o un valor para una interacción por ejemplo.
-- **Icono** (icono) : Permite cambiar el ícono de representación del escenario.
-- **Alerte** (alerta) : Muestra un pequeño mensaje de alerta en todos los navegadores que tienen abierta una página de Jeedom. Además, puedes elegir 4 niveles de alerta.
-- **Pop-up** (ventana emergente) : Permite mostrar una ventana emergente que debe validarse absolutamente en todos los navegadores que tienen una página abierta.
-- **Rapport** (informe) : Le permite exportar una vista en formato (PDF, PNG, JPEG o SVG) y enviarla utilizando un comando de tipo mensaje. Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esta funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado.
+- **Icono** (Icono) : Permite cambiar el ícono de representación del escenario.
+- **Alerte** (Alerta) : Muestra un pequeño mensaje de alerta en todos los navegadores que tienen abierta una página de Jeedom. Además, puedes elegir 4 niveles de alerta.
+- **Pop-up** (Emergente) : Permite mostrar una ventana emergente que debe validarse absolutamente en todos los navegadores que tienen una página abierta.
+- **Rapport** (Informe) : Le permite exportar una vista en formato (PDF, PNG, JPEG o SVG) y enviarla utilizando un comando de tipo mensaje. Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esta funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado.
 - **Eliminar bloque IN / A programado** (Remove_inat) : Eliminar la programación de todos los bloques y un escenario de.
-- **Evento** (evento) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
-- **Tag** (etiqueta) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
-- **Coloración de los iconos del tablero** (setColoredIcon) : le permite activar o no el color de los íconos en el tablero.
+- **Evento** (Event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
+- **Tag** (Tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
+- **Coloración de los iconos del tablero** (SetColoredIcon) : le permite activar o no el color de los íconos en el tablero.
 
 ### Plantilla de escenario
 

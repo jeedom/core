@@ -65,12 +65,12 @@ Registro de Alterações Jeedom V4
 - Os campos de pesquisa (Painel, cenários, objetos, widgets, interações, plug-ins) agora estão ativos quando a página é aberta, permitindo que você digite uma pesquisa diretamente.
 - Adicione um botão X nos campos de pesquisa para cancelar a pesquisa.
 - Durante uma pesquisa, a tecla *echap* cancelar pesquisa.
-- Dashboard : No modo de edição, o campo de pesquisa e seus botões são desativados e se tornam fixos.
-- Dashboard : No modo de edição, clique em um botão *expand* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique reduz para a altura mais baixa.
-- Dashboard : A execução do comando em um bloco agora é sinalizada pelo botão *refresh*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
-- Dashboard : Os blocos indicam um comando info (histórico, que abrirá a janela Histórico) ou ação em foco.
-- Dashboard : A janela do histórico agora permite abrir esse histórico em Análise / Histórico.
-- Dashboard : A janela Histórico mantém sua posição / dimensões quando outro histórico é reaberto.
+- Painel de instrumentos : No modo de edição, o campo de pesquisa e seus botões são desativados e se tornam fixos.
+- Painel de instrumentos : No modo de edição, clique em um botão *expand* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique reduz para a altura mais baixa.
+- Painel de instrumentos : A execução do comando em um bloco agora é sinalizada pelo botão *refresh*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
+- Painel de instrumentos : Os blocos indicam um comando info (histórico, que abrirá a janela Histórico) ou ação em foco.
+- Painel de instrumentos : A janela do histórico agora permite abrir esse histórico em Análise / Histórico.
+- Painel de instrumentos : A janela Histórico mantém sua posição / dimensões quando outro histórico é reaberto.
 - Janela Configuração de Comando: Ctrl + clique em "Salvar" fecha a janela após.
 - Janela Configuração do equipamento: Ctrl + clique em "Salvar" fecha a janela após.
 - Adicionando informações de uso ao excluir equipamentos.
@@ -99,12 +99,12 @@ Registro de Alterações Jeedom V4
 - Configuração : Adicionada opção para desativar o cache do widget (guia Cache).
 - Configuração : Capacidade de centralizar o conteúdo dos blocos verticalmente (guia Interface).
 - Configuração : Adição de um parâmetro para a limpeza global dos históricos (comandos da guia).
-- Configuração : Mudança de #message# às #subject# em Configuração / Logs / Mensagens para evitar duplicação da mensagem.
+- Configuração : Mudança de #message# à #subject# em Configuração / Logs / Mensagens para evitar duplicação da mensagem.
 - Configuração : Possibilidade nos resumos de adicionar uma exclusão dos pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo das médias de temperatura se um sensor não elevar nada por mais de 30 minutos, ele será excluído do cálculo )<br/><br/>
 - Cenas : A coloração dos blocos não é mais aleatória, mas por tipo de bloco.
 - Cenas : Possibilidade por Ctrl + clique no botão *execução* salve-o, inicie-o e exiba o log (se o nível do log não estiver em *Aucun*).
 - Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar confirmação.
-- Cenas : Adição de uma função de pesquisa nos blocos de código. Pesquisar : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
+- Cenas : Adição de uma função de pesquisa nos blocos de código. Pesquisa : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 - Cenas : Capacidade de condensar blocos.
 - Cenas : A ação 'Adicionar bloco' alterna para a guia Cenário, se necessário.
 - Cenas : Novas funções de copiar / colar em bloco. Ctrl + clique para cortar / substituir.
@@ -123,10 +123,10 @@ Registro de Alterações Jeedom V4
 - Resumo Automation : Adição de IDs de equipamentos e pedidos, no display e na pesquisa.
 - Resumo Automation : Exportação CSV do objeto pai, ID, equipamento e seu ID, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais pedidos.<br/><br/>
-- Desenho : Capacidade de especificar a ordem (posição) de *Designs* e *Projetos 3D* (Editar, configurar design).
-- Desenho : Adição de um campo CSS personalizado nos elementos do *design*.
-- Desenho : Deslocamento das opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam *Design*.
-- Desenho : Movendo e redimensionando componentes no *Design* leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
+- Projeto : Capacidade de especificar a ordem (posição) de *Designs* e *Projetos 3D* (Editar, configurar design).
+- Projeto : Adição de um campo CSS personalizado nos elementos do *design*.
+- Projeto : Deslocamento das opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam *Design*.
+- Projeto : Movendo e redimensionando componentes no *Design* leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
 - Redução geral (estilos css / inline, refatoração etc.) e melhorias de desempenho.
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.
 - Atualização de libs : jquery 3.4.1, CodeMiror 5.46.0, editor de tabelas 2.31.1.

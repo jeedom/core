@@ -51,8 +51,8 @@ Dependiendo del tipo de widget, generalmente puede personalizar iconos o poner i
 
 Hay dos tipos de plantillas. :
 
-- El "**simples**" : Escriba un icono / imagen para el "encendido" y un icono / imagen para el "apagado""
-- El "**multistates**" : Esto le permite definir, por ejemplo, una imagen si el comando tiene el valor "XX" y otro si> a "YY", y nuevamente si <a "ZZ". O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot;, etc..
+- La "**simples**" : Escriba un icono / imagen para el "encendido" y un icono / imagen para el "apagado""
+- La "**multistates**" : Esto le permite definir, por ejemplo, una imagen si el comando tiene el valor "XX" y otro si> a "YY", y nuevamente si <a "ZZ". O incluso una imagen si el valor es &quot;toto&quot;, otra si es &quot;plop&quot;, etc..
 
 ## Crear un widget
 
@@ -108,7 +108,7 @@ Los equipos tienen ciertos parámetros de configuración. :
 ### Configuraciones frecuentes
 
 - Widget de tiempo : muestra el tiempo desde el cual el sistema ha estado en el estado de visualización.
-- Nosotros : icono para mostrar si el equipo está encendido / 1.
+- Uno : icono para mostrar si el equipo está encendido / 1.
 - Apagado : icono para mostrar si el equipo está apagado / 0.
 - Luz encendida : ícono para mostrar si el equipo está encendido / 1 y el tema es claro (si está vacío, entonces la libertad toma la imagen oscura encendida).
 - Luz apagada : icono para mostrar si el equipo está apagado / 0 y el tema es claro (si está vacío, entonces la libertad quita la imagen oscura).
@@ -150,7 +150,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 ##### Parámetros opcionales
 
 - escala : Le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño.
-- showRange : Muestra los valores min / max del comando.
+- mostrarel : Muestra los valores min / max del comando.
 
 
 ## Widget de código
@@ -169,7 +169,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 - #uid# : Identificador único para esta generación del widget (si hay varias veces el mismo comando, caso de diseños:  solo este identificador es realmente único)
 - #valueDate# : fecha del valor del pedido
 - #collectDate# : fecha de recogida del pedido
-- #alertLevel# : nivel de alerta (ver [aqui](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
+- #alertLevel# : nivel de alerta (ver [aquí](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
 - #hide_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# y #tendance# no será reemplazado por Jeedom.
 - #minHistoryValue# : valor mínimo durante el período (período definido en la configuración de Jeedom por el usuario)
 - #averageHistoryValue# : valor promedio durante el período (período definido en la configuración de Jeedom por el usuario)
@@ -211,4 +211,4 @@ Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',coll
 `` ''
  La llamada a esta función para la inicialización del widget.
 
- Encontraras [aqui](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)
+ Encontraras [aquí](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)

@@ -36,7 +36,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 
 Auf jeder Ausrüstung finden wir :
 
-- A. **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **supprimer**, gib zurück **visible**/.**invisible**,  **actif**/.**inactif** ausgewählte Ausrüstung.
+- Ein **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **supprimer**, make **visible**/.**invisible**,  **actif**/.**inactif** ausgewählte Ausrüstung.
 - L'**id** Ausrüstung.
 - Die **type** Ausrüstung : Kennung des Plugins, zu dem es gehört.
 - Die **nom** Ausrüstung.
@@ -112,7 +112,7 @@ In diesem Teil können Sie zwischen dem Standardlayout der Befehle (nebeneinande
 - **Tabellenstil (CSS)** : Hier können Sie nur den Stil der Tabelle definieren.
 
 Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
-das :
+diese :
 - **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder allein, wenn das Feld keinen Befehl enthält)..
 - **Box-Stil (CSS)** : Ändern Sie den spezifischen CSS-Stil der Box (beachten Sie, dass das allgemeine CSS der Boxen überschrieben und ersetzt wird)..
 
@@ -134,7 +134,7 @@ Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispie
 
 > **Tip**
 >
-> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Logs** wo **Equipements**
+> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Logs** oder **Equipements**
 
 ### Registerkarte &quot;Kommentar&quot;
 
@@ -200,7 +200,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - **Historique**
     - **Historiser** : Aktivieren Sie das Kontrollkästchen, um die Werte dieses Befehls zu protokollieren. (Siehe **Analyse → Geschichte**)
-    - **Glättungsmodus** : Modus von **lissage** oder d'**archivage** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **moyenne**. Es ist auch möglich, die zu wählen **maximum**, die **minimum**, wo **aucun**. **aucun** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch mit der Archivierungsaufgabe).. Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
+    - **Glättungsmodus** : Modus von **lissage** oder d'**archivage** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **moyenne**. Es ist auch möglich, die zu wählen **maximum**, Die **minimum**, oder **aucun**. **aucun** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch mit der Archivierungsaufgabe).. Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
     - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
 - **Werteverwaltung**
@@ -210,7 +210,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - **Autres**
     - **Management der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird, berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeidet das mehrfache Auslösen eines Szenarios, es sei denn, der Befehl ist vom binären Typ).. Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
-    - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[Saldie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
+    - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[SalDie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
 
 #### Für einen Aktionsbefehl :
 
@@ -222,7 +222,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 ### Registerkarte &quot;Warnungen&quot;
 
-Ermöglicht das Definieren einer Alarmstufe (**warning** wo **danger**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **warning**.
+Ermöglicht das Definieren einer Alarmstufe (**warning** oder **danger**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **warning**.
 
 > **Note**
 >
@@ -236,7 +236,7 @@ In diesem Teil können Sie bestimmte Widget-Anzeigeverhalten im Dashboard, in An
 - **Visible** : Überprüfen Sie, ob der Befehl sichtbar ist.
 - **Name anzeigen** : Aktivieren Sie diese Option, um den Namen des Befehls je nach Kontext sichtbar zu machen.
 - **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.
-- **Umbrochene Zeile vor dem Widget** : Häkchen **vor dem Widget** wo **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Anzeige in der Spalte der verschiedenen Befehle des Geräts anstelle von Zeilen standardmäßig zu erzwingen)
+- **Umbrochene Zeile vor dem Widget** : Wählen **vor dem Widget** oder **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Anzeige in der Spalte der verschiedenen Befehle des Geräts anstelle von Zeilen standardmäßig zu erzwingen)
 
 Unten finden Sie optionale Anzeigeparameter, die an das Widget übergeben werden können. Diese Parameter hängen vom jeweiligen Widget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 

@@ -143,7 +143,7 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ##### Optional parameter (s)
 
-- step : Allows to adjust the step of an action on a button (0.5 by default).
+- Step : Allows to adjust the step of an action on a button (0.5 by default).
 
 ### Rain
 
