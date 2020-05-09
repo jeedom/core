@@ -19,7 +19,7 @@ happened, when you launched an update.
 Functions at the top of the page. 
 ---------------------------------
 
-At the top of the table are the control buttons. Jeedom stands
+At the top of the table are the control buttons. Jeedom se
 periodically connect with the Market to see if any updates
 are available (the date of the last check is indicated at the top
 left of the table). If you want to perform a manual check,
@@ -27,7 +27,7 @@ you can press the button "Check for updates".
 
 The button **Update** allows to update the set of
 Jeedom. Once you click on it, we get these different
-options :
+Jeedoms Sources :
 
 -   **Save before** : Back up Jeedom before
     perform the update.

@@ -125,7 +125,7 @@ LDAP
 -   **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO
     for example)
 
-Sign in 
+Log in 
 ---------
 
 -   **Number of failures tolerated** : sets the number of attempts
@@ -165,7 +165,7 @@ externe** (from another network, in particular from the Internet).
 > etc / apache2 / sites-available / default\_ssl (for HTTPS).However, in
 > If your Jeedom is mishandled, the Jeedom team will not
 > may be held responsible and may refuse any request for
-> support.
+> Support.
 
 -   **Internal access** : information for joining Jeedom from a
     same network equipment as Jeedom (LAN)
@@ -362,7 +362,7 @@ interactions which you will find in Tools → Interactions.
 >
 > To activate the interaction log, go to the tab
 > Administration → Configuration → Logs, then tick **Debug** in the list
-> bottom. Warning : the logs will then be very verbose !
+> bottom. WARNING : the logs will then be very verbose !
 
 General 
 -------
@@ -603,7 +603,7 @@ Posts
         - #message# : message in question
         - #plugin# : plugin that triggered the message
 
-Alerts 
+Notifications 
 -------
 
 -   **Add a message to each Timeout** : Add a message in the
@@ -661,7 +661,7 @@ Below you will find a table for finely managing the
 log level of the essential elements of Jeedom as well as that of
 plugins.
 
-Equipment 
+Facilities 
 ===========
 
 -   **Number of failures before deactivation of the equipment** : Nombre
@@ -714,7 +714,7 @@ Deposit used to connect Jeedom to Github.
 ### Market 
 
 Deposit used to connect Jeedom to the market, it is highly recommended
-to use this repository. Warning : any support request may be
+to use this repository. WARNING : any support request may be
 refused if you use a different deposit than this one.
 
 -   **Adresse** : Market address.
@@ -788,7 +788,7 @@ a Samba share (ex : NAS Synology).
 > first backup, the folder must not contain any file or
 > folder).
 
-### URL 
+### URLs 
 
 -   **Jeedom core URL**
 

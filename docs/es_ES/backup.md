@@ -1,7 +1,7 @@
 Jeedom tiene la posibilidad de ser salvado y restaurado desde o desde
 de diferentes lugares.
 
-Configuracion 
+Configuración 
 =============
 
 Accesible desde **Administración → Copias de seguridad**, esta página permite
@@ -125,7 +125,7 @@ suscripción (por 1, 3, 6 o 12 meses).
 >
 > Puede personalizar el nombre de los archivos de respaldo desde
 > de la pestaña **Mis jeedoms**, evitando sin embargo los personajes
-> exotico.
+> exótico.
 
 Frecuencia de respaldos automáticos 
 ======================================

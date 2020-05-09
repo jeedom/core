@@ -62,7 +62,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 ## Luz
 
-- Estado : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
+- Estatus : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
 - Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad)
 
 ## Texte

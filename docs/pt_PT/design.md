@@ -145,7 +145,7 @@ Configuração de exibição
 
 -   **Altura (px)** :
 
-Excluir 
+Remover 
 ---------
 
 Remover item
@@ -155,7 +155,7 @@ Duplicar
 
 Permite duplicar o elemento
 
-Bloquear 
+Trancar 
 -----------
 
 Bloqueia o elemento para que ele não seja mais móvel ou
@@ -277,7 +277,7 @@ Configuração avançada
 Exibe a janela de configuração avançada do equipamento (consulte
 documentação Resumo da automação residencial ("display"))
 
-Encomendar 
+Ordem 
 ========
 
 Configurações de exibição 

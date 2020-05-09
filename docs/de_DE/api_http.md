@@ -102,7 +102,7 @@ Hier ist die URL =
     die Nachricht (Leerzeichen wird% 20, =% 3D…). Sie können eine verwenden
     outil, [hier](https://meyerweb.com/eric/tools/dencoder/)
 
-Betreff 
+Objekt 
 =====
 
 Hier ist die URL =
@@ -119,7 +119,7 @@ Hier ist die URL =
 -   **Objekt\_id** : ID des Objekts, von dem wir abrufen möchten
     équipements
 
-Bestellung 
+Bestellen 
 ========
 
 Hier ist die URL =

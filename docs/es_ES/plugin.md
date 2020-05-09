@@ -1,5 +1,5 @@
 El submenú de administración de complementos le permite manipular complementos, excepto
-saber : descargarlos, actualizarlos y activarlos, etc.
+conocer : descargarlos, actualizarlos y activarlos, etc.
 
 Gestión de complementos 
 ===================

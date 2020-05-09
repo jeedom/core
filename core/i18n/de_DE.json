@@ -3382,7 +3382,7 @@
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Szenario",
         "Action": "Aktion",
-        "Start": "Starten Sie",
+        "Start": "Start",
         "Start (sync)": "Starten (synchronisieren)",
         "Stop": "STOP",
         "Activer": "Aktivieren",

@@ -62,12 +62,12 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 
 ## Luz
 
-- Status : O controle do status da luz pode ser binário (0 ou 1), digital (0 a 100%) ou colorido
+- Estado : O controle do status da luz pode ser binário (0 ou 1), digital (0 a 100%) ou colorido
 - Poder : potência da lâmpada (observe que isso pode não refletir a realidade)
 
 ## Texte
 
-- Text : texto a ser exibido (você pode colocar comandos lá, o texto será atualizado automaticamente com a alteração)
+- Texto : texto a ser exibido (você pode colocar comandos lá, o texto será atualizado automaticamente com a alteração)
 - Tamanho do texto
 - Cor do texto
 - Transparência texto : de 0 (invisível) a 1 (visível)

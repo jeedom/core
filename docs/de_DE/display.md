@@ -56,10 +56,10 @@ Die Ausrüstungen
 
 Auf jeder Ausrüstung finden wir :
 
--   A. **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können
+-   Ein **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können
     mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist
     Sie haben Aktionsschaltflächen, die oben links angezeigt werden
-    für **supprimer**, gib zurück **visible**/.**invisible**,
+    für **supprimer**, make **visible**/.**invisible**,
     **actif**/.**inactif** ausgewählte Ausrüstung.
 
 -   Die **nom** Ausrüstung.
@@ -228,7 +228,7 @@ Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Op
     nur Tisch.
 
 Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
-das :
+diese :
 
 -   **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder
     allein, wenn keine Bestellung in der Box ist).
@@ -311,7 +311,7 @@ Registerkarte Informationen
 -------------------
 
 Die Registerkarte **Informations** enthält allgemeine Informationen über die
-Befehl :
+bestellen :
 
 -   **ID** : Eindeutiger Bezeichner in der Datenbank.
 
@@ -401,7 +401,7 @@ Registerkarte Konfiguration
     -   **Glättungsmodus** : Modus von **lissage** oder d'**archivage**
         Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standard,
         es ist ein **moyenne**. Es ist auch möglich, die zu wählen
-        **maximum**, die **minimum**, wo **aucun**. **aucun** Ermöglicht
+        **maximum**, Die **minimum**, oder **aucun**. **aucun** Ermöglicht
         Sag Jeedom, dass es nicht darauf archivieren soll
         Bestellung (sowohl während der ersten 5 Minuten als auch mit dem
         Archivierungsaufgabe). Diese Option ist gefährlich, weil Jeedom
@@ -436,10 +436,10 @@ Registerkarte Konfiguration
 
     -   **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle von aufgerufen werden soll
         Bestellaktualisierung. Sie können Tags verwenden
-        als nächstes : ``#value#"für den Wert der Bestellung"#cmd_name#``
+        folgende : ``#value#"für den Wert der Bestellung"#cmd_name#``
         für den Namen des Befehls `#cmd_id#`für die eindeutige Kennung
         des Befehls, `#humanname#`für den vollständigen Namen des Befehls
-        (z : ``#[Saldie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts
+        (zB : ``#[SalDie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts
 
 ### Für einen Aktionsbefehl : 
 
@@ -455,15 +455,15 @@ Registerkarte Konfiguration
     wenn die Aktion über die Schnittstelle dieses Befehls gestartet wird.
 
 -   **Aktion vor Ausführung des Befehls** : Ermöglicht das Hinzufügen
-    Bestellungen **avant** jede Ausführung des Auftrags.
+    Befehle **avant** jede Ausführung des Auftrags.
 
 -   **Aktion nach Ausführung des Auftrags** : Ermöglicht das Hinzufügen
-    Bestellungen **nach** jede Ausführung des Auftrags.
+    Befehle **nach** jede Ausführung des Auftrags.
 
 Registerkarte &quot;Warnungen&quot; 
 --------------
 
-Ermöglicht das Definieren einer Alarmstufe (**warning** wo **danger**) in
+Ermöglicht das Definieren einer Alarmstufe (**warning** oder **danger**) in
 abhängig von bestimmten Bedingungen. Zum Beispiel, wenn &quot;Wert&gt; 8&quot; für 30
 Minuten dann kann das Gerät in Alarmbereitschaft gehen **warning**.
 
@@ -492,8 +492,8 @@ mobile.
 -   **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol sichtbar zu machen
     zusätzlich zum Namen des Befehls.
 
--   **Umbrochene Zeile vor dem Widget** : Häkchen **vorher
-    widget** wo **nach dem Widget** Zeilenumbruch hinzufügen
+-   **Umbrochene Zeile vor dem Widget** : Wählen **vorher
+    widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
     Spalte mit verschiedenen Gerätebefehlen anstelle von Zeilen
     standardmäßig)

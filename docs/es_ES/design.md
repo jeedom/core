@@ -145,12 +145,12 @@ Ajuste de la pantalla
 
 -   **Altura (px)** :
 
-Eliminar 
+Remove 
 ---------
 
 Eliminar elemento
 
-Duplicar 
+Duplicado 
 ---------
 
 Le permite duplicar el elemento.
@@ -305,7 +305,7 @@ Configuraciones de pantalla
 
 -   **Cámara** : cámara para mostrar (si elige cámara)
 
-Area 
+Zona 
 ====
 
 Configuraciones de pantalla 
@@ -373,7 +373,7 @@ Resumen
 -   **Gras** : texto en negrita
 
 
-Faq 
+Preguntas frecuentes 
 ======
 
 >**Ya no puedo editar mi diseño**

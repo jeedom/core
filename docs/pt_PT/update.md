@@ -1,4 +1,4 @@
-Descrição do produto 
+Descrição 
 ===========
 
 O **Update Center** permite atualizar todos
@@ -19,7 +19,7 @@ aconteceu, quando você lançou uma atualização.
 Funções no topo da página. 
 ---------------------------------
 
-No topo da tabela estão os botões de controle. Suportes Jeedom
+No topo da tabela estão os botões de controle. Jeedom se
 periodicamente conecte-se ao mercado para ver se há alguma atualização
 estão disponíveis (a data da última verificação é indicada na parte superior
 esquerda da mesa). Se você deseja executar uma verificação manual,
@@ -27,7 +27,7 @@ você pode pressionar o botão "Verificar atualizações".
 
 O botão **Atualizar** permite atualizar o conjunto de
 Jeedom. Depois que você clica nele, temos diferentes
-opções :
+Opções :
 
 -   **Salvar antes** : Faça backup do Jeedom antes
     realize a atualização.

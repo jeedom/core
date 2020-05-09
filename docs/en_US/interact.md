@@ -11,7 +11,7 @@ These orders can be obtained by :
 -   Vocal : dictate a phrase with Siri, Google Now, SARAH, etc. For
     launch commands (action) or ask a question (info).
 
--   HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack)
+-   D'informations sont indispensables à la bonne compréhension de : launch an HTTP URL containing the text (ex. Tasker, Slack)
     to launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
@@ -54,7 +54,7 @@ the interaction is not linked to an action but to information or if we
 wish to carry out a specific action after it (it is also
 possible to execute a scenario, to control several commands…).
 
-Configuration 
+D'actualité 
 =============
 
 The configuration page consists of several tabs and
@@ -124,7 +124,7 @@ Filters
     single equipment / module (Jeedom automatically creates the list at
     from the equipment / modules you have).
 
-Action 
+ACTION 
 ======
 
 Use if you want to target one or more specific commands

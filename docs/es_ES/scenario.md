@@ -38,7 +38,7 @@ Mis escenarios
 En esta sección encontrarás el **lista de escenarios** que usted
 he creado. Se clasifican de acuerdo a **groupes** que tienes
 definido para cada uno de ellos. Cada escenario se muestra con su **nom**
-y su **objeto padre**. El **escenarios atenuados** son los que son
+y su **objeto padre**. La **escenarios atenuados** son los que son
 discapacitado.
 
 Como en muchas páginas de Jeedom, coloque el mouse a la izquierda de
@@ -197,7 +197,7 @@ seleccione un elemento para probar :
     Jeedom abre una ventana para preguntarte qué prueba quieres
     actuar en ello. Si eliges **No poner nada**,
     Jeedom agregará el pedido sin comparación. Usted puede también
-    elegir **et** donde **ou** delante **Ensuite** para encadenar pruebas
+    elegir **et** o **ou** delante **Ensuite** para encadenar pruebas
     en diferentes equipos.
 
 -   **Buscar un escenario** : Permite buscar un escenario
@@ -228,14 +228,14 @@ Una vez que se complete la condición, debe usar el botón
 
 Controles (sensores y actuadores):
 -   cmd::byString ($ cadena); : Devuelve el objeto de comando correspondiente.
-  -   $string : Enlace al pedido deseado : #[objy][equipement][commande]# (ex : #[Unppartement][Unlarme][Activo]#)
+  -   $string : Enlace al pedido deseado : #[objy][equipement][commande]# (por ejemplo, : #[Lappartement][Lalarme][Bienes]#)
 -   cmd::BYID ($ id); : Devuelve el objeto de comando correspondiente.
   -   $id : ID de pedido
 -   $cmd->execCmd($options = null); : Ejecute el comando y devuelva el resultado..
   -   $options : Opciones para ejecutar el comando (puede ser específico del complemento), opción básica (subtipo de comando) :
     -   mensaje : $option = array('title' => 'titre du mensaje , 'message' => 'Mon message');
     -   color : $option = array('color' => 'couleur en hexadécimal');
-    -   control deslizante : $option = array('slider' => 'valeur voulue de 0 à 100');
+    -   deslizador : $option = array('slider' => 'valeur voulue de 0 à 100');
 
 Registro :
 -   log::add ( &#39;nombre&#39; &#39;nivel&#39;, &#39;mensaje&#39;);
@@ -271,7 +271,7 @@ Las acciones agregadas a los bloques tienen varias opciones. En el orden :
 -   Una cabaña **activado** para que este comando se tenga en cuenta
     cuenta en el escenario.
 
--   Un **flecha doble vertical** para mover la acción. Basta con
+-   Una **flecha doble vertical** para mover la acción. Basta con
     arrastrar y soltar desde allí.
 
 -   Un botón para eliminar la acción..
@@ -293,7 +293,7 @@ Disparadores
 ----------------
 
 Hay desencadenantes específicos (distintos de los proporcionados por
-pedidos) :
+comandos) :
 
 -   #start# : activado al (re) inicio de Jeedom,
 
@@ -314,7 +314,7 @@ pedidos) :
 También puede desencadenar un escenario cuando una variable se establece en
 día poniendo : #variable(nom_variable)# o usando la API HTTP
 descrito
-[aqui](https://jeedom.github.io/core/es_ES/api_http).
+[aquí](https://jeedom.github.io/core/es_ES/api_http).
 
 Operadores de comparación y enlaces entre condiciones
 -------------------------------------------------------
@@ -334,14 +334,14 @@ comparaciones en condiciones :
 
 -   != : diferente de, no es igual a,
 
--   partidos : contiene (ex :
+-   cerillas : contiene (ex :
     [Baño] [Hidrometría] [estado] coincide con "/ wet /"),
 
 -   no (... coincide ...) : no contiene (ex :
     no ([Baño] [Hidrometría] [estado] coincide con "/ húmedo /")),
 
 Puedes combinar cualquier comparación con operadores
-siguiendo :
+siguiente :
 
 -   &amp;&amp; / ET / y / AND / y : et,
 
@@ -359,7 +359,7 @@ puede usar las siguientes etiquetas :
 >
 > Para mostrar los ceros a la izquierda, use el
 > Función de fecha (). Ver
-> [aqui](http://php.net/manual/fr/function.date.php).
+> [aquí](http://php.net/manual/fr/function.date.php).
 
 -   #seconde# : Segundo actual (sin ceros a la izquierda, ej. : 6 para
     08:07:06),
@@ -386,7 +386,7 @@ puede usar las siguientes etiquetas :
 -   #timestamp# : Número de segundos desde el 1 de enero de 1970,
 
 -   #date# : Día y mes. Atención, el primer número es el mes..
-    (ex : 1215 para el 15 de diciembre),
+    (por ejemplo, : 1215 para el 15 de diciembre),
 
 -   #semaine# : Número de semana (ex : 51),
 
@@ -512,14 +512,14 @@ Hay varias funciones disponibles para el equipo. :
 -   collectDate (CMD [tamaño]) : Devuelve la fecha de los últimos datos.
     para el comando dado como parámetro, el segundo parámetro opcional
     permite especificar el formato de retorno (detalles
-    [aqui](http://php.net/manual/fr/function.date.php)) Un retorno de -1
+    [aquí](http://php.net/manual/fr/function.date.php)) Un retorno de -1
     significa que no se puede encontrar el pedido y -2 que el pedido no es
     sin tipo de información
 
 -   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últimos datos.
     para el comando dado como parámetro, el segundo parámetro opcional
     permite especificar el formato de retorno (detalles
-    [aqui](http://php.net/manual/fr/function.date.php)) Un retorno de -1
+    [aquí](http://php.net/manual/fr/function.date.php)) Un retorno de -1
     significa que no se puede encontrar el pedido y -2 que el pedido no es
     sin tipo de información
 
@@ -539,7 +539,7 @@ Hay varias funciones disponibles para el equipo. :
 -   lastCommunication (equipo, [tamaño]) : Devuelve la fecha de la última comunicación.
     para el equipo dado como parámetro, el segundo parámetro opcional
     permite especificar el formato de retorno (detalles
-    [aqui](http://php.net/manual/fr/function.date.php)) Un retorno de -1
+    [aquí](http://php.net/manual/fr/function.date.php)) Un retorno de -1
     significa que no se puede encontrar el equipo
 
 -   color_gradient (couleur_debut, couleur_fin, valuer_min, valeur_max, valor) : Devuelve un color calculado con respecto al valor en el rango color_start / color_end. El valor debe estar entre min_value y max_value
@@ -560,7 +560,7 @@ ejemplo :
 
 -   Ayer mediodia : ayer mediodia
 
--   Etc.
+-   Etcétera.
 
 Aquí hay ejemplos prácticos para comprender los valores devueltos por
 estas diferentes funciones :
@@ -588,11 +588,11 @@ estas diferentes funciones :
 | stateChanges (captura, 1 período)      | Devuelve 1 : el enchufe se enciende (cambie a 1) una vez durante el período                              |
 | lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Ayer, hoy) | Devuelve la última temperatura registrada ayer.                    |
 | variable (plop, 10)                  | Devuelve el valor de la variable plop o 10 si está vacía o no existe                         |
-| scenario(\#[Salle de bain][Lumière][Unuto]\#) | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
-| lastScenarioExecution(\#[Salle de bain][Lumière][Unuto]\#)   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
+| scenario(\#[Salle de bain][Lumière][Lauto]\#) | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
+| lastScenarioExecution(\#[Salle de bain][Lumière][Lauto]\#)   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
 | collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devoluciones 2015-01-01 17:45:12          |
 | valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devoluciones 2015-01-01 17:50:12          |
-| eqEnable(\#[Unucun][Basilique]\#)       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
+| eqEnable(\#[Laucun][Basilique]\#)       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
 | etiqueta (de lunes toto)                   | Devuelve el valor de "montag" si existe, de lo contrario devuelve el valor "toto"                               |
 | nombre (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Hidrometría de devoluciones                  |
 
@@ -602,7 +602,7 @@ Funciones matematicas
 Una caja de herramientas de funciones genéricas también se puede utilizar para
 realizar conversiones o cálculos :
 
--   rand (1.10) : Dar un número aleatorio del 1 al 10.
+-   rand (1,10) : Dar un número aleatorio del 1 al 10.
 
 -   randText (texto1, texto2, texto ... ..) : Devuelve uno de
     textos al azar (texto separado por uno;). No hay
@@ -651,7 +651,7 @@ Y ejemplos prácticos :
 | Ejemplo de funcion                  | Resultado devuelto                    |
 |--------------------------------------|--------------------------------------|
 | randText (lo hace #[salon][oeil][température]#; La temperatura es #[salon][oeil][température]#; Actualmente tenemos #[salon][oeil][température]#) | la función devolverá uno de estos textos al azar en cada ejecución.                           |
-| randomColor (40.60)                 | Devuelve un color aleatorio cercano al verde.   
+| randomColor (40,60)                 | Devuelve un color aleatorio cercano al verde.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si eso es bueno \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# quien inició el escenario de lo contrario 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si la hidrometría de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# es 80%.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Devuelve 9 si el porcentaje de humedad y 85                     |
@@ -666,37 +666,37 @@ Pedidos específicos
 
 Además de los comandos de automatización del hogar, tiene acceso a las siguientes acciones :
 
--   **Pause** (dormir) : Pausa de x segundo (s).
+-   **Pause** (Sueño) : Pausa de x segundo (s).
 
--   **variable** (variable) : Creación / modificación de una variable o valor.
+-   **variable** (Variable) : Creación / modificación de una variable o valor.
     de una variable.
 
 -   **Eliminar variable** (Delete_variable) : Le permite eliminar una variable.
 
--   **Guión** (escenario) : Te permite controlar escenarios. La parte de las etiquetas
+-   **Guión** (Escenario) : Te permite controlar escenarios. La parte de las etiquetas
     permite enviar etiquetas al escenario, ej. : montag = 2 (ten cuidado allí
     solo use letras de la a a la z. No letras mayúsculas, no
     acentos y sin caracteres especiales). Obtenemos la etiqueta en el
     escenario objetivo con la función de etiqueta (montag). El comando &quot;Restablecer SI&quot; permite restablecer el estado de &quot;SI&quot; (este estado se utiliza para la no repetición de las acciones de un &quot;SI&quot; si pasa por segunda vez consecutiva en él)
 
--   **Stop** (parada) : Detener el escenario.
+-   **Stop** (Stop) : Detener el escenario.
 
--   **Attendre** (espera) : Espere hasta que la condición sea válida.
+-   **Attendre** (Espere) : Espere hasta que la condición sea válida.
     (máximo 2 h), el tiempo de espera es en segundos (s).
 
--   **Ir al diseño** (diseño de goto) : Cambiar el diseño que se muestra en todos
+-   **Ir al diseño** (Gotodesign) : Cambiar el diseño que se muestra en todos
     navegadores por diseño solicitado.
 
--   **Agregar un registro** (registro) : Le permite agregar un mensaje a los registros.
+-   **Agregar un registro** (Log) : Le permite agregar un mensaje a los registros.
 
--   **Crear mensaje** (mensaje) : Agrega un mensaje en el centro
+-   **Crear mensaje** (Mensaje) : Agrega un mensaje en el centro
     de mensajes.
 
--   **Activar / Desactivar Ocultar / mostrar equipo** (equipo) : Permite
+-   **Activar / Desactivar Ocultar / mostrar equipo** (Equipo) : Permite
     modificar las propiedades de un dispositivo
     visible / invisible, activo / inactivo.
 
--   **Hacer una solicitud** (preguntar) : Le permite decirle a Jeedom que pregunte
+-   **Hacer una solicitud** (Ask) : Le permite decirle a Jeedom que pregunte
     una pregunta al usuario. La respuesta se almacena en un
     variable, luego simplemente pruebe su valor. Por el momento,
     solo sms y complementos de holgura son compatibles. Ten cuidado, esto
@@ -710,16 +710,16 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 -   **Devolver un texto / datos** (Scenario_return) : Devuelve un texto o un valor
     para una interacción por ejemplo.
 
--   **Icono** (icono) : Permite cambiar el ícono de representación del escenario.
+-   **Icono** (Icono) : Permite cambiar el ícono de representación del escenario.
 
--   **Alerte** (alerta) : Le permite mostrar un pequeño mensaje de alerta en todos
+-   **Alerte** (Alerta) : Le permite mostrar un pequeño mensaje de alerta en todos
     navegadores que tienen abierta una página de Jeedom. Usted puede
     más, elige 4 niveles de alerta.
 
--   **Pop-up** (ventana emergente) : Permite mostrar una ventana emergente que debe ser absolutamente
+-   **Pop-up** (Emergente) : Permite mostrar una ventana emergente que debe ser absolutamente
     validado en todos los navegadores que tienen una página abierta de libertad.
 
--   **Rapport** (informe) : Exportar una vista en formato (PDF, PNG, JPEG
+-   **Rapport** (Informe) : Exportar una vista en formato (PDF, PNG, JPEG
     o SVG) y enviarlo a través de un comando de tipo de mensaje.
     Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esto
     la funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado.
@@ -727,9 +727,9 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 -   **Eliminar bloque IN / A programado** (Remove_inat) : Le permite eliminar el
     programación de todos los bloques IN y A del escenario.
 
--   **Evento** (evento) : Le permite insertar un valor en un comando de tipo de información arbitrariamente
+-   **Evento** (Event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente
 
--   **Tag** (etiqueta) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)
+-   **Tag** (Tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)
 
 Plantilla de escenario
 ====================

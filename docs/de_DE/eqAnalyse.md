@@ -120,7 +120,7 @@ Und an vielen anderen Orten verwendet wie (nicht erschöpfend) :
 > **Tip**
 >
 > Die Tabelle bietet eine sehr textuelle Ansicht der Befehle
-> Waisenkinder. Ihr Zweck ist es, alle schnell identifizieren zu können
+> Waise. Ihr Zweck ist es, alle schnell identifizieren zu können
 > &quot;Orphan&quot; -Befehle über alle Jeedom und Plugins. Es ist
 > Einige Bereiche werden möglicherweise nicht analysiert, die Tabelle wird
 > im Laufe der Zeit immer erschöpfender sein.

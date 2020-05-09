@@ -6,19 +6,19 @@ Diese Bestellungen erhalten Sie von :
 -   SMS : Senden Sie eine SMS, um Befehle (Aktion) zu starten, oder fragen Sie a
     Frage (Info).
 
--   Cat : Telegramm, Slack usw..
+-   Katze : Telegramm, Slack usw..
 
--   Gesang : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. für
+-   Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. für
     Befehle starten (Aktion) oder eine Frage stellen (Info).
 
--   HTTP : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack)
+-   Http : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack)
     Befehle starten (Aktion) oder eine Frage stellen (Info).
 
 Das Interesse an Interaktionen liegt in der vereinfachten Integration in
 andere Systeme wie Smartphone, Tablet, andere Hausautomationsbox usw..
 
 Um auf die Interaktionsseite zuzugreifen, gehen Sie zu Extras →
-Interaktionen :
+Wechselwirkungen :
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 

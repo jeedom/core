@@ -75,7 +75,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt
 > durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Liens**, bis um
-> richtig.
+> Recht.
 
 > **Tip**
 >
@@ -103,7 +103,7 @@ Linien werden Ihnen vorgeschlagen :
 -   **Auf dem Handy verstecken** : Aktivieren Sie das Kontrollkästchen, wenn Sie nicht möchten
     Die Zusammenfassung wird angezeigt, wenn Sie sie von einem Mobiltelefon aus anzeigen.
 
-### Bestellungen 
+### Befehle 
 
 Jede Registerkarte repräsentiert einen in der Konfiguration definierten Zusammenfassungstyp
 von Jeedom. Klicken Sie auf **Bestellung hinzufügen** so dass es ist

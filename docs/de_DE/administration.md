@@ -77,7 +77,7 @@ Auf dieser Registerkarte befinden sich zwei Teile, die Experten vorbehalten sind
 
 > **Important**
 >
-> Seien Sie vorsichtig : Wenn Sie Jeedom mit einer dieser beiden Lösungen ändern,
+> VORSICHT : Wenn Sie Jeedom mit einer dieser beiden Lösungen ändern,
 > Der Support kann sich weigern, Ihnen zu helfen.
 
 -   **&gt;;\_SYSTEM** : Ermöglicht den Zugriff auf eine Schnittstelle
@@ -125,7 +125,7 @@ LDAP
 -   **REMOTE\_USER zulassen** : Aktivieren Sie REMOTE\_USER (wird in SSO verwendet
     zum Beispiel)
 
-Anmelden 
+Einloggen 
 ---------
 
 -   **Anzahl der tolerierten Fehler** : Legt die Anzahl der Versuche fest
@@ -264,7 +264,7 @@ keine Transparenz setzen, 1 lassen.0 .
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
-Bestellungen 
+Befehle 
 =========
 
 Viele Bestellungen können protokolliert werden. Also rein
@@ -272,7 +272,7 @@ Analyse → Verlauf erhalten Sie Diagramme, die ihre darstellen
 verwenden. Auf dieser Registerkarte können Sie globale Parameter für festlegen
 Bestellhistorie.
 
-Geschichte 
+Historisch 
 ----------
 
 -   **Widget-Statistiken anzeigen** : Anzeigen
@@ -323,7 +323,7 @@ Geschichte
 > [hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > für Details).
 
-Drücken Sie 
+Druck 
 ----
 
 **Globale Push-URL** : ermöglicht das Hinzufügen einer URL zum Aufrufen im Falle von
@@ -333,7 +333,7 @@ Befehlsname, **\.#cmd\._id\.#** für die eindeutige Kennung des
 commande, **\.#humanname\.#** für den vollständigen Namen der Bestellung (z :
 \.#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.#), `#eq_name#`für den Namen des Geräts
 
-Cache 
+Abdeckung 
 =====
 
 Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
@@ -352,7 +352,7 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
     Die Schnittstelle wird im Gegenzug schnell aktualisiert
     verbraucht mehr Ressourcen und kann daher Jeedom verlangsamen.
 
-Interaktionen 
+Wechselwirkungen 
 ============
 
 Auf dieser Registerkarte können Sie globale Parameter für festlegen
@@ -362,7 +362,7 @@ Interaktionen, die Sie unter Extras → Interaktionen finden.
 >
 > Um das Interaktionsprotokoll zu aktivieren, wechseln Sie zur Registerkarte
 > Administration → Konfiguration → Protokolle, dann kreuzen Sie an **Debug** in der Liste
-> von unten. Sei vorsichtig : Die Protokolle sind dann sehr ausführlich !
+> von unten. VORSICHT : Die Protokolle sind dann sehr ausführlich !
 
 General 
 -------
@@ -438,7 +438,7 @@ Automatische Interaktion, Kontext &amp; Warnung
 > Standardmäßig antwortet Jeedom Ihnen auf demselben Kanal wie Sie
 > pflegte ihn zu bitten, Sie zu benachrichtigen. Wenn er keinen findet
 > nicht, es wird dann der hier angegebene Standardbefehl verwendet
-> Registerkarte : **Standardrückgabebefehl**.
+> Tab : **Standardrückgabebefehl**.
 
 Hier sind die verschiedenen Optionen verfügbar :
 
@@ -470,7 +470,7 @@ Hier sind die verschiedenen Optionen verfügbar :
     wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
 
 -   **Synonym für Objekte** : Liste der Synonyme für Objekte
-    (z : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
+    (zB : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
     Ausrüstung.
@@ -500,7 +500,7 @@ Wörter rot / blau / schwarz… Um eine Farbe hinzuzufügen :
 
 -   Wählen Sie die zugehörige Farbe aus, indem Sie auf das Feld rechts klicken.
 
-Berichte 
+Verhältnis 
 ========
 
 Konfigurieren Sie die Erstellung und Verwaltung von Berichten
@@ -514,7 +514,7 @@ Konfigurieren Sie die Erstellung und Verwaltung von Berichten
     ein wenig Platz, also achten Sie darauf, nicht zu viel zu setzen
     Erhaltung).
 
-Links 
+Verbindungen 
 =====
 
 Linkgrafiken konfigurieren. Diese Links ermöglichen es Ihnen
@@ -537,7 +537,7 @@ Ausrüstung, Gegenstände usw..
 -   **Parameter des Prerenders** : Lasst uns auf das Layout einwirken
     des Graphen.
 
--   **Parameter rendern** : Gleiches.
+-   **Parameter rendern** : Idem.
 
 Zusammenfassungen 
 =======
@@ -579,7 +579,7 @@ Objekte :
 -   **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts erlaubt
     um die Zusammenfassung aus der Zeile zu löschen.
 
-Protokolle 
+Logs 
 ====
 
 Zeitleiste 
@@ -603,7 +603,7 @@ Beiträge
         - #message# : Nachricht in Frage
         - #plugin# : Plugin, das die Nachricht ausgelöst hat
 
-Warnungen 
+Benachrichtigungen 
 -------
 
 -   **Fügen Sie jedem Timeout eine Nachricht hinzu** : Fügen Sie eine Nachricht in die
@@ -638,7 +638,7 @@ Warnungen
 -   **Befehl zur Gefahr** : Befehl eingeben **message** zu verwenden, wenn
     Eine Bestellung wird in Alarmbereitschaft versetzt **danger**.
 
-Protokoll 
+Log 
 ---
 
 -   **Log Engine** : Ermöglicht das Ändern der Protokoll-Engine für, z
@@ -661,7 +661,7 @@ Nachfolgend finden Sie eine Tabelle zur Feinverwaltung
 logarithmische Ebene der wesentlichen Elemente von Jeedom sowie die von
 plugins.
 
-Ausrüstung 
+Einrichtungen 
 ===========
 
 -   **Anzahl der Fehler vor Deaktivierung des Geräts** : Nombre
@@ -714,7 +714,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 ### Markt 
 
 Eine Kaution, die verwendet wird, um Jeedom mit dem Markt zu verbinden, wird dringend empfohlen
-um dieses Repository zu verwenden. Sei vorsichtig : Jede Supportanfrage kann sein
+um dieses Repository zu verwenden. VORSICHT : Jede Supportanfrage kann sein
 abgelehnt, wenn Sie eine andere Einzahlung als diese verwenden.
 
 -   **Adresse** : Marktadresse.
@@ -788,7 +788,7 @@ eine Samba-Aktie (z : NAS-Synologie).
 > Bei der ersten Sicherung darf der Ordner keine Datei oder enthalten
 > Ordner).
 
-### URL 
+### URLs 
 
 -   **Jeedom-Kern-URL**
 

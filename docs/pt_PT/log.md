@@ -1,4 +1,4 @@
-Exibição 
+Visualizando 
 =========
 
 O menu Logs permite acompanhar o que está acontecendo na sua automação residencial. No

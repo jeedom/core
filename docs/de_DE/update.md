@@ -19,7 +19,7 @@ passiert, als Sie ein Update gestartet haben.
 Funktionen oben auf der Seite. 
 ---------------------------------
 
-Am oberen Rand der Tabelle befinden sich die Steuertasten. Jeedom steht auf
+Am oberen Rand der Tabelle befinden sich die Steuertasten. Jeedom se
 Stellen Sie regelmäßig eine Verbindung zum Markt her, um festzustellen, ob Aktualisierungen vorliegen
 verfügbar sind (das Datum der letzten Prüfung ist oben angegeben
 links von der Tabelle). Wenn Sie eine manuelle Überprüfung durchführen möchten,

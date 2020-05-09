@@ -10,7 +10,7 @@ Meu perfil
 ==========
 
 É aqui que você poderá ajustar diferentes parâmetros do seu
-perfil :
+Perfil :
 
 -   **Profil**
 

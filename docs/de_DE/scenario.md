@@ -44,7 +44,7 @@ untauglich.
 Stellen Sie die Maus wie auf vielen Jeedom-Seiten links von
 Auf dem Bildschirm wird ein Schnellzugriffsmenü angezeigt (von
 Ihr Profil können Sie jederzeit sichtbar lassen). Du kannst
-so **chercher** Ihr Szenario, aber auch in **ajouter** eins davon
+dann **chercher** Ihr Szenario, aber auch in **ajouter** eins davon
 menu.
 
 Szenario bearbeiten
@@ -125,14 +125,14 @@ unser Szenario :
 
 > **Tip**
 >
-> Sei vorsichtig : Sie können maximal 28 haben
+> Aufmerksamkeit : Sie können maximal 28 haben
 > Trigger / Programmierung für ein Szenario.
 
 Registerkarte &quot;Szenario&quot;
 ---------------
 
 Hier erstellen Sie Ihr Szenario. Wir müssen anfangen
-von **Fügen Sie einen Block hinzu**, mit dem Knopf rechts. Einmal ein Block
+durch **Fügen Sie einen Block hinzu**, mit dem Knopf rechts. Einmal ein Block
 erstellt, können Sie eine weitere hinzufügen **bloc** oder a **action**.
 
 > **Tip**
@@ -159,7 +159,7 @@ Hier sind die verschiedenen Arten von Blöcken verfügbar :
     Es ist also ein nicht blockierender Block.
 
 -   **A** : Ermöglicht es Jeedom, die Aktionen des Blocks bei a zu starten
-    gegebene Zeit (in der Form hhmm). Dieser Block ist nicht blockierend. Bsp :
+    gegebene Zeit (in der Form hhmm). Dieser Block ist nicht blockierend. Ex :
     0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
 
 -   **Code** : Ermöglicht das direkte Schreiben in PHP-Code (Anfrage
@@ -197,7 +197,7 @@ Wählen Sie ein zu testendes Element aus :
     Jeedom öffnet ein Fenster und fragt Sie, welchen Test Sie möchten
     darauf ausführen. Wenn Sie möchten **Setzen Sie nichts**,
     Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch
-    wähle **et** wo **ou** vor **Ensuite** zu Kettentests
+    wählen **et** oder **ou** Front **Ensuite** zu Kettentests
     auf verschiedenen Geräten.
 
 -   **Suchen Sie ein Szenario** : Suchen wir nach einem Szenario
@@ -228,19 +228,19 @@ Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche verwenden
 
 Bedienelemente (Sensoren und Aktoren):
 -   cmd::byString ($ string); : Gibt das entsprechende Befehlsobjekt zurück.
-  -   $string : Link zur gewünschten Bestellung : #[objund][equipement][commande]# (z : #[A.ppartement][A.larme][Aktiv]#)
+  -   $string : Link zur gewünschten Bestellung : #[objund][equipement][commande]# (zB : #[Bisppartement][Bislarme][Aktiva]#)
 -   cmd::BYID ($ id); : Gibt das entsprechende Befehlsobjekt zurück.
   -   $id : Bestellnummer
 -   $cmd->execCmd($options = null); : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
   -   $options : Optionen zur Ausführung des Befehls (möglicherweise Plugin-spezifisch), Basisoption (Befehlssubtyp) :
     -   Nachricht : $option = array('title' => 'titre du Nachricht , 'message' => 'Mon message');
     -   Farbe : $option = array('color' => 'couleur en hexadécimal');
-    -   Schieberegler : $option = array('slider' => 'valeur voulue de 0 à 100');
+    -   Schieber : $option = array('slider' => 'valeur voulue de 0 à 100');
 
-Protokoll :
+Log :
 -   log::add ( &#39;Dateiname&#39; &#39;Stufe&#39;, &#39;message&#39;);
   -   Dateiname : Name der Protokolldatei.
-  -   Niveau : [Debug], [Info], [Fehler], [Ereignis].
+  -   Ebene : [Debug], [Info], [Fehler], [Ereignis].
   -   Nachricht : Nachricht zum Schreiben in die Protokolle.
 
 Szenario :
@@ -271,7 +271,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen. In Ordnung :
 -   Eine Kiste **aktiviert** damit dieser Befehl berücksichtigt wird
     Konto im Szenario.
 
--   A. **vertikaler Doppelpfeil** um die Aktion zu verschieben. Einfach
+-   Ein **vertikaler Doppelpfeil** um die Aktion zu verschieben. Einfach
     von dort ziehen und ablegen.
 
 -   Eine Schaltfläche zum Löschen der Aktion.
@@ -293,7 +293,7 @@ Auslöser
 ----------------
 
 Es gibt bestimmte Auslöser (außer denen von
-Bestellungen) :
+Befehle) :
 
 -   #start# : ausgelöst beim (Wieder-) Start von Jeedom,
 
@@ -341,7 +341,7 @@ Vergleiche in Bedingungen :
     nicht ([Badezimmer] [Hydrometrie] [Zustand] stimmt mit "/ wet /" überein)),
 
 Sie können jeden Vergleich mit Operatoren kombinieren
-folgenden :
+folgende :
 
 -   &amp;&amp; / ET / und / AND / und : et,
 
@@ -386,7 +386,7 @@ kann die folgenden Tags verwenden :
 -   #timestamp# : Anzahl der Sekunden seit dem 1. Januar 1970,
 
 -   #date# : Tag und Monat. Achtung, die erste Zahl ist der Monat.
-    (z : 1215 für den 15. Dezember),
+    (zB : 1215 für den 15. Dezember),
 
 -   #semaine# : Wochennummer (z : 51),
 
@@ -588,11 +588,11 @@ diese verschiedenen Funktionen :
 | stateChanges (Fang, 1 Punkt)      | Rückgabe 1 : Der Stecker leuchtet während des Zeitraums einmal (auf 1 ändern)                              |
 | lastBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,Gestern, heute) | Gibt die zuletzt gestern aufgezeichnete Temperatur zurück.                    |
 | Variable (Plopp, 10)                  | Gibt den Wert der Variablen plop oder 10 zurück, wenn sie leer ist oder nicht existiert                         |
-| scenario(\.#[Salle de bain][Lumière][A.uto]\.#) | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
-| lastScenarioExecution(\.#[Salle de bain][Lumière][A.uto]\.#)   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
+| scenario(\.#[Salle de bain][Lumière][Bisuto]\.#) | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
+| lastScenarioExecution(\.#[Salle de bain][Lumière][Bisuto]\.#)   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
 | collectDate(\.#[Salle de bain][Hydrometrie][Humidité]\.#)     | Rückgabe 2015-01-01 17:45:12          |
 | valueDate(\.#[Salle de bain][Hydrometrie][Humidité]\.#) | Rückgabe 2015-01-01 17:50:12          |
-| eqEnable(\.#[A.ucun][Basilique]\.#)       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
+| eqEnable(\.#[Bisucun][Basilique]\.#)       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
 | Tag (Montag toto)                   | Gibt den Wert von "montag" zurück, falls vorhanden, andernfalls wird der Wert "toto" zurückgegeben"                               |
 | Name (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\.#)     | Gibt Hydrometrie zurück                  |
 
@@ -602,7 +602,7 @@ Mathematische Funktionen
 Eine generische Funktions-Toolbox kann ebenfalls verwendet werden
 Konvertierungen oder Berechnungen durchführen :
 
--   Rand (1.10) : Geben Sie eine Zufallszahl von 1 bis 10 an.
+-   rand (1.10) : Geben Sie eine Zufallszahl von 1 bis 10 an.
 
 -   randtext (text1, text2, Text ... ..) : Gibt einen von zurück
     Texte zufällig (Text durch einen trennen;). Es gibt keine
@@ -658,17 +658,17 @@ Und praktische Beispiele :
 | ungerade (3)                             | Rückgabe 1                            |
 | Median (15,25,20)                   | Rückgabe 20                           |
 | time_op (#time#, -90)               | Wenn es 16:50 Uhr ist, kehren Sie zurück : 1 650-1 130 = 1520                          |
-| formatTime (1650)                   | Rückgabe 16:50 Uhr                        |
-| Boden (130/60)                      | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
+| Formattime (1650)                   | Rückgabe 16:50 Uhr                        |
+| Stock (130/60)                      | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
 
 Spezifische Bestellungen
 =========================
 
 Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die folgenden Aktionen :
 
--   **Pause** (Schlaf) : Pause von x Sekunde (n).
+-   **Pause** (Sleep) : Pause von x Sekunde (n).
 
--   **variable** (variabel) : Erstellung / Änderung einer Variablen oder eines Wertes
+-   **variable** (Variabel) : Erstellung / Änderung einer Variablen oder eines Wertes
     einer Variablen.
 
 -   **Variable entfernen** (Delete_variable) : Ermöglicht das Löschen einer Variablen
@@ -679,24 +679,24 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
     Akzente und keine Sonderzeichen). Wir bekommen den Tag in der
     Zielszenario mit der Tag-Funktion (montag). Mit dem Befehl &quot;SI zurücksetzen&quot; können Sie den Status von &quot;SI&quot; zurücksetzen (dieser Status wird verwendet, um die Aktionen eines &quot;SI&quot; nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben).
 
--   **Stop** (Halt) : Stoppen Sie das Szenario.
+-   **Stop** (Stop) : Stoppen Sie das Szenario.
 
--   **Attendre** (warte) : Warten Sie, bis die Bedingung gültig ist
+-   **Attendre** (WAIT) : Warten Sie, bis die Bedingung gültig ist
     (maximal 2h), Timeout ist in Sekunde (n).
 
--   **Gehe zum Design** (gotodesign) : Ändern Sie das auf allen angezeigte Design
+-   **Gehe zum Design** (Gotodesign) : Ändern Sie das auf allen angezeigte Design
     Browser nach gewünschtem Design.
 
--   **Fügen Sie ein Protokoll hinzu** (Protokoll) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
+-   **Fügen Sie ein Protokoll hinzu** (Log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
 
--   **Nachricht erstellen** (Nachricht) : Fügen Sie eine Nachricht in der Mitte hinzu
+-   **Nachricht erstellen** (Message) : Fügen Sie eine Nachricht in der Mitte hinzu
     von Nachrichten.
 
--   **Geräte ausblenden / deaktivieren** (Ausrüstung) : Ermöglicht
+-   **Geräte ausblenden / deaktivieren** (Ausstattung) : Ermöglicht
     Ändern Sie die Eigenschaften eines Geräts
     sichtbar / unsichtbar, aktiv / inaktiv.
 
--   **Stellen Sie eine Anfrage** (fragen) : Ermöglicht es Ihnen, Jeedom zu bitten, zu fragen
+-   **Stellen Sie eine Anfrage** (Ask) : Ermöglicht es Ihnen, Jeedom zu bitten, zu fragen
     eine Frage an den Benutzer. Die Antwort wird in a gespeichert
     Variable, dann testen Sie einfach ihren Wert. Für den Moment,
     Nur SMS und Slack Plugins sind kompatibel. Sei vorsichtig, das
@@ -712,7 +712,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 
 -   **Symbol** (Symbol) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
 
--   **Alerte** (Alarm) : Ermöglicht das Anzeigen einer kleinen Warnmeldung für alle
+-   **Alerte** (Alert) : Ermöglicht das Anzeigen einer kleinen Warnmeldung für alle
     Browser mit geöffneter Jeedom-Seite. Du kannst
     Wählen Sie 4 Alarmstufen.
 
@@ -727,7 +727,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 -   **Programmierten IN / A-Block löschen** (Remove_inat) : Ermöglicht das Löschen der
     Programmierung aller Blöcke IN und A des Szenarios.
 
--   **Ereignis** (Veranstaltung) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information
+-   **Ereignis** (Ereignis) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information
 
 -   **Tag** (Tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
 

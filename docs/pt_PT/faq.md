@@ -70,7 +70,7 @@ basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/pt_PT/mis
 Como se conectar no SSH ?
 =============================
 
-Aqui está um [documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
+Aqui está um [Documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
 
 - Nome de usuário : "root ", senha : "Mjeedom96"
 - Nome de usuário : "jeedom ", senha : "Mjeedom96"
@@ -179,7 +179,7 @@ Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via S
 
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
 Se persistir após uma reinstalação, é aconselhável
-consulte o serviço pós-venda para obter informações sobre problemas de hardware. Aqui está o [documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
+consulte o serviço pós-venda para obter informações sobre problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
 
 Meu cenário não para mais 
 =================================

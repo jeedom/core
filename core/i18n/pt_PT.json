@@ -286,7 +286,7 @@
         "SQL": "SQL",
         "Action": "Ação",
         "Corriger": "Correto",
-        "Etes-vous sûr de vouloir corriger la table ": "Tem certeza de que deseja corrigir a tabela",
+        "Etes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
         "Vérification base de données": "Verificação de banco de dados"
     },
     "desktop\/modal\/eqLogic.displayWidget.php": {
@@ -1261,7 +1261,7 @@
         "Installer mon Backup": "Instalar meu backup",
         "Informations Importantes": "Informações importantes",
         "- Il vous faut une clé USB de plus de 8Go.": "- Você precisa de uma chave USB com mais de 8 GB.",
-        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Você deve estar na mesma rede local que o seu Jeedom.",
+        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom.",
         "- Accéder à votre Jeedom depuis sont adresse interne.": "- Acesse seu Jeedom a partir do endereço interno.",
         "- Pouvoir laisser cette page ouverte au minimum 1h30.": "- Para poder deixar esta página aberta pelo menos 1h30.",
         "C'est Partie": "Se foi"
@@ -2040,7 +2040,7 @@
     },
     "desktop\/js\/editor.js": {
         "Fichier enregistré avec succès": "Arquivo salvo com sucesso",
-        "Etes-vous sûr de vouloir supprimer ce fichier : ": "Tem certeza de que deseja excluir este arquivo:"
+        "Etes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier : "
     },
     "desktop\/js\/plugin.js": {
         "Synchronisation réussi. Nombre de plugins installé : ": "Sincronização bem sucedida. Número de plugins instalados:",
@@ -2149,7 +2149,7 @@
         "Configuration de l'équipement": "Configuração de equipamento",
         "Configuration de l'objet": "Configuração do objeto",
         "Configuration de la commande": "Set Controle",
-        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Tem certeza de que deseja excluir todo este equipamento?",
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
         "Historique des suppressions": "Histórico de exclusão"
     },
     "desktop\/js\/cron.js": {
@@ -2266,7 +2266,7 @@
         "Merci": "Obrigada",
         "Clé USB vérifié passage à l\\'étape 2 en cours": "Chave USB marcada na etapa 2 em andamento",
         "Début de la restauration du backup !": "Início da restauração de backup!",
-        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Cópia de segurança concluída, cópia em andamento na chave USB, não a desconecte ...",
+        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...",
         "test de l\\'image": "teste de imagem",
         "Mise à jour de votre Jeedom réussi": "Atualizando seu Jeedom com sucesso",
         "L\\'opération a échoué": "Operação de L \\ 'falhou",
@@ -2359,7 +2359,7 @@
         "Résumé Objets": "Objetos de resumo"
     },
     "desktop\/js\/system.js": {
-        "Etes-vous sûr de vouloir exécuter cette commande : ": "Tem certeza de que deseja executar este comando:",
+        "Etes-vous sûr de vouloir exécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
         "Celle-ci est classée en dangereuse": "É classificado como perigoso",
         "Commande : ": "Comando:",
         "Remise à plat des droits fait avec succès": "Dever aplainar com sucesso",
@@ -2367,15 +2367,15 @@
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Backup bem-sucedido",
-        "Etes-vous sûr de vouloir faire une sauvegarde de": "Tem certeza de que deseja fazer um backup de",
+        "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Uma vez iniciada, esta operação não pode ser cancelada.",
-        "Etes-vous sûr de vouloir restaurer": "Tem certeza de que deseja restaurar",
+        "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
         "avec la sauvegarde": "com backup",
         "Une fois lancée cette opération ne peut être annulée.": "Uma vez iniciada, esta operação não pode ser cancelada.",
         "Etes-vous sûr de vouloir supprimer la sauvegarde": "Tem certeza de que deseja apagar o backup",
         "Sauvegarde supprimée avec succès": "De backup removido com sucesso",
         "Fichier(s) ajouté(s) avec succès": "Arquivo (s) adicionado (s) com sucesso",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Tem certeza de que deseja enviar um backup de",
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "na nuvem? Uma vez iniciada, esta operação não pode ser cancelada.",
         "avec la sauvegarde Cloud": "com backup na nuvem",
         "Une fois lancée cette opération ne peut être annulée": "Uma vez lançado esta operação não pode ser cancelada",
@@ -2498,7 +2498,7 @@
     },
     "core\/js\/cmd.class.js": {
         "Veuillez indiquer le code ?": "Por favor, indicar o código?",
-        "Etes-vous sûr de vouloir faire cette action ?": "Tem certeza de que deseja executar esta ação?",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "Resultado do comando:",
         "Action exécutée avec succès": "Ação concluída com êxito",
         "[Jeedom] Message de test": "[Jeedom] mensagem de teste",
@@ -2700,7 +2700,7 @@
         "Aucun plan correspondant": "Nenhum plano correspondente",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
         "Plan header inconnu. Vérifiez l\\'ID ": "Plano de cabeçalho desconhecido. Verifique o ID",
-        "Code d\\'acces invalide": "Código de acesso inválido",
+        "Code d\\'acces invalide": "Code d\\'acces invalide",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo 5GB)",
         "Impossible de sauvegarder l\\'image": "Não foi possível salvar a imagem",
@@ -2747,9 +2747,9 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucun plan3d correspondant": "Nenhum plano 3D correspondente",
-        "Objet inconnu verifiez l\\'id": "ID de verificação de objeto desconhecido",
-        "plan3d header inconnu verifiez l\\'id : ": "ID de verificação de cabeçalho desconhecido do plan3d:",
-        "Code d\\'acces invalide": "Código de acesso inválido",
+        "Objet inconnu verifiez l\\'id": "Objet inconnu verifiez l\\'id",
+        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
+        "Code d\\'acces invalide": "Code d\\'acces invalide",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Le fichier est trop gros (maximum 150Mo)": "O arquivo é muito grande (máximo de 150 MB)",
@@ -2927,7 +2927,7 @@
         "Le type de la commande ne peut pas être vide :": "O tipo do comando não pode estar vazio:",
         "Le sous-type de la commande ne peut pas être vide :": "O subtipo de comando não pode estar vazio:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Você não pode criar um pedido sem anexá-lo a um dispositivo",
-        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "O valor mínimo do pedido não pode ser maior que o valor máximo",
+        "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
         "Erreur lors de l\\'exécution de ": "Erro ao executar",
         ". Sur preExec de la commande": ". No preExec do pedido",
         ". Détails : ": ". Detalhes:",
@@ -2981,7 +2981,7 @@
         "Erreur I\/O": "Erro de E \/ S",
         "Il y a des erreurs disque, cela peut indiquer un soucis avec le disque ou un problème d\\'alimentation": "Há erros no disco, isso pode indicar um problema no disco ou um problema de energia",
         "Swap disponible": "Troca disponível",
-        "Le swap libre n\\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go": "A troca livre não é suficiente ou há menos de 2 GB de memória no sistema e uma troca menor que 1 GB",
+        "Le swap libre n\\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go": "Le swap libre n\\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go",
         "Inconnue": "Desconhecido",
         "Swapiness": "Swapiness",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Para um desempenho ideal, a permutação não deve exceder 20% se você tiver 1 GB ou menos de memória",
@@ -3137,7 +3137,7 @@
         "Scénario exécuté automatiquement sur événement venant de : ": "Cenário executado automaticamente em caso de:",
         "Scénario exécuté sur événement : #": "Cenário executado no evento #",
         "Scénario exécuté automatiquement sur programmation": "Cenário executado automaticamente no programa",
-        "Arret du scénario car il a dépassé son temps de timeout : ": "Parada do cenário porque excedeu o tempo limite:",
+        "Arret du scénario car il a dépassé son temps de timeout : ": "Arret du scénario car il a dépassé son temps de timeout : ",
         "Scénario désactivé non lancement de la sous tâche": "Off cenário não lançar no âmbito da tarefa",
         "************Lancement sous tâche**************": "************ ************** A partir de tarefa",
         "Tags : ": "Tags:",
@@ -3249,7 +3249,7 @@
         "Commande introuvable - Vérifiez l\\'id : ": "Pedido não encontrado - Verifique o ID:",
         "Demande ": "Aplicação",
         "Aucune réponse": "Sem resposta",
-        "Réponse ": "Resposta",
+        "Réponse ": "Réponse ",
         "Lancement de l\\'arret de jeedom": "Lançamento do julgamento Jeedom",
         "Lancement du reboot de jeedom": "Reinicialização do Jeedom lançada",
         "Demande de retour d\\'information : ": "Pedido de feedback:",
@@ -3328,7 +3328,7 @@
         "Les crons et démons sont désactivés": "Os cron e demônios estão desativados",
         "Jeedom n\\'est pas encore démarré": "Jeedom ainda não foi iniciado",
         "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement :",
-        "Attention je pense qu\\'il y a un soucis avec le démon que j\\'ai relancé plus de 3 fois consecutivement": "Observe que acho que há um problema com o demônio que eu levantei mais de 3 vezes consecutivas",
+        "Attention je pense qu\\'il y a un soucis avec le démon que j\\'ai relancé plus de 3 fois consecutivement": "Attention je pense qu\\'il y a un soucis avec le démon que j\\'ai relancé plus de 3 fois consecutivement",
         "Erreur sur la fonction deamon_start du plugin : ": "Erro na função deamon_start do plugin:",
         "Erreur sur la fonction deamon_stop du plugin : ": "Erro na função deamon_stop do plug-in:",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "Sua versão do Jeedom não é recente o suficiente para ativar este plugin",

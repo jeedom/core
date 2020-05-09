@@ -1,4 +1,4 @@
-Anzeige 
+Anzeigen 
 =========
 
 Über das Menü Protokolle können Sie verfolgen, was in Ihrer Hausautomation passiert. In der

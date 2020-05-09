@@ -44,7 +44,7 @@ desabilitado.
 Como em muitas páginas Jeedom, coloque o mouse à esquerda de
 a tela exibe um menu de acesso rápido (de
 seu perfil, você sempre pode deixá-lo visível). Você pode
-tão **chercher** seu cenário, mas também em **ajouter** um por isso
+ENTÃO **chercher** seu cenário, mas também em **ajouter** um por isso
 menu.
 
 Editando um Cenário
@@ -125,7 +125,7 @@ nosso cenário :
 
 > **Tip**
 >
-> Tenha cuidado : você pode ter no máximo 28
+> Atenção : você pode ter no máximo 28
 > gatilhos / programação para um cenário.
 
 Guia Cenário
@@ -197,7 +197,7 @@ selecione um item para testar :
     Jeedom abre uma janela para perguntar qual teste você deseja
     executar nele. Se você escolher **Não ponha nada**,
     Jeedom adicionará o pedido sem comparação. Você também pode
-    escolher **et** onde **ou** na frente **Ensuite** para encadear testes
+    Escolher **et** onde **ou** Na frente **Ensuite** para encadear testes
     em equipamentos diferentes.
 
 -   **Pesquisa cenário** : Permite procurar um cenário
@@ -228,12 +228,12 @@ Depois de concluída a condição, você deve usar o botão
 
 Controles (sensores e atuadores):
 -   cmd::byString ($ string); : Retorna o objeto de comando correspondente.
-  -   $string : Link para o pedido desejado : #[obje][equipement][commande]# (ex : #[Umppartement][Umlarme][Ativo]#)
+  -   $string : Link para o pedido desejado : #[obje][equipement][commande]# (ex : #[àppartement][àlarme][Ativos]#)
 -   cmd::byId ($ id); : Retorna o objeto de comando correspondente.
   -   $id : ID do pedido
 -   $cmd->execCmd($options = null); : Execute o comando e retorne o resultado.
   -   $options : Opções para executar o comando (pode ser específico do plugin), opção básica (subtipo de comando) :
-    -   mensagem : $option = array('title' => 'titre du mensagem , 'message' => 'Mon message');
+    -   Mensagem : $option = array('title' => 'titre du Mensagem , 'message' => 'Mon message');
     -   cor : $option = array('color' => 'couleur en hexadécimal');
     -   controle deslizante : $option = array('slider' => 'valeur voulue de 0 à 100');
 
@@ -241,7 +241,7 @@ Log :
 -   log::add ('nome do arquivo', 'nível', 'mensagem');
   -   filename : Nome do arquivo de log.
   -   nível : [depuração], [informações], [erro], [evento].
-  -   mensagem : Mensagem para escrever nos logs.
+  -   Mensagem : Mensagem para escrever nos logs.
 
 Cenas :
 -   $scenario->getName(); : Retorna o nome do cenário atual.
@@ -293,7 +293,7 @@ Triggers
 ----------------
 
 Existem gatilhos específicos (além dos fornecidos pelo
-pedidos) :
+Pedidos) :
 
 -   #start# : Acionado no (re) início do Jeedom,
 
@@ -547,7 +547,7 @@ Várias funções estão disponíveis para o equipamento :
 Os períodos e intervalos dessas funções também podem
 use com [expressões
 PHP](http://php.net/manual/fr/datetime.formats.relative.php) comme par
-exemplo :
+Exemplo :
 
 -   Agora : maintenant
 
@@ -588,11 +588,11 @@ essas diferentes funções :
 | stateChanges (take, 1, period)      | Retorna 1 : o plugue está aceso (mude para 1) uma vez durante o período                              |
 | lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Ontem, hoje) | Retorna a última temperatura registrada ontem.                    |
 | variável (plop, 10)                  | Retorna o valor da variável plop ou 10 se estiver vazia ou não existir                         |
-| scenario(\#[Salle de bain][Lumière][Umuto]\#) | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
-| lastScenarioExecution(\#[Salle de bain][Lumière][Umuto]\#)   | Retorna 300 se o cenário foi iniciado pela última vez há 5 minutos                                  |
+| scenario(\#[Salle de bain][Lumière][àuto]\#) | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
+| lastScenarioExecution(\#[Salle de bain][Lumière][àuto]\#)   | Retorna 300 se o cenário foi iniciado pela última vez há 5 minutos                                  |
 | collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devoluções 01-01-2015 17:45:12          |
 | valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devoluções 01-01-2015 17:50:12          |
-| eqEnable(\#[Umucun][Basilique]\#)       | Retorna -2 se o equipamento não for encontrado, 1 se o equipamento estiver ativo e 0 se estiver inativo          |
+| eqEnable(\#[àucun][Basilique]\#)       | Retorna -2 se o equipamento não for encontrado, 1 se o equipamento estiver ativo e 0 se estiver inativo          |
 | tag (montag, toto)                   | Retorna o valor de "montag" se existir, caso contrário, retorna o valor "para"                               |
 | nome (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Retorna Hidrometria                  |
 

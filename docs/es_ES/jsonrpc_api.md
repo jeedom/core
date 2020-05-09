@@ -135,7 +135,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   int padre\_id = nulo
+-   int father\_id = null
 
 -   int isVisible = 0
 

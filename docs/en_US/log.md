@@ -1,4 +1,4 @@
-Display 
+Viewing 
 =========
 
 The Logs menu allows you to follow what is happening on your home automation. In the

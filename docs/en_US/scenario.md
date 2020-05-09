@@ -132,7 +132,7 @@ Scenario tab
 ---------------
 
 This is where you will build your scenario. We must start
-by **add a block**, with the button on the right. Once a block
+through **add a block**, with the button on the right. Once a block
 created, you can add another **bloc** or a **action**.
 
 > **Tip**
@@ -233,7 +233,7 @@ Controls (sensors and actuators):
   -   $id : Order ID
 -   $cmd->execCmd($options = null); : Execute the command and return the result.
   -   $options : Options for executing the command (may be plugin specific), basic option (command subtype) :
-    -   message : $option = array('title' => 'titre du message , 'message' => 'Mon message');
+    -   Message : $option = array('title' => 'titre du Message , 'message' => 'Mon message');
     -   color : $option = array('color' => 'couleur en hexadécimal');
     -   slider : $option = array('slider' => 'valeur voulue de 0 à 100');
 
@@ -241,7 +241,7 @@ Log :
 -   log::add ( &#39;filename&#39; &#39;level&#39;, &#39;message&#39;);
   -   filename : Log file name.
   -   level : [debug], [info], [error], [event].
-  -   message : Message to write in the logs.
+  -   Message : Message to write in the logs.
 
 Scenario :
 -   $scenario->getName(); : Returns the name of the current scenario.
@@ -365,10 +365,10 @@ can use the following tags :
     08:07:06),
 
 -   #heure# : Current time in 24h format (without leading zeros,
-    ex : 8 for 08:07:06 or 17 for 17:15),
+    Ex : 8 for 08:07:06 or 17 for 17:15),
 
 -   #heure12# : Current time in 12-hour format (without leading zeros,
-    ex : 8 for 08:07:06),
+    Ex : 8 for 08:07:06),
 
 -   #minute# : Current minute (without leading zeros, ex : 7 for
     08:07:06),
@@ -560,7 +560,7 @@ example :
 
 -   Yesterday noon : yesterday afternoon
 
--   Etc.
+-   Etc..
 
 Here are practical examples to understand the values returned by
 these different functions :
@@ -651,7 +651,7 @@ And practical examples :
 | Example of function                  | Returned result                    |
 |--------------------------------------|--------------------------------------|
 | randText (it does #[salon][oeil][température]#; The temperature is #[salon][oeil][température]#; Currently we have #[salon][oeil][température]#) | the function will return one of these texts randomly at each execution.                           |
-| randomColor (40.60)                 | Returns a random color close to green.   
+| randomColor (40,60)                 | Returns a random color close to green.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 if that's good \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# who started the scenario otherwise 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 if the hydrometry of \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# is 80%.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Returns 9 if the humidity percentage and 85                     |
@@ -666,7 +666,7 @@ Specific orders
 
 In addition to home automation commands, you have access to the following actions :
 
--   **Pause** (sleep) : Pause of x second (s).
+-   **Pause** (Sleep) : Pause of x second (s).
 
 -   **variable** (variable) : Creation / modification of a variable or value
     of a variable.
@@ -681,13 +681,13 @@ In addition to home automation commands, you have access to the following action
 
 -   **Stop** (stop) : Stop the scenario.
 
--   **Attendre** (wait) : Wait until the condition is valid
+-   **Attendre** (Wait) : Wait until the condition is valid
     (maximum 2h), timeout is in second (s).
 
--   **Go to design** (gotodesign) : Change the design displayed on all
+-   **Go to design** (Gotodesign) : Change the design displayed on all
     browsers by requested design.
 
--   **Add a log** (log) : Allows you to add a message to the logs.
+-   **Add a log** (Log) : Allows you to add a message to the logs.
 
 -   **Create message** (message) : Add a message in the center
     of messages.
@@ -696,7 +696,7 @@ In addition to home automation commands, you have access to the following action
     modify the properties of a device
     visible / invisible, active / inactive.
 
--   **To make a request** (ask) : Allows you to tell Jeedom to ask
+-   **To make a request** (Ask) : Allows you to tell Jeedom to ask
     a question to the user. The answer is stored in a
     variable, then just test its value. For the time being,
     only sms and slack plugins are compatible. Be careful, this
@@ -710,16 +710,16 @@ In addition to home automation commands, you have access to the following action
 -   **Return a text / data** (Scenario_return) : Returns a text or a value
     for an interaction for example.
 
--   **Icon** (icon) : Allows to change the icon of representation of the scenario.
+-   **Icon** (Icon) : Allows to change the icon of representation of the scenario.
 
--   **Alerte** (alert) : Allows you to display a small alert message on all
+-   **Alerte** (Alert) : Allows you to display a small alert message on all
     browsers that have a Jeedom page open. You can
     more, choose 4 alert levels.
 
--   **Pop-up** (popup) : Allows to display a pop-up which must absolutely be
+-   **Pop-up** (Popup) : Allows to display a pop-up which must absolutely be
     validated on all browsers that have a jeedom page open.
 
--   **Rapport** (report) : Export a view in format (PDF, PNG, JPEG
+-   **Rapport** (Report) : Export a view in format (PDF, PNG, JPEG
     or SVG) and send it through a message type command.
     Please note, if your Internet access is in unsigned HTTPS, this
     functionality will not work. Signed HTTP or HTTPS is required.
@@ -727,9 +727,9 @@ In addition to home automation commands, you have access to the following action
 -   **Delete programmed IN / A block** (Remove_inat) : Allows you to delete the
     programming of all blocks IN and A of the scenario.
 
--   **Event** (event) : Allows you to push a value in an information type command arbitrarily
+-   **Event** (Event) : Allows you to push a value in an information type command arbitrarily
 
--   **Tag** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario)
+-   **Tag** (Tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario)
 
 Scenario template
 ====================

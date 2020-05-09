@@ -120,7 +120,7 @@ And used in many other places like (not exhaustive) :
 > **Tip**
 >
 > The table provides a very textual view of the commands
-> orphans. Its purpose is to be able to quickly identify all the
+> orphan. Its purpose is to be able to quickly identify all the
 > &quot;orphan&quot; commands through all Jeedom and plugins. It is
 > some areas may not be analyzed, the table will be
 > be more and more exhaustive over time.
