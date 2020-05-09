@@ -10,7 +10,7 @@ foreach ($objects as $object) {
 sendVarToJS('__objectList', $objectLists);
 ?>
 <div id="div_alertScenarioSearch"></div>
-
+<a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
 	<br/>
@@ -657,5 +657,19 @@ $('#table_NoteSearch').delegate('.bt_openNote', 'click', function () {
 	var url = 'index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=Notes&id='+tr.attr('data-id')
 	window.open(url).focus()
 })
+
+/* Help button */
+  $('#bt_getHelpModal').on('click',function(){
+    jeedom.getDocumentationUrl({
+      page: 'search',
+      theme: $('body').attr('data-theme'),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function(url) {
+        window.open(url,'_blank');
+      }
+    });
+  });
 
 </script>
