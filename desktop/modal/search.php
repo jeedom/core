@@ -35,7 +35,8 @@ sendVarToJS('__objectList', $objectLists);
 
 	<br/>
 	<div id="searchByTypes" class="form-group">
-		<div class="col-lg-2"></div>
+		<label class="col-lg-2 control-label">{{Rechercher}}</label>
+
 		<div class="col-lg-4 searchType" data-searchType="plugin" data-tableFilter="1111110" style="display: none;">
 			<select id="in_searchFor_plugin" class="form-control">
 				<?php
@@ -85,6 +86,7 @@ sendVarToJS('__objectList', $objectLists);
 <br/>
 <!-- Results UI -->
 <div class="form-horizontal">
+	<legend><i class="fas fa-search"></i> {{Résultats}}</legend>
 	<div>
 		<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
