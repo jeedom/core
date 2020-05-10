@@ -57,7 +57,7 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
 	'3rdparty/waves/waves.min.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
-	'3rdparty/font-awesome5/css/fontawesome-all.min.css',
+	'3rdparty/font-awesome5/css/all.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
 	'core/img/logo-jeedom-sans-nom-couleur-25x25.png',
@@ -75,7 +75,7 @@ $other_file = array(
 	'3rdparty/roboto/Roboto-ThinItalic.ttf',
 	'3rdparty/roboto/roboto.css',
 	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Medium-webfont.woff',
-	
+
 );
 if (file_exists(__DIR__ . '/mobile/custom/custom.css')) {
 	$other_file[] = 'mobile/custom/custom.css';
