@@ -1,13 +1,13 @@
-# Histórico
+# Historique
 **Análise → História**
 
 Parte importante no software : a parte da historização, uma lembrança verdadeira. É possível no Jeedom registrar qualquer comando do tipo de informação (binário ou digital). Isso permitirá, por exemplo, registrar uma curva de temperatura, consumo ou abertura de porta, etc.
 
-### Princípio
+### Principe
 
 Aqui é descrito o princípio de historicização de Jeedom. Você só precisa entender isso se estiver com problemas de histórico ou quiser alterar as configurações de histórico.. As configurações padrão são boas na maioria dos casos.
 
-### Arquivamento
+### Archivage
 
 O arquivamento de dados permite que o Jeedom reduza a quantidade de dados armazenados na memória. Isso permite não usar muito espaço e não diminui a velocidade do sistema. De fato, se você mantiver todas as medidas, isso fará com que mais pontos sejam exibidos e, portanto, poderá aumentar consideravelmente os tempos para renderizar um gráfico. Se houver muitos pontos, pode até causar uma falha na exibição do gráfico.
 
@@ -70,7 +70,7 @@ A página de histórico fornece acesso a algumas opções adicionais
 
 Permite exibir uma curva de acordo com um cálculo em vários comandos (você pode fazer quase tudo, + - / \* valor absoluto ... consulte a documentação do PHP para determinadas funções).
 Ex :
-abs (* \ [Jardim \] \ [Higrometria \] \ [Temperatura \] * - * \ [Espaço vital]] [[Higrometria \] \ [Temperatura \] *)
+abs(*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço vital]] [Higrometria \] \ [Temperatura \]*)
 
 Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite salvá-las para facilitar a exibição novamente.
 
@@ -98,8 +98,8 @@ Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo dos co
 - **Scenario** : Diretamente na página do cenário ou na página de resumo do cenário para fazê-lo em massa".
 - **Commande** : Na configuração avançada do comando ou na configuração do histórico para fazê-lo em "massa".
 
-A linha do tempo * Principal * sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo pela pasta **. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
-Você pode filtrar a linha do tempo por essa pasta, selecionando-a à esquerda do botão * Atualizar.*.
+A linha do tempo *Principal* sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo *dossier*. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
+Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do botão *Rafraichir*.
 
 > **Note**
 >
@@ -115,7 +115,7 @@ Depois de ativar o rastreamento na linha do tempo dos comandos e cenários desej
 >
 > Você precisa aguardar novos eventos após ativar o rastreamento na linha do tempo antes de vê-los aparecer.
 
-### Visualizando
+### Affichage
 
 A linha do tempo exibe os eventos gravados, escalonados dia a dia verticalmente.
 

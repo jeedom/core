@@ -1,4 +1,4 @@
-# Salpicadero
+# Dashboard
 **Inicio → Tablero**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -30,7 +30,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 > Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
 
 - Tienes en la parte superior izquierda un pequeño icono para mostrar / ocultar el árbol de objetos.
-- El segundo icono a la izquierda permite mostrar solo la información de los resúmenes de los objetos..
+- El segundo ícono a la izquierda le permite filtrar el equipo que se muestra según su categoría. Un clic central permite seleccionar rápidamente una sola categoría.
 - En el medio, un campo de búsqueda le permite buscar equipos por nombre, categoría, complemento, etiqueta, etc..
 - A la derecha, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic - soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
 
@@ -38,7 +38,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
 - Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
-- Un clic en la información * hora * de un comando de acción muestra el historial del comando (si está registrado).
+- Un clic en la información *time* de un comando de acción muestra el historial del comando (si está historizado).
 
 > **Tip**
 >
@@ -51,7 +51,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 ## Modo de edición
 
-En el modo de edición (* el lápiz en la esquina superior derecha *), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
+En modo de edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Panel de control.
 
 También puede editar el diseño interno de los controles en el mosaico :
 

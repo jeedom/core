@@ -1,4 +1,4 @@
-# Diseño
+# Design
 **Inicio → Diseño**
 
 Esta página le permite configurar la visualización de toda su domótica de una manera muy fina.
@@ -77,19 +77,19 @@ Encontrado aquí :
 - **Ancho (px)** : Ancho del elemento en píxeles.
 - **Altura (px)** : Altura del elemento en píxeles.
 
-### Remove
+### Supprimer
 
 Eliminar elemento
 
-### Duplicado
+### Dupliquer
 
 Le permite duplicar el elemento.
 
-### Cerradura
+### Verrouiller
 
 Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tamaño.
 
-## Gráfico
+## Graphique
 
 ### Configuraciones de pantalla específicas
 
@@ -127,11 +127,11 @@ Le permite elegir los comandos para graficar.
 
 *No hay configuraciones de visualización específicas*
 
-## Enlace
+## Lien
 
 ### Configuraciones de pantalla específicas
 
-- **Nom** : Apellidobre del enlace (texto mostrado).
+- **Nom** : Nombre del enlace (texto mostrado).
 - **Lien** : Enlace al diseño o vista en cuestión.
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
@@ -141,7 +141,7 @@ Le permite elegir los comandos para graficar.
 - **Alineación de texto** : Permite elegir la alineación del texto (izquierda / derecha / centrado).
 - **Gras** : Texto en negrita.
 
-## Equipo
+## Equipement
 
 ### Configuraciones de pantalla específicas
 
@@ -155,7 +155,7 @@ Le permite elegir los comandos para graficar.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
 - **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
 
-### Comandos
+### Commandes
 
 La lista de comandos presentes en el equipo le permite, para cada comando,:
 - Ocultar nombre del comando.
@@ -166,7 +166,7 @@ La lista de comandos presentes en el equipo le permite, para cada comando,:
 
 Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-## Orden
+## Commande
 
 *No hay configuraciones de visualización específicas*
 
@@ -174,7 +174,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-## Imagenn / Cámara
+## Imagen / Cámara
 
 ### Configuraciones de pantalla específicas
 
@@ -182,11 +182,11 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 - **Image** : Le permite enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
-## Zona
+## Zone
 
 ### Configuraciones de pantalla específicas
 
-- **Tipo de area** : Aquí es donde eliges el tipo de área : Macro individual, macro binaria o widget al pasar el mouse.
+- **Tipo de area** : Aquí es donde eliges el tipo de área : Macro simple, macro binaria o widget al pasar el mouse.
 
 ### Macro individual
 
@@ -221,10 +221,10 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Gras** : Texto en negrita.
 
-## Preguntas frecuentes
+## FAQ
 
 >**Ya no puedo editar mi diseño**
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
 >**Eliminar un diseño que ya no funciona**
->En la parte de administración, luego OS / DB, haga &quot;select * from planHeader&quot;, recupere la identificación del diseño en cuestión y haga una &quot;eliminación de planHeader donde id = # TODO #&quot; y &quot;delete from plan where planHeader_id = # todo # &quot;reemplazando # TODO # con la identificación de diseño encontrada previamente.
+>En la parte de administración, luego OS / DB, haga "select * from planHeader", recupere la identificación del diseño en cuestión y haga una "eliminación de planHeader donde id=#TODO#" y "eliminar del plan donde planHeader_id=#todo#" reemplazando bien #TODO# por la identificación de diseño encontrada previamente.

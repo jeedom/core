@@ -1,13 +1,13 @@
-# Histórico
+# Historique
 **Análisis → Historia**
 
 Parte importante en el software : la parte de la historización, un verdadero recuerdo de ella. En Jeedom es posible registrar cualquier comando de tipo de información (binario o digital). Esto le permitirá, por ejemplo, registrar una temperatura, consumo o curva de apertura de puerta, etc.
 
-### Principio
+### Principe
 
 Aquí se describe el principio de historización de Jeedom. Solo necesita comprender esto si tiene problemas de historización o si desea cambiar la configuración de historización.. La configuración predeterminada está bien en la mayoría de los casos.
 
-### Archivado
+### Archivage
 
 El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite no utilizar demasiado espacio y no ralentiza el sistema.. De hecho, si mantiene todas las mediciones, esto aumenta la cantidad de puntos para mostrar y, por lo tanto, puede alargar considerablemente los tiempos para representar un gráfico. Si hay demasiados puntos, incluso puede hacer que la pantalla del gráfico se bloquee.
 
@@ -70,7 +70,7 @@ La página del historial da acceso a algunas opciones adicionales.
 
 Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
 Ex :
-abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio habitable \] \ [Higrometría \] \ [Temperatura \] *)
+abs(*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio vital \] \ [Higrometría \] \ [Temperatura \]*)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite guardarlas para volver a mostrarlas más fácilmente.
 
@@ -98,8 +98,8 @@ Para verlos, primero debe activar el seguimiento en la línea de tiempo de los c
 - **Scenario** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
 - **Commande** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
-La línea de tiempo * Principal * siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por * carpeta*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
-Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón * Actualizar.*.
+La linea de tiempo *Principal* siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por *dossier*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
+Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón *Rafraichir*.
 
 > **Note**
 >
@@ -115,7 +115,7 @@ Una vez que haya activado el seguimiento en la línea de tiempo de los comandos 
 >
 > Debe esperar nuevos eventos después de activar el seguimiento en la línea de tiempo antes de verlos aparecer.
 
-### Viendo
+### Affichage
 
 La línea de tiempo muestra los eventos grabados, escalonados día a día verticalmente..
 

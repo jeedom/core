@@ -5,7 +5,7 @@ La página de Preferencias le permite configurar ciertos comportamientos de Jeed
 
 ## Pestaña de preferencias
 
-### Interfaz
+### Interface
 
 Define ciertos comportamientos de interfaz
 
@@ -22,13 +22,13 @@ Define ciertos comportamientos de interfaz
 - **Diseño 3D por defecto** : Diseño 3D para mostrar por defecto al llegar al Tablero / móvil.
 - **Diseño de pantalla completa en 3D** : Visualización predeterminada en pantalla completa a la llegada en diseños 3D.
 
-### Notificaciones
+### Notifications
 
 - **Comando de notificación del usuario** : Comando predeterminado para comunicarse con usted (comando de tipo de mensaje).
 
 ## Pestaña de seguridad
 
-- **Autenticación de 2 pasos** : le permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba * google authentificator *). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código..
+- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*) Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código..
 
   **Important** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (vea en la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
 

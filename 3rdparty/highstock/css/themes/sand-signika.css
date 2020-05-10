@@ -343,6 +343,10 @@ g.highcharts-series,
   fill: none;
 }
 
+.highcharts-data-label-hidden {
+  pointer-events: none;
+}
+
 .highcharts-halo {
   fill-opacity: 0.25;
   stroke-width: 0;

@@ -26,7 +26,7 @@ Nesta tabela, encontramos :
 - **PID** : Indica o ID do processo atual.
 - **Demônio** : Se esta caixa for "sim", a tarefa deve sempre estar em andamento. Além disso, você encontra a frequência do daemon, é aconselhável nunca modificar esse valor e, especialmente, nunca diminuí-lo.
 - **Unique** : Se for "sim", a tarefa será iniciada uma vez e será excluída automaticamente.
-- **Classe** : Class PHP chamada para executar a tarefa (pode estar vazia).
+- **Classe** : Classe PHP chamada para executar a tarefa (pode estar vazia).
 - **Fonction** : Função PHP chamada na classe chamada (ou não, se a classe estiver vazia).
 - **Programmation** : Programação da tarefa no formato CRON.
 - **Timeout** : Tempo máximo de execução da tarefa. Se a tarefa for um daemon, ela será automaticamente interrompida e reiniciada no final do tempo limite.
@@ -51,5 +51,5 @@ Tabela de resumo dos demônios com seu estado, a data do último lançamento, be
 - Pare um daemon se o gerenciamento automático estiver desativado.
 - Ativar / desativar o gerenciamento automático de um daemon.
 
-> Dica
+> Tip
 > Demônios de plugins desativados não aparecem nesta página.

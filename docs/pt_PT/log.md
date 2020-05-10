@@ -1,13 +1,13 @@
-# Toras
-**Análise → Toras**
+# Logs
+**Análise → Logs**
 
-Toras são arquivos de log, permitindo que você siga o que está acontecendo em sua automação residencial. Na maioria dos casos, os logs serão usados apenas para depuração e solução de problemas pela equipe de suporte.
+Logs são arquivos de log, permitindo que você siga o que está acontecendo em sua automação residencial. Na maioria dos casos, os logs serão usados apenas para depuração e solução de problemas pela equipe de suporte.
 
 > **Tip**
 >
 > Quando a página é aberta, o primeiro log disponível é exibido.
 
-A página Toras é bastante simples :
+A página Logs é bastante simples :
 À esquerda, uma lista de logs disponíveis, com um campo de pesquisa para filtrar o nome dos logs.
 5 botões superior direito :
 

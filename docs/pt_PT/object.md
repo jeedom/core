@@ -1,5 +1,5 @@
-# Objetoos
-**Ferramentas → Objetoos**
+# Objets
+**Ferramentas → Objetos**
 
 O **objets** permitem definir a estrutura em árvore da sua automação residencial.
 
@@ -7,7 +7,7 @@ Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mai
 
 Para dar livre escolha à personalização, você pode nomear esses objetos como desejar. Normalmente, definiremos as diferentes partes de sua casa, como os nomes dos quartos (a propósito, essa é a configuração recomendada).
 
-## Gestão
+## Gestion
 
 Você tem duas opções :
 - **Ajouter** : Crie um novo objeto.
@@ -32,7 +32,7 @@ Você tem um mecanismo de pesquisa para filtrar a exibição de objetos. A tecla
 
 Uma vez na configuração de um objeto, você tem um menu contextual com o botão direito do mouse nas guias do objeto. Você também pode usar um Ctrl Click ou Center Click para abrir diretamente outro objeto em uma nova guia do navegador..
 
-## Guia Objetoo
+## Guia Objeto
 
 Ao clicar em um objeto, você acessa sua página de configuração. Quaisquer que sejam as alterações que você fizer, não se esqueça de salvar suas alterações.
 
@@ -52,7 +52,7 @@ Aqui estão as diferentes características para configurar um objeto :
 
 > **Tip**
 >
-> Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral (ou no Resumo do Domotiqu), selecione seu objeto com o mouse e arraste e solte para dar um novo local.
+> Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral (ou no Resumo da automação residencial), selecione seu objeto com o mouse, arrastando e soltando, para dar um novo local.
 
 > **Tip**
 >
@@ -74,7 +74,7 @@ As colunas representam os resumos atribuídos ao objeto atual. Três linhas são
 - **Esconder no ambiente de trabalho** : Marque a caixa se não desejar que o resumo apareça ao lado do nome do objeto no Painel.
 - **Esconder móvel** : Marque a caixa se você não deseja que o resumo apareça ao vê-lo em um celular.
 
-### Comandos
+### Commandes
 
 Cada guia representa um tipo de resumo definido na configuração do Jeedom. Clique em **Adicionar comando** para que seja levado em consideração no resumo. Você tem a opção de selecionar o comando de qualquer equipamento Jeedom, mesmo que ele não tenha esse objeto como pai..
 

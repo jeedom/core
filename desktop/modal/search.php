@@ -10,7 +10,7 @@ foreach ($objects as $object) {
 sendVarToJS('__objectList', $objectLists);
 ?>
 <div id="div_alertScenarioSearch"></div>
-
+<a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
 	<br/>
@@ -35,8 +35,9 @@ sendVarToJS('__objectList', $objectLists);
 
 	<br/>
 	<div id="searchByTypes" class="form-group">
-		<div class="col-lg-2"></div>
-		<div class="col-lg-4 searchType" data-searchType="plugin" data-tableFilter="111111" style="display: none;">
+		<label class="col-lg-2 control-label">{{Rechercher}}</label>
+
+		<div class="col-lg-4 searchType" data-searchType="plugin" data-tableFilter="1111110" style="display: none;">
 			<select id="in_searchFor_plugin" class="form-control">
 				<?php
 					$plugins = plugin::listPlugin();
@@ -47,7 +48,7 @@ sendVarToJS('__objectList', $objectLists);
 			</select>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="variable" data-tableFilter="100111" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="variable" data-tableFilter="1001110" style="display: none;">
 			<select id="in_searchFor_variable" class="form-control">
 				<?php
 					$variables = dataStore::byTypeLinkId('scenario');
@@ -58,7 +59,7 @@ sendVarToJS('__objectList', $objectLists);
 			</select>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="equipment" data-tableFilter="111111">
+		<div class="col-lg-4 searchType" data-searchType="equipment" data-tableFilter="1111110">
 			<div class="input-group input-group-sm" >
 			    <input id="in_searchFor_equipment" class="form-control roundedLeft" value="" />
 			    <span class="input-group-btn">
@@ -67,7 +68,7 @@ sendVarToJS('__objectList', $objectLists);
 		    </div>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="command" data-tableFilter="111111" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="command" data-tableFilter="1111110" style="display: none;">
 			<div class="input-group input-group-sm" >
 			    <input id="in_searchFor_command" class="form-control roundedLeft" value="" />
 			    <span class="input-group-btn">
@@ -76,7 +77,7 @@ sendVarToJS('__objectList', $objectLists);
 		    </div>
 		</div>
 
-		<div class="col-lg-4 searchType" data-searchType="value" data-tableFilter="111111" style="display: none;">
+		<div class="col-lg-4 searchType" data-searchType="value" data-tableFilter="1001111" style="display: none;">
 			<input id="in_searchFor_value" class="form-control" placeholder="{{Rechercher}}"/>
 		</div>
 	</div>
@@ -85,8 +86,9 @@ sendVarToJS('__objectList', $objectLists);
 <br/>
 <!-- Results UI -->
 <div class="form-horizontal">
+	<legend><i class="fas fa-search"></i> {{Résultats}}</legend>
 	<div>
-		<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
+		<table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
 				<tr>
 					<th><i class="fas fa-cogs"></i> {{Scénario}}</th>
@@ -100,7 +102,7 @@ sendVarToJS('__objectList', $objectLists);
 		</table>
 	</div>
 	<div>
-		<table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
+		<table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
 				<tr>
 					<th><i class="fas fa-paint-brush"></i> {{Design}}</th>
@@ -114,7 +116,7 @@ sendVarToJS('__objectList', $objectLists);
 		</table>
 	</div>
 	<div>
-		<table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
+		<table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
 				<tr>
 					<th><i class="far fa-image"></i> {{Vue}}</th>
@@ -128,7 +130,7 @@ sendVarToJS('__objectList', $objectLists);
 		</table>
 	</div>
 	<div>
-		<table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
+		<table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
 				<tr>
 					<th><i class="far fa-comments"></i> {{Interaction}}</th>
@@ -142,7 +144,7 @@ sendVarToJS('__objectList', $objectLists);
 		</table>
 	</div>
 	<div>
-		<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
+		<table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
 				<tr>
 					<th><i class="icon divers-svg"></i></i> {{Equipement}}</th>
@@ -156,10 +158,25 @@ sendVarToJS('__objectList', $objectLists);
 		</table>
 	</div>
 	<div>
-		<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%">
+		<table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
 			<thead>
 				<tr>
 					<th><i class="fas fa-terminal"></i></i> {{Commande}}</th>
+					<th>{{ID}}</th>
+					<th data-sorter="false" data-filter="false">{{Actions}}</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
+
+	<div style="display:none;">
+		<table id="table_NoteSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+			<thead>
+				<tr>
+					<th><i class="fas fa-sticky-note"></i></i> {{Note}}</th>
 					<th>{{ID}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>
@@ -179,7 +196,8 @@ var tableViewSearch = $('#table_ViewSearch')
 var tableInteractSearch = $('#table_InteractSearch')
 var tableEqlogicSearch = $('#table_EqlogicSearch')
 var tableCmdSearch = $('#table_CmdSearch')
-var tableStore = [tableScSearch, tablePlanSearch, tableViewSearch, tableInteractSearch, tableEqlogicSearch, tableCmdSearch]
+var tableNoteSearch = $('#table_NoteSearch')
+var tableStore = [tableScSearch, tablePlanSearch, tableViewSearch, tableInteractSearch, tableEqlogicSearch, tableCmdSearch, tableNoteSearch]
 
 initTableSorter()
 tableStore.forEach(function(table){
@@ -234,9 +252,13 @@ $('#in_searchFor_plugin').change(function() {
 $('#in_searchFor_variable').change(function() {
 	searchFor()
 })
-
 $('#bt_search').off().on('click',function() {
 	searchFor()
+})
+$('#in_searchFor_value').on('keypress', function(event) {
+	if (event.which === 13) {
+		searchFor()
+	}
 })
 
 function searchFor() {
@@ -285,7 +307,6 @@ function searchFor_variable(_searchFor) {
 }
 
 function searchFor_plugin(_searchFor) {
-
 	jeedom.eqLogic.byType({
 		type: _searchFor,
 		error: function(error) {
@@ -381,8 +402,32 @@ function searchFor_command(_searchFor, _byId=false) {
 }
 
 function searchFor_value(_searchFor) {
-	console.log('searchFor_value: ' + _searchFor)
-	console.log('-> search scenarios expressions for string !')
+	jeedom.getStringUsedBy({
+		search : _searchFor,
+		error: function(error) {
+			$('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+		},
+		success: function(result) {
+			for (var i in result.scenario) {
+				showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
+			}
+			for (var i in result.interactDef) {
+				showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+			}
+			for (var i in result.eqLogic) {
+				showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+			}
+			for (var i in result.cmd) {
+				showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+			}
+			for (var i in result.cmd) {
+				showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+			}
+			for (var i in result.note) {
+				showNotesResult({'humanName':result.note[i].humanName, 'id':result.note[i].linkId}, false)
+			}
+		}
+	})
 }
 
 /* ------            Search results display            -------*/
@@ -538,6 +583,31 @@ function showCmdsResult(_Cmds, _empty=true) {
 	}
 }
 
+//display result in note table:
+function showNotesResult(_Notes, _empty=true) {
+	if (!Array.isArray(_Notes)) _Notes = [_Notes]
+	for (var i in _Notes) {
+		if (tableNoteSearch.find('.view[data-id="'+_Notes[i].id+'"]').length) return
+		var tr = '<tr class="view" data-id="' + _Notes[i].id + '">'
+		tr += '<td>'
+		tr += '<span>'+_Notes[i].humanName+'</span>'
+		tr += '</td>'
+
+		tr += '<td>'
+		tr += '<span class="label label-info">'+_Notes[i].id+'</span>'
+		tr += '</td>'
+
+		tr += '<td>'
+		tr += '<a class="btn btn-xs btn-success tooltips bt_openNote" target="_blank" title="{{Ouvrir la note.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+		tr += '</td>'
+
+		tr += '</tr>'
+		tableNoteSearch.find('tbody').append(tr)
+		tableNoteSearch.trigger("update")
+		initTooltips(tableNoteSearch)
+	}
+}
+
 /* ------            Search results Tables Actions            -------*/
 $('#table_ScenarioSearch').delegate('.bt_openLog', 'click', function () {
 	var tr = $(this).closest('tr')
@@ -583,5 +653,25 @@ $('#table_CmdSearch').delegate('.bt_openCmd', 'click', function () {
 	var tr = $(this).closest('tr')
 	$('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + tr.attr('data-id')).dialog('open')
 })
+
+$('#table_NoteSearch').delegate('.bt_openNote', 'click', function () {
+	var tr = $(this).closest('tr')
+	var url = 'index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=Notes&id='+tr.attr('data-id')
+	window.open(url).focus()
+})
+
+/* Help button */
+  $('#bt_getHelpModal').on('click',function(){
+    jeedom.getDocumentationUrl({
+      page: 'search',
+      theme: $('body').attr('data-theme'),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function(url) {
+        window.open(url,'_blank');
+      }
+    });
+  });
 
 </script>

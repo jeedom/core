@@ -9,12 +9,12 @@ Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suc
 - Klicken Sie auf ?  (Menüleiste)  : Öffnet die Hilfe auf der aktuellen Seite.
 - Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.
 
-## Armaturenbrett
+## Dashboard
 Im Bearbeitungsmodus:
 	- Ziehen Sie n Drop auf Kacheln, um sie neu anzuordnen.
 	- Ändern Sie die Größe der Kachelränder, um deren Größe zu ändern.
 	- Kontextmenü (Rechtsklick) auf den Kacheln.
-	- Strg Klicken Sie auf ein Symbol * erweitern* : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
+	- Strg Klicken Sie auf ein Symbol *expand* : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
 
 - Strg Klicken Sie auf einen Info-Befehl : Öffnet alle Verlaufsinformationen der Kachel im Verlaufsfenster.
 
@@ -59,10 +59,10 @@ In einem Szenario :
 - Strg Shift Y. : Remake.
 
 - Strg Klicken Sie auf Ausführen : Speichern Sie das Szenario, führen Sie es aus und öffnen Sie das Protokoll.
-- Strg Klicken Sie auf das Symbol * Kopieren Sie diesen Block* : Schneiden Sie diesen Block.
-- Strg Klicken Sie auf das Symbol * Einfügen eines Blocks* : Ersetzen Sie diesen Block.
-- Strg Klicken Sie auf das Symbol * Löschen Sie diesen Block* : Block ohne Bestätigung löschen.
-- Strg Klicken Sie auf das Symbol * Diesen Block ausblenden* : Alle Blöcke ausblenden oder anzeigen.
+- Strg Klicken Sie auf das Symbol *Kopieren Sie diesen Block* : Schneiden Sie diesen Block.
+- Strg Klicken Sie auf das Symbol *Fügen Sie einen Block ein* : Ersetzen Sie diesen Block.
+- Strg Klicken Sie auf das Symbol *Löschen Sie diesen Block* : Block ohne Bestätigung löschen.
+- Strg Klicken Sie auf das Symbol *Verstecke diesen Block* : Alle Blöcke ausblenden oder anzeigen.
 
 In einem Codeblock :
 - Strg F. : Suche im Code.
@@ -72,7 +72,7 @@ In einem Codeblock :
 - Strg + S bei einer Plugin-Konfiguration : Speichern.
 - Strg Klicken oder Klicken Sie in einem Plugin auf Mitte : Öffnen Sie die Plugin-Verwaltung in einem neuen Browser-Tab.
 
-## Plugins / * Plugin*
+## Plugins / *plugin*
 - Auf einem Gerät wird Strg S gedrückt  : Speichern.
 - Klicken Sie auf einem Gerät mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Gerät zu gelangen.
 - Strg Klicken oder Mitte Klicken Sie auf ein Gerät: Öffnen Sie das Plugin-Gerät in einem neuen Browser-Tab.
@@ -85,8 +85,8 @@ In einem Codeblock :
 - Strg-Umschalttaste E für ein Design : Aktivieren oder Verlassen des Bearbeitungsmodus.
 
 ## Analyse / Zusammenfassung der Hausautomation
-- Strg Klicken Sie auf das Symbol * Öffnen * (Suche) : Öffnen Sie alle Gegenstände und Geräte.
-- Strg Klicken Sie auf das Symbol * Schließen * (Suche) : Schließt alle Objekte und Geräte.
+- Strg Klicken Sie auf das Symbol *Ouvrir* (Forschung) : Öffnen Sie alle Gegenstände und Geräte.
+- Strg Klicken Sie auf das Symbol *Fermer* (Forschung) : Schließt alle Objekte und Geräte.
 
 ## Analyse / Geschichte
 Wenn mehrere Kurven angezeigt werden :

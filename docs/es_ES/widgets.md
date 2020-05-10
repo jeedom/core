@@ -1,18 +1,18 @@
-# Reproductores
-**Herramientas → Reproductores**
+# Widgets
+**Herramientas → Widgets**
 
 La página de widgets te permite crear widgets personalizados para tu Jeedom.
 
 Hay dos tipos de widgets personalizados. :
 
-- Reproductores basados en una plantilla (administrado por Jeedom Core).
-- Reproductores basados en código de usuario.
+- Widgets basados en una plantilla (administrado por Jeedom Core).
+- Widgets basados en código de usuario.
 
 > **Note**
 >
 > Si los widgets basados en plantillas están integrados en el Core y, por lo tanto, son monitoreados por el equipo de desarrollo, este último no tiene forma de garantizar la compatibilidad de los widgets basados en el código de usuario de acuerdo con los desarrollos de Jeedom.
 
-## Administración
+## Gestion
 
 Tienes cuatro opciones :
 - **Ajouter** : Le permite crear un nuevo widget.
@@ -40,7 +40,7 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 Una vez en la configuración de un widget, tiene un menú contextual con el clic derecho en las pestañas del widget. También puede usar Ctrl Click o Clic Center para abrir directamente otro widget en una nueva pestaña del navegador.
 
 
-## Principio
+## Principe
 
 Pero que es una plantilla ?
 En pocas palabras, es un código (aquí html / js) integrado en el Core, algunas partes de las cuales son configurables por el usuario con la interfaz gráfica del Core.
@@ -64,7 +64,7 @@ Entonces :
 - Luego, finalmente, la plantilla en cuestión (planeamos poner ejemplos de representaciones para cada plantilla).
 - Una vez que se ha elegido la plantilla, Jeedom le ofrece las opciones para configurarla..
 
-### Reemplazo
+### Remplacement
 
 Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quot;encendido&quot; corresponde a dicho icono / imagen (con el botón elegir), el &quot;apagado&quot; es ese, etc.. Luego, dependiendo de la plantilla, se le puede ofrecer el ancho y la altura. Esto solo es válido para imágenes.
 
@@ -72,25 +72,25 @@ Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quo
 >Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidad y eficiencia, tanto para usted como para nosotros.. No tuvimos otra opción
 
 >**TIPS**
->Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo, si en el ancho pones como valor # ancho # (ten cuidado de poner el # alrededor) en lugar de un número, en &quot;Configuración de widget opcional&quot; puedes agregar ancho (sin el #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widget diferente para cada tamaño de imagen que desee
+>Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo si en ancho pones como valor #width# (tenga cuidado de poner el # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widget diferente para cada tamaño de imagen que desee
 
-### Prueba
+### Test
 
-Esto se llama la parte multiestatal, a menudo tiene, como para widgets sencillo, la opción de &quot;altura&quot; / &quot;ancho&quot; para las imágenes solo entonces debajo de la parte de prueba.
+Esto se llama la parte multiestatal, a menudo tiene, como para widgets simples, la opción de &quot;altura&quot; / &quot;ancho&quot; para las imágenes solo entonces debajo de la parte de prueba.
 
 Es bastante simple. En lugar de poner una imagen para el &quot;encendido&quot; y / o el &quot;apagado&quot; como en el caso anterior, vaya antes de hacer una prueba para hacer. Si esto es cierto, el widget mostrará el icono / imagen en cuestión.
 
-Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automáticamente por el sistema con el valor actual de la orden. También puedes hacer por ejemplo :
+Las pruebas están en forma : #value# == 1, #value# será reemplazado automáticamente por el sistema por el valor actual de la orden. También puedes hacer por ejemplo :
 
-- #valor #&gt; 1
+- #value# > 1
 - #value# >= 1 && #value# <= 5
-- #valor # == &#39;toto'
+- #value# == 'toto'
 
 >**Note**
 >Es importante tener en cuenta el &quot;alrededor del texto para comparar si el valor es un texto
 
 >**Note**
->Para usuarios avanzados, aquí también es posible usar funciones de JavaScript tipo #valor#.match (&quot;^ plop&quot;), aquí probamos si el texto comienza con plop
+>Para usuarios avanzados, también es posible usar funciones de tipo javascript aquí #value#.match (&quot;^ plop&quot;), aquí probamos si el texto comienza con plop
 
 >**Note**
 >Es posible mostrar el valor del comando en el widget colocando, por ejemplo, al lado del código HTML del icono #value#
@@ -99,7 +99,7 @@ Las pruebas están en forma : #valor # == 1, # valor # será reemplazado automá
 
 Vamos a describir aquí algunos widgets que tienen un funcionamiento algo particular..
 
-### Dispositivos
+### Equipement
 
 Los equipos tienen ciertos parámetros de configuración. :
 
@@ -117,7 +117,7 @@ Los equipos tienen ciertos parámetros de configuración. :
 - Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 - Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 
-### Higrotermógrafo
+### HygroThermographe
 
 Este widget es un poco especial porque es un widget de comandos múltiples, es decir que reúne en su pantalla el valor de varios comandos. Aquí toma los comandos de temperatura y humedad..
 
@@ -133,7 +133,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 >**NOTE**
 > Atención en un diseño, es importante no poner un comando solo con este widget, no funcionará ya que es un widget que utiliza el valor de varios comandos, es absolutamente necesario poner el widget completo
 
-### Multilínea
+### Multiline
 
 ##### Parámetros opcionales
 
@@ -145,7 +145,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 
 - paso : Permite ajustar el paso de una acción en un botón (0.5 por defecto).
 
-### Lluvia
+### Rain
 
 ##### Parámetros opcionales
 
@@ -160,17 +160,17 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí hay una lista (no necesariamente exhaustiva) :
 
 - #name# : nombre del comando
-- #valueName# : nombre del valor del comando y = # nombre # cuando se trata de un comando de tipo de información
+- #valueName# : nombre del valor del pedido, y = #name# cuando es un comando de tipo de información
 - #minValue# : valor mínimo que puede tomar el comando (si el comando es de tipo deslizador)
 - #maxValue# : valor máximo que puede tomar el comando (si el comando es de tipo deslizador)
 - #hide_name# : vacío u oculto si el usuario solicitó ocultar el nombre del widget, ponerlo directamente en una etiqueta de clase
 - #id# : ID de pedido
 - #state# : valor del comando, vacío para un comando de tipo de acción si no está vinculado a un comando de estado
-- #uid# : Identificador único para esta generación del widget (si hay varias veces el mismo comando, caso de diseños:  solo este identificaciónentificador es realmente único)
+- #uid# : Identificador único para esta generación del widget (si hay varias veces el mismo comando, caso de diseños:  solo este identificador es realmente único)
 - #valueDate# : fecha del valor del pedido
 - #collectDate# : fecha de recogida del pedido
 - #alertLevel# : nivel de alerta (ver [aquí](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
-- #hide_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a # hide_nombre #, está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTEE si esta etiqueta no se encuentra en su widget, entonces las etiquetas # minHistoryValue #, # averageHistoryValue #, # maxHistoryValue # y # trend # no serán reemplazadas por Jeedom.
+- #hide_history# : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# y #tendance# no será reemplazado por Jeedom.
 - #minHistoryValue# : valor mínimo durante el período (período definido en la configuración de Jeedom por el usuario)
 - #averageHistoryValue# : valor promedio durante el período (período definido en la configuración de Jeedom por el usuario)
 - #maxHistoryValue# : valor máximo durante el período (período definido en la configuración de Jeedom por el usuario)
@@ -181,25 +181,25 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 Cuando un nuevo valor Jeedom buscará en la página html, si el comando está allí y en Jeedom.cmd.actualizar si hay una función de actualización. En caso afirmativo, lo llama con un solo argumento que es un objeto en la forma :
 
 `` ''
-{display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'}
+{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 `` ''
 
 Aquí hay un ejemplo simple de código JavaScript para poner en su widget :
 
 `` ''
 <script>
-    Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
+    Jeedom.cmd.update ['#id#'] = función (_opciones){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Fecha de recogida : '+ _options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
-    Jeedom.cmd.update['#id#']({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 `` ''
 
 Aquí hay dos cosas importantes :
 
 `` ''
-Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
+Jeedom.cmd.update ['#id#'] = función (_opciones){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Fecha de recogida : '+ _options.collectDate)
   $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
@@ -207,7 +207,7 @@ Jeedom.cmd.update [&#39;# identificación #&#39;] = function (_options){
 La función llamada al actualizar el widget. Luego actualiza el código html del widget_template.
 
 `` ''
-Jeedom.cmd.update['#id#']({display_value:'#ValueDate estado #&#39;:'#ValueDate # &#39;collectDate:'#collectDate # &#39;alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 `` ''
  La llamada a esta función para la inicialización del widget.
 

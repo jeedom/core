@@ -473,7 +473,7 @@ function addTest(_test){
   div += '</div>';
   div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="Résultat si test ok (light)"/>';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="{{Résultat si test ok}} (light)"/>';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
@@ -481,7 +481,7 @@ function addTest(_test){
   div += '</div>';
   div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="Résultat si test ok (dark)"/>';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="{{Résultat si test ok}} (dark)"/>';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';

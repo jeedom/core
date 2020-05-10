@@ -1,13 +1,13 @@
-# Historical
+# Historique
 **Analysis → History**
 
-IMPORTANT part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
+Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc.
 
-### Principle
+### Principe
 
 Here is described the principle of historicization of Jeedom. You only need to understand this if you are having historization issues or want to change the historization settings.. Default settings are fine in most cases.
 
-### Archiving
+### Archivage
 
 Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
@@ -70,7 +70,7 @@ The history page gives access to some additional options
 
 Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
 Ex :
-abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Living space \] \ [Hygrometry \] \ [Temperature \] *)
+abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)
 
 You also have access to a management of calculation formulas which allows you to save them for easier re-display.
 
@@ -78,7 +78,7 @@ You also have access to a management of calculation formulas which allows you to
 >
 > Just click on the name of the object to unfold it, and bring up the historical commands that can be displayed.
 
-#### Order history
+#### Command history
 
 In front of each data that can be displayed, you will find two icons :
 
@@ -98,8 +98,8 @@ To see them, you must first activate the tracking on the timeline of the desired
 - **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
 - **Commande** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
-The * Main * timeline always contains all the events. However, you can filter the timeline by * folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
-You can then filter the timeline by this folder by selecting it to the left of the * Refresh button.*.
+The timeline *Principal* always contains all the events. However, you can filter the timeline by *dossier*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
+You can then filter the timeline by this folder by selecting it to the left of the button *Rafraichir*.
 
 > **Note**
 >
@@ -115,7 +115,7 @@ Once you have activated tracking in the timeline of the commands and scenarios y
 >
 > You have to wait for new events after activating the tracking on the timeline before seeing them appear.
 
-### Viewing
+### Affichage
 
 The timeline displays the recorded events, staggered day by day vertically.
 

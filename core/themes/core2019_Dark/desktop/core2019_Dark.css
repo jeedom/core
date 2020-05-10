@@ -77,6 +77,9 @@ ul[role="tablist"] li:not(.active) a {
 [data-category=light]>.widget-name {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+[data-category=opening]>.widget-name {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 [data-category=multimedia]>.widget-name {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -99,11 +102,8 @@ ul[role="tablist"] li:not(.active) a {
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject,
-#bt_displaySummaries,
-#bt_backOverview {
+#dashTopBar > div > a,
+#dashTopBar button {
   background-color: var(--btnEq-default-color) !important;
 }
 

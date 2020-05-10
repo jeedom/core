@@ -13,7 +13,7 @@
 import H from '../../parts/Globals.js';
 import Point from '../../parts/Point.js';
 import U from '../../parts/Utilities.js';
-var addEvent = U.addEvent, error = U.error, isNumber = U.isNumber, pick = U.pick, wrap = U.wrap;
+var addEvent = U.addEvent, error = U.error, isArray = U.isArray, isNumber = U.isNumber, pick = U.pick, wrap = U.wrap;
 import '../../parts/Series.js';
 import '../../parts/Options.js';
 import '../../parts/Interaction.js';
@@ -157,6 +157,7 @@ wrap(Series.prototype, 'getExtremes', function (proceed) {
     if (!this.isSeriesBoosting || (!this.hasExtremes || !this.hasExtremes())) {
         return proceed.apply(this, Array.prototype.slice.call(arguments, 1));
     }
+    return {};
 });
 /*
  * Override a bunch of methods the same way. If the number of points is
@@ -243,7 +244,7 @@ wrap(Series.prototype, 'processData', function (proceed) {
         if (this.isSeriesBoosting) {
             // Force turbo-mode:
             firstPoint = this.getFirstValidPoint(this.options.data);
-            if (!isNumber(firstPoint) && !H.isArray(firstPoint)) {
+            if (!isNumber(firstPoint) && !isArray(firstPoint)) {
                 error(12, false, this.chart);
             }
             this.enterBoost();

@@ -30,7 +30,7 @@ De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) 
 > Cela permet de n’avoir que les équipements qui vous intéressent, et de charger la page plus rapidement.
 
 - Vous avez en haut à gauche une petite icône pour faire afficher/masquer l’arbre des objets.
-- La deuxième icône à gauche permet d'afficher seulement les informations des résumés des objets.
+- La deuxième icône à gauche permet de filtrer les équipements affichés en fonction de leur catégorie. Un clic centre permet de rapidement sélectionner une seule catégorie.
 - Au milieu, un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
 - A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile.
 

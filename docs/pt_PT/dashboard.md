@@ -1,4 +1,4 @@
-# Painel de instrumentos
+# Dashboard
 **Página inicial → Painel**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -30,7 +30,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 > Isso permite que você tenha apenas o equipamento que lhe interessa e carregue a página mais rapidamente.
 
 - Você tem no topo um pequeno ícone para mostrar / ocultar a árvore de objetos.
-- O segundo ícone à esquerda permite exibir apenas as informações dos resumos dos objetos.
+- O segundo ícone à esquerda permite filtrar o equipamento exibido de acordo com sua categoria. Um clique no centro permite selecionar rapidamente uma única categoria.
 - No meio, um campo de pesquisa permite pesquisar equipamentos por nome, categoria, plug-in, tag, etc..
 - À direita, um botão permite alternar para o modo de edição, modificar a ordem dos blocos (clicar e soltar no widget) ou redimensioná-los. Você também pode reorganizar a ordem dos pedidos em um bloco.
 
@@ -38,7 +38,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
-- Um clique nas informações * time * de um comando de ação exibe o histórico do comando (se estiver registrado).
+- Um clique na informação *time* de um comando de ação exibe o histórico do comando (se for historizado).
 
 > **Tip**
 >
@@ -51,7 +51,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 ## Modo de edição
 
-No modo de edição (* o lápis no canto superior direito *), você pode alterar o tamanho dos ladrilhos e sua organização no Painel.
+No modo de edição (*o lápis no canto superior direito*), você pode alterar o tamanho dos blocos e sua organização no Painel.
 
 Você também pode editar o layout interno dos controles no bloco :
 

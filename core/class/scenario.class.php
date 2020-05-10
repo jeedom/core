@@ -818,10 +818,11 @@ class scenario {
 			$replace['#isVerticalAlign#'] = 'verticalAlign';
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
+		$html =  translate::exec($html, 'core/template/widgets.html');
 		if(config::byKey('widget::disableCache','core',0) == 0){
 			cache::set('scenarioHtml' . $version . $this->getId(), $html);
 		}
-		return translate::exec($html, 'core/template/widgets.html');
+		return $html;
 	}
 	/**
 	*

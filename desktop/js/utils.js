@@ -718,6 +718,7 @@ $(function () {
 setTimeout(function() {
   $("body").on('keydown',"input[id^='in_search']",function(event) {
     if(event.key == 'Escape') {
+      $('#categoryfilter li .catFilterKey').prop("checked", true)
       $(this).val('').keyup();
     }
   })

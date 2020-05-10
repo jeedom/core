@@ -93,6 +93,10 @@ header a.navbar-brand {
   height: calc(100% - 5px) !important;
 }
 
+#categoryfilter i {
+  width: 15px;
+}
+
 /* __________________________________________________________________________________________________________LINKS */
 
 .widget-name,
@@ -310,7 +314,7 @@ legend .pull-right:not(.input-group) {
 }
 .div_object legend .objectDashLegend {
   padding: 3px 20px;
-  background-color: rgba(var(--bg-color), 0.85) !important;
+  background-color: rgba(var(--bg-color), var(--opacity)) !important;
   width: 100%;
   display: inline-block;
 }
@@ -604,6 +608,9 @@ sup i {
   display: inline-block;
   line-height: 1.6;
   margin-top: -4px;
+}
+.objectPreview > .topPreview > .name:first-letter {
+  text-transform: uppercase;
 }
 .objectPreview > .topPreview > .bt_config {
   position: absolute;
@@ -2012,30 +2019,6 @@ textarea {
   margin-top: -2px;
 }
 
-.checkbox-inline.disabled,
-.checkbox.disabled label,
-.radio-inline.disabled,
-.radio.disabled label,
-fieldset[disabled] .checkbox label,
-fieldset[disabled] .checkbox-inline,
-fieldset[disabled] .radio label,
-fieldset[disabled] .radio-inline,
-fieldset[disabled] input[type=checkbox],
-fieldset[disabled] input[type=radio],
-input[type=checkbox].disabled,
-input[type=checkbox][disabled],
-input[type=radio].disabled,
-input[type=radio][disabled],
-select.disabled,
-select[disabled] {
-  cursor: not-allowed !important;
-}
-
-select:disabled,
-input:disabled {
-  opacity: 0.35 !important;
-}
-
 /* custom universal select */
 select,
 input[type=color] {
@@ -2193,6 +2176,41 @@ input[type=checkbox].summaryAttr {
   padding: 0 !important;
 }
 
+.checkbox-inline.disabled,
+.checkbox.disabled label,
+.radio-inline.disabled,
+.radio.disabled label,
+fieldset[disabled] .checkbox label,
+fieldset[disabled] .checkbox-inline,
+fieldset[disabled] .radio label,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] input[type=checkbox],
+fieldset[disabled] input[type=radio],
+input[type=checkbox].disabled,
+input[type=checkbox][disabled],
+input[type=radio].disabled,
+input[type=radio][disabled],
+select.disabled,
+select[disabled] {
+  cursor: not-allowed !important;
+}
+
+select:disabled,
+input:disabled {
+  opacity: 0.7 !important;
+}
+
+.disabled .btn:not(.enabled),
+.disabled input:not(.enabled),
+.disabled button:not(.enabled),
+.disabled span:not(.enabled),
+.disabled button:not(.enabled) i,
+.disabled a:not(.enabled) > i {
+  cursor: not-allowed !important;
+  filter: alpha(opacity=65);
+  opacity: .65;
+}
+
 /* __________________________________________________________________________________________________________TABS */
 .tab-content {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
@@ -2202,6 +2220,9 @@ input[type=checkbox].summaryAttr {
   max-height:calc(100% - 50px);
   overflow:auto;
   overflow-x: hidden;
+}
+#scenariotab {
+  min-height: 80vh;
 }
 .tab-content .tab-content,
 .tab-content pre {

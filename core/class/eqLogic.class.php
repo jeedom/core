@@ -206,6 +206,16 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function searchByString($_search) {
+		$values = array(
+				'search' => '%'.$_search.'%'
+			);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM eqLogic
+			WHERE name LIKE :search or logicalId LIKE :search or eqType_name LIKE :search or comment LIKE :search or tags LIKE :search';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function searchConfiguration($_configuration, $_type = null) {
 		if (!is_array($_configuration)) {
 			$values = array(
@@ -1006,23 +1016,10 @@ class eqLogic {
 	}
 
 	public function getPrimaryCategory() {
-		if ($this->getCategory('security', 0) == 1) {
-			return 'security';
-		}
-		if ($this->getCategory('heating', 0) == 1) {
-			return 'heating';
-		}
-		if ($this->getCategory('light', 0) == 1) {
-			return 'light';
-		}
-		if ($this->getCategory('automatism', 0) == 1) {
-			return 'automatism';
-		}
-		if ($this->getCategory('energy', 0) == 1) {
-			return 'energy';
-		}
-		if ($this->getCategory('multimedia', 0) == 1) {
-			return 'multimedia';
+		foreach ($this->category as $cat => $value) {
+			if ($value == 1) {
+				return ($cat != 'default' ? $cat : '');
+			}
 		}
 		return '';
 	}

@@ -1,22 +1,20 @@
+# Changelog Jeedom V4.1
 
-Changelog Jeedom V4
-=========
+## 4.1.0
 
-4.1.0
-=====
 - Synthese : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
 - Suche : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
-
 - Armaturenbrett : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
-- Armaturenbrett : Wir können jetzt auf die * Zeit * der Zeitaktions-Widgets klicken, um das Verlaufsfenster des Befehls für verknüpfte Informationen zu öffnen..
+- Armaturenbrett : Wir können jetzt auf die klicken *time* Zeitaktions-Widgets zum Öffnen des Verlaufsfensters des Befehls "Verknüpfte Informationen".
 - Armaturenbrett : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
+- Armaturenbrett : Hinzufügen einer Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
 - Armaturenbrett : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - Armaturenbrett : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche).
-- Tools / Widgets : Die Funktion * Anwenden auf * zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
+- Tools / Widgets : Die Funktion *Bewerben Sie sich am* Zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
 - Widgets : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
-- Widgets : Hinzufügen eines Core * sliderVertical-Widgets*.
+- Widgets : Hinzufügen eines Kern-Widgets *sliderVertical*.
 - Update Center : Aktualisierungen werden beim Öffnen der Seite automatisch überprüft, wenn sie 120 Minuten älter ist.
-- Update Center : Der Fortschrittsbalken befindet sich jetzt auf der Registerkarte * Core und Plugins *, und das Protokoll wird standardmäßig auf der Registerkarte * Informationen geöffnet*.
+- Update Center : Der Fortschrittsbalken befindet sich jetzt auf der Registerkarte *Core und Plugins*, und das Protokoll wird standardmäßig auf der Registerkarte geöffnet *Informations*.
 - Update Center : Wenn Sie während eines Updates einen anderen Browser öffnen, wird dies in der Fortschrittsanzeige und im Protokoll angezeigt.
 - Update Center : Wenn das Update korrekt abgeschlossen wurde, wird ein Fenster angezeigt, in dem Sie aufgefordert werden, die Seite neu zu laden.
 - Kernupdates : Implementierung eines Systems zum Bereinigen alter nicht verwendeter Core-Dateien.
@@ -24,21 +22,21 @@ Changelog Jeedom V4
 	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
 	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs verfügbar (auf den Registerkarten)..
 - Neue ModalDisplay-Seite:
-	- Analysemenü : Strg Klicken / Klicken Sie auf * Echtzeit zentrieren* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
-	- Menü Extras : Strg Clic / Clic Center auf * Notizen *, * Ausdruckstester *, * Variablen *, * Suche* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+	- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Notes*, *Expressionstester*, *Variables*, *Recherche* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
 - Szenario : Hinzufügen einer Suchmaschine (links von der Schaltfläche Ausführen).
 - Szenario : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
-- Szenario : *stateChanges () * akzeptiert jetzt den Zeitraum * heute * (von Mitternacht bis jetzt), * gestern * und * Tag * (für 1 Tag).
-- Szenario : Funktionen * Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer ()* : Bugfix für den Zeitraum * gestern * und akzeptiert jetzt * Tag * (für 1 Tag).
+- Szenario : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum *today* (von Mitternacht bis jetzt), *yesterday* und *day* (für 1 Tag).
+- Szenario : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer ()* : Bugfix über den Zeitraum *yesterday*, und jetzt akzeptieren *day* (für 1 Tag).
 - Szenario : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Befehle).
-- Szenario : Anzeige einer * Warnung *, wenn kein Trigger konfiguriert ist.
+- Szenario : Anzeigen a *warning* wenn kein Trigger konfiguriert ist.
 - Szenario : Bugfix von Select auf Copy / Paste Block.
 - Szenario : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
 - Szenario : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt in Form von Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)..
 - Fenster &quot;Szenariovariablen&quot; : alphabetische Sortierung beim Öffnen.
 - Analyse / Geschichte : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
-- Analyse / Geschichte : Die Optionen * Gruppierung, Typ, Variation, Treppe * sind nur mit einer einzelnen Kurve aktiv.
-- Analyse / Geschichte : Wir können jetzt die Option * Area * mit der Option * Staircase verwenden*.
+- Analyse / Geschichte : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
+- Analyse / Geschichte : Wir können jetzt die Option verwenden *Aire* mit der Option *Escalier*.
 - Ansicht : Möglichkeit, Szenarien zu setzen.
 - Chronik : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - Chronik : Verwaltung mehrerer Zeitleisten.
@@ -47,77 +45,69 @@ Changelog Jeedom V4
 - Zusammenfassung der Hausautomation : Möglichkeit zur Suche nach Gerätekategorien.
 - Zusammenfassung der Hausautomation : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - Zusammenfassung der Hausautomation : Möglichkeit, alle Geräte eines Objekts auszuwählen.
-- Task-Engine : Auf der Registerkarte * Daemon * werden deaktivierte Plugins nicht mehr angezeigt.
-- Konfiguration : Die Registerkarte * Informationen * befindet sich jetzt auf der Registerkarte * Allgemein*.
-- Konfiguration : Die Registerkarte * Bestellungen * befindet sich jetzt auf der Registerkarte * Ausrüstung*.
+- Task-Engine : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
+- Konfiguration : Die Registerkarte *Informations* ist jetzt in der Registerkarte *Allgemein*.
+- Konfiguration : Die Registerkarte *Commandes* ist jetzt in der Registerkarte *Equipements*.
 - Fenster zur erweiterten Gerätekonfiguration : Dynamische Änderung der Schalttafelkonfiguration.
-- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
+- Geräte : Neue Kategorie *Ouvrant*.
+- Über Fenster : Hinzufügen von Verknüpfungen zu Changelog und FAQ.<br/><br/>
 - WebApp : Integration der neuen Übersichtsseite.
 - WebApp : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - WebApp : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
 - WebApp : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
 - WebApp : Persistenz des Themas umschalten (8h).
-- WebApp : Bei einem Design kehrt ein Klick mit drei Punkten zur Startseite zurück.
+- WebApp : Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
 - WebApp : Anzeige von Szenarien nach Gruppe.
-- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).
-
+- WebApp : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).<br/><br/>
 - Dokumentation : Anpassungen gemäß v4 und v4.1.
-- Dokumentation : Neue Seite * Tastatur- / Mausverknüpfungen * mit einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Armaturenbrett-Dokument oder die FAQ.
-
+- Dokumentation : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - Fehlerbehebungen und Optimierungen.
-- Lib: Aktualisieren Sie HighStock v7.1.2 bis v8.0.4.
+- Lib : Aktualisieren Sie HighStock v7.1.2 bis v8.1.0.
+- Lib : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 
 
-4.0.53
-=====
+### 4.0.53
 
 - Fehlerbehebung.
 
-4.0.52
-=====
+### 4.0.52
 
 - Fehlerkorrektur (Update muss unbedingt durchgeführt werden, wenn Sie sich in 4.0.51 befinden).
 
-4.0.51
-=====
+### 4.0.51
 
 - Fehlerbehebungen.
 - Optimierung des zukünftigen DNS-Systems.
 
-4.0.49
-=====
+### 4.0.49
 
 - Möglichkeit, den Jeedom TTS-Motor zu wählen und Plugins zu haben, die einen neuen TTS-Motor bieten.
 - Verbesserte Unterstützung für Webview in der mobilen Anwendung.
 - Fehlerbehebungen.
 - Aktualisieren des Dokuments.
 
-4.0.47
-=====
+### 4.0.47
 
 - Verbesserung des Expressionstesters.
 - Aktualisieren des Repositorys auf smart.
 - Fehlerbehebungen.
 
-4.0.44
-=====
+### 4.0.44
 
 - Verbesserte Übersetzungen.
 - Fehlerbehebungen.
 - Verbesserte Wiederherstellung von Cloud-Backups.
 - Die Cloud-Wiederherstellung repatriiert nur noch das lokale Backup und lässt die Wahl, es herunterzuladen oder wiederherzustellen.
 
-4.0.43
-=====
+### 4.0.43
 
 - Verbesserte Übersetzungen.
 - Fehlerbehebungen bei Szenariovorlagen.
 
-4.0.0
-=====
+## 4.0.0
 - Komplette Neugestaltung der Themen (Core 2019 Light / Dark / Legacy).
 - Möglichkeit, das Thema automatisch nach Zeit zu ändern.
-- In Mobilgeräten kann sich das Thema je nach Helligkeit ändern (Erfordert die Aktivierung des * generischen zusätzlichen Sensors * in Chrom, Chromseite://flags).<br/><br/>
+- In Mobilgeräten kann sich das Thema je nach Helligkeit ändern (Aktivierung erforderlich) *generischer zusätzlicher Sensor* in Chrom, Chromseite://flags).<br/><br/>
 - Verbesserung und Neuorganisation des Hauptmenüs.
 - Plugins-Menü : Die Liste der Kategorien und Plugins ist jetzt alphabetisch sortiert.
 - Menü Extras : Hinzufügen einer Schaltfläche für den Zugriff auf den Ausdruckstester.
@@ -125,10 +115,10 @@ Changelog Jeedom V4
 - Suchfelder unterstützen jetzt Akzente.
 - Die Suchfelder (Dashboard, Szenarien, Objekte, Widgets, Interaktionen, Plugins) sind jetzt beim Öffnen der Seite aktiv, sodass Sie eine Suche direkt eingeben können.
 - Fügen Sie den Suchfeldern eine X-Schaltfläche hinzu, um die Suche abzubrechen.
-- Während einer Suche bricht die Taste * Escape * die Suche ab.
+- Während einer Suche wird der Schlüssel *echap* Suche abbrechen.
 - Armaturenbrett : Im Bearbeitungsmodus sind das Suchfeld und seine Schaltflächen deaktiviert und werden behoben.
-- Armaturenbrett : Im Bearbeitungsmodus werden durch Klicken auf eine Schaltfläche * Erweitern * rechts neben den Objekten die Kacheln des Objekts auf die höchste Höhe geändert. Strg + Klick reduziert sie auf die niedrigste Höhe.
-- Armaturenbrett : Die Auftragsausführung auf einer Kachel wird jetzt durch die Schaltfläche * Aktualisieren angezeigt*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
+- Armaturenbrett : Klicken Sie im Bearbeitungsmodus auf eine Schaltfläche *expand* Rechts neben den Objekten werden die Kacheln des Objekts auf die höchste Höhe angepasst. Strg + Klick reduziert sie auf die niedrigste Höhe.
+- Armaturenbrett : Die Befehlsausführung auf einer Kachel wird nun durch die Schaltfläche signalisiert *refresh*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
 - Armaturenbrett : Die Kacheln zeigen einen Info-Befehl (Verlauf, der das Verlaufsfenster öffnet) oder eine Aktion beim Schweben an.
 - Armaturenbrett : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
 - Armaturenbrett : Das Verlaufsfenster behält seine Position / Dimensionen bei, wenn ein anderer Verlauf erneut geöffnet wird.
@@ -144,7 +134,7 @@ Changelog Jeedom V4
 - Möglichkeit, einer Interaktion ein Symbol zuzuweisen.
 - Jede Jeedom-Seite hat jetzt einen Titel in der Sprache der Benutzeroberfläche (Registerkarte Browser).
 - Verhinderung des automatischen Ausfüllens des Zugangscodes von Feldern'.
-- Funktionsverwaltung * Vorherige Seite / Nächste Seite * des Browsers.<br/><br/>
+- Funktionsverwaltung *Vorherige Seite / Nächste Seite* Browser.<br/><br/>
 - Widgets : Neugestaltung des Widget-Systems (Menü Extras / Widgets).
 - Widgets : Möglichkeit, ein Widget bei allen Befehlen, die es verwenden, durch ein anderes zu ersetzen.
 - Widgets : Möglichkeit, mehreren Befehlen ein Widget zuzuweisen.
@@ -154,16 +144,16 @@ Changelog Jeedom V4
 - Widgets : Hinzufügen eines numerischen Regen-Widgets (danke @thanaus)
 - Widgets : Anzeige des Info- / Action-Shutter-Widgets proportional zum Wert.<br/><br/>
 - Konfiguration : Verbesserung und Reorganisation von Registerkarten.
-- Konfiguration : Viele * Tooltips * hinzugefügt (Hilfe).
+- Konfiguration : Viele hinzufügen *tooltips* (Hilfe).
 - Konfiguration : Hinzufügen einer Suchmaschine.
 - Konfiguration : Hinzufügen einer Schaltfläche zum Leeren des Widget-Cache (Registerkarte Cache).
 - Konfiguration : Option zum Deaktivieren des Widget-Cache hinzugefügt (Registerkarte Cache).
 - Konfiguration : Möglichkeit, den Inhalt der Kacheln vertikal zu zentrieren (Registerkarte &quot;Schnittstelle&quot;).
 - Konfiguration : Hinzufügen eines Parameters zum globalen Löschen der Historien (Tab-Befehle).
-- Konfiguration : Wechseln Sie in Konfiguration / Protokolle / Nachrichten von # Nachricht # zu # Betreff #, um Doppelarbeit der Nachricht zu vermeiden.
+- Konfiguration : Änderung von #message# Bis #subject# in Konfiguration / Protokolle / Nachrichten, um Doppelarbeit der Nachricht zu vermeiden.
 - Konfiguration : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung der Temperaturdurchschnitte, wenn ein Sensor länger als 30 Minuten nichts angehoben hat, wird er von der Berechnung ausgeschlossen )<br/><br/>
 - Szenario : Die Färbung der Blöcke ist nicht mehr zufällig, sondern nach Blocktyp.
-- Szenario : Möglichkeit durch Strg + Klicken auf die Schaltfläche * Ausführung *, um es zu speichern, zu starten und das Protokoll anzuzeigen (wenn die Protokollebene nicht aktiviert ist * Keine *).
+- Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist *Aucun*).
 - Szenario : Löschbestätigung blockieren. Strg + Klicken, um eine Bestätigung zu vermeiden.
 - Szenario : Hinzufügen einer Suchfunktion in den Codeblöcken. Suche : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G.
 - Szenario : Fähigkeit, Blöcke zu verdichten.
@@ -184,10 +174,10 @@ Changelog Jeedom V4
 - Zusammenfassung der Hausautomation : Hinzufügen von Ausrüstungs- und Bestell-IDs in Anzeige und Suche.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, eine oder mehrere Bestellungen sichtbar zu machen oder nicht.<br/><br/>
-- Design : Möglichkeit, die Reihenfolge (Position) von * Designs * und * 3D-Designs * anzugeben (Bearbeiten, Design konfigurieren).
-- Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen von * design*.
-- Design : Verschiebung der Anzeigeoptionen im Design der erweiterten Konfiguration in den Anzeigeeinstellungen von * Design*. Dies dient zur Vereinfachung der Benutzeroberfläche und ermöglicht die Verwendung unterschiedlicher Parameter durch * Design*.
-- Design : Das Verschieben und Ändern der Größe von Komponenten in * Design * berücksichtigt deren Größe mit oder ohne Magnetisierung.<br/><br/>
+- Design : Möglichkeit, die Reihenfolge (Position) von anzugeben *Designs* und *3D-Designs* (Bearbeiten, Design konfigurieren).
+- Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *design*.
+- Design : Verschiebung der Anzeigeoptionen im Design der erweiterten Konfiguration, in den Anzeigeparametern aus dem *Design*. Dies, um die Schnittstelle zu vereinfachen und um zu ermöglichen, unterschiedliche Parameter durch zu haben *Design*.
+- Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
 - Allgemeine Reduzierung (CSS / Inline-Stile, Refactoring usw.) und Leistungsverbesserungen.
 - Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
 - Libs Update : jquery 3.4.1, CodeMiror 5.46.0, Tablesorter 2.31.1.
@@ -196,7 +186,7 @@ Changelog Jeedom V4
 
 >**IMPORTANT**
 >
->Wenn Sie nach dem Update einen Fehler im Armaturenbrett haben, versuchen Sie, Ihre Box neu zu starten, damit die neuen Ergänzungen von Komponenten berücksichtigt werden.
+>Wenn Sie nach dem Update einen Fehler im Dashboard haben, versuchen Sie, Ihre Box neu zu starten, damit die neuen Ergänzungen von Komponenten berücksichtigt werden.
 
 >**IMPORTANT**
 >

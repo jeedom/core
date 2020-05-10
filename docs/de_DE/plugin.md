@@ -6,7 +6,7 @@ Sie können nämlich auch die Plugins manipulieren : herunterladen, aktualisiere
 
 Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Link zum Markt..
 - Deaktivierte Plugins sind ausgegraut.
-- Plugins, die nicht * stabil * sind, haben einen orangefarbenen Punkt vor ihrem Namen.
+- Plugins, die nicht in der Version sind *stable* Wir haben einen orangefarbenen Punkt vor ihrem Namen.
 
 Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)..
 
@@ -84,9 +84,9 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
 
-### Platte
+### Panel
 
-Wir finden einen Platte-Bereich, der die Anzeige des Plattes auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
+Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
 
 ## Plugin Installation
 

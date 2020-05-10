@@ -6,7 +6,7 @@ Você também pode manipular os plugins, a saber : baixar, atualizar e ativá-lo
 
 Existe, portanto, uma lista de plugins em ordem alfabética e um link para o mercado..
 - Os plug-ins desativados ficam acinzentados.
-- Os plug-ins que não são * estáveis * têm um ponto laranja na frente do nome.
+- Plugins que não estão na versão *stable* temos um ponto laranja na frente do nome.
 
 Ao clicar em um plug-in, você acessa sua configuração. No topo, você encontra o nome do plug-in, depois entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 
@@ -84,7 +84,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 >
 > Se o plug-in usa uma dessas funções, você pode proibi-lo especificamente desmarcando a caixa "ativar" que estará presente ao lado dele.
 
-### Painel
+### Panel
 
 Podemos encontrar uma seção Painel que habilitará ou desabilitará a exibição do painel no painel ou no celular, se o plug-in oferecer um.
 

@@ -263,6 +263,7 @@ user::isBan();
 				</fieldset>
 			</form>
 			<br>
+			<hr class="hrPrimary">
 			<form class="form-horizontal">
 				<div class="alert" style="margin-bottom: 0;">
 					<i class="far fa-comment"></i>
