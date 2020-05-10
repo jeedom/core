@@ -1,17 +1,6 @@
 # Recherche
 
-Jeedom propose un moteur de recherche interne. Il est accessible pas *Menu Analyse → Recherche*.
-
-Pour chacun des types de résultat, il permet des actions:
-- **scénarios** : Ouvrir le log du scénario, ou se rendre sur la page du scénario, avec la recherche active sur le terme recherché.
-- **designs** : Afficher le design.
-- **vues** : Afficher la vue.
-- **interactions** : Ouvrir la page de configuration de l'interaction.
-- **équipement** : Ouvrir la page de configuration de l'équipement.
-- **commandes** : Ouvrir la configuration de la commande.
-- **notes** : Ouvrir la Note.
-
-Chacune de ces options ouvre un autre onglet de votre navigateur afin de ne pas perdre la recherche en cours.
+Jeedom propose un moteur de recherche interne. Il est accessible par *Menu Analyse → Recherche*.
 
 Vous pouvez faire des recherches de différents types :
 
@@ -81,4 +70,17 @@ Le moteur affichera dans les tableaux en dessous :
 	Recherche dans les champs *name*, *logicalId*, *eqType*, *generic_type*, .
 - Les **notes** utilisant cette chaîne.
 	Recherche dans le texte des notes.
+
+## Résultats
+
+Pour chacun des types de résultat, il permet des actions:
+- **scénarios** : Ouvrir le log du scénario, ou se rendre sur la page du scénario, avec la recherche active sur le terme recherché.
+- **designs** : Afficher le design.
+- **vues** : Afficher la vue.
+- **interactions** : Ouvrir la page de configuration de l'interaction.
+- **équipement** : Ouvrir la page de configuration de l'équipement.
+- **commandes** : Ouvrir la configuration de la commande.
+- **notes** : Ouvrir la Note.
+
+Chacune de ces options ouvre un autre onglet de votre navigateur afin de ne pas perdre la recherche en cours.
 
