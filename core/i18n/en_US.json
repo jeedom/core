@@ -520,6 +520,7 @@
     },
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Aide": "Help",
         "Recherche par": "Search by",
         "Equipement": "Equipment",
         "Commande": "Command",
