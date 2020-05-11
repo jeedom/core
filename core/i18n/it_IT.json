@@ -3602,7 +3602,7 @@
         "Exécution du sous-élément de type [condition] : ": "Esecuzione del sotto-elemento di tipo [condizione]:"
     },
     "core\/class\/ajax.class.php": {
-        "Token d\\'accès invalide": "Token di accesso non valido"
+        "Votre session a expiré, veuillez vous reconnecter": ""
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "Il tipo deve essere uno dei seguenti:",
