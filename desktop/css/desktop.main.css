@@ -1741,7 +1741,7 @@ ul.dropdown-menu {
   ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
     height: auto;
     overflow-x: hidden;
-    max-height: 440px; /* 4 items */
+    max-height: 600px;
   }
 }
 
