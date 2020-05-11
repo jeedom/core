@@ -168,8 +168,12 @@ $('#categoryfilter li a').on('mousedown', function(event) {
   var checkbox = $(this).find('.catFilterKey')
   if (!checkbox) return
   if (event.which == 2) {
-    $('#categoryfilter li .catFilterKey').prop("checked", false)
-    checkbox.prop("checked", true)
+    if ($('.catFilterKey:checked').length == 1 && checkbox.is(":checked")) {
+      $('#categoryfilter li .catFilterKey').prop("checked", true)
+    } else {
+      $('#categoryfilter li .catFilterKey').prop("checked", false)
+      checkbox.prop("checked", true)
+    }
   } else {
     checkbox.prop("checked", !checkbox.prop("checked"))
   }
