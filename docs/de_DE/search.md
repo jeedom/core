@@ -1,17 +1,6 @@
 # Recherche
 
-Jeedom bietet eine interne Suchmaschine. Es ist nicht zugänglich *Analysemenü → Suchen*.
-
-Für jede Art von Ergebnis sind Aktionen zulässig:
-- **Szenarien** : Öffnen Sie das Szenarioprotokoll oder rufen Sie die Szenarioseite mit der aktiven Suche nach dem gesuchten Begriff auf.
-- **designs** : Showdesign.
-- **vues** : Ansicht anzeigen.
-- **interactions** : Öffnen Sie die Interaktionskonfigurationsseite.
-- **équipement** : Öffnen Sie die Gerätekonfigurationsseite.
-- **commandes** : Öffnen Sie die Auftragskonfiguration.
-- **notes** : Hinweis öffnen.
-
-Jede dieser Optionen öffnet eine andere Registerkarte in Ihrem Browser, um die aktuelle Suche nicht zu verlieren..
+Jeedom bietet eine interne Suchmaschine. Es ist zugänglich durch *Analysemenü → Suchen*.
 
 Sie können verschiedene Arten suchen :
 
@@ -81,4 +70,17 @@ Der Motor wird in den folgenden Tabellen angezeigt :
 	Suche in Feldern *name*, *logicalId*, *eqType*, *generic_type*, .
 - Die **notes** mit dieser Zeichenfolge.
 	Notizen Textsuche.
+
+## Ergebnisse
+
+Für jede Art von Ergebnis sind Aktionen zulässig:
+- **Szenarien** : Öffnen Sie das Szenarioprotokoll oder rufen Sie die Szenarioseite mit der aktiven Suche nach dem gesuchten Begriff auf.
+- **designs** : Showdesign.
+- **vues** : Ansicht anzeigen.
+- **interactions** : Öffnen Sie die Interaktionskonfigurationsseite.
+- **équipement** : Öffnen Sie die Gerätekonfigurationsseite.
+- **commandes** : Öffnen Sie die Auftragskonfiguration.
+- **notes** : Hinweis öffnen.
+
+Jede dieser Optionen öffnet eine andere Registerkarte in Ihrem Browser, um die aktuelle Suche nicht zu verlieren..
 

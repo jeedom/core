@@ -531,6 +531,7 @@
         "Rechercher": "Arayın",
         "Rechercher un équipement": "",
         "Rechercher une commande": "Komuta arayın",
+        "Résultats": "",
         "Scénario": "Senaryo",
         "ID": "Kimlik",
         "Actions": "Işlemler",
@@ -3931,7 +3932,7 @@
         "Exécution du sous-élément de type [condition] : ": "Bu tipdeki alt-elementin uygulanması [şart] :"
     },
     "core\/class\/ajax.class.php": {
-        "Token d\\'accès invalide": "Geçersiz erişim belirteci"
+        "Votre session a expiré, veuillez vous reconnecter": ""
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "Tür aşağıdakilerden biri olmalıdır:",

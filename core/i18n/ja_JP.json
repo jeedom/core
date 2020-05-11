@@ -531,6 +531,7 @@
         "Rechercher": "検索",
         "Rechercher un équipement": "機器を探す",
         "Rechercher une commande": "検索順序",
+        "Résultats": "",
         "Scénario": "シナリオ",
         "ID": "",
         "Actions": "株式",
@@ -3931,7 +3932,7 @@
         "Exécution du sous-élément de type [condition] : ": "型サブ要素の実行[条件]："
     },
     "core\/class\/ajax.class.php": {
-        "Token d\\'accès invalide": ""
+        "Votre session a expiré, veuillez vous reconnecter": ""
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "",

@@ -1,17 +1,6 @@
 # Recherche
 
-Jeedom ofrece un buscador interno. No es accesible *Menú de análisis → Buscar*.
-
-Para cada tipo de resultado, permite acciones:
-- **Escenarios** : Abra el registro del escenario o vaya a la página del escenario, con la búsqueda activa del término buscado.
-- **designs** : Mostrar diseño.
-- **vues** : Mostrar vista.
-- **interactions** : Abra la página de configuración de interacción..
-- **équipement** : Abra la página de configuración del equipo..
-- **commandes** : Abrir la configuración del pedido.
-- **notes** : Nota abierta.
-
-Cada una de estas opciones abre una pestaña diferente en su navegador para no perder la búsqueda actual..
+Jeedom ofrece un buscador interno. Es accesible por *Menú de análisis → Buscar*.
 
 Puedes hacer búsquedas de diferentes tipos :
 
@@ -81,4 +70,17 @@ El motor se mostrará en las tablas a continuación. :
 	Buscar en campos *name*, *logicalId*, *eqType*, *tipo_genérico*, .
 - La **notes** usando esta cuerda.
 	Búsqueda de texto de notas.
+
+## Resultados
+
+Para cada tipo de resultado, permite acciones:
+- **Escenarios** : Abra el registro del escenario o vaya a la página del escenario, con la búsqueda activa del término buscado.
+- **designs** : Mostrar diseño.
+- **vues** : Mostrar vista.
+- **interactions** : Abra la página de configuración de interacción..
+- **équipement** : Abra la página de configuración del equipo..
+- **commandes** : Abrir la configuración del pedido.
+- **notes** : Nota abierta.
+
+Cada una de estas opciones abre una pestaña diferente en su navegador para no perder la búsqueda actual..
 

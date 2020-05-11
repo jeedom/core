@@ -1,17 +1,6 @@
 # Recherche
 
-Jeedom oferece um mecanismo de busca interno. Não é acessível *Menu Análise → Pesquisar*.
-
-Para cada tipo de resultado, permite ações:
-- **Cenas** : Abra o log do cenário ou acesse a página do cenário, com a pesquisa ativa no termo procurado.
-- **designs** : Mostrar design.
-- **vues** : Mostrar visualização.
-- **interactions** : Abra a página de configuração da interação.
-- **équipement** : Abra a página de configuração do equipamento.
-- **commandes** : Abra a configuração do pedido.
-- **notes** : Nota aberta.
-
-Cada uma dessas opções abre uma guia diferente no seu navegador para não perder a pesquisa atual..
+Jeedom oferece um mecanismo de busca interno. É acessível por *Menu Análise → Pesquisar*.
 
 Você pode fazer pesquisas de diferentes tipos :
 
@@ -81,4 +70,17 @@ O mecanismo será exibido nas tabelas abaixo :
 	Pesquisar nos campos *name*, *logicalId*, *eqType*, *generic_type*, .
 - O **notes** usando esta string.
 	Pesquisa de texto do Notes.
+
+## Resultados
+
+Para cada tipo de resultado, permite ações:
+- **Cenas** : Abra o log do cenário ou acesse a página do cenário, com a pesquisa ativa no termo procurado.
+- **designs** : Mostrar design.
+- **vues** : Mostrar visualização.
+- **interactions** : Abra a página de configuração da interação.
+- **équipement** : Abra a página de configuração do equipamento.
+- **commandes** : Abra a configuração do pedido.
+- **notes** : Nota aberta.
+
+Cada uma dessas opções abre uma guia diferente no seu navegador para não perder a pesquisa atual..
 

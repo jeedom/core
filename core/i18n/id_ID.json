@@ -531,6 +531,7 @@
         "Rechercher": "Pencarian",
         "Rechercher un équipement": "",
         "Rechercher une commande": "Urutan pencarian",
+        "Résultats": "",
         "Scénario": "Skenario",
         "ID": "",
         "Actions": "Tindakan",
@@ -3931,7 +3932,7 @@
         "Exécution du sous-élément de type [condition] : ": "Pelaksanaan jenis sub-elemen [kondisi]:"
     },
     "core\/class\/ajax.class.php": {
-        "Token d\\'accès invalide": ""
+        "Votre session a expiré, veuillez vous reconnecter": ""
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "",

@@ -531,6 +531,7 @@
         "Rechercher": "Buscar",
         "Rechercher un équipement": "Busca equipo",
         "Rechercher une commande": "Buscar una orden",
+        "Résultats": "Resultados",
         "Scénario": "Escenario",
         "ID": "Identificación",
         "Actions": "Acciones",
@@ -3931,7 +3932,7 @@
         "Exécution du sous-élément de type [condition] : ": "Ejecución del sub-elemento de tipo [condición]:"
     },
     "core\/class\/ajax.class.php": {
-        "Token d\\'accès invalide": "Token de acceso inválido"
+        "Votre session a expiré, veuillez vous reconnecter": "Su sesión ha expirado, vuelva a conectar"
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "El tipo debe ser uno de los siguientes:",
