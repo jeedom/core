@@ -73,27 +73,28 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		<?php } else { ?>
 			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
 		<?php } ?>
+		</a>		
+	</div>
+	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
+	<div class="input-group-btn">
+		<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
 		</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
 			<i class="fas fa-filter"></i></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
 		</button>
-		<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:unset;left:unset;">
+		<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:28px;left:-110px;">
 			<li>
 				<a id="catFilterAll"> {{Toutes}}</a>
 				<a id="catFilterNone"> {{Aucune}}</a>
 			</li>
 			 <li class="divider"></li>
 			<?php
-            	foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-            		if ($key=='default') $key = '';
-	            	echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
-            	}
-            ?>
-            <li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
+				foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+					if ($key=='default') $key = '';
+					echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
+				}
+			?>
+			<li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
 		</ul>
-	</div>
-	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
-	<div class="input-group-btn">
-		<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
 	</div>
 	<?php
 	if (init('category', 'all') == 'all') {?>
