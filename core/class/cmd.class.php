@@ -831,71 +831,65 @@ class cmd {
 		if ($this->getType() == 'info') {
 			switch ($this->getSubType()) {
 				case 'string':
-					if ($_quote) {
-						return '"' . $_value . '"';
-					}
-					return $_value;
+				if ($_quote) {
+					return '"' . $_value . '"';
+				}
+				return $_value;
 				case 'other':
-					if ($_quote) {
-						return '"' . $_value . '"';
-					}
-					return $_value;
+				if ($_quote) {
+					return '"' . $_value . '"';
+				}
+				return $_value;
 				case 'binary':
-					if ($this->getConfiguration('calculValueOffset') != '') {
-						try {
-							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
-							} else {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
-							}
-						} catch (Exception $ex) {
-
-						} catch (Error $ex) {
-
+				if ($this->getConfiguration('calculValueOffset') != '') {
+					try {
+						if (preg_match("/[a-zA-Z#]/", $_value)) {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
+						} else {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						}
+					} catch (Exception $ex) {
+
+					} catch (Error $ex) {
+
 					}
-					$value = strtolower($_value);
-					if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
-						return 1;
-					}
-					if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
-						return 0;
-					}
-					if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
-						return 1;
-					}
+				}
+				$value = strtolower($_value);
+				if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
+					return 1;
+				}
+				if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
 					return 0;
+				}
+				if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
+					return 1;
+				}
+				return 0;
 				case 'numeric':
-					$_value = floatval(str_replace(',', '.', $_value));
-					if ($this->getConfiguration('calculValueOffset') != '') {
-						try {
-							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
-							} else {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
-							}
-						} catch (Exception $ex) {
-
-						} catch (Error $ex) {
-
+				$_value = floatval(str_replace(',', '.', $_value));
+				if ($this->getConfiguration('calculValueOffset') != '') {
+					try {
+						if (preg_match("/[a-zA-Z#]/", $_value)) {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
+						} else {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						}
+					} catch (Exception $ex) {
+
+					} catch (Error $ex) {
+
 					}
-					$numFormat = false;
-					if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
-						$numFormat = true;
-						$_value = number_format($_value, $this->getConfiguration('historizeRound'));
-					}
-					if ($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1) {
-						$_value = $this->getConfiguration('maxValue', $_value);
-					}
-					if ($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1) {
-						$_value = $this->getConfiguration('minValue', $_value);
-					}
-					if ($numFormat) {
-						return $_value;
-					} else {
-						return floatval($_value);
-					}
+				}
+				if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+					$_value = round($_value, $this->getConfiguration('historizeRound'));
+				}
+				if ($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1) {
+					$_value = $this->getConfiguration('maxValue', $_value);
+				}
+				if ($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1) {
+					$_value = $this->getConfiguration('minValue', $_value);
+				}
+				return floatval($_value);
 			}
 		}
 		return $_value;
