@@ -12,9 +12,9 @@ Auf der Seite Geräteanalyse können Sie viele Informationen zu Geräten zentral
 ## Registerkarte &quot;Batterien&quot;
 
 
-Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand).
+Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand)
 
-> **Tip**
+> **Spitze**
 >
 > Die Alarm- / Warnschwellenwerte für die Batteriestände können global in der Jeedom-Konfiguration (Einstellungen → Systeme → Konfiguration) konfiguriert werden : Ausrüstung) oder nach Ausrüstung auf der Seite für die erweiterte Konfiguration auf der Registerkarte Warnungen.
 
@@ -27,11 +27,11 @@ Auf dieser Registerkarte sehen Sie in Echtzeit die Module in Alarmbereitschaft. 
 - Warn- oder Gefahrenbefehl (konfigurierbar in den erweiterten Befehlsparametern).
 
 Andere Arten von Warnungen finden Sie hier.
-Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt..
+Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt.
 
-> **Tip**
+> **Spitze**
 >
-> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul &quot;sichtbar&quot; ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist..
+> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul &quot;sichtbar&quot; ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist.
 
 ## Registerkarte &quot;Definierte Aktionen&quot;
 
@@ -42,7 +42,7 @@ Auf dieser Registerkarte können Sie die Aktionen anzeigen, die direkt in einem 
 - Bestätigungen mit Code (wie oben, jedoch mit Eingabe eines Codes).
 - Vor- und Nachaktionen (immer konfigurierbar an derselben Stelle in einem Aktionsbefehl und Ermöglichen der Ausführung einer oder mehrerer anderer Aktionen vor oder nach der betreffenden Aktion).
 
-> **Tip**
+> **Spitze**
 >
 > Die Tabelle bietet eine sehr textuelle Ansicht der definierten Aktionen. Andere Arten definierter Aktionen können hinzugefügt werden.
 
@@ -68,6 +68,6 @@ Und an vielen anderen Orten verwendet wie (nicht erschöpfend) :
 - In Aktion zum Bestellstatus.
 - In einigen Plugins.
 
-> **Tip**
+> **Spitze**
 >
 > Die Tabelle bietet eine sehr textuelle Ansicht der verwaisten Befehle. Ziel ist es, alle &quot;Orphan&quot; -Bestellungen über alle Jeedom und Plugins schnell identifizieren zu können. Es kann sein, dass einige Bereiche nicht analysiert werden und die Tabelle mit der Zeit immer umfassender wird.

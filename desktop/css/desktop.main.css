@@ -1670,6 +1670,8 @@ header .navbar-toggle {
 .dropdown-menu,
 .dropdown-menu > ul {
   z-index: 9999 !important;
+  scrollbar-color: var(--form-bg-color) transparent !important;
+  scrollbar-width: thin;
 }
 ul.dropdown-menu {
   border-bottom: 2px solid var(--el-defaultColor);
@@ -1720,6 +1722,27 @@ ul.dropdown-menu {
 .dropdown-submenu.pull-left > .dropdown-menu {
   left: -100%;
   margin-left: 10px;
+}
+
+ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+  height: auto;
+  overflow-x: hidden;
+}
+
+@media screen and (max-height: 400px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 114px; /* 4 items */
+  }
+}
+@media screen and (min-height: 400px) and (max-height: 800px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 220px; /* 7 items */
+  }
+}
+@media screen and (min-height: 801px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 600px;
+  }
 }
 
 /* __________________________________________________________________________________________________________PANELS */

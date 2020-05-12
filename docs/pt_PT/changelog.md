@@ -5,7 +5,7 @@
 - Síntese : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
 - Pesquisa : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - Painel de instrumentos : Modo de edição agora inserindo o bloco movido.
-- Painel de instrumentos : Agora podemos clicar no *time* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
+- Painel de instrumentos : Agora podemos clicar no *Tempo* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
 - Painel de instrumentos : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
 - Painel de instrumentos : Adição de um botão para filtrar os itens exibidos por categoria.
 - Painel de instrumentos : Ctrl Clique em uma informação para abrir a janela do histórico com todos os comandos históricos do equipamento visíveis no bloco. Ctrl Clique em uma legenda para exibir apenas esta, Alt Clique para exibir todas.
@@ -14,7 +14,7 @@
 - Widgets : Capacidade de adicionar classe css a um widget (consulte a documentação do widget).
 - Widgets : Adicionando um widget principal *sliderVertical*.
 - Update Center : As atualizações são verificadas automaticamente quando a página é aberta, se for 120 minutos mais antiga.
-- Update Center : A barra de progresso está agora na guia *Núcleo e plugins*, e o log aberto por padrão na guia *Informations*.
+- Update Center : A barra de progresso está agora na guia *Núcleo e plugins*, e o log aberto por padrão na guia *Informação*.
 - Update Center : Se você abrir outro navegador durante uma atualização, a barra de progresso e o log indicarão.
 - Update Center : Se a atualização terminar corretamente, é exibida uma janela pedindo para recarregar a página.
 - Atualizações principais : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
@@ -23,20 +23,20 @@
 	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay:
 	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Notes*, *Testador de expressão*, *Variables*, *Recherche* : Abra a janela em uma nova guia, em tela cheia.
+	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Anotações*, *Testador de expressão*, *Variáveis*, *Pesquisa* : Abra a janela em uma nova guia, em tela cheia.
 - Cenas : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
 - Cenas : Adição da função de idade (fornece a idade do valor da ordem).
-- Cenas : *stateChanges()* agora aceite o período *today* (da meia-noite até agora), *yesterday* e *day* (por 1 dia).
-- Cenas : FUNÇÕES *estatísticas (), média (), max (), min (), tendência (), duração ()* : Bugfix ao longo do período *yesterday*, e aceite agora *day* (por 1 dia).
+- Cenas : *stateChanges ()* agora aceite o período *Hoje* (da meia-noite até agora), *ontem* e *dia* (por 1 dia).
+- Cenas : FUNÇÕES *estatísticas (), média (), max (), min (), tendência (), duração ()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
 - Cenas : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Pedidos).
-- Cenas : Visualizando um *warning* se nenhum gatilho estiver configurado.
+- Cenas : Visualizando um *Aviso* se nenhum gatilho estiver configurado.
 - Cenas : Correção de bug no bloco copiar / colar.
 - Cenas : Copiar / colar do bloco entre diferentes cenários.
 - Cenas : As funções desfazer / refazer estão agora disponíveis na forma de botões (ao lado do botão de criação do bloco).
 - Janela Variáveis de Cenário : ordenação alfabética na abertura.
 - Análise / História : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - Análise / História : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
-- Análise / História : Agora podemos usar a opção *Aire* com a opção *Escalier*.
+- Análise / História : Agora podemos usar a opção *área* com a opção *Escada*.
 - Vista : possibilidade de colocar cenários.
 - Histórico : Integração da linha do tempo no DB por motivos de confiabilidade.
 - Histórico : Gerenciamento de várias linhas do tempo.
@@ -46,10 +46,10 @@
 - Resumo Automation : Possibilidade de mover várias peças de equipamento de um objeto para outro.
 - Resumo Automation : Possibilidade de selecionar todo o equipamento de um objeto.
 - Mecanismo de tarefas : Na guia *Demônio*, plugins desativados não aparecem mais.
-- Configuração : A guia *Informations* agora está na guia *Geral*.
-- Configuração : A guia *Commandes* agora está na guia *Equipements*.
+- Configuração : A guia *Informação* agora está na guia *Geral*.
+- Configuração : A guia *Comandos* agora está na guia *Instalações*.
 - Janela de configuração avançada de equipamentos : Alteração dinâmica da configuração do quadro de distribuição.
-- Instalações : Nova categoria *Ouvrant*.
+- Instalações : Nova categoria *Abertura*.
 - Sobre a janela : Adição de atalhos ao Changelog e FAQ.<br/><br/>
 - WebApp : Integração da nova página Resumo.
 - WebApp : Na página Cenários, um clique no título do cenário exibe seu log.
@@ -116,10 +116,10 @@
 - Os campos de pesquisa agora suportam acentos.
 - Os campos de pesquisa (Painel, cenários, objetos, widgets, interações, plug-ins) agora estão ativos quando a página é aberta, permitindo que você digite uma pesquisa diretamente.
 - Adicione um botão X nos campos de pesquisa para cancelar a pesquisa.
-- Durante uma pesquisa, a tecla *echap* cancelar pesquisa.
+- Durante uma pesquisa, a tecla *escapar* cancelar pesquisa.
 - Painel de instrumentos : No modo de edição, o campo de pesquisa e seus botões são desativados e se tornam fixos.
-- Painel de instrumentos : No modo de edição, clique em um botão *expand* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique reduz para a altura mais baixa.
-- Painel de instrumentos : A execução do comando em um bloco agora é sinalizada pelo botão *refresh*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
+- Painel de instrumentos : No modo de edição, clique em um botão *expandir* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique reduz para a altura mais baixa.
+- Painel de instrumentos : A execução do comando em um bloco agora é sinalizada pelo botão *Atualizar*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
 - Painel de instrumentos : Os blocos indicam um comando info (histórico, que abrirá a janela Histórico) ou ação em foco.
 - Painel de instrumentos : A janela do histórico agora permite abrir esse histórico em Análise / Histórico.
 - Painel de instrumentos : A janela Histórico mantém sua posição / dimensões quando outro histórico é reaberto.
@@ -145,7 +145,7 @@
 - Widgets : Adicionando um widget de chuva numérico de informações (obrigado @thanaus)
 - Widgets : Exibição do widget de obturador de informações / ações proporcional ao valor.<br/><br/>
 - Configuração : Melhoria e reorganização de guias.
-- Configuração : Adicionando muitos *tooltips* (ajuda).
+- Configuração : Adicionando muitos *dicas* (ajuda).
 - Configuração : Adicionando um mecanismo de pesquisa.
 - Configuração : Adicionando um botão para esvaziar o cache do widget (guia Cache).
 - Configuração : Adicionada opção para desativar o cache do widget (guia Cache).
@@ -154,7 +154,7 @@
 - Configuração : Mudança de #message# à #subject# em Configuração / Logs / Mensagens para evitar duplicação da mensagem.
 - Configuração : Possibilidade nos resumos de adicionar uma exclusão dos pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo das médias de temperatura se um sensor não elevar nada por mais de 30 minutos, ele será excluído do cálculo )<br/><br/>
 - Cenas : A coloração dos blocos não é mais aleatória, mas por tipo de bloco.
-- Cenas : Possibilidade por Ctrl + clique no botão *execução* salve-o, inicie-o e exiba o log (se o nível do log não estiver em *Aucun*).
+- Cenas : Possibilidade por Ctrl + clique no botão *execução* salve-o, inicie-o e exiba o log (se o nível do log não estiver em *Nemhum*).
 - Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar confirmação.
 - Cenas : Adição de uma função de pesquisa nos blocos de código. Pesquisa : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 - Cenas : Capacidade de condensar blocos.
@@ -165,7 +165,7 @@
 - Cenas : Excluir compartilhamento de cenário.
 - Cenas : Melhoria da janela de gerenciamento de modelos de cenário.<br/><br/>
 - Análise / Equipamento : Adição de um mecanismo de pesquisa (guia Baterias, pesquisa por nomes e pais).
-- Análise / Equipamento : A área de calendário / dias do equipamento agora pode ser clicada para acessar diretamente a troca de baterias..
+- Análise / Equipamento : A área de calendário / dias do equipamento agora pode ser clicada para acessar diretamente a troca de baterias.
 - Análise / Equipamento : Adição de um campo de pesquisa.<br/><br/>
 - Update Center : Aviso na guia 'Núcleo e plug-ins' e / ou 'Outros' se houver uma atualização disponível. Mude para 'Outros' se necessário.
 - Update Center : diferenciação por versão (estável, beta, ...).
@@ -175,20 +175,20 @@
 - Resumo Automation : Adição de IDs de equipamentos e pedidos, no display e na pesquisa.
 - Resumo Automation : Exportação CSV do objeto pai, ID, equipamento e seu ID, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais pedidos.<br/><br/>
-- Projeto : Capacidade de especificar a ordem (posição) de *Designs* e *Projetos 3D* (Editar, configurar design).
-- Projeto : Adição de um campo CSS personalizado nos elementos do *design*.
-- Projeto : Deslocamento das opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam *Design*.
-- Projeto : Movendo e redimensionando componentes no *Design* leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
+- Projeto : Capacidade de especificar a ordem (posição) de *Projetos* e *Projetos 3D* (Editar, configurar design).
+- Projeto : Adição de um campo CSS personalizado nos elementos do *Projeto*.
+- Projeto : Deslocamento das opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Projeto*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam *Projeto*.
+- Projeto : Movendo e redimensionando componentes no *Projeto* leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
 - Redução geral (estilos css / inline, refatoração etc.) e melhorias de desempenho.
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.
 - Atualização de libs : jquery 3.4.1, CodeMiror 5.46.0, editor de tabelas 2.31.1.
 - Várias correções de bugs.
 - Adicionando um sistema de configuração em massa (usado na página Equipamento para configurar o Alerta de Comunicação neles)
 
->**IMPORTANT**
+>**IMPORTANTE**
 >
->Se, após a atualização, houver um erro no painel, tente reiniciar sua caixa para levar em consideração as novas adições de componentes..
+>Se, após a atualização, houver um erro no painel, tente reiniciar sua caixa para levar em consideração as novas adições de componentes.
 
->**IMPORTANT**
+>**IMPORTANTE**
 >
 >O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque as funções foram assumidas internamente no núcleo). Mais informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

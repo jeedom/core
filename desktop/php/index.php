@@ -277,7 +277,7 @@ function setTheme() {
 									<li><a id="bt_gotoOverview" href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (jeeObject::buildTree(null, false) as $object_li) {
@@ -289,7 +289,7 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (view::all() as $view_menu) {
@@ -301,7 +301,7 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (planHeader::all() as $plan_menu) {
@@ -313,7 +313,7 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (plan3dHeader::all() as $plan3d_menu) {

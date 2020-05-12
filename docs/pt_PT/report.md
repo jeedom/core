@@ -7,9 +7,9 @@ Esta página permite que você veja todos os relatórios que foram gerados pela 
 
 Um relatório é uma captura de tela da interface Jeedom por vez t.
 
-> **Note**
+> **NOTA**
 >
-> Essa captura é adaptada para não levar a barra de menus e outros elementos desnecessários a esse tipo de uso..
+> Essa captura é adaptada para não levar a barra de menus e outros elementos desnecessários a esse tipo de uso.
 
 Você pode fazer isso em vistas, designs, páginas do painel....
 
@@ -27,7 +27,7 @@ Seu uso é muito simples. Selecione à esquerda se quiser ver :
 
 Em seguida, selecione o nome do relatório em questão. Você verá todas as datas dos relatórios disponíveis.
 
-> **Important**
+> **IMPORTANTE**
 >
 > A exclusão automática é feita por padrão para relatórios com mais de 30 dias. Você pode configurar esse atraso na configuração do Jeedom.
 
