@@ -1736,7 +1736,7 @@ ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdo
 }
 @media screen and (min-height: 400px) and (max-height: 800px) {
   ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
-    max-height: 220px; /* 7 items */
+    max-height: 238px; /* 9 items */
   }
 }
 @media screen and (min-height: 801px) {
