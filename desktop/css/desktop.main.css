@@ -1725,6 +1725,7 @@ ul.dropdown-menu {
 }
 
 ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+  border-top: 1px solid var(--el-defaultColor);
   height: auto;
   overflow-x: hidden;
 }
