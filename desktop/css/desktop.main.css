@@ -3578,6 +3578,12 @@ input:invalid {
   background-color: rgb(var(--defaultBkg-color))
 }
 
+#div_displayCmdConfigure .form-group div > span {
+  max-width: 98% !important;
+  display: inline-block;
+  padding: 5px !important;
+}
+
 
 /* __________________________________________________________________________________________________________TooltipSter */
 .tooltipWrapper {

@@ -47,45 +47,45 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <legend><i class="fas fa-list-alt"></i> {{Général}}</legend>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{ID}}</label>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <span class="cmdAttr label label-primary" data-l1key="id"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Logical ID}}</label>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Nom}}</label>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <span class="cmdAttr label label-primary" data-l1key="name"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Type}}</label>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <span class="cmdAttr label label-primary" data-l1key="type"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Sous-type}}</label>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <span class="cmdAttr label label-primary" data-l1key="subType"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                   <span class="cmdAttr" data-l1key="value"></span>
                 </div>
               </div>
               <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
                 ?>
                 <div class="form-group">
-                  <label class="col-xs-6 control-label">{{Valeurs possibles}}</label>
-                  <div class="col-xs-6">
+                  <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
+                  <div class="col-xs-8">
                     <?php
                     $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                     foreach ($elements as $element) {
@@ -101,19 +101,19 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 ?>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Valeur}}</label>
-                  <div class="col-xs-4">
+                  <div class="col-xs-8">
                     <span class="label label-primary"><?php echo $cache['value'] ?></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Date collecte}}</label>
-                  <div class="col-xs-4">
+                  <div class="col-xs-8">
                     <span class="label label-primary"><?php echo $cache['collectDate'] ?></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Date valeur}}</label>
-                  <div class="col-xs-4">
+                  <div class="col-xs-8">
                     <span class="label label-primary"><?php echo $cache['valueDate'] ?></span>
                   </div>
                 </div>
