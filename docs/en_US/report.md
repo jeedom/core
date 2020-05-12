@@ -19,7 +19,7 @@ Its use is very simple you select if you want to see :
 
 Then you select the name of the report in question then you will see all the dates of the reports in memory
 
-> **Important**
+> **IMPORTANT**
 >
 > Automatic deletion is made by default for reports longer than 30 days (you can configure this period in the configuration of Jeedom)
 

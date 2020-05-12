@@ -200,7 +200,7 @@ Einstellungen:
 eqLogic::byType
 ---------------
 
-Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin).
+Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin)
 
 Einstellungen:
 
@@ -222,7 +222,7 @@ Gibt eine Gerätetabelle gemäß den Parametern zurück. Die Rückkehr
 wird vom Formulararray sein (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒
 Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
-array(…​.))..)
+Array (....)) ..)
 
 Einstellungen:
 

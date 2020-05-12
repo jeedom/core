@@ -269,11 +269,11 @@ Tente esvaziar o cache do Chrome, a exibição do histórico é calculada em rel
 Estou com o erro "Problemas de rede detectados, reinicialização da rede"
 =========================================
 
-Jeedom não consegue encontrar ou executar ping no gateway. Em geral, isso acontece se a caixa adsl for reiniciada (principalmente as caixas ativas) e o Jeeodm não tiver reiniciado ou tiver sido reiniciado mais rapidamente que a caixa. Por questões de segurança, ele diz que encontrou um problema e relança o processo de conexão de rede. Você pode desativar esse mecanismo acessando a configuração do Jeedom e desativando o gerenciamento de rede pelo Jeedom..
+Jeedom não consegue encontrar ou executar ping no gateway. Em geral, isso acontece se a caixa adsl for reiniciada (principalmente as caixas ativas) e o Jeeodm não tiver reiniciado ou tiver sido reiniciado mais rapidamente que a caixa. Por questões de segurança, ele diz que encontrou um problema e relança o processo de conexão de rede. Você pode desativar esse mecanismo acessando a configuração do Jeedom e desativando o gerenciamento de rede pelo Jeedom.
 
 Recebo a mensagem "Falha ao fazer backup do banco de dados. Verifique se o mysqldump está presente."
 =========================================
-Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode sugerir um problema com a corrupção do banco de dados e do sistema de arquivos.. Infelizmente, não existe um comando milagroso para corrigir. O melhor é iniciar um backup e analisar o log dele. Em casos conhecidos de preocupações, temos
+Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode sugerir um problema com a corrupção do banco de dados e do sistema de arquivos. Infelizmente, não existe um comando milagroso para corrigir. O melhor é iniciar um backup e analisar o log dele. Em casos conhecidos de preocupações, temos
 
 - uma tabela base corrompida => está mal iniciada, é necessário tentar consertá-la e, se não iniciar a partir do último backup bom (se você estiver em proteção SD, é o momento certo para alterá-la)
 - não há espaço suficiente no sistema de arquivos => veja a página de integridade, isso pode lhe dizer

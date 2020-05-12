@@ -2,7 +2,7 @@ Informa todas as tarefas de aplicativos Jeedom executadas no
 garçom. Este menu deve ser usado conscientemente ou no
 solicitar suporte técnico.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Em caso de manuseio incorreto nesta página, qualquer solicitação de
 > suporte pode ser negado você.
@@ -20,9 +20,9 @@ No canto superior direito, você tem :
 
 -   **Legal** : um botão para atualizar a tabela de tarefas
 
--   **Ajouter** : um botão para adicionar um trabalho cron
+-   **Adicionar** : um botão para adicionar um trabalho cron
 
--   **Enregistrer** : um botão para salvar suas alterações.
+-   **Registro** : um botão para salvar suas alterações.
 
 Abaixo você tem a tabela de todas as tarefas existentes
 (tenha cuidado, algumas tarefas podem iniciar subtarefas, por isso é
@@ -32,10 +32,10 @@ página). Nesta tabela, encontramos :
 -   **\#** : ID da tarefa, pode ser útil para vincular um
     processo em execução e o que realmente faz
 
--   **Action** : um botão para iniciar ou parar a tarefa em função
+-   **Ação** : um botão para iniciar ou parar a tarefa em função
     seu status e um botão para ver o cron em detalhes (conforme armazenado no banco de dados)
 
--   **Actif** : indica se a tarefa está ativa (pode ser iniciada
+-   **Ativos** : indica se a tarefa está ativa (pode ser iniciada
     por Jeedom) ou não
 
 -   **PID** : Indica o ID do processo atual
@@ -45,18 +45,18 @@ página). Nesta tabela, encontramos :
     aconselhado a nunca tocar nesse valor e, especialmente, nunca
     diminua
 
--   **Unique** : se for "sim", a tarefa será iniciada uma vez
+-   **único** : se for "sim", a tarefa será iniciada uma vez
     então excluirá
 
--   **Classe** : Classe PHP chamada para executar a tarefa (pode
+-   **Class** : Classe PHP chamada para executar a tarefa (pode
     estar vazio)
 
--   **Fonction** : Função PHP chamada na classe chamada (ou não
+-   **Função** : Função PHP chamada na classe chamada (ou não
     se a turma estiver vazia)
 
--   **Programmation** : programando a tarefa no formato CRON
+-   **Programação** : programando a tarefa no formato CRON
 
--   **Timeout** : Tempo máximo de execução da tarefa. Se o
+-   **Tempo limite** : Tempo máximo de execução da tarefa. Se o
     Se a tarefa for um demônio, ela será automaticamente interrompida e
     reiniciado no final do tempo limite
 
@@ -66,10 +66,10 @@ página). Nesta tabela, encontramos :
     demon sempre estará no zero, então não se preocupe com outras tarefas
     pode ser 0s)
 
--   **Statut** : status atual da tarefa (como lembrete, uma tarefa daemon
+-   **Estado** : status atual da tarefa (como lembrete, uma tarefa daemon
     ainda está "executado")
 
--   **Suppression** : Excluir tarefa
+-   **Remoção** : Excluir tarefa
 
 
 # Listener

@@ -2,7 +2,7 @@ Parte importante no software : a parte da historização, real
 lembrança disso. É possível em Jeedom historiar qualquer
 qual comando do tipo de informação (binário ou digital). Que você
 permitirá, por exemplo, histórico de uma curva de temperatura,
-aberturas de consumo ou porta ...
+aberturas de consumo ou porta
 
 Princípio 
 ========
@@ -32,7 +32,7 @@ aqui 2 parâmetros, um para o tamanho do pacote e outro para saber
 quando fazê-lo (por padrão, são pacotes
 1 hora com dados com mais de 2 horas de antiguidade).
 
-> **Tip**
+> **Dica**
 >
 > Se você seguiu bem, deve ter uma alta precisão no
 > Apenas nas últimas 2 horas. No entanto, quando eu entro às 17h,
@@ -40,7 +40,7 @@ quando fazê-lo (por padrão, são pacotes
 > para evitar consumir recursos desnecessariamente, a tarefa que torna
 > o arquivamento ocorre apenas uma vez por dia, à noite.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Obviamente, esse princípio de arquivamento se aplica apenas a pedidos de
 > tipo digital; nos comandos do tipo binário, o Jeedom não mantém
@@ -69,17 +69,17 @@ semana porque, por padrão, quero que seja apenas uma semana - veja
 (esses parâmetros são mantidos de um monitor para outro; portanto, você
 do que configurá-los uma vez).
 
--   **Escalier** : exibe a curva como um
+-   **Escada** : exibe a curva como um
     escada ou exibição contínua.
 
--   **Variation** : exibe a diferença no valor de
+-   **Mudança** : exibe a diferença no valor de
     ponto anterior.
 
--   **Ligne** : Exibe o gráfico como linhas.
+-   **Linha** : Exibe o gráfico como linhas.
 
--   **Aire** : Exibe o gráfico como uma área.
+-   **área** : Exibe o gráfico como uma área.
 
--   **Colonne**\* : Exibe o gráfico como barras.
+-   **Coluna**\* : Exibe o gráfico como barras.
 
 Gráfico em vistas e desenhos 
 =====================================
@@ -91,21 +91,21 @@ as opções :
 
 Depois que os dados são ativados, você pode escolher :
 
--   **Couleur** : A cor da curva.
+-   **Cor** : A cor da curva.
 
--   **Type** : O tipo de gráfico (área, linha ou coluna).
+-   **Tipo** : O tipo de gráfico (área, linha ou coluna).
 
--   **Echelle** : já que você pode colocar várias curvas (dados)
+-   **Escala** : já que você pode colocar várias curvas (dados)
     no mesmo gráfico, é possível distinguir as escalas
     (direita ou esquerda).
 
--   **Escalier** : exibe a curva como um
+-   **Escada** : exibe a curva como um
     escada ou exibição contínua
 
--   **Empiler** : permite empilhar os valores das curvas (veja em
+-   **Pilha** : permite empilhar os valores das curvas (veja em
     abaixo para o resultado).
 
--   **Variation** : exibe a diferença no valor de
+-   **Mudança** : exibe a diferença no valor de
     ponto anterior.
 
 Opção na página do histórico 
@@ -119,13 +119,13 @@ História calculado
 Usado para exibir uma curva com base em um cálculo em vários
 comando (você pode praticamente fazer tudo, + - / \* valor absoluto ... veja
 Documentação do PHP para determinadas funções). Ex :
-abs(*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço de
+abs (*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço de
 vida \] \ [Higrometria \] \ [Temperatura \] *)
 
 Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite
 salve-os para facilitar a visualização
 
-> **Tip**
+> **Dica**
 >
 > Basta clicar no nome do objeto para desdobrar;
 > aparecem os comandos históricos que podem ser representados graficamente.
@@ -135,7 +135,7 @@ Histórico de pedidos
 
 Na frente de cada dado que pode ser representado graficamente, você encontrará dois ícones :
 
--   **Poubelle** : permite excluir os dados gravados; quando
+-   **Lixeira** : permite excluir os dados gravados; quando
     clique, Jeedom pergunta se é necessário excluir os dados antes de um
     determinada data ou todos os dados.
 
@@ -160,13 +160,13 @@ chronologique.
 Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo de
 comandos ou cenários desejados :
 
--   **Scenario** : diretamente na página do cenário ou no
+-   **Cenas** : diretamente na página do cenário ou no
     página de resumo do cenário para fazê-lo em "massa"
 
--   **Commande** : na configuração avançada do comando,
+-   **Ordem** : na configuração avançada do comando,
     seja na configuração da história para fazê-lo em "massa"
 
-> **Tip**
+> **Dica**
 >
 > Você tem acesso às janelas de resumo dos cenários ou do
 > configuração do histórico diretamente da página
@@ -175,17 +175,17 @@ comandos ou cenários desejados :
 Depois de ativar o rastreamento na linha do tempo do pedido e
 cenários desejados, você pode vê-los aparecer na linha do tempo.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Você precisa aguardar novos eventos após ativar o rastreamento
 > na linha do tempo antes de vê-los aparecer.
 
 Os cartões na linha do tempo exibem :
 
--   **Comando de ação** : em fundo vermelho, um ícone à direita permite
+-   **Ordem action** : em fundo vermelho, um ícone à direita permite
     exibe a janela de configuração avançada do comando
 
--   **Comando Info** : em fundo azul, um ícone à direita permite
+-   **Ordem info** : em fundo azul, um ícone à direita permite
     exibe a janela de configuração avançada do comando
 
 -   **Cenas** : em fundo cinza, você tem 2 ícones : um para exibir

@@ -19,7 +19,7 @@ Seu uso é muito simples, você seleciona se deseja ver :
 
 Depois, você seleciona o nome do relatório em questão e verá todas as datas dos relatórios na memória
 
-> **Important**
+> **IMPORTANTE**
 >
 > A exclusão automática é feita por padrão para relatórios com mais de 30 dias (você pode configurar esse período na configuração do Jeedom)
 

@@ -4,11 +4,11 @@ sua imaginação.
 
 É acessível por Início → Design
 
-> **Tip**
+> **Dica**
 >
 > É possível ir diretamente a um design graças ao submenu.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Todas as ações são feitas clicando com o botão direito nesta página, atenção
 > fazê-lo bem no design. Durante a criação, é necessário, portanto,
@@ -17,9 +17,9 @@ sua imaginação.
 No menu (clique com o botão direito do mouse), encontramos o
 seguintes ações :
 
--   **Designs** : Exibe a lista de seus projetos e os acessa
+-   **Projetos** : Exibe a lista de seus projetos e os acessa
 
--   **Edition** : Mudar para o modo de edição
+-   **Edição** : Mudar para o modo de edição
 
 -   **Tela cheia** : Permite usar a página da web inteira, que
     irá remover o menu Jeedom da parte superior
@@ -52,9 +52,9 @@ seguintes ações :
 -   **Adicionar resumo** : Adiciona informações de um resumo de objeto ou
     Geral
 
--   **Affichage**
+-   **Visualizando**
 
-    -   **Aucune** : Não exibe nenhuma grade
+    -   **Não** : Não exibe nenhuma grade
 
     -   **10x10** : Exibe uma grade 10 por 10
 
@@ -72,18 +72,18 @@ seguintes ações :
     -   **Ocultar destaque do item** : Esconder
         destaque em torno dos itens
 
--   **Limpar projeto** : Remover desenho
+-   **Remover le Projeto** : Remover desenho
 
 -   **Criar um design** : permite adicionar um design
 
--   **Projeto duplicado** : Duplica o design atual
+-   **Duplicar le Projeto** : Duplica o design atual
 
 -   **Cenografia** : Acesso à configuração do design
 
--   **Sauvegarder** : permite salvar o design (atenção, existem
+-   **Salvar** : permite salvar o design (atenção, existem
     também backups automáticos durante determinadas ações)
 
-> **Important**
+> **IMPORTANTE**
 >
 > A configuração dos elementos de design é feita clicando em
 > estes.
@@ -95,7 +95,7 @@ Encontrado aqui :
 
 -   **Geral**
 
-    -   **Nom** : O nome do seu design
+    -   **Nome** : O nome do seu design
 
     -   **Fundo transparente** : Torna o plano de fundo transparente. Tenha cuidado se o
         caixa estiver marcada, a cor do plano de fundo não será usada
@@ -103,19 +103,19 @@ Encontrado aqui :
     -   **Cor de fundo** : cor de fundo do design (branco
         por padrão)
 
-    -   **Code** : Código de acesso ao seu design (se vazio, nenhum código
+    -   **CÓDIGO** : Código de acesso ao seu design (se vazio, nenhum código
         não é solicitado)
 
     -   **ícone** : Um ícone para ele (aparece no menu
         escolha do design)
 
-    -   **Image**
+    -   **Imagem**
 
-        -   **Envoyer** : Permite adicionar uma imagem de plano de fundo ao design
+        -   **Enviar** : Permite adicionar uma imagem de plano de fundo ao design
 
-        -   **Excluir imagem** : Excluir imagem
+        -   **Remover l'image** : Excluir imagem
 
--   **Tailles**
+-   **Tamanhos**
 
     -   **Tamanho (LxA)** : Permite corrigir o tamanho do seu design
         (moldura cinza no modo de edição)
@@ -123,11 +123,11 @@ Encontrado aqui :
 Configuração geral de elementos 
 ===================================
 
-> **Note**
+> **NOTA**
 >
 > Dependendo do tipo de item, as opções podem mudar.
 
-> **Note**
+> **NOTA**
 >
 > O item selecionado é destacado em vermelho (em vez de verde
 > para todos os outros).
@@ -135,7 +135,7 @@ Configuração geral de elementos
 Configuração de exibição 
 ---------------------
 
--   **Profondeur** : Permite escolher o nível de profundidade
+-   **Profundidade** : Permite escolher o nível de profundidade
 
 -   **Posição X (%)** :
 
@@ -169,19 +169,19 @@ Configurações de exibição
 
 -   **Período** : Permite escolher o período de exibição
 
--   **Mostrar legenda** : Exibe a legenda
+-   **Display la légende** : Exibe a legenda
 
--   **Mostrar Navigator** : exibir o navegador (segundo gráfico
+-   **Display le navigateur** : exibir o navegador (segundo gráfico
     mais claro abaixo do primeiro)
 
--   **Ver a selecção tempo** : exibe o seletor
+-   **Display le sélecteur de période** : exibe o seletor
     período superior esquerdo
 
--   **Mostrar barra de rolagem** : Exibe a barra de rolagem
+-   **Display la barre de défilement** : Exibe a barra de rolagem
 
 -   **Fundo transparente** : Torna o plano de fundo transparente
 
--   **Bordure** : adicione uma borda, cuidado com a sintaxe
+-   **Fronteira** : adicione uma borda, cuidado com a sintaxe
     HTML (tenha cuidado, você deve usar a sintaxe CSS, por exemplo :
     1px preto sólido)
 
@@ -193,7 +193,7 @@ Permite escolher os comandos para grapher
 Texto / html 
 =========
 
--   **Icone** : Ícone a ser exibido na frente
+-   **ícone** : Ícone a ser exibido na frente
 
 -   **Cor de fundo** : permite alterar a cor do plano de fundo ou
     coloque transparente, não esqueça de passar "Default" em NO
@@ -204,7 +204,7 @@ Texto / html
 -   **Arredonde os ângulos** : permite arredondar os ângulos (não
     esqueça de colocar%, ex 50%)
 
--   **Bordure** : adicione uma borda, cuidado com a sintaxe
+-   **Fronteira** : adicione uma borda, cuidado com a sintaxe
     HTML (use a sintaxe CSS, por exemplo : solid
     1 px preto)
 
@@ -214,11 +214,11 @@ Texto / html
 -   **Alinhamento de texto** : permite escolher o alinhamento do
     texto (esquerda / direita / centralizado)
 
--   **Gras** : texto em negrito
+-   **Gordura** : texto em negrito
 
--   **Texte** : Texto em código HTML que estará no elemento
+-   **Texto** : Texto em código HTML que estará no elemento
 
-> **Important**
+> **IMPORTANTE**
 >
 > Se você colocar código HTML (especialmente Javascript), tenha cuidado
 > para verificá-lo antes, porque você pode, se houver um erro nele
@@ -239,9 +239,9 @@ Link
 Configurações de exibição 
 ---------------------
 
--   **Nom** : Nome do link (texto exibido)
+-   **Nome** : Nome do link (texto exibido)
 
--   **Lien** : Link para o design ou exibição em questão
+-   **Link** : Link para o design ou exibição em questão
 
 -   **Cor de fundo** : permite alterar a cor do plano de fundo ou
     coloque transparente, não esqueça de passar "Default" em NO
@@ -252,7 +252,7 @@ Configurações de exibição
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : permet
+-   **Fronteira (attention syntaxe CSS, ex : 1px preto sólido)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
@@ -261,7 +261,7 @@ Configurações de exibição
 -   **Alinhamento de texto** : permite escolher o alinhamento do
     texto (esquerda / direita / centralizado)
 
--   **Gras** : texto em negrito
+-   **Gordura** : texto em negrito
 
 Equipamento 
 ==========
@@ -297,10 +297,10 @@ Imagem / Câmera
 Configurações de exibição 
 ---------------------
 
--   **Afficher** : define o que você deseja exibir, imagem estática ou
+-   **Display** : define o que você deseja exibir, imagem estática ou
     transmitir a partir de uma câmera
 
--   **Image** : permite enviar a imagem em questão (se você tiver
+-   **Imagem** : permite enviar a imagem em questão (se você tiver
     escolha uma imagem)
 
 -   **Câmera** : Câmera a ser exibida (se você escolher a câmera)
@@ -339,20 +339,20 @@ para o Off
 Nesse modo, ao passar o mouse ou clicar na área Jeedom, você
 exibir o widget em questão
 
--   **Equipement** : Widget a ser exibido ao passar o mouse ou clicar em
+-   **Equipamento** : Widget a ser exibido ao passar o mouse ou clicar em
 
--   **Mostrar no viaduto** : Se marcado, exibe o widget em foco
+-   **Display au survol** : Se marcado, exibe o widget em foco
 
--   **Vista em um clique** : se marcado, o widget será exibido em
+-   **Display sur un Clique em** : se marcado, o widget será exibido em
     clic
 
--   **Position** : permite escolher o local em que o
+-   **Posição** : permite escolher o local em que o
     widget (canto inferior direito padrão)
 
 Resumo 
 ======
 
--   **Lien** : Usado para indicar o resumo a ser exibido (Geral para o
+-   **Link** : Usado para indicar o resumo a ser exibido (Geral para o
     global se não indicar o objeto)
 
 -   **Cor de fundo** : permite alterar a cor do plano de fundo ou
@@ -364,13 +364,13 @@ Resumo
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (atenção sintaxe CSS, ex : 1px preto sólido)** : permet
+-   **Fronteira (attention syntaxe CSS, ex : 1px preto sólido)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
     Permite alterar o tamanho da fonte
 
--   **Gras** : texto em negrito
+-   **Gordura** : texto em negrito
 
 
 Faq 
@@ -380,6 +380,6 @@ Faq
 >
 >Se você colocou um widget ou uma imagem que ocupa quase todo o design, clique fora do widget ou imagem para acessar o menu clicando com o botão direito do mouse.
 
->**Excluir um design que não funciona mais**
+>**Remover un Projeto qui ne marche plus**
 >
 >Na parte da administração e no OS / DB, faça "select * from planHeader", recupere o ID do design em questão e faça "delete from planHeader where id=#TODO#" e "excluir do plano em que planHeader_id=#todo#" substituindo bem #TODO# pelo ID do design encontrado anteriormente.

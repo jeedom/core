@@ -32,15 +32,15 @@ hier 2 Parameter, einer für die Paketgröße und einer für das Wissen
 wann es zu tun ist (standardmäßig sind dies Pakete
 1 Stunde mit Daten, die mehr als 2 Stunden Dienstalter haben).
 
-> **Tip**
+> **Spitze**
 >
 > Wenn Sie gut gefolgt sind, sollten Sie eine hohe Präzision auf dem haben
-> Nur die letzten 2 Stunden. Doch wenn ich mich um 17 Uhr anmelde.,
+> Nur die letzten 2 Stunden. Doch wenn ich mich um 17 Uhr anmelde,
 > Ich habe eine Klarstellung zu den letzten 17 Stunden. Warum ? In der Tat,
 > um unnötigen Ressourcenverbrauch zu vermeiden, ist die Aufgabe, die macht
 > Die Archivierung erfolgt nur einmal am Tag, abends.
 
-> **Important**
+> **Wichtig**
 >
 > Dieses Archivierungsprinzip gilt natürlich nur für Bestellungen von
 > digitaler Typ; Bei Befehlen vom Typ Binär behält Jeedom nicht bei
@@ -69,17 +69,17 @@ Woche, weil ich standardmäßig nur eine Woche haben möchte - siehe
 (Diese Parameter werden von einer Anzeige zur anderen gehalten; Sie daher
 als sie einmal konfigurieren).
 
--   **Escalier** : zeigt die Kurve als an
+-   **Treppe** : zeigt die Kurve als an
     Treppe oder kontinuierliche Anzeige.
 
--   **Variation** : zeigt die Wertdifferenz von an
+-   **Veränderung** : zeigt die Wertdifferenz von an
     vorheriger Punkt.
 
--   **Ligne** : zeigt das Diagramm als Linien an.
+-   **Linie** : zeigt das Diagramm als Linien an.
 
--   **Aire** : Zeigt das Diagramm als Fläche an.
+-   **Bereich** : Zeigt das Diagramm als Fläche an.
 
--   **Colonne**\.* : Zeigt das Diagramm als Balken an.
+-   **Spalte**\.* : Zeigt das Diagramm als Balken an.
 
 Grafik zu Ansichten und Designs 
 =====================================
@@ -91,21 +91,21 @@ die Optionen :
 
 Sobald eine Daten aktiviert sind, können Sie auswählen :
 
--   **Couleur** : die Farbe der Kurve.
+-   **Farbe** : die Farbe der Kurve.
 
--   **Type** : die Art des Diagramms (Fläche, Linie oder Spalte).
+-   **Typ** : die Art des Diagramms (Fläche, Linie oder Spalte).
 
--   **Echelle** : da kann man mehrere kurven (daten) setzen
+-   **Maßstab** : da kann man mehrere kurven (daten) setzen
     Im selben Diagramm ist es möglich, die Skalen zu unterscheiden
     (rechts oder links).
 
--   **Escalier** : zeigt die Kurve als an
+-   **Treppe** : zeigt die Kurve als an
     Treppe oder kontinuierliche Anzeige
 
--   **Empiler** : ermöglicht das Stapeln der Kurvenwerte (siehe in
+-   **Stapel** : ermöglicht das Stapeln der Kurvenwerte (siehe in
     unten für das Ergebnis).
 
--   **Variation** : zeigt die Wertdifferenz von an
+-   **Veränderung** : zeigt die Wertdifferenz von an
     vorheriger Punkt.
 
 Option auf der Verlaufsseite 
@@ -119,15 +119,15 @@ Berechnete Geschichte
 Wird verwendet, um eine Kurve anzuzeigen, die auf einer Berechnung für mehrere basiert
 Befehl (Sie können so ziemlich alles tun, + - / \* absoluter Wert ... siehe
 PHP-Dokumentation für bestimmte Funktionen). Ex :
-abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Raum von
+abs (*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Raum von
 Das Leben \] \ [Luftfeuchtigkeit \] \ [Temperatur \] *)
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht
 Speichern Sie sie zur einfacheren Anzeige
 
-> **Tip**
+> **Spitze**
 >
-> Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten.
+> Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten
 > erscheinen die historischen Befehle, die grafisch dargestellt werden können.
 
 Bestellhistorie 
@@ -135,7 +135,7 @@ Bestellhistorie
 
 Vor allen Daten, die grafisch dargestellt werden können, befinden sich zwei Symbole :
 
--   **Poubelle** : ermöglicht das Löschen der aufgezeichneten Daten; dann
+-   **Mülleimer** : ermöglicht das Löschen der aufgezeichneten Daten; dann
     Jeedom fragt, ob die Daten vor a gelöscht werden müssen
     bestimmtes Datum oder alle Daten.
 
@@ -160,13 +160,13 @@ chronologique.
 Um sie zu sehen, müssen Sie zuerst das Tracking auf der Timeline von aktivieren
 gewünschte Befehle oder Szenarien :
 
--   **Scenario** : entweder direkt auf der Szenarioseite oder auf der
+-   **Szenario** : entweder direkt auf der Szenarioseite oder auf der
     Szenario-Übersichtsseite, um dies in "Masse" zu tun"
 
--   **Commande** : entweder in der erweiterten Konfiguration des Befehls,
+-   **Bestellen** : entweder in der erweiterten Konfiguration des Befehls,
     entweder in der Konfiguration der Geschichte, um es in "Masse" zu tun"
 
-> **Tip**
+> **Spitze**
 >
 > Sie haben Zugriff auf die Zusammenfassungsfenster der Szenarien oder der
 > Konfiguration des Verlaufs direkt von der Seite
@@ -175,17 +175,17 @@ gewünschte Befehle oder Szenarien :
 Sobald Sie die Nachverfolgung in der Bestellzeitleiste aktiviert haben und
 gewünschten Szenarien können Sie sie auf der Timeline sehen.
 
-> **Important**
+> **Wichtig**
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking aktiviert haben
 > auf der Timeline, bevor sie angezeigt werden.
 
 Die Karten auf der Timeline werden angezeigt :
 
--   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+-   **Bestellen action** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
     Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
--   **Info Befehl** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+-   **Bestellen info** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
     Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
 -   **Szenario** : In grauem Hintergrund haben Sie 2 Symbole : eine anzuzeigen

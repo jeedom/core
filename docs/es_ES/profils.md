@@ -3,15 +3,15 @@ Jeedom específico del usuario : página de inicio, tema de la
 versión de escritorio, versión móvil, gráficos ... Permite
 también para cambiar tu contraseña.
 
-Puede encontrarlo en la parte superior derecha haciendo clic en el icono del muñeco de nieve.
+Puede encontrarlo en la parte superior derecha haciendo clic en el icono del muñeco de nieve
 luego Perfil (seguido de su nombre de usuario).
 
 Temas 
 ======
 
-El panel de temas le permite ajustar los parámetros de la interfaz. :
+El panel de temas le permite ajustar los parámetros de la interfaz :
 
--   **Desktop** : tema para usar en modo de escritorio, tenga cuidado solo
+-   **Escritorio** : tema para usar en modo de escritorio, tenga cuidado solo
     el tema predeterminado es oficialmente compatible con Jeedom
 
 -   **Color móvil** : permite elegir el color de la interfaz
@@ -52,7 +52,7 @@ Le permite definir ciertos comportamientos de interfaz :
 -   **Objeto predeterminado en el tablero** : objeto de visualización predeterminado
     a su llegada en el tablero de instrumentos / móvil
 
--   **Vista predeterminada** : ver para mostrar por defecto al llegar
+-   **Vista par défaut** : ver para mostrar por defecto al llegar
     el tablero de instrumentos / móvil
 
 -   **Diseño por defecto** : diseño para mostrar por defecto cuando
@@ -61,12 +61,12 @@ Le permite definir ciertos comportamientos de interfaz :
     -   **Pantalla completa** : visualización predeterminada en pantalla completa cuando
         la llegada de los diseños
         
--   **Dashboard**
+-   **Salpicadero**
 
     -   **Desdobla el panel de objetos** : permite hacer visible por
         predeterminado el menú de objetos (a la izquierda) en el tablero
 
--   **Vue**
+-   **Vista**
 
     -   **Despliegue el panel de vista** : permite hacer visible por
         menú de vistas predeterminado (izquierda) en vistas

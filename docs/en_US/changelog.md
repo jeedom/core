@@ -41,7 +41,7 @@ Changelog
 - Better consideration of plugin widgets
 - Optimization of the health calculation on the swap
 
->**IMPORTANT**
+>**Important**
 >
 >This update fixes a concern that may prevent any history recording as of January 1, 2020, it is more than highly recommended
 
@@ -366,7 +366,7 @@ Changelog
 -   JEED-186 : We can now choose the background color in the
     designs
 
--   For block A, possibility of setting an hour between 12:01 a.m. and 12:59 a.m.
+-   For block A, possibility of setting an hour between 12:01 a.m. and 12:59 a.m
     by simply putting the minutes (ex 30 for 00:30)
 
 -   Adding active sessions and devices registered on the
@@ -938,7 +938,7 @@ Changelog
     / tmp is too small (be careful the correction takes effect at
     update n + 1)
 
--   Adding a tag *jeedom\_name* in the scenarios (give the name
+-   Adding a tag *Jeedom\_name* in the scenarios (give the name
     jeedom)
 
 -   Bugfix

@@ -2,23 +2,23 @@ Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhäng
 
 Der Zugriff erfolgt über Home → Dashboard
 
-> **Tip**
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem 3D-Design zu wechseln.
 
 # 3D-Modell importieren
 
-> **IMPORTANT**
+> **WICHTIG**
 >
 > Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein)..
+Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein).
 
-> **IMPORTANT**
+> **WICHTIG**
 >
 > Dateien müssen sich im Stammverzeichnis der Zip befinden und befinden sich nicht in einem Unterordner
 
-> **ATTENTION**
+> **VORSICHT**
 >
 > Ein 3D-Modell ist ziemlich beeindruckend (dies kann mehrere hundert MB darstellen). Je größer es ist, desto länger ist die Renderzeit in Jeedom.
 
@@ -35,28 +35,28 @@ Sie können von diesem Bildschirm aus :
 
 Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Senden&quot; und wählen Sie Ihre Zip-Datei aus
 
-> **ATTENTION**
+> **VORSICHT**
 >
 > Jeedom autorisiert den Import einer Datei mit maximal 150 Monaten !
 
-> **ATTENTION**
+> **VORSICHT**
 >
 > Sie müssen eine Zip-Datei haben
 
-> **Tip**
+> **Spitze**
 >
-> Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
+> Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5)
 
 
 # Konfiguration von Elementen
 
-> **IMPORTANT**
+> **WICHTIG**
 >
 > Die Konfiguration kann nur im Bearbeitungsmodus erfolgen
 
 Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Element im 3D-Design zu konfigurieren. Dies öffnet ein Fenster, in dem Sie können :
 
-- Geben Sie eine Art von Link an (derzeit ist nur Ausrüstung vorhanden).
+- Geben Sie eine Art von Link an (derzeit ist nur Ausrüstung vorhanden)
 - Der Link zu dem betreffenden Artikel. Hier können Sie momentan nur einen Link zu einem Gerät setzen. Dies ermöglicht es beim Klicken auf den Gegenstand, die Ausrüstung aufzurufen
 - Die Spezifität, da gibt es einige, die wir gleich danach sehen werden, ermöglicht es, die Art der Ausrüstung und damit die Anzeige von Informationen zu spezifizieren
 
@@ -107,6 +107,6 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 Ermöglicht die Zuweisung der ausgewählten Farbe zum Element, wenn die Bedingung gültig ist. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 
-> **Tip**
+> **Spitze**
 >
 > Die Bedingungen werden in der Reihenfolge ausgewertet, die erste, die wahr ist, wird genommen, die folgenden werden daher nicht bewertet

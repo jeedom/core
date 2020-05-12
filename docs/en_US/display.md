@@ -12,12 +12,12 @@ This page is accessible by **Tools → Home automation summary**.
 The top of the page 
 ------------------
 
-On the top of the page, we find : \* **Number of objects** : Nombre
+On the top of the page, we find : \* **Number d'objets** : Nombre
 total of objects configured in our Jeedom, counting the elements
-Inactive. \* **Number of equipments** : Ditto for the equipment. \*
-**Number of orders** : Ditto for orders. \* **Inactif** :
+Inactive. \* **Number equipments** : Ditto for the equipment. \*
+**Number de orders** : Ditto for orders. \* **Inactive** :
 Check this box if you want the inactive items to be well
-displayed on this page. \* **Rechercher** : Search for a
+displayed on this page. \* **Search** : Search for a
 particular element. It can be the name of an equipment, an order
 or the name of the plugin by which the equipment was created.
 
@@ -28,7 +28,7 @@ Object frames
 
 Below there is one frame per object. In each frame, we find
 the list of equipment (in blue) which have this object as parent. The
-first frame **Aucun** represents equipment that has no
+first frame **No** represents equipment that has no
 affected parent. For each object, next to its label, three buttons
 are available. From left to right :
 
@@ -59,15 +59,15 @@ On each equipment we find :
 -   A **check box** to select the equipment (you can
     select multiple). If at least one device is selected
     you have action buttons that appear at the top left
-    for **supprimer**, return **visible**/**invisible**,
-    **actif**/**inactif** selected equipment.
+    for **remove**, return **Jeedom**/**Invisible**,
+    **active**/**Inactive** selected equipment.
 
--   The **nom** equipment.
+-   The **last name** equipment.
 
--   The **type** equipment : Identifier of the plugin to which
+-   The **Type** equipment : Identifier of the plugin to which
     it belongs.
 
--   **Inactif** (small cross) : Means that the equipment is inactive
+-   **Inactive** (small cross) : Means that the equipment is inactive
     (if it is not there, the equipment is active).
 
 -   **Invisible** (crossed out eye) : Means that the equipment is invisible
@@ -98,46 +98,46 @@ Advanced equipment configuration
 > this window from the equipment configuration page in
 > clicking on the advanced configuration button
 
-The window of **Advanced equipment configuration** allows the
+The window of **d'actualité avancée d'un équipement** allows the
 edit. First, at the top right, some buttons
 available :
 
--   **Liens** : Displays the links of the equipment with the
+-   **Connections** : Displays the links of the equipment with the
     objects, commands, scenarios, variables, interactions… in the form
     graphic (in this one, a double click on an element brings you to
     its configuration).
 
 -   **Log** : displays the events of the equipment in question.
 
--   **Informations** : displays the raw properties of the equipment.
+-   **Information** : displays the raw properties of the equipment.
 
--   **Enregistrer** : Save the modifications made
+-   **Save** : Save the modifications made
     on equipment.
 
--   **Supprimer** : Remove equipment.
+-   **Remove** : Remove equipment.
 
 Information tab 
 -------------------
 
-The tab **Informations** contains the general information of
+The tab **Information** contains the general information of
 the equipment and its controls :
 
--   **ID** : Unique identifier in the Jeedom database.
+-   **Id** : Unique identifier in the Jeedom database.
 
--   **Nom** : Name of equipment.
+-   **Last name** : Name of equipment.
 
--   **Logical ID** : Logical equipment identifier (can
+-   **Id logique** : Logical equipment identifier (can
     be empty).
 
--   **Object ID** : Unique identifier of the parent object (can
+-   **Id de l'objet** : Unique identifier of the parent object (can
     be empty).
 
 -   **Creation date** : Equipment creation date.
 
--   **Activer** : Check the box to activate the equipment (don&#39;t forget
+-   **Activate** : Check the box to activate the equipment (don&#39;t forget
     to save).
 
--   **Visible** : Check the box to make the equipment visible (without
+-   **Jeedom** : Check the box to make the equipment visible (without
     forget to save).
 
 -   **Type** : Identifier of the plugin by which it was created.
@@ -159,13 +159,13 @@ the equipment with, for each, a link to their configuration.
 View tab 
 ----------------
 
-In the tab **Affichage**, you will be able to configure some
+In the tab **Viewing**, you will be able to configure some
 display behavior of the tile on the dashboard, the views, the
 design as well as mobile.
 
 ### Widget 
 
--   **Visible** : Check the box to make the equipment visible.
+-   **Jeedom** : Check the box to make the equipment visible.
 
 -   **Show name** : Check the box to display the name of
     equipment on the tile.
@@ -180,12 +180,12 @@ design as well as mobile.
     check a new box **Transparent** to make the
     transparent background.
 
--   **Opacité** : Opacity of the background color of the tile.
+-   **Opacity** : Opacity of the background color of the tile.
 
 -   **Text color** : Check the box to keep the color of the
     default text.
 
--   **Bordures** : Check the box to keep the default border.
+-   **Borders** : Check the box to keep the default border.
     Otherwise, you have to put CSS code, property `border` (ex :
     `3px blue dashed` for a dotted border of 3px in blue).
 
@@ -197,7 +197,7 @@ design as well as mobile.
 
 Below, we find optional display parameters that we
 can apply to equipment. These parameters are composed of a name and
-a value of. Just click on **Ajouter** to apply one
+a value of. Just click on **Add** to apply one
 new. For equipment, only the value **style** is for the
 moment used, it allows to insert CSS code on the equipment in
 question.
@@ -212,11 +212,11 @@ Layout tab
 This part allows you to choose between the standard arrangement of
 commands (side by side in the widget), or in table mode. There is
 nothing to set in default mode. Here are the options available in mode
-**Tableau** :
+**Board** :
 
--   **Number of lines**
+-   **Number de lignes**
 
--   **Number of columns**
+-   **Number de colonnes**
 
 -   **Center in boxes** : Check the box to center the
     commands in the boxes.
@@ -227,7 +227,7 @@ nothing to set in default mode. Here are the options available in mode
 -   **Table style (CSS)** : Allows you to define the style of the
     table only.
 
-Below for each box, the **detailed configuration** It allows you to
+Below for each box, the **d'actualité détaillée** It allows you to
 this :
 
 -   **Box text** : Add text in addition to the command (or
@@ -241,7 +241,7 @@ this :
 >
 > In a box in the table, if you want to put 2 commands one in
 > below the other, don&#39;t forget to add a return to the
-> line after the premiere in the **Advanced configuration** of it.
+> line after the premiere in the **d'actualité avancée** of it.
 
 Alerts tab 
 --------------
@@ -250,7 +250,7 @@ This tab provides information on the battery of
 the equipment and define alerts in relation to it. Here are the
 types of information that can be found :
 
--   **Battery type**,
+-   **Type de piThe**,
 
 -   **Latest feedback**,
 
@@ -268,7 +268,7 @@ for 30 minutes, then you have to put it on alert.
 > **Tip**
 >
 > The global parameters are in **Administration → Configuration → Logs**
-> (or **Equipements**)
+> (or **Facilities**)
 
 Comment tab 
 ------------------
@@ -281,20 +281,20 @@ Advanced configuration of an order
 
 First, at the top right, some buttons available :
 
--   **Tester** : Used to test the command.
+-   **Test** : Used to test the command.
 
--   **Liens** : Displays the links of the equipment with the
+-   **Connections** : Displays the links of the equipment with the
     objects, commands, scenarios, variables, interactions…. under
     graphic form.
 
 -   **Log** : Displays the events of the equipment in question.
 
--   **Informations** : Displays the raw properties of the equipment.
+-   **Information** : Displays the raw properties of the equipment.
 
 -   To apply to\* : Apply the same configuration on
     multiple orders.
 
--   **Enregistrer** : Save changes made to
+-   **Save** : Save changes made to
     equipment
 
 > **Tip**
@@ -302,7 +302,7 @@ First, at the top right, some buttons available :
 > In a graph, a double click on an element brings you to its
 > d'actualité.
 
-> **Note**
+> **NOTE**
 >
 > Depending on the type of order, the information / actions displayed
 > can change.
@@ -310,31 +310,31 @@ First, at the top right, some buttons available :
 Information tab 
 -------------------
 
-The tab **Informations** contains general information about the
+The tab **Information** contains general information about the
 ordered :
 
--   **ID** : Unique identifier in the database.
+-   **Id** : Unique identifier in the database.
 
--   **Logical ID** : Logical identifier of the command (can
+-   **Id logique** : Logical identifier of the command (can
     be empty).
 
--   **Nom** : Name of the order.
+-   **Last name** : Name of the order.
 
 -   **Type** : Type of order (action or info).
 
--   **Sous-type** : Command subtype (binary, digital, etc.).
+-   **Subtype** : Command subtype (binary, digital, etc.).
 
 -   **Direct url** : Provides the URL to access this equipment. (click
     right, copy the link address) The URL will launch the command for a
-    **action** and return the information for a **info**.
+    **Action** and return the information for a **Info**.
 
--   **Unité** : Control unit.
+-   **Unit** : Control unit.
 
 -   **Command triggering an update** : Gives the identifier of a
     other command which, if that other command changes, will force the
     update of the displayed order.
 
--   **Visible** : Check this box to make the command visible.
+-   **Jeedom** : Check this box to make the command visible.
 
 -   **Follow in the timeline** : Check this box to have this
     command is visible in the timeline when it is used.
@@ -357,7 +357,7 @@ You also have three other orange buttons underneath :
 -   **Replace this command with the command** : The reverse replaces
     the order by another order.
 
-> **Note**
+> **NOTE**
 >
 > This kind of action replaces commands all over Jeedom
 > (scenario, interaction, order, equipment….)
@@ -383,7 +383,7 @@ Configuration tab
         order value (Example : put 2 to transform
         16.643345 in 16.64).
 
--   **Generic type** : Allows you to configure the generic type of the
+-   **Type générique** : Allows you to configure the generic type of the
     command (Jeedom tries to find it by itself in auto mode).
     This information is used by the mobile application.
 
@@ -393,15 +393,15 @@ Configuration tab
     allows, for example, to turn off a light X minutes after
     it is lit.
 
--   **Historique**
+-   **Historical**
 
-    -   **Historiser** : Check the box to have the values for this
+    -   **Historicize** : Check the box to have the values for this
         order be recorded. (See **Analysis → History**)
 
-    -   **Smoothing mode** : Mode of **lissage** or d'**archivage**
+    -   **Smoothing mode** : Mode of **smooth** or d'**archiving**
         allows you to choose how to archive the data. By default,
-        it&#39;s a **moyenne**. It is also possible to choose the
-        **maximum**, The **minimum**, or **aucun**. **aucun** Allows
+        it&#39;s a **average**. It is also possible to choose the
+        **Maximum**, The **Minimum**, or **No**. **No** Allows
         tell Jeedom that it should not archive on this
         order (both during the first 5 min period and with the
         archiving task). This option is dangerous because Jeedom
@@ -425,7 +425,7 @@ Configuration tab
     -   **Duration before status return (min)** : Time before return to
         value above.
 
--   **Autres**
+-   **Other**
 
     -   **Management of the repetition of values** : In automatic if the
         command goes up 2 times the same value in a row, then Jeedom
@@ -443,7 +443,7 @@ Configuration tab
 
 ### For an action command : 
 
--   **Generic type** : Allows you to configure the generic type of the
+-   **Type générique** : Allows you to configure the generic type of the
     command (Jeedom tries to find it by itself in auto mode).
     This information is used by the mobile application.
 
@@ -455,7 +455,7 @@ Configuration tab
     when the action is launched from the interface of this command.
 
 -   **Action before execution of the command** : Allows you to add
-    orders **avant** each execution of the order.
+    orders **before** each execution of the order.
 
 -   **Action after execution of the order** : Allows you to add
     orders **after** each execution of the order.
@@ -463,11 +463,11 @@ Configuration tab
 Alerts tab 
 --------------
 
-Allows you to define an alert level (**warning** or **danger**) in
+Allows you to define an alert level (**Warning** or **Danger**) in
 depending on certain conditions. For example, if `value&gt; 8` for 30
-minutes then the equipment can go on alert **warning**.
+minutes then the equipment can go on alert **Warning**.
 
-> **Note**
+> **NOTE**
 >
 > On the page **Administration → Configuration → Logs**, you can
 > configure a message type command that will allow Jeedom to get you
@@ -484,7 +484,7 @@ mobile.
     note that you need the widget plugin and you can do that too
     from it).
 
--   **Visible** : Check to make the command visible.
+-   **Jeedom** : Check to make the command visible.
 
 -   **Show name** : Check to make the name of the
     command, depending on the context.
@@ -492,7 +492,7 @@ mobile.
 -   **Display name and icon** : Check to make the icon visible
     in addition to the name of the command.
 
--   **Wrapped line before widget** : Select **before
+-   **Wrapped line before widget** : Select **before le
     widget** or **after the widget** to add a line break
     before or after the widget (to force for example a display in
     column of different equipment commands instead of lines
@@ -511,7 +511,7 @@ Code tab
 
 Allows you to modify the widget code just for the current command.
 
-> **Note**
+> **NOTE**
 >
 > If you want to modify the code don&#39;t forget to check the box
-> **Enable widget customization**
+> **Activate la personnalisation du widget**

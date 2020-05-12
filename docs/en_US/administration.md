@@ -8,19 +8,19 @@ General
 
 In this tab we find general information about Jeedom :
 
--   **Name of your Jeedom** : Identify your Jeedom,
+-   **Last name de your Jeedom** : Identify your Jeedom,
     especially in the market. It can be reused in scenarios
     or identify a backup.
 
 -   **System** : Type of hardware on which the system is installed where
     your Jeedom is spinning.
 
--   **Installation key** : Hardware key of your Jeedom on
+-   **Key d'installation** : Hardware key of your Jeedom on
     the market. If your Jeedom does not appear in the list of your
     Jeedom on the market, it is advisable to click on the button
     **Reset**.
 
--   **Langue** : Language used in your Jeedom.
+-   **Language** : Language used in your Jeedom.
 
 -   **Generate translations** : Generate translations,
     be careful, this can slow down your system. Most useful option
@@ -35,7 +35,7 @@ In this tab we find general information about Jeedom :
 
 -   **Optional time server** : Indicates which time server should
     be used if you click **Force synchronization of
-    l'heure**. (to be reserved for experts)
+    time**. (to be reserved for experts)
 
 -   **Skip time check** : tells Jeedom not to
     check if the time is consistent between itself and the system on
@@ -67,7 +67,7 @@ TTS, you can define their scope :
 -   **Localhost** : only requests from the system on which is
     installed Jeedom are allowed,
 
--   **Activé** : no restrictions, any system with access
+-   **Activated** : no restrictions, any system with access
     your Jeedom will be able to access this API.
 
 &gt;\_OS / DB 
@@ -75,7 +75,7 @@ TTS, you can define their scope :
 
 Two parts reserved for experts are present in this tab.
 
-> **Important**
+> **IMPORTANT**
 >
 > WARNING : If you modify Jeedom with one of these two solutions,
 > support may refuse to help you.
@@ -89,7 +89,7 @@ Two parts reserved for experts are present in this tab.
     from Jeedom. You can then launch commands in the field
     from the top. Two parameters are displayed below for information :
 
-    -   **Utilisateur** : Username used by Jeedom in
+    -   **User** : Username used by Jeedom in
         the database,
 
     -   **Password** : database access password
@@ -106,11 +106,11 @@ LDAP
 
 -   **Host** : server hosting the AD
 
--   **Domaine** : domain of your AD
+-   **Field** : domain of your AD
 
 -   **DN base** : DN base of your AD
 
--   **Username** : username for Jeedom to
+-   **Last name d'utilisateur** : username for Jeedom to
     connect to AD
 
 -   **Password** : password for Jeedom to connect to AD
@@ -128,7 +128,7 @@ LDAP
 Log in 
 ---------
 
--   **Number of failures tolerated** : sets the number of attempts
+-   **Number d'échecs tolérés** : sets the number of attempts
     allowed before banning the IP
 
 -   **Maximum time between failures (in seconds)** : maximum time
@@ -152,10 +152,10 @@ Networks
 It is absolutely necessary to correctly configure this important part of
 Jeedom, otherwise many plugins may not work. he
 is possible to access Jeedom in two different ways : L'**access
-interne** (from the same local network as Jeedom) and l'**access
-externe** (from another network, in particular from the Internet).
+internal** (from the same local network as Jeedom) and l'**access
+external** (from another network, in particular from the Internet).
 
-> **Important**
+> **IMPORTANT**
 >
 > This part is just there to explain to Jeedom its environment :
 > changing the port or IP in this tab will not change the
@@ -173,11 +173,11 @@ externe** (from another network, in particular from the Internet).
     -   **OK / NOK** : indicates whether the internal network configuration is
         correcte
 
-    -   **Protocole** : the protocol to use, often HTTP
+    -   **Protocol** : the protocol to use, often HTTP
 
-    -   **URL or IP address** : Jeedom IP to enter
+    -   **Address URLs ou IP** : Jeedom IP to enter
 
-    -   **Port** : the port of the Jeedom web interface, generally 80.
+    -   **Harbor** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual port of
         Jeedom which will remain the same
 
@@ -191,9 +191,9 @@ externe** (from another network, in particular from the Internet).
     -   **OK / NOK** : indicates whether the external network configuration is
         correcte
 
-    -   **Protocole** : protocol used for outdoor access
+    -   **Protocol** : protocol used for outdoor access
 
-    -   **URL or IP address** : External IP, if it is fixed. If not,
+    -   **Address URLs ou IP** : External IP, if it is fixed. If not,
         give the URL pointing to the external IP address of your network.
 
     -   **Complement** : the fragment of additional URL (example
@@ -212,7 +212,7 @@ externe** (from another network, in particular from the Internet).
 > your Internet browser, if you need to add / jeedom (or other
 > thing) after the IP.
 
--   **Advanced management** : This part may not appear, in
+-   **Management avancée** : This part may not appear, in
     depending on compatibility with your hardware. You will find
     the list of your network interfaces. You can tell Jeedom
     not to monitor the network by clicking on **deactivate the
@@ -228,9 +228,9 @@ externe** (from another network, in particular from the Internet).
 
     -   **DNS status** : DNS HTTP status
 
-    -   **Gestion** : allows to stop and restart the DNS service
+    -   **Management** : allows to stop and restart the DNS service
 
-> **Important**
+> **IMPORTANT**
 >
 > If you can&#39;t get Jeedom DNS to work, check the
 > configuration of the firewall and parental filter of your Internet box
@@ -312,7 +312,7 @@ Historical
     of an order. The shorter the period, the faster Jeedom will be
     to display the requested graph.
 
-> **Note**
+> **NOTE**
 >
 > The first parameter **View widget statistics** est
 > possible but disabled by default because it significantly lengthens the
@@ -326,7 +326,7 @@ Historical
 Push 
 ----
 
-**Global push URL** : allows to add a URL to call in case of
+**URLs de push globale** : allows to add a URL to call in case of
 order update. You can use the following tags :
 **\#value\#** for the order value, **\#cmd\_name\#** for the
 command name, **\#cmd\_id\#** for the unique identifier of the
@@ -338,7 +338,7 @@ Hidden
 
 Allows monitoring and acting on the Jeedom cache :
 
--   **Statistiques** : Number of objects currently cached
+-   **Statistics** : Number of objects currently cached
 
 -   **Clean the cover** : Force the deletion of objects that are not
     more useful. Jeedom does this automatically every night.
@@ -369,7 +369,7 @@ General
 
 Here you have three parameters :
 
--   **Sensibilité** : there are 4 levels of correspondence (Sensitivity
+-   **Sensitivity** : there are 4 levels of correspondence (Sensitivity
     ranges from 1 (exactly matches) to 99)
 
     -   for 1 word : the level of correspondence for interactions at
@@ -408,19 +408,19 @@ Automatic interaction, contextual &amp; warning
 -   The **contextual interactions** allow you to chain
     multiple requests without repeating everything, for example :
 
-    -   *Jeedom keeping the context :*
+    -   *Jeedom gardant le contexte :*
 
-        -   *Vous* : How much is he in the room ?
+        -   *You* : How much is he in the room ?
 
         -   *Jeedom* : Temperature 25.2 ° C
 
-        -   *Vous* : and in the living room ?
+        -   *You* : and in the living room ?
 
         -   *Jeedom* : Temperature 27.2 ° C
 
     -   *Ask two questions in one :*
 
-        -   *Vous* : What is it like in the bedroom and in the living room ?
+        -   *You* : What is it like in the bedroom and in the living room ?
 
         -   *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 
@@ -428,12 +428,12 @@ Automatic interaction, contextual &amp; warning
     Jeedom to notify you if an order exceeds / descends or is worth a
     certain value.
 
-    -   *Vous* : Notify me if the living room temperature exceeds 25 ° C ?
+    -   *You* : Notify me if the living room temperature exceeds 25 ° C ?
 
     -   *Jeedom* : OK (* As soon as the living room temperature exceeds 25 ° C,
         Jeedom will tell you, only once *)
 
-> **Note**
+> **NOTE**
 >
 > By default Jeedom will answer you by the same channel as the one you
 > used to ask him to notify you. If he doesn&#39;t find one
@@ -519,7 +519,7 @@ Connections
 
 Configure link graphics. These links allow you to
 see, in the form of a graph, the relationships between objects,
-equipment, objects, etc..
+equipment, objects, etc.
 
 -   **Depth for scenarios** : Used to define, when
     displaying a graph of links of a scenario, the number
@@ -546,22 +546,22 @@ Add object summaries. This information is displayed
 at the very top, on the right, in the Jeedom menu bar, or next to the
 objects :
 
--   **Clef** : Key to the summary, especially not to touch.
+-   **Key** : Key to the summary, especially not to touch.
 
--   **Nom** : Abstract name.
+-   **Last name** : Abstract name.
 
--   **Calcul** : Calculation method, can be of type :
+-   **Calculation** : Calculation method, can be of type :
 
-    -   **Somme** : sum the different values,
+    -   **Sum** : sum the different values,
 
-    -   **Moyenne** : averages values,
+    -   **Average** : averages values,
 
-    -   **Texte** : display the value verbatim (especially for those
+    -   **Text** : display the value verbatim (especially for those
         string type).
 
--   **Icone** : Summary icon.
+-   **Icon** : Summary icon.
 
--   **Unité** : Summary unit.
+-   **Unit** : Summary unit.
 
 -   **Counting method** : If you count binary data then
     you have to set this value to binary, example if you count the
@@ -573,7 +573,7 @@ objects :
 -   **Show if value is 0** : Check this box to display the
     value, even when it is 0.
 
--   **Link to a virtual** : Start creating virtual orders
+-   **Theier at un virtuel** : Start creating virtual orders
     having for value those of the summary.
 
 -   **Delete summary** : The last button, on the far right, allows
@@ -585,7 +585,7 @@ Logs
 Timeline 
 --------
 
--   **Maximum number of events** : Sets the maximum number to
+-   **Number maximum d'évènements** : Sets the maximum number to
     show in timeline.
 
 -   **Delete all events** : Empty the timeline of
@@ -609,34 +609,34 @@ Notifications
 -   **Add a message to each Timeout** : Add a message in the
     message center if equipment falls in **timeout**.
 
--   **Timeout order** : Type command **message** use
+-   **Timeout order** : Type command **Message** use
     if an equipment is in **timeout**.
 
 -   **Add a message to each Battery in Warning** : Add a
     message in the message center if a device has its level of
-    battery in **warning**.
+    battery in **Warning**.
 
--   **Battery command in Warning** : Type command **message**
-    to be used if equipment at its battery level **warning**.
+-   **Battery command in Warning** : Type command **Message**
+    to be used if equipment at its battery level **Warning**.
 
 -   **Add a message to each Battery in Danger** : Add a
     message in the message center if a device has its level of
-    battery in **danger**.
+    battery in **Danger**.
 
--   **Command on Battery in Danger** : Type command **message** at
-    use if equipment at its battery level **danger**.
+-   **Command on Battery in Danger** : Type command **Message** at
+    use if equipment at its battery level **Danger**.
 
 -   **Add a message to each Warning** : Add a message in the
-    message center if an order goes on alert **warning**.
+    message center if an order goes on alert **Warning**.
 
--   **Command on Warning** : Type command **message** use
-    if an order goes on alert **warning**.
+-   **Command on Warning** : Type command **Message** use
+    if an order goes on alert **Warning**.
 
 -   **Add a message to each Danger** : Add a message in the
-    message center if an order goes on alert **danger**.
+    message center if an order goes on alert **Danger**.
 
--   **Command on Danger** : Type command **message** to use if
-    an order goes on alert **danger**.
+-   **Command on Danger** : Type command **Message** to use if
+    an order goes on alert **Danger**.
 
 Log 
 ---
@@ -647,7 +647,7 @@ Log
 -   **Log format** : Log format to use (Caution : ça
     does not affect daemon logs).
 
--   **Maximum number of lines in a log file** : Defines the
+-   **Number de lignes maximum dans un fichier de log** : Defines the
     maximum number of lines in a log file. It is recommended
     not to touch this value, because too large a value could
     fill the file system and / or render Jeedom incapable
@@ -664,7 +664,7 @@ plugins.
 Facilities 
 ===========
 
--   **Number of failures before deactivation of the equipment** : Nombre
+-   **Number d'échecs avant désactivation de l'équipement** : Nombre
     communication failure with the equipment before deactivation of
     this one (a message will warn you if this happens).
 
@@ -704,10 +704,10 @@ Deposit used to connect Jeedom to Github.
 
 -   **Token** : Token for access to private deposit.
 
--   **Jeedom core repository user or organization** : Nom
+-   **User ou organisation du dépôt for the core Jeedom** : Nom
     the user or the organization on github for the core.
 
--   **Repository name for the Jeedom core** : Repository name for core.
+-   **Last name du dépôt for the core Jeedom** : Repository name for core.
 
 -   **Jeedom core industry** : Core repository branch.
 
@@ -717,9 +717,9 @@ Deposit used to connect Jeedom to the market, it is highly recommended
 to use this repository. WARNING : any support request may be
 refused if you use a different deposit than this one.
 
--   **Adresse** : Market address.
+-   **Address** : Market address.
 
--   **Username** : Your Username on the Market.
+-   **Last name d'utilisateur** : Your Username on the Market.
 
 -   **Password** : Your Market password.
 
@@ -749,13 +749,13 @@ a Samba share (ex : NAS Synology).
 -   **\ [Backup \] Path** : Path in sharing (to set
     relative), it must exist.
 
-> **Note**
+> **NOTE**
 >
 > If the path to your samba backup folder is :
 > \\\\ 192.168.0.1 \\ Backups \\ Home automation \\ Jeedom Then IP = 192.168.0.1
 > , Sharing = //192.168.0.1 / Backups, Path = Home automation / Jeedom
 
-> **Note**
+> **NOTE**
 >
 > When validating the Samba share, as described above,
 > a new form of backup appears in the section
@@ -763,12 +763,12 @@ a Samba share (ex : NAS Synology).
 > when it is automatically sent at the next backup. A test is
 > possible by performing a manual backup.
 
-> **Important**
+> **IMPORTANT**
 >
 > You may need to install the smbclient package for the
 > deposit works.
 
-> **Important**
+> **IMPORTANT**
 >
 > The Samba protocol has several versions, the v1 is compromised level 
 > security and on some NAS you can force the client to use v2
@@ -781,7 +781,7 @@ a Samba share (ex : NAS Synology).
 > The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 in both only
 > SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server
 
-> **Important**
+> **IMPORTANT**
 >
 > Jeedom should be the only one to write to this folder and it should be empty
 > by default (i.e. before configuring and sending the
@@ -790,8 +790,8 @@ a Samba share (ex : NAS Synology).
 
 ### URLs 
 
--   **Jeedom core URL**
+-   **URLs core Jeedom**
 
--   **Jeedom core version URL**
+-   **URLs version core Jeedom**
 
 

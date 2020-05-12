@@ -1,7 +1,7 @@
-La **objets** le permite definir la estructura de árbol de su domótica.
+La **objetos** le permite definir la estructura de árbol de su domótica.
 Todo el equipo que cree debe pertenecer a un objeto y
 será más fácilmente identificable. Luego decimos que el objeto
-es el **parent** equipo. La gestión de objetos es accesible.
+es el **pariente** equipo. La gestión de objetos es accesible
 del menú **Herramientas → Objetos**.
 
 Para dar libre elección a la personalización, puede nombrar estos
@@ -14,9 +14,9 @@ Administración
 
 Tienes dos opciones :
 
--   **Ajouter** : Crea un nuevo objeto.
+-   **Añadir** : Crea un nuevo objeto.
 
--   **Resumen** : Muestra la lista de objetos creados.
+-   **Resumen** : Muestra la lista de objetos creados
     así como su configuración.
 
 Mis objetos 
@@ -31,7 +31,7 @@ Al hacer clic en un objeto, accede a su página de configuración. ¿Qué
 sean cuales sean los cambios realizados, no olvide guardar en
 fin.
 
-Aquí están las diferentes características para configurar un objeto. :
+Aquí están las diferentes características para configurar un objeto :
 
 -   **Nombre del objeto** : El nombre de tu objeto.
 
@@ -52,7 +52,7 @@ Aquí están las diferentes características para configurar un objeto. :
 -   **Etiqueta de color** : Le permite elegir el color del objeto y
     equipo adjunto.
 
--   **Color del texto de la etiqueta** : Le permite elegir el color del texto.
+-   **Color del texto de la etiqueta** : Le permite elegir el color del texto
     del objeto. Este texto estará sobre el **Etiqueta de color**. A usted
     elegir un color para que el texto sea legible.
 
@@ -65,22 +65,22 @@ Aquí están las diferentes características para configurar un objeto. :
     estará lado a lado en el tablero. Si pones `3` a cuatro
     objetos que se siguen, también estarán uno al lado del otro.
 
-> **Tip**
+> **Punta**
 >
 > Puede cambiar el orden de visualización de los objetos en el tablero.
 > En el menú, a la izquierda de su página, use las flechas verticales
 > arrastrar y soltar para darles un nuevo lugar.
 
-> **Tip**
+> **Punta**
 >
 > Puedes ver un gráfico que representa todos los elementos de Jeedom
-> adjunto a este objeto haciendo clic en el botón **Liens**, arriba en
+> adjunto a este objeto haciendo clic en el botón **Vínculos**, arriba en
 > derecha.
 
-> **Tip**
+> **Punta**
 >
 > Cuando se crea un dispositivo y no se ha definido ningún padre,
-> tendrá como padre : **Aucun** .
+> tendrá como padre : **No** .
 
 Pestaña Resumen 
 -------------
@@ -106,15 +106,15 @@ te proponen líneas :
 ### Comandos 
 
 Cada pestaña representa un tipo de resumen definido en la configuración
-de Jeedom. Haga clic en **Agregar un pedido** para que sea
+de Jeedom. Haga clic en **Añadir une commande** para que sea
 tomado en cuenta en el resumen. Tiene la opción de seleccionar el
 ordene cualquier equipo Jeedom, incluso si no es para
 padre este objeto.
 
-> **Tip**
+> **Punta**
 >
 > Si desea agregar un tipo de resumen o configurar el
-> Método de cálculo del resultado, la unidad, el icono y el nombre de un resumen.,
+> Método de cálculo del resultado, la unidad, el icono y el nombre de un resumen,
 > tienes que ir a la configuración general de Jeedom :
 > **Administración → Configuración → pestaña Resúmenes**.
 
@@ -124,15 +124,15 @@ Resumen
 La vista general le permite ver todos los objetos en
 Jeedom, así como su configuración :
 
--   **ID** : ID de objeto.
+-   **Identificación** : ID de objeto.
 
--   **Objet** : Nombre del objeto.
+-   **Objeto** : Nombre del objeto.
 
 -   **Padre** : Nombre del objeto padre.
 
 -   **Visible** : Visibilidad del objeto.
 
--   **Masqué** : Indica si el objeto está oculto en el tablero.
+-   **Enmascarado** : Indica si el objeto está oculto en el tablero.
 
 -   **Resumen definido** : Indica el número de pedidos por resumen. este
     que está en azul se tiene en cuenta en el resumen global.

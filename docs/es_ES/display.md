@@ -12,23 +12,23 @@ Esta página es accesible por **Herramientas → Resumen de domótica**.
 La parte superior de la página 
 ------------------
 
-En la parte superior de la página, encontramos : \* **Numero de objetos** : Nombre
+En la parte superior de la página, encontramos : \* **Número d'objets** : Nombre
 total de objetos configurados en nuestro Jeedom, contando los elementos
-Inactivo. \* **Numero de equipos** : Lo mismo para el equipo. \*
-**Numero de ordenes** : Lo mismo para los pedidos. \* **Inactif** :
+Inactivo. \* **Número equipos** : Lo mismo para el equipo. \*
+**Número de comandos** : Lo mismo para los pedidos. \* **Inactivo** :
 Marque esta casilla si desea que los elementos inactivos estén bien
-se muestra en esta página. \* **Rechercher** : Busque un
+se muestra en esta página. \* **Buscar** : Busque un
 elemento particular. Puede ser el nombre de un equipo, un pedido
 o el nombre del complemento por el cual se creó el equipo.
 
-También tiene un botón &quot;Historial de eliminaciones&quot; que le permitirá mostrar el historial de pedidos, equipos, objetos, vista, diseño, diseño 3d, escenario y usuario eliminado..
+También tiene un botón &quot;Historial de eliminaciones&quot; que le permitirá mostrar el historial de pedidos, equipos, objetos, vista, diseño, diseño 3d, escenario y usuario eliminado.
 
 Marcos de objetos 
 ----------------
 
 Debajo hay un cuadro por objeto. En cada cuadro, encontramos
 la lista de equipos (en azul) que tienen este objeto como padre. la
-primer cuadro **Aucun** representa equipos que no tienen
+primer cuadro **No** representa equipos que no tienen
 padre afectado. Para cada objeto, junto a su etiqueta, tres botones
 están disponibles. De izquierda a derecha :
 
@@ -40,12 +40,12 @@ están disponibles. De izquierda a derecha :
 -   el último le permite mostrar u ocultar la lista de equipos
     atribuido a él.
 
-> **Tip**
+> **Punta**
 >
 > El color de fondo de los marcos de los objetos depende del color elegido en
 > configuración de objeto.
 
-> **Tip**
+> **Punta**
 >
 > Al hacer clic / soltar en el equipo, puede cambiar su
 > ordenar o incluso asignarlos a otro objeto. Es de orden
@@ -59,15 +59,15 @@ En cada equipo encontramos :
 -   Una **casilla de verificación** para seleccionar el equipo (puedes
     seleccione múltiple). Si se selecciona al menos un dispositivo
     tienes botones de acción que aparecen en la esquina superior izquierda
-    para **supprimer**, maquillaje **visible**/ /**invisible**,
-    **actif**/ /**inactif** equipo seleccionado.
+    para **remove**, maquillaje **visible**/ /**invisible**,
+    **bienes**/ /**Inactivo** equipo seleccionado.
 
--   La **nom** equipo.
+-   La **apellido** equipo.
 
--   La **type** equipo : Identificador del complemento al que
+-   La **tipo** equipo : Identificador del complemento al que
     pertenece.
 
--   **Inactif** (cruz pequeña) : Significa que el equipo está inactivo.
+-   **Inactivo** (cruz pequeña) : Significa que el equipo está inactivo
     (si no está allí, el equipo está activo).
 
 -   **Invisible** (ojo tachado) : Significa que el equipo es invisible
@@ -92,57 +92,57 @@ rueda con muesca esto abrirá su ventana de configuración.
 Configuración avanzada de equipos 
 =====================================
 
-> **Tip**
+> **Punta**
 >
 > Es posible acceder (si el complemento lo admite) directamente a
 > esta ventana desde la página de configuración del equipo en
 > haciendo clic en el botón de configuración avanzada
 
-La ventana de **Configuración avanzada de equipos** permite el
+La ventana de **configuración avancée d'un équipement** permite el
 Editar. Primero, arriba a la derecha, algunos botones
 disponible :
 
--   **Liens** : Muestra los enlaces del equipo con el
+-   **Vínculos** : Muestra los enlaces del equipo con el
     objetos, comandos, escenarios, variables, interacciones ... en la forma
     gráfico (en este caso, un doble clic en un elemento lo lleva a
     su configuración).
 
--   **Log** : muestra los eventos del equipo en cuestión.
+-   **Registro** : muestra los eventos del equipo en cuestión.
 
--   **Informations** : muestra las propiedades en bruto del equipo.
+-   **Información** : muestra las propiedades en bruto del equipo.
 
--   **Enregistrer** : Guarda las modificaciones realizadas
+-   **Registro** : Guarda las modificaciones realizadas
     en equipo.
 
--   **Supprimer** : Retirar equipo.
+-   **Remove** : Retirar equipo.
 
 Pestaña de información 
 -------------------
 
-La pestaña **Informations** contiene la información general de
+La pestaña **Información** contiene la información general de
 el equipo y sus controles :
 
--   **ID** : Identificador único en la base de datos Jeedom.
+-   **Identificación** : Identificador único en la base de datos Jeedom.
 
--   **Nom** : Nombre del equipo.
+-   **Apellido** : Nombre del equipo.
 
--   **ID lógica** : Identificador de equipo lógico (puede
+-   **Identificación logique** : Identificador de equipo lógico (puede
     estar vacío).
 
--   **ID de objeto** : Identificador único del objeto padre (puede
+-   **Identificación de l'objet** : Identificador único del objeto padre (puede
     estar vacío).
 
 -   **Fecha de creación** : Fecha de creación del equipo.
 
--   **Activer** : Marque la casilla para activar el equipo (no olvide
+-   **Activar** : Marque la casilla para activar el equipo (no olvide
     para guardar).
 
 -   **Visible** : Marque la casilla para hacer visible el equipo (sin
     olvida guardar).
 
--   **Type** : Identificador del complemento por el cual fue creado.
+-   **Tipo** : Identificador del complemento por el cual fue creado.
 
--   **Intento fallido** : Número de intentos de comunicación.
+-   **Intento fallido** : Número de intentos de comunicación
     consecutiva con equipo fallido.
 
 -   **Fecha de la última comunicación** : Fecha de último
@@ -151,7 +151,7 @@ el equipo y sus controles :
 -   **última actualización** : Fecha de la última comunicación
     con equipo.
 
--   **Tags** : etiquetas de equipo, para ser separadas por ','. Permite en el tablero hacer filtros personalizados
+-   **Etiquetas** : etiquetas de equipo, para ser separadas por ','. Permite en el tablero hacer filtros personalizados
 
 A continuación encontrará una tabla con la lista de comandos para
 el equipo con, para cada uno, un enlace a su configuración.
@@ -159,7 +159,7 @@ el equipo con, para cada uno, un enlace a su configuración.
 Ver pestaña 
 ----------------
 
-En la pestaña **Affichage**, podrás configurar algunos
+En la pestaña **Viendo**, podrás configurar algunos
 mostrar el comportamiento del mosaico en el tablero, las vistas, el
 diseño tan bien como móvil.
 
@@ -177,15 +177,15 @@ diseño tan bien como móvil.
     por defecto (dependiendo de la **categoría** de su equipo, vea
     **Administración → Configuración → Colores**). Si desmarca esto
     caja, puedes elegir otro color. Tambien puedes
-    marque una nueva casilla **Transparent** para hacer el
+    marque una nueva casilla **Transparente** para hacer el
     fondo transparente.
 
--   **Opacité** : Opacidad del color de fondo del mosaico.
+-   **Opacidad** : Opacidad del color de fondo del mosaico.
 
 -   **Color del texto** : Marque la casilla para mantener el color del
     texto predeterminado.
 
--   **Bordures** : Marque la casilla para mantener el borde predeterminado.
+-   **Fronteras** : Marque la casilla para mantener el borde predeterminado.
     De lo contrario, debe poner el código CSS, propiedad `border` (ex :
     `3px blue punhed` para un borde punteado de 3px en azul).
 
@@ -197,14 +197,14 @@ diseño tan bien como móvil.
 
 A continuación, encontramos parámetros de visualización opcionales que
 puede aplicarse al equipo. Estos parámetros están compuestos de un nombre y
-vale la pena. Solo haz clic en **Ajouter** aplicar uno
-de nuevo. Para equipos, solo el valor **style** es para el
+vale la pena. Solo haz clic en **Añadir** aplicar uno
+de nuevo. Para equipos, solo el valor **estilo** es para el
 momento utilizado, permite insertar código CSS en el equipo en
 question.
 
-> **Tip**
+> **Punta**
 >
-> No olvide guardar después de cualquier modificación..
+> No olvide guardar después de cualquier modificación.
 
 Pestaña Diseño 
 ------------------
@@ -212,22 +212,22 @@ Pestaña Diseño
 Esta parte le permite elegir entre la disposición estándar de
 comandos (uno al lado del otro) o en modo tabla. No hay
 nada que configurar en modo predeterminado. Aquí están las opciones disponibles en modo
-**Tableau** :
+**Mesa** :
 
--   **Numero de lineas**
+-   **Número de lignes**
 
--   **Numero de columnas**
+-   **Número de colonnes**
 
 -   **Centro en cajas** : Marque la casilla para centrar el
     comandos en las cajas.
 
--   **Estilo general de cuadros (CSS)** : Le permite definir el estilo.
+-   **Estilo general de cuadros (CSS)** : Le permite definir el estilo
     general en código CSS.
 
 -   **Estilo de tabla (CSS)** : Le permite definir el estilo de
     solo mesa.
 
-A continuación para cada cuadro, el **configuración detallada** te permite
+A continuación para cada cuadro, el **configuración détaillée** te permite
 este :
 
 -   **Cuadro de texto** : Agregue texto además del comando (o
@@ -237,11 +237,11 @@ este :
     cuadro (cuidado, esto sobrescribe y reemplaza el CSS general
     cajas).
 
-> **Tip**
+> **Punta**
 >
 > En un cuadro en la tabla, si desea poner 2 comandos uno en
 > debajo del otro, no olvide agregar un retorno al
-> línea después del estreno en el **Configuración avanzada** del mismo.
+> línea después del estreno en el **configuración avancée** del mismo.
 
 Pestaña Alertas 
 --------------
@@ -250,7 +250,7 @@ Esta pestaña proporciona información sobre la batería de
 el equipo y definir alertas en relación con él. He aquí los
 tipos de información que se pueden encontrar :
 
--   **Tipo de batería**,
+-   **Tipo de piLa**,
 
 -   **Últimos comentarios**,
 
@@ -265,10 +265,10 @@ También puede administrar el tiempo de espera, en minutos, del equipo. por
 Por ejemplo, 30 le dice a Jeedom que si el equipo no se ha comunicado
 durante 30 minutos, luego debes ponerlo en alerta.
 
-> **Tip**
+> **Punta**
 >
 > Los parámetros globales están en **Administración → Configuración → Registros**
-> (o **Equipements**)
+> (o **Comodidades**)
 
 Pestaña de comentarios 
 ------------------
@@ -281,28 +281,28 @@ Configuración avanzada de un pedido
 
 Primero, en la parte superior derecha, algunos botones disponibles :
 
--   **Tester** : Se usa para probar el comando.
+-   **Prueba** : Se usa para probar el comando.
 
--   **Liens** : Muestra los enlaces del equipo con el
+-   **Vínculos** : Muestra los enlaces del equipo con el
     objetos, comandos, escenarios, variables, interacciones ... bajo
     forma grafica.
 
--   **Log** : Muestra los eventos del equipo en cuestión.
+-   **Registro** : Muestra los eventos del equipo en cuestión.
 
--   **Informations** : Muestra las propiedades en bruto del equipo.
+-   **Información** : Muestra las propiedades en bruto del equipo.
 
 -   Aplicar a \* : Aplicar la misma configuración en
     pedidos múltiples.
 
--   **Enregistrer** : Guardar los cambios realizados en
+-   **Registro** : Guardar los cambios realizados en
     equipo
 
-> **Tip**
+> **Punta**
 >
 > En un gráfico, un doble clic en un elemento lo lleva a su
 > configuración.
 
-> **Note**
+> **Nota**
 >
 > Dependiendo del tipo de orden, la información / acciones mostradas
 > puede cambiar.
@@ -310,25 +310,25 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 Pestaña de información 
 -------------------
 
-La pestaña **Informations** contiene información general sobre el
+La pestaña **Información** contiene información general sobre el
 orden :
 
--   **ID** : Identificador único en la base de datos..
+-   **Identificación** : Identificador único en la base de datos.
 
--   **ID lógica** : Identificador lógico del comando (puede
+-   **Identificación logique** : Identificador lógico del comando (puede
     estar vacío).
 
--   **Nom** : Nombre de la orden.
+-   **Apellido** : Nombre de la orden.
 
--   **Type** : Tipo de orden (acción o información).
+-   **Tipo** : Tipo de orden (acción o información).
 
--   **Sous-type** : Subtipo de comando (binario, digital, etc.).
+-   **Subtipo** : Subtipo de comando (binario, digital, etc.).
 
 -   **URL directa** : Proporciona la URL para acceder a este equipo. (haga clic
     derecha, copie la dirección del enlace) La URL iniciará el comando para un
-    **action** y devolver la información para un **info**.
+    **acción** y devolver la información para un **Información**.
 
--   **Unité** : Unidad de control.
+-   **Unidad** : Unidad de control.
 
 -   **Comando que desencadena una actualización** : Da el identificador de un
     otro comando que, si ese otro comando cambia, forzará el
@@ -357,12 +357,12 @@ También tienes otros tres botones naranjas debajo :
 -   **Reemplace este comando con el comando** : El reverso reemplaza
     el orden por otro orden.
 
-> **Note**
+> **Nota**
 >
 > Este tipo de acción reemplaza los comandos en todo Jeedom
 > (escenario, interacción, orden, equipamiento ...)
 
-A continuación, encontrará la lista de diferentes equipos.,
+A continuación, encontrará la lista de diferentes equipos,
 comandos, escenarios o interacciones que usan este comando. una
 haga clic en él para ir directamente a su configuración
 respective.
@@ -372,7 +372,7 @@ Pestaña de configuración
 
 ### Para una orden de tipo de información : 
 
--   **Cálculo y redondeo.**
+-   **Cálculo y redondeo**
 
     -   **Fórmula de cálculo (\#value\# por valor)** : Permite
         realizar una operación sobre el valor del pedido antes
@@ -383,9 +383,9 @@ Pestaña de configuración
         valor de pedido (Ejemplo : poner 2 para transformar
         16.643345 en 16.64).
 
--   **Tipo genérico** : Le permite configurar el tipo genérico de
+-   **Tipo générique** : Le permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
-    Esta información es utilizada por la aplicación móvil..
+    Esta información es utilizada por la aplicación móvil.
 
 -   **Acción sobre el valor, si** : Hagamos tipos de
     mini escenarios. Puede, por ejemplo, decir que si el valor vale
@@ -393,15 +393,15 @@ Pestaña de configuración
     permite, por ejemplo, apagar una luz X minutos después
     esta encendido.
 
--   **Historique**
+-   **Histórico**
 
-    -   **Historiser** : Marque la casilla para tener los valores para esto
+    -   **Historizar** : Marque la casilla para tener los valores para esto
         orden se registrará. (Ver **Análisis → Historia**)
 
-    -   **Modo de suavizado** : Modo de **lissage** o d'**archivage**
+    -   **Modo de suavizado** : Modo de **alisar** o d'**archivado**
         le permite elegir cómo archivar los datos. Por defecto,
-        es una **moyenne**. También es posible elegir el
-        **maximum**, La **minimum**, o **aucun**. **aucun** Permite
+        es una **promedio**. También es posible elegir el
+        **máximo**, La **mínimo**, o **No**. **No** Permite
         dile a Jeedom que no debe archivar en esto
         orden (tanto durante los primeros 5 minutos como con el
         tarea de archivo). Esta opción es peligrosa porque Jeedom
@@ -425,9 +425,9 @@ Pestaña de configuración
     -   **Duración antes del retorno de estado (min)** : Tiempo antes de regresar a
         valor por encima.
 
--   **Autres**
+-   **Otro**
 
-    -   **Gestión de la repetición de valores.** : En automático si el
+    -   **Gestión de la repetición de valores** : En automático si el
         el comando sube 2 veces el mismo valor en una fila, luego Jeedom
         no tendrá en cuenta el segundo ascenso (evite disparar
         varias veces un escenario, a menos que el comando sea
@@ -443,9 +443,9 @@ Pestaña de configuración
 
 ### Para un comando de acción : 
 
--   **Tipo genérico** : Le permite configurar el tipo genérico de
+-   **Tipo générique** : Le permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
-    Esta información es utilizada por la aplicación móvil..
+    Esta información es utilizada por la aplicación móvil.
 
 -   **Confirmar acción** : Marque esta casilla para solicitar Jeedom
     confirmación cuando la acción se inicia desde la interfaz
@@ -455,19 +455,19 @@ Pestaña de configuración
     cuando la acción se inicia desde la interfaz de este comando.
 
 -   **Acción antes de la ejecución del comando** : Le permite agregar
-    comandos **avant** cada ejecución de la orden.
+    comandos **antes** cada ejecución de la orden.
 
--   **Acción después de la ejecución de la orden.** : Le permite agregar
+-   **Acción después de la ejecución de la orden** : Le permite agregar
     comandos **después** cada ejecución de la orden.
 
 Pestaña Alertas 
 --------------
 
-Le permite definir un nivel de alerta (**warning** o **danger**) en
+Le permite definir un nivel de alerta (**advertencia** o **peligro**) en
 dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` para 30
-minutos, entonces el equipo puede ponerse en alerta **warning**.
+minutos, entonces el equipo puede ponerse en alerta **advertencia**.
 
-> **Note**
+> **Nota**
 >
 > En la página **Administración → Configuración → Registros**, usted puede
 > configurar un comando de tipo de mensaje que permitirá que Jeedom lo atrape
@@ -480,7 +480,7 @@ En esta parte, podrá configurar ciertos comportamientos
 visualización del widget en el tablero, vistas, diseño y
 mobile.
 
--   **Widget** : Le permite elegir el widget en el escritorio o en el móvil (en
+-   **Reproductor** : Le permite elegir el widget en el escritorio o en el móvil (en
     tenga en cuenta que necesita el complemento del widget y también puede hacerlo
     de ella).
 
@@ -492,8 +492,8 @@ mobile.
 -   **Mostrar nombre e icono** : Marque para hacer visible el ícono
     además del nombre del comando.
 
--   **Línea envuelta antes del widget** : Seleccionar **Antes de
-    widget** o **después del widget** para agregar un salto de línea
+-   **Línea envuelta antes del widget** : Seleccionar **antes le
+    Reproductor** o **después del widget** para agregar un salto de línea
     antes o después del widget (para forzar, por ejemplo, una visualización en
     columna de diferentes comandos de equipo en lugar de líneas
     por defecto)
@@ -502,16 +502,16 @@ A continuación, encontramos parámetros de visualización opcionales que
 puede cambiar a widget. Estos parámetros dependen del widget en cuestión,
 así que tienes que mirar su tarjeta en el mercado para conocerlos.
 
-> **Tip**
+> **Punta**
 >
-> No olvide guardar después de cualquier modificación..
+> No olvide guardar después de cualquier modificación.
 
 Pestaña Código 
 -----------
 
 Le permite modificar el código del widget solo para el comando actual.
 
-> **Note**
+> **Nota**
 >
 > Si desea modificar el código, no olvide marcar la casilla
-> **Habilitar la personalización del widget**
+> **Activar la personnalisation du Reproductor**

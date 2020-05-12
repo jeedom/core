@@ -6,31 +6,31 @@ Estas órdenes pueden ser obtenidas por :
 -   SMS : enviar un SMS para iniciar comandos (acción) o pedir un
     pregunta (información).
 
--   Gato : Telegram, Slack, etc..
+-   Gato : Telegram, Slack, etc.
 
 -   Vocal : dicta una frase con Siri, Google Now, SARAH, etc. Para
     iniciar comandos (acción) o hacer una pregunta (información).
 
--   Http : lanzar una URL HTTP que contenga el texto (ej.. Tasker, Slack)
+-   Http : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack)
     para iniciar comandos (acción) o hacer una pregunta (información).
 
 El interés de las interacciones radica en la integración simplificada en
-Otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc..
+Otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc.
 
 Para acceder a la página de interacción, vaya a Herramientas →
 Interacciones :
 
-En la parte superior de la página, hay 3 botones. :
+En la parte superior de la página, hay 3 botones :
 
--   **Ajouter** : que permite crear nuevas interacciones.
+-   **Añadir** : que permite crear nuevas interacciones.
 
 -   **Regenerado** : que recreará todas las interacciones (tal vez
     très long &gt; 5mn).
 
--   **Tester** : que abre un diálogo para escribir y
+-   **Prueba** : que abre un diálogo para escribir y
     prueba una oración.
 
-> **Tip**
+> **Punta**
 >
 > Si tienes una interacción que genera las oraciones para las luces
 > por ejemplo y agrega un nuevo módulo de comando de
@@ -41,7 +41,7 @@ En la parte superior de la página, hay 3 botones. :
 Principio 
 ========
 
-El principio de la creación es bastante simple. : definiremos una oración
+El principio de la creación es bastante simple : definiremos una oración
 modelo de generador que permitirá a Jeedom crear uno o más
 cientos de otras oraciones que serán posibles combinaciones de la
 modelo.
@@ -60,29 +60,29 @@ Configuración
 La página de configuración consta de varias pestañas y
 botones :
 
--   **Phrases** : Muestra el número de oraciones en la interacción (un clic
+-   **Frases** : Muestra el número de oraciones en la interacción (un clic
     arriba te los muestra)
 
--   **Enregistrer** : registra la interacción actual
+-   **Registro** : registra la interacción actual
 
--   **Supprimer** : eliminar la interacción actual
+-   **Remove** : eliminar la interacción actual
 
--   **Dupliquer** : duplicar la interacción actual
+-   **Duplicado** : duplicar la interacción actual
 
 General 
 =======
 
--   **Nom** : nombre de la interacción (puede estar vacío, el nombre reemplaza el
+-   **Apellido** : nombre de la interacción (puede estar vacío, el nombre reemplaza el
     solicitar texto en la lista de interacción).
 
--   **Groupe** : grupo de interacción, ayuda a organizarlos
+-   **Grupo** : grupo de interacción, ayuda a organizarlos
     (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
 
--   **Actif** : permite activar o desactivar la interacción.
+-   **Bienes** : permite activar o desactivar la interacción.
 
--   **Demande** : la oración modelo generadora (requerida).
+-   **Solicitud** : la oración modelo generadora (requerida).
 
--   **Synonyme** : permite definir sinónimos en nombres
+-   **Sinónimo** : permite definir sinónimos en nombres
     órdenes.
 
 -   **Respuesta** : la respuesta para proporcionar.
@@ -109,7 +109,7 @@ Filtros
     generación con una o más unidades (Jeedom crea la lista
     automáticamente desde las unidades definidas en sus pedidos).
 
--   **Limitar a órdenes pertenecientes al objeto.** : permite limitar
+-   **Limitar a órdenes pertenecientes al objeto** : permite limitar
     generación a uno o más objetos (Jeedom crea la lista
     automáticamente de los objetos que creó).
 
@@ -133,9 +133,9 @@ o pasar parámetros particulares.
 Ejemplos 
 ========
 
-> **Note**
+> **Nota**
 >
-> Las capturas de pantalla pueden ser diferentes en vista de los desarrollos..
+> Las capturas de pantalla pueden ser diferentes en vista de los desarrollos.
 
 Interacción simple 
 ------------------
@@ -166,7 +166,7 @@ frase única imagina acciones combinadas entre varios comandos y
 varios escenarios (también podemos desencadenar escenarios en el juego
 acción de interacción).
 
-> **Tip**
+> **Punta**
 >
 > Para agregar un escenario, crear una nueva acción, escriba "escenario"
 > sin acento, presione la tecla de tabulación en su teclado para
@@ -202,7 +202,7 @@ phrases).
 
 ![yonteract007](../images/interact007.png)
 
-Es mejor, pero podemos hacerlo aún más natural.. Si tomo
+Es mejor, pero podemos hacerlo aún más natural. Si tomo
 el ejemplo generado &quot;Al entrar&quot;, sería bueno poder transformar
 esta oración en "activar la entrada" o en "activar la entrada". Para hacer
 eso, Jeedom tiene, bajo el campo de solicitud, un campo sinónimo que
@@ -222,10 +222,10 @@ puede tener varios sinónimos, aquí &quot;on&quot; tiene como sinónimo
 sinónimo que queremos). Luego, agregar sinónimos para otro
 nombre del comando, solo agregue después del último sinónimo una barra
 vertical "*|*" después de lo cual puedes nombrar nuevamente
-comando que tendrá sinónimos como para la primera parte, etc..
+comando que tendrá sinónimos como para la primera parte, etc.
 
 Ya es mejor, pero aún falta para el comando de entrada "on""
-la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, etc.. Podriamos
+la &quot;l&quot; y para otros la &quot;la&quot; o &quot;la&quot; o &quot;a&quot;, etc. Podriamos
 cambiar el nombre del equipo para agregarlo sería una solución,
 de lo contrario podemos usar variaciones en la demanda. Consiste en
 enumerar una serie de palabras posibles en un lugar de la oración, Jeedom
@@ -236,7 +236,7 @@ generará oraciones con estas variaciones.
 Ahora tenemos oraciones un poco más correctas con oraciones que
 no son justos, para nuestro ejemplo "en" "entrada". entonces encontramos
 "Encienda la entrada "," Encienda la entrada "," Encienda la entrada "," Encienda
-la entrada &quot;etc.. Entonces tenemos todas las variantes posibles con lo que
+la entrada &quot;etc. Entonces tenemos todas las variantes posibles con lo que
 agregado entre &quot;\ [\]&quot; y esto para cada sinónimo, lo que genera
 rápidamente muchas oraciones (aquí 168).
 
@@ -260,8 +260,8 @@ Personalizar respuestas
 
 Hasta ahora, como respuesta a una interacción, teníamos un simple
 oración que no dijo mucho, excepto que algo sucedió
-pasado. La idea sería que Jeedom nos cuenta lo que hizo un poco más.
-con precisión. Aquí es donde entra el campo de respuesta.
+pasado. La idea sería que Jeedom nos cuenta lo que hizo un poco más
+con precisión. Aquí es donde entra el campo de respuesta
 posibilidad de personalizar la devolución según la orden ejecutada.
 
 Para hacer esto, nuevamente usaremos la etiqueta Jeedom. Para nuestro
@@ -271,7 +271,7 @@ luces, podemos usar una frase como : Me ilumine bien
 ![yonteract011](../images/interact011.png)
 
 También puede agregar cualquier valor desde otro comando como
-temperatura, número de personas, etc..
+temperatura, número de personas, etc.
 
 ![yonteract012](../images/interact012.png)
 
@@ -286,10 +286,10 @@ mantuvo esa luz).
 
 ![yonteract013](../images/interact013.png)
 
-Como puede ver aquí, he mantenido casi la misma estructura.
+Como puede ver aquí, he mantenido casi la misma estructura
 por demanda (es voluntario enfocarse en
 especificidades). Por supuesto, adapté los sinónimos para tener algunos
-cosa coherente. Sin embargo, para la respuesta, es **imperativo** de
+cosa coherente. Sin embargo, para la respuesta, es **yompératif** de
 poner solo \#valeur\# que representa el 0 o 1 que va Jeedom
 reemplazar con la siguiente conversión binaria.
 
@@ -299,7 +299,7 @@ separación y finalmente la respuesta si el comando vale 1. Aquí el
 las respuestas son simplemente no y sí, pero podríamos poner una oración
 un poco mas largo.
 
-> **Warning**
+> **Advertencia**
 >
 > Las etiquetas no funcionan en conversiones binarias.
 
@@ -424,7 +424,7 @@ Enlaces útiles :
 
 -   <https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2>
 
-Respuesta compuesta de varias piezas de información. 
+Respuesta compuesta de varias piezas de información 
 ------------------------------------------
 
 También es posible poner varios comandos de información en uno
@@ -455,7 +455,7 @@ sola vez.
 Este ejemplo se dirige específicamente a equipos específicos que permiten
 tener una respuesta personalizada. Entonces podríamos imaginar reemplazar
 el ejemplo responde con &quot;no, no hay nadie en la habitación
-*julie*|si hay alguien en la sala *julie*"
+*Julie*|si hay alguien en la sala *Julie*"
 
 ### Evolución 
 
@@ -491,7 +491,7 @@ de temperatura, brillo y humedad. Con el sistema de generación de
 Sentencia de libertad, por lo que podemos generar con una sola interacción
 frases para todos los sensores de estos 3 tipos de medida.
 
-Aquí un ejemplo genérico que se utiliza para conocer la temperatura.,
+Aquí un ejemplo genérico que se utiliza para conocer la temperatura,
 la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedom).
 
 ![yonteract019](../images/interact019.png)
@@ -522,7 +522,7 @@ no tiene nada que ver con nuestra interacción.
 
 Agregando un sinónimo, digamos a Jeedom que un comando llamado
 "X" también se puede llamar "Y" y, por lo tanto, en nuestra oración si tenemos "activar
-y &quot;, Jeedom sabe que se está encendiendo x. Este método es muy conveniente.
+y &quot;, Jeedom sabe que se está encendiendo x. Este método es muy conveniente
 cambiar el nombre de los comandos que, cuando se muestran en
 la pantalla, están escritos de una manera que no es vocal o natural
 en una oración escrita como "ENCENDIDO". Un botón escrito como este es
@@ -537,12 +537,12 @@ temperatura / humedad / brillo.
 
 Entonces podemos ver una expresión regular :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(batería|latence|pression|vitesse|consumo)**
 
 Esto le permite eliminar todos los pedidos que tengan uno de estos
 palabras en su oración
 
-> **Note**
+> **Nota**
 >
 > La expresión regular aquí es una versión simplificada para un uso fácil.
 > Entonces podemos usar expresiones tradicionales o
@@ -566,9 +566,9 @@ atenuador para aplicar el valor deseado. Para hacer esto, tenemos 3 partes
 que será enviado a la interacción. \* Respuesta : reutilizamos la etiqueta para
 la respuesta para asegurarse de que Jeedom entendió la solicitud correctamente.
 \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en
-el valor le pasamos nuestra etiqueta *consigne*.
+el valor le pasamos nuestra etiqueta *Consigna*.
 
-> **Note**
+> **Nota**
 >
 > Puede usar cualquier etiqueta excepto las que ya usa
 > Jeedom, puede haber varios para conducir, por ejemplo
@@ -595,7 +595,7 @@ solicitud. La mayoría de las etiquetas disponibles en los escenarios son
 también disponible en interacciones y, por lo tanto, puede usarse
 en una respuesta.
 
-Resultado de la interacción. :
+Resultado de la interacción :
 
 ![yonteract034](../images/interact034.png)
 
@@ -652,13 +652,13 @@ Programando una acción con interacciones
 
 Las interacciones hacen muchas cosas en particular.
 Puedes programar una acción dinámicamente. Ejemplo : "Poner el
-calentamiento a las 10 p.m. para 2:50 p.m.". Nada podría ser más simple, solo
+calentamiento a las 10 p.m. para 2:50 p.m". Nada podría ser más simple, solo
 usar etiquetas \#time\# (si se define un tiempo específico) o
 \#duration\# (para en el tiempo X, ejemplo en 1 hora) :
 
 ![yonteract23](../images/interact23.JPG)
 
-> **Note**
+> **Nota**
 >
 > Notará en la respuesta la etiqueta \#value\# este contiene
 > en el caso de una interacción programada, el tiempo de programación

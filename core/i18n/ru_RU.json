@@ -320,7 +320,7 @@
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur : ": "Невозможно найти пользователя:",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Обратите внимание: учетная запись пользователя не имеет профиля «Ограниченный пользователь», поэтому здесь не могут применяться никакие ограничения.",
+        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Обратите внимание: учетная запись пользователя не имеет профиля «Ограниченный пользователь», поэтому здесь не могут применяться никакие ограничения",
         "Sauvegarder": "экономить",
         "Equipements": "Оборудование",
         "Scénarios": "Сценарии",
@@ -393,7 +393,7 @@
         "Permet de rajouter un message dans les logs": "Добавить сообщение в лог",
         "Permet d'ajouter une message dans le centre de message": "Добавляет сообщение в центр сообщений",
         "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Меняет свойство принимать видимый \/ невидимый \/ выключения оборудования",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Действие, которое позволяет Jeedom применять затем сохранить ответ в переменной. Это действие блокирует и заканчивается только тогда, когда Jeedom получает ответ или тайм-аут будет достигнут. На данный момент это действие совместимо только с SMS-плагинов, расслабленные, и Сарра телеграмм.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Действие, которое позволяет Jeedom применять затем сохранить ответ в переменной. Это действие блокирует и заканчивается только тогда, когда Jeedom получает ответ или тайм-аут будет достигнут. На данный момент это действие совместимо только с SMS-плагинов, расслабленные, и Сарра телеграмм",
         "Envoi l'ordre à Jeedom de s'éteindre": "Отправка заказа на Jeedom исчезновения",
         "Envoi l'ordre à Jeedom de redémarrer": "Отправить заказ на Jeedom, чтобы перезагрузить",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Возвращает текст или значение для взаимодействия, например,",
@@ -401,7 +401,7 @@
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Показывает небольшое предупреждение на всех браузерах, которые имеют страницу открытой Jeedom. Вы также можете выбрать один из четырех уровней тревоги",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Позволяет отображать всплывающее окно, которое должно быть абсолютно проверено во всех браузерах, которые имеют страницу",
         "ouverte.": "открыт.",
-        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Отправить, командный пункт, отчет о целях, дизайн или панель PNG \/ PDF \/ JPEG \/ SVG.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Отправить, командный пункт, отчет о целях, дизайн или панель PNG \/ PDF \/ JPEG \/ SVG",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Удалить программирование всех блоков В и сценарий",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Позволяет произвольно вставить значение в команду типа информации",
         "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Разрешить добавлять \/ изменять тег (тег существует только во время текущего выполнения сценария, в отличие от переменных, которые остаются в конце сценария)"
@@ -490,11 +490,11 @@
         "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>": "- ответ уже не в документации <a href='https:\/\/jeedom.github.io\/documentation'> <\/a>",
         "Etape 2 : Choix du type de demande": "Шаг 2: Выберите тип запроса",
         "Assistance technique": "техническая помощь",
-        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Напишите свой вопрос до сведения нашей технической службы, которые будут реагировать быстро.",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Напишите свой вопрос до сведения нашей технической службы, которые будут реагировать быстро",
         "Rapport": "доклад",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION<\/strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Вы можете сообщить об ошибке, который будет опубликован на нашем общедоступном Bug Tracker (<STRONG> Внимание: <\/ STRONG> Ваше сообщение будет опубликовано, оно может быть удалено, если это не ошибка, вы не получите техническая помощь после этого заявления)",
         "Demande d'amélioration": "Улучшение запроса",
-        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Вы можете отправлять предложения по улучшению, которые будут опубликованы на нашей специальной общедоступной странице и которые могут быть включены в нашу дорожную карту.",
+        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Вы можете отправлять предложения по улучшению, которые будут опубликованы на нашей специальной общедоступной странице и которые могут быть включены в нашу дорожную карту",
         "Voir les bugs": "Смотрите ошибки",
         "Voir les propositions d'amélioration": "См предложения по улучшению",
         "Etape 3 : Catégorie et type de la demande": "Шаг 3: Размер и тип спроса",
@@ -565,7 +565,7 @@
         "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
         "Type générique": "общий тип",
         "Aucun": "Нет",
-        " . $info['family'] . ": ", $ info ['family'].",
+        " . $info['family'] . ": ", $ info ['family']",
         "Restriction de l'action": "Ограничение действия",
         "Confirmer l'action": "Подтвердите действие",
         "Code d'accès": "Код доступа",
@@ -612,7 +612,7 @@
         "si (#value# pour la valeur)": "если (значение # # для значения)",
         "Pendant plus de (en min, laisser vide pour immédiat)": "Для более чем (через минуту оставьте пустым для немедленного)",
         "Widget": "Виджет",
-        " . $value['name'] . ": ", $ value ['name'].",
+        " . $value['name'] . ": ", $ value ['name']",
         "Afficher le nom": "Показать имя",
         "Afficher le nom ET l'icône": "Печатает имя и значок",
         "Afficher les statistiques": "Показать статистику",
@@ -654,7 +654,7 @@
     "desktop\/modal\/icon.selector.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Rechercher": "Искать",
-        " . str_replace('\/', '', $dir) . ": ", str_replace ('\/', '', $ dir).",
+        " . str_replace('\/', '', $dir) . ": ", str_replace ('\/', '', $ dir)",
         "Général": "Главная"
     },
     "desktop\/modal\/update.send.php": {
@@ -764,7 +764,7 @@
         "Commandes": "Команды",
         "Action": "Действие",
         "Widget": "Виджет",
-        " . $value['name'] . ": ", $ value ['name'].",
+        " . $value['name'] . ": ", $ value ['name']",
         "Afficher le nom": "Показать имя",
         "Afficher le nom de l'objet": "Отображаемое имя объекта",
         "Couleur de fond": "Цвет фона",
@@ -803,7 +803,7 @@
         "Suppression réalisée avec succès": "Удаление успешно завершено",
         "Configuration de la commande": "управляющий набор",
         "Logs": "Журналы",
-        "Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Вы меняли батарейки? Это действие установит дату замены батарей на сегодня.",
+        "Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Вы меняли батарейки? Это действие установит дату замены батарей на сегодня",
         "Changement de pile(s) pris en compte": "Смена аккумулятора (ов) учтена"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
@@ -937,7 +937,7 @@
         "Source": "Источник",
         "Attention, il n’y a pas d’assistance de l’équipe ": "Обратите внимание, что нет помощи команды",
         " sur les plugins installés depuis une autre source que le Market ": "на плагинах, установленных из источника, отличного от Маркета",
-        ".De plus, l’installation d’un plugin depuis une autre source que le Market ": "Кроме того, установка плагина из источника, отличного от Маркета.",
+        ".De plus, l’installation d’un plugin depuis une autre source que le Market ": "Кроме того, установка плагина из источника, отличного от Маркета",
         " entraine la perte globale d’assistance par l’équipe ": "",
         "Type de source": "Тип источника",
         "Aucun": "нет",
@@ -1096,12 +1096,12 @@
         "Etape 1 : Installation sur le téléphone": "Шаг 1: Установка на телефон",
         "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte": "Двухэтапная проверка обеспечивает дополнительный уровень защиты для вашей учетной записи",
         ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à": ", После настройки двухэтапного подтверждения вам потребуется пароль, а также уникальный код подтверждения для подключения к",
-        ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": ", Обратите внимание, что для создания кодов подтверждения потребуется мобильное устройство.",
+        ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": ", Обратите внимание, что для создания кодов подтверждения потребуется мобильное устройство",
         "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Пожалуйста, установите приложение аутентификации на вашем мобильном устройстве. Если вы еще не установили один,",
         "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).": "",
-        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "Обратите внимание, что двойная аутентификация необходима только для внешних подключений, поэтому она не будет активной для локального подключения.",
+        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "Обратите внимание, что двойная аутентификация необходима только для внешних подключений, поэтому она не будет активной для локального подключения",
         "Etape 2 : Configuration": "Шаг 2: Конфигурация",
-        "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Откройте и настройте приложение для аутентификации, отсканировав QR-код ниже.",
+        "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Откройте и настройте приложение для аутентификации, отсканировав QR-код ниже",
         "Vous pouvez aussi entrer manuellement le code suivant : ": "Вы также можете вручную ввести следующий код:",
         "Etape 3 : vérification": "Шаг 3: проверка",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Пожалуйста, введите код, указанный для проверки и активации двойной аутентификации",
@@ -1242,15 +1242,15 @@
         "Insérer une clé USB de plus de 8Go": "Вставьте USB-накопитель объемом более 8 ГБ",
         "dans votre Jeedom et cliquer sur": "в вашем Джидоме и нажмите на",
         "Etape 2": "2 этап",
-        "Backup lancé merci de patienter...": "Резервное копирование запущено, пожалуйста, подождите ...",
+        "Backup lancé merci de patienter...": "Резервное копирование запущено, пожалуйста, подождите",
         "Etape 3": "Этап 3",
-        "Téléchargement de l'image Jeedom.": "Загрузите образ Jeedom.",
+        "Téléchargement de l'image Jeedom.": "Загрузите образ Jeedom",
         "Etape 4": "Шаг 4",
         "Migration de votre Jeedom": "Миграция твоего Джидома",
         "Etape 5": "Шаг 5",
         "Finalisation": "завершение",
         "Reprendre la restauration": "Возобновить восстановление",
-        "Pour reprendre votre restauration cliquez sur \"Reprendre\".": "Чтобы возобновить восстановление, нажмите «Продолжить».",
+        "Pour reprendre votre restauration cliquez sur \"Reprendre\".": "Чтобы возобновить восстановление, нажмите «Продолжить»",
         "Fermer": "близко",
         "Reprendre": "резюме",
         "Réinstallation de votre Backup": "Переустановка вашей резервной копии",
@@ -1261,7 +1261,7 @@
         "Installer mon Backup": "",
         "Informations Importantes": "",
         "- Il vous faut une clé USB de plus de 8Go.": "",
-        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom.",
+        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom",
         "- Accéder à votre Jeedom depuis sont adresse interne.": "",
         "- Pouvoir laisser cette page ouverte au minimum 1h30.": "",
         "C'est Partie": ""
@@ -1480,7 +1480,7 @@
         "Vider toutes les données en cache": "Сбросить все кэшированные данные",
         "Vider": "Пусто",
         "Temps de pause pour le long polling": "Время паузы в течение длительного опроса",
-        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Более чувствительность низка (близко к 1), более переписка должна быть точной.",
+        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Более чувствительность низка (близко к 1), более переписка должна быть точной",
         "Sensibilité": "чувствительность",
         "1 mot": "1 слово",
         "2 mots": "2 слова",
@@ -1709,7 +1709,7 @@
         "Synchrone": "синхронный",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Сценарий в синхронном режиме. Внимание, это может сделать систему нестабильной",
         "Timeline": "хронология",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "Расстрелы сценария можно увидеть на временной шкале.",
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Расстрелы сценария можно увидеть на временной шкале",
         "Icône": "Иконка",
         "Choisir": "Выбрать",
         "Mode du scénario": "Режим сценариев",
@@ -1956,7 +1956,7 @@
         "Configuration": "Конфигурация",
         "Rechercher": "Искать",
         "Vider": "Пусто",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Внимание: слишком большой диапазон дат могут занять много времени, чтобы быть вычислен или даже не появляется.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Внимание: слишком большой диапазон дат могут занять много времени, чтобы быть вычислен или даже не появляется",
         "Ok": "Ок",
         "Aucun groupement": "нет группы",
         "Somme par heure": "Сумма в час",
@@ -2040,7 +2040,7 @@
     },
     "desktop\/js\/editor.js": {
         "Fichier enregistré avec succès": "",
-        "Etes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier : "
+        "Etes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier :"
     },
     "desktop\/js\/plugin.js": {
         "Synchronisation réussi. Nombre de plugins installé : ": "",
@@ -2088,7 +2088,7 @@
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы редактируете вы можете вылепить перемещение виджетов, изменить размер и изменить порядок команд в виджетах"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": " Название вида?",
+        "Nom de la vue ?": "Название вида?",
         "Configuration de la vue": "",
         "Modification enregistrée": "Изменение зарегистрировано",
         "Etes-vous sûr de vouloir supprimer la vue": "Вы уверены, что хотите удалить вид",
@@ -2266,7 +2266,7 @@
         "Merci": "",
         "Clé USB vérifié passage à l\\'étape 2 en cours": "",
         "Début de la restauration du backup !": "",
-        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...",
+        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci",
         "test de l\\'image": "",
         "Mise à jour de votre Jeedom réussi": "",
         "L\\'opération a échoué": "Операция не удалась",
@@ -2359,7 +2359,7 @@
         "Résumé Objets": ""
     },
     "desktop\/js\/system.js": {
-        "Etes-vous sûr de vouloir exécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
+        "Etes-vous sûr de vouloir exécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
         "Celle-ci est classée en dangereuse": "",
         "Commande : ": "команда:",
         "Remise à plat des droits fait avec succès": "",
@@ -2574,7 +2574,7 @@
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Interaction inconnue. Vérifiez l\\'ID": "",
         "InteractQuery ID inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/view.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2585,7 +2585,7 @@
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
         "Le fichier est trop gros (maximum 5Mo)": "",
         "Impossible de sauvegarder l\\'image": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "",
@@ -2594,17 +2594,17 @@
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "",
         "Utilisateur non trouvé : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Plugin introuvable : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Note inconnue. Vérifiez l\\'ID": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/object.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2614,11 +2614,11 @@
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
         "Le fichier est trop gros (maximum 5Mo)": "",
         "Impossible de sauvegarder l\\'image": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/log.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/jeedom.ajax.php": {
         "Vue": "Вид",
@@ -2638,27 +2638,27 @@
         " inconnu": "",
         "Vous ne pouvez éditer ce type d\\'extension : ' . $pathinfo['extension']": "",
         "Impossible de créer le fichier, vérifiez les droits": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Dépôt de données inconnu. Vérifiez l\\'ID : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Listerner id inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Impossible de supprimer : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Impossible de trouver l\\'objet associé : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2675,7 +2675,7 @@
         "Le fichier est trop gros (maximum 10Mo)": "",
         "Impossible de déplacer le fichier temporaire": "",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2689,11 +2689,11 @@
         "Le fichier est trop gros (maximum 100Mo)": "",
         "Impossible de déplacer le fichier temporaire": "",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/event.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/plan.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2705,25 +2705,25 @@
         "Le fichier est trop gros (maximum 5Mo)": "",
         "Impossible de sauvegarder l\\'image": "",
         "Impossible de déplacer le fichier temporaire dans : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Message inconnu. Vérifiez l\\'ID": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/migrate.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/network.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/config.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aucune clef demandée": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/cmd.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2742,13 +2742,13 @@
         "Scénario": "Сценарий",
         "Intéraction": "",
         "Utilisateur": "Пользователь",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aucun plan3d correspondant": "",
         "Objet inconnu verifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
+        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id :",
         "Code d\\'acces invalide": "Code d\\'acces invalide",
         "Objet inconnu. Vérifiez l\\'ID": "",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
@@ -2763,7 +2763,7 @@
     "core\/ajax\/cron.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Cron id inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/eqLogic.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2780,11 +2780,11 @@
         ") existe déjà pour cet objet": "",
         "Une commande portant ce nom (": "",
         ") existe déjà pour cet équipement": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/cache.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/repo\/samba.repo.php": {
         "Impossible d\\'écrire dans le répertoire : ": "",
@@ -3137,7 +3137,7 @@
         "Scénario exécuté automatiquement sur événement venant de : ": "Сценарий выполняется автоматически по событию",
         "Scénario exécuté sur événement : #": "Сценарий выполняется на турнире #",
         "Scénario exécuté automatiquement sur programmation": "Сценарий запрограммирован запускаться автоматически",
-        "Arret du scénario car il a dépassé son temps de timeout : ": "Arret du scénario car il a dépassé son temps de timeout : ",
+        "Arret du scénario car il a dépassé son temps de timeout : ": "Arret du scénario car il a dépassé son temps de timeout :",
         "Scénario désactivé non lancement de la sous tâche": "от сценария не запускается под задачи",
         "************Lancement sous tâche**************": "************ ************** Начиная задачи",
         "Tags : ": "теги:",
@@ -3249,7 +3249,7 @@
         "Commande introuvable - Vérifiez l\\'id : ": "",
         "Demande ": "приложение",
         "Aucune réponse": "",
-        "Réponse ": "Réponse ",
+        "Réponse ": "Réponse",
         "Lancement de l\\'arret de jeedom": "",
         "Lancement du reboot de jeedom": "",
         "Demande de retour d\\'information : ": "",
@@ -3346,11 +3346,11 @@
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "",
-        "Téléchargement du plugin...": "Загрузить плагин ...",
+        "Téléchargement du plugin...": "Загрузить плагин",
         "OK\\n": "",
         "Impossible de trouver le fichier zip : ": "",
         "Échec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market fonctionne) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "",
-        "Décompression du zip...": "Распакуйте почтовый индекс ...",
+        "Décompression du zip...": "Распакуйте почтовый индекс",
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "",
         "Impossible de décompresser l\\'archive zip : ": "",
         "Vous ne pouvez pas supprimer le core de Jeedom": "",

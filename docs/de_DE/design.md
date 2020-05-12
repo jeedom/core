@@ -4,11 +4,11 @@ Ihre Fantasie.
 
 Es ist über Home → Design zugänglich
 
-> **Tip**
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
-> **Important**
+> **Wichtig**
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken
 > um es gut im Design zu machen. Während der Erstellung ist es daher notwendig,
@@ -17,9 +17,9 @@ Es ist über Home → Design zugänglich
 Im Menü (Rechtsklick also) finden wir die
 folgende Aktionen :
 
--   **Designs** : Zeigt die Liste Ihrer Designs an und greift darauf zu
+-   **Design** : Zeigt die Liste Ihrer Designs an und greift darauf zu
 
--   **Edition** : Wechseln Sie in den Bearbeitungsmodus
+-   **Ausgabe** : Wechseln Sie in den Bearbeitungsmodus
 
 -   **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite
     entfernt das Jeedom-Menü von oben
@@ -52,9 +52,9 @@ folgende Aktionen :
 -   **Zusammenfassung hinzufügen** : Fügt Informationen aus einer Objektzusammenfassung hinzu oder
     General
 
--   **Affichage**
+-   **Anzeigen**
 
-    -   **Aucune** : Zeigt kein Raster an
+    -   **Keine** : Zeigt kein Raster an
 
     -   **10x10** : Zeigt ein 10 x 10-Raster an
 
@@ -72,18 +72,18 @@ folgende Aktionen :
     -   **Hervorheben von Elementen ausblenden** : Verstecke es
         um Elemente hervorheben
 
--   **Design löschen** : Design löschen
+-   **Entfernen le Design** : Design löschen
 
 -   **Erstellen Sie ein Design** : ermöglicht das Hinzufügen eines Designs
 
--   **Doppeltes Design** : Dupliziere das aktuelle Design
+-   **Duplikat le Design** : Dupliziere das aktuelle Design
 
 -   **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration
 
--   **Sauvegarder** : ermöglicht das Speichern des Designs (Aufmerksamkeit gibt es
+-   **Speichern** : ermöglicht das Speichern des Designs (Aufmerksamkeit gibt es
     auch automatische Sicherungen bei bestimmten Aktionen)
 
-> **Important**
+> **Wichtig**
 >
 > Die Konfiguration der Gestaltungselemente erfolgt durch Klicken auf
 > diese.
@@ -95,7 +95,7 @@ Hier gefunden :
 
 -   **General**
 
-    -   **Nom** : Der Name Ihres Designs
+    -   **Name** : Der Name Ihres Designs
 
     -   **Transparenter Hintergrund** : macht den Hintergrund transparent. Seien Sie vorsichtig, wenn die
         Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet
@@ -103,19 +103,19 @@ Hier gefunden :
     -   **Hintergrundfarbe** : Design Hintergrundfarbe (weiß
         standardmäßig)
 
-    -   **Code** : Zugriffscode für Ihr Design (falls leer, kein Code
+    -   **CODE** : Zugriffscode für Ihr Design (falls leer, kein Code
         wird nicht angefordert)
 
     -   **Symbol** : Ein Symbol dafür (erscheint im Menü
         Wahl des Designs)
 
-    -   **Image**
+    -   **Bild**
 
-        -   **Envoyer** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
+        -   **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
 
-        -   **Bild löschen** : Bild löschen
+        -   **Entfernen l'image** : Bild löschen
 
--   **Tailles**
+-   **Größen**
 
     -   **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs
         (grauer Rahmen im Bearbeitungsmodus)
@@ -123,11 +123,11 @@ Hier gefunden :
 Allgemeine Konfiguration der Elemente 
 ===================================
 
-> **Note**
+> **Notiz**
 >
 > Je nach Art des Elements können sich die Optionen ändern.
 
-> **Note**
+> **Notiz**
 >
 > Das ausgewählte Element wird rot (anstelle von grün) hervorgehoben
 > für alle anderen).
@@ -135,7 +135,7 @@ Allgemeine Konfiguration der Elemente
 Anzeigeeinstellung 
 ---------------------
 
--   **Profondeur** : ermöglicht die Auswahl der Tiefenstufe
+-   **Tiefe** : ermöglicht die Auswahl der Tiefenstufe
 
 -   **Position X (%)** :
 
@@ -169,19 +169,19 @@ Anzeigeeinstellungen
 
 -   **Zeit** : Hier können Sie den Anzeigezeitraum auswählen
 
--   **Bildunterschrift anzeigen** : Legende zeigen
+-   **Anzeige la légende** : Legende zeigen
 
--   **Browser anzeigen** : Zeigen Sie den Browser an (zweites Diagramm
+-   **Anzeige le navigateur** : Zeigen Sie den Browser an (zweites Diagramm
     leichter unter dem ersten)
 
--   **Periodenauswahl anzeigen** : zeigt den Selektor an
+-   **Anzeige le sélecteur de période** : zeigt den Selektor an
     Punkt oben links
 
--   **Bildlaufleiste anzeigen** : Zeigt die Bildlaufleiste an
+-   **Anzeige la barre de défilement** : Zeigt die Bildlaufleiste an
 
 -   **Transparenter Hintergrund** : macht den Hintergrund transparent
 
--   **Bordure** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
+-   **Grenze** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
     HTML (Vorsicht, Sie müssen beispielsweise die CSS-Syntax verwenden :
     festes 1px schwarz)
 
@@ -193,7 +193,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen
 Text / html 
 =========
 
--   **Icone** : Symbol, das vorne angezeigt werden soll
+-   **Symbol** : Symbol, das vorne angezeigt werden soll
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
@@ -204,7 +204,7 @@ Text / html
 -   **Rund um die Winkel** : ermöglicht es Ihnen, die Winkel abzurunden (nicht
     vergiss%, ex 50% zu setzen)
 
--   **Bordure** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
+-   **Grenze** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
     HTML (verwenden Sie beispielsweise die CSS-Syntax : solid
     1px schwarz)
 
@@ -214,11 +214,11 @@ Text / html
 -   **Textausrichtung** : Hier können Sie die Ausrichtung der auswählen
     Text (links / rechts / zentriert)
 
--   **Gras** : fetter Text
+-   **Fett** : fetter Text
 
--   **Texte** : Text im HTML-Code, der sich im Element befindet
+-   **Text** : Text im HTML-Code, der sich im Element befindet
 
-> **Important**
+> **Wichtig**
 >
 > Seien Sie vorsichtig, wenn Sie HTML-Code (insbesondere Javascript) eingeben
 > um es vorher zu überprüfen, weil Sie können, wenn es einen Fehler darin gibt
@@ -239,9 +239,9 @@ Link
 Anzeigeeinstellungen 
 ---------------------
 
--   **Nom** : Name des Links (angezeigter Text)
+-   **Name** : Name des Links (angezeigter Text)
 
--   **Lien** : Link zum betreffenden Design oder zur betreffenden Ansicht
+-   **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
@@ -252,7 +252,7 @@ Anzeigeeinstellungen
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
+-   **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
@@ -261,7 +261,7 @@ Anzeigeeinstellungen
 -   **Textausrichtung** : Hier können Sie die Ausrichtung der auswählen
     Text (links / rechts / zentriert)
 
--   **Gras** : fetter Text
+-   **Fett** : fetter Text
 
 Ausrüstung 
 ==========
@@ -297,10 +297,10 @@ Bild / Kamera
 Anzeigeeinstellungen 
 ---------------------
 
--   **Afficher** : definiert, was Sie anzeigen möchten, Standbild oder
+-   **Anzeige** : definiert, was Sie anzeigen möchten, Standbild oder
     Stream von einer Kamera
 
--   **Image** : ermöglicht es Ihnen, das betreffende Bild zu senden (falls vorhanden)
+-   **Bild** : ermöglicht es Ihnen, das betreffende Bild zu senden (falls vorhanden)
     wähle ein Bild)
 
 -   **Kamera** : Kamera zum Anzeigen (wenn Sie Kamera gewählt haben)
@@ -329,7 +329,7 @@ ist 0 wert, dann führt Jeedom die Aktion (en) aus. Andernfalls wird sie ausgef�
 die Aktion (en) Aus
 
 -   **Binäre Informationen** : Befehl, der den Status angibt, auf den geprüft werden soll
-    Entscheiden Sie, welche Aktion ausgeführt werden soll (Ein oder Aus).
+    Entscheiden Sie, welche Aktion ausgeführt werden soll (Ein oder Aus)
 
 Sie müssen nur die Aktionen ausführen, die für On und ausgeführt werden sollen
 für das Aus
@@ -339,11 +339,11 @@ für das Aus
 Wenn Sie in diesem Modus im Bereich Jeedom schweben oder klicken, werden Sie
 Zeigen Sie das betreffende Widget an
 
--   **Equipement** : Widget, das beim Bewegen oder Klicken angezeigt wird
+-   **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird
 
--   **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
+-   **Anzeige au survol** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
 
--   **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
+-   **Anzeige sur un klicken** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
     clic
 
 -   **Position** : Hier können Sie den Ort auswählen, an dem die
@@ -352,7 +352,7 @@ Zeigen Sie das betreffende Widget an
 Zusammenfassung 
 ======
 
--   **Lien** : Wird verwendet, um die anzuzeigende Zusammenfassung anzugeben (Allgemein für die
+-   **Link** : Wird verwendet, um die anzuzeigende Zusammenfassung anzugeben (Allgemein für die
     global, wenn nicht das Objekt angeben)
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
@@ -364,13 +364,13 @@ Zusammenfassung
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
+-   **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
     Mit dieser Option können Sie die Schriftgröße ändern
 
--   **Gras** : fetter Text
+-   **Fett** : fetter Text
 
 
 Faq 
@@ -380,6 +380,6 @@ Faq
 >
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
->**Löschen Sie ein Design, das nicht mehr funktioniert**
+>**Entfernen un Design qui ne marche plus**
 >
 >Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

@@ -11,21 +11,21 @@ Die Seite Protokolle ist recht einfach. Oben links befindet sich eine Dropdown-L
 Wenn Sie die Auswahl des Protokolls anzeigen möchten, haben Sie oben rechts 5
 Tasten :
 
--   **Rechercher** : Ermöglicht das Filtern des Protokollplakats
+-   **Suche** : Ermöglicht das Filtern des Protokollplakats
 
 -   **Pause / Resume** : Mit dieser Option können Sie die Einstellung anhalten / fortsetzen
     Echtzeit-Protokollaktualisierung
 
 -   **Download** : ermöglicht das Herunterladen des aktuellen Protokolls,
 
--   **Vider** : ermöglicht das Leeren des aktuellen Protokolls,
+-   **Leer** : ermöglicht das Leeren des aktuellen Protokolls,
 
--   **Supprimer** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
+-   **Entfernen** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
     brauche es wird es automatisch neu erstellen,
 
--   **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
+-   **Entfernen tous les logs** : Löschen Sie alle vorhandenen Protokolle.
 
-> **Tip**
+> **Spitze**
 >
 > Beachten Sie, dass das http-Protokoll.Fehler kann nicht gelöscht werden. Es ist wichtig
 > ! Wenn Sie es löschen (zum Beispiel in der Befehlszeile), wird es nicht

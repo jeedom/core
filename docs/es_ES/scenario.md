@@ -1,4 +1,4 @@
-Aquí está la parte más importante de la automatización del hogar. : los escenarios.
+Aquí está la parte más importante de la automatización del hogar : los escenarios.
 Verdadero cerebro de la domótica, es lo que hace posible interactuar con
 el mundo real de una "manera inteligente".
 
@@ -12,10 +12,10 @@ Para acceder, nada más simple, solo ve a Herramientas ->
 Escenarios. Encontrará allí la lista de escenarios para su Jeedom también
 solo funciones para gestionarlos mejor :
 
--   **Ajouter** : Crea un escenario. Se describe el procedimiento.
+-   **Añadir** : Crea un escenario. Se describe el procedimiento
     en el siguiente capitulo.
 
--   **Deshabilitar escenarios** : Deshabilita todos los escenarios..
+-   **Deshabilitar escenarios** : Deshabilita todos los escenarios.
 
 -   **Ver variables** : Veamos las variables, su valor también
     que el lugar donde se usan. Tambien puedes
@@ -23,9 +23,9 @@ solo funciones para gestionarlos mejor :
     esta página.
 
 -   **Resumen** : Le permite tener una visión general de todos
-    los escenarios. Puedes cambiar los valores **actif**,
-    **visible**, **lanzamiento múltiple**, **modo síncrono**, **Log** et
-    **Timeline** (estos parámetros se describen en el siguiente capítulo).
+    los escenarios. Puedes cambiar los valores **bienes**,
+    **visible**, **lanzamiento múltiple**, **modo síncrono**, **Registro** et
+    **Línea de tiempo** (estos parámetros se describen en el siguiente capítulo).
     También puede acceder a los registros para cada escenario y
     comenzar individualmente.
 
@@ -36,52 +36,52 @@ Mis escenarios
 -------------
 
 En esta sección encontrarás el **lista de escenarios** que usted
-he creado. Se clasifican de acuerdo a **groupes** que tienes
-definido para cada uno de ellos. Cada escenario se muestra con su **nom**
+he creado. Se clasifican de acuerdo a **grupos** que tienes
+definido para cada uno de ellos. Cada escenario se muestra con su **apellido**
 y su **objeto padre**. La **escenarios atenuados** son los que son
 discapacitado.
 
 Como en muchas páginas de Jeedom, coloque el mouse a la izquierda de
 la pantalla muestra un menú de acceso rápido (desde
 tu perfil, siempre puedes dejarlo visible). Usted puede
-entonces **chercher** su escenario, pero también en **ajouter** uno por esto
+entonces **buscar** su escenario, pero también en **Añadir** uno por esto
 menu.
 
 Editar un escenario
 =====================
 
-Después de hacer clic en **Ajouter**, debes elegir el nombre de tu
+Después de hacer clic en **Añadir**, debes elegir el nombre de tu
 escenario y se le redirige a su página de configuración general.
-En la parte superior, hay algunas funciones útiles para administrar nuestro escenario.
+En la parte superior, hay algunas funciones útiles para administrar nuestro escenario
 :
 
--   **ID** : Al lado de la palabra **General**, este es el identificador de escenario.
+-   **Identificación** : Al lado de la palabra **General**, este es el identificador de escenario.
 
--   **statut** : Estado actual de su escenario.
+-   **estatus** : Estado actual de su escenario.
 
--   **variables** : Ver variables.
+-   **las variables** : Ver variables.
 
--   **Expression** : Muestra el probador de expresiones..
+-   **Expresión** : Muestra el probador de expresiones.
 
--   **Realizar** : Le permite iniciar el escenario manualmente (recuerde
+-   **Exécuter** : Le permite iniciar el escenario manualmente (recuerde
     no guardar antes!). Los desencadenantes por lo tanto no son
     no tomado en cuenta.
 
--   **Supprimer** : Eliminar escenario.
+-   **Remove** : Eliminar escenario.
 
--   **Sauvegarder** : Guardar los cambios realizados.
+-   **Guardar** : Guardar los cambios realizados.
 
--   **Template** : Le permite acceder y aplicar plantillas.
+-   **Plantilla** : Le permite acceder y aplicar plantillas
     al guión del mercado. (explicado al final de la página).
 
--   **Exporter** : Obtenga una versión de texto del guión.
+-   **Exportación** : Obtenga una versión de texto del guión.
 
--   **Log** : Muestra los registros del escenario..
+-   **Registro** : Muestra los registros del escenario.
 
--   **Dupliquer** : Copie el escenario para crear uno
+-   **Duplicado** : Copie el escenario para crear uno
     nuevo con otro nombre.
 
--   **Liens** : Le permite ver el gráfico de los elementos vinculados.
+-   **Vínculos** : Le permite ver el gráfico de los elementos vinculados
     con el guión.
 
 Pestaña General
@@ -92,12 +92,12 @@ nuestro escenario :
 
 -   **Nombre del escenario** : El nombre de tu escenario.
 
--   **Nombre para mostrar** : El nombre utilizado para su visualización..
+-   **Nombre para mostrar** : El nombre utilizado para su visualización.
 
--   **Groupe** : Le permite organizar los escenarios, clasificándolos en
+-   **Grupo** : Le permite organizar los escenarios, clasificándolos en
     grupos.
 
--   **Actif** : Activa el escenario.
+-   **Bienes** : Activa el escenario.
 
 -   **Visible** : Se usa para hacer visible el escenario.
 
@@ -111,19 +111,19 @@ nuestro escenario :
 
 -   **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad de lanzamiento del escenario pero puede hacer que el sistema sea inestable.
 
--   **Log** : El tipo de registro deseado para el escenario.
+-   **Registro** : El tipo de registro deseado para el escenario.
 
--   **Sigue en la línea de tiempo** : Realiza un seguimiento del escenario.
+-   **Sigue en la línea de tiempo** : Realiza un seguimiento del escenario
     en la linea de tiempo.
 
--   **Description** : Le permite escribir un pequeño texto para describir
+-   **Descripción** : Le permite escribir un pequeño texto para describir
     tu escenario.
 
 -   **Modo de escenario** : El escenario puede ser programado, activado o
     ambos al mismo tiempo. Luego tendrá la opción de indicar el (los)
     disparador (es) (tenga cuidado, hay un límite para el número de disparadores posibles por escenario de 15) y la programación (s).
 
-> **Tip**
+> **Punta**
 >
 > Atención : puedes tener un máximo de 28
 > disparadores / programación para un escenario.
@@ -132,41 +132,41 @@ Pestaña Escenario
 ---------------
 
 Aquí es donde construirás tu escenario. Tenemos que empezar
-por **agregar un bloque**, con el botón de la derecha. Una vez un bloque
-creado, puedes agregar otro **bloc** o un **action**.
+por **Añadir un bloque**, con el botón de la derecha. Una vez un bloque
+creado, puedes agregar otro **bloque** o un **acción**.
 
-> **Tip**
+> **Punta**
 >
 > En condiciones y acciones, es mejor favorecer comillas simples (&#39;) en lugar de dobles (")
 
 ### Bloques
 
-Aquí están los diferentes tipos de bloques disponibles. :
+Aquí están los diferentes tipos de bloques disponibles :
 
--   **If / Then / O** : Le permite realizar acciones.
+-   **If / Then / O** : Le permite realizar acciones
     bajo condiciones.
 
--   **Action** : Le permite lanzar acciones simples sin
+-   **Acción** : Le permite lanzar acciones simples sin
     sin condiciones.
 
--   **Boucle** : Le permite realizar acciones repetidamente
+-   **Bucle** : Le permite realizar acciones repetidamente
     1 hasta un número definido (o incluso el valor de un sensor, o un
     número aleatorio ...).
 
--   **Dans** : Inicia una acción en X minuto (s) (0 es un
+-   **Dentro** : Inicia una acción en X minuto (s) (0 es un
     valor posible). La peculiaridad es que las acciones se lanzan
     en segundo plano, para que no bloqueen el resto del escenario.
     Entonces es un bloque sin bloqueo.
 
--   **A** : Permite decirle a Jeedom que inicie las acciones del bloque en un
+-   **La** : Permite decirle a Jeedom que inicie las acciones del bloque en un
     tiempo dado (en la forma hhmm). Este bloque no es bloqueante. Ex :
     0030 para 00:30, o 0146 para 1h46 y 1050 para 10h50.
 
--   **Code** : Le permite escribir directamente en código PHP (solicitud
+-   **Código** : Le permite escribir directamente en código PHP (solicitud
     cierto conocimiento y puede ser arriesgado pero permite no tener
     sin restricciones).
 
--   **Commentaire** : Le permite agregar comentarios a su escenario.
+-   **Comentario** : Le permite agregar comentarios a su escenario.
 
 Cada uno de estos bloques tiene sus opciones para manejarlos mejor :
 
@@ -180,7 +180,7 @@ Cada uno de estos bloques tiene sus opciones para manejarlos mejor :
 
 #### Si / Entonces / De lo contrario bloquea, Bucle, In y A
 
-> **Note**
+> **Nota**
 >
 > En bloques Si / Entonces / De lo contrario, flechas circulares ubicadas
 > a la izquierda del campo de condición permite activar o no el
@@ -197,32 +197,32 @@ seleccione un elemento para probar :
     Jeedom abre una ventana para preguntarte qué prueba quieres
     actuar en ello. Si eliges **No poner nada**,
     Jeedom agregará el pedido sin comparación. Usted puede también
-    elegir **et** o **ou** delante **Ensuite** para encadenar pruebas
+    elegir **y** o **o** delante **Entonces** para encadenar pruebas
     en diferentes equipos.
 
 -   **Buscar un escenario** : Permite buscar un escenario
     para probar.
 
--   **Busca equipo** : Lo mismo para el equipo..
+-   **Busca equipo** : Lo mismo para el equipo.
 
-> **Tip**
+> **Punta**
 >
-> Hay una lista de etiquetas que permiten el acceso a las variables.
+> Hay una lista de etiquetas que permiten el acceso a las variables
 > del guión u otro, o por hora, fecha, un
-> número aleatorio, .... Vea más adelante los capítulos sobre comandos y
+> número aleatorio,. Vea más adelante los capítulos sobre comandos y
 > etiquetas.
 
 Una vez que se complete la condición, debe usar el botón
-"agregar ", izquierda, para agregar un nuevo **bloc** o un
-**action** en el bloque actual.
+"agregar ", izquierda, para agregar un nuevo **bloque** o un
+**acción** en el bloque actual.
 
-> **Tip**
+> **Punta**
 >
 > NO DEBE utilizar [] en pruebas de condición, solo son posibles paréntesis ()
 
 #### Código de bloque
 
-> **Important**
+> **Importante**
 >
 > Tenga en cuenta que las etiquetas no están disponibles en un bloque de código.
 
@@ -231,7 +231,7 @@ Controles (sensores y actuadores):
   -   $string : Enlace al pedido deseado : #[objy][equipement][commande]# (por ejemplo, : #[Lappartement][Lalarme][Bienes]#)
 -   cmd::BYID ($ id); : Devuelve el objeto de comando correspondiente.
   -   $id : ID de pedido
--   $cmd->execCmd($options = null); : Ejecute el comando y devuelva el resultado..
+-   $cmd->execCmd($options = null); : Ejecute el comando y devuelva el resultado.
   -   $options : Opciones para ejecutar el comando (puede ser específico del complemento), opción básica (subtipo de comando) :
     -   mensaje : $option = array('title' => 'titre du mensaje , 'message' => 'Mon message');
     -   color : $option = array('color' => 'couleur en hexadécimal');
@@ -245,8 +245,8 @@ Registro :
 
 Guión :
 -   $scenario->getName(); : Devuelve el nombre del escenario actual.
--   $scenario->getGroup(); : Devuelve el grupo de escenarios..
--   $scenario->getIsActive(); : Devuelve el estado del escenario..
+-   $scenario->getGroup(); : Devuelve el grupo de escenarios.
+-   $scenario->getIsActive(); : Devuelve el estado del escenario.
 -   $scenario->setIsActive($active); : Le permite activar o no el escenario.
   -   $active : 1 activo, 0 no activo.
 -   $scenario->setOnGoing($onGoing); : Digamos si el escenario se está ejecutando o no.
@@ -265,7 +265,7 @@ Guión :
 
 Las acciones agregadas a los bloques tienen varias opciones. En el orden :
 
--   Una cabaña **paralelas** para que este comando se inicie en paralelo
+-   Una cabaña **porallèle** para que este comando se inicie en paralelo
     otros comandos también seleccionados.
 
 -   Una cabaña **activado** para que este comando se tenga en cuenta
@@ -274,14 +274,14 @@ Las acciones agregadas a los bloques tienen varias opciones. En el orden :
 -   Una **flecha doble vertical** para mover la acción. Basta con
     arrastrar y soltar desde allí.
 
--   Un botón para eliminar la acción..
+-   Un botón para eliminar la acción.
 
 -   Un botón para acciones específicas, cada vez con el
     descripción de esta acción.
 
 -   Un botón para buscar un comando de acción.
 
-> **Tip**
+> **Punta**
 >
 > Dependiendo del comando seleccionado, podemos ver diferentes
 > campos adicionales mostrados.
@@ -355,13 +355,13 @@ Etiquetas
 Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Vosotras
 puede usar las siguientes etiquetas :
 
-> **Tip**
+> **Punta**
 >
 > Para mostrar los ceros a la izquierda, use el
 > Función de fecha (). Ver
 > [aquí](http://php.net/manual/fr/function.date.php).
 
--   #seconde# : Segundo actual (sin ceros a la izquierda, ej. : 6 para
+-   #seconde# : Segundo actual (sin ceros a la izquierda, ej : 6 para
     08:07:06),
 
 -   #heure# : Hora actual en formato de 24 h (sin ceros a la izquierda),
@@ -370,13 +370,13 @@ puede usar las siguientes etiquetas :
 -   #heure12# : Hora actual en formato de 12 horas (sin ceros a la izquierda),
     ex : 8 para 08:07:06),
 
--   #minute# : Minuto actual (sin ceros a la izquierda, ej. : 7 para
+-   #minute# : Minuto actual (sin ceros a la izquierda, ej : 7 para
     08:07:06),
 
--   #jour# : Día actual (sin ceros a la izquierda, ej. : 6 para
+-   #jour# : Día actual (sin ceros a la izquierda, ej : 6 para
     06.07.2017),
 
--   #mois# : Mes actual (sin ceros a la izquierda, ej. : 7 para
+-   #mois# : Mes actual (sin ceros a la izquierda, ej : 7 para
     06.07.2017),
 
 -   #annee# : Año actual,
@@ -385,7 +385,7 @@ puede usar las siguientes etiquetas :
 
 -   #timestamp# : Número de segundos desde el 1 de enero de 1970,
 
--   #date# : Día y mes. Atención, el primer número es el mes..
+-   #date# : Día y mes. Atención, el primer número es el mes.
     (por ejemplo, : 1215 para el 15 de diciembre),
 
 -   #semaine# : Número de semana (ex : 51),
@@ -410,7 +410,7 @@ desencadenado por una interacción :
 -   #profil# : perfil del usuario que inició el escenario
     (puede estar vacío).
 
-> **Important**
+> **Importante**
 >
 > Cuando un escenario se desencadena por una interacción, es
 > necesariamente se ejecuta en modo rápido.
@@ -418,10 +418,10 @@ desencadenado por una interacción :
 Funciones de cálculo
 -----------------------
 
-Hay varias funciones disponibles para el equipo. :
+Hay varias funciones disponibles para el equipo :
 
 -   promedio (orden, período) y promedio entre (orden, inicio, fin)
-    : Proporcione el promedio del pedido durante el período.
+    : Proporcione el promedio del pedido durante el período
     (período = [mes, día, hora, min] o [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre las 2 terminales requeridas (en la forma Ymd H:i:s o
@@ -494,7 +494,7 @@ Hay varias funciones disponibles para el equipo. :
     [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   lastBetween (mando, inicio, fin) : Devuelve el último valor.
+-   lastBetween (mando, inicio, fin) : Devuelve el último valor
     registrado para el equipo entre los 2 terminales requeridos (bajo el
     forma Ymd H:i:s o [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
@@ -502,28 +502,28 @@ Hay varias funciones disponibles para el equipo. :
 -   variable (variable, predeterminada) : Obtenga el valor de un
     variable o el valor predeterminado deseado :
 
--   escenario (escenario) : Devuelve el estado del escenario.. 1 en progreso, 0
+-   escenario (escenario) : Devuelve el estado del escenario. 1 en progreso, 0
     si se detiene y -1 si está deshabilitado, -2 si el escenario no existe y -3
     si el estado no es consistente. Para tener el nombre &quot;humano&quot; del escenario, puede usar el botón dedicado a la derecha de la búsqueda del escenario.
 
 -   lastScenarioExecution (escenario) : Da duración en segundos
     desde el lanzamiento del último escenario :
 
--   collectDate (CMD [tamaño]) : Devuelve la fecha de los últimos datos.
+-   collectDate (CMD [tamaño]) : Devuelve la fecha de los últimos datos
     para el comando dado como parámetro, el segundo parámetro opcional
     permite especificar el formato de retorno (detalles
     [aquí](http://php.net/manual/fr/function.date.php)) Un retorno de -1
     significa que no se puede encontrar el pedido y -2 que el pedido no es
     sin tipo de información
 
--   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últimos datos.
+-   ValueDate (CMD [tamaño]) : Devuelve la fecha de los últimos datos
     para el comando dado como parámetro, el segundo parámetro opcional
     permite especificar el formato de retorno (detalles
     [aquí](http://php.net/manual/fr/function.date.php)) Un retorno de -1
     significa que no se puede encontrar el pedido y -2 que el pedido no es
     sin tipo de información
 
--   eqEnable (equipo) : Devuelve el estado del equipo.. -2 si
+-   eqEnable (equipo) : Devuelve el estado del equipo. -2 si
     no se puede encontrar el equipo, 1 si el equipo está activo y 0 si no lo está
     está inactivo
 
@@ -536,7 +536,7 @@ Hay varias funciones disponibles para el equipo. :
     equipo u objeto. El tipo vale cmd, eqLogic o
     objeto.
 
--   lastCommunication (equipo, [tamaño]) : Devuelve la fecha de la última comunicación.
+-   lastCommunication (equipo, [tamaño]) : Devuelve la fecha de la última comunicación
     para el equipo dado como parámetro, el segundo parámetro opcional
     permite especificar el formato de retorno (detalles
     [aquí](http://php.net/manual/fr/function.date.php)) Un retorno de -1
@@ -621,10 +621,10 @@ realizar conversiones o cálculos :
 -   ronda (valor [decimal]) : Redondo arriba, [decimal]
     número de decimales después del punto decimal.
 
--   impar (valor) : Le permite saber si un número es impar o no..
+-   impar (valor) : Le permite saber si un número es impar o no.
     Devuelve 1 si es impar 0 de lo contrario.
 
--   mediana (comando1, comando2 ....comandoN) : Devuelve la mediana
+-   mediana (comando1, comando2.comandoN) : Devuelve la mediana
     valores.
 
 -   time_op (tiempo, valor) : Le permite realizar operaciones a tiempo,
@@ -658,7 +658,7 @@ Y ejemplos prácticos :
 | impar (3)                             | Devuelve 1                            |
 | mediana (15,25,20)                   | Devuelve 20                           |
 | time_op (#time#, -90)               | si son las 4:50 p.m., regrese : 1 650-1 130 = 1520                          |
-| formatTime (1650)                   | Devuelve 4:50 p.m.                        |
+| formatTime (1650)                   | Devuelve 4:50 p.m                        |
 | piso (130/60)                      | Devuelve 2 (minutos si 130 s, u horas si 130 m)                      |
 
 Pedidos específicos
@@ -666,33 +666,33 @@ Pedidos específicos
 
 Además de los comandos de automatización del hogar, tiene acceso a las siguientes acciones :
 
--   **Pause** (Sueño) : Pausa de x segundo (s).
+-   **Pausa** (Sueño) : Pausa de x segundo (s).
 
--   **variable** (Variable) : Creación / modificación de una variable o valor.
+-   **variable** (Variable) : Creación / modificación de una variable o valor
     de una variable.
 
--   **Eliminar variable** (Delete_variable) : Le permite eliminar una variable.
+-   **Remove variable** (Delete_variable) : Le permite eliminar una variable
 
 -   **Guión** (Escenario) : Te permite controlar escenarios. La parte de las etiquetas
-    permite enviar etiquetas al escenario, ej. : montag = 2 (ten cuidado allí
+    permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado allí
     solo use letras de la a a la z. No letras mayúsculas, no
     acentos y sin caracteres especiales). Obtenemos la etiqueta en el
     escenario objetivo con la función de etiqueta (montag). El comando &quot;Restablecer SI&quot; permite restablecer el estado de &quot;SI&quot; (este estado se utiliza para la no repetición de las acciones de un &quot;SI&quot; si pasa por segunda vez consecutiva en él)
 
--   **Stop** (Stop) : Detener el escenario.
+-   **Detener** (Stop) : Detener el escenario.
 
--   **Attendre** (Espere) : Espere hasta que la condición sea válida.
+-   **Esperar** (Espere) : Espere hasta que la condición sea válida
     (máximo 2 h), el tiempo de espera es en segundos (s).
 
--   **Ir al diseño** (Gotodesign) : Cambiar el diseño que se muestra en todos
+-   **Laller au design** (Gotodesign) : Cambiar el diseño que se muestra en todos
     navegadores por diseño solicitado.
 
--   **Agregar un registro** (Log) : Le permite agregar un mensaje a los registros.
+-   **Añadir un Registro** (Log) : Le permite agregar un mensaje a los registros.
 
 -   **Crear mensaje** (Mensaje) : Agrega un mensaje en el centro
     de mensajes.
 
--   **Activar / Desactivar Ocultar / mostrar equipo** (Equipo) : Permite
+-   **Lactiver/Désactiver Masquer/afficher un équipement** (Equipo) : Permite
     modificar las propiedades de un dispositivo
     visible / invisible, activo / inactivo.
 
@@ -703,7 +703,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
     la función está bloqueando. Mientras no haya respuesta o el
     no se alcanza el tiempo de espera, el escenario espera.
 
--   **Stop Jeedom** (Jeedom_poweroff) : Pídale a Jeedom que cierre.
+-   **Larrêter Jeedom** (Jeedom_poweroff) : Pídale a Jeedom que cierre.
 
 -   **Reiniciar Jeedom** (Jeedom_reboot) : Pedirle a Jeedom que reinicie.
 
@@ -712,24 +712,24 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 
 -   **Icono** (Icono) : Permite cambiar el ícono de representación del escenario.
 
--   **Alerte** (Alerta) : Le permite mostrar un pequeño mensaje de alerta en todos
+-   **Advertencia** (Alerta) : Le permite mostrar un pequeño mensaje de alerta en todos
     navegadores que tienen abierta una página de Jeedom. Usted puede
     más, elige 4 niveles de alerta.
 
 -   **Pop-up** (Emergente) : Permite mostrar una ventana emergente que debe ser absolutamente
     validado en todos los navegadores que tienen una página abierta de libertad.
 
--   **Rapport** (Informe) : Exportar una vista en formato (PDF, PNG, JPEG
+-   **Relación** (Informe) : Exportar una vista en formato (PDF, PNG, JPEG
     o SVG) y enviarlo a través de un comando de tipo de mensaje.
     Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esto
     la funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado.
 
--   **Eliminar bloque IN / A programado** (Remove_inat) : Le permite eliminar el
+-   **Remove bloque DANS/La programmé** (Remove_inat) : Le permite eliminar el
     programación de todos los bloques IN y A del escenario.
 
 -   **Evento** (Event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente
 
--   **Tag** (Tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)
+-   **Etiqueta** (Tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)
 
 Plantilla de escenario
 ====================
@@ -763,9 +763,9 @@ Al hacer clic en una plantilla, obtienes :
 
 En la cima puedes :
 
--   **Partager** : compartir la plantilla en el mercado,
+-   **Compartir, repartir** : compartir la plantilla en el mercado,
 
--   **Supprimer** : eliminar plantilla,
+-   **Remove** : eliminar plantilla,
 
 -   **Descargar** : recuperar la plantilla como un archivo JSON
     para enviarlo de vuelta a otro Jeedom por ejemplo.
@@ -782,7 +782,7 @@ las órdenes de partido se aplican.
 Adición de la función php
 ====================
 
-> **IMPORTANT**
+> **Importante**
 >
 > Agregar funciones PHP está reservado para usuarios avanzados. El más mínimo error puede bloquear tu Jeedom
 
@@ -794,6 +794,6 @@ Vaya a la carpeta de datos, luego php y haga clic en el archivo user.function.cl
 
 Es en esta clase que debe agregar sus funciones, encontrará allí un ejemplo de función básica.
 
-> **IMPORTANT**
+> **Importante**
 >
 > Si tiene un problema, siempre puede volver al archivo original y copiar el contenido de user.function.class.sample.php en user.function.class.php

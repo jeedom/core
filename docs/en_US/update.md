@@ -3,17 +3,17 @@ Description
 
 The **update center** allows you to update all
 Jeedom features, including core software,
-plugins, widgets, etc.. Other extension management functions
+plugins, widgets, etc. Other extension management functions
 are available (delete, reinstall, check, etc.)
 
 The Update Center page 
 ================================
 
 It is accessible from the menu **Administration → Updating center
-jour**.
+day**.
 
 You will find, on the left, all the functionalities of
-Jeedom and on the right part **Informations** who describes what he
+Jeedom and on the right part **Information** who describes what he
 happened, when you launched an update.
 
 Functions at the top of the page. 
@@ -38,14 +38,14 @@ Jeedoms Sources :
 -   **Update the core** : Allows you to include the Jeedom kernel in
     the update.
 
--   **Forced mode** : Update in forced mode, i.e.
+-   **Forced mode** : Update in forced mode, i.e
     that, even if there is an error, Jeedom continues and will not restore
     the backup.
 
 -   **Update to reapply** : Allows you to reapply a bet
     up to date. (NB : Not all updates can be reapplied.)
 
-> **Important**
+> **IMPORTANT**
 >
 > Before an update, by default, Jeedom will make a backup. In
 > if there is a problem when applying an update, Jeedom will
@@ -65,13 +65,13 @@ The table consists of two tabs :
 -   **Core and Plugins** : Contains basic Jeedom software and
     list of installed plugins.
 
--   **Autre** : Contains widgets, scripts, etc..
+-   **Other** : Contains widgets, scripts, etc.
 
-You will find the following information : \* **Statut** : OK or NOK.
-Allows you to know the current state of the plugin. \* **Nom** : You there
+You will find the following information : \* **Status** : OK or NOK.
+Allows you to know the current state of the plugin. \* **Last name** : You there
 find the source of the element, the type of element and its name. \*
-**Version** : Indicates the specific version of the item. \* **Options** :
-Check this box if you do not want this item to be updated.
+**Version** : Indicates the specific version of the item. \* **Jeedoms Sources** :
+Check this box if you do not want this item to be updated
 day during the general update (Button **Update**).
 
 > **Tip**
@@ -84,7 +84,7 @@ every element :
 
 -   **Reinstate** : Force resettlement.
 
--   **Supprimer** : Allows you to uninstall it.
+-   **Remove** : Allows you to uninstall it.
 
 -   **Check** : Query source for updates to find out if
     a new update is available.
@@ -95,7 +95,7 @@ every element :
 -   **Changelog** : Access the list of changes in the
     update.
 
-> **Important**
+> **IMPORTANT**
 >
 > If the changelog is empty but you still have an update
 > update means that the documentation has been updated.
@@ -118,7 +118,7 @@ Once connected, this is the command to perform :
 
 The possible parameters are :
 
--   **`mode`** : `force`, to launch an update in forced mode (do not
+-   **`fashion`** : `force`, to launch an update in forced mode (do not
     ignores errors).
 
 -   **`version`** : followed by the version number, to reapply the

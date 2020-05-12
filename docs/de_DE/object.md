@@ -1,7 +1,7 @@
-Die **objets** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
+Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und
 wird leichter zu identifizieren sein. Wir sagen dann, dass das Objekt
-ist das **parent** Ausrüstung. Auf die Objektverwaltung kann zugegriffen werden
+ist das **relativ** Ausrüstung. Auf die Objektverwaltung kann zugegriffen werden
 aus dem Menü **Werkzeuge → Objekte**.
 
 Um die Anpassung frei wählen zu können, können Sie diese benennen
@@ -14,7 +14,7 @@ Management
 
 Sie haben zwei Möglichkeiten :
 
--   **Ajouter** : Erstellen Sie ein neues Objekt.
+-   **Hinzufügen** : Erstellen Sie ein neues Objekt.
 
 -   **Übersicht** : Zeigt die Liste der erstellten Objekte an
     sowie deren Konfiguration.
@@ -40,7 +40,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
     die Wohnung zu erziehen. Ein Objekt kann nur ein übergeordnetes Objekt haben
     Es können jedoch mehrere Objekte dasselbe übergeordnete Objekt haben.
 
--   **Visible** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
+-   **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 
 -   **Verstecke dich auf dem Armaturenbrett** : Aktivieren Sie dieses Kontrollkästchen, um es auszublenden
     das Objekt auf dem Dashboard. Es wird immer noch in der aufbewahrt
@@ -65,22 +65,22 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
     wird nebeneinander auf dem Armaturenbrett angezeigt. Wenn Sie &quot;3&quot; auf vier setzen
     Objekte, die aufeinander folgen, werden auch nebeneinander stehen.
 
-> **Tip**
+> **Spitze**
 >
 > Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern.
 > Verwenden Sie im Menü links auf Ihrer Seite die vertikalen Pfeile
 > Ziehen und Ablegen, um ihnen einen neuen Platz zu geben.
 
-> **Tip**
+> **Spitze**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt
-> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Liens**, bis um
+> durch Klicken auf die Schaltfläche an dieses Objekt angehängt **Verbindungen**, bis um
 > Recht.
 
-> **Tip**
+> **Spitze**
 >
 > Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es
-> wird als Elternteil haben : **Aucun** .
+> wird als Elternteil haben : **Keine** .
 
 Registerkarte &quot;Zusammenfassung&quot; 
 -------------
@@ -106,12 +106,12 @@ Linien werden Ihnen vorgeschlagen :
 ### Befehle 
 
 Jede Registerkarte repräsentiert einen in der Konfiguration definierten Zusammenfassungstyp
-von Jeedom. Klicken Sie auf **Bestellung hinzufügen** so dass es ist
+von Jeedom. Klicken Sie auf **Hinzufügen une commande** so dass es ist
 in der Zusammenfassung berücksichtigt. Sie haben die Wahl, die auszuwählen
 Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
 übergeordnetes Objekt.
 
-> **Tip**
+> **Spitze**
 >
 > Wenn Sie einen Zusammenfassungstyp hinzufügen oder die konfigurieren möchten
 > Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung,
@@ -124,15 +124,15 @@ Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
 In der Übersicht können Sie alle Objekte in anzeigen
 Jeedom sowie deren Konfiguration :
 
--   **ID** : Objekt-ID.
+-   **Identifikation** : Objekt-ID.
 
--   **Objet** : Objektname.
+-   **Objekt** : Objektname.
 
 -   **Vater** : Name des übergeordneten Objekts.
 
--   **Visible** : Objektsichtbarkeit.
+-   **Sichtbar** : Objektsichtbarkeit.
 
--   **Masqué** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
+-   **Maskiert** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
 
 -   **Zusammenfassung definiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. diese
     Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.

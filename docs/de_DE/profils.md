@@ -52,7 +52,7 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
 -   **Standardobjekt im Dashboard** : Standardanzeigeobjekt
     bei der Ankunft auf dem Armaturenbrett / Handy
 
--   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
+-   **Ansicht par défaut** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
     das Dashboard / Handy
 
 -   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
@@ -61,12 +61,12 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
     -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
         die Ankunft auf den Entwürfen
         
--   **Dashboard**
+-   **Armaturenbrett**
 
     -   **Klappen Sie das Objektfenster auf** : ermöglicht sichtbar zu machen durch
         Standardmäßig das Objektmenü (links) im Dashboard
 
--   **Vue**
+-   **Ansicht**
 
     -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
         Standardansichtsmenü (links) für Ansichten

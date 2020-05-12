@@ -19,7 +19,7 @@ rellenar.
     por lo tanto, ya no estará disponible en esta versión hasta
     corrección por el autor.
 
--   Puede encontrar la lista de complementos en cuestión aquí. :
+-   Puede encontrar la lista de complementos en cuestión aquí :
     <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

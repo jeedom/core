@@ -1,5 +1,5 @@
 O submenu Gerenciamento de plug-ins permite manipular plug-ins, exceto
-saber : baixar, atualizar e ativá-los, etc.
+saber : baixar, atualizar e ativá-los, etc
 
 Gerenciamento de plug-in 
 ===================
@@ -9,7 +9,7 @@ plugins. Depois de clicar nele, encontramos a lista de
 plugins em ordem alfabética e um link para o mercado. Plugins
 desativados estão acinzentados.
 
-> **Tip**
+> **Dica**
 >
 > Como em muitos lugares em Jeedom, coloque o mouse na extremidade esquerda
 > abre um menu de acesso rápido (você pode
@@ -20,14 +20,14 @@ Ao clicar em um plug-in, você acessa sua configuração. Lá em cima você
 encontre o nome do plug-in e, entre parênteses, seu nome no Jeedom
 (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 
-> **Important**
+> **IMPORTANTE**
 >
 > Ao baixar um plug-in, ele é desativado por padrão.
 > Então você tem que ativá-lo sozinho.
 
 No canto superior direito, alguns botões :
 
--   **Documentation** : Permite acesso direto à página de
+-   **Documentação** : Permite acesso direto à página de
     documentação do plugin
 
 -   **Changelog** : Vamos ver o log de alterações do plugin, se existir
@@ -37,21 +37,21 @@ No canto superior direito, alguns botões :
 
 -   **Detalhes** : Permite encontrar a página do plug-in no mercado
 
--   **Supprimer** : Remova o plugin do seu Jeedom. Tenha cuidado, isso
+-   **Remover** : Remova o plugin do seu Jeedom. Tenha cuidado, isso
     também remove permanentemente todos os equipamentos deste plugin
 
 Abaixo à esquerda, há uma área de status com :
 
--   **Statut** : Permite ver o status do plug-in (ativo / inativo)
+-   **Estado** : Permite ver o status do plug-in (ativo / inativo)
 
--   **Version** : A versão do plug-in instalado
+-   **Versão** : A versão do plug-in instalado
 
--   **Action** : Permite ativar ou desativar o plug-in
+-   **Ação** : Permite ativar ou desativar o plug-in
 
 -   **Versão Jeedom** : Versão mínima do Jeedom necessária
     para a operação do plugin
 
--   **Licence** : Indica a licença do plug-in que geralmente será
+-   **Licença** : Indica a licença do plug-in que geralmente será
     AGPL
 
 À direita, encontramos a zona de registro e vigilância que permite definir 
@@ -70,11 +70,11 @@ adicionais são exibidos nas áreas mencionadas acima.
 
 Dependências :
 
--   **Nom** : Geralmente será local
+-   **Nome** : Geralmente será local
 
--   **Statut** : dirá se as dependências estão OK ou KO
+-   **Estado** : dirá se as dependências estão OK ou KO
 
--   **Installation** : instalará ou reinstalará
+-   **Instalação** : instalará ou reinstalará
     dependências (se você não fizer isso manualmente e elas forem
     KO, Jeedom vai se cuidar depois de um tempo)
 
@@ -83,11 +83,11 @@ Dependências :
 
 Demônio :
 
--   **Nom** : Geralmente será local
+-   **Nome** : Geralmente será local
 
--   **Statut** : dirá se o demônio está OK ou KO
+-   **Estado** : dirá se o demônio está OK ou KO
 
--   **Configuration** : ficará bem se todos os critérios para o demônio
+-   **Configuração** : ficará bem se todos os critérios para o demônio
     voltas são cumpridas ou causam bloqueio
 
 -   **(Re) iniciar** : Permite iniciar ou reiniciar o demônio
@@ -102,7 +102,7 @@ Demônio :
 
 -   **último lançamento** : Data do último lançamento do daemon
 
-> **Tip**
+> **Dica**
 >
 > Alguns plugins possuem uma parte de configuração. Se sim,
 > aparecerá sob as dependências e zonas daemon descritas acima.
@@ -112,7 +112,7 @@ Demônio :
 Abaixo, há uma área de funcionalidade. Isso permite que você veja
 se o plug-in usar uma das principais funções do Jeedom, como :
 
--   **Interact** : Interações específicas
+-   **Interagir** : Interações específicas
 
 -   **Cron** : Um cron por minuto
 
@@ -126,7 +126,7 @@ se o plug-in usar uma das principais funções do Jeedom, como :
 
 -   **CronDaily** : Um cron diário
 
-> **Tip**
+> **Dica**
 >
 > Se o plug-in usa uma dessas funções, você pode especificamente
 > proibi-lo de fazer isso desmarcando a caixa "ativar" que será
@@ -143,7 +143,7 @@ Para instalar um novo plugin, basta clicar no botão
 "Market "(e que o Jeedom está conectado à Internet). Após um curto período de
 carregando você receberá a página.
 
-> **Tip**
+> **Dica**
 >
 > Você deve ter inserido as informações da sua conta do Market em
 > administração (Configuração → Atualizações → guia Mercado) para
@@ -163,13 +163,13 @@ No topo da janela você tem filtros :
 -   **Menu suspenso Categoria** : apenas exibe
     certas categorias de plugins
 
--   **Rechercher** : permite procurar um plug-in (em nome ou
+-   **Pesquisa** : permite procurar um plug-in (em nome ou
     descrição dele)
 
--   **Nome de Usuário** : exibe o nome de usuário usado para o
+-   **Nome d'utilisateur** : exibe o nome de usuário usado para o
     conexão com o mercado e o status da conexão
 
-> **Tip**
+> **Dica**
 >
 > A cruz pequena redefine o filtro em questão
 
@@ -191,7 +191,7 @@ informações sobre o plug-in, incluindo :
     -   **Instalar pro** : permite instalar a versão pro (muito
         pouco usado)
 
-    -   **Supprimer** : se o plug-in estiver instalado atualmente, esse
+    -   **Remover** : se o plug-in estiver instalado atualmente, esse
         para excluí-lo
 
 Abaixo, você encontrará a descrição do plugin, a compatibilidade
@@ -204,20 +204,20 @@ histórico de alterações, um botão "Documentação" que retorna
 para a documentação do plugin. Então você tem o idioma disponível
 e as várias informações na data da última versão estável.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Não é realmente recomendável colocar um plugin beta em um
 > Jeedom não beta, muitos problemas operacionais podem
 > resultado.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Alguns plugins são cobrados; nesse caso, a folha de plugins será
 > vai oferecer para comprá-lo. Feito isso, aguarde um
 > dez minutos (tempo de validação do pagamento), depois retorne
 > na folha de plug-ins para instalá-lo normalmente.
 
-> **Tip**
+> **Dica**
 >
 > Você também pode adicionar um plugin ao Jeedom a partir de um arquivo ou
 > de um repositório do Github. Isso requer, na configuração de

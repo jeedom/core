@@ -273,7 +273,7 @@ Jeedom can&#39;t find or ping the gateway. In general it happens if the adsl box
 
 I get the message &quot;Failed to back up the database. Check that mysqldump is present."
 =========================================
-It means that Jeedom cannot back up the database, which can suggest a problem with database and filesystem corruption.. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have
+It means that Jeedom cannot back up the database, which can suggest a problem with database and filesystem corruption. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have
 
 - a corrupt base table =&gt; it is badly started you have to see to try to repair and if it does not start from the last good backup (if you are on SD guard it is the right time to change it)
 - not enough space on the filesystem =&gt; look at the health page this can tell you

@@ -19,7 +19,7 @@ Su uso es muy simple, selecciona si quieres ver :
 
 Luego selecciona el nombre del informe en cuestión y verá todas las fechas de los informes en la memoria
 
-> **Important**
+> **Importante**
 >
 > La eliminación automática se realiza de forma predeterminada para informes de más de 30 días (puede configurar este período en la configuración de Jeedom)
 

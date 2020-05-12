@@ -88,7 +88,7 @@ API JSON de objetos
 object::all
 -----------
 
-Devuelve la lista de todos los objetos.
+Devuelve la lista de todos los objetos
 
 object::full
 ------------
@@ -100,7 +100,7 @@ estados de estos (para comandos de tipo de información)
 object::fullById
 ----------------
 
-Devuelve un objeto con todo su equipo y para cada equipo.
+Devuelve un objeto con todo su equipo y para cada equipo
 todos sus comandos, así como sus estados (para
 comandos de tipo de información)
 
@@ -161,7 +161,7 @@ Configuraciones:
 summary::byId
 -------------
 
-Devuelve el resumen de la identificación del objeto.
+Devuelve el resumen de la identificación del objeto
 
 Configuraciones:
 
@@ -176,12 +176,12 @@ API JSON EqLogic
 eqLogic::all
 ------------
 
-Devuelve la lista de todos los equipos.
+Devuelve la lista de todos los equipos
 
 eqLogic::fullById
 -----------------
 
-Devuelve el equipo y sus comandos, así como sus estados.
+Devuelve el equipo y sus comandos, así como sus estados
 (para pedidos de tipo de información)
 
 Configuraciones:
@@ -191,7 +191,7 @@ Configuraciones:
 eqLogic::byId
 -------------
 
-Devuelve el equipo especificado.
+Devuelve el equipo especificado
 
 Configuraciones:
 
@@ -209,7 +209,7 @@ Configuraciones:
 eqLogic::byObjectId
 -------------------
 
-Devuelve todo el equipo que pertenece al objeto especificado.
+Devuelve todo el equipo que pertenece al objeto especificado
 
 Configuraciones:
 
@@ -218,11 +218,11 @@ Configuraciones:
 eqLogic::byTypeAndId
 --------------------
 
-Devuelve una tabla de equipos según los parámetros.. El regreso
+Devuelve una tabla de equipos según los parámetros. El regreso
 será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
-array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)) ....,id1 ⇒
+array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)).,id1 ⇒
 array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)), id2 ⇒ array (&#39; id&#39;⇒ ..., &#39;cmds&#39; ⇒
-array(…​.))..)
+Array (....)) ..)
 
 Configuraciones:
 
@@ -265,7 +265,7 @@ JSON Cmd API
 cmd::all
 --------
 
-Devuelve la lista de todos los comandos.
+Devuelve la lista de todos los comandos
 
 cmd::byId
 ---------
@@ -279,7 +279,7 @@ Configuraciones:
 cmd::byEqLogicId
 ----------------
 
-Devuelve todos los pedidos que pertenecen al equipo especificado.
+Devuelve todos los pedidos que pertenecen al equipo especificado
 
 Configuraciones:
 
@@ -384,7 +384,7 @@ Configuraciones:
 cmd::event
 -------------------
 
-Le permite enviar un valor a un pedido.
+Le permite enviar un valor a un pedido
 
 Configuraciones:
 
@@ -400,7 +400,7 @@ API de escenario JSON
 scenario::all
 -------------
 
-Devuelve la lista de todos los escenarios.
+Devuelve la lista de todos los escenarios
 
 scenario::byId
 --------------
@@ -414,7 +414,7 @@ Configuraciones:
 scenario::export
 ----------------
 
-Devuelve la exportación del escenario, así como el nombre humano del escenario.
+Devuelve la exportación del escenario, así como el nombre humano del escenario
 
 Configuraciones:
 
@@ -436,7 +436,7 @@ Configuraciones:
 scenario::changeState
 ---------------------
 
-Cambia el estado del escenario especificado..
+Cambia el estado del escenario especificado.
 
 Configuraciones:
 
@@ -528,7 +528,7 @@ API de mensajes JSON
 message::all
 ------------
 
-Devuelve la lista de todos los mensajes.
+Devuelve la lista de todos los mensajes
 
 message::removeAll
 ------------------
@@ -554,7 +554,7 @@ Configuraciones:
 interactQuery::all
 ------------------
 
-Devuelve la lista completa de todas las interacciones.
+Devuelve la lista completa de todas las interacciones
 
 API del sistema JSON
 ===============
@@ -631,7 +631,7 @@ Configuraciones:
 plugin::deamonInfo
 ------------------
 
-Devuelve información sobre el estado del demonio del complemento.
+Devuelve información sobre el estado del demonio del complemento
 
 Configuraciones:
 

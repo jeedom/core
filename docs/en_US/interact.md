@@ -15,19 +15,19 @@ These orders can be obtained by :
     to launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
-other systems like smartphone, tablet, other home automation box, etc..
+other systems like smartphone, tablet, other home automation box, etc.
 
 To access the interaction page, go to Tools →
 Interactions :
 
 At the top of the page, there are 3 buttons :
 
--   **Ajouter** : which allows to create new interactions.
+-   **Add** : which allows to create new interactions.
 
 -   **Regenerate** : which will recreate all the interactions (maybe
     très long &gt; 5mn).
 
--   **Tester** : which opens a dialog for writing and
+-   **Test** : which opens a dialog for writing and
     test a sentence.
 
 > **Tip**
@@ -60,29 +60,29 @@ D'actualité
 The configuration page consists of several tabs and
 buttons :
 
--   **Phrases** : Displays the number of sentences in the interaction (one click
+-   **Sentences** : Displays the number of sentences in the interaction (one click
     above shows them to you)
 
--   **Enregistrer** : records the current interaction
+-   **Save** : records the current interaction
 
--   **Supprimer** : delete current interaction
+-   **Remove** : delete current interaction
 
--   **Dupliquer** : duplicate the current interaction
+-   **Duplicate** : duplicate the current interaction
 
 General 
 =======
 
--   **Nom** : name of the interaction (can be empty, the name replaces the
+-   **Last name** : name of the interaction (can be empty, the name replaces the
     request text in the interaction list).
 
--   **Groupe** : interaction group, it helps organize them
+-   **Group** : interaction group, it helps organize them
     (can be empty, will therefore be in the &quot;none&quot; group).
 
--   **Actif** : allows to activate or deactivate the interaction.
+-   **Active** : allows to activate or deactivate the interaction.
 
--   **Demande** : the generating model sentence (required).
+-   **Request** : the generating model sentence (required).
 
--   **Synonyme** : allows to define synonyms on names
+-   **Synonymous** : allows to define synonyms on names
     some orders.
 
 -   **Reply** : the answer to provide.
@@ -133,7 +133,7 @@ or pass particular parameters.
 Examples 
 ========
 
-> **Note**
+> **NOTE**
 >
 > The screenshots may be different in view of developments.
 
@@ -222,10 +222,10 @@ can have several synonyms, here &quot;on&quot; has as synonym
 synonym we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
 vertical "*|*" after which you can again name the
-command which will have synonyms like for the first part, etc..
+command which will have synonyms like for the first part, etc.
 
 It&#39;s already better, but it is still missing for the "on" "input command"
-the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, etc.. We could
+the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, etc. We could
 changing the name of the equipment to add it would be a solution,
 otherwise we can use variations in demand. It consists of
 list a series of possible words at a location in the sentence, Jeedom
@@ -261,7 +261,7 @@ Customize responses
 Until now, as a response to an interaction, we had a simple
 sentence that didn&#39;t say much except that something happened
 past. The idea would be that Jeedom tells us what he did a little more
-precisely. This is where the response field comes in.
+precisely. This is where the response field comes in
 ability to customize return based on order executed.
 
 To do this, we will again use the Jeedom Tag. For our
@@ -271,7 +271,7 @@ lights, we can use a phrase like : I lit well
 ![interact011](../images/interact011.png)
 
 You can also add any value from another command like
-temperature, number of people, etc..
+temperature, number of people, etc.
 
 ![interact012](../images/interact012.png)
 
@@ -289,7 +289,7 @@ kept that light).
 As you can see here, I have kept almost the same structure
 for demand (it&#39;s voluntary to focus on
 specificities). Of course, I adapted the synonyms to have some
-coherent thing. However, for the answer, it is **imperative** de
+coherent thing. However, for the answer, it is **impératif** de
 put only \#valeur\# which represents the 0 or 1 that Jeedom is going
 replace with the following binary conversion.
 
@@ -537,12 +537,12 @@ temperature / humidity / brightness.
 
 So we can see a regexp :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(drums|latence|pression|vitesse|consumption)**
 
 This allows you to delete all orders that have one of these
 words in their sentence
 
-> **Note**
+> **NOTE**
 >
 > The regexp here is a simplified version for easy use.
 > So we can either use traditional expressions or
@@ -566,9 +566,9 @@ dimmer to apply the desired value. To do this, we have 3 parts
 which will be sent to the interaction. \* Reply : we reuse the tag for
 the answer to make sure Jeedom understood the request correctly.
 \* Action : we put an action on the lamp that we want to drive and in
-the value we pass our tag *consigne*.
+the value we pass our tag *Instructions*.
 
-> **Note**
+> **NOTE**
 >
 > You can use any tag except those already used by
 > Jeedom, there can be several to drive for example
@@ -652,13 +652,13 @@ Programming an action with interactions
 
 Interactions do a lot of things in particular.
 You can program an action dynamically. Example : "Put it on
-heating at 10 p.m. for 2:50 p.m.". Nothing could be simpler, just
+heating at 10 p.m. for 2:50 p.m". Nothing could be simpler, just
 to use tags \#time\# (if a specific time is defined) or
 \#duration\# (for in X time, example in 1 hour) :
 
 ![interact23](../images/interact23.JPG)
 
-> **Note**
+> **NOTE**
 >
 > You will notice in the response the tag \#value\# this one contains
 > in the case of a scheduled interaction, the programming time

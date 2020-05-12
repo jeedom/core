@@ -12,12 +12,12 @@ Diese Seite ist zugänglich von **Extras → Zusammenfassung der Hausautomation*
 Der obere Rand der Seite 
 ------------------
 
-Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Nombre
+Oben auf der Seite finden wir : \.* **Anzahl d'objets** : Nombre
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die Elemente gezählt werden
-Inaktiv. \* **Anzahl der Ausrüstungen** : Das Gleiche gilt für die Ausrüstung. \*
-**Anzahl der Bestellungen** : Das Gleiche gilt für Bestellungen. \.* **Inactif** :
+Inaktiv. \* **Anzahl Ausrüstungs** : Das Gleiche gilt für die Ausrüstung. \*
+**Anzahl de Befehle** : Das Gleiche gilt für Bestellungen. \* **Inaktiv** :
 Aktivieren Sie dieses Kontrollkästchen, wenn die inaktiven Elemente korrekt sein sollen
-auf dieser Seite angezeigt. \.* **Rechercher** : Suche nach a
+auf dieser Seite angezeigt. \* **Suche** : Suche nach a
 bestimmtes Element. Es kann der Name eines Geräts sein, eine Bestellung
 oder der Name des Plugins, mit dem das Gerät erstellt wurde.
 
@@ -28,7 +28,7 @@ Objektrahmen
 
 Darunter befindet sich ein Frame pro Objekt. In jedem Frame finden wir
 die Liste der Geräte (in blau), die dieses Objekt als übergeordnetes Objekt haben. die
-erster Frame **Aucun** stellt Geräte dar, die keine haben
+erster Frame **Keine** stellt Geräte dar, die keine haben
 betroffene Eltern. Für jedes Objekt neben seiner Beschriftung drei Schaltflächen
 sind verfügbar. Von links nach rechts :
 
@@ -40,12 +40,12 @@ sind verfügbar. Von links nach rechts :
 -   Mit dem letzten können Sie die Liste der Geräte ein- oder ausblenden
     ihm zugeschrieben.
 
-> **Tip**
+> **Spitze**
 >
 > Die Hintergrundfarbe der Objektrahmen hängt von der in ausgewählten Farbe ab
 > Objektkonfiguration.
 
-> **Tip**
+> **Spitze**
 >
 > Durch Klicken / Ablegen auf das Gerät können Sie dessen ändern
 > bestellen oder sogar einem anderen Objekt zuordnen. Es ist aus der Bestellung
@@ -59,18 +59,18 @@ Auf jeder Ausrüstung finden wir :
 -   Ein **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können
     mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist
     Sie haben Aktionsschaltflächen, die oben links angezeigt werden
-    für **supprimer**, make **visible**/.**invisible**,
-    **actif**/.**inactif** ausgewählte Ausrüstung.
+    für **Entfernen**, make **sichtbar**/.**unsichtbar**,
+    **Aktiva**/.**Inaktiv** ausgewählte Ausrüstung.
 
--   Die **nom** Ausrüstung.
+-   Die **Name** Ausrüstung.
 
--   Die **type** Ausrüstung : Kennung des Plugins, zu dem
+-   Die **Typ** Ausrüstung : Kennung des Plugins, zu dem
     es gehört.
 
--   **Inactif** (kleines Kreuz) : Bedeutet, dass das Gerät inaktiv ist
+-   **Inaktiv** (kleines Kreuz) : Bedeutet, dass das Gerät inaktiv ist
     (Wenn es nicht da ist, ist das Gerät aktiv).
 
--   **Invisible** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist
+-   **Unsichtbar** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist
     (falls nicht vorhanden, ist das Gerät sichtbar).
 
 -   **Externer Link** (Quadrat mit Pfeil) : Lass uns in a öffnen
@@ -92,55 +92,55 @@ gekerbtes Rad Dadurch wird das Konfigurationsfenster geöffnet.
 Erweiterte Gerätekonfiguration 
 =====================================
 
-> **Tip**
+> **Spitze**
 >
 > Es ist möglich, direkt auf (wenn das Plugin dies unterstützt) zuzugreifen
 > dieses Fenster von der Gerätekonfigurationsseite in
 > Klicken Sie auf die Schaltfläche Erweiterte Konfiguration
 
-Das Fenster von **Erweiterte Gerätekonfiguration** ermöglicht die
+Das Fenster von **Konfiguration avancée d'un équipement** ermöglicht die
 ändern. Zuerst oben rechts einige Schaltflächen
 verfügbar :
 
--   **Liens** : Zeigt die Verknüpfungen des Geräts mit dem an
+-   **Verbindungen** : Zeigt die Verknüpfungen des Geräts mit dem an
     Objekte, Befehle, Szenarien, Variablen, Interaktionen ... im Formular
     Grafik (in diesem Fall bringt Sie ein Doppelklick auf ein Element zu
     seine Konfiguration).
 
 -   **Log** : Zeigt die Ereignisse des betreffenden Geräts an.
 
--   **Informations** : Zeigt die Roheigenschaften des Geräts an.
+-   **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 
--   **Enregistrer** : Speichern Sie die vorgenommenen Änderungen
+-   **Rekord** : Speichern Sie die vorgenommenen Änderungen
     auf Ausrüstung.
 
--   **Supprimer** : Ausrüstung entfernen.
+-   **Entfernen** : Ausrüstung entfernen.
 
 Registerkarte Informationen 
 -------------------
 
-Die Registerkarte **Informations** enthält die allgemeinen Informationen von
+Die Registerkarte **Informationen** enthält die allgemeinen Informationen von
 die Ausrüstung und ihre Kontrollen :
 
--   **ID** : Eindeutige Kennung in der Jeedom-Datenbank.
+-   **Identifikation** : Eindeutige Kennung in der Jeedom-Datenbank.
 
--   **Nom** : Name der Ausrüstung.
+-   **Name** : Name der Ausrüstung.
 
--   **Logische ID** : Kennung der logischen Ausrüstung (can
+-   **Identifikation logique** : Kennung der logischen Ausrüstung (can
     leer sein).
 
--   **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (can
+-   **Identifikation de l'objet** : Eindeutige Kennung des übergeordneten Objekts (can
     leer sein).
 
 -   **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
 
--   **Activer** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (nicht vergessen
+-   **Activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (nicht vergessen
     zu speichern).
 
--   **Visible** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (ohne
+-   **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (ohne
     vergessen zu speichern).
 
--   **Type** : Kennung des Plugins, mit dem es erstellt wurde.
+-   **Typ** : Kennung des Plugins, mit dem es erstellt wurde.
 
 -   **Versuch fehlgeschlagen** : Anzahl der Kommunikationsversuche
     konsekutiv mit ausgefallener Ausrüstung.
@@ -151,7 +151,7 @@ die Ausrüstung und ihre Kontrollen :
 -   **Letztes Update** : Datum der letzten Mitteilung
     mit Ausrüstung.
 
--   **Tags** : Geräteetiketten, die durch zu trennen sind ','. Auf dem Dashboard können personalisierte Filter erstellt werden
+-   **Stichworte** : Geräteetiketten, die durch zu trennen sind ','. Auf dem Dashboard können personalisierte Filter erstellt werden
 
 Unten finden Sie eine Tabelle mit der Liste der Befehle für
 die Ausrüstung mit jeweils einem Link zu ihrer Konfiguration.
@@ -159,13 +159,13 @@ die Ausrüstung mit jeweils einem Link zu ihrer Konfiguration.
 Registerkarte &quot;Ansicht&quot; 
 ----------------
 
-In der Registerkarte **Affichage**, Sie können einige konfigurieren
+In der Registerkarte **Anzeigen**, Sie können einige konfigurieren
 Anzeigeverhalten der Kachel im Dashboard, die Ansichten, die
 Design sowie mobil.
 
 ### Widget 
 
--   **Visible** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen.
+-   **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen.
 
 -   **Name anzeigen** : Aktivieren Sie das Kontrollkästchen, um den Namen von anzuzeigen
     Ausrüstung auf der Fliese.
@@ -180,12 +180,12 @@ Design sowie mobil.
     Aktivieren Sie ein neues Kontrollkästchen **Transparent** das machen
     transparenter Hintergrund.
 
--   **Opacité** : Deckkraft der Hintergrundfarbe der Kachel.
+-   **Opazität** : Deckkraft der Hintergrundfarbe der Kachel.
 
 -   **Textfarbe** : Aktivieren Sie das Kontrollkästchen, um die Farbe des zu behalten
     Standardtext.
 
--   **Bordures** : Aktivieren Sie das Kontrollkästchen, um den Standardrahmen beizubehalten.
+-   **Grenzen** : Aktivieren Sie das Kontrollkästchen, um den Standardrahmen beizubehalten.
     Andernfalls müssen Sie den CSS-Code eingeben, Eigenschaft `border` (z :
     `3px blau gestrichelt` für einen gepunkteten Rand von 3px in blau).
 
@@ -197,12 +197,12 @@ Design sowie mobil.
 
 Unten finden wir optionale Anzeigeparameter, die wir
 kann für Geräte gelten. Diese Parameter bestehen aus einem Namen und
-wert. Klicken Sie einfach auf **Ajouter** einen anwenden
-wieder. Für Geräte nur den Wert **style** ist für die
+wert. Klicken Sie einfach auf **Hinzufügen** einen anwenden
+wieder. Für Geräte nur den Wert **Stil** ist für die
 Moment verwendet, ermöglicht es das Einfügen von CSS-Code auf dem Gerät in
 question.
 
-> **Tip**
+> **Spitze**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
@@ -212,11 +212,11 @@ Registerkarte Layout
 In diesem Teil können Sie zwischen der Standardanordnung von wählen
 Befehle (nebeneinander im Widget) oder im Tabellenmodus. Es gibt
 Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
-**Tableau** :
+**Tabelle** :
 
--   **Anzahl der Zeilen**
+-   **Anzahl de lignes**
 
--   **Anzahl der Spalten**
+-   **Anzahl de colonnes**
 
 -   **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen, um das zu zentrieren
     Befehle in den Feldern.
@@ -227,7 +227,7 @@ Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Op
 -   **Tabellenstil (CSS)** : Hier können Sie den Stil des definieren
     nur Tisch.
 
-Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
+Unten für jede Box die **Konfiguration détaillée** erlaubt dir
 diese :
 
 -   **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder
@@ -237,11 +237,11 @@ diese :
     box (Vorsicht, dies überschreibt und ersetzt das allgemeine CSS
     Kisten).
 
-> **Tip**
+> **Spitze**
 >
 > Wenn Sie in einem Feld in der Tabelle zwei Befehle eingeben möchten, geben Sie einen ein
 > Vergessen Sie nicht, unter dem anderen eine Rückgabe hinzuzufügen
-> Linie nach der Premiere in der **Erweiterte Konfiguration** davon.
+> Linie nach der Premiere in der **Konfiguration avancée** davon.
 
 Registerkarte &quot;Warnungen&quot; 
 --------------
@@ -250,7 +250,7 @@ Diese Registerkarte enthält Informationen zur Batterie von
 die Ausrüstung und definieren Warnungen in Bezug darauf. Hier sind die
 Arten von Informationen, die gefunden werden können :
 
--   **Batterietyp**,
+-   **Typ de piDie**,
 
 -   **Neuestes Feedback**,
 
@@ -265,10 +265,10 @@ Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. durch
 Beispiel 30 sagt jeedom, dass, wenn das Gerät nicht kommuniziert hat
 für 30 Minuten, dann müssen Sie es in Alarmbereitschaft versetzen.
 
-> **Tip**
+> **Spitze**
 >
 > Die globalen Parameter sind in **Administration → Konfiguration → Protokolle**
-> (oder **Equipements**)
+> (oder **Einrichtungen**)
 
 Registerkarte &quot;Kommentar&quot; 
 ------------------
@@ -281,28 +281,28 @@ Erweiterte Konfiguration einer Bestellung
 
 Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
--   **Tester** : Wird zum Testen des Befehls verwendet.
+-   **Test** : Wird zum Testen des Befehls verwendet.
 
--   **Liens** : Zeigt die Verknüpfungen des Geräts mit dem an
+-   **Verbindungen** : Zeigt die Verknüpfungen des Geräts mit dem an
     Objekte, Befehle, Szenarien, Variablen, Interaktionen…. unter
     grafische Form.
 
 -   **Log** : Zeigt die Ereignisse des betreffenden Geräts an.
 
--   **Informations** : Zeigt die Roheigenschaften des Geräts an.
+-   **Informationen** : Zeigt die Roheigenschaften des Geräts an.
 
 -   Bewerben Sie sich bei \* : Wenden Sie dieselbe Konfiguration auf an
     Mehrfachbestellungen.
 
--   **Enregistrer** : Speichern Sie die vorgenommenen Änderungen an
+-   **Rekord** : Speichern Sie die vorgenommenen Änderungen an
     Ausrüstung
 
-> **Tip**
+> **Spitze**
 >
 > In einem Diagramm bringt Sie ein Doppelklick auf ein Element zu seinem
 > Konfiguration.
 
-> **Note**
+> **Notiz**
 >
 > Abhängig von der Art der Bestellung werden die Informationen / Aktionen angezeigt
 > kann sich ändern.
@@ -310,31 +310,31 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 Registerkarte Informationen 
 -------------------
 
-Die Registerkarte **Informations** enthält allgemeine Informationen über die
+Die Registerkarte **Informationen** enthält allgemeine Informationen über die
 bestellen :
 
--   **ID** : Eindeutiger Bezeichner in der Datenbank.
+-   **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
 
--   **Logische ID** : Logische Kennung des Befehls (can
+-   **Identifikation logique** : Logische Kennung des Befehls (can
     leer sein).
 
--   **Nom** : Name der Bestellung.
+-   **Name** : Name der Bestellung.
 
--   **Type** : Art der Bestellung (Aktion oder Info).
+-   **Typ** : Art der Bestellung (Aktion oder Info).
 
--   **Sous-type** : Befehlssubtyp (binär, digital usw.).
+-   **Unterart** : Befehlssubtyp (binär, digital usw.).
 
 -   **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (klicken
     rechts, kopiere die Linkadresse) Die URL startet den Befehl für a
-    **action** und geben Sie die Informationen für a zurück **info**.
+    **Aktion** und geben Sie die Informationen für a zurück **Info**.
 
--   **Unité** : Steuereinheit.
+-   **Einheit** : Steuereinheit.
 
 -   **Befehl, der ein Update auslöst** : Gibt die Kennung von a an
     anderer Befehl, der, wenn sich dieser andere Befehl ändert, das erzwingt
     Aktualisierung der angezeigten Bestellung.
 
--   **Visible** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
+-   **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
 
 -   **Folgen Sie der Zeitleiste** : Aktivieren Sie dieses Kontrollkästchen, um dies zu haben
     Befehl ist in der Timeline sichtbar, wenn er verwendet wird.
@@ -357,7 +357,7 @@ Sie haben auch drei andere orangefarbene Knöpfe darunter :
 -   **Ersetzen Sie diesen Befehl durch den Befehl** : Das Gegenteil ersetzt
     die Bestellung durch eine andere Bestellung.
 
-> **Note**
+> **Notiz**
 >
 > Diese Art von Aktion ersetzt Befehle in ganz Jeedom
 > (Szenario, Interaktion, Reihenfolge, Ausrüstung….)
@@ -383,7 +383,7 @@ Registerkarte Konfiguration
         Bestellwert (Beispiel : setze 2 um zu transformieren
         16.643345 in 16.64).
 
--   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
+-   **Typ générique** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
@@ -393,15 +393,15 @@ Registerkarte Konfiguration
     ermöglicht beispielsweise das Ausschalten eines Lichts X Minuten später
     es ist beleuchtet.
 
--   **Historique**
+-   **Historisch**
 
-    -   **Historiser** : Aktivieren Sie das Kontrollkästchen, um die Werte dafür zu erhalten
+    -   **Historisieren** : Aktivieren Sie das Kontrollkästchen, um die Werte dafür zu erhalten
         Bestellung aufgezeichnet werden. (Siehe **Analyse → Geschichte**)
 
-    -   **Glättungsmodus** : Modus von **lissage** oder d'**archivage**
+    -   **Glättungsmodus** : Modus von **glätten** oder d'**Archivierung**
         Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standard,
-        es ist ein **moyenne**. Es ist auch möglich, die zu wählen
-        **maximum**, Die **minimum**, oder **aucun**. **aucun** Ermöglicht
+        es ist ein **Durchschnitt**. Es ist auch möglich, die zu wählen
+        **Maximum**, Die **Minimum**, oder **Keine**. **Keine** Ermöglicht
         Sag Jeedom, dass es nicht darauf archivieren soll
         Bestellung (sowohl während der ersten 5 Minuten als auch mit dem
         Archivierungsaufgabe). Diese Option ist gefährlich, weil Jeedom
@@ -425,7 +425,7 @@ Registerkarte Konfiguration
     -   **Dauer vor Statusrückgabe (min)** : Zeit vor der Rückkehr zu
         Wert oben.
 
--   **Autres**
+-   **Andere**
 
     -   **Management der Wiederholung von Werten** : In automatischer wenn die
         Befehl steigt 2 mal den gleichen Wert in einer Reihe, dann Jeedom
@@ -443,7 +443,7 @@ Registerkarte Konfiguration
 
 ### Für einen Aktionsbefehl : 
 
--   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
+-   **Typ générique** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
@@ -455,7 +455,7 @@ Registerkarte Konfiguration
     wenn die Aktion über die Schnittstelle dieses Befehls gestartet wird.
 
 -   **Aktion vor Ausführung des Befehls** : Ermöglicht das Hinzufügen
-    Befehle **avant** jede Ausführung des Auftrags.
+    Befehle **vor** jede Ausführung des Auftrags.
 
 -   **Aktion nach Ausführung des Auftrags** : Ermöglicht das Hinzufügen
     Befehle **nach** jede Ausführung des Auftrags.
@@ -463,11 +463,11 @@ Registerkarte Konfiguration
 Registerkarte &quot;Warnungen&quot; 
 --------------
 
-Ermöglicht das Definieren einer Alarmstufe (**warning** oder **danger**) in
+Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Gefahr**) in
 abhängig von bestimmten Bedingungen. Zum Beispiel, wenn &quot;Wert&gt; 8&quot; für 30
-Minuten dann kann das Gerät in Alarmbereitschaft gehen **warning**.
+Minuten dann kann das Gerät in Alarmbereitschaft gehen **Warnung**.
 
-> **Note**
+> **Notiz**
 >
 > Auf der Seite **Administration → Konfiguration → Protokolle**, du kannst
 > Konfigurieren Sie einen Befehl vom Typ Nachricht, mit dem Jeedom Sie abrufen kann
@@ -484,7 +484,7 @@ mobile.
     Beachten Sie, dass Sie das Widget-Plugin benötigen und dies auch tun können
     davon).
 
--   **Visible** : Überprüfen Sie, ob der Befehl sichtbar ist.
+-   **Sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
 
 -   **Name anzeigen** : Überprüfen Sie den Namen des
     Befehl, je nach Kontext.
@@ -492,8 +492,8 @@ mobile.
 -   **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol sichtbar zu machen
     zusätzlich zum Namen des Befehls.
 
--   **Umbrochene Zeile vor dem Widget** : Wählen **vorher
-    widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
+-   **Umbrochene Zeile vor dem Widget** : Wählen **vor le
+    Widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
     Spalte mit verschiedenen Gerätebefehlen anstelle von Zeilen
     standardmäßig)
@@ -502,7 +502,7 @@ Unten finden wir optionale Anzeigeparameter, die wir
 kann zum Widget wechseln. Diese Parameter hängen vom jeweiligen Widget ab,
 Sie müssen sich also seine Karte auf dem Markt ansehen, um sie zu kennen.
 
-> **Tip**
+> **Spitze**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
@@ -511,7 +511,7 @@ Registerkarte Code
 
 Ermöglicht das Ändern des Widget-Codes nur für den aktuellen Befehl.
 
-> **Note**
+> **Notiz**
 >
 > Wenn Sie den Code ändern möchten, vergessen Sie nicht, das Kontrollkästchen zu aktivieren
-> **Aktivieren Sie die Widget-Anpassung**
+> **Activate la personnalisation du Widget**

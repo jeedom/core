@@ -11,21 +11,21 @@ Abaixo você tem uma tabela :
 
 -   **Nome de Usuário** : ID do usuário
 
--   **Actif** : permite desativar a conta
+-   **Ativos** : permite desativar a conta
 
 -   **Apenas local** : autorizar login do usuário
     somente se estiver na rede local Jeedom
 
--   **Profils** : Permite escolher o perfil do usuário :
+-   **Perfis** : Permite escolher o perfil do usuário :
 
-    -   **Administrateur** : obtém todos os direitos sobre Jeedom
+    -   **Administrador** : obtém todos os direitos sobre Jeedom
 
-    -   **Utilisateur** : pode ver o painel, visualizações,
+    -   **Usuário** : pode ver o painel, visualizações,
         design, etc. e atuar em equipamentos / controles. No entanto,
         ele não terá acesso à configuração de controles / equipamentos
         nem para a configuração do Jeedom.
 
-    -   **Usuário limitado** : o usuário vê apenas o
+    -   **Usuário limité** : o usuário vê apenas o
         equipamento autorizado (configurável com o botão "Gerenciar"
         direitos ")
 
@@ -42,7 +42,7 @@ Abaixo você tem uma tabela :
 -   **Alterar senha** : permite alterar a senha de
     l'utilisateur
 
--   **Supprimer** : Remover usuário
+-   **Remover** : Remover usuário
 
 -   **Regenerar chave de API** : Regenerar chave de API do usuário
 
@@ -57,7 +57,7 @@ Ao clicar em "Gerenciar direitos", uma janela é exibida, permitindo que você
 gerenciar com precisão os direitos do usuário. A primeira guia exibe
 o equipamento diferente. O segundo apresenta os cenários.
 
-> **Important**
+> **IMPORTANTE**
 >
 > O perfil deve ser limitado, caso contrário, nenhuma restrição será colocada aqui
 > será levado em consideração
@@ -65,12 +65,12 @@ o equipamento diferente. O segundo apresenta os cenários.
 Você obtém uma tabela que permite, para cada equipamento e cada
 cenário, defina direitos do usuário :
 
--   **Aucun** : o usuário não vê o equipamento / cenário
+-   **Nemhum** : o usuário não vê o equipamento / cenário
 
--   **Visualisation** : o usuário vê o equipamento / cenário, mas não vê
+-   **Visualização** : o usuário vê o equipamento / cenário, mas não vê
     não pode agir sobre isso
 
--   **Visualização e execução** : o usuário vê
+-   **Visualização et exécution** : o usuário vê
     equipamento / cenário e pode atuar sobre ele (acenda uma lâmpada, jogue
     o cenário etc.)
 

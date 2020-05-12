@@ -41,7 +41,7 @@ Changelog
 - Melhor consideração dos widgets de plug-ins
 - Otimização do cálculo de integridade no swap
 
->**IMPORTANT**
+>**IMPORTANTE**
 >
 >Esta atualização corrige uma preocupação que pode impedir a gravação de qualquer histórico a partir de 1 de janeiro de 2020. É mais do que altamente recomendável
 
@@ -323,7 +323,7 @@ Changelog
 3.2.3.
 =====
 
--   Correção de erros nas funções mín. / Máx.....
+-   Correção de erros nas funções mín. / Máx....
 -   Exportação aprimorada de gráficos e exibição no modo de tabela
 
 3.2.2.
@@ -366,7 +366,7 @@ Changelog
 -   JEED-186 : Agora podemos escolher a cor de fundo no
     designs
 
--   Para o bloco A, possibilidade de definir uma hora entre as 12h01 e as 12h59.
+-   Para o bloco A, possibilidade de definir uma hora entre as 12h01 e as 12h59
     simplesmente colocando os minutos (ex 30 para 00:30)
 
 -   Adicionando sessões e dispositivos ativos registrados no
@@ -376,7 +376,7 @@ Changelog
 -   JEED-284 : conexão permanente agora depende de uma chave
     único usuário e dispositivo (em vez de usuário)
 
--   JEED-283 : adicionando um modo *rescue* para jeedom adicionando & rescue = 1
+-   JEED-283 : adicionando um modo *resgate* para jeedom adicionando & rescue = 1
     na url
 
 -   JEED-8 : adição do nome do cenário no título da página durante o
@@ -938,7 +938,7 @@ Changelog
     / tmp é muito pequeno (cuidado, a correção entra em vigor em
     atualização n + 1)
 
--   Adicionando uma tag *jeedom\_name* nos cenários (dê o nome
+-   Adicionando uma tag *Jeedom\_name* nos cenários (dê o nome
     jeedom)
 
 -   Correções de bugs

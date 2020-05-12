@@ -12,7 +12,7 @@ To access it, nothing simpler, just go to Tools ->
 Scenarios. You will find there the list of scenarios for your Jeedom as well
 only functions to manage them better :
 
--   **Ajouter** : Create a scenario. The procedure is described
+-   **Add** : Create a scenario. The procedure is described
     in the next chapter.
 
 -   **Disable scenarios** : Disables all scenarios.
@@ -23,8 +23,8 @@ only functions to manage them better :
     this page.
 
 -   **Overview** : Allows you to have an overview of all
-    scenarios. You can change the values **actif**,
-    **visible**, **multi launch**, **synchronous mode**, **Log** et
+    scenarios. You can change the values **active**,
+    **Jeedom**, **multi launch**, **synchronous mode**, **Log** et
     **Timeline** (these parameters are described in the next chapter).
     You can also access the logs for each scenario and
     start individually.
@@ -36,52 +36,52 @@ My scenarios
 -------------
 
 In this section you will find the **list of scenarios** that you
-have created. They are classified according to **groupes** that you have
-defined for each of them. Each scenario is displayed with its **nom**
+have created. They are classified according to **groups** that you have
+defined for each of them. Each scenario is displayed with its **last name**
 and his **parent object**. The **grayed out scenarios** are those who are
 disabled.
 
 As in many Jeedom pages, put the mouse to the left of
 the screen displays a quick access menu (from
 your profile, you can always leave it visible). You will be able
-so **chercher** your scenario, but also in **ajouter** one by this
+so **search** your scenario, but also in **Add** one by this
 menu.
 
 Editing a scenario
 =====================
 
-After clicking on **Ajouter**, you must choose the name of your
+After clicking on **Add**, you must choose the name of your
 scenario and you are redirected to its general settings page.
 At the top, there are some useful functions to manage our scenario
 :
 
--   **ID** : Next to the word **General**, this is the scenario identifier.
+-   **Id** : Next to the word **General**, this is the scenario identifier.
 
--   **statut** : Current state of your scenario.
+-   **status** : Current state of your scenario.
 
 -   **variables** : View variables.
 
 -   **Expression** : Displays the expression tester.
 
--   **Perform** : Allows you to launch the scenario manually (Remember
+-   **Exécuter** : Allows you to launch the scenario manually (Remember
     no save before!). The triggers are therefore not
     not taken into account.
 
--   **Supprimer** : Delete scenario.
+-   **Remove** : Delete scenario.
 
--   **Sauvegarder** : Save the changes made.
+-   **Save** : Save the changes made.
 
 -   **Template** : Allows you to access and apply templates
     to the script from the market. (explained at the bottom of the page).
 
--   **Exporter** : Get a text version of the script.
+-   **Export** : Get a text version of the script.
 
 -   **Log** : Displays the scenario logs.
 
--   **Dupliquer** : Copy the scenario to create one
+-   **Duplicate** : Copy the scenario to create one
     new with another name.
 
--   **Liens** : Allows you to view the graph of the linked elements
+-   **Connections** : Allows you to view the graph of the linked elements
     with the script.
 
 General tab
@@ -94,12 +94,12 @@ our scenario :
 
 -   **Name to display** : The name used for its display.
 
--   **Groupe** : Allows you to organize the scenarios, by classifying them in
+-   **Group** : Allows you to organize the scenarios, by classifying them in
     groups.
 
--   **Actif** : Activate the scenario.
+-   **Active** : Activate the scenario.
 
--   **Visible** : Used to make the scenario visible.
+-   **Jeedom** : Used to make the scenario visible.
 
 -   **Parent object** : Assignment to a parent object.
 
@@ -132,8 +132,8 @@ Scenario tab
 ---------------
 
 This is where you will build your scenario. We must start
-through **add a block**, with the button on the right. Once a block
-created, you can add another **bloc** or a **action**.
+through **Add un block**, with the button on the right. Once a block
+created, you can add another **block** or a **Action**.
 
 > **Tip**
 >
@@ -149,24 +149,24 @@ Here are the different types of blocks available :
 -   **Action** : Allows you to launch simple actions without
     no conditions.
 
--   **Boucle** : Allows you to perform actions repeatedly
+-   **Loop** : Allows you to perform actions repeatedly
     1 up to a defined number (or even the value of a sensor, or a
     random number…).
 
--   **Dans** : Starts an action in X minute (s) (0 is a
+-   **In** : Starts an action in X minute (s) (0 is a
     possible value). The peculiarity is that the actions are launched
     in the background, so they do not block the rest of the scenario.
     So it&#39;s a non-blocking block.
 
--   **A** : Allows to tell Jeedom to launch the actions of the block at a
+-   **AT** : Allows to tell Jeedom to launch the actions of the block at a
     given time (in the form hhmm). This block is non-blocking. Ex :
     0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
 
--   **Code** : Allows you to write directly in PHP code (request
+-   **Coded** : Allows you to write directly in PHP code (request
     some knowledge and can be risky but allows not to have
     no constraints).
 
--   **Commentaire** : Allows you to add comments to your scenario.
+-   **Comment** : Allows you to add comments to your scenario.
 
 Each of these blocks has its options for better handling them :
 
@@ -180,7 +180,7 @@ Each of these blocks has its options for better handling them :
 
 #### If / Then / Otherwise blocks, Loop, In and A
 
-> **Note**
+> **NOTE**
 >
 > On Si / Then / Otherwise blocks, circular arrows located
 > to the left of the condition field allow to activate or not the
@@ -197,7 +197,7 @@ select an item to test :
     Jeedom opens a window to ask you which test you want
     perform on it. If you choose to **Put nothing**,
     Jeedom will add the order without comparison. You can also
-    to choose **et** or **ou** in front of **Ensuite** to chain tests
+    to choose **and** or **or** in front of **Then** to chain tests
     on different equipment.
 
 -   **Search a scenario** : Lets search for a scenario
@@ -213,8 +213,8 @@ select an item to test :
 > tags.
 
 Once the condition is completed, you must use the button
-"add ", left, to add a new **bloc** or a
-**action** in the current block.
+"add ", left, to add a new **block** or a
+**Action** in the current block.
 
 > **Tip**
 >
@@ -222,7 +222,7 @@ Once the condition is completed, you must use the button
 
 #### Block Code
 
-> **Important**
+> **IMPORTANT**
 >
 > Please note, tags are not available in a code block.
 
@@ -265,7 +265,7 @@ Scenario :
 
 Actions added to blocks have several options. In order :
 
--   A box **parallel** so that this command is launched in parallel
+-   A box **throughallèle** so that this command is launched in parallel
     other commands also selected.
 
 -   A box **activated** so that this command is taken into account
@@ -410,7 +410,7 @@ triggered by an interaction :
 -   #profil# : profile of the user who started the scenario
     (can be empty).
 
-> **Important**
+> **IMPORTANT**
 >
 > When a scenario is triggered by an interaction, it is
 > necessarily run in fast mode.
@@ -624,7 +624,7 @@ perform conversions or calculations :
 -   odd (value) : Lets you know if a number is odd or not.
     Returns 1 if odd 0 otherwise.
 
--   median (command1, command2 ....order) : Returns the median
+-   median (command1, command2.order) : Returns the median
     values.
 
 -   time_op (time, value) : Allows you to perform operations on time,
@@ -658,7 +658,7 @@ And practical examples :
 | odd (3)                             | Returns 1                            |
 | median (15,25,20)                   | Returns 20                           |
 | time_op (#time#, -90)               | if it is 4:50 p.m., return : 1 650 - 1 130 = 1520                          |
-| formatTime (1650)                   | Returns 4:50 p.m.                        |
+| formatTime (1650)                   | Returns 4:50 p.m                        |
 | floor (130/60)                      | Returns 2 (minutes if 130s, or hours if 130m)                      |
 
 Specific orders
@@ -668,10 +668,10 @@ In addition to home automation commands, you have access to the following action
 
 -   **Pause** (Sleep) : Pause of x second (s).
 
--   **variable** (variable) : Creation / modification of a variable or value
+-   **Variable** (variable) : Creation / modification of a variable or value
     of a variable.
 
--   **Remove variable** (Delete_variable) : Allows you to delete a variable
+-   **Remove Variable** (Delete_variable) : Allows you to delete a variable
 
 -   **Scenario** (scenario) : Allows you to control scenarios. The tags part
     allows to send tags to the scenario, ex : montag = 2 (be careful there
@@ -679,20 +679,20 @@ In addition to home automation commands, you have access to the following action
     accents and no special characters). We get the tag in the
     target scenario with the tag function (montag). The command "Reset SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it)
 
--   **Stop** (stop) : Stop the scenario.
+-   **STOP** (stop) : Stop the scenario.
 
--   **Attendre** (Wait) : Wait until the condition is valid
+-   **Wait** (Wait) : Wait until the condition is valid
     (maximum 2h), timeout is in second (s).
 
--   **Go to design** (Gotodesign) : Change the design displayed on all
+-   **ATller au design** (Gotodesign) : Change the design displayed on all
     browsers by requested design.
 
--   **Add a log** (Log) : Allows you to add a message to the logs.
+-   **Add un log** (Log) : Allows you to add a message to the logs.
 
 -   **Create message** (message) : Add a message in the center
     of messages.
 
--   **Activate / Deactivate Hide / display equipment** (equipment) : Allows
+-   **ATctiver/Désactiver Masquer/afficher un équipement** (equipment) : Allows
     modify the properties of a device
     visible / invisible, active / inactive.
 
@@ -703,7 +703,7 @@ In addition to home automation commands, you have access to the following action
     function is blocking. As long as there is no response or the
     timeout is not reached, the scenario waits.
 
--   **Stop Jeedom** (Jeedom_poweroff) : Ask Jeedom to shut down.
+-   **ATrrêter Jeedom** (Jeedom_poweroff) : Ask Jeedom to shut down.
 
 -   **Restart Jeedom** (Jeedom_reboot) : Ask Jeedom to restart.
 
@@ -712,19 +712,19 @@ In addition to home automation commands, you have access to the following action
 
 -   **Icon** (Icon) : Allows to change the icon of representation of the scenario.
 
--   **Alerte** (Alert) : Allows you to display a small alert message on all
+-   **Alert** (Alert) : Allows you to display a small alert message on all
     browsers that have a Jeedom page open. You can
     more, choose 4 alert levels.
 
 -   **Pop-up** (Popup) : Allows to display a pop-up which must absolutely be
     validated on all browsers that have a jeedom page open.
 
--   **Rapport** (Report) : Export a view in format (PDF, PNG, JPEG
+-   **Report** (Report) : Export a view in format (PDF, PNG, JPEG
     or SVG) and send it through a message type command.
     Please note, if your Internet access is in unsigned HTTPS, this
     functionality will not work. Signed HTTP or HTTPS is required.
 
--   **Delete programmed IN / A block** (Remove_inat) : Allows you to delete the
+-   **Remove block DANS/AT programmé** (Remove_inat) : Allows you to delete the
     programming of all blocks IN and A of the scenario.
 
 -   **Event** (Event) : Allows you to push a value in an information type command arbitrarily
@@ -763,9 +763,9 @@ By clicking on a template, you get :
 
 At the top you can :
 
--   **Partager** : share the template on the Market,
+-   **Share** : share the template on the Market,
 
--   **Supprimer** : delete template,
+-   **Remove** : delete template,
 
 -   **Download** : recover the template as a JSON file
     to send it back to another Jeedom for example.

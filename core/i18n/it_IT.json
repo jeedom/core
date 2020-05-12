@@ -286,7 +286,7 @@
         "SQL": "",
         "Action": "Azione",
         "Corriger": "",
-        "Etes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
+        "Etes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table",
         "Vérification base de données": "Verifica del database"
     },
     "desktop\/modal\/eqLogic.displayWidget.php": {
@@ -393,7 +393,7 @@
         "Permet de rajouter un message dans les logs": "Permette di aggiungere un messaggio personalizzato nei registri",
         "Permet d'ajouter une message dans le centre de message": "Permette di aggiungere un messaggio nel centro messaggi",
         "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Cambia la proprietà presa visibile \/ invisibile \/ off di attrezzature",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Azione che consente di applicare Jeedom quindi memorizzare la risposta in una variabile. Questa azione si blocca e termina solo se Jeedom riceve una risposta o viene raggiunto il timeout. Per il momento questa azione è compatibile solo con i plugin SMS, Slack, e Sarah telegramma.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Azione che consente di applicare Jeedom quindi memorizzare la risposta in una variabile. Questa azione si blocca e termina solo se Jeedom riceve una risposta o viene raggiunto il timeout. Per il momento questa azione è compatibile solo con i plugin SMS, Slack, e Sarah telegramma",
         "Envoi l'ordre à Jeedom de s'éteindre": "L'invio dell'ordine a Jeedom di estinzione",
         "Envoi l'ordre à Jeedom de redémarrer": "",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Restituisce un testo o un valore per un'interazione per esempio",
@@ -401,7 +401,7 @@
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Consente di visualizzare un piccolo avviso su tutti i browser che hanno una pagina di Jeedom aperta. È inoltre possibile scegliere tra quattro livelli di allerta",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "",
         "ouverte.": "",
-        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Invia, un posto di comando, un rapporto di vista, un disegno o un pannello PNG \/ PDF \/ JPEG \/ SVG.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Invia, un posto di comando, un rapporto di vista, un disegno o un pannello PNG \/ PDF \/ JPEG \/ SVG",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Cancellare la programmazione di tutti i blocchi IN e A Scenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "",
         "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": ""
@@ -490,7 +490,7 @@
         "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>": "- la risposta non è già nel <a href='https:\/\/jeedom.github.io\/documentation'> documentazione <\/a>",
         "Etape 2 : Choix du type de demande": "Passo 2: Scegli il tipo di richiesta",
         "Assistance technique": "Assistenza tecnica",
-        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Scrivi la tua domanda all'attenzione del nostro Servizio Tecnico che risponderà prontamente.",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Scrivi la tua domanda all'attenzione del nostro Servizio Tecnico che risponderà prontamente",
         "Rapport": "Rapporto",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION<\/strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "È possibile segnalare un bug che sarà pubblicato sul nostro Bug Tracker pubblico (<strong> ATTENZIONE: <\/ strong> il tuo messaggio sarà pubblica, può essere eliminato se non è un bug, non sarà possibile ottenere a assistenza tecnica seguendo questa affermazione)",
         "Demande d'amélioration": "Miglioramento Richiesta",
@@ -1203,11 +1203,11 @@
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
         "Redémarrage": "Nuovo inizio",
-        "Merci de patienter...": "Per favore aspetta ...",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.": "è di nuovo operativo. Verrai reindirizzato alla tua dashboard.",
-        "n\\'a pas encore redémarré, nous continuons cependant de tester son retour.": "non è ancora stato riavviato, tuttavia continuiamo a testare il suo ritorno.",
-        "N\\'hésitez pas à la débrancher\/rebrancher électriquement.": "Non esitate a scollegarlo \/ ricollegarlo elettricamente.",
-        "est en cours de redémarrage.": "viene riavviato."
+        "Merci de patienter...": "Per favore aspetta",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.": "è di nuovo operativo. Verrai reindirizzato alla tua dashboard",
+        "n\\'a pas encore redémarré, nous continuons cependant de tester son retour.": "non è ancora stato riavviato, tuttavia continuiamo a testare il suo ritorno",
+        "N\\'hésitez pas à la débrancher\/rebrancher électriquement.": "Non esitate a scollegarlo \/ ricollegarlo elettricamente",
+        "est en cours de redémarrage.": "viene riavviato"
     },
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
@@ -1232,7 +1232,7 @@
     "desktop\/php\/custom.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
         "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Nota: tutto ciò che scrivi qui è globale e incluso in tutte le pagine. Il minimo errore può fare il tuo",
-        "non fonctionel.": "non funzionale.",
+        "non fonctionel.": "non funzionale",
         "Activer": "Attivare",
         "Sauvegarder": "Salvare"
     },
@@ -1242,28 +1242,28 @@
         "Insérer une clé USB de plus de 8Go": "Inserire una chiavetta USB più grande di 8 GB",
         "dans votre Jeedom et cliquer sur": "nel tuo Jeedom e fai clic su",
         "Etape 2": "Fase 2",
-        "Backup lancé merci de patienter...": "Backup avviato, attendere ...",
+        "Backup lancé merci de patienter...": "Backup avviato, attendere",
         "Etape 3": "Fase 3",
-        "Téléchargement de l'image Jeedom.": "Scarica l'immagine di Jeedom.",
+        "Téléchargement de l'image Jeedom.": "Scarica l'immagine di Jeedom",
         "Etape 4": "Passaggio 4",
         "Migration de votre Jeedom": "Migrazione del tuo Jeedom",
         "Etape 5": "Passaggio 5",
         "Finalisation": "Finalizzazione",
         "Reprendre la restauration": "Riprendi il restauro",
-        "Pour reprendre votre restauration cliquez sur \"Reprendre\".": "Per riprendere il restauro, fare clic su \"Riprendi\".",
+        "Pour reprendre votre restauration cliquez sur \"Reprendre\".": "Per riprendere il restauro, fare clic su \"Riprendi\"",
         "Fermer": "Chiudere",
         "Reprendre": "Ritorna",
         "Réinstallation de votre Backup": "Reinstallazione del backup",
         "Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?": "Vuoi installare il tuo backup su questo Jeedom o ricominciare da capo?",
-        "Votre backup est disponible sur votre Jeedom dans tous les cas.": "Il tuo backup è disponibile sul tuo Jeedom in tutti i casi.",
+        "Votre backup est disponible sur votre Jeedom dans tous les cas.": "Il tuo backup è disponibile sul tuo Jeedom in tutti i casi",
         "Si vous choisissez \"zéro\" n'oubliez pas que vos identifiants sont admin\/admin": "Se scegli \"zero\", non dimenticare che i tuoi dati di accesso sono admin \/ admin",
         "Zéro": "Zero",
         "Installer mon Backup": "Installa il mio backup",
         "Informations Importantes": "Informazioni importanti",
-        "- Il vous faut une clé USB de plus de 8Go.": "- È necessaria una chiave USB di dimensioni superiori a 8 GB.",
-        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Devi essere sulla stessa rete locale del tuo Jeedom.",
+        "- Il vous faut une clé USB de plus de 8Go.": "- È necessaria una chiave USB di dimensioni superiori a 8 GB",
+        "- Il vous faut etre sur le meme reseau Local que votre Jeedom.": "- Devi essere sulla stessa rete locale del tuo Jeedom",
         "- Accéder à votre Jeedom depuis sont adresse interne.": "",
-        "- Pouvoir laisser cette page ouverte au minimum 1h30.": "- Per poter lasciare questa pagina aperta almeno 1h30.",
+        "- Pouvoir laisser cette page ouverte au minimum 1h30.": "- Per poter lasciare questa pagina aperta almeno 1h30",
         "C'est Partie": ""
     },
     "desktop\/php\/update.php": {
@@ -1294,8 +1294,8 @@
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
-        "Vue inconnue. Vérifier l\\'ID.": "Vista sconosciuta Controlla l'ID.",
-        "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Nessuna vista esistente, fai clic <a href=\"index.php?v=d&p=view_edit\">qui<\/a> per crearne una.",
+        "Vue inconnue. Vérifier l\\'ID.": "Vista sconosciuta Controlla l'ID",
+        "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Nessuna vista esistente, fai clic <a href=\"index.php?v=d&p=view_edit\">qui<\/a> per crearne una",
         "Ajouter une vue": "Aggiungi una visualizzazione",
         "Rechercher": "Cerca",
         "Afficher\/Masquer les vues": "Mostra\/Nascondi vista",
@@ -1380,8 +1380,8 @@
         "Clef Market": "",
         "Clef API pour le plugin": "Chiave API per il plugin",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENZIONE: queste operazioni sono rischiose, potresti perdere l'accesso al tuo sistema e",
-        ". L'équipe": ". il team",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "si riserva il diritto di rifiutare qualsiasi richiesta di supporto in caso di trattamento improprio.",
+        ". L'équipe": "il team",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "si riserva il diritto di rifiutare qualsiasi richiesta di supporto in caso di trattamento improprio",
         "Vérification général": "",
         "Permet de lancer le test de consistence de Jeedom": "",
         "Lancer": "Avvia",
@@ -1480,7 +1480,7 @@
         "Vider toutes les données en cache": "Pulisci tutti  i dati cache",
         "Vider": "Vuota",
         "Temps de pause pour le long polling": "Tempo di pausa per il lungo polling",
-        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Maggiore sensibilità è basso (prossimo a 1), più corrispondenza deve essere accurata.",
+        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Maggiore sensibilità è basso (prossimo a 1), più corrispondenza deve essere accurata",
         "Sensibilité": "Sensibilità",
         "1 mot": "1 parola",
         "2 mots": "2 parole",
@@ -1685,7 +1685,7 @@
         "Edition texte": "Modifica del testo",
         "Sauvegarder": "Salva",
         "Supprimer": "Elimina",
-        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Si prega di salvare prima di testarlo. Potrebbe non avere successo.",
+        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Si prega di salvare prima di testarlo. Potrebbe non avere successo",
         "Exécuter": "Esegui",
         "Expression": "Espressione",
         "Variables": "Variabili",
@@ -1709,7 +1709,7 @@
         "Synchrone": "Sincrono",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Lo script è in modalità sincrona. Attenzione, questo può rendere il sistema instabile",
         "Timeline": "Cronologia",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "Le esecuzioni dello script può essere visto nella timeline.",
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Le esecuzioni dello script può essere visto nella timeline",
         "Icône": "Icona",
         "Choisir": "Scegli",
         "Mode du scénario": "Modo scena",
@@ -1745,7 +1745,7 @@
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
         "Votre box": "La tua scatola",
-        "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "è spento. <br \/> Per riavviarlo, scollegarlo e ricollegarlo."
+        "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "è spento. <br \/> Per riavviarlo, scollegarlo e ricollegarlo"
     },
     "desktop\/php\/message.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
@@ -1913,7 +1913,7 @@
         "Envoyer": "Invia",
         "Supprimer l'image": "Elimina immagine",
         "Vous n\\'avez aucun résumé de créé. Allez dans l\\'administration de": "Non hai creato un riepilogo. Vai all'amministrazione di",
-        "-> Configuration -> onglet Résumés.": "-> Configurazione -> scheda Riepiloghi.",
+        "-> Configuration -> onglet Résumés.": "-> Configurazione -> scheda Riepiloghi",
         "Remonter dans le résumé global": "Up in the riepilogo generale",
         "Masquer en desktop": "Hide in Desktop",
         "Masquer en mobile": "Nascondi mobili",
@@ -1944,7 +1944,7 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "Nessun disegno esiste, fai clic <a id=\"bt_createNewDesign\" class=\"cursor\">qui<\/a> per crearne uno."
+        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "Nessun disegno esiste, fai clic <a id=\"bt_createNewDesign\" class=\"cursor\">qui<\/a> per crearne uno"
     },
     "desktop\/php\/history.php": {
         "Aucun": "No",
@@ -1956,7 +1956,7 @@
         "Configuration": "Configurazione",
         "Rechercher": "Cerca",
         "Vider": "Vuota",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno",
         "Ok": "Bene",
         "Aucun groupement": "Nessun gruppo",
         "Somme par heure": "Somma all'ora",
@@ -2266,18 +2266,18 @@
         "Merci": "Grazie",
         "Clé USB vérifié passage à l\\'étape 2 en cours": "",
         "Début de la restauration du backup !": "Inizio del ripristino del backup!",
-        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Backup terminato, copia in corso sulla chiave USB, non scollegarlo ...",
+        "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...": "Backup terminato, copia in corso sulla chiave USB, non scollegarlo",
         "test de l\\'image": "test di immagine",
         "Mise à jour de votre Jeedom réussi": "",
         "L\\'opération a échoué": "L\\'operazione è fallita",
-        "Création du backup en cours...": "Creazione backup in corso ...",
-        "Validation du Backup...": "Convalida del backup ...",
+        "Création du backup en cours...": "Creazione backup in corso",
+        "Validation du Backup...": "Convalida del backup",
         "Téléchargement de la mise à jours": "",
         "Verification de la mise à jours.": "",
-        "Téléchargement en cours de l\\'image...": "Download immagine in corso ...",
+        "Téléchargement en cours de l\\'image...": "Download immagine in corso",
         "Image Téléchargé et validé !": "",
         "Le backup n\\a pas été copié": "",
-        "Backup Copié...": "Backup copiato ...",
+        "Backup Copié...": "Backup copiato",
         "Votre Jeedom viens de redémarrer, Merci de patienter le premier redemarrage peux prendre jusqu\\'à 5 minutes": "",
         "Migration en Cours... merci de ne surtout pas débrancher votre Jeedom": "Migrazione in corso ... per favore non disconnettere il tuo Jeedom",
         "Merci de patienter... Jeedom est en cours de Migration": "Per favore, attendi ... Jeedom è in fase di migrazione",
@@ -2371,7 +2371,7 @@
         "? Une fois lancée cette opération ne peut être annulée": "",
         "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
         "avec la sauvegarde": "",
-        "Une fois lancée cette opération ne peut être annulée.": "Una volta lanciata, questa operazione non può essere annullata.",
+        "Une fois lancée cette opération ne peut être annulée.": "Una volta lanciata, questa operazione non può essere annullata",
         "Etes-vous sûr de vouloir supprimer la sauvegarde": "Sei sicuro di voler eliminare il backu",
         "Sauvegarde supprimée avec succès": "Backup rimosso con successo",
         "Fichier(s) ajouté(s) avec succès": "File aggiunto(i) con successo",
@@ -2748,7 +2748,7 @@
         "401 - Accès non autorisé": "401 - Accesso non consentito",
         "Aucun plan3d correspondant": "Nessun piano 3D corrispondente",
         "Objet inconnu verifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
+        "plan3d header inconnu verifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id :",
         "Code d\\'acces invalide": "Code d\\'acces invalide",
         "Objet inconnu. Vérifiez l\\'ID": "Oggetto sconosciuto. Controlla l'ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nessun file trovato. Controlla l'impostazione PHP (limite dimensione post)",
@@ -2788,7 +2788,7 @@
     },
     "core\/repo\/samba.repo.php": {
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R"
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Eseguire il comando seguente in SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
         "Lancement de l\\'installation de ": "Lancio dell'installazione di",
@@ -2799,13 +2799,13 @@
         "Clef de chiffrement invalide. Si vous oubliez votre mot de passe aucune récupération n\\'est possible. Veuillez supprimer le backup à partir de votre page profil sur le market": "Chiave di crittografia non valida. Se si dimentica la password, non è possibile il recupero. Elimina il backup dalla pagina del tuo profilo di mercato",
         "Erreur repo_market::getinfo : ": "GetInfo Errore :: repo_market:",
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R",
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Eseguire il comando seguente in SSH: sudo chmod 777 -R",
         "Téléchargement de ": "Scaricare",
         "URL ": "URL",
         "Installation des plugin, widget, scénario...": "",
         "OK\\n": "OK \\ n",
         "Impossible de supprimer : ": "Impossibile eliminare:",
-        ". Vérifiez les droits": ". Controlla i diritti",
+        ". Vérifiez les droits": "Controlla i diritti",
         "Echec de création de l\\'archive zip": "Impossibile creare l'archivio zip",
         "Aucune fonction correspondante à : ": "Nessuna funzione corrispondente a:",
         "Impossible de trouver le fichier à envoyer : ": "Impossibile trovare il file da inviare:"
@@ -2834,7 +2834,7 @@
     "core\/repo\/github.repo.php": {
         "Dépot github non trouvé : ": "Repository Github non trovato:",
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R",
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Eseguire il comando seguente in SSH: sudo chmod 777 -R",
         "Téléchargement de ": "Scaricare"
     },
     "core\/repo\/market.send.repo.php": {
@@ -2849,7 +2849,7 @@
         "Sur ce prix 60 % seront reversés au développeur": "A questo prezzo il 60% verrà donato allo sviluppatore",
         "Libre": "Gratis",
         "Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)": "Su questo prezzo il 65% sarà donato allo sviluppatore (deve essere maggiore o uguale a 5 €)",
-        "N'oubliez pas de rajouter une image à votre création en passant par le market.": "Non dimenticare di aggiungere un'immagine alla tua creazione tramite il mercato.",
+        "N'oubliez pas de rajouter une image à votre création en passant par le market.": "Non dimenticare di aggiungere un'immagine alla tua creazione tramite il mercato",
         "ID": "",
         "Nom": "Nome",
         "Type": "Tipo",
@@ -2880,7 +2880,7 @@
     },
     "core\/repo\/url.repo.php": {
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". Eseguire il comando seguente in SSH: sudo chmod 777 -R"
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Eseguire il comando seguente in SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Accesso non consentito",
@@ -2929,8 +2929,8 @@
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Non è possibile creare un ordine senza collegarlo a un dispositivo",
         "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
         "Erreur lors de l\\'exécution de ": "Errore durante l'esecuzione",
-        ". Sur preExec de la commande": ". Su preExec dell'ordine",
-        ". Détails : ": ". Dettagli:",
+        ". Sur preExec de la commande": "Su preExec dell'ordine",
+        ". Détails : ": "Dettagli:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Apparecchiatura disattivata - impossibile eseguire il comando:",
         "Exécution de la commande ": "Esecuzione del comando",
         " avec les paramètres ": "con l'impostazione",
@@ -2943,7 +2943,7 @@
         " valeur : ": "Valore:",
         "Alert sur la commande ": "Avviso sul comando",
         " niveau ": "livello",
-        "pendant plus de ": "per più di ",
+        "pendant plus de ": "per più di",
         " minute(s)": "minuto(i)",
         "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "",
         "Appels de l\\'URL de push pour la commande ": "Push URL chiama per ordine",
@@ -3055,7 +3055,7 @@
         "Vous n\\'êtes pas autorisé à exécuter cette action": "Non sei autorizzato a eseguire questa azione",
         "Erreur : impossible de calculer la date de programmation": "Errore: impossibile calcolare la data di programmazione",
         "Erreur lors de l\\'exécution de ": "Errore durante l'esecuzione",
-        ". Détails : ": ". Dettagli:",
+        ". Détails : ": "Dettagli:",
         "aucune valeur": "indegno"
     },
     "core\/class\/history.class.php": {
@@ -3118,7 +3118,7 @@
         "La condition pour une boucle doit être numérique : ": "La condizione per un ciclo deve essere numerica:",
         "Tâche : ": "Azione",
         " lancement immédiat ": "lancio immediato",
-        " programmée à : ": "programmata a : ",
+        " programmée à : ": "programmata a :",
         "Bloc type A : ": "Tipo di blocco A:",
         ", heure programmée invalide : ": "",
         "SI": "CASO",
@@ -3147,7 +3147,7 @@
         "Une commande du scénario : ": "Comando di scena:",
         "Aucun": "Nessuno",
         "Impossible de supprimer : ": "Impossibile eliminare:",
-        ". Vérifiez les droits": ". Controlla i diritti",
+        ". Vérifiez les droits": "Controlla i diritti",
         "Echec de création du zip. Répertoire source : ": "",
         " \/ Répertoire cible : ": "",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "",
@@ -3197,7 +3197,7 @@
     },
     "core\/class\/plan.class.php": {
         "Erreur lors de l\\'exécution de ": "Errore durante l'esecuzione",
-        ". Détails : ": ". Dettagli:",
+        ". Détails : ": "Dettagli:",
         "Non configuré": "Non configurato"
     },
     "core\/class\/cron.class.php": {
@@ -3346,18 +3346,18 @@
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "Impossibile creare la cartella: '. $ cibDir. . Problema con i diritti?",
-        "Téléchargement du plugin...": "Scarica il plugin ...",
+        "Téléchargement du plugin...": "Scarica il plugin",
         "OK\\n": "OK \\ n",
         "Impossible de trouver le fichier zip : ": "",
         "Échec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market fonctionne) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "",
-        "Décompression du zip...": "Decomprimere lo zip ...",
+        "Décompression du zip...": "Decomprimere lo zip",
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "Impossibile installare il plug-in. Impossibile decomprimere i file:",
         "Impossible de décompresser l\\'archive zip : ": "Impossibile decomprimere l'archivio zip:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "Non è possibile eliminare il nucleo di Jeedom",
         "Début de la mise à jour de : ": "Inizio aggiornamento di:",
-        "Action de pré-update...": "Azione pre-aggiornamento ...",
+        "Action de pré-update...": "Azione pre-aggiornamento",
         "Post-installation de ": "Post-installazione",
-        "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Impossibile installare il plug-in. Il nome del plug-in è diverso dall'ID o il plug-in non è stato formato correttamente. Si prega di contattare l'autore.",
+        "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Impossibile installare il plug-in. Il nome del plug-in è diverso dall'ID o il plug-in non è stato formato correttamente. Si prega di contattare l'autore",
         "Le logical ID ne peut pas être vide": "L'ID logico non può essere vuoto"
     },
     "core\/class\/listener.class.php": {

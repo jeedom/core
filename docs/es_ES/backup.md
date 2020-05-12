@@ -11,10 +11,10 @@ Encontrará, a la izquierda, los parámetros y botones de acción. En la
 correcto, este es el estado en tiempo real de la acción actual (copia de seguridad
 o restauración), si ha lanzado uno.
 
-**Sauvegardes** 
+**Copias de seguridad** 
 ---------------
 
--   **Sauvegardes** : Le permite iniciar una copia de seguridad manualmente y
+-   **Copias de seguridad** : Le permite iniciar una copia de seguridad manualmente y
     inmediatamente (útil si desea hacer un cambio crítico.
     Esto te permitirá volver). También tienes un
     para iniciar una copia de seguridad sin enviar el archivo al
@@ -27,7 +27,7 @@ o restauración), si ha lanzado uno.
     cambiarlo. Si está en un camino relativo, su origen es
     donde está instalado Jeedom.
 
--   **Número de días de almacenamiento de copias de seguridad.** : Número de
+-   **Número de días de almacenamiento de copias de seguridad** : Número de
     días de respaldo para mantener. Una vez que este período ha pasado, el
     las copias de seguridad se eliminarán. Ten cuidado de no poner un número
     días demasiado altos, de lo contrario su sistema de archivos puede
@@ -39,7 +39,7 @@ o restauración), si ha lanzado uno.
     copias de seguridad más antiguas hasta caer por debajo del
     tamaño máximo. Sin embargo, mantendrá al menos una copia de seguridad.
 
-**Copias de seguridad locales** 
+**Copias de seguridad Locales** 
 -----------------------
 
 -   **Copias de seguridad disponibles** : Lista de copias de seguridad disponibles.
@@ -58,7 +58,7 @@ o restauración), si ha lanzado uno.
 -   **Descargar copia de seguridad** : Permite descargar a tu
     computadora el archivo de copia de seguridad seleccionado anteriormente.
 
-**Copias de seguridad del mercado** 
+**Copias de seguridad Mercado** 
 ----------------------
 
 -   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el
@@ -74,7 +74,7 @@ o restauración), si ha lanzado uno.
 -   **Restaurar copia de seguridad** : Lanza la restauración de un
     copia de seguridad en la nube.
 
-**Copias de seguridad de Samba** 
+**Copias de seguridad Samba** 
 ---------------------
 
 -   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el
@@ -87,7 +87,7 @@ o restauración), si ha lanzado uno.
 -   **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad
     samba seleccionada arriba.
 
-> **IMPORTANT**
+> **Importante**
 >
 > Las copias de seguridad de Jeedom deben caer absolutamente en una carpeta solo para él !!! Eliminará todo lo que no sea una copia de seguridad de la carpeta
 
@@ -104,7 +104,7 @@ diferente porque no es posible guardar las inclusiones.
 Estos se incluyen directamente en el controlador, por lo que debe
 mantener el mismo controlador para encontrar sus módulos Zwave.
 
-> **Note**
+> **Nota**
 >
 > El sistema en el que está instalado Jeedom no está respaldado. si
 > Ha modificado los parámetros de este sistema (especialmente a través de SSH),
@@ -117,11 +117,11 @@ El respaldo en la nube le permite a Jeedom enviar sus respaldos
 directamente en el mercado. Esto le permite restaurarlos fácilmente
 y asegúrate de no perderlos. El mercado guarda los últimos 6
 copias de seguridad. Para suscribirte solo ve a tu página
-**profil** en el mercado, luego en la pestaña **mis copias de seguridad**. Vous
+**perfil** en el mercado, luego en la pestaña **mis copias de seguridad**. Vous
 puede, desde esta página, recuperar una copia de seguridad o comprar un
 suscripción (por 1, 3, 6 o 12 meses).
 
-> **Tip**
+> **Punta**
 >
 > Puede personalizar el nombre de los archivos de respaldo desde
 > de la pestaña **Mis jeedoms**, evitando sin embargo los personajes

@@ -14,7 +14,7 @@ En la parte superior, hay un selector para filtrar mensajes en un
 plugin particular y bien un botón para vaciar todo
 messages.
 
-> **Tip**
+> **Punta**
 >
 > Cuando tenga un error en el centro de mensajes, intente
 > primero elimine el mensaje y luego vea si el error regresa antes

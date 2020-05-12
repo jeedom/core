@@ -21,7 +21,7 @@ módulo, bem como a data em que as informações sobre o nível da bateria
 foi atualizado. Você também pode ver se um limite específico foi
 ambiente de trabalho para o módulo específico (representado por uma mão)
 
-> **Tip**
+> **Dica**
 >
 > Os limites de alerta / aviso nos níveis da bateria são
 > globalmente configurável na configuração Jeedom
@@ -45,7 +45,7 @@ Outros tipos de alertas podem ser encontrados aqui.
 Cada alerta será representado pela cor do bloco (o nível
 alerta) e um logotipo no canto superior esquerdo (o tipo de alerta)
 
-> **Tip**
+> **Dica**
 >
 > Aqui serão exibidos todos os módulos em alerta, mesmo aqueles configurados em
 > "Não visível". No entanto, é interessante notar que, se o módulo
@@ -76,7 +76,7 @@ e sintetiza várias coisas :
     um comando de ação e permitindo executar um ou mais outros
     ações antes ou depois da ação em questão)
 
-> **Tip**
+> **Dica**
 >
 > A tabela permite ver muito textualmente as ações
 > definido. Outros tipos de ações definidas podem ser adicionados.
@@ -117,7 +117,7 @@ E usado em muitos outros lugares como (não exaustivo) :
 
 -   Em alguns plugins
 
-> **Tip**
+> **Dica**
 >
 > A tabela fornece uma visão muito textual dos comandos
 > órfãos. Seu objetivo é poder identificar rapidamente todos os

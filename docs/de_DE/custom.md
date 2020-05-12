@@ -10,7 +10,7 @@ mobile Version.
 Für anspruchslose Menschen, die CSS entdecken möchten
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **Important**
+> **Wichtig**
 >
 > Jeder Fehler in einem dieser Skripte kann Jeedom total machen
 > nicht verfügbar und Sie müssen eine Verbindung über SSH herstellen und die löschen

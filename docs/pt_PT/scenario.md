@@ -12,7 +12,7 @@ Para acessá-lo, nada mais simples, basta acessar Ferramentas ->
 Cenários. Você encontrará a lista de cenários para o seu Jeedom também
 apenas funciona para gerenciá-los melhor :
 
--   **Ajouter** : Crie um cenário. O procedimento é descrito
+-   **Adicionar** : Crie um cenário. O procedimento é descrito
     no próximo capítulo.
 
 -   **Desativar cenários** : Desativa todos os cenários.
@@ -23,9 +23,9 @@ apenas funciona para gerenciá-los melhor :
     esta página.
 
 -   **Visão global** : Permite que você tenha uma visão geral de todos
-    os cenários. Você pode alterar os valores **actif**,
-    **visible**, **Multi lançamento**, **Sincronicamente**, **Log** et
-    **Timeline** (esses parâmetros são descritos no próximo capítulo).
+    os cenários. Você pode alterar os valores **Ativos**,
+    **Visivél**, **Multi lançamento**, **Sincronicamente**, **Log** et
+    **Cronograma** (esses parâmetros são descritos no próximo capítulo).
     Você também pode acessar os logs para cada cenário e
     comece individualmente.
 
@@ -36,52 +36,52 @@ Meus scripts
 -------------
 
 Nesta seção, você encontrará o **lista de cenários** que você
-criaram. Eles são classificados de acordo com **groupes** que você tem
-definido para cada um deles. Cada cenário é exibido com seus **nom**
+criaram. Eles são classificados de acordo com **grupos** que você tem
+definido para cada um deles. Cada cenário é exibido com seus **Nome**
 e o dele **Objeto pai**. O **cenários esmaecidos** são aqueles que são
 desabilitado.
 
 Como em muitas páginas Jeedom, coloque o mouse à esquerda de
 a tela exibe um menu de acesso rápido (de
 seu perfil, você sempre pode deixá-lo visível). Você pode
-ENTÃO **chercher** seu cenário, mas também em **ajouter** um por isso
+ENTÃO **pesquisar** seu cenário, mas também em **Adicionar** um por isso
 menu.
 
 Editando um Cenário
 =====================
 
-Depois de clicar em **Ajouter**, você deve escolher o nome do seu
+Depois de clicar em **Adicionar**, você deve escolher o nome do seu
 cenário e você será redirecionado para sua página de configurações gerais.
 No topo, existem algumas funções úteis para gerenciar nosso cenário
 :
 
 -   **ID** : Ao lado da palavra **Geral**, este é o identificador de cenário.
 
--   **statut** : Estado atual do seu cenário.
+-   **Estado** : Estado atual do seu cenário.
 
--   **variables** : Ver variáveis.
+-   **Variáveis** : Ver variáveis.
 
--   **Expression** : Exibe o testador de expressão.
+-   **Expressão** : Exibe o testador de expressão.
 
--   **Realizar** : Permite iniciar o cenário manualmente (lembre-se
+-   **Exécuter** : Permite iniciar o cenário manualmente (lembre-se
     sem salvar antes!). Os gatilhos não são, portanto,
     não levado em consideração.
 
--   **Supprimer** : Excluir cenário.
+-   **Remover** : Excluir cenário.
 
--   **Sauvegarder** : Salve as alterações feitas.
+-   **Salvar** : Salve as alterações feitas.
 
--   **Template** : Permite acessar e aplicar modelos
+-   **Modelo** : Permite acessar e aplicar modelos
     para o script do mercado. (explicado na parte inferior da página).
 
--   **Exporter** : Obter uma versão em texto do script.
+-   **Exportação** : Obter uma versão em texto do script.
 
 -   **Log** : Exibe os logs do cenário.
 
--   **Dupliquer** : Copie o cenário para criar um
+-   **Duplicar** : Copie o cenário para criar um
     novo com outro nome.
 
--   **Liens** : Permite visualizar o gráfico dos elementos vinculados
+-   **Conexões** : Permite visualizar o gráfico dos elementos vinculados
     com o script.
 
 Guia Geral
@@ -94,12 +94,12 @@ nosso cenário :
 
 -   **Display Name** : O nome usado para sua exibição.
 
--   **Groupe** : Permite organizar os cenários, classificando-os em
+-   **Grupo** : Permite organizar os cenários, classificando-os em
     grupos.
 
--   **Actif** : Ativar o cenário.
+-   **Ativos** : Ativar o cenário.
 
--   **Visible** : Usado para tornar o cenário visível.
+-   **Visivél** : Usado para tornar o cenário visível.
 
 -   **Objeto pai** : Atribuição a um objeto pai.
 
@@ -116,14 +116,14 @@ nosso cenário :
 -   **Siga na Timeline** : Acompanha o cenário
     na linha do tempo.
 
--   **Description** : Permite escrever um pequeno texto para descrever
+-   **Descrição** : Permite escrever um pequeno texto para descrever
     seu cenário.
 
 -   **Modo de cenário** : O cenário pode ser programado, acionado ou
     ambos ao mesmo tempo. Você terá a opção de indicar o (s)
     gatilho (s) (tenha cuidado, há um limite para o número de gatilhos possíveis por cenário de 15) e a (s) programação (s).
 
-> **Tip**
+> **Dica**
 >
 > Atenção : você pode ter no máximo 28
 > gatilhos / programação para um cenário.
@@ -132,10 +132,10 @@ Guia Cenário
 ---------------
 
 É aqui que você criará seu cenário. Nós temos que começar
-por **Adicionar bloco**, com o botão à direita. Uma vez um bloco
-criado, você pode adicionar outro **bloc** ou um **action**.
+por **Adicionar un Bloco**, com o botão à direita. Uma vez um bloco
+criado, você pode adicionar outro **Bloco** ou um **Ação**.
 
-> **Tip**
+> **Dica**
 >
 > Em condições e ações, é melhor usar aspas simples (') em vez de duplas (")
 
@@ -146,10 +146,10 @@ Aqui estão os diferentes tipos de blocos disponíveis :
 -   **If / Then / Ou** : Permite que você execute ações
     sob condição (s).
 
--   **Action** : Permite iniciar ações simples sem
+-   **Ação** : Permite iniciar ações simples sem
     sem condições.
 
--   **Boucle** : Permite executar ações repetidamente
+-   **Laço** : Permite executar ações repetidamente
     1 até um número definido (ou mesmo o valor de um sensor ou um
     número aleatório…).
 
@@ -158,15 +158,15 @@ Aqui estão os diferentes tipos de blocos disponíveis :
     em segundo plano, para que eles não bloqueiem o restante do cenário.
     Portanto, é um bloco sem bloqueio.
 
--   **A** : Permite que o Jeedom inicie as ações do bloco em um momento
+-   **à** : Permite que o Jeedom inicie as ações do bloco em um momento
     tempo determinado (no formato hhmm). Este bloco é sem bloqueio. Ex :
     0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.
 
--   **Code** : Permite escrever diretamente no código PHP (solicitação
+-   **CÓDIGO** : Permite escrever diretamente no código PHP (solicitação
     algum conhecimento e pode ser arriscado, mas permite não ter
     sem restrições).
 
--   **Commentaire** : Permite adicionar comentários ao seu cenário.
+-   **COMMENTAIRE** : Permite adicionar comentários ao seu cenário.
 
 Cada um desses blocos tem suas opções para lidar melhor com eles :
 
@@ -180,7 +180,7 @@ Cada um desses blocos tem suas opções para lidar melhor com eles :
 
 #### Se / Então / Caso contrário, bloqueia, Loop, In e A
 
-> **Note**
+> **NOTA**
 >
 > Nos blocos Si / Então / Caso contrário, setas circulares localizadas
 > à esquerda do campo de condição permitem ativar ou não o
@@ -197,7 +197,7 @@ selecione um item para testar :
     Jeedom abre uma janela para perguntar qual teste você deseja
     executar nele. Se você escolher **Não ponha nada**,
     Jeedom adicionará o pedido sem comparação. Você também pode
-    Escolher **et** onde **ou** Na frente **Ensuite** para encadear testes
+    Escolher **e** onde **onde** Na frente **Em seguida** para encadear testes
     em equipamentos diferentes.
 
 -   **Pesquisa cenário** : Permite procurar um cenário
@@ -205,7 +205,7 @@ selecione um item para testar :
 
 -   **Procure equipamento** : O mesmo para equipamentos.
 
-> **Tip**
+> **Dica**
 >
 > Há uma lista de tags que permitem acesso a variáveis
 > do script ou de outro, ou por hora, data, um
@@ -213,16 +213,16 @@ selecione um item para testar :
 > Tags.
 
 Depois de concluída a condição, você deve usar o botão
-"adicionar ", à esquerda, para adicionar um novo **bloc** ou um
-**action** no bloco atual.
+"adicionar ", à esquerda, para adicionar um novo **Bloco** ou um
+**Ação** no bloco atual.
 
-> **Tip**
+> **Dica**
 >
 > Você NÃO DEVE usar [] em testes de condição, apenas parênteses () são possíveis
 
 #### Código de bloco
 
-> **Important**
+> **IMPORTANTE**
 >
 > Observe que as tags não estão disponíveis em um bloco de código.
 
@@ -265,7 +265,7 @@ Cenas :
 
 As ações adicionadas aos blocos têm várias opções. Em ordem :
 
--   Uma caixa **paralelo** para que este comando seja lançado em paralelo
+-   Uma caixa **porallèle** para que este comando seja lançado em paralelo
     outros comandos também selecionados.
 
 -   Uma caixa **ativado** para que esse comando seja levado em consideração
@@ -281,7 +281,7 @@ As ações adicionadas aos blocos têm várias opções. Em ordem :
 
 -   Um botão para procurar um comando de ação.
 
-> **Tip**
+> **Dica**
 >
 > Dependendo do comando selecionado, podemos ver diferentes
 > campos adicionais exibidos.
@@ -355,7 +355,7 @@ Tags
 Uma tag é substituída durante a execução do cenário por seu valor. Você
 pode usar as seguintes tags :
 
-> **Tip**
+> **Dica**
 >
 > Para exibir os zeros à esquerda, use o
 > Função Date (). Veja
@@ -410,7 +410,7 @@ desencadeado por uma interação :
 -   #profil# : perfil do usuário que iniciou o cenário
     (pode estar vazio).
 
-> **Important**
+> **IMPORTANTE**
 >
 > Quando um cenário é acionado por uma interação, é
 > necessariamente executado no modo rápido.
@@ -666,12 +666,12 @@ Pedidos específicos
 
 Além dos comandos de automação residencial, você tem acesso às seguintes ações :
 
--   **Pause** (dormir) : Pausa x segundo (s).
+-   **Pausa** (dormir) : Pausa x segundo (s).
 
--   **variable** (variável) : Criação / modificação de uma variável ou valor
+-   **Variável** (variável) : Criação / modificação de uma variável ou valor
     de uma variável.
 
--   **Remover variável** (delete_variable) : Permite excluir uma variável
+-   **Remover Variável** (delete_variable) : Permite excluir uma variável
 
 -   **Cenas** (cenário) : Permite controlar cenários. A parte de tags
     permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado lá
@@ -679,20 +679,20 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     acentos e sem caracteres especiais). Recebemos a tag no
     cenário de destino com a função tag (montag). O comando "Reset SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva)
 
--   **Stop** (parar) : Pára o script.
+-   **Pare** (parar) : Pára o script.
 
--   **Attendre** (espera) : Aguarde até que a condição seja válida
+-   **Esperar** (espera) : Aguarde até que a condição seja válida
     (máximo de 2h), o tempo limite está em segundo (s).
 
--   **Vai o projeto** (gotodesign) : Mude o design exibido em todos
+-   **àller au design** (gotodesign) : Mude o design exibido em todos
     navegadores por design solicitado.
 
--   **Adicionar um registro** (log) : Permite adicionar uma mensagem no log.
+-   **Adicionar un Log** (log) : Permite adicionar uma mensagem no log.
 
 -   **Criar mensagem** (mensagem) : Adicione uma mensagem no centro
     de mensagens.
 
--   **Activar / Desactivar Hide / Show equipamentos** (equipamento) : Deixa
+-   **àctiver/Désactiver Masquer/afficher un équipement** (equipamento) : Deixa
     modificar as propriedades de um dispositivo
     visível / invisível, ativo / inativo.
 
@@ -703,7 +703,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     função está bloqueando. Enquanto não houver resposta ou o
     timeout não for atingido, o cenário aguarda.
 
--   **Stop Jeedom** (jeedom_poweroff) : Peça ao Jeedom para desligar.
+-   **àrrêter Jeedom** (jeedom_poweroff) : Peça ao Jeedom para desligar.
 
 -   **Reiniciar o Jeedom** (jeedom_reboot) : Peça ao Jeedom para reiniciar.
 
@@ -712,19 +712,19 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 
 -   **ícone** (ícone) : Permite alterar o ícone de representação do cenário.
 
--   **Alerte** (alerta) : Permite exibir uma pequena mensagem de alerta em todos
+-   **Aviso** (alerta) : Permite exibir uma pequena mensagem de alerta em todos
     navegadores que têm uma página Jeedom aberta. Você pode
     mais, escolha 4 níveis de alerta.
 
 -   **Pop-up** (pop-up) : Permite exibir um pop-up que deve ser absolutamente
     validado em todos os navegadores que possuem uma página jeedom aberta.
 
--   **Rapport** (relatório) : Exportar uma visualização em formato (PDF, PNG, JPEG
+-   **Relatório** (relatório) : Exportar uma visualização em formato (PDF, PNG, JPEG
     ou SVG) e envie-o através de um comando de tipo de mensagem.
     Observe que, se seu acesso à Internet estiver em HTTPS não assinado, isso
     funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
 
--   **Excluir bloco IN / A agendado** (remove_inat) : Permite excluir o
+-   **Remover Bloco DANS/à programmé** (remove_inat) : Permite excluir o
     programação de todos os blocos IN e A do cenário.
 
 -   **Evento** (evento) : Permite inserir um valor em um comando de tipo de informação arbitrariamente
@@ -763,9 +763,9 @@ Ao clicar em um modelo, você obtém :
 
 No topo você pode :
 
--   **Partager** : Compartilhe o modelo no mercado,
+-   **Compartilhe** : Compartilhe o modelo no mercado,
 
--   **Supprimer** : Excluir modelo,
+-   **Remover** : Excluir modelo,
 
 -   **Baixar** : recuperar o modelo como um arquivo JSON
     para enviá-lo de volta para outro Jeedom, por exemplo.
@@ -782,7 +782,7 @@ as ordens de correspondência se aplicam.
 Adição da função php
 ====================
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > A adição da função PHP é reservada para usuários avançados. O menor erro pode travar o seu Jeedom
 
@@ -794,6 +794,6 @@ Vá para a pasta de dados, php e clique no arquivo user.function.class.php.
 
 É nesta classe que você deve adicionar suas funções, você encontrará um exemplo de função básica.
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > Se você tiver um problema, sempre poderá voltar ao arquivo original e copiar o conteúdo de user.function.class.sample.php em user.function.class.php

@@ -1,12 +1,12 @@
-Auf dieser Seite können Sie alle Berichte anzeigen, die durch die Berichtsaktion generiert wurden (siehe Szenariodokumentation)..
+Auf dieser Seite können Sie alle Berichte anzeigen, die durch die Berichtsaktion generiert wurden (siehe Szenariodokumentation).
 
 # Was ist ein Bericht? ?
 
-Ein Bericht ist ein Screenshot der Jeedom-Benutzeroberfläche zu einem Zeitpunkt T (die Erfassung wird so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht übernommen werden)..
+Ein Bericht ist ein Screenshot der Jeedom-Benutzeroberfläche zu einem Zeitpunkt T (die Erfassung wird so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht übernommen werden).
 
 Sie können dies für Ansichten, Design und Bedienfeldseite tun....
 
-Es wird von einem Skript mit dem Befehl report ausgelöst. Sie können festlegen, dass dieser Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie gesendet wird.
+Es wird von einem Skript mit dem Befehl report ausgelöst. Sie können festlegen, dass dieser Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie gesendet wird
 
 # Utilisation
 
@@ -19,9 +19,9 @@ Die Verwendung ist sehr einfach, Sie wählen aus, wenn Sie sehen möchten :
 
 Anschließend wählen Sie den Namen des betreffenden Berichts aus und sehen alle Daten der Berichte im Speicher
 
-> **Important**
+> **Wichtig**
 >
-> Das automatische Löschen erfolgt standardmäßig für Berichte, die länger als 30 Tage dauern (Sie können diesen Zeitraum in der Konfiguration von Jeedom konfigurieren).
+> Das automatische Löschen erfolgt standardmäßig für Berichte, die länger als 30 Tage dauern (Sie können diesen Zeitraum in der Konfiguration von Jeedom konfigurieren)
 
 Sobald der Bericht ausgewählt ist, können Sie ihn sehen, erneut herunterladen oder löschen.
 

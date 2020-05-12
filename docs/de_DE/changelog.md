@@ -41,7 +41,7 @@ Changelog
 - Bessere Berücksichtigung von Plugin-Widgets
 - Optimierung der Gesundheitsberechnung für den Swap
 
->**IMPORTANT**
+>**WICHTIG**
 >
 >Dieses Update behebt ein Problem, das möglicherweise eine Aufzeichnung des Verlaufs ab dem 1. Januar 2020 verhindert. Es wird mehr als empfohlen
 
@@ -158,7 +158,7 @@ Changelog
 
 - Fehlerbehebungen
 - Verbesserte Auftragsersetzung (in Ansichten, Plan und Plan3d)
-- Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte.
+- Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte
 
 3.3.21
 =====
@@ -210,7 +210,7 @@ Changelog
 -   Eine Nachricht wird jetzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
 -   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
 -   Hinzufügen einer Schaltfläche zum Aktualisieren der Nachrichten des Nachrichtencenters.
--   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...)..
+-   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...).
 -   Hinzufügen einer Aktion &quot;Auf Null des IS zurücksetzen&quot; in den Szenarien
 -   Möglichkeit, Bilder im Hintergrund zu den Ansichten hinzuzufügen
 -   Möglichkeit, Hintergrundbilder zu Objekten hinzuzufügen
@@ -230,7 +230,7 @@ Changelog
 -   Möglichkeit, ein Element aus der Entwurfskonfiguration zu löschen
 -   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht)
 -   Szenario-Widgets werden jetzt standardmäßig im Dashboard angezeigt
--   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen).
+-   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen)
 -   Möglichkeit, den Szenarien ein Symbol hinzuzufügen
 -   Hinzufügen der Daemon-Verwaltung in der Task-Engine
 -   Hinzufügen der Funktion color_gradient in den Szenarien
@@ -270,7 +270,7 @@ Changelog
 - Verbesserung des Aktualisierungsprozesses insbesondere beim Kopieren von Dateien, bei dem nun die Größe der kopierten Datei überprüft wird.
 - Fehlerbehebungen bei den Funktionen stateDuration, lastStateDuration und lastChangeStateDuration (danke @kiboost).
 - Optimierung der Linkgraphenberechnung und Verwendung von Variablen.
-- Verbesserung des Fensters mit den Cron-Aufgabendetails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost)..
+- Verbesserung des Fensters mit den Cron-Aufgabendetails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost).
 
 3.2.9
 =====
@@ -287,7 +287,7 @@ Changelog
 - Fehlerbehebungen
 - Hinzufügen einer Option in der Jeedom-Administration zur Angabe des lokalen IP-Bereichs (nützlich bei Docker-Installationen)
 - Korrektur eines Fehlers bei der Berechnung der Verwendung von Variablen
-- Hinzufügen eines Indikators auf der Gesundheitsseite, der die Anzahl der Prozesse angibt, die aufgrund von Speichermangel abgebrochen wurden (insgesamt bedeutet dies, dass die Jeedom zu geladen ist).
+- Hinzufügen eines Indikators auf der Gesundheitsseite, der die Anzahl der Prozesse angibt, die aufgrund von Speichermangel abgebrochen wurden (insgesamt bedeutet dies, dass die Jeedom zu geladen ist)
 - Verbesserter Datei-Editor
 
 3.2.7
@@ -329,7 +329,7 @@ Changelog
 3.2.2
 =====
 
--   Entfernung des alten Widget-Update-Systems (veraltet seit Version 3.0). Achtung, wenn Ihr Widget das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel Widget [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Entfernung des alten Widget-Update-Systems (veraltet seit Version 3.0). Achtung, wenn Ihr Widget das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung). Beispiel Widget [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren
 
 -   Benutzer können jetzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
@@ -340,7 +340,7 @@ Changelog
 
 -   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
 
--   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets).
+-   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets)
 
 -   Korrektur eines Rechtefehlers nach Wiederherstellung einer Sicherung
 
@@ -366,7 +366,7 @@ Changelog
 -   Jeed-186 : Wir können jetzt die Hintergrundfarbe in der auswählen
     designs
 
--   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen.
+-   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen
     indem Sie einfach die Minuten eingeben (ex 30 für 00:30)
 
 -   Hinzufügen von aktiven Sitzungen und Geräten, die auf der registriert sind
@@ -376,7 +376,7 @@ Changelog
 -   Jeed-284 : Die dauerhafte Verbindung hängt jetzt von einem Schlüssel ab
     Einzelbenutzer und Gerät (statt Benutzer)
 
--   Jeed-283 : Hinzufügen eines Modus *rescue* zur Freiheit durch Hinzufügen & Rettung = 1
+-   Jeed-283 : Hinzufügen eines Modus *Rettung* zur Freiheit durch Hinzufügen & Rettung = 1
     in der URL
 
 -   Jeed-8 : Hinzufügen des Namens des Szenarios zum Titel der Seite während
@@ -759,7 +759,7 @@ Changelog
     Befehle und Zusammenfassungen, die in Antworten verwendet werden
     Kontext und Zusammenfassungen
 
--   Jeedom weiß, wie man mehrere verwandte Interaktionen verwaltet (kontextbezogen).
+-   Jeedom weiß, wie man mehrere verwandte Interaktionen verwaltet (kontextbezogen)
     in einem. Sie müssen durch ein Schlüsselwort getrennt werden (standardmäßig und).
     Beispiel : "Wie viel kostet es im Schlafzimmer und im Wohnzimmer? "Oder
     "Schalten Sie das Licht in Küche und Schlafzimmer ein."
@@ -938,7 +938,7 @@ Changelog
     / tmp ist zu klein (Vorsicht, die Korrektur wird bei wirksam
     Update n + 1)
 
--   Tag hinzufügen *jeedom\_name* in den Szenarien (geben Sie den Namen
+-   Tag hinzufügen *Jeedom\_name* in den Szenarien (geben Sie den Namen
     jeedom)
 
 -   Fehlerbehebungen

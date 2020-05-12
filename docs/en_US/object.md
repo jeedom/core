@@ -1,7 +1,7 @@
-The **objets** allow you to define the tree structure of your home automation.
+The **objects** allow you to define the tree structure of your home automation.
 All the equipment you create must belong to an object and
 will be more easily identifiable. We then say that the object
-is the **parent** equipment. Object management is accessible
+is the **relative** equipment. Object management is accessible
 from the menu **Tools → Objects**.
 
 To give free choice to customization, you can name these
@@ -14,7 +14,7 @@ Management
 
 You have two options :
 
--   **Ajouter** : Create a new object.
+-   **Add** : Create a new object.
 
 -   **Overview** : Displays the list of created objects
     as well as their configuration.
@@ -40,7 +40,7 @@ Here are the different characteristics to configure an object :
     to parent the apartment. An object can only have one parent
     but several objects can have the same parent.
 
--   **Visible** : Check this box to make this object visible.
+-   **Jeedom** : Check this box to make this object visible.
 
 -   **Hide on the dashboard** : Check this box to hide
     the object on the dashboard. It is still kept in the
@@ -74,13 +74,13 @@ Here are the different characteristics to configure an object :
 > **Tip**
 >
 > You can see a graph representing all the elements of Jeedom
-> attached to this object by clicking on the button **Liens**, up at
+> attached to this object by clicking on the button **Connections**, up at
 > right.
 
 > **Tip**
 >
 > When a device is created and no parent has been defined, it
-> will have as parent : **Aucun** .
+> will have as parent : **No** .
 
 Summary tab 
 -------------
@@ -106,7 +106,7 @@ lines are proposed to you :
 ### Orders 
 
 Each tab represents a type of summary defined in the configuration
-from Jeedom. Click on **Add an order** so that it is
+from Jeedom. Click on **Add une commande** so that it is
 taken into account in the summary. You have the choice to select the
 order any Jeedom equipment, even if it is not for
 parent this object.
@@ -124,15 +124,15 @@ Overview
 The overview allows you to view all the objects in
 Jeedom, as well as their configuration :
 
--   **ID** : Object ID.
+-   **Id** : Object ID.
 
--   **Objet** : Object name.
+-   **Object** : Object name.
 
 -   **Dad** : Name of parent object.
 
--   **Visible** : Object visibility.
+-   **Jeedom** : Object visibility.
 
--   **Masqué** : Indicates if the object is hidden on the dashboard.
+-   **Mask** : Indicates if the object is hidden on the dashboard.
 
 -   **Summary Defined** : Indicates the number of orders per summary. This
     which is in blue is taken into account in the global summary.
