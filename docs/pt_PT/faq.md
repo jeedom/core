@@ -1,5 +1,5 @@
 # FAQ
-**Configurações → Versão : FAQ**
+**Configurações → Versão : Faq**
 
 ### Jeedom requer uma assinatura ?
 Não, o Jeedom é totalmente utilizável sem a necessidade de qualquer assinatura. No entanto, existem serviços oferecidos para backups ou chamadas / SMS, mas que são realmente opcionais.
@@ -117,7 +117,7 @@ Novamente, isso geralmente ocorre devido a um plug-in na versão beta, enquanto 
 
 ### Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via SSH
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
-Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware.. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
+Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
 
 ### Meu cenário não para mais
 É aconselhável olhar para os comandos executados pelo cenário, geralmente vem de um comando que não termina.
@@ -166,7 +166,7 @@ echo "PrivateTmp = no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 Tente limpar o cache do Chrome, a exibição dos históricos é calculada em relação ao tempo do navegador.
 
 ### Estou com o erro "Problemas de rede detectados, reinicialização da rede"
-Jeedom não pode encontrar ou não pode executar ping no gateway. Em geral, isso acontece se a caixa adsl for reiniciada (em particular, caixas ativas) e o Jeedom não tiver sido reiniciado ou reiniciado mais rapidamente que a caixa. Por questões de segurança, ele diz que encontrou um problema e relança o processo de conexão de rede. Você pode desativar esse mecanismo acessando a configuração do Jeedom e desativando o gerenciamento de rede pelo Jeedom..
+Jeedom não pode encontrar ou não pode executar ping no gateway. Em geral, isso acontece se a caixa adsl for reiniciada (em particular, caixas ativas) e o Jeedom não tiver sido reiniciado ou reiniciado mais rapidamente que a caixa. Por questões de segurança, ele diz que encontrou um problema e relança o processo de conexão de rede. Você pode desativar esse mecanismo acessando a configuração do Jeedom e desativando o gerenciamento de rede pelo Jeedom.
 
 ### Recebo a mensagem "Falha ao fazer backup do banco de dados. Verifique se o mysqldump está presente."
 Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode sugerir um problema com a corrupção do banco de dados e do sistema de arquivos. Infelizmente, não existe um comando milagroso para corrigir. O melhor é iniciar um backup e analisar o log dele. Em casos conhecidos de preocupações, temos:

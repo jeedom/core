@@ -10,9 +10,9 @@ Puede configurarlo como la página predeterminada en **Configuración → Prefer
 En cada objeto, se muestran su imagen de fondo y sus resúmenes :
 
 Dependiendo del tipo de resumen (clave), visible en **Preferencias → Sistema → Configuración / Resúmenes** :
-- Arriba a la izquierda : El nombre del objeto..
-- Arriba a la derecha : La temperatura (*temperature*) y humedad (*humidity*).
-- Bajo el título : Alerta (*security*) y Movimiento (*motion*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
+- Arriba a la izquierda : El nombre del objeto.
+- Arriba a la derecha : La temperatura (*Temperatura*) y humedad (*humedad*).
+- Bajo el título : Alerta (*seguridad*) y Movimiento (*Movimiento*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
 - Abajo : Todos los otros resúmenes de materias.
 
 La configuración de la visualización del objeto se realiza en **Herramientas → Objetos** :
@@ -22,13 +22,13 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 - Si la imagen de fondo solo debe usarse en la página Resumen o también en el fondo una vez en el objeto.
 - Los elementos de sus resúmenes, en la pestaña *Resumen*.
 
-> **Tip**
+> **Punta**
 >
 > El orden de visualización de los objetos es el de *Resumen de domótica*, que puede reordenar (Análisis → Resumen de automatización del hogar).
 
-> **Note**
+> **Nota**
 >
-> Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto..
+> Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto.
 
 ## Fonctions
 
@@ -38,7 +38,7 @@ Para cada objeto, puede hacer clic :
 - En un elemento de resumen para mostrar los elementos de este objeto, de este tipo.
 
 
-> **Tip**
+> **Punta**
 >
 > Ctrl Click o Center Click en el objeto o un elemento de resumen abre otra pestaña de su navegador.
 

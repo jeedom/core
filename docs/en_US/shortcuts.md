@@ -72,7 +72,7 @@ In a Code block :
 - Ctrl S on a plugin configuration : Save.
 - Ctrl Click or Click Center on a plugin : Open plugin management in a new browser tab.
 
-## Plugins / *plugin*
+## Plugins / *Plugin*
 - On a device, Ctrl S  : Save.
 - On a device, Right click on a tab : Contextual menu to go directly to another device.
 - Ctrl Click or Center Click on a device: Open the plugin equipment in a new browser tab.
@@ -85,8 +85,8 @@ In a Code block :
 - Ctrl Shift E on a design : Entering or leaving edit mode.
 
 ## Home automation analysis / summary
-- Ctrl Click on icon *Ouvrir* (research) : Open all objects and equipment.
-- Ctrl Click on icon *Fermer* (research) : Closes all objects and equipment.
+- Ctrl Click on icon *Open* (research) : Open all objects and equipment.
+- Ctrl Click on icon *Close* (research) : Closes all objects and equipment.
 
 ## Analysis / History
 If several curves are displayed :

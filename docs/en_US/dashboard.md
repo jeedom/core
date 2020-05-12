@@ -30,8 +30,8 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 > This allows you to have only the equipment that interests you, and to load the page faster.
 
 - You have at the top left a small icon to show / hide the tree of objects.
-- The second icon on the left allows you to filter the displayed equipment according to their category. A center click allows you to quickly select a single category.
-- In the middle, a search field allows you to search for equipment by name, category, plugin, tag, etc..
+- A search field allows you to search for equipment by name, category, plugin, tag, etc.
+- The icon to the left of the search field allows you to filter the displayed equipment according to their category. A center click allows you to quickly select a single category.
 - On the right, a button allows you to switch to edit mode, to modify the order of the tiles (click - drop on the widget), or resize them. You can also rearrange the order of commands in a tile.
 
 - By clicking on an object summary, you filter to display only the equipment related to this object and which relate to this object summary.
@@ -59,7 +59,7 @@ You can also edit the internal layout of the controls on the tile :
 - Either by right-clicking on the widget. You then access :
     - **Advanced configuration** : gives access to the advanced configuration of the command.
     - **Standard** : default layout, everything is automatic with just the possibility of rearranging the order of commands.
-    - **Tableau** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple commands per box
+    - **Board** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple commands per box
     - **Add column** : add a column to the table (accessible only if you are in table layout)
     - **Add line** : add a row to the table (accessible only if you are in table layout)
     - **Remove column** : remove a column from the table (accessible only if you are in table layout)

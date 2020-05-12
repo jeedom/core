@@ -6,17 +6,17 @@ Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de bús
 
 - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 - Haga clic en el nombre de Jeedom (barra de menú)  : Abre **Preferencias → Sistema → Configuración**.
-- Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual..
-- Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo..
+- Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual.
+- Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
 
 ## Dashboard
 En modo edición:
 	- Arrastra y suelta en los mosaicos para reorganizarlos.
 	- Cambiar el tamaño de los bordes del mosaico para cambiar su tamaño.
 	- Menú contextual (clic derecho) en los mosaicos.
-	- Ctrl Haga clic en un ícono *expand* : Ajusta la altura de los mosaicos del objeto no en relación con el más alto, sino en relación con el más bajo.
+	- Ctrl Haga clic en un ícono *expandir* : Ajusta la altura de los mosaicos del objeto no en relación con el más alto, sino en relación con el más bajo.
 
-- Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial..
+- Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial.
 
 ## Configuraciones / Sistema / Configuración
 - Ctrl S : Guardar.
@@ -40,7 +40,7 @@ En modo edición:
 
 ## Herramientas / Objetos
 - En un objeto, Ctrl S : Guardar.
-- En un objeto, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro objeto..
+- En un objeto, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro objeto.
 - Ctrl Click o Center Click en un objeto o en el menú contextual : Abra el objeto en una nueva pestaña del navegador.
 
 ## Herramientas / widgets
@@ -72,7 +72,7 @@ En un bloque de código :
 - Ctrl S en una configuración de complemento : Guardar.
 - Ctrl Click o Click Center en un complemento : Abra la administración de complementos en una nueva pestaña del navegador.
 
-## Complementos / *plugin*
+## Complementos / *Plugin*
 - En un dispositivo, Ctrl S  : Guardar.
 - En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
 - Ctrl Click o Center Click en un dispositivo: Abra el equipo del complemento en una nueva pestaña del navegador.
@@ -85,8 +85,8 @@ En un bloque de código :
 - Ctrl Shift E en un diseño : Entrar o salir del modo de edición.
 
 ## Análisis / resumen de domótica
-- Ctrl Haga clic en el icono *Ouvrir* (investigación) : Abra todos los objetos y equipos..
-- Ctrl Haga clic en el icono *Fermer* (investigación) : Cierra todos los objetos y equipos..
+- Ctrl Haga clic en el icono *Abrir* (investigación) : Abra todos los objetos y equipos.
+- Ctrl Haga clic en el icono *Cerca* (investigación) : Cierra todos los objetos y equipos.
 
 ## Análisis / Historia
 Si se muestran varias curvas :

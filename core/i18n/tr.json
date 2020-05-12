@@ -143,7 +143,7 @@
         "Status": "Durum"
     },
     "mobile\/html\/connection.html": {
-        "Nom d'utilisateur": "Kullanıcı adı ",
+        "Nom d'utilisateur": "Kullanıcı adı",
         "Mot de passe": "Şifre",
         "Code à 2 facteurs": "2 haneli kod",
         "Enregistrer cet appareil": "Bu cihazı kaydedin",
@@ -324,7 +324,7 @@
         "Action": "Eylem",
         "Corriger": "",
         "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
-        "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
+        "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table",
         "Vérification base de données": ""
     },
     "desktop\/modal\/dataStore.management.php": {
@@ -428,15 +428,15 @@
         "Permet de rajouter un message dans les logs": "Günlüklere(loglara) bir mesaj eklemeye izin verir",
         "Permet d'ajouter une message dans le centre de message": "Mesaj merkezine mesaj eklemeye yarar",
         "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Mülkiyet ekipmanının kapalı \/ görünür \/ görünmez alındığı değiştirir",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Jeedom sonra uygulamak bir değişkende cevap depolamasına izin verir Eylem. Bu eylem engelleme ve Jeedom bir yanıt aldığında veya zaman aşımı varılması halinde sona erer. Şu an için bu eylem SMS eklentileri, Slack ve SARAH Telgraf ile uyumludur.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Jeedom sonra uygulamak bir değişkende cevap depolamasına izin verir Eylem. Bu eylem engelleme ve Jeedom bir yanıt aldığında veya zaman aşımı varılması halinde sona erer. Şu an için bu eylem SMS eklentileri, Slack ve SARAH Telgraf ile uyumludur",
         "Envoi l'ordre à Jeedom de s'éteindre": "Jeedom\\'a kapanma komutası gönderir",
         "Envoi l'ordre à Jeedom de redémarrer": "",
-        "Retourne un texte ou une valeur pour une interaction par exemple": "Bir etkileşim için bir metin veya değer döndürür ",
+        "Retourne un texte ou une valeur pour une interaction par exemple": "Bir etkileşim için bir metin veya değer döndürür",
         "Permet d'affecter une icône au scénario": "Eğer komut dosyasına bir simge atamak için izin verir",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Bir sayfa açık Jeedom olan tüm tarayıcılarda küçük uyarısı görüntüler. Ayrıca uyarının dört seviyeleri arasından seçim yapabilirsiniz",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "",
         "ouverte.": "",
-        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Bir komuta, bir bakış bir rapor, bir tasarım veya bir panel PNG \/ PDF \/ JPEG \/ SVG gönder.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Bir komuta, bir bakış bir rapor, bir tasarım veya bir panel PNG \/ PDF \/ JPEG \/ SVG gönder",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Sil tüm blokları İÇİNDE ve A Senaryo programlama",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "",
         "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "",
@@ -562,7 +562,7 @@
         "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>": "- Cevabı <a href='https:\/\/jeedom.github.io\/documentation'> dokümanlarına <\/a> önceden bulunmadığından",
         "Etape 2 : Choix du type de demande": "Adım 2: İsteğe türünü seçin",
         "Assistance technique": "Teknik yardım",
-        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Kısa zamanda cevap vereceğiz Teknik Servis dikkatine sorunuzu yazın.",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Kısa zamanda cevap vereceğiz Teknik Servis dikkatine sorunuzu yazın",
         "Rapport": "Rapor",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).": "",
         "Demande d'amélioration": "İyileştirme İsteği",
@@ -693,7 +693,7 @@
         "Afficher les statistiques": "",
         "Retour à la ligne forcé avant le widget": "Widget'tan önce zorunlu satıra geri dön",
         "après le widget": "Widgetten sonra",
-        "Paramètres optionnels widget": "İsteğe bağlı widget ayarları ",
+        "Paramètres optionnels widget": "İsteğe bağlı widget ayarları",
         "Sélection multiple de commandes": "Çoklu komuta seçimi",
         "Graphique des liens": "Linkler grafiği",
         "Êtes-vous sûr de vouloir copier l\\'historique de": "Bunun geçmişini kopyalamak istediğinizden eminmisiniz",
@@ -1051,7 +1051,7 @@
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak",
         "Ouvrir dans Analyse \/ Historique.": "",
         "Historique": "Geçmiş"
     },
@@ -1350,7 +1350,7 @@
         "Installer mon Backup": "",
         "Informations Importantes": "",
         "- Il vous faut une clé USB de plus de 8Go.": "",
-        "- Il vous faut être sur le meme réseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom.",
+        "- Il vous faut être sur le meme réseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom",
         "- Accéder à votre Jeedom depuis son adresse interne.": "",
         "- Pouvoir laisser cette page ouverte au minimum 1h30.": "",
         "C'est parti": ""
@@ -1523,7 +1523,7 @@
         "Activer le proxy": "",
         "Addresse proxy": "",
         "Port du proxy": "",
-        "Nom d'utilisateur": "Kullanıcı adı ",
+        "Nom d'utilisateur": "Kullanıcı adı",
         "Mot de passe": "Şifre",
         "Timeline": "Zaman çizelgesi",
         "Nombre maximum d'évènements sur chaque Timeline": "",
@@ -1621,7 +1621,7 @@
         "Interaction automatique, contextuelle & avertissement": "Otomatik etkileşim, içeriksel ve uyarı",
         "Activer les interactions automatiques": "Otomatik etkileşimleri etkinleştirme",
         "Activer les réponses contextuelles": "Bağlamsal cevapları etkinleştirme",
-        "Réponse contextuelle prioritaire si la phrase commence par": "Bağlamsal yanıta öncelik cümle böyle başlıyorsa ",
+        "Réponse contextuelle prioritaire si la phrase commence par": "Bağlamsal yanıta öncelik cümle böyle başlıyorsa",
         "Découper une interaction en 2 si elle contient": "Etkileşimi bunu içeriyorsa 2'ye bölün",
         "Activer les interactions \"préviens moi": "",
         "Réponse de type \"préviens moi\" si la phrase commence par": "Cümle başlarsa tipi yanıtı \"beni uyar\"",
@@ -1753,11 +1753,11 @@
         "Rechercher": "Arayın",
         "Afficher\/Masquer les objets": "Nesneleri Aç\/Gizle",
         "Retour à la Synthèse": "",
+        "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
         "Toutes": "",
         "Aucune": "Hayır",
         "Scenario": "Senaryo",
-        "Vider le champ de recherche": "",
         "Édition du Dashboard": "",
         "Clic: hauteur max<br>CtrlClic: hauteur min": ""
     },
@@ -1937,7 +1937,7 @@
         "Synchrone": "",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "",
         "Timeline": "Zaman çizelgesi",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "Script infazlar çizelgesinde görülebilir.",
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Script infazlar çizelgesinde görülebilir",
         "Dossier": "",
         "Dernier lancement": "Son çalıştırma",
         "Icône": "Icon",
@@ -1964,7 +1964,7 @@
         "Annuler": "Iptal et"
     },
     "desktop\/php\/connection.php": {
-        "Nom d'utilisateur": "Kullanıcı adı ",
+        "Nom d'utilisateur": "Kullanıcı adı",
         "Mot de passe": "Şifre",
         "Code à 2 facteurs": "2 haneli kod",
         "Enregistrer cet ordinateur": "Bu bilgisayarı kaydet",
@@ -2214,7 +2214,7 @@
         "Rechercher": "Arayın",
         "Supprimer tout ou partie de cet historique.": "",
         "Exporter cet historique.": "",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak",
         "Variation": "Derecelendirme",
         "Escalier": "Merdiven",
         "Aucun groupement": "Hiçbir gruplama",
@@ -2311,7 +2311,7 @@
     "desktop\/js\/editor.js": {
         "Aucun fichier ouvert.": "",
         "Fichier enregistré avec succès": "",
-        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier : ",
+        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier :",
         "Fichier supprimé avec succès": "",
         "Le sous-type ne peut être vide": "",
         "Le nom ne peut être vide": "",
@@ -2562,7 +2562,7 @@
         "Merci": "",
         "Clé USB vérifiée passage à l\\'étape 2 en cours": "",
         "Début de la restauration du backup !": "",
-        "Backup Fini, copie en cours sur la clé USB, ne pas débrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...",
+        "Backup Fini, copie en cours sur la clé USB, ne pas débrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci",
         "test de l\\'image": "",
         "Mise à jour de votre Jeedom réussie": "",
         "L\\'opération a échoué": "Operasyon başarılamadı",
@@ -2687,7 +2687,7 @@
         "Résumé Objets": ""
     },
     "desktop\/js\/system.js": {
-        "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
+        "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
         "Celle-ci est classé en dangereuse": "",
         "Commande : ": "Komuta :"
     },
@@ -2697,7 +2697,7 @@
         "? Une fois lancée cette opération ne peut être annulée": "",
         "Êtes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
         "avec la sauvegarde": "",
-        "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez.",
+        "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Kaydı silmek istediğinizden eminmisiniz",
         "Sauvegarde supprimée avec succès": "Kayıt başarıyla silindi",
         "Fichier(s) ajouté(s) avec succès": "Dosya(lar) başarıyla eklendi(ler)",
@@ -3116,7 +3116,7 @@
     "core\/com\/shell.com.php": {
         "Erreur sur ": "Hata",
         " valeur retournée : ": "döndürülen değer:",
-        ". Détails : ' ": ". Ayrıntılar: '"
+        ". Détails : ' ": "Ayrıntılar: '"
     },
     "core\/com\/http.com.php": {
         "Erreur cURL : ": "CURL hatası:",
@@ -3328,7 +3328,7 @@
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Aucun plan3d correspondant": "",
         "Objet inconnu vérifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
+        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id :",
         "Code d\\'accès invalide": "Code d\\'acces invalide",
         "Objet inconnu. Vérifiez l\\'ID": "Bilinmeyen nesne. Kimliği kontrol edin",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Dosya bulunamadı. PHP ayarını kontrol edin (yazı boyutu sınırı)",
@@ -3376,7 +3376,7 @@
         "[Backup] Partage": "",
         "[Backup] Chemin": "",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R"
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
         "Adresse": "",
@@ -3398,13 +3398,13 @@
         "Erreur sur le monitoring cloud :": "",
         "Erreur repo_market::getinfo : ": "Repo_market :: getinfo hatası:",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R",
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R",
         "Téléchargement de ": "İndirme",
         "URL ": "URL'ler",
         "Installation des plugin, widget, scénario...": "",
         "OK\\n": "Tamam \\ n",
         "Impossible de supprimer : ": "Silinemiyor:",
-        ". Vérifiez les droits": ". Hakları kontrol edin",
+        ". Vérifiez les droits": "Hakları kontrol edin",
         "Echec de création de l\\'archive zip": "Zip arşivi oluşturulamadı",
         "Aucune fonction correspondante à : ": "Şuna karşılık gelen işlev yok:",
         "Impossible de trouver le fichier à envoyer : ": "Gönderilecek dosya bulunamadı:"
@@ -3439,7 +3439,7 @@
         "Branche pour le core Jeedom": "",
         "Dépot github non trouvé : ": "Github deposu bulunamadı:",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R",
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R",
         "Téléchargement de ": "İndirme"
     },
     "core\/repo\/market.send.repo.php": {
@@ -3454,7 +3454,7 @@
         "Sur ce prix 60 % seront reversés au développeur": "Bu fiyata% 60 geliştiriciye bağışlanacak",
         "Libre": "ücretsiz",
         "Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)": "Bu fiyata% 65 geliştiriciye bağışlanacaktır (5 € veya daha büyük olmalıdır)",
-        "N'oubliez pas de rajouter une image à votre création en passant par le market.": "Pazar aracılığıyla yaratımınıza bir resim eklemeyi unutmayın.",
+        "N'oubliez pas de rajouter une image à votre création en passant par le market.": "Pazar aracılığıyla yaratımınıza bir resim eklemeyi unutmayın",
         "ID": "Kimlik",
         "Nom": "İsim",
         "Type": "Çeşit",
@@ -3488,7 +3488,7 @@
         "URL core Jeedom": "",
         "URL version core Jeedom": "",
         "Impossible d\\'écrire dans le répertoire : ": "Dizine yazılamıyor:",
-        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": ". SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R"
+        ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "SSH'de aşağıdaki komutu yürütün: sudo chmod 777 -R"
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -3537,8 +3537,8 @@
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Bir cihaza eklemeden sipariş oluşturamazsınız",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
         "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
-        ". Sur preExec de la commande": ". Sipariş öncesi",
-        ". Détails : ": ". Detaylar:",
+        ". Sur preExec de la commande": "Sipariş öncesi",
+        ". Détails : ": "Detaylar:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Ekipman devre dışı - komut çalıştırılamıyor:",
         "Exécution de la commande ": "Komuta nın uygulanması",
         " avec les paramètres ": "parametreler ile birlikde",
@@ -3667,7 +3667,7 @@
         "Vous n\\'êtes pas autorisé à exécuter cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Erreur : impossible de calculer la date de programmation": "Hata: programlama tarihi hesaplanamıyor",
         "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
-        ". Détails : ": ". Detaylar:",
+        ". Détails : ": "Detaylar:",
         "aucune valeur": "değer yok"
     },
     "core\/class\/history.class.php": {
@@ -3841,7 +3841,7 @@
     },
     "core\/class\/plan.class.php": {
         "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
-        ". Détails : ": ". Detaylar:",
+        ". Détails : ": "Detaylar:",
         "Non configuré": "Yapılandırılmadı"
     },
     "core\/class\/cron.class.php": {
@@ -3928,7 +3928,7 @@
         "Exécution d\\'un bloc code": "Kod bloğunun yürütülmesi"
     },
     "core\/class\/scenarioSubElement.class.php": {
-        "Exécution du sous-élément de type [action] : ": " Alt türünün uygulanması [işlem] :",
+        "Exécution du sous-élément de type [action] : ": "Alt türünün uygulanması [işlem] :",
         "Exécution du sous-élément de type [condition] : ": "Bu tipdeki alt-elementin uygulanması [şart] :"
     },
     "core\/class\/ajax.class.php": {
@@ -4003,21 +4003,21 @@
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",
         "Impossible de créer le dossier  : ": "",
         ". Problème de droits ?": "",
-        "Téléchargement du plugin...": "Eklentiyi indir ...",
+        "Téléchargement du plugin...": "Eklentiyi indir",
         "OK\\n": "Tamam \\ n",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de' . jeedom::getHardwareName() . 'qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de' . jeedom::getHardwareName() . 'un souci du plugin sur le market, etc.": "",
         "Extension du fichier non valide (autorisé .zip) : ": "",
-        "Décompression du zip...": "Fermuarın dekompresyonu ...",
+        "Décompression du zip...": "Fermuarın dekompresyonu",
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "Eklenti yüklenemedi. Dosyalar açılamadı:",
         "Impossible de décompresser l\\'archive zip : ": "Zip arşivi açılamıyor:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "Jeedom'un çekirdeğini silemezsiniz",
         "Supression des fichiers inutiles...": "",
         "Début de la mise à jour de : ": "Güncellemenin başlangıcı:",
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "Klasör oluşturulamıyor: '. $ cibDir. . Hak sorunu?",
-        "Action de pré-update...": "Ön güncelleme eylemi ...",
+        "Action de pré-update...": "Ön güncelleme eylemi",
         "Post-installation de ": "Kurulum sonrası",
-        "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Eklenti yüklenemedi. Eklenti adı kimlik numarasından farklı veya eklenti düzgün oluşturulmamış. Lütfen yazara başvurun.",
+        "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Eklenti yüklenemedi. Eklenti adı kimlik numarasından farklı veya eklenti düzgün oluşturulmamış. Lütfen yazara başvurun",
         "END UPDATE SUCCESS\\n": "",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
         "Le logical ID ne peut pas être vide": "Mantıksal kimlik boş olamaz"

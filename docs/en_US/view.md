@@ -28,14 +28,14 @@ The principle is quite simple : a view is made up of zones (you can put as many 
 
 - On the left of the page we find the list of views and an add button.
 - A button at the top right allows you to edit the current view.
-- In the center you have a button to rename a view, a button to add an area, a button to see the result, a button to save and a button to delete the view..
+- In the center you have a button to rename a view, a button to add an area, a button to see the result, a button to save and a button to delete the view.
 
 After clicking on the add zone button, Jeedom will ask for its name and type.
 On each zone you have the following general options :
 
-- **Largeur** : Defines the width of the area (in desktop mode only).
-- **Editer** : Allows you to change the name of the zone.
-- **Supprimer** : Delete the zone.
+- **Width** : Defines the width of the area (in desktop mode only).
+- **Edit** : Allows you to change the name of the zone.
+- **Remove** : Delete the zone.
 
 ### Widget type area
 
@@ -62,14 +62,14 @@ A graphics type area allows you to add graphics to your view, it has the followi
 
 When you press the &quot;Add curve&quot; button Jeedom displays the list of historical commands and you can choose the one (s) to add, once done you have access to the following options :
 
-- **Poubelle** : Remove command from chart.
-- **Nom** : Name of the command to draw.
-- **Couleur** : Color of the curve.
+- **Trash can** : Remove command from chart.
+- **Last name** : Name of the command to draw.
+- **Color** : Color of the curve.
 - **Type** : Type of curve.
-- **Groupement** : Allows you to group data (maximum type per day).
-- **Echelle** : Scale (right or left) of the curve.
-- **Escalier** : Displays the staircase curve.
-- **Empiler** : Stacks the curve with the other type curves.
+- **Group** : Allows you to group data (maximum type per day).
+- **Ladder** : Scale (right or left) of the curve.
+- **Staircase** : Displays the staircase curve.
+- **Stack** : Stacks the curve with the other type curves.
 - **Variation** : Only draw variations with the previous value.
 
 > **Tip**
@@ -83,14 +83,14 @@ Here you have the buttons :
 - **Add column** : Add a column to the table.
 - **Add line** : Add a row to the table.
 
-> **Note**
+> **NOTE**
 >
 > It is possible to reorganize the rows by dragging and dropping but not the columns.
 
 Once you have added your rows / columns you can add information in the boxes :
 
-- **texte** : just text to write.
-- **html** : any html code (javascript possible but strongly discouraged).
+- **text** : just text to write.
+- **l'opération à mener** : any html code (javascript possible but strongly discouraged).
 - **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
 
 

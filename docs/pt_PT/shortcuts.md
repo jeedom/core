@@ -14,7 +14,7 @@ No modo de edição:
 	- Arraste e solte nos ladrilhos para reorganizá-los.
 	- Redimensionar nas bordas do bloco para redimensioná-las.
 	- Menu contextual (clique direito) nos blocos.
-	- Ctrl Clique em um ícone *expand* : Ajusta a altura dos blocos de objetos não em relação à mais alta, mas em relação à mais baixa.
+	- Ctrl Clique em um ícone *expandir* : Ajusta a altura dos blocos de objetos não em relação à mais alta, mas em relação à mais baixa.
 
 - Ctrl Clique em um comando de informações : Abre todas as informações do histórico do bloco na janela do histórico.
 
@@ -85,8 +85,8 @@ Em um bloco de código :
 - Ctrl Shift E em um design : Entrando ou saindo do modo de edição.
 
 ## Análise / resumo de automação residencial
-- Ctrl Clique no ícone *Ouvrir* (pesquisa) : Abra todos os objetos e equipamentos.
-- Ctrl Clique no ícone *Fermer* (pesquisa) : Fecha todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Aberto* (pesquisa) : Abra todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Fechar* (pesquisa) : Fecha todos os objetos e equipamentos.
 
 ## Análise / História
 Se várias curvas forem exibidas :

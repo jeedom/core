@@ -9,7 +9,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 ## Sauvegardes
 
-- **Sauvegardes** : Allows you to start a backup manually and immediately (useful if you want to make a critical change. This will allow you to go back). You also have a button to launch a backup without sending the archive to the cloud (requires a subscription see below). Sending a backup to the cloud can take a while. This option therefore avoids excessive loss of time.
+- **Backups** : Allows you to start a backup manually and immediately (useful if you want to make a critical change. This will allow you to go back). You also have a button to launch a backup without sending the archive to the cloud (requires a subscription see below). Sending a backup to the cloud can take a while. This option therefore avoids excessive loss of time.
 
 - **Backup location** : Indicates the folder in which Jeedom copies the backups. It is recommended not to change it. If you are on a relative path, its origin is where Jeedom is installed.
 
@@ -19,7 +19,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 ## Local backups
 
-- **Available backups** : List of available backups.
+- **Backups disponibles** : List of available backups.
 
 - **Restore backup** : Launches the restoration of the backup selected above.
 
@@ -35,7 +35,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Send a backup** : Send a backup archive located on your computer to the cloud.
 
-- **Available backups** : List of available cloud backups.
+- **Backups disponibles** : List of available cloud backups.
 
 - **Restore backup** : Starts restoring a cloud backup.
 
@@ -43,11 +43,11 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Sending backups** : Tells Jeedom to send the backups to the samba share configured here Settings → System → Configuration : Updates.
 
-- **Available backups** : List of available samba backups.
+- **Backups disponibles** : List of available samba backups.
 
 - **Restore backup** : Starts restoring the samba backup selected above.
 
-> **IMPORTANT**
+> **Important**
 >
 > Jeedom backups must be saved absolutely in a folder only for him ! It will delete everything that is not a jeedom backup from the folder.
 
@@ -58,13 +58,13 @@ During a backup, Jeedom will backup all of its files and the database. This ther
 
 At the protocol level, only the Z-Wave (OpenZwave) is a little different because it is not possible to save the inclusions. These are directly included in the controller, so you must keep the same controller to find its Zwave modules.
 
-> **Note**
+> **NOTE**
 >
-> The system on which Jeedom is installed is not backed up. If you have changed settings for this system (including via SSH), it&#39;s up to you to find a way to recover them if you have any concerns..
+> The system on which Jeedom is installed is not backed up. If you have changed settings for this system (including via SSH), it&#39;s up to you to find a way to recover them if you have any concerns.
 
 # Cloud backup
 
-Cloud backup allows Jeedom to send your backups directly to the Market. This allows you to restore them easily and be sure not to lose them. The Market keeps the last 6 backups. To subscribe just go to your page **profil** on the Market, then in the tab **my backups**. You can, from this page, retrieve a backup or buy a subscription (for 1, 3, 6 or 12 months).
+Cloud backup allows Jeedom to send your backups directly to the Market. This allows you to restore them easily and be sure not to lose them. The Market keeps the last 6 backups. To subscribe just go to your page **profile** on the Market, then in the tab **my backups**. You can, from this page, retrieve a backup or buy a subscription (for 1, 3, 6 or 12 months).
 
 > **Tip**
 >
