@@ -8,23 +8,23 @@ Existem dois tipos de widgets personalizados :
 - Widgets baseados em um modelo (gerenciado pelo Jeedom Core).
 - Widgets baseados no código do usuário.
 
-> **Note**
+> **NOTA**
 >
 > Se os widgets baseados em modelo são integrados ao Core e, portanto, monitorados pela equipe de desenvolvimento, este último não tem como garantir a compatibilidade de widgets com base no código do usuário, de acordo com os desenvolvimentos do Jeedom.
 
 ## Gestion
 
 Você tem quatro opções :
-- **Ajouter** : Permite criar um novo widget.
-- **Importer** : Permite importar um widget como um arquivo json exportado anteriormente.
-- **Code** : Abre um editor de arquivos para editar widgets de código.
-- **Remplacement** : Abre uma janela que permite substituir um widget por outro em todos os dispositivos que o utilizam.
+- **Adicionar** : Permite criar um novo widget.
+- **Importar** : Permite importar um widget como um arquivo json exportado anteriormente.
+- **CÓDIGO** : Abre um editor de arquivos para editar widgets de código.
+- **Substituição** : Abre uma janela que permite substituir um widget por outro em todos os dispositivos que o utilizam.
 
 ## Meus widgets
 
 Depois de criar um widget, ele aparecerá nesta parte.
 
-> **Tip**
+> **Dica**
 >
 > Você pode abrir um widget fazendo :
 > - Clique em um deles.
@@ -52,7 +52,7 @@ Dependendo do tipo de widget, geralmente você pode personalizar ícones ou colo
 Existem dois tipos de modelos :
 
 - O "**simples**" : Digite um ícone / imagem para "on" e um ícone / imagem para "off""
-- O "**multistates**" : Isso permite definir, por exemplo, uma imagem se o comando estiver definido como "XX" e outro se> como "YY" e novamente se <para "ZZ". Ou até mesmo uma imagem se o valor for "toto", outra se "plop" e assim por diante.
+- O "**multiestado**" : Isso permite definir, por exemplo, uma imagem se o comando estiver definido como "XX" e outro se> como "YY" e novamente se <para "ZZ". Ou até mesmo uma imagem se o valor for "toto", outra se "plop" e assim por diante.
 
 ## Criando um widget
 
@@ -66,17 +66,17 @@ Em seguida :
 
 ### Remplacement
 
-É o que se chama de widget simples. Aqui, basta dizer que o "on" corresponde a esse ícone / imagem (com o botão escolher), o "off" é aquele etc.. Então, dependendo do modelo, você pode oferecer a largura e a altura. Isso é válido apenas para imagens.
+É o que se chama de widget simples. Aqui, basta dizer que o "on" corresponde a esse ícone / imagem (com o botão escolher), o "off" é aquele etc. Então, dependendo do modelo, você pode oferecer a largura e a altura. Isso é válido apenas para imagens.
 
->**Note**
->Lamentamos os nomes em inglês, isso é uma restrição do sistema de modelos. Essa escolha garante uma certa velocidade e eficiência, tanto para você quanto para nós.. Não tivemos escolha
+>**NOTA**
+>Lamentamos os nomes em inglês, isso é uma restrição do sistema de modelos. Essa escolha garante uma certa velocidade e eficiência, tanto para você quanto para nós. Não tivemos escolha
 
->**TIPS**
+>**DICAS**
 >Para usuários avançados, é possível nos valores de substituição colocar tags e especificar seu valor na configuração avançada do comando, exibição da guia e "Widget de Parâmetros Opcionais". Por exemplo, se na largura você coloca como valor #width# (tenha cuidado para colocar o # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) e dê o valor. Isso permite alterar o tamanho da imagem de acordo com a ordem e, portanto, evita que você crie um widget diferente para cada tamanho de imagem desejado
 
 ### Test
 
-Isso é chamado de parte de vários estados; geralmente, como para widgets simples, você pode escolher "altura" / "largura" para as imagens, apenas abaixo da parte de teste..
+Isso é chamado de parte de vários estados; geralmente, como para widgets simples, você pode escolher "altura" / "largura" para as imagens, apenas abaixo da parte de teste.
 
 É bem simples. Em vez de colocar uma imagem para "on" e / ou "off", como no caso anterior, você deve fazer um teste antes de fazer. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
 
@@ -86,13 +86,13 @@ Os testes estão no formato : #value# == 1, #value# será substituído automatic
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Note**
+>**NOTA**
 >É importante observar o 'ao redor do texto para comparar se o valor é um texto
 
->**Note**
+>**NOTA**
 >Para usuários avançados, também é possível usar funções do tipo javascript aqui #value#.match ("^ plop"), aqui testamos se o texto começa com plop
 
->**Note**
+>**NOTA**
 >É possível exibir o valor do comando no widget, colocando, por exemplo, próximo ao código HTML do ícone #value#
 
 ## Descrição dos widgets
@@ -123,14 +123,14 @@ Este widget é um pouco especial, pois é um widget com vários comandos, ou sej
 
 Para configurá-lo, é bastante simples: você deve atribuir o widget ao controle de temperatura do seu equipamento e ao controle de umidade.
 
->**IMPORTANT**
+>**IMPORTANTE**
 >É absolutamente necessário que seus pedidos tenham o tipo genérico de temperatura no controle de temperatura e umidade no controle de umidade (isso é configurado na configuração avançada da configuração da guia de comandos).
 
 ##### Parâmetros opcionais
 
 - Escala : Permite alterar seu tamanho, por exemplo, definindo a escala como 0.5 será 2 vezes menor.
 
->**NOTE**
+>**NOTA**
 > Atenção em um design, é especialmente importante não fazer um pedido sozinho com esse widget que não funcionará, pois é um widget usando o valor de vários comandos; é absolutamente necessário colocar o widget completo
 
 ### Multiline

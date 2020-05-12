@@ -1,8 +1,8 @@
 # FAQ
-**Configuración → Versión : FAQ**
+**Configuración → Versión : Preguntas frecuentes**
 
 ### Jeedom requiere una suscripción ?
-No, Jeedom es totalmente utilizable sin necesidad de suscripción.. Sin embargo, hay servicios ofrecidos para copias de seguridad o llamadas / SMS, pero que son realmente opcionales.
+No, Jeedom es totalmente utilizable sin necesidad de suscripción. Sin embargo, hay servicios ofrecidos para copias de seguridad o llamadas / SMS, pero que son realmente opcionales.
 
 ### ¿Jeedom utiliza servidores externos para ejecutar ?
 No, Jeedom no utiliza la infraestructura de tipo "Cloud"". Todo se hace localmente y no necesita nuestros servidores para que su instalación funcione. Solo los servicios como Market, respaldo en línea o Jeedom DNS requieren el uso de nuestros servidores.
@@ -32,7 +32,7 @@ Para cada comando, puede elegir su visualización entre diferentes widgets Core 
 No, no es posible, pero puedes duplicarlo gracias al complemento virtual.
 
 ### Cómo cambiar datos históricos incorrectos ?
-Es suficiente, en una curva histórica del pedido, hacer clic en el punto en cuestión. Si deja el campo en blanco, el valor se eliminará..
+Es suficiente, en una curva histórica del pedido, hacer clic en el punto en cuestión. Si deja el campo en blanco, el valor se eliminará.
 
 ### ¿Cuánto dura una copia de seguridad? ?
 No hay una duración estándar, depende del sistema y del volumen de datos a respaldar, pero puede tomar más de 5 minutos, esto es normal.
@@ -116,8 +116,8 @@ La causa más frecuente es el uso de un complemento en la versión beta y Jeedom
 Nuevamente, esto a menudo se debe a un complemento en beta mientras Jeedom está en estable. Para ver el error, debes hacer F12 y luego consola.
 
 ### Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a través de SSH
-Este error no se debe a Jeedom, sino a un problema con el sistema..
-Si esto persiste después de una reinstalación, es aconsejable consultar con el servicio postventa por problemas de hardware.. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
+Este error no se debe a Jeedom, sino a un problema con el sistema.
+Si esto persiste después de una reinstalación, es aconsejable consultar con el servicio postventa por problemas de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
 
 ### Mi escenario ya no se detiene
 Es recomendable mirar los comandos ejecutados por el escenario, a menudo proviene de un comando que no termina.
@@ -152,7 +152,7 @@ servicio sudo apache2 reiniciar
 Este tipo de caso ocurre si su Jeedom no es compatible con el complemento. En general, una actualización de Jeedom soluciona el problema.
 
 ### Tengo un equipo de tiempo de espera pero no lo veo en el Tablero
-Las alertas se clasifican por prioridad, desde las menos importantes hasta las más importantes. : tiempo de espera, advertencia de batería, peligro de batería, alerta de advertencia, alerta de peligro
+Las alertas se clasifican por prioridad, desde las menos importantes hasta las más importantes : tiempo de espera, advertencia de batería, peligro de batería, alerta de advertencia, alerta de peligro
 
 ### My Jeedom muestra permanentemente &quot;Iniciando&quot; incluso después de 1 hora ?
 Si está en bricolaje y en Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \* Apache). Si es el caso, es necesario hacer :
@@ -166,10 +166,10 @@ echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/
 Intente borrar el caché de Chrome, la visualización de los historiales se calcula en relación con el tiempo del navegador.
 
 ### Tengo el error "Problemas de red detectados, reinicio de red"
-Jeedom no puede encontrar o no puede hacer ping a la puerta de enlace. En general, sucede si el cuadro adsl se reinicia (en particular, liveboxes) y Jeedom no se ha reiniciado o se ha reiniciado más rápido que el cuadro. Por seguridad, le dice que ha encontrado un problema y relanza el proceso de conexión de red.. Puede desactivar este mecanismo yendo a la configuración de Jeedom y desactivando la administración de red de Jeedom.
+Jeedom no puede encontrar o no puede hacer ping a la puerta de enlace. En general, sucede si el cuadro adsl se reinicia (en particular, liveboxes) y Jeedom no se ha reiniciado o se ha reiniciado más rápido que el cuadro. Por seguridad, le dice que ha encontrado un problema y relanza el proceso de conexión de red. Puede desactivar este mecanismo yendo a la configuración de Jeedom y desactivando la administración de red de Jeedom.
 
 ### Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Comprueba que mysqldump está presente."
-Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma.. En casos conocidos de inquietudes tenemos:
+Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma. En casos conocidos de inquietudes tenemos:
 
 - una tabla base corrupta =&gt; allí es un mal comienzo, debemos ver para intentar reparar y si no se inicia desde la última copia de seguridad válida (si está en la tarjeta SD, es el momento adecuado para cambiarla)
 - no hay suficiente espacio en el sistema de archivos =&gt; mira la página de salud esto puede decirte

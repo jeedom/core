@@ -8,17 +8,17 @@ There are two types of custom widgets :
 - Widgets based on a template (managed by the Jeedom Core).
 - Widgets based on user code.
 
-> **Note**
+> **NOTE**
 >
 > If template-based widgets are integrated into the Core and therefore monitored by the development team, the latter has no way of ensuring the compatibility of widgets based on user code according to Jeedom developments.
 
 ## Gestion
 
 You have four options :
-- **Ajouter** : Allows you to create a new widget.
-- **Importer** : Allows you to import a widget as a previously exported json file.
-- **Code** : Opens a file editor for editing code widgets.
-- **Remplacement** : Opens a window allowing you to replace a widget with another on all devices using it.
+- **Add** : Allows you to create a new widget.
+- **Import** : Allows you to import a widget as a previously exported json file.
+- **Coded** : Opens a file editor for editing code widgets.
+- **Replacement** : Opens a window allowing you to replace a widget with another on all devices using it.
 
 ## My widgets
 
@@ -51,8 +51,8 @@ Depending on the type of widget, you can generally customize icons or put images
 
 There are two types of templates :
 
-- The "**simples**" : Type an icon / image for the "on" and an icon / image for the "off"
-- The "**multistates**" : This allows you to define for example an image if the command is set to "XX" and another if> to "YY", and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if &quot;plop&quot;, and so on.
+- The "**simple**" : Type an icon / image for the "on" and an icon / image for the "off"
+- The "**multistate**" : This allows you to define for example an image if the command is set to "XX" and another if> to "YY", and again if <to "ZZ". Or even an image if the value is &quot;toto&quot;, another if &quot;plop&quot;, and so on.
 
 ## Creating a widget
 
@@ -66,12 +66,12 @@ Then :
 
 ### Remplacement
 
-This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc.. Then depending on the template, you can be offered the width and the height. This is only valid for images.
+This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc. Then depending on the template, you can be offered the width and the height. This is only valid for images.
 
->**Note**
->We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us.. We had no choice
+>**NOTE**
+>We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us. We had no choice
 
->**TIPS**
+>**Tips**
 >For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value #width# (be careful to put the # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) and give the value. This allows you to change the image size according to the command and therefore saves you from making a different widget for each image size you want
 
 ### Test
@@ -86,13 +86,13 @@ The tests are in the form : #value# == 1, #value# will be automatically replaced
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Note**
+>**NOTE**
 >It is important to note the &#39;around the text to compare if the value is a text
 
->**Note**
+>**NOTE**
 >For advanced users, it is also possible to use javascript type functions here #value#.match (&quot;^ plop&quot;), here we test if the text starts with plop
 
->**Note**
+>**NOTE**
 >It is possible to display the value of the command in the widget by putting for example next to the HTML code of the icon #value#
 
 ## Description of widgets
@@ -123,7 +123,7 @@ This widget is a bit special because it is a multi-command widget, that is to sa
 
 To configure it it&#39;s quite simple you have to assign the widget to the temperature control of your equipment and to the humidity control.
 
->**IMPORTANT**
+>**Important**
 >It is ABSOLUTELY necessary that your commands have the generic type temperature on the temperature control and humidity on the humidity control (this is configured in the advanced configuration of the command tab configuration).
 
 ##### Optional parameter (s)

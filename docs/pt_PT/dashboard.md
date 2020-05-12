@@ -6,7 +6,7 @@
 O painel é uma das páginas principais do Jeedom, exibe um relatório de toda a sua automação residencial.
 Este relatório (diferente das visualizações e designs) é gerado automaticamente pela Jeedom e inclui todos os objetos visíveis e seus equipamentos.
 
-> **Tip**
+> **Dica**
 >
 > A ordem de exibição dos objetos no Painel é visível em **Análise → Resumo da automação residencial**. Você pode modificar esta ordem nesta página arrastando e soltando.
 
@@ -24,27 +24,27 @@ Movendo o mouse sobre um pedido, um marcador colorido aparece na parte inferior 
 
 Além disso, você pode clicar no título do ladrilho (o nome do equipamento) para abrir diretamente a página de configuração deste equipamento.
 
-> **Tip**
+> **Dica**
 >
 > É possível ir diretamente para um único objeto na sua automação residencial, através do menu **Página inicial → Painel de controle → Nome do objeto**.
 > Isso permite que você tenha apenas o equipamento que lhe interessa e carregue a página mais rapidamente.
 
 - Você tem no topo um pequeno ícone para mostrar / ocultar a árvore de objetos.
-- O segundo ícone à esquerda permite filtrar o equipamento exibido de acordo com sua categoria. Um clique no centro permite selecionar rapidamente uma única categoria.
-- No meio, um campo de pesquisa permite pesquisar equipamentos por nome, categoria, plug-in, tag, etc..
+- Um campo de pesquisa permite procurar equipamentos por nome, categoria, plug-in, tag, etc.
+- O ícone à esquerda do campo de pesquisa permite filtrar o equipamento exibido de acordo com sua categoria. Um clique no centro permite selecionar rapidamente uma única categoria.
 - À direita, um botão permite alternar para o modo de edição, modificar a ordem dos blocos (clicar e soltar no widget) ou redimensioná-los. Você também pode reorganizar a ordem dos pedidos em um bloco.
 
 - Ao clicar no resumo de um objeto, você filtra para exibir apenas o equipamento relacionado a esse objeto e relacionado a esse resumo.
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
-- Um clique na informação *time* de um comando de ação exibe o histórico do comando (se for historizado).
+- Um clique na informação *Tempo* de um comando de ação exibe o histórico do comando (se for historizado).
 
-> **Tip**
+> **Dica**
 >
-> É possível, a partir do seu perfil, configurar o Jeedom para que a árvore de objetos e / ou os cenários fiquem visíveis por padrão quando você chegar ao Painel..
+> É possível, a partir do seu perfil, configurar o Jeedom para que a árvore de objetos e / ou os cenários fiquem visíveis por padrão quando você chegar ao Painel.
 
-> **Tip**
+> **Dica**
 >
 > No celular, pressionar um comando de tipo de informação exibe um menu que permite exibir o histórico do pedido ou colocar um alerta nele para que o Jeedom o avise (uma vez) assim que que o valor passa um certo limite.
 
@@ -58,8 +58,8 @@ Você também pode editar o layout interno dos controles no bloco :
 - Reorganize-os arrastando e soltando.
 - Ou clicando com o botão direito do mouse no widget. Você então acessa :
     - **Configuração avançada** : dá acesso à configuração avançada do comando.
-    - **Standard** : layout padrão, tudo é automático com apenas a possibilidade de reorganizar a ordem dos pedidos.
-    - **Tableau** : permite colocar os comandos em uma tabela : colunas e linhas são adicionadas e excluídas com o botão direito do mouse e, em seguida, basta mover os comandos nas caixas desejadas. Você pode fazer vários pedidos por caixa
+    - **Padrão** : layout padrão, tudo é automático com apenas a possibilidade de reorganizar a ordem dos pedidos.
+    - **Mesa** : permite colocar os comandos em uma tabela : colunas e linhas são adicionadas e excluídas com o botão direito do mouse e, em seguida, basta mover os comandos nas caixas desejadas. Você pode fazer vários pedidos por caixa
     - **Adicionar coluna** : adicione uma coluna à tabela (acessível apenas se você estiver no layout da tabela)
     - **Adicionar linha** : adicione uma linha à tabela (acessível apenas se você estiver no layout da tabela)
     - **Excluir coluna** : remover uma coluna da tabela (acessível apenas se você estiver no layout da tabela)
@@ -72,7 +72,7 @@ Você também pode editar o layout interno dos controles no bloco :
 
 ## Barra de menus do Jeedom
 
-> **Tip**
+> **Dica**
 >
 > - Clique no relógio (barra de menus) : Abra a linha do tempo.
 > - Clique no nome do Jeedom (barra de menus) : Abre Configurações → Sistema → Configuração.

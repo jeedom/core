@@ -1,7 +1,7 @@
 # Análisis de equipos
 **Análisis → Equipo**
 
-La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada. :
+La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada :
 
 - El estado de tus baterías
 - Módulos en alerta
@@ -14,13 +14,13 @@ La página de Análisis de equipo le permite ver mucha información relacionada 
 
 Puede ver en esta pestaña la lista de sus módulos de batería, su nivel restante (el color del mosaico depende de este nivel), el tipo y la cantidad de baterías que deben colocarse en el módulo, el tipo de módulo también que la fecha en que se actualizó la información del nivel de batería. También puede ver si se ha establecido un umbral específico para el módulo en particular (representado por una mano)
 
-> **Tip**
+> **Punta**
 >
 > Los umbrales de alerta / advertencia en los niveles de batería se pueden configurar globalmente en la configuración de Jeedom (Configuración → Sistemas → Configuración : Equipo), o por equipo en la página de configuración avanzada de estos en la pestaña de alertas.
 
 ## Módulos en la pestaña de alerta
 
-En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos. :
+En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos :
 
 - Tiempo de espera (configurado en la pestaña de alertas definidas).
 - Batería en advertencia o en peligro.
@@ -29,7 +29,7 @@ En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden
 Otros tipos de alertas se pueden encontrar aquí.
 Cada alerta estará representada por el color del mosaico (el nivel de alerta) y un logotipo en la parte superior izquierda (el tipo de alerta).
 
-> **Tip**
+> **Punta**
 >
 > Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
 
@@ -42,9 +42,9 @@ Esta pestaña le permite ver las acciones definidas directamente en un pedido. D
 - Confirmaciones con código (igual que el anterior pero con la introducción de un código).
 - Acciones previas y posteriores (siempre configurables en el mismo lugar en un comando de acción y permitiendo ejecutar una o más acciones antes o después de la acción en cuestión).
 
-> **Tip**
+> **Punta**
 >
-> La tabla proporciona una vista muy textual de las acciones definidas.. Se pueden agregar otros tipos de acciones definidas.
+> La tabla proporciona una vista muy textual de las acciones definidas. Se pueden agregar otros tipos de acciones definidas.
 
 ## Pestaña Alertas definidas
 
@@ -68,6 +68,6 @@ Y se usa en muchos otros lugares como (no exhaustivo) :
 - En acción sobre el estado del pedido.
 - En algunos complementos.
 
-> **Tip**
+> **Punta**
 >
-> La tabla proporciona una vista muy textual de los comandos huérfanos.. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.
+> La tabla proporciona una vista muy textual de los comandos huérfanos. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.

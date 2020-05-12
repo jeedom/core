@@ -6,11 +6,11 @@ Es stehen zwei APIs zur Verfügung : ein entwicklerorientierter JSON RPC 2-Pilot
 
 Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
 
-> **Note**
+> **Notiz**
 >
 > Für die gesamte Dokumentation gilt \#IP\_JEEDOM\# entspricht Ihrer Jeedom-Zugriffs-URL. Dies ist (sofern Sie nicht mit Ihrem lokalen Netzwerk verbunden sind) die Internetadresse, mit der Sie von außen auf Jeedom zugreifen.
 
-> **Note**
+> **Notiz**
 >
 > Für die gesamte Dokumentation gilt \#API\_KEY\# entspricht Ihrem API-Schlüssel, der für Ihre Installation spezifisch ist. Um es zu finden, gehen Sie zum Menü "Allgemein" → "Konfiguration" → Registerkarte "Allgemein"".
 
@@ -18,23 +18,23 @@ Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = Szenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Szenario & ID=#ID#&action=#ACTION#)
 
-- **id** : entspricht Ihrer Szenario-ID. Die ID finden Sie auf der entsprechenden Szenarioseite unter "Extras" → "Szenarien" nach Auswahl des Szenarios neben dem Namen der Registerkarte "Allgemein"". Ein anderer Weg, um es zu finden : Klicken Sie unter "Extras" → "Szenarien" auf "Übersicht"".
-- **action** : entspricht der Aktion, die Sie anwenden möchten. Verfügbare Befehle sind : "Start "," Stopp "," Deaktivieren "und" Aktivieren ", um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
-- **tags** \ [Optional \] : Wenn die Aktion &quot;Start&quot; ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht =).
+- **Identifikation** : entspricht Ihrer Szenario-ID. Die ID finden Sie auf der entsprechenden Szenarioseite unter "Extras" → "Szenarien" nach Auswahl des Szenarios neben dem Namen der Registerkarte "Allgemein"". Ein anderer Weg, um es zu finden : Klicken Sie unter "Extras" → "Szenarien" auf "Übersicht"".
+- **Aktion** : entspricht der Aktion, die Sie anwenden möchten. Verfügbare Befehle sind : "Start "," Stopp "," Deaktivieren "und" Aktivieren ", um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
+- **Tags** \ [Optional \] : Wenn die Aktion &quot;Start&quot; ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht =).
 
 ##  Info / Aktionsbefehl
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cmd & id=#ID#)
 
-- **id** : entspricht der ID dessen, was Sie steuern möchten oder von dem Sie Informationen erhalten möchten.
+- **Identifikation** : entspricht der ID dessen, was Sie steuern möchten oder von dem Sie Informationen erhalten möchten.
 
 Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analyse → Zusammenfassung der Hausautomation**, Um nach der Bestellung zu suchen und dann die erweiterte Konfiguration (das "Zahnrad" -Symbol) zu öffnen, sehen Sie dort eine URL, die je nach Typ und Subtyp der Bestellung bereits alles enthält, was Sie benötigen.
 
-> **Note**
+> **Notiz**
 >
-> Es ist möglich für das Feld \#ID\# mehrere Bestellungen gleichzeitig aufgeben. Dazu müssen Sie ein Array in json übergeben (z. B.% 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B und% 5D).. Jeedoms Rückkehr wird ein Json sein.
+> Es ist möglich für das Feld \#ID\# mehrere Bestellungen gleichzeitig aufgeben. Dazu müssen Sie ein Array in json übergeben (z. B.% 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B und% 5D). Jeedoms Rückkehr wird ein Json sein.
 
-> **Note**
+> **Notiz**
 >
 > Die Parameter müssen für die URL codiert sein. Sie können ein Tool verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
@@ -42,18 +42,18 @@ Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analy
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interagiere & query = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interagieren & abfragen=#QUERY#)
 
-- **query** : Frage an Jeedom zu stellen.
+- **Abfrage** : Frage an Jeedom zu stellen.
 - **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
-- **emptyReply** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
-- **profile** \ [Optional \] : Benutzername der Person, die die Interaktion initiiert.
+- **leer Antworten** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
+- **Profil** \ [Optional \] : Benutzername der Person, die die Interaktion initiiert.
 - **antworten\_cmd** \ [Optional \] : Bestellnummer zur Beantwortung der Anfrage.
 
 ## Message
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
-- **category** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
-- **message** : Denken Sie bei der betreffenden Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen werden zu% 20, =% 3D…).. Sie können ein Werkzeug verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
+- **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
+- **Nachricht** : Denken Sie bei der betreffenden Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen werden zu% 20, =% 3D…). Sie können ein Werkzeug verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
@@ -81,7 +81,7 @@ Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Information
 
 ## Variable
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)*VALUE*
+Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#& value =)*Wert*
 
-- **name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
-- **value** \ [Optional \] : Wenn &quot;Wert&quot; angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Wertes)..
+- **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
+- **Wert** \ [Optional \] : Wenn &quot;Wert&quot; angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Wertes).

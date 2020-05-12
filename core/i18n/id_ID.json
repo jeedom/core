@@ -324,7 +324,7 @@
         "Action": "Tindakan",
         "Corriger": "",
         "Êtes-vous sûr de vouloir corriger toute les tables ?": "",
-        "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table ",
+        "Êtes-vous sûr de vouloir corriger la table ": "Etes-vous sûr de vouloir corriger la table",
         "Vérification base de données": ""
     },
     "desktop\/modal\/dataStore.management.php": {
@@ -428,7 +428,7 @@
         "Permet de rajouter un message dans les logs": "Memungkinkan Anda untuk menambahkan pesan di log",
         "Permet d'ajouter une message dans le centre de message": "Menambahkan pesan di pusat pesan",
         "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Perubahan properti diambil terlihat \/ tak terlihat \/ off peralatan",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Aksi yang memungkinkan Jeedom untuk menerapkan kemudian menyimpan jawaban dalam variabel. Tindakan ini yang menghalangi dan berakhir hanya jika Jeedom menerima respon atau timeout tercapai. Untuk saat ini tindakan ini hanya kompatibel dengan plugin SMS, Slack, dan SARAH Telegram.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Aksi yang memungkinkan Jeedom untuk menerapkan kemudian menyimpan jawaban dalam variabel. Tindakan ini yang menghalangi dan berakhir hanya jika Jeedom menerima respon atau timeout tercapai. Untuk saat ini tindakan ini hanya kompatibel dengan plugin SMS, Slack, dan SARAH Telegram",
         "Envoi l'ordre à Jeedom de s'éteindre": "Mengirim perintah untuk Jeedom kepunahan",
         "Envoi l'ordre à Jeedom de redémarrer": "",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Mengembalikan teks atau nilai untuk interaksi misal",
@@ -436,7 +436,7 @@
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Menampilkan peringatan kecil pada semua browser yang memiliki halaman terbuka Jeedom. Anda juga dapat memilih dari empat tingkat peringatan",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "",
         "ouverte.": "",
-        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Kirim, pos komando, laporan pandangan, desain atau panel PNG \/ PDF \/ JPEG \/ SVG.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Kirim, pos komando, laporan pandangan, desain atau panel PNG \/ PDF \/ JPEG \/ SVG",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Hapus pemrograman semua blok IN dan A Skenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "",
         "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "",
@@ -562,7 +562,7 @@
         "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>": "- jawabannya adalah belum dalam dokumentasi <a href='https:\/\/jeedom.github.io\/documentation'> <\/a>",
         "Etape 2 : Choix du type de demande": "Langkah 2: Pilih jenis permintaan",
         "Assistance technique": "Bantuan teknis",
-        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Pertanyaan Anda ke perhatian Technical Service kami yang akan segera merespon.",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Pertanyaan Anda ke perhatian Technical Service kami yang akan segera merespon",
         "Rapport": "Laporan",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).": "",
         "Demande d'amélioration": "Peningkatan Permintaan",
@@ -1051,7 +1051,7 @@
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul",
         "Ouvrir dans Analyse \/ Historique.": "",
         "Historique": "Historis"
     },
@@ -1350,7 +1350,7 @@
         "Installer mon Backup": "",
         "Informations Importantes": "",
         "- Il vous faut une clé USB de plus de 8Go.": "",
-        "- Il vous faut être sur le meme réseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom.",
+        "- Il vous faut être sur le meme réseau Local que votre Jeedom.": "- Il vous faut etre sur le meme reseau Local que votre Jeedom",
         "- Accéder à votre Jeedom depuis son adresse interne.": "",
         "- Pouvoir laisser cette page ouverte au minimum 1h30.": "",
         "C'est parti": ""
@@ -1753,11 +1753,11 @@
         "Rechercher": "Mencari",
         "Afficher\/Masquer les objets": "Tampilkan \/ Sembunyikan Objects",
         "Retour à la Synthèse": "",
+        "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
         "Toutes": "",
         "Aucune": "Tidak",
         "Scenario": "Skenario",
-        "Vider le champ de recherche": "",
         "Édition du Dashboard": "",
         "Clic: hauteur max<br>CtrlClic: hauteur min": ""
     },
@@ -1937,7 +1937,7 @@
         "Synchrone": "",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "",
         "Timeline": "Waktu",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "Eksekusi dari script dapat dilihat pada timeline.",
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Eksekusi dari script dapat dilihat pada timeline",
         "Dossier": "",
         "Dernier lancement": "Peluncuran terakhir",
         "Icône": "Icon",
@@ -2017,7 +2017,7 @@
         "Regexp de correspondance obligatoire": "",
         "Synonyme": "Sinonim",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Mengganti kata-kata dengan sinonim mereka saat membuat perintah",
-        "Réponse": "Réponse ",
+        "Réponse": "Réponse",
         "Rechercher une commande": "Urutan pencarian",
         "Attendre avant de répondre (s)": "",
         "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "",
@@ -2214,7 +2214,7 @@
         "Rechercher": "Mencari",
         "Supprimer tout ou partie de cet historique.": "",
         "Exporter cet historique.": "",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul.",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul",
         "Variation": "Perubahan",
         "Escalier": "Tangga",
         "Aucun groupement": "Tidak ada kelompok",
@@ -2311,7 +2311,7 @@
     "desktop\/js\/editor.js": {
         "Aucun fichier ouvert.": "",
         "Fichier enregistré avec succès": "",
-        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier : ",
+        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier :",
         "Fichier supprimé avec succès": "",
         "Le sous-type ne peut être vide": "",
         "Le nom ne peut être vide": "",
@@ -2562,7 +2562,7 @@
         "Merci": "",
         "Clé USB vérifiée passage à l\\'étape 2 en cours": "",
         "Début de la restauration du backup !": "",
-        "Backup Fini, copie en cours sur la clé USB, ne pas débrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci...",
+        "Backup Fini, copie en cours sur la clé USB, ne pas débrancher celle-ci...": "Backup Fini, copie en cours sur la clé USB, ne pas debrancher celle-ci",
         "test de l\\'image": "",
         "Mise à jour de votre Jeedom réussie": "",
         "L\\'opération a échoué": "Operasi L \\' gagal",
@@ -2687,7 +2687,7 @@
         "Résumé Objets": ""
     },
     "desktop\/js\/system.js": {
-        "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande : ",
+        "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
         "Celle-ci est classé en dangereuse": "",
         "Commande : ": "Perintah:"
     },
@@ -3129,7 +3129,7 @@
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Interaction inconnue. Vérifiez l\\'ID": "",
         "InteractQuery ID inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/view.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3141,11 +3141,11 @@
         "Extension du fichier non valide (autorisé .jpg .png) : ": "",
         "Le fichier est trop gros (maximum 5Mo)": "",
         "Impossible de sauvegarder l\\'image": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "",
@@ -3154,17 +3154,17 @@
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "",
         "Utilisateur non trouvé : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Plugin introuvable : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Note inconnue. Vérifiez l\\'ID": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/object.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3175,11 +3175,11 @@
         "Extension du fichier non valide (autorisé .jpg .png) : ": "",
         "Le fichier est trop gros (maximum 5Mo)": "",
         "Impossible de sauvegarder l\\'image": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/log.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/jeedom.ajax.php": {
         "Vue": "Pemandangan",
@@ -3206,28 +3206,28 @@
         "Impossible de sauvegarder l\\'image": "",
         "Fichier introuvable, impossible de le supprimer": "",
         "Impossible de supprimer le fichier": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : ",
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :",
         "Type non trouvé : ": ""
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Dépôt de données inconnu. Vérifiez l\\'ID : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Listener id inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Impossible de supprimer : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Impossible de trouver l\\'objet associé : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3247,7 +3247,7 @@
         "Le fichier est trop gros (maximum 10Mo)": "",
         "Impossible de déplacer le fichier temporaire": "",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3261,11 +3261,11 @@
         "Le fichier est trop gros (maximum 100Mo)": "",
         "Impossible de déplacer le fichier temporaire": "",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/event.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/plan.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3279,31 +3279,31 @@
         "Impossible de sauvegarder l\\'image": "",
         "Extension du fichier non valide (autorisé .jpg .png) : ": "",
         "Impossible de déplacer le fichier temporaire dans : ": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Widgets inconnus - Vérifiez l\\'id": "",
         "Aucune commande affectée au widget, prévisualisation impossible": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Message inconnu. Vérifiez l\\'ID": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/migrate.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/network.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/config.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Aucune clef demandée": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/cmd.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3322,13 +3322,13 @@
         "Scénario": "Skenario",
         "Interaction": "",
         "Utilisateur": "Pengguna",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Aucun plan3d correspondant": "",
         "Objet inconnu vérifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id : ",
+        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id :",
         "Code d\\'accès invalide": "Code d\\'acces invalide",
         "Objet inconnu. Vérifiez l\\'ID": "",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "",
@@ -3344,7 +3344,7 @@
     "core\/ajax\/cron.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Cron id inconnu": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/eqLogic.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3362,11 +3362,11 @@
         ") existe déjà pour cet objet": "",
         "Une commande portant ce nom (": "",
         ") existe déjà pour cet équipement": "",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/ajax\/cache.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
     "core\/repo\/samba.repo.php": {
         "Chemin": "Path",
@@ -3769,7 +3769,7 @@
         "Scénario exécuté automatiquement sur événement venant de : ": "Skenario otomatis dijalankan pada acara dari:",
         "Scénario exécuté sur événement : #": "Skenario dieksekusi pada acara #",
         "Scénario exécuté automatiquement sur programmation": "Skenario dijalankan secara otomatis pada program",
-        "Arrêt du scénario car il a dépassé son temps de timeout : ": "Arret du scénario car il a dépassé son temps de timeout : ",
+        "Arrêt du scénario car il a dépassé son temps de timeout : ": "Arret du scénario car il a dépassé son temps de timeout :",
         "Scénario désactivé non lancement de la sous tâche": "Off skenario tidak meluncurkan bawah tugas",
         "************Lancement sous tâche**************": "************ ************** Mulai tugas",
         "Tags : ": "Tag:",
@@ -3897,7 +3897,7 @@
         "Commande introuvable - Vérifiez l\\'id : ": "",
         "Demande ": "Aplikasi",
         "Aucune réponse": "",
-        "Réponse ": "Réponse ",
+        "Réponse ": "Réponse",
         "Lancement de l\\'arret de jeedom": "",
         "Lancement du reboot de jeedom": "",
         "Demande de retour d\\'information : ": "",
@@ -4003,12 +4003,12 @@
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",
         "Impossible de créer le dossier  : ": "",
         ". Problème de droits ?": "",
-        "Téléchargement du plugin...": "Men-download plugin ...",
+        "Téléchargement du plugin...": "Men-download plugin",
         "OK\\n": "",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de' . jeedom::getHardwareName() . 'qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de' . jeedom::getHardwareName() . 'un souci du plugin sur le market, etc.": "",
         "Extension du fichier non valide (autorisé .zip) : ": "",
-        "Décompression du zip...": "Dekompresi zip ...",
+        "Décompression du zip...": "Dekompresi zip",
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "",
         "Impossible de décompresser l\\'archive zip : ": "",
         "Vous ne pouvez pas supprimer le core de Jeedom": "",
@@ -4102,7 +4102,7 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "",
-        "Réponse": "Réponse ",
+        "Réponse": "Réponse",
         "Variable": "Variabel",
         "Délai": "",
         "Commandes": "Perintah",

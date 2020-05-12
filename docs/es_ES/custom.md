@@ -19,7 +19,7 @@ Las dos partes, JS y CSS, se diferencian de acuerdo con la pantalla de escritori
 
 Inyectar JS y / o CSS puede hacer que Jeedom no funcione.
 
-En este caso, dos soluciones.:
+En este caso, dos soluciones:
 
 - Abrir un navegador en modo rescate : `IP / index.php?rescue=1`
 - Conéctese en SSH y elimine los archivos de personalización : `desktop / custopn` y` mobile / custom`

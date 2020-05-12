@@ -11,8 +11,8 @@ Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezei
 
 Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
 - Oben links : Der Name des Objekts.
-- Oben rechts : Die Temperatur (*temperature*) und Luftfeuchtigkeit (*humidity*).
-- Unter dem Titel : Alarm (*security*) und Bewegung (*motion*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
+- Oben rechts : Die Temperatur (*Temperatur*) und Luftfeuchtigkeit (*Luftfeuchtigkeit*).
+- Unter dem Titel : Alarm (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
 - Unten : Alle anderen Fachzusammenfassungen.
 
 Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
@@ -22,13 +22,13 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 - Wenn das Hintergrundbild nur auf der Zusammenfassungsseite oder auch einmal im Hintergrund auf dem Objekt verwendet werden soll.
 - Die Elemente seiner Zusammenfassungen in der Registerkarte *Zusammenfassung*.
 
-> **Tip**
+> **Spitze**
 >
 > Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, die Sie nachbestellen können (Analyse → Zusammenfassung der Hausautomation).
 
-> **Note**
+> **Notiz**
 >
-> Wenn ein Objekt keine Zusammenfassung definiert hat, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können..
+> Wenn ein Objekt keine Zusammenfassung definiert hat, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
 
 ## Fonctions
 
@@ -38,7 +38,7 @@ Für jedes Objekt können Sie klicken :
 - Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen.
 
 
-> **Tip**
+> **Spitze**
 >
 > Strg Klicken oder Mitte Klicken Sie auf das Objekt oder ein Zusammenfassungselement öffnet eine weitere Registerkarte Ihres Browsers.
 
