@@ -939,7 +939,7 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
-	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
+	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or ', ' xor '), array(' && ', ' && ', ' || ', ' || ', ' ^ '), $_string);
 	if (strpos($string, '"') !== false || strpos($string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
 		$r = preg_match_all($regex, $string, $matches);
