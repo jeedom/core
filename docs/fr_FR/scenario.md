@@ -244,7 +244,7 @@ Vous pouvez combiner n’importe quelle comparaison avec les opérateurs suivant
 
 - && / ET / et / AND / and : et,
 - \|| / OU / ou / OR / or : ou,
-- \|^ / XOR / xor : ou exclusif.
+- ^ / XOR / xor : ou exclusif.
 
 ### Les tags
 
