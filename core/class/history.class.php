@@ -21,15 +21,15 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class history {
 	/*     * *************************Attributs****************************** */
-	
+
 	protected $cmd_id;
 	protected $value;
 	protected $datetime;
 	protected $_changed = false;
 	protected $_tableName = 'history';
-	
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function copyHistoryToCmd($_source_id, $_target_id) {
 		$source_cmd = cmd::byId(str_replace('#', '', $_source_id));
 		if (!is_object($source_cmd)) {
@@ -61,12 +61,12 @@ class history {
 		$sql = 'REPLACE INTO `history` (`cmd_id`,`datetime`,`value`)
 		SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `history` WHERE cmd_id=:source_id';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		
+
 		$sql = 'REPLACE INTO `historyArch` (`cmd_id`,`datetime`,`value`)
 		SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `historyArch` WHERE cmd_id=:source_id';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
-	
+
 	public static function byCmdIdDatetime($_cmd_id, $_startTime, $_endTime = null, $_oldValue = null) {
 		if ($_endTime == null) {
 			$_endTime = $_startTime;
@@ -106,7 +106,7 @@ class history {
 		}
 		return $result;
 	}
-	
+
 	/**
 	* Archive les données de history dans historyArch
 	*/
@@ -226,11 +226,11 @@ class history {
 				AND cmd_id=:cmd_id';
 				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			} catch (\Exception $e) {
-				
+
 			}
 		}
 	}
-	
+
 	/**
 	*
 	* @param int $_equipement_id id de l'équipement dont on veut l'historique des valeurs
@@ -332,10 +332,10 @@ class history {
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
-		
+
 		return array_merge($result2, $result1);
 	}
-	
+
 	public static function removes($_cmd_id, $_startTime = null, $_endTime = null) {
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -346,7 +346,7 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-		
+
 		$sql = 'DELETE FROM history
 		WHERE cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
@@ -356,7 +356,7 @@ class history {
 			$sql .= ' AND datetime<=:endTime';
 		}
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		
+
 		$sql = 'DELETE FROM historyArch
 		WHERE cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
@@ -368,7 +368,7 @@ class history {
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return true;
 	}
-	
+
 	public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -447,7 +447,7 @@ class history {
 			$sql .= ' ORDER BY `datetime` ASC ';
 			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		}
-		
+
 		public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime){
 			$histories = self::all($_cmd_id, $_startTime, $_endTime);
 			$result = null;
@@ -472,7 +472,7 @@ class history {
 			$result = $sum / ($cTime - $start);
 			return $result;
 		}
-		
+
 		public static function getStatistique($_cmd_id, $_startTime, $_endTime) {
 			$values = array(
 				'cmd_id' => $_cmd_id,
@@ -493,7 +493,7 @@ class history {
 				AND `datetime`>=:startTime
 				AND `datetime`<=:endTime
 				) as dt';
-				
+
 				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 				if (!is_array($result)) {
 					$result = array();
@@ -519,7 +519,7 @@ class history {
 					) as dt
 					ORDER BY `datetime` DESC
 					LIMIT 1';
-					
+
 					$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					if (!is_array($result2)) {
 						$result2 = array();
@@ -532,7 +532,7 @@ class history {
 					}
 					return $return;
 				}
-				
+
 				public static function getTendance($_cmd_id, $_startTime, $_endTime) {
 					$values = array();
 					foreach (self::all($_cmd_id, $_startTime, $_endTime) as $history) {
@@ -559,7 +559,7 @@ class history {
 					}
 					return ($base / $divisor);
 				}
-				
+
 				public static function stateDuration($_cmd_id, $_value = null) {
 					$cmd = cmd::byId($_cmd_id);
 					if (!is_object($cmd)) {
@@ -584,7 +584,7 @@ class history {
 					$duration = strtotime($dateTo) - strtotime($histories[$i]->getDatetime());
 					return $duration;
 				}
-				
+
 				public static function lastStateDuration($_cmd_id, $_value = null) {
 					$cmd = cmd::byId($_cmd_id);
 					if (!is_object($cmd)) {
@@ -710,7 +710,7 @@ class history {
 						}
 						return -1;
 					}
-					
+
 					/**
 					*
 					* @param int $_cmd_id
@@ -729,17 +729,17 @@ class history {
 							$_value = $cmd->execCmd();
 						}
 						$_dateTime = '';
-						
+
 						if ($_startTime !== null) {
 							$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
 						}
-						
+
 						if ($_endTime === null) {
 							$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';
 						} else {
 							$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
 						}
-						
+
 						if ($cmd->getSubType() != 'string') {
 							$_value = str_replace(',', '.', $_value);
 							$_decimal = strlen(substr(strrchr($_value, "."), 1));
@@ -747,7 +747,7 @@ class history {
 						} else {
 							$_condition = ' value = ' . $_value;
 						}
-						
+
 						$values = array('cmd_id' => $_cmd_id,);
 						$sql = 'SELECT count(*) as changes
 						FROM (SELECT t1.*
@@ -763,11 +763,11 @@ class history {
 							WHERE cmd_id=:cmd_id' . $_dateTime . '
 						) as t1
 						where ' . $_condition . '';
-						
+
 						$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 						return $result['changes'];
 					}
-					
+
 					public static function emptyHistory($_cmd_id, $_date = '') {
 						$values = array(
 							'cmd_id' => $_cmd_id,
@@ -786,7 +786,7 @@ class history {
 						}
 						return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					}
-					
+
 					public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false,$_groupingType = null) {
 						$now = strtotime('now');
 						$value = array();
@@ -806,7 +806,7 @@ class history {
 												$cmd_histories[$histories_cmd[$i]->getDatetime()] = array();
 											}
 											$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
-											
+
 										}
 									}
 								}
@@ -839,9 +839,9 @@ class history {
 									$result = floatval(jeedom::evaluateExpression($calcul));
 									$value[$datetime] = $result;
 								} catch (Exception $e) {
-									
+
 								} catch (Error $e) {
-									
+
 								}
 							}
 						} else {
@@ -852,9 +852,9 @@ class history {
 						}
 						return $value;
 					}
-					
+
 					/*     * *********************Methode d'instance************************* */
-					
+
 					public function save($_cmd = null, $_direct = false) {
 						global $JEEDOM_INTERNAL_CONFIG;
 						if ($_cmd === null) {
@@ -870,7 +870,7 @@ class history {
 							$this->setDatetime(date('Y-m-d H:i:s'));
 						}
 						if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
-							$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
+							$this->setValue(number_format($this->getValue(), $cmd->getConfiguration('historizeRound')));
 						}
 						if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
 							if ($this->getTableName() == 'history') {
@@ -933,64 +933,63 @@ class history {
 						value=:value';
 						DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					}
-					
+
 					public function remove() {
 						DB::remove($this);
 					}
-					
+
 					/*     * **********************Getteur Setteur*************************** */
-					
+
 					public function getCmd_id() {
 						return $this->cmd_id;
 					}
-					
+
 					public function getCmd() {
 						return cmd::byId($this->cmd_id);
 					}
-					
+
 					public function getValue() {
 						return $this->value;
 					}
-					
+
 					public function getDatetime() {
 						return $this->datetime;
 					}
-					
+
 					public function getTableName() {
 						return $this->_tableName;
 					}
-					
+
 					public function setTableName($_tableName) {
 						$this->_tableName = $_tableName;
 						return $this;
 					}
-					
+
 					public function setCmd_id($_cmd_id) {
 						$this->_changed = utils::attrChanged($this->_changed,$this->cmd_id,$_cmd_id);
 						$this->cmd_id = $_cmd_id;
 						return $this;
 					}
-					
+
 					public function setValue($_value) {
 						$this->_changed = utils::attrChanged($this->_changed,$this->value,$_value);
 						$this->value = $_value;
 						return $this;
 					}
-					
+
 					public function setDatetime($_datetime) {
 						$this->_changed = utils::attrChanged($this->_changed,$this->datetime,$_datetime);
 						$this->datetime = $_datetime;
 						return $this;
 					}
-					
+
 					public function getChanged() {
 						return $this->_changed;
 					}
-					
+
 					public function setChanged($_changed) {
 						$this->_changed = $_changed;
 						return $this;
 					}
-					
+
 				}
-				

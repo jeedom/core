@@ -84,12 +84,15 @@
       },
       series: [{
         name: '',
-        data: [Math.round(parseFloat('#state#') * 10) / 10],
+        data: [#state#],
         radius: 92,
         innerRadius: 72,
         dataLabels: {
           y: 6,
-          format: '<span>{y}</span> <span>#unite#</span>'
+          formatter: function() {
+            return '<span>'+Highcharts.numberFormat(this.y)+'</span> <span>#unite#</span>'
+          }
+
         },
       }]
     })
