@@ -7,9 +7,9 @@ Esta página le permite ver todos los informes generados por la acción del info
 
 Un informe es una captura de pantalla de la interfaz Jeedom en un momento t.
 
-> **Note**
+> **Nota**
 >
-> Esta captura está adaptada para no tomar la barra de menú y otros elementos innecesarios en este tipo de uso..
+> Esta captura está adaptada para no tomar la barra de menú y otros elementos innecesarios en este tipo de uso.
 
 Puede hacer esto en vistas, diseños, páginas de paneles....
 
@@ -18,20 +18,20 @@ Puede elegir que se le envíe este informe utilizando un comando de mensaje (cor
 
 ## Utilisation
 
-Su uso es muy sencillo.. Seleccione a la izquierda si quiere ver :
+Su uso es muy sencillo. Seleccione a la izquierda si quiere ver :
 
 - Ver informes.
 - Informes de diseño.
 - Informes del panel de complementos.
 - Informes del equipo (para un resumen de la batería de cada módulo).
 
-Luego seleccione el nombre del informe en cuestión. Luego verá todas las fechas de los informes disponibles..
+Luego seleccione el nombre del informe en cuestión. Luego verá todas las fechas de los informes disponibles.
 
-> **Important**
+> **Importante**
 >
 > La eliminación automática se realiza de forma predeterminada para informes de más de 30 días. Puede configurar este retraso en la configuración de Jeedom.
 
-Una vez que se selecciona el informe, puede verlo, descargarlo o eliminarlo..
+Una vez que se selecciona el informe, puede verlo, descargarlo o eliminarlo.
 
 También puede eliminar todas las copias de seguridad de un informe determinado
 

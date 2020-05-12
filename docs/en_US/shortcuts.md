@@ -65,7 +65,7 @@ In a Code block :
 ## Plugins / Plugins management
 - Ctrl S on a plugin configuration : Save.
 
-## Plugins / *plugin*
+## Plugins / *Plugin*
 - On a device, Ctrl S  : Save.
 - On a device, Right click on a tab : Contextual menu to go directly to another device.
 

@@ -13,7 +13,7 @@ Definiert bestimmte Schnittstellenverhalten
 - **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
 - **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 
-- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Ansicht par défaut** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 - **Klappen Sie das Ansichtsfenster auf** : Wird verwendet, um das Ansichtsmenü (links) standardmäßig in den Ansichten sichtbar zu machen.
 
 - **Standarddesign** : Design, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
@@ -28,9 +28,9 @@ Definiert bestimmte Schnittstellenverhalten
 
 ## Registerkarte &quot;Sicherheit&quot;
 
-- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird *Google Authentifikator*). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert..
+- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird *Google Authentifikator*). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert.
 
-  **Important** Wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, müssen Sie überprüfen, ob Jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert)..
+  **Wichtig** Wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, müssen Sie überprüfen, ob Jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert).
 
 - **Passwort** : Ermöglicht das Ändern Ihres Passworts (vergessen Sie nicht, es unten erneut einzugeben).
 
@@ -47,7 +47,7 @@ Definiert bestimmte Schnittstellenverhalten
 -   **Standardobjekt auf dem Armaturenbrett** : Standardanzeigeobjekt
     bei der Ankunft auf dem Armaturenbrett / Handy
 
--   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
+-   **Ansicht par défaut** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
     das Dashboard / Handy
 
 -   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn
@@ -56,7 +56,7 @@ Definiert bestimmte Schnittstellenverhalten
     -   **Vollbild** : Standardanzeige im Vollbildmodus, wenn
         die Ankunft auf den Entwürfen
 
--   **Dashboard**
+-   **Armaturenbrett**
 
     -   **Klappen Sie das Szenario-Bedienfeld auf** : ermöglicht sichtbar zu machen
         Standardmäßig das Szenario-Menü (rechts) im Dashboard
@@ -64,7 +64,7 @@ Definiert bestimmte Schnittstellenverhalten
     -   **Das Objekt-Panel anzeigen** : ermöglicht sichtbar zu machen durch
         Standardmäßig das Objektmenü (links) im Dashboard
 
--   **Vue**
+-   **Ansicht**
 
     -   **Klappen Sie das Ansichtsfenster auf** : ermöglicht sichtbar zu machen durch
         Standardansichtsmenü (links) für Ansichten
@@ -75,7 +75,7 @@ Sicherheit
 -   **2-stufige Authentifizierung** : ermöglicht zu konfigurieren
     2-Schritt-Authentifizierung (zur Erinnerung, dies ist ein sich ändernder Code
     wird alle X Sekunden in einer mobilen Anwendung angezeigt, geben Sie ein
-    Google Authentificator oder Microsoft Authenticator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Für eine lokale Verbindung wird der Code daher nicht angefordert. Wichtig, wenn Sie während der Konfiguration der doppelten Authentifizierung eine Fehlerprüfung haben, dass jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert).
+    Google Authentificator oder Microsoft Authenticator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Für eine lokale Verbindung wird der Code daher nicht angefordert. Wichtig, wenn Sie während der Konfiguration der doppelten Authentifizierung eine Fehlerprüfung haben, dass jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert)
 
 -   **Passwort** : ermöglicht es Ihnen, Ihr Passwort zu ändern (nicht
     vergessen Sie es unten erneut einzugeben)

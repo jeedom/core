@@ -210,7 +210,7 @@ Retorna uma tabela de equipamentos de acordo com os parâmetros.
 O retorno será da matriz do formulário ('eqType1' ⇒ matriz ('id'⇒…,' cmds '⇒
 matriz (….)), 'eqType2' ⇒ matriz ('id'⇒…,' cmds '⇒ matriz (….))….,id1 ⇒
 array ('id'⇒…,' cmds '⇒ array (….)), id2 ⇒ array (' id'⇒…, 'cmds' ⇒
-array(…​.))..)
+matriz (….)) ..)
 
 Configurações:
 

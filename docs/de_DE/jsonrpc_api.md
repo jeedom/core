@@ -58,7 +58,7 @@ JSON-Ereignis-API
 event::changes
 --------------
 
-Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück (muss in Mikrosekunden angegeben werden).. Sie haben in der Antwort auch die aktuelle Datumszeit von Jeedom (die für die nächste Abfrage wiederverwendet werden soll).
+Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück (muss in Mikrosekunden angegeben werden). Sie haben in der Antwort auch die aktuelle Datumszeit von Jeedom (die für die nächste Abfrage wiederverwendet werden soll)
 
 Einstellungen :
 
@@ -89,12 +89,12 @@ Gibt die Liste aller Objekte zurück
 jeeObject::full
 ------------
 
-Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle Geräte und für jedes Gerät alle Befehle sowie deren Status angegeben werden (für Befehle vom Typ Info).
+Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle Geräte und für jedes Gerät alle Befehle sowie deren Status angegeben werden (für Befehle vom Typ Info)
 
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt mit all seinen Geräten und für jedes Gerät alle seine Befehle und deren Status zurück (für Befehle vom Typ Info).
+Gibt ein Objekt mit all seinen Geräten und für jedes Gerät alle seine Befehle und deren Status zurück (für Befehle vom Typ Info)
 
 Einstellungen :
 
@@ -112,7 +112,7 @@ Einstellungen:
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung alle seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info).
+Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung alle seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info)
 
 jeeObject::save
 ------------
@@ -169,7 +169,7 @@ Gibt die Liste aller Geräte zurück
 eqLogic::fullById
 -----------------
 
-Gibt Geräte und ihre Befehle sowie deren Status zurück (für Befehle vom Typ Info).
+Gibt Geräte und ihre Befehle sowie deren Status zurück (für Befehle vom Typ Info)
 
 Einstellungen:
 
@@ -187,7 +187,7 @@ Einstellungen:
 eqLogic::byType
 ---------------
 
-Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin).
+Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin)
 
 Einstellungen:
 
@@ -210,7 +210,7 @@ Gibt eine Gerätetabelle gemäß den Parametern zurück.
 Die Rückgabe erfolgt vom Formulararray (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒)
 Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
-array(…​.))..)
+Array (....)) ..)
 
 Einstellungen:
 
@@ -757,4 +757,4 @@ if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'O
 }
 `` ''
 
-Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite).
+Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite)

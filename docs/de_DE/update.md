@@ -16,25 +16,25 @@ Wenn diese Überprüfung zu Beginn der Seite älter als zwei Stunden ist, wieder
 Sie können auch die Schaltfläche verwenden **Suchen Sie nach Updates** Um es manuell zu tun.
 Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie auf die Schaltfläche "Nach Updates suchen" klicken".
 
-Die Schaltfläche **Sauvegarder** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
+Die Schaltfläche **Speichern** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
 
 ## Aktualisieren Sie den Kern
 
 Die Schaltfläche **Update** Mit dieser Option können Sie den Core, die Plugins oder beides aktualisieren.
 Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 - **Pre-Update** : Ermöglicht das Aktualisieren des Aktualisierungsskripts, bevor die neuen Aktualisierungen angewendet werden. Wird in der Regel auf Anfrage des Supports verwendet.
-- **Vorher speichern** : Sichern Sie Jeedom vor dem Update.
+- **Speichern avant** : Sichern Sie Jeedom vor dem Update.
 - **Plugins aktualisieren** : Ermöglicht das Einfügen von Plugins in das Update.
 - **Aktualisieren Sie den Kern** : Ermöglicht es Ihnen, den Jeedom-Kernel (den Kern) in das Update aufzunehmen.
 
 - **Erzwungener Modus** : Führen Sie das Update im erzwungenen Modus durch, dh, dass Jeedom auch im Fehlerfall fortfährt und die Sicherung nicht wiederherstellt. (Dieser Modus deaktiviert das Speichern!).
 - **Update zur erneuten Anwendung** : Ermöglicht das erneute Anwenden eines Updates. (NB : Nicht alle Updates können erneut angewendet werden.)
 
-> **Important**
+> **Wichtig**
 >
 > Vor einem Update erstellt Jeedom standardmäßig ein Backup. Im Falle eines Problems beim Anwenden eines Updates stellt Jeedom das unmittelbar zuvor erstellte Backup automatisch wieder her. Dieses Prinzip gilt nur für Jeedom-Updates und nicht für Plugin-Updates.
 
-> **Tip**
+> **Spitze**
 >
 > Sie können ein Update von Jeedom erzwingen, auch wenn es keines bietet.
 
@@ -42,37 +42,37 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
 Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 
-Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stable*, oder orange in *beta* oder andere.
+Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *Stabil*, oder orange in *Beta* oder andere.
 
-- **Statut** : OK oder NOK.
-- **Nom** : Name und Herkunft des Plugins
+- **Status** : OK oder NOK.
+- **Name** : Name und Herkunft des Plugins
 - **Version** : Zeigt die genaue Version des Core oder Plugins an.
-- **Options** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
+- **Optionen** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 - **Wieder einstellen** : Neuansiedlung erzwingen.
-- **Supprimer** : Ermöglicht die Deinstallation.
+- **Entfernen** : Ermöglicht die Deinstallation.
 - **überprüfen** : Fragen Sie die Quelle nach Updates ab, um herauszufinden, ob ein neues Update verfügbar ist.
 - **Update** : Ermöglicht das Aktualisieren des Elements (falls es ein Update enthält).
-- **Changelog** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
+- **Änderungsprotokoll** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
 
-> **Important**
+> **Wichtig**
 >
 > Wenn das Änderungsprotokoll leer ist, Sie aber noch ein Update haben, bedeutet dies, dass die Dokumentation aktualisiert wurde. Es ist daher nicht erforderlich, den Entwickler um Änderungen zu bitten, da diese nicht unbedingt vorhanden sind. (Es ist oft eine Aktualisierung der Übersetzung, der Dokumentation).
 > In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes vornehmen, für die nicht unbedingt das Changelog aktualisiert werden muss.
 
-> **Tip**
+> **Spitze**
 >
 > Wenn Sie ein Update starten, wird über der Tabelle ein Fortschrittsbalken angezeigt. Vermeiden Sie andere Manipulationen während des Updates.
 
 ## Registerkarte Informationen
 
-Während oder nach einem Update können Sie auf dieser Registerkarte das Protokoll dieses Updates in Echtzeit lesen..
+Während oder nach einem Update können Sie auf dieser Registerkarte das Protokoll dieses Updates in Echtzeit lesen.
 
-> **Note**
+> **Notiz**
 >
-> Dieses Protokoll endet normalerweise mit *[END UPDATE SUCCESS]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren..
+> Dieses Protokoll endet normalerweise mit *[END UPDATE SUCCESS]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren.
 
 ## Befehlszeilenaktualisierung
 
@@ -83,8 +83,8 @@ Sobald die Verbindung hergestellt ist, ist dies der auszuführende Befehl :
 
 Die möglichen Parameter sind :
 
-- **mode** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
-- **version** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
+- **Modus** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
+- **Version** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
 
 Hier ist ein Beispiel für die Syntax, um ein erzwungenes Update durchzuführen, indem die Änderungen seit 4.0 erneut angewendet werden.04 :
 

@@ -4,13 +4,13 @@ Plugins → Plugins management
 This page provides access to plugin configurations.
 You can also manipulate the plugins, namely : download, update and activate them,…
 
-There is therefore a list of plugins in alphabetical order and a link to the market..
+There is therefore a list of plugins in alphabetical order and a link to the market.
 - Disabled plugins are grayed out.
-- Plugins that are not in version *stable* we have an orange dot in front of their name.
+- Plugins that are not in version *Stable* we have an orange dot in front of their name.
 
 By clicking on a plugin, you access its configuration. At the top, you find the name of the plugin, then in brackets, its name in Jeedom (ID) and finally, the type of installed version (stable, beta).
 
-> **Important**
+> **IMPORTANT**
 >
 > When downloading a plugin, it is disabled by default. So you have to activate it by yourself.
 
@@ -25,15 +25,15 @@ By clicking on a plugin, you access its configuration. At the top, you find the 
 - **Documentation** : Allows direct access to the plugin documentation page.
 - **Changelog** : Allows to see the changelog of the plugin if it exists.
 - **Details** : Allows to find the plugin page on the market.
-- **Supprimer** : Remove the plugin from your Jeedom. Please note, this also permanently removes all equipment from this plugin.
+- **Remove** : Remove the plugin from your Jeedom. Please note, this also permanently removes all equipment from this plugin.
 
-### Below left, there is an area **état** with :
+### Below left, there is an area **State** with :
 
-- **Statut** : Allows to see the status of the plugin (active / inactive).
+- **Status** : Allows to see the status of the plugin (active / inactive).
 - **Version** : The version of the plugin installed.
-- **Auteur** : Plugin author.
-- **Action** : Allows you to enable or disable the plugin.
-- **Jeedom version** : Indicates the minimum Jeedom version required for the plugin.
+- **Author** : Plugin author.
+- **ACTION** : Allows you to enable or disable the plugin.
+- **Version jeedom** : Indicates the minimum Jeedom version required for the plugin.
 - **Licence** : Indicates the license of the plugin which will generally be AGPL.
 
 ### On the right, we find the area **Log and monitoring** which allows to define :
@@ -47,16 +47,16 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 ### Dependencies :
 
-- **Nom** : Generally will be local.
-- **Statut** : Dependency status, OK or NOK.
-- **Installation** : Allows to install or reinstall dependencies (if you do not do it manually and they are NOK, Jeedom will take care of itself after a while).
+- **Last name** : Generally will be local.
+- **Status** : Dependency status, OK or NOK.
+- **Setup** : Allows to install or reinstall dependencies (if you do not do it manually and they are NOK, Jeedom will take care of itself after a while).
 - **Last installation** : Date of last dependency installation.
 
 ### Devil :
 
-- **Nom** : Generally will be local.
-- **Statut** : Daemon status, OK or NOK.
-- **Configuration** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
+- **Last name** : Generally will be local.
+- **Status** : Daemon status, OK or NOK.
+- **D'actualité** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
 - **(To restart** : Allows launching or relaunching the demon.
 - **Stop** : Allows to stop the daemon (Only in the case where automatic management is disabled).
 - **Automatic management** : Enables or disables automatic management (which allows Jeedom to manage the daemon itself and restart it if necessary. Unless otherwise indicated, it is advisable to leave automatic management active).
@@ -64,7 +64,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 > **Tip**
 >
-> Some plugins have a configuration part. If this is the case, it will appear under the dependency and daemon zones described above..
+> Some plugins have a configuration part. If this is the case, it will appear under the dependency and daemon zones described above.
 > In this case, refer to the documentation of the plugin in question to know how to configure it.
 
 ### Below, there is a functionality area. This allows you to see if the plugin uses one of the Jeedom core functions such as :
@@ -82,7 +82,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 > **Tip**
 >
-> If the plugin uses one of these functions, you can specifically prohibit it from doing so by unchecking the &quot;activate&quot; box which will be present next to it..
+> If the plugin uses one of these functions, you can specifically prohibit it from doing so by unchecking the &quot;activate&quot; box which will be present next to it.
 
 ### Panel
 
@@ -100,8 +100,8 @@ At the top of the window you have filters :
 - **Free / Pay** : displays only free or paid.
 - **Official / Recommended** : displays only official or recommended plugins.
 - **Category drop-down menu** : displays only certain categories of plugins.
-- **Rechercher** : allows to search for a plugin (in the name or description of it).
-- **Username** : displays the user name used to connect to the Market as well as the connection status.
+- **Search** : allows to search for a plugin (in the name or description of it).
+- **Last name d'utilisateur** : displays the user name used to connect to the Market as well as the connection status.
 
 > **Tip**
 >
@@ -114,18 +114,18 @@ Once you have found the plugin you want, just click on it to bring up its file. 
     - **Install stable** : allows to install the plugin in its stable version.
     - **Install beta** : allows to install the plugin in its beta version (only for beta testers).
     - **Install pro** : allows to install the pro version (very little used).
-    - **Supprimer** : if the plugin is currently installed, this button allows you to remove it.
+    - **Remove** : if the plugin is currently installed, this button allows you to remove it.
 
 Below, you will find the description of the plugin, the compatibility (if Jeedom detects an incompatibility, it will notify you), the opinions on the plugin (you can note it here) and additional information (the author, the person who made the last update, a link to the doc, the number of downloads). On the right you find a &quot;Changelog&quot; button which allows you to have all the history of modifications, a &quot;Documentation&quot; button which refers to the documentation of the plugin. Then you have the available language and the various information on the date of the last stable version.
 
-> **Important**
+> **IMPORTANT**
 >
-> It is really not recommended to put a beta plugin on a non beta Jeedom, a lot of operational problems can result..
+> It is really not recommended to put a beta plugin on a non beta Jeedom, a lot of operational problems can result.
 
-> **Important**
+> **IMPORTANT**
 >
 > Some plugins are chargeable, in this case the plugin will offer you to buy it. Once done, you have to wait about ten minutes (payment validation time), then return to the plugin file to install it normally.
 
 > **Tip**
 >
-> You can also add a plugin to Jeedom from a file or from a Github repository. To do this, in the Jeedom configuration, activate the appropriate function in the "Updates and files" section.". It will then be possible, by putting the mouse on the far left, and making the plugin page menu appear, to click on "Add from another source". You can then choose the source "File". Attention, in the case of adding by a zip file, the name of the zip must be the same as the ID of the plugin and upon opening the ZIP a plugin\_info folder must be present.
+> You can also add a plugin to Jeedom from a file or from a Github repository. To do this, in the Jeedom configuration, activate the appropriate function in the "Updates and files" section". It will then be possible, by putting the mouse on the far left, and making the plugin page menu appear, to click on "Add from another source". You can then choose the source "File". Attention, in the case of adding by a zip file, the name of the zip must be the same as the ID of the plugin and upon opening the ZIP a plugin\_info folder must be present.

@@ -64,10 +64,10 @@ Registro de Alterações Jeedom V4
 - Os campos de pesquisa agora suportam acentos.
 - Os campos de pesquisa (Painel, cenários, objetos, widgets, interações, plug-ins) agora estão ativos quando a página é aberta, permitindo que você digite uma pesquisa diretamente.
 - Adicione um botão X nos campos de pesquisa para cancelar a pesquisa.
-- Durante uma pesquisa, a tecla *echap* cancelar pesquisa.
+- Durante uma pesquisa, a tecla *escapar* cancelar pesquisa.
 - Painel de instrumentos : No modo de edição, o campo de pesquisa e seus botões são desativados e se tornam fixos.
-- Painel de instrumentos : No modo de edição, clique em um botão *expand* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique reduz para a altura mais baixa.
-- Painel de instrumentos : A execução do comando em um bloco agora é sinalizada pelo botão *refresh*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
+- Painel de instrumentos : No modo de edição, clique em um botão *expandir* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique reduz para a altura mais baixa.
+- Painel de instrumentos : A execução do comando em um bloco agora é sinalizada pelo botão *Atualizar*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
 - Painel de instrumentos : Os blocos indicam um comando info (histórico, que abrirá a janela Histórico) ou ação em foco.
 - Painel de instrumentos : A janela do histórico agora permite abrir esse histórico em Análise / Histórico.
 - Painel de instrumentos : A janela Histórico mantém sua posição / dimensões quando outro histórico é reaberto.
@@ -93,7 +93,7 @@ Registro de Alterações Jeedom V4
 - Widgets : Adicionando um widget de chuva numérico de informações (obrigado @thanaus)
 - Widgets : Exibição do widget de obturador de informações / ações proporcional ao valor.<br/><br/>
 - Configuração : Melhoria e reorganização de guias.
-- Configuração : Adicionando muitos *tooltips* (ajuda).
+- Configuração : Adicionando muitos *dicas* (ajuda).
 - Configuração : Adicionando um mecanismo de pesquisa.
 - Configuração : Adicionando um botão para esvaziar o cache do widget (guia Cache).
 - Configuração : Adicionada opção para desativar o cache do widget (guia Cache).
@@ -102,7 +102,7 @@ Registro de Alterações Jeedom V4
 - Configuração : Mudança de #message# à #subject# em Configuração / Logs / Mensagens para evitar duplicação da mensagem.
 - Configuração : Possibilidade nos resumos de adicionar uma exclusão dos pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo das médias de temperatura se um sensor não elevar nada por mais de 30 minutos, ele será excluído do cálculo )<br/><br/>
 - Cenas : A coloração dos blocos não é mais aleatória, mas por tipo de bloco.
-- Cenas : Possibilidade por Ctrl + clique no botão *execução* salve-o, inicie-o e exiba o log (se o nível do log não estiver em *Aucun*).
+- Cenas : Possibilidade por Ctrl + clique no botão *execução* salve-o, inicie-o e exiba o log (se o nível do log não estiver em *Nemhum*).
 - Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar confirmação.
 - Cenas : Adição de uma função de pesquisa nos blocos de código. Pesquisa : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
 - Cenas : Capacidade de condensar blocos.
@@ -113,7 +113,7 @@ Registro de Alterações Jeedom V4
 - Cenas : Excluir compartilhamento de cenário.
 - Cenas : Melhoria da janela de gerenciamento de modelos de cenário.<br/><br/>
 - Análise / Equipamento : Adição de um mecanismo de pesquisa (guia Baterias, pesquisa por nomes e pais).
-- Análise / Equipamento : A área de calendário / dias do equipamento agora pode ser clicada para acessar diretamente a troca de baterias..
+- Análise / Equipamento : A área de calendário / dias do equipamento agora pode ser clicada para acessar diretamente a troca de baterias.
 - Análise / Equipamento : Adição de um campo de pesquisa.<br/><br/>
 - Update Center : Aviso na guia 'Núcleo e plug-ins' e / ou 'Outros' se houver uma atualização disponível. Mude para 'Outros' se necessário.
 - Update Center : diferenciação por versão (estável, beta, ...).
@@ -123,10 +123,10 @@ Registro de Alterações Jeedom V4
 - Resumo Automation : Adição de IDs de equipamentos e pedidos, no display e na pesquisa.
 - Resumo Automation : Exportação CSV do objeto pai, ID, equipamento e seu ID, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais pedidos.<br/><br/>
-- Projeto : Capacidade de especificar a ordem (posição) de *Designs* e *Projetos 3D* (Editar, configurar design).
-- Projeto : Adição de um campo CSS personalizado nos elementos do *design*.
-- Projeto : Deslocamento das opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Design*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam *Design*.
-- Projeto : Movendo e redimensionando componentes no *Design* leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
+- Projeto : Capacidade de especificar a ordem (posição) de *Projetos* e *Projetos 3D* (Editar, configurar design).
+- Projeto : Adição de um campo CSS personalizado nos elementos do *Projeto*.
+- Projeto : Deslocamento das opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Projeto*. Isso para simplificar a interface e permitir que diferentes parâmetros sejam *Projeto*.
+- Projeto : Movendo e redimensionando componentes no *Projeto* leva em consideração seu tamanho, com ou sem magnetização.<br/><br/>
 - Redução geral (estilos css / inline, refatoração etc.) e melhorias de desempenho.
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.
 - Atualização de libs : jquery 3.4.1, CodeMiror 5.46.0, editor de tabelas 2.31.1.
@@ -135,11 +135,11 @@ Registro de Alterações Jeedom V4
 - Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G.
 - Correção de segurança
 
->**IMPORTANT**
+>**IMPORTANTE**
 >
->Se, após a atualização, houver um erro no painel, tente reiniciar sua caixa para levar em consideração as novas adições de componentes..
+>Se, após a atualização, houver um erro no painel, tente reiniciar sua caixa para levar em consideração as novas adições de componentes.
 
->**IMPORTANT**
+>**IMPORTANTE**
 >
 >O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque as funções foram assumidas internamente no núcleo). Mais informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 

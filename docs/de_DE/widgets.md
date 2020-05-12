@@ -8,23 +8,23 @@ Es gibt zwei Arten von benutzerdefinierten Widgets :
 - Widgets basierend auf einer Vorlage (verwaltet vom Jeedom Core).
 - Widgets basierend auf Benutzercode.
 
-> **Note**
+> **Notiz**
 >
 > Wenn vorlagenbasierte Widgets in den Core integriert und daher vom Entwicklungsteam überwacht werden, kann letzteres die Kompatibilität von Widgets basierend auf Benutzercode gemäß Jeedom-Entwicklungen nicht sicherstellen.
 
 ## Gestion
 
 Sie haben vier Möglichkeiten :
-- **Ajouter** : Ermöglicht das Erstellen eines neuen Widgets.
-- **Importer** : Ermöglicht das Importieren eines Widgets als zuvor exportierte JSON-Datei.
+- **Hinzufügen** : Ermöglicht das Erstellen eines neuen Widgets.
+- **Import** : Ermöglicht das Importieren eines Widgets als zuvor exportierte JSON-Datei.
 - **Code** : Öffnet einen Datei-Editor zum Bearbeiten von Code-Widgets.
-- **Remplacement** : Öffnet ein Fenster, in dem Sie ein Widget auf allen Geräten, die es verwenden, durch ein anderes ersetzen können.
+- **Ersatz** : Öffnet ein Fenster, in dem Sie ein Widget auf allen Geräten, die es verwenden, durch ein anderes ersetzen können.
 
 ## Meine Widgets
 
 Sobald Sie ein Widget erstellt haben, wird es in diesem Teil angezeigt.
 
-> **Tip**
+> **Spitze**
 >
 > Sie können ein Widget öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -51,8 +51,8 @@ Abhängig von der Art des Widgets können Sie im Allgemeinen Symbole anpassen od
 
 Es gibt zwei Arten von Vorlagen :
 
-- Die "**simples**" : Geben Sie ein Symbol / Bild für das "Ein" und ein Symbol / Bild für das "Aus" ein"
-- Die "**multistates**" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl auf "XX" gesetzt ist, und ein anderes, wenn> auf "YY" und erneut, wenn <auf "ZZ"". Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn &quot;plop&quot;, und so weiter.
+- Die "**einfach**" : Geben Sie ein Symbol / Bild für das "Ein" und ein Symbol / Bild für das "Aus" ein"
+- Die "**multistate**" : Auf diese Weise können Sie beispielsweise ein Bild definieren, wenn der Befehl auf "XX" gesetzt ist, und ein anderes, wenn> auf "YY" und erneut, wenn <auf "ZZ"". Oder sogar ein Bild, wenn der Wert &quot;toto&quot; ist, ein anderes, wenn &quot;plop&quot;, und so weiter.
 
 ## Widget erstellen
 
@@ -60,19 +60,19 @@ Klicken Sie auf der Seite Extras -&gt; Widget auf &quot;Hinzufügen&quot; und ge
 
 Dann :
 - Sie wählen, ob es sich um eine Aktion oder einen Auftragstyp handelt.
-- Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...)..
+- Abhängig von Ihrer vorherigen Auswahl müssen Sie den Subtyp des Befehls auswählen (binär, digital, andere ...).
 - Dann endlich die fragliche Vorlage (wir planen, Beispiele für Renderings für jede Vorlage zu setzen).
 - Sobald die Vorlage ausgewählt wurde, bietet Ihnen jeedom die Möglichkeit, sie zu konfigurieren.
 
 ### Remplacement
 
-Dies wird als einfaches Widget bezeichnet. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist dieses usw.. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
+Dies wird als einfaches Widget bezeichnet. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist dieses usw. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
 
->**Note**
->Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns.. Wir hatten keine Wahl
+>**Notiz**
+>Wir entschuldigen uns für die Namen in Englisch, dies ist eine Einschränkung des Vorlagensystems. Diese Wahl garantiert eine gewisse Geschwindigkeit und Effizienz, sowohl für Sie als auch für uns. Wir hatten keine Wahl
 
->**TIPS**
->Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkartenanzeige und des Widgets "Optionale Parameter" anzugeben". Zum Beispiel, wenn Sie in der Breite als Wert eingeben #width# (Achten Sie darauf, die # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) und geben Sie den Wert an. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes Widget erstellen.
+>**Tipps**
+>Für fortgeschrittene Benutzer ist es möglich, in den Ersatzwerten Tags zu setzen und ihren Wert in der erweiterten Konfiguration des Befehls, der Registerkartenanzeige und des Widgets "Optionale Parameter" anzugeben". Zum Beispiel, wenn Sie in der Breite als Wert eingeben #width# (Achten Sie darauf, die # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) und geben Sie den Wert an. Auf diese Weise können Sie die Größe des Bildes abhängig von der Reihenfolge ändern und können daher nicht für jede gewünschte Bildgröße ein anderes Widget erstellen
 
 ### Test
 
@@ -86,13 +86,13 @@ Die Tests sind in der Form : #value# == 1, #value# wird vom System automatisch d
 - #value# >= 1 && #value# <= 5
 - #value# == 'toto'
 
->**Note**
+>**Notiz**
 >Es ist wichtig, das &#39;um den Text herum zu notieren, um zu vergleichen, ob der Wert ein Text ist
 
->**Note**
+>**Notiz**
 >Für fortgeschrittene Benutzer ist es hier auch möglich, Funktionen vom Typ Javascript zu verwenden #value#.match (&quot;^ plop&quot;), hier testen wir, ob der Text mit plop beginnt
 
->**Note**
+>**Notiz**
 >Es ist möglich, den Wert des Befehls im Widget anzuzeigen, indem Sie beispielsweise neben den HTML-Code des Symbols setzen #value#
 
 ## Beschreibung der Widgets
@@ -123,14 +123,14 @@ Dieses Widget ist etwas Besonderes, da es sich um ein Widget mit mehreren Befehl
 
 Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelung Ihres Geräts und der Feuchtigkeitsregelung zuweisen.
 
->**IMPORTANT**
->Es ist ABSOLUT erforderlich, dass Ihre Bestellungen die generische Temperatur für die Temperaturregelung und die Luftfeuchtigkeit für die Feuchtigkeitsregelung haben (dies wird in der erweiterten Konfiguration der Befehlsregisterkonfiguration konfiguriert)..
+>**WICHTIG**
+>Es ist ABSOLUT erforderlich, dass Ihre Bestellungen die generische Temperatur für die Temperaturregelung und die Luftfeuchtigkeit für die Feuchtigkeitsregelung haben (dies wird in der erweiterten Konfiguration der Befehlsregisterkonfiguration konfiguriert).
 
 ##### Optionale Parameter
 
 - Skala : Ermöglicht das Ändern der Größe, indem Sie beispielsweise die Skalierung auf 0 setzen.5 es wird 2 mal kleiner sein.
 
->**NOTE**
+>**Notiz**
 > Achtung bei einem Entwurf Es ist wichtig, einen Befehl nicht alleine mit diesem Widget zu platzieren. Es funktioniert nicht, da es sich um ein Widget handelt, das den Wert mehrerer Befehle verwendet. Es ist unbedingt erforderlich, das vollständige Widget zu platzieren
 
 ### Multiline
@@ -157,7 +157,7 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 
 ### Tags
 
-Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig). :
+Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig) :
 
 - #name# : Befehlsname
 - #valueName# : Name des Bestellwerts und = #name# wenn es sich um einen Info-Befehl handelt

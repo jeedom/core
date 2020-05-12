@@ -64,10 +64,10 @@ Changelog Jeedom V4
 - Search fields now support accents.
 - The search fields (dashboard, scenarios, objects, widgets, interactions, plugins) are now active when the page is opened, allowing you to type a search directly.
 - Add an X button on the search fields to cancel the search.
-- During a search, the key *echap* cancel search.
+- During a search, the key *escape* cancel search.
 - Dashboard : In edit mode, the search field and its buttons are disabled and become fixed.
 - Dashboard : In edit mode, click on a button *expand* to the right of the objects resizes the tiles of the object to the height of the highest. Ctrl + click reduces them to the height of the lowest.
-- Dashboard : The command execution on a tile is now signaled by the button *refresh*. If there is none on the tile, it will appear during execution.
+- Dashboard : The command execution on a tile is now signaled by the button *Refresh*. If there is none on the tile, it will appear during execution.
 - Dashboard : The tiles indicate an info command (history, which will open the History window) or action on hover.
 - Dashboard : The history window now allows you to open this history in Analysis / History.
 - Dashboard : History window retains its position / dimensions when another history reopens.
@@ -99,10 +99,10 @@ Changelog Jeedom V4
 - D'actualité : Added option to disable widget cache (Cache tab).
 - D'actualité : Ability to center the content of the tiles vertically (Interface tab).
 - D'actualité : Addition of a parameter for the global purging of the histories (Tab Commands).
-- D'actualité : Change of  #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
+- D'actualité : Change of #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
 - D'actualité : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
-- Scenario : Possibility by Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *Aucun*).
+- Scenario : Possibility by Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *None*).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.
 - Scenario : Addition of a search function in the Code blocks. Search : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl + Shift + G
 - Scenario : Ability to condense blocks.
@@ -123,8 +123,8 @@ Changelog Jeedom V4
 - Home automation summary : Addition of equipment and order IDs, in display and in search.
 - Home automation summary : CSV export of parent object, id, equipment and their id, command.
 - Home automation summary : Possibility of making visible or not one or more orders.<br/><br/>
-- Design : Ability to specify the order (position) of *Designs* and *3D designs* (Edit, Configure Design).
-- Design : Addition of a custom CSS field on the elements of the *design*.
+- Design : Ability to specify the order (position) of *Designs* and *Designs 3D* (Edit, Configure Design).
+- Design : Addition of a custom CSS field on the elements of the *Design*.
 - Design : Displacement of display options in Design of the advanced configuration, in the display parameters from the *Design*. This in order to simplify the interface, and to allow to have different parameters by *Design*.
 - Design : Moving and resizing components on *Design* takes into account their size, with or without magnetization.<br/><br/>
 - General reduction (css / inline styles, refactoring, etc.) and performance improvements.
@@ -135,11 +135,11 @@ Changelog Jeedom V4
 - Addition of global compatibility of Jeedom DNS with a 4G internet connection.
 - Security fix
 
->**IMPORTANT**
+>**Important**
 >
 >If after the update you have an error on the dashboard try to restart your box so that it takes the new additions of components into account.
 
->**IMPORTANT**
+>**Important**
 >
 >The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the functions have been taken over internally on the core). More information [here](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 

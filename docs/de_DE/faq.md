@@ -1,5 +1,5 @@
 # FAQ
-**Einstellungen → Version : FAQ**
+**Einstellungen → Version : Faq**
 
 ### Jeedom benötigt ein Abonnement ?
 Nein, Jeedom ist vollständig nutzbar, ohne dass ein Abonnement erforderlich ist. Es werden jedoch Dienste für Backups oder Anrufe / SMS angeboten, die jedoch wirklich optional sind.
@@ -14,10 +14,10 @@ Jeedom verfügt über eine mobile Version, die für Mobilgeräte und Tablets gee
 Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und auch danach, wenn Sie sie nicht geändert haben), lauten der Standardbenutzername und das Standardkennwort admin / admin. Bei der ersten Verbindung wird dringend empfohlen, diese Kennungen zu ändern, um die Sicherheit zu erhöhen.
 
 ### Ich kann mich nicht mehr mit meinem Jeedom verbinden
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise)
 
 ### Ich sehe nicht alle meine Geräte auf dem Armaturenbrett
-Dies liegt häufig daran, dass das Gerät einem Objekt zugewiesen ist, das nicht das untergeordnete Objekt oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können es in Ihrem Profil konfigurieren)..
+Dies liegt häufig daran, dass das Gerät einem Objekt zugewiesen ist, das nicht das untergeordnete Objekt oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können es in Ihrem Profil konfigurieren).
 
 ### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
 Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier](shortcuts.md).
@@ -78,12 +78,12 @@ Für die Webanwendung ist ein Smartphone erforderlich, das HTML5 und CSS3 unters
 ### Auf welchen Plattformen kann Jeedom laufen? ?
 Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit Root-Rechten oder ein Docker-System. Es funktioniert daher nicht auf einer reinen Android-Plattform.
 
-### Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)...." ?
+### Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)..." ?
 Dies kann auf verschiedene Dinge zurückzuführen sein: :
 
-- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite, aktualisierter Teil, haben Sie eine Testschaltfläche)..
+- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite, aktualisierter Teil, haben Sie eine Testschaltfläche).
 - Überprüfen Sie, ob das Marktkonto das betreffende Plugin gekauft hat.
-- Überprüfen Sie, ob auf Jeedom genügend Speicherplatz vorhanden ist (auf der Gesundheitsseite wird dies angezeigt)..
+- Überprüfen Sie, ob auf Jeedom genügend Speicherplatz vorhanden ist (auf der Gesundheitsseite wird dies angezeigt).
 - Überprüfen Sie, ob Ihre Version von Jeedom mit dem Plugin kompatibel ist.
 
 ### Ich habe eine leere Seite
@@ -117,7 +117,7 @@ Auch dies ist oft auf ein Plugin in der Beta zurückzuführen, während Jeedom s
 
 ### Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch über SSH in der Konsole
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
-Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen.. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/de_DE/recovery_mode_jeedom_smart) für Smart
+Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/de_DE/recovery_mode_jeedom_smart) für Smart
 
 ### Mein Szenario hört nicht mehr auf
 Es ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen. Oft stammt sie von einem Befehl, der nicht endet.
@@ -130,7 +130,7 @@ Dies liegt an MySQL, das gestoppt wurde. Es ist nicht normal, die häufigsten F�
 
 - Platzmangel im Dateisystem (kann überprüft werden, indem der Befehl &quot;df -h&quot; in SSH ausgeführt wird)
 - Problem mit der Beschädigung von Dateien, das häufig nach einem unsicheren Herunterfahren von Jeedom auftritt (Stromausfall)
-- Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank).. Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
+- Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
 
 Leider gibt es nicht viel Lösung, wenn es sich um den zweiten Fall handelt. Das Beste ist, ein Backup wiederherzustellen (standardmäßig in / var / www / html / backup verfügbar), Jeedom neu zu installieren und das Backup wiederherzustellen. Sie können auch sehen, warum MySQL nicht von einer SSH-Konsole booten möchte :
 `` `{.bash}
@@ -196,7 +196,7 @@ ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache 
 Du musst :
 
 - Jeedom neu starten
-- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4).
+- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4)
 - Wechseln Sie zur Registerkarte OS / DB
 - Starten Sie die Systemadministration
 - Klicken Sie auf Dpkg konfigurieren

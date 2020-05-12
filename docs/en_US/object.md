@@ -1,16 +1,16 @@
 # Objets
 **Tools → Objects**
 
-The **objets** allow you to define the tree structure of your home automation.
+The **objects** allow you to define the tree structure of your home automation.
 
-All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **parent** equipment.
+All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
 
 To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the names of the rooms (this is the recommended configuration, by the way).
 
 ## Gestion
 
 You have two options :
-- **Ajouter** : Create a new object.
+- **Add** : Create a new object.
 - **Overview** : Displays the list of objects created and their configuration.
 
 ## My objects
@@ -40,14 +40,14 @@ Here are the different characteristics to configure an object :
 
 - **Object name** : The name of your object.
 - **Dad** : Indicates the parent of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one parent but several objects can have the same parent.
-- **Visible** : Check this box to make this object visible.
-- **Hide on the dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly..
-- **Hide on Synthesis'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly..
+- **Jeedom** : Check this box to make this object visible.
+- **Hide on the dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
+- **Hide on Synthesis'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
 - **Icon** : Allows you to choose an icon for your object.
 - **Custom colors** : Activates the consideration of the two optional color parameters.
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
 - **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
-- **Image** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard.
+- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard.
 
 > **Tip**
 >
@@ -55,15 +55,15 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> You can see a graph representing all the elements of Jeedom attached to this object by clicking on the button **Liens**, top right.
+> You can see a graph representing all the elements of Jeedom attached to this object by clicking on the button **Connections**, top right.
 
 > **Tip**
 >
-> When a device is created and no parent has been defined, it will have as parent : **Aucun**.
+> When a device is created and no parent has been defined, it will have as parent : **No**.
 
 ## Summary tab
 
-Summaries are global information, assigned to an object, which are displayed in particular on the Dashboard next to its name..
+Summaries are global information, assigned to an object, which are displayed in particular on the Dashboard next to its name.
 
 ### Bulletin board
 
@@ -75,7 +75,7 @@ The columns represent the summaries assigned to the current object. Three lines 
 
 ### Commandes
 
-Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add an order** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add une commande** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 
 > **Tip**
 >
@@ -85,11 +85,11 @@ Each tab represents a type of summary defined in the configuration of Jeedom. Cl
 
 The overview allows you to view all the objects in Jeedom, as well as their configuration :
 
-- **ID** : Object ID.
-- **Objet** : Object name.
+- **Id** : Object ID.
+- **Object** : Object name.
 - **Dad** : Name of parent object.
-- **Visible** : Object visibility.
-- **Masqué** : Indicates if the object is hidden on the dashboard.
+- **Jeedom** : Object visibility.
+- **Mask** : Indicates if the object is hidden on the dashboard.
 - **Summary Defined** : Indicates the number of orders per summary. What is in blue is taken into account in the global summary.
 - **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
 - **Hidden Mobile Summary** : Show hidden summaries on mobile.

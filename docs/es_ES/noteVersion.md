@@ -15,7 +15,7 @@ Después de eso, tendrá un tablero vacío, es normal que se vacíe el caché, s
     Por lo tanto, es posible que algunos complementos ya no estén disponibles en esta versión hasta
     corrección por el autor.
 
--   Puede encontrar la lista de complementos en cuestión aquí. :
+-   Puede encontrar la lista de complementos en cuestión aquí :
     <https://www.jeedom.com/market/index.php?v=d&p=scoring>
 
 

@@ -13,7 +13,7 @@ Define certos comportamentos da interface
 - **Página padrão** : Página a ser exibida por padrão para exibição ao conectar-se a computadores ou dispositivos móveis.
 - **Objeto padrão** : Objeto a ser exibido por padrão na chegada ao Painel / dispositivo móvel.
 
-- **Modo de exibição padrão** : Exibir para exibir por padrão na chegada ao painel / dispositivo móvel.
+- **Vista par défaut** : Exibir para exibir por padrão na chegada ao painel / dispositivo móvel.
 - **Desdobrar o painel de vista** : Usado para tornar o menu de visualização (à esquerda) visível nas visualizações por padrão.
 
 - **Projeto padrão** : Design a ser exibido por padrão na chegada ao Painel / dispositivo móvel.
@@ -28,9 +28,9 @@ Define certos comportamentos da interface
 
 ## Guia Segurança
 
-- **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *google authentificator*) Observe que a autenticação dupla só será solicitada para conexões externas.Para conexões locais, o código não será solicitado..
+- **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *google authentificator*) Observe que a autenticação dupla só será solicitada para conexões externas.Para conexões locais, o código não será solicitado.
 
-  **Important** se durante a configuração da autenticação dupla você tiver um erro, verifique se o Jeedom (veja na página de integridade) e seu telefone estão ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
+  **IMPORTANTE** se durante a configuração da autenticação dupla você tiver um erro, verifique se o Jeedom (veja na página de integridade) e seu telefone estão ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
 
 - **Senha** : Permite alterar sua senha (não se esqueça de digitá-la novamente abaixo).
 
@@ -39,7 +39,7 @@ Define certos comportamentos da interface
 -   **Menus de exibição** : diga ao Jeedom para exibir o painel
     esquerda, quando existir, como lembrete, este painel é
     disponível na maioria das páginas de plug-ins, bem como
-    página de cenários, interações, objetos ....
+    página de cenários, interações, objetos.
 
 -   **Página padrão** : página padrão a ser exibida quando
     conexão desktop / móvel
@@ -47,7 +47,7 @@ Define certos comportamentos da interface
 -   **Painel padrão Assunto** : objeto de exibição padrão
     na chegada no painel / móvel
 
--   **Modo de exibição padrão** : para exibir por padrão ao chegar em
+-   **Vista par défaut** : para exibir por padrão ao chegar em
     o painel / móvel
 
 -   **Projeto padrão** : design para exibir por padrão quando
@@ -56,7 +56,7 @@ Define certos comportamentos da interface
     -   **Tela cheia** : exibição padrão em tela cheia quando
         a chegada dos desenhos
 
--   **Dashboard**
+-   **Painel de instrumentos**
 
     -   **Desdobre o painel do cenário** : permite tornar visível
         por padrão, o menu de cenário (à direita) no painel
@@ -64,7 +64,7 @@ Define certos comportamentos da interface
     -   **Desdobrar os objectos de painel** : permite tornar visível por
         padronize o menu de objetos (à esquerda) no painel
 
--   **Vue**
+-   **Vista**
 
     -   **Desdobrar o painel de vista** : permite tornar visível por
         menu de visualizações padrão (esquerda) nas visualizações

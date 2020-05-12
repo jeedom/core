@@ -10,7 +10,7 @@ Sie können daher auf dieser Seite JS- und CSS-Skripte hinzufügen, die überall
 Für anspruchslose Menschen, die CSS entdecken möchten :
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **Important**
+> **Wichtig**
 >
 > Jeder Fehler in einem dieser Skripte kann dazu führen, dass Jeedom vollständig funktionsunfähig wird. 
 >

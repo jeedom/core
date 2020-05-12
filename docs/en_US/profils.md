@@ -13,7 +13,7 @@ Defines certain interface behaviors
 - **Default page** : Page to display by default to display when connecting to desktop or mobile.
 - **Default object** : Object to display by default upon arrival on the Dashboard / mobile.
 
-- **Default view** : View to display by default upon arrival on the Dashboard / mobile.
+- **View par défaut** : View to display by default upon arrival on the Dashboard / mobile.
 - **Unfold the view panel** : Used to make the view menu (left) visible on the views by default.
 
 - **Default design** : Design to display by default upon arrival on the Dashboard / mobile.
@@ -28,7 +28,7 @@ Defines certain interface behaviors
 
 ## Security tab
 
-- **2-step authentication** : allows to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type *google authentificator*). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested..
+- **2-step authentication** : allows to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type *google authentificator*). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested.
 
   **Important** if during the configuration of double authentication you have an error, you must check that Jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work).
 
@@ -47,7 +47,7 @@ Defines certain interface behaviors
 -   **Default object on the dashboard** : default display object
     upon arrival on the dashboard / mobile
 
--   **Default view** : view to display by default when arriving on
+-   **View par défaut** : view to display by default when arriving on
     the dashboard / mobile
 
 -   **Default design** : design to display by default when
@@ -64,7 +64,7 @@ Defines certain interface behaviors
     -   **Open the objects pane** : allows to make visible by
         default the objects menu (on the left) on the dashboard
 
--   **Vue**
+-   **View**
 
     -   **Unfold the view panel** : allows to make visible by
         default views menu (left) on views
