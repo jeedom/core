@@ -1,6 +1,7 @@
 # Recherche
+**Menú de análisis → Buscar**
 
-Jeedom ofrece un buscador interno. Es accesible por *Menú de análisis → Buscar*.
+Jeedom ofrece un buscador interno.
 
 Puedes hacer búsquedas de diferentes tipos :
 

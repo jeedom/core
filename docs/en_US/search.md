@@ -1,6 +1,7 @@
 # Recherche
+**Analysis menu → Search**
 
-Jeedom offers an internal search engine. It is accessible by *Analysis menu → Search*.
+Jeedom offers an internal search engine.
 
 You can do searches of different types :
 

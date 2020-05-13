@@ -247,7 +247,7 @@ Puedes combinar cualquier comparación con los siguientes operadores :
 
 - &amp;&amp; / ET / y / AND / y : et,
 - \|| / OR / o / OR / o : ou,
-- \|^ / XOR / xor : o exclusivo.
+- ^ / XOR / xor : o exclusivo.
 
 ### Etiquetas
 

@@ -1,6 +1,7 @@
 # Recherche
+**Menu Análise → Pesquisar**
 
-Jeedom oferece um mecanismo de busca interno. É acessível por *Menu Análise → Pesquisar*.
+Jeedom oferece um mecanismo de busca interno.
 
 Você pode fazer pesquisas de diferentes tipos :
 

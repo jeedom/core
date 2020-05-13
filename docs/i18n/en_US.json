@@ -6479,7 +6479,6 @@
         "000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)": "000 (for 10 minutes) 11 (for 1 hour) 000 (for 10 minutes)",
         "Prise ayant pour valeurs": "Socket with values",
         "\\": "\\",
-        "^ \/ XOR \/ xor": "^ \/ XOR \/ xor",
         "\/ OU \/ ou \/ OR \/ or": "\/ OR \/ or \/ OR \/ or",
         "Blocs Si\/Alors\/Sinon": "If \/ Then \/ Otherwise blocks",
         "Création": "Creation",
@@ -6769,6 +6768,7 @@
         "`not([Salle de bain][Hydrometrie][etat] matches \"\/humide\/\")`": "`not ([Bathroom] [Hydrometry] [state] matches\" \/ wet \/ \")`",
         "Vous pouvez combiner n'importe quelle comparaison avec les opérateurs suivants": "You can combine any comparison with the following operators",
         "&& \/ ET \/ et \/ AND \/ and": "&amp;&amp; \/ ET \/ and \/ AND \/ and",
+        "^ \/ XOR \/ xor": "^ \/ XOR \/ xor",
         "ou exclusif": "or exclusive",
         "Les tags": "Tags",
         "Un tag est remplacé lors de l'exécution du scénario par sa valeur": "A tag is replaced during the execution of the scenario by its value",
@@ -7917,7 +7917,6 @@
     "search.md": {
         "Menu Analyse → Recherche": "Analysis menu → Search",
         "Jeedom propose un moteur de recherche interne": "Jeedom offers an internal search engine",
-        "Il est accessible par": "It is accessible by",
         "Vous pouvez faire des recherches de différents types": "You can do searches of different types",
         "Par Équipement": "By Equipment",
         "Sélectionnez un équipement avec l'icône à droite du champ": "Select a device with the icon to the right of the field",

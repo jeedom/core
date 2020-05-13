@@ -1,6 +1,7 @@
 # Recherche
+**Analysemenü → Suchen**
 
-Jeedom bietet eine interne Suchmaschine. Es ist zugänglich durch *Analysemenü → Suchen*.
+Jeedom bietet eine interne Suchmaschine.
 
 Sie können verschiedene Arten suchen :
 

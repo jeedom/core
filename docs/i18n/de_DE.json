@@ -6479,7 +6479,6 @@
         "000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)": "000 (für 10 Minuten) 11 (für 1 Stunde) 000 (für 10 Minuten)",
         "Prise ayant pour valeurs": "Sockel mit Werten",
         "\\": "\\.",
-        "^ \/ XOR \/ xor": "^ \/ XOR \/ xor",
         "\/ OU \/ ou \/ OR \/ or": "\/ OR \/ oder \/ OR \/ oder",
         "Blocs Si\/Alors\/Sinon": "Wenn \/ Dann \/ Sonst blockiert",
         "Création": "Schaffung",
@@ -6769,6 +6768,7 @@
         "`not([Salle de bain][Hydrometrie][etat] matches \"\/humide\/\")`": "`not ([Badezimmer] [Hydrometrie] [Zustand] stimmt mit\" \/ wet \/ \"überein)`",
         "Vous pouvez combiner n'importe quelle comparaison avec les opérateurs suivants": "Sie können jeden Vergleich mit den folgenden Operatoren kombinieren",
         "&& \/ ET \/ et \/ AND \/ and": "&amp;&amp; \/ ET \/ und \/ AND \/ und",
+        "^ \/ XOR \/ xor": "^ \/ XOR \/ xor",
         "ou exclusif": "oder exklusiv",
         "Les tags": "Tags",
         "Un tag est remplacé lors de l'exécution du scénario par sa valeur": "Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt",
@@ -7917,7 +7917,6 @@
     "search.md": {
         "Menu Analyse → Recherche": "Analysemenü → Suchen",
         "Jeedom propose un moteur de recherche interne": "Jeedom bietet eine interne Suchmaschine",
-        "Il est accessible par": "Es ist zugänglich durch",
         "Vous pouvez faire des recherches de différents types": "Sie können verschiedene Arten suchen",
         "Par Équipement": "Nach Ausrüstung",
         "Sélectionnez un équipement avec l'icône à droite du champ": "Wählen Sie ein Gerät mit dem Symbol rechts neben dem Feld aus",
