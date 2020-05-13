@@ -428,6 +428,9 @@ class update {
 		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 		log::add('update', 'alert',  __('Supression des fichiers inutiles...', __FILE__));
 		foreach (array('3rdparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
+			if(!file_exists($cibDir. '/'.$folder)){
+				continue;
+			}
 			shell_exec('find '.$cibDir. '/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete 2>/dev/null');
 		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
