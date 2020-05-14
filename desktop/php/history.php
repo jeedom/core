@@ -8,7 +8,7 @@ $date = array(
 );
 ?>
 
-<ul class="nav nav-tabs" role="tablist" style="margin-top:4px;">
+<ul class="nav nav-tabs reportModeHidden" role="tablist" style="margin-top:4px;">
 	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-chart-bar"></i> {{Historique}}</a></li>
 	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-clock"></i> {{Timeline}}</a></li>
 </ul>
@@ -16,7 +16,7 @@ $date = array(
 <div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
 		<br/>
-
+		
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -74,7 +74,7 @@ $date = array(
 					?>
 				</ul>
 			</div>
-
+			
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-3 col-sm-12 center">
@@ -133,7 +133,7 @@ $date = array(
 		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
-		<div id="timelineOptions">
+		<div id="timelineOptions" class="reportModeHidden">
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
 					<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
@@ -153,8 +153,8 @@ $date = array(
 			</div>
 		</div>
 		<div id="timelineContainer">
-		  <ul>
-		  </ul>
+			<ul>
+			</ul>
 		</div>
 	</div>
 </div>

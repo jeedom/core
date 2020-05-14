@@ -15,8 +15,7 @@
 */
 
 
-jeedom.history = function () {
-};
+jeedom.history = function () {};
 
 jeedom.history.chart = [];
 

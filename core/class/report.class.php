@@ -49,6 +49,9 @@ class report {
 			$_url .= '&auth=' . user::getAccessKeyForReport();
 		}
 		if(shell_exec('which chromium | wc -l') > 0){
+			if($_name != 'url'){
+				$_url .= '&delay='.$delay;
+			}
 			if($_format == 'pdf'){
 				$cmd = 'chromium --headless --no-sandbox --disable-gpu --print-to-pdf='.$out.' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url.'"';
 			}else{
