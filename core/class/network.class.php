@@ -248,7 +248,7 @@ class network {
 	
 	/*     * *********************DNS************************* */
 	
-	public static function dns_create() {
+	public static function dns2_create() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -330,7 +330,8 @@ class network {
 		return $openvpn;
 	}
 	
-	public static function dns_start() {
+	
+	public static function dns2_start() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -345,7 +346,7 @@ class network {
 		$cmd->execCmd();
 	}
 	
-	public static function dns_run() {
+	public static function dns2_run() {
 		if (config::byKey('dns::token') == '') {
 			return false;
 		}
@@ -353,7 +354,7 @@ class network {
 			return false;
 		}
 		try {
-			$openvpn = self::dns_create();
+			$openvpn = self::dns2_create();
 		} catch (Exception $e) {
 			return false;
 		}
@@ -362,18 +363,13 @@ class network {
 			throw new Exception(__('La commande de statut du DNS est introuvable', __FILE__));
 		}
 		return $cmd->execCmd();
-		try {
-			self::dns2_start();
-		} catch (\Exception $e) {
-			
-		}
 	}
 	
-	public static function dns_stop() {
+	public static function dns2_stop() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		$openvpn = self::dns_create();
+		$openvpn = self::dns2_create();
 		$cmd = $openvpn->getCmd('action', 'stop');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
@@ -381,7 +377,7 @@ class network {
 		$cmd->execCmd();
 	}
 	
-		public static function dns2_start() {
+	public static function dns_start() {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
 		}
@@ -389,7 +385,7 @@ class network {
 			return;
 		}
 		try {
-			self::dns2_stop();
+			self::dns_stop();
 		} catch (\Exception $e) {
 			
 		}
@@ -448,9 +444,14 @@ class network {
 		}
 		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
 		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all >> '.log::getPathToLog('tunnel').' 2>&1 &');
+		try {
+			self::dns2_start();
+		} catch (\Exception $e) {
+			
+		}
 	}
 	
-	public static function dns2_run() {
+	public static function dns_run() {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return false;
 		}
@@ -461,12 +462,16 @@ class network {
 		return (shell_exec('ps ax | grep '.$exec.' | grep  -c -v grep') > 0);
 	}
 	
-	public static function dns2_stop() {
+	public static function dns_stop() {
 		if (config::byKey('service::tunnel::enable') != 1) {
 			return;
 		}
 		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".system::getArch()."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
-		return;
+		try {
+			self::dns2_stop();
+		} catch (\Exception $e) {
+			
+		}
 	}
 	
 	/*     * *********************Network management************************* */
@@ -511,12 +516,12 @@ class network {
 	public static function cron5() {
 		try {
 			if(config::byKey('service::tunnel::enable') == 1 && config::byKey('market::allowDNS')){
-				if(!self::dns2_run()){
+				if(!self::dns_run()){
 					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (tunnel pas démarré)', __FILE__));
-					self::dns2_start();
+					self::dns_start();
 				}elseif(file_exists(log::getPathToLog('tunnel')) && shell_exec('tail -n 50 '.log::getPathToLog('tunnel').' | grep -c "action handshake"') < 1){
 					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (pas de handshake trouvé)', __FILE__));
-					self::dns2_start();
+					self::dns_start();
 				}
 			}
 		} catch (\Exception $e) {
