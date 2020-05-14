@@ -277,6 +277,10 @@ $("#div_listScenario").trigger('resize');
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
+  setTimeout(function(){
+    $('.nav li.active').removeClass('active');
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  },500);
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       return
