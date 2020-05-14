@@ -1100,7 +1100,7 @@
         "Envoyer": "Senden",
         "Autoriser la fenêtre de zoom": "Zoomfenster zulassen",
         "Période": "Zeit",
-        "30min": "30min",
+        "30min": "30 Minuten",
         "Jour": "Tag",
         "Semaine": "Woche",
         "Mois": "Monat",
@@ -2371,7 +2371,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "Möchten Sie die Ansicht wirklich löschen?",
         "Le nom de la viewZone ne peut être vide": "Der Name der ViewZone darf nicht leer sein",
         "Largeur": "Breite",
-        "30 min": "30 min",
+        "30 min": "30 Minuten",
         "1 heure": "1 Stunde",
         "Jour": "Tag",
         "Semaine": "Woche",
@@ -2900,7 +2900,7 @@
         "Février": "Februar",
         "Mars": "März",
         "Avril": "April",
-        "Mai": "Mai",
+        "Mai": "Kann",
         "Juin": "Juni",
         "Juillet": "Juli",
         "Août": "August",
@@ -2934,7 +2934,7 @@
         "valeur :": "Wert :",
         "Ne rien mettre pour supprimer la valeur": "Setzen Sie nichts, um den Wert zu entfernen",
         "Tous": "Alle",
-        "30 min": "30 min",
+        "30 min": "30 Minuten",
         "Heure": "Zeit",
         "Jour": "Tag",
         "Semaine": "Woche",
@@ -3111,7 +3111,7 @@
         "Curseur": "Cursor",
         "Message": "Nachricht",
         "Couleur": "Farbe",
-        "Liste": "Liste"
+        "Liste": "Auflistung"
     },
     "core\/com\/shell.com.php": {
         "Erreur sur ": "Fehler ein",
@@ -3252,7 +3252,7 @@
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune correspondance pour l\\'ID : ' . init('id')": "Keine Übereinstimmung für ID: '. init ( 'ID')",
-        "[START UPDATE]": "[START UPDATE]",
+        "[START UPDATE]": "[UPDATE STARTEN]",
         "Launch cron dependancy plugins": "Starten Sie Cron-Abhängigkeits-Plugins",
         "[END UPDATE SUCCESS]": "[UPDATE ENDE ERFOLGREICH]",
         "[END UPDATE ERROR]": "[END UPDATE ERROR]",
