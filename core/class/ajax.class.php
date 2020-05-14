@@ -29,7 +29,7 @@ class ajax {
 			header('Content-Type: application/json');
 		}
 		if ($_checkToken && $_COOKIE['jeedom_token'] != self::getToken()) {
-			self::error(__('Votre session a expiré, veuillez vous reconnecter', __FILE__).$_COOKIE['jeedom_token'] .'!='. self::getToken());
+			self::error(__('Votre session a expiré, veuillez vous reconnecter', __FILE__));
 		}
 	}
 	
