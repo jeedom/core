@@ -522,8 +522,8 @@ function setTheme() {
 			<?php
 		}
 		?>
-		<?php if(init('report') == 1){ ?>
-			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay',1000) ?>' width=0 height=0></iframe>
+		<?php if(init('report') == 1 && init('delay',-1) != -1){ ?>
+			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
 		<?php } ?>
 	</body>
 	</html>
