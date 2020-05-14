@@ -162,6 +162,7 @@ $('#bt_chooseIcon').on('click', function () {
   chooseIcon(function (_icon) {
     $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   },{icon:_icon});
+  modifyWithoutSave = true
 });
 
 $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
@@ -358,7 +359,8 @@ $("#bt_removeInteract").on('click', function () {
 });
 
 $('#bt_addAction').off('click').on('click',function(){
-  addAction({}, 'action','{{Action}}');
+  addAction({}, 'action','{{Action}}')
+  modifyWithoutSave = true
 });
 
 $('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
@@ -410,6 +412,7 @@ $("body").undelegate(".listCmdAction", 'click').delegate(".listCmdAction", 'clic
 $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
   var type = $(this).attr('data-type');
   $(this).closest('.' + type).remove();
+  modifyWithoutSave = true
 });
 
 function printInteract(_id) {

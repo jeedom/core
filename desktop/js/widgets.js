@@ -144,6 +144,7 @@ $('#bt_chooseIcon').on('click', function () {
   chooseIcon(function (_icon) {
     $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   },{icon:_icon});
+  modifyWithoutSave = true
 });
 
 $('#bt_editCode').off('click').on('click', function () {
@@ -277,6 +278,7 @@ $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', f
   chooseIcon(function (_icon) {
     bt.closest('.form-group').find('.widgetsAttr[data-l1key=replace]').value(_icon);
   },{img:true});
+  modifyWithoutSave = true
 });
 
 $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', function () {
@@ -284,6 +286,7 @@ $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', func
   chooseIcon(function (_icon) {
     bt.closest('.input-group').find('.testAttr').value(_icon);
   },{img:true});
+  modifyWithoutSave = true
 });
 
 function capitalizeFirstLetter(string) {
@@ -349,7 +352,7 @@ function loadTemplateConfiguration(_template,_data){
         }
         loadTemplateConfiguration('cmd.'+ $('.widgetsAttr[data-l1key=type]').value()+'.'+$('.widgetsAttr[data-l1key=subtype]').value()+'.'+$(this).value());
       });
-      modifyWithoutSave = false;
+      modifyWithoutSave = true
     }
   });
 }
@@ -391,6 +394,7 @@ $('#bt_widgetsAddTest').off('click').on('click', function (event) {
 
 $('#div_templateTest').off('click','.bt_removeTest').on('click','.bt_removeTest',function(){
   $(this).closest('.test').remove();
+  modifyWithoutSave = true
 });
 
 function printWidget(_id) {
@@ -440,7 +444,7 @@ function printWidget(_id) {
       }
       loadTemplateConfiguration(template,data);
       addOrUpdateUrl('id',data.id);
-      modifyWithoutSave = false;
+      modifyWithoutSave = false
       jeedom.widgets.getPreview({
         id: data.id,
         cache: false,
@@ -452,6 +456,9 @@ function printWidget(_id) {
           $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
         }
       })
+      setTimeout(function() {
+        modifyWithoutSave = false
+      }, 1000)
     }
   });
 }

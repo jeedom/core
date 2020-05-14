@@ -340,6 +340,7 @@ $('#bt_chooseIcon').on('click', function () {
   chooseIcon(function (_icon) {
     $('.scenarioAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   },{icon:_icon});
+  modifyWithoutSave = true
 });
 
 $('.scenarioAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
