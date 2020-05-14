@@ -46,14 +46,9 @@ if (user::isBan()) {
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		if (version_compare(PHP_VERSION, '7.3') >= 0) {
-			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'domain' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 		}else{
 			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-		}
-		if (isset($_COOKIE['jeedom_token'])) {
-			@session_start();
-			$_SESSION['jeedom_token'] = $_COOKIE['jeedom_token'];
-			@session_write_close();
 		}
 	} else {
 		setcookie('registerDevice', '');
@@ -146,13 +141,6 @@ function loginByHash($_key) {
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
-	if (!isset($_COOKIE['jeedom_token'])) {
-		if (version_compare(PHP_VERSION, '7.3') >= 0) {
-			setcookie('jeedom_token', ajax::getToken(), ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'domain' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		}else{
-			setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/; samesite=Strict", '', ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-		}
-	}
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
 	return true;
 }

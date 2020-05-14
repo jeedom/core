@@ -74,7 +74,7 @@ try {
 				'session_id' =>session_id(),
 			);
 			if (version_compare(PHP_VERSION, '7.3') >= 0) {
-				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'domain' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk,['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO']=='https')]);
 			}else{
 				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '',  ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 			}
@@ -83,13 +83,6 @@ try {
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
 			$_SESSION['user']->save();
 			@session_write_close();
-			if (!isset($_COOKIE['jeedom_token'])) {
-				if (version_compare(PHP_VERSION, '7.3') >= 0) {
-					setcookie('jeedom_token', ajax::getToken(), ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'domain' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-				}else{
-					setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/; samesite=strict", '',  ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-				}
-			}
 		}
 		ajax::success();
 	}
