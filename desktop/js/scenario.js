@@ -1113,6 +1113,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
     },
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable");
+      ui.item.attr('style', '')
       modifyWithoutSave = true;
     }
   });
