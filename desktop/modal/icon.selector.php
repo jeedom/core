@@ -86,7 +86,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			<script>
 			$('#bt_uploadImageIcon').fileupload({
 				replaceFileInput: false,
-				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon',
+				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&jeedom_token='+JEEDOM_AJAX_TOKEN,
 				dataType: 'json',
 				done: function (e, data) {
 					if (data.result.state != 'ok') {

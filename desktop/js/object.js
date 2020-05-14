@@ -179,7 +179,7 @@ function loadObjectConfiguration(_id){
   }
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
-    url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id,
+    url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id +'&jeedom_token='+JEEDOM_AJAX_TOKEN,
     dataType: 'json',
     done: function (e, data) {
       if (data.result.state != 'ok') {

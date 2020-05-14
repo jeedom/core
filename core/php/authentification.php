@@ -43,14 +43,6 @@ if (user::isBan()) {
 	die();
 }
 
-if(!isset($_COOKIE['jeedom_token']) || $_COOKIE['jeedom_token'] != ajax::getToken()){
-	if (version_compare(PHP_VERSION, '7.3') >= 0) {
-		setcookie('jeedom_token', ajax::getToken(), ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-	}else{
-		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/; samesite=Strict", '', ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-	}
-}
-
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		if (version_compare(PHP_VERSION, '7.3') >= 0) {
