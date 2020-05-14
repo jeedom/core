@@ -9,33 +9,33 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 
 <div style="display: none;" id="div_iconSelectorAlert"></div>
 <style>
-	.divIconSel{
-		height: 80px;
-		border: 1px solid #fff;
-		box-sizing: border-box;
-		cursor: pointer;
-		text-align: center;
-	}
+.divIconSel{
+	height: 80px;
+	border: 1px solid #fff;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+}
 
-	.iconSel{
-		line-height: 1.4;
-		font-size: 1.5em;
-	}
+.iconSel{
+	line-height: 1.4;
+	font-size: 1.5em;
+}
 
-	.iconSelected{
-		background-color: #563d7c;
-		color: white;
-	}
+.iconSelected{
+	background-color: #563d7c;
+	color: white;
+}
 
-	.iconDesc{
-		font-size: 0.8em;
-	}
+.iconDesc{
+	font-size: 0.8em;
+}
 
-	.imgContainer img{
-		max-width: 120px;
-		max-height: 70px;
-		padding: 10px;
-	}
+.imgContainer img{
+	max-width: 120px;
+	max-height: 70px;
+	padding: 10px;
+}
 </style>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		</div>
 	</div>
-
+	
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
@@ -86,7 +86,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			<script>
 			$('#bt_uploadImageIcon').fileupload({
 				replaceFileInput: false,
-				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&jeedom_token='+JEEDOM_AJAX_TOKEN,
+				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon',
 				dataType: 'json',
 				done: function (e, data) {
 					if (data.result.state != 'ok') {
@@ -96,7 +96,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
-
+			
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
 				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
@@ -116,7 +116,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			</script>
 		</div>
 	<?php } ?>
-
+	
 	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
@@ -129,12 +129,12 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				}
 				$fontfile = $root . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 				if (!file_exists($fontfile)) continue;
-
+				
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 				$echo .= '<div class="iconCategory"><legend>' . str_replace('/', '', $dir) . '</legend>';
-
+				
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
@@ -334,108 +334,108 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 </div>
 
 <script>
-	setTimeout(function() {
-		if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
-	}, 500);
+setTimeout(function() {
+	if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
+}, 500);
 
-	$('#sel_colorIcon').off('change').on('change',function() {
-		$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value());
-	});
+$('#sel_colorIcon').off('change').on('change',function() {
+	$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value());
+});
 
-	//searching
-	$('#in_searchIconSelector').on('keyup',function(){
-		$('.divIconSel').show()
-		$('.customIcon').hide()
-		$('.iconCategory').show()
-		var search = $(this).value()
-		if (search != '') {
-			search = normTextLower(search)
-			$('.iconDesc').each(function() {
-				if ($(this).text().indexOf(search) == -1) {
-					$(this).closest('.divIconSel').hide()
-				}
-			})
-		}
-
-		var somethingFound = 0
-		$('.iconCategory').each(function() {
-			var hide = true
-			if ($(this).find('.divIconSel:visible').length == 0) {
-				$(this).hide()
-			} else {
-				somethingFound +=1
+//searching
+$('#in_searchIconSelector').on('keyup',function(){
+	$('.divIconSel').show()
+	$('.customIcon').hide()
+	$('.iconCategory').show()
+	var search = $(this).value()
+	if (search != '') {
+		search = normTextLower(search)
+		$('.iconDesc').each(function() {
+			if ($(this).text().indexOf(search) == -1) {
+				$(this).closest('.divIconSel').hide()
 			}
 		})
-		if (somethingFound == 0) {
-			$('.customIcon').show()
-			$('.generalCategory').show()
-			$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>')
+	}
+	
+	var somethingFound = 0
+	$('.iconCategory').each(function() {
+		var hide = true
+		if ($(this).find('.divIconSel:visible').length == 0) {
+			$(this).hide()
+		} else {
+			somethingFound +=1
 		}
 	})
-	$('#bt_resetSearch').on('click', function () {
-		$('#in_searchIconSelector').val('')
-		$('#in_searchIconSelector').keyup();
-	})
+	if (somethingFound == 0) {
+		$('.customIcon').show()
+		$('.generalCategory').show()
+		$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>')
+	}
+})
+$('#bt_resetSearch').on('click', function () {
+	$('#in_searchIconSelector').val('')
+	$('#in_searchIconSelector').keyup();
+})
 
-	$('.divIconSel').on('click', function () {
-		$('.divIconSel').removeClass('iconSelected');
-		$(this).closest('.divIconSel').addClass('iconSelected');
-	});
-	$('.divIconSel').on('dblclick', function () {
-		$('.divIconSel').removeClass('iconSelected');
-		$(this).closest('.divIconSel').addClass('iconSelected');
-		$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
-	});
+$('.divIconSel').on('click', function () {
+	$('.divIconSel').removeClass('iconSelected');
+	$(this).closest('.divIconSel').addClass('iconSelected');
+});
+$('.divIconSel').on('dblclick', function () {
+	$('.divIconSel').removeClass('iconSelected');
+	$(this).closest('.divIconSel').addClass('iconSelected');
+	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
+});
 
-	setTimeout(function() {
-		if(tabimg && tabimg == 1) {
-			$('#mod_selectIcon ul li a[href="#img"]').click();
-		}
-	}, 500);
+setTimeout(function() {
+	if(tabimg && tabimg == 1) {
+		$('#mod_selectIcon ul li a[href="#img"]').click();
+	}
+}, 500);
 
-	$('#mod_selectIcon ul li a[href="#tabicon"]').click(function(e) {
-		$('#mySearch').show()
-		$('.iconCategory').show()
-	})
-	$('#mod_selectIcon ul li a[href="#tabimg"]').click(function(e) {
-		$('#mySearch').hide()
-		$('.iconCategory').hide()
-	})
+$('#mod_selectIcon ul li a[href="#tabicon"]').click(function(e) {
+	$('#mySearch').show()
+	$('.iconCategory').show()
+})
+$('#mod_selectIcon ul li a[href="#tabimg"]').click(function(e) {
+	$('#mySearch').hide()
+	$('.iconCategory').hide()
+})
 
-	$('#mod_selectIcon').css('overflow', 'hidden');
+$('#mod_selectIcon').css('overflow', 'hidden');
 
-	$(function() {
-		$('.imgContainer').show()
-		//move select/search in modal bottom:
-		var buttonSet = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('.ui-dialog-buttonpane')
-		buttonSet.find('#mySearch').remove()
-		var mySearch = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('#mySearch')
-		buttonSet.append(mySearch)
-		//auto select actual icon:
-		var iconName = (selectIcon.split('.').join(' ')).trim();
-		if (selectIcon != "0") {
-			$(selectIcon).closest('.divIconSel').addClass('iconSelected')
-			setTimeout(function() {
+$(function() {
+	$('.imgContainer').show()
+	//move select/search in modal bottom:
+	var buttonSet = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('.ui-dialog-buttonpane')
+	buttonSet.find('#mySearch').remove()
+	var mySearch = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('#mySearch')
+	buttonSet.append(mySearch)
+	//auto select actual icon:
+	var iconName = (selectIcon.split('.').join(' ')).trim();
+	if (selectIcon != "0") {
+		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
+		setTimeout(function() {
+			elem = $('div.divIconSel.iconSelected')
+			if (elem.position()) {
+				container = $('#mod_selectIcon > .tab-content')
+				pos = elem.position().top + container.scrollTop() - container.position().top
+				container.animate({scrollTop: pos-20})
+			} else {
+				$('.customIcon').show();
+				$('.customIcon').empty().append('<span class="iconSel"><i class="' + iconName + '"></i></span><br/><span class="iconDesc">' + iconName + '</span>');
+				$(selectIcon).closest('.divIconSel').addClass('iconSelected');
 				elem = $('div.divIconSel.iconSelected')
 				if (elem.position()) {
 					container = $('#mod_selectIcon > .tab-content')
 					pos = elem.position().top + container.scrollTop() - container.position().top
 					container.animate({scrollTop: pos-20})
-				} else {
-					$('.customIcon').show();
-					$('.customIcon').empty().append('<span class="iconSel"><i class="' + iconName + '"></i></span><br/><span class="iconDesc">' + iconName + '</span>');
-					$(selectIcon).closest('.divIconSel').addClass('iconSelected');
-					elem = $('div.divIconSel.iconSelected')
-					if (elem.position()) {
-						container = $('#mod_selectIcon > .tab-content')
-						pos = elem.position().top + container.scrollTop() - container.position().top
-						container.animate({scrollTop: pos-20})
-					}
 				}
-			}, 250);
-		}
-		if (colorIcon != "0") {
-			$('#sel_colorIcon').value(colorIcon);
-		}
-	})
+			}
+		}, 250);
+	}
+	if (colorIcon != "0") {
+		$('#sel_colorIcon').value(colorIcon);
+	}
+})
 </script>
