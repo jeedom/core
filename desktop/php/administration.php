@@ -634,7 +634,7 @@ user::isBan();
 								$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 								$div .= '<div class="col-xs-8">';
 								if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-									$div .= '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+									$div .= '<span class="label label-success">{{Démarré : }} <a href="https://' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 								} else {
 									$div .= '<span class="label label-warning" tooltip="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
 								}
