@@ -237,7 +237,7 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
-	public static function beckup_serverPath(){
+	public static function backup_serverPath(){
 		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
 	}
 	
@@ -313,7 +313,7 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --tempdir '.$base_dir . '/tmp';
 		$cmd .= ' ' . $base_dir;
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -349,7 +349,7 @@ class repo_market {
 		$cmd .= ' duplicity cleanup --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -370,7 +370,7 @@ class repo_market {
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -395,7 +395,7 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --timeout 60';
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		try {
 			$results = explode("\n", com_shell::execute($cmd));
 		} catch (\Exception $e) {
@@ -439,7 +439,7 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
 		$cmd .= ' --tempdir '.$base_dir;
-		$cmd .= self::beckup_serverPath();
+		$cmd .= self::backup_serverPath();
 		$cmd .= ' ' . $restore_dir;
 		try {
 			com_shell::execute($cmd);
@@ -786,8 +786,8 @@ class repo_market {
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
-			if (config::byKey('market::allowDNS') == 1 && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != $_result['service::tunnel::host']) {
-				config::save('jeedom::url', $_result['service::tunnel::host']);
+			if (config::byKey('market::allowDNS') == 1 && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != 'https://'.$_result['service::tunnel::host']) {
+				config::save('jeedom::url', 'https://'.$_result['service::tunnel::host']);
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
