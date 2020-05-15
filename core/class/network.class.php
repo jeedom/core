@@ -338,7 +338,7 @@ class network {
 		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
-		$openvpn = self::dns_create();
+		$openvpn = self::dns2_create();
 		$cmd = $openvpn->getCmd('action', 'start');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
