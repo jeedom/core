@@ -228,7 +228,7 @@ Il existe des déclencheurs spécifiques (autre que ceux fournis par les command
 - #end_restore# : Événement envoyé à la fin d’une restauration.
 - #user_connect# : Connexion d'un utilisateur
 
-Vous pouvez aussi déclencher un scénario quand une variable est mise à jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP décrite [ici](https://jeedom.github.io/core/fr_FR/api_http).
+Vous pouvez aussi déclencher un scénario quand une variable est mise à jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP décrite [ici](https://doc.jeedom.com/fr_FR/core/4.1/api_http).
 
 ### Opérateurs de comparaison et liens entre les conditions
 

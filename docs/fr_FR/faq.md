@@ -117,7 +117,7 @@ Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est e
 
 ### Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH
 Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
+Si celui-ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware. Voici la [documentation](https://doc.jeedom.com/fr_FR/installation/smart) pour la Smart
 
 ### Mon scénario ne s’arrête plus/pas
 Il est conseillé de regarder les commandes exécutées par le scénario, souvent cela vient d’une commande qui ne se termine pas.
@@ -205,7 +205,7 @@ Il faut :
 
 ### J'ai cette erreur sur l'installation des dependances d'un plugin : "from pip._internal import main"
 
-Il faut dans la console systeme de Jeedom ou en ssh faire 
+Il faut dans la console systeme de Jeedom ou en ssh faire
 
 ````
 sudo easy_install pip

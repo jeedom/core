@@ -26,7 +26,7 @@ try {
 		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
 	</center>
 	<br/><br/>
-	
+
 	<div class="row">
 		<div class="col-xs-4">
 			<center>
@@ -38,7 +38,7 @@ try {
 		</div>
 		<div class="col-xs-4">
 			<center>
-				<a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">
+				<a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">
 					<i class="fas fa-check-square" style="font-size:12em;"></i><br/>
 					{{Documentation de démarrage}}
 				</a>
@@ -46,7 +46,7 @@ try {
 		</div>
 		<div class="col-xs-4">
 			<center>
-				<a href="https://jeedom.github.io/documentation" target="_blank">
+				<a href="https://doc.jeedom.com/" target="_blank">
 					<i class="fas fa-book" style="font-size:12em;"></i><br/>
 					{{Documentation}}
 				</a>

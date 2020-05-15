@@ -257,7 +257,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://jeedom.github.io/documentation/compatibility/fr_FR/index" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://doc.jeedom.com/fr_FR/compatibility/" target="_blank">ici</a>)', __FILE__),
 			'key' => 'os::version'
 		);
 
@@ -407,7 +407,7 @@ class jeedom {
 			'name' => __('Apache private tmp', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://doc.jeedom.com/fr_FR/core/4.1/faq" target="_blank">' . __('ici', __FILE__) . '</a>',
 			'key' => 'apache2::privateTmp'
 		);
 

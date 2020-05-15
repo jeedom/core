@@ -19,7 +19,7 @@ if (!is_object($object)) {
 	$object = jeeObject::rootObject();
 }
 if (!is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
 if (init('childs', 1) == 1) {
 	$allObject = jeeObject::buildTree(null, true);
@@ -73,7 +73,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		<?php } else { ?>
 			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
 		<?php } ?>
-		</a>		
+		</a>
 	</div>
 	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
