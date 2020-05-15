@@ -24,4 +24,4 @@
 
 ## Installation
 
-Vous retrouverez [ici](https://jeedom.github.io/documentation/installation/fr_FR/index) toute les possibilités d'installation de Jeedom.
+Vous retrouverez [ici](https://doc.jeedom.com/fr_FR/installation/) toute les possibilités d'installation de Jeedom.
