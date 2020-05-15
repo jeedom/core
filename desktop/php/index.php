@@ -31,7 +31,7 @@ $title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
-$page = '';
+$page = 'dashboard';
 if (isConnect() && init('p') != '') {
 	$page = secureXSS(init('p'));
 	$title = ucfirst($page) . ' - ' . $title;
