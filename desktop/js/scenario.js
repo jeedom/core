@@ -277,6 +277,10 @@ $("#div_listScenario").trigger('resize');
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
+  setTimeout(function(){
+    $('.nav li.active').removeClass('active');
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  },500);
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       return
@@ -340,6 +344,7 @@ $('#bt_chooseIcon').on('click', function () {
   chooseIcon(function (_icon) {
     $('.scenarioAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   },{icon:_icon});
+  modifyWithoutSave = true
 });
 
 $('.scenarioAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
@@ -1113,6 +1118,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
     },
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable");
+      ui.item.attr('style', '')
       modifyWithoutSave = true;
     }
   });

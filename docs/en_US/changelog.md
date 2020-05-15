@@ -65,7 +65,8 @@
 - Lib : Update HighStock v7.1.2 to v8.1.0.
 - Lib : Update jQuery v3.4.1 to v3.5.1.
 - Lib : Update Font Awesome 5.9.0 to 5.13.0.
-
+- Report : use of chronium if available
+- Report : possibility to export timelines
 
 ### 4.0.53
 
