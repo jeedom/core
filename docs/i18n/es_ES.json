@@ -1278,6 +1278,9 @@
     },
     "changelog.md": {
         "Changelog Jeedom V4": "Registro de cambios Jeedom V4",
+        "4.0.55": "4.0.55",
+        "Le nouveau dns (\\*.eu.jeedom": "El nuevo dns (\\*. Eu.jeedom",
+        "link) devient le DNS primaire (l'ancien DNS marche toujours)": "enlace) se convierte en el DNS primario (el antiguo DNS todavía funciona)",
         "4.0.54": "4.0.54",
         "Début de la mise à jour vers le nouveau site de documentation": "Inicio de la actualización del nuevo sitio de documentación",
         "4.0.53": "4.0.53",
