@@ -3133,33 +3133,33 @@
     },
     "core\/ajax\/view.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Vue non trouvée. Vérifiez l\\'iD": "Visualização não encontrada. Verifique o iD",
-        "Vue non trouvée. Vérifiez l\\'ID": "Visualização não encontrada. Verifique o iD",
+        "Vue non trouvée. Vérifiez l\\'iD": "Vista não encontrada. Verifique o iD",
+        "Vue non trouvée. Vérifiez l\\'ID": "Vista não encontrada. Verifique o iD",
         "Vue inconnu. Vérifiez l\\'ID ": "Vista desconhecida. Verifique o ID",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Extension du fichier non valide (autorisé .jpg .png) : ": "Extensão de arquivo inválida (.jpg .png .gif autorizado):",
         "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo 5GB)",
         "Impossible de sauvegarder l\\'image": "Não foi possível salvar a imagem",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/user.ajax.php": {
-        "Connexion de l\\'utilisateur par REMOTE_USER : ": "Login do usuário por REMOTE_USER:",
+        "Connexion de l\\'utilisateur par REMOTE_USER : ": "Acesso do utilizador por REMOTE_USER:",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Você deve desativar a autenticação LDAP para adicionar um usuário",
-        "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Você deve desativar a autenticação LDAP para poder excluir um usuário",
-        "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Você não pode excluir a conta à qual está conectado",
-        "Utilisateur non trouvé : ": "Usuário não encontrado:",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Deve desativar a autenticação LDAP para adicionar um utilizador",
+        "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Deve desativar a autenticação LDAP para poder excluir um utilizador",
+        "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Não pode excluir a conta à qual está conectado",
+        "Utilisateur non trouvé : ": "Utilizador não encontrado:",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Plugin introuvable : ": "Plugin não encontrado:",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3222,12 +3222,12 @@
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Impossible de supprimer : ": "Não foi possível excluir:",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Impossible de trouver l\\'objet associé : ": "Não foi possível encontrar o objeto associado:",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3247,21 +3247,21 @@
         "Le fichier est trop gros (maximum 10Mo)": "O arquivo é muito grande (máximo de 10 MB)",
         "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucune correspondance pour l\\'ID : ' . init('id')": "Não há correspondência para o ID: '. init ('id')",
-        "[START UPDATE]": "[Iniciar a actualização]",
-        "Launch cron dependancy plugins": "Plugins dependência lançamento cron",
-        "[END UPDATE SUCCESS]": "[END ACTUALIZAÇÃO SUCESSO]",
-        "[END UPDATE ERROR]": "[ERRO DE ATUALIZAÇÃO FINAL]",
+        "[START UPDATE]": "[INICIAR A ACTUALIZAÇÃO]",
+        "Launch cron dependancy plugins": "Iniciar plugins dependendes do cron",
+        "[END UPDATE SUCCESS]": "[ATUALIZAÇÃO SUCEDIDA]",
+        "[END UPDATE ERROR]": "[ERRO NA ATUALIZAÇÃO]",
         "Répertoire de téléversement non trouvé : ": "Diretório de upload não encontrado:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Le fichier est trop gros (maximum 100Mo)": "O arquivo é muito grande (máximo de 100 MB)",
         "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/event.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3284,8 +3284,8 @@
     "core\/ajax\/widgets.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Widgets inconnus - Vérifiez l\\'id": "Widgets desconhecidos - verifique o ID",
-        "Aucune commande affectée au widget, prévisualisation impossible": "Nenhum comando atribuído ao widget, não pode visualizar",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune commande affectée au widget, prévisualisation impossible": "Nenhum comando associado ao widget, não é possível pré-visualizar",
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3327,18 +3327,18 @@
     "core\/ajax\/plan3d.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucun plan3d correspondant": "Nenhum plano 3D correspondente",
-        "Objet inconnu vérifiez l\\'id": "Objet inconnu verifiez l\\'id",
-        "plan3d header inconnu vérifiez l\\'id : ": "plan3d header inconnu verifiez l\\'id :",
-        "Code d\\'accès invalide": "Code d\\'acces invalide",
+        "Objet inconnu vérifiez l\\'id": "Objeto desconhecido. Verifique a ID",
+        "plan3d header inconnu vérifiez l\\'id : ": "Plano de cabeçalho 3D desconhecido. Verifique o ID",
+        "Code d\\'accès invalide": "Código de acesso inválido",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",
         "Extension du fichier non valide (autorisé .zip) : ": "Extensão de arquivo inválida (.zip autorizado):",
         "Le fichier est trop gros (maximum 150Mo)": "O arquivo é muito grande (máximo de 150 MB)",
         "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
-        "Impossible de décompresser les fichiers : ": "Não foi possível descomprimir arquivos:",
+        "Impossible de décompresser les fichiers : ": "Não foi possível descompactar arquivos:",
         "Impossible de décompresser l\\'archive zip : ": "Não foi possível descompactar o arquivo zip:",
-        "Il faut un seul et unique fichier .obj": "Um único arquivo .obj é necessário",
+        "Il faut un seul et unique fichier .obj": "Só é permitido um único arquivo .obj",
         "Aucune méthode correspondant à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/cron.ajax.php": {
@@ -3513,7 +3513,6 @@
         "Documentation": "Documentação",
         "Changelog": "Changelog",
         "Compatibilité plateforme": "Compatibilidade com a plataforma",
-        "Ma Note": "Minha nota",
         "Utilisation": "Uso",
         "Informations complementaires": "Informações adicionais",
         "Taille": "Tamanho",
@@ -3913,6 +3912,7 @@
         "Panel introuvable - Vérifiez l\\'id : ": "Painel não encontrado - Verifique o ID:",
         "[' . config::byKey('name') . '] Rapport équipement du ": "['. config :: byKey ('nome'). '' Relatório de equipamentos",
         "Veuillez trouver ci-joint le rapport équipement généré le ": "Encontre em anexo o relatório do equipamento gerado em",
+        "Génération du rapport timeline ": "Geração de relatórios da linha do tempo",
         "[' . config::byKey('name') . '] Rapport url du ": "['. config :: byKey ('nome'). '] Relatório de URL de",
         "Veuillez trouver ci-joint le rapport url généré le ": "Em anexo, encontre o relatório de URL gerado em",
         "Erreur : Aucun rapport généré": "Erro: relatório Sem gerado",
@@ -4162,6 +4162,7 @@
         "Design": "Projeto",
         "Plugin": "Plugin",
         "Equipement": "Equipamento",
+        "Timeline": "Cronograma",
         "URL": "URL ",
         "Panel": "Painel",
         "Exporter en": "Exportação",
@@ -4169,13 +4170,14 @@
         "PDF": "PDF",
         "Commandes": "Comandos",
         "Sélectionner la commande": "Selecione o comando",
-        "Largeur  (px)": "Largura (px)",
+        "Largeur (px)": "Largura (px)",
         "Hauteur (px)": "Altura (px)",
+        "Délai": "Prazo",
         "Option(s)": "Opção (ões)"
     },
     "core\/api\/marketApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Você não está autorizado a executar esta ação 1, IP:",
-        "Tous les crons sont actuellement désactivés": "Todos os cron estão desativadas"
+        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Não está autorizado a executar esta ação 1, IP:",
+        "Tous les crons sont actuellement désactivés": "Todos os cron estão desativados"
     },
     "core\/api\/proApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
@@ -4202,46 +4204,46 @@
         "Aucune méthode correspondante : ": "Nenhum método correspondente:"
     },
     "core\/api\/jeeApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Você não está autorizado a executar esta ação 1, IP:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "Você não está autorizado a executar esta ação (API",
-        "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "Você não está autorizado a executar esta ação (API HTTP desativada), IP:",
-        "Demande sur l\\'api http venant de : ": "Solicitação na API http proveniente de:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Não está autorizado a executar esta ação 1, IP:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "Não está autorizado a executar esta ação (API",
+        "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "Não está autorizado a executar esta ação (API HTTP desativada), IP:",
+        "Demande sur l\\'api http venant de : ": "Pedido na API http proveniente de:",
         "Commande inconnue : ": "Comando desconhecido:",
         "Token invalide": "Token inválido",
         "Aucune commande correspondant à l\\'ID : ": "Nenhum comando correspondente ao ID:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Você não está autorizado a executar esta ação 2, IP:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 3, IP : ": "Você não está autorizado a executar esta ação 3, IP:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 4, IP : ": "Você não está autorizado a executar esta ação 4, IP:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Não está autorizado a executar esta ação 2, IP:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 3, IP : ": "Não está autorizado a executar esta ação 3, IP:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 4, IP : ": "Não está autorizado a executar esta ação 4, IP:",
         "Exécution de : ": "Execução de:",
-        "Appels de ": "Chamadas",
-        "Demande API pour les scénarios": "Solicitação de API para cenários",
+        "Appels de ": "Chamadas de",
+        "Demande API pour les scénarios": "Pedir API para os cenários",
         "Aucun scénario correspondant à l\\'ID : ": "Nenhum cenário correspondente ao ID:",
-        "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Você não tem permissão para agir neste cenário",
-        "Démarrage scénario de : ": "Démarrage scénario de :",
-        "Exécution provoquée par un appel API ": "Exécution provoquée par un appel API",
-        "Arrêt scénario de : ": "Parada do cenário de:",
-        "Désactivation scénario de : ": "Cenário de desativação de:",
-        "Activation scénario de : ": "Ativação de cenário de:",
+        "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Não tem permissão para agir neste cenário",
+        "Démarrage scénario de : ": "Cenário inicial de:",
+        "Exécution provoquée par un appel API ": "Execução causada por uma chamada de API",
+        "Arrêt scénario de : ": "Parar cenário de:",
+        "Désactivation scénario de : ": "Desativar cenário de:",
+        "Activation scénario de : ": "Ativar cenário de:",
         "Action non trouvée ou invalide [start,stop,deactivate,activate]": "Ação não encontrada ou inválida [iniciar, parar, desativar, ativar]",
-        "Demande API pour ajouter un message": "Solicitação de API para adicionar uma mensagem",
-        "Demande API pour les objets": "Solicitação de API para objetos",
-        "Demande API pour les équipements": "Solicitação de API para equipamento",
-        "Demande API pour les commandes": "Solicitação de API para pedidos",
-        "Demande API pour les variables": "Solicitação de API para variáveis",
-        "Vous n\\'êtes pas autorisé à effectuer cette action (JSON-RPC disable)": "Você não está autorizado a executar esta ação (desativação do JSON-RPC)",
+        "Demande API pour ajouter un message": "Pedir API para adicionar uma mensagem",
+        "Demande API pour les objets": "Pedir API para os objetos",
+        "Demande API pour les équipements": "Pedir API para os equipamentos",
+        "Demande API pour les commandes": "Pedir API para os pedidos",
+        "Demande API pour les variables": "Pedir API para as variáveis",
+        "Vous n\\'êtes pas autorisé à effectuer cette action (JSON-RPC disable)": "Não está autorizado a executar esta ação (desativação do JSON-RPC)",
         "Requête invalide. Version JSON-RPC invalide : ": "Pedido inválido. Versão JSON-RPC inválida:",
-        "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Nome de usuário ou senha não podem ficar em branco",
+        "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Nome de utilizador ou senha não podem ficar em branco",
         "Echec lors de l\\'authentification": "Falha ao autenticar",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Você não está autorizado a executar esta ação 1",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Você não está autorizado a executar esta ação 2",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Não está autorizado a executar esta ação 1",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Não está autorizado a executar esta ação 2",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Não está autorizado a executar esta ação",
         "Objet introuvable : ": "Objeto não encontrado:",
         "EqLogic introuvable : ": "EqLogic não encontrado:",
-        "Type incorrect (classe commande inexistante)": "Tipo inválido (classe de pedido inexistente)",
+        "Type incorrect (classe commande inexistante)": "Invalid type (classe equipamento inexistente)",
         "Cmd introuvable : ": "Cmd não encontrado:",
-        "Vous n\\'avez pas les droits sur cette commande": "Você não tem os direitos sobre este pedido",
-        "Commande introuvable : ": "Pedido não encontrado:",
+        "Vous n\\'avez pas les droits sur cette commande": "Não tem os direitos sobre este pedido",
+        "Commande introuvable : ": "Comando não encontrado:",
         "Cette action nécessite un code d\\'accès": "Esta ação requer um código de acesso",
         "Cette action nécessite une confirmation": "Esta ação requer confirmação",
         "Vous n\\'êtes pas autorisé à faire cette action": "Não tem permissão para executar esta ação",
@@ -4250,7 +4252,7 @@
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "O parâmetro \"state\" não pode estar vazio e deve ter o valor [executar, parar, ativar, desativar]",
         "Impossible de trouver l\\'objet associé : ": "Não foi possível encontrar o objeto associado:",
         "Impossible de trouver l\\'objet": "Não foi possível encontrar o objeto",
-        "Demande pour le plugin : ": "Demande pour le plugin :",
+        "Demande pour le plugin : ": "Pedido de plugin:",
         "Aucune méthode correspondante : ": "Nenhum método correspondente:"
     },
     "core\/api\/tts.php": {

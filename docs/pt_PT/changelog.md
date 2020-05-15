@@ -65,7 +65,8 @@
 - Lib : Atualizar o HighStock v7.1.2 a v8.1.0.
 - Lib : Atualizar o jQuery v3.4.1 a v3.5.1.
 - Lib : Atualizar fonte Awesome 5.9.0 a 5.13.0.
-
+- Relatório : uso de crônio, se disponível
+- Relatório : possibilidade de exportar cronogramas
 
 ### 4.0.53
 
