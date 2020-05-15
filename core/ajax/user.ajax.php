@@ -74,9 +74,9 @@ try {
 				'session_id' =>session_id(),
 			);
 			if (version_compare(PHP_VERSION, '7.3') >= 0) {
-				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk,['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO']=='https')]);
+				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk,['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']=='https')]);
 			}else{
-				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '',  ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '',  (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 			}
 			@session_start();
 			$_SESSION['user']->refresh();

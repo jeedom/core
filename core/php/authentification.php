@@ -46,9 +46,9 @@ if (user::isBan()) {
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		if (version_compare(PHP_VERSION, '7.3') >= 0) {
-			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 		}else{
-			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 		}
 	} else {
 		setcookie('registerDevice', '');
