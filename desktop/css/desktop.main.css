@@ -585,6 +585,9 @@ sup i {
   color: rgb(var(--contrast-color)) !important;
   margin: 5px;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+}
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
 }

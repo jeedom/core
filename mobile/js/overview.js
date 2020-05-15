@@ -23,7 +23,7 @@ function initOverview() {
           }
           var div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-option="'+_this.id+'" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'") + '">'
             div += '<div class="topPreview topCorner">'
-              div += '<span class="name">'+_this.name+'</span>'
+              div += '<span class="name">'+icon +' '+_this.name+'</span>'
             div += '</div>'
             div += '<div class="bottomPreview bottomCorner">'
               div += '<div class="resume">'

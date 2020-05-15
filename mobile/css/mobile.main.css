@@ -1314,6 +1314,9 @@ a.ui-table-columntoggle-btn {
   margin: 10px !important;
   display: inline-block;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+}
 
 .objectPreview > .topPreview,
 .objectPreview > .bottomPreview {
