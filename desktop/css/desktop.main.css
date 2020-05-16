@@ -3057,6 +3057,7 @@ textarea {
   font-size: 12px !important;
   width : calc(100% - 340px);
   height: 24px;
+  overflow: hidden;
   opacity: 0.8;
 }
 
