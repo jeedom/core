@@ -19,18 +19,19 @@ require_once __DIR__ . '/core.inc.php';
 
 $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
 
-$session_lifetime = $configs['session_lifetime'];
-if (!is_numeric($session_lifetime)) {
-	$session_lifetime = 24;
+if (!isset($_SESSION)) {
+	$session_lifetime = $configs['session_lifetime'];
+	if (!is_numeric($session_lifetime)) {
+		$session_lifetime = 24;
+	}
+	ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
+	ini_set('session.use_cookies', 1);
+	ini_set('session.cookie_httponly', 1);
+	ini_set('session.cookie_samesite','Strict');
+	if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
+		ini_set('session.cookie_secure',1);
+	}
 }
-ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
-ini_set('session.use_cookies', 1);
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_samesite','Strict');
-if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
-	ini_set('session.cookie_secure',1);
-}
-
 @session_start();
 $_SESSION['ip'] = getClientIp();
 @session_write_close();
