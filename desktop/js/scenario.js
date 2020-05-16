@@ -98,7 +98,7 @@ $('#bt_resetScenarioSearch').on('click', function () {
 //inside searching
 $('#in_searchInsideScenario').keyup(function () {
   var search = $(this).value()
-  $('#div_scenarioElement input.expressionAttr').each(function() {
+  $('#div_scenarioElement .expressionAttr').each(function() {
     $(this).removeClass('insideSearch')
   })
   if (search == '') {
@@ -111,7 +111,7 @@ $('#in_searchInsideScenario').keyup(function () {
     return
   }
   search = normTextLower(search)
-  $('#div_scenarioElement input.expressionAttr').each(function() {
+  $('#div_scenarioElement .expressionAttr').each(function() {
     var text = normTextLower($(this).val())
     if (text.indexOf(search) >= 0) {
       $(this).addClass('insideSearch')
