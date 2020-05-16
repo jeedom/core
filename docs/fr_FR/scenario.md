@@ -108,7 +108,9 @@ notre scénario :
 
 -   **Multi lancement** : Cochez cette case si vous souhaitez que le
     scénario puisse être lancé plusieurs fois en même temps.
-
+>**IMPORTANT**
+>
+>Le multilancement marche à la seconde, c'est a dire que si vous avez 2 lancements dans la meme seconde sans la case coché il y aura quand meme 2 lancements du scénario (alors qu'il ne devrait pas). De meme lors de plusieurs lancement dans la meme seconde il se peut que certains lancements perdent les tags. Conclusion il faut ABSOLUEMENT eviter de multiple lancement dans la meme secondes.
 -   **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Ca permet d'augmenter la vitesse de lancement du scénario mais cela peut rendre le système instable.
 
 -   **Log** : Le type de log souhaité pour le scénario.
