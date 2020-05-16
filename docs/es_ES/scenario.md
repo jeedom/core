@@ -228,7 +228,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - #end_restore# : Evento enviado al final de una restauración.
 - #user_connect# : Inicio de sesión de usuario
 
-También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o usando la API HTTP descrita [aquí](https://jeedom.github.io/core/es_ES/api_http).
+También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o usando la API HTTP descrita [aquí](https://doc.jeedom.com/es_ES/core/4.1/api_http).
 
 ### Operadores de comparación y enlaces entre condiciones
 

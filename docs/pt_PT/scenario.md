@@ -228,7 +228,7 @@ Existem gatilhos específicos (além daqueles fornecidos por comandos) :
 - #end_restore# : Evento enviado no final de uma restauração.
 - #user_connect# : Login do usuário
 
-Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# ou usando a API HTTP descrita [aqui](https://jeedom.github.io/core/pt_PT/api_http).
+Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# ou usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.1/api_http).
 
 ### Operadores de comparação e links entre condições
 

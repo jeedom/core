@@ -228,7 +228,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - #end_restore# : Ereignis gesendet am Ende einer Restaurierung.
 - #user_connect# : Benutzeranmeldung
 
-Sie können auch ein Szenario auslösen, wenn eine Variable durch Putten aktualisiert wird : #variable(nom_variable)# oder unter Verwendung der beschriebenen HTTP-API [hier](https://jeedom.github.io/core/de_DE/api_http).
+Sie können auch ein Szenario auslösen, wenn eine Variable durch Putten aktualisiert wird : #variable(nom_variable)# oder unter Verwendung der beschriebenen HTTP-API [hier](https://doc.jeedom.com/de_DE/core/4.1/api_http).
 
 ### Vergleichsoperatoren und Verknüpfungen zwischen Bedingungen
 

@@ -228,7 +228,7 @@ There are specific triggers (other than those provided by commands) :
 - #end_restore# : Event sent at the end of a restoration.
 - #user_connect# : User login
 
-You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or using the HTTP API described [here](https://jeedom.github.io/core/en_US/api_http).
+You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or using the HTTP API described [here](https://doc.jeedom.com/en_US/core/4.1/api_http).
 
 ### Comparison operators and links between conditions
 

@@ -117,7 +117,7 @@ Novamente, isso geralmente ocorre devido a um plug-in na versão beta, enquanto 
 
 ### Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via SSH
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
-Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
+Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware. Aqui está o [Documentação](https://doc.jeedom.com/pt_PT/installation/smart) para Smart
 
 ### Meu cenário não para mais
 É aconselhável olhar para os comandos executados pelo cenário, geralmente vem de um comando que não termina.
@@ -205,7 +205,7 @@ Você deve :
 
 ### Eu tenho esse erro ao instalar dependências de plug-in : "de pip._ importação interna principal"
 
-É necessário no console do sistema do Jeedom ou no ssh para fazer 
+É necessário no console do sistema do Jeedom ou no ssh para fazer
 
 `` ''``
 sudo easy_install pip

@@ -117,7 +117,7 @@ Again this is often due to a plugin in beta while Jeedom is in stable. To see th
 
 ### I no longer have access to Jeedom, neither through the web interface nor in console via SSH
 This error is not due to Jeedom, but to a problem with the system.
-If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns. Here is [Documentation](https://jeedom.github.io/documentation/howto/en_US/recovery_mode_jeedom_smart) for Smart
+If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns. Here is [Documentation](https://doc.jeedom.com/en_US/installation/smart) for Smart
 
 ### My scenario does not stop any more
 It is advisable to look at the commands executed by the scenario, often it comes from a command that does not end.
@@ -205,7 +205,7 @@ It is necessary :
 
 ### I have this error when installing plugin dependencies : "from pip._internal import main"
 
-It is necessary in the system console of Jeedom or in ssh to make 
+It is necessary in the system console of Jeedom or in ssh to make
 
 `` ''``
 sudo easy_install pip

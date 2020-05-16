@@ -117,7 +117,7 @@ Auch dies ist oft auf ein Plugin in der Beta zurückzuführen, während Jeedom s
 
 ### Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch über SSH in der Konsole
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
-Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/de_DE/recovery_mode_jeedom_smart) für Smart
+Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen. Hier ist die [Dokumentation](https://doc.jeedom.com/de_DE/installation/smart) für Smart
 
 ### Mein Szenario hört nicht mehr auf
 Es ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen. Oft stammt sie von einem Befehl, der nicht endet.
@@ -205,7 +205,7 @@ Du musst :
 
 ### Ich habe diesen Fehler bei der Installation von Plugin-Abhängigkeiten : "von pip._internal import main"
 
-Es ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen 
+Es ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen
 
 `` ''``
 sudo easy_install pip

@@ -117,7 +117,7 @@ Nuevamente, esto a menudo se debe a un complemento en beta mientras Jeedom está
 
 ### Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a través de SSH
 Este error no se debe a Jeedom, sino a un problema con el sistema.
-Si esto persiste después de una reinstalación, es aconsejable consultar con el servicio postventa por problemas de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
+Si esto persiste después de una reinstalación, es aconsejable consultar con el servicio postventa por problemas de hardware. Aquí esta el [Documentación](https://doc.jeedom.com/es_ES/installation/smart) para inteligente
 
 ### Mi escenario ya no se detiene
 Es recomendable mirar los comandos ejecutados por el escenario, a menudo proviene de un comando que no termina.
@@ -205,7 +205,7 @@ Hay que :
 
 ### Tengo este error al instalar dependencias de complementos : "de pip._ principal de importación interna"
 
-Es necesario en la consola del sistema de Jeedom o en ssh hacer 
+Es necesario en la consola del sistema de Jeedom o en ssh hacer
 
 `` ''``
 sudo easy_install pip
