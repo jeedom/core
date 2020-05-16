@@ -1406,11 +1406,13 @@ a.ui-table-columntoggle-btn {
 }
 
 .objectPreview .success,
-.objectPreview .success > i {
+.objectPreview .topPreview .objectSummaryParent.success,
+.objectPreview .topPreview .objectSummaryParent.success i {
   color: var(--bt-success-color) !important;
 }
 .objectPreview .danger,
-.objectPreview .danger > i {
+.objectPreview .topPreview .objectSummaryParent.danger,
+.objectPreview .topPreview .objectSummaryParent.danger i {
   color: var(--al-danger-color) !important;
 }
 
