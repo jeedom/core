@@ -234,9 +234,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <?php
               foreach ($usedBy['scenario'] as $usedByScenario) {
                 if ($usedByScenario->getIsActive() != 1) {
-                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '" class="btn btn-xs btn-info">' . $usedByScenario->getHumanName() . '</a><br/>';
+                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search='.urlencode($cmd->getHumanName()).'" class="btn btn-xs btn-info">' . $usedByScenario->getHumanName() . '</a><br/>';
                 } else {
-                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByScenario->getHumanName() . '</a><br/>';
+                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search='.urlencode($cmd->getHumanName()).'" class="btn btn-xs btn-primary">' . $usedByScenario->getHumanName() . '</a><br/>';
                 }
               }
               ?>
