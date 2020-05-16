@@ -1452,6 +1452,10 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding-top: 40px;
 }
 
+#timelineContainer .html i {
+  color: var(--linkHoverLight-color) !important;
+}
+
 #timelineContainer ul {
   padding-top: 15px;
   list-style: none;
