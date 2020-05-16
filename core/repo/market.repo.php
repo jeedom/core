@@ -216,22 +216,10 @@ class repo_market {
 	}
 	
 	public static function objectInfo($_update) {
-		$url = 'https://jeedom.github.io/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-		if ($_update->getConfiguration('third_plugin', null) === null) {
-			$_update->setConfiguration('third_plugin', 0);
-			$header = get_headers($url);
-			if (strpos($header[0], '200') === false) {
-				$_update->setConfiguration('third_plugin', 1);
-				$url = 'https://jeedom.github.io/documentation/third_plugin/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-			}
-			$_update->save();
-		} elseif ($_update->getConfiguration('third_plugin', 0) == 1) {
-			$url = 'https://jeedom.github.io/documentation/third_plugin/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/index.html';
-		}
 		return array(
-			'doc' => $url,
-			'changelog' => $url . '#_changelog',
-			'display' => 'https://jeedom.com/market/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
+			'doc' => 'https://doc.jeedom.com',
+			'changelog' => 'https://doc.jeedom.com',
+			'display' => 'https://market.jeedom.com/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
 		);
 	}
 	
