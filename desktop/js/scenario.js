@@ -938,6 +938,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
+  newBloc.find('.insideSearch').removeClass('insideSearch')
 
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
