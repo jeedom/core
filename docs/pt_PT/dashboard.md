@@ -1,4 +1,4 @@
-# Dashboard
+# Painel de instrumentos
 **Página inicial → Painel**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>

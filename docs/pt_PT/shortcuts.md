@@ -9,7 +9,7 @@ Ao abrir uma página (painel, cenários, etc.), o foco está no campo de pesquis
 - Clique em ?  (barra de menus)  : Abre a ajuda na página atual.
 - Escape em um campo de pesquisa : Esvazie o campo de pesquisa e cancele-o.
 
-## Dashboard
+## Painel de instrumentos
 No modo de edição:
 	- Arraste e solte nos ladrilhos para reorganizá-los.
 	- Redimensionar nas bordas do bloco para redimensioná-las.

@@ -5,7 +5,7 @@
 
 Cérebro real da automação residencial, os cenários permitem interagir de uma maneira com o mundo real *esperto*.
 
-## Gestion
+## Gestão
 
 Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades para gerenciá-los da melhor maneira possível :
 
@@ -104,7 +104,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 >
 > Ctrl Shift Z ou Ctrl Shift Y permite que você'**Cancelar** ou refazer uma modificação (adição de ação, bloco ...).
 
-### Blocos
+### O blocs
 
 Aqui estão os diferentes tipos de blocos disponíveis :
 
@@ -154,7 +154,7 @@ Depois que a condição estiver concluída, você deve usar o botão "adicionar"
 
 O bloco Code permite executar código php. Portanto, é muito poderoso, mas requer um bom conhecimento da linguagem php.
 
-##### Acesso a controles (sensores e atuadores):
+##### àccès aux commandes (capteurs e actionneurs):
 -  ``cmd::byString ($ string); ` : Retorna o objeto de comando correspondente.
     -   ``$string``: Link para o pedido desejado : ``#[obje][equipement][commande]#`` (ex : ``#[àppartement][àlarme][Ativos]#`)
 -  ``cmd::byId ($ id); ` : Retorna o objeto de comando correspondente.
@@ -165,13 +165,13 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
         -  cor : `$ option = array ('color' => 'cor em hexadecimal');`
         -  controle deslizante : `$ option = array ('slider' => 'valor desejado de 0 a 100');`
 
-##### Acesso ao log :
+##### àccès aux log :
 -  ``log::add ('nome do arquivo', 'nível', 'mensagem'); `
     - filename : Nome do arquivo de log.
     - nível : [depuração], [informações], [erro], [evento].
     - Mensagem : Mensagem para escrever nos logs.
 
-##### Acesso ao cenário :
+##### àccès aux scénario :
 - `$ cenário-> getName ();` : Retorna o nome do cenário atual.
 - `$ cenário-> getGroup ();` : Retorna o grupo de cenários.
 - `$ cenário-> getIsActive ();` : Retorna o estado do cenário.
@@ -198,7 +198,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 O bloco de comentários age de maneira diferente quando está oculto. Seus botões à esquerda desaparecem, assim como o título do bloco, e reaparecem ao passar o mouse. Da mesma forma, a primeira linha do comentário é exibida em negrito.
 Isso permite que esse bloco seja usado como uma separação puramente visual dentro do cenário.
 
-### Acções
+### O Actions
 
 As ações adicionadas aos blocos têm várias opções :
 
@@ -213,9 +213,9 @@ As ações adicionadas aos blocos têm várias opções :
 >
 > Dependendo do comando selecionado, você pode ver diferentes campos adicionais exibidos.
 
-## Possíveis substituições
+## O substitutions possibles
 
-### Triggers
+### O déclencheurs
 
 Existem gatilhos específicos (além daqueles fornecidos por comandos) :
 
@@ -228,7 +228,7 @@ Existem gatilhos específicos (além daqueles fornecidos por comandos) :
 - #end_restore# : Evento enviado no final de uma restauração.
 - #user_connect# : Login do usuário
 
-Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# ou usando a API HTTP descrita [aqui](https://jeedom.github.io/core/pt_PT/api_http).
+Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# onde en utilisant l'API HTTP décrite [aqui](https://jeedom.github.io/core/pt_PT/api_http).
 
 ### Operadores de comparação e links entre condições
 
@@ -249,7 +249,7 @@ Você pode combinar qualquer comparação com os seguintes operadores :
 - \|| / OU / ou / OU / ou : ou,
 - ^ / XOR / xor : ou exclusivo.
 
-### Tags
+### O tags
 
 Uma tag é substituída durante a execução do cenário por seu valor. Você pode usar as seguintes tags :
 
@@ -289,7 +289,7 @@ Você também tem as seguintes tags adicionais se seu cenário foi acionado por 
 >
 > Quando um cenário é acionado por uma interação, é necessariamente executado no modo rápido. Portanto, no segmento de interação e não em um segmento separado.
 
-### Funções de cálculo
+### O fonctions de calcul
 
 Várias funções estão disponíveis para o equipamento :
 
@@ -403,7 +403,7 @@ Aqui estão exemplos práticos para entender os valores retornados por essas dif
 | nome (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Retorna Hidrometria                  |
 
 
-### Funções matemáticas
+### O fonctions mathématiques
 
 Uma caixa de ferramentas de funções genéricas também pode ser usada para realizar conversões
 
@@ -445,7 +445,7 @@ E exemplos práticos :
 | convertDuration (duration (#[Chauffage][Module chaudière][Etat]#,1, primeiro dia deste mês) * 60) | Retorna o tempo de ignição em Dias / Horas / minutos do tempo de transição para o estado 1 do módulo desde o 1º dia do mês |
 
 
-### Pedidos específicos
+### O commandes spécifiques
 
 Além dos comandos de automação residencial, você tem acesso às seguintes ações :
 
@@ -473,7 +473,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Tag** (tag) : Permite adicionar / modificar uma tag (a tag existe apenas durante a execução atual do cenário, diferente das variáveis que sobrevivem ao final do cenário).
 - **Coloração de ícones do painel** (setColoredIcon) : permite ativar ou não a coloração de ícones no painel.
 
-### Template cenário
+### Modelo de scénario
 
 Essa funcionalidade permite transformar um cenário em um modelo para, por exemplo, aplicá-lo a outro Jeedom.
 
@@ -496,7 +496,7 @@ Abaixo, você tem a parte para aplicar seu modelo ao cenário atual.
 
 Como, de um Jeedom para outro ou de uma instalação para outro, os comandos podem ser diferentes, o Jeedom solicita a correspondência dos comandos entre os presentes durante a criação do modelo e os presentes em casa. Você só precisa preencher a correspondência dos pedidos e aplicar.
 
-### Adição da função php
+### àjout de fonction php
 
 > **IMPORTANTE**
 >

@@ -3,7 +3,7 @@
 
 Esta página le permite reunir en una sola página los diferentes elementos configurados en su Jeedom. También da acceso a funciones para organizar equipos y controles, a su configuración avanzada y para mostrar las posibilidades de configuración.
 
-## Informations
+## Información
 
 En la parte superior de la página, encontramos :
 - **Apellidobre d'objets** : Número total de objetos configurados en nuestro Jeedom, incluidos elementos inactivos.
@@ -15,7 +15,7 @@ En la parte superior de la página, encontramos :
 
 También tienes una pestaña **Histórico**, Mostrar el historial de pedidos, equipos, objetos, vistas, diseño, diseño 3D, escenarios y usuarios eliminados.
 
-## Marcos de objetos
+## Las cadres objet
 
 Debajo hay un cuadro por objeto. En cada cuadro, encontramos la lista de equipos que tienen este objeto como padre.
 El primer cuadro **No** representa dispositivos que no tienen padre asignado.
@@ -32,7 +32,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 >
 > Con un clic y soltar sobre los objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden establecido en esta página que se calcula la visualización del Tablero.
 
-## Los equipos
+## Las équipements
 
 En cada equipo encontramos :
 
@@ -86,7 +86,7 @@ A continuación encontrará una tabla con la lista de comandos de equipos con, p
 
 En la pestaña **Viendo**, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
 
-#### Widget
+#### Reproductor
 
 -  **Visible** : Marque la casilla para hacer visible el equipo.
 - **Mostrar nombre** : Marque la casilla para mostrar el nombre del equipo en el mosaico.

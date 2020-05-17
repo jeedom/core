@@ -1,4 +1,4 @@
-# Design
+# Diseño
 **Inicio → Diseño**
 
 Esta página le permite configurar la visualización de toda su domótica de una manera muy fina.
@@ -77,19 +77,19 @@ Encontrado aquí :
 - **Ancho (px)** : Ancho del elemento en píxeles.
 - **Altura (px)** : Altura del elemento en píxeles.
 
-### Supprimer
+### Remove
 
 Eliminar elemento
 
-### Dupliquer
+### Duplicado
 
 Le permite duplicar el elemento
 
-### Verrouiller
+### Cerradura
 
 Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tamaño.
 
-## Graphique
+## Gráfico
 
 ### Configuraciones de pantalla específicas
 
@@ -127,7 +127,7 @@ Le permite elegir los comandos para graficar.
 
 *No hay configuraciones de visualización específicas*
 
-## Lien
+## Enlace
 
 ### Configuraciones de pantalla específicas
 
@@ -141,7 +141,7 @@ Le permite elegir los comandos para graficar.
 - **Alineación de texto** : Permite elegir la alineación del texto (izquierda / derecha / centrado).
 - **Grasa** : Texto en negrita.
 
-## Equipement
+## Equipo
 
 ### Configuraciones de pantalla específicas
 
@@ -155,7 +155,7 @@ Le permite elegir los comandos para graficar.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
 - **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
 
-### Commandes
+### Comandos
 
 La lista de comandos presentes en el equipo le permite, para cada comando,:
 - Ocultar nombre del comando.
@@ -166,7 +166,7 @@ La lista de comandos presentes en el equipo le permite, para cada comando,:
 
 Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-## Commande
+## Orden
 
 *No hay configuraciones de visualización específicas*
 
@@ -174,7 +174,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-## Imagen / Cámara
+## Imagen/Cámara
 
 ### Configuraciones de pantalla específicas
 
@@ -182,7 +182,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 - **Imagen** : Le permite enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
-## Zone
+## Zona
 
 ### Configuraciones de pantalla específicas
 
@@ -221,7 +221,7 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Grasa** : Texto en negrita.
 
-## FAQ
+## Preguntas frecuentes
 
 >**Ya no puedo editar mi diseño**
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.

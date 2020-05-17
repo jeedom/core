@@ -77,19 +77,19 @@ Hier gefunden :
 - **Breite (px)** : Elementbreite in Pixel.
 - **Höhe (px)** : Elementhöhe in Pixel.
 
-### Supprimer
+### Entfernen
 
 Gegenstand entfernen
 
-### Dupliquer
+### Duplikat
 
 Ermöglicht das Duplizieren des Elements
 
-### Verrouiller
+### Schloss
 
 Ermöglicht das Sperren des Elements, sodass es nicht mehr beweglich oder in der Größe veränderbar ist.
 
-## Graphique
+## Grafik
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -127,7 +127,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 *Keine spezifischen Anzeigeeinstellungen*
 
-## Lien
+## Link
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -141,7 +141,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Textausrichtung** : Ermöglicht die Auswahl der Ausrichtung des Textes (links / rechts / zentriert).
 - **Fett** : Fetter Text.
 
-## Equipement
+## Ausrüstung
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -155,7 +155,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
-### Commandes
+### Befehle
 
 Die Liste der auf dem Gerät vorhandenen Befehle ermöglicht es Ihnen, für jeden Befehl Folgendes zu tun:
 - Befehlsname ausblenden.
@@ -166,7 +166,7 @@ Die Liste der auf dem Gerät vorhandenen Befehle ermöglicht es Ihnen, für jede
 
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation **Übersicht Haus-Automatisierung**).
 
-## Commande
+## Bestellen
 
 *Keine spezifischen Anzeigeeinstellungen*
 
@@ -174,7 +174,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation **Übersicht Haus-Automatisierung**).
 
-## Bild / Kamera
+## Bild/Kamera
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -182,7 +182,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 - **Bild** : Ermöglicht das Senden des betreffenden Bildes (wenn Sie ein Bild ausgewählt haben).
 - **Kamera** : Kamera zum Anzeigen (wenn Sie Kamera gewählt haben).
 
-## Zone
+## Bereich
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -221,7 +221,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Mit dieser Option können Sie die Schriftgröße ändern.
 - **Fett** : Fetter Text.
 
-## FAQ
+## Faq
 
 >**Ich kann mein Design nicht mehr bearbeiten**
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.

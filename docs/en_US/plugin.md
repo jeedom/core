@@ -18,7 +18,7 @@ By clicking on a plugin, you access its configuration. At the top, you find the 
 >
 > You can Ctrl-Click or Click Center to open its configuration in a new browser tab.
 
-## Plugin configuration
+## D'actualité de plugin
 
 ### At the top right, some buttons :
 
@@ -88,7 +88,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 We can find a Panel section which will enable or disable the display of the panel on the dashboard or mobile if the plugin offers one.
 
-## Plugin installation
+## Setup d'un plugin
 
 To install a new plugin, just click on the &quot;Market&quot; button (and Jeedom is connected to the Internet). After a short loading time, you will get the page.
 

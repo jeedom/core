@@ -3,7 +3,7 @@
 
 Auf dieser Seite können Sie die verschiedenen Elemente, die in Ihrem Jeedom konfiguriert sind, auf einer einzigen Seite zusammenfassen. Es bietet auch Zugriff auf Funktionen zum Organisieren von Geräten und Steuerungen, auf deren erweiterte Konfiguration und zum Anzeigen von Konfigurationsmöglichkeiten.
 
-## Informations
+## Informationen
 
 Oben auf der Seite finden wir :
 - **Namebre d'objets** : Gesamtzahl der in unserem Jeedom konfigurierten Objekte, einschließlich inaktiver Elemente.
@@ -15,7 +15,7 @@ Oben auf der Seite finden wir :
 
 Sie haben auch eine Registerkarte **Historisch**, Anzeigen des Verlaufs von Aufträgen, Geräten, Objekten, Ansichten, Design, 3D-Design, Szenarien und gelöschten Benutzern.
 
-## Objektrahmen
+## Dies cadres objet
 
 Darunter befindet sich ein Frame pro Objekt. In jedem Frame finden wir die Liste der Geräte, die dieses Objekt als übergeordnetes Objekt haben.
 Der erste Frame **Keine** repräsentiert Geräte, denen kein übergeordnetes Element zugewiesen ist.
@@ -32,7 +32,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 >
 > Mit einem Klick auf die Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
 
-## Die Ausrüstungen
+## Dies équipements
 
 Auf jeder Ausrüstung finden wir :
 

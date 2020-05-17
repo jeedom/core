@@ -1,4 +1,4 @@
-# Configuration
+# Configuración
 **Preferencias → Sistema → Configuración**
 
 Aquí es donde se encuentran la mayoría de los parámetros de configuración.
@@ -32,13 +32,13 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **Sensor de brillo**   : Interfaz móvil solamente, requiere activación *sensor adicional genérico* en cromo, página de cromo://flags.
 - **Ocultar imágenes de fondo** : Le permite ocultar las imágenes de fondo encontradas en los escenarios, objetos, páginas de interacciones, etc.
 
-### Tuiles
+### Embaldosado
 
 - **Embaldosado Pas horizontal** : Restringe el ancho de los mosaicos cada x píxeles.
 - **Embaldosado Pas vertical** : Restringe la altura de los mosaicos cada x píxeles.
 - **Embaldosado Marge** : Espacio vertical y horizontal entre mosaicos, en píxeles.
 
-### Personnalisation
+### Personalización
 
 - **Activar** : Active el uso de las siguientes opciones.
 - **Transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
@@ -100,19 +100,19 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 ## Pestaña Registros
 
-### Timeline
+### Línea de tiempo
 
 - **Apellidobre maximum d'évènements** : Define el número máximo de eventos para mostrar en la línea de tiempo.
 - **Eliminar todos los eventos** : Vaciar la línea de tiempo de todos sus eventos grabados.
 
-### Messages
+### Mensajes
 
 - **Agregue un mensaje a cada error en los registros** : si un complemento o Jeedom escribe un mensaje de error en un registro, Jeedom agrega automáticamente un mensaje en el centro de mensajes (al menos está seguro de que no se lo perderá).
 - **Acción sobre mensaje** : Le permite realizar una acción al agregar un mensaje al centro de mensajes. Tienes 2 etiquetas para estas acciones :
         - #subject# : mensaje en cuestión.
         - #plugin# : complemento que activó el mensaje.
 
-### Alertes
+### Notificaciones
 
 - **Agregar un mensaje a cada tiempo de espera** : Agregue un mensaje en el centro de mensajes si cae un dispositivo **tiempo de espera**.
 - **Orden de tiempo de espera** : Comando de tipo **mensaje** para ser usado si un equipo está en **tiempo de espera**.
@@ -125,7 +125,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Agregue un mensaje a cada peligro** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **peligro**.
 - **Comando en peligro** : Comando de tipo **mensaje** para usar si un pedido entra en alerta **peligro**.
 
-### Logs
+### Troncos
 
 - **Motor de registro** : Le permite cambiar el motor de registro para, por ejemplo, enviarlos a un demonio syslog (d).
 - **Formato de registro** : Formato de registro a utilizar (Precaución : no afecta los registros de demonios).
@@ -138,7 +138,7 @@ A continuación encontrará una tabla para administrar con precisión el nivel d
 
 Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obtiene gráficos que representan su uso. Esta pestaña le permite establecer parámetros globales para el registro de comandos.
 
-### Historique
+### Histórico
 
 - **Ver estadísticas de widgets** : Ver estadísticas sobre widgets. El widget debe ser compatible, que es el caso para la mayoría. El comando también debe ser de tipo numérico.
 - **Período de cálculo para min, max, promedio (en horas)** : Periodo de cálculo de estadísticas (24h por defecto). No es posible tomar menos de una hora.
@@ -154,7 +154,7 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 > El primer parámetro **Ver estadísticas de widgets** es posible pero está deshabilitado de manera predeterminada porque extiende significativamente el tiempo de visualización del tablero. Si activa esta opción, de manera predeterminada, Jeedom se basa en los datos de las últimas 24 horas para calcular estas estadísticas.
 > El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para más detalles).
 
-### Push
+### Empuje
 
 - **URL de push globale** : le permite agregar una URL para llamar en caso de una actualización del pedido. Puedes usar las siguientes etiquetas :
 **\#value\#** por el valor del pedido, **\#cmd\_name\#** para el nombre del comando,
@@ -276,7 +276,7 @@ Aquí están las diferentes opciones disponibles :
 - **Filtro de usuario limitado (opcional)** : filtrar usuarios limitados en el AD (para la gestión de grupos, por ejemplo)
 - **Permitir REMOTO\_USER** : Active REMOTE\_USER (usado en SSO por ejemplo).
 
-### Connexion
+### Acceder
 
 - **Apellidobre d'échecs tolérés** : define el número de intentos sucesivos permitidos antes de prohibir la IP
 - **Tiempo máximo entre fallas (en segundos)** : tiempo máximo para 2 intentos para ser considerado sucesivo
@@ -294,11 +294,11 @@ La lista de IP prohibidas se encuentra al final de esta página. Encontrará la 
 - **Versión Core** : Versión principal para recuperar.
 - **Buscar actualizaciones automáticamente** : Indique si debe verificar automáticamente si hay nuevas actualizaciones (tenga cuidado de evitar sobrecargar el mercado, el tiempo de verificación puede cambiar).
 
-### Depósitos
+### La dépôts
 
 Los repositorios son espacios de almacenamiento (y servicio) para poder mover copias de seguridad, recuperar complementos, recuperar el núcleo de Jeedom, etc.
 
-### Fichier
+### Expediente
 
 Depósito utilizado para activar el envío de complementos por archivos.
 
@@ -311,7 +311,7 @@ Depósito utilizado para conectar Jeedom a Github.
 - **Apellido du dépôt pour le core Jeedom** : Nombre del repositorio para core.
 - **Industria central de Jeedom** : Rama del repositorio central.
 
-#### Market
+#### Mercado
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 

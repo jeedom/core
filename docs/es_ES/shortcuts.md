@@ -9,7 +9,7 @@ Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de bús
 - Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual.
 - Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
 
-## Dashboard
+## Salpicadero
 En modo edición:
 	- Arrastra y suelta en los mosaicos para reorganizarlos.
 	- Cambiar el tamaño de los bordes del mosaico para cambiar su tamaño.

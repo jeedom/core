@@ -1,4 +1,4 @@
-# Vues
+# View
 **Home → View**
 
 Views allow you to create a custom view.
@@ -8,7 +8,7 @@ It is not as powerful as the designs but it allows in a few minutes to have a mo
 >
 > You can choose the default view in your profile when clicking on the view menu.
 
-## Principe
+## Principle
 
 We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the command widgets).
 

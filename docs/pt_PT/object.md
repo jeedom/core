@@ -1,4 +1,4 @@
-# Objets
+# Objetos
 **Ferramentas → Objetos**
 
 O **Objetos** permitem definir a estrutura em árvore da sua automação residencial.
@@ -7,7 +7,7 @@ Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mai
 
 Para dar livre escolha à personalização, você pode nomear esses objetos como desejar. Normalmente, definiremos as diferentes partes de sua casa, como os nomes dos quartos (a propósito, essa é a configuração recomendada).
 
-## Gestion
+## Gestão
 
 Você tem duas opções :
 - **Adicionar** : Crie um novo objeto.
@@ -73,7 +73,7 @@ As colunas representam os resumos atribuídos ao objeto atual. Três linhas são
 - **Esconder no ambiente de trabalho** : Marque a caixa se não desejar que o resumo apareça ao lado do nome do objeto no Painel.
 - **Esconder móvel** : Marque a caixa se você não deseja que o resumo apareça ao vê-lo em um celular.
 
-### Commandes
+### Comandos
 
 Cada guia representa um tipo de resumo definido na configuração do Jeedom. Clique em **Adicionar une commande** para que seja levado em consideração no resumo. Você tem a opção de selecionar o comando de qualquer equipamento Jeedom, mesmo que ele não tenha esse objeto como pai.
 

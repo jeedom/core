@@ -1,4 +1,4 @@
-# Vues
+# Vistas
 **Inicio → Ver**
 
 Las vistas le permiten crear una vista personalizada.
@@ -8,7 +8,7 @@ No es tan potente como los diseños, pero permite en unos minutos tener una pant
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic en el menú de vista.
 
-## Principe
+## Principio
 
 También podemos poner widgets, gráficos (que pueden estar compuestos de varios datos) o zonas de tabla (que contienen los widgets de comando).
 

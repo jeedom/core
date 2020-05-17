@@ -1,4 +1,4 @@
-# Sauvegardes
+# Backups
 **Settings → System → Backups**
 
 Jeedom offers the possibility of being saved and restored from or from different locations.
@@ -7,7 +7,7 @@ This page allows the management of backups, restores.
 
 You will find, on the left, the parameters and action buttons. On the right is the real-time status of the action in progress (backup or restore), if you have launched one.
 
-## Sauvegardes
+## Backups
 
 - **Backups** : Allows you to start a backup manually and immediately (useful if you want to make a critical change. This will allow you to go back). You also have a button to launch a backup without sending the archive to the cloud (requires a subscription see below). Sending a backup to the cloud can take a while. This option therefore avoids excessive loss of time.
 
@@ -17,7 +17,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Maximum total size of backups (MB)** : Limits the space taken by all backups in the backup folder. If this value is exceeded, Jeedom will delete the oldest backups until it drops below the maximum size. It will however keep at least one backup.
 
-## Local backups
+## Backups Locales
 
 - **Backups disponibles** : List of available backups.
 
@@ -29,7 +29,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Download backup** : Download the archive of the backup selected above to your computer.
 
-## Market backups
+## Backups Market
 
 - **Sending backups** : Tell Jeedom to send backups to the Market cloud, please note that you must have subscribed.
 
@@ -39,7 +39,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Restore backup** : Starts restoring a cloud backup.
 
-## Samba backups
+## Backups Samba
 
 - **Sending backups** : Tells Jeedom to send the backups to the samba share configured here Settings → System → Configuration : Updates.
 

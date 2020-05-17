@@ -1,4 +1,4 @@
-# Widgets
+# Widget
 **Tools → Widgets**
 
 The widgets page allows you to create custom widgets for your Jeedom.
@@ -12,7 +12,7 @@ There are two types of custom widgets :
 >
 > If template-based widgets are integrated into the Core and therefore monitored by the development team, the latter has no way of ensuring the compatibility of widgets based on user code according to Jeedom developments.
 
-## Gestion
+## Management
 
 You have four options :
 - **Add** : Allows you to create a new widget.
@@ -40,7 +40,7 @@ To the right of the search field, three buttons found in several places in Jeedo
 Once on the configuration of a widget, you have a contextual menu with the Right Click on the tabs of the widget. You can also use a Ctrl Click or Clic Center to directly open another widget in a new browser tab.
 
 
-## Principe
+## Principle
 
 But what is a template ?
 To put it simply, it is code (here html / js) integrated into the Core, some parts of which are configurable by the user with the graphical interface of the Core.
@@ -64,7 +64,7 @@ Then :
 - Then finally the template in question (we plan to put examples of renderings for each template).
 - Once the template has been chosen, jeedom gives you the options for configuring it.
 
-### Remplacement
+### Replacement
 
 This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc. Then depending on the template, you can be offered the width and the height. This is only valid for images.
 
@@ -99,7 +99,7 @@ The tests are in the form : #value# == 1, #value# will be automatically replaced
 
 We are going to describe here some widgets which have a somewhat particular functioning.
 
-### Equipement
+### Equipment
 
 The equipments have certain configuration parameters :
 
@@ -117,7 +117,7 @@ The equipments have certain configuration parameters :
 - Desktop width : width of the image on desktop in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
 - Movable width : width of the image on mobile in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
 
-### HygroThermographe
+### Hygrothermograph
 
 This widget is a bit special because it is a multi-command widget, that is to say that it assembles on its display the value of several commands. Here he takes temperature and humidity commands.
 
@@ -155,7 +155,7 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ## Code Widget
 
-### Tags
+### The tags
 
 In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive) :
 

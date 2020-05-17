@@ -18,7 +18,7 @@ Ao clicar em um plug-in, você acessa sua configuração. No topo, você encontr
 >
 > Você pode pressionar Ctrl ou Click Center para abrir sua configuração em uma nova guia do navegador.
 
-## Configuração de plugins
+## Configuração de plugin
 
 ### No canto superior direito, alguns botões :
 
@@ -84,11 +84,11 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 >
 > Se o plug-in usa uma dessas funções, você pode proibi-lo especificamente desmarcando a caixa "ativar" que estará presente ao lado dele.
 
-### Panel
+### Painel
 
 Podemos encontrar uma seção Painel que habilitará ou desabilitará a exibição do painel no painel ou no celular, se o plug-in oferecer um.
 
-## Instalação de plugins
+## Instalação d'un plugin
 
 Para instalar um novo plugin, basta clicar no botão "Market" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
 

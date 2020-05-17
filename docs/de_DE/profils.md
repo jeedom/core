@@ -5,7 +5,7 @@ Auf der Seite &quot;Einstellungen&quot; können Sie bestimmte benutzerspezifisch
 
 ## Registerkarte &quot;Einstellungen&quot;
 
-### Interface
+### Schnittstelle
 
 Definiert bestimmte Schnittstellenverhalten
 
@@ -22,7 +22,7 @@ Definiert bestimmte Schnittstellenverhalten
 - **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Dashboard / Handy ankommen.
 - **Vollbild-3D-Design** : Standardanzeige im Vollbildmodus bei Ankunft in 3D-Designs.
 
-### Notifications
+### Benachrichtigungen
 
 - **Benutzerbenachrichtigungsbefehl** : Standardbefehl, um Sie zu erreichen (Nachrichtentyp Befehl).
 

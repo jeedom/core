@@ -1,4 +1,4 @@
-# Interactions
+# Interacciones
 **Herramientas → Interacciones**
 
 El sistema de interacción en Jeedom le permite realizar acciones desde texto o comandos de voz.
@@ -26,7 +26,7 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 
 Una vez en la configuración de una interacción, tiene un menú contextual con el botón derecho en las pestañas de la interacción. También puede usar Ctrl Click o Click Center para abrir directamente otra interacción en una nueva pestaña del navegador.
 
-## Interactions
+## Interacciones
 
 En la parte superior de la página, hay 3 botones :
 
@@ -38,7 +38,7 @@ En la parte superior de la página, hay 3 botones :
 >
 > Si tiene una interacción que genera las oraciones para las luces, por ejemplo, y agrega un nuevo módulo de control de luz, tendrá que regenerar todas las interacciones o ir a la interacción en cuestión y guardarla nuevamente para crear las oraciones de este nuevo módulo.
 
-## Principe
+## Principio
 
 El principio de la creación es bastante simple : definiremos una oración modelo generadora que permitirá a Jeedom crear una o más cientos de otras oraciones que serán posibles combinaciones del modelo.
 
@@ -46,7 +46,7 @@ Vamos a definir respuestas de la misma manera con un modelo (esto le permite a J
 
 También podemos definir un comando para ejecutar si, por ejemplo, la interacción no está vinculada a una acción sino a una información o si deseamos llevar a cabo una acción particular después de esta (también es posible ejecutar un escenario, controlar varias órdenes ...).
 
-## Configuration
+## Configuración
 
 La página de configuración consta de varias pestañas y botones :
 
@@ -81,7 +81,7 @@ La página de configuración consta de varias pestañas y botones :
 
 Úselo si desea apuntar a uno o más comandos específicos o pasar parámetros específicos.
 
-#### Exemples
+#### Ejemplos
 
 > **Nota**
 >
@@ -175,7 +175,7 @@ Ejemplo : personne1|personne2
 
 Podemos imaginar que una alarma puede ser activada o desactivada por un niño o un vecino que vendría a regar las plantas en su ausencia.
 
-### Exclusión de expresiones regulares
+### Regexp d'exclusion
 
 Es posible crear [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusión, si una oración generada coincide con esta expresión regular, se eliminará. El interés es poder eliminar los falsos positivos, es decir, una oración generada por Jeedom que activa algo que no corresponde a lo que queremos o que interferiría con otra interacción que tendría una oración similar.
 
@@ -244,7 +244,7 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *Julie*|si hay alguien en la sala *Julie*"
 
-#### Evolution
+#### Evolución
 
 - Entonces la pregunta es "\#commande\# \[en la |en el\] \#objet\#"
 - La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación""
@@ -269,7 +269,7 @@ Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humeda
 - La respuesta será "21 ° C" o "200 lux". Solo pon : \#valeur\# \#unite\# (la unidad debe completarse en la configuración de cada pedido para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
-#### Evolution
+#### Evolución
 
 Por lo tanto, podemos agregar sinónimos al nombre del comando para tener algo más natural, agregar una expresión regular para filtrar los comandos que no tienen nada que ver con nuestra interacción.
 
@@ -303,7 +303,7 @@ Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (pued
 >
 > Podemos usar cualquier etiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en &quot;Ejecutar en primer plano&quot;).
 
-#### Evolution
+#### Evolución
 
 Es posible que queramos controlar todos los comandos de tipo cursor con una sola interacción. Con el siguiente ejemplo, podremos controlar varias unidades con una sola interacción y, por lo tanto, generar un conjunto de oraciones para controlarlas.
 

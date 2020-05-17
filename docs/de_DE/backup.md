@@ -1,4 +1,4 @@
-# Sauvegardes
+# Sicherungen
 **Einstellungen → System → Backups**
 
 Jeedom bietet die Möglichkeit, von oder von verschiedenen Orten aus gerettet und wiederhergestellt zu werden.
@@ -7,7 +7,7 @@ Diese Seite ermöglicht die Verwaltung von Backups und Wiederherstellungen.
 
 Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite sehen Sie den Echtzeitstatus der laufenden Aktion (Sicherung oder Wiederherstellung), falls Sie eine gestartet haben.
 
-## Sauvegardes
+## Sicherungen
 
 - **Sicherungen** : Ermöglicht das manuelle und sofortige Starten einer Sicherung (nützlich, wenn Sie eine kritische Änderung vornehmen möchten. Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine Schaltfläche zum Starten eines Backups, ohne das Archiv an die Cloud zu senden (erfordert ein Abonnement, siehe unten). Das Senden eines Backups an die Cloud kann eine Weile dauern. Diese Option vermeidet daher übermäßigen Zeitverlust.
 
@@ -17,7 +17,7 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Maximale Gesamtgröße der Sicherungen (MB)** : Begrenzt den Speicherplatz aller Sicherungen im Sicherungsordner. Wenn dieser Wert überschritten wird, löscht Jeedom die ältesten Sicherungen, bis die maximale Größe unterschritten wird. Es wird jedoch mindestens eine Sicherung gespeichert.
 
-## Lokale Backups
+## Sicherungen Locales
 
 - **Sicherungen disponibles** : Liste der verfügbaren Backups.
 
@@ -29,7 +29,7 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Backup herunterladen** : Laden Sie das Archiv der oben ausgewählten Sicherung auf Ihren Computer herunter.
 
-## Marktsicherungen
+## Sicherungen Market
 
 - **Senden von Backups** : Bitten Sie Jeedom, Backups an die Market Cloud zu senden. Beachten Sie, dass Sie sich angemeldet haben müssen.
 
@@ -39,7 +39,7 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Backup wiederherstellen** : Startet die Wiederherstellung einer Cloud-Sicherung.
 
-## Samba-Backups
+## Sicherungen Samba
 
 - **Senden von Backups** : Weist Jeedom an, die Backups an die hier konfigurierte Samba-Freigabe zu senden. Einstellungen → System → Konfiguration : Updates.
 

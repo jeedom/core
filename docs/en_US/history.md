@@ -1,13 +1,13 @@
-# Historique
+# History
 **Analysis → History**
 
 Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc
 
-### Principe
+### Principle
 
 Here is described the principle of historicization of Jeedom. You only need to understand this if you are having historization issues or want to change the historization settings. Default settings are fine in most cases.
 
-### Archivage
+### Archiving
 
 Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
@@ -21,7 +21,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 >
 > Of course, this archiving principle only applies to digital type commands; on binary type commands, Jeedom keeps only the dates of change of state.
 
-### Viewing a graph
+### Display d'un graphique
 
 There are several ways to access the history :
 
@@ -66,7 +66,7 @@ Once a data is activated, you can choose :
 
 The history page gives access to some additional options
 
-#### Calculated history
+#### History calculé
 
 Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
 Ex :
@@ -78,7 +78,7 @@ You also have access to a management of calculation formulas which allows you to
 >
 > Just click on the name of the object to unfold it, and bring up the historical commands that can be displayed.
 
-#### Order history
+#### History de commande
 
 In front of each data that can be displayed, you will find two icons :
 
@@ -115,7 +115,7 @@ Once you have activated tracking in the timeline of the commands and scenarios y
 >
 > You have to wait for new events after activating the tracking on the timeline before seeing them appear.
 
-### Affichage
+### Display
 
 The timeline displays a table of recorded events in three columns:
 
