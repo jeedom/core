@@ -427,7 +427,7 @@ class update {
 		}
 		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 		log::add('update', 'alert',  __('Supression des fichiers inutiles...', __FILE__));
-		foreach (array('3rdparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
+		foreach (array('3rdparty','3rparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
 			if(!file_exists($cibDir. '/'.$folder)){
 				continue;
 			}
