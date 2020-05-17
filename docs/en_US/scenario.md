@@ -108,7 +108,9 @@ our scenario :
 
 -   **Multi launch** : Check this box if you want the
     scenario can be launched several times at the same time.
-
+>**IMPORTANT**
+>
+>The multi-launch works at the second, that is to say that if you have 2 launches in the same second without the box checked there will still be 2 launches of the scenario (when it should not). Similarly during several launches in the same second it is possible that some launches lose the tags. Conclusion you MUST ABSOLUTELY avoid multiple launches in the same seconds.
 -   **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. It increases the speed of launch of the scenario but it can make the system unstable.
 
 -   **Log** : The type of log desired for the scenario.

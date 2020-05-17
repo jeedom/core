@@ -108,7 +108,9 @@ nosso cenário :
 
 -   **Multi lançamento** : Marque esta caixa se desejar
     cenário pode ser iniciado várias vezes ao mesmo tempo.
-
+>**IMPORTANTE**
+>
+>O lançamento múltiplo funciona no segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (quando não deveria). Da mesma forma, durante vários lançamentos no mesmo segundo, é possível que alguns lançamentos percam as tags. Conclusão: você DEVE ABSOLUTAMENTE evitar vários lançamentos nos mesmos segundos.
 -   **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade de lançamento do cenário, mas pode tornar o sistema instável.
 
 -   **Log** : O tipo de log desejado para o cenário.

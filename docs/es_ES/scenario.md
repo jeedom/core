@@ -108,7 +108,9 @@ nuestro escenario :
 
 -   **Lanzamiento múltiple** : Marque esta casilla si desea
     el escenario se puede iniciar varias veces al mismo tiempo.
-
+>**Importante**
+>
+>El lanzamiento múltiple funciona en el segundo, es decir que si tiene 2 lanzamientos en el mismo segundo sin marcar la casilla, todavía habrá 2 lanzamientos del escenario (cuando no debería). Del mismo modo, durante varios lanzamientos en el mismo segundo, es posible que ciertos lanzamientos pierdan las etiquetas. Conclusión DEBE ABSOLUTAMENTE evitar múltiples lanzamientos en los mismos segundos.
 -   **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad de lanzamiento del escenario pero puede hacer que el sistema sea inestable.
 
 -   **Registro** : El tipo de registro deseado para el escenario.

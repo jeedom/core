@@ -108,7 +108,9 @@ unser Szenario :
 
 -   **Multi-Launch** : Aktivieren Sie dieses Kontrollkästchen, wenn Sie das möchten
     Das Szenario kann mehrmals gleichzeitig gestartet werden.
-
+>**Wichtig**
+>
+>Der Mehrfachstart funktioniert in der Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne dass das Kontrollkästchen aktiviert ist, gibt es immer noch zwei Starts des Szenarios (wenn dies nicht der Fall sein sollte). In ähnlicher Weise ist es bei mehreren Starts in derselben Sekunde möglich, dass einige Starts die Tags verlieren. Fazit Sie MÜSSEN ABSOLUT mehrere Starts in denselben Sekunden vermeiden.
 -   **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Dies erhöht die Startgeschwindigkeit des Szenarios, kann jedoch das System instabil machen.
 
 -   **Log** : Der für das Szenario gewünschte Protokolltyp.
