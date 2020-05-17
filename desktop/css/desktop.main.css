@@ -2217,11 +2217,9 @@ fieldset[disabled] .radio label,
 fieldset[disabled] .radio-inline,
 fieldset[disabled] input[type=checkbox],
 fieldset[disabled] input[type=radio],
-input[type=checkbox].disabled,
-input[type=checkbox][disabled],
-input[type=radio].disabled,
-input[type=radio][disabled],
 select.disabled,
+input.disabled,
+input[disabled],
 select[disabled] {
   cursor: not-allowed !important;
 }
@@ -2240,6 +2238,10 @@ input:disabled {
   cursor: not-allowed !important;
   filter: alpha(opacity=65);
   opacity: .65;
+}
+a.disabled,
+a.disabled > i {
+  cursor: default !important;
 }
 
 /* __________________________________________________________________________________________________________TABS */
@@ -3057,6 +3059,7 @@ textarea {
   font-size: 12px !important;
   width : calc(100% - 340px);
   height: 24px;
+  overflow: hidden;
   opacity: 0.8;
 }
 

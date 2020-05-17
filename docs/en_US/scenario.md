@@ -71,6 +71,9 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Parent object** : Assignment to a parent object. It will then be visible or not according to this parent.
 - **Timeout in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, the execution of the scenario is interrupted.
 - **Multi launch** : Check this box if you want the scenario to be able to be launched several times at the same time.
+>**IMPORTANT**
+>
+>The multi-launch works at the second, that is to say that if you have 2 launches in the same second without the box checked there will still be 2 launches of the scenario (when it should not). Similarly during several launches in the same second it is possible that some launches lose the tags. Conclusion you MUST ABSOLUTELY avoid multiple launches in the same seconds.
 - **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
 - **Log** : The type of log desired for the scenario. You can cut the log of the scenario or on the contrary make it appear in Analysis → Real time.
 - **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
