@@ -3,6 +3,8 @@
 
 Jeedom offers an internal search engine.
 
+![Research](./images/search_intro.gif)
+
 You can do searches of different types :
 
 ## By Equipment

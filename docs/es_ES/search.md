@@ -3,6 +3,8 @@
 
 Jeedom ofrece un buscador interno.
 
+![Buscar](./images/search_intro.gif)
+
 Puedes hacer búsquedas de diferentes tipos :
 
 ## Por equipo
