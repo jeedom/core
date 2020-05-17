@@ -91,6 +91,15 @@ class network {
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
 				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
+			if(config::byKey('internalPort', 'core', '') == ''){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			if(config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort', 'core', 80) == 80){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			if(config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort', 'core', 443) == 443){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
 			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			
 		}
@@ -173,8 +182,18 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
+			
 			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
+			}
+			if(config::byKey('externalPort', 'core', '') == ''){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			if(config::byKey('externalProtocol') == 'http://' && config::byKey('externalPort', 'core', 80) == 80){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			if(config::byKey('externalProtocol') == 'https://' && config::byKey('externalPort', 'core', 443) == 443){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 		}
