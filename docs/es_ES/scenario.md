@@ -70,6 +70,9 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 - **Objeto padre** : Asignación a un objeto padre. Entonces será visible o no según este padre.
 - **Tiempo de espera en segundos (0 = ilimitado)** : El tiempo máximo de ejecución permitido para este escenario. Más allá de este tiempo, la ejecución del escenario se interrumpe.
 - **Lanzamiento múltiple** : Marque esta casilla si desea que el escenario se pueda iniciar varias veces al mismo tiempo.
+>**Importante**
+>
+>El lanzamiento múltiple funciona en el segundo, es decir que si tiene 2 lanzamientos en el mismo segundo sin marcar la casilla, todavía habrá 2 lanzamientos del escenario (cuando no debería). Del mismo modo, durante varios lanzamientos en el mismo segundo, es posible que ciertos lanzamientos pierdan las etiquetas. Conclusión DEBE ABSOLUTAMENTE evitar múltiples lanzamientos en los mismos segundos.
 - **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable.
 - **Registro** : El tipo de registro deseado para el escenario. Puede cortar el registro del escenario o, por el contrario, hacer que aparezca en Análisis → Tiempo real.
 - **Línea de tiempo** : Mantenga un seguimiento del escenario en la línea de tiempo (vea el documento de Historia).
