@@ -1,9 +1,9 @@
-# Rapport
+# Relación
 **Análisis → Informe**
 
 Esta página le permite ver todos los informes generados por la acción del informe (consulte la documentación del escenario).
 
-## Principe
+## Principio
 
 Un informe es una captura de pantalla de la interfaz Jeedom en un momento t.
 
@@ -16,7 +16,7 @@ Puede hacer esto en vistas, diseños, páginas de paneles....
 La generación se desencadena desde un escenario con el comando de informe.
 Puede elegir que se le envíe este informe utilizando un comando de mensaje (correo electrónico, telegrama, etc.).
 
-## Utilisation
+## Uso
 
 Su uso es muy sencillo. Seleccione a la izquierda si quiere ver :
 
@@ -35,7 +35,7 @@ Una vez que se selecciona el informe, puede verlo, descargarlo o eliminarlo.
 
 También puede eliminar todas las copias de seguridad de un informe determinado
 
-## FAQ
+## Preguntas frecuentes
 
 > Si tienes un error de Detalles :
 > *cutycapt: error al cargar bibliotecas compartidas: libEGL.so: no se puede abrir el archivo de objeto compartido: No existe tal archivo o directorio*

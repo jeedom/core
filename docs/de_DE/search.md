@@ -1,7 +1,9 @@
-# Recherche
+# Suche
 **Analysemenü → Suchen**
 
 Jeedom bietet eine interne Suchmaschine.
+
+![Suche](./images/search_intro.gif)
 
 Sie können verschiedene Arten suchen :
 

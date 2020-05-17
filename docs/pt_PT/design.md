@@ -1,4 +1,4 @@
-# Design
+# Projeto
 **Página inicial → Design**
 
 Esta página permite configurar a exibição de toda a sua automação residencial de uma maneira muito fina.
@@ -77,19 +77,19 @@ Encontrado aqui :
 - **Largura (px)** : Largura do elemento em pixels.
 - **Altura (px)** : Altura do elemento em pixels.
 
-### Supprimer
+### Remover
 
 Remover item
 
-### Dupliquer
+### Duplicar
 
 Permite duplicar o elemento
 
-### Verrouiller
+### Trancar
 
 Permite bloquear o elemento para que ele não seja mais móvel ou redimensionável.
 
-## Graphique
+## Gráfico
 
 ### Configurações de exibição específicas
 
@@ -127,7 +127,7 @@ Permite escolher os comandos para grapher.
 
 *Nenhuma configuração de exibição específica*
 
-## Lien
+## Link
 
 ### Configurações de exibição específicas
 
@@ -141,7 +141,7 @@ Permite escolher os comandos para grapher.
 - **Alinhamento de texto** : Permite escolher o alinhamento do texto (esquerda / direita / centralizado).
 - **Gordura** : Texto em negrito.
 
-## Equipement
+## Equipamento
 
 ### Configurações de exibição específicas
 
@@ -155,7 +155,7 @@ Permite escolher os comandos para grapher.
 - **CSS personalizado** : Regras CSS a serem aplicadas no equipamento.
 - **Aplicar css personalizado em** : Seletor de CSS no qual aplicar CSS personalizado.
 
-### Commandes
+### Comandos
 
 A lista de comandos presentes no equipamento permite que, para cada comando, você:
 - Ocultar nome do comando.
@@ -166,7 +166,7 @@ A lista de comandos presentes no equipamento permite que, para cada comando, voc
 
 Exibe a janela de configuração avançada do equipamento (consulte a documentação **Resumo Automation**).
 
-## Commande
+## Ordem
 
 *Nenhuma configuração de exibição específica*
 
@@ -174,7 +174,7 @@ Exibe a janela de configuração avançada do equipamento (consulte a documenta�
 
 Exibe a janela de configuração avançada do equipamento (consulte a documentação **Resumo Automation**).
 
-## Imagem / Câmera
+## Imagem/Câmera
 
 ### Configurações de exibição específicas
 
@@ -182,7 +182,7 @@ Exibe a janela de configuração avançada do equipamento (consulte a documenta�
 - **Imagem** : Permite enviar a imagem em questão (se você escolheu uma imagem).
 - **Câmera** : Câmera a ser exibida (se você escolher a câmera).
 
-## Zone
+## Area
 
 ### Configurações de exibição específicas
 
@@ -221,7 +221,7 @@ Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget
 - **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** : Permite alterar o tamanho da fonte.
 - **Gordura** : Texto em negrito.
 
-## FAQ
+## Faq
 
 >**Não consigo mais editar meu design**
 >Se você colocou um widget ou uma imagem que ocupa quase todo o design, clique fora do widget ou imagem para acessar o menu clicando com o botão direito do mouse.

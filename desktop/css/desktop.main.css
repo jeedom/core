@@ -585,6 +585,9 @@ sup i {
   color: rgb(var(--contrast-color)) !important;
   margin: 5px;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+}
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
 }
@@ -1449,6 +1452,10 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding-top: 40px;
 }
 
+#timelineContainer .html i {
+  color: var(--linkHoverLight-color) !important;
+}
+
 #timelineContainer ul {
   padding-top: 15px;
   list-style: none;
@@ -2210,11 +2217,9 @@ fieldset[disabled] .radio label,
 fieldset[disabled] .radio-inline,
 fieldset[disabled] input[type=checkbox],
 fieldset[disabled] input[type=radio],
-input[type=checkbox].disabled,
-input[type=checkbox][disabled],
-input[type=radio].disabled,
-input[type=radio][disabled],
 select.disabled,
+input.disabled,
+input[disabled],
 select[disabled] {
   cursor: not-allowed !important;
 }
@@ -2233,6 +2238,10 @@ input:disabled {
   cursor: not-allowed !important;
   filter: alpha(opacity=65);
   opacity: .65;
+}
+a.disabled,
+a.disabled > i {
+  cursor: default !important;
 }
 
 /* __________________________________________________________________________________________________________TABS */
@@ -3050,6 +3059,7 @@ textarea {
   font-size: 12px !important;
   width : calc(100% - 340px);
   height: 24px;
+  overflow: hidden;
   opacity: 0.8;
 }
 

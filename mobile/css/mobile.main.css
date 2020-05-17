@@ -928,6 +928,10 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding-top: 40px;
 }
 
+#timelineContainer .html i {
+  color: var(--linkHoverLight-color) !important;
+}
+
 #timelineContainer ul {
   padding-top: 15px;
   list-style: none;
@@ -1043,6 +1047,9 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer ul li > span.vertLine {
   left: -17px;
 }
+#timelineContainer .html i {
+  font-size: 12px;
+}
 #timelineContainer div.time {
   left: -88px;
 }
@@ -1052,7 +1059,9 @@ body[data-page="history"] #div_pageContainer .tab-content {
   left: 64px;
   top: 2px;
 }
-#timelineContainer ul .html i {
+#timelineContainer ul .html .bt_scenarioLog,
+#timelineContainer ul .html .bt_gotoScenario,
+#timelineContainer ul .html .bt_configureCmd {
   display: none;
 }
 #timelineContainer ul .html .label-sm {
@@ -1314,6 +1323,9 @@ a.ui-table-columntoggle-btn {
   margin: 10px !important;
   display: inline-block;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+}
 
 .objectPreview > .topPreview,
 .objectPreview > .bottomPreview {
@@ -1403,11 +1415,13 @@ a.ui-table-columntoggle-btn {
 }
 
 .objectPreview .success,
-.objectPreview .success > i {
+.objectPreview .topPreview .objectSummaryParent.success,
+.objectPreview .topPreview .objectSummaryParent.success i {
   color: var(--bt-success-color) !important;
 }
 .objectPreview .danger,
-.objectPreview .danger > i {
+.objectPreview .topPreview .objectSummaryParent.danger,
+.objectPreview .topPreview .objectSummaryParent.danger i {
   color: var(--al-danger-color) !important;
 }
 

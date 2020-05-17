@@ -5,7 +5,7 @@
 
 Real brain of home automation, the scenarios allow to interact with the real world in a way *smart*.
 
-## Gestion
+## Management
 
 You will find there the list of scenarios of your Jeedom, as well as functionalities to manage them at best :
 
@@ -71,6 +71,9 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Parent object** : Assignment to a parent object. It will then be visible or not according to this parent.
 - **Timeout in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, the execution of the scenario is interrupted.
 - **Multi launch** : Check this box if you want the scenario to be able to be launched several times at the same time.
+>**IMPORTANT**
+>
+>The multi-launch works at the second, that is to say that if you have 2 launches in the same second without the box checked there will still be 2 launches of the scenario (when it should not). Similarly during several launches in the same second it is possible that some launches lose the tags. Conclusion you MUST ABSOLUTELY avoid multiple launches in the same seconds.
 - **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
 - **Log** : The type of log desired for the scenario. You can cut the log of the scenario or on the contrary make it appear in Analysis → Real time.
 - **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
@@ -102,7 +105,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 >
 > A Ctrl Shift Z or Ctrl Shift Y allows you to'**to cancel** or redo a modification (addition of action, block ...).
 
-## Blocks
+## The blocs
 
 Here are the different types of blocks available :
 
@@ -152,7 +155,7 @@ Once the condition is completed, you must use the &quot;add&quot; button on the 
 
 The Code block allows you to execute php code. It is therefore very powerful but requires a good knowledge of the php language.
 
-#### Access to controls (sensors and actuators):
+#### ATccès aux commandes (capteurs and actionneurs):
 -  ``cmd::byString ($ string); ` : Returns the corresponding command object.
     -   ``$string``: Link to the desired command : ``#[objand][equipement][commande]#`` (ex : ``#[ATppartement][ATlarme][Active]#`)
 -  ``cmd::byId ($ id); ` : Returns the corresponding command object.
@@ -163,13 +166,13 @@ The Code block allows you to execute php code. It is therefore very powerful but
         -  color : `$ option = array ('color' => 'color in hexadecimal');`
         -  slider : `$ option = array ('slider' => 'desired value from 0 to 100');`
 
-#### Access to log :
+#### ATccès aux log :
 -  ``log::add ('filename', 'level', 'message'); `
     - filename : Log file name.
     - level : [debug], [info], [error], [event].
     - Message : Message to write in the logs.
 
-#### Access to scenario :
+#### ATccès aux scénario :
 - `$ scenario-> getName ();` : Returns the name of the current scenario.
 - `$ scenario-> getGroup ();` : Returns the scenario group.
 - `$ scenario-> getIsActive ();` : Returns the state of the scenario.
@@ -198,7 +201,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 Comment block acts differently when it is hidden. Its buttons on the left disappear as well as the title of the block, and reappear on hover. Similarly, the first line of the comment is displayed in bold type.
 This allows this block to be used as a purely visual separation within the scenario.
 
-### The actions
+### The Actions
 
 Actions added to blocks have several options :
 
@@ -213,9 +216,9 @@ Actions added to blocks have several options :
 >
 > Depending on the selected command, you can see different additional fields displayed.
 
-## Possible substitutions
+## The substitutions possibles
 
-### Triggers
+### The déclencheurs
 
 There are specific triggers (other than those provided by commands) :
 
@@ -228,7 +231,7 @@ There are specific triggers (other than those provided by commands) :
 - #end_restore# : Event sent at the end of a restoration.
 - #user_connect# : User login
 
-You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or using the HTTP API described [here](https://jeedom.github.io/core/en_US/api_http).
+You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or en utilisant l'API HTTP décrite [here](https://doc.jeedom.com/en_US/core/4.1/api_http).
 
 ### Comparison operators and links between conditions
 
@@ -249,7 +252,7 @@ You can combine any comparison with the following operators :
 - \|| / OR / or / OR / or : ou,
 - ^ / XOR / xor : or exclusive.
 
-### Tags
+### The tags
 
 A tag is replaced during the execution of the scenario by its value. You can use the following tags :
 
@@ -289,7 +292,7 @@ You also have the following additional tags if your scenario was triggered by an
 >
 > When a scenario is triggered by an interaction, it is necessarily executed in fast mode. So in the interaction thread and not in a separate thread.
 
-### Calculation functions
+### The fonctions de calcul
 
 Several functions are available for the equipment :
 
@@ -403,7 +406,7 @@ Here are practical examples to understand the values returned by these different
 | name (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Returns Hydrometry                  |
 
 
-### Mathematical functions
+### The fonctions mathématiques
 
 A generic function toolbox can also be used to perform conversions
 
@@ -445,7 +448,7 @@ And practical examples :
 | convertDuration (duration (#[Chauffage][Module chaudière][Etat]#,1, first day of this month) * 60) | Returns the ignition time in Days / Hours / minutes of the time of transition to state 1 of the module since the 1st day of the month |
 
 
-### Specific commands
+### The commandes spécifiques
 
 In addition to home automation commands, you have access to the following actions :
 
@@ -473,7 +476,7 @@ In addition to home automation commands, you have access to the following action
 - **Tag** (Tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
 - **Coloring of dashboard icons** (SetColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
 
-### Scenario template
+### Template de scénario
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 
@@ -496,7 +499,7 @@ Below, you have the part to apply your template to the current scenario.
 
 Given that from one Jeedom to another or from one installation to another, the commands can be different, Jeedom asks you for the correspondence of the commands between those present during the creation of the template and those present at home. You just have to fill in the correspondence of the commands then to apply.
 
-## Addition of php function
+## ATjout de fonction php
 
 > **IMPORTANT**
 >

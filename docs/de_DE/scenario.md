@@ -5,7 +5,7 @@
 
 Die Szenarien sind ein echtes Gehirn der Hausautomation und ermöglichen es, auf eine Art und Weise mit der realen Welt zu interagieren *klug*.
 
-## Gestion
+## Management
 
 Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese am besten zu verwalten :
 
@@ -71,6 +71,9 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 - **übergeordnetes Objekt** : Zuordnung zu einem übergeordneten Objekt. Es wird dann entsprechend diesem Elternteil sichtbar sein oder nicht.
 - **Zeitüberschreitung in Sekunden (0 = unbegrenzt)** : Die maximal zulässige Ausführungszeit für dieses Szenario. Nach dieser Zeit wird die Ausführung des Szenarios unterbrochen.
 - **Multi-Launch** : Aktivieren Sie dieses Kontrollkästchen, wenn das Szenario mehrmals gleichzeitig gestartet werden soll.
+>**Wichtig**
+>
+>Der Mehrfachstart funktioniert in der Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne dass das Kontrollkästchen aktiviert ist, gibt es immer noch zwei Starts des Szenarios (wenn dies nicht der Fall sein sollte). In ähnlicher Weise ist es bei mehreren Starts in derselben Sekunde möglich, dass einige Starts die Tags verlieren. Fazit Sie MÜSSEN ABSOLUT mehrere Starts in denselben Sekunden vermeiden.
 - **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen.
 - **Log** : Der für das Szenario gewünschte Protokolltyp. Sie können das Protokoll des Szenarios ausschneiden oder im Gegenteil unter Analyse → Echtzeit anzeigen.
 - **Zeitleiste** : Verfolgen Sie das Szenario in der Zeitleiste (siehe Verlaufsdokument).
@@ -102,7 +105,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 >
 > Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**stornieren** oder eine Änderung wiederholen (Hinzufügung von Aktion, Block ...).
 
-## Blöcke
+## Die blocs
 
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
@@ -152,7 +155,7 @@ Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufüg
 
 Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, erfordert aber gute Kenntnisse der PHP-Sprache.
 
-#### Zugang zu Steuerungen (Sensoren und Aktoren):
+#### Bisccès aux commandes (capteurs und actionneurs):
 -  ``cmd::byString ($ string); ` : Gibt das entsprechende Befehlsobjekt zurück.
     -   ``$string``: Link zur gewünschten Bestellung : ``#[objund][equipement][commande]#`` (ex : ``#[Bisppartement][Bislarme][Aktiva]#`)
 -  ``cmd::byId ($ id); ` : Gibt das entsprechende Befehlsobjekt zurück.
@@ -163,13 +166,13 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
         -  Farbe : `$ option = array ('color' => 'color in hexadecimal');`
         -  Schieber : `$ option = array ('slider' => 'gewünschter Wert von 0 bis 100');`
 
-#### Zugriff auf das Protokoll :
+#### Bisccès aux log :
 -  ``log::add ('Dateiname', 'Ebene', 'Nachricht'); `
     - Dateiname : Name der Protokolldatei.
     - Ebene : [Debug], [Info], [Fehler], [Ereignis].
     - Nachricht : Nachricht zum Schreiben in die Protokolle.
 
-#### Zugriff auf das Szenario :
+#### Bisccès aux scénario :
 - $ Szenario-> getName (); ` : Gibt den Namen des aktuellen Szenarios zurück.
 - $ Szenario-> getGroup (); ` : Gibt die Szenariogruppe zurück.
 - $ Szenario-> getIsActive (); ` : Gibt den Status des Szenarios zurück.
@@ -198,7 +201,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 Der Kommentarblock verhält sich anders, wenn er ausgeblendet ist. Die Schaltflächen auf der linken Seite sowie der Titel des Blocks verschwinden und werden beim Schweben wieder angezeigt. Ebenso wird die erste Zeile des Kommentars fett gedruckt.
 Dadurch kann dieser Block als rein visuelle Trennung innerhalb des Szenarios verwendet werden.
 
-### Aktionen
+### Die Actions
 
 Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 
@@ -213,9 +216,9 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 >
 > Abhängig vom ausgewählten Befehl werden verschiedene zusätzliche Felder angezeigt.
 
-## Mögliche Substitutionen
+## Die substitutions possibles
 
-### Auslöser
+### Die déclencheurs
 
 Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werden) :
 
@@ -228,7 +231,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - #end_restore# : Ereignis gesendet am Ende einer Restaurierung.
 - #user_connect# : Benutzeranmeldung
 
-Sie können auch ein Szenario auslösen, wenn eine Variable durch Putten aktualisiert wird : #variable(nom_variable)# oder unter Verwendung der beschriebenen HTTP-API [hier](https://jeedom.github.io/core/de_DE/api_http).
+Sie können auch ein Szenario auslösen, wenn eine Variable durch Putten aktualisiert wird : #variable(nom_variable)# oder en utilisant l'API HTTP décrite [hier](https://doc.jeedom.com/de_DE/core/4.1/api_http).
 
 ### Vergleichsoperatoren und Verknüpfungen zwischen Bedingungen
 
@@ -249,7 +252,7 @@ Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 - \.|| / OR / oder / OR / oder : ou,
 - ^ / XOR / xor : oder exklusiv.
 
-### Tags
+### Die tags
 
 Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. Sie können die folgenden Tags verwenden :
 
@@ -289,7 +292,7 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 >
 > Wenn ein Szenario durch eine Interaktion ausgelöst wird, wird es notwendigerweise im schnellen Modus ausgeführt. Also im Interaktionsthread und nicht in einem separaten Thread.
 
-### Berechnungsfunktionen
+### Die fonctions de calcul
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
@@ -403,7 +406,7 @@ Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschieden
 | Name (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\.#)     | Gibt Hydrometrie zurück                  |
 
 
-### Mathematische Funktionen
+### Die fonctions mathématiques
 
 Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen verwendet werden
 
@@ -445,7 +448,7 @@ Und praktische Beispiele :
 | convertDuration (Dauer (#[Chauffage][Module chaudière][Etat]#,1, erster Tag dieses Monats) * 60) | Gibt die Zündzeit in Tagen / Stunden / Minuten der Übergangszeit auf Zustand 1 des Moduls seit dem 1. Tag des Monats zurück |
 
 
-### Spezifische Bestellungen
+### Die commandes spécifiques
 
 Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die folgenden Aktionen :
 
@@ -473,7 +476,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Etikett** (Tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
 - **Färbung von Dashboard-Symbolen** (SetColoredIcon) : Ermöglicht das Aktivieren oder Nicht-Aktivieren der Farbgebung von Symbolen im Dashboard.
 
-### Szenariovorlage
+### Schablone de scénario
 
 Mit dieser Funktion können Sie ein Szenario in eine Vorlage umwandeln, um es beispielsweise auf ein anderes Jeedom anzuwenden.
 
@@ -496,7 +499,7 @@ Unten haben Sie den Teil, um Ihre Vorlage auf das aktuelle Szenario anzuwenden.
 
 Da die Befehle von einem Jeedom zum anderen oder von einer Installation zur anderen unterschiedlich sein können, bittet Jeedom Sie um die Entsprechung der Befehle zwischen den bei der Erstellung der Vorlage vorhandenen und den zu Hause vorhandenen. Sie müssen nur die Korrespondenz der Bestellungen ausfüllen, um sich zu bewerben.
 
-## Hinzufügung der PHP-Funktion
+## Bisjout de fonction php
 
 > **Wichtig**
 >

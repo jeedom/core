@@ -1,4 +1,4 @@
-# Dashboard
+# Armaturenbrett
 **Home → Dashboard**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>

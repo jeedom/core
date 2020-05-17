@@ -5,7 +5,7 @@
 
 Cerebro real de la automatización del hogar, los escenarios permiten interactuar con el mundo real de una manera *inteligente*.
 
-## Gestion
+## Administración
 
 Allí encontrará la lista de escenarios de su Jeedom, así como las funcionalidades para administrarlos en el mejor de los casos :
 
@@ -71,6 +71,9 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 - **Objeto padre** : Asignación a un objeto padre. Entonces será visible o no según este padre.
 - **Tiempo de espera en segundos (0 = ilimitado)** : El tiempo máximo de ejecución permitido para este escenario. Más allá de este tiempo, la ejecución del escenario se interrumpe.
 - **Lanzamiento múltiple** : Marque esta casilla si desea que el escenario se pueda iniciar varias veces al mismo tiempo.
+>**Importante**
+>
+>El lanzamiento múltiple funciona en el segundo, es decir que si tiene 2 lanzamientos en el mismo segundo sin marcar la casilla, todavía habrá 2 lanzamientos del escenario (cuando no debería). Del mismo modo, durante varios lanzamientos en el mismo segundo, es posible que ciertos lanzamientos pierdan las etiquetas. Conclusión DEBE ABSOLUTAMENTE evitar múltiples lanzamientos en los mismos segundos.
 - **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable.
 - **Registro** : El tipo de registro deseado para el escenario. Puede cortar el registro del escenario o, por el contrario, hacer que aparezca en Análisis → Tiempo real.
 - **Línea de tiempo** : Mantenga un seguimiento del escenario en la línea de tiempo (vea el documento de Historia).
@@ -102,7 +105,7 @@ Para mayor comodidad y no tener que reordenar constantemente los bloques en el e
 >
 > Un Ctrl Shift Z o Ctrl Shift Y le permite'**anular** o rehacer una modificación (adición de acción, bloqueo ...).
 
-## Bloques
+## La blocs
 
 Aquí están los diferentes tipos de bloques disponibles :
 
@@ -152,7 +155,7 @@ Una vez que se completa la condición, debe usar el botón &quot;Agregar&quot; a
 
 El bloque de código le permite ejecutar código php. Por lo tanto, es muy potente pero requiere un buen conocimiento del lenguaje php.
 
-#### Acceso a controles (sensores y actuadores):
+#### Laccès aux commandes (capteurs y actionneurs):
 -  ``cmd::byString ($ string); ` : Devuelve el objeto de comando correspondiente.
     -   ``$string``: Enlace al pedido deseado : ``#[objy][equipement][commande]#`` (ex : ``#[Lappartement][Lalarme][Bienes]#`)
 -  ``cmd::byId ($ id); ` : Devuelve el objeto de comando correspondiente.
@@ -163,13 +166,13 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
         -  color : `$ opción = matriz ('color' => 'color en hexadecimal');`
         -  deslizador : `$ option = array ('slider' => 'valor deseado de 0 a 100');`
 
-#### Acceso al registro :
+#### Laccès aux log :
 -  ``log::add ('nombre de archivo', 'nivel', 'mensaje'); `
     - nombre de archivo : Nombre del archivo de registro.
     - nivel : [depuración], [información], [error], [evento].
     - mensaje : Mensaje para escribir en los registros.
 
-#### Acceso al escenario :
+#### Laccès aux scénario :
 - `$ escenario-> getName ();` : Devuelve el nombre del escenario actual.
 - `$ escenario-> getGroup ();` : Devuelve el grupo de escenarios.
 - `$ escenario-> getIsActive ();` : Devuelve el estado del escenario.
@@ -198,7 +201,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 El bloque de comentarios actúa de manera diferente cuando está oculto. Sus botones a la izquierda desaparecen, así como el título del bloque, y reaparecen al pasar el cursor. Del mismo modo, la primera línea del comentario se muestra en negrita.
 Esto permite que este bloque se use como una separación puramente visual dentro del escenario.
 
-### Las acciones
+### La Actions
 
 Las acciones agregadas a los bloques tienen varias opciones :
 
@@ -213,9 +216,9 @@ Las acciones agregadas a los bloques tienen varias opciones :
 >
 > Dependiendo del comando seleccionado, puede ver diferentes campos adicionales que se muestran.
 
-## Posibles sustituciones
+## La substitutions possibles
 
-### Disparadores
+### La déclencheurs
 
 Hay desencadenantes específicos (distintos de los proporcionados por los comandos) :
 
@@ -228,7 +231,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - #end_restore# : Evento enviado al final de una restauración.
 - #user_connect# : Inicio de sesión de usuario
 
-También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o usando la API HTTP descrita [aquí](https://jeedom.github.io/core/es_ES/api_http).
+También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o en utilisant l'API HTTP décrite [aquí](https://doc.jeedom.com/es_ES/core/4.1/api_http).
 
 ### Operadores de comparación y enlaces entre condiciones
 
@@ -249,7 +252,7 @@ Puedes combinar cualquier comparación con los siguientes operadores :
 - \|| / OR / o / OR / o : ou,
 - ^ / XOR / xor : o exclusivo.
 
-### Etiquetas
+### La tags
 
 Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Puedes usar las siguientes etiquetas :
 
@@ -289,7 +292,7 @@ También tiene las siguientes etiquetas adicionales si su escenario fue desencad
 >
 > Cuando una interacción desencadena un escenario, se ejecuta necesariamente en modo rápido. Entonces, en el hilo de interacción y no en un hilo separado.
 
-### Funciones de cálculo
+### La fonctions de calcul
 
 Hay varias funciones disponibles para el equipo :
 
@@ -403,7 +406,7 @@ Aquí hay ejemplos prácticos para comprender los valores devueltos por estas di
 | nombre (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\#)     | Hidrometría de devoluciones                  |
 
 
-### Funciones matematicas
+### La fonctions mathématiques
 
 También se puede usar una caja de herramientas de funciones genéricas para realizar conversiones
 
@@ -445,7 +448,7 @@ Y ejemplos prácticos :
 | convertDuration (duración (#[Chauffage][Module chaudière][Etat]#,1, primer día de este mes) * 60) | Devuelve el tiempo de encendido en días / horas / minutos del tiempo de transición al estado 1 del módulo desde el primer día del mes |
 
 
-### Pedidos específicos
+### La commandes spécifiques
 
 Además de los comandos de automatización del hogar, tiene acceso a las siguientes acciones :
 
@@ -473,7 +476,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Etiqueta** (Tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
 - **Coloración de los iconos del tablero** (SetColoredIcon) : permite activar o no la coloración de iconos en el tablero.
 
-### Plantilla de escenario
+### Plantilla de scénario
 
 Esta funcionalidad le permite transformar un escenario en una plantilla para, por ejemplo, aplicarlo a otro Jeedom.
 
@@ -496,7 +499,7 @@ A continuación, tiene la parte para aplicar su plantilla al escenario actual.
 
 Dado que de un Jeedom a otro o de una instalación a otra, los comandos pueden ser diferentes, Jeedom le solicita la correspondencia de los comandos entre los presentes durante la creación de la plantilla y los presentes en el hogar. Solo tiene que completar la correspondencia de las órdenes y luego aplicar.
 
-## Adición de la función php
+## Lajout de fonction php
 
 > **Importante**
 >

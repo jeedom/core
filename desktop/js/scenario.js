@@ -36,19 +36,6 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-$( function() {
-  jeedom.timeline.autocompleteFolder()
-
-  $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
-
-  if (initSearch != 0) {
-    setTimeout(function() {
-      $('#bt_resetInsideScenarioSearch').trigger('click')
-      $('#in_searchInsideScenario').val(initSearch).keyup().blur().focus()
-    }, 500)
-  }
-})
-
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',function(){
   if($(this).value() == 1){
     $('.scenarioAttr[data-l2key="timeline::folder"]').show();
@@ -98,20 +85,36 @@ $('#bt_resetScenarioSearch').on('click', function () {
 //inside searching
 $('#in_searchInsideScenario').keyup(function () {
   var search = $(this).value()
-  $('#div_scenarioElement input.expressionAttr').each(function() {
-    $(this).removeClass('insideSearch')
+  $('#div_scenarioElement .insideSearch').removeClass('insideSearch')
+  $('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').each(function() {
+    $(this).get(0).CodeMirror.setCursor(0)
   })
-  if (search == '') {
+
+  if (search == '' || search.length < 3) {
     $('i.fa-eye-slash').each(function() {
-      $(this).parents('.element').first().addClass('elementCollapse')
-    })
-    return
-  }
-  if (search.length < 3) {
+        $(this).parents('.element').first().addClass('elementCollapse')
+      })
     return
   }
   search = normTextLower(search)
-  $('#div_scenarioElement input.expressionAttr').each(function() {
+
+  //search code blocks:
+  $('#div_scenarioElement div.elementCODE').each(function() {
+    var cmEditor = $(this).find('div.CodeMirror.CodeMirror-wrap').get(0).CodeMirror
+    var code = normTextLower(cmEditor.getValue())
+    if (code.indexOf(search) >= 0) {
+      $(this).removeClass('elementCollapse')
+      var cursor = cmEditor.getSearchCursor(search , CodeMirror.Pos(cmEditor.firstLine(), 0), {caseFold: true, multiline: true})
+      if (cursor.find(false)) {
+        cmEditor.setSelection(cursor.from(), cursor.to())
+      }
+    } else {
+      $(this).addClass('elementCollapse')
+      cmEditor.setCursor(0)
+    }
+  })
+  //search in expressions:
+  $('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').each(function() {
     var text = normTextLower($(this).val())
     if (text.indexOf(search) >= 0) {
       $(this).addClass('insideSearch')
@@ -119,23 +122,29 @@ $('#in_searchInsideScenario').keyup(function () {
     }
   })
 })
-$('#in_searchInsideScenario').focus(function (event) {
-  if (!window.location.href.includes('#scenariotab')) {
-    $('#bt_scenarioTab').trigger('click')
-    setTimeout(function() { $('#in_searchInsideScenario').focus() }, 250)
-  }
-})
+
 $('#bt_resetInsideScenarioSearch').on('click', function () {
   var btn = $(this)
+  if (btn.hasClass('disabled')) return
   var searchField = $('#in_searchInsideScenario')
   if (btn.data('state') == '0') {
+    //show search:
     searchField.show()
     btn.find('i').removeClass('fa-search').addClass('fa-times')
     btn.data('state', '1')
+    //open code blocks for later search:
+    $('#div_scenarioElement div.elementCODE.elementCollapse').each(function() {
+      $(this).removeClass('elementCollapse')
+      $(this).find('textarea[data-l1key="expression"]').show()
+    })
+    setEditor()
+    $('textarea[data-l1key="expression"]').hide()
     searchField.focus()
   } else {
-
     if (searchField.val() == '') {
+      $('i.fa-eye-slash').each(function() {
+        $(this).parents('.element').first().addClass('elementCollapse')
+      })
       btn.find('i').removeClass('fa-times').addClass('fa-search')
       searchField.hide()
       btn.data('state', '0')
@@ -225,7 +234,6 @@ $(function(){
   catch(err) {}
 })
 
-
 var editor = [];
 autoCompleteCondition = [
   '#rand(MIN,MAX)',
@@ -271,6 +279,22 @@ autoCompleteAction = ['setColoredIcon','tag','report','sleep', 'variable', 'dele
 setTimeout(function(){
   $('.scenarioListContainer').packery();
 },100);
+
+$( function() {
+  jeedom.timeline.autocompleteFolder()
+
+  $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
+
+  if (initSearch != 0) {
+    setTimeout(function() {
+      $('#bt_scenarioTab').trigger('click')
+      $('#bt_resetInsideScenarioSearch').trigger('click')
+      setTimeout(function() {
+        $('#in_searchInsideScenario').val(initSearch).keyup().blur().focus()
+      }, 500)
+    }, 200)
+  }
+})
 
 $("#div_listScenario").trigger('resize');
 
@@ -524,13 +548,20 @@ $('#in_addElementType').off('change').on('change',function(){
   $('.addElementTypeDescription.'+$(this).value()).show();
 });
 
+$('#bt_generalTab').on('click',function(){
+  $('#bt_resetInsideScenarioSearch').addClass('disabled')
+  $('#in_searchInsideScenario').prop( "disabled", true )
+})
+
 $('#bt_scenarioTab').on('click',function(){
+  $('#bt_resetInsideScenarioSearch').removeClass('disabled')
+  $('#in_searchInsideScenario').prop( "disabled", false )
   setTimeout(function(){
-    setEditor();
-    taAutosize();
-    updateElseToggle();
-  }, 50);
-});
+    setEditor()
+    taAutosize()
+    updateElseToggle()
+  }, 50)
+})
 
 /*******************Element***********************/
 $pageContainer.off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
@@ -938,6 +969,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
+  newBloc.find('.insideSearch').removeClass('insideSearch')
 
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {

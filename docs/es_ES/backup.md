@@ -1,4 +1,4 @@
-# Sauvegardes
+# Copias de seguridad
 **Configuración → Sistema → Copias de seguridad**
 
 Jeedom ofrece la posibilidad de ser guardado y restaurado desde o desde diferentes ubicaciones.
@@ -7,7 +7,7 @@ Esta página permite la gestión de copias de seguridad, restaura.
 
 Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha está el estado en tiempo real de la acción en curso (copia de seguridad o restauración), si ha lanzado una.
 
-## Sauvegardes
+## Copias de seguridad
 
 - **Copias de seguridad** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, ver más abajo). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo.
 
@@ -17,7 +17,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Tamaño total máximo de copias de seguridad (MB)** : Limita el espacio ocupado por todas las copias de seguridad en la carpeta de copias de seguridad. Si se excede este valor, Jeedom eliminará las copias de seguridad más antiguas hasta que caiga por debajo del tamaño máximo. Sin embargo, mantendrá al menos una copia de seguridad.
 
-## Copias de seguridad locales
+## Copias de seguridad Locales
 
 - **Copias de seguridad disponibles** : Lista de copias de seguridad disponibles.
 
@@ -29,7 +29,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Descargar copia de seguridad** : Descargue el archivo de la copia de seguridad seleccionada anteriormente en su computadora.
 
-## Copias de seguridad del mercado
+## Copias de seguridad Market
 
 - **Enviar copias de seguridad** : Dígale a Jeedom que envíe copias de seguridad a la nube de Market, tenga en cuenta que debe haberse suscrito.
 
@@ -39,7 +39,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Restaurar copia de seguridad** : Comienza a restaurar una copia de seguridad en la nube.
 
-## Copias de seguridad de Samba
+## Copias de seguridad Samba
 
 - **Enviar copias de seguridad** : Le dice a Jeedom que envíe las copias de seguridad al recurso compartido de samba configurado aquí Configuración → Sistema → Configuración : Actualizaciones.
 

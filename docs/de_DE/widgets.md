@@ -12,7 +12,7 @@ Es gibt zwei Arten von benutzerdefinierten Widgets :
 >
 > Wenn vorlagenbasierte Widgets in den Core integriert und daher vom Entwicklungsteam überwacht werden, kann letzteres die Kompatibilität von Widgets basierend auf Benutzercode gemäß Jeedom-Entwicklungen nicht sicherstellen.
 
-## Gestion
+## Management
 
 Sie haben vier Möglichkeiten :
 - **Hinzufügen** : Ermöglicht das Erstellen eines neuen Widgets.
@@ -40,14 +40,14 @@ Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Ste
 Sobald Sie ein Widget konfiguriert haben, haben Sie ein Kontextmenü mit der rechten Maustaste auf die Registerkarten des Widgets. Sie können auch ein Strg-Klick- oder Clic-Center verwenden, um ein anderes Widget direkt in einer neuen Browser-Registerkarte zu öffnen.
 
 
-## Principe
+## Prinzip
 
 Aber was ist eine Vorlage ?
 Einfach ausgedrückt ist es Code (hier html / js), der in den Core integriert ist. Einige Teile davon können vom Benutzer über die grafische Oberfläche des Core konfiguriert werden.
 
 Abhängig von der Art des Widgets können Sie im Allgemeinen Symbole anpassen oder Bilder Ihrer Wahl einfügen.
 
-## Die Vorlagen
+## Die templates
 
 Es gibt zwei Arten von Vorlagen :
 
@@ -64,7 +64,7 @@ Dann :
 - Dann endlich die fragliche Vorlage (wir planen, Beispiele für Renderings für jede Vorlage zu setzen).
 - Sobald die Vorlage ausgewählt wurde, bietet Jeedom Ihnen die Optionen zum Konfigurieren.
 
-### Remplacement
+### Ersatz
 
 Dies wird als einfaches Widget bezeichnet. Hier muss man nur sagen, dass das &quot;Ein&quot; einem solchen Symbol / Bild entspricht (mit der Schaltfläche auswählen), das &quot;Aus&quot; ist dieses usw. Abhängig von der Vorlage können Ihnen dann die Breite und die Höhe angeboten werden. Dies gilt nur für Bilder.
 
@@ -99,7 +99,7 @@ Die Tests sind in der Form : #value# == 1, #value# wird vom System automatisch d
 
 Wir werden hier einige Widgets beschreiben, die eine etwas bestimmte Funktion haben.
 
-### Equipement
+### Gerät
 
 Die Geräte haben bestimmte Konfigurationsparameter :
 
@@ -117,7 +117,7 @@ Die Geräte haben bestimmte Konfigurationsparameter :
 - Desktop-Breite : Breite des Bildes auf dem Desktop in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig ist, dass nur die Breite angefordert wird. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
 - Bewegliche Breite : Breite des Bildes auf dem Handy in px (geben Sie einfach die Zahl und nicht die px ein). Wichtig ist, dass nur die Breite angefordert wird. Jeedom berechnet die Höhe, um das Bild nicht zu verzerren.
 
-### HygroThermographe
+### Hygrothermograph
 
 Dieses Widget ist etwas Besonderes, da es sich um ein Widget mit mehreren Befehlen handelt, dh, es stellt auf seiner Anzeige den Wert mehrerer Befehle zusammen. Hier nimmt er Temperatur- und Feuchtigkeitsbefehle entgegen.
 
@@ -133,7 +133,7 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 >**Notiz**
 > Achtung bei einem Entwurf Es ist wichtig, einen Befehl nicht alleine mit diesem Widget zu platzieren. Es funktioniert nicht, da es sich um ein Widget handelt, das den Wert mehrerer Befehle verwendet. Es ist unbedingt erforderlich, das vollständige Widget zu platzieren
 
-### Multiline
+### Mehrzeilige
 
 ##### Optionale Parameter
 
@@ -145,7 +145,7 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 
 - Schritt : Ermöglicht das Anpassen des Aktionsschritts auf einer Schaltfläche (0).5 standardmäßig).
 
-### Rain
+### Regen
 
 ##### Optionale Parameter
 
@@ -155,7 +155,7 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 
 ## Code-Widget
 
-### Tags
+### Die tags
 
 Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig) :
 

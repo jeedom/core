@@ -1,13 +1,13 @@
-# Historique
+# Historisch
 **Analyse → Geschichte**
 
 Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren. Auf diese Weise können Sie beispielsweise eine Temperatur-, Verbrauchs- oder Türöffnungskurve usw. protokollieren
 
-### Principe
+### Prinzip
 
 Hier wird das Prinzip der Historisierung von Jeedom beschrieben. Sie müssen dies nur verstehen, wenn Sie Probleme mit der Historisierung haben oder die Historisierungseinstellungen ändern möchten. Die Standardeinstellungen sind in den meisten Fällen in Ordnung.
 
-### Archivage
+### Archivierung
 
 Durch die Datenarchivierung kann Jeedom die im Speicher gespeicherte Datenmenge reduzieren. Dies ermöglicht es, nicht zu viel Platz zu beanspruchen und das System nicht zu verlangsamen. Wenn Sie alle Messungen beibehalten, werden umso mehr Punkte angezeigt, und daher kann die Zeit zum Rendern eines Diagramms erheblich verlängert werden. Wenn zu viele Punkte vorhanden sind, kann dies sogar zum Absturz der Diagrammanzeige führen.
 
@@ -21,7 +21,7 @@ Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellte
 >
 > Dieses Archivierungsprinzip gilt natürlich nur für digitale Befehle. Bei Befehlen vom Typ Binär behält Jeedom nur die Daten der Zustandsänderung bei.
 
-### Anzeigen eines Diagramms
+### Anzeigen d'un graphique
 
 Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
@@ -66,7 +66,7 @@ Sobald eine Daten aktiviert sind, können Sie auswählen :
 
 Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
-#### Berechnete Geschichte
+#### Historisch calculé
 
 Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \* absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
 Ex :
@@ -78,7 +78,7 @@ Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie d
 >
 > Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten, und rufen Sie die historischen Befehle auf, die angezeigt werden können.
 
-#### Bestellhistorie
+#### Historisch de commande
 
 Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 
@@ -115,7 +115,7 @@ Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenari
 >
 > Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking auf der Timeline aktiviert haben, bevor sie angezeigt werden.
 
-### Affichage
+### Anzeigen
 
 Die Zeitleiste zeigt die aufgezeichneten Ereignisse an, die Tag für Tag vertikal versetzt sind.
 

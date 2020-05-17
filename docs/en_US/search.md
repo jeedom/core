@@ -1,7 +1,9 @@
-# Recherche
+# Search
 **Analysis menu → Search**
 
 Jeedom offers an internal search engine.
+
+![Search](./images/search_intro.gif)
 
 You can do searches of different types :
 

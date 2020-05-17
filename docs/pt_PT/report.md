@@ -1,9 +1,9 @@
-# Rapport
+# Relatório
 **Análise → Relatório**
 
 Esta página permite que você veja todos os relatórios que foram gerados pela ação do relatório (consulte a documentação do cenário).
 
-## Principe
+## Princípio
 
 Um relatório é uma captura de tela da interface Jeedom por vez t.
 
@@ -16,7 +16,7 @@ Você pode fazer isso em vistas, designs, páginas do painel....
 A geração é acionada a partir de um cenário com o comando report.
 Você pode optar por receber este relatório usando um comando de mensagem (email, telegrama etc.).
 
-## Utilisation
+## Uso
 
 Seu uso é muito simples. Selecione à esquerda se quiser ver :
 
@@ -35,7 +35,7 @@ Depois que o relatório é selecionado, você pode visualizá-lo, fazer o downlo
 
 Você também pode excluir todos os backups de um determinado relatório
 
-## FAQ
+## Faq
 
 > Se você tiver um erro de detalhes :
 > *cutycapt: erro ao carregar bibliotecas compartilhadas: libEGL.so: não é possível abrir o arquivo de objeto compartilhado: Esse arquivo ou diretório não existe*
