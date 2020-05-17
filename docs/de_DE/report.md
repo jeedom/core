@@ -8,7 +8,7 @@ Sie können dies für Ansichten, Design und Bedienfeldseite tun....
 
 Es wird von einem Skript mit dem Befehl report ausgelöst. Sie können festlegen, dass dieser Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie gesendet wird
 
-# Utilisation
+# Verwendung
 
 Die Verwendung ist sehr einfach, Sie wählen aus, wenn Sie sehen möchten :
 
@@ -27,7 +27,7 @@ Sobald der Bericht ausgewählt ist, können Sie ihn sehen, erneut herunterladen 
 
 Sie können auch alle Sicherungen eines bestimmten Berichts löschen
 
-# FAQ
+# Faq
 
 > **Wenn Sie einen Detailfehler haben : cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine solche Datei oder Verzeichnis**
 >

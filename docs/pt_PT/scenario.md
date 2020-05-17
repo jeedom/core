@@ -141,7 +141,7 @@ criado, você pode adicionar outro **Bloco** ou um **Ação**.
 >
 > Em condições e ações, é melhor usar aspas simples (') em vez de duplas (")
 
-### Blocos
+### O blocs
 
 Aqui estão os diferentes tipos de blocos disponíveis :
 
@@ -263,7 +263,7 @@ Cenas :
 -   $scenario->setLog($message); : Escreva uma mensagem no log de script.
 -   $scenario->persistLog(); : Forçar a gravação do log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
 
-### Acções
+### O Actions
 
 As ações adicionadas aos blocos têm várias opções. Em ordem :
 
@@ -314,7 +314,7 @@ Pedidos) :
 -   #user_connect# : Login do usuário
 
 Você também pode disparar um cenário quando uma variável estiver definida como
-dia colocando : #variable(nom_variable)# ou usando a API HTTP
+dia colocando : #variable(nom_variable)# onde en utilisant l'API HTTP
 descrito
 [aqui](https://jeedom.github.io/core/pt_PT/api_http).
 

@@ -374,7 +374,7 @@ Guia Configuração
 
 -   **Cálculo e arredondamento**
 
-    -   **Fórmula de cálculo (\#value\# por valor)** : Deixa
+    -   **Fórmula de cálculo (\#value\# PARA la valeur)** : Deixa
         faça uma operação sobre o valor do pedido antes
         Tratamento Jeedom, exemplo : ``#value# - 0.2` para entrincheirar
         0,2 (deslocamento em um sensor de temperatura).

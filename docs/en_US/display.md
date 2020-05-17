@@ -374,7 +374,7 @@ Configuration tab
 
 -   **Calculation and rounding**
 
-    -   **Algorithm (\#value\# for value)** : Allows
+    -   **Algorithm (\#value\# for la valeur)** : Allows
         make an operation on the value of the order before
         Jeedom treatment, example : ``#value# - 0.2` to entrench
         0.2 (offset on a temperature sensor).

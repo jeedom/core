@@ -498,13 +498,13 @@ a umidade, o brilho das diferentes salas (objeto no sentido Jeedom).
 
 -   Assim, podemos ver que uma frase genérica genérica "Qual é o
     temperatura da sala de estar "ou" quão brilhante é o quarto"
-    pode ser convertido para : "o que é \ |l \\ '\] \#commande\# objet"
+    pode ser convertido para : "o que é \ |l \\ '\] \#commande\# Objeto"
     (o uso de \ [word1 | mot2 \] digamos essa possibilidade
     ou este para gerar todas as variações possíveis da frase
     com word1 ou word2). Ao gerar o Jeedom irá gerar tudo
     combinações possíveis de frases com todos os comandos
-    existente (dependendo dos filtros) substituindo \#commande\# par
-    o nome do comando e \#objet\# pelo nome do objeto.
+    existente (dependendo dos filtros) substituindo \#commande\# por
+    o nome do comando e \#objet\# por le nom de l'objet.
 
 -   A resposta será "21 ° C" ou "200 lux". Basta colocar :
     \#valeur\# \#unite\# (a unidade deve ser concluída na configuração

@@ -141,7 +141,7 @@ erstellt, können Sie eine weitere hinzufügen **Block** oder a **Aktion**.
 >
 > In Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (&#39;) anstelle von doppelten (&quot;) zu bevorzugen
 
-### Blöcke
+### Die blocs
 
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
@@ -263,7 +263,7 @@ Szenario :
 -   $scenario->setLog($message); : Schreiben Sie eine Nachricht in das Szenario-Protokoll.
 -   $scenario->persistLog(); : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
 
-### Aktionen
+### Die Actions
 
 Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen. In Ordnung :
 
@@ -314,7 +314,7 @@ Befehle) :
 -   #user_connect# : Benutzer Login
 
 Sie können auch ein Szenario auslösen, wenn eine Variable auf gesetzt ist
-Tag setzen : #variable(nom_variable)# oder über die HTTP-API
+Tag setzen : #variable(nom_variable)# oder en utilisant l'API HTTP
 beschrieben
 [hier](https://jeedom.github.io/core/de_DE/api_http).
 

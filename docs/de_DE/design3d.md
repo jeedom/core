@@ -65,7 +65,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 - Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
 - Macht : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt)
 
-## Texte
+## Text
 
 - Text : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
 - Textgröße
@@ -95,7 +95,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 	- Farbe öffnen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
 
-### Volet
+### Klappe
 
 - Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
@@ -103,7 +103,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 - Couleur
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 
-## Bedingte Farbe
+## Farbe conditionnelle
 
 Ermöglicht die Zuweisung der ausgewählten Farbe zum Element, wenn die Bedingung gültig ist. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 

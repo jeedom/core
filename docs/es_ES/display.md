@@ -374,7 +374,7 @@ Pestaña de configuración
 
 -   **Cálculo y redondeo**
 
-    -   **Fórmula de cálculo (\#value\# por valor)** : Permite
+    -   **Fórmula de cálculo (\#value\# para la valeur)** : Permite
         realizar una operación sobre el valor del pedido antes
         Tratamiento de Jeedom, ejemplo : ``#value# - 0.2` para afianzar
         0.2 (compensación en un sensor de temperatura).

@@ -141,7 +141,7 @@ created, you can add another **block** or a **Action**.
 >
 > In conditions and actions, it is better to favor single quotes (&#39;) instead of double (&quot;)
 
-### Blocks
+### The blocs
 
 Here are the different types of blocks available :
 
@@ -263,7 +263,7 @@ Scenario :
 -   $scenario->setLog($message); : Write a message in the scenario log.
 -   $scenario->persistLog(); : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
 
-### The actions
+### The Actions
 
 Actions added to blocks have several options. In order :
 
@@ -314,7 +314,7 @@ orders) :
 -   #user_connect# : user login
 
 You can also trigger a scenario when a variable is set to
-day putting : #variable(nom_variable)# or using the HTTP API
+day putting : #variable(nom_variable)# or en utilisant l'API HTTP
 described
 [here](https://jeedom.github.io/core/en_US/api_http).
 

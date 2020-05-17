@@ -498,13 +498,13 @@ die Luftfeuchtigkeit, die Helligkeit der verschiedenen Räume (Objekt im Sinne v
 
 -   So können wir sehen, dass ein generischer generischer Satz &quot;Was ist das?&quot;
     Wohnzimmertemperatur "oder" Wie hell ist das Schlafzimmer"
-    kann konvertiert werden zu : "was ist \ [the |l \\ '\] \#commande\.# objet"
+    kann konvertiert werden zu : "was ist \ [the |l \\ '\] \#commande\.# Objekt"
     (die Verwendung von \ [word1 | mot2 \] sagen wir diese Möglichkeit
     oder diese, um alle möglichen Variationen des Satzes zu erzeugen
     mit Wort1 oder Wort2). Bei der Erzeugung wird Jeedom alles erzeugen
     mögliche Kombinationen von Sätzen mit allen Befehlen
-    vorhanden (abhängig von Filtern) durch Ersetzen von \#commande\.# par
-    den Namen des Befehls und \#objet\.# durch den Namen des Objekts.
+    vorhanden (abhängig von Filtern) durch Ersetzen von \#commande\.# Von
+    den Namen des Befehls und \#objet\.# Von le nom von l'objet.
 
 -   Die Antwort lautet "21 ° C" oder "200 Lux"". Einfach gesagt :
     \.#valeur\.# \.#unite\.# (Das Gerät ist in der Konfiguration zu vervollständigen

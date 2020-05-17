@@ -72,6 +72,6 @@ Seite). In dieser Tabelle finden wir :
 -   **Unterdrückung** : Aufgabe löschen
 
 
-# Listener
+# Zuhörer
 
 Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)

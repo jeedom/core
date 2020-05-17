@@ -141,7 +141,7 @@ creado, puedes agregar otro **bloque** o un **acción**.
 >
 > En condiciones y acciones, es mejor favorecer comillas simples (&#39;) en lugar de dobles (")
 
-### Bloques
+### La blocs
 
 Aquí están los diferentes tipos de bloques disponibles :
 
@@ -263,7 +263,7 @@ Guión :
 -   $scenario->setLog($message); : Escribir un mensaje en el registro del escenario.
 -   $scenario->persistLog(); : Forzar la escritura del registro (de lo contrario, se escribe solo al final del escenario). Tenga cuidado, esto puede retrasar un poco el escenario.
 
-### Las acciones
+### La Actions
 
 Las acciones agregadas a los bloques tienen varias opciones. En el orden :
 
@@ -314,7 +314,7 @@ comandos) :
 -   #user_connect# : inicio de sesión de usuario
 
 También puede desencadenar un escenario cuando una variable se establece en
-día poniendo : #variable(nom_variable)# o usando la API HTTP
+día poniendo : #variable(nom_variable)# o en utilisant l'API HTTP
 descrito
 [aquí](https://jeedom.github.io/core/es_ES/api_http).
 

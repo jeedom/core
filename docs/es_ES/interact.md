@@ -498,13 +498,13 @@ la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedo
 
 -   Entonces podemos ver que una oración genérica genérica &quot;¿Cuál es el
     temperatura de la sala "o" Qué tan brillante es el dormitorio"
-    se puede convertir a : "Cuál es la |l \\ '\] \#commande\# objet"
+    se puede convertir a : "Cuál es la |l \\ '\] \#commande\# Objeto"
     (el uso de \ [word1 | mot2 \] digamos esta posibilidad
     o este para generar todas las variaciones posibles de la oración
     con word1 o word2). Al generar Jeedom generará todo
     posibles combinaciones de oraciones con todos los comandos
-    existente (dependiendo de los filtros) reemplazando \#commande\# par
-    el nombre del comando y \#objet\# por el nombre del objeto.
+    existente (dependiendo de los filtros) reemplazando \#commande\# por
+    el nombre del comando y \#objet\# por le nom de l'objet.
 
 -   La respuesta será "21 ° C" o "200 lux". Solo pon :
     \#valeur\# \#unite\# (la unidad se completará en la configuración

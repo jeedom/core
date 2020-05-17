@@ -8,7 +8,7 @@ Puede hacer esto en vistas, diseño, página de panel....
 
 Se activa desde una secuencia de comandos con el comando de informe, puede elegir que se le envíe este informe mediante un comando de mensaje (correo electrónico, telegrama, etc.)
 
-# Utilisation
+# Uso
 
 Su uso es muy simple, selecciona si quieres ver :
 
@@ -27,7 +27,7 @@ Una vez que el informe seleccionado puede verlo aparecer, vuelva a descargarlo o
 
 También puede eliminar todas las copias de seguridad de un informe determinado
 
-# FAQ
+# Preguntas frecuentes
 
 > **Si tienes un error de Detalles : cutycapt: error al cargar bibliotecas compartidas: libEGL.so: no se puede abrir el archivo de objeto compartido: No existe tal archivo o directorio**
 >

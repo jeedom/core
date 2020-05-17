@@ -72,6 +72,6 @@ página). Nesta tabela, encontramos :
 -   **Remoção** : Excluir tarefa
 
 
-# Listener
+# Ouvinte
 
 Os ouvintes são apenas visíveis na leitura e permitem que você veja as funções chamadas em um evento (atualização de um comando ...)
