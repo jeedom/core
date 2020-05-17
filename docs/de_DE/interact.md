@@ -1,4 +1,4 @@
-# Interactions
+# Wechselwirkungen
 **Werkzeuge → Interaktionen**
 
 Mit dem Interaktionssystem in Jeedom können Sie Aktionen über Text- oder Sprachbefehle ausführen.
@@ -26,7 +26,7 @@ Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Ste
 
 Sobald Sie eine Interaktion konfiguriert haben, haben Sie ein Kontextmenü mit dem rechten Klick auf die Registerkarten der Interaktion. Sie können auch eine Strg-Klick- oder Klick-Mitte verwenden, um eine andere Interaktion direkt in einer neuen Browser-Registerkarte zu öffnen.
 
-## Interactions
+## Wechselwirkungen
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
@@ -38,7 +38,7 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 >
 > Wenn Sie eine Interaktion haben, die beispielsweise die Sätze für Lichter generiert, und Sie ein neues Lichtsteuermodul hinzufügen, müssen Sie entweder alle Interaktionen neu generieren oder zur betreffenden Interaktion gehen und sie erneut erstellen, um sie zu erstellen die Sätze dieses neuen Moduls.
 
-## Principe
+## Prinzip
 
 Das Prinzip der Schöpfung ist recht einfach : Wir werden einen generierenden Modellsatz definieren, der es Jeedom ermöglicht, einen oder mehrere Hunderte anderer Sätze zu erstellen, die mögliche Kombinationen des Modells darstellen.
 
@@ -46,7 +46,7 @@ Wir werden Antworten auf die gleiche Weise mit einem Modell definieren (dies erm
 
 Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise die Interaktion nicht mit einer Aktion, sondern mit einer Information verknüpft ist oder wenn wir danach eine bestimmte Aktion ausführen möchten (es ist auch möglich, ein Szenario auszuführen, um es zu steuern mehrere Bestellungen…).
 
-## Configuration
+## Konfiguration
 
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
@@ -81,7 +81,7 @@ Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
 Verwenden Sie diese Option, wenn Sie einen oder mehrere bestimmte Befehle als Ziel festlegen oder bestimmte Parameter übergeben möchten.
 
-#### Exemples
+#### Beispiele
 
 > **Notiz**
 >
@@ -175,7 +175,7 @@ Beispiel : personne1|personne2
 
 Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn aktiviert oder deaktiviert werden kann, der in Ihrer Abwesenheit kommen würde, um die Pflanzen zu gießen.
 
-### Regexp-Ausschluss
+### Regexp d'exclusion
 
 Es ist möglich zu erstellen [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der etwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
 

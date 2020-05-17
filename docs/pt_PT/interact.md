@@ -1,4 +1,4 @@
-# Interactions
+# Interações
 **Ferramentas → Interações**
 
 O sistema de interação no Jeedom permite executar ações a partir de comandos de texto ou voz.
@@ -26,7 +26,7 @@ Você tem um mecanismo de pesquisa para filtrar a exibição de interações. A 
 
 Uma vez na configuração de uma interação, você tem um menu contextual com o botão direito do mouse nas guias da interação. Você também pode usar um Ctrl Click ou Click Center para abrir diretamente outra interação em uma nova guia do navegador.
 
-## Interactions
+## Interações
 
 No topo da página, existem 3 botões :
 
@@ -38,7 +38,7 @@ No topo da página, existem 3 botões :
 >
 > Se você possui uma interação que gera sentenças para luzes, por exemplo, e adiciona um novo módulo de controle de luz, precisará regenerar todas as interações ou ir para a interação em questão e salvá-la novamente para criar as frases deste novo módulo.
 
-## Principe
+## Princípio
 
 O princípio da criação é bastante simples : definiremos uma sentença de modelo geradora que permitirá ao Jeedom criar uma ou mais centenas de outras sentenças, que serão possíveis combinações do modelo.
 
@@ -46,7 +46,7 @@ Vamos definir respostas da mesma maneira com um modelo (isso permite que o Jeedo
 
 Também podemos definir um comando a ser executado se, por exemplo, a interação não estiver vinculada a uma ação, mas a uma informação ou se desejarmos executar uma ação específica após esta (também é possível executar um cenário, controlar várias ordens…).
 
-## Configuration
+## Configuração
 
 A página de configuração consiste em várias guias e botões :
 
@@ -81,7 +81,7 @@ A página de configuração consiste em várias guias e botões :
 
 Use se você deseja direcionar um ou mais comandos específicos ou passar parâmetros específicos.
 
-#### Exemples
+#### Exemplos
 
 > **NOTA**
 >
@@ -175,7 +175,7 @@ Exemplo : personne1|personne2
 
 Podemos imaginar que um alarme pode ser ativado ou desativado por uma criança ou um vizinho que viria a regar as plantas na sua ausência.
 
-### Exclusão regexp
+### Regexp d'exclusion
 
 É possível criar [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusão, se uma frase gerada corresponder a este Regexp, ela será excluída. O interesse é ser capaz de remover falsos positivos, ou seja, uma sentença gerada pelo Jeedom que ativa algo que não corresponde ao que queremos ou que interferiria em outra interação que teria uma sentença semelhante.
 
@@ -244,7 +244,7 @@ Neste exemplo, vemos uma frase simples que retornará uma resposta com três tem
 
 Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *julie*|sim tem alguém na sala *julie*"
 
-#### Evolution
+#### Evolução
 
 - Então a pergunta é "\#commande\# \ [no |no \] \#objet\#"
 - A resposta será "não, não há ninguém na sala" ou "sim, há alguém na sala"
@@ -269,7 +269,7 @@ Aqui está um exemplo genérico usado para conhecer a temperatura, umidade e bri
 - A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur\# \#unite\# (a unidade deve ser concluída na configuração de cada pedido para o qual queremos ter um)
 - Portanto, este exemplo gera uma sentença para todos os comandos do tipo de informação digital que possuem uma unidade, para que possamos desmarcar as unidades no filtro certo, limitadas ao tipo que nos interessa.
 
-#### Evolution
+#### Evolução
 
 Podemos, portanto, adicionar sinônimos ao nome do comando para ter algo mais natural, adicionar um regexp para filtrar os comandos que nada têm a ver com a nossa interação.
 
@@ -303,7 +303,7 @@ Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode coloc
 >
 > Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano").
 
-#### Evolution
+#### Evolução
 
 Podemos querer controlar todos os comandos de tipo de cursor com uma única interação. Com o exemplo a seguir, poderemos controlar várias unidades com uma única interação e, portanto, gerar um conjunto de sentenças para controlá-las.
 

@@ -18,7 +18,7 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finde
 >
 > Sie können bei gedrückter Strg-Taste oder Klick-Mitte die Konfiguration in einer neuen Browser-Registerkarte öffnen.
 
-## Plugin Konfiguration
+## Konfiguration de plugin
 
 ### Oben rechts einige Schaltflächen :
 
@@ -84,11 +84,11 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
 
-### Panel
+### Platte
 
 Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
 
-## Plugin Installation
+## Installation d'un plugin
 
 Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche &quot;Market&quot; (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
 

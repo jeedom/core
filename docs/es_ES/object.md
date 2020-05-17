@@ -1,4 +1,4 @@
-# Objets
+# Objetos
 **Herramientas → Objetos**
 
 La **Objetos** le permite definir la estructura de árbol de su domótica.
@@ -7,7 +7,7 @@ Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fá
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como los nombres de las habitaciones (por cierto, esta es la configuración recomendada).
 
-## Gestion
+## Administración
 
 Tienes dos opciones :
 - **Añadir** : Crea un nuevo objeto.
@@ -74,7 +74,7 @@ Las columnas representan los resúmenes asignados al objeto actual. Se te propon
 - **Ocultar en el escritorio** : Marque la casilla si no desea que el resumen aparezca junto al nombre del objeto en el Tablero.
 - **Ocultar en el móvil** : Marque la casilla si no desea que aparezca el resumen cuando lo vea desde un dispositivo móvil.
 
-### Commandes
+### Comandos
 
 Cada pestaña representa un tipo de resumen definido en la configuración de Jeedom. Haga clic en **Añadir une commande** para que se tenga en cuenta en el resumen. Tiene la opción de seleccionar el comando de cualquier equipo Jeedom, incluso si no tiene este objeto como padre.
 

@@ -1,4 +1,4 @@
-# Configuration
+# Konfiguration
 **Einstellungen → System → Konfiguration**
 
 Hier befinden sich die meisten Konfigurationsparameter.
@@ -38,13 +38,13 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 - **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chromseite://flags.
 - **Hintergrundbilder ausblenden** : Ermöglicht das Ausblenden der Hintergrundbilder in den Szenarien, Objekten, Interaktionsseiten usw.
 
-### Tuiles
+### Fliesen
 
 - **Fliesen Pas horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
 - **Fliesen Pas vertical** : Beschränkt die Höhe der Kacheln alle x Pixel.
 - **Fliesen Marge** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 
-### Personnalisation
+### Personalisierung
 
 - **Aktivieren** : Aktivieren Sie die Verwendung der folgenden Optionen.
 - **Transparenz** : Zeigt Dashboard-Kacheln und einige Inhalte transparent an. 1 : völlig undurchsichtig, 0 : total transparent.
@@ -106,19 +106,19 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 ## Registerkarte &quot;Protokolle&quot;
 
-### Timeline
+### Zeitleiste
 
 - **Namebre maximum d'évènements** : Definiert die maximale Anzahl von Ereignissen, die in der Zeitleiste angezeigt werden sollen.
 - **Löschen Sie alle Ereignisse** : Leeren Sie die Zeitleiste aller aufgezeichneten Ereignisse.
 
-### Messages
+### Nachricht
 
 - **Eine Nachricht zu jedem Fehler in den Protokollen hinzufügen** : Wenn ein Plugin oder Jeedom eine Fehlermeldung in ein Protokoll schreibt, fügt Jeedom automatisch eine Nachricht im Nachrichtenzentrum hinzu (zumindest werden Sie sie sicher nicht verpassen).
 - **Aktion auf Nachricht** : Ermöglicht es Ihnen, eine Aktion auszuführen, wenn Sie dem Nachrichtenzentrum eine Nachricht hinzufügen. Sie haben 2 Tags für diese Aktionen :
         - #subject# : Nachricht in Frage.
         - #plugin# : Plugin, das die Nachricht ausgelöst hat.
 
-### Alertes
+### Warnungen
 
 - **Fügen Sie jedem Timeout eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn ein Gerät hineinfällt **Zeitüberschreitung**.
 - **Timeout-Reihenfolge** : Befehl eingeben **Nachricht** zu verwenden, wenn sich ein Gerät in befindet **Zeitüberschreitung**.
@@ -131,7 +131,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 - **Fügen Sie jeder Gefahr eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn eine Bestellung alarmiert wird **Gefahr**.
 - **Befehl zur Gefahr** : Befehl eingeben **Nachricht** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Gefahr**.
 
-### Logs
+### Protokolle
 
 - **Protokoll Engine** : Ermöglicht das Ändern der Protokoll-Engine, um sie beispielsweise an einen Syslog-Daemon zu senden (d).
 - **Format der Protokolle** : Zu verwendendes Protokollformat (Achtung : Daemon-Protokolle sind davon nicht betroffen.
@@ -159,7 +159,7 @@ Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in d
 
 ## Registerkarte Ausrüstung
 
-### Equipements
+### Geräte
 
 - **Namebre d'échecs avant désactivation de l'équipement** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
 - **Batterieschwellen** : Ermöglicht die Verwaltung der globalen Alarmschwellenwerte für die Stapel.
@@ -182,7 +182,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 > Der erste Parameter **Zeige Statistiken über Widgets** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
 > Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für Details).
 
-### Push
+### Drücken
 
 - **URLs de push globale** : Mit dieser Option können Sie eine URL hinzufügen, die im Falle einer Auftragsaktualisierung aufgerufen werden soll. Sie können die folgenden Tags verwenden :
 **\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für den Namen des Befehls,
@@ -282,7 +282,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 - **Begrenzter Benutzerfilter (optional)** : Filtern Sie eingeschränkte Benutzer im AD (z. B. für die Gruppenverwaltung)
 - **REMOTE\_USER zulassen** : Aktivieren Sie REMOTE\_USER (z. B. in SSO).
 
-### Connexion
+### Einloggen
 
 - **Namebre d'échecs tolérés** : Definiert die Anzahl der aufeinander folgenden Versuche, die vor dem Sperren der IP zulässig sind
 - **Maximale Zeit zwischen Ausfällen (in Sekunden)** : maximale Zeit für 2 Versuche, um als aufeinanderfolgend betrachtet zu werden
@@ -300,11 +300,11 @@ Die Liste der gesperrten IPs befindet sich am Ende dieser Seite. Sie finden die 
 - **Kern Version** : Kernversion zum Wiederherstellen.
 - **Automatisch nach Updates suchen** : Geben Sie an, ob automatisch überprüft werden soll, ob neue Updates vorhanden sind (vermeiden Sie eine Überlastung des Marktes, da sich die Überprüfungszeit ändern kann).
 
-### Einlagen
+### Die dépôts
 
 Die Repositorys sind Speicher- (und Service-) Speicherplätze, um Backups verschieben, Plugins wiederherstellen, den Kern von Jeedom wiederherstellen usw. zu können.
 
-### Fichier
+### Datei
 
 Einzahlung verwendet, um das Senden von Plugins durch Dateien zu aktivieren.
 
@@ -317,7 +317,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 - **Name du dépôt pour le core Jeedom** : Repository-Name für den Kern.
 - **Jeedom Kernindustrie** : Kern-Repository-Zweig.
 
-#### Market
+#### Markt
 
 Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Achtung : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
@@ -362,7 +362,7 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 >
 > Jeedom muss der einzige sein, der in diesen Ordner schreibt, und er muss standardmäßig leer sein (dh, vor der Konfiguration und dem Senden der ersten Sicherung darf der Ordner keine Datei oder Ordner enthalten).
 
-#### URL
+#### URLs
 
 - **URLs core Jeedom**
 - **URLs version core Jeedom**

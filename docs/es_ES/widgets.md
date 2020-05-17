@@ -1,4 +1,4 @@
-# Widgets
+# Reproductores
 **Herramientas → Widgets**
 
 La página de widgets te permite crear widgets personalizados para tu Jeedom.
@@ -12,7 +12,7 @@ Hay dos tipos de widgets personalizados :
 >
 > Si los widgets basados en plantillas están integrados en el Core y, por lo tanto, son monitoreados por el equipo de desarrollo, este último no tiene forma de garantizar la compatibilidad de los widgets basados en el código de usuario de acuerdo con los desarrollos de Jeedom.
 
-## Gestion
+## Administración
 
 Tienes cuatro opciones :
 - **Añadir** : Le permite crear un nuevo widget.
@@ -40,14 +40,14 @@ A la derecha del campo de búsqueda, se encuentran tres botones en varios lugare
 Una vez en la configuración de un widget, tiene un menú contextual con el clic derecho en las pestañas del widget. También puede usar Ctrl Click o Clic Center para abrir directamente otro widget en una nueva pestaña del navegador.
 
 
-## Principe
+## Principio
 
 Pero que es una plantilla ?
 En pocas palabras, es un código (aquí html / js) integrado en el Core, algunas partes de las cuales son configurables por el usuario con la interfaz gráfica del Core.
 
 Dependiendo del tipo de widget, generalmente puede personalizar iconos o poner imágenes de su elección.
 
-## Las plantillas
+## La templates
 
 Hay dos tipos de plantillas :
 
@@ -64,7 +64,7 @@ Entonces :
 - Luego, finalmente, la plantilla en cuestión (planeamos poner ejemplos de representaciones para cada plantilla).
 - Una vez que se ha elegido la plantilla, Jeedom le ofrece las opciones para configurarla.
 
-### Remplacement
+### Reemplazo
 
 Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quot;encendido&quot; corresponde a dicho icono / imagen (con el botón elegir), el &quot;apagado&quot; es ese, etc. Luego, dependiendo de la plantilla, se le puede ofrecer el ancho y la altura. Esto solo es válido para imágenes.
 
@@ -74,7 +74,7 @@ Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quo
 >**Consejos**
 >Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo si en ancho pones como valor #width# (tenga cuidado de poner el # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, evita que cree un widget diferente para cada tamaño de imagen que desee
 
-### Test
+### Prueba
 
 Esto se llama la parte multiestatal, a menudo tiene, como para widgets simples, la opción de &quot;altura&quot; / &quot;ancho&quot; para las imágenes solo entonces debajo de la parte de prueba.
 
@@ -99,7 +99,7 @@ Las pruebas están en forma : #value# == 1, #value# será reemplazado automátic
 
 Vamos a describir aquí algunos widgets que tienen un funcionamiento algo particular.
 
-### Equipement
+### Dispositivos
 
 Los equipos tienen ciertos parámetros de configuración :
 
@@ -117,7 +117,7 @@ Los equipos tienen ciertos parámetros de configuración :
 - Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 - Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 
-### HygroThermographe
+### Higrotermógrafo
 
 Este widget es un poco especial porque es un widget de comandos múltiples, es decir que reúne en su pantalla el valor de varios comandos. Aquí toma los comandos de temperatura y humedad.
 
@@ -133,7 +133,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 >**Nota**
 > Atención en un diseño, es importante no poner un comando solo con este widget, no funcionará ya que es un widget que utiliza el valor de varios comandos, es absolutamente necesario poner el widget completo
 
-### Multiline
+### Multilínea
 
 ##### Parámetros opcionales
 
@@ -145,7 +145,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 
 - paso : Permite ajustar el paso de una acción en un botón (0.5 por defecto).
 
-### Rain
+### Lluvia
 
 ##### Parámetros opcionales
 
@@ -155,7 +155,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 
 ## Widget de código
 
-### Etiquetas
+### La tags
 
 En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí hay una lista (no necesariamente exhaustiva) :
 

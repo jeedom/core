@@ -1,4 +1,4 @@
-# Recherche
+# Search
 **Analysis menu → Search**
 
 Jeedom offers an internal search engine.

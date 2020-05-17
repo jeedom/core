@@ -1,13 +1,13 @@
-# Historique
+# Histórico
 **Análisis → Historia**
 
 Parte importante en el software : la parte de la historización, un verdadero recuerdo de ella. En Jeedom es posible registrar cualquier comando de tipo de información (binario o digital). Esto le permitirá, por ejemplo, registrar una temperatura, consumo o curva de apertura de puerta, etc
 
-### Principe
+### Principio
 
 Aquí se describe el principio de historización de Jeedom. Solo necesita comprender esto si tiene problemas de historización o si desea cambiar la configuración de historización. La configuración predeterminada está bien en la mayoría de los casos.
 
-### Archivage
+### Archivado
 
 El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite no utilizar demasiado espacio y no ralentiza el sistema. De hecho, si mantiene todas las mediciones, esto aumenta la cantidad de puntos para mostrar y, por lo tanto, puede alargar considerablemente los tiempos para representar un gráfico. Si hay demasiados puntos, incluso puede hacer que la pantalla del gráfico se bloquee.
 
@@ -21,7 +21,7 @@ El archivado es una tarea que comienza de noche y compacta los datos recuperados
 >
 > Por supuesto, este principio de archivo solo se aplica a los comandos de tipo digital; en comandos de tipo binario, Jeedom mantiene solo las fechas de cambio de estado.
 
-### Ver un gráfico
+### Viendo d'un graphique
 
 Hay varias formas de acceder al historial :
 
@@ -66,7 +66,7 @@ Una vez que se activan los datos, puede elegir :
 
 La página del historial da acceso a algunas opciones adicionales
 
-#### Historia calculada
+#### Histórico calculé
 
 Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
 Ex :
@@ -78,7 +78,7 @@ También tiene acceso a una gestión de fórmulas de cálculo que le permite gua
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo y muestre los comandos históricos que se pueden mostrar.
 
-#### Historial de pedidos
+#### Histórico de commande
 
 Frente a cada dato que se puede mostrar, encontrará dos íconos :
 
@@ -115,7 +115,7 @@ Una vez que haya activado el seguimiento en la línea de tiempo de los comandos 
 >
 > Debe esperar nuevos eventos después de activar el seguimiento en la línea de tiempo antes de verlos aparecer.
 
-### Affichage
+### Viendo
 
 La línea de tiempo muestra los eventos grabados, escalonados día a día verticalmente.
 
