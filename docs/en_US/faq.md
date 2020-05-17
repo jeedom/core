@@ -1,4 +1,4 @@
-# FAQ
+# Faq
 **Settings → Version : Faq**
 
 ### Jeedom does it require a subscription ?

@@ -1,4 +1,4 @@
-# Vues
+# Visualizações
 **Página inicial → Visualizar**
 
 As visualizações permitem criar uma visualização personalizada.
@@ -8,7 +8,7 @@ Não é tão poderoso quanto os designs, mas permite em poucos minutos ter uma e
 >
 > Você pode escolher a visualização padrão no seu perfil ao clicar no menu de visualização.
 
-## Principe
+## Princípio
 
 Também podemos colocar widgets, gráficos (que podem ser compostos por vários dados) ou zonas de tabela (que contêm os widgets de comando).
 

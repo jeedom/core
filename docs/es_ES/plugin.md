@@ -18,7 +18,7 @@ Al hacer clic en un complemento, accede a su configuración. En la parte superio
 >
 > Puede hacer Ctrl-clic o hacer clic en Centro para abrir su configuración en una nueva pestaña del navegador.
 
-## Configuración del complemento
+## Configuración de plugin
 
 ### Arriba a la derecha, algunos botones :
 
@@ -88,7 +88,7 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 Podemos encontrar una sección de Panel que habilitará o deshabilitará la visualización del panel en el tablero o en el dispositivo móvil si el complemento ofrece uno.
 
-## Instalación de complementos
+## Instalación d'un plugin
 
 Para instalar un nuevo complemento, simplemente haga clic en el botón &quot;Market&quot; (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
 
