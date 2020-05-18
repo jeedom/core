@@ -144,7 +144,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
+				<a class="btn btn-primary bootbox-accept" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>
