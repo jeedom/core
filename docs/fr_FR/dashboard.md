@@ -6,6 +6,19 @@
 Le dashboard  est une des pages principales de Jeedom, il affiche un compte-rendu de toute votre domotique.
 Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom, et comprend l'ensemble des objets visibles et leurs équipements.
 
+![Dashboard](../images/doc-dashboard-legends.png)
+
+- 1 : Menu principal de Jeedom.
+- 2 : Résumé global.
+- 3 : Heure du navigateur, racourci vers la Timeline.
+- 4 : Bouton pour accéder à la documentation de la page en cours.
+- 5 : Nom de votre Jeedom, racourci vers la configuration.
+- 6 : Mode édition (Réordonner / redimenssioner les tuiles).
+- 7 : Filtre par catégories.
+- 8 : Objet : Icône, nom et résumé, et ses équipements.
+- 9 : Tuile d'un équipement.
+- 10 : Widget d'une commande.
+
 > **Tip**
 >
 > L'ordre d'affichage des objets sur le Dashboard est celui visible dans **Analyse → Résumé domotique**. Vous pouvez sur cette page modifier cet ordre par glisser - déposer.
