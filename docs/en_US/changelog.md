@@ -35,20 +35,20 @@ Changelog
 3.3.39
 =====
 
-- Changed Variable name $ key to $ key2 in class event
-- Cleaning the plugin / widgand / scenario sending code to the markand (saves several seconds on displaying plugins)
+- Changed variable name $ key to $ key2 in class event
+- Cleaning the plugin / widget / scenario sending code to the market (saves several seconds on displaying plugins)
 - Correction of a warning on the lastBetween function
 - Better consideration of plugin widgets
 - Optimization of the health calculation on the swap
 
->**IMPORTANT**
+>**Important**
 >
 >This update fixes a concern that may prevent any history recording as of January 1, 2020, it is more than highly recommended
 
 3.3.38
 =====
 
-- Addition of global compatibility of Jeedom DNS with a 4G internand connection. (Important if you use Jeedom DNS is that you have a 4g connection, you must check in the configure Jeedom dns the corresponding box).
+- Addition of global compatibility of Jeedom DNS with a 4G internet connection. (Important if you use jeedom DNS is that you have a 4g connection, you must check in the configure jeedom dns the corresponding box).
 - Spelling corrections.
 - Security fix
 
@@ -110,7 +110,7 @@ Changelog
 
 - Correction of the disappearance of the date of the last update check
 - Fixed a bug that could block cloud backups
-- Correction of a bug on the calculation of the use of the variables if they are in the form : Variable (foo, myvalue)
+- Correction of a bug on the calculation of the use of the variables if they are in the form : variable (foo, myvalue)
 
 
 3.3.28
@@ -150,8 +150,8 @@ Changelog
 -	Bug fixes
 -	Improvement of the icon selection window
 -	Automatic update of the battery change date if the battery is more than 90% and 10% higher than the previous value
--	Addition of button on the administration to resand the rights and launch a Jeedom verification (right, cron, database ...)
--	Removal of advanced visibility choices for equipment on Dashboard / view / design / mobile. Now if you want to see or not the equipment on Dashboard / mobile just check or not the general visibility box. For views and design just put or not the equipment on it
+-	Addition of button on the administration to reset the rights and launch a Jeedom verification (right, cron, database ...)
+-	Removal of advanced visibility choices for equipment on dashboard / view / design / mobile. Now if you want to see or not the equipment on dashboard / mobile just check or not the general visibility box. For views and design just put or not the equipment on it
 
 3.3.22
 =====
@@ -169,7 +169,7 @@ Changelog
 - Fixed display of disabled equipment on some plugins
 - Correction of a bug when indicating battery change at Jeedom
 - Improved display of logs when updating Jeedom
-- Bug fix during the Variable update (which did not always launch the scenarios or did not trigger an update of the commands in all cases)
+- Bug fix during the variable update (which did not always launch the scenarios or did not trigger an update of the commands in all cases)
 - Fixed a bug on Cloud backups, or duplicity was not installing correctly
 - Improvement of internal TTS in Jeedom
 - Improvement of the cron syntax checking system
@@ -199,7 +199,7 @@ Changelog
 3.3.16
 =====
 
--   Ability to delete a Variable.
+-   Ability to delete a variable.
 -   Addition of a 3D display (beta)
 -   Redesign of the cloud backup system (incremental and encrypted backup).
 -   Adding an integrated note taking system (in Analysis -&gt; Note).
@@ -208,10 +208,10 @@ Changelog
 -   Addition of the jeedom_reboot action to launch a restart of Jeedom.
 -   Add option in the cron generation window.
 -   A message is now added if an invalid expression is found when executing a scenario.
--   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by Jeedom (case when storing the name of the order in a variable).
+-   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by jeedom (case when storing the name of the order in a variable).
 -   Addition of a button to refresh the messages of the message center.
 -   Add in the configuration of action on value of a command a button to search for an internal action (scenario, pause ...).
--   Addition of an action “Resand to zero of the IS” on the scenarios
+-   Addition of an action “Reset to zero of the IS” on the scenarios
 -   Ability to add images in the background on the views
 -   Ability to add background images on objects
 -   Update information available is now hidden from non-admin users
@@ -230,7 +230,7 @@ Changelog
 -   Ability to delete an element from the design configuration
 -   Possibility of having a report on the battery level (equipment report)
 -   Scenario widgets are now displayed by default on the dashboard
--   Change the pitch of the widgets by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can resand the old values in the configuration of jeedom, widgand tab)
+-   Change the pitch of the widgets by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can reset the old values in the configuration of jeedom, widget tab)
 -   Possibility to put an icon on the scenarios
 -   Addition of daemon management on the task engine
 -   Addition of the color_gradient function in the scenarios
@@ -287,7 +287,7 @@ Changelog
 - Bugfix
 - Addition of an option in the Jeedom administration to specify the local ip range (useful in docker type installations)
 - Correction of a bug on the calculation of the use of variables
-- Addition of an indicator on the health page giving the number of processes killed by lack of memory (overall indicates that the Jeedom is too loaded)
+- Addition of an indicator on the health page giving the number of processes killed by lack of memory (overall indicates that the jeedom is too loaded)
 - Improved file editor
 
 3.2.7
@@ -295,8 +295,8 @@ Changelog
 
 - Bugfix
 - Docs update
-- Ability to use tags in the terms of the "A" and "IN blocks"
-- Bug correction of markand categories for widgets / scripts / scenarios...
+- Ability to use tags in the conditions of the "A" and "IN blocks"
+- Bug correction of market categories for widgets / scripts / scenarios...
 
 3.2.6
 =====
@@ -329,7 +329,7 @@ Changelog
 3.2.2
 =====
 
--   Removal of the old widgand update system (deprecated since version 3.0). Attention if your widgand does not use the new system there is a risk of malfunction (duplication of it in this case). Example widgand [here](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Removal of the old widget update system (deprecated since version 3.0). Attention if your widget does not use the new system there is a risk of malfunction (duplication of it in this case). Example widget [here](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Possibility to display the graphs in table form or to export these in csv or xls
 
 -   Users can now add their own php function for scenarios. See documentation of scenarios for implementation
@@ -366,7 +366,7 @@ Changelog
 -   JEED-186 : We can now choose the background color in the
     designs
 
--   For block A, possibility of setting an hour between 12:01 a.m. and 12:59 a.m.
+-   For block A, possibility of setting an hour between 12:01 a.m. and 12:59 a.m
     by simply putting the minutes (ex 30 for 00:30)
 
 -   Adding active sessions and devices registered on the
@@ -376,7 +376,7 @@ Changelog
 -   JEED-284 : permanent connection now depends on a key
     single user and device (rather than user)
 
--   JEED-283 : adding a * rescue * mode to Jeedom by adding &amp; rescue = 1
+-   JEED-283 : adding a mode *rescue* to jeedom by adding & rescue = 1
     in the url
 
 -   JEED-8 : addition of the name of the scenario on the title of the page during
@@ -387,7 +387,7 @@ Changelog
     and the views. Attention now the modifications are not
     saved only when exiting edit mode.
 
--   JEED-18 : Adding logs when opening a tickand to support
+-   JEED-18 : Adding logs when opening a ticket to support
 
 -   JEED-181 : addition of a name command in the scenarios to have
     the name of the order or equipment or object
@@ -399,15 +399,15 @@ Changelog
 -   JEED-19 : During an update it is now possible to
     update the update script before updating
 
--   JEED-125 : added link to resand documentation
+-   JEED-125 : added link to reset documentation
     password
 
 -   JEED-2 : Improved time management during a restart
 
--   JEED-77 : Addition of Variable management in the http API
+-   JEED-77 : Addition of variable management in the http API
 
 -   JEED-78 : addition of the tag function for scenarios. Be careful there
-    must in the scenarios using the tags pass from \#montag \#
+    must in the scenarios using the tags pass from \#montag\#
     to tag (montag)
 
 -   JEED-124 : Correct the management of scenario timeouts
@@ -449,7 +449,7 @@ Changelog
 -   Onepage mode (page change without reloading the whole page, just
     the part that changes)
 
--   Add an option to hide objects on the Dashboard but which
+-   Add an option to hide objects on the dashboard but which
     lets always have them in the list
 
 -   Double-click on a node on the link graph (except for
@@ -458,7 +458,7 @@ Changelog
 -   Ability to put the text left / right / center on the
     designs for text / view / design elements
 
--   Adding object summaries on the Dashboard (list of objects
+-   Adding object summaries on the dashboard (list of objects
     to the left)
 
 -   Add interactions of type "notify me-if"
@@ -516,7 +516,7 @@ Changelog
     cancel all programming of the DANS / A blocks
 
 -   Ability in designs for widgets on hover to choose
-    widgand position
+    widget position
 
 -   Adding a reply\_cmd parameter on interactions to specify
     the id of the command to use to respond
@@ -543,10 +543,10 @@ Changelog
     choosing for each order the box or put it
 
 -   Ability to rearrange equipment widgets from
-    Dashboard (in edit mode right click on the widget)
+    dashboard (in edit mode right click on the widget)
 
--   Change the pitch of widgets (from 40 \* 80 to 10 \* 10). Be careful
-    will impact the layout on your Dashboard / view / design
+-   Change the pitch of widgets (from 40 \*80 to 10 \*10). Be careful
+    will impact the layout on your dashboard / view / design
 
 -   Possibility to give a size from 1 to 12 to objects on the
     dashboard
@@ -594,7 +594,7 @@ Changelog
     update which avoids an ajax call to Jeedom
 
 -   Scenario widgets are now updated without ajax calls
-    to gand the widget
+    to get the widget
 
 -   The global summary and parts are now updated without appeal
     ajax
@@ -614,7 +614,7 @@ Changelog
 -   Possibility to have the docs locally
 
 -   Third-party developers can add their own system of
-    tickand management
+    ticket management
 
 -   Redesign of user rights configuration (everything is on the
     user management page)
@@ -639,7 +639,7 @@ Changelog
         -   Binary type area : launches a series of actions during a
             click on it depending on the status of an order
 
-        -   Widgand type area : displays a widgand on click or hover
+        -   Widget type area : displays a widget on click or hover
             of the area
 
     -   General code optimization
@@ -669,7 +669,7 @@ Changelog
 
 -   Adding modules on alert to the battery page
 
--   Objects without a widgand are automatically hidden on the dashboard
+-   Objects without a widget are automatically hidden on the dashboard
 
 -   Addition of a button in the advanced configuration of a
     equipment / of a command to see the events of
@@ -764,7 +764,7 @@ Changelog
     Example : "How much is it in the bedroom and in the living room? "Or
     "Turn on the kitchen and bedroom light."
 
--   The status of the scenarios on the edit page is now sand to
+-   The status of the scenarios on the edit page is now set to
     dynamically day
 
 -   Possibility to export a view in PDF, PNG, SVG or JPEG with the
@@ -890,7 +890,7 @@ Changelog
     from the market
 
 -   Renaming the default category on the course of the plugins of the
-    markand in "Top and new"
+    market in "Top and new"
 
 -   Correction of free and paid filters on the course of plugins
     from the market
@@ -901,10 +901,10 @@ Changelog
 -   Correction of a bug on the timeout value of scenarios
 
 -   fixed a bug on the display of widgets in views which
-    took the Dashboard version
+    took the dashboard version
 
 -   Correction of a bug on the designs which could use the
-    configuration of Dashboard widgets instead of designs
+    configuration of dashboard widgets instead of designs
 
 -   Correction of backup / restore bugs if the name of the jeedom
     contains special characters
@@ -916,21 +916,21 @@ Changelog
 
 -   Correction of the backup access interface from
 
--   Saving the configuration during the markand test
+-   Saving the configuration during the market test
 
 -   Preparation for the removal of bootstrapswtich in plugins
 
--   Correction of a bug on the type of widgand requested for designs
-    (Dashboard instead of dplan)
+-   Correction of a bug on the type of widget requested for designs
+    (dashboard instead of dplan)
 
 -   bug fix on the event handler
 
 -   random switching of the backup at night (between 2h10 and 3h59) for
-    avoid markand overload concerns
+    avoid market overload concerns
 
--   Fix widgand market
+-   Fix widget market
 
--   Correction of a bug on markand access (timeout)
+-   Correction of a bug on market access (timeout)
 
 -   Correction of a bug on the opening of tickets
 
@@ -938,7 +938,7 @@ Changelog
     / tmp is too small (be careful the correction takes effect at
     update n + 1)
 
--   Addition of a * jeedom\_name * tag in the scenarios (gives the name
+-   Adding a tag *Jeedom\_name* in the scenarios (give the name
     jeedom)
 
 -   Bugfix
@@ -953,7 +953,7 @@ Changelog
 -   Addition of a darksobre theme for mobile
 
 -   Ability for developers to add options
-    widgand configuration on specific widgets (sonos type,
+    widget configuration on specific widgets (sonos type,
     koubachi and other)
 
 -   Optimization of logs (thanks @ kwizer15)
@@ -962,8 +962,8 @@ Changelog
 
 -   Various optimization of the code (thanks @ kwizer15)
 
--   Passage in module of the connection with the markand (will allow to have
-    a Jeedom without any link to the market)
+-   Passage in module of the connection with the market (will allow to have
+    a jeedom without any link to the market)
 
 -   Addition of a &quot;repo&quot; (connection module type connection with
     the market) file (allows sending a zip containing the plugin)
@@ -997,7 +997,7 @@ Changelog
 -   Possibility to deactivate the automatic update check
     jour
 
--   Fixed a bug that resand all data to 0 following a
+-   Fixed a bug that reset all data to 0 following a
     restart
 
 -   Possibility to configure the log level of a plugin directly
@@ -1035,12 +1035,12 @@ Changelog
 -   Going through long polling for updating the interface in time
     real
 
--   Correction of a bug during multiple widgand refresh
+-   Correction of a bug during multiple widget refresh
 
 -   Optimization of the update of command and equipment widgets
 
--   Addition of a tag * begin\_backup *, * end\_backup *, * begin\_update*,
-    *end\_update *, * begin\_restore *, * end\_restore * in scenarios
+-   Adding a tag *begin\_backup*, *end\_backup*, *begin\_update*,
+    *end\_update*, *begin\_restore*, *end\_restore* in the scenarios
 
 2.2
 ---
@@ -1086,7 +1086,7 @@ Changelog
 -   Redesign of the log system (use of monolog) which allows
     integration with logging systems (syslog (d) type)
 
--   Optimization of Dashboard loading
+-   Optimization of dashboard loading
 
 -   Fixed many warning
 
@@ -1105,7 +1105,7 @@ Changelog
 
 -   Delete all network management part : wifi, fixed ip…
     (will surely come back as a plugin). ATTENTION this is not the
-    Jeedom master / slave mode which is deleted
+    jeedom master / slave mode which is deleted
 
 -   Removed battery indication on widgets
 
@@ -1141,7 +1141,7 @@ Changelog
     on hover to display the help text
 
 -   Change in the core update process, we no longer ask
-    the archive at the Markand but now at Github now
+    the archive at the Market but now at Github now
 
 -   Addition of a centralized system for installing dependencies on
     plugins
@@ -1159,7 +1159,7 @@ Changelog
 -   Addition of standard Jeedom widgets
 
 -   Adding a beta system to find Jeedom&#39;s IP on the network
-    (you have to connect Jeedom on the network, then go to the markand and
+    (you have to connect Jeedom on the network, then go to the market and
     cliquer sur « Mes Jeedoms » dans votre profil)
 
 -   Addition to the scenarios page of an expression tester
@@ -1183,7 +1183,7 @@ Changelog
 -   Redesign of the log system (use of monolog) which allows
     integration with logging systems (syslog (d) type)
 
--   Optimization of Dashboard loading
+-   Optimization of dashboard loading
 
 -   Fixed many warning
 
@@ -1202,7 +1202,7 @@ Changelog
 
 -   Delete all network management part : wifi, fixed ip…
     (will surely come back as a plugin). ATTENTION this is not the
-    Jeedom master / slave mode which is deleted
+    jeedom master / slave mode which is deleted
 
 -   Removed battery indication on widgets
 
@@ -1238,7 +1238,7 @@ Changelog
     on hover to display the help text
 
 -   Change in the core update process, we no longer ask
-    the archive at the Markand but now at Github now
+    the archive at the Market but now at Github now
 
 -   Addition of a centralized system for installing dependencies on
     plugins
@@ -1256,7 +1256,7 @@ Changelog
 -   Addition of standard Jeedom widgets
 
 -   Adding a beta system to find Jeedom&#39;s IP on the network
-    (you have to connect Jeedom on the network, then go to the markand and
+    (you have to connect Jeedom on the network, then go to the market and
     cliquer sur « Mes Jeedoms » dans votre profil)
 
 -   Addition to the scenarios page of an expression tester

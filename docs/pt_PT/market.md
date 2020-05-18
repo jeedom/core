@@ -12,30 +12,30 @@ Meu perfil
 É aqui que você poderá ajustar diferentes parâmetros do seu
 Perfil :
 
--   **Profil**
+-   **Perfil**
 
-    -   **Login** : Seu login no Market, não pode ser alterado
+    -   **Entrar** : Seu login no Market, não pode ser alterado
 
-    -   **Nom** : Seu nome (esta informação é útil apenas para
+    -   **Nome** : Seu nome (esta informação é útil apenas para
         torne os e-mails mais divertidos)
 
     -   **Primeiro nome** : Seu primeiro nome (esta informação é útil apenas
         para tornar os e-mails mais divertidos)
 
-    -   **Nome de usuário no fórum** : Seu nome de usuário no fórum
+    -   **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum
 
-    -   **Email** : Seu e-mail
+    -   **E-mail** : Seu e-mail
 
-    -   **Langue** : Seu idioma
+    -   **Idioma** : Seu idioma
 
     -   **Senha e Confirmar senha** : deixa
         mude sua senha
 
 Para desenvolvedores :
 
--   **Nome de usuário no fórum** : Seu nome de usuário no fórum
+-   **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum
 
--   **E-mail público** : Seu email para receber qualquer
+-   **E-mail public** : Seu email para receber qualquer
     comunicações de nós
 
 -   **Conta Paypal** : O email da sua conta Paypal (usado apenas
@@ -48,20 +48,20 @@ Para os profissionais :
 -   **Destinatário das solicitações de suporte** : saber quem receberá o
     e-mails de suporte (cliente final, instalador ou ambos)
 
-    -   **CGU**
+    -   **Termos e Condições**
 
--   **Utilisateur** : condições gerais de uso (preste atenção às
+-   **Usuário** : condições gerais de uso (preste atenção às
     leia-os bem porque eles o comprometem)
 
--   **Developpeur** : condições gerais de uso para
+-   **Desenvolvedor** : condições gerais de uso para
     desenvolvedores
 
-    -   **Tickets**
+    -   **Ingressos**
 
--   **Número de bilhetes** : Número de ingressos para o mês atual
+-   **Nomebre de tickets** : Número de ingressos para o mês atual
     bem como o seu limite
 
--   **Support** : para enviar uma solicitação de suporte (acessível
+-   **Suporte** : para enviar uma solicitação de suporte (acessível
     também pelo ponto de exclamação no canto superior direito do mercado ou
     no seu Jeedom)
 
@@ -73,14 +73,14 @@ Para os profissionais :
     -   **Resumo** Aqui você encontrará um resumo das suas diferentes
         direitos e serviços
 
-> **Tip**
+> **Dica**
 >
 > Não esqueça de salvar
 
 Minhas jeedoms 
 ===========
 
--   **Niveau**
+-   **Nível**
 
     -   **Jeedom** : Seu nível de service pack
 
@@ -90,11 +90,11 @@ Minhas jeedoms
 
 -   **Key instalação**
 
-    -   **Número de chaves de instalação** : número de exibição
+    -   **Nomebre de clefs d'installation** : número de exibição
         das instalações Jeedom atualmente vinculadas à sua conta também
         que o limite permitido
 
-> **Tip**
+> **Dica**
 >
 > Às vezes, o mercado pode solicitar que você redefina
 > suas chaves de instalação, é normal, basta seguir o que
@@ -102,11 +102,11 @@ Minhas jeedoms
 
 -   **Minhas jeedoms** : É aqui que todos os seus Jeedoms estão listados
 
-    -   **Nom** : o nome que você deseja dar ao seu Jeedom (
+    -   **Nome** : o nome que você deseja dar ao seu Jeedom (
         encontrado no nome do backup, se você tiver a assinatura de
         backup na nuvem)
 
-    -   **Etat** : Vamos ver o estado do Jeedom em questão
+    -   **Estado** : Vamos ver o estado do Jeedom em questão
 
     -   **IP local / remoto** : IP ou endereço deste Jeedom,
         configurar no Jeedom, se você não colocar nada, ele estará lá
@@ -114,7 +114,7 @@ Minhas jeedoms
 
     -   **DNS** : Permite que você personalize o nome do seu DNS
 
-    -   **URL** : Listar os diferentes URLs de acesso Jeedom.
+    -   **URL ** : Listar os diferentes URLs de acesso Jeedom.
 
     -   **Servidor DNS** : informa se o servidor DNS ao qual você está
         estão anexados
@@ -130,9 +130,9 @@ Minhas jeedoms
 
     -   **Hardware** : Nome do hardware Jeedom
 
-    -   **Version** : Versão Jeedom instalada
+    -   **Versão** : Versão Jeedom instalada
 
-> **Tip**
+> **Dica**
 >
 > Não esqueça de salvar
 
@@ -156,7 +156,7 @@ Minhas compras / promoções / doações
 Aqui você encontra todas as suas compras e pode solicitar a devolução do
 e-mail da fatura ou recibo
 
-> **Important**
+> **IMPORTANTE**
 >
 > Se você comprar um plugin oficial, receberá uma fatura. Em
 > no entanto, para um plug-in de terceiros, é um recibo, para a fatura é necessário

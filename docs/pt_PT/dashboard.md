@@ -4,7 +4,7 @@ auto-gerado por Jeedom.
 
 É acessível clicando em **Página inicial → Painel**
 
-> **Tip**
+> **Dica**
 >
 > É possível ir diretamente para um objeto em sua automação residencial.
 > Isso permite que você tenha apenas o equipamento que lhe interessa e
@@ -32,13 +32,13 @@ auto-gerado por Jeedom.
 -   Um clique em um comando de tipo de informação é exibido
     o histórico de pedidos (se for histórico)
 
-> **Tip**
+> **Dica**
 >
 > É possível, a partir do seu perfil, configurar o Jeedom para
 > a árvore de objetos e / ou os cenários são visíveis por padrão
 > quando você entra no painel
 
-> **Tip**
+> **Dica**
 >
 > No celular, pressionar longamente um comando de tipo de informação permite
 > exibir um menu oferecendo para exibir o histórico do
@@ -61,10 +61,10 @@ Você também pode editar o layout interno dos controles do widget
     -   **Configuração avançada** : dá acesso à configuração
         progresso do pedido
 
-    -   **Standard** : layout padrão, tudo é automático
+    -   **Padrão** : layout padrão, tudo é automático
         com apenas a capacidade de reorganizar a ordem dos pedidos
 
-    -   **Tableau** : permite colocar os comandos em uma tabela :
+    -   **Mesa** : permite colocar os comandos em uma tabela :
         colunas e linhas são adicionadas e removidas por clique
         certo, basta mover os controles dentro
         caixas desejadas. Você pode fazer vários pedidos por caixa

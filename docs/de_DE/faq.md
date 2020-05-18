@@ -65,7 +65,7 @@ Können wir Jeedom in https setzen? ?
 ================================
 
 Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 So verbinden Sie sich in SSH ?
 =============================
@@ -118,16 +118,16 @@ Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit den Rechten
 root oder ein Docker-System. Es funktioniert daher nicht auf einem
 reine Android-Plattform.
 
-Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)...." ? 
+Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)..." ? 
 ====================================================
 
 Dies kann auf verschiedene Dinge zurückzuführen sein, es ist notwendig : 
 
-- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite haben Sie im aktualisierten Teil einen Testknopf).
+- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite haben Sie im aktualisierten Teil einen Testknopf)
 - Überprüfen Sie, ob das Marktkonto das betreffende Plugin gekauft hat
-- Überprüfen Sie, ob auf Jeedom genügend Speicherplatz vorhanden ist (auf der Gesundheitsseite wird dies angezeigt).
+- Überprüfen Sie, ob auf Jeedom genügend Speicherplatz vorhanden ist (auf der Gesundheitsseite wird dies angezeigt)
 - Überprüfen Sie, ob Ihre Version von Jeedom mit dem Plugin kompatibel ist
-- Überprüfen Sie, ob Ihr Jeedom noch korrekt mit dem Markt verbunden ist (Registerkarte Jeedom in der Jeedom-Konfiguration).
+- Überprüfen Sie, ob Ihr Jeedom noch korrekt mit dem Markt verbunden ist (Registerkarte Jeedom in der Jeedom-Konfiguration)
 
 Ich habe eine leere Seite 
 =====================
@@ -153,11 +153,11 @@ Diese müssen zurückgesetzt werden :
 `` `{.bash}
 bdd_password = $ (cat / dev / urandom | tr-cd &#39;a-f0-9' | Kopf -c 15)
 echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
-echo "CREATE. USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
+echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
 echo &quot;GEWÄHRLEISTUNG ALLER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
-sudo sed -i -e &quot;s / # PASSWORT # / $ {bdd_password} / g&quot; core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -179,7 +179,7 @@ Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch üb
 
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
 Wenn es nach einer Neuinstallation weiterhin besteht, ist es ratsam,
-Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) für Smart
+Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/de_DE/recovery_mode_jeedom_smart) für Smart
 
 Mein Szenario hört nicht mehr auf 
 =================================
@@ -200,7 +200,7 @@ Dies liegt häufig daran, dass das Gerät einem Objekt zugeordnet ist
 Dies ist nicht das untergeordnete Element oder das Objekt selbst des ersten ausgewählten Objekts
 links im Baum (Sie können es in Ihrem Profil konfigurieren).
 
-Ich habe den folgenden Fehler : SQLSTATE. \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden' 
+Ich habe den folgenden Fehler : SQLSTATE \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden' 
 ====================================================================================================================================
 
 Dies liegt an MySQL, das gestoppt hat, es ist nicht normal, die Fälle
@@ -212,7 +212,7 @@ Ströme sind :
 -   Problem mit der Beschädigung von Dateien, das häufig aufgrund von
     Jeedoms nicht sauberes Herunterfahren (Stromausfall)
 
-- 	Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank).. Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
+- 	Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
 
 Leider gibt es nicht viel Lösung, wenn es die zweite ist
 In diesem Fall ist es am besten, ein Backup wiederherzustellen (verfügbar in
@@ -232,7 +232,7 @@ Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
 ===================================================
 
 Bei einer DIY-Installation ist das normal. In SSH müssen Sie bestellen
-visudo und am Ende der Datei müssen Sie hinzufügen : www-data Alle = (ALL)
+visudo und am Ende der Datei müssen Sie hinzufügen : www-data ALL = (ALL)
 NOPASSWD: Alle.
 
 `` `{.bash}
@@ -273,15 +273,15 @@ Jeedom kann das Gateway nicht finden oder anpingen. Im Allgemeinen passiert es, 
 
 Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist."
 =========================================
-Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann.. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir
+Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir
 
-- Eine beschädigte Basistabelle =&gt; Sie ist schlecht gestartet. Sie müssen versuchen, sie zu reparieren. Wenn sie nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf SD Guard befinden, ist es der richtige Zeitpunkt, sie zu ändern).
+- Eine beschädigte Basistabelle =&gt; Sie ist schlecht gestartet. Sie müssen versuchen, sie zu reparieren. Wenn sie nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf SD Guard befinden, ist es der richtige Zeitpunkt, sie zu ändern)
 - Nicht genügend Speicherplatz im Dateisystem =&gt; Schauen Sie sich die Gesundheitsseite an, die Sie darüber informieren können
 
 
 Ich kann mich nicht mehr mit meinem Jeedom verbinden
 =========================================
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Die Admin / Admin-IDs funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Die Admin / Admin-IDs funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise)
 
 Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
 =========================================
@@ -301,7 +301,7 @@ rm -rf / root / tmp / core-master
 Du musst :
 
 - Jeedom neu starten
-- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4).
+- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4)
 - Wechseln Sie zur Registerkarte OS / DB
 - Starten Sie die Systemadministration
 - Klicken Sie auf Dpkg konfigurieren

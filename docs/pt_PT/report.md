@@ -4,13 +4,13 @@ Esta página permite que você veja todos os relatórios que foram gerados pela 
 
 Um relatório é uma captura de tela da interface Jeedom em um instante T (a captura é adaptada para não assumir a barra de menus e outros elementos desnecessários nesse tipo de uso).
 
-Você pode fazer istão em vistas, design, página do painel....
+Você pode fazer isso em vistas, design, página do painel....
 
 Ele é acionado a partir de um script com o comando report, você pode optar por enviar esse relatório usando um comando de mensagem (email, telegrama etc.)
 
-# Utilisation
+# Uso
 
-Seu utão é muito simples, você seleciona se deseja ver :
+Seu uso é muito simples, você seleciona se deseja ver :
 
 -	Ver relatórios
 -	relatórios de deginas
@@ -19,7 +19,7 @@ Seu utão é muito simples, você seleciona se deseja ver :
 
 Depois, você seleciona o nome do relatório em questão e verá todas as datas dos relatórios na memória
 
-> **Important**
+> **IMPORTANTE**
 >
 > A exclusão automática é feita por padrão para relatórios com mais de 30 dias (você pode configurar esse período na configuração do Jeedom)
 
@@ -27,7 +27,7 @@ Depois que o relatório selecionado, você pode vê-lo aparecer, faça o downloa
 
 Você também pode excluir todos os backups de um determinado relatório
 
-# FAQ
+# Faq
 
 > **Se você tiver um erro de detalhes : cutycapt: erro ao carregar bibliotecas compartilhadas: libEGL.so: não é possível abrir o arquivo de objeto compartilhado: Esse arquivo ou diretório não existe**
 >

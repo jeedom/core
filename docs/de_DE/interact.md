@@ -6,7 +6,7 @@ Diese Bestellungen erhalten Sie von :
 -   SMS : Senden Sie eine SMS, um Befehle (Aktion) zu starten, oder fragen Sie a
     Frage (Info).
 
--   Katze : Telegramm, Slack usw..
+-   Katze : Telegramm, Slack usw.
 
 -   Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. für
     Befehle starten (Aktion) oder eine Frage stellen (Info).
@@ -15,22 +15,22 @@ Diese Bestellungen erhalten Sie von :
     Befehle starten (Aktion) oder eine Frage stellen (Info).
 
 Das Interesse an Interaktionen liegt in der vereinfachten Integration in
-andere Systeme wie Smartphone, Tablet, andere Hausautomationsbox usw..
+andere Systeme wie Smartphone, Tablet, andere Hausautomationsbox usw.
 
 Um auf die Interaktionsseite zuzugreifen, gehen Sie zu Extras →
 Wechselwirkungen :
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
--   **Ajouter** : Dadurch können neue Interaktionen erstellt werden.
+-   **Hinzufügen** : Dadurch können neue Interaktionen erstellt werden.
 
 -   **Regenerat** : Dadurch werden alle Interaktionen wiederhergestellt (möglicherweise
     très long &gt; 5mn).
 
--   **Tester** : das öffnund einen Dialog zum Schreiben und
+-   **Test** : das öffnet einen Dialog zum Schreiben und
     teste einen Satz.
 
-> **Tip**
+> **Spitze**
 >
 > Wenn Sie eine Interaktion haben, die die Sätze für die Lichter generiert
 > Zum Beispiel und Sie fügen ein neues Befehlsmodul von hinzu
@@ -60,34 +60,34 @@ Konfiguration
 Die Konfigurationsseite besteht aus mehreren Registerkarten und
 Tasten :
 
--   **Phrases** : Zeigt die Anzahl der Sätze in der Interaktion an (ein Klick
+-   **Sätze** : Zeigt die Anzahl der Sätze in der Interaktion an (ein Klick
     oben zeigt sie dir)
 
--   **Enregistrer** : zeichnund die aktuelle Interaktion auf
+-   **Rekord** : zeichnet die aktuelle Interaktion auf
 
--   **Supprimer** : aktuelle Interaktion löschen
+-   **Entfernen** : aktuelle Interaktion löschen
 
--   **Dupliquer** : Dupliziere die aktuelle Interaktion
+-   **Duplikat** : Dupliziere die aktuelle Interaktion
 
 General 
 =======
 
--   **Nom** : Name der Interaktion (kann leer sein, der Name ersetzt den
+-   **Name** : Name der Interaktion (kann leer sein, der Name ersetzt den
     Text in der Interaktionsliste anfordern).
 
--   **Groupe** : Interaktionsgruppe, es hilft, sie zu organisieren
+-   **Gruppe** : Interaktionsgruppe, es hilft, sie zu organisieren
     (kann leer sein, wird daher in der Gruppe &quot;keine&quot; sein).
 
--   **Actif** : ermöglicht das Aktivieren oder Deaktivieren der Interaktion.
+-   **Aktiva** : ermöglicht das Aktivieren oder Deaktivieren der Interaktion.
 
--   **Demande** : der generierenvon Modellsatz (erforderlich).
+-   **Anwendung** : der generierende Modellsatz (erforderlich).
 
--   **Synonyme** : ermöglicht das Definieren von Synonymen für Namen
+-   **Synonym** : ermöglicht das Definieren von Synonymen für Namen
     Bestellungen.
 
 -   **Antwort** : die Antwort zu geben.
 
--   **Warten Sie, bevor Sie antworten.** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortund werden.
+-   **Warten Sie, bevor Sie antworten** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
 
 -   **Binäre Konvertierung** : konvertiert Binärwerte in
     Zum Beispiel öffnen / schließen (nur für Typbefehle
@@ -100,7 +100,7 @@ Filter
 =======
 
 -   **Beschränken Sie sich auf die Eingabe von Befehlen** : erlaubt nur die zu verwenden
-    Arten von Aktionen, Informationen oder beivon Arten.
+    Arten von Aktionen, Informationen oder beide Arten.
 
 -   **Beschränken Sie sich auf Bestellungen mit Subtyp** : erlaubt zu begrenzen
     Erzeugung zu einem oder mehreren Untertypen.
@@ -133,7 +133,7 @@ oder bestimmte Parameter übergeben.
 Beispiele 
 ========
 
-> **Note**
+> **Notiz**
 >
 > Die Screenshots können im Hinblick auf Entwicklungen unterschiedlich sein.
 
@@ -142,7 +142,7 @@ Einfache Interaktion
 
 Der einfachste Weg, eine Interaktion einzurichten, besteht darin, sie zu verwenden
 Geben Sie ein starres Generatormodell ohne mögliche Abweichungen an. diese
-Die Methovon zielt sehr genau auf einen Befehl oder ein Szenario ab.
+Die Methode zielt sehr genau auf einen Befehl oder ein Szenario ab.
 
 Im folgenden Beispiel sehen wir im Feld &quot;Request&quot; den Satz
 genau bereitzustellen, um Interaktion auszulösen. Hier, um das einzuschalten
@@ -166,7 +166,7 @@ einzelner Satz stellen sich kombinierte Aktionen zwischen verschiedenen Befehlen
 verschiedene Szenarien (wir können auch Szenarien im Spiel auslösen
 Interaktionsaktion).
 
-> **Tip**
+> **Spitze**
 >
 > Um ein Szenario hinzuzufügen, erstellen Sie eine neue Aktion und schreiben Sie "Szenario""
 > Drücken Sie ohne Akzent die Tabulatortaste auf Ihrer Tastatur, um
@@ -181,7 +181,7 @@ Sätze für eine ganze Gruppe von Befehlen.
 
 Wir werden das oben Gesagte fortsetzen und die Aktionen löschen, die
 wir hatten und anstelle des festen Satzes in "Anfrage",
-Wir werden die Tags verwenden **\#commande\#** und **\#equipement\#**.
+Wir werden die Tags verwenden **\.#commande\.#** und **\.#equipement\.#**.
 Jeedom ersetzt diese Tags durch den Namen der Befehle und den Namen von
 Ausrüstung (wir können sehen, wie wichtig es ist, Namen von zu haben
 konsequente Kontrolle / Ausrüstung).
@@ -203,29 +203,29 @@ phrases).
 ![ichnteract007](../images/interact007.png)
 
 Es ist besser, aber wir können es noch natürlicher machen. Wenn ich nehme
-Im generierten Beispiel &quot;Beich Eingabe&quot; wäre es schön, transformieren zu können
+Im generierten Beispiel &quot;Bei Eingabe&quot; wäre es schön, transformieren zu können
 Dieser Satz in "Eintrag einschalten" oder in "Eintrag einschalten"". Zu tun
 Jeedom hat unter dem Anforderungsfeld auch ein Feld, das dies tun wird
 Erlauben Sie uns, Bestellungen in unserem anders zu benennen
 &quot;generierte&quot; Sätze, hier ist es &quot;on&quot;, ich habe sogar &quot;on2&quot; in den Modulen
 welches 2 Ausgänge steuern kann.
 
-In den Synonymen geben wir daher den Namen des Befehls und die (s) an.
-zu verwendenvon Synonym :
+In den Synonymen geben wir daher den Namen des Befehls und die (s) an
+zu verwendende Synonyme :
 
 ![ichnteract008](../images/interact008.png)
 
-Wir können hier eine etwas neue Syntax für Synonym sehen. Ein Name
-kann mehrere Synonym haben, hier hat &quot;on&quot; als Synonym
-"einschalten "und" einschalten". Die Syntax lautund daher "* Name des Befehls*"
-***=*** "*Synonym 1*"***,*** "*Synonym 2 * "(Sie können so viele setzen
-Synonym wollen wir). Fügen Sie dann Synonym für ein anderes hinzu
+Wir können hier eine etwas neue Syntax für Synonyme sehen. Ein Name
+kann mehrere Synonyme haben, hier hat &quot;on&quot; als Synonym
+"einschalten "und" einschalten". Die Syntax lautet daher "*Name der Bestellung*"
+***=*** "*Synonym 1*"***,*** "*Synonym 2*" (Wir können so viele setzen
+Synonym wollen wir). Fügen Sie dann Synonyme für ein anderes hinzu
 Befehlsname, fügen Sie einfach nach dem letzten Synonym einen Balken hinzu
 vertikal "*|*" Danach können Sie die erneut benennen
-Befehl, der Synonym wie für den ersten Teil usw. hat..
+Befehl, der Synonyme wie für den ersten Teil usw. hat.
 
 Es ist bereits besser, aber es fehlt immer noch für den Eingabebefehl "Ein""
-das &quot;l&quot; und für andere das &quot;das&quot; oder &quot;das&quot; oder &quot;a&quot; usw.. Wir könnten
+das &quot;l&quot; und für andere das &quot;das&quot; oder &quot;das&quot; oder &quot;a&quot; usw. Wir könnten
 Es wäre eine Lösung, den Namen des Geräts zu ändern, um es hinzuzufügen,
 Andernfalls können wir Nachfrageschwankungen verwenden. Es besteht aus
 Listen Sie eine Reihe möglicher Wörter an einer Stelle im Satz Jeedom auf
@@ -236,7 +236,7 @@ erzeugt Sätze mit diesen Variationen.
 Wir haben jetzt etwas korrektere Sätze mit Sätzen, die
 sind nicht fair, für unser Beispiel "on" "Eintrag". so finden wir
 "Eingang einschalten "," Eingang einschalten "," Eingang einschalten "," Einschalten "
-der Eintrag &quot;etc.. Wir haben also alle möglichen Varianten mit dem, was wir haben
+der Eintrag &quot;etc. Wir haben also alle möglichen Varianten mit dem, was wir haben
 hinzugefügt zwischen &quot;\ [\]&quot; und diesem für jedes Synonym, das generiert
 schnell viele Sätze (hier 168).
 
@@ -249,8 +249,8 @@ die tatsächliche Syntax eines Satzes. In unserem Fall gehen wir von 168
 ![ichnteract010](../images/interact010.png)
 
 Es wird daher wichtig, dass Sie Ihre Modellsätze gut und gut aufbauen
-Synonym sowie die Auswahl der richtigen Filter, um nicht zu generieren
-zu viele unnötige Sätze. Persönlich finvon ich es interessant zu haben
+Synonyme sowie die Auswahl der richtigen Filter, um nicht zu generieren
+zu viele unnötige Sätze. Persönlich finde ich es interessant zu haben
 Einige Inkonsistenzen des Stils &quot;ein Eintrag&quot;, denn wenn Sie zu Hause sind, haben Sie
 eine ausländische Person, die nicht richtig Französisch spricht,
 Interaktionen werden weiterhin funktionieren.
@@ -261,17 +261,17 @@ Passen Sie die Antworten an
 Bisher hatten wir als Antwort auf eine Interaktion eine einfache
 Satz, der nicht viel sagte, außer dass etwas passiert ist
 Vergangenheit. Die Idee wäre, dass Jeedom uns erzählt, was er ein bisschen mehr getan hat
-genau. Hier kommt das Antwortfeld ins Spiel.
+genau. Hier kommt das Antwortfeld ins Spiel
 Möglichkeit, die Rücksendung basierend auf der ausgeführten Bestellung anzupassen.
 
 Dazu verwenden wir wieder das Jeedom Tag. Für unsere
 Lichter können wir einen Satz wie verwenden : Ich habe gut beleuchtet
-\#Ausrüstung \# (siehe Screenshot unten).
+\.#equipement\.# (siehe Screenshot unten).
 
 ![ichnteract011](../images/interact011.png)
 
 Sie können auch einen beliebigen Wert aus einem anderen Befehl wie hinzufügen
-Temperatur, Anzahl der Personen usw..
+Temperatur, Anzahl der Personen usw.
 
 ![ichnteract012](../images/interact012.png)
 
@@ -288,10 +288,10 @@ hielt das Licht).
 
 Wie Sie hier sehen können, habe ich fast die gleiche Struktur beibehalten
 für die Nachfrage (es ist freiwillig, sich darauf zu konzentrieren
-Besonderheiten). Natürlich habe ich die Synonym angepasst, um einige zu haben
-kohärente Sache. Für die Antwort ist es jedoch **Imperativ** de
-Setzen Sie nur \#value \#, was die 0 oder 1 darstellt, zu der Jeedom gehen wird
-durch folgenvon binäre Konvertierung ersetzen.
+Besonderheiten). Natürlich habe ich die Synonyme angepasst, um einige zu haben
+kohärente Sache. Für die Antwort ist es jedoch **ichmpératif** de
+setze nur \#valeur\.# was die 0 oder 1 darstellt, die Jeedom geht
+durch folgende binäre Konvertierung ersetzen.
 
 Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die
 Antwort, wenn der Wert des Befehls 0 ist, dann ein vertikaler Balken "|"
@@ -299,7 +299,7 @@ Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier die
 Antworten sind einfach nein und ja, aber wir könnten einen Satz setzen
 etwas länger.
 
-> **Warning**
+> **Warnung**
 >
 > Tags funktionieren nicht in binären Konvertierungen.
 
@@ -321,7 +321,7 @@ Regexp-Ausschluss
 Es ist möglich zu erstellen
 [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle)
 Ausschluss, wenn ein generierter Satz diesem Regexp entspricht, wird es sein
-gelöscht. Es geht darum, Fehlalarme entfernen zu können.
+gelöscht. Es geht darum, Fehlalarme entfernen zu können
 einen von Jeedom erzeugten Satz zu sagen, der etwas aktiviert, was nicht
 entspricht nicht dem, was wir wollen oder was einen anderen stören würde
 Interaktion, die einen ähnlichen Satz haben würde.
@@ -336,19 +336,19 @@ Wir haben 2 Stellen, an denen Sie einen Regexp anwenden können :
 Für das Feld &quot;Allgemeiner Ausschluss-Regex für Interaktionen&quot; ist dies
 Regel wird auf alle Interaktionen angewendet, die erstellt werden oder
 danach wieder gespeichert. Wenn wir es auf alle anwenden wollen
-Bestehenvon Wechselwirkungen, Wechselwirkungen müssen regeneriert werden.
+Bestehende Wechselwirkungen, Wechselwirkungen müssen regeneriert werden.
 Normalerweise wird es verwendet, um Sätze falsch zu löschen
 in den meisten erzeugten Wechselwirkungen gefunden.
 
 Für das Feld &quot;Regexp-Ausschluss&quot; auf der Konfigurationsseite von
-Beich jeder Interaktion können wir einen bestimmten Regexp einfügen, der funktioniert
+Bei jeder Interaktion können wir einen bestimmten Regexp einfügen, der funktioniert
 nur auf diese Interaktion. So können Sie löschen
 genauer für eine Interaktion. Es kann auch erlauben
 Löschen Sie eine Interaktion für einen bestimmten Befehl, für den
 will diese Gelegenheit nicht als Teil einer Generation von anbieten
 Mehrfachbestellungen.
 
-Der folgenvon Screenshot zeigt die Interaktion ohne Regexp. In der
+Der folgende Screenshot zeigt die Interaktion ohne Regexp. In der
 linke Liste, ich filtere die Sätze, um Ihnen nur die zu zeigen
 Sätze, die gelöscht werden sollen. In Wirklichkeit werden 76 Sätze erzeugt
 mit der Konfiguration der Interaktion.
@@ -367,7 +367,7 @@ Nur noch 71 Sätze, die 5 mit einer &quot;Julie&quot; wurden gelöscht.
 Ein regulärer Ausdruck setzt sich wie folgt zusammen :
 
 -   Zuerst ein Trennzeichen, hier ist ein Schrägstrich &quot;/&quot; eingefügt
-    Beginn und Envon des Ausdrucks.
+    Beginn und Ende des Ausdrucks.
 
 -   Der Punkt nach dem Schrägstrich steht für einen beliebigen
     Zeichen, Leerzeichen oder Zahl.
@@ -379,7 +379,7 @@ Ein regulärer Ausdruck setzt sich wie folgt zusammen :
 -   Dann Julie, nach dem gesucht werden muss (Wort oder anderes Diagramm)
     Ausdruck), gefolgt von einem Punkt und einem Schrägstrich.
 
-Wenn wir diesen Ausdruck in einen Satz übersetzen, würvon dies &quot;suche das&quot; ergeben
+Wenn wir diesen Ausdruck in einen Satz übersetzen, würde dies &quot;suche das&quot; ergeben
 Wort Julie, dem alles vorausgeht und dem alles folgt
 quoi".
 
@@ -388,8 +388,8 @@ schon sehr kompliziert zu verstehen. Ich brauchte eine Weile, um es zu begreifen
 die Operation. Als etwas komplexeres Beispiel ein regulärer Ausdruck für
 Überprüfen Sie eine URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
-\\ .- \] \*) \ \\* /?\ $ /
+/\.^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / w \\
+\\ .- \] \*) \*\\ /?\ $ /
 
 Sobald Sie dies schreiben können, verstehen Sie die Ausdrücke
 regelmäßig.
@@ -398,8 +398,8 @@ regelmäßig.
 
 Um das Problem der Groß- und Kleinschreibung zu lösen, können wir hinzufügen
 unser Ausdruck eine Option, die es unabhängig von Groß- und Kleinschreibung macht, oder
-mit anderen Worten, beich denen ein Kleinbuchstabe einem Großbuchstaben entspricht;
-Dazu müssen wir einfach am Envon unseres Ausdrucks a hinzufügen
+mit anderen Worten, bei denen ein Kleinbuchstabe einem Großbuchstaben entspricht;
+Dazu müssen wir einfach am Ende unseres Ausdrucks a hinzufügen
 "i".
 
 ![ichnteract016](../images/interact016.png)
@@ -409,7 +409,7 @@ generierte Sätze und in der Liste links mit dem Julie-Filter für
 Suchen Sie nach den Sätzen, die dieses Wort enthalten. Wir sehen, dass es einige gibt
 viel mehr.
 
-Da dies ein äußerst komplexes Thema ist, wervon ich nicht weiter gehen
+Da dies ein äußerst komplexes Thema ist, werde ich nicht weiter gehen
 Detail hier, es gibt genug Tutorials im Internet, um Ihnen zu helfen, und
 Vergiss nicht, dass Google auch dein Freund ist, denn ja, er ist mein Freund,
 Er hat mir beigebracht, Regexp zu verstehen und sogar zu programmieren. deshalb
@@ -444,24 +444,24 @@ Ist jemand im Raum? ?
 
 -   Die Frage ist also: "Ist jemand im Raum?"
 
--   Die Antwort lautund &quot;Nein, es ist niemand im Raum&quot; oder &quot;Ja, es ist da&quot;
+-   Die Antwort lautet &quot;Nein, es ist niemand im Raum&quot; oder &quot;Ja, es ist da&quot;
     hat jemanden im Raum"
 
--   Der Befehl, der darauf reagiert, lautund &quot;\# \ [Chamber of
-    Julie \] \ [GSMF-001-2 \] \ [Presence \] \#"
+-   Der Befehl, der darauf reagiert, lautet &quot;\# \ [Chamber of
+    julie \] \ [GSMF-001-2 \] \ [Presence \] \#"
 
 ![ichnteract017](../images/interact017.png)
 
 Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die dies zulassen
 eine personalisierte Antwort zu haben. Wir könnten uns also vorstellen, zu ersetzen
-Die Beispielantwort lautund &quot;Nein, es ist niemand im Raum
-*julie*|Ja, da ist jemand in * Julies Zimmer*"
+Die Beispielantwort lautet &quot;Nein, es ist niemand im Raum
+*Julie*|Ja, da ist jemand im Raum *Julie*"
 
 ### Evolution 
 
--   Die Frage lautund also "\#order \# \ [ichn der |im \] \#Objekt \#"
+-   Die Frage ist also "\#commande\.# \ [in der |in der \] \#objet\.#"
 
--   Die Antwort lautund &quot;Nein, es ist niemand im Raum&quot; oder &quot;Ja, es ist da&quot;
+-   Die Antwort lautet &quot;Nein, es ist niemand im Raum&quot; oder &quot;Ja, es ist da&quot;
     jemand im Raum"
 
 -   Es gibt keinen Befehl, der dies im Aktionsteil beantwortet
@@ -477,7 +477,7 @@ Ohne den Regexp bekommen wir hier 11 Sätze, aber meine Interaktion ist zielgeri
 generiere Sätze nur, um zu fragen, ob jemand drin ist
 ein Raum, also brauche ich keinen Lampenzustand oder ähnliches
 genommen, die mit Regexp-Filterung aufgelöst werden kann. Zu machen
-Noch flexibler können Synonym hinzugefügt werden, in diesem Fall jedoch
+Noch flexibler können Synonyme hinzugefügt werden, in diesem Fall jedoch
 Vergessen Sie nicht, den regulären Ausdruck zu ändern.
 
 Kennen Sie die Temperatur / Luftfeuchtigkeit / Helligkeit 
@@ -498,16 +498,16 @@ die Luftfeuchtigkeit, die Helligkeit der verschiedenen Räume (Objekt im Sinne v
 
 -   So können wir sehen, dass ein generischer generischer Satz &quot;Was ist das?&quot;
     Wohnzimmertemperatur "oder" Wie hell ist das Schlafzimmer"
-    kann konvertiert werden zu : "was ist \ [the |l \\ &#39;\] \# Befehl \# Objekt"
+    kann konvertiert werden zu : "was ist \ [the |l \\ '\] \#commande\.# Objekt"
     (die Verwendung von \ [word1 | mot2 \] sagen wir diese Möglichkeit
     oder diese, um alle möglichen Variationen des Satzes zu erzeugen
-    mit Wort1 oder Wort2). Beich der Erzeugung wird Jeedom alles erzeugen
+    mit Wort1 oder Wort2). Bei der Erzeugung wird Jeedom alles erzeugen
     mögliche Kombinationen von Sätzen mit allen Befehlen
-    vorhanden (abhängig von den Filtern) durch Ersetzen von \#order \# durch
-    den Namen des Befehls und \#Objekt \# durch den Namen des Objekts.
+    vorhanden (abhängig von Filtern) durch Ersetzen von \#commande\.# Von
+    den Namen des Befehls und \#objet\.# Von le nom von l'objet.
 
--   Die Antwort lautund "21 ° C" oder "200 Lux"". Einfach gesagt :
-    \#value \# \#unite \# (das Gerät muss in der Konfiguration abgeschlossen sein
+-   Die Antwort lautet "21 ° C" oder "200 Lux"". Einfach gesagt :
+    \.#valeur\.# \.#unite\.# (Das Gerät ist in der Konfiguration zu vervollständigen
     von jeder Bestellung, für die wir eine haben wollen)
 
 -   Dieses Beispiel generiert daher einen Satz für alle Befehle von
@@ -516,14 +516,14 @@ die Luftfeuchtigkeit, die Helligkeit der verschiedenen Räume (Objekt im Sinne v
 
 ### Evolution 
 
-Wir können daher dem Befehlsnamen Synonym hinzufügen, um einige zu haben
+Wir können daher dem Befehlsnamen Synonyme hinzufügen, um einige zu haben
 natürlicher, fügen Sie einen regulären Ausdruck hinzu, um die Befehle zu filtern, die
 haben nichts mit unserer Interaktion zu tun.
 
 Wenn Sie ein Synonym hinzufügen, können Sie Jeedom mitteilen, dass ein Befehl aufgerufen wurde
 "X" kann auch "Y" genannt werden und daher in unserem Satz, wenn wir "einschalten" haben
-y &quot;, Jeedom weiß, dass es x einschaltet. Diese Methovon ist sehr praktisch
-um Befehlsnamen umzubenennen, die beich Anzeige unter
+y &quot;, Jeedom weiß, dass es x einschaltet. Diese Methode ist sehr praktisch
+um Befehlsnamen umzubenennen, die bei Anzeige unter
 Der Bildschirm ist auf eine Weise geschrieben, die weder stimmlich noch natürlich ist
 in einem Satz geschrieben wie "ON". Ein so geschriebener Button ist
 völlig logisch, aber nicht im Kontext eines Satzes.
@@ -537,12 +537,12 @@ Temperatur / Feuchte / Helligkeit.
 
 Wir können also einen regulären Ausdruck sehen :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(Batterie|latence|pression|vitesse|Verbrauch)**
 
 Auf diese Weise können Sie alle Bestellungen löschen, für die eine dieser Bestellungen vorliegt
 Wörter in ihrem Satz
 
-> **Note**
+> **Notiz**
 >
 > Der reguläre Ausdruck hier ist eine vereinfachte Version zur einfachen Verwendung.
 > Wir können also entweder traditionelle Ausdrücke verwenden oder
@@ -559,21 +559,21 @@ Dimmer auf einer Lampe mit Wechselwirkungen :
 
 ![ichnteract022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\#consigne\#** (on
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (on
 kann setzen was du willst) was in der Reihenfolge der enthalten ist
 Dimmer, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile
 : \* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt
-welches an die Interaktion gesendund wird. \* Antwort : Wir verwenden das Tag für
+welches an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für
 die Antwort, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat.
 \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren und einfahren möchten
-den Wert, den wir unserer Tag * Einzahlung übergeben*.
+den Wert, den wir unserem Tag übergeben *Anleitung*.
 
-> **Note**
+> **Notiz**
 >
-> Sie können jedes Tag verwenden, außer denjenigen, die bereits von verwendund werden
+> Sie können jedes Tag verwenden, außer denjenigen, die bereits von verwendet werden
 > Jeedom, es können zum Beispiel mehrere fahren
 > Mehrfachbestellungen. Beachten Sie auch, dass alle Tags an übergeben werden
-> Szenarien, die durch die Interaktion gestartund wurden (jedoch das Szenario
+> Szenarien, die durch die Interaktion gestartet wurden (jedoch das Szenario
 > entweder in &quot;Im Vordergrund ausführen&quot;).
 
 ### Evolution 
@@ -587,19 +587,19 @@ Satz von Sätzen, um sie zu kontrollieren.
 
 In dieser Interaktion haben wir keinen Befehl im Aktionsteil, wir
 Lassen Sie Jeedom aus Tags die Liste der Sätze generieren. Wir können
-siehe das Tag **\#slider\#**. Es ist unbedingt erforderlich, dieses Tag für zu verwenden
+siehe das Tag **\.#slider\.#**. Es ist unbedingt erforderlich, dieses Tag für zu verwenden
 Anweisungen in einer Interaktion mit mehreren Befehlen sind möglicherweise nicht vorhanden
 das letzte Wort des Satzes. Wir können auch im Beispiel sehen, dass wir
 kann in der Antwort ein Tag verwenden, das nicht Teil des ist
 Anfrage. Die meisten in den Szenarien verfügbaren Tags sind
-auch in Interaktionen verfügbar und kann daher verwendund werden
+auch in Interaktionen verfügbar und kann daher verwendet werden
 in einer Antwort.
 
 Ergebnis der Interaktion :
 
 ![ichnteract034](../images/interact034.png)
 
-Wir können sehen, dass das Tag **\#equipement\#** welches nicht verwendund wird
+Wir können sehen, dass das Tag **\.#equipement\.#** welches nicht verwendet wird
 in der Anfrage ist in der Antwort gut abgeschlossen.
 
 Steuern Sie die Farbe eines LED-Streifens 
@@ -653,13 +653,13 @@ Programmieren einer Aktion mit Interaktionen
 Interaktionen machen insbesondere viele Dinge.
 Sie können eine Aktion dynamisch programmieren. Beispiel : "Setzen Sie die
 Erhitzen um 22 Uhr für 14:50 Uhr". Einfacher geht es nicht
-um die Tags \#time \# zu verwenden (wenn eine genaue Zeit definiert ist) oder
-\#Dauer \# (für in X-Zeit, Beispiel in 1 Stunde) :
+Tags verwenden \#time\.# (wenn eine bestimmte Zeit definiert ist) oder
+\.#duration\.# (für in X-Zeit, Beispiel in 1 Stunde) :
 
 ![ichnteract23](../images/interact23.JPG)
 
-> **Note**
+> **Notiz**
 >
-> Sie werden in der Antwort das darin enthaltene Tag \#value \# bemerken
+> Sie werden in der Antwort das Tag \ bemerken#value\.# dieser enthält
 > im Falle einer geplanten Interaktion die Programmierzeit
 > effective

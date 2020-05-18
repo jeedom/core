@@ -12,30 +12,30 @@ My profile
 This is where you will be able to adjust different parameters of your
 profile :
 
--   **Profil**
+-   **Profile**
 
     -   **Login** : Your login on the market, it cannot be changed
 
-    -   **Nom** : Your name (this information is only useful for
+    -   **Last name** : Your name (this information is only useful for
         make emails more fun)
 
     -   **First name** : Your first name (this information is only useful
         to make emails more fun)
 
-    -   **Username on the forum** : Your username on the forum
+    -   **Last name d'utilisateur sur le forum** : Your username on the forum
 
-    -   **Email** : Your mail
+    -   **E-mail** : Your mail
 
-    -   **Langue** : Your language
+    -   **Language** : Your language
 
     -   **Password &amp;&amp; Confirm password** : allows
         change your password
 
 For developers :
 
--   **Username on the forum** : Your username on the forum
+-   **Last name d'utilisateur sur le forum** : Your username on the forum
 
--   **Public email** : Your email to receive any
+-   **E-mail public** : Your email to receive any
     communications from us
 
 -   **Paypal account** : Your Paypal account email (only used
@@ -48,17 +48,17 @@ For the pros :
 -   **Support requests recipient** : know who will receive the
     support emails (end customer, installer or both)
 
-    -   **CGU**
+    -   **TOS**
 
--   **Utilisateur** : general conditions of use (pay attention to
+-   **User** : general conditions of use (pay attention to
     read them well because they commit you)
 
--   **Developpeur** : general conditions of use for
+-   **Developer** : general conditions of use for
     developers
 
     -   **Tickets**
 
--   **Number of tickets** : Number of tickets for the current month
+-   **Last namebre de tickets** : Number of tickets for the current month
     as well as your limit
 
 -   **Support** : button to send a support request (accessible
@@ -80,7 +80,7 @@ For the pros :
 My jeedoms 
 ===========
 
--   **Niveau**
+-   **Level**
 
     -   **Jeedom** : your level of service pack
 
@@ -90,7 +90,7 @@ My jeedoms
 
 -   **Installation key**
 
-    -   **Number of installation keys** : display number
+    -   **Last namebre de clefs d'installation** : display number
         of Jeedom installations currently linked to your account as well
         that the limit allowed
 
@@ -102,24 +102,24 @@ My jeedoms
 
 -   **My jeedoms** : this is where all your Jeedoms are listed
 
-    -   **Nom** : the name you want to give to your Jeedom (
+    -   **Last name** : the name you want to give to your Jeedom (
         found in the name of the backup if you have the subscription of
         cloud backup)
 
-    -   **Etat** : allows to see the state of the Jeedom in question
+    -   **State** : allows to see the state of the Jeedom in question
 
     -   **Local / remote IP** : IP or address of this Jeedom,
         configure in Jeedom, if you don&#39;t put anything it will be there
         last known IP
 
-    -   **DNS** : allows you to customize the name of your DNS
+    -   **Dns** : allows you to customize the name of your DNS
 
-    -   **URL** : list the different Jeedom access URLs.
+    -   **URLs** : list the different Jeedom access URLs.
 
-    -   **Dns server** : tells you if the Dns server to which you
+    -   **DNS server** : tells you if the DNS server to which you
         are attached
 
-    -   **Dns status** : allows to see the status of the DNS
+    -   **DNS status** : allows to see the status of the DNS
 
     -   **Creation date** : date of creation of this Jeedom on your
         market account (as a reminder, this is done automatically when
@@ -156,7 +156,7 @@ My purchases / promotions / donations
 Here you find all your purchases and you can request the return of the
 invoice or receipt email
 
-> **Important**
+> **IMPORTANT**
 >
 > If you buy an official plugin you will receive an invoice. In
 > however for a third party plugin it is a receipt, for the invoice it is necessary

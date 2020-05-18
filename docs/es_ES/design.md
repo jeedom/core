@@ -4,11 +4,11 @@ tu imaginación.
 
 Es accesible por Inicio → Diseño
 
-> **Tip**
+> **Punta**
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
-> **Important**
+> **Importante**
 >
 > Todas las acciones se realizan haciendo clic derecho en esta página, atención
 > hacerlo bien en diseño. Durante la creación, por lo tanto, es necesario
@@ -17,9 +17,9 @@ Es accesible por Inicio → Diseño
 En el menú (clic derecho, por lo tanto), encontramos el
 siguientes acciones :
 
--   **Designs** : Muestra la lista de tus diseños y accede a ellos.
+-   **Diseños** : Muestra la lista de tus diseños y accede a ellos
 
--   **Edition** : Cambiar al modo de edición
+-   **Edición** : Cambiar al modo de edición
 
 -   **Pantalla completa** : Le permite usar toda la página web, que
     eliminará el menú Jeedom de la parte superior
@@ -52,9 +52,9 @@ siguientes acciones :
 -   **Agregar resumen** : Agrega información de un resumen de objeto o
     general
 
--   **Affichage**
+-   **Viendo**
 
-    -   **Aucune** : No muestra ninguna cuadrícula
+    -   **No** : No muestra ninguna cuadrícula
 
     -   **10x10** : Muestra una cuadrícula de 10 por 10
 
@@ -72,18 +72,18 @@ siguientes acciones :
     -   **Ocultar elemento resaltado** : Ocultarlo
         resaltar alrededor de elementos
 
--   **Eliminar diseño** : eliminar diseño
+-   **Remove le diseño** : eliminar diseño
 
 -   **Crea un diseño** : permite agregar un diseño
 
--   **Diseño duplicado** : duplicar el diseño actual
+-   **Duplicado le diseño** : duplicar el diseño actual
 
 -   **Configura el diseño** : acceso a la configuración de diseño
 
--   **Sauvegarder** : permite guardar el diseño (atención, hay
+-   **Guardar** : permite guardar el diseño (atención, hay
     también copias de seguridad automáticas durante ciertas acciones)
 
-> **Important**
+> **Importante**
 >
 > La configuración de los elementos de diseño se realiza haciendo clic en
 > estos.
@@ -95,7 +95,7 @@ Encontrado aquí :
 
 -   **General**
 
-    -   **Nom** : El nombre de su diseño
+    -   **Apellido** : El nombre de su diseño
 
     -   **Fondo transparente** : hace que el fondo sea transparente. Tenga cuidado si el
         la casilla está marcada, no se utiliza el color de fondo
@@ -103,31 +103,31 @@ Encontrado aquí :
     -   **Color de fondo** : diseño de color de fondo (blanco
         por defecto)
 
-    -   **Code** : Código de acceso a su diseño (si está vacío, sin código
+    -   **Código** : Código de acceso a su diseño (si está vacío, sin código
         no es solicitado)
 
     -   **Icono** : Un icono para ello (aparece en el menú
         elección de diseño)
 
-    -   **Image**
+    -   **Imagen**
 
-        -   **Envoyer** : permite agregar una imagen de fondo al diseño
+        -   **Enviar a** : permite agregar una imagen de fondo al diseño
 
-        -   **Eliminar imagen** : borrar imagen
+        -   **Remove l'image** : borrar imagen
 
--   **Tailles**
+-   **Tamaños**
 
-    -   **Tamaño (WxH)** : Le permite fijar el tamaño de su diseño.
+    -   **Tamaño (WxH)** : Le permite fijar el tamaño de su diseño
         (marco gris en modo edición)
 
-Configuración general de elementos. 
+Configuración general de elementos 
 ===================================
 
-> **Note**
+> **Nota**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
-> **Note**
+> **Nota**
 >
 > El elemento seleccionado se resalta en rojo (en lugar de verde
 > para todos los demás).
@@ -135,7 +135,7 @@ Configuración general de elementos.
 Ajuste de la pantalla 
 ---------------------
 
--   **Profondeur** : permite elegir el nivel de profundidad
+-   **Profundidad** : permite elegir el nivel de profundidad
 
 -   **Posición X (%)** :
 
@@ -153,7 +153,7 @@ Eliminar elemento
 Duplicado 
 ---------
 
-Le permite duplicar el elemento.
+Le permite duplicar el elemento
 
 Cerradura 
 -----------
@@ -169,19 +169,19 @@ Configuraciones de pantalla
 
 -   **Período** : le permite elegir el período de visualización
 
--   **Mostrar subtítulo** : mostrar leyenda
+-   **Visualización la légende** : mostrar leyenda
 
--   **Mostrar navegador** : mostrar el navegador (segundo gráfico
+-   **Visualización le navigateur** : mostrar el navegador (segundo gráfico
     más claro debajo del primero)
 
--   **Mostrar selector de período** : muestra el selector
+-   **Visualización le sélecteur de période** : muestra el selector
     periodo arriba a la izquierda
 
--   **Mostrar barra de desplazamiento** : muestra la barra de desplazamiento
+-   **Visualización la barre de défilement** : muestra la barra de desplazamiento
 
 -   **Fondo transparente** : hace que el fondo sea transparente
 
--   **Bordure** : agregue un borde, tenga cuidado con la sintaxis
+-   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
     HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo :
     sólido 1px negro)
 
@@ -193,7 +193,7 @@ Le permite elegir los comandos para graficar
 Text / html 
 =========
 
--   **Icone** : Icono para mostrar en frente
+-   **Icono** : Icono para mostrar en frente
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
@@ -204,7 +204,7 @@ Text / html
 -   **Alrededor de los ángulos** : le permite redondear los ángulos (no
     olvide poner%, ex 50%)
 
--   **Bordure** : agregue un borde, tenga cuidado con la sintaxis
+-   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
     HTML (use la sintaxis CSS, por ejemplo : solid
     1px negro)
 
@@ -214,11 +214,11 @@ Text / html
 -   **Alineación de texto** : le permite elegir la alineación de
     texto (izquierda / derecha / centrado)
 
--   **Gras** : texto en negrita
+-   **Grasa** : texto en negrita
 
--   **Texte** : Texto en código HTML que estará en el elemento
+-   **Texto** : Texto en código HTML que estará en el elemento
 
-> **Important**
+> **Importante**
 >
 > Si coloca código HTML (especialmente Javascript), tenga cuidado
 > para comprobarlo antes porque puedes hacerlo si hay un error
@@ -239,9 +239,9 @@ Enlace
 Configuraciones de pantalla 
 ---------------------
 
--   **Nom** : Nombre del enlace (texto mostrado)
+-   **Apellido** : Nombre del enlace (texto mostrado)
 
--   **Lien** : Enlace al diseño o vista en cuestión
+-   **Enlace** : Enlace al diseño o vista en cuestión
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
@@ -252,7 +252,7 @@ Configuraciones de pantalla
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permet
+-   **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
@@ -261,7 +261,7 @@ Configuraciones de pantalla
 -   **Alineación de texto** : le permite elegir la alineación de
     texto (izquierda / derecha / centrado)
 
--   **Gras** : texto en negrita
+-   **Grasa** : texto en negrita
 
 Equipo 
 ==========
@@ -297,10 +297,10 @@ Imagen / Cámara
 Configuraciones de pantalla 
 ---------------------
 
--   **Afficher** : define lo que desea mostrar, imagen fija o
+-   **Visualización** : define lo que desea mostrar, imagen fija o
     transmitir desde una cámara
 
--   **Image** : le permite enviar la imagen en cuestión (si tiene
+-   **Imagen** : le permite enviar la imagen en cuestión (si tiene
     elige una imagen)
 
 -   **Cámara** : cámara para mostrar (si elige cámara)
@@ -312,7 +312,7 @@ Configuraciones de pantalla
 ---------------------
 
 -   **Tipo de area** : Aquí es donde eliges el tipo de área :
-    Macro individual, macro binaria o widget al pasar el mouse
+    Macro simple, macro binaria o widget al pasar el mouse
 
 ### Macro individual 
 
@@ -339,20 +339,20 @@ para el apagado
 En este modo, al pasar el mouse o al hacer clic en el área Jeedom, usted
 mostrar el widget en cuestión
 
--   **Equipement** : widget para mostrar al pasar el mouse o al hacer clic
+-   **Equipo** : widget para mostrar al pasar el mouse o al hacer clic
 
--   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
+-   **Visualización au survol** : si está marcado, muestra el widget al pasar el mouse
 
--   **Ver en un clic** : si está marcado, el widget se muestra en
+-   **Visualización sur un clic** : si está marcado, el widget se muestra en
     clic
 
--   **Position** : le permite elegir la ubicación donde
+-   **Posición** : le permite elegir la ubicación donde
     widget (predeterminado abajo a la derecha)
 
 Resumen 
 ======
 
--   **Lien** : Se utiliza para indicar el resumen que se mostrará (General para
+-   **Enlace** : Se utiliza para indicar el resumen que se mostrará (General para
     global si no indica el objeto)
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
@@ -364,13 +364,13 @@ Resumen
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Borde (sintaxis CSS de atención, ej. : sólido 1px negro)** : permet
+-   **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
     le permite cambiar el tamaño de fuente
 
--   **Gras** : texto en negrita
+-   **Grasa** : texto en negrita
 
 
 Preguntas frecuentes 
@@ -380,6 +380,6 @@ Preguntas frecuentes
 >
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
->**Eliminar un diseño que ya no funciona**
+>**Remove un diseño qui ne marche plus**
 >
->En la parte de administración y luego en OS / DB, &quot;seleccione * de planHeader&quot;, obtenga la identificación del diseño en cuestión y haga una &quot;eliminación de planHeader donde id = # TODO #&quot; y &quot;eliminar del plan donde planHeader_id = # todo # &quot;reemplazando # TODO # con la identificación de diseño encontrada previamente.
+>En la parte de administración, luego OS / DB, haga "select * from planHeader", recupere la identificación del diseño en cuestión y haga una "eliminación de planHeader donde id=#TODO#" y "eliminar del plan donde planHeader_id=#todo#" reemplazando bien #TODO# por la identificación de diseño encontrada previamente.

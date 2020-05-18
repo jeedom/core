@@ -10,7 +10,7 @@ Móvel.
 Para pessoas não sofisticadas que desejam descobrir CSS
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **Important**
+> **IMPORTANTE**
 >
 > Qualquer erro em um desses scripts pode tornar o Jeedom totalmente
 > indisponível e você terá que se conectar via SSH e excluir o

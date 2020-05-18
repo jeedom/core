@@ -2,7 +2,7 @@ Aqui está a documentação sobre métodos de API. Primeiro aqui é
 as especificações (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-O acesso à API é via URL : *URL\_JEEDOM * / core / api / jeeApi.php
+O acesso à API é via URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -222,7 +222,7 @@ Retorna uma tabela de equipamentos de acordo com os parâmetros. O retorno
 será da matriz de formulários ('eqType1' ⇒ matriz ('id'⇒…,' cmds '⇒
 matriz (….)), 'eqType2' ⇒ matriz ('id'⇒…,' cmds '⇒ matriz (….))….,id1 ⇒
 array ('id'⇒…,' cmds '⇒ array (….)), id2 ⇒ array (' id'⇒…, 'cmds' ⇒
-array(…​.))..)
+matriz (….)) ..)
 
 Configurações:
 
@@ -243,7 +243,7 @@ Configurações:
 
 -   nome da string
 
--   Log de stringicId = ''
+-   string logicId = ''
 
 -   int objeto\_id = nulo
 
@@ -308,7 +308,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do cálculo das estatísticas
+-   string startTime : data de início do cálculo das estatísticas
 
 -   string endTime : data final do cálculo das estatísticas
 
@@ -322,7 +322,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do cálculo de tendência
+-   string startTime : data de início do cálculo de tendência
 
 -   string endTime : data de término do cálculo de tendência
 
@@ -336,7 +336,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do histórico
+-   string startTime : data de início do histórico
 
 -   string endTime : data final do histórico
 
@@ -351,7 +351,7 @@ Configurações:
 
 -   nome da string
 
--   Log de stringicId
+-   string logicId
 
 -   string eqType
 
@@ -444,7 +444,7 @@ Configurações:
 
 -   estado da string: \ [executar, parar, ativar, desativar \]
 
-API de Log JSON
+API de log JSON
 ============
 
 log::get
@@ -454,7 +454,7 @@ Permite recuperar um log
 
 Configurações:
 
--   Log de string : nome do Log a recuperar
+-   log de string : nome do log a recuperar
 
 -   início da corda : número da linha na qual começar a ler
 
@@ -476,7 +476,7 @@ Esvaziar um log
 
 Configurações:
 
--   Log de string : nome do Log para esvaziar
+-   log de string : nome do log para esvaziar
 
 log::remove
 -----------
@@ -485,7 +485,7 @@ Permite excluir um log
 
 Configurações:
 
--   Log de string : nome do Log a ser excluído
+-   log de string : nome do log a ser excluído
 
 API de armazenamento de dados JSON (variável)
 =============================
@@ -723,7 +723,7 @@ Recuperando a lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-> sendRequest ('objeto::TODOS ', array ())){
+if ($ jsonrpc-> sendRequest ('objeto::all ', array ())){
     print_r ($ jsonrpc-> getResult ());
 }else{
     echo $ jsonrpc-> getError ();
@@ -734,7 +734,7 @@ Execução de uma ordem (com a opção de um título e uma mensagem)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id '=> # cmd_id #,' options '=> array (' title '=>' Cuckoo ',' Mensagem '=>' Funciona '))){
+if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id' => #cmd_id#, 'opções '=> array (' title '=>' Cuckoo ',' message '=>' Funciona ')))){
     eco 'OK';
 }else{
     echo $ jsonrpc-> getError ();

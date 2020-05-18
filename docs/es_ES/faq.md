@@ -65,7 +65,7 @@ recomienda modificar estos identificadores para mayor seguridad.
 ================================
 
 Sí : O tienes una fuente de alimentación o más, en este caso
-solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
+solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/es_ES/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 Cómo conectarse en SSH ?
 =============================
@@ -157,7 +157,7 @@ echo "CREAR USUARIO &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFICADO POR &#39
 echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e &quot;s / # CONTRASEÑA # / $ {bdd_password} / g&quot; core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -177,9 +177,9 @@ esta en estable. Para ver el error, debes hacer F12 y luego consola.
 Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a través de SSH 
 =========================================================================
 
-Este error no se debe a Jeedom, sino a un problema con el sistema..
+Este error no se debe a Jeedom, sino a un problema con el sistema.
 Si persiste después de una reinstalación, es recomendable
-ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) para inteligente
+ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
 
 Mi escenario ya no se detiene 
 =================================
@@ -196,7 +196,7 @@ el comando es : "sudo dmesg | error grep" .
 No veo todo mi equipo en el tablero 
 ====================================================
 
-A menudo esto se debe al hecho de que el equipo está asignado a un objeto.
+A menudo esto se debe al hecho de que el equipo está asignado a un objeto
 que no es el hijo o el objeto en sí del primer objeto seleccionado en
 dejado en el árbol (puede configurarlo en su perfil).
 
@@ -232,7 +232,7 @@ Los botones de apagado / reinicio no funcionan
 ===================================================
 
 En una instalación de bricolaje es normal. En SSH, tienes que pedir
-visudo y al final del archivo tienes que agregar : www-data TODO = (ALL)
+visudo y al final del archivo tienes que agregar : www-data ALL = (ALL)
 NOPASSWD: TODO.
 
 `` `{.bash}
@@ -243,12 +243,12 @@ No veo algunos complementos del mercado
 =========================================
 
 Este tipo de caso ocurre si su Jeedom no es compatible con el
-plugin. En general, una actualización de Jeedom soluciona el problema..
+plugin. En general, una actualización de Jeedom soluciona el problema.
 
 Tengo un equipo de tiempo de espera pero no lo veo en el tablero
 =========================================
 
-Las alertas se clasifican por prioridad, desde las menos importantes hasta las más importantes. : tiempo de espera, advertencia de batería, peligro de batería, alerta de advertencia, alerta de peligro
+Las alertas se clasifican por prioridad, desde las menos importantes hasta las más importantes : tiempo de espera, advertencia de batería, peligro de batería, alerta de advertencia, alerta de peligro
 
 My Jeedom muestra permanentemente &quot;Iniciando&quot; incluso después de 1 hora ? 
 =====================================
@@ -269,11 +269,11 @@ Intente vaciar el caché de Chrome, la visualización del historial se calcula e
 Tengo el error "Problemas de red detectados, reinicio de red"
 =========================================
 
-Jeedom no puede encontrar o hacer ping a la puerta de enlace. En general, sucede si el cuadro adsl se reinicia (en particular, liveboxes) y Jeeodm no se ha reiniciado o se ha reiniciado más rápido que el cuadro. Por seguridad, le dice que ha encontrado un problema y relanza el proceso de conexión de red.. Puede desactivar este mecanismo yendo a la configuración de Jeedom y desactivando la administración de red de Jeedom.
+Jeedom no puede encontrar o hacer ping a la puerta de enlace. En general, sucede si el cuadro adsl se reinicia (en particular, liveboxes) y Jeeodm no se ha reiniciado o se ha reiniciado más rápido que el cuadro. Por seguridad, le dice que ha encontrado un problema y relanza el proceso de conexión de red. Puede desactivar este mecanismo yendo a la configuración de Jeedom y desactivando la administración de red de Jeedom.
 
 Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Comprueba que mysqldump está presente."
 =========================================
-Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos.. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma.. En casos conocidos de inquietudes tenemos
+Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma. En casos conocidos de inquietudes tenemos
 
 - una tabla base corrupta =&gt; está mal iniciada, debe ver para intentar repararla y, si no se inicia desde la última copia de seguridad correcta (si está en la protección SD, es el momento adecuado para cambiarla)
 - no hay suficiente espacio en el sistema de archivos =&gt; mira la página de salud esto puede decirte

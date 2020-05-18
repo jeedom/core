@@ -11,21 +11,21 @@ Unten haben Sie eine Tabelle :
 
 -   **Benutzername** : Benutzer-ID
 
--   **Actif** : ermöglicht das Deaktivieren des Kontos
+-   **Aktiva** : ermöglicht das Deaktivieren des Kontos
 
 -   **Nur lokal** : Benutzeranmeldung autorisieren
     Nur wenn es sich im lokalen Jeedom-Netzwerk befindet
 
--   **Profils** : ermöglicht die Auswahl des Benutzerprofils :
+-   **Profile** : ermöglicht die Auswahl des Benutzerprofils :
 
-    -   **Administrateur** : bekommt alle Rechte an Jeedom
+    -   **Verwalter** : bekommt alle Rechte an Jeedom
 
-    -   **Utilisateur** : kann das Dashboard sehen, Ansichten,
-        Design usw.. und auf Geräte / Kontrollen einwirken. Allerdings,
+    -   **Benutzer** : kann das Dashboard sehen, Ansichten,
+        Design usw. und auf Geräte / Kontrollen einwirken. Allerdings,
         Er hat keinen Zugriff auf die Konfiguration der Steuerungen / Geräte
         noch auf die Konfiguration von Jeedom.
 
-    -   **Begrenzter Benutzer** : Der Benutzer sieht nur die
+    -   **Benutzer limité** : Der Benutzer sieht nur die
         autorisierte Geräte (konfigurierbar mit der Schaltfläche &quot;Verwalten&quot;
         Rechte &quot;)
 
@@ -42,7 +42,7 @@ Unten haben Sie eine Tabelle :
 -   **Passwort ändern** : ermöglicht das Ändern des Passworts von
     l'utilisateur
 
--   **Supprimer** : Benutzer löschen
+-   **Entfernen** : Benutzer löschen
 
 -   **API-Schlüssel neu generieren** : regeneriert den API-Schlüssel des Benutzers
 
@@ -57,7 +57,7 @@ Wenn Sie auf &quot;Rechte verwalten&quot; klicken, wird ein Fenster angezeigt, i
 Benutzerrechte fein verwalten. Die erste Registerkarte wird angezeigt
 die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 
-> **Important**
+> **Wichtig**
 >
 > Das Profil muss eingeschränkt werden, sonst werden hier keine Einschränkungen gesetzt
 > wird berücksichtigt
@@ -65,12 +65,12 @@ die verschiedenen Geräte. Der zweite zeigt die Szenarien.
 Sie erhalten eine Tabelle, die für jede Ausrüstung und jede erlaubt
 Szenario definieren Benutzerrechte :
 
--   **Aucun** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
+-   **Keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht
 
--   **Visualisation** : Der Benutzer sieht die Ausrüstung / das Szenario, jedoch nicht
+-   **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, jedoch nicht
     kann nicht darauf reagieren
 
--   **Visualisierung und Ausführung** : der Benutzer sieht
+-   **Visualisierung et exécution** : der Benutzer sieht
     die Ausrüstung / das Szenario und kann darauf einwirken (eine Lampe anzünden, werfen
     das Szenario usw.)
 

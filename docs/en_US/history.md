@@ -1,4 +1,4 @@
-IMPORTANT part in software : the historization part, real
+Important part in software : the historization part, real
 memory of it. It is possible in Jeedom to historize any
 which information type command (binary or digital). This will
 will therefore allow for example to historicize a temperature curve,
@@ -35,12 +35,12 @@ when to do it (by default, these are packages
 > **Tip**
 >
 > If you have followed well you should have a high precision on the
-> Last 2 hours only. Yet when I log in at 5 p.m.,
+> Last 2 hours only. Yet when I log in at 5 p.m,
 > I have a clarification on the last 17 hours. Why ? In fact,
 > to avoid consuming resources unnecessarily, the task that makes
 > archiving takes place only once a day, in the evening.
 
-> **Important**
+> **IMPORTANT**
 >
 > Of course, this archiving principle only applies to orders from
 > digital type; on binary type commands, Jeedom does not keep
@@ -69,17 +69,17 @@ week because by default I want it to be only one week - see
 (these parameters are kept from one display to another; you therefore
 than configure them once).
 
--   **Escalier** : displays the curve as a
+-   **Staircase** : displays the curve as a
     staircase or continuous display.
 
 -   **Variation** : displays the difference in value from
     previous point.
 
--   **Ligne** : displays the graph as lines.
+-   **Line** : displays the graph as lines.
 
--   **Aire** : displays the graph as an area.
+-   **Area** : displays the graph as an area.
 
--   **Colonne**\* : displays the graph as bars.
+-   **Column**\* : displays the graph as bars.
 
 Graphic on views and designs 
 =====================================
@@ -91,18 +91,18 @@ the options :
 
 Once a data is activated, you can choose :
 
--   **Couleur** : the color of the curve.
+-   **Color** : the color of the curve.
 
 -   **Type** : the type of graph (area, line or column).
 
--   **Echelle** : since you can put several curves (data)
+-   **Ladder** : since you can put several curves (data)
     on the same graph, it is possible to distinguish the scales
     (right or left).
 
--   **Escalier** : displays the curve as a
+-   **Staircase** : displays the curve as a
     staircase or continuous display
 
--   **Empiler** : allows to stack the values of the curves (see in
+-   **Stack** : allows to stack the values of the curves (see in
     below for the result).
 
 -   **Variation** : displays the difference in value from
@@ -119,7 +119,7 @@ Calculated history
 Used to display a curve based on a calculation on several
 command (you can pretty much do everything, + - / \* absolute value… see
 PHP documentation for certain functions). Ex :
-abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Space of
+abs (*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Space of
 Life \] \ [Humidity \] \ [Temperature \] *)
 
 You also have access to a management of calculation formulas which allows you
@@ -135,7 +135,7 @@ Order history
 
 In front of each data that can be graphed, you will find two icons :
 
--   **Poubelle** : allows to delete the recorded data; then
+-   **Trash can** : allows to delete the recorded data; then
     of the click, Jeedom asks if it is necessary to delete the data before a
     certain date or all data.
 
@@ -163,7 +163,7 @@ desired commands or scenarios :
 -   **Scenario** : either directly on the scenario page, or on the
     scenario summary page to do it in "mass"
 
--   **Commande** : either in the advanced configuration of the command,
+-   **Ordered** : either in the advanced configuration of the command,
     either in the configuration of the history to do it in "mass"
 
 > **Tip**
@@ -175,17 +175,17 @@ desired commands or scenarios :
 Once you&#39;ve enabled tracking in the order timeline and
 desired scenarios, you can see them appear on the timeline.
 
-> **Important**
+> **IMPORTANT**
 >
 > You have to wait for new events after activating tracking
 > on the timeline before seeing them appear.
 
 The cards on the timeline displays :
 
--   **Action command** : in red background, an icon on the right allows you
+-   **Ordered action** : in red background, an icon on the right allows you
     display the advanced configuration window of the command
 
--   **Info command** : in blue background, an icon on the right allows you
+-   **Ordered info** : in blue background, an icon on the right allows you
     display the advanced configuration window of the command
 
 -   **Scenario** : in gray background, you have 2 icons : one to display

@@ -11,10 +11,10 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf dem
 Richtig, dies ist der Echtzeitstatus der aktuellen Aktion (Sicherung)
 oder Wiederherstellung), wenn Sie eine gestartet haben.
 
-**Sauvegardes** 
+**Sicherungen** 
 ---------------
 
--   **Sauvegardes** : Ermöglicht das manuelle Starten einer Sicherung und
+-   **Sicherungen** : Ermöglicht das manuelle Starten einer Sicherung und
     sofort (nützlich, wenn Sie eine kritische Änderung vornehmen möchten.
     Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine
     Schaltfläche, um eine Sicherung zu starten, ohne das Archiv an das zu senden
@@ -39,10 +39,10 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
     älteste Backups bis unter die
     maximale Größe. Es wird jedoch mindestens eine Sicherung gespeichert.
 
-**Lokale Backups** 
+**Sicherungen Locales** 
 -----------------------
 
--   **Verfügbare Backups** : Liste der verfügbaren Backups.
+-   **Sicherungen disponibles** : Liste der verfügbaren Backups.
 
 -   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
     oben ausgewählt.
@@ -58,36 +58,36 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 -   **Backup herunterladen** : Lass uns auf deine herunterladen
     Computer das oben ausgewählte Backup-Archiv.
 
-**Marktsicherungen** 
+**Sicherungen Markt** 
 ----------------------
 
 -   **Senden von Backups** : Weist Jeedom an, das zu senden
-    Backups in der Markt Cloud, Vorsicht, Sie müssen haben
+    Backups in der Market Cloud, Vorsicht, Sie müssen haben
     habe das Abonnement bekommen.
 
 -   **Senden Sie ein Backup** : Ermöglicht das Senden eines
     Sicherungsarchiv auf Ihrem Computer.
 
--   **Verfügbare Backups** : Liste der Backups
+-   **Sicherungen disponibles** : Liste der Backups
     Cloud verfügbar.
 
 -   **Backup wiederherstellen** : Startet die Wiederherstellung von a
     Cloud-Backup.
 
-**Samba-Backups** 
+**Sicherungen Samba** 
 ---------------------
 
 -   **Senden von Backups** : Weist Jeedom an, das zu senden
     Backups auf der hier konfigurierten Samba-Freigabe
     Administration → Konfiguration → Registerkarte Updates.
 
--   **Verfügbare Backups** : Liste der Backups
+-   **Sicherungen disponibles** : Liste der Backups
     Samba verfügbar.
 
 -   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
     Samba oben ausgewählt.
 
-> **IMPORTANT**
+> **Wichtig**
 >
 > Jeedom-Backups dürfen nur für ihn in einen Ordner fallen !!! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht
 
@@ -104,10 +104,10 @@ anders, weil es nicht möglich ist, die Einschlüsse zu speichern.
 Diese sind direkt im Controller enthalten, also müssen Sie
 Behalten Sie den gleichen Controller bei, um die Zwave-Module zu finden.
 
-> **Note**
+> **Notiz**
 >
 > Das System, auf dem Jeedom installiert ist, wird nicht gesichert. wenn
-> Sie haben die Parameter dieses Systems geändert (insbesondere über SSH).,
+> Sie haben die Parameter dieses Systems geändert (insbesondere über SSH),
 > Es liegt an Ihnen, einen Weg zu finden, um sie bei Problemen wiederherzustellen.
 
 Cloud-Backup 
@@ -117,11 +117,11 @@ Mit Cloud-Backups kann Jeedom Ihre Backups senden
 direkt auf dem Markt. Auf diese Weise können Sie sie einfach wiederherstellen
 und seien Sie sicher, sie nicht zu verlieren. Der Markt behält die letzten 6
 Backups. Um sich anzumelden, gehen Sie einfach auf Ihre Seite
-**profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Vous
+**Profil** auf dem Markt, dann in der Registerkarte **meine Backups**. Vous
 kann auf dieser Seite ein Backup abrufen oder ein kaufen
 Abonnement (für 1, 3, 6 oder 12 Monate).
 
-> **Tip**
+> **Spitze**
 >
 > Sie können den Namen der Sicherungsdateien von anpassen
 > der Registerkarte **Meine Jeedoms**, Vermeiden Sie jedoch die Zeichen

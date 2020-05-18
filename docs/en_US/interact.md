@@ -11,23 +11,23 @@ These orders can be obtained by :
 -   Vocal : dictate a phrase with Siri, Google Now, SARAH, etc. For
     launch commands (action) or ask a question (info).
 
--   D'informations sont indispensables à la bonne compréhension of : launch an D'informations sont indispensables à la bonne compréhension of URL containing the text (ex. Tasker, Slack)
+-   D'informations sont indispensables à la bonne compréhension de : launch an HTTP URL containing the text (ex. Tasker, Slack)
     to launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
-other systems like smartphone, tablet, other home automation box, etc..
+other systems like smartphone, tablet, other home automation box, etc.
 
 To access the interaction page, go to Tools →
 Interactions :
 
 At the top of the page, there are 3 buttons :
 
--   **Ajouter** : which allows to create new interactions.
+-   **Add** : which allows to create new interactions.
 
 -   **Regenerate** : which will recreate all the interactions (maybe
     très long &gt; 5mn).
 
--   **Tester** : which opens a dialog for writing and
+-   **Test** : which opens a dialog for writing and
     test a sentence.
 
 > **Tip**
@@ -60,29 +60,29 @@ D'actualité
 The configuration page consists of several tabs and
 buttons :
 
--   **Phrases** : Displays the number of sentences in the interaction (one click
+-   **Sentences** : Displays the number of sentences in the interaction (one click
     above shows them to you)
 
--   **Enregistrer** : records the current interaction
+-   **Save** : records the current interaction
 
--   **Supprimer** : delete current interaction
+-   **Remove** : delete current interaction
 
--   **Dupliquer** : duplicate the current interaction
+-   **Duplicate** : duplicate the current interaction
 
 General 
 =======
 
--   **Nom** : name of the interaction (can be empty, the name replaces the
+-   **Last name** : name of the interaction (can be empty, the name replaces the
     request text in the interaction list).
 
--   **Groupe** : interaction group, it helps organize them
+-   **Group** : interaction group, it helps organize them
     (can be empty, will therefore be in the &quot;none&quot; group).
 
--   **Actif** : allows to activate or deactivate the interaction.
+-   **Active** : allows to activate or deactivate the interaction.
 
--   **Demande** : the generating model sentence (required).
+-   **Request** : the generating model sentence (required).
 
--   **Synonyme** : allows to define synonyms on names
+-   **Synonymous** : allows to define synonyms on names
     some orders.
 
 -   **Reply** : the answer to provide.
@@ -127,25 +127,25 @@ Filters
 ACTION 
 ======
 
-Use if you want to targand one or more specific commands
+Use if you want to target one or more specific commands
 or pass particular parameters.
 
 Examples 
 ========
 
-> **Note**
+> **NOTE**
 >
 > The screenshots may be different in view of developments.
 
 Simple interaction 
 ------------------
 
-The easiest way to sand up an interaction is to use it
+The easiest way to set up an interaction is to use it
 give a rigid generator model, without possible variation. This
-method will targand a command or a scenario very precisely.
+method will target a command or a scenario very precisely.
 
 In the example which follows, we can see in the field &quot;Request&quot; the sentence
-exact to proviof to trigger interaction. Here, to turn on the
+exact to provide to trigger interaction. Here, to turn on the
 living room ceiling light.
 
 ![interact004](../images/interact004.png)
@@ -217,15 +217,15 @@ synonym (s) to use :
 
 We can see here a somewhat new syntax for synonyms. A name
 can have several synonyms, here &quot;on&quot; has as synonym
-"turn on "and" turn on". The syntax is therefore "* name of the command*"
-***=*** "*synonym 1*"***,*** "*synonym 2 * "(you can put as many
+"turn on "and" turn on". The syntax is therefore "*Name of the order*"
+***=*** "*synonym 1*"***,*** "*synonym 2*" (we can put as many
 synonym we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
 vertical "*|*" after which you can again name the
-command which will have synonyms like for the first part, etc..
+command which will have synonyms like for the first part, etc.
 
 It&#39;s already better, but it is still missing for the "on" "input command"
-the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, etc.. We could
+the &quot;l&quot; and for others the &quot;the&quot; or &quot;the&quot; or &quot;a&quot;, etc. We could
 changing the name of the equipment to add it would be a solution,
 otherwise we can use variations in demand. It consists of
 list a series of possible words at a location in the sentence, Jeedom
@@ -261,17 +261,17 @@ Customize responses
 Until now, as a response to an interaction, we had a simple
 sentence that didn&#39;t say much except that something happened
 past. The idea would be that Jeedom tells us what he did a little more
-precisely. This is where the response field comes in.
+precisely. This is where the response field comes in
 ability to customize return based on order executed.
 
 To do this, we will again use the Jeedom Tag. For our
 lights, we can use a phrase like : I lit well
-\#equipement \# (see screenshot below).
+\#equipement\# (see screenshot below).
 
 ![interact011](../images/interact011.png)
 
 You can also add any value from another command like
-temperature, number of people, etc..
+temperature, number of people, etc.
 
 ![interact012](../images/interact012.png)
 
@@ -289,8 +289,8 @@ kept that light).
 As you can see here, I have kept almost the same structure
 for demand (it&#39;s voluntary to focus on
 specificities). Of course, I adapted the synonyms to have some
-coherent thing. However, for the answer, it is **imperative** de
-put only \#value \# which represents the 0 or 1 that Jeedom is going to
+coherent thing. However, for the answer, it is **impératif** de
+put only \#valeur\# which represents the 0 or 1 that Jeedom is going
 replace with the following binary conversion.
 
 Field **Binary conversion** must contain 2 answers : first the
@@ -330,7 +330,7 @@ We have 2 places to apply a Regexp :
 
 -   in the interaction even in the "Regexp exclusion" field".
 
--   In the Administration → D'actualité → Interactions menu → &quot;Regexp&quot; field
+-   In the Administration → Configuration → Interactions menu → &quot;Regexp&quot; field
     general exclusion for interactions".
 
 For the field &quot;General exclusion regex for interactions&quot;, this
@@ -364,7 +364,7 @@ case sensitivity or in good French a capital letter is different
 of a tiny. As we can see in the following screenshot, it does not
 only 71 sentences left, the 5 with a &quot;Julie&quot; have been deleted.
 
-A regular expressure is composed as follows :
+A regular expression is composed as follows :
 
 -   First, a delimiter, here it is a slash &quot;/&quot; placed in
     beginning and end of expression.
@@ -379,7 +379,7 @@ A regular expressure is composed as follows :
 -   Then Julie, which is the word to look for (word or other diagram
     expression), followed by a dot again and a forward slash.
 
-If we translate this expressure into a sentence, it would give &quot;seek the
+If we translate this expression into a sentence, it would give &quot;seek the
 word Julie which is preceded by anything and followed by anything
 quoi".
 
@@ -389,7 +389,7 @@ the operation. As a slightly more complex example, a regexp for
 verify a URL :
 
 /\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
-\\ .- \] \*) \* \\ /?\ $ /
+\\ .- \] \*) \*\\ /?\ $ /
 
 Once you can write this, you understand the expressions
 regular.
@@ -397,9 +397,9 @@ regular.
 ![interact015](../images/interact015.png)
 
 To solve the problem of upper and lower case, we can add to
-our expressure an option that will make it case-insensitive, or
+our expression an option that will make it case-insensitive, or
 in other words, which considers a lowercase letter equal to a capital letter;
-to do this, we simply have to add at the end of our expressure a
+to do this, we simply have to add at the end of our expression a
 "i".
 
 ![interact016](../images/interact016.png)
@@ -410,8 +410,8 @@ look for the sentences that contain this word, we see that there are some
 Much more.
 
 As this is an extremely complex subject, I will not go further
-detail here, there are enough tutorials on the nand to help you, and
-don&#39;t forgand that Google is your friend too because yes, he is my friend,
+detail here, there are enough tutorials on the net to help you, and
+don&#39;t forget that Google is your friend too because yes, he is my friend,
 it was he who taught me to understand Regexp and even to code. Therefore
 if he helped me, he can also help you if you put good
 volonté.
@@ -428,13 +428,13 @@ Response composed of several pieces of information
 ------------------------------------------
 
 It is also possible to put several info commands in one
-answer, for example to gand a situation summary.
+answer, for example to get a situation summary.
 
 ![interact021](../images/interact021.png)
 
 In this example we see a simple sentence that will return a
 answer with 3 different temperatures, so here we can put a little
-everything you want in order to have a sand of information in one
+everything you want in order to have a set of information in one
 one time.
 
 Is there anyone in the room ? 
@@ -455,16 +455,16 @@ Is there anyone in the room ?
 This example specifically targets specific equipment which allows
 to have a personalized response. So we could imagine replacing
 the example answer with &quot;no there is no one in the room
-*julie*|yes there is someone in * julie&#39;s room*"
+*julie*|yes there is someone in the room *julie*"
 
 ### Evolution 
 
--   So the question is "\#order \# \ [in the |in the \] \#object \#"
+-   So the question is "\#commande\# \[in the |in the\] \#objet\#"
 
 -   The answer will be &quot;no there is no one in the room&quot; or &quot;yes there is
     someone in the room"
 
--   There is no command which answers that in the ACTION part seen
+-   There is no command which answers that in the Action part seen
     that this is a Multiple commands interaction
 
 -   By adding a regular expression, we can clean up the commands
@@ -473,12 +473,12 @@ the example answer with &quot;no there is no one in the room
 
 ![interact018](../images/interact018.png)
 
-Without the Regexp, we gand here 11 sentences, but my interaction is aimed
+Without the Regexp, we get here 11 sentences, but my interaction is aimed
 generate sentences only to ask if there is someone in
 a room, so I don&#39;t need a lamp condition or anything like the
 taken, which can be resolved with regexp filtering. To give back
 even more flexible, synonyms can be added, but in this case it
-don&#39;t forgand to modify the regexp.
+don&#39;t forget to modify the regexp.
 
 Know the temperature / humidity / brightness 
 --------------------------------------------
@@ -498,16 +498,16 @@ the humidity, the brightness of the different rooms (object in the Jeedom sense)
 
 -   So we can see that a generic generic sentence &quot;What is the
     living room temperature "or" How bright is the bedroom"
-    can be converted to : "what is the |l \\ &#39;\] \# command \# object"
+    can be converted to : "what is the |l \\ '\] \#commande\# Object"
     (the use of \ [word1 | mot2 \] lets say this possibility
     or this one to generate all possible variations of the sentence
     with word1 or word2). When generating Jeedom will generate all
     possible combinations of sentences with all commands
-    existing (depending on filters) by replacing \#order \# with
-    the name of the command and \#object \# by the name of the object.
+    existing (depending on filters) by replacing \#commande\# by
+    the name of the command and \#objet\# by le nom of l'objet.
 
 -   The answer will be "21 ° C" or "200 lux". Just put :
-    \#value \# \#unite \# (the unit must be completed in the configuration
+    \#valeur\# \#unite\# (the unit is to be completed in the configuration
     of each order for which we want to have one)
 
 -   This example therefore generates a sentence for all the commands of
@@ -537,12 +537,12 @@ temperature / humidity / brightness.
 
 So we can see a regexp :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(drums|latence|pression|vitesse|consumption)**
 
 This allows you to delete all orders that have one of these
 words in their sentence
 
-> **Note**
+> **NOTE**
 >
 > The regexp here is a simplified version for easy use.
 > So we can either use traditional expressions or
@@ -565,10 +565,10 @@ dimmer to apply the desired value. To do this, we have 3 parts
 : \* Request : in which we create a tag that will represent the value
 which will be sent to the interaction. \* Reply : we reuse the tag for
 the answer to make sure Jeedom understood the request correctly.
-\* ACTION : we put an action on the lamp that we want to drive and in
-the value we pass our tag * deposit*.
+\* Action : we put an action on the lamp that we want to drive and in
+the value we pass our tag *Instructions*.
 
-> **Note**
+> **NOTE**
 >
 > You can use any tag except those already used by
 > Jeedom, there can be several to drive for example
@@ -581,12 +581,12 @@ the value we pass our tag * deposit*.
 We may want to control all cursor type commands with a
 single interaction. With the example below, we will be able to order
 several drives with a single interaction and therefore generate a
-sand of sentences to control them.
+set of sentences to control them.
 
 ![interact033](../images/interact033.png)
 
 In this interaction, we have no command in the action part, we
-land Jeedom generate from tags the list of sentences. We can
+let Jeedom generate from tags the list of sentences. We can
 see the tag **\#slider\#**. It is imperative to use this tag for
 instructions in a multiple command interaction it may not be
 the last word of the sentence. We can also see in the example that we
@@ -613,7 +613,7 @@ This is the interaction to do :
 
 Until then nothing very complicated, it must however have configured
 colors in Jeedom to make it work; go to the
-menu → D'actualité (top right) then in the section
+menu → Configuration (top right) then in the section
 "Configuring interactions" :
 
 ![interact024](../images/interact024.png)
@@ -652,14 +652,14 @@ Programming an action with interactions
 
 Interactions do a lot of things in particular.
 You can program an action dynamically. Example : "Put it on
-heating at 10 p.m. for 2:50 p.m.". Nothing could be simpler, just
-to use the tags \#time \# (if a precise time is defined) or
-\#duration \# (for in X time, example in 1 hour) :
+heating at 10 p.m. for 2:50 p.m". Nothing could be simpler, just
+to use tags \#time\# (if a specific time is defined) or
+\#duration\# (for in X time, example in 1 hour) :
 
 ![interact23](../images/interact23.JPG)
 
-> **Note**
+> **NOTE**
 >
-> You will notice in the response the tag \#value \# it contains
+> You will notice in the response the tag \#value\# this one contains
 > in the case of a scheduled interaction, the programming time
 > effective

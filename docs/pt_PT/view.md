@@ -2,13 +2,13 @@ As visualizações simplesmente permitem criar uma exibição personalizada. Ist
 não é tão poderoso quanto os designs, mas permite em alguns
 minutos para ter uma exibição mais personalizada.
 
-As visualizações são acessíveis no menu Página inicial → Exibir. :
+As visualizações são acessíveis no menu Página inicial → Exibir :
 
-> **Tip**
+> **Dica**
 >
 > É possível ir diretamente a uma vista graças ao submenu.
 
-> **Tip**
+> **Dica**
 >
 > Você pode escolher a visualização padrão no seu perfil ao clicar em
 > no menu de visualizações.
@@ -24,7 +24,7 @@ Nesta página, existe um botão no canto superior esquerdo para mostrar ou
 ocultar a lista de visualizações e o botão para adicionar uma
 (Jeedom solicitará seu nome e o enviará para a página de edição) :
 
-> **Tip**
+> **Dica**
 >
 > Você pode modificar esta opção no seu perfil para que a lista
 > visualizações a serem visíveis por padrão.
@@ -39,7 +39,7 @@ coloque o quanto quiser). Cada zona é do tipo gráfico, widget
 ou tabela, dependendo do tipo em que você pode colocar widgets
 equipamento, controle ou gráficos nele.
 
-> **Tip**
+> **Dica**
 >
 > Você pode mover a ordem das zonas arrastando e soltando.
 
@@ -58,9 +58,9 @@ Em cada zona, você tem as seguintes opções gerais :
 -   **Largeur** : define a largura da área (no modo
     somente desktop)
 
--   **Editer** : Permite alterar o nome da zona
+-   **Editar** : Permite alterar o nome da zona
 
--   **Supprimer** : Excluir a zona
+-   **Remover** : Excluir a zona
 
 Área do tipo de widget 
 -------------------
@@ -70,12 +70,12 @@ Uma área de tipo de widget permite adicionar widgets :
 -   **Adicionar Widget** : adicionar / editar widgets para
     exibir na área
 
-> **Tip**
+> **Dica**
 >
 > Você pode excluir um widget diretamente clicando no
 > lata de lixo na frente deste.
 
-> **Tip**
+> **Dica**
 >
 > É possível alterar a ordem dos widgets na área,
 > arraste e solte.
@@ -98,28 +98,28 @@ Quando você pressiona o botão "Adicionar curva", o Jeedom exibe a lista
 comandos históricos e você pode escolher aquele (s) a adicionar, um
 Depois de concluído, você terá acesso às seguintes opções :
 
--   **Poubelle** : Remover comando do gráfico
+-   **Lixeira** : Remover comando do gráfico
 
--   **Nom** : nome do comando representado graficamente
+-   **Nome** : nome do comando representado graficamente
 
--   **Couleur** : Cor da curva
+-   **Cor** : Cor da curva
 
--   **Type** : Tipo de curva
+-   **Tipo** : Tipo de curva
 
--   **Groupement** : permite agrupar dados (tipo máximo
+-   **Grupo** : permite agrupar dados (tipo máximo
     por dia)
 
--   **Echelle** : Escala (direita ou esquerda) da curva
+-   **Escala** : Escala (direita ou esquerda) da curva
 
--   **Escalier** : Exibe a curva da escada
+-   **Escada** : Exibe a curva da escada
 
--   **Empiler** : Empilha a curva com as outras curvas de tipo
+-   **Pilha** : Empilha a curva com as outras curvas de tipo
     empiler
 
--   **Variation** : representar graficamente apenas variações com valor
+-   **Mudança** : representar graficamente apenas variações com valor
     anterior
 
-> **Tip**
+> **Dica**
 >
 > É possível alterar a ordem dos gráficos na área,
 > arraste e solte.
@@ -133,7 +133,7 @@ Aqui você tem os botões :
 
 -   **Adicionar linha** : Adicione uma linha à tabela
 
-> **Note**
+> **NOTA**
 >
 > É possível reorganizar as linhas arrastando e soltando, mas não
 > as colunas
@@ -141,7 +141,7 @@ Aqui você tem os botões :
 Depois de adicionar suas linhas / colunas, você pode adicionar
 informações nas caixas :
 
--   **texte** : apenas texto para escrever
+-   **Texto** : apenas texto para escrever
 
 -   **html** : qualquer código html (é possível javascript, mas
     fortemente desencorajado)

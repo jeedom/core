@@ -11,21 +11,21 @@ La página de registros es bastante simple, en la parte superior izquierda hay u
 permitiendo la elección del registro para ver, en la parte superior derecha tienes 5
 botones :
 
--   **Rechercher** : permite filtrar el cartel de registro
+-   **Buscar** : permite filtrar el cartel de registro
 
 -   **Pausa / Reanudar** : le permite pausar / reanudar la configuración
     actualización de registro en tiempo real
 
 -   **Descargar** : permite descargar el registro actual,
 
--   **Vider** : permite vaciar el registro actual,
+-   **Vaciar** : permite vaciar el registro actual,
 
--   **Supprimer** : eliminar el registro actual, si Jeedom tiene alguna
+-   **Remove** : eliminar el registro actual, si Jeedom tiene alguna
     necesitarlo lo recreará automáticamente,
 
--   **Eliminar todos los registros** : eliminar todos los registros presentes.
+-   **Remove tous les logs** : eliminar todos los registros presentes.
 
-> **Tip**
+> **Punta**
 >
 > Tenga en cuenta que el registro http.el error no se puede eliminar. Es esencial
 > ! si lo elimina (en la línea de comando, por ejemplo) no lo hará

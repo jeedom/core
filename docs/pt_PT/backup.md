@@ -11,10 +11,10 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. No
 certo, esse é o status em tempo real da ação atual (backup
 ou restauração), se você lançou um.
 
-**Sauvegardes** 
+**Backups** 
 ---------------
 
--   **Sauvegardes** : Permite iniciar um backup manualmente e
+-   **Backups** : Permite iniciar um backup manualmente e
     imediatamente (útil se você quiser fazer uma alteração crítica.
     Isso permitirá que você volte). Você também tem um
     para iniciar um backup sem enviar o arquivo para o
@@ -39,10 +39,10 @@ ou restauração), se você lançou um.
     backups mais antigos até ficar abaixo do
     tamanho máximo. No entanto, manterá pelo menos um backup.
 
-**Backups locais** 
+**Backups Locales** 
 -----------------------
 
--   **Backups disponíveis** : Lista de backups disponíveis.
+-   **Backups disponibles** : Lista de backups disponíveis.
 
 -   **Restaurar backup** : Inicia a restauração do backup
     selecionado acima.
@@ -58,7 +58,7 @@ ou restauração), se você lançou um.
 -   **De backup de download** : Permite baixar para o seu
     computador o arquivo de backup selecionado acima.
 
-**Backups de mercado** 
+**Backups Mercado** 
 ----------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
@@ -68,26 +68,26 @@ ou restauração), se você lançou um.
 -   **Enviar cópia de segurança** : Permite enviar um
     arquivo de backup localizado no seu computador.
 
--   **Backups disponíveis** : Lista de backups
+-   **Backups disponibles** : Lista de backups
     nuvem disponível.
 
 -   **Restaurar backup** : Lança a restauração de um
     Backup em nuvem.
 
-**Backups do Samba** 
+**Backups Samba** 
 ---------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
     backups no compartilhamento samba configurados aqui
     Administração → Configuração → guia Atualizações.
 
--   **Backups disponíveis** : Lista de backups
+-   **Backups disponibles** : Lista de backups
     samba disponível.
 
 -   **Restaurar backup** : Inicia a restauração do backup
     samba selecionado acima.
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > Os backups de Jeedom devem absolutamente cair em uma pasta apenas para ele !!! Ele excluirá tudo o que não for um backup jeedom da pasta
 
@@ -104,7 +104,7 @@ diferente porque não é possível salvar as inclusões.
 Eles estão diretamente incluídos no controlador, então você precisa
 mantenha o mesmo controlador para encontrar seus módulos Zwave.
 
-> **Note**
+> **NOTA**
 >
 > O sistema no qual o Jeedom está instalado não é copiado. Se
 > você modificou os parâmetros deste sistema (principalmente via SSH),
@@ -117,11 +117,11 @@ O backup na nuvem permite que o Jeedom envie seus backups
 diretamente no mercado. Isso permite que você os restaure facilmente
 e certifique-se de não perdê-los. O mercado mantém os últimos 6
 backups. Para se inscrever basta ir à sua página
-**profil** no mercado e depois na guia **meus backups**. Vous
+**Perfil** no mercado e depois na guia **meus backups**. Vous
 pode, nesta página, recuperar um backup ou comprar um
 assinatura (por 1, 3, 6 ou 12 meses).
 
-> **Tip**
+> **Dica**
 >
 > Você pode personalizar o nome dos arquivos de backup em
 > da guia **Minhas jeedoms**, evitando no entanto os personagens

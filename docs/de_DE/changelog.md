@@ -36,19 +36,19 @@ Changelog
 =====
 
 - Der Variablenname $ key wurde im Klassenereignis in $ key2 geändert
-- Bereinigen des Plugins / Widgets / Szenarios, das den Code an den Markt sendund (spart einige Sekunden beim Anzeigen von Plugins)
+- Bereinigen des Plugins / Widgets / Szenarios, das den Code an den Markt sendet (spart einige Sekunden beim Anzeigen von Plugins)
 - Korrektur einer Warnung in der Funktion lastBetween
 - Bessere Berücksichtigung von Plugin-Widgets
 - Optimierung der Gesundheitsberechnung für den Swap
 
->**IMPORTANT**
+>**WICHTIG**
 >
 >Dieses Update behebt ein Problem, das möglicherweise eine Aufzeichnung des Verlaufs ab dem 1. Januar 2020 verhindert. Es wird mehr als empfohlen
 
 3.3.38
 =====
 
-- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wenn Sie Jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen Jeedom dns im entsprechenden Feld.).
+- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wenn Sie jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen jeedom dns im entsprechenden Feld.).
 - Rechtschreibkorrekturen.
 - Sicherheitsupdate
 
@@ -158,7 +158,7 @@ Changelog
 
 - Fehlerbehebungen
 - Verbesserte Auftragsersetzung (in Ansichten, Plan und Plan3d)
-- Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte.
+- Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte
 
 3.3.21
 =====
@@ -208,9 +208,9 @@ Changelog
 -   Hinzufügen der Aktion jeedom_reboot, um einen Neustart von Jeedom zu starten.
 -   Option im Cron-Generierungsfenster hinzufügen.
 -   Eine Nachricht wird jetzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
--   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von Jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
+-   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
 -   Hinzufügen einer Schaltfläche zum Aktualisieren der Nachrichten des Nachrichtencenters.
--   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...)..
+-   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...).
 -   Hinzufügen einer Aktion &quot;Auf Null des IS zurücksetzen&quot; in den Szenarien
 -   Möglichkeit, Bilder im Hintergrund zu den Ansichten hinzuzufügen
 -   Möglichkeit, Hintergrundbilder zu Objekten hinzuzufügen
@@ -226,11 +226,11 @@ Changelog
 -   Hinzufügen eines Aktions-Tags in den Szenarien (siehe Dokumentation)
 -   Möglichkeit einer Vollbildansicht durch Hinzufügen von &quot;&amp; fullscreen = 1&quot; in der URL
 -   Hinzufügen von lastCommunication in den Szenarien (um das letzte Kommunikationsdatum eines Geräts zu haben)
--   Echtzeitaktualisierung von Diagrammen (einfach, nicht berechnund oder Zeitleisten)
+-   Echtzeitaktualisierung von Diagrammen (einfach, nicht berechnet oder Zeitleisten)
 -   Möglichkeit, ein Element aus der Entwurfskonfiguration zu löschen
 -   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht)
 -   Szenario-Widgets werden jetzt standardmäßig im Dashboard angezeigt
--   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen).
+-   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen)
 -   Möglichkeit, den Szenarien ein Symbol hinzuzufügen
 -   Hinzufügen der Daemon-Verwaltung in der Task-Engine
 -   Hinzufügen der Funktion color_gradient in den Szenarien
@@ -270,7 +270,7 @@ Changelog
 - Verbesserung des Aktualisierungsprozesses insbesondere beim Kopieren von Dateien, bei dem nun die Größe der kopierten Datei überprüft wird.
 - Fehlerbehebungen bei den Funktionen stateDuration, lastStateDuration und lastChangeStateDuration (danke @kiboost).
 - Optimierung der Linkgraphenberechnung und Verwendung von Variablen.
-- Verbesserung des Fensters mit den Cron-Aufgabendetails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost)..
+- Verbesserung des Fensters mit den Cron-Aufgabendetails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost).
 
 3.2.9
 =====
@@ -287,7 +287,7 @@ Changelog
 - Fehlerbehebungen
 - Hinzufügen einer Option in der Jeedom-Administration zur Angabe des lokalen IP-Bereichs (nützlich bei Docker-Installationen)
 - Korrektur eines Fehlers bei der Berechnung der Verwendung von Variablen
-- Hinzufügen eines Indikators auf der Gesundheitsseite, der die Anzahl der Prozesse angibt, die aufgrund von Speichermangel abgebrochen wurden (insgesamt bedeutund dies, dass die Jeedom zu geladen ist).
+- Hinzufügen eines Indikators auf der Gesundheitsseite, der die Anzahl der Prozesse angibt, die aufgrund von Speichermangel abgebrochen wurden (insgesamt bedeutet dies, dass die Jeedom zu geladen ist)
 - Verbesserter Datei-Editor
 
 3.2.7
@@ -329,7 +329,7 @@ Changelog
 3.2.2
 =====
 
--   Entfernung des alten Widget-Update-Systems (veraltund seit Version 3.0). Achtung, wenn Ihr Widgund das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung).. Beispiel Widgund [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Entfernung des alten Widget-Update-Systems (veraltet seit Version 3.0). Achtung, wenn Ihr Widget das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung). Beispiel Widget [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren
 
 -   Benutzer können jetzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
@@ -340,7 +340,7 @@ Changelog
 
 -   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
 
--   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets).
+-   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets)
 
 -   Korrektur eines Rechtefehlers nach Wiederherstellung einer Sicherung
 
@@ -366,7 +366,7 @@ Changelog
 -   Jeed-186 : Wir können jetzt die Hintergrundfarbe in der auswählen
     designs
 
--   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen.
+-   Für Block A besteht die Möglichkeit, eine Stunde zwischen 12:01 Uhr und 12:59 Uhr einzustellen
     indem Sie einfach die Minuten eingeben (ex 30 für 00:30)
 
 -   Hinzufügen von aktiven Sitzungen und Geräten, die auf der registriert sind
@@ -376,7 +376,7 @@ Changelog
 -   Jeed-284 : Die dauerhafte Verbindung hängt jetzt von einem Schlüssel ab
     Einzelbenutzer und Gerät (statt Benutzer)
 
--   Jeed-283 : Hinzufügen eines * Rettungs * -Modus zur Jeedom durch Hinzufügen von &amp; Rescue = 1
+-   Jeed-283 : Hinzufügen eines Modus *Rettung* zur Freiheit durch Hinzufügen & Rettung = 1
     in der URL
 
 -   Jeed-8 : Hinzufügen des Namens des Szenarios zum Titel der Seite während
@@ -407,7 +407,7 @@ Changelog
 -   Jeed-77 : Hinzufügen der Variablenverwaltung in der http-API
 
 -   Jeed-78 : Hinzufügen der Tag-Funktion für Szenarien. Sei dort vorsichtig
-    muss in den Szenarien mit den Tags von \#montag \ übergeben werden#
+    muss in den Szenarien mit den Tags von \ übergeben werden#montag\#
     zu markieren (montag)
 
 -   Jeed-124 : Korrigieren Sie die Verwaltung von Szenario-Timeouts
@@ -519,7 +519,7 @@ Changelog
     Widget-Position
 
 -   Hinzufügen eines Parameters reply\_cmd für anzugebende Interaktionen
-    Die ID des Befehls, mit dem geantwortund werden soll
+    Die ID des Befehls, mit dem geantwortet werden soll
 
 -   Hinzufügen einer Zeitleiste auf der Verlaufsseite (Aufmerksamkeit muss erforderlich sein
     wird bei jedem gewünschten Befehl und / oder Szenario aktiviert
@@ -545,7 +545,7 @@ Changelog
 -   Möglichkeit, Geräte-Widgets von neu anzuordnen
     Dashboard (im Bearbeitungsmodus Rechtsklick auf das Widget)
 
--   Ändern Sie die Tonhöhe der Widgets (von 40 \* 80 auf 10 \* 10).. Sei vorsichtig
+-   Ändern Sie die Tonhöhe von Widgets (von 40 \*80 bis 10 \*10). Sei vorsichtig
     wirkt sich auf das Layout Ihres Dashboards / Ihrer Ansicht / Ihres Designs aus
 
 -   Möglichkeit, Objekten auf dem eine Größe von 1 bis 12 zuzuweisen
@@ -594,7 +594,7 @@ Changelog
     Update, das einen Ajax-Aufruf an Jeedom vermeidet
 
 -   Szenario-Widgets werden jetzt ohne Ajax-Aufrufe aktualisiert
-    um das Widgund zu bekommen
+    um das Widget zu bekommen
 
 -   Die globale Zusammenfassung und Teile werden jetzt ohne Berufung aktualisiert
     ajax
@@ -633,13 +633,13 @@ Changelog
 
     -   Möglichkeit zum Hinzufügen von Zonen (anklickbarer Ort) :
 
-        -   Makrotypbereich : startund eine Reihe von Aktionen während a
+        -   Makrotypbereich : startet eine Reihe von Aktionen während a
             Klicken Sie darauf
 
-        -   Binärer Typbereich : startund eine Reihe von Aktionen während a
+        -   Binärer Typbereich : startet eine Reihe von Aktionen während a
             Klicken Sie darauf, abhängig vom Status einer Bestellung
 
-        -   Widget-Typ-Bereich : Zeigt beim Klicken oder Bewegen des Mauszeigers ein Widgund an
+        -   Widget-Typ-Bereich : Zeigt beim Klicken oder Bewegen des Mauszeigers ein Widget an
             des Gebiets
 
     -   Allgemeine Codeoptimierung
@@ -669,7 +669,7 @@ Changelog
 
 -   Hinzufügen von Modulen in Alarmbereitschaft zur Batterieseite
 
--   Objekte ohne Widgund werden automatisch im Dashboard ausgeblendet
+-   Objekte ohne Widget werden automatisch im Dashboard ausgeblendet
 
 -   Hinzufügen einer Schaltfläche in der erweiterten Konfiguration von a
     Ausrüstung / eines Befehls, um die Ereignisse von zu sehen
@@ -679,7 +679,7 @@ Changelog
     conditions
 
 -   Doppelklicken Sie auf die Befehlszeile (auf der Seite
-    Konfiguration) öffnund nun die erweiterte Konfiguration von
+    Konfiguration) öffnet nun die erweiterte Konfiguration von
     celle-ci
 
 -   Möglichkeit, bestimmte Werte für eine Bestellung zu verbieten (in der
@@ -756,12 +756,12 @@ Changelog
     Zusammenfassungen
 
 -   Fähigkeit, Synonyme für Objekte, Geräte zu definieren,
-    Befehle und Zusammenfassungen, die in Antworten verwendund werden
+    Befehle und Zusammenfassungen, die in Antworten verwendet werden
     Kontext und Zusammenfassungen
 
--   Jeedom weiß, wie man mehrere verwandte Interaktionen verwaltund (kontextbezogen).
+-   Jeedom weiß, wie man mehrere verwandte Interaktionen verwaltet (kontextbezogen)
     in einem. Sie müssen durch ein Schlüsselwort getrennt werden (standardmäßig und).
-    Beispiel : "Wie viel kostund es im Schlafzimmer und im Wohnzimmer? "Oder
+    Beispiel : "Wie viel kostet es im Schlafzimmer und im Wohnzimmer? "Oder
     "Schalten Sie das Licht in Küche und Schlafzimmer ein."
 
 -   Der Status der Szenarien auf der Bearbeitungsseite wird jetzt auf gesetzt
@@ -928,7 +928,7 @@ Changelog
 -   zufälliges Umschalten des Backups nachts (zwischen 2h10 und 3h59) für
     Vermeiden Sie Marktüberlastungsprobleme
 
--   Fix Widgund Markt
+-   Fix Widget Markt
 
 -   Korrektur eines Fehlers beim Marktzugang (Timeout)
 
@@ -938,7 +938,7 @@ Changelog
     / tmp ist zu klein (Vorsicht, die Korrektur wird bei wirksam
     Update n + 1)
 
--   Hinzufügen eines * jeedom\_name * -Tags in den Szenarien (gibt den Namen an
+-   Tag hinzufügen *Jeedom\_name* in den Szenarien (geben Sie den Namen
     jeedom)
 
 -   Fehlerbehebungen
@@ -976,7 +976,7 @@ Changelog
 -   Hinzufügen eines Samba &quot;Repo&quot; (verwendbar, um Backups auf einem zu pushen
     Samba-Server und Plugins wiederherstellen)
 
--   Hinzufügen eines FTP &quot;Repo&quot; (kann verwendund werden, um Backups auf einem zu pushen
+-   Hinzufügen eines FTP &quot;Repo&quot; (kann verwendet werden, um Backups auf einem zu pushen
     FTP-Server und Wiederherstellungs-Plugins)
 
 -   Ergänzung für bestimmte &quot;Repo&quot; der Möglichkeit der Wiederherstellung des Kerns von
@@ -1039,8 +1039,8 @@ Changelog
 
 -   Optimierung der Aktualisierung von Befehls- und Geräte-Widgets
 
--   Hinzufügen eines Tags * begin\_backup *, * end\_backup *, * begin\_update*,
-    *end\_update *, * begin\_restore *, * end\_restore * in Szenarien
+-   Tag hinzufügen *begin\_backup*, *end\_backup*, *begin\_update*,
+    *end\_update*, *begin\_restore*, *end\_restore* in den Szenarien
 
 2.2
 ---
@@ -1050,7 +1050,7 @@ Changelog
 -   Vereinfachung des Zugriffs auf Plugin-Konfigurationen von
     die Gesundheitsseite
 
--   Hinzufügen eines Symbols, das angibt, ob der Dämon beim Debuggen gestartund wird oder nicht
+-   Hinzufügen eines Symbols, das angibt, ob der Dämon beim Debuggen gestartet wird oder nicht
 
 -   Hinzufügen einer globalen Verlaufskonfigurationsseite
     (Zugriff über die Verlaufsseite)
@@ -1074,7 +1074,7 @@ Changelog
 
 -   Neugestaltung des Jeedom-Cache-Systems (Verwendung von
     versteckte Lehre). Dies ermöglicht zum Beispiel, Jeedom mit einem zu verbinden
-    Redis oder Memcached Server. Standardmäßig verwendund Jeedom ein System von
+    Redis oder Memcached Server. Standardmäßig verwendet Jeedom ein System von
     Dateien (und nicht mehr die MySQL-Datenbank, mit der Sie eine herunterladen können
     bit), es ist in / tmp, daher wird es empfohlen, wenn Sie
     haben mehr als 512 MB RAM, um das / tmp in tmpfs (im RAM für
@@ -1171,7 +1171,7 @@ Changelog
 
 -   Neugestaltung des Jeedom-Cache-Systems (Verwendung von
     versteckte Lehre). Dies ermöglicht zum Beispiel, Jeedom mit einem zu verbinden
-    Redis oder Memcached Server. Standardmäßig verwendund Jeedom ein System von
+    Redis oder Memcached Server. Standardmäßig verwendet Jeedom ein System von
     Dateien (und nicht mehr die MySQL-Datenbank, mit der Sie eine herunterladen können
     bit), es ist in / tmp, daher wird es empfohlen, wenn Sie
     haben mehr als 512 MB RAM, um das / tmp in tmpfs (im RAM für

@@ -11,7 +11,7 @@ Temas
 
 O painel de temas permite ajustar os parâmetros da interface :
 
--   **Desktop** : tema a ser usado no modo área de trabalho, tenha cuidado apenas com o
+-   **Área de Trabalho** : tema a ser usado no modo área de trabalho, tenha cuidado apenas com o
     O tema padrão é oficialmente suportado pelo Jeedom
 
 -   **Cor móvel** : permite escolher a cor da interface
@@ -52,7 +52,7 @@ Permite definir certos comportamentos de interface :
 -   **Painel padrão Assunto** : objeto de exibição padrão
     na chegada no painel / móvel
 
--   **Modo de exibição padrão** : para exibir por padrão ao chegar em
+-   **Vista par défaut** : para exibir por padrão ao chegar em
     o painel / móvel
 
 -   **Projeto padrão** : design para exibir por padrão quando
@@ -61,12 +61,12 @@ Permite definir certos comportamentos de interface :
     -   **Tela cheia** : exibição padrão em tela cheia quando
         a chegada dos desenhos
         
--   **Dashboard**
+-   **Painel de instrumentos**
 
     -   **Desdobrar os objectos de painel** : permite tornar visível por
         padronize o menu de objetos (à esquerda) no painel
 
--   **Vue**
+-   **Vista**
 
     -   **Desdobrar o painel de vista** : permite tornar visível por
         menu de visualizações padrão (esquerda) nas visualizações

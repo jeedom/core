@@ -52,7 +52,7 @@ Allows you to define certain interface behaviors :
 -   **Default object on the dashboard** : default display object
     upon arrival on the dashboard / mobile
 
--   **Default view** : view to display by default when arriving on
+-   **View par défaut** : view to display by default when arriving on
     the dashboard / mobile
 
 -   **Default design** : design to display by default when
@@ -66,7 +66,7 @@ Allows you to define certain interface behaviors :
     -   **Unfold the objects panel** : allows to make visible by
         default the objects menu (on the left) on the dashboard
 
--   **Vue**
+-   **View**
 
     -   **Unfold the view panel** : allows to make visible by
         default views menu (left) on views

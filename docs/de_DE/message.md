@@ -14,7 +14,7 @@ Oben befindet sich ein Selektor zum Filtern von Nachrichten auf einem
 bestimmtes Plugin und alles klar eine Schaltfläche, um alle zu leeren
 messages.
 
-> **Tip**
+> **Spitze**
 >
 > Wenn im Message Center ein Fehler auftritt, versuchen Sie es
 > Löschen Sie zuerst die Nachricht und prüfen Sie dann, ob der Fehler zuvor erneut auftritt

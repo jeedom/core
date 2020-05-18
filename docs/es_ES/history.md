@@ -2,7 +2,7 @@ Parte importante en el software : la parte de historización, real
 recuerdo de ello. En Jeedom es posible historizar cualquier
 qué comando de tipo de información (binario o digital). Que tu
 por lo tanto, permitirá, por ejemplo, historizar una curva de temperatura,
-consumo o apertura de puertas ...
+consumo o apertura de puertas
 
 Principio 
 ========
@@ -32,15 +32,15 @@ Aquí 2 parámetros, uno para el tamaño del paquete y otro para conocer
 cuándo hacerlo (por defecto, estos son paquetes
 1 hora con datos que tienen más de 2 horas de antigüedad).
 
-> **Tip**
+> **Punta**
 >
 > Si ha seguido bien, debe tener una alta precisión en el
-> Últimas 2 horas solamente. Sin embargo, cuando inicio sesión a las 5 p.m.,
-> Tengo una aclaración sobre las últimas 17 horas.. Por qué ? De hecho,
+> Últimas 2 horas solamente. Sin embargo, cuando inicio sesión a las 5 p.m,
+> Tengo una aclaración sobre las últimas 17 horas. Por qué ? De hecho,
 > para evitar consumir recursos innecesariamente, la tarea que hace
 > el archivo se realiza solo una vez al día, por la tarde.
 
-> **Important**
+> **Importante**
 >
 > Por supuesto, este principio de archivo solo se aplica a pedidos de
 > tipo digital; en comandos de tipo binario, Jeedom no mantiene
@@ -49,7 +49,7 @@ cuándo hacerlo (por defecto, estos son paquetes
 Ver un gráfico 
 ========================
 
-Hay varias formas de acceder al historial. :
+Hay varias formas de acceder al historial :
 
 -   poniendo un área de gráfico en una vista (ver más abajo),
 
@@ -69,19 +69,19 @@ semana porque por defecto quiero que sea solo una semana - ver
 (estos parámetros se guardan de una pantalla a otra; por lo tanto,
 que configurarlos una vez).
 
--   **Escalier** : muestra la curva como un
+-   **Escalera** : muestra la curva como un
     escalera o pantalla continua.
 
--   **Variation** : muestra la diferencia en valor de
+-   **Cambio** : muestra la diferencia en valor de
     punto anterior.
 
--   **Ligne** : muestra el gráfico como líneas.
+-   **Línea** : muestra el gráfico como líneas.
 
--   **Aire** : muestra el gráfico como un área.
+-   **área** : muestra el gráfico como un área.
 
--   **Colonne**\* : muestra el gráfico como barras.
+-   **Columna**\* : muestra el gráfico como barras.
 
-Gráfico sobre vistas y diseños. 
+Gráfico sobre vistas y diseños 
 =====================================
 
 También puede mostrar los gráficos en las vistas (veremos aquí
@@ -91,27 +91,27 @@ las opciones :
 
 Una vez que se activan los datos, puede elegir :
 
--   **Couleur** : el color de la curva.
+-   **Color** : el color de la curva.
 
--   **Type** : El tipo de gráfico (área, línea o columna).
+-   **Tipo** : El tipo de gráfico (área, línea o columna).
 
--   **Echelle** : ya que puedes poner varias curvas (datos)
+-   **Escala** : ya que puedes poner varias curvas (datos)
     en el mismo gráfico, es posible distinguir las escalas
     (derecha o izquierda).
 
--   **Escalier** : muestra la curva como un
+-   **Escalera** : muestra la curva como un
     escalera o pantalla continua
 
--   **Empiler** : permite apilar los valores de las curvas (ver en
+-   **Montón** : permite apilar los valores de las curvas (ver en
     a continuación para el resultado).
 
--   **Variation** : muestra la diferencia en valor de
+-   **Cambio** : muestra la diferencia en valor de
     punto anterior.
 
 Opción en la página del historial 
 ===============================
 
-La página del historial da acceso a algunas opciones adicionales.
+La página del historial da acceso a algunas opciones adicionales
 
 Historia calculada 
 ------------------
@@ -119,13 +119,13 @@ Historia calculada
 Se usa para mostrar una curva basada en un cálculo en varios
 comando (puedes hacer casi todo, + - / \* valor absoluto ... ver
 Documentación PHP para ciertas funciones). Ex :
-abs (* \ [Jardín \] \ [Higrometría \] \ [Temperatura \] * - * \ [Espacio de
+abs (*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio de
 La vida \] \ [Humedad \] \ [Temperatura \] *)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite
 guárdelos para verlos más fácilmente
 
-> **Tip**
+> **Punta**
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo;
 > aparecen los comandos históricos que se pueden graficar.
@@ -135,7 +135,7 @@ Historial de pedidos
 
 Frente a cada dato que se puede graficar, encontrará dos íconos :
 
--   **Poubelle** : permite eliminar los datos grabados; entonces
+-   **Cubo de basura** : permite eliminar los datos grabados; entonces
     del clic, Jeedom pregunta si es necesario eliminar los datos antes de un
     cierta fecha o todos los datos.
 
@@ -160,13 +160,13 @@ chronologique.
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de
 comandos o escenarios deseados :
 
--   **Scenario** : ya sea directamente en la página del escenario o en el
+-   **Guión** : ya sea directamente en la página del escenario o en el
     página de resumen del escenario para hacerlo en "masa"
 
--   **Commande** : ya sea en la configuración avanzada del comando,
+-   **Orden** : ya sea en la configuración avanzada del comando,
     ya sea en la configuración de la historia para hacerlo en "masa"
 
-> **Tip**
+> **Punta**
 >
 > Tiene acceso a las ventanas de resumen de los escenarios o del
 > configuración del historial directamente desde la página
@@ -175,17 +175,17 @@ comandos o escenarios deseados :
 Una vez que haya habilitado el seguimiento en la línea de tiempo del pedido y
 escenarios deseados, puede verlos aparecer en la línea de tiempo.
 
-> **Important**
+> **Importante**
 >
 > Debe esperar nuevos eventos después de activar el seguimiento
 > en la línea de tiempo antes de verlos aparecer.
 
 Las tarjetas en la línea de tiempo muestran :
 
--   **Comando de acción** : en fondo rojo, un ícono a la derecha le permite
+-   **Orden action** : en fondo rojo, un ícono a la derecha le permite
     muestra la ventana de configuración avanzada del comando
 
--   **Comando de información** : en fondo azul, un icono a la derecha le permite
+-   **Orden info** : en fondo azul, un icono a la derecha le permite
     muestra la ventana de configuración avanzada del comando
 
 -   **Guión** : en fondo gris, tienes 2 iconos : uno para mostrar

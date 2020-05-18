@@ -2,23 +2,23 @@ Esta página le permite crear una vista 3D de su hogar que puede reaccionar depe
 
 Es accesible por Inicio → Panel de control
 
-> **Tip**
+> **Punta**
 >
 > Es posible ir directamente a un diseño 3D gracias al submenú.
 
 # Importando el modelo 3D
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > No puede crear su modelo 3D directamente en Jeedom, debe hacerlo con un software de terceros. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa SweetHome3d, esto se hace desde el menú "Vista 3D" y luego "Exportar a formato OBJ". Luego tome todos los archivos generados y póngalos en un archivo zip (puede haber muchos archivos debido a las texturas).
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > Los archivos deben estar en la raíz del zip no está en una subcarpeta
 
-> **ATTENTION**
+> **ATENCIÓN**
 >
 > Un modelo 3D es bastante impresionante (esto puede representar varios cientos de MB). Cuanto más grande es, mayor es el tiempo de representación en Jeedom.
 
@@ -35,22 +35,22 @@ Puedes desde esta pantalla :
 
 Haga clic en el botón &quot;enviar&quot; en el nivel &quot;Modelo 3D&quot; y seleccione su archivo zip
 
-> **ATTENTION**
+> **ATENCIÓN**
 >
 > Jeedom autoriza la importación de un archivo de 150mo como máximo !
 
-> **ATTENTION**
+> **ATENCIÓN**
 >
 > Debes tener un archivo zip
 
-> **Tip**
+> **Punta**
 >
 > Una vez que se haya importado el archivo (puede ser bastante largo dependiendo del tamaño del archivo), debe actualizar la página para ver el resultado (F5)
 
 
 # Configuracion de elementos
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
 > La configuración solo se puede hacer en modo edición
 
@@ -65,7 +65,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 - Estatus : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
 - Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad)
 
-## Texte
+## Texto
 
 - Texto : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo)
 - Tamaño del texto
@@ -95,7 +95,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 	- Color abierto : si está marcado, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : si está marcado, el elemento tomará este color si la puerta / ventana está cerrada
 
-### Volet
+### Solapa
 
 - Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
@@ -103,10 +103,10 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 - Couleur
 	- Color cerrado : si está marcado, el elemento tomará este color si el obturador está cerrado
 
-## Color condicional
+## Color conditionnelle
 
 Permite dar el color elegido al elemento si la condición es válida. Puedes poner tantos colores / condiciones como quieras.
 
-> **Tip**
+> **Punta**
 >
 > Las condiciones se evalúan en orden, se tomará la primera que sea verdadera, por lo tanto, las siguientes no se evaluarán

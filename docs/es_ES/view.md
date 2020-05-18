@@ -2,13 +2,13 @@ Las vistas simplemente le permiten crear una vista personalizada. este
 No es tan poderoso como los diseños, pero permite en algunos
 minutos para tener una pantalla más personalizada.
 
-Se puede acceder a las vistas desde el menú Inicio → Ver. :
+Se puede acceder a las vistas desde el menú Inicio → Ver :
 
-> **Tip**
+> **Punta**
 >
 > Es posible ir directamente a una vista gracias al submenú.
 
-> **Tip**
+> **Punta**
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic
 > en el menú de vistas.
@@ -24,7 +24,7 @@ En esta página, hay un botón en la parte superior izquierda para mostrar o
 ocultar la lista de vistas y el botón para agregar uno
 (Jeedom le preguntará su nombre y lo enviará a la página de edición) :
 
-> **Tip**
+> **Punta**
 >
 > Puede modificar esta opción en su perfil para que la lista
 > las vistas serán visibles por defecto.
@@ -34,12 +34,12 @@ Un botón en la parte superior derecha le permite editar la vista actual.
 Agregar / Editar una vista 
 =======================
 
-El principio es bastante simple. : una vista se compone de áreas (puede
+El principio es bastante simple : una vista se compone de áreas (puede
 pon todo lo que quieras). Cada zona es de tipo gráfico, widget
 o tabla, dependiendo del tipo que pueda poner widgets
 de equipo, control o gráficos en él.
 
-> **Tip**
+> **Punta**
 >
 > Puede mover el orden de las zonas arrastrando y soltando.
 
@@ -55,12 +55,12 @@ su nombre y tipo.
 
 En cada zona tienes las siguientes opciones generales :
 
--   **Largeur** : define el ancho del área (en modo
+-   **Ancho** : define el ancho del área (en modo
     solo escritorio)
 
--   **Editer** : permite cambiar el nombre de la zona
+-   **Editar** : permite cambiar el nombre de la zona
 
--   **Supprimer** : permite eliminar la zona
+-   **Remove** : permite eliminar la zona
 
 Área de tipo de widget 
 -------------------
@@ -70,12 +70,12 @@ Un área de tipo de widget le permite agregar widgets :
 -   **Agregar widget** : agregar / editar widgets a
     mostrar en el área
 
-> **Tip**
+> **Punta**
 >
 > Puede eliminar un widget directamente haciendo clic en el
 > bote de basura en frente de este.
 
-> **Tip**
+> **Punta**
 >
 > Es posible cambiar el orden de los widgets en el área por
 > arrastrar / soltar.
@@ -98,28 +98,28 @@ Cuando presiona el botón &quot;Agregar curva&quot;, Jeedom muestra la lista
 comandos históricos y puede elegir los que desea agregar, un
 Una vez hecho esto, tiene acceso a las siguientes opciones :
 
--   **Poubelle** : eliminar comando del gráfico
+-   **Cubo de basura** : eliminar comando del gráfico
 
--   **Nom** : nombre del comando graficado
+-   **Apellido** : nombre del comando graficado
 
--   **Couleur** : color de la curva
+-   **Color** : color de la curva
 
--   **Type** : tipo de curva
+-   **Tipo** : tipo de curva
 
--   **Groupement** : permite la agrupación de datos (tipo máximo
+-   **Grupo** : permite la agrupación de datos (tipo máximo
     por día)
 
--   **Echelle** : escala (derecha o izquierda) de la curva
+-   **Escala** : escala (derecha o izquierda) de la curva
 
--   **Escalier** : muestra la curva escalonada
+-   **Escalera** : muestra la curva escalonada
 
--   **Empiler** : apilar la curva con las curvas de otro tipo
+-   **Montón** : apilar la curva con las curvas de otro tipo
     empiler
 
--   **Variation** : grafica solo variaciones con valor
+-   **Cambio** : grafica solo variaciones con valor
     anterior
 
-> **Tip**
+> **Punta**
 >
 > Es posible cambiar el orden de los gráficos en el área por
 > arrastrar / soltar.
@@ -133,7 +133,7 @@ Aqui tienes los botones :
 
 -   **Agregar línea** : agregar una fila a la mesa
 
-> **Note**
+> **Nota**
 >
 > Es posible reorganizar las líneas arrastrando y soltando, pero no
 > las columnas
@@ -141,9 +141,9 @@ Aqui tienes los botones :
 Una vez que haya agregado sus filas / columnas, puede agregar
 información en las cajas :
 
--   **texte** : solo texto para escribir
+-   **texto** : solo texto para escribir
 
--   **html** : cualquier código HTML (javascript posible pero
+-   **HTML** : cualquier código html (javascript posible pero
     fuertemente desanimado)
 
 -   **widget de comando** : el botón de la derecha te permite elegir

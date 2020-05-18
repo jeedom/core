@@ -3,17 +3,17 @@ Descrição
 
 O **Update Center** permite atualizar todos
 Recursos Jeedom, incluindo software básico,
-plugins, widgets, etc.. Outras funções de gerenciamento de extensão
+plugins, widgets, etc. Outras funções de gerenciamento de extensão
 estão disponíveis (excluir, reinstalar, verificar etc.)
 
 A página Centro de Atualização 
 ================================
 
 É acessível a partir do menu **Administração → Centro de atualização
-jour**.
+Dia**.
 
 Você encontrará, à esquerda, todas as funcionalidades do
-Jeedom e na parte direita **Informations** quem descreve o que ele
+Jeedom e na parte direita **Informação** quem descreve o que ele
 aconteceu, quando você lançou uma atualização.
 
 Funções no topo da página. 
@@ -45,16 +45,16 @@ Opções :
 -   **Update para reaplicar** : Permite reaplicar uma aposta
     atualizado. (NB : Nem todas as atualizações podem ser reaplicadas.)
 
-> **Important**
+> **IMPORTANTE**
 >
 > Antes de uma atualização, por padrão, o Jeedom fará um backup. Em
 > Se houver um problema ao aplicar uma atualização, o Jeedom irá
 > restaurar automaticamente o backup feito logo antes. Este princípio
 > é válido apenas para atualizações do Jeedom e não para plugins.
 
-> **Tip**
+> **Dica**
 >
-> Você pode forçar uma atualização do Jeedom, mesmo que isso não ocorra.
+> Você pode forçar uma atualização do Jeedom, mesmo que isso não ocorra
 > não ofereça nenhum.
 
 A tabela de atualização 
@@ -65,16 +65,16 @@ A tabela consiste em duas guias :
 -   **Núcleo e plugins** : Contém o software básico Jeedom e
     lista de plugins instalados.
 
--   **Autre** : Contém widgets, scripts etc..
+-   **Outro** : Contém widgets, scripts etc.
 
-Você encontrará as seguintes informações : \* **Statut** : OK ou NOK.
-Permite saber o estado atual do plug-in. \* **Nom** : Voce ai
+Você encontrará as seguintes informações : \* **Estado** : OK ou NOK.
+Permite que você saiba o estado atual do plug-in. \* **Nome** : Voce ai
 encontre a fonte do elemento, o tipo de elemento e seu nome. \*
-**Version** : Indica a versão específica do item. \* **Options** :
-Marque esta caixa se não desejar que este item seja atualizado.
+**Versão** : Indica a versão específica do item. \* **Opções** :
+Marque esta caixa se não desejar que este item seja atualizado
 dia durante a atualização geral (Button **Atualizar**).
 
-> **Tip**
+> **Dica**
 >
 > Para cada tabela, a primeira linha permite o seguinte filtro
 > o estado, nome ou versão dos elementos presentes.
@@ -84,7 +84,7 @@ todo elemento :
 
 -   **Reinstalar** : Forçar reassentamento.
 
--   **Supprimer** : Permite desinstalá-lo.
+-   **Remover** : Permite desinstalá-lo.
 
 -   **Verificar** : Consulte a fonte de atualizações para descobrir se
     uma nova atualização está disponível.
@@ -95,7 +95,7 @@ todo elemento :
 -   **Changelog** : Acesse a lista de alterações no
     Update.
 
-> **Important**
+> **IMPORTANTE**
 >
 > Se o changelog estiver vazio, mas você ainda tiver uma atualização
 > update significa que a documentação foi atualizada.
@@ -103,7 +103,7 @@ todo elemento :
 > mudanças, uma vez que não há necessariamente. (geralmente é uma aposta
 > tradução da documentação)
 
-> **Tip**
+> **Dica**
 >
 > Note que "core : jeedom "significa" atualizar o software
 > Base de Jeedom".
@@ -118,7 +118,7 @@ Uma vez conectado, este é o comando para executar :
 
 Os possíveis parâmetros são :
 
--   **`mode`** : `force ', para iniciar uma atualização no modo forçado (não
+-   **`moda`** : `force ', para iniciar uma atualização no modo forçado (não
     ignora erros).
 
 -   **`version`** : seguido do número da versão, para reaplicar o

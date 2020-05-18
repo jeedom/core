@@ -2,13 +2,13 @@ Mit Ansichten können Sie einfach eine benutzerdefinierte Ansicht erstellen. die
 ist nicht so leistungsfähig wie die Designs, aber es erlaubt in einigen
 Minuten, um eine persönlichere Anzeige zu erhalten.
 
-Auf die Ansichten kann über das Menü Start → Ansicht zugegriffen werden. :
+Auf die Ansichten kann über das Menü Start → Ansicht zugegriffen werden :
 
-> **Tip**
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einer Ansicht zu gelangen.
 
-> **Tip**
+> **Spitze**
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf klicken
 > im Menü Ansichten.
@@ -24,7 +24,7 @@ Auf dieser Seite befindet sich oben links eine Schaltfläche zum Anzeigen von od
 Blenden Sie die Liste der Ansichten und die Schaltfläche zum Hinzufügen einer aus
 (Jeedom fragt nach seinem Namen und schickt Sie zur Bearbeitungsseite.) :
 
-> **Tip**
+> **Spitze**
 >
 > Sie können diese Option in Ihrem Profil so ändern, dass die Liste
 > Ansichten sollen standardmäßig sichtbar sein.
@@ -39,7 +39,7 @@ setze so viel du willst). Jede Zone ist vom Grafiktyp Widget
 oder Tabelle, je nach Typ können Sie Widgets setzen
 von Ausrüstung, Steuerung oder Grafik darin.
 
-> **Tip**
+> **Spitze**
 >
 > Sie können die Reihenfolge der Zonen durch Ziehen und Ablegen verschieben.
 
@@ -55,12 +55,12 @@ sein Name und Typ.
 
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
--   **Largeur** : Definiert die Breite des Bereichs (im Modus
+-   **Breite** : Definiert die Breite des Bereichs (im Modus
     nur Desktop)
 
--   **Editer** : ermöglicht das Ändern des Namens der Zone
+-   **Bearbeiten** : ermöglicht das Ändern des Namens der Zone
 
--   **Supprimer** : ermöglicht das Löschen der Zone
+-   **Entfernen** : ermöglicht das Löschen der Zone
 
 Widget-Typ-Bereich 
 -------------------
@@ -70,12 +70,12 @@ In einem Widget-Typbereich können Sie Widgets hinzufügen :
 -   **Widget hinzufügen** : Widgets hinzufügen / bearbeiten zu
     Anzeige im Bereich
 
-> **Tip**
+> **Spitze**
 >
 > Sie können ein Widget direkt löschen, indem Sie auf klicken
 > Mülleimer vor diesem.
 
-> **Tip**
+> **Spitze**
 >
 > Es ist möglich, die Reihenfolge der Widgets in der Umgebung um zu ändern
 > Drag / Drop.
@@ -98,28 +98,28 @@ Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeed
 historische Befehle und Sie können die hinzuzufügenden Befehle auswählen, a
 Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
--   **Poubelle** : Befehl aus Diagramm entfernen
+-   **Mülleimer** : Befehl aus Diagramm entfernen
 
--   **Nom** : Befehlsname grafisch dargestellt
+-   **Name** : Befehlsname grafisch dargestellt
 
--   **Couleur** : Farbe der Kurve
+-   **Farbe** : Farbe der Kurve
 
--   **Type** : Kurventyp
+-   **Typ** : Kurventyp
 
--   **Groupement** : ermöglicht die Gruppierung von Daten (maximaler Typ
+-   **Gruppe** : ermöglicht die Gruppierung von Daten (maximaler Typ
     pro Tag)
 
--   **Echelle** : Skala (rechts oder links) der Kurve
+-   **Maßstab** : Skala (rechts oder links) der Kurve
 
--   **Escalier** : zeigt die gestufte Kurve an
+-   **Treppe** : zeigt die gestufte Kurve an
 
--   **Empiler** : Stapeln Sie die Kurve mit den anderen Kurventypen
+-   **Stapel** : Stapeln Sie die Kurve mit den anderen Kurventypen
     empiler
 
--   **Variation** : Nur Variationen mit Wert grafisch darstellen
+-   **Veränderung** : Nur Variationen mit Wert grafisch darstellen
     früher
 
-> **Tip**
+> **Spitze**
 >
 > Es ist möglich, die Reihenfolge der Grafiken in dem Bereich um zu ändern
 > Drag / Drop.
@@ -133,7 +133,7 @@ Hier haben Sie die Schaltflächen :
 
 -   **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu
 
-> **Note**
+> **Notiz**
 >
 > Es ist möglich, die Linien durch Ziehen und Ablegen neu zu organisieren, jedoch nicht
 > die Spalten
@@ -141,9 +141,9 @@ Hier haben Sie die Schaltflächen :
 Sobald Sie Ihre Zeilen / Spalten hinzugefügt haben, können Sie hinzufügen
 Informationen in den Feldern :
 
--   **texte** : Nur Text zum Schreiben
+-   **Text** : Nur Text zum Schreiben
 
--   **html** : jeder HTML-Code (Javascript möglich aber
+-   **HTML** : jeder HTML-Code (Javascript möglich aber
     stark entmutigt)
 
 -   **Befehls-Widget** : Über die Schaltfläche rechts können Sie auswählen

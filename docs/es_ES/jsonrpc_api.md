@@ -2,7 +2,7 @@ Aquí hay documentación sobre métodos API. Primero aquí está
 las especificaciones (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-El acceso a la API es a través de la url : *URL\_JEEDOM * / core / api / jeeApi.php
+El acceso a la API es a través de la url : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -88,7 +88,7 @@ API JSON de objetos
 object::all
 -----------
 
-Devuelve la lista de todos los objetos.
+Devuelve la lista de todos los objetos
 
 object::full
 ------------
@@ -100,7 +100,7 @@ estados de estos (para comandos de tipo de información)
 object::fullById
 ----------------
 
-Devuelve un objeto con todo su equipo y para cada equipo.
+Devuelve un objeto con todo su equipo y para cada equipo
 todos sus comandos, así como sus estados (para
 comandos de tipo de información)
 
@@ -151,7 +151,7 @@ API de resumen JSON
 summary::global
 ---------------
 
-Devuelve el resumen total de la clave pasada en el parámetro
+Devuelve el resumen global de la clave pasada en el parámetro
 
 Configuraciones:
 
@@ -161,7 +161,7 @@ Configuraciones:
 summary::byId
 -------------
 
-Devuelve el resumen de la identificación del objeto.
+Devuelve el resumen de la identificación del objeto
 
 Configuraciones:
 
@@ -176,12 +176,12 @@ API JSON EqLogic
 eqLogic::all
 ------------
 
-Devuelve la lista de todos los equipos.
+Devuelve la lista de todos los equipos
 
 eqLogic::fullById
 -----------------
 
-Devuelve el equipo y sus comandos, así como sus estados.
+Devuelve el equipo y sus comandos, así como sus estados
 (para pedidos de tipo de información)
 
 Configuraciones:
@@ -191,7 +191,7 @@ Configuraciones:
 eqLogic::byId
 -------------
 
-Devuelve el equipo especificado.
+Devuelve el equipo especificado
 
 Configuraciones:
 
@@ -209,7 +209,7 @@ Configuraciones:
 eqLogic::byObjectId
 -------------------
 
-Devuelve todo el equipo que pertenece al objeto especificado.
+Devuelve todo el equipo que pertenece al objeto especificado
 
 Configuraciones:
 
@@ -218,11 +218,11 @@ Configuraciones:
 eqLogic::byTypeAndId
 --------------------
 
-Devuelve una tabla de equipos según los parámetros.. El regreso
+Devuelve una tabla de equipos según los parámetros. El regreso
 será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
-array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)) ....,id1 ⇒
+array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)).,id1 ⇒
 array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)), id2 ⇒ array (&#39; id&#39;⇒ ..., &#39;cmds&#39; ⇒
-array(…​.))..)
+Array (....)) ..)
 
 Configuraciones:
 
@@ -243,7 +243,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   registro de cadenaicalId = ''
+-   string logicalId = ''
 
 -   int objeto\_id = nulo
 
@@ -265,7 +265,7 @@ JSON Cmd API
 cmd::all
 --------
 
-Devuelve la lista de todos los comandos.
+Devuelve la lista de todos los comandos
 
 cmd::byId
 ---------
@@ -279,7 +279,7 @@ Configuraciones:
 cmd::byEqLogicId
 ----------------
 
-Devuelve todos los pedidos que pertenecen al equipo especificado.
+Devuelve todos los pedidos que pertenecen al equipo especificado
 
 Configuraciones:
 
@@ -308,7 +308,7 @@ Configuraciones:
 
 -   int id
 
--   inicio de cadenaTime : fecha de inicio del cálculo de estadísticas
+-   string startTime : fecha de inicio del cálculo de estadísticas
 
 -   string endTime : fecha de finalización del cálculo de estadísticas
 
@@ -322,7 +322,7 @@ Configuraciones:
 
 -   int id
 
--   inicio de cadenaTime : fecha de inicio del cálculo de tendencia
+-   string startTime : fecha de inicio del cálculo de tendencia
 
 -   string endTime : fecha de finalización del cálculo de tendencia
 
@@ -336,7 +336,7 @@ Configuraciones:
 
 -   int id
 
--   inicio de cadenaTime : fecha de inicio de la historia
+-   string startTime : fecha de inicio de la historia
 
 -   string endTime : fecha de finalización de la historia
 
@@ -351,7 +351,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   registro de cadenaicalId
+-   string logicalId
 
 -   string eqType
 
@@ -384,7 +384,7 @@ Configuraciones:
 cmd::event
 -------------------
 
-Le permite enviar un valor a un pedido.
+Le permite enviar un valor a un pedido
 
 Configuraciones:
 
@@ -394,18 +394,18 @@ Configuraciones:
 
 -   cadena de fecha y hora : (opcional) valor datetime
 
-API de eguión JSON
+API de escenario JSON
 =================
 
 scenario::all
 -------------
 
-Devuelve la lista de todos los escenarios.
+Devuelve la lista de todos los escenarios
 
 scenario::byId
 --------------
 
-Devuelve el eguión especificado
+Devuelve el escenario especificado
 
 Configuraciones:
 
@@ -414,7 +414,7 @@ Configuraciones:
 scenario::export
 ----------------
 
-Devuelve la exportación del escenario, así como el nombre humano del escenario.
+Devuelve la exportación del escenario, así como el nombre humano del escenario
 
 Configuraciones:
 
@@ -427,16 +427,16 @@ Le permite importar un escenario.
 
 Configuraciones:
 
--   int id : ID del eguión en el que importar (vacío si se crea)
+-   int id : ID del escenario en el que importar (vacío si se crea)
 
--   string humanName : nombre humano del eguión (vacío si creación)
+-   string humanName : nombre humano del escenario (vacío si creación)
 
--   importación de matriz : eguión (del campo eguión de exportación::export)
+-   importación de matriz : escenario (del campo escenario de exportación::export)
 
 scenario::changeState
 ---------------------
 
-Cambia el estado del eguión especificado..
+Cambia el estado del escenario especificado.
 
 Configuraciones:
 
@@ -500,7 +500,7 @@ Configuraciones:
 -   tipo de cadena : tipo de valor almacenado (para escenarios
     es escenario)
 
--   id linkId : -1 para total (valor para escenarios predeterminados,
+-   id linkId : -1 para global (valor para escenarios predeterminados,
     o el id del escenario)
 
 -   clave de cuerda : nombre del valor
@@ -515,7 +515,7 @@ Configuraciones:
 -   tipo de cadena : tipo de valor almacenado (para escenarios
     es escenario)
 
--   id linkId : -1 para total (valor para escenarios predeterminados,
+-   id linkId : -1 para global (valor para escenarios predeterminados,
     o el id del escenario)
 
 -   clave de cuerda : nombre del valor
@@ -528,7 +528,7 @@ API de mensajes JSON
 message::all
 ------------
 
-Devuelve la lista de todos los mensajes.
+Devuelve la lista de todos los mensajes
 
 message::removeAll
 ------------------
@@ -554,7 +554,7 @@ Configuraciones:
 interactQuery::all
 ------------------
 
-Devuelve la lista completa de todas las interacciones.
+Devuelve la lista completa de todas las interacciones
 
 API del sistema JSON
 ===============
@@ -572,7 +572,7 @@ Reiniciar Jeedom
 jeedom::isOk
 ------------
 
-Le permite saber si el estado total de Jeedom está bien
+Le permite saber si el estado global de Jeedom está bien
 
 jeedom::update
 --------------
@@ -631,7 +631,7 @@ Configuraciones:
 plugin::deamonInfo
 ------------------
 
-Devuelve información sobre el estado del demonio del complemento.
+Devuelve información sobre el estado del demonio del complemento
 
 Configuraciones:
 
@@ -691,7 +691,7 @@ update::doUpdate
 Configuraciones:
 
 -   int plugin\_id (opcional) : ID del complemento
--   registro de cadenaicalId (opcional) : nombre del complemento (nombre lógico)
+-   string logicalId (opcional) : nombre del complemento (nombre lógico)
 
 API de red JSON
 ================
@@ -723,7 +723,7 @@ Recuperando la lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest (objeto&#39;::todos &#39;, array ())){
+if ($ jsonrpc-&gt; sendRequest (objeto&#39;::all &#39;, array ())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -734,7 +734,7 @@ Ejecución de una orden (con la opción de un título y un mensaje)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::ExecCmd &#39;, array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; mensaje &#39;=>&#39; Funciona &#39;)))){
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'opciones '=> array (' title '=>' Cuckoo ',' message '=>' Funciona ')))){
     echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

@@ -11,21 +11,21 @@ A página Logs é bastante simples, no canto superior esquerdo uma lista suspens
 permitindo a escolha do registro para assistir, no canto superior direito você tem 5
 botões :
 
--   **Rechercher** : permite filtrar o pôster do log
+-   **Pesquisa** : permite filtrar o pôster do log
 
 -   **Pausar / retomar** : permite pausar / retomar a configuração
     atualização de log em tempo real
 
 -   **Baixar** : Faça o download do log atual,
 
--   **Vider** : Limpe o log atual,
+-   **Vazio** : Limpe o log atual,
 
--   **Supprimer** : excluir o log atual, se o Jeedom tiver algum
+-   **Remover** : excluir o log atual, se o Jeedom tiver algum
     precisa dele irá recriá-lo automaticamente,
 
--   **Excluir todos os logs** : Excluir todos os logs presentes.
+-   **Remover tous les logs** : Excluir todos os logs presentes.
 
-> **Tip**
+> **Dica**
 >
 > Observe que o log http.erro não pode ser excluído. É essencial
 > ! se você excluí-lo (na linha de comando, por exemplo), ele não

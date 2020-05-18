@@ -6,12 +6,12 @@ It is accessible by Home → Design
 
 > **Tip**
 >
-> It is possible to go directly to a Design thanks to the submenu.
+> It is possible to go directly to a design thanks to the submenu.
 
-> **Important**
+> **IMPORTANT**
 >
 > All actions are done by right click on this page, attention
-> to do it well in Design. During creation, it is therefore necessary to
+> to do it well in design. During creation, it is therefore necessary to
 > do in the middle of the page (to be sure to be on the design).
 
 In the menu (right click therefore), we find the
@@ -19,7 +19,7 @@ following actions :
 
 -   **Designs** : Displays the list of your designs and access them
 
--   **Edition** : Switch to edit mode
+-   **Editing** : Switch to edit mode
 
 -   **Full screen** : Allows you to use the entire web page, which
     will remove Jeedom menu from the top
@@ -52,9 +52,9 @@ following actions :
 -   **Add summary** : Adds information from an object summary or
     general
 
--   **Affichage**
+-   **Viewing**
 
-    -   **Aucune** : Does not display any grid
+    -   **Any** : Does not display any grid
 
     -   **10x10** : Displays a 10 by 10 grid
 
@@ -72,20 +72,20 @@ following actions :
     -   **Hide item highlighting** : Hide it
         highlight around items
 
--   **Delete design** : delete design
+-   **Remove le Design** : delete design
 
 -   **Create a design** : allows to add a design
 
--   **Duplicate design** : duplicate the current design
+-   **Duplicate le Design** : duplicate the current design
 
--   **Configure the design** : access to Design configuration
+-   **Configure the design** : access to design configuration
 
--   **Sauvegarder** : allows to save the Design (attention, there are
+-   **Save** : allows to save the design (attention, there are
     also automatic backups during certain actions)
 
-> **Important**
+> **IMPORTANT**
 >
-> The configuration of the Design elements is done by clicking on
+> The configuration of the design elements is done by clicking on
 > these.
 
 Design configuration 
@@ -95,27 +95,27 @@ Found here :
 
 -   **General**
 
-    -   **Nom** : The name of your design
+    -   **Last name** : The name of your design
 
     -   **Transparent background** : makes the background transparent. Be careful if the
         box is checked, the background color is not used
 
-    -   **Background color** : Design background color (white
+    -   **Background color** : design background color (white
         by default)
 
-    -   **Code** : Access code to your Design (if empty, no code
+    -   **Coded** : Access code to your design (if empty, no code
         is not requested)
 
     -   **Icon** : An icon for it (appears in the menu
         choice of design)
 
-    -   **Image**
+    -   **Picture**
 
-        -   **Envoyer** : allows to add a background image to the design
+        -   **To send** : allows to add a background image to the design
 
-        -   **Delete image** : delete image
+        -   **Remove l'image** : delete image
 
--   **Tailles**
+-   **Sizes**
 
     -   **Size (WxH)** : Allows you to fix the size of your design
         (gray frame in edit mode)
@@ -123,11 +123,11 @@ Found here :
 General configuration of elements 
 ===================================
 
-> **Note**
+> **NOTE**
 >
 > Depending on the type of item, options may change.
 
-> **Note**
+> **NOTE**
 >
 > The selected item is highlighted in red (instead of green
 > for everyone else).
@@ -135,7 +135,7 @@ General configuration of elements
 Display setting 
 ---------------------
 
--   **Profondeur** : allows to choose the depth level
+-   **Depth** : allows to choose the depth level
 
 -   **Position X (%)** :
 
@@ -169,19 +169,19 @@ Display settings
 
 -   **Period** : allows you to choose the display period
 
--   **Show caption** : show legend
+-   **Pin up la légende** : show legend
 
--   **Show browser** : display the browser (second graph
+-   **Pin up le navigateur** : display the browser (second graph
     lighter below the first)
 
--   **Show period selector** : displays the selector
+-   **Pin up le sélecteur de période** : displays the selector
     period top left
 
--   **Show scroll bar** : displays the scroll bar
+-   **Pin up la barre de défilement** : displays the scroll bar
 
 -   **Transparent background** : makes the background transparent
 
--   **Bordure** : add a border, beware the syntax is
+-   **Border** : add a border, beware the syntax is
     HTML (be careful, you must use CSS syntax, for example :
     solid 1px black)
 
@@ -193,7 +193,7 @@ Allows you to choose the commands to grapher
 Text / html 
 =========
 
--   **Icone** : Icon to display in front
+-   **Icon** : Icon to display in front
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
@@ -204,7 +204,7 @@ Text / html
 -   **Smooth it out** : allows you to round off the angles (do not
     forget to put%, ex 50%)
 
--   **Bordure** : add a border, beware the syntax is
+-   **Border** : add a border, beware the syntax is
     HTML (use CSS syntax, for example : solid
     1px black)
 
@@ -214,15 +214,15 @@ Text / html
 -   **Text alignment** : allows you to choose the alignment of the
     text (left / right / centered)
 
--   **Gras** : bold text
+-   **Fat** : bold text
 
--   **Texte** : Text in HTML code that will be in the element
+-   **Text** : Text in HTML code that will be in the element
 
-> **Important**
+> **IMPORTANT**
 >
 > If you put HTML code (especially Javascript), be careful
 > to check it before because you can if there is an error in it
-> or if it overwrites a Jeedom component completely crashing the Design and
+> or if it overwrites a Jeedom component completely crashing the design and
 > all you have to do is delete it directly from the database
 
 Scenario 
@@ -239,9 +239,9 @@ Link
 Display settings 
 ---------------------
 
--   **Nom** : Name of the link (displayed text)
+-   **Last name** : Name of the link (displayed text)
 
--   **Lien** : Link to the Design or view in question
+-   **Link** : Link to the design or view in question
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
@@ -252,7 +252,7 @@ Display settings
 -   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : permet
+-   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -261,7 +261,7 @@ Display settings
 -   **Text alignment** : allows you to choose the alignment of the
     text (left / right / centered)
 
--   **Gras** : bold text
+-   **Fat** : bold text
 
 Equipment 
 ==========
@@ -297,10 +297,10 @@ Picture / Camera
 Display settings 
 ---------------------
 
--   **Afficher** : defines what you want to display, still image or
+-   **Pin up** : defines what you want to display, still image or
     stream from a camera
 
--   **Image** : allows you to send the image in question (if you have
+-   **Picture** : allows you to send the image in question (if you have
     choose an image)
 
 -   **Camera** : camera to display (if you chose camera)
@@ -339,11 +339,11 @@ for the Off
 In this mode, when hovering or clicking in the Jeedom area, you
 display the widget in question
 
--   **Equipement** : widget to display when hovering or clicking
+-   **Equipment** : widget to display when hovering or clicking
 
--   **Show on flyover** : if checked, displays the widget on hover
+-   **Pin up au survol** : if checked, displays the widget on hover
 
--   **View on one click** : if checked, then the widget is displayed at
+-   **Pin up sur un click** : if checked, then the widget is displayed at
     clic
 
 -   **Position** : allows you to choose the location where the
@@ -352,7 +352,7 @@ display the widget in question
 Summary 
 ======
 
--   **Lien** : Used to indicate the summary to be displayed (General for the
+-   **Link** : Used to indicate the summary to be displayed (General for the
     global if not indicate the object)
 
 -   **Background color** : allows you to change the background color or
@@ -364,13 +364,13 @@ Summary
 -   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention CSS syntax, ex : solid 1px black)** : permet
+-   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
     allows you to change the font size
 
--   **Gras** : bold text
+-   **Fat** : bold text
 
 
 Faq 
@@ -380,6 +380,6 @@ Faq
 >
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
->**Delete a Design that no longer works**
+>**Remove un Design qui ne marche plus**
 >
->In the administration part then OS / DB, do &quot;select * from planHeader&quot;, get the id of the Design in question and do a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the Design id previously found.
+>In the administration part then OS / DB, make "select * from planHeader", recover the id of the design in question and make a "delete from planHeader where id=#TODO#" and "delete from plan where planHeader_id=#todo#" replacing well #TODO# by the design id previously found.

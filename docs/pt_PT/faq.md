@@ -65,7 +65,7 @@ Podemos colocar o Jeedom em https ?
 ================================
 
 Sim : Você tem um pacote de força ou mais, nesse caso, você
-basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
+basta usar o [DNS Jeedom](https://jeedom.github.io/documentation/howto/pt_PT/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
 
 Como se conectar no SSH ?
 =============================
@@ -157,7 +157,7 @@ echo "CREATE USER 'jeedom' @ 'localhost' IDENTIFICADO POR '$ {bdd_password}';" |
 eco "CONCEDE TODOS OS PRIVILÉGIOS NO jeedom.* TO 'jeedom' @ 'localhost';" | mysql -uroot -p
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e "s / # SENHA # / $ {bdd_password} / g" core / config / common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
 `` ''
 
@@ -179,7 +179,7 @@ Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via S
 
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
 Se persistir após uma reinstalação, é aconselhável
-consulte o serviço pós-venda para obter informações sobre problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) para Smart
+consulte o serviço pós-venda para obter informações sobre problemas de hardware. Aqui está o [Documentação](https://jeedom.github.io/documentation/howto/pt_PT/recovery_mode_jeedom_smart) para Smart
 
 Meu cenário não para mais 
 =================================
@@ -232,7 +232,7 @@ Os botões Desligar / Reiniciar não funcionam
 ===================================================
 
 Em uma instalação DIY é normal. No SSH, você precisa solicitar
-visudo e no final do arquivo você deve adicionar : www-data TODOS = (ALL)
+visudo e no final do arquivo você deve adicionar : www-data ALL = (ALL)
 NOPASSWD: TODOS.
 
 `` `{.bash}
@@ -269,11 +269,11 @@ Tente esvaziar o cache do Chrome, a exibição do histórico é calculada em rel
 Estou com o erro "Problemas de rede detectados, reinicialização da rede"
 =========================================
 
-Jeedom não consegue encontrar ou executar ping no gateway. Em geral, isso acontece se a caixa adsl for reiniciada (principalmente as caixas ativas) e o Jeeodm não tiver reiniciado ou tiver sido reiniciado mais rapidamente que a caixa. Por questões de segurança, ele diz que encontrou um problema e relança o processo de conexão de rede. Você pode desativar esse mecanismo acessando a configuração do Jeedom e desativando o gerenciamento de rede pelo Jeedom..
+Jeedom não consegue encontrar ou executar ping no gateway. Em geral, isso acontece se a caixa adsl for reiniciada (principalmente as caixas ativas) e o Jeeodm não tiver reiniciado ou tiver sido reiniciado mais rapidamente que a caixa. Por questões de segurança, ele diz que encontrou um problema e relança o processo de conexão de rede. Você pode desativar esse mecanismo acessando a configuração do Jeedom e desativando o gerenciamento de rede pelo Jeedom.
 
 Recebo a mensagem "Falha ao fazer backup do banco de dados. Verifique se o mysqldump está presente."
 =========================================
-Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode sugerir um problema com a corrupção do banco de dados e do sistema de arquivos.. Infelizmente, não existe um comando milagroso para corrigir. O melhor é iniciar um backup e analisar o log dele. Em casos conhecidos de preocupações, temos
+Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode sugerir um problema com a corrupção do banco de dados e do sistema de arquivos. Infelizmente, não existe um comando milagroso para corrigir. O melhor é iniciar um backup e analisar o log dele. Em casos conhecidos de preocupações, temos
 
 - uma tabela base corrompida => está mal iniciada, é necessário tentar consertá-la e, se não iniciar a partir do último backup bom (se você estiver em proteção SD, é o momento certo para alterá-la)
 - não há espaço suficiente no sistema de arquivos => veja a página de integridade, isso pode lhe dizer

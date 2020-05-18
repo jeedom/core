@@ -21,7 +21,7 @@ Modul sowie das Datum, an dem die Informationen zum Batteriestand angezeigt werd
 wurde aktualisiert. Sie können auch sehen, ob ein bestimmter Schwellenwert festgelegt wurde
 Werkbank für das jeweilige Modul (dargestellt durch eine Hand)
 
-> **Tip**
+> **Spitze**
 >
 > Die Alarm- / Warnschwellen für den Batteriestand sind
 > global konfigurierbar in der Jeedom-Konfiguration
@@ -45,7 +45,7 @@ Andere Arten von Warnungen finden Sie hier.
 Jede Warnung wird durch die Farbe der Kachel (die Ebene) dargestellt
 Warnung) und ein Logo oben links (die Art der Warnung)
 
-> **Tip**
+> **Spitze**
 >
 > Hier werden alle Module in Alarmbereitschaft angezeigt, auch die in konfigurierten
 > "nicht sichtbar". Es ist jedoch interessant festzustellen, dass wenn das Modul
@@ -76,7 +76,7 @@ und synthetisiert mehrere Dinge :
     einen Aktionsbefehl und das Ausführen eines oder mehrerer anderer
     Aktionen vor oder nach der betreffenden Aktion)
 
-> **Tip**
+> **Spitze**
 >
 > In der Tabelle können Sie die Aktionen sehr textuell anzeigen
 > definiert. Andere Arten definierter Aktionen können hinzugefügt werden.
@@ -117,7 +117,7 @@ Und an vielen anderen Orten verwendet wie (nicht erschöpfend) :
 
 -   in einigen Plugins
 
-> **Tip**
+> **Spitze**
 >
 > Die Tabelle bietet eine sehr textuelle Ansicht der Befehle
 > Waise. Ihr Zweck ist es, alle schnell identifizieren zu können

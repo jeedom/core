@@ -1,5 +1,5 @@
 The Plugins management submenu allows you to manipulate plugins, except
-know : download, update and activate them, etc.
+know : download, update and activate them, etc
 
 Plugins management 
 ===================
@@ -20,7 +20,7 @@ By clicking on a plugin, you access its configuration. Upstairs you
 find the name of the plugin, then in brackets, its name in Jeedom
 (ID) and finally, the type of version installed (stable, beta).
 
-> **Important**
+> **IMPORTANT**
 >
 > When downloading a plugin, it is disabled by default.
 > So you have to activate it by yourself.
@@ -37,18 +37,18 @@ At the top right, some buttons :
 
 -   **Details** : allows to find the plugin page on the market
 
--   **Supprimer** : Remove the plugin from your Jeedom. Be careful, this
+-   **Remove** : Remove the plugin from your Jeedom. Be careful, this
     also permanently removes all equipment from this plugin
 
 Below left, there is a status area with :
 
--   **Statut** : allows to see the status of the plugin (active / inactive)
+-   **Status** : allows to see the status of the plugin (active / inactive)
 
 -   **Version** : the version of the plugin installed
 
--   **Action** : Allows you to enable or disable the plugin
+-   **ACTION** : Allows you to enable or disable the plugin
 
--   **Jeedom version** : Minimum Jeedom version required
+-   **Version Jeedom** : Minimum Jeedom version required
     for the operation of the plugin
 
 -   **Licence** : Indicates the license of the plugin which will generally be
@@ -57,7 +57,7 @@ Below left, there is a status area with :
 On the right, we find the Log and surveillance zone which allows to define 
 
 -   the level of logs specific to the plugin (we find this same possibility in
-Administration → D'actualité on the logs tab, at the bottom of the page)
+Administration → Configuration on the logs tab, at the bottom of the page)
 
 -   see the plugin logs
 
@@ -70,11 +70,11 @@ additional are displayed under the areas mentioned above.
 
 Dependencies :
 
--   **Nom** : generally will be local
+-   **Last name** : generally will be local
 
--   **Statut** : will tell you if the dependencies are OK or KO
+-   **Status** : will tell you if the dependencies are OK or KO
 
--   **Installation** : will install or reinstall
+-   **Setup** : will install or reinstall
     dependencies (if you don&#39;t do it manually and they are
     KO, Jeedom will take care of itself after a while)
 
@@ -83,11 +83,11 @@ Dependencies :
 
 Devil :
 
--   **Nom** : generally will be local
+-   **Last name** : generally will be local
 
--   **Statut** : will tell you if the demon is OK or KO
+-   **Status** : will tell you if the demon is OK or KO
 
--   **Configuration** : will be OK if all the criteria for the demon
+-   **D'actualité** : will be OK if all the criteria for the demon
     turns are met or will give cause for blocking
 
 -   **(To restart** : allows to launch or relaunch the demon
@@ -146,7 +146,7 @@ loading you will get the page.
 > **Tip**
 >
 > You must have entered your Market account information in
-> administration (D'actualité → Updates → Market tab) in order to
+> administration (Configuration → Updates → Market tab) in order to
 > find the plugins you have already purchased for example.
 
 At the top of the window you have filters :
@@ -163,10 +163,10 @@ At the top of the window you have filters :
 -   **Category drop-down menu** : displays only
     certain plugin categories
 
--   **Rechercher** : allows you to search for a plugin (in the name or
+-   **Search** : allows you to search for a plugin (in the name or
     description of it)
 
--   **Username** : displays the username used for the
+-   **Last name d'utilisateur** : displays the username used for the
     connection to the Market and the status of the connection
 
 > **Tip**
@@ -191,7 +191,7 @@ information about the plugin, including :
     -   **Install pro** : allows to install the pro version (very
         little used)
 
-    -   **Supprimer** : if the plugin is currently installed, this
+    -   **Remove** : if the plugin is currently installed, this
         button to delete it
 
 Below, you will find the description of the plugin, the compatibility
@@ -204,13 +204,13 @@ change history, a &quot;Documentation&quot; button which returns
 to the plugin documentation. Then you have the language available
 and the various information on the date of the last stable version.
 
-> **Important**
+> **IMPORTANT**
 >
 > It is really not recommended to put a beta plugin on a
 > Jeedom non beta, many operating problems can
 > result.
 
-> **Important**
+> **IMPORTANT**
 >
 > Some plugins are chargeable, in this case the plugin sheet will
 > will offer to buy it. Once this is done, wait for a

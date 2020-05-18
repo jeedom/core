@@ -36,19 +36,19 @@ Changelog
 =====
 
 - Nome da variável alterado $ key para $ key2 no evento de classe
-- Limpar o código de plug-in / widge / cenário enviando para o mercado (economiza alguns segundos na exibição de plug-ins)
+- Limpar o código de plug-in / widget / cenário enviando para o mercado (economiza alguns segundos na exibição de plug-ins)
 - Correção de um aviso na função lastBetween
 - Melhor consideração dos widgets de plug-ins
 - Otimização do cálculo de integridade no swap
 
->**IMPORTANT**
+>**IMPORTANTE**
 >
 >Esta atualização corrige uma preocupação que pode impedir a gravação de qualquer histórico a partir de 1 de janeiro de 2020. É mais do que altamente recomendável
 
 3.3.38
 =====
 
-- Adição de compatibilidade global do DNS Jeedom com uma conexão à Interne 4G. (Importante se você usa o DNS Jeedom é que você tem uma conexão 4G, verifique na caixa correspondente configure dns jeedom).
+- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G. (Importante se você usa o DNS jeedom é que você tem uma conexão 4G, verifique na caixa correspondente configure dns jeedom).
 - Correções ortográficas.
 - Correção de segurança
 
@@ -67,7 +67,7 @@ Changelog
 =====
 
 - Correções de bugs
-- Possibilidade de instalar Plugins diretamente do mercado
+- Possibilidade de instalar plugins diretamente do mercado
 
 3.3.34
 =====
@@ -208,7 +208,7 @@ Changelog
 -   Adição da ação jeedom_reboot para iniciar uma reinicialização do Jeedom.
 -   Adicionar opção na janela de geração do cron.
 -   Uma mensagem é adicionada agora se uma expressão inválida for encontrada ao executar um cenário.
--   Adicionando um comando nos cenários : value (order) permite ter o valor de um pedido se não for fornecido automaticamente pelo Jeedom (caso ao armazenar o nome do pedido em uma variável).
+-   Adicionando um comando nos cenários : value (order) permite ter o valor de um pedido se não for fornecido automaticamente pelo jeedom (caso ao armazenar o nome do pedido em uma variável).
 -   Adição de um botão para atualizar as mensagens do centro de mensagens.
 -   Adicione na configuração da ação no valor de um comando um botão para procurar uma ação interna (cenário, pausa ...).
 -   Adição de uma ação "Redefinir para zero do IS" nos cenários
@@ -238,7 +238,7 @@ Changelog
 3.2.16
 =====
 
-- Correção de um bug durante a instalação de dependência de determinados Plugins no smart
+- Correção de um bug durante a instalação de dependência de determinados plugins no smart
 
 3.2.15
 =====
@@ -287,7 +287,7 @@ Changelog
 - Correções de bugs
 - Adição de uma opção na administração Jeedom para especificar o intervalo de ip local (útil em instalações do tipo docker)
 - Correção de um erro no cálculo do uso de variáveis
-- Adição de um indicador na página de integridade, indicando o número de processos mortos por falta de memória (no geral, indica que o Jeedom está muito carregado)
+- Adição de um indicador na página de integridade, indicando o número de processos mortos por falta de memória (no geral, indica que o jeedom está muito carregado)
 - Editor de arquivo aprimorado
 
 3.2.7
@@ -323,13 +323,13 @@ Changelog
 3.2.3.
 =====
 
--   Correção de erros nas funções mín. / Máx.....
+-   Correção de erros nas funções mín. / Máx....
 -   Exportação aprimorada de gráficos e exibição no modo de tabela
 
 3.2.2.
 =====
 
--   Remoção do antigo sistema de atualização de widgets (descontinuado desde a versão 3.0). Atenção, se o seu widge não usar o novo sistema, existe o risco de mau funcionamento (duplicação neste caso). Widge de exemplo [aqui](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Remoção do antigo sistema de atualização de widgets (descontinuado desde a versão 3.0). Atenção, se o seu widget não usar o novo sistema, existe o risco de mau funcionamento (duplicação neste caso). Widget de exemplo [aqui](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Possibilidade de exibir os gráficos em forma de tabela ou exportá-los em csv ou xls
 
 -   Os usuários agora podem adicionar sua própria função php para cenários. Consulte a documentação dos cenários para implementação
@@ -366,7 +366,7 @@ Changelog
 -   JEED-186 : Agora podemos escolher a cor de fundo no
     designs
 
--   Para o bloco A, possibilidade de definir uma hora entre as 12h01 e as 12h59.
+-   Para o bloco A, possibilidade de definir uma hora entre as 12h01 e as 12h59
     simplesmente colocando os minutos (ex 30 para 00:30)
 
 -   Adicionando sessões e dispositivos ativos registrados no
@@ -376,7 +376,7 @@ Changelog
 -   JEED-284 : conexão permanente agora depende de uma chave
     único usuário e dispositivo (em vez de usuário)
 
--   JEED-283 : adicionando um modo * rescue * ao Jeedom adicionando & rescue = 1
+-   JEED-283 : adicionando um modo *resgate* para jeedom adicionando & rescue = 1
     na url
 
 -   JEED-8 : adição do nome do cenário no título da página durante o
@@ -387,7 +387,7 @@ Changelog
     e as vistas. Atenção agora as modificações não são
     salvo somente ao sair do modo de edição.
 
--   JEED-18 : Adicionando logs ao abrir um ticke para suportar
+-   JEED-18 : Adicionando logs ao abrir um ticket para suportar
 
 -   JEED-181 : adição de um comando de nome nos cenários para ter
     o nome do pedido ou equipamento ou objeto
@@ -407,7 +407,7 @@ Changelog
 -   JEED-77 : Adição de gerenciamento de variáveis na API http
 
 -   JEED-78 : adição da função de tag para cenários. Tenha cuidado lá
-    nos cenários usando as tags, passe de \#montag \#
+    nos cenários que usam as tags passam de \#montag\#
     marcar (montag)
 
 -   JEED-124 : Corrigir o gerenciamento de tempos limite do cenário
@@ -456,7 +456,7 @@ Changelog
     variáveis) traz em sua página de configuração
 
 -   Capacidade de colocar o texto à esquerda / direita / centro no
-    Projetos para elementos de texto / visualização / design
+    designs para elementos de texto / visualização / design
 
 -   Adicionando resumos de objetos no painel (lista de objetos
     esquerda)
@@ -545,7 +545,7 @@ Changelog
 -   Capacidade de reorganizar widgets de equipamentos de
     painel (no modo de edição, clique com o botão direito no widget)
 
--   Alterar o tom dos widgets (de 40 \* 80 para 10 \* 10). Tenha cuidado
+-   Alterar o tom dos widgets (de 40 \*80 a 10 \*10) Tenha cuidado
     impactará o layout em seu painel / visualização / design
 
 -   Possibilidade de atribuir um tamanho de 1 a 12 a objetos no
@@ -639,7 +639,7 @@ Changelog
         -   Área do tipo binário : lança uma série de ações durante um
             clique nele, dependendo do status de um pedido
 
-        -   Área do tipo de widge : exibe um widge ao clicar ou passar o mouse
+        -   Área do tipo de widget : exibe um widget ao clicar ou passar o mouse
             da área
 
     -   Otimização geral de código
@@ -669,7 +669,7 @@ Changelog
 
 -   Adicionando módulos em alerta à página da bateria
 
--   Objetos sem um widge são ocultados automaticamente no painel
+-   Objetos sem um widget são ocultados automaticamente no painel
 
 -   A adição de um botão na configuração avançada de um
     equipamento / de um comando para ver os eventos de
@@ -734,7 +734,7 @@ Changelog
 -   Corrigido um erro no gerenciamento de cache que fazia crescer
     indefinidamente
 
--   Correção do acesso ao documento de Plugins de terceiros, se eles não tiverem
+-   Correção do acesso ao documento de plugins de terceiros, se eles não tiverem
     nenhum documento local
 
 -   As interações podem levar em consideração a noção de contexto (em
@@ -748,7 +748,7 @@ Changelog
 -   Agora as interações podem retornar arquivos, além de
     a resposta
 
--   Possibilidade de ver na página de configuração dos Plugins o
+-   Possibilidade de ver na página de configuração dos plugins o
     funcionalidade destes (interagir, cron…) e desativá-los
     unitairement
 
@@ -780,7 +780,7 @@ Changelog
     exclua-os)
 
 -   Correção de um bug na data da última escalação de um evento
-    para alguns Plugins (alarme)
+    para alguns plugins (alarme)
 
 -   Corrigido o erro de exibição com o Chrome 55
 
@@ -920,7 +920,7 @@ Changelog
 
 -   Preparação para a remoção do bootstrapswtich nos plugins
 
--   Correção de um bug no tipo de widge solicitado para designs
+-   Correção de um bug no tipo de widget solicitado para designs
     (painel em vez de dplan)
 
 -   correção de bug no manipulador de eventos
@@ -938,14 +938,14 @@ Changelog
     / tmp é muito pequeno (cuidado, a correção entra em vigor em
     atualização n + 1)
 
--   Adição de uma tag * jeedom\_name * nos cenários (fornece o nome
+-   Adicionando uma tag *Jeedom\_name* nos cenários (dê o nome
     jeedom)
 
 -   Correções de bugs
 
 -   Mova todos os arquivos temporários para / tmp
 
--   Melhor envio de Plugins (dos2unix automático em
+-   Melhor envio de plugins (dos2unix automático em
     arquivos \*. sh)
 
 -   Redesign da página de log
@@ -953,7 +953,7 @@ Changelog
 -   Adição de um tema darksobre para celular
 
 -   Capacidade para os desenvolvedores adicionarem opções
-    configuração do widge em widgets específicos (tipo sonos,
+    configuração do widget em widgets específicos (tipo sonos,
     koubachi e outros)
 
 -   Otimização de logs (obrigado @ kwizer15)
@@ -963,7 +963,7 @@ Changelog
 -   Várias otimizações do código (obrigado @ kwizer15)
 
 -   Passagem no módulo de conexão com o mercado (permitirá ter
-    uma Jeedom sem nenhum link para o mercado)
+    uma jeedom sem nenhum link para o mercado)
 
 -   Adição de um "repo" (conexão do tipo módulo de conexão com
     mercado) (permite enviar um zip contendo o plug-in)
@@ -984,7 +984,7 @@ Changelog
 
 -   Adicionando testes automáticos de código (obrigado @ kwizer15)
 
--   Capacidade de mostrar / ocultar painéis de Plugins no celular e
+-   Capacidade de mostrar / ocultar painéis de plugins no celular e
     ou desktop (cuidado agora, por padrão, os painéis estão ocultos)
 
 -   Capacidade de desativar atualizações de plug-ins (bem como
@@ -1039,15 +1039,15 @@ Changelog
 
 -   Otimização da atualização de widgets de comando e equipamento
 
--   Adição de uma tag * begin\_backup *, * end\_backup *, * begin\_update*,
-    *end\_update *, * begin\_restore *, * end\_restore * nos cenários
+-   Adicionando uma tag *begin\_backup*, *end\_backup*, *begin\_update*,
+    *fim\_update*, *begin\_restore*, *end\_restore* nos cenários
 
 2.2
 ---
 
 -   Correções de bugs
 
--   Simplificação do acesso às configurações de Plugins de
+-   Simplificação do acesso às configurações de plugins de
     a página de saúde
 
 -   Adição de um ícone indicando se o daemon foi iniciado na depuração ou não
@@ -1105,7 +1105,7 @@ Changelog
 
 -   Excluir toda a parte de gerenciamento de rede : wifi, ip fixo…
     (certamente voltará como um plugin). ATENÇÃO, este não é o
-    modo mestre / escravo Jeedom que é excluído
+    modo mestre / escravo jeedom que é excluído
 
 -   Indicação de bateria removida nos widgets
 
@@ -1202,7 +1202,7 @@ Changelog
 
 -   Excluir toda a parte de gerenciamento de rede : wifi, ip fixo…
     (certamente voltará como um plugin). ATENÇÃO, este não é o
-    modo mestre / escravo Jeedom que é excluído
+    modo mestre / escravo jeedom que é excluído
 
 -   Indicação de bateria removida nos widgets
 
