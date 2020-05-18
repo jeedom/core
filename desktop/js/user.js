@@ -62,7 +62,8 @@ $("#bt_saveUser").on('click', function (event) {
 $("#table_user").on('click',".bt_del_user",  function (event) {
   $.hideAlert();
   var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet utilisateur ?}}', function (result) {
+  var userName = $(this).closest('tr').find('span[data-l1key="login"]').text()
+  bootbox.confirm('{{Vous allez supprimmer l\'utilisateur : }}'+userName, function (result) {
     if (result) {
       jeedom.user.remove({
         id: user.id,
@@ -157,8 +158,8 @@ function printUsers() {
           disable = 'disabled';
         }
         var ligne = '<tr><td class="login">';
-        ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/>';
-        ligne += '<span class="userAttr" data-l1key="login" />';
+        ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>';
+        ligne += '<span class="userAttr" data-l1key="login" />'+data.login+'</span>';
         ligne += '</td>';
         ligne += '<td>';
         ligne += '<label><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</label><br/>';
