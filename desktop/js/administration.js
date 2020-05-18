@@ -780,6 +780,10 @@ $('#bt_accessDbAdministration').on('click',function(){
   .load('index.php?v=d&modal=db.action').dialog('open');
 });
 
+$('#bt_checkPackage').on('click',function(){
+  $('#md_modal').dialog({title: "{{Vérification des packages}}"}).load('index.php?v=d&modal=package.check').dialog('open');
+});
+
 $('#bt_checkDatabase').on('click',function(){
   $('#md_modal').dialog({title: "{{Vérification base de données}}"})
   .load('index.php?v=d&modal=db.check').dialog('open');
