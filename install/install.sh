@@ -67,7 +67,7 @@ step_3_database() {
 	echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
 	echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
-	apt_install mysql-client mysql-common mysql-server
+	apt_install mariadb-client mariadb-common mariadb-server
 
 	mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
 
