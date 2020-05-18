@@ -105,7 +105,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 	</form>
 </div>
 <?php
-  include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
-  include_file("desktop", "editor", "js");
+	include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+	include_file("desktop", "editor", "js");
+	include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
+	include_file('3rdparty', 'codemirror/addon/search/search', 'js');
+	include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
+	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
+	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
 ?>
 

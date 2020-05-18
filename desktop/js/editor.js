@@ -135,11 +135,13 @@ function displayFile(_path){
         setTimeout(function () {
           fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_fileContent"), {
             lineNumbers: true,
+            lineWrapping: true,
             mode: getEditorMode(_path),
-            matchBrackets: true
+            matchBrackets: true,
+            viewportMargin : Infinity
           });
-          fileEditor.getWrapperElement().style.height = ($('#ta_fileContent').closest('.row-overflow').find('.col-lg-2').height() - 60) + 'px';
-          fileEditor.refresh();
+          //fileEditor.getWrapperElement().style.height = ($('#ta_fileContent').closest('.row-overflow').find('.col-lg-2').height() - 60) + 'px';
+          //fileEditor.refresh();
         }, 1);
       }
     }
