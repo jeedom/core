@@ -28,7 +28,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		</legend>
 		<table class="table table-condensed table-bordered" id="table_user">
 			<thead>
-				<th>{{Utilisateur}}</th>
+				<th style="min-width: 120px;">{{Utilisateur}}</th>
 				<th style="width: 250px;">{{Actif}}</th>
 				<th>{{Profil}}</th>
 				<th>{{Clef API}}</th>
@@ -65,13 +65,15 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						if (!isset($session['datetime'])) {
 							$session['datetime'] = '';
 						}
-						echo '<tr data-id="' . $id . '">';
-						echo '<td>' . $id . '</td>';
-						echo '<td>' . $session['login'] . '</td>';
-						echo '<td>' . $session['ip'] . '</td>';
-						echo '<td>' . $session['datetime'] . '</td>';
-						echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
-						echo '</tr>';
+						$tr = '';
+						$tr .= '<tr data-id="' . $id . '">';
+						$tr .= '<td>' . $id . '</td>';
+						$tr .= '<td>' . $session['login'] . '</td>';
+						$tr .= '<td>' . $session['ip'] . '</td>';
+						$tr .= '<td>' . $session['datetime'] . '</td>';
+						$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+						$tr .= '</tr>';
+						echo $tr;
 					}
 				}
 				?>
@@ -99,23 +101,25 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						continue;
 					}
 					foreach ($user->getOptions('registerDevice') as $key => $value) {
-						echo '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
-						echo '<td>';
-						echo substr($key, 0, 10) . '...';
-						echo '</td>';
-						echo '<td>';
-						echo $user->getLogin();
-						echo '</td>';
-						echo '<td>';
-						echo $value['ip'];
-						echo '</td>';
-						echo '<td>';
-						echo $value['datetime'];
-						echo '</td>';
-						echo '<td>';
-						echo '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-						echo '</td>';
-						echo '</tr>';
+						$tr = '';
+						$tr .= '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
+						$tr .= '<td>';
+						$tr .= substr($key, 0, 10) . '...';
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $user->getLogin();
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $value['ip'];
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $value['datetime'];
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+						$tr .= '</td>';
+						$tr .= '</tr>';
+						echo $tr;
 					}
 				}
 				?>
@@ -140,7 +144,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
+				<a class="btn btn-primary bootbox-accept" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>

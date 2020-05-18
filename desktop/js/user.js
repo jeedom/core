@@ -62,7 +62,8 @@ $("#bt_saveUser").on('click', function (event) {
 $("#table_user").on('click',".bt_del_user",  function (event) {
   $.hideAlert();
   var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet utilisateur ?}}', function (result) {
+  var userName = $(this).closest('tr').find('span[data-l1key="login"]').text()
+  bootbox.confirm('{{Vous allez supprimer l\'utilisateur : }}'+userName, function (result) {
     if (result) {
       jeedom.user.remove({
         id: user.id,
@@ -157,14 +158,14 @@ function printUsers() {
           disable = 'disabled';
         }
         var ligne = '<tr><td class="login">';
-        ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/>';
-        ligne += '<span class="userAttr" data-l1key="login" />';
+        ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>';
+        ligne += '<span class="userAttr" data-l1key="login" />'+data.login+'</span>';
         ligne += '</td>';
         ligne += '<td>';
-        ligne += '<label><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</label><br/>';
-        ligne += '<label><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" '+disable+' />{{Local}}</label>';
+        ligne += '<span><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</span><br/>';
+        ligne += '<span><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" '+disable+' />{{Local}}</span>';
         if(data[i].profils == 'admin'){
-          ligne += '<br/><label><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotRotateHash" '+disable+' />{{Ne pas faire de rotation clef api}}</label>';
+          ligne += '<br/><span><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotRotateHash" '+disable+' />{{Ne pas faire de rotation clef api}}</span>';
         }
         ligne += '</td>';
         ligne += '<td style="width:175px;">';
