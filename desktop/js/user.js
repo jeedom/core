@@ -159,7 +159,7 @@ function printUsers() {
         }
         var ligne = '<tr><td class="login">';
         ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>';
-        ligne += '<span class="userAttr" data-l1key="login" /></span>';
+        ligne += '<span class="userAttr" data-l1key="login"></span>';
         ligne += '</td>';
         ligne += '<td>';
         ligne += '<span><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</span><br/>';
