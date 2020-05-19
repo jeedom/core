@@ -702,6 +702,7 @@ class repo_market {
 					'nbUpdate' => update::nbNeedUpdate(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 					'uname' => $uname,
+					'language' => config::byKey('language'),
 				),
 				'market_api_key' => jeedom::getApiKey('apimarket'),
 				'localIp' => $internalIp,
@@ -724,6 +725,7 @@ class repo_market {
 					'nbUpdate' => update::nbNeedUpdate(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 					'uname' => $uname,
+					'language' => config::byKey('language'),
 				),
 			));
 		}
