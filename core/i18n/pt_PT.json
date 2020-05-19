@@ -1043,8 +1043,8 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "Nenhum pedido encontrado",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Valider": "Validar",
         "Inverser": "Inverter",
+        "Valider": "Validar",
         "Objet": "Objeto",
         "Equipement": "Equipamento",
         "Nom": "Nome"
@@ -2472,7 +2472,7 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Backup feito",
-        "Êtes-vous sûr de vouloir supprimer cet utilisateur ?": "Tem certeza de que deseja remover este usuário?",
+        "Vous allez supprimer l\\'utilisateur : ": "Você excluirá o usuário:",
         "L\\'utilisateur a bien été supprimé": "O usuário \\ 'foi excluído",
         "Quel est le nouveau mot de passe ?": "Qual é a nova senha?",
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Tem certeza de que deseja alterar a chave de API do usuário \\ 's?",

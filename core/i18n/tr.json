@@ -1043,8 +1043,8 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Valider": "Onaylayın",
         "Inverser": "Ters çevir",
+        "Valider": "Onaylayın",
         "Objet": "Konu",
         "Equipement": "Cihaz",
         "Nom": "İsim"
@@ -2472,7 +2472,7 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
-        "Êtes-vous sûr de vouloir supprimer cet utilisateur ?": "Bu kullanıcıyı silmek istemekden eminmisiz ?",
+        "Vous allez supprimer l\\'utilisateur : ": "",
         "L\\'utilisateur a bien été supprimé": "Kullanıcı silindi",
         "Quel est le nouveau mot de passe ?": "Yeni şifre nedir ?",
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Eğer kullanıcı \\ 's API anahtarını değiştirmek istediğinizden emin misiniz?",
