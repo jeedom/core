@@ -724,6 +724,7 @@ class repo_market {
 					'nbUpdate' => update::nbNeedUpdate(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 					'uname' => $uname,
+					'language' => config::byKey('language'),
 				),
 			));
 		}
