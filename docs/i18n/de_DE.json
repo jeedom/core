@@ -1826,6 +1826,9 @@
         "# Market": "# Markt"
     },
     "changelog.md": {
+        "3.3.50": "3.3.50",
+        "Correction d'un soucis d'arret du DNS beta": "Behebung eines Problems beim Stoppen der DNS-Beta",
+        "Amélioration du calcul des accès interne\/externe (suppression du port si celui-ci est standard pour le protocole)": "Verbesserung der internen \/ externen Zugriffsberechnung (Entfernen des Ports, wenn dies für das Protokoll Standard ist)",
         "3.3.49": "3.3.49",
         "Début de la mise à jour vers le nouveau site de documentation": "Start des Updates für die neue Dokumentationssite",
         "3.3.48": "3.3.48",

@@ -2,6 +2,12 @@
 Changelog
 =========
 
+3.3.50
+=====
+
+- Correction of a problem with stopping the DNS beta
+- Improvement of internal / external access calculation (removal of the port if this is standard for the protocol)
+
 3.3.49
 =====
 
