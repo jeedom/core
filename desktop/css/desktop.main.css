@@ -417,7 +417,7 @@ div.eqLogic.eqLogic-widget:empty {
 .cmd-widget > center {
   fill: var(--txt-color) !important;
   color: var(--txt-color);
-  font-weight: bold;
+  font-weight: 700;
 }
 .tableCmd {
   font-size: 12px;
@@ -1285,7 +1285,7 @@ sup.danger {
 
 :not(.tableCmdcss) .cmdName {
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 400;
 }
 :not(.tableCmdcss) .cmd:not(.label) .state,
 .cmd {
@@ -1300,7 +1300,7 @@ p.state {
 .eqLogic.eqLogic-widget .cmd.label .state,
 .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
   color: var(--sc-lightTxt-color) !important;
-  font-weight: normal;
+  font-weight: 400;
 }
 .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
   display: inline-block;

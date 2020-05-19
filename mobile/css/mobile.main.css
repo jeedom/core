@@ -269,6 +269,7 @@ a, .ui-link {
 .widget-name {
   padding-right: 22px;
   padding-left: 12px;
+  padding-top: 2px;
   word-break: break-word;
   max-height: 41px;
   overflow: hidden;
