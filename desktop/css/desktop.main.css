@@ -3681,7 +3681,8 @@ pre {
   letter-spacing: 0.05em;
   line-height: 14px;
 }
-#pre_globallog {
+#pre_globallog,
+#pre_scenariolog {
   font-family: "CamingoCode", monospace;
   font-size: 13px;
   line-height: 14px;
