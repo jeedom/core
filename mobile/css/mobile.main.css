@@ -898,9 +898,9 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 }
 #pre_globallog {
   width: calc(100% - 8px);
-  font-size: 14px;
-  line-height: 15px;
-  font-family: "Roboto";
+  font-size: 13px;
+  line-height: 14px;
+  font-family: "CamingoCode";
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre-wrap;
