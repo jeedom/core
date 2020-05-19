@@ -1043,8 +1043,8 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Valider": "Mengesahkan",
         "Inverser": "Membalikkan",
+        "Valider": "Mengesahkan",
         "Objet": "Item",
         "Equipement": "Peralatan",
         "Nom": "Nama"
@@ -2472,7 +2472,7 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Backup dibuat",
-        "Êtes-vous sûr de vouloir supprimer cet utilisateur ?": "Apakah Anda yakin ingin menghapus pengguna ini?",
+        "Vous allez supprimer l\\'utilisateur : ": "",
         "L\\'utilisateur a bien été supprimé": "Pengguna \\ 'telah dihapus",
         "Quel est le nouveau mot de passe ?": "Apa password baru?",
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Apakah Anda yakin Anda ingin mengubah kunci API dari pengguna \\ 's?",

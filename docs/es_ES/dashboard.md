@@ -6,6 +6,19 @@
 El tablero de instrumentos es una de las páginas principales de Jeedom, muestra un informe de toda la automatización de su hogar.
 Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jeedom e incluye todos los objetos visibles y sus equipos.
 
+![Salpicadero](../images/doc-dashboard-legends.png)
+
+- 1 : Menú principal de Jeedom.
+- 2 : Resumen global.
+- 3 : Tiempo del navegador, acortado a la línea de tiempo.
+- 4 : Botón para acceder a la documentación de la página actual.
+- 5 : Nombre de su Jeedom, acortado a la configuración.
+- 6 : Modo de edición (reordenar / redimensionar mosaicos).
+- 7 : Filtrar por categorias.
+- 8 : Objeto : Icono, nombre y resumen, y su equipo.
+- 9 : Equipo de azulejos.
+- 10 : Solicitar widget.
+
 > **Punta**
 >
 > El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. Puede modificar este orden en esta página arrastrando y soltando.

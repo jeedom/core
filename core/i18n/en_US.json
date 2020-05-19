@@ -1043,8 +1043,8 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "No orders found",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Valider": "Validate",
         "Inverser": "Invert",
+        "Valider": "Validate",
         "Objet": "Object",
         "Equipement": "Equipment",
         "Nom": "Name"
@@ -2472,7 +2472,7 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Backup completed",
-        "Êtes-vous sûr de vouloir supprimer cet utilisateur ?": "Are you sure you want to delete this user?",
+        "Vous allez supprimer l\\'utilisateur : ": "You will delete the user:",
         "L\\'utilisateur a bien été supprimé": "User has been deleted",
         "Quel est le nouveau mot de passe ?": "What is the new password?",
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Are you sure you want to change the user's API key?",

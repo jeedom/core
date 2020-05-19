@@ -1043,8 +1043,8 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "注文が見つかりません",
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Valider": "検証",
         "Inverser": "逆",
+        "Valider": "検証",
         "Objet": "オブジェクト",
         "Equipement": "設備",
         "Nom": "表題"
@@ -2472,7 +2472,7 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "バックアップ完了",
-        "Êtes-vous sûr de vouloir supprimer cet utilisateur ?": "このユーザーを削除してもよろしいですか？",
+        "Vous allez supprimer l\\'utilisateur : ": "",
         "L\\'utilisateur a bien été supprimé": "ユーザーが削除されました",
         "Quel est le nouveau mot de passe ?": "新しいパスワードは何ですか？",
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "ユーザーのAPIキーを変更してもよろしいですか？",

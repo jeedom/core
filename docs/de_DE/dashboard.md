@@ -6,6 +6,19 @@
 Das Dashboard ist eine der Hauptseiten von Jeedom. Es zeigt einen Bericht über Ihre gesamte Hausautomation an.
 Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst erstellt und enthält alle sichtbaren Objekte und deren Ausrüstung.
 
+![Armaturenbrett](../images/doc-dashboard-legends.png)
+
+- 1 : Jeedom Hauptmenü.
+- 2 : Globale Zusammenfassung.
+- 3 : Browserzeit, verkürzt auf die Timeline.
+- 4 : Schaltfläche, um auf die Dokumentation der aktuellen Seite zuzugreifen.
+- 5 : Name Ihres Jeedom, gekürzt auf die Konfiguration.
+- 6 : Bearbeitungsmodus (Kacheln neu anordnen / Größe ändern).
+- 7 : Nach Kategorien filtern.
+- 8 : Objekt : Symbol, Name und Zusammenfassung sowie deren Ausstattung.
+- 9 : Gerätekachel.
+- 10 : Widget bestellen.
+
 > **Spitze**
 >
 > Die Anzeigereihenfolge der Objekte im Dashboard ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.

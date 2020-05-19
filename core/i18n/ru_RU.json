@@ -1043,8 +1043,8 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "Заказы не найдены",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Valider": "Validate",
         "Inverser": "Обратный",
+        "Valider": "Validate",
         "Objet": "Объект",
         "Equipement": "Оборудование",
         "Nom": "Имя"
@@ -2472,7 +2472,7 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Резервное копирование завершено",
-        "Êtes-vous sûr de vouloir supprimer cet utilisateur ?": "Вы уверены, что хотите удалить этого пользователя?",
+        "Vous allez supprimer l\\'utilisateur : ": "",
         "L\\'utilisateur a bien été supprimé": "Пользователь был удален",
         "Quel est le nouveau mot de passe ?": "Какой новый пароль?",
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Вы уверены, что хотите изменить ключ API пользователя?",

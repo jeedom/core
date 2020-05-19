@@ -6,6 +6,19 @@
 O painel é uma das páginas principais do Jeedom, exibe um relatório de toda a sua automação residencial.
 Este relatório (diferente das visualizações e designs) é gerado automaticamente pela Jeedom e inclui todos os objetos visíveis e seus equipamentos.
 
+![Painel de instrumentos](../images/doc-dashboard-legends.png)
+
+- 1 : Menu principal do Jeedom.
+- 2 : Resumo Global.
+- 3 : Tempo do navegador, reduzido para a Linha do tempo.
+- 4 : Botão para acessar a documentação da página atual.
+- 5 : Nome do seu Jeedom, abreviado para a configuração.
+- 6 : Modo de edição (reordenar / redimensionar blocos).
+- 7 : Filtrar por categorias.
+- 8 : Objeto : Ícone, nome e resumo e seus equipamentos.
+- 9 : Ladrilho para equipamento.
+- 10 : Widget de pedidos.
+
 > **Dica**
 >
 > A ordem de exibição dos objetos no Painel é visível em **Análise → Resumo da automação residencial**. Você pode modificar esta ordem nesta página arrastando e soltando.
