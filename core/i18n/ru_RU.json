@@ -2521,6 +2521,7 @@
         "Test réussi": "успешное испытание",
         "Administration système": "система администрирования",
         "Administration base de données": "администрирование баз данных",
+        "Vérification des packages": "",
         "Vérification base de données": "Проверка базы данных",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "Очистка началась успешно. Чтобы следить за ходом работы, посмотрите журнал очистки",
         "Création des commandes virtuel réussies": "Создание успешных виртуальных элементов управления",

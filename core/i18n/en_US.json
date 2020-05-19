@@ -2521,6 +2521,7 @@
         "Test réussi": "Test passed",
         "Administration système": "System Administration",
         "Administration base de données": "Database Administration",
+        "Vérification des packages": "Verification of packages",
         "Vérification base de données": "Check database",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "Cleaning started successfully. To follow the progress please look at the cleaningdb log",
         "Création des commandes virtuel réussies": "Virtual commands creation succeeded",

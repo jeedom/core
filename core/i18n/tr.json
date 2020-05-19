@@ -2521,6 +2521,7 @@
         "Test réussi": "Test başarılı",
         "Administration système": "Sistem yönetimi",
         "Administration base de données": "Yönetim veritabanı",
+        "Vérification des packages": "",
         "Vérification base de données": "",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "",
         "Création des commandes virtuel réussies": "Sanal komutalarının yapilanması başarıldı",

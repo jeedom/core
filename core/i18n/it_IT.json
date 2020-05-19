@@ -2521,6 +2521,7 @@
         "Test réussi": "Test di successo",
         "Administration système": "L'amministrazione del sistema",
         "Administration base de données": "Database di Administration",
+        "Vérification des packages": "",
         "Vérification base de données": "Verifica del database",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "La pulizia è iniziata correttamente. Per seguire l'avanzamento, consultare il registro cleaningdb",
         "Création des commandes virtuel réussies": "La creazione di comandi virtuali di successo",

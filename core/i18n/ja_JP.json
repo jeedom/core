@@ -2521,6 +2521,7 @@
         "Test réussi": "成功したテスト",
         "Administration système": "システム管理",
         "Administration base de données": "管理データベース",
+        "Vérification des packages": "",
         "Vérification base de données": "データベース検証",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "クリーニングが正常に開始されました。進捗状況を確認するには、cleaningdbログをご覧ください",
         "Création des commandes virtuel réussies": "成功した仮想コントロールを作成します",
