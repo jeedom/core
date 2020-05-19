@@ -2456,8 +2456,10 @@ hr {
 
 /* __________________________________________________________________________________________________________CodeMirror */
 div.CodeMirror {
+  font-family: CamingoCode;
+  font-size: 13px;
   height: auto;
-  background: var(--form-bg-color) !important;
+  background: var(--objectTxt-color) !important;
 }
 
 [data-page=custom] .CodeMirror,
