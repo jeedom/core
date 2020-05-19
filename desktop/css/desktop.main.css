@@ -19,6 +19,7 @@ html {
 
 body {
   font-family: 'Roboto' !important;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.42;
   padding-top: 50px;
@@ -604,7 +605,7 @@ sup i {
 }
 .objectPreview > .topPreview > .name {
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 300;
   max-width: 195px;
   max-height: 30px !important;
   overflow: hidden;
@@ -883,6 +884,7 @@ div[class*="DisplayCard"] .name > .label {
 
 .eqLogic.eqLogic-widget .widget-name,
 .scenario-widget .widget-name {
+  font-weight: 300;
   padding-right: 22px;
   padding-left: 12px;
   max-height: 45px;
@@ -1070,6 +1072,10 @@ div[data-market_type=script]:hover {
 .form-group .label {
   padding: 3px 6px !important;
   min-width: 40px !important;
+  font-weight: 500 !important;
+}
+.control-label {
+  font-weight: 500;
 }
 
 pre {
