@@ -2467,7 +2467,7 @@ hr {
 
 /* __________________________________________________________________________________________________________CodeMirror */
 div.CodeMirror {
-  font-family: CamingoCode;
+  font-family: "CamingoCode", monospace;
   font-size: 13px;
   height: auto;
   background: var(--objectTxt-color) !important;
@@ -3662,7 +3662,7 @@ pre {
   line-height: 14px;
 }
 #pre_globallog {
-  font-family: CamingoCode;
+  font-family: "CamingoCode", monospace;
   font-size: 13px;
   line-height: 14px;
 }
