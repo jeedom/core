@@ -54,7 +54,8 @@
 	- Ctrl Clic / Clic Centre également disponible dans leurs menus contextuels (sur les onglets).
 - Nouvelle page ModalDisplay :
 	- Menu Analyse : Ctrl Clic / Clic Centre sur *Temps réel* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
-	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables*, *Recherche* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.<br/><br/>
+	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables*, *Recherche* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
+- Bloc code, Éditeur de fichier, Personnalisation avancée : Adaptation thème Dark.<br/><br/>
 - **WebApp** : Intégration de la nouvelle page Synthèse.
 - **WebApp** : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
 - **WebApp** : On peut maintenant sélectionner / copier une partie d'un log.
