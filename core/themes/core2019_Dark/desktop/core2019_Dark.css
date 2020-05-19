@@ -19,13 +19,6 @@ span.cursor > i,
 i.cursor {
   color: var(--link-color) !important;
 }
-a:hover,
-a:active,
-a:focus {
-  color: var(--linkHover-color) !important;
-  text-decoration: none !important;
-  outline: none;
-}
 
 .panel-default .panel-title {
   color: var(--linkHover-color) !important;

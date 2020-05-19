@@ -53,6 +53,18 @@ p.state,
   scrollbar-width: thin;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: var(--linkHover-color) !important;
+}
+
 .backgroundforJeedom {
   width: 100%;
   height: calc(100% - 50px);
@@ -144,7 +156,9 @@ a > img:hover {
   text-align: center;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,
+h3 a:visited {
+  font-weight: 400;
   color: var(--link-color);
 }
 
