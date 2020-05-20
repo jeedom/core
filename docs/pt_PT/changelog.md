@@ -32,6 +32,7 @@
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
 - **Análise / História** : Agora podemos usar a opção *área* com a opção *Escada*.
+- **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Vista** : possibilidade de colocar cenários.
 - **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Histórico** : Gerenciamento de várias linhas do tempo.
@@ -53,7 +54,8 @@
 	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay :
 	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Anotações*, *Testador de expressão*, *Variáveis*, *Pesquisa* : Abra a janela em uma nova guia, em tela cheia.<br/><br/>
+	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Anotações*, *Testador de expressão*, *Variáveis*, *Pesquisa* : Abra a janela em uma nova guia, em tela cheia.
+- Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.<br/><br/>
 - **WebApp** : Integração da nova página Resumo.
 - **WebApp** : Na página Cenários, um clique no título do cenário exibe seu log.
 - **WebApp** : Agora podemos selecionar / copiar parte de um log.
@@ -61,6 +63,7 @@
 - **WebApp** : Persistência da alternância do tema (8h).
 - **WebApp** : Em um design, um clique com três dedos retorna à página inicial.
 - **WebApp** : Exibição de cenários por grupo.
+- **WebApp** : Nova fonte de tipo monoespaçado para logs.
 - **WebApp** : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).<br/><br/>
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.

@@ -32,6 +32,7 @@
 - **Analysis / History** : Ctrl Click on a legend to display only this history, Alt Click to display them all.
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Steps*.
+- **Analysis / Logs** : New monospace type font for logs.
 - **View** : possibility to put scenarios.
 - **History** : Integration of the Timeline in DB for reliability reasons.
 - **History** : Management of multiple timelines.
@@ -53,7 +54,8 @@
 	- Ctrl Clic / Clic Center also available in their context menus (on the tabs).
 - New ModalDisplay page :
 	- Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
-	- Tools menu : Ctrl Click / Click Center on *Notes*, *Expression tester*, *Variables*, *Research* : Open the window in a new tab, in full screen.<br/><br/>
+	- Tools menu : Ctrl Click / Click Center on *Notes*, *Expression tester*, *Variables*, *Research* : Open the window in a new tab, in full screen.
+- Code Block, File Editor, Advanced Customization : Dark theme adaptation.<br/><br/>
 - **WebApp** : Integration of the new Synthesis page.
 - **WebApp** : Scenarios page, a click on the scenario title displays its log.
 - **WebApp** : We can now select / copy part of a log.
@@ -61,6 +63,7 @@
 - **WebApp** : Persistence of the theme toggle (8h).
 - **WebApp** : On a design, a click with three fingers returns to the home page.
 - **WebApp** : Display of scenarios by group.
+- **WebApp** : New monospace type font for logs.
 - **WebApp** : Many bug-fix (UI, portrait / landscape iOS, etc.).<br/><br/>
 - **Documentation** : Adaptations in line with v4 and v4.1.
 - **Documentation** : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.

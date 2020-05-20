@@ -32,6 +32,7 @@
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - **Análisis / Historia** : Ahora podemos usar la opción *Area* con la opción *Escalera*.
+- **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
 - **Vista** : posibilidad de poner escenarios.
 - **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Historial** : Gestión de múltiples líneas de tiempo.
@@ -53,7 +54,8 @@
 	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay :
 	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en *Notas*, *Probador de expresión*, *Las variables*, *Buscar* : Abra la ventana en una pestaña nueva, en pantalla completa.<br/><br/>
+	- Menú de herramientas : Ctrl Click / Click Center en *Notas*, *Probador de expresión*, *Las variables*, *Buscar* : Abra la ventana en una pestaña nueva, en pantalla completa.
+- Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.<br/><br/>
 - **Aplicación web** : Integración de la nueva página de resumen.
 - **Aplicación web** : Página de escenarios, un clic en el título del escenario muestra su registro.
 - **Aplicación web** : Ahora podemos seleccionar / copiar parte de un registro.
@@ -61,6 +63,7 @@
 - **Aplicación web** : Persistencia del cambio de tema (8h).
 - **Aplicación web** : En un diseño, un clic con tres dedos vuelve a la página de inicio.
 - **Aplicación web** : Visualización de escenarios por grupo.
+- **Aplicación web** : Nueva fuente tipo monoespacio para registros.
 - **Aplicación web** : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.

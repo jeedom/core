@@ -32,6 +32,7 @@
 - **Analyse / Geschichte** : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Fläche* mit der Option *Treppe*.
+- **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
 - **Ansicht** : Möglichkeit, Szenarien zu setzen.
 - **Chronik** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Chronik** : Verwaltung mehrerer Zeitleisten.
@@ -53,7 +54,8 @@
 	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs verfügbar (auf den Registerkarten).
 - Neue ModalDisplay-Seite :
 	- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
-	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Hinweis*, *Expressionstester*, *Variablen*, *Suche* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.<br/><br/>
+	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Hinweis*, *Expressionstester*, *Variablen*, *Suche* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+- Codeblock, Datei-Editor, Erweiterte Anpassung : Dunkle Themenanpassung.<br/><br/>
 - **WebApp** : Integration der neuen Übersichtsseite.
 - **WebApp** : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - **WebApp** : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
@@ -61,6 +63,7 @@
 - **WebApp** : Persistenz des Themas umschalten (8h).
 - **WebApp** : Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
 - **WebApp** : Anzeige von Szenarien nach Gruppe.
+- **WebApp** : Neue Monospace-Schriftart für Protokolle.
 - **WebApp** : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).<br/><br/>
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
