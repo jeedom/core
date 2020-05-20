@@ -14,7 +14,8 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
       <a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
       <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-      <a class="badge cursor" href="https://doc.jeedom.com/" target="_blank">Doc</a>
+      <a class="badge cursor" href="https://doc.jeedom.com/" target="_blank">Doc</a> |
+      <a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
       <br><br>
       {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
       <br>
@@ -26,6 +27,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <br><br>
       <a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a>
       <a class="btn btn-xs" id="bt_faq" target="_blank"><i class="fas fa-question-circle"></i> {{FAQ}}</a>
+      <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-image"></i> {{Guide de démarrage}}</a>
       <br><br>
     </center>
 
@@ -91,6 +93,7 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
     }
   })
 })
+
 $('body').off('click','#bt_faq').on('click','#bt_faq',function() {
   jeedom.getDocumentationUrl({
     page: 'faq',
@@ -103,4 +106,8 @@ $('body').off('click','#bt_faq').on('click','#bt_faq',function() {
     }
   })
 })
+
+$('#bt_firstUse').on('click',function(){
+  $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
+});
 </script>
