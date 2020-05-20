@@ -3682,7 +3682,9 @@ pre {
   line-height: 14px;
 }
 #pre_globallog,
-#pre_scenariolog {
+#pre_scenariolog,
+#pre_commandResult,
+#div_commandResult {
   font-family: "CamingoCode", monospace;
   font-size: 13px;
   line-height: 14px;
