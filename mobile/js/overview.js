@@ -26,7 +26,7 @@ function initOverview() {
               div += '<span class="name">'+icon +' '+_this.name+'</span>'
             div += '</div>'
             div += '<div class="bottomPreview bottomCorner">'
-              div += '<div class="resume">'
+              div += '<div class="resume" style="display:none;">'
               div += '<span class="objectSummary'+_this.id+'" data-version="mobile"></span>'
               div += '</div>'
             div += '</div>'
@@ -48,6 +48,7 @@ function initOverview() {
           $(this).find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
         })
 
+        $('.resume').show()
         colorizeSummary()
         createSummaryObserver()
       }, 500)

@@ -22,7 +22,7 @@ $allObject = jeeObject::all(true);
       $div .= '<span class="name">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
       $div .= '</div>';
       $div .= '<div class="bottomPreview bottomCorner">';
-      $div .= '<div class="resume">' . $_object->getHtmlSummary() . '</div>';
+      $div .= '<div class="resume" style="display:none;">' . $_object->getHtmlSummary() . '</div>';
       $div .= '</div>';
       $div .= '</div>';
       $div .= '</div>';
