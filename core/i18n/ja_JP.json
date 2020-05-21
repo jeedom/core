@@ -951,7 +951,9 @@
         "Système": "システム",
         "Changelog": "変更履歴",
         "FAQ": "よくある質問",
-        "Auteur(s)": "著者（複数可）"
+        "Guide de démarrage": "入門ガイド",
+        "Auteur(s)": "著者（複数可）",
+        "Bienvenue dans Jeedom": "Jeedomへようこそ"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401-不正アクセス"
@@ -1025,10 +1027,11 @@
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Configuration de votre": "あなたの設定",
-        "Mes premiers pas dans": "私の最初のステップ",
         "Bienvenue dans": "へようこそ",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": "、接続されたホーム用にこのツールをお選びいただきありがとうございます。はじめに3つのガイドがあります",
+        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "",
+        "Voici 4 guides pour bien débuter avec": "",
         "Guide de démarrage": "入門ガイド",
+        "Concept": "",
         "Documentation de démarrage": "はじめにドキュメント",
         "Documentation": "ドキュメンテーション",
         "Sauvegarde réussie": "成功したバックアップ"

@@ -951,7 +951,9 @@
         "Système": "Système",
         "Changelog": "Changelog",
         "FAQ": "FAQ",
-        "Auteur(s)": "Auteur(s)"
+        "Guide de démarrage": "Guide de démarrage",
+        "Auteur(s)": "Auteur(s)",
+        "Bienvenue dans Jeedom": "Bienvenue dans Jeedom"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
@@ -1025,10 +1027,11 @@
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Configuration de votre": "Configuration de votre",
-        "Mes premiers pas dans": "Mes premiers pas dans",
         "Bienvenue dans": "Bienvenue dans",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec",
+        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": ", et merci d'avoir choisi cette solution pour votre habitat connecté.",
+        "Voici 4 guides pour bien débuter avec": "Voici 4 guides pour bien débuter avec",
         "Guide de démarrage": "Guide de démarrage",
+        "Concept": "Concept",
         "Documentation de démarrage": "Documentation de démarrage",
         "Documentation": "Documentation",
         "Sauvegarde réussie": "Sauvegarde réussie"

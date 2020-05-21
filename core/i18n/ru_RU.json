@@ -951,7 +951,9 @@
         "Système": "система",
         "Changelog": "Изменения",
         "FAQ": "часто задаваемые вопросы",
-        "Auteur(s)": "Автор (ы)"
+        "Guide de démarrage": "Руководство по началу работы",
+        "Auteur(s)": "Автор (ы)",
+        "Bienvenue dans Jeedom": "Добро пожаловать в Джидом"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
@@ -1025,10 +1027,11 @@
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Configuration de votre": "Конфигурация вашего",
-        "Mes premiers pas dans": "Мои первые шаги в",
         "Bienvenue dans": "Добро пожаловать в",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": "и спасибо за выбор этого инструмента для подключенного дома. Вот 3 руководства, с которых можно начать",
+        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "",
+        "Voici 4 guides pour bien débuter avec": "",
         "Guide de démarrage": "Руководство по началу работы",
+        "Concept": "",
         "Documentation de démarrage": "Начало работы с документацией",
         "Documentation": "документация",
         "Sauvegarde réussie": "Удачная резервная копия"

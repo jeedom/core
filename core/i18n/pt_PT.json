@@ -951,7 +951,9 @@
         "Système": "Sistema",
         "Changelog": "Changelog",
         "FAQ": "Faq",
-        "Auteur(s)": "Autor (es)"
+        "Guide de démarrage": "Guia de primeiros passos",
+        "Auteur(s)": "Autor (es)",
+        "Bienvenue dans Jeedom": "Bem-vindo no Jeedom"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
@@ -1025,10 +1027,11 @@
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Configuration de votre": "Configuração do seu",
-        "Mes premiers pas dans": "Meus primeiros passos",
         "Bienvenue dans": "Bem vindo a",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": "e obrigado por escolher esta ferramenta para sua casa conectada. Aqui estão três guias para começar",
+        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "e obrigado por escolher esta solução para sua casa conectada",
+        "Voici 4 guides pour bien débuter avec": "Aqui estão 4 guias para começar",
         "Guide de démarrage": "Guia de primeiros passos",
+        "Concept": "Conceito",
         "Documentation de démarrage": "Documentação de introdução",
         "Documentation": "Documentação",
         "Sauvegarde réussie": "Backup bem-sucedido"

@@ -951,7 +951,9 @@
         "Système": "Sistem",
         "Changelog": "Değişiklikler",
         "FAQ": "",
-        "Auteur(s)": "Yazar (lar)"
+        "Guide de démarrage": "",
+        "Auteur(s)": "Yazar (lar)",
+        "Bienvenue dans Jeedom": "Jeedom\\'a hoşgeldiniz"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
@@ -1025,10 +1027,11 @@
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Configuration de votre": "",
-        "Mes premiers pas dans": "",
         "Bienvenue dans": "",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": "",
+        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "",
+        "Voici 4 guides pour bien débuter avec": "",
         "Guide de démarrage": "",
+        "Concept": "",
         "Documentation de démarrage": "",
         "Documentation": "Belgeleme",
         "Sauvegarde réussie": "Kayıt başarılı"

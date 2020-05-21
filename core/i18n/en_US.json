@@ -951,7 +951,9 @@
         "Système": "System",
         "Changelog": "Changelog",
         "FAQ": "FAQ",
-        "Auteur(s)": "Author(s)"
+        "Guide de démarrage": "Getting started guide",
+        "Auteur(s)": "Author(s)",
+        "Bienvenue dans Jeedom": "Welcome to Jeedom"
     },
     "desktop\/modal\/widget.modal.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access"
@@ -1025,10 +1027,11 @@
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Configuration de votre": "Configuration of your",
-        "Mes premiers pas dans": "My first steps in",
         "Bienvenue dans": "Welcome in",
-        ", et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec": ", and thank you for choosing this tool for your connected home. Here are 3 guides to get started with",
+        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": ", and thank you for choosing this solution for your connected home",
+        "Voici 4 guides pour bien débuter avec": "Here are 4 guides to get started with",
         "Guide de démarrage": "Getting started guide",
+        "Concept": "Concept",
         "Documentation de démarrage": "Getting started documentation",
         "Documentation": "Documentation",
         "Sauvegarde réussie": "Successful backup"
