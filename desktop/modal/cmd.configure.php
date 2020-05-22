@@ -682,7 +682,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 </td>
                 <td style="width: 1px;">
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
-                <td>
+                </td>
               </tr>
             <?php }
             ?>
@@ -748,7 +748,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           <div class="col-xs-1">
             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
           </div>
-          <label class="col-xs-2 control-label">{{après le widget}}</label>
+          <label class="col-xs-2 control-label">{{Après le widget}}</label>
           <div class="col-xs-1">
             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
           </div>
