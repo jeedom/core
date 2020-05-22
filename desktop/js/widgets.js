@@ -172,7 +172,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
     checkedId.push($(this).data('cmd_id'))
   })
 
-  $('#md_modal').dialog({title: "{{Appliquer sur}}"})
+  $('#md_modal').dialog({title: "{{Appliquer ce widget à}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter();
 
