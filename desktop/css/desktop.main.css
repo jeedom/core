@@ -1006,6 +1006,13 @@ div[data-market_type=script]:hover {
 }
 
 /* analyse equipment */
+#actionCmd tr td {
+  vertical-align: top !important;
+}
+#actionCmd tr td div {
+  padding: 3px;
+  display: list-item;
+}
 #battery,
 #alertEqlogic {
   margin-bottom: 20px !important;
