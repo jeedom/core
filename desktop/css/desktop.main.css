@@ -335,6 +335,7 @@ legend .pull-right:not(.input-group) {
 }
 .div_object legend .objectDashLegend > a {
   padding-right: 20px;
+  font-weight: 500;
 }
 
 
