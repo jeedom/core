@@ -336,10 +336,12 @@ legend .pull-right:not(.input-group) {
 .div_object legend .objectDashLegend > a {
   padding-right: 35px;
   font-weight: 500;
+  transition-property: padding;
   transition: 0.5s;
 }
 .div_object:hover legend .objectDashLegend > a {
   padding-right: 80px;
+  transition-property: padding;
   transition: 0.5s;
 }
 .div_object legend .objectDashLegend > a > i{
@@ -611,11 +613,13 @@ sup i {
 .objectPreview .topPreview > .name > i {
   color: var(--link-color);
   padding-right: 5px;
+  transition-property: padding;
   transition: 0.5s
 }
 .objectPreview:hover .topPreview > .name > i {
   color: var(--link-color);
   padding-right: 15px;
+  transition-property: padding;
   transition: 0.5s
 }
 .objectPreview:hover .topPreview {
