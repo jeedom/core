@@ -130,6 +130,7 @@ $('#in_searchWidget').off('keyup').on('keyup',function() {
 $('#bt_resetDashboardSearch').on('click', function () {
   if (isEditing) return
   $('#categoryfilter li .catFilterKey').prop("checked", true)
+  $('#dashTopBar button.dropdown-toggle').removeClass('warning')
   $('#in_searchWidget').val('').keyup()
 })
 

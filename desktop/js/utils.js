@@ -724,6 +724,7 @@ setTimeout(function() {
   $("body").on('keydown',"input[id^='in_search']",function(event) {
     if(event.key == 'Escape') {
       $('#categoryfilter li .catFilterKey').prop("checked", true)
+      $('#dashTopBar button.dropdown-toggle').removeClass('warning')
       $(this).val('').keyup();
     }
   })
