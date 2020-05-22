@@ -121,7 +121,6 @@ class scenarioExpression {
 	}
 
 	public static function humanAction($_action) {
-		message::add('debug', json_encode($_action));
 		$return = '';
 		if ($_action['cmd'] == 'scenario') {
 			$scenario = scenario::byId($_action['options']['scenario_id']);
