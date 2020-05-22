@@ -1007,12 +1007,24 @@ div[data-market_type=script]:hover {
 }
 
 /* analyse equipment */
+#table_Action thead th[data-column="2"] {
+  width: 180px;
+}
+#table_Action thead th[data-column="4"] {
+  width: 40px;
+}
 #actionCmd tr td {
   vertical-align: top !important;
 }
 #actionCmd tr td div {
-  padding: 3px;
+  min-height: 25px;
   display: list-item;
+  position: relative;
+  top: 5px;
+}
+#actionCmd tr td div span > i,
+#actionCmd tr td div span {
+  color: var(--linkHoverLight-color) !important;
 }
 #battery,
 #alertEqlogic {

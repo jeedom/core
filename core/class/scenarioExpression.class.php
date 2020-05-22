@@ -130,11 +130,11 @@ class scenarioExpression {
 				$name = $scenario->getName();
 			}
 			$action = $_action['options']['action'];
-			$return .= __('Scénario : ', __FILE__) . $name . ' <i class="fas fa-arrow-right"></i> ' . $action;
+			$return .= '<b>'.__('Scénario', __FILE__).'</b> : '.$name.' <i class="fas fa-arrow-right"></i> '.$action;
 		} elseif ($_action['cmd'] == 'variable') {
 			$name = $_action['options']['name'];
 			$value = $_action['options']['value'];
-			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fas fa-arrow-right"></i> ' . $value;
+			$return .= '<b>'.__('Variable', __FILE__).'</b> : '.$name.' <i class="fas fa-arrow-right"></i> '.$value;
 		} elseif ($_action['cmd'] == 'equipement') {
 			$name = eqLogic::toHumanReadable($_action['options']['eqLogic']);
 			$action = $_action['options']['action'];
@@ -156,9 +156,15 @@ class scenarioExpression {
 		} elseif (is_object(cmd::byId(str_replace('#', '', $_action['cmd'])))) {
 			$cmd = cmd::byId(str_replace('#', '', $_action['cmd']));
 			$eqLogic = $cmd->getEqLogic();
-			$return .= $eqLogic->getHumanName(true) . ' ' . $cmd->getName();
+			$object = $eqLogic->getObject();
+			if (is_object($object)) {
+				$objectName = $object->getHumanName(true, true); //$object->getDisplay('icon').' '.$object->getName();
+			} else {
+				$objectName = '<span class="label labelObjectHuman">'.__('Aucun',__FILE__).'</span>';
+			}
+			$return .= $objectName.' '.$eqLogic->getName().' <i class="fas fa-arrow-right"></i> '.$cmd->getName();
 		} elseif ($_action['cmd'] != '') {
-			$return .= $_action['cmd'];
+			$return .= '<b>'.$_action['cmd'].'</b>';
 		}
 		return trim($return);
 	}
