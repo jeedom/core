@@ -10,10 +10,10 @@ Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedo
 
 - 1 : Menu principal de Jeedom.
 - 2 : Résumé global.
-- 3 : Heure du navigateur, racourci vers la Timeline.
+- 3 : Heure du navigateur, raccourci vers la Timeline.
 - 4 : Bouton pour accéder à la documentation de la page en cours.
-- 5 : Nom de votre Jeedom, racourci vers la configuration.
-- 6 : Mode édition (Réordonner / redimenssioner les tuiles).
+- 5 : Nom de votre Jeedom, raccourci vers la configuration.
+- 6 : Mode édition (Réordonner / redimensionner les tuiles).
 - 7 : Filtre par catégories.
 - 8 : Objet : Icône, nom et résumé, et ses équipements.
 - 9 : Tuile d'un équipement.
