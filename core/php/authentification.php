@@ -24,6 +24,7 @@ if (!is_numeric($session_lifetime)) {
 	$session_lifetime = 24;
 }
 ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
+ini_set('session.cookie_lifetime', $session_lifetime * 3600);
 ini_set('session.use_cookies', 1);
 ini_set('session.cookie_httponly', 1);
 
