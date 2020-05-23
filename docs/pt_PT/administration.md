@@ -1,4 +1,4 @@
-# Configuração
+# Configuration
 **Configurações → Sistema → Configuração**
 
 É aqui que a maioria dos parâmetros de configuração é encontrada.
@@ -38,13 +38,13 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Sensor de brilho**   : Somente interface móvel, requer ativação *sensor extra genérico* no chrome, página chrome://flags.
 - **Ocultar imagens de fundo** : Permite ocultar as imagens de plano de fundo encontradas nos cenários, objetos, páginas de interações etc.
 
-### Azulejos
+### Tuiles
 
 - **Azulejos Pas horizontal** : Restringe a largura dos blocos a cada x pixels.
 - **Azulejos Pas vertical** : Restringe a altura dos blocos a cada x pixels.
 - **Azulejos Marge** : Espaço vertical e horizontal entre blocos, em pixels.
 
-### Personalização
+### Personnalisation
 
 - **Ativar** : Ative o uso das opções abaixo.
 - **Transparência** : Exibe blocos do painel e algum conteúdo com transparência. 1 : totalmente opaco, 0 : totalmente transparente.
@@ -106,19 +106,19 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ## Guia Logs
 
-### Cronograma
+### Timeline
 
 - **O número máximo de eventos** : Define o número máximo de eventos a serem exibidos na linha do tempo.
 - **Excluir todos os eventos** : Esvaziar a linha do tempo de todos os seus eventos registrados.
 
-### Mensagens
+### Messages
 
 - **Adicione uma mensagem para cada erro nos logs** : se um plug-in ou Jeedom grava uma mensagem de erro em um log, o Jeedom adiciona automaticamente uma mensagem no centro de mensagens (pelo menos você tem certeza de que não a perdeu).
 - **Ação na mensagem** : Permite que você execute uma ação ao adicionar uma mensagem ao centro de mensagens. Você tem 2 tags para essas ações :
         - #subject# : mensagem em questão.
         - #plugin# : plugin que acionou a mensagem.
 
-### Notificações
+### Alertes
 
 - **Adicione uma mensagem a cada tempo limite** : Adicione uma mensagem no centro de mensagens se um dispositivo cair **Tempo limite**.
 - **Ordem de tempo limite** : Comando de tipo **Mensagem** para ser usado se um equipamento estiver em **Tempo limite**.
@@ -131,7 +131,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Adicione uma mensagem a cada Perigo** : Adicione uma mensagem no centro de mensagens se um pedido entrar em alerta **Perigo**.
 - **Comando sobre Perigo** : Comando de tipo **Mensagem** usar se um pedido entrar em alerta **Perigo**.
 
-### Toras
+### Logs
 
 - **Log Motor** : Permite alterar o mecanismo de log para, por exemplo, enviá-los para um daemon syslog (d).
 - **Logs de formato** : Formato de log a ser usado (Cuidado : isso não afeta os logs do daemon).
@@ -159,7 +159,7 @@ Adicionar resumos de objetos. Essas informações são exibidas no canto superio
 
 ## Guia Equipamento
 
-### Instalações
+### Equipements
 
 - **Falha Contagem off equipamentos** : Número de falhas de comunicação com o equipamento antes da desativação do equipamento (uma mensagem avisará se isso acontecer).
 - **Limiares da bateria** : Permite gerenciar os limites de alerta global nas pilhas.
@@ -182,7 +182,7 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 > O primeiro parâmetro **Mostrar estatísticas sobre os widgets** é possível, mas desativado por padrão, pois aumenta significativamente o tempo de exibição do painel. Se você ativar esta opção, por padrão, o Jeedom confiará nos dados das últimas 24 horas para calcular essas estatísticas.
 > O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para o detalhe).
 
-### Empurrão
+### Push
 
 - **URL  de push globale** : permite adicionar um URL para chamar no caso de uma atualização do pedido. Você pode usar as seguintes tags :
 **\#value\#** para o valor do pedido, **\#cmd\_name\#** para o nome do comando,
@@ -282,7 +282,7 @@ Aqui estão as diferentes opções disponíveis :
 - **Filtro de usuário limitado (opcional)** : filtrar usuários limitados no AD (para gerenciamento de grupos, por exemplo)
 - **Permitir REMOTE\_USER** : Ative REMOTE\_USER (usado no SSO, por exemplo).
 
-### Logar
+### Connexion
 
 - **Número de falhas tolerada** : define o número de tentativas sucessivas permitidas antes de banir o IP
 - **Tempo máximo entre falhas (em segundos)** : tempo máximo para 2 tentativas serem consideradas sucessivas
@@ -304,7 +304,7 @@ A lista de IPs banidos está na parte inferior desta página. Você encontrará 
 
 Os repositórios são espaços de armazenamento (e serviço) para poder mover backups, recuperar plugins, recuperar o núcleo do Jeedom, etc.
 
-### Ficheiro
+### Fichier
 
 Depósito usado para ativar o envio de plugins por arquivos.
 
@@ -317,7 +317,7 @@ Depósito usado para conectar o Jeedom ao Github.
 - **Nome du dépôt pour le core Jeedom** : Nome do repositório para core.
 - **Indústria do núcleo Jeedom** : Ramificação do repositório principal.
 
-#### Mercado
+#### Market
 
 Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
@@ -362,7 +362,7 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 >
 > O Jeedom deve ser o único a escrever nesta pasta e deve estar vazio por padrão (ou seja, antes da configuração e do envio do primeiro backup, a pasta não deve conter nenhum arquivo ou pasta).
 
-#### URL 
+#### URL
 
 - **URL  core Jeedom**
 - **URL  version core Jeedom**

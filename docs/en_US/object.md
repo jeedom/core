@@ -1,4 +1,4 @@
-# Objects
+# Objets
 **Tools → Objects**
 
 The **Objects** allow you to define the tree structure of your home automation.
@@ -7,7 +7,7 @@ All the equipment you create must belong to an object and are therefore more eas
 
 To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
 
-## Management
+## Gestion
 
 You have two options :
 - **Add** : Create a new object.
@@ -74,7 +74,7 @@ The columns represent the summaries assigned to the current object. Three lines 
 - **Hide on desktop** : Check the box if you do not want the summary to appear next to the object name on the Dashboard.
 - **Hide on mobile** : Check the box if you do not want the summary to appear when you view it from a mobile.
 
-### Commands
+### Commandes
 
 Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add une commande** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 

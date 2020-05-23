@@ -5,7 +5,7 @@ A página *Síntese* oferece uma síntese rápida e visual de seus objetos e seu
 
 Você pode configurá-lo como a página padrão em **Configurações → Preferências**, no computador e / ou celular.
 
-## Visualizando
+## Affichage
 
 Em cada objeto, sua imagem de plano de fundo e seus resumos são exibidos :
 
@@ -30,7 +30,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 >
 > Se um objeto não definiu um resumo, um botão é exibido no canto superior direito para acessar a configuração / resumos do objeto.
 
-## FUNÇÕES
+## Fonctions
 
 Para cada objeto, você pode clicar em :
 - No título do objeto para exibir o Painel desse objeto com seus objetos filhos (também acessível no menu *Página inicial → Painel de controle → Objeto*).

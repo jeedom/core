@@ -1,4 +1,4 @@
-# Salpicadero
+# Dashboard
 **Inicio → Tablero**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>

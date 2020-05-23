@@ -67,7 +67,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 - Estado : O controle do status da luz pode ser binário (0 ou 1), digital (0 a 100%) ou colorido
 - Poder : potência da lâmpada (observe que isso pode não refletir a realidade))
 
-### Texto
+### Texte
 
 - Texto : texto a ser exibido (você pode colocar comandos lá, o texto será atualizado automaticamente quando for alterado)
 - Tamanho do texto
@@ -97,7 +97,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 	- Cor aberta : se assinalar, o elemento assumirá esta cor se a porta / janela estiver aberta
 	- Cor fechada : se marque o elemento terá esta cor se a porta / janela estiver fechada
 
-#### Aba
+#### Volet
 
 - Estado : status do obturador, 0 aberto outro valor fechado
 - Ocultar quando o obturador estiver aberto

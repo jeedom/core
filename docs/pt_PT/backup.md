@@ -1,4 +1,4 @@
-# Backups
+# Sauvegardes
 **Configurações → Sistema → Backups**
 
 O Jeedom oferece a possibilidade de ser salvo e restaurado de ou de diferentes locais.
@@ -7,7 +7,7 @@ Esta página permite o gerenciamento de backups, restaura.
 
 Você encontrará, à esquerda, os parâmetros e botões de ação. À direita está o status em tempo real da ação em andamento (backup ou restauração), se você tiver lançado um.
 
-## Backups
+## Sauvegardes
 
 - **Backups** : Permite iniciar um backup manual e imediatamente (útil se você quiser fazer uma alteração crítica. Isso permitirá que você volte). Você também tem um botão para iniciar um backup sem enviar o arquivo para a nuvem (requer uma assinatura, veja abaixo). O envio de um backup para a nuvem pode demorar um pouco. Esta opção evita, portanto, perda excessiva de tempo.
 

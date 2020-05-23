@@ -1,4 +1,4 @@
-# Setup
+# Configuration
 **Settings → System → Configuration**
 
 This is where most of the configuration parameters are found.
@@ -38,13 +38,13 @@ In this tab you will find the display customization parameters.
 - **Brightness sensor**   : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
 - **Hide background images** : Allows you to hide the background images found in the scenarios, objects, interactions pages, etc.
 
-### Tiles
+### Tuiles
 
 - **Tiles Pas horizontal** : Constrains the width of the tiles every x pixels.
 - **Tiles Pas vertical** : Constrains the height of the tiles every x pixels.
 - **Tiles Marge** : Vertical and horizontal space between tiles, in pixels.
 
-### Personalisation
+### Personnalisation
 
 - **Activate** : Activate the use of the options below.
 - **Transparency** : Displays Dashboard tiles and some content with transparency. 1 : totally opaque, 0 : totally transparent.
@@ -118,7 +118,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
         - #subject# : message in question.
         - #plugin# : plugin that triggered the message.
 
-### Warnings
+### Alertes
 
 - **Add a message to each Timeout** : Add a message in the message center if a device falls in **Timeout**.
 - **Timeout command** : Type command **Message** to be used if an equipment is in **Timeout**.
@@ -159,7 +159,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 
 ## Equipment tab
 
-### Equipments
+### Equipements
 
 - **Number of failures before deactivation of the equipment** : Number of communications failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
 - **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
@@ -282,7 +282,7 @@ Here are the different options available :
 - **Limited user filter (optional)** : filter limited users on the AD (for group management for example)
 - **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO for example).
 
-### Connection
+### Connexion
 
 - **Number of tolerated failures** : defines the number of successive attempts allowed before banning the IP
 - **Maximum time between failures (in seconds)** : maximum time for 2 attempts to be considered successive
@@ -304,7 +304,7 @@ The list of banned IPs is at the bottom of this page. You will find the IP, the 
 
 The repositories are storage (and service) spaces to be able to move backups, recover plugins, recover the core of Jeedom, etc.
 
-### File
+### Fichier
 
 Deposit used to activate the sending of plugins by files.
 

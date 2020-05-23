@@ -1,4 +1,4 @@
-# Faq
+# FAQ
 **Einstellungen → Version : Faq**
 
 ### Jeedom benötigt ein Abonnement ?

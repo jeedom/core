@@ -5,7 +5,7 @@
 
 Real brain of home automation, the scenarios allow to interact with the real world in a way *smart*.
 
-## Management
+## Gestion
 
 You will find there the list of scenarios of your Jeedom, as well as functionalities to manage them at best :
 
@@ -155,7 +155,7 @@ Once the condition is completed, you must use the &quot;add&quot; button on the 
 
 The Code block allows you to execute php code. It is therefore very powerful but requires a good knowledge of the php language.
 
-#### ATccès aux commandes (capteurs and actionneurs)
+#### Access to controls (sensors and actuators)
 
 -  ``cmd::byString($string);`` : Returns the corresponding command object.
     -   ``$string``: Link to the desired command : ``#[objet][Equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Active]#``)
@@ -167,14 +167,14 @@ The Code block allows you to execute php code. It is therefore very powerful but
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### ATccès aux log
+#### Access to log
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Log file name.
     - ``level`` : [debug], [info], [error], [event].
     - ``message`` : Message to write in the logs.
 
-#### ATccès aux scénario
+#### Access to scenario
 
 - ``$scenario->getName();`` : Returns the name of the current scenario.
 - ``$scenario->getGroup();`` : Returns the scenario group.
@@ -502,7 +502,7 @@ Below, you have the part to apply your template to the current scenario.
 
 Given that from one Jeedom to another or from one installation to another, the commands can be different, Jeedom asks you for the correspondence of the commands between those present during the creation of the template and those present at home. You just have to fill in the correspondence of the commands then to apply.
 
-## ATjout de fonction php
+## Addition of php function
 
 > **IMPORTANT**
 >

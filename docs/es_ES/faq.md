@@ -1,4 +1,4 @@
-# Preguntas frecuentes
+# FAQ
 **Configuración → Versión : Preguntas frecuentes**
 
 ### Jeedom requiere una suscripción ?

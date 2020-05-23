@@ -12,7 +12,7 @@ Existem dois tipos de widgets personalizados :
 >
 > Se os widgets baseados em modelo são integrados ao Core e, portanto, monitorados pela equipe de desenvolvimento, este último não tem como garantir a compatibilidade de widgets com base no código do usuário, de acordo com os desenvolvimentos do Jeedom.
 
-## Gestão
+## Gestion
 
 Você tem quatro opções :
 - **Adicionar** : Permite criar um novo widget.
@@ -40,7 +40,7 @@ Você tem um mecanismo de pesquisa para filtrar a exibição de widgets. A tecla
 Uma vez na configuração de um widget, você tem um menu contextual com o botão direito do mouse nas guias do widget. Você também pode usar um Ctrl Click ou o Clic Center para abrir diretamente outro widget em uma nova guia do navegador.
 
 
-## Princípio
+## Principe
 
 Mas o que é um modelo ?
 Para simplificar, é um código (aqui html / js) integrado ao Core, algumas partes configuráveis pelo usuário com a interface gráfica do Core.
@@ -64,7 +64,7 @@ Em seguida :
 - Finalmente, o modelo em questão (planejamos colocar exemplos de renderizações para cada modelo).
 - Depois que o modelo foi escolhido, o Jeedom oferece as opções para configurá-lo.
 
-### Substituição
+### Remplacement
 
 É o que se chama de widget simples. Aqui, basta dizer que o "on" corresponde a esse ícone / imagem (com o botão escolher), o "off" é aquele etc. Então, dependendo do modelo, você pode oferecer a largura (largura) e a altura (altura). Isso é válido apenas para imagens.
 
@@ -74,7 +74,7 @@ Em seguida :
 >**DICAS**
 >Para usuários avançados, é possível nos valores de substituição colocar tags e especificar seu valor na configuração avançada do comando, exibição da guia e "Widget de Parâmetros Opcionais". Por exemplo, se na largura você coloca como valor #width# (tenha cuidado para colocar o # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) e dar valor. Isso permite alterar o tamanho da imagem de acordo com a ordem e, portanto, evita que você crie um widget diferente para cada tamanho de imagem desejado
 
-### Teste
+### Test
 
 Isso é chamado de parte de vários estados; geralmente, como para widgets simples, você pode escolher "altura" / "largura" para as imagens, apenas abaixo da parte de teste.
 
@@ -99,7 +99,7 @@ Os testes estão no formato : #value# == 1, #value# será substituído automatic
 
 Vamos descrever aqui alguns widgets que têm um funcionamento um tanto particular.
 
-### Equipamento
+### Equipement
 
 Os equipamentos têm certos parâmetros de configuração :
 
@@ -117,7 +117,7 @@ Os equipamentos têm certos parâmetros de configuração :
 - Largura da área de trabalho : largura da imagem na área de trabalho em px (basta colocar o número e não o px). Importante apenas que a largura é solicitada, o Jeedom calculará a altura para não distorcer a imagem.
 - Largura móvel : largura da imagem no celular em px (basta colocar o número e não o px). Importante apenas que a largura é solicitada, o Jeedom calculará a altura para não distorcer a imagem.
 
-### HygroThermograph
+### HygroThermographe
 
 Este widget é um pouco especial, pois é um widget com vários comandos, ou seja, reúne no visor o valor de vários comandos. Aqui ele assume comandos de temperatura e umidade.
 
@@ -133,7 +133,7 @@ Para configurá-lo, é bastante simples: você deve atribuir o widget ao control
 >**NOTA**
 > Atenção em um design, é especialmente importante não fazer um pedido sozinho com esse widget que não funcionará, pois é um widget usando o valor de vários comandos; é absolutamente necessário colocar o widget completo
 
-### Multilinha
+### Multiline
 
 ##### Parâmetros opcionais)
 
@@ -145,7 +145,7 @@ Para configurá-lo, é bastante simples: você deve atribuir o widget ao control
 
 - passo : Permite ajustar a etapa de uma ação do botão (0.5 por padrão).
 
-### Chuva
+### Rain
 
 ##### Parâmetros opcionais)
 

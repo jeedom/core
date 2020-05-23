@@ -3,7 +3,7 @@
 
 This page allows you to gather on a single page the different elements configured on your Jeedom. It also gives access to functions for organizing equipment and controls, to their advanced configuration and to display configuration possibilities.
 
-## Information
+## Informations
 
 On the top of the page, we find :
 - **Number of objects** : Total number of objects configured in our Jeedom, including inactive elements.
@@ -15,7 +15,7 @@ On the top of the page, we find :
 
 You also have a tab **Historical**, displaying the history of commands, equipment, objects, views, design, 3d design, scenarios and deleted users.
 
-## Thes cadres objet
+## Object frames
 
 Below there is one frame per object. In each frame, we find the list of equipment that have this object as parent.
 The first frame **No** represents devices that have no assigned parent.
@@ -32,7 +32,7 @@ For each object, next to its label, two buttons are available.
 >
 > With a click and drop on the objects or equipment, you can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
 
-## Thes équipements
+## The equipments
 
 On each equipment we find :
 

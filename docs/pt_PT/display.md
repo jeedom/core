@@ -3,7 +3,7 @@
 
 Esta página permite reunir em uma única página os diferentes elementos configurados no seu Jeedom. Também fornece acesso a funções para organizar equipamentos e controles, a sua configuração avançada e a exibir possibilidades de configuração.
 
-## Informação
+## Informations
 
 No topo da página, encontramos :
 - **Número de objetos** : Número total de objetos configurados em nosso Jeedom, incluindo elementos inativos.
@@ -15,7 +15,7 @@ No topo da página, encontramos :
 
 Você também tem uma guia **Histórico**, exibindo o histórico de pedidos, equipamentos, objetos, visualizações, design, design 3D, cenários e usuários excluídos.
 
-## Os cadres objet
+## Quadros de objetos
 
 Abaixo há um quadro por objeto. Em cada quadro, encontramos a lista de equipamentos que têm esse objeto como pai.
 O primeiro quadro **Nemhum** representa dispositivos que não possuem pai atribuído.
@@ -32,7 +32,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 >
 > Com um clique e soltar nos objetos ou equipamentos, você pode alterar a ordem deles ou até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
 
-## Os équipements
+## Os equipamentos
 
 Em cada equipamento encontramos :
 

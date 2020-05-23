@@ -1,4 +1,4 @@
-# Benutzer
+# Utilisateurs
 **Einstellungen → System → Benutzer**
 
 Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt sind, eine Verbindung zu Jeedom herzustellen, sowie deren Administratorrechte.

@@ -1,13 +1,13 @@
-# Histórico
+# Historique
 **Análise → História**
 
 Parte importante no software : a parte da historização, uma lembrança verdadeira. É possível no Jeedom registrar qualquer comando do tipo de informação (binário ou digital). Isso permitirá, por exemplo, registrar uma curva de temperatura, consumo ou abertura de porta, etc
 
-### Princípio
+### Principe
 
 Aqui é descrito o princípio de historicização de Jeedom. Você só precisa entender isso se estiver com problemas de histórico ou quiser alterar as configurações de histórico. As configurações padrão são boas na maioria dos casos.
 
-### Arquivamento
+### Archivage
 
 O arquivamento de dados permite que o Jeedom reduza a quantidade de dados armazenados na memória. Isso permite não usar muito espaço e não diminui a velocidade do sistema. De fato, se você mantiver todas as medidas, isso fará com que mais pontos sejam exibidos e, portanto, poderá aumentar consideravelmente os tempos para renderizar um gráfico. Se houver muitos pontos, pode até causar uma falha na exibição do gráfico.
 
@@ -115,7 +115,7 @@ Depois de ativar o rastreamento na linha do tempo dos comandos e cenários desej
 >
 > Você precisa aguardar novos eventos após ativar o rastreamento na linha do tempo antes de vê-los aparecer.
 
-### Visualizando
+### Affichage
 
 A linha do tempo exibe os eventos gravados, escalonados dia a dia verticalmente.
 

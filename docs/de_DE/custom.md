@@ -7,7 +7,7 @@ Sie können Ihre eigenen JS-Funktionen hinzufügen und CSS-Klassen hinzufügen o
 
 Die beiden Teile JS und CSS unterscheiden sich je nach Desktop- oder Mobilanzeige.
 
-## Ressourcen
+## Ressources
 
 [CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
