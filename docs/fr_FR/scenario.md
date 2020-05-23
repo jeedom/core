@@ -411,9 +411,7 @@ Voici des exemples pratiques pour comprendre les valeurs retournées par ces dif
 
 ### Les fonctions mathématiques
 
-Une boîte à outils de fonctions génériques peut également servir à effectuer des conversions
-
-ou des calculs :
+Une boîte à outils de fonctions génériques peut également servir à effectuer des conversions ou des calculs :
 
 - ``rand(1,10)`` : Donne un nombre aléatoire de 1 à 10.
 - ``randText(texte1;texte2;texte…​..)`` : Permet de retourner un des textes aléatoirement (séparer les texte par un ; ). Il n’y a pas de limite dans le nombre de texte.
