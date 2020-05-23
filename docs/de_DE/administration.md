@@ -1,4 +1,4 @@
-# Konfiguration
+# Configuration
 **Einstellungen → System → Konfiguration**
 
 Hier befinden sich die meisten Konfigurationsparameter.
@@ -32,13 +32,13 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 - **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chromseite://flags.
 - **Hintergrundbilder ausblenden** : Ermöglicht das Ausblenden der Hintergrundbilder in den Szenarien, Objekten, Interaktionsseiten usw.
 
-### Fliesen
+### Tuiles
 
 - **Fliesen Pas horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
 - **Fliesen Pas vertical** : Beschränkt die Höhe der Kacheln alle x Pixel.
 - **Fliesen Marge** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 
-### Personalisierung
+### Personnalisation
 
 - **Aktivieren** : Aktivieren Sie die Verwendung der folgenden Optionen.
 - **Transparenz** : Zeigt Dashboard-Kacheln und einige Inhalte transparent an. 1 : völlig undurchsichtig, 0 : total transparent.
@@ -100,19 +100,19 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 ## Registerkarte &quot;Protokolle&quot;
 
-### Zeitleiste
+### Timeline
 
 - **Maximale Anzahl von Ereignissen** : Definiert die maximale Anzahl von Ereignissen, die in der Zeitleiste angezeigt werden sollen.
 - **Löschen Sie alle Ereignisse** : Leeren Sie die Zeitleiste aller aufgezeichneten Ereignisse.
 
-### Beiträge
+### Messages
 
 - **Fügen Sie jedem Fehler in den Protokollen eine Nachricht hinzu** : Wenn ein Plugin oder Jeedom eine Fehlermeldung in ein Protokoll schreibt, fügt Jeedom automatisch eine Nachricht im Nachrichtenzentrum hinzu (zumindest werden Sie sie sicher nicht verpassen).
 - **Aktion auf Nachricht** : Ermöglicht es Ihnen, eine Aktion auszuführen, wenn Sie dem Nachrichtenzentrum eine Nachricht hinzufügen. Sie haben 2 Tags für diese Aktionen :
         - #subject# : Nachricht in Frage.
         - #plugin# : Plugin, das die Nachricht ausgelöst hat.
 
-### Benachrichtigungen
+### Alertes
 
 - **Fügen Sie jedem Timeout eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn ein Gerät hineinfällt **Timeout**.
 - **Timeout-Reihenfolge** : Befehl eingeben **Nachricht** zu verwenden, wenn sich ein Gerät in befindet **Timeout**.
@@ -138,7 +138,7 @@ Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der w
 
 Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse → Verlauf Diagramme, die ihre Verwendung darstellen. Auf dieser Registerkarte können Sie globale Parameter für die Befehlsprotokollierung festlegen.
 
-### Historisch
+### Historique
 
 - **Widget-Statistiken anzeigen** : Statistiken zu Widgets anzeigen. Das Widget muss kompatibel sein, was bei den meisten der Fall ist. Der Befehl muss auch vom numerischen Typ sein.
 - **Berechnungszeitraum für min, max, Durchschnitt (in Stunden)** : Statistikberechnungszeitraum (standardmäßig 24 Stunden)). Es ist nicht möglich, weniger als eine Stunde zu dauern.
@@ -154,7 +154,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 > Der erste Parameter **Widget-Statistiken anzeigen** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
 > Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
 
-### Druck
+### Push
 
 - **URLs de push globale** : Mit dieser Option können Sie eine URL hinzufügen, die im Falle einer Auftragsaktualisierung aufgerufen werden soll. Sie können die folgenden Tags verwenden :
 **\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für den Namen des Befehls,
@@ -276,7 +276,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 - **Eingeschränkter Benutzerfilter (optional)** : Filtern Sie eingeschränkte Benutzer im AD (z. B. für die Gruppenverwaltung))
 - **REMOTE\_USER zulassen** : Aktivieren Sie REMOTE\_USER (wird beispielsweise in SSO verwendet).
 
-### Einloggen
+### Connexion
 
 - **Anzahl der tolerierten Fehler** : Definiert die Anzahl der aufeinander folgenden Versuche, die vor dem Sperren der IP zulässig sind
 - **Maximale Zeit zwischen Ausfällen (in Sekunden)** : maximale Zeit für 2 Versuche, um als aufeinanderfolgend betrachtet zu werden
@@ -298,7 +298,7 @@ Die Liste der gesperrten IPs befindet sich am Ende dieser Seite. Sie finden die 
 
 Die Repositorys sind Speicher- (und Service-) Speicherplätze, um Backups verschieben, Plugins wiederherstellen, den Kern von Jeedom wiederherstellen usw. zu können.
 
-### Datei
+### Fichier
 
 Einzahlung verwendet, um das Senden von Plugins durch Dateien zu aktivieren.
 
@@ -311,7 +311,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 - **Name du dépôt pour le core Jeedom** : Repository-Name für den Kern.
 - **Jeedom Kernindustrie** : Kern-Repository-Zweig.
 
-#### Markt
+#### Market
 
 Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Aufmerksamkeit : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
@@ -356,7 +356,7 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 >
 > Jeedom muss der einzige sein, der in diesen Ordner schreibt, und er muss standardmäßig leer sein (d. H. Vor der Konfiguration und dem Senden der ersten Sicherung darf der Ordner keine Datei oder keinen Ordner enthalten).
 
-#### URLs
+#### URL
 
 - **URLs core Jeedom**
 - **URLs version core Jeedom**

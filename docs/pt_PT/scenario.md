@@ -5,7 +5,7 @@
 
 Cérebro real da automação residencial, os cenários permitem interagir de uma maneira com o mundo real *esperto*.
 
-## Gestão
+## Gestion
 
 Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades para gerenciá-los da melhor maneira possível :
 
@@ -155,7 +155,7 @@ Depois que a condição estiver concluída, você deve usar o botão "adicionar"
 
 O bloco Code permite executar código php. Portanto, é muito poderoso, mas requer um bom conhecimento da linguagem php.
 
-#### àccès aux commandes (capteurs e actionneurs)
+#### Acesso a controles (sensores e atuadores)
 
 -  ``cmd::byString($string);`` : Retorna o objeto de comando correspondente.
     -   ``$string``: Link para o pedido desejado : ``#[objet][Equipamento][commande]#`` (ex : ``#[Appartement][Alarme][Ativos]#``)
@@ -167,14 +167,14 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### àccès aux log
+#### Acesso ao log
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Nome do arquivo de log.
     - ``level`` : [depuração], [informações], [erro], [evento].
     - ``message`` : Mensagem para escrever nos logs.
 
-#### àccès aux scénario
+#### Acesso ao cenário
 
 - ``$scenario->getName();`` : Retorna o nome do cenário atual.
 - ``$scenario->getGroup();`` : Retorna o grupo de cenários.
@@ -502,7 +502,7 @@ Abaixo, você tem a parte para aplicar seu modelo ao cenário atual.
 
 Como, de um Jeedom para outro ou de uma instalação para outro, os comandos podem ser diferentes, o Jeedom solicita a correspondência dos comandos entre os presentes durante a criação do modelo e os presentes em casa. Você só precisa preencher a correspondência dos pedidos e aplicar.
 
-## àjout de fonction php
+## Adição da função php
 
 > **IMPORTANTE**
 >

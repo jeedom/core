@@ -1,4 +1,4 @@
-# Setup
+# Configuration
 **Settings → System → Configuration**
 
 This is where most of the configuration parameters are found.
@@ -32,13 +32,13 @@ In this tab you will find the display customization parameters.
 - **Brightness sensor**   : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
 - **Hide background images** : Allows you to hide the background images found in the scenarios, objects, interactions pages, etc.
 
-### Roof tiles
+### Tuiles
 
 - **Roof tiles Pas horizontal** : Constrains the width of the tiles every x pixels.
 - **Roof tiles Pas vertical** : Constrains the height of the tiles every x pixels.
 - **Roof tiles Marge** : Vertical and horizontal space between tiles, in pixels.
 
-### Personalization
+### Personnalisation
 
 - **Activate** : Activate the use of the options below.
 - **Transparency** : Displays Dashboard tiles and some content with transparency. 1 : totally opaque, 0 : totally transparent.
@@ -105,14 +105,14 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Maximum number of events** : Defines the maximum number of events to display in the timeline.
 - **Delete all events** : Empty the timeline of all its recorded events.
 
-### Posts
+### Messages
 
 - **Add a message to each error in the logs** : if a plugin or Jeedom writes an error message in a log, Jeedom automatically adds a message in the message center (at least you are sure not to miss it).
 - **Action on message** : Allows you to take an action when adding a message to the message center. You have 2 tags for these actions :
         - #subject# : message in question.
         - #plugin# : plugin that triggered the message.
 
-### Notifications
+### Alertes
 
 - **Add a message to each Timeout** : Add a message in the message center if a device falls in **timeout**.
 - **Timeout order** : Type command **Message** to be used if an equipment is in **timeout**.
@@ -138,7 +138,7 @@ Below you will find a table for finely managing the log level of essential eleme
 
 Many orders can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
 
-### Historical
+### Historique
 
 - **View widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
 - **Calculation period for min, max, average (in hours)** : Statistics calculation period (24h by default). It is not possible to take less than an hour.
@@ -276,7 +276,7 @@ Here are the different options available :
 - **Limited user filter (optional)** : filter limited users on the AD (for group management for example)
 - **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO for example).
 
-### Log in
+### Connexion
 
 - **Number of failures tolerated** : defines the number of successive attempts allowed before banning the IP
 - **Maximum time between failures (in seconds)** : maximum time for 2 attempts to be considered successive
@@ -298,7 +298,7 @@ The list of banned IPs is at the bottom of this page. You will find the IP, the 
 
 The repositories are storage (and service) spaces to be able to move backups, recover plugins, recover the core of Jeedom, etc.
 
-### File
+### Fichier
 
 Deposit used to activate the sending of plugins by files.
 
@@ -356,7 +356,7 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 >
 > Jeedom must be the only one to write in this folder and it must be empty by default (i.e. before the configuration and the sending of the first backup, the folder must not contain any file or folder).
 
-#### URLs
+#### URL
 
 - **URLs core Jeedom**
 - **URLs version core Jeedom**

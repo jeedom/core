@@ -1,4 +1,4 @@
-# Faq
+# FAQ
 **Configurações → Versão : Faq**
 
 ### Jeedom requer uma assinatura ?

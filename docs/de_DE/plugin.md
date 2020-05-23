@@ -84,7 +84,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
 
-### Platte
+### Panel
 
 Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
 

@@ -5,7 +5,7 @@
 
 Cerebro real de la automatización del hogar, los escenarios permiten interactuar con el mundo real de una manera *inteligente*.
 
-## Administración
+## Gestion
 
 Allí encontrará la lista de escenarios de su Jeedom, así como las funcionalidades para administrarlos en el mejor de los casos :
 
@@ -155,7 +155,7 @@ Una vez que se completa la condición, debe usar el botón &quot;Agregar&quot; a
 
 El bloque de código le permite ejecutar código php. Por lo tanto, es muy potente pero requiere un buen conocimiento del lenguaje php.
 
-#### Laccès aux commandes (capteurs y actionneurs)
+#### Acceso a controles (sensores y actuadores)
 
 -  ``cmd::byString($string);`` : Devuelve el objeto de comando correspondiente.
     -   ``$string``: Enlace al pedido deseado : ``#[objet][Dispositivos][commande]#`` (ex : ``#[Appartement][Alarme][Bienes]#``)
@@ -167,14 +167,14 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### Laccès aux log
+#### Acceso al registro
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Nombre del archivo de registro.
     - ``level`` : [depuración], [información], [error], [evento].
     - ``message`` : Mensaje para escribir en los registros.
 
-#### Laccès aux scénario
+#### Acceso al escenario
 
 - ``$scenario->getName();`` : Devuelve el nombre del escenario actual.
 - ``$scenario->getGroup();`` : Devuelve el grupo de escenarios.
@@ -502,7 +502,7 @@ A continuación, tiene la parte para aplicar su plantilla al escenario actual.
 
 Dado que de un Jeedom a otro o de una instalación a otra, los comandos pueden ser diferentes, Jeedom le solicita la correspondencia de los comandos entre los presentes durante la creación de la plantilla y los presentes en el hogar. Solo tiene que completar la correspondencia de las órdenes y luego aplicar.
 
-## Lajout de fonction php
+## Adición de la función php
 
 > **Importante**
 >

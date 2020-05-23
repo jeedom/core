@@ -1,4 +1,4 @@
-# Ansichten
+# Vues
 **Home → Anzeigen**
 
 Mit Ansichten können Sie eine benutzerdefinierte Ansicht erstellen.
@@ -8,7 +8,7 @@ Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Mi
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
 
-## Prinzip
+## Principe
 
 Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die Widgets von Befehlen enthalten) einfügen).
 

@@ -67,7 +67,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 - Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
 - Macht : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
 
-### Text
+### Texte
 
 - Text : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
 - Textgröße
@@ -97,7 +97,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 	- Farbe öffnen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
 
-#### Klappe
+#### Volet
 
 - Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist

@@ -5,7 +5,7 @@
 
 Die Szenarien sind ein echtes Gehirn der Hausautomation und ermöglichen es, auf eine Art und Weise mit der realen Welt zu interagieren *klug*.
 
-## Management
+## Gestion
 
 Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese am besten zu verwalten :
 
@@ -155,7 +155,7 @@ Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufüg
 
 Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, erfordert aber gute Kenntnisse der PHP-Sprache.
 
-#### Bisccès aux commandes (capteurs und actionneurs)
+#### Zugang zu Steuerungen (Sensoren und Aktoren))
 
 -  ``cmd::byString($string);`` : Gibt das entsprechende Befehlsobjekt zurück.
     -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][Gerät][commande]#`` (ex : ``#[Appartement][Alarme][Aktiva]#``)
@@ -167,14 +167,14 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### Bisccès aux log
+#### Zugriff auf das Protokoll
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Name der Protokolldatei.
     - ``level`` : [Debug], [Info], [Fehler], [Ereignis].
     - ``message`` : Nachricht zum Schreiben in die Protokolle.
 
-#### Bisccès aux scénario
+#### Zugriff auf das Szenario
 
 - ``$scenario->getName();`` : Gibt den Namen des aktuellen Szenarios zurück.
 - ``$scenario->getGroup();`` : Gibt die Szenariogruppe zurück.
@@ -502,7 +502,7 @@ Unten haben Sie den Teil, um Ihre Vorlage auf das aktuelle Szenario anzuwenden.
 
 Da die Befehle von einem Jeedom zum anderen oder von einer Installation zur anderen unterschiedlich sein können, bittet Jeedom Sie um die Entsprechung der Befehle zwischen den bei der Erstellung der Vorlage vorhandenen und den zu Hause vorhandenen. Sie müssen nur die Korrespondenz der Bestellungen ausfüllen, um sich zu bewerben.
 
-## Bisjout de fonction php
+## Hinzufügung der PHP-Funktion
 
 > **Wichtig**
 >

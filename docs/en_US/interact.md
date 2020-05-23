@@ -38,7 +38,7 @@ At the top of the page, there are 3 buttons :
 >
 > If you have an interaction that generates sentences for lights for example and you add a new light control module, you will either have to regenerate all the interactions, or go to the interaction in question and save it again to create the sentences of this new module.
 
-## Principle
+## Principe
 
 The principle of creation is quite simple : we will define a generating model sentence which will allow Jeedom to create one or more hundreds of other sentences which will be possible combinations of the model.
 
@@ -46,7 +46,7 @@ We will define answers in the same way with a model (this allows Jeedom to have 
 
 We can also define a command to execute if for example the interaction is not linked to an action but information or if we wish to carry out a particular action after it (it is also possible to execute a scenario, to control several orders…).
 
-## D'actualité
+## Configuration
 
 The configuration page consists of several tabs and buttons :
 
@@ -81,7 +81,7 @@ The configuration page consists of several tabs and buttons :
 
 Use if you want to target one or more specific commands or pass specific parameters.
 
-#### Examples
+#### Exemples
 
 > **NOTE**
 >

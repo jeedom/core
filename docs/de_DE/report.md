@@ -1,9 +1,9 @@
-# Bericht
+# Rapport
 **Analyse → Bericht**
 
 Auf dieser Seite können Sie alle Berichte anzeigen, die von der Berichtsaktion generiert wurden (siehe Szenariodokumentation).
 
-## Prinzip
+## Principe
 
 Ein Bericht ist ein Screenshot der Jeedom-Schnittstelle zu einem Zeitpunkt t.
 
@@ -16,7 +16,7 @@ Sie können dies für Ansichten, Designs und Bedienfeldseiten tun....
 Die Generierung wird aus einem Szenario mit dem Befehl report ausgelöst.
 Sie können diesen Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie senden lassen).
 
-## Verwendung
+## Utilisation
 
 Die Verwendung ist sehr einfach. Wählen Sie links, wenn Sie sehen möchten :
 
@@ -35,7 +35,7 @@ Sobald der Bericht ausgewählt ist, können Sie ihn anzeigen, herunterladen oder
 
 Sie können auch alle Sicherungen eines bestimmten Berichts löschen
 
-## Faq
+## FAQ
 
 > Wenn Sie einen Detailfehler haben :
 > *cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine solche Datei oder Verzeichnis*
