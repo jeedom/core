@@ -10,9 +10,9 @@ Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst er
 
 - 1 : Jeedom Hauptmenü.
 - 2 : Globale Zusammenfassung.
-- 3 : Browserzeit, verkürzt auf die Timeline.
+- 3 : Browserzeit, Verknüpfung zur Zeitleiste.
 - 4 : Schaltfläche, um auf die Dokumentation der aktuellen Seite zuzugreifen.
-- 5 : Name Ihres Jeedom, gekürzt auf die Konfiguration.
+- 5 : Name Ihres Jeedom, Verknüpfung zur Konfiguration.
 - 6 : Bearbeitungsmodus (Kacheln neu anordnen / Größe ändern).
 - 7 : Nach Kategorien filtern.
 - 8 : Objekt : Symbol, Name und Zusammenfassung sowie deren Ausstattung.

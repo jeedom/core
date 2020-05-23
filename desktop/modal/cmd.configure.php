@@ -18,7 +18,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}
     </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}
     </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}
-    </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}
     </a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
   </span>
 </div>
@@ -681,6 +680,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   <?php }
                   ?>
                 </td>
+                <td style="width: 1px;">
+                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
+                </td>
               </tr>
             <?php }
             ?>
@@ -746,7 +748,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           <div class="col-xs-1">
             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
           </div>
-          <label class="col-xs-2 control-label">{{après le widget}}</label>
+          <label class="col-xs-2 control-label">{{Après le widget}}</label>
           <div class="col-xs-1">
             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
           </div>
@@ -1127,7 +1129,8 @@ $('#bt_cmdConfigureSaveOn').on('click',function(){
     cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
   });
   cmd = {display : cmd.display,template : cmd.template };
-  $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
+  $('#md_cmdConfigureSelectMultiple').dialog({title: "{{Appliquer ce widget à}}"})
+  .load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
     initTableSorter();
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
       var state = false;

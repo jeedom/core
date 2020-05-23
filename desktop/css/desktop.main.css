@@ -334,9 +334,19 @@ legend .pull-right:not(.input-group) {
   display: inline-block;
 }
 .div_object legend .objectDashLegend > a {
-  padding-right: 20px;
+  padding-right: 35px;
+  font-weight: 500;
+  transition-property: padding;
+  transition: 0.5s;
 }
-
+.div_object:hover legend .objectDashLegend > a {
+  padding-right: 80px;
+  transition-property: padding;
+  transition: 0.5s;
+}
+.div_object legend .objectDashLegend > a > i{
+  padding-right: 10px;
+}
 
 /* legend on equipements pages */
 :not(.div_object) > legend:not(.no-bordered) {
@@ -602,6 +612,15 @@ sup i {
 }
 .objectPreview .topPreview > .name > i {
   color: var(--link-color);
+  padding-right: 5px;
+  transition-property: padding;
+  transition: 0.5s
+}
+.objectPreview:hover .topPreview > .name > i {
+  color: var(--link-color);
+  padding-right: 15px;
+  transition-property: padding;
+  transition: 0.5s
 }
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
@@ -1006,6 +1025,25 @@ div[data-market_type=script]:hover {
 }
 
 /* analyse equipment */
+#table_Action thead th[data-column="2"] {
+  width: 180px;
+}
+#table_Action thead th[data-column="4"] {
+  width: 40px;
+}
+#actionCmd tr td {
+  vertical-align: top !important;
+}
+#actionCmd tr td div {
+  min-height: 25px;
+  display: list-item;
+  position: relative;
+  top: 5px;
+}
+#actionCmd tr td div span > i,
+#actionCmd tr td div span {
+  color: var(--linkHoverLight-color) !important;
+}
 #battery,
 #alertEqlogic {
   margin-bottom: 20px !important;
@@ -3592,7 +3630,7 @@ input:invalid {
   background-color: rgb(var(--defaultBkg-color))
 }
 
-#div_displayCmdConfigure .form-group div > span {
+#div_displayCmdConfigure .form-group div > span.cmdAttr {
   max-width: 98% !important;
   display: inline-block;
   padding: 5px !important;

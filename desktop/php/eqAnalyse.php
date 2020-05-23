@@ -98,7 +98,7 @@ usort($list, function ($a, $b) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
+								$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
 							}
 							$div .= trim($actions);
 							$div .= '</td>';
@@ -111,7 +111,7 @@ usort($list, function ($a, $b) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd)  . '<br/>';
+								$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
 							}
 							$div .= trim($actions);
 							$div .= '</td>';
@@ -123,7 +123,7 @@ usort($list, function ($a, $b) {
 						if ($cmd->getConfiguration('actionConfirm')) {
 							$code = '';
 							if ($cmd->getConfiguration('actionCodeAccess')) {
-								$code = ' avec code';
+								$code = '{{ avec code}}';
 							}
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 							$div .= 'Confirmation de l\'action' . $code;
@@ -135,7 +135,7 @@ usort($list, function ($a, $b) {
 						}
 						if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
-							$div .= 'Code de confirmation de l\'action';
+							$div .= '{{Code de confirmation de l\'action}}';
 							$div .= '</td>';
 							$div .= '<td>';
 							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';

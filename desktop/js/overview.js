@@ -28,6 +28,7 @@ $(function() {
 
   colorizeSummary()
   checkResumeEmpty()
+  $('.resume').show();
   createSummaryObserver()
 })
 

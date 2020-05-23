@@ -11,7 +11,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
-					<a class="btn btn-warning btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}
+					<a class="btn btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}
 						<?php if (config::byKey('ldap::enable') != '1') {
 							$user = user::byLogin('jeedom_support');
 							if (!is_object($user)) {

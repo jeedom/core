@@ -10,9 +10,9 @@ Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jee
 
 - 1 : Menú principal de Jeedom.
 - 2 : Resumen global.
-- 3 : Tiempo del navegador, acortado a la línea de tiempo.
+- 3 : Tiempo del navegador, acceso directo a la línea de tiempo.
 - 4 : Botón para acceder a la documentación de la página actual.
-- 5 : Nombre de su Jeedom, acortado a la configuración.
+- 5 : Nombre de su Jeedom, acceso directo a la configuración.
 - 6 : Modo de edición (reordenar / redimensionar mosaicos).
 - 7 : Filtrar por categorias.
 - 8 : Objeto : Icono, nombre y resumen, y su equipo.

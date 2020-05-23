@@ -23,10 +23,11 @@ $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  height: 600,
-  width: 600,
+  width: 480,
+  height: 400,
   open: function () {
-    $("body").css({overflow: 'hidden'});
+    $("body").css({overflow: 'hidden'})
+    $(this).parent().css({'top': 120})
   },
   beforeClose: function (event, ui) {
     $("body").css({overflow: 'inherit'});
