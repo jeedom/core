@@ -55,16 +55,16 @@ In this tab you will find the display customization parameters.
 
 ## Networks tab
 
-It is absolutely necessary to correctly configure this important part of Jeedom otherwise a lot of plugins may not work. There are two ways to access Jeedom : L'**Internal access** (from the same local network as Jeedom) and l'**External access** (from another network, in particular from the Internet).
+It is absolutely necessary to correctly configure this important part of Jeedom otherwise a lot of plugins may not work. There are two ways to access Jeedom : L'**Internal access** (from the same local network as Jeedom) and l'**External access** (from another network, especially from the Internet).
 
 > **Important**
 >
 > This part is just there to explain to Jeedom its environment :
-> changing the port or IP in this tab will not change Jeedom&#39;s port or IP actually. To do this, connect to SSH and edit the / etc / network / interfaces file for IP and the files etc / apache2 / sites-available / default and etc / apache2 / sites-available / default\_ssl (for HTTPS ).
+> changing the port or IP in this tab will not change Jeedom&#39;s port or IP actually. For that you have to connect in SSH and edit the file / etc / network / interfaces for IP and the files etc / apache2 / sites-available / default and etc / apache2 / sites-available / default\_ssl (for HTTPS).
 > However, in the event of improper handling of your Jeedom, the Jeedom team cannot be held responsible and may refuse any request for support.
 
 - **Internal access** : information for joining Jeedom from equipment on the same network as Jeedom (LAN)
-    - **OK / NOK** : indicates if the internal network configuration is correct.
+    - **Ok/NOk** : indicates if the internal network configuration is correct.
     - **Protocol** : the protocol to use, often HTTP.
     - **Address URL ou IP** : Jeedom IP to enter.
     - **Port** : the port of the Jeedom web interface, generally 80.
@@ -72,7 +72,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
 - **External access** : information to reach Jeedom from outside the local network. To be completed only if you are not using Jeedom DNS.
-    - **OK / NOK** : indicates whether the external network configuration is correct.
+    - **Ok/NOk** : indicates whether the external network configuration is correct.
     - **Protocol** : protocol used for outdoor access.
     - **Address URL ou IP** : External IP, if fixed. Otherwise, give the URL pointing to the external IP address of your network.
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
@@ -86,7 +86,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 > **Tip**
 >
-> If you are in HTTPS the port is 443 (by default) and in HTTP the port is 80 (by default). To use HTTPS from outside, a letsencrypt plugin is now available on the market.
+> If you are in HTTPS the port is 443 (default) and in HTTP the port is 80 (default). To use HTTPS from outside, a letsencrypt plugin is now available on the market.
 
 > **Tip**
 >
@@ -95,7 +95,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Management avancée** : This part may not appear, depending on the compatibility with your hardware.
     You will find there the list of your network interfaces. You can tell Jeedom not to monitor the network by clicking on **disable Jeedom network management** (check if Jeedom is not connected to any network). You can also specify the local ip range in the form 192.168.1.* (to be used only in docker type installations).
 - **Proxy market** : allows remote access to your Jeedom without the need for a DNS, a fixed IP or to open the ports of your Internet box.
-    - **Using Jeedom DNS** : activate Jeedom DNS (note that this requires at least one service pack).
+    - **Using Jeedom DNS** : activates Jeedom DNS (note that this requires at least one service pack).
     - **DNS status** : DNS HTTP status.
     - **Management** : allows to stop and restart the Jeedom DNS service.
 
@@ -134,7 +134,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 ### Logs
 
 - **Log engine** : Allows you to change the log engine to, for example, send them to a syslog daemon (d).
-- **Log format** : Log format to use (Caution : it doesn&#39;t affect daemon logs).
+- **Log format** : Log format to use (Caution : it doesn't affect daemon logs).
 - **Namebre de lignes maximum dans un fichier de log** : Defines the maximum number of lines in a log file. It is recommended not to touch this value, as a too large value could fill the file system and / or make Jeedom unable to display the log.
 - **Default log level** : When you select &quot;Default&quot;, for the level of a log in Jeedom, this will be used.
 
@@ -161,7 +161,7 @@ Add object summaries. This information is displayed at the top right of the Jeed
 
 ### Equipments
 
-- **Namebre d'échecs avant désactivation de l'équipement** : Number of communication failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
+- **Namebre d'échecs avant désactivation de l'équipement** : Number of communications failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
 - **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
 
 Many command can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
@@ -171,8 +171,8 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 - **Display widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
 - **Calculation period for min, max, average (in hours)** : Statistics calculation period (24h by default). It is not possible to take less than an hour.
 - **Calculation period for the trend (in hours)** : Trend calculation period (2h by default). It is not possible to take less than an hour.
-- **Delay before archiving (in hours)** : Indicates the delay before Jeedom archives data (24h by default). That is to say that the historical data must have more than 24 hours to be archived (as a reminder, the archiving will either average, or take the maximum or minimum of the data over a period which corresponds to the size of the packets ).
-- **Archive by package from (in hours)** : This parameter gives the size of the packets (1 hour by default). This means for example that Jeedom will take periods of 1 hour, average and store the new calculated value by deleting the averaged values.
+- **Delay before archiving (in hours)** : Indicates the delay before Jeedom archives data (24h by default). That is to say that the historical data must have more than 24 hours to be archived (as a reminder, archiving will either average, or take the maximum or minimum of the data over a period which corresponds to the size of the packets).
+- **Archive by package from (in hours)** : This parameter gives the packet size (1 hour by default). This means for example that Jeedom will take periods of 1 hour, average and store the new calculated value by deleting the averaged values.
 - **Low trend calculation threshold** : This value indicates the value from which Jeedom indicates that the trend is downward. It must be negative (default -0.1).
 - **Upper trend calculation threshold** : Same thing for the rise.
 - **Display period graphics by default** : Period which is used by default when you want to display the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
@@ -180,7 +180,7 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 > **NOTE**
 >
 > The first parameter **Display widget statistics** is possible but disabled by default because it significantly extends the display time of the dashboard. If you activate this option, by default, Jeedom relies on data from the past 24 hours to calculate these statistics.
-> The trend calculation method is based on the least squares calculation (see [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for details).
+> The trend calculation method is based on the least squares calculation (see [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for the detail).
 
 ### Push
 
@@ -195,13 +195,13 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 Configure the generation and management of reports
 
 - **Timeout after page generation (in ms)** : Waiting time after loading the report to take the &quot;photo&quot;, to change if your report is incomplete for example.
-- **Clean older reports from (days)** : Defines the number of days before deleting a report (the reports take up a little space so be careful not to put too much conservation).
+- **Clean up older reports from (days)** : Defines the number of days before deleting a report (the reports take up a little space so be careful not to put too much conservation).
 
 ## Links tab
 
 Configure link graphics. These links allow you to see, in the form of a graph, the relationships between objects, equipment, objects, etc.
 
-- **Scenario depth** : Allows to define, when displaying a graph of links of a scenario, the maximum number of elements to display (the more there are elements the more the graph will be slow to generate and the more it will be difficult to read ).
+- **Scenario depth** : Allows to define, when displaying a graph of links of a scenario, the maximum number of elements to display (the more there are elements the slower the graph will be to generate and the more it will be difficult to read).
 - **Objects depth** : Same for objects.
 - **Equipments depth** : Same for the equipment.
 - **Commands depth** : Same for commands.
@@ -244,7 +244,7 @@ Here you have three parameters :
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 -   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
     - *You* : Notify me if the living room temperature exceeds 25 ° C ?
-    - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
+    - *Jeedom* : Ok (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
 > **NOTE**
 >
@@ -259,27 +259,27 @@ Here are the different options available :
 - **Activate les interactions "Warn me"** : Check to enable type interactions **Warn me**.
 - **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **;** ).
 - **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
-- **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|bathroom).
+- **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|Bathroom).
 - **Synonym for equipment** : List of synonyms for equipment.
 - **Synonym for commands** : List of synonyms for commands.
 - **Synonym for summaries** : List of synonyms for summaries.
 - **Synonym maximum slider command** : Synonym for placing a slider type command to the maximum (ex opens to opens the bedroom shutter ⇒ bedroom shutter at 100%).
-- **Synonym minimum slider command** : Synonym for placing a slider type command at minimum (ex closes to close the bedroom shutter ⇒ bedroom shutter at 0%).
+- **Synonym minimum slider command** : Synonym for putting a slider type command to the minimum (ex closes to close the bedroom shutter ⇒ bedroom shutter at 0%).
 
 ## Security tab
 
 ### LDAP
 
-- **Activate l'authentification LDAP** : enables authentication through an AD (LDAP).
+- **Activate l'authentification LDAP** : enable authentication through an AD (LDAP).
 - **Host** : server hosting the AD.
 - **Domain** : domain of your AD.
 - **DN base** : DN base of your AD.
 - **Name d'utilisateur** : username for Jeedom to log into AD.
 - **Password** : password for Jeedom to connect to AD.
 - **User search fields** : user login search fields. Usually uid for LDAP, SamAccountName for Windows AD.
-- **Filter administrators (optional)** : AD administrators filter (for group management for example)
-- **Filter users (optional)** : AD users filter (for group management for example)
-- **Filter limited users (optional)** : AD limited users filter (for group management for example)
+- **Administrators filter (optional)** : administrators filter on AD (for group management for example)
+- **User filter (optional)** : user filter on the AD (for group management for example)
+- **Limited user filter (optional)** : filter limited users on the AD (for group management for example)
 - **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO for example).
 
 ### Connection
@@ -324,7 +324,7 @@ Deposit used to connect Jeedom to the market, it is strongly advised to use this
 - **Address** : Address du Market.(https://www.Jeedom.com/market).
 - **Name d'utilisateur** : Your Username on the Market.
 - **Password** : Your Market password.
-- **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them).
+- **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of it crashing between them).
 - **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will no longer be able to restore your Jeedom.
 - **[Backup cloud] Frequency full backup** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month.
 
@@ -377,7 +377,7 @@ Allows monitoring and acting on the Jeedom cache :
     Please note that this may cause data loss !
 - **Clear widget cache** : Clear the cache dedicated to widgets.
 - **Disable widget cache** : Check the box to disable the widget cache.
-- **Time of pause for long polling** : Frequency at which Jeedom checks for pending events for customers (web interface, mobile application, etc.). The shorter this time, the faster the interface will update, in return it uses more resources and can therefore slow Jeedom.
+- **Time of pause for long polling** : Frequency at which Jeedom checks if there are pending events for customers (web interface, mobile application, etc.)). The shorter this time, the faster the interface will update, in return it uses more resources and can therefore slow Jeedom.
 
 ## API tab
 

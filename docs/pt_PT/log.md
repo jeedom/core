@@ -28,4 +28,4 @@ O log "Evento" é um pouco especial. Primeiro, para que ele funcione, ele deve e
 
 Depois de clicar nele, você obtém uma janela que é atualizada em tempo real e mostra todos os eventos da sua automação residencial.
 
-No canto superior direito, você tem um campo de pesquisa (funciona apenas se não estiver em pausa) e um botão para pausar (útil para copiar / colar, por exemplo).
+No canto superior direito, você tem um campo de pesquisa (funciona apenas se não estiver em pausa) e um botão para pausar (útil para copiar / colar, por exemplo)).

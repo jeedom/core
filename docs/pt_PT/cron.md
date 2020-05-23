@@ -12,7 +12,7 @@ Esta página deve ser usada com conhecimento ou a pedido de suporte técnico.
 
 No canto superior direito, você tem :
 
-- **Desativar o sistema cron** : um botão para desativar ou reativar todas as tarefas (se você desativá-las todas, nada funcionará no seu Jeedom).
+- **Desativar o sistema cron** : um botão para desativar ou reativar todas as tarefas (se você desativá-las todas, nada será funcional no seu Jeedom).
 - **Legal** : Atualiza a tabela de tarefas.
 - **Adicionar** : Adicionar um trabalho cron manualmente.
 - **Salvar** : Salve suas alterações.
@@ -32,17 +32,17 @@ Nesta tabela, encontramos :
 - **Tempo limite** : Tempo máximo de execução da tarefa. Se a tarefa for um daemon, ela será automaticamente interrompida e reiniciada no final do tempo limite.
 - **último lançamento** : Data do último lançamento da tarefa.
 - **Última duração** : Último tempo de execução da tarefa (um daemon sempre estará em 0s, não se preocupe, outras tarefas podem estar em 0s).
-- **Estado** : Status atual da tarefa (como lembrete, uma tarefa daemon é sempre "executada").
+- **Estado** : Status atual da tarefa (como lembrete, uma tarefa daemon é sempre "executada"").
 
 - **Ação** :
-    - **Detalhes** : Veja o cron em detalhes (conforme armazenado na base).
+    - **Detalhes** : Veja o cron em detalhes (como armazenado na base).
     - **Iniciar / Parar** : Iniciar ou parar a tarefa (dependendo do status).
     - **Remoção** : Excluir tarefa.
 
 
 ## Guia Ouvinte
 
-Os ouvintes são apenas visíveis na leitura e permitem que você veja as funções chamadas em um evento (atualização de um comando ...).
+Os ouvintes são apenas visíveis na leitura e permitem que você veja as funções chamadas em um evento (atualização de um comando...).
 
 ## Guia Demon
 

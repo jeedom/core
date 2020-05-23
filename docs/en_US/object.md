@@ -5,7 +5,7 @@ The **Objects** allow you to define the tree structure of your home automation.
 
 All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **parent** equipment.
 
-To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the names of the rooms (this is the recommended configuration, by the way).
+To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
 
 ## Management
 

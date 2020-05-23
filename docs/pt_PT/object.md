@@ -5,7 +5,7 @@ O **Objetos** permitem definir a estrutura em árvore da sua automação residen
 
 Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mais facilmente identificável. Dizemos então que o objeto é o **Pai** equipamento.
 
-Para dar livre escolha à personalização, você pode nomear esses objetos como desejar. Normalmente, definiremos as diferentes partes de sua casa, como os nomes dos quartos (a propósito, essa é a configuração recomendada).
+Para dar livre escolha à personalização, você pode nomear esses objetos como desejar. Normalmente, definiremos as diferentes partes de sua casa, como o nome dos quartos (esta também é a configuração recomendada).
 
 ## Gestão
 

@@ -11,8 +11,8 @@ Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezei
 
 Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
 - Oben links : Der Name des Objekts.
-- Oben rechts : Die Temperatur (*Temperatur*) und Luftfeuchtigkeit (*Luftfeuchtigkeit*).
-- Unter dem Titel : Alarm (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
+- Oben rechts : Temperatur (*Temperatur*) und Feuchtigkeit (*Luftfeuchtigkeit*).
+- Unter dem Titel : Warnung (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
 - Unten : Alle anderen Fachzusammenfassungen.
 
 Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
@@ -24,7 +24,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 
 > **Spitze**
 >
-> Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, die Sie nachbestellen können (Analyse → Zusammenfassung der Hausautomation).
+> Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, ).
 
 > **Notiz**
 >

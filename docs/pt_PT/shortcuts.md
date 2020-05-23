@@ -6,7 +6,7 @@ Ao abrir uma página (painel, cenários, etc.), o foco está no campo de pesquis
 
 - Clique no relógio (barra de menus) : Abra a linha do tempo.
 - Clique no nome do Jeedom (barra de menus)  : Aberto **Configurações → Sistema → Configuração**.
-- Clique em ?  (barra de menus)  : Abre a ajuda na página atual.
+- Clique em ?  (Barra de menus)  : Abre a ajuda na página atual.
 - Escape em um campo de pesquisa : Esvazie o campo de pesquisa e cancele-o.
 
 ## Painel de instrumentos
@@ -85,8 +85,8 @@ Em um bloco de código :
 - Ctrl Shift E em um design : Entrando ou saindo do modo de edição.
 
 ## Análise / resumo de automação residencial
-- Ctrl Clique no ícone *Aberto* (pesquisa) : Abra todos os objetos e equipamentos.
-- Ctrl Clique no ícone *Fechar* (pesquisa) : Fecha todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Aberto* (recherche) : Abra todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Fechar* (recherche) : Fecha todos os objetos e equipamentos.
 
 ## Análise / História
 Se várias curvas forem exibidas :

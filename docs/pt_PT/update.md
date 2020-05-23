@@ -3,7 +3,7 @@
 
 
 O **Update Center** permite atualizar todas as funcionalidades do Jeedom, incluindo o software principal e seus plugins.
-Outras funções de gerenciamento de extensão estão disponíveis (excluir, reinstalar, verificar etc.).
+Outras funções de gerenciamento de extensão estão disponíveis (excluir, reinstalar, verificar etc.).).
 
 
 ## Funções da página
@@ -27,7 +27,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 - **Plugins de atualização** : Permite incluir plugins na atualização.
 - **Atualizar o núcleo** : Permite incluir o kernel Jeedom (o Core) na atualização.
 
-- **Modo forçado** : Execute a atualização no modo forçado, ou seja, mesmo se houver um erro, o Jeedom continuará e não restaurará o backup. (Este modo desabilita o salvamento!).
+- **Modo forçado** : Execute a atualização no modo forçado, ou seja, mesmo se houver um erro, o Jeedom continuará e não restaurará o backup. (Este modo desabilita o salvamento !).
 - **Update para reaplicar** : Permite reaplicar uma atualização. (NB : Nem todas as atualizações podem ser reaplicadas.)
 
 > **IMPORTANTE**
@@ -59,7 +59,7 @@ Em cada linha, você pode usar as seguintes funções:
 
 > **IMPORTANTE**
 >
-> Se o registro de alterações estiver vazio, mas você ainda tiver uma atualização, isso significa que a documentação foi atualizada. Portanto, não é necessário solicitar mudanças ao desenvolvedor, pois não há necessariamente. (geralmente é uma atualização da tradução, da documentação).
+> Se o registro de alterações estiver vazio, mas você ainda tiver uma atualização, isso significa que a documentação foi atualizada. Portanto, não é necessário solicitar mudanças ao desenvolvedor, pois não há necessariamente. (geralmente é uma atualização da tradução, documentação).
 > O desenvolvedor do plugin também pode, em alguns casos, fazer correções simples, o que não requer necessariamente a atualização do registro de alterações.
 
 > **Dica**

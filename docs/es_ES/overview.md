@@ -12,7 +12,7 @@ En cada objeto, se muestran su imagen de fondo y sus resúmenes :
 Dependiendo del tipo de resumen (clave), visible en **Preferencias → Sistema → Configuración / Resúmenes** :
 - Arriba a la izquierda : El nombre del objeto.
 - Arriba a la derecha : La temperatura (*Temperatura*) y humedad (*humedad*).
-- Bajo el título : Alerta (*seguridad*) y Movimiento (*Movimiento*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
+- Bajo el título : Alerta (*seguridad*) y movimiento (*Movimiento*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
 - Abajo : Todos los otros resúmenes de materias.
 
 La configuración de la visualización del objeto se realiza en **Herramientas → Objetos** :

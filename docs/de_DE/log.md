@@ -28,4 +28,4 @@ Das &quot;Ereignis&quot; -Protokoll ist etwas Besonderes. Damit es funktioniert,
 
 Sobald Sie darauf klicken, erhalten Sie ein Fenster, das in Echtzeit aktualisiert wird und Ihnen alle Ereignisse Ihrer Hausautomation anzeigt.
 
-Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie nicht pausieren) und eine Schaltfläche zum Pausieren (nützlich zum Kopieren / Einfügen zum Beispiel).
+Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie nicht pausieren) und eine Schaltfläche zum Pausieren (nützlich zum Beispiel zum Kopieren / Einfügen).

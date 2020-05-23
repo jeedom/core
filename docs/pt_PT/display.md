@@ -40,11 +40,11 @@ Em cada equipamento encontramos :
 - L'**ID** equipamento.
 - O **Tipo** equipamento : Identificador do plug-in ao qual ele pertence.
 - O **Nome** equipamento.
-- **Inativo** (cruz pequena) : Significa que o equipamento está inativo (se não estiver lá, o equipamento está ativo).
-- **Invisível** (olho riscado) : Significa que o equipamento está invisível (se não estiver lá, o equipamento está visível).
+- **Inativo** (pequena cruz) : Significa que o equipamento está inativo (se não estiver lá, o equipamento está ativo).
+- **Invisível** (olho cruzado) : Significa que o equipamento está invisível (se não estiver lá, o equipamento está visível).
 
 Se o plug-in do equipamento estiver desativado, os dois ícones à direita não aparecerão:
-- **Lien externe** (quadrado com seta) : Permite abrir em uma nova aba a página de configuração do equipamento.
+- **Lien externe** (quadrado com flecha) : Permite abrir em uma nova aba a página de configuração do equipamento.
 - **Configuração avançada** (roda dentada) : abre a janela de configuração avançada do equipamento.
 
 > Ao clicar na linha que contém o nome do equipamento, você exibirá todos os comandos para este equipamento. Ao clicar em um pedido, você acessará a janela de configuração do pedido.
@@ -69,7 +69,7 @@ A guia **Informação** contém informações gerais sobre o equipamento e seus 
 
 - **ID** : Identificador exclusivo no banco de dados Jeedom.
 - **Nome** : Nome de equipamentos.
-- **ID logique** : Identificador de equipamento lógico (pode estar vazio).
+- **ID logique** : Identificador lógico do equipamento (pode estar vazio).
 - **ID de l'objet** : Identificador exclusivo do objeto pai (pode estar vazio).
 - **Data de criação** : Data de criação do equipamento.
 - **Ativar** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
@@ -109,12 +109,12 @@ Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no 
 - **Nomebre de colonnes**
 - **Centro nas caixas** : Marque a caixa para centralizar os pedidos nas caixas.
 - **Estilo geral de caixas (CSS)** : Permite definir o estilo geral no código CSS.
-- **Estilo mesa (CSS)** : Permite definir apenas o estilo da tabela.
+- **Estilo de tabela (CSS)** : Permite definir apenas o estilo da tabela.
 
 Abaixo para cada caixa, o **Configuração detalhada** permite que você
 isto :
 - **Caixa de texto** : Adicione texto além do comando (ou sozinho, se não houver comando na caixa).
-- **Caixa de estilo (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
+- **Estilo do caso (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
 
 > **Dica**
 >
@@ -164,10 +164,10 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 A guia **Informação** contém informações gerais sobre o pedido :
 
 - **ID** : Identificador exclusivo no banco de dados.
-- **ID logique** : Identificador lógico do pedido (pode estar vazio).
+- **ID logique** : Identificador lógico do comando (pode estar vazio).
 - **Nome** : Nome do comando.
-- **Tipo** : Tipo de pedido (ação ou informação).
-- **Subtipo** : Subtipo de comando (binário, digital etc.).
+- **Tipo** : Tipo de comando (ação ou informação).
+- **Subtipo** : Subtipo de comando (binário, digital etc.)).
 - **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **Ação** e retorne as informações para um **Informações**.
 - **Unidade** : Unidade de controle.
 - **Comando provocando uma atualização** : Fornece o identificador de outro comando que, se esse outro comando for alterado, forçará a atualização do comando exibido.
@@ -184,7 +184,7 @@ Você também tem três outros botões laranja embaixo :
 
 > **NOTA**
 >
-> Esse tipo de ação substitui os comandos em todo o Jeedom (cenário, interação, comando, equipamento ...).
+> Esse tipo de ação substitui comandos em todos os lugares do Jeedom (cenário, interação, comando, equipamento….).
 
 Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenários ou interações que usam este comando. Clique nele para ir diretamente para a respectiva configuração.
 
@@ -194,22 +194,22 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - **Cálculo e arredondamento**
     - **Fórmula de cálculo (\#value\# por valor)** : Permite que você faça uma operação com o valor do pedido antes do processamento por Jeedom, exemplo : ``#value# - 0.2` para subtrair 0.2 (deslocamento em um sensor de temperatura).
-    - **Arredondamento (decimal)** : Usado para arredondar o valor do comando (exemplo : colocar 2 para transformar 16.643 345 em 16,64).
+    - **Arredondado (número após ponto decimal)** : Usado para arredondar o valor do comando (exemplo : colocar 2 para transformar 16.643.345 em 16,64).
 - **Tipo générique** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
 - **Ação em valor, se** : Vamos fazer algum tipo de mini cenários. Você pode, por exemplo, dizer que, se o valor vale mais de 50 por 3 minutos, você deve executar essa ação. Isso permite, por exemplo, apagar uma luz X minutos depois de acender.
 
 - **Histórico**
     - **Historicizar** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **alisamento** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **Média**. Também é possível escolher o **Máximo**, O **Mínimo**, onde **Nemhum**. **Nemhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante os primeiros 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Suavização moda** : Modo de **alisamento** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **Média**. Também é possível escolher o **Máximo**, O **Mínimo**, onde **Nemhum**. **Nemhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**
     - **Valor proibido** : Se o comando pegar um desses valores, o Jeedom o ignorará antes de aplicá-lo.
     - **Valor de feedback estado** : Retorna o comando para esse valor após um certo tempo.
-    - **Tempo para indicar realimentação (min)** : Tempo antes de retornar ao valor acima.
+    - **Duração antes do retorno do status (min)** : Tempo antes de retornar ao valor acima.
 
 - **Outro**
-    - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita acionar um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
+    - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita desencadear um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
     - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[SalO de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
 
 #### Para um comando de ação :
@@ -232,11 +232,11 @@ Permite definir um nível de alerta (**Aviso** onde **Perigo**) dependendo de ce
 
 Nesta parte, você poderá configurar determinados comportamentos de exibição do widget no Painel, visualizações, design e no celular.
 
-- **Widget** : Permite escolher o widget no computador ou no celular (observe que você precisa do plugin do widget e também pode fazê-lo a partir daí).
+- **Widget** : Permite escolher o widget no computador ou no celular (observe que você precisa do plug-in do widget e também pode fazê-lo a partir dele)).
 - **Visivél** : Marque para tornar o comando visível.
 - **Mostrar nome** : Marque para tornar o nome do comando visível, dependendo do contexto.
 - **Imprimir o nome eo ícone** : Marque para tornar o ícone visível, além do nome do comando.
-- **Envoltório forçado antes Widget** : Tick **antes O  widget** onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição na coluna dos vários comandos do equipamento em vez de linhas por padrão)
+- **Envoltório forçado antes Widget** : Tick **antes O  widget** onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 

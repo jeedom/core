@@ -11,7 +11,7 @@ Aquí se describe el principio de historización de Jeedom. Solo necesita compre
 
 El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados en la memoria. Esto permite no utilizar demasiado espacio y no ralentiza el sistema. De hecho, si mantiene todas las mediciones, esto aumenta la cantidad de puntos para mostrar y, por lo tanto, puede alargar considerablemente los tiempos para representar un gráfico. Si hay demasiados puntos, incluso puede hacer que la pantalla del gráfico se bloquee.
 
-El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y los convierte en paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (de manera predeterminada, estos son paquetes de 1 hora con datos que tienen más de 2 horas).
+El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y crea paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (por defecto, estos son paquetes de 1 hora con datos que tienen más de 2 horas de antigüedad).
 
 > **Punta**
 >
@@ -26,9 +26,9 @@ El archivado es una tarea que comienza de noche y compacta los datos recuperados
 Hay varias formas de acceder al historial :
 
 - Al hacer clic en el comando deseado en un widget,
-- Al ir a la página del historial que permite superponer diferentes curvas y combinar estilos (área, curva, barra),
+- Al ir a la página del historial que permite superponer diferentes curvas y combinar estilos (área, curva, barra)),
 - En el dispositivo móvil mientras permanece presionado en el widget en cuestión,
-- Al poner un área de gráfico en una vista (ver más abajo).
+- Al poner un área de gráfico en una vista (ver abajo).
 
 ## Pestaña Historial
 
@@ -56,10 +56,10 @@ También puede mostrar los gráficos en las vistas (veremos aquí las opciones d
 
 Una vez que se activan los datos, puede elegir :
 - **Color** : El color de la curva.
-- **Tipo** : El tipo de gráfico (área, fila o columna).
+- **Tipo** : El tipo de gráfico (área, línea o columna).
 - **Escala** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
 - **Escalera** : Muestra la curva como una escalera o una pantalla continua.
-- **Montón** : Se utiliza para apilar los valores de las curvas (ver el resultado a continuación).
+- **Montón** : Apila los valores de las curvas (ver abajo el resultado).
 - **Cambio** : Muestra la diferencia de valor del punto anterior.
 
 ### Opción en la página del historial
@@ -70,7 +70,7 @@ La página del historial da acceso a algunas opciones adicionales
 
 Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
 Ex :
-abs (*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio vital \] \ [Higrometría \] \ [Temperatura \]*)
+abs(*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio vital \] \ [Higrometría \] \ [Temperatura \]*)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite guardarlas para volver a mostrarlas más fácilmente.
 

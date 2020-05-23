@@ -42,9 +42,9 @@ En la parte superior de la página, hay 3 botones :
 
 El principio de la creación es bastante simple : definiremos una oración modelo generadora que permitirá a Jeedom crear una o más cientos de otras oraciones que serán posibles combinaciones del modelo.
 
-Vamos a definir respuestas de la misma manera con un modelo (esto le permite a Jeedom tener varias respuestas para una sola pregunta).
+Definiremos las respuestas de la misma manera con un modelo (esto le permite a Jeedom tener varias respuestas para una sola pregunta).
 
-También podemos definir un comando para ejecutar si, por ejemplo, la interacción no está vinculada a una acción sino a una información o si deseamos llevar a cabo una acción particular después de esta (también es posible ejecutar un escenario, controlar varias órdenes ...).
+También podemos definir un comando para ejecutar si, por ejemplo, la interacción no está vinculada a una acción, sino a información o si deseamos llevar a cabo una acción en particular después (también es posible ejecutar un escenario, controlar varias órdenes).
 
 ## Configuración
 
@@ -58,12 +58,12 @@ La página de configuración consta de varias pestañas y botones :
 ### Pestaña General
 
 - **Apellido** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
-- **Grupo** : Grupo de interacción, esto les permite organizarse (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
+- **Grupo** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
 - **Bienes** : Habilita o deshabilita la interacción.
 - **Solicitud** : La oración modelo generadora (requerida).
 - **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
-- **Espere antes de responder** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
+- **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
 - **Conversión binaria** : Convierte valores binarios en abiertos / cerrados, por ejemplo (solo para comandos de tipo de información binaria).
 - **Usuarios autorizados** : Limita la interacción con ciertos usuarios (inicios de sesión separados por |).
 
@@ -71,11 +71,11 @@ La página de configuración consta de varias pestañas y botones :
 
 - **Límite para escribir comandos** : Le permite usar solo los tipos de acciones, información o los 2 tipos.
 - **Limitar a pedidos con subtipo** : Limita la generación a uno o más subtipos.
-- **Limitar a pedidos con unidad** : Se utiliza para limitar la generación a una o más unidades (Jeedom crea automáticamente la lista a partir de las unidades definidas en sus pedidos).
-- **Limitar a órdenes pertenecientes al objeto** : Le permite limitar la generación a uno o más objetos (Jeedom crea automáticamente la lista a partir de los objetos que ha creado).
-- **Limitar al complemento** : Limita la generación a uno o más complementos (Jeedom crea automáticamente la lista a partir de los complementos instalados).
+- **Limitar a pedidos con unidad** : Le permite limitar la generación a una o más unidades (Jeedom crea automáticamente la lista a partir de las unidades definidas en sus pedidos).
+- **Limitar a órdenes pertenecientes al objeto** : Limita la generación a uno o más objetos (Jeedom crea automáticamente la lista a partir de los objetos que ha creado).
+- **Limitar al complemento** : Le permite limitar la generación a uno o más complementos (Jeedom crea automáticamente la lista a partir de los complementos instalados).
 - **Limitar a categoría** : Limita la generación a una o más categorías.
-- **Limite al equipo** : Le permite limitar la generación a un solo dispositivo / módulo (Jeedom crea automáticamente la lista de los dispositivos / módulos que tiene).
+- **Limite al equipo** : Limita la generación a un solo dispositivo / módulo (Jeedom crea automáticamente la lista de los dispositivos / módulos que tiene).
 
 ### Pestaña Acciones
 
@@ -101,7 +101,7 @@ Podemos imaginar hacer lo mismo con varias acciones para encender varias lámpar
 
 ![interact005](../images/interact005.png)
 
-En los 2 ejemplos anteriores, la oración modelo es idéntica, pero las acciones que resultan de ella cambian de acuerdo con lo que está configurado en la parte &quot;Acción&quot;, por lo que ya con una simple interacción con una sola oración podemos imaginar acciones combinadas entre varios comandos y varios escenarios (también podemos activar escenarios en la parte de acción de las interacciones).
+En los 2 ejemplos anteriores, la oración modelo es idéntica pero las acciones que resultan de ella cambian de acuerdo con lo que está configurado en la parte "Acción", por lo tanto, ya con una simple interacción con una sola oración podemos imaginar acciones combinadas entre varios comandos y diversos escenarios (también podemos activar escenarios en la parte de acción de las interacciones).
 
 > **Punta**
 >
@@ -117,7 +117,7 @@ Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos a
 
 Entonces podemos ver aquí que Jeedom generó 152 oraciones de nuestro modelo. Sin embargo, no están muy bien construidos y tenemos un poco de todo.
 
-Para ordenar todo esto, usaremos los filtros (parte derecha de nuestra página de configuración). En este ejemplo, queremos generar oraciones para encender las luces. Entonces, podemos desmarcar el tipo de comando de información (si guardo, solo me quedan 95 oraciones), luego, en los subtipos, solo podemos mantener marcado &quot;predeterminado&quot; que corresponde al botón de acción ( solo quedan 16 oraciones).
+Para ordenar todo esto, usaremos los filtros (parte derecha de nuestra página de configuración). En este ejemplo, queremos generar oraciones para encender las luces. Por lo tanto, podemos desmarcar el tipo de comando de información (si guardo, solo me quedan 95 oraciones), luego, en los subtipos, solo podemos mantener marcado "predeterminado" que corresponde al botón de acción ( así que solo quedan 16 oraciones).
 
 ![interact007](../images/interact007.png)
 
@@ -133,7 +133,7 @@ Ya es mejor, pero aún le falta el comando &quot;en&quot; &quot;entrada&quot; la
 
 ![interact009](../images/interact009.png)
 
-Ahora tenemos oraciones un poco más correctas con oraciones que no son correctas, para nuestro ejemplo de entrada "on" "". así que encontramos &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, etc. Entonces, tenemos todas las variantes posibles con lo que agregamos entre &quot;\ [\]&quot; y esto para cada sinónimo, que rápidamente genera muchas oraciones (aquí 168).
+Ahora tenemos oraciones un poco más correctas con oraciones que no son correctas, para nuestro ejemplo de entrada "on" "". así que encontramos &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, &quot;Activar entrada&quot;, etc. Entonces tenemos todas las variantes posibles con lo que agregamos entre "\ [\]" y esto para cada sinónimo, lo que rápidamente genera muchas oraciones (aquí 168).
 
 Para refinar y no tener cosas improbables como &quot;encender el televisor&quot;, podemos permitir que Jeedom elimine solicitudes sintácticamente incorrectas. Por lo tanto, eliminará lo que está demasiado lejos de la sintaxis real de una oración. En nuestro caso, pasamos de 168 oraciones a 130 oraciones.
 
@@ -155,7 +155,7 @@ También puede agregar cualquier valor desde otro comando, como temperatura, nú
 
 ### Conversión binaria
 
-Las conversiones binarias se aplican a los comandos de tipo de información cuyo subtipo es binario (solo devuelve 0 o 1). Por lo tanto, debe activar los filtros correctos, como podemos ver en la captura de pantalla un poco más bajo (para las categorías, podemos verificarlos todos, por ejemplo, solo mantuve la luz).
+Las conversiones binarias se aplican a los comandos de tipo de información cuyo subtipo es binario (solo devuelve 0 o 1). Por lo tanto, debe activar los filtros correctos, como podemos ver en la captura de pantalla un poco más abajo (para las categorías, podemos verificarlos todos, por ejemplo, solo mantuve la luz).
 
 ![interact013](../images/interact013.png)
 
@@ -204,7 +204,7 @@ Si traducimos esta expresión en una oración, daría "busque la palabra Julie q
 
 Es una versión extremadamente simple de expresiones regulares, pero ya es muy complicada de entender. Me tomó un tiempo entender cómo funciona. Como un ejemplo un poco más complejo, una expresión regular para verificar una URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \*\\ /?\ $ /
+/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*)\*\\ /?\ $ /
 
 Una vez que puedes escribir esto, entiendes las expresiones regulares.
 
@@ -261,12 +261,12 @@ Sin Regexp, obtenemos aquí 11 oraciones, pero mi interacción tiene como objeti
 
 Podríamos escribir la oración con fuerza como, por ejemplo, &quot;cuál es la temperatura de la sala de estar&quot;, pero sería necesario hacer una para cada sensor de temperatura, brillo y humedad. Con el sistema de generación de oraciones Jeedom, podemos generar oraciones para todos los sensores de estos 3 tipos de medición con una sola interacción.
 
-Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humedad, el brillo de las diferentes habitaciones (objeto en el sentido de Jeedom).
+Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedom).
 
 ![interact019](../images/interact019.png)
 
 - Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : "Cuál es la |l \\ '\] \#commande\# objeto "(el uso de \ [word1 | word2 \] le permite decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con word1 o word2). Al generar Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \#commande\# por el nombre del comando y \#objet\# por el nombre del objeto.
-- La respuesta será "21 ° C" o "200 lux". Solo pon : \#valeur\# \#unite\# (la unidad debe completarse en la configuración de cada pedido para el que queremos tener uno)
+- La respuesta será "21 ° C" o "200 lux". Solo pon : \#valeur\# \#unite\# (la unidad se completará en la configuración de cada comando para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
 #### Evolución
@@ -281,7 +281,7 @@ También podemos agregar un filtro Regexp para eliminar algunos comandos. Usando
 
 Entonces podemos ver una expresión regular :
 
-**(batería|latence|pression|vitesse|consumo)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 Esto le permite eliminar todos los comandos que tienen una de estas palabras en su oración
 
@@ -297,11 +297,11 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se usa en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *Consigna*.
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *Consigna*.
 
 > **Nota**
 >
-> Podemos usar cualquier etiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en &quot;Ejecutar en primer plano&quot;).
+> Podemos usar cualquier etiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en "Ejecutar en primer plano"").
 
 #### Evolución
 
@@ -346,7 +346,7 @@ Por lo tanto, este ejemplo permite lanzar el escenario que está vinculado en la
 
 ### Programando una acción con interacciones
 
-Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. Ejemplo : "Enciende el calor a las 22 para las 2:50 p.m". Nada podría ser más simple, solo usa las etiquetas \#time\# (si se define un tiempo específico) o \#duration\# (para en el tiempo X, ejemplo en 1 hora) :
+Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. Ejemplo : "Enciende el calor a las 22 para las 2:50 p.m". Nada podría ser más simple, solo usa las etiquetas \#time\# (si se define un tiempo específico) o \#duration\# (para en X tiempo, ejemplo en 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 

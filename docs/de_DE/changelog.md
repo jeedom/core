@@ -9,7 +9,7 @@
 - **Armaturenbrett** : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
 - **Armaturenbrett** : Hinzufügen (zurück!) Eine Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
 - **Armaturenbrett** : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
-- **Armaturenbrett** : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche).
+- **Armaturenbrett** : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche)).
 - **Tools / Widgets** : Die Funktion *Bewerben Sie sich am* Zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
 - **Widgets** : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Widgets** : Hinzufügen eines Kern-Widgets *sliderVertical*.
@@ -18,15 +18,15 @@
 - **Update Center** : Wenn Sie während eines Updates einen anderen Browser öffnen, wird dies in der Fortschrittsanzeige und im Protokoll angezeigt.
 - **Update Center** : Wenn das Update korrekt abgeschlossen wurde, wird ein Fenster angezeigt, in dem Sie aufgefordert werden, die Seite neu zu laden.
 - **Kernupdates** : Implementierung eines Systems zum Bereinigen alter nicht verwendeter Core-Dateien.
-- **Szenario** : Hinzufügen einer Suchmaschine (links von der Schaltfläche Ausführen).
+- **Szenario** : Hinzufügen einer Suchmaschine (links von der Schaltfläche Ausführen)).
 - **Szenario** : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
-- **Szenario** : *stateChanges ()* Akzeptieren Sie jetzt den Zeitraum *Heute* (von Mitternacht bis jetzt), *gestern* und *Tag* (für 1 Tag).
-- **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer ()* : Bugfix über den Zeitraum *gestern*, und jetzt akzeptieren *Tag* (für 1 Tag).
-- **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Befehle).
+- **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum *Heute* (Mitternacht bis jetzt), *gestern* und *Tag* (für 1 Tag).
+- **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum *gestern*, und jetzt akzeptieren *Tag* (für 1 Tag).
+- **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Commandes).
 - **Szenario** : Anzeigen a *Warnung* wenn kein Trigger konfiguriert ist.
 - **Szenario** : Bugfix von Select auf Copy / Paste Block.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
-- **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt in Form von Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken).
+- **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt als Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)).
 - **Fenster &quot;Szenariovariablen&quot;** : Alphabetische Sortierung beim Öffnen.
 - **Fenster &quot;Szenariovariablen&quot;** : Die von den Variablen verwendeten Szenarien können jetzt angeklickt werden, wobei die Suche für die Variable geöffnet wird.
 - **Analyse / Geschichte** : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
@@ -37,7 +37,7 @@
 - **Chronik** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Chronik** : Verwaltung mehrerer Zeitleisten.
 - **Chronik** : Überarbeitung der Timeline-Grafik.
-- **Zusammenfassung der Hausautomation** : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration).
+- **Zusammenfassung der Hausautomation** : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)).
 - **Zusammenfassung der Hausautomation** : Möglichkeit zur Suche nach Gerätekategorien.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, alle Geräte eines Objekts auszuwählen.
@@ -51,7 +51,7 @@
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
 - Widgets / Objekte / Szenarien / Interaktionen / Plugins Seiten :
 	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
-	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs verfügbar (auf den Registerkarten).
+	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs (auf den Registerkarten) verfügbar).
 - Neue ModalDisplay-Seite :
 	- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
 	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Hinweis*, *Expressionstester*, *Variablen*, *Suche* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
@@ -60,11 +60,11 @@
 - **WebApp** : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - **WebApp** : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
 - **WebApp** : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
-- **WebApp** : Persistenz des Themas umschalten (8h).
+- **WebApp** : Persistenz des Themenumschalters (8h).
 - **WebApp** : Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
 - **WebApp** : Anzeige von Szenarien nach Gruppe.
 - **WebApp** : Neue Monospace-Schriftart für Protokolle.
-- **WebApp** : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).<br/><br/>
+- **WebApp** : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).<br/><br/>
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.1.0.

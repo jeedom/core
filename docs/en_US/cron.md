@@ -17,7 +17,7 @@ At the top right, you have :
 - **Add** : Add a cron job manually.
 - **Save** : Save your changes.
 
-Below, you have the table of all existing tasks (be careful, some tasks can launch subtasks, so it is strongly recommended never to modify information on this page).
+Below, you have the table of all existing tasks (attention, some tasks can launch subtasks, so it is strongly recommended never to modify information on this page).
 
 In this table, we find :
 
@@ -31,8 +31,8 @@ In this table, we find :
 - **Programming** : Programming of the task in CRON format.
 - **Timeout** : Maximum task run time. If the task is a daemon then it will be automatically stopped and restarted at the end of the timeout.
 - **Last launch** : Date of last task launch.
-- **Last duration** : Last execution time of the task (a daemon will always be at 0s, don&#39;t worry other tasks can be at 0s).
-- **Status** : Current status of the task (as a reminder, a daemon task is always &quot;run&quot;).
+- **Last duration** : Last execution time of the task (a daemon will always be at 0s, don't worry about other tasks can be at 0s).
+- **Status** : Current status of the task (as a reminder, a daemon task is always "run"").
 
 - **ACTION** :
     - **Details** : See the cron in detail (as stored in base).
@@ -42,7 +42,7 @@ In this table, we find :
 
 ## Listener tab
 
-The listeners are just visible in reading and allow you to see the functions called on an event (update of a command ...).
+The listeners are just visible in reading and allow you to see the functions called on an event (update of a command...).
 
 ## Demon tab
 

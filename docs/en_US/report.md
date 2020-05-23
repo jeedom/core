@@ -14,7 +14,7 @@ A report is a screenshot of the Jeedom interface at a time t.
 You can do this on views, designs, panel pages....
 
 Generation is triggered from a scenario with the report command.
-You can choose to have this report sent to you using a message command (email, telegram, etc.).
+You can choose to have this report sent to you using a message command (email, telegram, etc).
 
 ## Use
 
@@ -23,7 +23,7 @@ Its use is very simple. Select on the left if you want to see :
 - View reports.
 - Design reports.
 - Plugin panel reports.
-- Equipment reports (for a summary of the battery for each module).
+- Equipment reports (for a summary of the battery of each module).
 
 Then select the name of the report in question. You will then see all the dates of the available reports.
 

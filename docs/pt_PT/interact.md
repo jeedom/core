@@ -7,7 +7,7 @@ Esses pedidos podem ser obtidos por :
 
 - SMS : envie um SMS para iniciar comandos (ação) ou faça uma pergunta (informações).
 - Cat : Telegrama, Slack, etc.
-- Vocal : dite uma frase com Siri, Google Now, SARAH etc. Iniciar comandos (ação) ou fazer uma pergunta (informações).
+- Vocal : dite uma frase com Siri, Google Now, SARAH etc. Para iniciar comandos (ação) ou fazer uma pergunta (informações).
 - HTTP : inicie uma URL HTTP contendo o texto (ex. Tasker, Slack) para iniciar comandos (ação) ou fazer uma pergunta (informações).
 
 O valor das interações reside na integração simplificada em outros sistemas, como smartphones, tablets, outras caixas de automação residencial, etc.
@@ -42,15 +42,15 @@ No topo da página, existem 3 botões :
 
 O princípio da criação é bastante simples : definiremos uma sentença de modelo geradora que permitirá ao Jeedom criar uma ou mais centenas de outras sentenças, que serão possíveis combinações do modelo.
 
-Vamos definir respostas da mesma maneira com um modelo (isso permite que o Jeedom tenha várias respostas para uma única pergunta).
+Definiremos as respostas da mesma maneira com um modelo (isso permite que o Jeedom tenha várias respostas para uma única pergunta).
 
-Também podemos definir um comando a ser executado se, por exemplo, a interação não estiver vinculada a uma ação, mas a uma informação ou se desejarmos executar uma ação específica após esta (também é possível executar um cenário, controlar várias ordens…).
+Também podemos definir um comando a ser executado se, por exemplo, a interação não estiver vinculada a uma ação, mas a informações ou se desejarmos executar uma ação específica após ela (também é possível executar um cenário, controlar várias ordens…).
 
 ## Configuração
 
 A página de configuração consiste em várias guias e botões :
 
-- **Frases** : Exibe o número de frases da interação (um clique nelas mostra).
+- **Frases** : Exibe o número de frases da interação (um clique nelas mostra a você).
 - **Registro** : Registra a interação atual.
 - **Remover** : Excluir interação atual.
 - **Duplicar** : Duplicar a interação atual.
@@ -58,12 +58,12 @@ A página de configuração consiste em várias guias e botões :
 ### Guia Geral
 
 - **Nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
-- **Grupo** : Grupo de interação, isso permite que eles sejam organizados (podem estar vazios; portanto, estarão no grupo "nenhum").
+- **Grupo** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
 - **Ativos** : Permite ativar ou desativar a interação.
 - **Aplicação** : A sentença do modelo de geração (obrigatório).
 - **Sinônimo** : Permite definir sinônimos nos nomes dos comandos.
 - **Réponse** : A resposta para fornecer.
-- **Aguarde antes de responder (s)** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
+- **Aguarde antes de responder (s))** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
 - **Conversão binária** : Converte valores binários em abertos / fechados, por exemplo (apenas para comandos do tipo de informações binárias).
 - **Usuários autorizados** : Limita a interação com determinados usuários (logins separados por |).
 
@@ -71,11 +71,11 @@ A página de configuração consiste em várias guias e botões :
 
 - **Limite para digitar comandos** : Permite usar apenas os tipos de ações, informações ou os 2 tipos.
 - **Limite para os comandos que o subtipo** : Limita a geração a um ou mais subtipos.
-- **Limite para os comandos dessa unidade** : Usado para limitar a geração a uma ou mais unidades (o Jeedom cria automaticamente a lista a partir das unidades definidas em seus pedidos).
-- **Limite para pedidos pertencentes ao objeto** : Permite limitar a geração a um ou mais objetos (o Jeedom cria automaticamente a lista a partir dos objetos que você criou).
-- **Limitar ao plugin** : Limita a geração a um ou mais plugins (o Jeedom cria automaticamente a lista a partir dos plugins instalados).
+- **Limite para os comandos dessa unidade** : Permite limitar a geração a uma ou mais unidades (o Jeedom cria automaticamente a lista a partir das unidades definidas em seus pedidos).
+- **Limite para pedidos pertencentes ao objeto** : Limita a geração a um ou mais objetos (o Jeedom cria automaticamente a lista a partir dos objetos que você criou).
+- **Limitar ao plugin** : Permite limitar a geração a um ou mais plug-ins (o Jeedom cria automaticamente a lista a partir dos plug-ins instalados).
 - **Limitar à categoria** : Limita a geração a uma ou mais categorias.
-- **Equipamentos limite** : Permite limitar a geração a um único dispositivo / módulo (o Jeedom cria automaticamente a lista a partir dos dispositivos / módulos que você possui).
+- **Equipamentos limite** : Limita a geração a um único dispositivo / módulo (o Jeedom cria automaticamente a lista a partir dos dispositivos / módulos que você possui).
 
 ### Guia Ações
 
@@ -117,7 +117,7 @@ Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em 
 
 Então, podemos ver aqui que o Jeedom gerou 152 frases do nosso modelo. No entanto, eles não são muito bem construídos e temos um pouco de tudo.
 
-Para ordenar tudo isso, usaremos os filtros (parte direita da nossa página de configuração). Neste exemplo, queremos gerar sentenças para acender as luzes. Portanto, podemos desmarcar o tipo de comando info (se eu salvar, só tenho 95 frases restantes) e, nos subtipos, só podemos manter a opção "padrão" marcada, que corresponde ao botão de ação ( restam apenas 16 sentenças).
+Para ordenar tudo isso, usaremos os filtros (parte direita da nossa página de configuração). Neste exemplo, queremos gerar sentenças para acender as luzes. Assim, podemos desmarcar o tipo de comando info (se eu salvar, só tenho 95 sentenças) e, nos subtipos, só podemos manter a opção "padrão" marcada, que corresponde ao botão de ação ( então só restam 16 frases).
 
 ![interact007](../images/interact007.png)
 
@@ -155,7 +155,7 @@ Você também pode adicionar qualquer valor de outro comando, como temperatura, 
 
 ### Conversão binária
 
-Conversões binárias se aplicam a comandos do tipo info cujo subtipo é binário (retorna 0 ou 1 apenas). Então você precisa ativar os filtros certos, como podemos ver na tela um pouco mais baixo (para as categorias, podemos verificar todos eles, por exemplo, eu apenas mantive a luz).
+As conversões binárias se aplicam a comandos do tipo info cujo subtipo é binário (retorna apenas 0 ou 1). Então você precisa ativar os filtros certos, como podemos ver na tela um pouco mais baixo (para as categorias, podemos verificar todos eles, por exemplo, eu apenas mantive a luz).
 
 ![interact013](../images/interact013.png)
 
@@ -204,7 +204,7 @@ Se traduzirmos esta expressão em uma frase, daria "procure a palavra Julie que 
 
 É uma versão extremamente simples de expressões regulares, mas já muito complicada de entender. Demorei um pouco para entender como funciona. Como um exemplo um pouco mais complexo, uma regexp para verificar um URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \*\\ /?\ $ /
+/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*)\*\\ /?\ $ /
 
 Depois de escrever isso, você entende as expressões regulares.
 
@@ -261,12 +261,12 @@ Sem o Regexp, obtemos aqui 11 sentenças, mas minha interação visa gerar sente
 
 Poderíamos escrever a frase com força, como por exemplo "qual é a temperatura da sala", mas seria necessário criar uma para cada sensor de temperatura, brilho e umidade. Com o sistema de geração de sentenças Jeedom, podemos gerar sentenças para todos os sensores desses 3 tipos de medição com uma única interação.
 
-Aqui está um exemplo genérico usado para conhecer a temperatura, umidade e brilho das diferentes salas (objeto no sentido de Jeedom).
+Aqui está um exemplo genérico usado para conhecer a temperatura, umidade e brilho das diferentes salas (objeto no sentido Jeedom).
 
 ![interact019](../images/interact019.png)
 
 - Assim, podemos ver que uma frase genérica como "Qual é a temperatura na sala de estar" ou "Qual é o brilho do quarto" pode ser convertida em : "o que é \ |l \\ '\] \#commande\# objeto "(o uso de \ [word1 | word2 \] permite que você diga essa possibilidade ou que gere todas as variantes possíveis da frase com a palavra1 ou a palavra2). Ao gerar o Jeedom, todas as combinações possíveis de frases serão geradas com todos os comandos existentes (dependendo dos filtros) substituindo \#commande\# pelo nome do comando e \#objet\# pelo nome do objeto.
-- A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur\# \#unite\# (a unidade deve ser concluída na configuração de cada pedido para o qual queremos ter um)
+- A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur\# \#unite\# (a unidade deve ser concluída na configuração de cada comando para o qual queremos ter um)
 - Portanto, este exemplo gera uma sentença para todos os comandos do tipo de informação digital que possuem uma unidade, para que possamos desmarcar as unidades no filtro certo, limitadas ao tipo que nos interessa.
 
 #### Evolução
@@ -281,7 +281,7 @@ Também podemos adicionar um filtro Regexp para remover alguns comandos. Usando 
 
 Então podemos ver uma regexp :
 
-**(bateria|latence|pression|vitesse|consumo)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 Isso permite que você exclua todos os comandos que possuem uma dessas palavras em suas frases
 
@@ -297,11 +297,11 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), que é usado no controle do inversor para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Aplicação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Réponse : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ação : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *ordem*.
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Aplicação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Réponse : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ação : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *ordem*.
 
 > **NOTA**
 >
-> Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano").
+> Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano"").
 
 #### Evolução
 
@@ -346,7 +346,7 @@ Este exemplo, portanto, permite iniciar o cenário que está vinculado na parte 
 
 ### Programando uma ação com interações
 
-As interações fazem muitas coisas em particular. Você pode programar uma ação dinamicamente. Exemplo : "Liga o calor às 22 para 14:50". Nada poderia ser mais simples, basta usar as tags \#time\# (se um horário específico estiver definido) ou \#duration\# (no X tempo, exemplo em 1 hora) :
+As interações fazem muitas coisas em particular. Você pode programar uma ação dinamicamente. Exemplo : "Liga o calor às 22 para 14:50". Nada poderia ser mais simples, basta usar as tags \#time\# (se um horário específico estiver definido) ou \#duration\# (no tempo X, por exemplo, em 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 

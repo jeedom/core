@@ -42,9 +42,9 @@ At the top of the page, there are 3 buttons :
 
 The principle of creation is quite simple : we will define a generating model sentence which will allow Jeedom to create one or more hundreds of other sentences which will be possible combinations of the model.
 
-We are going to define answers in the same way with a model (this allows Jeedom to have several answers for a single question).
+We will define answers in the same way with a model (this allows Jeedom to have several answers for a single question).
 
-We can also define a command to execute if for example the interaction is not linked to an action but an information or if we wish to carry out a particular action after this one (it is also possible to execute a scenario, to control several commands…).
+We can also define a command to execute if for example the interaction is not linked to an action but information or if we wish to carry out a particular action after it (it is also possible to execute a scenario, to control several orders…).
 
 ## D'actualité
 
@@ -58,7 +58,7 @@ The configuration page consists of several tabs and buttons :
 ### General tab
 
 - **Last name** : Interaction name (can be empty, the name replaces the request text in the interaction list).
-- **Group** : Interaction group, this allows them to be organized (can be empty, will therefore be in the &quot;none&quot; group).
+- **Group** : Interaction group, this allows to organize them (can be empty, will therefore be in the group "none").
 - **Active** : Enables or disables interaction.
 - **Request** : The generating model sentence (required).
 - **Synonymous** : Allows to define synonyms on the names of the commands.
@@ -71,11 +71,11 @@ The configuration page consists of several tabs and buttons :
 
 - **Limit to type commands** : Allows you to use only the types of actions, info or the 2 types.
 - **Limit to commands with subtype** : Limits generation to one or more subtypes.
-- **Limit to commands with unit** : Used to limit generation to one or more units (Jeedom automatically creates the list from the units defined in your commands).
-- **Limit to commands belonging to the object** : Allows you to limit generation to one or more objects (Jeedom automatically creates the list from the objects you have created).
-- **Limit to plugin** : Limits generation to one or more plugins (Jeedom automatically creates the list from installed plugins).
+- **Limit to commands with unit** : Allows you to limit generation to one or more units (Jeedom automatically creates the list from the units defined in your orders).
+- **Limit to commands belonging to the object** : Limits generation to one or more objects (Jeedom automatically creates the list from the objects you have created).
+- **Limit to plugin** : Allows you to limit generation to one or more plugins (Jeedom automatically creates the list from installed plugins).
 - **Limit to category** : Limits generation to one or more categories.
-- **Limit to equipment** : Allows you to limit generation to a single device / module (Jeedom automatically creates the list from the devices / modules you have).
+- **Limit to equipment** : Limits generation to a single device / module (Jeedom automatically creates the list from the devices / modules you have).
 
 ### Actions tab
 
@@ -101,7 +101,7 @@ We can very well imagine doing the same with several actions to light several la
 
 ![interact005](../images/interact005.png)
 
-In the 2 examples above, the model sentence is identical but the actions which result from it change according to what is configured in the &quot;Action&quot; part, so we can already with a simple interaction with a single sentence imagine actions combined between various commands and various scenarios (we can also trigger scenarios in the action part of interactions).
+In the 2 examples above, the model sentence is identical but the actions which result from it change according to what is configured in the "Action" part, we can therefore already with a simple interaction with a single sentence imagine actions combined between various commands and various scenarios (we can also trigger scenarios in the action part of interactions).
 
 > **Tip**
 >
@@ -117,7 +117,7 @@ We will resume what was done above, delete the actions that we had added, and in
 
 So we can see here that Jeedom generated 152 sentences from our model. However, they are not very well built and we have a bit of everything.
 
-To make order in all this, we will use the filters (right part of our configuration page). In this example, we want to generate sentences to turn on lights. So we can uncheck the info command type (if I save, I only have 95 sentences left), then, in the subtypes, we can only keep checked &quot;default&quot; which corresponds to the action button ( only 16 sentences remain).
+To make order in all this, we will use the filters (right part of our configuration page). In this example, we want to generate sentences to turn on lights. We can therefore uncheck the type of info command (if I save, I only have 95 sentences left), then, in the subtypes, we can only keep checked "default" which corresponds to the action button ( so there are only 16 sentences left).
 
 ![interact007](../images/interact007.png)
 
@@ -133,7 +133,7 @@ It&#39;s already better, but it still lacks for the command &quot;on&quot; &quot
 
 ![interact009](../images/interact009.png)
 
-We now have slightly more correct sentences with sentences that are not correct, for our example "on" "entry". so we find &quot;Turn on entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on the entry&quot; etc. So we have all the possible variants with what we added between the &quot;\ [\]&quot; and this for each synonym, which quickly generates a lot of sentences (here 168).
+We now have slightly more correct sentences with sentences that are not correct, for our example "on" "entry". so we find &quot;Turn on entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on an entry&quot;, &quot;Turn on the entry&quot; etc. So we have all the possible variants with what we added between the "\ [\]" and this for each synonym, which quickly generates a lot of sentences (here 168).
 
 In order to refine and not have improbable things like &quot;turn on the TV&quot;, we can allow Jeedom to delete syntactically incorrect requests. It will therefore delete what is too far from the actual syntax of a sentence. In our case, we go from 168 sentences to 130 sentences.
 
@@ -155,7 +155,7 @@ You can also add any value from another command such as temperature, number of p
 
 ### Binary conversion
 
-Binary conversions apply to commands of type info whose subtype is binary (returns 0 or 1 only). So you have to activate the right filters, as we can see on the screenshot a little lower (for the categories, we can check all of them, for the example I only kept light).
+Binary conversions apply to info type commands whose subtype is binary (returns 0 or 1 only). So you have to activate the right filters, as we can see on the screenshot a little lower (for the categories, we can check all of them, for the example I only kept light).
 
 ![interact013](../images/interact013.png)
 
@@ -204,7 +204,7 @@ If we translate this expression into a sentence, it would give "look for the wor
 
 It&#39;s an extremely simple version of regular expressions but already very complicated to understand. It took me a while to understand how it works. As a slightly more complex example, a regexp to verify a URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \*\\ /?\ $ /
+/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*)\*\\ /?\ $ /
 
 Once you can write this, you understand the regular expressions.
 
@@ -266,7 +266,7 @@ Here a generic example which is used to know the temperature, humidity, brightne
 ![interact019](../images/interact019.png)
 
 - So we can see that a generic sentence like &quot;What is the temperature in the living room&quot; or &quot;What is the brightness of the bedroom&quot; can be converted into : "what is the |l \\ '\] \#commande\# object "(the use of \ [word1 | word2 \] allows you to say this possibility or that to generate all possible variants of the sentence with word1 or word2). When generating Jeedom will generate all possible combinations of sentences with all existing commands (depending on the filters) by replacing \#commande\# by the name of the command and \#objet\# by the name of the object.
-- The answer will be "21 ° C" or "200 lux". Just put : \#valeur\# \#unite\# (the unit must be completed in the configuration of each command for which we want to have one)
+- The answer will be "21 ° C" or "200 lux". Just put : \#valeur\# \#unite\# (the unit is to be completed in the configuration of each command for which we want to have one)
 - This example therefore generates a sentence for all digital info type commands that have a unit, so we can uncheck units in the right filter limited to the type that interests us.
 
 #### Evolution
@@ -281,7 +281,7 @@ We can also add a Regexp filter to remove some commands. Using the simple exampl
 
 So we can see a regexp :
 
-**(drums|latence|pression|vitesse|consumption)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 This allows you to delete all commands that have one of these words in their sentence
 
@@ -297,11 +297,11 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is used in the drive control to apply the desired value. To do this, we have 3 parts : \* Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *Instructions*.
+As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *Instructions*.
 
 > **NOTE**
 >
-> We can use any tag except those already used by Jeedom, there can be several to control for example several commands. Note also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in &quot;Execute in foreground&quot;).
+> We can use any tag except those already used by Jeedom, there can be several to control for example several commands. Note also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in "Execute in foreground").
 
 #### Evolution
 

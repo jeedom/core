@@ -20,13 +20,13 @@
 - **Actualizaciones principales** : Implementación de un sistema para limpiar viejos archivos Core no utilizados.
 - **Guión** : Agregar un motor de búsqueda (a la izquierda del botón Ejecutar).
 - **Guión** : Adición de la función de edad (da la edad del valor del pedido).
-- **Guión** : *stateChanges ()* ahora acepta el periodo *Hoy* (desde la medianoche hasta ahora), *ayer* y *dia* (por 1 día).
-- **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración ()* : Bugfix durante el período *ayer*, y acepta ahora *dia* (por 1 día).
-- **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Comandos).
+- **Guión** : *cambios de estado()* ahora acepta el periodo *Hoy* (medianoche hasta ahora), *ayer* y *dia* (por 1 día).
+- **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *ayer*, y acepta ahora *dia* (por 1 día).
+- **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Commandes).
 - **Guión** : Viendo un *Advertencia* si no se configura ningún activador.
 - **Guión** : Corrección de errores de seleccionar en el bloque copiar / pegar.
 - **Guión** : Copiar / pegar bloque entre diferentes escenarios.
-- **Guión** : Las funciones de deshacer / rehacer ahora están disponibles en forma de botones (al lado del botón de creación de bloque).
+- **Guión** : Las funciones de deshacer / rehacer ahora están disponibles como botones (al lado del botón de creación de bloque).
 - **Ventana de variables de escenario** : Clasificación alfabética en la apertura.
 - **Ventana de variables de escenario** : Ahora se puede hacer clic en los escenarios utilizados por las variables, con la apertura de la búsqueda en la variable.
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
@@ -64,7 +64,7 @@
 - **Aplicación web** : En un diseño, un clic con tres dedos vuelve a la página de inicio.
 - **Aplicación web** : Visualización de escenarios por grupo.
 - **Aplicación web** : Nueva fuente tipo monoespacio para registros.
-- **Aplicación web** : Muchas correcciones de errores (UI, iOS vertical / horizontal, etc.).<br/><br/>
+- **Aplicación web** : Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).<br/><br/>
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - **Lib** : Actualizar HighStock v7.1.2 a v8.1.0.

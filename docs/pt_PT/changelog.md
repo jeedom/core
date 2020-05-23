@@ -20,13 +20,13 @@
 - **Atualizações principais** : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
 - **Cenas** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
 - **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
-- **Cenas** : *stateChanges ()* agora aceite o período *Hoje* (da meia-noite até agora), *ontem* e *dia* (por 1 dia).
-- **Cenas** : FUNÇÕES *estatísticas (), média (), max (), min (), tendência (), duração ()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
-- **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Pedidos).
+- **Cenas** : *stateChanges()* agora aceite o período *Hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
+- **Cenas** : FUNÇÕES *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
+- **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Commandes).
 - **Cenas** : Visualizando um *Aviso* se nenhum gatilho estiver configurado.
 - **Cenas** : Correção de bug no bloco copiar / colar.
 - **Cenas** : Copiar / colar do bloco entre diferentes cenários.
-- **Cenas** : As funções desfazer / refazer estão agora disponíveis na forma de botões (ao lado do botão de criação do bloco).
+- **Cenas** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
 - **Janela Variáveis de Cenário** : Ordenação alfabética na abertura.
 - **Janela Variáveis de Cenário** : Os cenários usados pelas variáveis agora são clicáveis, com a abertura da pesquisa na variável.
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
@@ -64,7 +64,7 @@
 - **WebApp** : Em um design, um clique com três dedos retorna à página inicial.
 - **WebApp** : Exibição de cenários por grupo.
 - **WebApp** : Nova fonte de tipo monoespaçado para logs.
-- **WebApp** : Muitas correções de bugs (interface do usuário, retrato / paisagem iOS, etc.).<br/><br/>
+- **WebApp** : Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).<br/><br/>
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **Lib** : Atualizar o HighStock v7.1.2 a v8.1.0.

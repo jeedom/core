@@ -8,7 +8,7 @@ There is therefore a list of plugins in alphabetical order and a link to the mar
 - Disabled plugins are grayed out.
 - Plugins that are not in version *Stable* we have an orange dot in front of their name.
 
-By clicking on a plugin, you access its configuration. At the top, you find the name of the plugin, then in brackets, its name in Jeedom (ID) and finally, the type of installed version (stable, beta).
+By clicking on a plugin, you access its configuration. At the top, you find the name of the plugin, then in parentheses, its name in Jeedom (ID) and finally, the type of installed version (stable, beta).
 
 > **IMPORTANT**
 >
@@ -58,7 +58,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 - **Status** : Daemon status, OK or NOK.
 - **D'actualité** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
 - **(To restart** : Allows you to launch or restart the demon.
-- **Stop** : Allows to stop the daemon (Only in the case where automatic management is disabled).
+- **Stop** : Used to stop the daemon (Only in the case where automatic management is disabled).
 - **Automatic management** : Enables or disables automatic management (which allows Jeedom to manage the daemon itself and restart it if necessary. Unless otherwise indicated, it is advisable to leave automatic management active).
 - **Last launch** : Date of last launch of the daemon.
 
@@ -90,7 +90,7 @@ We can find a Panel section which will enable or disable the display of the pane
 
 ## Setup d'un plugin
 
-To install a new plugin, just click on the &quot;Market&quot; button (and Jeedom is connected to the Internet). After a short loading time, you will get the page.
+To install a new plugin, just click on the "Market" button (and Jeedom is connected to the Internet). After a short loading time, you will get the page.
 
 > **Tip**
 >
@@ -100,7 +100,7 @@ At the top of the window you have filters :
 - **Free / Pay** : displays only free or paid.
 - **Official / Recommended** : displays only official or recommended plugins.
 - **Category drop-down menu** : displays only certain categories of plugins.
-- **Search** : allows to search for a plugin (in the name or description of it).
+- **Search** : allows you to search for a plugin (in the name or description of it).
 - **Last name d'utilisateur** : displays the user name used to connect to the Market as well as the connection status.
 
 > **Tip**
@@ -109,14 +109,14 @@ At the top of the window you have filters :
 
 Once you have found the plugin you want, just click on it to bring up its file. This sheet gives you a lot of information on the plugin, in particular :
 
-- If it is official / recommended or if it is obsolete (you should really avoid installing obsolete plugins).
+- If it is official / recommended or if it is obsolete (you should definitely avoid installing obsolete plugins).
 - 4 actions :
     - **Install stable** : allows to install the plugin in its stable version.
-    - **Install beta** : allows to install the plugin in its beta version (only for beta testers).
+    - **Install beta** : allows to install the plugin in its beta version (only for betatesters).
     - **Install pro** : allows to install the pro version (very little used).
     - **Remove** : if the plugin is currently installed, this button allows you to remove it.
 
-Below, you will find the description of the plugin, the compatibility (if Jeedom detects an incompatibility, it will notify you), the opinions on the plugin (you can note it here) and additional information (the author, the person who made the last update, a link to the doc, the number of downloads). On the right you find a &quot;Changelog&quot; button which allows you to have all the history of modifications, a &quot;Documentation&quot; button which refers to the documentation of the plugin. Then you have the available language and the various information on the date of the last stable version.
+Below, you will find the description of the plugin, the compatibility (if Jeedom detects an incompatibility, it will notify you), the opinions on the plugin (you can note it here) and additional information (the author, the person who made the latest update, a link to the doc, the number of downloads). On the right you find a &quot;Changelog&quot; button which allows you to have all the history of modifications, a &quot;Documentation&quot; button which refers to the documentation of the plugin. Then you have the available language and the various information on the date of the last stable version.
 
 > **IMPORTANT**
 >
