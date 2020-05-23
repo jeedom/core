@@ -465,6 +465,7 @@ div.eqLogic.eqLogic-widget:empty {
 .label {
   font-size: 12px !important;
   font-weight: normal;
+  display: inline-block;
   padding: 4px 12px;
 }
 .label-sm {
