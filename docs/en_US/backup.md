@@ -17,9 +17,9 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Maximum total size of backups (MB)** : Limits the space taken by all backups in the backup folder. If this value is exceeded, Jeedom will delete the oldest backups until it drops below the maximum size. It will however keep at least one backup.
 
-## Backups Locales
+## Local backups
 
-- **Backups disponibles** : List of available backups.
+- **Available backups** : List of available backups.
 
 - **Restore backup** : Launches the restoration of the backup selected above.
 
@@ -29,21 +29,21 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Download backup** : Download the archive of the backup selected above to your computer.
 
-## Backups Market
+## Market backups
 
 - **Sending backups** : Tell Jeedom to send backups to the Market cloud, please note that you must have subscribed.
 
 - **Send a backup** : Send a backup archive located on your computer to the cloud.
 
-- **Backups disponibles** : List of available cloud backups.
+- **Available backups** : List of available cloud backups.
 
 - **Restore backup** : Starts restoring a cloud backup.
 
-## Backups Samba
+## Samba backups
 
 - **Sending backups** : Tells Jeedom to send the backups to the samba share configured here Settings → System → Configuration : Updates.
 
-- **Backups disponibles** : List of available samba backups.
+- **Available backups** : List of available samba backups.
 
 - **Restore backup** : Starts restoring the samba backup selected above.
 

@@ -39,7 +39,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Id** : Next to the word **General**, this is the scenario identifier.
 - **status** : *Stopped* or *In progress*, it indicates the current state of the scenario.
 - **Previous / next state** : Cancel / redo an action.
-- **Add un block** : Allows you to add a block of the desired type to the scenario (see below).
+- **Add block** : Allows you to add a block of the desired type to the scenario (see below).
 - **Log** : Displays the scenario logs.
 - **Duplicate** : Copy the scenario to create a new one with another name.
 - **Connections** : Allows you to view the graph of the elements related to the scenario.
@@ -86,7 +86,7 @@ In the tab **General**, we find the main parameters of the scenario :
 > Conditions can now be entered in triggered mode. Eg : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Warning : you can have a maximum of 28 triggers / programming for a scenario.
 
-> **Tip Mode programmé**
+> **Tip mode programmed**
 >
 > Scheduled mode uses syntax **Cron**. For example, you can run a scenario every 20 minutes with  ``*/20 * * * *``, or at 5 a.m. to settle a multitude of things for the day with ``0 5 * * *``. The ? to the right of a program allows you to set it without being a specialist in Cron syntax.
 
@@ -105,7 +105,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 >
 > A Ctrl Shift Z or Ctrl Shift Y allows you to'**to cancel** or redo a modification (adding action, block...).
 
-## The blocs
+## Blocks
 
 Here are the different types of blocks available :
 
@@ -136,9 +136,9 @@ For the conditions, Jeedom tries to make it possible to write them as much as po
 
 Three buttons are available on the right of this type of block to select an item to test :
 
-- **Search une commande** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose **and** or **or** in front of **Then** to chain tests on different equipment.
-- **Search un scénario** : Allows you to search for a scenario to test.
-- **Search un équipement** : Same for equipment.
+- **Find a command** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose **and** or **or** in front of **Then** to chain tests on different equipment.
+- **Search a scenario** : Allows you to search for a scenario to test.
+- **Search for equipment** : Same for equipment.
 
 > **NOTE**
 >
@@ -204,7 +204,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 Comment block acts differently when it is hidden. Its buttons on the left disappear as well as the title of the block, and reappear on hover. Similarly, the first line of the comment is displayed in bold type.
 This allows this block to be used as a purely visual separation within the scenario.
 
-### The Actions
+### The actions
 
 Actions added to blocks have several options :
 
@@ -219,9 +219,9 @@ Actions added to blocks have several options :
 >
 > Depending on the selected command, you can see different additional fields displayed.
 
-## The substitutions possibles
+## Possible substitutions
 
-### The déclencheurs
+### Triggers
 
 There are specific triggers (other than those provided by commands) :
 
@@ -234,7 +234,7 @@ There are specific triggers (other than those provided by commands) :
 - ``#end_restore#`` : Event sent at the end of a restoration.
 - ``#user_connect#`` : User login
 
-You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or en utilisant l'API HTTP décrite [here](https://doc.jeedom.com/en_US/core/4.1/api_http).
+You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or using the HTTP API described [here](https://doc.jeedom.com/en_US/core/4.1/api_http).
 
 ### Comparison operators and links between conditions
 
@@ -255,7 +255,7 @@ You can combine any comparison with the following operators :
 - ``||`` / ``OU`` / ``ou`` / ``OR`` / ``or`` : ou,
 - ``^`` / ``XOR`` / ``xor`` : or exclusive.
 
-### The tags
+### Tags
 
 A tag is replaced during the execution of the scenario by its value. You can use the following tags :
 
@@ -295,7 +295,7 @@ You also have the following additional tags if your scenario was triggered by an
 >
 > When a scenario is triggered by an interaction, it is necessarily executed in fast mode. So in the interaction thread and not in a separate thread.
 
-### The fonctions de calcul
+### Calculation functions
 
 Several functions are available for the equipment :
 
@@ -409,11 +409,9 @@ Here are practical examples to understand the values returned by these different
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns Hydrometry                  |
 
 
-### The fonctions mathématiques
+### Mathematical functions
 
-A generic function toolbox can also be used to perform conversions
-
-or calculations :
+A generic function toolbox can also be used to perform conversions or calculations :
 
 - ``rand(1,10)`` : Give a random number from 1 to 10.
 - ``randText(texte1;texte2;texte…​..)`` : Allows you to return one of the texts randomly (separate the texts by one; ). There is no limit in the number of texts.
@@ -451,7 +449,7 @@ And practical examples :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Returns the ignition time in Days / Hours / minutes of the time of transition to state 1 of the module since the 1st day of the month |
 
 
-### The commandes spécifiques
+### Specific commands
 
 In addition to home automation commands, you have access to the following actions :
 
@@ -462,7 +460,7 @@ In addition to home automation commands, you have access to the following action
 - **STOP** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
 - **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
-- **Add un log** (log) : Allows you to add a message to the logs.
+- **Add a log** (log) : Allows you to add a message to the logs.
 - **Create message** (message) : Add a message to the message center.
 - **Activate / Deactivate Hide / display equipment** (equipement) : Allows you to modify the properties of visible / invisible, active / inactive equipment.
 - **To make a request** (ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
@@ -474,12 +472,12 @@ In addition to home automation commands, you have access to the following action
 - **Alert** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
 - **Pop-up** (popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
 - **Report** (report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
-- **Remove block DANS/AT programmé** (remove_inat) : Allows you to delete the programming of all IN and A blocks of the scenario.
+- **Delete programmed IN / A block** (remove_inat) : Allows you to delete the programming of all IN and A blocks of the scenario.
 - **Event** (event) : Allows you to push a value in an information type command arbitrarily.
 - **Tag** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
 - **Coloring of dashboard icons** (setColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
 
-### Template de scénario
+### Scenario template
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 

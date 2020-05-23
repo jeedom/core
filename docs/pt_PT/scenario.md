@@ -39,7 +39,7 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 - **ID** : Ao lado da palavra **Geral**, este é o identificador de cenário.
 - **Estado** : *Preso* onde *Contínuo*, indica o estado atual do cenário.
 - **Estado anterior / seguinte** : Cancelar / refazer uma ação.
-- **Adicionar un Bloco** : Permite adicionar um bloco do tipo desejado ao cenário (veja abaixo).
+- **Adicionar bloco** : Permite adicionar um bloco do tipo desejado ao cenário (veja abaixo).
 - **Log** : Exibe os logs do cenário.
 - **Duplicar** : Copie o cenário para criar um novo com outro nome.
 - **Conexões** : Permite visualizar o gráfico dos elementos relacionados ao cenário.
@@ -86,7 +86,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
 
-> **Dica Mode programmé**
+> **Modo de ponta programado**
 >
 > O modo agendado usa sintaxe **Cron**. Por exemplo, você pode executar um cenário a cada 20 minutos com  ``*/20 * * * *``, ou às 05:00 para resolver uma infinidade de coisas para o dia com ``0 5 * * *``. O ? à direita de um programa permite configurá-lo sem ser um especialista em sintaxe do Cron.
 
@@ -105,7 +105,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 >
 > Ctrl Shift Z ou Ctrl Shift Y permite que você'**Cancelar** ou refazer uma modificação (adicionando ação, bloco...).
 
-## O blocs
+## Blocos
 
 Aqui estão os diferentes tipos de blocos disponíveis :
 
@@ -136,9 +136,9 @@ Pelas condições, o Jeedom tenta torná-las possíveis o máximo possível em l
 
 Três botões estão disponíveis à direita deste tipo de bloco para selecionar um item para testar :
 
-- **Pesquisa une commande** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **e** onde **onde** Na frente **Em seguida** para encadear testes em diferentes equipamentos.
-- **Pesquisa un scénario** : Permite procurar um cenário para testar.
-- **Pesquisa un équipement** : O mesmo para equipamentos.
+- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **e** onde **onde** Na frente **Em seguida** para encadear testes em diferentes equipamentos.
+- **Pesquisa cenário** : Permite procurar um cenário para testar.
+- **Procure equipamento** : O mesmo para equipamentos.
 
 > **NOTA**
 >
@@ -204,7 +204,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 O bloco de comentários age de maneira diferente quando está oculto. Seus botões à esquerda desaparecem, assim como o título do bloco, e reaparecem ao passar o mouse. Da mesma forma, a primeira linha do comentário é exibida em negrito.
 Isso permite que esse bloco seja usado como uma separação puramente visual dentro do cenário.
 
-### O Actions
+### Acções
 
 As ações adicionadas aos blocos têm várias opções :
 
@@ -219,9 +219,9 @@ As ações adicionadas aos blocos têm várias opções :
 >
 > Dependendo do comando selecionado, você pode ver diferentes campos adicionais exibidos.
 
-## O substitutions possibles
+## Possíveis substituições
 
-### O déclencheurs
+### Triggers
 
 Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 
@@ -234,7 +234,7 @@ Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 - ``#end_restore#`` : Evento enviado no final de uma restauração.
 - ``#user_connect#`` : Login do usuário
 
-Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# onde en utilisant l'API HTTP décrite [aqui](https://doc.jeedom.com/pt_PT/core/4.1/api_http).
+Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# ou usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.1/api_http).
 
 ### Operadores de comparação e links entre condições
 
@@ -255,7 +255,7 @@ Você pode combinar qualquer comparação com os seguintes operadores :
 - ``||`` / ``OU`` / ``ou`` / ``OR`` / ``or`` : ou,
 - ``^`` / ``XOR`` / ``xor`` : ou exclusivo.
 
-### O tags
+### Tags
 
 Uma tag é substituída durante a execução do cenário por seu valor. Você pode usar as seguintes tags :
 
@@ -295,7 +295,7 @@ Você também tem as seguintes tags adicionais se seu cenário foi acionado por 
 >
 > Quando um cenário é acionado por uma interação, é necessariamente executado no modo rápido. Portanto, no segmento de interação e não em um segmento separado.
 
-### O fonctions de calcul
+### Funções de cálculo
 
 Várias funções estão disponíveis para o equipamento :
 
@@ -409,11 +409,9 @@ Aqui estão exemplos práticos para entender os valores retornados por essas dif
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Retorna Hidrometria                  |
 
 
-### O fonctions mathématiques
+### Funções matemáticas
 
-Uma caixa de ferramentas de funções genéricas também pode ser usada para realizar conversões
-
-ou cálculos :
+Uma caixa de ferramentas de funções genéricas também pode ser usada para realizar conversões ou cálculos :
 
 - ``rand(1,10)`` : Dê um número aleatório de 1 a 10.
 - ``randText(texte1;texte2;texte…​..)`` : Permite retornar um dos textos aleatoriamente (separe os textos por um; ). Não há limite no número de textos.
@@ -451,18 +449,18 @@ E exemplos práticos :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Retorna o tempo de ignição em Dias / Horas / minutos do tempo de transição para o estado 1 do módulo desde o 1º dia do mês |
 
 
-### O commandes spécifiques
+### Pedidos específicos
 
 Além dos comandos de automação residencial, você tem acesso às seguintes ações :
 
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **Variável** (variable) : Criação / modificação de uma variável ou o valor de uma variável.
-- **Remover variable** (delete_variable) : Permite excluir uma variável.
+- **Remover variável** (delete_variable) : Permite excluir uma variável.
 - **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele)
 - **Pare** (stop) : Pára o script.
 - **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
 - **Vai o projeto** (gotodesign) : Alterar o design exibido em todos os navegadores pelo design solicitado.
-- **Adicionar un Log** (log) : Permite adicionar uma mensagem no log.
+- **Adicionar um registro** (log) : Permite adicionar uma mensagem no log.
 - **Criar mensagem** (message) : Adicionar uma mensagem ao centro de mensagens.
 - **Activar / Desactivar Hide / Show equipamentos** (equipement) : Permite modificar as propriedades de equipamento visível / invisível, ativo / inativo.
 - **Aplicar** (ask) : Permite indicar a Jeedom que é necessário fazer uma pergunta ao usuário. A resposta é armazenada em uma variável, então você só precisa testar seu valor.
@@ -474,12 +472,12 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Aviso** (alert) : Exibe uma pequena mensagem de alerta em todos os navegadores que têm uma página Jeedom aberta. Além disso, você pode escolher 4 níveis de alerta.
 - **Pop-up** (popup) : Permite exibir um pop-up que deve ser absolutamente validado em todos os navegadores que possuem uma página jeedom aberta.
 - **Relatório** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
-- **Remover Bloco DANS/à programmé** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
+- **Excluir bloco IN / A agendado** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
 - **Coloração de ícones do painel** (setColoredIcon) : permite ativar ou não a coloração de ícones no painel.
 
-### Modelo de scénario
+### Template cenário
 
 Essa funcionalidade permite transformar um cenário em um modelo para, por exemplo, aplicá-lo a outro Jeedom.
 

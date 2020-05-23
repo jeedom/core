@@ -39,7 +39,7 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
 - **Identifikation** : Neben dem Wort **General**, Dies ist die Szenariokennung.
 - **Status** : *Verhaftet* oder *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
 - **Vorheriger / nächster Zustand** : Aktion abbrechen / wiederholen.
-- **Hinzufügen un Block** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)).
+- **Block hinzufügen** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)).
 - **Log** : Zeigt die Szenarioprotokolle an.
 - **Duplikat** : Kopieren Sie das Szenario, um ein neues mit einem anderen Namen zu erstellen.
 - **Verbindungen** : Ermöglicht das Anzeigen des Diagramms der Elemente, die sich auf das Szenario beziehen.
@@ -86,7 +86,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 > Bedingungen können jetzt im ausgelösten Modus eingegeben werden. Zum Beispiel : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Aufmerksamkeit : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
 
-> **Spitze Mode programmé**
+> **Tippmodus programmiert**
 >
 > Der geplante Modus verwendet die Syntax **Cron**. Beispielsweise können Sie mit alle 20 Minuten ein Szenario ausführen  ``*/.20 * * * *``, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag mit zu erledigen ``0 5 * * *``. Die ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
 
@@ -105,7 +105,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 >
 > Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**stornieren** oder eine Änderung wiederholen (Aktion hinzufügen, blockieren...).
 
-## Die blocs
+## Blöcke
 
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
@@ -136,9 +136,9 @@ Für die Bedingungen versucht Jeedom, es möglich zu machen, sie so viel wie mö
 
 Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu testenden Elements zur Verfügung :
 
-- **Suche une commande** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und** oder **oder** Front **Dann** Kettenprüfungen an verschiedenen Geräten.
-- **Suche un scénario** : Ermöglicht die Suche nach einem zu testenden Szenario.
-- **Suche un équipement** : Gleiches gilt für die Ausrüstung.
+- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und** oder **oder** Front **Dann** Kettenprüfungen an verschiedenen Geräten.
+- **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
+- **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
 > **Notiz**
 >
@@ -204,7 +204,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 Der Kommentarblock verhält sich anders, wenn er ausgeblendet ist. Die Schaltflächen auf der linken Seite sowie der Titel des Blocks verschwinden und werden beim Schweben wieder angezeigt. Ebenso wird die erste Zeile des Kommentars fett gedruckt.
 Dadurch kann dieser Block als rein visuelle Trennung innerhalb des Szenarios verwendet werden.
 
-### Die Actions
+### Aktionen
 
 Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 
@@ -219,9 +219,9 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 >
 > Abhängig vom ausgewählten Befehl werden verschiedene zusätzliche Felder angezeigt.
 
-## Die substitutions possibles
+## Mögliche Substitutionen
 
-### Die déclencheurs
+### Auslöser
 
 Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werden)) :
 
@@ -234,7 +234,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#end_restore#`` : Ereignis gesendet am Ende einer Restaurierung.
 - ``#user_connect#`` : Benutzeranmeldung
 
-Sie können auch ein Szenario auslösen, wenn eine Variable durch Putten aktualisiert wird : #variable(nom_variable)# oder en utilisant l'API HTTP décrite [hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
+Sie können auch ein Szenario auslösen, wenn eine Variable durch Putten aktualisiert wird : #variable(nom_variable)# oder unter Verwendung der beschriebenen HTTP-API [hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
 
 ### Vergleichsoperatoren und Verknüpfungen zwischen Bedingungen
 
@@ -255,7 +255,7 @@ Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 - ``||`` /. ``OU`` /. ``ou`` /. ``OR`` /. ``or`` : ou,
 - ``^`` /. ``XOR`` /. ``xor`` : oder exklusiv.
 
-### Die tags
+### Tags
 
 Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. Sie können die folgenden Tags verwenden :
 
@@ -295,7 +295,7 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 >
 > Wenn ein Szenario durch eine Interaktion ausgelöst wird, wird es notwendigerweise im schnellen Modus ausgeführt. Also im Interaktionsthread und nicht in einem separaten Thread.
 
-### Die fonctions de calcul
+### Berechnungsfunktionen
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
@@ -409,11 +409,9 @@ Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschieden
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Gibt Hydrometrie zurück                  |
 
 
-### Die fonctions mathématiques
+### Mathematische Funktionen
 
-Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen verwendet werden
-
-oder Berechnungen :
+Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen oder Berechnungen verwendet werden :
 
 - ``rand(1,10)`` : Geben Sie eine Zufallszahl von 1 bis 10 an.
 - ``randText(texte1;texte2;texte…​..)`` : Ermöglicht es Ihnen, einen der Texte zufällig zurückzugeben (trennen Sie die Texte durch einen; ). Die Anzahl der Texte ist unbegrenzt.
@@ -451,18 +449,18 @@ Und praktische Beispiele :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Gibt die Zündzeit in Tagen / Stunden / Minuten der Übergangszeit auf Zustand 1 des Moduls seit dem 1. Tag des Monats zurück |
 
 
-### Die commandes spécifiques
+### Spezifische Bestellungen
 
 Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die folgenden Aktionen :
 
 - **Pause** (sleep) : Pause von x Sekunden (s).
 - **Variable** (variable) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
-- **Entfernen variable** (delete_variable) : Ermöglicht das Löschen einer Variablen.
+- **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen.
 - **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her). Mit dem Befehl "Auf SI zurücksetzen" können Sie den Status von "SI" zurücksetzen (dieser Status wird verwendet, um die Aktionen eines "SI" nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben)
 - **STOP** (stop) : Stoppen Sie das Szenario.
 - **Erwarten** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
 - **Gehe zum Design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
-- **Hinzufügen un log** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
+- **Fügen Sie ein Protokoll hinzu** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
 - **Nachricht erstellen** (message) : Fügen Sie dem Nachrichtencenter eine Nachricht hinzu.
 - **Geräte ausblenden / deaktivieren** (equipement) : Ermöglicht das Ändern der Eigenschaften von sichtbaren / unsichtbaren, aktiven / inaktiven Geräten.
 - **Stellen Sie eine Anfrage** (ask) : Wird verwendet, um Jeedom anzuzeigen, dass dem Benutzer eine Frage gestellt werden soll. Die Antwort wird in einer Variablen gespeichert, dann müssen Sie nur noch ihren Wert testen.
@@ -474,12 +472,12 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Warnung** (alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
 - **Popup** (popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
 - **Bericht** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich.
-- **Entfernen Block DANS/.Bis programmé** (remove_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
+- **Programmierten IN / A-Block löschen** (remove_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
 - **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **Etikett** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
 - **Färbung von Dashboard-Symbolen** (setColoredIcon) : Ermöglicht das Aktivieren oder Nicht-Aktivieren der Farbgebung von Symbolen im Dashboard.
 
-### Schablone de scénario
+### Szenariovorlage
 
 Mit dieser Funktion können Sie ein Szenario in eine Vorlage umwandeln, um es beispielsweise auf ein anderes Jeedom anzuwenden.
 

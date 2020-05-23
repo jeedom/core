@@ -47,7 +47,7 @@ En pocas palabras, es un código (aquí html / js) integrado en el Core, algunas
 
 Dependiendo del tipo de widget, generalmente puede personalizar iconos o poner imágenes de su elección.
 
-## La templates
+## Las plantillas
 
 Hay dos tipos de plantillas :
 
@@ -155,7 +155,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 
 ## Widget de código
 
-### La tags
+### Etiquetas
 
 En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí hay una lista (no necesariamente exhaustiva)) :
 

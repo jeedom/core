@@ -69,8 +69,8 @@ The tab **Information** contains general information about the equipment and its
 
 - **ID** : Unique identifier in the Jeedom database.
 - **Last name** : Name of equipment.
-- **ID logique** : Logical identifier of the equipment (can be empty).
-- **ID de l'objet** : Unique identifier of the parent object (can be empty).
+- **Logical ID** : Logical identifier of the equipment (can be empty).
+- **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
 - **Activate** : Check the box to activate the equipment (don't forget to save).
 - **Jeedom** : Check the box to make the equipment visible (don't forget to save).
@@ -124,7 +124,7 @@ this :
 
 This tab allows you to have information on the battery of the equipment and to define alerts in relation to it. Here are the types of information that can be found :
 
-- **Type de pile**,
+- **Battery type**,
 - **Latest feedback**,
 - **Remaining level**, (if of course your equipment runs on battery).
 
@@ -164,7 +164,7 @@ First, at the top right, some buttons available :
 The tab **Information** contains general information about the command :
 
 - **ID** : Unique identifier in the database.
-- **ID logique** : Logical identifier of the command (can be empty).
+- **Logical ID** : Logical identifier of the command (can be empty).
 - **Last name** : Name of the command.
 - **Type** : Type of command (action or info).
 - **Subtype** : Command subtype (binary, digital, etc.)).
@@ -195,7 +195,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 - **Calculation and rounding**
     - **Algorithm (\#value\# for value)** : Allows you to make an operation on the value of the command before processing by Jeedom, example : ``#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
     - **Rounded (number after decimal point)** : Used to round the value of the command (Example : put 2 to transform 16.643,345 in 16.64).
-- **Type générique** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
+- **Generic type** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
 - **Action on value, if** : Lets do some sort of mini scenarios. You can, for example, say that if the value is worth more than 50 for 3 minutes, then you have to do such action. This allows, for example, to turn off a light X minutes after it has turned on.
 
 - **Historical**
@@ -214,7 +214,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 #### For an action command :
 
--  **Type générique** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
+-  **Generic type** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
 - **Confirm action** : Check this box to have Jeedom request confirmation when the action is launched from the interface of this command.
 - **Access code** : Allows to define a code that Jeedom will ask when the action is launched from the interface of this command.
 - **Action before execution of the command** : Add commands **before** each execution of the command.
@@ -236,7 +236,7 @@ In this part, you will be able to configure certain widget display behaviors on 
 - **Jeedom** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Select **before The  widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
+- **Wrapped line before widget** : Select **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 

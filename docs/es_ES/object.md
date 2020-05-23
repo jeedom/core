@@ -76,7 +76,7 @@ Las columnas representan los resúmenes asignados al objeto actual. Se te propon
 
 ### Commandes
 
-Cada pestaña representa un tipo de resumen definido en la configuración de Jeedom. Haga clic en **Añadir une commande** para que se tenga en cuenta en el resumen. Tiene la opción de seleccionar el comando de cualquier equipo Jeedom, incluso si no tiene este objeto como padre.
+Cada pestaña representa un tipo de resumen definido en la configuración de Jeedom. Haga clic en **Agregar un pedido** para que se tenga en cuenta en el resumen. Tiene la opción de seleccionar el comando de cualquier equipo Jeedom, incluso si no tiene este objeto como padre.
 
 > **Punta**
 >

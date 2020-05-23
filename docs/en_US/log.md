@@ -16,7 +16,7 @@ Top right 5 buttons :
 - **Download** : Download the current log.
 - **Empty** : Clear the current log.
 - **Remove** : Delete the current log. If Jeedom needs it it will recreate it automatically.
-- **Remove tous les logs** : Delete all logs present.
+- **Delete all logs** : Delete all logs present.
 
 > **Tip**
 >

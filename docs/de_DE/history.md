@@ -21,7 +21,7 @@ Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellte
 >
 > Dieses Archivierungsprinzip gilt natürlich nur für digitale Befehle. Bei Befehlen vom Typ Binär behält Jeedom nur die Daten der Zustandsänderung bei.
 
-### Anzeigen d'un graphique
+### Anzeigen eines Diagramms
 
 Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
@@ -66,7 +66,7 @@ Sobald eine Daten aktiviert sind, können Sie auswählen :
 
 Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
 
-#### Historisch calculé
+#### Berechnete Geschichte
 
 Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können fast alles tun, + - / \* absoluter Wert… für bestimmte Funktionen siehe PHP-Dokumentation).
 Ex :
@@ -78,7 +78,7 @@ Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie d
 >
 > Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten, und rufen Sie die historischen Befehle auf, die angezeigt werden können.
 
-#### Historisch de commande
+#### Bestellhistorie
 
 Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 

@@ -17,7 +17,7 @@ En la página tienes tres botones :
 - **Perfil** : Le permite elegir el perfil de usuario :
     - **Administrador** : El usuario obtiene todos los derechos (edición / consulta) sobre Jeedom.
     - **Usuario** : El usuario puede ver Tablero, vistas, diseños, etc. y actuar sobre equipos / controles. Sin embargo, no tendrá acceso a la configuración de los controles / equipos ni a la configuración de Jeedom.
-    - **Usuario limité** : El usuario solo ve el equipo autorizado (configurable con el botón "Derechos"").
+    - **Usuario limitado** : El usuario solo ve el equipo autorizado (configurable con el botón "Derechos"").
 - **Clave API** : Clave API personal del usuario.
 - **Doble autenticación** : Indica si la autenticación doble está activa (OK) o no (NOK).
 - **Fecha de la última conexión** : Fecha de inicio de sesión del último usuario. Tenga en cuenta que esta es la fecha de conexión real, por lo que si guarda su computadora, la fecha de conexión no se actualiza cada vez que regresa.
@@ -38,7 +38,7 @@ Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite admini
 Obtiene una tabla que permite, para cada dispositivo y cada escenario, definir los derechos del usuario :
 - **No** : el usuario no ve el equipo / escenario.
 - **Visualización** : el usuario ve el equipo / escenario pero no puede actuar sobre él.
-- **Visualización et exécution** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
+- **Visualización y ejecución** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
 
 ## Sesiones activas))
 

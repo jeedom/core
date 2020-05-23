@@ -76,7 +76,7 @@ As colunas representam os resumos atribuídos ao objeto atual. Três linhas são
 
 ### Commandes
 
-Cada guia representa um tipo de resumo definido na configuração do Jeedom. Clique em **Adicionar une commande** para que seja levado em consideração no resumo. Você tem a opção de selecionar o comando de qualquer equipamento Jeedom, mesmo que ele não tenha esse objeto como pai.
+Cada guia representa um tipo de resumo definido na configuração do Jeedom. Clique em **Adicionar comando** para que seja levado em consideração no resumo. Você tem a opção de selecionar o comando de qualquer equipamento Jeedom, mesmo que ele não tenha esse objeto como pai.
 
 > **Dica**
 >

@@ -47,7 +47,7 @@ Para simplificar, é um código (aqui html / js) integrado ao Core, algumas part
 
 Dependendo do tipo de widget, geralmente você pode personalizar ícones ou colocar imagens de sua escolha.
 
-## O templates
+## Os modelos
 
 Existem dois tipos de modelos :
 
@@ -155,7 +155,7 @@ Para configurá-lo, é bastante simples: você deve atribuir o widget ao control
 
 ## Widget de código
 
-### O tags
+### Tags
 
 No modo de código, você tem acesso a diferentes tags para pedidos, aqui está uma lista (não necessariamente exaustiva)) :
 

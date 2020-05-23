@@ -14,14 +14,14 @@ Aquí es donde podrá ajustar diferentes parámetros de su perfil :
     - **Login** : Su inicio de sesión en el mercado, no se puede cambiar.
     - **Apellido** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Primer nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
-    - **Apellido d'utilisateur sur le forum** : Tu nombre de usuario en el foro.
+    - **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
     - **E-mail** : Su email.
     - **Lengua** : Tu idioma.
     - **Contraseña &amp;&amp; Confirmar contraseña** : Le permite cambiar su contraseña.
 
 Para desarrolladores :
-- **Apellido d'utilisateur sur le forum** : Tu nombre de usuario en el foro.
-- **E-mail public** : Su correo electrónico para recibir nuestras comunicaciones.
+- **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
+- **Correo público** : Su correo electrónico para recibir nuestras comunicaciones.
 - **Cuenta Paypal** : El correo electrónico de su cuenta Paypal (solo se usa para pagar a los desarrolladores).
 
 Para los profesionales :

@@ -17,7 +17,7 @@ On the page you have three buttons :
 - **Profile** : Allows you to choose the user profile :
     - **Administrator** : The user obtains all rights (editing / consultation) on Jeedom.
     - **User** : User can see Dashboard, views, designs, etc. and act on equipment / controls. However, he will not have access to the configuration of the controls / equipment nor to the configuration of Jeedom.
-    - **User limité** : The user only sees the authorized equipment (configurable with the "Rights" button").
+    - **Limited user** : The user only sees the authorized equipment (configurable with the "Rights" button").
 - **API key** : Personal API key of the user.
 - **Double authentication** : Indicates whether double authentication is active (OK) or not (NOK).
 - **Date of last connection** : Date of last user login. Please note, this is the actual connection date, so if you save your computer, the connection date is not updated each time you return.
@@ -38,7 +38,7 @@ When clicking on &quot;Rights&quot; a window appears allowing you to manage user
 You get a table which allows, for each device and each scenario, to define the rights of the user :
 - **No** : the user does not see the equipment / scenario.
 - **Visualization** : the user sees the equipment / scenario but cannot act on it.
-- **Visualization et exécution** : the user sees the equipment / scenario and can act on it (lighting a lamp, launching the scenario, etc).
+- **Visualization and execution** : the user sees the equipment / scenario and can act on it (lighting a lamp, launching the scenario, etc).
 
 ## Active session (s))
 

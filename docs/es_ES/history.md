@@ -21,7 +21,7 @@ El archivado es una tarea que comienza de noche y compacta los datos recuperados
 >
 > Por supuesto, este principio de archivo solo se aplica a los comandos de tipo digital; en comandos de tipo binario, Jeedom mantiene solo las fechas de cambio de estado.
 
-### Viendo d'un graphique
+### Ver un gráfico
 
 Hay varias formas de acceder al historial :
 
@@ -66,7 +66,7 @@ Una vez que se activan los datos, puede elegir :
 
 La página del historial da acceso a algunas opciones adicionales
 
-#### Histórico calculé
+#### Historia calculada
 
 Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
 Ex :
@@ -78,7 +78,7 @@ También tiene acceso a una gestión de fórmulas de cálculo que le permite gua
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo y muestre los comandos históricos que se pueden mostrar.
 
-#### Histórico de commande
+#### Historial de pedidos
 
 Frente a cada dato que se puede mostrar, encontrará dos íconos :
 

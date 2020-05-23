@@ -76,7 +76,7 @@ The columns represent the summaries assigned to the current object. Three lines 
 
 ### Commandes
 
-Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add une commande** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add a command** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 
 > **Tip**
 >

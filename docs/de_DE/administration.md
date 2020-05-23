@@ -9,7 +9,7 @@ Obwohl viele, sind die meisten Parameter standardmäßig konfiguriert.
 
 Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 
-- **Name de votre Jeedom** : Identifizieren Sie Ihre Freiheit, besonders auf dem Markt. Es kann in Szenarien oder zur Identifizierung eines Backups wiederverwendet werden.
+- **Name deines Jeedom** : Identifizieren Sie Ihre Freiheit, besonders auf dem Markt. Es kann in Szenarien oder zur Identifizierung eines Backups wiederverwendet werden.
 - **Sprache** : Sprache, die in Ihrem Jeedom verwendet wird.
 - **Systeme** : Art der Hardware, auf der das System installiert ist, auf dem Ihr Jeedom ausgeführt wird.
 - **Übersetzungen generieren** : Generieren Sie Übersetzungen, Vorsicht, dies kann Ihr System verlangsamen. Option besonders nützlich für Entwickler.
@@ -17,7 +17,7 @@ Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 - **Zeitserver optional** : Gibt an, welcher Zeitserver verwendet werden soll, wenn Sie auf klicken **Zeit-Synchronisation erzwingen** (Experten vorbehalten sein).
 - **Die Überprüfung der Zeit ignorieren** : weist Jeedom an, nicht zu überprüfen, ob die Zeit zwischen sich und dem System, auf dem es ausgeführt wird, konsistent ist. Dies kann beispielsweise nützlich sein, wenn Sie Jeedom nicht mit dem Internet verbinden und das verwendete Gerät keine PSTN-Batterie enthält.
 - **Systeme** : Gibt den Hardwaretyp an, auf dem Jeedom installiert ist.
-- **Schlüssel d'installation** : Hardware-Schlüssel Ihres Jeedom on the Market. Wenn Ihr Jeedom nicht in der Liste Ihres Jeedom auf dem Markt erscheint, ist es ratsam, auf die Schaltfläche zu klicken **Rücksetzen**.
+- **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom on the Market. Wenn Ihr Jeedom nicht in der Liste Ihres Jeedom auf dem Markt erscheint, ist es ratsam, auf die Schaltfläche zu klicken **Rücksetzen**.
 - **Letztes bekanntes Datum** : Von Jeedom aufgezeichnetes Datum, das nach einem Neustart für Systeme ohne PSTN-Batterie verwendet wird.
 
 Nachfolgend einige Parameter, die Informationen zentralisieren, die von Plugins verwendet werden können, ohne dass sie in jedes Plugin eingegeben werden müssen.
@@ -40,9 +40,9 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 
 ### Tuiles
 
-- **Fliesen Pas horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
-- **Fliesen Pas vertical** : Beschränkt die Höhe der Kacheln alle x Pixel.
-- **Fliesen Marge** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
+- **Fliesen nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
+- **Fliesen Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
+- **Randfliesen** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 
 ### Personnalisation
 
@@ -66,7 +66,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 - **Interner Zugriff** : Informationen zum Beitritt zu Jeedom von Geräten im selben Netzwerk wie Jeedom (LAN))
     - **OK / NOK** : Gibt an, ob die interne Netzwerkkonfiguration korrekt ist.
     - **Protokolle** : das zu verwendende Protokoll, oft HTTP.
-    - **Adresse URLs ou IP** : Jeedom IP eingeben.
+    - **URL oder IP-Adresse** : Jeedom IP eingeben.
     - **Hafen** : der Port der Jeedom-Weboberfläche, in der Regel 80.
         Bitte beachten Sie, dass durch Ändern des Ports hier nicht der tatsächliche Jeedom-Port geändert wird, der gleich bleibt.
     - **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel : / jeedom), um auf Jeedom zuzugreifen.
@@ -74,13 +74,13 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 - **Externer Zugriff** : Informationen, um Jeedom von außerhalb des lokalen Netzwerks zu erreichen. Nur auszufüllen, wenn Sie Jeedom DNS nicht verwenden.
     - **OK / NOK** : Gibt an, ob die externe Netzwerkkonfiguration korrekt ist.
     - **Protokolle** : Protokoll für den Zugang im Freien.
-    - **Adresse URLs ou IP** : Externe IP, falls behoben. Andernfalls geben Sie die URL an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
+    - **URL oder IP-Adresse** : Externe IP, falls behoben. Andernfalls geben Sie die URL an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
     - **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel : / jeedom), um auf Jeedom zuzugreifen.
 
 - **Proxy für den Markt** : Proxy-Aktivierung.
     - Aktivieren Sie das Kontrollkästchen Proxy aktivieren.
-    - **Adresse Proxy** : Geben Sie die Proxy-Adresse ein,
-    - **Hafen du Proxy** : Geben Sie den Proxy-Port ein,
+    - **Proxy-Adresse** : Geben Sie die Proxy-Adresse ein,
+    - **Proxy-Port** : Geben Sie den Proxy-Port ein,
     - **Login** : Geben Sie den Proxy-Login ein,
     - **Passwort** : Geben Sie das Passwort ein.
 
@@ -92,7 +92,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 >
 > Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
-- **Verwaltung avancée** : Dieser Teil wird je nach Kompatibilität mit Ihrer Hardware möglicherweise nicht angezeigt.
+- **Erweiterte Verwaltung** : Dieser Teil wird je nach Kompatibilität mit Ihrer Hardware möglicherweise nicht angezeigt.
     Dort finden Sie die Liste Ihrer Netzwerkschnittstellen. Sie können Jeedom anweisen, das Netzwerk nicht zu überwachen, indem Sie auf klicken **Deaktivieren Sie die Jeedom-Netzwerkverwaltung** (Überprüfen Sie, ob Jeedom nicht mit einem Netzwerk verbunden ist). Sie können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (Nur in Docker-Installationen zu verwenden).
 - **Proxy-Markt** : Ermöglicht den Fernzugriff auf Ihr Jeedom, ohne dass ein DNS oder eine feste IP erforderlich ist oder die Ports Ihrer Internetbox geöffnet werden müssen.
     - **Verwenden von Jeedom DNS** : Aktiviert Jeedom DNS (beachten Sie, dass hierfür mindestens ein Service Pack erforderlich ist).
@@ -184,7 +184,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 
 ### Push
 
-- **URLs de push globale** : Mit dieser Option können Sie eine URL hinzufügen, die im Falle einer Auftragsaktualisierung aufgerufen werden soll. Sie können die folgenden Tags verwenden :
+- **Globale Push URL** : Mit dieser Option können Sie eine URL hinzufügen, die im Falle einer Auftragsaktualisierung aufgerufen werden soll. Sie können die folgenden Tags verwenden :
 **\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für den Namen des Befehls,
 **\.#cmd\._id\.#** für die eindeutige Kennung der Bestellung,
 **\.#humanname\.#** für den vollständigen Namen der Bestellung (z : \.#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.#),
@@ -234,7 +234,7 @@ Hier haben Sie drei Parameter :
 -   Die **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
 
 -   Die **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
-    - *Jeedom gardant le contexte :*
+    - *Jeedom hält den Kontext :*
         - *Sie* : Wie viel ist er im Raum ?
         - *Jeedom* : Temperatur 25.2 ° C.
         - *Sie* : und im Wohnzimmer ?
@@ -252,11 +252,11 @@ Hier haben Sie drei Parameter :
 
 Hier sind die verschiedenen Optionen verfügbar :
 
-- **Aktivieren les automatische Interaktionen** : Aktivieren Sie diese Option, um automatische Interaktionen zu aktivieren.
-- **Aktivieren les réponses contextuelles** : Aktivieren Sie diese Option, um kontextbezogene Interaktionen zu aktivieren.
+- **Aktivieren Sie automatische Interaktionen** : Aktivieren Sie diese Option, um automatische Interaktionen zu aktivieren.
+- **Aktivieren Sie die kontextbezogene Antworten** : Aktivieren Sie diese Option, um kontextbezogene Interaktionen zu aktivieren.
 - **Priorität Kontextantwort, wenn der Satz beginnt** : Wenn der Satz mit dem Wort beginnt, das Sie hier eingeben, priorisiert Jeedom eine kontextbezogene Antwort (Sie können mehrere Wörter durch trennen **;;** ).
 - **Schneiden Sie eine Interaktion 2, wenn es enthält** : Gleiches gilt für die Aufteilung einer Interaktion mit mehreren Fragen. Hier geben Sie die Wörter an, die die verschiedenen Fragen trennen.
-- **Aktivieren les interactions "Lassen Sie uns wissen"** : Aktivieren Sie diese Option, um Typinteraktionen zu aktivieren **Lassen Sie uns wissen**.
+- **Aktivieren Sie die Interaktionen "Benachrichtigen""** : Aktivieren Sie diese Option, um Typinteraktionen zu aktivieren **Lassen Sie uns wissen**.
 - **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn der Satz mit diesen Wörtern beginnt, wird Jeedom versuchen, eine Interaktion des Typs herzustellen **Lassen Sie uns wissen** (Sie können mehrere Wörter getrennt durch setzen **;;** ).
 - **Standardretouren** : Standardrückgabebefehl für Typinteraktion **Lassen Sie uns wissen** (Wird insbesondere verwendet, wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
 - **Synonym für Objekte** : Liste der Synonyme für Objekte (z : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
@@ -270,11 +270,11 @@ Hier sind die verschiedenen Optionen verfügbar :
 
 ### LDAP
 
-- **Aktivieren l'authentification LDAP** : Aktivieren Sie die Authentifizierung über ein AD (LDAP)).
+- **LDAP-Authentifizierung aktivieren** : Aktivieren Sie die Authentifizierung über ein AD (LDAP)).
 - **Host** : Server, der die AD hostet.
 - **Domain** : Domain Ihrer AD.
 - **Basis-DN** : DN Basis Ihrer AD.
-- **Name d'utilisateur** : Benutzername für Jeedom, um sich bei AD anzumelden.
+- **Benutzername** : Benutzername für Jeedom, um sich bei AD anzumelden.
 - **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen.
 - **Benutzersuche Felder** : Suchfelder für Benutzeranmeldungen. Normalerweise uid für LDAP, SamAccountName für Windows AD.
 - **Administratorfilter (optional)** : Administratoren filtern nach AD (z. B. für die Gruppenverwaltung))
@@ -300,7 +300,7 @@ Die Liste der gesperrten IPs befindet sich am Ende dieser Seite. Sie finden die 
 - **Kern Version** : Kernversion zum Wiederherstellen.
 - **Automatisch nach Updates suchen** : Geben Sie an, ob automatisch überprüft werden soll, ob neue Updates vorhanden sind (achten Sie darauf, dass der Markt nicht überlastet wird. Die Überprüfungszeit kann sich ändern).
 
-### Die dépôts
+### Einlagen
 
 Die Repositorys sind Speicher- (und Service-) Speicherplätze, um Backups verschieben, Plugins wiederherstellen, den Kern von Jeedom wiederherstellen usw. zu können.
 
@@ -314,7 +314,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 - **Zeichen** : Token für den Zugang zur privaten Kaution.
 - **Jeedom Core Repository Benutzer oder Organisation** : Benutzer- oder Organisationsname auf Github für den Kern.
-- **Name du dépôt pour le core Jeedom** : Repository-Name für den Kern.
+- **Repository-Name für den Jeedom-Kern** : Repository-Name für den Kern.
 - **Jeedom Kernindustrie** : Kern-Repository-Zweig.
 
 #### Market
@@ -322,7 +322,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Achtung : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
 - **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
-- **Name d'utilisateur** : Ihr Benutzername auf dem Markt.
+- **Benutzername** : Ihr Benutzername auf dem Markt.
 - **Passwort** : Ihr Marktpasswort.
 - **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, wenn das Risiko besteht, dass es zwischen ihnen abstürzt).
 - **[Backup Cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
@@ -364,8 +364,8 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 
 #### URL
 
-- **URLs core Jeedom**
-- **URLs version core Jeedom**
+- **Jeedom-Kern-URL**
+- **URL der Jeedom-Kernversion**
 
 ## Registerkarte Cache
 
