@@ -64,7 +64,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 > Im Falle eines unsachgemäßen Umgangs mit Ihrem Jeedom kann das Jeedom-Team jedoch nicht zur Verantwortung gezogen werden und kann jede Bitte um Unterstützung ablehnen.
 
 - **Interner Zugriff** : Informationen zum Beitritt zu Jeedom von Geräten im selben Netzwerk wie Jeedom (LAN))
-    - **OK/NOK** : Gibt an, ob die interne Netzwerkkonfiguration korrekt ist.
+    - **OK / NOK** : Gibt an, ob die interne Netzwerkkonfiguration korrekt ist.
     - **Protokolle** : das zu verwendende Protokoll, oft HTTP.
     - **Adresse URLs ou IP** : Jeedom IP eingeben.
     - **Hafen** : der Port der Jeedom-Weboberfläche, in der Regel 80.
@@ -72,7 +72,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
     - **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel : / jeedom), um auf Jeedom zuzugreifen.
 
 - **Externer Zugriff** : Informationen, um Jeedom von außerhalb des lokalen Netzwerks zu erreichen. Nur auszufüllen, wenn Sie Jeedom DNS nicht verwenden.
-    - **OK/NOK** : Gibt an, ob die externe Netzwerkkonfiguration korrekt ist.
+    - **OK / NOK** : Gibt an, ob die externe Netzwerkkonfiguration korrekt ist.
     - **Protokolle** : Protokoll für den Zugang im Freien.
     - **Adresse URLs ou IP** : Externe IP, falls behoben. Andernfalls geben Sie die URL an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
     - **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel : / jeedom), um auf Jeedom zuzugreifen.
@@ -108,7 +108,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 ### Zeitleiste
 
-- **Namebre maximum d'évènements** : Definiert die maximale Anzahl von Ereignissen, die in der Zeitleiste angezeigt werden sollen.
+- **Maximale Anzahl von Ereignissen** : Definiert die maximale Anzahl von Ereignissen, die in der Zeitleiste angezeigt werden sollen.
 - **Löschen Sie alle Ereignisse** : Leeren Sie die Zeitleiste aller aufgezeichneten Ereignisse.
 
 ### Nachricht
@@ -135,7 +135,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 
 - **Protokoll Engine** : Ermöglicht das Ändern der Protokoll-Engine, um sie beispielsweise an einen Syslog-Daemon zu senden (d).
 - **Format der Protokolle** : Zu verwendendes Protokollformat (Achtung : Daemon-Protokolle sind davon nicht betroffen).
-- **Namebre de lignes maximum dans un fichier de log** : Definiert die maximale Anzahl von Zeilen in einer Protokolldatei. Es wird empfohlen, diesen Wert nicht zu berühren, da ein zu großer Wert das Dateisystem füllen und / oder Jeedom das Protokoll nicht anzeigen kann.
+- **Maximale Anzahl der Zeilen in einer Log-Datei** : Definiert die maximale Anzahl von Zeilen in einer Protokolldatei. Es wird empfohlen, diesen Wert nicht zu berühren, da ein zu großer Wert das Dateisystem füllen und / oder Jeedom das Protokoll nicht anzeigen kann.
 - **Standard-Protokollebene** : Wenn Sie &quot;Standard&quot; für die Ebene eines Protokolls in Jeedom auswählen, wird dies verwendet.
 
 Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der wesentlichen Elemente von Jeedom sowie der Plugins.
@@ -154,14 +154,14 @@ Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in d
 - **Unit** : Zusammenfassungseinheit.
 - **Zählverfahren** : Wenn Sie Binärdaten zählen, müssen Sie diesen Wert in Binärdaten setzen. Wenn Sie beispielsweise die Anzahl der leuchtenden Lampen zählen, aber nur den Wert des Dimmers (0 bis 100) haben, müssen Sie Binärdaten eingeben, so wie Jeedom dies berücksichtigt hat Wenn der Wert größer als 1 ist, leuchtet die Lampe.
 - **Zeigen Sie an, ob der Wert 0 ist** : Aktivieren Sie dieses Kontrollkästchen, um den Wert anzuzeigen, auch wenn er 0 ist.
-- **Dieier à un virtuel** : Startet die Erstellung virtueller Aufträge, deren Wert denen der Zusammenfassung entspricht.
+- **Link zu einem virtuellen** : Startet die Erstellung virtueller Aufträge, deren Wert denen der Zusammenfassung entspricht.
 - **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts löscht die Zusammenfassung aus der Zeile.
 
 ## Registerkarte Ausrüstung
 
 ### Geräte
 
-- **Namebre d'échecs avant désactivation de l'équipement** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
+- **Anzahl der Fehler vor Deaktivierung des Geräts** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
 - **Batterieschwellen** : Ermöglicht die Verwaltung der globalen Alarmschwellenwerte für die Stapel.
 
 Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse → Verlauf Diagramme, die ihre Verwendung darstellen. Auf dieser Registerkarte können Sie globale Parameter für die Befehlsprotokollierung festlegen.
@@ -284,7 +284,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 
 ### Einloggen
 
-- **Namebre d'échecs tolérés** : Definiert die Anzahl der aufeinander folgenden Versuche, die vor dem Sperren der IP zulässig sind
+- **Anzahl der tolerierten Ausfälle** : Definiert die Anzahl der aufeinander folgenden Versuche, die vor dem Sperren der IP zulässig sind
 - **Maximale Zeit zwischen Ausfällen (in Sekunden)** : maximale Zeit für 2 Versuche, um als aufeinanderfolgend betrachtet zu werden
 - **Verbannungsdauer (in Sekunden), -1 für unendlich** : IP-Sperrzeit
 - **IP "weiß"** : Liste der IPs, die niemals gesperrt werden können

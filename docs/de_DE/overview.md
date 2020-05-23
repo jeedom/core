@@ -24,7 +24,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 
 > **Spitze**
 >
-> Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, ).
+> Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, die Sie nachbestellen können (Analyse → Zusammenfassung der Hausautomation).
 
 > **Notiz**
 >

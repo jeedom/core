@@ -8,7 +8,7 @@ Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Lin
 - Deaktivierte Plugins sind ausgegraut.
 - Plugins, die nicht in der Version sind *Stabil* Wir haben einen orangefarbenen Punkt vor ihrem Namen.
 
-Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. ).
+Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)).
 
 > **Wichtig**
 >
@@ -29,7 +29,7 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. ).
 
 ### Unten links befindet sich ein Bereich **Zustand** mit :
 
-- **Status** : ).
+- **Status** : Hier können Sie den Status des Plugins anzeigen (aktiv / inaktiv).
 - **Version** : Die Version des installierten Plugins.
 - **Autor** : Der Plugin-Autor.
 - **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins.
@@ -38,9 +38,9 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. ).
 
 ### Rechts finden wir die Gegend **Protokoll und Überwachung** was erlaubt zu definieren :
 
-- ).
+- Die Ebene der für das Plugin spezifischen Protokolle (dieselbe Möglichkeit finden Sie unter Administration → Konfiguration auf der Registerkarte Protokolle unten auf der Seite).
 - Plugin-Protokolle anzeigen.
-- Herzschlag : ).
+- Herzschlag : Alle 5 Minuten überprüft Jeedom, ob in den letzten X Minuten mindestens ein Plugin-Gerät kommuniziert hat (wenn Sie die Funktionalität deaktivieren möchten, geben Sie einfach 0 ein).
 - Starten Sie den Dämon neu : Wenn der Hertbeat schief geht, startet Jeedom den Daemon neu.
 
 Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusätzlichen Bereiche unter den oben genannten Bereichen angezeigt.
@@ -49,7 +49,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 - **Name** : Im Allgemeinen wird lokal sein.
 - **Status** : Abhängigkeitsstatus, OK oder NOK.
-- **Installation** : ).
+- **Installation** : Ermöglicht das Installieren oder Neuinstallieren von Abhängigkeiten (wenn Sie dies nicht manuell tun und diese NOK sind, kümmert sich Jeedom nach einer Weile um sich selbst).
 - **Letzte Installation** : Datum der letzten Abhängigkeitsinstallation.
 
 ### Dämon :
@@ -57,9 +57,9 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **Name** : Im Allgemeinen wird lokal sein.
 - **Status** : Daemon-Status, OK oder NOK.
 - **Konfiguration** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
-- **(** : Ermöglicht das Starten oder Neustarten des Dämons.
-- **Anschlag** : ).
-- **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. ).
+- **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.
+- **Anschlag** : Wird zum Stoppen des Dämons verwendet (nur in dem Fall, in dem die automatische Verwaltung deaktiviert ist).
+- **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. Sofern nicht anders angegeben, ist es ratsam, die automatische Verwaltung aktiv zu lassen).
 - **Letzter Start** : Datum des letzten Starts des Daemons.
 
 > **Spitze**
@@ -90,7 +90,7 @@ Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard ode
 
 ## Installation d'un plugin
 
-). Nach einer kurzen Ladezeit erhalten Sie die Seite.
+Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche "Market" (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
 
 > **Spitze**
 >
@@ -100,7 +100,7 @@ Oben im Fenster befinden sich Filter :
 - **Free / Pay** : zeigt nur kostenlos oder kostenpflichtig an.
 - **Amtlicher / Empfohlen** : Zeigt nur offizielle oder empfohlene Plugins an.
 - **Dropdown-Menü Kategorie** : zeigt nur bestimmte Kategorien von Plugins an.
-- **Suche** : ).
+- **Suche** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
 - **Name d'utilisateur** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
 
 > **Spitze**
@@ -109,14 +109,14 @@ Oben im Fenster befinden sich Filter :
 
 Wenn Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um die Datei aufzurufen. Dieses Blatt enthält insbesondere viele Informationen zum Plugin :
 
-- ).
+- Wenn es offiziell / empfohlen ist oder veraltet ist (Sie sollten auf jeden Fall vermeiden, veraltete Plugins zu installieren).
 - 4 Aktionen :
     - **Stabil installieren** : ermöglicht die Installation des Plugins in seiner stabilen Version.
-    - **Installieren Sie die Beta** : ).
-    - **Installieren Sie pro** : ).
+    - **Installieren Sie die Beta** : ermöglicht die Installation des Plugins in seiner Beta-Version (nur für Betatester).
+    - **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr wenig verwendet).
     - **Entfernen** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
 
-). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
+Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das neueste Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
 > **Wichtig**
 >

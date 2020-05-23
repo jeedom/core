@@ -9,7 +9,7 @@ Las dos partes, JS y CSS, se diferencian de acuerdo con la pantalla de escritori
 
 ## Recursos
 
-[Css: Hojas de estilo en cascada](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: Hojas de estilo en cascada](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 

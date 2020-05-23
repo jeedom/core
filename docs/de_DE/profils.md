@@ -24,15 +24,15 @@ Definiert bestimmte Schnittstellenverhalten
 
 ### Benachrichtigungen
 
-- **Benutzerbenachrichtigungsbefehl** : ).
+- **Benutzerbenachrichtigungsbefehl** : Standardbefehl, um sich Ihnen anzuschließen (Nachrichtentyp Befehl).
 
 ## Registerkarte &quot;Sicherheit&quot;
 
-- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird *Google Authentifikator*). .
+- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird *Google Authentifikator*). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert.
 
-  **Wichtig** ).
+  **Wichtig** Wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, müssen Sie überprüfen, ob Jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert).
 
-- **Passwort** : ).
+- **Passwort** : Ermöglicht das Ändern Ihres Passworts (vergessen Sie nicht, es unten erneut einzugeben).
 
 - **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel.
 

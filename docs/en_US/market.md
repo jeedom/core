@@ -31,7 +31,7 @@ For the pros :
 - **User** : general conditions of use (be careful to read them because they commit you).
 - **Developer** : terms of use for developers.
     - **Tickets**
-- **Last namebre de tickets** : Number of tickets for the current month and your limit.
+- **Number of tickets** : Number of tickets for the current month and your limit.
 - **Support** : Button to send a support request (also accessible by the exclamation mark at the top right on the Market or on your Jeedom).
     - **Access to betas**
 - **Enable access to beta plugins** : Enables access to betas plugins (note that this will prevent you from accessing the support).
@@ -47,7 +47,7 @@ For the pros :
     - **Jeedom** : Your level of service pack.
     - **Enter a service pack number** : Allows you to enter your service pack number (it can be found in the email sent by Jeedom during your order).
 - **Installation key**
-    - **Last namebre de clefs d'installation** : Displays the number of Jeedom installations currently linked to your account as well as the authorized limit.
+    - **Number of installation keys** : Displays the number of Jeedom installations currently linked to your account as well as the authorized limit.
 
 > **Tip**
 >

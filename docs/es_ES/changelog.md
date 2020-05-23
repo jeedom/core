@@ -20,7 +20,7 @@
 - **Actualizaciones principales** : Implementación de un sistema para limpiar viejos archivos Core no utilizados.
 - **Guión** : Agregar un motor de búsqueda (a la izquierda del botón Ejecutar).
 - **Guión** : Adición de la función de edad (da la edad del valor del pedido).
-- **Guión** : *cambios de estado()* ahora acepta el periodo *Hoy* (medianoche hasta ahora), *ayer* y *dia* (por 1 día).
+- **Guión** : *stateChanges()* ahora acepta el periodo *Hoy* (medianoche hasta ahora), *ayer* y *dia* (por 1 día).
 - **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *ayer*, y acepta ahora *dia* (por 1 día).
 - **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Commandes).
 - **Guión** : Viendo un *Advertencia* si no se configura ningún activador.

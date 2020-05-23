@@ -6,9 +6,9 @@ Auf dieser Seite können Sie die verschiedenen Elemente, die in Ihrem Jeedom kon
 ## Informationen
 
 Oben auf der Seite finden wir :
-- **Namebre d'objets** : Gesamtzahl der in unserem Jeedom konfigurierten Objekte, einschließlich inaktiver Elemente.
-- **Namebre Ausrüstungs** : Gleiches gilt für die Ausrüstung.
-- **Namebre de commandes** : Gleiches gilt für Bestellungen.
+- **Anzahl der Objekte** : Gesamtzahl der in unserem Jeedom konfigurierten Objekte, einschließlich inaktiver Elemente.
+- **Anzahl der Ausrüstungen** : Gleiches gilt für die Ausrüstung.
+- **Anzahl der Bestellungen** : Gleiches gilt für Bestellungen.
 - **Inaktiv** : Aktivieren Sie dieses Kontrollkästchen, wenn inaktive Elemente auf dieser Seite angezeigt werden sollen.
 - **Suche** : Suchen Sie nach einem bestimmten Artikel. Dies kann der Name eines Geräts, eine Bestellung oder der Name des Plugins sein, mit dem das Gerät erstellt wurde.
 - **CSV-Export** : Ermöglicht das Exportieren aller Objekte, Geräte und ihrer Befehle in eine CSV-Datei.
@@ -44,7 +44,7 @@ Auf jeder Ausrüstung finden wir :
 - **Unsichtbar** (gekreuztes Auge) : Bedeutet, dass das Gerät unsichtbar ist (wenn es nicht vorhanden ist, ist das Gerät sichtbar).
 
 Wenn das Geräte-Plugin deaktiviert ist, werden die beiden Symbole rechts nicht angezeigt:
-- **Dieien externe** (Quadrat mit Pfeil) : Ermöglicht das Öffnen der Gerätekonfigurationsseite in einer neuen Registerkarte.
+- **Externer Link** (Quadrat mit Pfeil) : Ermöglicht das Öffnen der Gerätekonfigurationsseite in einer neuen Registerkarte.
 - **Erweiterte Konfiguration** (Zahnrad) : öffnet das Fenster zur erweiterten Gerätekonfiguration.
 
 > Durch Klicken auf die Zeile mit dem Namen des Geräts werden alle Befehle für dieses Gerät angezeigt. Durch Klicken auf eine Bestellung gelangen Sie zum Bestellkonfigurationsfenster.
@@ -105,8 +105,8 @@ wieder. Für Geräte nur den Wert **Stil** Wird derzeit verwendet, kann CSS-Code
 
 In diesem Teil können Sie zwischen dem Standardlayout der Befehle (nebeneinander im Widget) oder im Tabellenmodus wählen. Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
 **Tabelle** :
-- **Namebre de lignes**
-- **Namebre de colonnes**
+- **Anzahl der Zeilen**
+- **Anzahl der Spalten**
 - **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen, um die Bestellungen in den Kontrollkästchen zu zentrieren.
 - **Allgemeiner Boxstil (CSS))** : Ermöglicht das Definieren des allgemeinen Stils im CSS-Code.
 - **Tabellenstil (CSS)** : Hier können Sie nur den Stil der Tabelle definieren.
@@ -124,7 +124,7 @@ diese :
 
 Auf dieser Registerkarte können Sie Informationen zur Batterie des Geräts abrufen und entsprechende Warnungen definieren. Hier sind die Arten von Informationen, die gefunden werden können :
 
-- **Typ de piDie**,
+- **Typ de pile**,
 - **Neuestes Feedback**,
 - **Verbleibendes Niveau**, (wenn Ihre Ausrüstung natürlich mit Batterie betrieben wird).
 

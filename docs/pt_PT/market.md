@@ -31,7 +31,7 @@ Para os profissionais :
 - **Usuário** : condições gerais de uso (tenha cuidado para lê-las, pois elas comprometem você).
 - **Desenvolvedor** : termos de uso para desenvolvedores.
     - **Ingressos**
-- **Nomebre de tickets** : Número de ingressos para o mês atual e seu limite.
+- **Número de bilhetes** : Número de ingressos para o mês atual e seu limite.
 - **Suporte** : Botão para enviar uma solicitação de suporte (também acessível pelo ponto de exclamação no canto superior direito do Market ou no seu Jeedom).
     - **Acesso a betas**
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
@@ -47,7 +47,7 @@ Para os profissionais :
     - **Jeedom** : Seu nível de service pack.
     - **Digite um número de service pack** : Permite que você digite o número do seu service pack (ele pode ser encontrado no e-mail enviado pela Jeedom durante o seu pedido).
 - **Key instalação**
-    - **Nomebre de clefs d'installation** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
+    - **Número de chaves de instalação** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
 
 > **Dica**
 >

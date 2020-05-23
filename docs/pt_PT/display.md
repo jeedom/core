@@ -6,9 +6,9 @@ Esta página permite reunir em uma única página os diferentes elementos config
 ## Informação
 
 No topo da página, encontramos :
-- **Nomebre d'objets** : Número total de objetos configurados em nosso Jeedom, incluindo elementos inativos.
-- **Nomebre equipamentos** : O mesmo para o equipamento.
-- **Nomebre de commandes** : Mesmo para pedidos.
+- **Número de objetos** : Número total de objetos configurados em nosso Jeedom, incluindo elementos inativos.
+- **Número de equipamentos** : O mesmo para o equipamento.
+- **Número de pedidos** : Mesmo para pedidos.
 - **Inativo** : Marque esta caixa se desejar que os itens inativos sejam exibidos nesta página.
 - **Pesquisa** : Procure um item em particular. Pode ser o nome de um dispositivo, um pedido ou o nome do plug-in pelo qual o dispositivo foi criado.
 - **Exportação de CSV** : Permite exportar todos os objetos, equipamentos e seus comandos para um arquivo CSV.
@@ -44,7 +44,7 @@ Em cada equipamento encontramos :
 - **Invisível** (olho cruzado) : Significa que o equipamento está invisível (se não estiver lá, o equipamento está visível).
 
 Se o plug-in do equipamento estiver desativado, os dois ícones à direita não aparecerão:
-- **Lien externe** (quadrado com flecha) : Permite abrir em uma nova aba a página de configuração do equipamento.
+- **Link externo** (quadrado com flecha) : Permite abrir em uma nova aba a página de configuração do equipamento.
 - **Configuração avançada** (roda dentada) : abre a janela de configuração avançada do equipamento.
 
 > Ao clicar na linha que contém o nome do equipamento, você exibirá todos os comandos para este equipamento. Ao clicar em um pedido, você acessará a janela de configuração do pedido.
@@ -105,8 +105,8 @@ novo. Para equipamentos, apenas o valor **estilo** atualmente utilizado, permite
 
 Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no widget) ou no modo de tabela. Nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 **Mesa** :
-- **Nomebre de lignes**
-- **Nomebre de colonnes**
+- **Número de linhas**
+- **Número de Colunas**
 - **Centro nas caixas** : Marque a caixa para centralizar os pedidos nas caixas.
 - **Estilo geral de caixas (CSS)** : Permite definir o estilo geral no código CSS.
 - **Estilo de tabela (CSS)** : Permite definir apenas o estilo da tabela.
@@ -124,7 +124,7 @@ isto :
 
 Essa guia permite que você tenha informações sobre a bateria do equipamento e defina alertas em relação a ele. Aqui estão os tipos de informações que podem ser encontradas :
 
-- **Tipo de piO**,
+- **Tipo de pile**,
 - **Comentários mais recentes**,
 - **Nível restante**, (se é claro que seu equipamento funciona com bateria).
 

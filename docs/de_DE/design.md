@@ -134,11 +134,11 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Name** : Name des Links (angezeigter Text).
 - **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Ermöglicht das Ändern der Farbe von Symbolen und Texten (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
-- **Textausrichtung** : Ermöglicht die Auswahl der Ausrichtung des Texts (links / rechts / zentriert)).
+- **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
 - **Fett** : Fetter Text.
 
 ## Ausrüstung
@@ -215,7 +215,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 
 - **Link** : Ermöglicht die Angabe der anzuzeigenden Zusammenfassung (Allgemein für die globale Angabe andernfalls das Thema).
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Ermöglicht das Ändern der Farbe von Symbolen und Texten (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
