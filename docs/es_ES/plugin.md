@@ -166,7 +166,7 @@ En la parte superior de la ventana tienes filtros :
 -   **Buscar** : le permite buscar un complemento (en el nombre o
     descripción de la misma)
 
--   **Apellido d'utilisateur** : muestra el nombre de usuario utilizado para
+-   **Nombre del usuario** : muestra el nombre de usuario utilizado para
     conexión al mercado y el estado de la conexión
 
 > **Punta**

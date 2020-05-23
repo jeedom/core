@@ -12,10 +12,10 @@ Diese Seite ist zugänglich von **Extras → Zusammenfassung der Hausautomation*
 Der obere Rand der Seite 
 ------------------
 
-Oben auf der Seite finden wir : \.* **Anzahl d'objets** : Nombre
+Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Nombre
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die Elemente gezählt werden
-Inaktiv. \* **Anzahl Ausrüstungs** : Das Gleiche gilt für die Ausrüstung. \*
-**Anzahl de Befehle** : Das Gleiche gilt für Bestellungen. \* **Inaktiv** :
+Inaktiv. \* **Anzahl der Ausrüstungen** : Das Gleiche gilt für die Ausrüstung. \*
+**Anzahl der Bestellungen** : Das Gleiche gilt für Bestellungen. \* **Inaktiv** :
 Aktivieren Sie dieses Kontrollkästchen, wenn die inaktiven Elemente korrekt sein sollen
 auf dieser Seite angezeigt. \* **Suche** : Suche nach a
 bestimmtes Element. Es kann der Name eines Geräts sein, eine Bestellung
@@ -98,7 +98,7 @@ Erweiterte Gerätekonfiguration
 > dieses Fenster von der Gerätekonfigurationsseite in
 > Klicken Sie auf die Schaltfläche Erweiterte Konfiguration
 
-Das Fenster von **Konfiguration avancée d'un équipement** ermöglicht die
+Das Fenster von **Erweiterte Gerätekonfiguration** ermöglicht die
 ändern. Zuerst oben rechts einige Schaltflächen
 verfügbar :
 
@@ -126,10 +126,10 @@ die Ausrüstung und ihre Kontrollen :
 
 -   **Name** : Name der Ausrüstung.
 
--   **Identifikation logique** : Kennung der logischen Ausrüstung (can
+-   **Logische ID** : Kennung der logischen Ausrüstung (can
     leer sein).
 
--   **Identifikation de l'objet** : Eindeutige Kennung des übergeordneten Objekts (can
+-   **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (can
     leer sein).
 
 -   **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
@@ -214,9 +214,9 @@ Befehle (nebeneinander im Widget) oder im Tabellenmodus. Es gibt
 Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
 **Tabelle** :
 
--   **Anzahl de lignes**
+-   **Anzahl der Zeilen**
 
--   **Anzahl de colonnes**
+-   **Anzahl der Spalten**
 
 -   **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen, um das zu zentrieren
     Befehle in den Feldern.
@@ -227,7 +227,7 @@ Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Op
 -   **Tabellenstil (CSS)** : Hier können Sie den Stil des definieren
     nur Tisch.
 
-Unten für jede Box die **Konfiguration détaillée** erlaubt dir
+Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
 diese :
 
 -   **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder
@@ -241,7 +241,7 @@ diese :
 >
 > Wenn Sie in einem Feld in der Tabelle zwei Befehle eingeben möchten, geben Sie einen ein
 > Vergessen Sie nicht, unter dem anderen eine Rückgabe hinzuzufügen
-> Linie nach der Premiere in der **Konfiguration avancée** davon.
+> Linie nach der Premiere in der **Erweiterte Konfiguration** davon.
 
 Registerkarte &quot;Warnungen&quot; 
 --------------
@@ -250,7 +250,7 @@ Diese Registerkarte enthält Informationen zur Batterie von
 die Ausrüstung und definieren Warnungen in Bezug darauf. Hier sind die
 Arten von Informationen, die gefunden werden können :
 
--   **Typ de pile**,
+-   **Batterietyp**,
 
 -   **Neuestes Feedback**,
 
@@ -315,7 +315,7 @@ bestellen :
 
 -   **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
 
--   **Identifikation logique** : Logische Kennung des Befehls (can
+-   **Logische ID** : Logische Kennung des Befehls (can
     leer sein).
 
 -   **Name** : Name der Bestellung.
@@ -374,7 +374,7 @@ Registerkarte Konfiguration
 
 -   **Berechnung und Rundung**
 
-    -   **Berechnungsformel (\#value\.# für la valeur)** : Ermöglicht
+    -   **Berechnungsformel (\#value\.# für Wert)** : Ermöglicht
         Machen Sie eine Operation mit dem Wert der Bestellung vor
         Jeedom Behandlung, Beispiel : ``#value# - 0.2` zu verschanzen
         0,2 (Offset an einem Temperatursensor).
@@ -383,7 +383,7 @@ Registerkarte Konfiguration
         Bestellwert (Beispiel : setze 2 um zu transformieren
         16.643345 in 16.64).
 
--   **Typ générique** : Ermöglicht die Konfiguration des generischen Typs von
+-   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
@@ -443,7 +443,7 @@ Registerkarte Konfiguration
 
 ### Für einen Aktionsbefehl : 
 
--   **Typ générique** : Ermöglicht die Konfiguration des generischen Typs von
+-   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
@@ -492,7 +492,7 @@ mobile.
 -   **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol sichtbar zu machen
     zusätzlich zum Namen des Befehls.
 
--   **Umbrochene Zeile vor dem Widget** : Wählen **vor le
+-   **Umbrochene Zeile vor dem Widget** : Wählen **vorher
     Widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
     Spalte mit verschiedenen Gerätebefehlen anstelle von Zeilen
@@ -514,4 +514,4 @@ Ermöglicht das Ändern des Widget-Codes nur für den aktuellen Befehl.
 > **Notiz**
 >
 > Wenn Sie den Code ändern möchten, vergessen Sie nicht, das Kontrollkästchen zu aktivieren
-> **Activate la personnalisation du Widget**
+> **Aktivieren Sie die Widget-Anpassung**

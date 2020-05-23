@@ -134,14 +134,14 @@ Guia Cenário
 ---------------
 
 É aqui que você criará seu cenário. Nós temos que começar
-por **Adicionar un Bloco**, com o botão à direita. Uma vez um bloco
+por **Adicionar bloco**, com o botão à direita. Uma vez um bloco
 criado, você pode adicionar outro **Bloco** ou um **Ação**.
 
 > **Dica**
 >
 > Em condições e ações, é melhor favorecer aspas simples (') em vez de aspas duplas (")
 
-### O blocs
+### Blocos
 
 Aqui estão os diferentes tipos de blocos disponíveis :
 
@@ -263,7 +263,7 @@ Cenas :
 -   $scenario->setLog($message); : Escreva uma mensagem no log de script.
 -   $scenario->persistLog(); : Forçar a gravação do log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
 
-### O Actions
+### Acções
 
 As ações adicionadas aos blocos têm várias opções. Em ordem :
 
@@ -314,7 +314,7 @@ commandes) :
 -   #user_connect# : Login do usuário
 
 Você também pode disparar um cenário quando uma variável estiver definida como
-dia colocando : #variable(nom_variable)# onde en utilisant l'API HTTP
+dia colocando : #variable(nom_variable)# ou usando a API HTTP
 descrito
 [aqui](https://jeedom.github.io/core/pt_PT/api_http).
 
@@ -673,7 +673,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 -   **Variável** (variable) : Criação / modificação de uma variável ou valor
     de uma variável.
 
--   **Remover variable** (delete_variable) : Permite excluir uma variável
+-   **Remover variável** (delete_variable) : Permite excluir uma variável
 
 -   **Cenas** (scenario) : Permite controlar cenários. A parte de tags
     permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado lá
@@ -689,7 +689,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 -   **Vai o projeto** (gotodesign) : Mude o design exibido em todos
     navegadores por design solicitado.
 
--   **Adicionar un Log** (log) : Permite adicionar uma mensagem no log.
+-   **Adicionar um registro** (log) : Permite adicionar uma mensagem no log.
 
 -   **Criar mensagem** (message) : Adicione uma mensagem no centro
     de mensagens.
@@ -726,7 +726,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     Observe que, se seu acesso à Internet estiver em HTTPS não assinado, isso
     funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
 
--   **Remover Bloco DANS/à programmé** (remove_inat) : Permite excluir o
+-   **Excluir bloco IN / A agendado** (remove_inat) : Permite excluir o
     programação de todos os blocos IN e A do cenário.
 
 -   **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente

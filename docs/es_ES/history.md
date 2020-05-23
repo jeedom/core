@@ -182,10 +182,10 @@ escenarios deseados, puede verlos aparecer en la línea de tiempo.
 
 Las tarjetas en la línea de tiempo muestran :
 
--   **Orden action** : en fondo rojo, un ícono a la derecha le permite
+-   **Comando de acción** : en fondo rojo, un ícono a la derecha le permite
     muestra la ventana de configuración avanzada del comando
 
--   **Orden info** : en fondo azul, un icono a la derecha le permite
+-   **Comando de información** : en fondo azul, un icono a la derecha le permite
     muestra la ventana de configuración avanzada del comando
 
 -   **Guión** : en fondo gris, tienes 2 iconos : uno para mostrar

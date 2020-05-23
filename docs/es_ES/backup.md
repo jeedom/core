@@ -39,7 +39,7 @@ o restauración), si ha lanzado uno.
     copias de seguridad más antiguas hasta caer por debajo del
     tamaño máximo. Sin embargo, mantendrá al menos una copia de seguridad.
 
-**Copias de seguridad Locales** 
+**Copias de seguridad locales** 
 -----------------------
 
 -   **Copias de seguridad disponibles** : Lista de copias de seguridad disponibles.
@@ -58,7 +58,7 @@ o restauración), si ha lanzado uno.
 -   **Descargar copia de seguridad** : Permite descargar a tu
     computadora el archivo de copia de seguridad seleccionado anteriormente.
 
-**Copias de seguridad Market** 
+**Copias de seguridad del mercado** 
 ----------------------
 
 -   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el
@@ -74,7 +74,7 @@ o restauración), si ha lanzado uno.
 -   **Restaurar copia de seguridad** : Lanza la restauración de un
     copia de seguridad en la nube.
 
-**Copias de seguridad Samba** 
+**Copias de seguridad de Samba** 
 ---------------------
 
 -   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el

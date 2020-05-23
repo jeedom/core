@@ -106,7 +106,7 @@ Linien werden Ihnen vorgeschlagen :
 ### Befehle 
 
 Jede Registerkarte repräsentiert einen in der Konfiguration definierten Zusammenfassungstyp
-von Jeedom. Klicken Sie auf **Hinzufügen une commande** so dass es ist
+von Jeedom. Klicken Sie auf **Bestellung hinzufügen** so dass es ist
 in der Zusammenfassung berücksichtigt. Sie haben die Wahl, die auszuwählen
 Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
 übergeordnetes Objekt.

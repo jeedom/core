@@ -72,11 +72,11 @@ siguientes acciones :
     -   **Ocultar elemento resaltado** : Ocultarlo
         resaltar alrededor de elementos
 
--   **Remove le diseño** : eliminar diseño
+-   **Eliminar diseño** : eliminar diseño
 
 -   **Crea un diseño** : permite agregar un diseño
 
--   **Duplicado le diseño** : duplicar el diseño actual
+-   **Diseño duplicado** : duplicar el diseño actual
 
 -   **Configura el diseño** : acceso a la configuración de diseño
 
@@ -113,7 +113,7 @@ Encontrado aquí :
 
         -   **Enviar a** : permite agregar una imagen de fondo al diseño
 
-        -   **Remove l'image** : borrar imagen
+        -   **Eliminar imagen** : borrar imagen
 
 -   **Tamaños**
 
@@ -169,15 +169,15 @@ Configuraciones de pantalla
 
 -   **Período** : le permite elegir el período de visualización
 
--   **Visualización la légende** : mostrar leyenda
+-   **Mostrar subtítulo** : mostrar leyenda
 
--   **Visualización le navigateur** : mostrar el navegador (segundo gráfico
+-   **Mostrar navegador** : mostrar el navegador (segundo gráfico
     más ligero debajo del primero)
 
--   **Visualización le sélecteur de période** : muestra el selector
+-   **Mostrar selector de período** : muestra el selector
     periodo arriba a la izquierda
 
--   **Visualización la barre de défilement** : muestra la barra de desplazamiento
+-   **Mostrar barra de desplazamiento** : muestra la barra de desplazamiento
 
 -   **Fondo transparente** : hace que el fondo sea transparente
 
@@ -252,7 +252,7 @@ Configuraciones de pantalla
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : permet
+-   **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
@@ -341,9 +341,9 @@ mostrar el widget en cuestión
 
 -   **Equipo** : widget para mostrar al pasar el mouse o al hacer clic
 
--   **Visualización au survol** : si está marcado, muestra el widget al pasar el mouse
+-   **Mostrar en paso elevado** : si está marcado, muestra el widget al pasar el mouse
 
--   **Visualización sur un clic** : si está marcado, el widget se muestra en
+-   **Ver en un clic** : si está marcado, el widget se muestra en
     clic
 
 -   **Posición** : le permite elegir la ubicación donde
@@ -364,7 +364,7 @@ Resumen
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
 
--   **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : permet
+-   **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : permet
     agregue un borde, tenga cuidado con la sintaxis es HTML
 
 -   **Tamaño de fuente (ex 50%, debe poner el signo%)** :
@@ -380,6 +380,6 @@ Preguntas frecuentes
 >
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
->**Remove un diseño qui ne marche plus**
+>**Eliminar un diseño que ya no funciona**
 >
 >En la parte de administración, luego OS / DB, haga "select * from planHeader", recupere la identificación del diseño en cuestión y haga una "eliminación de planHeader donde id=#TODO#" y "eliminar del plan donde planHeader_id=#todo#" reemplazando bien #TODO# por la identificación de diseño encontrada previamente.

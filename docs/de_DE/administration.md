@@ -8,14 +8,14 @@ General
 
 Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 
--   **Name de deine Freiheit** : Identifizieren Sie Ihre Freiheit,
+-   **Name deines Jeedom** : Identifizieren Sie Ihre Freiheit,
     vor allem auf dem Markt. Es kann in Szenarien wiederverwendet werden
     oder identifizieren Sie ein Backup.
 
 -   **System** : Art der Hardware, auf der das System wo installiert ist
     Dein Jeedom dreht sich.
 
--   **Schlüssel d'installation** : Hardware-Schlüssel Ihres Jeedom auf
+-   **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom auf
     der Markt. Wenn Ihr Jeedom nicht in der Liste von Ihnen erscheint
     Jeedom auf dem Markt ist es ratsam, auf die Schaltfläche zu klicken
     **Zurücksetzen**.
@@ -110,7 +110,7 @@ LDAP
 
 -   **Basis-DN** : DN Basis Ihrer AD
 
--   **Name d'utilisateur** : Benutzername für Jeedom zu
+-   **Benutzername** : Benutzername für Jeedom zu
     Verbindung zu AD herstellen
 
 -   **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen
@@ -128,7 +128,7 @@ LDAP
 Einloggen 
 ---------
 
--   **Anzahl d'échecs tolérés** : Legt die Anzahl der Versuche fest
+-   **Anzahl der tolerierten Fehler** : Legt die Anzahl der Versuche fest
     erlaubt vor dem Verbot der IP
 
 -   **Maximale Zeit zwischen Ausfällen (in Sekunden)** : maximale Zeit
@@ -175,7 +175,7 @@ externe** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
     -   **Protokoll** : das zu verwendende Protokoll, oft HTTP
 
-    -   **Adresse URLs ou IP** : Jeedom IP eingeben
+    -   **URL oder IP-Adresse** : Jeedom IP eingeben
 
     -   **Hafen** : der Port der Jeedom-Weboberfläche, in der Regel 80.
         Bitte beachten Sie, dass durch Ändern des Ports hier nicht der tatsächliche Port von geändert wird
@@ -193,7 +193,7 @@ externe** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
     -   **Protokoll** : Protokoll für den Zugang im Freien
 
-    -   **Adresse URLs ou IP** : Externe IP, wenn es fest ist. andernfalls,
+    -   **URL oder IP-Adresse** : Externe IP, wenn es fest ist. andernfalls,
         Geben Sie die URL an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
 
     -   **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel
@@ -212,7 +212,7 @@ externe** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 > Ihren Internetbrowser, wenn Sie / jeedom (oder andere) hinzufügen müssen
 > Sache) nach der IP.
 
--   **Management avancée** : Dieser Teil erscheint möglicherweise nicht in
+-   **Erweiterte Verwaltung** : Dieser Teil erscheint möglicherweise nicht in
     abhängig von der Kompatibilität mit Ihrer Hardware. Sie finden dort
     die Liste Ihrer Netzwerkschnittstellen. Sie können Jeedom sagen
     das Netzwerk nicht durch Klicken auf zu überwachen **Deaktivieren Sie die
@@ -326,7 +326,7 @@ Historisch
 Druck 
 ----
 
-**URLs de push globale** : ermöglicht das Hinzufügen einer URL zum Aufrufen im Falle von
+**Globale Push-URL** : ermöglicht das Hinzufügen einer URL zum Aufrufen im Falle von
 Bestellaktualisierung. Sie können die folgenden Tags verwenden :
 **\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für die
 Befehlsname, **\.#cmd\._id\.#** für die eindeutige Kennung des
@@ -408,7 +408,7 @@ Automatische Interaktion, Kontext &amp; Warnung
 -   Die **kontextuelle Interaktionen** erlauben Sie zu verketten
     Zum Beispiel mehrere Anfragen, ohne alles zu wiederholen :
 
-    -   *Jeedom gardant le contexte :*
+    -   *Jeedom hält den Kontext :*
 
         -   *Sie* : Wie viel ist er im Raum ?
 
@@ -585,7 +585,7 @@ Logs
 Zeitleiste 
 --------
 
--   **Anzahl maximum d'évènements** : Legt die maximale Anzahl auf fest
+-   **Maximale Anzahl von Ereignissen** : Legt die maximale Anzahl auf fest
     in der Zeitleiste anzeigen.
 
 -   **Löschen Sie alle Ereignisse** : Leeren Sie die Zeitleiste von
@@ -647,7 +647,7 @@ Log
 -   **Protokollformat** : Zu verwendendes Protokollformat (Achtung : ça
     wirkt sich nicht auf Daemon-Protokolle aus).
 
--   **Anzahl de lignes maximum dans un fichier de log** : Definiert die
+-   **Maximale Anzahl von Zeilen in einer Protokolldatei** : Definiert die
     maximale Anzahl von Zeilen in einer Protokolldatei. Es wird empfohlen
     diesen Wert nicht zu berühren, weil ein zu großer Wert könnte
     Füllen Sie das Dateisystem und / oder machen Sie Jeedom unfähig
@@ -664,7 +664,7 @@ plugins.
 Einrichtungen 
 ===========
 
--   **Anzahl d'échecs avant désactivation de l'équipement** : Nombre
+-   **Anzahl der Fehler vor Deaktivierung des Geräts** : Nombre
     Kommunikationsfehler mit dem Gerät vor Deaktivierung von
     dieses (eine Nachricht warnt Sie, wenn dies passiert).
 
@@ -704,10 +704,10 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 -   **Zeichen** : Token für den Zugang zur privaten Kaution.
 
--   **Benutzer ou organisation du dépôt für die core Jeedom** : Nom
+-   **Jeedom Core Repository Benutzer oder Organisation** : Nom
     der Benutzer oder die Organisation auf Github für den Kern.
 
--   **Name du dépôt für die core Jeedom** : Repository-Name für den Kern.
+-   **Repository-Name für den Jeedom-Kern** : Repository-Name für den Kern.
 
 -   **Jeedom Kernindustrie** : Kern-Repository-Zweig.
 
@@ -719,7 +719,7 @@ abgelehnt, wenn Sie eine andere Einzahlung als diese verwenden.
 
 -   **Adresse** : Marktadresse.
 
--   **Name d'utilisateur** : Ihr Benutzername auf dem Markt.
+-   **Benutzername** : Ihr Benutzername auf dem Markt.
 
 -   **Passwort** : Ihr Marktpasswort.
 
@@ -790,8 +790,8 @@ eine Samba-Aktie (z : NAS-Synologie).
 
 ### URLs 
 
--   **URLs core Jeedom**
+-   **Jeedom-Kern-URL**
 
--   **URLs version core Jeedom**
+-   **URL der Jeedom-Kernversion**
 
 

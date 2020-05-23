@@ -52,7 +52,7 @@ Permite definir certos comportamentos de interface :
 -   **Painel padrão Assunto** : objeto de exibição padrão
     na chegada no painel / móvel
 
--   **Vista par défaut** : para exibir por padrão ao chegar em
+-   **Modo de exibição padrão** : para exibir por padrão ao chegar em
     o painel / móvel
 
 -   **Projeto padrão** : design para exibir por padrão quando

@@ -8,14 +8,14 @@ General
 
 In this tab we find general information about Jeedom :
 
--   **Last name de your Jeedom** : Identify your Jeedom,
+-   **Name of your Jeedom** : Identify your Jeedom,
     especially in the market. It can be reused in scenarios
     or identify a backup.
 
 -   **System** : Type of hardware on which the system is installed where
     your Jeedom is spinning.
 
--   **Key d'installation** : Hardware key of your Jeedom on
+-   **Installation key** : Hardware key of your Jeedom on
     the market. If your Jeedom does not appear in the list of your
     Jeedom on the market, it is advisable to click on the button
     **Reset**.
@@ -110,7 +110,7 @@ LDAP
 
 -   **DN base** : DN base of your AD
 
--   **Last name d'utilisateur** : username for Jeedom to
+-   **Username** : username for Jeedom to
     connect to AD
 
 -   **Password** : password for Jeedom to connect to AD
@@ -128,7 +128,7 @@ LDAP
 Log in 
 ---------
 
--   **Number d'échecs tolérés** : sets the number of attempts
+-   **Number of failures tolerated** : sets the number of attempts
     allowed before banning the IP
 
 -   **Maximum time between failures (in seconds)** : maximum time
@@ -175,7 +175,7 @@ externe** (from another network, especially from the Internet).
 
     -   **Protocol** : the protocol to use, often HTTP
 
-    -   **Address URLs ou IP** : Jeedom IP to enter
+    -   **URL or IP address** : Jeedom IP to enter
 
     -   **Harbor** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual port of
@@ -193,7 +193,7 @@ externe** (from another network, especially from the Internet).
 
     -   **Protocol** : protocol used for outdoor access
 
-    -   **Address URLs ou IP** : External IP, if it is fixed. If not,
+    -   **URL or IP address** : External IP, if it is fixed. If not,
         give the URL pointing to the external IP address of your network.
 
     -   **Complement** : the fragment of additional URL (example
@@ -212,7 +212,7 @@ externe** (from another network, especially from the Internet).
 > your Internet browser, if you need to add / jeedom (or other
 > thing) after the IP.
 
--   **Management avancée** : This part may not appear, in
+-   **Advanced management** : This part may not appear, in
     depending on compatibility with your hardware. You will find
     the list of your network interfaces. You can tell Jeedom
     not to monitor the network by clicking on **deactivate the
@@ -326,7 +326,7 @@ Historical
 Push 
 ----
 
-**URLs de push globale** : allows to add a URL to call in case of
+**Global push URL** : allows to add a URL to call in case of
 order update. You can use the following tags :
 **\#value\#** for the order value, **\#cmd\_name\#** for the
 command name, **\#cmd\_id\#** for the unique identifier of the
@@ -408,7 +408,7 @@ Automatic interaction, contextual &amp; warning
 -   The **contextual interactions** allow you to chain
     multiple requests without repeating everything, for example :
 
-    -   *Jeedom gardant le contexte :*
+    -   *Jeedom keeping the context :*
 
         -   *You* : How much is he in the room ?
 
@@ -585,7 +585,7 @@ Logs
 Timeline 
 --------
 
--   **Number maximum d'évènements** : Sets the maximum number to
+-   **Maximum number of events** : Sets the maximum number to
     show in timeline.
 
 -   **Delete all events** : Empty the timeline of
@@ -647,7 +647,7 @@ Log
 -   **Log format** : Log format to use (Caution : ça
     does not affect daemon logs).
 
--   **Number de lignes maximum dans un fichier de log** : Defines the
+-   **Maximum number of lines in a log file** : Defines the
     maximum number of lines in a log file. It is recommended
     not to touch this value, because too large a value could
     fill the file system and / or render Jeedom incapable
@@ -664,7 +664,7 @@ plugins.
 Facilities 
 ===========
 
--   **Number d'échecs avant désactivation de l'équipement** : Nombre
+-   **Number of failures before deactivation of the equipment** : Nombre
     communication failure with the equipment before deactivation of
     this one (a message will warn you if this happens).
 
@@ -704,10 +704,10 @@ Deposit used to connect Jeedom to Github.
 
 -   **Token** : Token for access to private deposit.
 
--   **User ou organisation du dépôt for the core Jeedom** : Nom
+-   **Jeedom core repository user or organization** : Nom
     the user or the organization on github for the core.
 
--   **Last name du dépôt for the core Jeedom** : Repository name for core.
+-   **Repository name for the Jeedom core** : Repository name for core.
 
 -   **Jeedom core industry** : Core repository branch.
 
@@ -719,7 +719,7 @@ refused if you use a different deposit than this one.
 
 -   **Address** : Market address.
 
--   **Last name d'utilisateur** : Your Username on the Market.
+-   **Username** : Your Username on the Market.
 
 -   **Password** : Your Market password.
 
@@ -790,8 +790,8 @@ a Samba share (ex : NAS Synology).
 
 ### URLs 
 
--   **URLs core Jeedom**
+-   **Jeedom core URL**
 
--   **URLs version core Jeedom**
+-   **Jeedom core version URL**
 
 

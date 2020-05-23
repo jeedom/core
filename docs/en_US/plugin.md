@@ -48,7 +48,7 @@ Below left, there is a status area with :
 
 -   **ACTION** : Allows you to enable or disable the plugin
 
--   **Version Jeedom** : Minimum Jeedom version required
+-   **Jeedom version** : Minimum Jeedom version required
     for the operation of the plugin
 
 -   **Licence** : Indicates the license of the plugin which will generally be
@@ -166,7 +166,7 @@ At the top of the window you have filters :
 -   **Search** : allows you to search for a plugin (in the name or
     description of it)
 
--   **Last name d'utilisateur** : displays the username used for the
+-   **Username** : displays the username used for the
     connection to the Market and the status of the connection
 
 > **Tip**

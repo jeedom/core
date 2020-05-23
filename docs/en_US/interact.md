@@ -504,7 +504,7 @@ the humidity, the brightness of the different rooms (object in the Jeedom sense)
     with word1 or word2). When generating Jeedom will generate all
     possible combinations of sentences with all commands
     existing (depending on filters) by replacing \#commande\# par
-    the name of the command and \#objet\# by le nom of l'objet.
+    the name of the command and \#objet\# by the name of the object.
 
 -   The answer will be "21 ° C" or "200 lux". Just put :
     \#valeur\# \#unite\# (the unit is to be completed in the configuration

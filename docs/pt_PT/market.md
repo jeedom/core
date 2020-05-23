@@ -22,7 +22,7 @@ Perfil :
     -   **Primeiro nome** : Seu primeiro nome (esta informação é útil apenas
         para tornar os e-mails mais divertidos)
 
-    -   **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum
+    -   **Nome de usuário no fórum** : Seu nome de usuário no fórum
 
     -   **E-mail** : Seu e-mail
 
@@ -33,9 +33,9 @@ Perfil :
 
 Para desenvolvedores :
 
--   **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum
+-   **Nome de usuário no fórum** : Seu nome de usuário no fórum
 
--   **E-mail public** : Seu email para receber qualquer
+-   **Email público** : Seu email para receber qualquer
     comunicações de nós
 
 -   **Conta Paypal** : O email da sua conta Paypal (usado apenas

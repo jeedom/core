@@ -52,7 +52,7 @@ Ermöglicht das Definieren bestimmter Schnittstellenverhalten :
 -   **Standardobjekt im Dashboard** : Standardanzeigeobjekt
     bei der Ankunft auf dem Armaturenbrett / Handy
 
--   **Ansicht par défaut** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
+-   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
     das Dashboard / Handy
 
 -   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn

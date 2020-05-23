@@ -23,7 +23,7 @@ botões :
 -   **Remover** : excluir o log atual, se o Jeedom tiver algum
     precisa dele irá recriá-lo automaticamente,
 
--   **Remover tous les logs** : Excluir todos os logs presentes.
+-   **Excluir todos os logs** : Excluir todos os logs presentes.
 
 > **Dica**
 >

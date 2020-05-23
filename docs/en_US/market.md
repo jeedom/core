@@ -22,7 +22,7 @@ profile :
     -   **First name** : Your first name (this information is only useful
         to make emails more fun)
 
-    -   **Last name d'utilisateur sur le forum** : Your username on the forum
+    -   **Username on the forum** : Your username on the forum
 
     -   **E-mail** : Your mail
 
@@ -33,9 +33,9 @@ profile :
 
 For developers :
 
--   **Last name d'utilisateur sur le forum** : Your username on the forum
+-   **Username on the forum** : Your username on the forum
 
--   **E-mail public** : Your email to receive any
+-   **Public email** : Your email to receive any
     communications from us
 
 -   **Paypal account** : Your Paypal account email (only used

@@ -103,7 +103,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 - Couleur
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 
-## Farbe conditionnelle
+## Bedingte Farbe
 
 Ermöglicht die Zuweisung der ausgewählten Farbe zum Element, wenn die Bedingung gültig ist. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 

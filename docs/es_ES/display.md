@@ -12,10 +12,10 @@ Esta página es accesible por **Herramientas → Resumen de domótica**.
 La parte superior de la página 
 ------------------
 
-En la parte superior de la página, encontramos : \* **Número d'objets** : Nombre
+En la parte superior de la página, encontramos : \* **Numero de objetos** : Nombre
 total de objetos configurados en nuestro Jeedom, contando los elementos
-Inactivo. \* **Número equipos** : Lo mismo para el equipo. \*
-**Número de comandos** : Lo mismo para los pedidos. \* **Inactivo** :
+Inactivo. \* **Numero de equipos** : Lo mismo para el equipo. \*
+**Numero de ordenes** : Lo mismo para los pedidos. \* **Inactivo** :
 Marque esta casilla si desea que los elementos inactivos estén bien
 se muestra en esta página. \* **Buscar** : Busque un
 elemento particular. Puede ser el nombre de un equipo, un pedido
@@ -98,7 +98,7 @@ Configuración avanzada de equipos
 > esta ventana desde la página de configuración del equipo en
 > haciendo clic en el botón de configuración avanzada
 
-La ventana de **configuración avancée d'un équipement** permite el
+La ventana de **Configuración avanzada de equipos** permite el
 Editar. Primero, arriba a la derecha, algunos botones
 disponible :
 
@@ -126,10 +126,10 @@ el equipo y sus controles :
 
 -   **Apellido** : Nombre del equipo.
 
--   **Identificación logique** : Identificador de equipo lógico (puede
+-   **ID lógica** : Identificador de equipo lógico (puede
     estar vacío).
 
--   **Identificación de l'objet** : Identificador único del objeto padre (puede
+-   **ID de objeto** : Identificador único del objeto padre (puede
     estar vacío).
 
 -   **Fecha de creación** : Fecha de creación del equipo.
@@ -214,9 +214,9 @@ comandos (uno al lado del otro) o en modo tabla. No hay
 nada que configurar en modo predeterminado. Aquí están las opciones disponibles en modo
 **Mesa** :
 
--   **Número de lignes**
+-   **Numero de lineas**
 
--   **Número de colonnes**
+-   **Numero de columnas**
 
 -   **Centro en cajas** : Marque la casilla para centrar el
     comandos en las cajas.
@@ -227,7 +227,7 @@ nada que configurar en modo predeterminado. Aquí están las opciones disponible
 -   **Estilo de tabla (CSS)** : Le permite definir el estilo de
     solo mesa.
 
-A continuación para cada cuadro, el **configuración détaillée** te permite
+A continuación para cada cuadro, el **configuración detallada** te permite
 este :
 
 -   **Cuadro de texto** : Agregue texto además del comando (o
@@ -241,7 +241,7 @@ este :
 >
 > En un cuadro en la tabla, si desea poner 2 comandos uno en
 > debajo del otro, no olvide agregar un retorno al
-> línea después del estreno en el **configuración avancée** del mismo.
+> línea después del estreno en el **Configuración avanzada** del mismo.
 
 Pestaña Alertas 
 --------------
@@ -250,7 +250,7 @@ Esta pestaña proporciona información sobre la batería de
 el equipo y definir alertas en relación con él. He aquí los
 tipos de información que se pueden encontrar :
 
--   **Tipo de pile**,
+-   **Tipo de batería**,
 
 -   **Últimos comentarios**,
 
@@ -315,7 +315,7 @@ orden :
 
 -   **Identificación** : Identificador único en la base de datos.
 
--   **Identificación logique** : Identificador lógico del comando (puede
+-   **ID lógica** : Identificador lógico del comando (puede
     estar vacío).
 
 -   **Apellido** : Nombre de la orden.
@@ -374,7 +374,7 @@ Pestaña de configuración
 
 -   **Cálculo y redondeo**
 
-    -   **Fórmula de cálculo (\#value\# para la valeur)** : Permite
+    -   **Fórmula de cálculo (\#value\# por valor)** : Permite
         realizar una operación sobre el valor del pedido antes
         Tratamiento de Jeedom, ejemplo : ``#value# - 0.2` para afianzar
         0.2 (compensación en un sensor de temperatura).
@@ -383,7 +383,7 @@ Pestaña de configuración
         valor de pedido (Ejemplo : poner 2 para transformar
         16.643345 en 16.64).
 
--   **Tipo générique** : Le permite configurar el tipo genérico de
+-   **Tipo genérico** : Le permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
     Esta información es utilizada por la aplicación móvil.
 
@@ -443,7 +443,7 @@ Pestaña de configuración
 
 ### Para un comando de acción : 
 
--   **Tipo générique** : Le permite configurar el tipo genérico de
+-   **Tipo genérico** : Le permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
     Esta información es utilizada por la aplicación móvil.
 
@@ -492,7 +492,7 @@ mobile.
 -   **Mostrar nombre e icono** : Marque para hacer visible el ícono
     además del nombre del comando.
 
--   **Línea envuelta antes del widget** : Seleccionar **antes le
+-   **Línea envuelta antes del widget** : Seleccionar **Antes de
     Reproductor** o **después del widget** para agregar un salto de línea
     antes o después del widget (para forzar, por ejemplo, una visualización en
     columna de diferentes comandos de equipo en lugar de líneas
@@ -514,4 +514,4 @@ Le permite modificar el código del widget solo para el comando actual.
 > **Nota**
 >
 > Si desea modificar el código, no olvide marcar la casilla
-> **Activar la personnalisation du Reproductor**
+> **Habilitar la personalización del widget**

@@ -23,7 +23,7 @@ botones :
 -   **Remove** : eliminar el registro actual, si Jeedom tiene alguna
     necesitarlo lo recreará automáticamente,
 
--   **Remove tous les logs** : eliminar todos los registros presentes.
+-   **Eliminar todos los registros** : eliminar todos los registros presentes.
 
 > **Punta**
 >

@@ -25,7 +25,7 @@ Abaixo você tem uma tabela :
         ele não terá acesso à configuração de controles / equipamentos
         nem para a configuração do Jeedom.
 
-    -   **Usuário limité** : o usuário vê apenas o
+    -   **Usuário limitado** : o usuário vê apenas o
         equipamento autorizado (configurável com o botão "Gerenciar"
         direitos")
 
@@ -70,7 +70,7 @@ cenário, defina direitos do usuário :
 -   **Visualização** : o usuário vê o equipamento / cenário, mas não vê
     não pode agir sobre isso
 
--   **Visualização et exécution** : o usuário vê
+-   **Visualização e execução** : o usuário vê
     equipamento / cenário e pode atuar sobre ele (acenda uma lâmpada, jogue
     o script etc.)
 

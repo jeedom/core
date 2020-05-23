@@ -25,7 +25,7 @@ Abajo tienes una mesa :
         no tendrá acceso a la configuración de controles / equipos
         ni a la configuración de Jeedom.
 
-    -   **Usuario limité** : el usuario solo ve el
+    -   **Usuario limitado** : el usuario solo ve el
         equipo autorizado (configurable con el botón &quot;Administrar&quot;
         los derechos")
 
@@ -70,7 +70,7 @@ escenario, definir derechos de usuario :
 -   **Visualización** : el usuario ve el equipo / escenario pero no ve
     no puedo actuar en consecuencia
 
--   **Visualización et exécution** : el usuario ve
+-   **Visualización y ejecución** : el usuario ve
     El equipo / escenario y puede actuar sobre él (encender una lámpara, tirar
     el guión, etc.)
 

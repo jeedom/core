@@ -134,14 +134,14 @@ Pestaña Escenario
 ---------------
 
 Aquí es donde construirás tu escenario. Tenemos que empezar
-por **Añadir un bloque**, con el botón de la derecha. Una vez un bloque
+por **agregar un bloque**, con el botón de la derecha. Una vez un bloque
 creado, puedes agregar otro **bloque** o un **acción**.
 
 > **Punta**
 >
 > En condiciones y acciones, es mejor favorecer comillas simples (') en lugar de dobles (")
 
-### La blocs
+### Bloques
 
 Aquí están los diferentes tipos de bloques disponibles :
 
@@ -263,7 +263,7 @@ Guión :
 -   $scenario->setLog($message); : Escribir un mensaje en el registro del escenario.
 -   $scenario->persistLog(); : Forzar la escritura del registro (de lo contrario, se escribe solo al final del escenario). Tenga cuidado, esto puede retrasar un poco el escenario.
 
-### La Actions
+### Las acciones
 
 Las acciones agregadas a los bloques tienen varias opciones. En el orden :
 
@@ -314,7 +314,7 @@ commandes) :
 -   #user_connect# : inicio de sesión de usuario
 
 También puede desencadenar un escenario cuando una variable se establece en
-día poniendo : #variable(nom_variable)# o en utilisant l'API HTTP
+día poniendo : #variable(nom_variable)# o usando la API HTTP
 descrito
 [aquí](https://jeedom.github.io/core/es_ES/api_http).
 
@@ -673,7 +673,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 -   **variable** (variable) : Creación / modificación de una variable o valor
     de una variable.
 
--   **Remove variable** (delete_variable) : Le permite eliminar una variable
+-   **Eliminar variable** (delete_variable) : Le permite eliminar una variable
 
 -   **Guión** (scenario) : Te permite controlar escenarios. La parte de las etiquetas
     permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado allí
@@ -689,7 +689,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 -   **Ir al diseño** (gotodesign) : Cambiar el diseño que se muestra en todos
     navegadores por diseño solicitado.
 
--   **Añadir un Registro** (log) : Le permite agregar un mensaje a los registros.
+-   **Agregar un registro** (log) : Le permite agregar un mensaje a los registros.
 
 -   **Crear mensaje** (message) : Agrega un mensaje en el centro
     de mensajes.
@@ -726,7 +726,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
     Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esto
     la funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado.
 
--   **Remove bloque DANS/La programmé** (remove_inat) : Le permite eliminar el
+-   **Eliminar bloque IN / A programado** (remove_inat) : Le permite eliminar el
     programación de todos los bloques IN y A del escenario.
 
 -   **Evento** (event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente

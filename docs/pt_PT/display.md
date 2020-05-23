@@ -12,10 +12,10 @@ Esta página é acessível por **Ferramentas → Resumo da automação residenci
 O topo da página 
 ------------------
 
-No topo da página, encontramos : \* **Número d'objets** : Nombre
+No topo da página, encontramos : \* **Número de objetos** : Nombre
 total de objetos configurados em nosso Jeedom, contando os elementos
-inativo. \* **Número equipamentos** : O mesmo vale para o equipamento. \*
-**Número de Comandos** : O mesmo vale para pedidos. \* **Inativo** :
+inativo. \* **Número de equipamentos** : O mesmo vale para o equipamento. \*
+**Número de pedidos** : O mesmo vale para pedidos. \* **Inativo** :
 Marque esta caixa se desejar que os itens inativos estejam bem
 exibido nesta página. \* **Pesquisa** : Procure um
 elemento particular. Pode ser o nome de um equipamento, um pedido
@@ -98,7 +98,7 @@ Configuração avançada de equipamentos
 > nesta janela da página de configuração do equipamento em
 > clicando no botão de configuração avançada
 
-A janela de **Configuração avancée d'un équipement** permite que o
+A janela de **Configuração avançada de equipamentos** permite que o
 modificar. Primeiro, no canto superior direito, alguns botões
 disponível :
 
@@ -126,10 +126,10 @@ o equipamento e seus controles :
 
 -   **Nome** : Nome de equipamentos.
 
--   **ID logique** : Identificador de equipamento lógico (pode
+-   **ID lógico** : Identificador de equipamento lógico (pode
     estar vazio).
 
--   **ID de l'objet** : Identificador exclusivo do objeto pai (pode
+-   **Object ID** : Identificador exclusivo do objeto pai (pode
     estar vazio).
 
 -   **Data de criação** : Data de criação do equipamento.
@@ -214,9 +214,9 @@ comandos (lado a lado no widget) ou no modo de tabela. Existe
 nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 **Mesa** :
 
--   **Número de lignes**
+-   **Número de linhas**
 
--   **Número de colonnes**
+-   **Número de Colunas**
 
 -   **Centro nas caixas** : Marque a caixa para centralizar o
     comandos nas caixas.
@@ -227,7 +227,7 @@ nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 -   **Estilo de tabela (CSS)** : Permite definir o estilo do
     apenas mesa.
 
-Abaixo para cada caixa, o **Configuração détaillée** permite que você
+Abaixo para cada caixa, o **Configuração detalhada** permite que você
 isto :
 
 -   **Caixa de texto** : Adicione texto além do comando (ou
@@ -241,7 +241,7 @@ isto :
 >
 > Em uma caixa na tabela, se você quiser colocar 2 comandos, um em
 > abaixo do outro, não se esqueça de adicionar um retorno ao
-> linha após a estréia no **Configuração avancée** disso.
+> linha após a estréia no **Configuração avançada** disso.
 
 Guia Alertas 
 --------------
@@ -250,7 +250,7 @@ Esta guia fornece informações sobre a bateria do
 equipamento e definir alertas em relação a ele. Aqui estão os
 tipos de informações que podem ser encontradas :
 
--   **Tipo de pile**,
+-   **Tipo de bateria**,
 
 -   **Comentários mais recentes**,
 
@@ -315,7 +315,7 @@ Ordem :
 
 -   **ID** : Identificador exclusivo no banco de dados.
 
--   **ID logique** : Identificador lógico do comando (pode
+-   **ID lógico** : Identificador lógico do comando (pode
     estar vazio).
 
 -   **Nome** : Nome do comando.
@@ -374,7 +374,7 @@ Guia Configuração
 
 -   **Cálculo e arredondamento**
 
-    -   **Fórmula de cálculo (\#value\# PARA la valeur)** : Deixa
+    -   **Fórmula de cálculo (\#value\# por valor)** : Deixa
         faça uma operação sobre o valor do pedido antes
         Tratamento Jeedom, exemplo : ``#value# - 0.2` para entrincheirar
         0,2 (deslocamento em um sensor de temperatura).
@@ -383,7 +383,7 @@ Guia Configuração
         valor do pedido (exemplo : colocar 2 para transformar
         16.643345 em 16,64).
 
--   **Tipo générique** : Permite configurar o tipo genérico do
+-   **Tipo genérico** : Permite configurar o tipo genérico do
     (o Jeedom tenta encontrá-lo sozinho no modo automático).
     Esta informação é usada pelo aplicativo móvel.
 
@@ -443,7 +443,7 @@ Guia Configuração
 
 ### Para um comando de ação : 
 
--   **Tipo générique** : Permite configurar o tipo genérico do
+-   **Tipo genérico** : Permite configurar o tipo genérico do
     (o Jeedom tenta encontrá-lo sozinho no modo automático).
     Esta informação é usada pelo aplicativo móvel.
 
@@ -492,7 +492,7 @@ mobile.
 -   **Imprimir o nome eo ícone** : Marque para tornar o ícone visível
     além do nome do comando.
 
--   **Envoltório forçado antes Widget** : Tick **antes le
+-   **Envoltório forçado antes Widget** : Tick **antes
     Widget** onde **após o widget** para adicionar uma quebra de linha
     antes ou depois do widget (para forçar, por exemplo, uma exibição em
     coluna de comandos de equipamentos diferentes em vez de linhas
@@ -514,4 +514,4 @@ Permite modificar o código do widget apenas para o comando atual.
 > **NOTA**
 >
 > Se você deseja modificar o código, não esqueça de marcar a caixa
-> **Ativar la personnalisation du Widget**
+> **Ativar personalização do widget**

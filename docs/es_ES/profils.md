@@ -52,7 +52,7 @@ Le permite definir ciertos comportamientos de interfaz :
 -   **Objeto predeterminado en el tablero** : objeto de visualización predeterminado
     a su llegada en el tablero de instrumentos / móvil
 
--   **Vista par défaut** : ver para mostrar por defecto al llegar
+-   **Vista predeterminada** : ver para mostrar por defecto al llegar
     el tablero de instrumentos / móvil
 
 -   **Diseño por defecto** : diseño para mostrar por defecto cuando

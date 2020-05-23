@@ -8,14 +8,14 @@ General
 
 En esta pestaña encontramos información general sobre Jeedom :
 
--   **Apellido de tu libertad** : Identifica tu Jeedom,
+-   **Nombre de tu Jeedom** : Identifica tu Jeedom,
     especialmente en el mercado. Se puede reutilizar en escenarios
     o identificar una copia de seguridad.
 
 -   **Sistema** : Tipo de hardware en el que está instalado el sistema donde
     tu Jeedom está girando.
 
--   **Clave d'installation** : Llave de hardware de su Jeedom en
+-   **Clave de instalación** : Llave de hardware de su Jeedom en
     el mercado. Si su Jeedom no aparece en la lista de su
     Jeedom en el mercado, es recomendable hacer clic en el botón
     **Restablecer**.
@@ -110,7 +110,7 @@ LDAP
 
 -   **DN base** : DN base de su AD
 
--   **Apellido d'utilisateur** : nombre de usuario para que Jeedom
+-   **Nombre del usuario** : nombre de usuario para que Jeedom
     conectarse a AD
 
 -   **Contraseña** : contraseña para que Jeedom se conecte a AD
@@ -128,7 +128,7 @@ LDAP
 Acceder 
 ---------
 
--   **Número d'échecs tolérés** : establece el número de intentos
+-   **Número de fallas toleradas** : establece el número de intentos
     permitido antes de prohibir la IP
 
 -   **Tiempo máximo entre fallas (en segundos)** : tiempo maximo
@@ -175,7 +175,7 @@ externe** (de otra red, especialmente de Internet).
 
     -   **Protocolo** : el protocolo a usar, a menudo HTTP
 
-    -   **Dirección URL ou IP** : Jeedom IP para entrar
+    -   **URL o dirección IP** : Jeedom IP para entrar
 
     -   **Puerto** : el puerto de la interfaz web de Jeedom, generalmente 80.
         Tenga en cuenta que cambiar el puerto aquí no cambia el puerto real de
@@ -193,7 +193,7 @@ externe** (de otra red, especialmente de Internet).
 
     -   **Protocolo** : protocolo utilizado para acceso al exterior
 
-    -   **Dirección URL ou IP** : IP externa, si es fija. por lo demás,
+    -   **URL o dirección IP** : IP externa, si es fija. por lo demás,
         proporcione la URL que apunta a la dirección IP externa de su red.
 
     -   **Complementar** : el fragmento de URL adicional (ejemplo
@@ -212,7 +212,7 @@ externe** (de otra red, especialmente de Internet).
 > su navegador de Internet, si necesita agregar / jeedom (u otro
 > cosa) después de la IP.
 
--   **Administración avancée** : Esta parte puede no aparecer, en
+-   **Gestión avanzada** : Esta parte puede no aparecer, en
     dependiendo de la compatibilidad con su hardware. Encontraras alli
     la lista de sus interfaces de red. Puedes decirle a Jeedom
     no monitorear la red haciendo clic en **desactivar el
@@ -326,7 +326,7 @@ Histórico
 Empuje 
 ----
 
-**URL de push globale** : permite agregar una URL para llamar en caso de
+**URL de inserción global** : permite agregar una URL para llamar en caso de
 orden de actualización. Puedes usar las siguientes etiquetas :
 **\#value\#** por el valor del pedido, **\#cmd\_name\#** para el
 nombre del comando, **\#cmd\_id\#** para el identificador único de la
@@ -408,7 +408,7 @@ Interacción automática, contextual y advertencia
 -   La **interacciones contextuales** permitirte encadenar
     múltiples solicitudes sin repetir todo, por ejemplo :
 
-    -   *Jeedom gardant le contexte :*
+    -   *Jeedom manteniendo el contexto :*
 
         -   *Vosotras* : Cuanto esta el en el cuarto ?
 
@@ -585,7 +585,7 @@ Troncos
 Línea de tiempo 
 --------
 
--   **Número maximum d'évènements** : Establece el número máximo en
+-   **Numero maximo de eventos** : Establece el número máximo en
     mostrar en la línea de tiempo.
 
 -   **Eliminar todos los eventos** : Vaciar la línea de tiempo de
@@ -647,7 +647,7 @@ Registro
 -   **Formato de registro** : Formato de registro a utilizar (Precaución : ça
     no afecta los registros de daemon).
 
--   **Número de lignes maximum dans un fichier de log** : Define el
+-   **Número máximo de líneas en un archivo de registro** : Define el
     número máximo de líneas en un archivo de registro. Se recomienda
     no tocar este valor, porque un valor demasiado grande podría
     llenar el sistema de archivos y / o dejar a Jeedom incapaz
@@ -664,7 +664,7 @@ plugins.
 Comodidades 
 ===========
 
--   **Número d'échecs avant désactivation de l'équipement** : Nombre
+-   **Número de fallas antes de la desactivación del equipo** : Nombre
     falla de comunicación con el equipo antes de la desactivación de
     este (un mensaje te avisará si esto sucede).
 
@@ -704,10 +704,10 @@ Depósito utilizado para conectar Jeedom a Github.
 
 -   **Simbólico** : Token para acceder al depósito privado.
 
--   **Usuario ou organisation du dépôt para el core Jeedom** : Nom
+-   **Usuario u organización del repositorio principal de Jeedom** : Nom
     el usuario o la organización en github para el núcleo.
 
--   **Apellido du dépôt para el core Jeedom** : Nombre del repositorio para core.
+-   **Nombre del repositorio para el núcleo Jeedom** : Nombre del repositorio para core.
 
 -   **Industria central de Jeedom** : Rama del repositorio central.
 
@@ -719,7 +719,7 @@ rechazado si utiliza un depósito diferente a este.
 
 -   **Dirección** : Dirección del mercado.
 
--   **Apellido d'utilisateur** : Su nombre de usuario en el mercado.
+-   **Nombre del usuario** : Su nombre de usuario en el mercado.
 
 -   **Contraseña** : Tu contraseña de mercado.
 
@@ -790,8 +790,8 @@ una parte de Samba (ex : NAS Synology).
 
 ### URL 
 
--   **URL core Jeedom**
+-   **URL central de Jeedom**
 
--   **URL version core Jeedom**
+-   **URL de la versión principal de Jeedom**
 
 

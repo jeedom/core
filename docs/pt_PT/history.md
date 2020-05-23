@@ -182,10 +182,10 @@ cenários desejados, você pode vê-los aparecer na linha do tempo.
 
 Os cartões na linha do tempo exibem :
 
--   **Ordem action** : em fundo vermelho, um ícone à direita permite
+-   **Comando de ação** : em fundo vermelho, um ícone à direita permite
     exibe a janela de configuração avançada do comando
 
--   **Ordem info** : em fundo azul, um ícone à direita permite
+-   **Comando Info** : em fundo azul, um ícone à direita permite
     exibe a janela de configuração avançada do comando
 
 -   **Cenas** : em fundo cinza, você tem 2 ícones : um para exibir

@@ -134,14 +134,14 @@ Registerkarte &quot;Szenario&quot;
 ---------------
 
 Hier erstellen Sie Ihr Szenario. Wir müssen anfangen
-durch **Hinzufügen un Block**, mit dem Knopf rechts. Einmal ein Block
+durch **Fügen Sie einen Block hinzu**, mit dem Knopf rechts. Einmal ein Block
 erstellt, können Sie eine weitere hinzufügen **Block** oder a **Aktion**.
 
 > **Spitze**
 >
 > Bei Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (') anstelle von doppelten zu bevorzugen (")
 
-### Die blocs
+### Blöcke
 
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
@@ -263,7 +263,7 @@ Szenario :
 -   $scenario->setLog($message); : Schreiben Sie eine Nachricht in das Szenario-Protokoll.
 -   $scenario->persistLog(); : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
 
-### Die Actions
+### Aktionen
 
 Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen. In Ordnung :
 
@@ -314,7 +314,7 @@ commandes) :
 -   #user_connect# : Benutzer Login
 
 Sie können auch ein Szenario auslösen, wenn eine Variable auf gesetzt ist
-Tag setzen : #variable(nom_variable)# oder en utilisant l'API HTTP
+Tag setzen : #variable(nom_variable)# oder über die HTTP-API
 beschrieben
 [hier](https://jeedom.github.io/core/de_DE/api_http).
 
@@ -673,7 +673,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 -   **Variable** (variable) : Erstellung / Änderung einer Variablen oder eines Wertes
     einer Variablen.
 
--   **Entfernen variable** (delete_variable) : Ermöglicht das Löschen einer Variablen
+-   **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen
 
 -   **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Der Tag-Teil
     ermöglicht das Senden von Tags an das Szenario, z : montag = 2 (sei dort vorsichtig
@@ -689,7 +689,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 -   **Gehe zum Design** (gotodesign) : Ändern Sie das auf allen angezeigte Design
     Browser nach gewünschtem Design.
 
--   **Hinzufügen un log** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
+-   **Fügen Sie ein Protokoll hinzu** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
 
 -   **Nachricht erstellen** (message) : Fügen Sie eine Nachricht in der Mitte hinzu
     von Nachrichten.
@@ -726,7 +726,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
     Bitte beachten Sie, dass Ihr Internetzugang in nicht signiertem HTTPS erfolgt
     Funktionalität wird nicht funktionieren. Signiertes HTTP oder HTTPS ist erforderlich.
 
--   **Entfernen Block DANS/Bis programmé** (remove_inat) : Ermöglicht das Löschen der
+-   **Programmierten IN / A-Block löschen** (remove_inat) : Ermöglicht das Löschen der
     Programmierung aller Blöcke IN und A des Szenarios.
 
 -   **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information

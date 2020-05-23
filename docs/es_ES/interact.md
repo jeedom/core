@@ -504,7 +504,7 @@ la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedo
     con word1 o word2). Al generar Jeedom generará todo
     posibles combinaciones de oraciones con todos los comandos
     existente (dependiendo de los filtros) reemplazando \#commande\# par
-    el nombre del comando y \#objet\# por le nom de l'objet.
+    el nombre del comando y \#objet\# por el nombre del objeto.
 
 -   La respuesta será "21 ° C" o "200 lux". Solo pon :
     \#valeur\# \#unite\# (la unidad se completará en la configuración

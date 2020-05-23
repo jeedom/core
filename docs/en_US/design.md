@@ -72,11 +72,11 @@ following actions :
     -   **Hide item highlighting** : Hide it
         highlight around items
 
--   **Remove le Design** : delete design
+-   **Delete design** : delete design
 
 -   **Create a design** : allows to add a design
 
--   **Duplicate le Design** : duplicate the current design
+-   **Duplicate design** : duplicate the current design
 
 -   **Configure the design** : access to design configuration
 
@@ -113,7 +113,7 @@ Found here :
 
         -   **To send** : allows to add a background image to the design
 
-        -   **Remove l'image** : delete image
+        -   **Delete image** : delete image
 
 -   **Sizes**
 
@@ -169,15 +169,15 @@ Display settings
 
 -   **Period** : allows you to choose the display period
 
--   **Pin up la légende** : show legend
+-   **Show caption** : show legend
 
--   **Pin up le navigateur** : display the browser (second graph
+-   **Show browser** : display the browser (second graph
     lighter below the first)
 
--   **Pin up le sélecteur de période** : displays the selector
+-   **Show period selector** : displays the selector
     period top left
 
--   **Pin up la barre de défilement** : displays the scroll bar
+-   **Show scroll bar** : displays the scroll bar
 
 -   **Transparent background** : makes the background transparent
 
@@ -252,7 +252,7 @@ Display settings
 -   **Round off the angles (don't forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -341,9 +341,9 @@ display the widget in question
 
 -   **Equipment** : widget to display when hovering or clicking
 
--   **Pin up au survol** : if checked, displays the widget on hover
+-   **Show on flyover** : if checked, displays the widget on hover
 
--   **Pin up sur un click** : if checked, then the widget is displayed at
+-   **View on one click** : if checked, then the widget is displayed at
     clic
 
 -   **Position** : allows you to choose the location where the
@@ -364,7 +364,7 @@ Summary
 -   **Round off the angles (don't forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -380,6 +380,6 @@ Faq
 >
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
->**Remove un Design qui ne marche plus**
+>**Delete a design that no longer works**
 >
 >In the administration part then OS / DB, make "select * from planHeader", recover the id of the design in question and make a "delete from planHeader where id=#TODO#" and "delete from plan where planHeader_id=#todo#" replacing well #TODO# by the design id previously found.

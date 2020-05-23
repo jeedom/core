@@ -72,11 +72,11 @@ seguintes ações :
     -   **Ocultar destaque do item** : Esconder
         destaque em torno dos itens
 
--   **Remover le Projeto** : Remover desenho
+-   **Limpar projeto** : Remover desenho
 
 -   **Criar um design** : permite adicionar um design
 
--   **Duplicar le Projeto** : Duplica o design atual
+-   **Projeto duplicado** : Duplica o design atual
 
 -   **Cenografia** : Acesso à configuração do design
 
@@ -113,7 +113,7 @@ Encontrado aqui :
 
         -   **Enviar** : Permite adicionar uma imagem de plano de fundo ao design
 
-        -   **Remover l'image** : Excluir imagem
+        -   **Excluir imagem** : Excluir imagem
 
 -   **Tamanhos**
 
@@ -169,15 +169,15 @@ Configurações de exibição
 
 -   **Período** : Permite escolher o período de exibição
 
--   **Display la légende** : Exibe a legenda
+-   **Mostrar legenda** : Exibe a legenda
 
--   **Display le navigateur** : exibir o navegador (segundo gráfico
+-   **Mostrar Navigator** : exibir o navegador (segundo gráfico
     mais leve abaixo do primeiro)
 
--   **Display le sélecteur de période** : exibe o seletor
+-   **Ver a selecção tempo** : exibe o seletor
     período superior esquerdo
 
--   **Display la barre de défilement** : Exibe a barra de rolagem
+-   **Mostrar barra de rolagem** : Exibe a barra de rolagem
 
 -   **Fundo transparente** : Torna o plano de fundo transparente
 
@@ -252,7 +252,7 @@ Configurações de exibição
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (attention syntaxe CSS, ex : sólido 1px preto)** : permet
+-   **Fronteira (atenção sintaxe CSS, ex : sólido 1px preto)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
@@ -341,9 +341,9 @@ exibir o widget em questão
 
 -   **Equipamento** : Widget a ser exibido ao passar o mouse ou clicar em
 
--   **Display au survol** : Se marcado, exibe o widget em foco
+-   **Mostrar no viaduto** : Se marcado, exibe o widget em foco
 
--   **Display sur un Clique em** : se marcado, o widget será exibido em
+-   **Vista em um clique** : se marcado, o widget será exibido em
     clic
 
 -   **Posição** : permite escolher o local em que o
@@ -364,7 +364,7 @@ Resumo
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (attention syntaxe CSS, ex : sólido 1px preto)** : permet
+-   **Fronteira (atenção sintaxe CSS, ex : sólido 1px preto)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
@@ -380,6 +380,6 @@ Faq
 >
 >Se você colocou um widget ou uma imagem que ocupa quase todo o design, clique fora do widget ou imagem para acessar o menu clicando com o botão direito do mouse.
 
->**Remover un Projeto qui ne marche plus**
+>**Excluir um design que não funciona mais**
 >
 >Na parte da administração e no OS / DB, faça "select * from planHeader", recupere o ID do design em questão e faça "delete from planHeader where id=#TODO#" e "excluir do plano em que planHeader_id=#todo#" substituindo bem #TODO# pelo ID do design encontrado anteriormente.

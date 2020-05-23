@@ -72,11 +72,11 @@ folgende Aktionen :
     -   **Hervorheben von Elementen ausblenden** : Verstecke es
         um Elemente hervorheben
 
--   **Entfernen le Design** : Design löschen
+-   **Design löschen** : Design löschen
 
 -   **Erstellen Sie ein Design** : ermöglicht das Hinzufügen eines Designs
 
--   **Duplikat le Design** : Dupliziere das aktuelle Design
+-   **Doppeltes Design** : Dupliziere das aktuelle Design
 
 -   **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration
 
@@ -113,7 +113,7 @@ Hier gefunden :
 
         -   **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
 
-        -   **Entfernen l'image** : Bild löschen
+        -   **Bild löschen** : Bild löschen
 
 -   **Größen**
 
@@ -169,15 +169,15 @@ Anzeigeeinstellungen
 
 -   **Zeit** : Hier können Sie den Anzeigezeitraum auswählen
 
--   **Anzeige la légende** : Legende zeigen
+-   **Bildunterschrift anzeigen** : Legende zeigen
 
--   **Anzeige le navigateur** : Zeigen Sie den Browser an (zweites Diagramm
+-   **Browser anzeigen** : Zeigen Sie den Browser an (zweites Diagramm
     leichter unter dem ersten)
 
--   **Anzeige le sélecteur de période** : zeigt den Selektor an
+-   **Periodenauswahl anzeigen** : zeigt den Selektor an
     Punkt oben links
 
--   **Anzeige la barre de défilement** : Zeigt die Bildlaufleiste an
+-   **Bildlaufleiste anzeigen** : Zeigt die Bildlaufleiste an
 
 -   **Transparenter Hintergrund** : macht den Hintergrund transparent
 
@@ -252,7 +252,7 @@ Anzeigeeinstellungen
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : permet
+-   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
@@ -341,9 +341,9 @@ Zeigen Sie das betreffende Widget an
 
 -   **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird
 
--   **Anzeige au survol** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
+-   **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
 
--   **Anzeige sur un klicken** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
+-   **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
     clic
 
 -   **Position** : Hier können Sie den Ort auswählen, an dem die
@@ -364,7 +364,7 @@ Zusammenfassung
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : permet
+-   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
@@ -380,6 +380,6 @@ Faq
 >
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
->**Entfernen un Design qui ne marche plus**
+>**Löschen Sie ein Design, das nicht mehr funktioniert**
 >
 >Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

@@ -504,7 +504,7 @@ die Luftfeuchtigkeit, die Helligkeit der verschiedenen Räume (Objekt im Sinne v
     mit word1 oder word2). Bei der Erzeugung wird Jeedom alles erzeugen
     mögliche Kombinationen von Sätzen mit allen Befehlen
     vorhanden (abhängig von Filtern) durch Ersetzen von \#commande\.# par
-    den Namen des Befehls und \#objet\.# Von le nom von l'objet.
+    den Namen des Befehls und \#objet\.# durch den Namen des Objekts.
 
 -   Die Antwort lautet "21 ° C" oder "200 Lux"". Einfach gesagt :
     \.#valeur\.# \.#unite\.# (Das Gerät ist in der Konfiguration zu vervollständigen

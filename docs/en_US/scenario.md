@@ -134,14 +134,14 @@ Scenario tab
 ---------------
 
 This is where you will build your scenario. We must start
-through **Add un block**, with the button on the right. Once a block
+through **add a block**, with the button on the right. Once a block
 created, you can add another **block** or a **Action**.
 
 > **Tip**
 >
 > In conditions and actions, it is better to favor single quotes (') instead of double (")
 
-### The blocs
+### Blocks
 
 Here are the different types of blocks available :
 
@@ -263,7 +263,7 @@ Scenario :
 -   $scenario->setLog($message); : Write a message in the scenario log.
 -   $scenario->persistLog(); : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
 
-### The Actions
+### The actions
 
 Actions added to blocks have several options. In order :
 
@@ -314,7 +314,7 @@ commandes) :
 -   #user_connect# : user login
 
 You can also trigger a scenario when a variable is set to
-day putting : #variable(nom_variable)# or en utilisant l'API HTTP
+day putting : #variable(nom_variable)# or using the HTTP API
 described
 [here](https://jeedom.github.io/core/en_US/api_http).
 
@@ -689,7 +689,7 @@ In addition to home automation commands, you have access to the following action
 -   **Go to design** (gotodesign) : Change the design displayed on all
     browsers by requested design.
 
--   **Add un log** (log) : Allows you to add a message to the logs.
+-   **Add a log** (log) : Allows you to add a message to the logs.
 
 -   **Create message** (message) : Add a message in the center
     of messages.
@@ -726,7 +726,7 @@ In addition to home automation commands, you have access to the following action
     Please note, if your Internet access is in unsigned HTTPS, this
     functionality will not work. Signed HTTP or HTTPS is required.
 
--   **Remove block DANS/AT programmé** (remove_inat) : Allows you to delete the
+-   **Delete programmed IN / A block** (remove_inat) : Allows you to delete the
     programming of all blocks IN and A of the scenario.
 
 -   **Event** (event) : Allows you to push a value in an information type command arbitrarily

@@ -48,7 +48,7 @@ Unten links befindet sich ein Statusbereich mit :
 
 -   **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins
 
--   **Version Jeedom** : Minimale Jeedom-Version erforderlich
+-   **Jeedom Version** : Minimale Jeedom-Version erforderlich
     für den Betrieb des Plugins
 
 -   **Lizenz** : Gibt die Lizenz des Plugins an, die im Allgemeinen sein wird
@@ -166,7 +166,7 @@ Oben im Fenster befinden sich Filter :
 -   **Suche** : ermöglicht es Ihnen, nach einem Plugin zu suchen (im Namen oder
     Beschreibung davon)
 
--   **Name d'utilisateur** : Zeigt den Benutzernamen an, der für das verwendet wird
+-   **Benutzername** : Zeigt den Benutzernamen an, der für das verwendet wird
     Verbindung zum Markt und den Status der Verbindung
 
 > **Spitze**

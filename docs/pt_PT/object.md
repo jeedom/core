@@ -106,7 +106,7 @@ linhas são propostas para você :
 ### Comandos 
 
 Cada guia representa um tipo de resumo definido na configuração
-de Jeedom. Clique em **Adicionar une commande** para que seja
+de Jeedom. Clique em **Adicionar comando** para que seja
 levado em consideração no resumo. Você tem a opção de selecionar o
 encomendar qualquer equipamento Jeedom, mesmo que não seja para
 pai deste objeto.

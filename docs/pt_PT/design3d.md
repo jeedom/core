@@ -103,7 +103,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 - Couleur
 	- Cor fechada : se marcado, o elemento assumirá esta cor se o obturador estiver fechado
 
-## Cor conditionnelle
+## Cor condicional
 
 Permite atribuir a cor escolhida ao elemento se a condição for válida. Você pode colocar quantas cores / condições desejar.
 

@@ -166,7 +166,7 @@ No topo da janela você tem filtros :
 -   **Pesquisa** : permite procurar um plug-in (em nome ou
     descrição disso)
 
--   **Nome d'utilisateur** : exibe o nome de usuário usado para o
+-   **Nome de Usuário** : exibe o nome de usuário usado para o
     conexão com o mercado e o status da conexão
 
 > **Dica**

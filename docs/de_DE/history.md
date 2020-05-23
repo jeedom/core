@@ -182,10 +182,10 @@ gewünschten Szenarien können Sie sie auf der Timeline sehen.
 
 Die Karten auf der Timeline werden angezeigt :
 
--   **Bestellen action** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+-   **Aktionsbefehl** : Im roten Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
     Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
--   **Bestellen info** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
+-   **Info Befehl** : Im blauen Hintergrund können Sie ein Symbol auf der rechten Seite anzeigen
     Zeigen Sie das erweiterte Konfigurationsfenster des Befehls an
 
 -   **Szenario** : In grauem Hintergrund haben Sie 2 Symbole : eine anzuzeigen

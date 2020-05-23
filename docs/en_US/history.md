@@ -182,10 +182,10 @@ desired scenarios, you can see them appear on the timeline.
 
 The cards on the timeline displays :
 
--   **Ordered action** : in red background, an icon on the right allows you
+-   **Action command** : in red background, an icon on the right allows you
     display the advanced configuration window of the command
 
--   **Ordered info** : in blue background, an icon on the right allows you
+-   **Info command** : in blue background, an icon on the right allows you
     display the advanced configuration window of the command
 
 -   **Scenario** : in gray background, you have 2 icons : one to display

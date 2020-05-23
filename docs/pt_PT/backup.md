@@ -39,10 +39,10 @@ ou restauração), se você lançou um.
     backups mais antigos até ficar abaixo do
     tamanho máximo. No entanto, manterá pelo menos um backup.
 
-**Backups Locales** 
+**Backups locais** 
 -----------------------
 
--   **Backups disponibles** : Lista de backups disponíveis.
+-   **Backups disponíveis** : Lista de backups disponíveis.
 
 -   **Restaurar backup** : Inicia a restauração do backup
     selecionado acima.
@@ -58,7 +58,7 @@ ou restauração), se você lançou um.
 -   **De backup de download** : Permite baixar para o seu
     computador o arquivo de backup selecionado acima.
 
-**Backups Market** 
+**Backups de mercado** 
 ----------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
@@ -68,20 +68,20 @@ ou restauração), se você lançou um.
 -   **Enviar cópia de segurança** : Permite enviar um
     arquivo de backup localizado no seu computador.
 
--   **Backups disponibles** : Lista de backups
+-   **Backups disponíveis** : Lista de backups
     nuvem disponível.
 
 -   **Restaurar backup** : Lança a restauração de um
     Backup em nuvem.
 
-**Backups Samba** 
+**Backups do Samba** 
 ---------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
     backups no compartilhamento samba configurados aqui
     Administração → Configuração → guia Atualizações.
 
--   **Backups disponibles** : Lista de backups
+-   **Backups disponíveis** : Lista de backups
     samba disponível.
 
 -   **Restaurar backup** : Inicia a restauração do backup

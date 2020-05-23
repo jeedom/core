@@ -23,7 +23,7 @@ buttons :
 -   **Remove** : delete the current log, if Jeedom has any
     need it will recreate it automatically,
 
--   **Remove tous les logs** : delete all logs present.
+-   **Delete all logs** : delete all logs present.
 
 > **Tip**
 >

@@ -39,10 +39,10 @@ or restoration), if you have launched one.
     oldest backups until falling below the
     maximum size. It will however keep at least one backup.
 
-**Backups Locales** 
+**Local backups** 
 -----------------------
 
--   **Backups disponibles** : List of available backups.
+-   **Available backups** : List of available backups.
 
 -   **Restore backup** : Starts restoring the backup
     selected above.
@@ -58,7 +58,7 @@ or restoration), if you have launched one.
 -   **Download backup** : Lets download to your
     computer the backup archive selected above.
 
-**Backups Market** 
+**Market backups** 
 ----------------------
 
 -   **Sending backups** : Instructs Jeedom to send the
@@ -68,20 +68,20 @@ or restoration), if you have launched one.
 -   **Send a backup** : Allows you to send a
     backup archive located on your computer.
 
--   **Backups disponibles** : List of backups
+-   **Available backups** : List of backups
     cloud available.
 
 -   **Restore backup** : Launches the restoration of a
     cloud backup.
 
-**Backups Samba** 
+**Samba backups** 
 ---------------------
 
 -   **Sending backups** : Instructs Jeedom to send the
     backups on the samba share configured here
     Administration → Configuration → Updates tab.
 
--   **Backups disponibles** : List of backups
+-   **Available backups** : List of backups
     samba available.
 
 -   **Restore backup** : Starts restoring the backup

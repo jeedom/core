@@ -23,7 +23,7 @@ Tasten :
 -   **Entfernen** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
     brauche es wird es automatisch neu erstellen,
 
--   **Entfernen tous les logs** : Löschen Sie alle vorhandenen Protokolle.
+-   **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 
 > **Spitze**
 >

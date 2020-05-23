@@ -22,7 +22,7 @@ perfil :
     -   **Primer nombre** : Su nombre (esta información solo es útil
         para hacer que los correos electrónicos sean más divertidos)
 
-    -   **Apellido d'utilisateur sur le forum** : Tu nombre de usuario en el foro
+    -   **Nombre de usuario en el foro** : Tu nombre de usuario en el foro
 
     -   **E-mail** : Su correo
 
@@ -33,9 +33,9 @@ perfil :
 
 Para desarrolladores :
 
--   **Apellido d'utilisateur sur le forum** : Tu nombre de usuario en el foro
+-   **Nombre de usuario en el foro** : Tu nombre de usuario en el foro
 
--   **E-mail public** : Su correo electrónico para recibir cualquier
+-   **Correo público** : Su correo electrónico para recibir cualquier
     comunicaciones de nosotros
 
 -   **Cuenta Paypal** : El correo electrónico de su cuenta Paypal (solo usado
