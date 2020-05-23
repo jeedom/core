@@ -12,12 +12,12 @@ Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwend
 
 Oben rechts haben Sie :
 
-- **Cron-System deaktivieren** : eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
+- **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
 - **Cool** : Aktualisiert die Aufgabentabelle.
 - **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
 - **Speichern** : Speichern Sie Ihre Änderungen.
 
-Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern.).
+Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
 
 In dieser Tabelle finden wir :
 
@@ -26,23 +26,23 @@ In dieser Tabelle finden wir :
 - **PID** : Zeigt die aktuelle Prozess-ID an.
 - **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
 - **Single** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
-- **Klasse** : PHP-Klasse aufgerufen, um die Aufgabe auszuführen (kann leer sein).
+- **Klasse** : PHP-Klasse, die aufgerufen wird, um die Aufgabe auszuführen (kann leer sein).
 - **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
 - **Programmierung** : Programmierung der Aufgabe im CRON-Format.
 - **Zeitüberschreitung** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
 - **Letzter Start** : Datum des letzten Taskstarts.
 - **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
-- **Status** : Aktueller Status der Aufgabe (zur Erinnerung, eine Daemon-Aufgabe wird immer &quot;ausgeführt&quot;).
+- **Status** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
 
 - **Aktion** :
-    - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert).
+    - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
     - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status).
     - **Unterdrückung** : Aufgabe löschen.
 
 
 ## Registerkarte &quot;Listener&quot;
 
-Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei einem Ereignis aufgerufenen Funktionen zu sehen (Aktualisierung eines Befehls ...).
+Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei einem Ereignis aufgerufenen Funktionen anzuzeigen (Aktualisierung eines Befehls)...).
 
 ## Registerkarte Dämon
 

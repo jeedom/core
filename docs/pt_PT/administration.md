@@ -1,4 +1,4 @@
-# Configuração
+# Configuration
 **Configurações → Sistema → Configuração**
 
 É aqui que a maioria dos parâmetros de configuração é encontrada.
@@ -14,7 +14,7 @@ Nesta guia, encontramos informações gerais sobre o Jeedom :
 - **Sistema** : Tipo de hardware no qual o sistema em que o Jeedom é executado está instalado.
 - **Gerar traduções** : Gere traduções, cuidado, isso pode tornar seu sistema mais lento. Opção especialmente útil para desenvolvedores.
 - **Data e hora** : Escolha o seu fuso horário. Você pode clicar em **Sincronização Time Force** para restaurar a hora errada exibida no canto superior direito.
-- **Servidor de tempo opcional** : Indica qual servidor de horário deve ser usado se você clicar em **Sincronização Time Force** (a ser reservado para especialistas).
+- **Servidor de tempo opcional** : Indica qual servidor de horário deve ser usado se você clicar em **Sincronização Time Force** (ser reservado para especialistas).
 - **Ignorar verificar o tempo** : diz ao Jeedom para não verificar se o tempo é consistente entre si e o sistema em que está sendo executado. Pode ser útil, por exemplo, se você não conectar o Jeedom à Internet e ele não tiver uma bateria PSTN no equipamento usado.
 - **Sistema** : Indica o tipo de hardware no qual o Jeedom está instalado.
 - **Chave d'installation** : Chave de hardware do seu Jeedom no mercado. Se o seu Jeedom não aparecer na lista do seu Jeedom no mercado, é recomendável clicar no botão **Restabelecer**.
@@ -38,13 +38,13 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Sensor de brilho**   : Somente interface móvel, requer ativação *sensor extra genérico* no chrome, página chrome://flags.
 - **Ocultar imagens de fundo** : Permite ocultar as imagens de plano de fundo encontradas nos cenários, objetos, páginas de interações etc.
 
-### Azulejos
+### Tuiles
 
 - **Azulejos Pas horizontal** : Restringe a largura dos blocos a cada x pixels.
 - **Azulejos Pas vertical** : Restringe a altura dos blocos a cada x pixels.
 - **Azulejos Marge** : Espaço vertical e horizontal entre blocos, em pixels.
 
-### Personalização
+### Personnalisation
 
 - **Ativar** : Ative o uso das opções abaixo.
 - **Transparência** : Exibe blocos do painel e algum conteúdo com transparência. 1 : totalmente opaco, 0 : totalmente transparente.
@@ -55,15 +55,15 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ## Guia Redes
 
-É absolutamente necessário configurar corretamente esta parte importante do Jeedom, caso contrário, muitos plugins podem não funcionar. Existem duas maneiras de acessar o Jeedom : L'**Acesso interno** (da mesma rede local que Jeedom) e l'**Acesso externo** (de outra rede, em particular da Internet).
+É absolutamente necessário configurar corretamente esta parte importante do Jeedom, caso contrário, muitos plugins podem não funcionar. Existem duas maneiras de acessar o Jeedom : L'**Acesso interno** (da mesma rede local que Jeedom) e l'**Acesso externo** (de outra rede, especialmente da Internet).
 
 > **IMPORTANTE**
 >
 > Esta parte existe apenas para explicar à Jeedom seu ambiente :
-> alterar a porta ou o IP nesta guia não alterará a porta ou o IP da Jeedom, na verdade. Para isso, é necessário conectar-se no SSH e editar o arquivo / etc / network / interfaces para IP e os arquivos etc / apache2 / sites-available / default e etc / apache2 / sites-available / default\_ssl (para HTTPS ).
+> alterar a porta ou o IP nesta guia não alterará a porta ou o IP da Jeedom, na verdade. Para isso, é necessário conectar-se no SSH e editar o arquivo / etc / network / interfaces para IP e os arquivos etc / apache2 / sites-available / default e etc / apache2 / sites-available / default\_ssl (para HTTPS).
 > No entanto, no caso de manuseio inadequado do seu Jeedom, a equipe do Jeedom não pode ser responsabilizada e pode recusar qualquer solicitação de suporte.
 
-- **Acesso interno** : informações para ingressar na Jeedom a partir de equipamentos na mesma rede que Jeedom (LAN)
+- **Acesso interno** : informações para ingressar na Jeedom a partir de equipamentos na mesma rede que a Jeedom (LAN)
     - **OK / NOK** : indica se a configuração interna da rede está correta.
     - **Protocolo** : o protocolo a ser usado, geralmente HTTP.
     - **Morada URL  ou IP** : IP Jeedom para entrar.
@@ -86,7 +86,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 > **Dica**
 >
-> Se você estiver em HTTPS, a porta é 443 (por padrão) e em HTTP a porta é 80 (por padrão). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
+> Se você estiver em HTTPS, a porta é 443 (padrão) e em HTTP, a porta é 80 (padrão)). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
 
 > **Dica**
 >
@@ -95,30 +95,30 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Gestão avancée** : Esta parte pode não aparecer, dependendo da compatibilidade com o seu hardware.
     Você encontrará a lista de suas interfaces de rede. Você pode dizer ao Jeedom para não monitorar a rede clicando em **desativar o gerenciamento de rede Jeedom** (verifique se o Jeedom não está conectado a nenhuma rede). Você também pode especificar o intervalo de ip local no formato 192.168.1.* (para ser usado apenas em instalações do tipo docker).
 - **Mercado de proxy** : permite acesso remoto ao seu Jeedom sem a necessidade de um DNS, um IP fixo ou abrir as portas da sua caixa da Internet.
-    - **Usando o DNS Jeedom** : ativar o DNS Jeedom (observe que isso requer pelo menos um service pack).
+    - **Usando o DNS Jeedom** : ativa o DNS Jeedom (observe que isso requer pelo menos um service pack).
     - **Status de DNS** : Status HTTP DNS.
     - **Gestão** : permite parar e reiniciar o serviço DNS Jeedom.
 
 > **IMPORTANTE**
 >
-> Se você não conseguir que o DNS Jeedom funcione, verifique a configuração do firewall e do filtro dos pais da sua caixa da Internet (na caixa de entrada você precisa, por exemplo, do firewall em nível médio).
-- **Sessões vida (tempo)** : vida útil das sessões PHP, não é recomendável tocar nesse parâmetro.
+> Se você não conseguir que o DNS Jeedom funcione, verifique a configuração do firewall e do filtro dos pais da sua caixa da Internet (na caixa viva você precisa, por exemplo, do firewall em nível médio).
+- **Duração das sessões (hora)** : vida útil das sessões PHP, não é recomendável tocar nesse parâmetro.
 
 ## Guia Logs
 
-### Cronograma
+### Timeline
 
-- **Nomebre maximum d'évènements** : Define o número máximo de eventos a serem exibidos na linha do tempo.
+- **O número máximo de eventos** : Define o número máximo de eventos a serem exibidos na linha do tempo.
 - **Excluir todos os eventos** : Esvaziar a linha do tempo de todos os seus eventos registrados.
 
-### Mensagens
+### Messages
 
 - **Adicione uma mensagem para cada erro nos logs** : se um plug-in ou Jeedom grava uma mensagem de erro em um log, o Jeedom adiciona automaticamente uma mensagem no centro de mensagens (pelo menos você tem certeza de que não a perdeu).
 - **Ação na mensagem** : Permite que você execute uma ação ao adicionar uma mensagem ao centro de mensagens. Você tem 2 tags para essas ações :
         - #subject# : mensagem em questão.
         - #plugin# : plugin que acionou a mensagem.
 
-### Notificações
+### Alertes
 
 - **Adicione uma mensagem a cada tempo limite** : Adicione uma mensagem no centro de mensagens se um dispositivo cair **Tempo limite**.
 - **Ordem de tempo limite** : Comando de tipo **Mensagem** para ser usado se um equipamento estiver em **Tempo limite**.
@@ -131,11 +131,11 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Adicione uma mensagem a cada Perigo** : Adicione uma mensagem no centro de mensagens se um pedido entrar em alerta **Perigo**.
 - **Comando sobre Perigo** : Comando de tipo **Mensagem** usar se um pedido entrar em alerta **Perigo**.
 
-### Toras
+### Logs
 
 - **Log Motor** : Permite alterar o mecanismo de log para, por exemplo, enviá-los para um daemon syslog (d).
 - **Logs de formato** : Formato de log a ser usado (Cuidado : isso não afeta os logs do daemon).
-- **Nomebre de lignes maximum dans un fichier de log** : Define o número máximo de linhas em um arquivo de log. Recomenda-se não tocar nesse valor, pois um valor muito grande pode preencher o sistema de arquivos e / ou tornar o Jeedom incapaz de exibir o log.
+- **O número máximo de linhas em um arquivo de log** : Define o número máximo de linhas em um arquivo de log. Recomenda-se não tocar nesse valor, pois um valor muito grande pode preencher o sistema de arquivos e / ou tornar o Jeedom incapaz de exibir o log.
 - **Nível de log padrão** : Quando você seleciona "Padrão", para o nível de um log no Jeedom, isso será usado.
 
 Abaixo, você encontrará uma tabela para gerenciar com precisão o nível de log de elementos essenciais do Jeedom, bem como o de plugins.
@@ -154,14 +154,14 @@ Adicionar resumos de objetos. Essas informações são exibidas no canto superio
 - **Unidade** : Unidade de resumo.
 - **Método de contagem** : Se você contar dados binários, terá que colocar esse valor em binário, por exemplo, se contar o número de luzes acesas, mas apenas o valor do dimmer (0 a 100), precisará colocar binários, como o que Jeedom considerou se o valor for maior que 1, a lâmpada estará acesa.
 - **Mostrar se o valor é 0** : Marque esta caixa para exibir o valor, mesmo quando for 0.
-- **Lier à un virtuel** : Lança a criação de pedidos virtuais que têm como valor aqueles do resumo.
+- **Link para um virtual** : Lança a criação de pedidos virtuais que têm como valor aqueles do resumo.
 - **Excluir resumo** : O último botão, na extrema direita, exclui o resumo da linha.
 
 ## Guia Equipamento
 
-### Instalações
+### Equipements
 
-- **Nomebre d'échecs avant désactivation de l'équipement** : Número de falhas de comunicação com o equipamento antes da desativação do equipamento (uma mensagem avisará se isso acontecer).
+- **Falha Contagem off equipamentos** : Número de falhas de comunicação com o equipamento antes da desativação do equipamento (uma mensagem avisará se isso acontecer).
 - **Limiares da bateria** : Permite gerenciar os limites de alerta global nas pilhas.
 
 Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você obtém gráficos representando seu uso. Essa guia permite definir parâmetros globais para o log de comandos.
@@ -170,9 +170,9 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 
 - **Mostrar estatísticas sobre os widgets** : Ver estatísticas sobre widgets. O widget deve ser compatível, como é o caso da maioria. O comando também deve ser do tipo numérico.
 - **Período de cálculo para min, max, média (em horas)** : Período de cálculo estatístico (24h por padrão). Não é possível demorar menos de uma hora.
-- **Período de cálculo para a tendência (em horas)** : Período de cálculo de tendência (2h por padrão). Não é possível demorar menos de uma hora.
-- **Atraso antes de arquivamento (em horas)** : Indica o atraso antes do Jeedom arquivar dados (24 horas por padrão). Ou seja, os dados históricos devem ter mais de 24 horas para serem arquivados (como lembrete, o arquivamento terá uma média ou captará o máximo ou o mínimo dos dados durante um período que corresponde ao tamanho dos pacotes ).
-- **Arquivo por pacote (horas)** : Este parâmetro fornece o tamanho dos pacotes (1 hora por padrão). Isso significa, por exemplo, que o Jeedom levará períodos de 1 hora, em média, e armazenará o novo valor calculado excluindo os valores médios.
+- **Período de cálculo da tendência (em horas)** : Período de cálculo de tendência (2h por padrão). Não é possível demorar menos de uma hora.
+- **Atraso antes do arquivamento (em horas)** : Indica o atraso antes do Jeedom arquivar dados (24h por padrão). Isso significa que os dados históricos devem ter mais de 24 horas para serem arquivados (como lembrete, o arquivamento terá uma média ou captará o máximo ou o mínimo dos dados durante um período que corresponde ao tamanho dos pacotes).
+- **Arquivar por pacote a partir de (em horas)** : Este parâmetro fornece o tamanho do pacote (1 hora por padrão). Isso significa, por exemplo, que o Jeedom levará períodos de 1 hora, em média, e armazenará o novo valor calculado excluindo os valores médios.
 - **Limite de cálculo de tendência baixo** : Este valor indica o valor a partir do qual Jeedom indica que a tendência é descendente. Deve ser negativo (padrão -0,1).
 - **Cálculo do limiar acima da tendência** : A mesma coisa para a ascensão.
 - **Gráficos padrão de exibição Período** : Período usado por padrão quando você deseja exibir o histórico de um pedido. Quanto menor o período, mais rápido o Jeedom exibirá o gráfico solicitado.
@@ -180,9 +180,9 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 > **NOTA**
 >
 > O primeiro parâmetro **Mostrar estatísticas sobre os widgets** é possível, mas desativado por padrão, pois aumenta significativamente o tempo de exibição do painel. Se você ativar esta opção, por padrão, o Jeedom confiará nos dados das últimas 24 horas para calcular essas estatísticas.
-> O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para detalhes).
+> O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para o detalhe).
 
-### Empurrão
+### Push
 
 - **URL  de push globale** : permite adicionar um URL para chamar no caso de uma atualização do pedido. Você pode usar as seguintes tags :
 **\#value\#** para o valor do pedido, **\#cmd\_name\#** para o nome do comando,
@@ -194,14 +194,14 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 
 Configurar a geração e gerenciamento de relatórios
 
-- **Tempo de espera após geração da página (em ms)** : Tempo de espera após carregar o relatório para tirar a "foto", para alterar se o seu relatório estiver incompleto, por exemplo.
-- **Limpe relatórios mais velhos (dias)** : Define o número de dias antes de excluir um relatório (os relatórios ocupam um pouco de espaço, portanto, tome cuidado para não colocar muita conservação).
+- **Tempo limite após a geração da página (em ms)** : Tempo de espera após carregar o relatório para tirar a "foto", para alterar se o seu relatório estiver incompleto, por exemplo.
+- **Limpar relatórios mais antigos de (dias)** : Define o número de dias antes de excluir um relatório (os relatórios ocupam um pouco de espaço, portanto, tenha cuidado para não colocar muita conservação).
 
 ## Guia Links
 
 Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as relações entre objetos, equipamentos, objetos, etc.
 
-- **Profundidade para cenários** : Permite definir, ao exibir um gráfico de links de um cenário, o número máximo de elementos a serem exibidos (quanto mais elementos houver, mais o gráfico será lento para gerar e mais difícil será a leitura ).
+- **Profundidade para cenários** : Permite definir, ao exibir um gráfico de links de um cenário, o número máximo de elementos a serem exibidos (quanto mais elementos houver, mais lento será o gráfico para gerar e mais difícil será a leitura).
 - **Profundidade para objetos** : O mesmo para objetos.
 - **Profundidade de equipamentos** : O mesmo para o equipamento.
 - **Profundidade para encomendas** : Mesmo para pedidos.
@@ -244,7 +244,7 @@ Aqui você tem três parâmetros :
         - *Jeedom* : Temperatura 23.6 ° C, Temperatura 27.2 ° C
 -   Interações de tipo **Avise-me** permita que a Jeedom avise se um pedido excede / cai ou vale algum valor.
     - *Você* : Notifique-me se a temperatura da sala exceder 25 ° C ?
-    - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
+    - *Jeedom* : Ok (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
 > **NOTA**
 >
@@ -259,32 +259,32 @@ Aqui estão as diferentes opções disponíveis :
 - **Ativar les interactions "Avise-me"** : Marque para ativar interações de tipo **Avise-me**.
 - **Resposta "Diga-me" se a frase começar com** : Se a frase começar com esta (s) palavra (s), o Jeedom procurará fazer uma interação do tipo **Avise-me** (você pode colocar várias palavras separadas por **;** ).
 - **Ordem de devolução padrão** : Comando de retorno padrão para interação de tipo **Avise-me** (usado, em particular, se você programou o alerta pela interface móvel)
-- **Sinônimo de objetos** : Lista de sinônimos para objetos (ex : rdc|térreo|subterrâneo|banheiro baixo|banheiro).
+- **Sinônimo de objetos** : Lista de sinônimos para objetos (ex : rdc|térreo|subterrâneo|banheiro baixo|Casa de banho).
 - **Sinônimo de equipamento** : Lista de sinônimos para equipment.
 - **Sinônimo de pedidos** : Lista de sinônimos para comandos.
 - **Sinônimo de resumos** : Lista de sinônimos para resumos.
 - **Sinônimo máximo controle deslizante** : Sinônimo para colocar um comando do tipo slider ao máximo (ex abre para abre o obturador do quarto ⇒ obturador do quarto a 100%).
-- **Sinônimo controle deslizante Mínimo** : Sinônimo de como colocar um comando do tipo slider no mínimo (ex fecha para fechar a porta do quarto ⇒ porta do quarto em 0%).
+- **Sinônimo controle deslizante Mínimo** : Sinônimo para colocar um comando do tipo slider no mínimo (ex fecha para fechar a persiana do quarto ⇒ persiana da sala a 0%).
 
 ## Guia Segurança
 
 ### LDAP
 
-- **Ativar l'authentification LDAP** : permite autenticação através de um AD (LDAP).
+- **Ativar l'authentification LDAP** : habilitar a autenticação por meio de um AD (LDAP).
 - **Anfitrião** : servidor que hospeda o AD.
 - **Domínio** : domínio do seu anúncio.
 - **DN base** : Base DN do seu AD.
 - **Nome d'utilisateur** : nome de usuário para o Jeedom para entrar no AD.
 - **Senha** : senha para o Jeedom se conectar ao AD.
 - **Usuário pesquisar Campos** : campos de pesquisa de login do usuário. Geralmente uid para LDAP, SamAccountName para Windows AD.
-- **Filtro do administrador (opcional)** : Filtro de administradores do AD (por exemplo, gerenciamento de grupo)
+- **Filtro de administradores (opcional)** : os administradores filtram no AD (para gerenciamento de grupo, por exemplo)
 - **Filtro de usuário (opcional)** : filtro de usuário no AD (para gerenciamento de grupo, por exemplo)
-- **Filtro de usuário limitado (opcional)** : filtrar usuários limitados no AD (para gerenciamento de grupo, por exemplo)
+- **Filtro de usuário limitado (opcional)** : filtrar usuários limitados no AD (para gerenciamento de grupos, por exemplo)
 - **Permitir REMOTE\_USER** : Ative REMOTE\_USER (usado no SSO, por exemplo).
 
-### Logar
+### Connexion
 
-- **Nomebre d'échecs tolérés** : define o número de tentativas sucessivas permitidas antes de banir o IP
+- **Número de falhas tolerada** : define o número de tentativas sucessivas permitidas antes de banir o IP
 - **Tempo máximo entre falhas (em segundos)** : tempo máximo para 2 tentativas serem consideradas sucessivas
 - **Duração do banimento (em segundos), -1 para o infinito** : Tempo de proibição de IP
 - **IP "branco"** : lista de IPs que nunca podem ser banidos
@@ -304,7 +304,7 @@ A lista de IPs banidos está na parte inferior desta página. Você encontrará 
 
 Os repositórios são espaços de armazenamento (e serviço) para poder mover backups, recuperar plugins, recuperar o núcleo do Jeedom, etc.
 
-### Ficheiro
+### Fichier
 
 Depósito usado para ativar o envio de plugins por arquivos.
 
@@ -317,14 +317,14 @@ Depósito usado para conectar o Jeedom ao Github.
 - **Nome du dépôt pour le core Jeedom** : Nome do repositório para core.
 - **Indústria do núcleo Jeedom** : Ramificação do repositório principal.
 
-#### Mercado
+#### Market
 
 Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Morada** : Morada du Mercado.(https://www.Jeedom.com/market).
 - **Nome d'utilisateur** : Seu nome de usuário no mercado.
 - **Senha** : Sua senha do Market.
-- **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom com risco de travar entre eles).
+- **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom em risco de colidir entre eles).
 - **Senha da [nuvem de backup]** : Senha de backup na nuvem. IMPORTANTE, você não deve perdê-lo, não há como recuperá-lo. Sem ele, você não poderá mais restaurar seu Jeedom.
 - **[Nuvem de backup] Backup completo de frequência** : Frequência de backup completo na nuvem. Um backup completo é maior que um incremental (que envia apenas as diferenças). Recomenda-se fazer 1 por mês.
 
@@ -362,7 +362,7 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 >
 > O Jeedom deve ser o único a escrever nesta pasta e deve estar vazio por padrão (ou seja, antes da configuração e do envio do primeiro backup, a pasta não deve conter nenhum arquivo ou pasta).
 
-#### URL 
+#### URL
 
 - **URL  core Jeedom**
 - **URL  version core Jeedom**
@@ -377,7 +377,7 @@ Permite monitorar e agir no cache Jeedom :
     Observe que isso pode causar perda de dados !
 - **Limpe o cache do widget** : Limpe o cache dedicado aos widgets.
 - **Desativar cache do widget** : Marque a caixa para desativar o cache do widget.
-- **Tempo de pausa para o longo polling** : Frequência com que o Jeedom verifica eventos pendentes para os clientes (interface da web, aplicativo móvel, etc.). Quanto menor o tempo, mais rápida será a atualização da interface. Em troca, ela usa mais recursos e, portanto, pode retardar o Jeedom.
+- **Tempo de pausa para o longo polling** : Frequência com que o Jeedom verifica se há eventos pendentes para os clientes (interface da web, aplicativo móvel etc.)). Quanto menor o tempo, mais rápida será a atualização da interface. Em troca, ela usa mais recursos e, portanto, pode retardar o Jeedom.
 
 ## Guia API
 

@@ -3,7 +3,7 @@
 
 
 La **Centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
-Otras funciones de administración de extensiones están disponibles (eliminar, reinstalar, verificar, etc.).
+Hay otras funciones de administración de extensiones disponibles (eliminar, reinstalar, verificar, etc.).
 
 
 ## Funciones de la página
@@ -27,8 +27,8 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 - **Actualizar complementos** : Le permite incluir complementos en la actualización.
 - **Actualiza el núcleo** : Le permite incluir el núcleo Jeedom (el núcleo) en la actualización.
 
-- **Modo forzado** : Realice la actualización en modo forzado, es decir, incluso si hay un error, Jeedom continuará y no restaurará la copia de seguridad. (¡Este modo desactiva el guardado!).
-- **Actualización para volver a aplicar** : Le permite volver a aplicar una actualización. (NB : No todas las actualizaciones se pueden volver a aplicar)
+- **Modo forzado** : Realice la actualización en modo forzado, es decir, incluso si hay un error, Jeedom continuará y no restaurará la copia de seguridad. (Este modo deshabilita guardar !).
+- **Actualización para volver a aplicar** : Le permite volver a aplicar una actualización. (NB : No todas las actualizaciones se pueden volver a aplicar.)
 
 > **Importante**
 >
@@ -59,7 +59,7 @@ En cada línea, puede usar las siguientes funciones:
 
 > **Importante**
 >
-> Si el registro de cambios está vacío pero aún tiene una actualización, significa que la documentación se ha actualizado. Por lo tanto, no es necesario solicitar cambios al desarrollador, ya que no necesariamente hay. (a menudo es una actualización de la traducción, de la documentación).
+> Si el registro de cambios está vacío pero aún tiene una actualización, significa que la documentación se ha actualizado. Por lo tanto, no es necesario solicitar cambios al desarrollador, ya que no necesariamente hay. (a menudo es una actualización de la traducción, documentación).
 > El desarrollador del complemento también puede en algunos casos hacer correcciones de errores simples, que no necesariamente requieren actualizar el registro de cambios.
 
 > **Punta**

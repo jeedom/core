@@ -22,7 +22,7 @@ Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa Sw
 
 > **ATENCIÓN**
 >
-> Un modelo 3D es bastante impresionante (esto puede representar varios cientos de Mo). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
+> Un modelo 3D es bastante imponente (esto puede representar varios cientos de Mo). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
 
 Una vez que su modelo 3D ha sido exportado, debe crear un nuevo diseño 3D en Jeedom. Para eso, debe ingresar al modo de edición haciendo clic en el pequeño lápiz a la derecha, luego haga clic en +, asigne un nombre a este nuevo diseño 3D y luego valide.
 
@@ -65,11 +65,11 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 ### Luz
 
 - Estatus : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
-- Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad)
+- Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad))
 
-### Texto
+### Texte
 
-- Texto : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo)
+- Texto : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo))
 - Tamaño del texto
 - Color del texto
 - Transparencia de texto : de 0 (invisible) a 1 (visible)
@@ -88,7 +88,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 	- Activar : activa la rotación de la puerta / ventana al abrir
 	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
 - Translation
-	- Activar : activa la traducción al abrir (puerta corredera / tipo de ventana)
+	- Activar : activa la traducción al abrir (puerta corredera / tipo de ventana))
 	- Significado : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
 	- Repetición : de forma predeterminada, la Puerta / Ventana se mueve una vez que su dimensión en la dirección dada, pero puede aumentar este valor
 - Ocultar cuando la puerta / ventana está abierta
@@ -97,7 +97,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 	- Color abierto : Si marca, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : Si marca, el elemento tomará este color si la puerta / ventana está cerrada
 
-#### Solapa
+#### Volet
 
 - Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto

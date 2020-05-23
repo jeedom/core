@@ -1,4 +1,4 @@
-# Buscar
+# Recherche
 **Menú de análisis → Buscar**
 
 Jeedom ofrece un buscador interno.

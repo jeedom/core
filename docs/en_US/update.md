@@ -27,7 +27,7 @@ Once you click on it, you get these different options :
 - **Update plugins** : Allows you to include plugins in the update.
 - **Update the Core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
-- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving!).
+- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving !).
 - **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
 > **IMPORTANT**
@@ -59,7 +59,7 @@ On each line, you can use the following functions:
 
 > **IMPORTANT**
 >
-> If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, of the documentation).
+> If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
 
 > **Tip**

@@ -1,4 +1,4 @@
-# Copias de seguridad
+# Sauvegardes
 **Configuración → Sistema → Copias de seguridad**
 
 Jeedom ofrece la posibilidad de ser guardado y restaurado desde o desde diferentes ubicaciones.
@@ -7,9 +7,9 @@ Esta página permite la gestión de copias de seguridad, restaura.
 
 Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha está el estado en tiempo real de la acción en curso (copia de seguridad o restauración), si ha lanzado una.
 
-## Copias de seguridad
+## Sauvegardes
 
-- **Copias de seguridad** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, ver más abajo). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo.
+- **Copias de seguridad** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, consulte a continuación). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo.
 
 - **Ubicación de respaldo** : Indica la carpeta en la que Jeedom copia las copias de seguridad. Se recomienda no cambiarlo. Si está en un camino relativo, su origen es donde está instalado Jeedom.
 
@@ -25,7 +25,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Eliminar copia de seguridad** : Elimine la copia de seguridad seleccionada anteriormente, solo en la carpeta local.
 
-- **Enviar una copia de seguridad** : Le permite enviar un archivo ubicado en la computadora que está utilizando actualmente a la carpeta de copias de seguridad (por ejemplo, para restaurar un archivo recuperado previamente en un nuevo Jeedom o para reinstalarlo).
+- **Enviar una copia de seguridad** : Le permite enviar un archivo ubicado en la computadora que está utilizando actualmente a la carpeta de copias de seguridad (por ejemplo, restaurar un archivo recuperado previamente en un nuevo Jeedom o reinstalar).
 
 - **Descargar copia de seguridad** : Descargue el archivo de la copia de seguridad seleccionada anteriormente en su computadora.
 
@@ -72,4 +72,4 @@ La copia de seguridad en la nube le permite a Jeedom enviar sus copias de seguri
 
 # Frecuencia de respaldos automáticos
 
-Jeedom realiza una copia de seguridad automática todos los días a la misma hora. Es posible modificarlo, desde el &quot;Motor de tareas&quot; (la tarea se denomina **Jeedom backup**), pero no se recomienda. De hecho, se calcula en relación con la carga del mercado.
+Jeedom realiza una copia de seguridad automática todos los días a la misma hora. Es posible modificarlo, desde el &quot;Motor de tareas&quot; (la tarea se denomina **Jeedom backup**), pero no es recomendable. De hecho, se calcula en relación con la carga del mercado.

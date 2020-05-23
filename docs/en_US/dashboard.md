@@ -49,7 +49,7 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 
 - By clicking on an object summary, you filter to display only the equipment related to this object and which relate to this object summary.
 
-- A click on an information type command displays the history of the command (if it is historizedl).
+- A click on an information type order displays the history of the order (if it is historical).
 - A Ctrl + Click on an information type command displays the history of all (historical) commands for this tile.
 - One click on the information *time* of an action command displays the history of the command (if it is historized).
 
@@ -89,5 +89,5 @@ To the right of each object, an icon allows you to :
 >
 > - Click on the clock (menu bar) : Open the Timeline.
 > - Click on the name of the Jeedom (menu bar) : Opens Settings → System → Configuration.
-> - Click on ? (toolbar) : Opens help on the current page.
+> - Click on ? (Toolbar) : Opens help on the current page.
 > - Escape on a research field : Clear the field and cancel this search .

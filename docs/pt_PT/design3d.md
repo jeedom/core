@@ -22,7 +22,7 @@ Depois que seu modelo 3D for criado, ele deverá ser exportado no formato OBJ. S
 
 > **Atenção**
 >
-> Um modelo 3D é bastante impressionante (isso pode representar várias centenas de Mo). Quanto maior, maior o tempo de renderização no Jeedom.
+> Um modelo 3D é bastante imponente (isso pode representar várias centenas de Mo). Quanto maior, maior o tempo de renderização no Jeedom.
 
 Após a exportação do seu modelo 3D, você deve criar um novo design 3D no Jeedom. Para isso, é necessário entrar no modo de edição, clicando no pequeno lápis à direita, depois clique no +, dê um nome a este novo design 3D e valide.
 
@@ -65,9 +65,9 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 ### Luz
 
 - Estado : O controle do status da luz pode ser binário (0 ou 1), digital (0 a 100%) ou colorido
-- Poder : potência da lâmpada (observe que isso pode não refletir a realidade)
+- Poder : potência da lâmpada (observe que isso pode não refletir a realidade))
 
-### Texto
+### Texte
 
 - Texto : texto a ser exibido (você pode colocar comandos lá, o texto será atualizado automaticamente quando for alterado)
 - Tamanho do texto
@@ -88,7 +88,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 	- Ativar : ativa a rotação da porta / janela ao abrir
 	- Abertura : o melhor é testar para que ele corresponda à sua porta / janela
 - Translation
-	- Ativar : ativa a tradução ao abrir (porta deslizante / janela)
+	- Ativar : ativa a tradução ao abrir (porta deslizante / janela))
 	- Significado : direção na qual a porta / janela deve se mover (você tem para cima / baixo / direita / esquerda)
 	- Repetir : por padrão, a porta / janela se move uma vez sua dimensão na direção especificada, mas você pode aumentar esse valor
 - Ocultar quando a porta / janela está aberta
@@ -97,7 +97,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 	- Cor aberta : se assinalar, o elemento assumirá esta cor se a porta / janela estiver aberta
 	- Cor fechada : se marque o elemento terá esta cor se a porta / janela estiver fechada
 
-#### Aba
+#### Volet
 
 - Estado : status do obturador, 0 aberto outro valor fechado
 - Ocultar quando o obturador estiver aberto

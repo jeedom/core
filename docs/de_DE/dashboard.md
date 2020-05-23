@@ -1,4 +1,4 @@
-# Armaturenbrett
+# Dashboard
 **Home → Dashboard**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -13,7 +13,7 @@ Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst er
 - 3 : Browserzeit, Verknüpfung zur Zeitleiste.
 - 4 : Schaltfläche, um auf die Dokumentation der aktuellen Seite zuzugreifen.
 - 5 : Name Ihres Jeedom, Verknüpfung zur Konfiguration.
-- 6 : Bearbeitungsmodus (Kacheln neu anordnen / Größe ändern).
+- 6 : Bearbeitungsmodus (Kacheln neu anordnen / in der Größe ändern).
 - 7 : Nach Kategorien filtern.
 - 8 : Objekt : Symbol, Name und Zusammenfassung sowie deren Ausstattung.
 - 9 : Gerätekachel.
@@ -49,7 +49,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 - Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
 
-- Ein Klick auf einen Auftrag vom Informationstyp zeigt den Verlauf des Auftrags an (falls er historisch ist).
+- Ein Klick auf eine Bestellung vom Informationstyp zeigt den Verlauf der Bestellung an (sofern er historisch ist).
 - Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
 - Ein Klick auf die Informationen *Zeit* eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
 
@@ -64,7 +64,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 ## Bearbeitungsmodus
 
-Im Bearbeitungsmodus (*der Bleistift oben rechts*) können Sie die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
+Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
 
 Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten :
 
@@ -88,6 +88,6 @@ Rechts von jedem Objekt können Sie ein Symbol verwenden :
 > **Spitze**
 >
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-> - Klicken Sie auf den Namen des Jeedom (Menüleiste) : Öffnet Einstellungen → System → Konfiguration.
+> - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.
 > - Klicken Sie auf ? (Menüleiste) : Öffnet die Hilfe auf der aktuellen Seite.
 > - Flucht auf ein Forschungsfeld : Löschen Sie das Feld und brechen Sie diese Suche ab .

@@ -17,7 +17,7 @@ En la parte superior derecha, tienes :
 - **Añadir** : Agregar un trabajo cron manualmente.
 - **Guardar** : Guarda tus cambios.
 
-A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo tanto, se recomienda encarecidamente no modificar nunca la información en esta página).
+A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo que se recomienda no modificar nunca la información en esta página)).
 
 En esta tabla, encontramos :
 
@@ -31,18 +31,18 @@ En esta tabla, encontramos :
 - **Programación** : Programación de la tarea en formato CRON.
 - **Tiempo de espera** : Máximo tiempo de ejecución de tareas. Si la tarea es un demonio, se detendrá y reiniciará automáticamente al final del tiempo de espera.
 - **Último lanzamiento** : Fecha del último lanzamiento de la tarea.
-- **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes, otras tareas pueden estar en 0s).
-- **Estatus** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se &quot;ejecuta&quot;).
+- **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes porque otras tareas pueden estar en 0s).
+- **Estatus** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se "ejecuta"").
 
 - **Acción** :
     - **Detalles** : Ver el cron en detalle (como se almacena en la base).
-    - **Comenzar / Parar** : Iniciar o detener la tarea (según su estado).
+    - **Comenzar / Parar** : Iniciar o detener la tarea (dependiendo de su estado).
     - **Supresión** : Eliminar tarea.
 
 
 ## Pestaña Oyente
 
-Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un comando ...).
+Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un comando...).
 
 ## Pestaña demonio
 

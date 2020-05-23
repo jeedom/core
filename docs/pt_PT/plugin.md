@@ -8,7 +8,7 @@ Existe, portanto, uma lista de plugins em ordem alfabética e um link para o mer
 - Os plug-ins desativados ficam acinzentados.
 - Plugins que não estão na versão *Estável* temos um ponto laranja na frente do nome.
 
-Ao clicar em um plug-in, você acessa sua configuração. No topo, você encontra o nome do plug-in, depois entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
+Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, você encontra o nome do plug-in e, entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 
 > **IMPORTANTE**
 >
@@ -29,7 +29,7 @@ Ao clicar em um plug-in, você acessa sua configuração. No topo, você encontr
 
 ### Abaixo à esquerda, há uma área **Estado** com :
 
-- **Estado** : Permite ver o status do plug-in (ativo / inativo).
+- **Estado** : Permite ver o status do plug-in (ativo / inativo)).
 - **Versão** : A versão do plug-in instalado.
 - **Autor** : O autor do plugin.
 - **Ação** : Permite ativar ou desativar o plug-in.
@@ -57,8 +57,8 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 - **Nome** : Geralmente será local.
 - **Estado** : Status do daemon, OK ou NOK.
 - **Configuração** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
-- **(Re) iniciar** : Permite iniciar ou reiniciar o demônio.
-- **Parar** : Permite interromper o daemon (apenas no caso em que o gerenciamento automático está desativado).
+- **(Reiniciar** : Permite iniciar ou reiniciar o demônio.
+- **Parar** : Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado).
 - **Gerenciamento automático** : Habilita ou desabilita o gerenciamento automático (que permite que o Jeedom gerencie o próprio daemon e reinicie-o, se necessário. Salvo indicação em contrário, é recomendável deixar o gerenciamento automático ativo).
 - **último lançamento** : Data do último lançamento do daemon.
 
@@ -84,13 +84,13 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 >
 > Se o plug-in usa uma dessas funções, você pode proibi-lo especificamente desmarcando a caixa "ativar" que estará presente ao lado dele.
 
-### Painel
+### Panel
 
 Podemos encontrar uma seção Painel que habilitará ou desabilitará a exibição do painel no painel ou no celular, se o plug-in oferecer um.
 
 ## Instalação d'un plugin
 
-Para instalar um novo plugin, basta clicar no botão "Market" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
+Para instalar um novo plugin, basta clicar no botão "Mercado" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
 
 > **Dica**
 >
@@ -100,7 +100,7 @@ No topo da janela você tem filtros :
 - **Gratuito / Pago** : exibe apenas gratuito ou pago.
 - **Oficial / Recomendado** : exibe apenas plugins oficiais ou recomendados.
 - **Menu suspenso Categoria** : exibe apenas determinadas categorias de plugins.
-- **Pesquisa** : permite procurar um plugin (no nome ou na descrição dele).
+- **Pesquisa** : permite procurar um plugin (no nome ou na descrição dele)).
 - **Nome d'utilisateur** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
 
 > **Dica**
@@ -109,14 +109,14 @@ No topo da janela você tem filtros :
 
 Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. Esta folha fornece muitas informações sobre o plug-in, em particular :
 
-- Se for oficial / recomendado ou se for obsoleto (você realmente deve evitar instalar plug-ins obsoletos).
+- Se for oficial / recomendado ou se for obsoleto (você definitivamente deve evitar instalar plug-ins obsoletos).
 - 4 ações :
     - **Instale estável** : permite instalar o plugin em sua versão estável.
-    - **Instalar beta** : permite instalar o plug-in em sua versão beta (apenas para testadores beta).
-    - **Instalar pro** : permite instalar a versão pro (muito pouco usada).
+    - **Instalar beta** : permite instalar o plugin em sua versão beta (apenas para betatesters).
+    - **Instalar pro** : permite instalar a versão pro (muito pouco usado).
     - **Remover** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
 
-Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a última atualização, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
+Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
 
 > **IMPORTANTE**
 >

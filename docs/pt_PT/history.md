@@ -1,17 +1,17 @@
-# Histórico
+# Historique
 **Análise → História**
 
 Parte importante no software : a parte da historização, uma lembrança verdadeira. É possível no Jeedom registrar qualquer comando do tipo de informação (binário ou digital). Isso permitirá, por exemplo, registrar uma curva de temperatura, consumo ou abertura de porta, etc
 
-### Princípio
+### Principe
 
 Aqui é descrito o princípio de historicização de Jeedom. Você só precisa entender isso se estiver com problemas de histórico ou quiser alterar as configurações de histórico. As configurações padrão são boas na maioria dos casos.
 
-### Arquivamento
+### Archivage
 
 O arquivamento de dados permite que o Jeedom reduza a quantidade de dados armazenados na memória. Isso permite não usar muito espaço e não diminui a velocidade do sistema. De fato, se você mantiver todas as medidas, isso fará com que mais pontos sejam exibidos e, portanto, poderá aumentar consideravelmente os tempos para renderizar um gráfico. Se houver muitos pontos, pode até causar uma falha na exibição do gráfico.
 
-O arquivamento é uma tarefa que começa à noite e compacta os dados recuperados durante o dia. Por padrão, o Jeedom recupera todos os dados antigos de 2 horas e os transforma em pacotes de 1 hora (em média, no mínimo ou no máximo, dependendo das configurações). Portanto, aqui temos dois parâmetros, um para o tamanho do pacote e outro para saber quando fazê-lo (por padrão, são pacotes de 1 hora com dados com mais de 2 horas).
+O arquivamento é uma tarefa que começa à noite e compacta os dados recuperados durante o dia. Por padrão, o Jeedom recupera todos os dados antigos de 2 horas e faz pacotes de 1 hora (uma média, um mínimo ou um máximo, dependendo das configurações). Portanto, aqui temos dois parâmetros, um para o tamanho do pacote e outro para saber quando fazê-lo (por padrão, são pacotes de 1 hora com dados com mais de 2 horas)).
 
 > **Dica**
 >
@@ -26,7 +26,7 @@ O arquivamento é uma tarefa que começa à noite e compacta os dados recuperado
 Existem várias maneiras de acessar o histórico :
 
 - Clicando no comando desejado em um widget,
-- Ao ir para a página de histórico, que permite sobrepor diferentes curvas e combinar estilos (área, curva, barra),
+- Ao acessar a página de histórico, que permite sobrepor diferentes curvas e combinar estilos (área, curva, barra),
 - No celular, enquanto permanece pressionado no widget em questão,
 - Colocando uma área gráfica em uma visualização (veja abaixo).
 
@@ -52,14 +52,14 @@ Encontramos no canto superior direito o período de exibição (aqui na última 
 
 ### Gráfico em vistas e desenhos
 
-Você também pode exibir os gráficos nas visualizações (veremos aqui as opções de configuração e não como fazê-lo, para isso você precisa ir para a documentação das visualizações ou desenhos em função). Aqui estão as opções :
+Você também pode exibir os gráficos nas visualizações (veremos aqui as opções de configuração e não como fazê-lo, para isso, é necessário ir à documentação das visualizações ou desenhos em função). Aqui estão as opções :
 
 Depois que os dados são ativados, você pode escolher :
 - **Cor** : A cor da curva.
 - **Tipo** : O tipo de gráfico (área, linha ou coluna).
-- **Escala** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda).
+- **Escala** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
 - **Escada** : Exibe a curva como uma escada ou uma exibição contínua.
-- **Pilha** : Usado para empilhar os valores das curvas (veja o resultado abaixo).
+- **Pilha** : Empilhe os valores das curvas (veja abaixo o resultado).
 - **Mudança** : Exibe a diferença de valor do ponto anterior.
 
 ### Opção na página do histórico
@@ -70,7 +70,7 @@ A página de histórico fornece acesso a algumas opções adicionais
 
 Permite exibir uma curva de acordo com um cálculo em vários comandos (você pode fazer quase tudo, + - / \* valor absoluto ... consulte a documentação do PHP para determinadas funções).
 Ex :
-abs (*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço vital]] [Higrometria \] \ [Temperatura \]*)
+abs(*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço vital]] [Higrometria \] \ [Temperatura \]*)
 
 Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite salvá-las para facilitar a exibição novamente.
 
@@ -115,7 +115,7 @@ Depois de ativar o rastreamento na linha do tempo dos comandos e cenários desej
 >
 > Você precisa aguardar novos eventos após ativar o rastreamento na linha do tempo antes de vê-los aparecer.
 
-### Visualizando
+### Affichage
 
 A linha do tempo exibe os eventos gravados, escalonados dia a dia verticalmente.
 

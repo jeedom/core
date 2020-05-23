@@ -1,4 +1,4 @@
-# Faq
+# FAQ
 **Settings → Version : Faq**
 
 ### Jeedom does it require a subscription ?
@@ -14,10 +14,10 @@ Jeedom has a mobile version suitable for use on mobile and tablet. There is also
 When you log in to Jeedom for the first time (and even afterwards if you haven&#39;t changed them), the default username and password are admin / admin. At the first connection, you are strongly recommended to modify these identifiers for more security.
 
 ### I can no longer connect to my Jeedom
-Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If despite everything you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
+Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If, despite everything, you still cannot connect you must use the password reset procedure (see in the tutorials / how to)
 
 ### I do not see all my equipment on the Dashboard
-Often this is due to the fact that the equipment is assigned to an object which is not the child or the object itself of the first object selected on the left in the tree (you can configure it in your profile).
+Often this is due to the fact that the equipment is assigned to an object which is not the son or the object itself of the first object selected on the left in the tree (you can configure this one in your profile).
 
 ### Jeedom interface has shortcuts ?
 Yes, the list of keyboard / mouse shortcuts is [here](shortcuts.md).
@@ -78,12 +78,12 @@ The webapp requires a smartphone supporting HTML5 and CSS3. It is therefore unfo
 ### What platforms can Jeedom run on ?
 For Jeedom to work, you need a linux platform with root rights or a docker type system. It therefore does not work on a pure android platform.
 
-### I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes)..." ?
+### I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes))..." ?
 This can be due to several things, :
 
 - Check that your Jeedom is still connected to the market (in the Jeedom administration page, updated part you have a test button).
 - Check that the market account has purchased the plugin in question.
-- Check that you have enough space on Jeedom (the health page will tell you).
+- Check that you have space on Jeedom (the health page will tell you).
 - Check that your version of Jeedom is compatible with the plugin.
 
 ### I have a blank page
@@ -128,7 +128,7 @@ Check if your file system is not corrupt, in SSH the command is : `` ''sudo dmes
 ### I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock'
 This is due to MySQL which stopped, it is not normal, the common cases are :
 
-- Lack of space on the file system (can be checked by making the command &quot;df -h&quot;, in SSH)
+- Lack of space on the file system (can be checked by making the command "df -h", in SSH)
 - File (s) corruption problem, which often happens after an unsafe shutdown of Jeedom (power failure)
 - Memory worries, the system lacks memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce Jeedom&#39;s consumption by deactivating plugins.
 
@@ -171,7 +171,7 @@ Jeedom can&#39;t find or can&#39;t ping the gateway. In general it happens if th
 ### I get the message &quot;Failed to back up the database. Check that mysqldump is present."
 It means that Jeedom cannot back up the database which can suggest a problem with database and filesystem corruption. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have:
 
-- a corrupt base table =&gt; there it is bad start we must see to try to repair and if it does not start from the last good backup (if you are on SD card it is the right time to change it)
+- a corrupt base table => there is a bad start we must see to try to repair and if it does not start from the last good backup (if you are on SD card it is the right time to change it)
 - not enough space on the filesystem =&gt; look at the health page this can tell you
 
 ### I have errors of type &quot;Class &#39;eqLogic&#39; not found&quot;, files seem to be missing or I have a blank page
@@ -196,7 +196,7 @@ yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache
 It is necessary :
 
 - restart Jeedom
-- go to the administration of it (notched wheel button at the top right then configuration in v3 or Setup -&gt; System -&gt; Configuration in v4)
+- go to the administration of it (notched wheel button at the top right then configuration in v3 or Setup -> System -> Configuration in v4)
 - go to the OS / DB tab
 - launch system administration
 - click on Dpkg configure

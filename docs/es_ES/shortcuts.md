@@ -6,10 +6,10 @@ Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de bús
 
 - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 - Haga clic en el nombre de Jeedom (barra de menú)  : Abre **Preferencias → Sistema → Configuración**.
-- Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual.
+- Haga clic en ?  (Barra de menú)  : Abre la ayuda en la página actual.
 - Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
 
-## Salpicadero
+## Dashboard
 En modo edición:
 	- Arrastra y suelta en los mosaicos para reorganizarlos.
 	- Cambiar el tamaño de los bordes del mosaico para cambiar su tamaño.
@@ -85,8 +85,8 @@ En un bloque de código :
 - Ctrl Shift E en un diseño : Entrar o salir del modo de edición.
 
 ## Análisis / resumen de domótica
-- Ctrl Haga clic en el icono *Abrir* (investigación) : Abra todos los objetos y equipos.
-- Ctrl Haga clic en el icono *Cerca* (investigación) : Cierra todos los objetos y equipos.
+- Ctrl Haga clic en el icono *Abrir* (recherche) : Abra todos los objetos y equipos.
+- Ctrl Haga clic en el icono *Cerca* (recherche) : Cierra todos los objetos y equipos.
 
 ## Análisis / Historia
 Si se muestran varias curvas :

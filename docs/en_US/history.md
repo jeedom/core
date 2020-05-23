@@ -1,17 +1,17 @@
-# Historical
+# Historique
 **Analysis → History**
 
 Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc
 
-### Principle
+### Principe
 
 Here is described the principle of historicization of Jeedom. You only need to understand this if you are having historization issues or want to change the historization settings. Default settings are fine in most cases.
 
-### Archiving
+### Archivage
 
 Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
-Archiving is a task that starts at night and compacts the data recovered during the day. By default Jeedom retrieves all older data of 2 hours and makes 1 hour packets of it (either an average, a minimum or a maximum depending on the settings). So here we have two parameters, one for packet size and another for knowing when to do it (by default, these are 1 hour packets with data that are more than 2 hours old).
+Archiving is a task that starts at night and compacts the data recovered during the day. By default Jeedom retrieves all older data of 2 hours and makes 1 hour packets of it (either an average, a minimum or a maximum depending on the settings). So here we have two parameters, one for packet size and another to know when to do it (by default, these are 1 hour packets with data that are more than 2 hours old).
 
 > **Tip**
 >
@@ -56,10 +56,10 @@ You can also display the graphs on the views (we will see here the configuration
 
 Once a data is activated, you can choose :
 - **Color** : The color of the curve.
-- **Type** : The type of graph (area, row or column).
+- **Type** : The type of graph (area, line or column).
 - **Ladder** : Since you can put several curves (data) on the same graph, it is possible to distinguish the scales (right or left).
 - **Staircase** : Displays the curve as a staircase or a continuous display.
-- **Stack** : Used to stack the values of the curves (see below for the result).
+- **Stack** : Stack the values of the curves (see below for the result).
 - **Variation** : Displays the difference in value from the previous point.
 
 ### Option on the history page
@@ -70,7 +70,7 @@ The history page gives access to some additional options
 
 Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
 Ex :
-abs (*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)
+abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)
 
 You also have access to a management of calculation formulas which allows you to save them for easier re-display.
 
@@ -115,7 +115,7 @@ Once you have activated tracking in the timeline of the commands and scenarios y
 >
 > You have to wait for new events after activating the tracking on the timeline before seeing them appear.
 
-### Viewing
+### Affichage
 
 The timeline displays the recorded events, staggered day by day vertically.
 

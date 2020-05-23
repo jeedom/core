@@ -1,4 +1,4 @@
-# Diseño
+# Design
 **Inicio → Diseño**
 
 Esta página le permite configurar la visualización de toda su domótica de una manera muy fina.
@@ -26,7 +26,7 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Agregar equipo** : Agrega equipo.
 - **Añadir pedido** : Agregar un pedido.
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
-- **Agregar área** : Le permite agregar un área transparente en la que se puede hacer clic que puede ejecutar una serie de acciones al hacer clic (dependiendo o no del estado de otro comando).
+- **Agregar área** : Permite agregar una zona transparente en la que se puede hacer clic que podrá ejecutar una serie de acciones durante un clic (dependiendo o no del estado de otro comando)).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
 - **Viendo**
     - **No** : No muestra ninguna cuadrícula.
@@ -40,7 +40,7 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Crea un diseño** : Le permite agregar un nuevo diseño.
 - **Duplicado le design** : Duplica el diseño actual.
 - **Configura el diseño** : Acceso a la configuración del diseño.
-- **Guardar** : Guarde el diseño (tenga en cuenta que también hay copias de seguridad automáticas durante ciertas acciones).
+- **Guardar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
 
 > **Importante**
 >
@@ -77,19 +77,19 @@ Encontrado aquí :
 - **Ancho (px)** : Ancho del elemento en píxeles.
 - **Altura (px)** : Altura del elemento en píxeles.
 
-### Remove
+### Supprimer
 
 Eliminar elemento
 
-### Duplicado
+### Dupliquer
 
 Le permite duplicar el elemento
 
-### Cerradura
+### Verrouiller
 
 Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tamaño.
 
-## Gráfico
+## Graphique
 
 ### Configuraciones de pantalla específicas
 
@@ -111,11 +111,11 @@ Le permite elegir los comandos para graficar.
 
 - **Icono** : Icono que se muestra delante del nombre del diseño.
 - **Color de fondo** : le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
-- **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No)..
+- **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No)..
 - **Alrededor de los ángulos** : permite redondear los ángulos (no olvides poner%, ex 50%).
 - **Frontera** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 - **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
-- **Alineación de texto** : permite elegir la alineación del texto (izquierda / derecha / centrado).
+- **Alineación de texto** : le permite elegir la alineación del texto (izquierda / derecha / centrado).
 - **Grasa** : texto en negrita.
 - **Texto** : Texto en código HTML que estará en el elemento.
 
@@ -127,21 +127,21 @@ Le permite elegir los comandos para graficar.
 
 *No hay configuraciones de visualización específicas*
 
-## Enlace
+## Lien
 
 ### Configuraciones de pantalla específicas
 
 - **Apellido** : Nombre del enlace (texto mostrado).
 - **Enlace** : Enlace al diseño o vista en cuestión.
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
-- **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
+- **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No).
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Permite redondear los ángulos, no olvides poner el%.
 - **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
-- **Alineación de texto** : Permite elegir la alineación del texto (izquierda / derecha / centrado).
+- **Alineación de texto** : Le permite elegir la alineación del texto (izquierda / derecha / centrado).
 - **Grasa** : Texto en negrita.
 
-## Equipo
+## Equipement
 
 ### Configuraciones de pantalla específicas
 
@@ -155,7 +155,7 @@ Le permite elegir los comandos para graficar.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
 - **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
 
-### Comandos
+### Commandes
 
 La lista de comandos presentes en el equipo le permite, para cada comando,:
 - Ocultar nombre del comando.
@@ -166,7 +166,7 @@ La lista de comandos presentes en el equipo le permite, para cada comando,:
 
 Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-## Orden
+## Commande
 
 *No hay configuraciones de visualización específicas*
 
@@ -174,15 +174,15 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 Muestra la ventana de configuración avanzada del equipo (ver documentación **Resumen de domótica**).
 
-## Imagen/Cámara
+## Imagen / Cámara
 
 ### Configuraciones de pantalla específicas
 
 - **Visualización** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
-- **Imagen** : Le permite enviar la imagen en cuestión (si ha elegido una imagen).
+- **Imagen** : Enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
-## Zona
+## Zone
 
 ### Configuraciones de pantalla específicas
 
@@ -196,7 +196,7 @@ En este modo, un clic en la zona realiza una o más acciones. Aquí solo debe in
 
 En este modo, Jeedom ejecutará las acciones de encendido o apagado dependiendo del estado del comando que usted indique. Ex : si el comando vale 0, entonces Jeedom ejecutará la (s) acción (es) activada (s) de lo contrario ejecutará la (s) acción (es) desactivada (s)
 
-- **Información binaria** : Comando que proporciona el estado que se debe verificar para decidir qué acción hacer (activar o desactivar).
+- **Información binaria** : Comando que proporciona el estado que se debe verificar para decidir qué acción hacer (activar o desactivar)).
 
 Solo tiene que poner las acciones a realizar para Activar y Desactivar.
 
@@ -207,7 +207,7 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Equipo** : Widget para mostrar al pasar el mouse o al hacer clic.
 - **Visualización au survol** : Si está marcado, muestra el widget al pasar el mouse.
 - **Visualización sur un clic** : Si está marcado, el widget se muestra al hacer clic.
-- **Posición** : Le permite elegir dónde aparecerá el widget (predeterminado abajo a la derecha).
+- **Posición** : Le permite elegir dónde aparecerá el widget (por defecto, abajo a la derecha).
 
 ## Resumen
 
@@ -215,13 +215,13 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 
 - **Enlace** : Le permite indicar el resumen a mostrar (General para el global, de lo contrario indique el asunto).
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
-- **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer el valor predeterminado en No).
+- **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No).
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Permite redondear los ángulos, no olvides poner el%.
 - **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Grasa** : Texto en negrita.
 
-## Preguntas frecuentes
+## FAQ
 
 >**Ya no puedo editar mi diseño**
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.

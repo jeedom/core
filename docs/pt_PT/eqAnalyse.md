@@ -24,14 +24,14 @@ Nesta guia, você verá em tempo real os módulos em alerta. Os alertas podem se
 
 - Tempo limite (configurado na guia de alertas definidos).
 - Bateria em aviso ou em perigo.
-- Comando de aviso ou perigo (configurável nos parâmetros avançados de comando).
+- Comando de aviso ou perigo (configurável em parâmetros de comando avançados).
 
 Outros tipos de alertas podem ser encontrados aqui.
 Cada alerta será representado pela cor do bloco (o nível de alerta) e um logotipo no canto superior esquerdo (o tipo de alerta).
 
 > **Dica**
 >
-> Aqui serão exibidos todos os módulos em alerta, mesmo aqueles configurados em "não visível"". No entanto, é interessante notar que, se o módulo estiver "visível", o alerta também estará visível no painel (no objeto em questão).
+> Aqui serão exibidos todos os módulos em alerta, mesmo aqueles configurados em "não visível"". No entanto, é interessante notar que, se o módulo estiver "visível", o alerta também será visível no painel (no objeto em questão)).
 
 ## Guia Ações definidas
 

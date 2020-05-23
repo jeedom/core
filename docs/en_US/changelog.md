@@ -18,15 +18,15 @@
 - **Update Center** : If you open another browser during an update, the progress bar and the log indicate it.
 - **Update Center** : If the update finishes correctly, display of a window asking to reload the page.
 - **Core updates** : Implementation of a system for cleaning up old unused Core files.
-- **Scenario** : Adding a search engine (on the left of Execute button).
-- **Scenario** : Addition of the age function (gives the age of the value of the command).
-- **Scenario** : *stateChanges ()* now accept the period *Today* (from midnight to now), *yesterday* and *day* (for 1 day).
-- **Scenario** : Functions *statistics (), average (), max (), min (), trend (), duration ()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
-- **Scenario** : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commands).
+- **Scenario** : Adding a search engine (to the left of the Run button).
+- **Scenario** : Addition of the age function (gives the age of the value of the order).
+- **Scenario** : *stateChanges()* now accept the period *Today* (midnight to now), *yesterday* and *day* (for 1 day).
+- **Scenario** : Functions *statistics (), average (), max (), min (), trend (), duration()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
+- **Scenario** : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commandes).
 - **Scenario** : Viewing a *Warning* if no trigger is configured.
 - **Scenario** : Bugfix of select on block copy / paste.
 - **Scenario** : Copy / paste of block between different scenarios.
-- **Scenario** : The undo/redo functions are now available in the form of buttons (next to the block creation button).
+- **Scenario** : The undo / redo functions are now available as buttons (next to the block creation button).
 - **Scenario variables window** : Alphabetical sort at opening.
 - **Scenario variables window** : The scenarios used by the variables are now clickable, with opening of the search on the variable.
 - **Analysis / History** : Ctrl Click on a legend to display only this history, Alt Click to display them all.

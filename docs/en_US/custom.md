@@ -7,9 +7,9 @@ You can add your own JS functions, and add or modify CSS classes.
 
 The two parts, JS and CSS, are differentiated according to the Desktop or Mobile display.
 
-## Resources
+## Ressources
 
-[Css: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 

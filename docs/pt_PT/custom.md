@@ -7,7 +7,7 @@ Você pode adicionar suas próprias funções JS e adicionar ou modificar classe
 
 As duas partes, JS e CSS, são diferenciadas de acordo com a exibição para computador ou celular.
 
-## Recursos
+## Ressources
 
 [CSS: Folhas de estilo em cascata](https://developer.mozilla.org/en-US/docs/Web/CSS)
 

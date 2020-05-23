@@ -1,4 +1,4 @@
-# Salpicadero
+# Dashboard
 **Inicio → Tablero**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -64,7 +64,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 ## Modo de edición
 
-En modo de edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Panel de control.
+En modo edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
 
 También puede editar el diseño interno de los controles en el mosaico :
 
@@ -89,5 +89,5 @@ A la derecha de cada objeto, un icono le permite :
 >
 > - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 > - Haga clic en el nombre de Jeedom (barra de menú) : Abre Configuración → Sistema → Configuración.
-> - Haga clic en ? (barra de menú) : Abre la ayuda en la página actual.
+> - Haga clic en ? (Barra de menú) : Abre la ayuda en la página actual.
 > - Escapar en un campo de investigación : Borrar el campo y cancelar esta búsqueda .

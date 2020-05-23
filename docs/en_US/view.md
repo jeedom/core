@@ -1,4 +1,4 @@
-# Views
+# Vues
 **Home → View**
 
 Views allow you to create a custom view.
@@ -8,9 +8,9 @@ It is not as powerful as the designs but it allows in a few minutes to have a mo
 >
 > You can choose the default view in your profile when clicking on the view menu.
 
-## Principle
+## Principe
 
-We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the command widgets).
+We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the widgets of commands).
 
 On this page, there is a button at the top left to show or hide the list of views as well as the button to add one (Jeedom will ask for its name and send you to the edit page) :
 
@@ -57,7 +57,7 @@ Once the add widget button is pressed, you get a window that will ask you for th
 
 A graphics type area allows you to add graphics to your view, it has the following options :
 
-- **Period** : Allows you to choose the graphics display period (30 min, 1 day, 1 week, 1 month, 1 year or all).
+- **Period** : Allows you to choose the display period of the graphics (30 min, 1 day, 1 week, 1 month, 1 year or all).
 - **Add curve** : Add / edit graphics.
 
 When you press the &quot;Add curve&quot; button Jeedom displays the list of historical commands and you can choose the one (s) to add, once done you have access to the following options :
@@ -66,7 +66,7 @@ When you press the &quot;Add curve&quot; button Jeedom displays the list of hist
 - **Last name** : Name of the command to draw.
 - **Color** : Color of the curve.
 - **Type** : Type of curve.
-- **Group** : Allows you to group data (maximum type per day).
+- **Group** : Allows grouping of data (maximum type per day).
 - **Ladder** : Scale (right or left) of the curve.
 - **Staircase** : Displays the staircase curve.
 - **Stack** : Stacks the curve with the other type curves.
@@ -91,6 +91,6 @@ Once you have added your rows / columns you can add information in the boxes :
 
 - **text** : just text to write.
 - **l'opération à mener** : any html code (javascript possible but strongly discouraged).
-- **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
+- **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget of the command).
 
 

@@ -5,14 +5,14 @@ La página *Síntesis* le ofrece una síntesis rápida y visual de sus objetos y
 
 Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
-## Viendo
+## Affichage
 
 En cada objeto, se muestran su imagen de fondo y sus resúmenes :
 
 Dependiendo del tipo de resumen (clave), visible en **Preferencias → Sistema → Configuración / Resúmenes** :
 - Arriba a la izquierda : El nombre del objeto.
 - Arriba a la derecha : La temperatura (*Temperatura*) y humedad (*humedad*).
-- Bajo el título : Alerta (*seguridad*) y Movimiento (*Movimiento*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
+- Bajo el título : Alerta (*seguridad*) y movimiento (*Movimiento*), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
 - Abajo : Todos los otros resúmenes de materias.
 
 La configuración de la visualización del objeto se realiza en **Herramientas → Objetos** :
@@ -30,7 +30,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 >
 > Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto.
 
-## Funciones
+## Fonctions
 
 Para cada objeto, puede hacer clic :
 - En el título del objeto para mostrar el Panel de este objeto con sus objetos secundarios (también accesible desde el menú *Inicio → Panel de control → Objeto*).

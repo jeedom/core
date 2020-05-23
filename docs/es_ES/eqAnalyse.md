@@ -24,14 +24,14 @@ En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden
 
 - Tiempo de espera (configurado en la pestaña de alertas definidas).
 - Batería en advertencia o en peligro.
-- Comando de advertencia o peligro (configurable en los parámetros del comando avanzado).
+- Comando de advertencia o peligro (configurable en parámetros de comando avanzados).
 
 Otros tipos de alertas se pueden encontrar aquí.
 Cada alerta estará representada por el color del mosaico (el nivel de alerta) y un logotipo en la parte superior izquierda (el tipo de alerta).
 
 > **Punta**
 >
-> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
+> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está "visible", la alerta también estará visible en el tablero (en el objeto en cuestión)).
 
 ## Pestaña Acciones definidas
 

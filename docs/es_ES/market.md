@@ -22,16 +22,16 @@ Aquí es donde podrá ajustar diferentes parámetros de su perfil :
 Para desarrolladores :
 - **Apellido d'utilisateur sur le forum** : Tu nombre de usuario en el foro.
 - **E-mail public** : Su correo electrónico para recibir nuestras comunicaciones.
-- **Cuenta Paypal** : El correo electrónico de su cuenta de Paypal (solo se usa para pagar a los desarrolladores).
+- **Cuenta Paypal** : El correo electrónico de su cuenta Paypal (solo se usa para pagar a los desarrolladores).
 
 Para los profesionales :
 - **Cuenta de correo electrónico del instalador** : Su correo electrónico de contacto profesional.
 - **Soporte de solicitudes de destinatario** : saber quién recibirá los correos electrónicos de soporte (cliente final, instalador o ambos).
     - **TOS**
-- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas bien porque lo atan).
+- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
 - **Revelador** : condiciones de uso para desarrolladores.
     - **Entradas**
-- **Apellidobre de tickets** : Número de boletos para el mes actual y su límite.
+- **Numero de entradas** : Número de boletos para el mes actual y su límite.
 - **Apoyo** : Botón para enviar una solicitud de soporte (también accesible mediante el signo de exclamación en la esquina superior derecha del Market o en su Jeedom).
     - **Acceso a betas**
 - **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
@@ -47,7 +47,7 @@ Para los profesionales :
     - **Jeedom** : Su nivel de paquete de servicio.
     - **Ingrese un número de paquete de servicio** : Le permite ingresar su número de paquete de servicio (se puede encontrar en el correo electrónico enviado por Jeedom durante su pedido).
 - **Clave de instalación**
-    - **Apellidobre de clefs d'installation** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
+    - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
 
 > **Punta**
 >
@@ -76,7 +76,7 @@ En esta pestaña puede consultar las copias de seguridad presentes en Market y d
 
 ## Mis SMS / llamadas
 
-En esta pestaña puede ver su saldo de SMS / Llamadas (se puede usar con el complemento del mercado telefónico). A continuación tiene las diferentes opciones para comprar saldo adicional.
+En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el complemento del mercado telefónico). A continuación tiene las diferentes opciones para comprar saldo adicional.
 
 ## Mis compras / promociones / donaciones
 

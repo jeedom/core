@@ -5,7 +5,7 @@ The page *Synthesis* offers you a quick and visual synthesis of your objects and
 
 You can configure it as the default page in **Settings → Preferences**, in desktop and / or mobile.
 
-## Viewing
+## Affichage
 
 On each object, its background image and its summaries are displayed :
 
@@ -30,7 +30,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 >
 > If an object has not defined a summary, a button is displayed at the top right to access the configuration / summaries of the object.
 
-## Functions
+## Fonctions
 
 For each object, you can click :
 - On the title of the object to display the Dashboard of this object with its child objects (also accessible from the menu *Home → Dashboard → Object*).

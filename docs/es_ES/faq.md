@@ -1,4 +1,4 @@
-# Preguntas frecuentes
+# FAQ
 **Configuración → Versión : Preguntas frecuentes**
 
 ### Jeedom requiere una suscripción ?
@@ -14,10 +14,10 @@ Jeedom tiene una versión móvil adecuada para usar en dispositivos móviles y t
 Cuando inicia sesión en Jeedom por primera vez (e incluso después si no los ha cambiado), el nombre de usuario y la contraseña predeterminados son admin / admin. En la primera conexión, se recomienda encarecidamente modificar estos identificadores para mayor seguridad.
 
 ### Ya no puedo conectarme a mi Jeedom
-Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Las credenciales de administrador / administrador solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo IP en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si a pesar de todo aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo hacerlo)
+Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Las credenciales de administrador / administrador solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo IP en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si, a pesar de todo, aún no puede conectarse, debe usar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo)
 
 ### No veo todo mi equipo en el Tablero
-A menudo, esto se debe al hecho de que el equipo está asignado a un objeto que no es el niño o el objeto mismo del primer objeto seleccionado a la izquierda en el árbol (puede configurarlo en su perfil).
+A menudo, esto se debe al hecho de que el equipo está asignado a un objeto que no es el hijo o el objeto mismo del primer objeto seleccionado a la izquierda en el árbol (puede configurarlo en su perfil).
 
 ### La interfaz de Jeedom tiene accesos directos ?
 Sí, la lista de atajos de teclado / mouse es [aquí](shortcuts.md).
@@ -78,12 +78,12 @@ La aplicación web requiere un teléfono inteligente compatible con HTML5 y CSS3
 ### ¿En qué plataformas se puede ejecutar Jeedom? ?
 Para que Jeedom funcione, necesita una plataforma Linux con derechos de root o un sistema de tipo docker. Por lo tanto, no funciona en una plataforma Android pura.
 
-### No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes)..." ?
+### No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes))..." ?
 Esto puede deberse a varias cosas, :
 
-- Verifique que su Jeedom todavía esté conectado al mercado (en la página de administración de Jeedom, la parte actualizada tiene un botón de prueba).
+- Compruebe que su Jeedom todavía está conectado al mercado (en la página de administración de Jeedom, parte actualizada, tiene un botón de prueba).
 - Verifique que la cuenta de mercado haya comprado el complemento en cuestión.
-- Verifique que tenga suficiente espacio en Jeedom (la página de salud le dirá).
+- Comprueba que tienes espacio en Jeedom (la página de salud te dirá).
 - Verifique que su versión de Jeedom sea compatible con el complemento.
 
 ### Tengo una pagina en blanco
@@ -128,7 +128,7 @@ Compruebe si su sistema de archivos no está dañado, en SSH el comando es : `` 
 ### Tengo el siguiente error : SQLSTATE \ [HY000 \] \ [2002 \] No se puede conectar al servidor MySQL local a través del socket &#39;/var/run/mysqld/mysqld.sock'
 Esto se debe a que MySQL se detuvo, no es normal, los casos comunes son :
 
-- Falta de espacio en el sistema de archivos (se puede verificar haciendo el comando &quot;df -h&quot;, en SSH)
+- Falta de espacio en el sistema de archivos (se puede verificar haciendo el comando "df -h", en SSH)
 - Problema de corrupción de archivo (s), que a menudo ocurre después de un cierre inseguro de Jeedom (falla de energía)
 - Problemas de memoria, el sistema carece de memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por "oom". Si este es el caso, reduzca el consumo de Jeedom desactivando los complementos.
 
@@ -171,7 +171,7 @@ Jeedom no puede encontrar o no puede hacer ping a la puerta de enlace. En genera
 ### Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de datos. Comprueba que mysqldump está presente."
 Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma. En casos conocidos de inquietudes tenemos:
 
-- una tabla base corrupta =&gt; allí es un mal comienzo, debemos ver para intentar reparar y si no se inicia desde la última copia de seguridad válida (si está en la tarjeta SD, es el momento adecuado para cambiarla)
+- una tabla base corrupta => hay un mal comienzo que debemos ver para tratar de reparar y si no comienza desde la última copia de seguridad válida (si está en la tarjeta SD, es el momento adecuado para cambiarla))
 - no hay suficiente espacio en el sistema de archivos =&gt; mira la página de salud esto puede decirte
 
 ### Tengo errores de tipo &quot;Clase &#39;eqLogic&#39; no encontrada&quot;, parece que faltan archivos o tengo una página en blanco
@@ -196,7 +196,7 @@ sí | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache
 Hay que :
 
 - reiniciar Jeedom
-- vaya a la administración de la misma (botón de la rueda con muesca en la parte superior derecha y luego configuración en v3 o Configuración -&gt; Sistema -&gt; Configuración en v4)
+- vaya a la administración de la misma (botón de la rueda con muesca en la parte superior derecha y luego configuración en v3 o Configuración -> Sistema -> Configuración en v4)
 - ir a la pestaña OS / DB
 - iniciar la administración del sistema
 - haga clic en configurar Dpkg

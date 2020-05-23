@@ -7,9 +7,9 @@ Puede agregar sus propias funciones JS y agregar o modificar clases CSS.
 
 Las dos partes, JS y CSS, se diferencian de acuerdo con la pantalla de escritorio o móvil.
 
-## Recursos
+## Ressources
 
-[Css: Hojas de estilo en cascada](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: Hojas de estilo en cascada](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 

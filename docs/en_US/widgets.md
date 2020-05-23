@@ -1,4 +1,4 @@
-# Widget
+# Widgets
 **Tools → Widgets**
 
 The widgets page allows you to create custom widgets for your Jeedom.
@@ -12,7 +12,7 @@ There are two types of custom widgets :
 >
 > If template-based widgets are integrated into the Core and therefore monitored by the development team, the latter has no way of ensuring the compatibility of widgets based on user code according to Jeedom developments.
 
-## Management
+## Gestion
 
 You have four options :
 - **Add** : Allows you to create a new widget.
@@ -40,7 +40,7 @@ To the right of the search field, three buttons found in several places in Jeedo
 Once on the configuration of a widget, you have a contextual menu with the Right Click on the tabs of the widget. You can also use a Ctrl Click or Clic Center to directly open another widget in a new browser tab.
 
 
-## Principle
+## Principe
 
 But what is a template ?
 To put it simply, it is code (here html / js) integrated into the Core, some parts of which are configurable by the user with the graphical interface of the Core.
@@ -60,19 +60,19 @@ Once on the Tools -&gt; Widget page, click on &quot;Add&quot; and give a name to
 
 Then :
 - You choose if it applies to an action or info type command.
-- Depending on your previous choice, you will have to choose the subtype of the command (binary, digital, other ...).
+- Depending on your previous choice, you will have to choose the subtype of the command (binary, digital, other...).
 - Then finally the template in question (we plan to put examples of renderings for each template).
 - Once the template has been chosen, Jeedom gives you the options for configuring it.
 
-### Replacement
+### Remplacement
 
-This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc. Then depending on the template, you can be offered the width and the height. This is only valid for images.
+This is what is called a simple widget, here you just have to say that the &quot;on&quot; corresponds to such icon / image (with the button choose), the &quot;off&quot; is that one etc. Then depending on the template, you can be offered the width (width) and the height (height). This is only valid for images.
 
 >**NOTE**
 >We are sorry for the names in English, this is a constraint of the template system. This choice guarantees a certain speed and efficiency, both for you and for us. We had no choice
 
 >**Tips**
->For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value #width# (be careful to put the # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) and give the value. This allows you to change the image size according to the command and therefore saves you from making a different widget for each image size you want
+>For advanced users it is possible in the replacement values to put tags and to specify their value in the advanced configuration of the command, tab display and "Optional parameters widget". For example if in width you put as value #width# (be careful to put the # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) and give value. This allows you to change the image size according to the command and therefore saves you from making a different widget for each image size you want
 
 ### Test
 
@@ -99,7 +99,7 @@ The tests are in the form : #value# == 1, #value# will be automatically replaced
 
 We are going to describe here some widgets which have a somewhat particular functioning.
 
-### Device
+### Equipement
 
 The equipments have certain configuration parameters :
 
@@ -111,22 +111,22 @@ The equipments have certain configuration parameters :
 - We : icon to display if the equipment is on / 1.
 - Off : icon to display if the equipment is off / 0.
 - Light on : icon to display if the equipment is on / 1 and the theme is light (if empty then Jeedom takes the dark img on).
-- Light off : icon to display if the equipment is off / 0 and the theme is light (if empty then Jeedom takes the dark img off).
+- Light off : icon to display if the equipment is off / 0 and the theme is light (if empty then Jeedom takes the img dark off).
 - Dark on : icon to display if the equipment is on / 1 and the theme is dark (if empty then Jeedom takes the img light on).
-- Dark off : icon to display if the equipment is off / 0 and the theme is dark (if empty then Jeedom takes the img light off).
+- Dark off : icon to display if the equipment is off / 0 and the theme is dark (if empty then Jeedom takes the light img off).
 - Desktop width : width of the image on desktop in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
 - Movable width : width of the image on mobile in px (just put the number not the px). Important only the width is requested, Jeedom will calculate the height so as not to distort the image.
 
-### Hygrothermograph
+### HygroThermographe
 
 This widget is a bit special because it is a multi-command widget, that is to say that it assembles on its display the value of several commands. Here he takes temperature and humidity commands.
 
 To configure it it&#39;s quite simple you have to assign the widget to the temperature control of your equipment and to the humidity control.
 
 >**Important**
->It is ABSOLUTELY necessary that your commands have the generic type temperature on the temperature control and humidity on the humidity control (this is configured in the advanced configuration of the command tab configuration).
+>It is ABSOLUTELY necessary that your orders have the generic type temperature on the temperature control and humidity on the humidity control (this is configured in the advanced configuration of the command tab configuration).
 
-##### Optional parameter (s)
+##### Optional parameter (s))
 
 - scale : Allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller.
 
@@ -135,19 +135,19 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ### Multiline
 
-##### Optional parameter (s)
+##### Optional parameter (s))
 
 - maxHeight : Allows you to define its maximum height (scrollbar on the side if the text exceeds this value).
 
 ### Slider Button
 
-##### Optional parameter (s)
+##### Optional parameter (s))
 
 - Step : Allows you to adjust the step of a button action (0.5 by default).
 
 ### Rain
 
-##### Optional parameter (s)
+##### Optional parameter (s))
 
 - scale : Allows you to change its size, example by setting scale to 0.5 it will be 2 times smaller.
 - showRange : Displays the min / max values of the command.
@@ -157,12 +157,12 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ### The tags
 
-In code mode you have access to different tags for commands, here is a list (not necessarily exhaustive) :
+In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive)) :
 
 - #name# : command name
 - #valueName# : name of the command value, and = #name# when it's an info type command
 - #minValue# : minimum value that the command can take (if the command is of type slider)
-- #maxValue# : maximum value that the command can take (if the command is of type slider)
+- #maxValue# : maximum value that can take the command (if the command is of type slider)
 - #hide_name# : empty or hidden if the user asked to hide the name of the widget, to put it directly in a class tag
 - #id# : command id
 - #state# : value of the command, empty for an action type command if it is not linked to a status command
@@ -174,7 +174,7 @@ In code mode you have access to different tags for commands, here is a list (not
 - #minHistoryValue# : minimum value over the period (period defined in the Jeedom configuration by the user)
 - #averageHistoryValue# : average value over the period (period defined in the Jeedom configuration by the user)
 - #maxHistoryValue# : maximum value over the period (period defined in the Jeedom configuration by the user)
-- #tendance# : trend over the period (period defined in the Jeedom configuration by the user). Attention the trend is directly a class for icon : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
+- #tendance# : trend over the period (period defined in the configuration of Jeedom by the user). Attention the trend is directly a class for icon : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
 
 ### Update values
 

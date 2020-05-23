@@ -1,4 +1,4 @@
-# Toras
+# Logs
 **Análise → Logs**
 
 Logs são arquivos de log, permitindo que você siga o que está acontecendo em sua automação residencial. Na maioria dos casos, os logs serão usados apenas para depuração e solução de problemas pela equipe de suporte.
@@ -28,4 +28,4 @@ O log "Evento" é um pouco especial. Primeiro, para que ele funcione, ele deve e
 
 Depois de clicar nele, você obtém uma janela que é atualizada em tempo real e mostra todos os eventos da sua automação residencial.
 
-No canto superior direito, você tem um campo de pesquisa (funciona apenas se não estiver em pausa) e um botão para pausar (útil para copiar / colar, por exemplo).
+No canto superior direito, você tem um campo de pesquisa (funciona apenas se não estiver em pausa) e um botão para pausar (útil para copiar / colar, por exemplo)).

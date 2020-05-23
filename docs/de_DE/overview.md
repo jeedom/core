@@ -5,14 +5,14 @@ Die Seite *Synthese* bietet Ihnen eine schnelle und visuelle Synthese Ihrer Obje
 
 Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.
 
-## Anzeigen
+## Affichage
 
 Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezeigt :
 
 Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
 - Oben links : Der Name des Objekts.
-- Oben rechts : Die Temperatur (*Temperatur*) und Luftfeuchtigkeit (*Luftfeuchtigkeit*).
-- Unter dem Titel : Alarm (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
+- Oben rechts : Temperatur (*Temperatur*) und Feuchtigkeit (*Luftfeuchtigkeit*).
+- Unter dem Titel : Warnung (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
 - Unten : Alle anderen Fachzusammenfassungen.
 
 Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
@@ -30,7 +30,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 >
 > Wenn ein Objekt keine Zusammenfassung definiert hat, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
 
-## Funktionen
+## Fonctions
 
 Für jedes Objekt können Sie klicken :
 - Über den Titel des Objekts wird das Dashboard dieses Objekts mit seinen untergeordneten Objekten angezeigt (auch über das Menü zugänglich *Home → Dashboard → Objekt*).

@@ -1,4 +1,4 @@
-# Backups
+# Sauvegardes
 **Configurações → Sistema → Backups**
 
 O Jeedom oferece a possibilidade de ser salvo e restaurado de ou de diferentes locais.
@@ -7,7 +7,7 @@ Esta página permite o gerenciamento de backups, restaura.
 
 Você encontrará, à esquerda, os parâmetros e botões de ação. À direita está o status em tempo real da ação em andamento (backup ou restauração), se você tiver lançado um.
 
-## Backups
+## Sauvegardes
 
 - **Backups** : Permite iniciar um backup manual e imediatamente (útil se você quiser fazer uma alteração crítica. Isso permitirá que você volte). Você também tem um botão para iniciar um backup sem enviar o arquivo para a nuvem (requer uma assinatura, veja abaixo). O envio de um backup para a nuvem pode demorar um pouco. Esta opção evita, portanto, perda excessiva de tempo.
 
@@ -25,7 +25,7 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 - **Remover backup** : Exclua o backup selecionado acima, apenas na pasta local.
 
-- **Enviar cópia de segurança** : Permite enviar um arquivo morto localizado no computador que você está usando no momento para a pasta de backups (por exemplo, para restaurar um arquivo morto recuperado anteriormente em um novo Jeedom ou em uma reinstalação).
+- **Enviar cópia de segurança** : Permite enviar um arquivo morto localizado no computador que você está usando no momento para a pasta de backups (por exemplo, para restaurar um arquivo morto recuperado anteriormente em um novo Jeedom ou para reinstalar).
 
 - **De backup de download** : Faça o download do arquivo do backup selecionado acima para o seu computador.
 
@@ -54,7 +54,7 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 # O que é salvo ?
 
-Durante um backup, o Jeedom fará backup de todos os seus arquivos e do banco de dados. Portanto, ele contém toda a sua configuração (equipamento, controles, histórico, cenários, design etc.).
+Durante um backup, o Jeedom fará backup de todos os seus arquivos e do banco de dados. Portanto, contém toda a sua configuração (equipamentos, controles, histórico, cenários, design etc.).).
 
 No nível do protocolo, apenas o Z-Wave (OpenZwave) é um pouco diferente porque não é possível salvar as inclusões. Eles estão diretamente incluídos no controlador, portanto, você deve manter o mesmo controlador para encontrar seus módulos Zwave.
 

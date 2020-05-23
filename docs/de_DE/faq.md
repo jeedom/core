@@ -1,4 +1,4 @@
-# Faq
+# FAQ
 **Einstellungen → Version : Faq**
 
 ### Jeedom benötigt ein Abonnement ?
@@ -14,10 +14,10 @@ Jeedom verfügt über eine mobile Version, die für Mobilgeräte und Tablets gee
 Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und auch danach, wenn Sie sie nicht geändert haben), lauten der Standardbenutzername und das Standardkennwort admin / admin. Bei der ersten Verbindung wird dringend empfohlen, diese Kennungen zu ändern, um die Sicherheit zu erhöhen.
 
 ### Ich kann mich nicht mehr mit meinem Jeedom verbinden
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise)
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe Tutorials / Vorgehensweise))
 
 ### Ich sehe nicht alle meine Geräte im Dashboard
-Dies liegt häufig daran, dass das Gerät einem Objekt zugewiesen ist, das nicht das untergeordnete Objekt oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können es in Ihrem Profil konfigurieren).
+Dies liegt häufig daran, dass die Ausrüstung einem Objekt zugeordnet ist, das nicht der Sohn oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dieses in Ihrem Profil konfigurieren).
 
 ### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
 Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier](shortcuts.md).
@@ -78,12 +78,12 @@ Für die Webanwendung ist ein Smartphone erforderlich, das HTML5 und CSS3 unters
 ### Auf welchen Plattformen kann Jeedom laufen? ?
 Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit Root-Rechten oder ein Docker-System. Es funktioniert daher nicht auf einer reinen Android-Plattform.
 
-### Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)..." ?
+### Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte))..." ?
 Dies kann auf verschiedene Dinge zurückzuführen sein: :
 
 - Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite, aktualisierter Teil, haben Sie eine Testschaltfläche).
 - Überprüfen Sie, ob das Marktkonto das betreffende Plugin gekauft hat.
-- Überprüfen Sie, ob auf Jeedom genügend Speicherplatz vorhanden ist (auf der Gesundheitsseite wird dies angezeigt).
+- Überprüfen Sie, ob auf Jeedom Platz ist (die Gesundheitsseite informiert Sie darüber).
 - Überprüfen Sie, ob Ihre Version von Jeedom mit dem Plugin kompatibel ist.
 
 ### Ich habe eine leere Seite
@@ -128,9 +128,9 @@ Es ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen. Oft stammt
 ### Ich habe den folgenden Fehler : SQLSTATE \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden'
 Dies liegt an MySQL, das gestoppt wurde. Es ist nicht normal, die häufigsten Fälle sind :
 
-- Platzmangel im Dateisystem (kann überprüft werden, indem der Befehl &quot;df -h&quot; in SSH ausgeführt wird)
-- Problem mit der Beschädigung von Dateien, das häufig nach einem unsicheren Herunterfahren von Jeedom auftritt (Stromausfall)
-- Speicherprobleme, das System verfügt nicht über Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
+- Platzmangel im Dateisystem (kann überprüft werden, indem der Befehl "df -h" in SSH ausgeführt wird)
+- Problem mit der Beschädigung von Dateien, das häufig nach einem unsicheren Herunterfahren von Jeedom (Stromausfall) auftritt)
+- Speicherprobleme, das System verfügt nicht über Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank)). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
 
 Leider gibt es nicht viel Lösung, wenn es sich um den zweiten Fall handelt. Das Beste ist, ein Backup wiederherzustellen (standardmäßig in / var / www / html / backup verfügbar), Jeedom neu zu installieren und das Backup wiederherzustellen. Sie können auch sehen, warum MySQL nicht von einer SSH-Konsole booten möchte :
 `` `{.bash}
@@ -155,7 +155,7 @@ Dies ist der Fall, wenn Ihr Jeedom nicht mit dem Plugin kompatibel ist. Im Allge
 Warnungen werden nach Priorität geordnet, von der am wenigsten wichtigen bis zur wichtigsten : Zeitüberschreitung, Batteriewarnung, Batteriegefahr, Warnmeldung, Gefahrenwarnung
 
 ### Mein Jeedom zeigt auch nach 1 Stunde permanent &quot;Start&quot; an ?
-Wenn Sie in DIY und unter Debian 9 oder höher sind, überprüfen Sie, ob es kein Update von Apache und damit die Rückgabe von privateTmp gegeben hat (sichtbar durch Ausführen von `ls / tmp` und prüfen Sie, ob es ein Update gibt ein privater \* Apache-Ordner). Wenn dies der Fall ist, ist dies erforderlich :
+Wenn Sie in DIY und unter Debian 9 oder höher sind, überprüfen Sie, ob es kein Update von Apache und damit die Rückgabe von privateTmp gegeben hat (sichtbar durch Ausführen von `ls / tmp`) und prüfen Sie, ob dies der Fall ist ein privater \* Apache-Ordner). Wenn dies der Fall ist, ist dies erforderlich :
 `` ''
 mkdir /etc/systemd/system/apache2.service.d
 echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
@@ -171,7 +171,7 @@ Jeedom kann das Gateway nicht finden oder nicht anpingen. Im Allgemeinen passier
 ### Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist."
 Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir:
 
-- eine beschädigte Basistabelle =&gt; dort ist es ein schlechter Start, wir müssen sehen, um zu versuchen, zu reparieren, und wenn es nicht von der letzten guten Sicherung startet (wenn Sie auf SD-Karte sind, ist es der richtige Zeitpunkt, es zu ändern)
+- Eine beschädigte Basistabelle => Es gibt einen schlechten Start, den wir sehen müssen, um zu versuchen, ihn zu reparieren. Wenn er nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf einer SD-Karte befinden, ist es der richtige Zeitpunkt, ihn zu ändern)
 - Nicht genügend Speicherplatz im Dateisystem =&gt; Schauen Sie sich die Gesundheitsseite an, die Sie darüber informieren können
 
 ### Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
@@ -196,7 +196,7 @@ ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache 
 Du musst :
 
 - Jeedom neu starten
-- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4)
+- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -> System -> Konfiguration in Version 4))
 - Wechseln Sie zur Registerkarte OS / DB
 - Starten Sie die Systemadministration
 - Klicken Sie auf Dpkg konfigurieren

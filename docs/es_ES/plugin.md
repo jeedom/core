@@ -57,8 +57,8 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 - **Apellido** : Generalmente será local.
 - **Estatus** : Estado del demonio, OK o NOK.
 - **Configuración** : OK si se cumplen todos los criterios para que el demonio corra, o si da la causa del bloqueo.
-- **(Re) Inicio** : Te permite lanzar o reiniciar el demonio.
-- **Parar** : Permite detener el demonio (solo en el caso de que la administración automática esté deshabilitada).
+- **(Para reiniciar** : Te permite lanzar o reiniciar el demonio.
+- **Parar** : Se usa para detener el demonio (solo en el caso en que la administración automática esté deshabilitada).
 - **Gestión automática** : Activa o desactiva la administración automática (que permite a Jeedom administrar el demonio y reiniciarlo si es necesario. A menos que se indique lo contrario, es aconsejable dejar activa la gestión automática).
 - **Último lanzamiento** : Fecha del último lanzamiento del demonio.
 
@@ -90,7 +90,7 @@ Podemos encontrar una sección de Panel que habilitará o deshabilitará la visu
 
 ## Instalación d'un plugin
 
-Para instalar un nuevo complemento, simplemente haga clic en el botón &quot;Market&quot; (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
+Para instalar un nuevo complemento, simplemente haga clic en el botón "Market" (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
 
 > **Punta**
 >
@@ -100,7 +100,7 @@ En la parte superior de la ventana tienes filtros :
 - **Abierto / De pago** : muestra solo gratis o de pago.
 - **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
 - **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
-- **Buscar** : permite buscar un complemento (en el nombre o la descripción del mismo).
+- **Buscar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
 - **Apellido d'utilisateur** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
 
 > **Punta**
@@ -109,14 +109,14 @@ En la parte superior de la ventana tienes filtros :
 
 Una vez que haya encontrado el complemento que desea, simplemente haga clic en él para que aparezca su archivo. Esta hoja le brinda mucha información sobre el complemento, en particular :
 
-- Si es oficial / recomendado o si está obsoleto (realmente debería evitar instalar complementos obsoletos).
+- Si es oficial / recomendado o si está obsoleto (definitivamente debe evitar instalar complementos obsoletos).
 - 4 acciones :
     - **Instalar estable** : permite instalar el complemento en su versión estable.
-    - **Instalar beta** : permite instalar el complemento en su versión beta (solo para beta testers).
+    - **Instalar beta** : permite instalar el complemento en su versión beta (solo para betatesters).
     - **Instalar pro** : permite instalar la versión pro (muy poco utilizada).
     - **Remove** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
 
-A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, el número de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
+A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, la cantidad de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
 
 > **Importante**
 >
