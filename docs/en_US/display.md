@@ -41,7 +41,7 @@ On each equipment we find :
 - The **Type** equipment : Identifier of the plugin to which it belongs.
 - The **last name** equipment.
 - **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
-- **Invisible** (crossed out eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
+- **Invisible** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
 If the equipment plugin is disabled, the two icons on the right do not appear:
 - **Theien externe** (square with arrow) : Allows to open in a new tab the equipment configuration page.
@@ -69,11 +69,11 @@ The tab **Information** contains general information about the equipment and its
 
 - **Id** : Unique identifier in the Jeedom database.
 - **Last name** : Name of equipment.
-- **Id logique** : Logical equipment identifier (can be empty).
+- **Id logique** : Logical identifier of the equipment (can be empty).
 - **Id de l'objet** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
-- **Activate** : Check the box to activate the equipment (don&#39;t forget to save).
-- **Jeedom** : Check the box to make the equipment visible (don&#39;t forget to save).
+- **Activate** : Check the box to activate the equipment (don't forget to save).
+- **Jeedom** : Check the box to make the equipment visible (don't forget to save).
 - **Type** : Identifier of the plugin by which it was created.
 - **Failed attempt** : Number of failed consecutive communications attempts with the equipment.
 - **Date of last communication** : Date of the last communication of the equipment.
@@ -113,8 +113,8 @@ This part allows you to choose between the standard layout of the commands (side
 
 Below for each box, the **detailed configuration** It allows you to
 this :
-- **Box text** : Add text in addition to the command (or on its own, if there is no command in the box).
-- **Box style (CSS)** : Modify the specific CSS style of the box (note that it overwrites and replaces the general CSS of the boxes).
+- **Box text** : Add text in addition to the command (or all by itself, if there is no command in the box).
+- **Case style (CSS)** : Modify the specific CSS style of the box (note that it overwrites and replaces the general CSS of boxes).
 
 > **Tip**
 >
@@ -164,10 +164,10 @@ First, at the top right, some buttons available :
 The tab **Information** contains general information about the order :
 
 - **Id** : Unique identifier in the database.
-- **Id logique** : Logical identifier of the order (can be empty).
+- **Id logique** : Logical identifier of the command (can be empty).
 - **Last name** : Name of the order.
-- **Type** : Type of order (action or info).
-- **Subtype** : Command subtype (binary, digital, etc.).
+- **Type** : Type of command (action or info).
+- **Subtype** : Command subtype (binary, digital, etc.)).
 - **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **Action** and return the information for a **Info**.
 - **Unit** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
@@ -184,7 +184,7 @@ You also have three other orange buttons underneath :
 
 > **NOTE**
 >
-> This kind of action replaces the commands everywhere in Jeedom (scenario, interaction, command, equipment….).
+> This kind of action replaces commands everywhere in Jeedom (scenario, interaction, command, equipment….).
 
 Below, you will find the list of the different equipment, commands, scenarios or interactions that use this command. Click on it to go directly to their respective configuration.
 
@@ -194,7 +194,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Calculation and rounding**
     - **Algorithm (\#value\# for value)** : Allows you to make an operation on the value of the order before processing by Jeedom, example : ``#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
-    - **Rounded (number after decimal point)** : Used to round the value of the command (Example : put 2 to transform 16.643 345 in 16.64).
+    - **Rounded (number after decimal point)** : Used to round the value of the command (Example : put 2 to transform 16.643,345 in 16.64).
 - **Type générique** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
 - **Action on value, if** : Lets do some sort of mini scenarios. You can, for example, say that if the value is worth more than 50 for 3 minutes, then you have to do such action. This allows, for example, to turn off a light X minutes after it has turned on.
 
@@ -206,7 +206,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 - **Values management**
     - **Prohibited value** : If the command takes one of these values, Jeedom ignores it before applying it.
     - **Status return value** : Returns the command to this value after a certain time.
-    - **Duration before status return (min)** : Time before return to the above value.
+    - **Duration before return of status (min)** : Time before return to the above value.
 
 - **Other**
     - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
@@ -232,11 +232,11 @@ Allows you to define an alert level (**Warning** or **Danger**) depending on cer
 
 In this part, you will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile.
 
-- **Widget** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from there).
+- **Widget** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from it).
 - **Jeedom** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Select **before The  widget** or **after the widget** to add a line break before or after the widget (to force for example a display in column of the various commands of the equipment instead of lines by default)
+- **Wrapped line before widget** : Select **before The  widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 

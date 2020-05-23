@@ -14,7 +14,7 @@ En esta pestaña encontramos información general sobre Jeedom :
 - **Sistema** : Tipo de hardware en el que está instalado el sistema donde se ejecuta su Jeedom.
 - **Generar traducciones** : Genere traducciones, tenga cuidado, esto puede ralentizar su sistema. Opción especialmente útil para desarrolladores.
 - **Fecha y hora** : Elige tu zona horaria. Puedes hacer clic en **Forzar sincronización de tiempo** para restaurar la hora incorrecta que se muestra en la esquina superior derecha.
-- **Servidor horario opcional** : Indica qué servidor horario debe usarse si hace clic en **Forzar sincronización de tiempo** (para reservar para expertos).
+- **Servidor horario opcional** : Indica qué servidor horario debe usarse si hace clic en **Forzar sincronización de tiempo** (ser reservado para expertos).
 - **Omitir verificación de tiempo** : le dice a Jeedom que no verifique si el tiempo es consistente entre sí mismo y el sistema en el que se ejecuta. Puede ser útil, por ejemplo, si no conecta Jeedom a Internet y no tiene una batería PSTN en el equipo utilizado.
 - **Sistema** : Indica el tipo de hardware en el que está instalado Jeedom.
 - **Clave d'installation** : Llave de hardware de su Jeedom en el mercado. Si su Jeedom no aparece en la lista de su Jeedom en el mercado, es recomendable hacer clic en el botón **Restablecer**.
@@ -49,16 +49,16 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 ## Pestaña Redes
 
-Es absolutamente necesario configurar correctamente esta parte importante de Jeedom, de lo contrario, muchos complementos pueden no funcionar. Hay dos formas de acceder a Jeedom : L'**Acceso interno** (de la misma red local que Jeedom) y l'**Acceso externo** (desde otra red, en particular desde Internet).
+Es absolutamente necesario configurar correctamente esta parte importante de Jeedom, de lo contrario, muchos complementos pueden no funcionar. Hay dos formas de acceder a Jeedom : L'**Acceso interno** (de la misma red local que Jeedom) y l'**Acceso externo** (de otra red, especialmente de Internet).
 
 > **Importante**
 >
 > Esta parte está ahí para explicarle a Jeedom su entorno :
-> cambiar el puerto o IP en esta pestaña no cambiará el puerto o IP de Jeedom en realidad. Para hacer esto, conéctese a SSH y edite el archivo / etc / network / interfaces para IP y los archivos etc / apache2 / sites-available / default y etc / apache2 / sites-available / default\_ssl (para HTTPS ).
+> cambiar el puerto o IP en esta pestaña no cambiará el puerto o IP de Jeedom en realidad. Para eso tiene que conectarse en SSH y editar el archivo / etc / network / interfaces para IP y los archivos etc / apache2 / sites-available / default y etc / apache2 / sites-available / default\_ssl (para HTTPS).
 > Sin embargo, en caso de manejo inadecuado de su Jeedom, el equipo de Jeedom no se hace responsable y puede rechazar cualquier solicitud de soporte.
 
 - **Acceso interno** : información para unirse a Jeedom desde equipos en la misma red que Jeedom (LAN)
-    - **OK / NOK** : indica si la configuración de la red interna es correcta.
+    - **Bueno/NBueno** : indica si la configuración de la red interna es correcta.
     - **Protocolo** : el protocolo a usar, a menudo HTTP.
     - **Dirección URL ou IP** : Jeedom IP para entrar.
     - **Puerto** : el puerto de la interfaz web de Jeedom, generalmente 80.
@@ -66,7 +66,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - **Complementar** : el fragmento de URL adicional (ejemplo : / jeedom) para acceder a Jeedom.
 
 - **Acceso externo** : información para llegar a Jeedom desde fuera de la red local. Para completar solo si no está utilizando Jeedom DNS.
-    - **OK / NOK** : indica si la configuración de red externa es correcta.
+    - **Bueno/NBueno** : indica si la configuración de red externa es correcta.
     - **Protocolo** : protocolo utilizado para acceso al exterior.
     - **Dirección URL ou IP** : IP externa, si está fija. De lo contrario, proporcione la URL que apunta a la dirección IP externa de su red.
     - **Complementar** : el fragmento de URL adicional (ejemplo : / jeedom) para acceder a Jeedom.
@@ -80,16 +80,16 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 > **Punta**
 >
-> Si está en HTTPS, el puerto es 443 (por defecto) y en HTTP el puerto es 80 (por defecto). Para usar HTTPS desde el exterior, ahora está disponible en el mercado un complemento de letencrypt.
+> Si está en HTTPS, el puerto es 443 (predeterminado) y en HTTP el puerto es 80 (predeterminado). Para usar HTTPS desde el exterior, ahora está disponible en el mercado un complemento de letencrypt.
 
 > **Punta**
 >
 > Para saber si necesita establecer un valor en el campo **Complementar**, mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (o lo que sea) después de la IP.
 
 - **Administración avancée** : Esta parte puede no aparecer, dependiendo de la compatibilidad con su hardware.
-    Allí encontrará la lista de sus interfaces de red. Puede decirle a Jeedom que no monitoree la red haciendo clic en **deshabilitar la administración de la red Jeedom** (verifique si Jeedom no está conectado a ninguna red). También puede especificar el rango de ip local en la forma 192.168.1.* (para usarse solo en instalaciones de tipo acoplable).
+    Allí encontrará la lista de sus interfaces de red. Puede decirle a Jeedom que no monitoree la red haciendo clic en **deshabilitar la administración de la red Jeedom** (comprobar si Jeedom no está conectado a ninguna red). También puede especificar el rango de ip local en la forma 192.168.1.* (para ser utilizado solo en instalaciones de tipo acoplable).
 - **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
-    - **Usando Jeedom DNS** : activar Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio).
+    - **Usando Jeedom DNS** : activa Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio)).
     - **Estado DNS** : Estado HTTP HTTP.
     - **Administración** : permite detener y reiniciar el servicio DNS de Jeedom.
 
@@ -107,7 +107,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 ### Mensajes
 
-- **Agregue un mensaje a cada error en los registros** : si un complemento o Jeedom escribe un mensaje de error en un registro, Jeedom agrega automáticamente un mensaje en el centro de mensajes (al menos está seguro de que no se lo perderá).
+- **Agregue un mensaje a cada error en los registros** : si un complemento o Jeedom escribe un mensaje de error en un registro, Jeedom agrega automáticamente un mensaje en el centro de mensajes (al menos está seguro de que no se lo perderá)).
 - **Acción sobre mensaje** : Le permite realizar una acción al agregar un mensaje al centro de mensajes. Tienes 2 etiquetas para estas acciones :
         - #subject# : mensaje en cuestión.
         - #plugin# : complemento que activó el mensaje.
@@ -141,10 +141,10 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 ### Histórico
 
 - **Ver estadísticas de widgets** : Ver estadísticas sobre widgets. El widget debe ser compatible, que es el caso para la mayoría. El comando también debe ser de tipo numérico.
-- **Período de cálculo para min, max, promedio (en horas)** : Periodo de cálculo de estadísticas (24h por defecto). No es posible tomar menos de una hora.
+- **Período de cálculo para min, max, promedio (en horas)** : Período de cálculo de estadísticas (24h por defecto). No es posible tomar menos de una hora.
 - **Periodo de cálculo de la tendencia (en horas)** : Periodo de cálculo de tendencia (2h por defecto). No es posible tomar menos de una hora.
-- **Retraso antes de archivar (en horas)** : Indica el retraso antes de que Jeedom archive datos (24 horas por defecto). Es decir que los datos históricos deben tener más de 24 horas para ser archivados (como recordatorio, el archivo será promedio o tomará el máximo o mínimo de los datos durante un período que corresponde al tamaño de los paquetes ).
-- **Archivar por paquete desde (en horas)** : Este parámetro proporciona el tamaño de los paquetes (1 hora por defecto). Esto significa, por ejemplo, que Jeedom tomará períodos de 1 hora, promedio y almacenará el nuevo valor calculado eliminando los valores promediados.
+- **Retraso antes de archivar (en horas)** : Indica el retraso antes de que Jeedom archive los datos (24 horas por defecto). Es decir que los datos históricos deben tener más de 24 horas para ser archivados (como recordatorio, el archivado promediará o tomará el máximo o mínimo de los datos durante un período que corresponde al tamaño de los paquetes).
+- **Archivar por paquete desde (en horas)** : Este parámetro proporciona el tamaño del paquete (1 hora por defecto). Esto significa, por ejemplo, que Jeedom tomará períodos de 1 hora, promedio y almacenará el nuevo valor calculado eliminando los valores promediados.
 - **Umbral de cálculo de tendencia baja** : Este valor indica el valor desde el cual Jeedom indica que la tendencia es descendente. Debe ser negativo (predeterminado -0.1).
 - **Alto umbral de cálculo de tendencia** : Lo mismo para el ascenso.
 - **Período predeterminado de visualización de gráficos** : Período que se usa de forma predeterminada cuando desea mostrar el historial de un pedido. Cuanto más corto sea el período, más rápido Jeedom mostrará el gráfico solicitado.
@@ -152,7 +152,7 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 > **Nota**
 >
 > El primer parámetro **Ver estadísticas de widgets** es posible pero está deshabilitado de manera predeterminada porque extiende significativamente el tiempo de visualización del tablero. Si activa esta opción, de manera predeterminada, Jeedom se basa en los datos de las últimas 24 horas para calcular estas estadísticas.
-> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para más detalles).
+> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para el detalle).
 
 ### Empuje
 
@@ -171,7 +171,7 @@ Agregar resúmenes de objetos. Esta información se muestra en la parte superior
 - **Cálculo** : Método de cálculo, puede ser de tipo :
     - **Suma** : suma los diferentes valores,
     - **Promedio** : valores promedio,
-    - **Texto** : mostrar el valor literalmente (especialmente para los de tipo cadena).
+    - **Texto** : muestra el valor literalmente (especialmente para aquellos de tipo string).
 - **Icono** : Ícono de resumen.
 - **Unidad** : Unidad de resumen.
 - **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
@@ -195,7 +195,7 @@ Configurar la generación y gestión de informes
 
 Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráfico, las relaciones entre objetos, equipos, objetos, etc.
 
-- **Profundidad para escenarios** : Permite definir, al mostrar un gráfico de enlaces de un escenario, el número máximo de elementos para mostrar (cuanto más elementos haya, más lento será el gráfico para generar y más difícil será leerlo ).
+- **Profundidad para escenarios** : Permite definir, al mostrar un gráfico de enlaces de un escenario, el número máximo de elementos para mostrar (cuantos más elementos haya, más lento será el gráfico para generar y más difícil será de leer).
 - **Profundidad para objetos** : Lo mismo para los objetos.
 - **Profundidad para equipamiento** : Lo mismo para el equipo.
 - **Profundidad para controles** : Lo mismo para pedidos.
@@ -215,7 +215,7 @@ Esta pestaña le permite establecer parámetros globales relacionados con las in
 
 Aquí tienes tres parámetros :
 
-- **Sensibilidad** : Hay 4 niveles de correspondencia (la sensibilidad va de 1 (corresponde exactamente) a 99)
+- **Sensibilidad** : hay 4 niveles de correspondencia (la sensibilidad va de 1 (corresponde exactamente) a 99)
     -   por 1 palabra : nivel de coincidencia para interacciones de una sola palabra.
     -   2 palabras : el nivel de coincidencia para interacciones de dos palabras.
     -   3 palabras : el nivel de coincidencia para interacciones de tres palabras.
@@ -238,7 +238,7 @@ Aquí tienes tres parámetros :
         - *Jeedom* : Temperatura 23.6 ° C, temperatura 27.2 ° C
 -   Interacciones de tipo **Avísame** permita pedirle a Jeedom que le avise si un pedido excede / cae o vale un cierto valor.
     - *Vosotras* : Notificarme si la temperatura de la sala supera los 25 ° C ?
-    - *Jeedom* : OK (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
+    - *Jeedom* : Bueno (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
 
 > **Nota**
 >
@@ -253,27 +253,27 @@ Aquí están las diferentes opciones disponibles :
 - **Activar les interactions "Avísame"** : Marque para habilitar las interacciones de tipo **Avísame**.
 - **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la oración comienza con esta (s) palabra (s) entonces Jeedom buscará hacer una interacción del tipo **Avísame** (puedes poner varias palabras separadas por **;** ).
 - **Comando de retorno predeterminado** : Comando de retorno predeterminado para la interacción de tipo **Avísame** (utilizado, en particular, si ha programado la alerta a través de la interfaz móvil)
-- **Sinónimo de objetos** : Lista de sinónimos para objetos (ej : rdc|planta baja|bajo tierra|bajo; sdb|cuarto de baño).
+- **Sinónimo de objetos** : Lista de sinónimos para objetos (ej : rdc|planta baja|bajo tierra|bajo; sdb|Cuarto de baño).
 - **Sinónimo de equipamiento** : Lista de sinónimos para equipos.
 - **Sinónimo de pedidos** : Lista de sinónimos para comandos.
 - **Sinónimo de resúmenes** : Lista de sinónimos para resúmenes.
 - **Sinónimo de comando de control deslizante máximo** : Sinónimo de colocar un comando de tipo deslizador al máximo (por ejemplo, se abre para abrir el obturador del dormitorio ⇒ obturador del dormitorio al 100%).
-- **Sinónimo de comando mínimo de control deslizante** : Sinónimo de colocar un comando de tipo deslizador como mínimo (por ejemplo, se cierra para cerrar el obturador del dormitorio ⇒ obturador del dormitorio al 0%).
+- **Sinónimo de comando mínimo de control deslizante** : Sinónimo de poner un comando de tipo deslizante al mínimo (por ejemplo, se cierra para cerrar el obturador del dormitorio ⇒ obturador del dormitorio al 0%).
 
 ## Pestaña de seguridad
 
 ### LDAP
 
-- **Activar l'authentification LDAP** : habilita la autenticación a través de un AD (LDAP).
+- **Activar l'authentification LDAP** : habilitar la autenticación a través de un AD (LDAP).
 - **Anfitrión** : servidor que aloja el AD.
 - **Dominio** : dominio de su AD.
 - **DN base** : DN base de su AD.
 - **Apellido d'utilisateur** : nombre de usuario para que Jeedom inicie sesión en AD.
 - **Contraseña** : contraseña para que Jeedom se conecte a AD.
 - **Campos de busqueda de usuario** : campos de búsqueda de inicio de sesión de usuario. Por lo general, uid para LDAP, SamAccountName para Windows AD.
-- **Filtro de administrador (opcional)** : Filtro de administradores de AD (por ejemplo, para la administración de grupos)
+- **Filtro de administradores (opcional)** : los administradores filtran en AD (para la gestión de grupos, por ejemplo)
 - **Filtro de usuario (opcional)** : filtro de usuario en el AD (para gestión de grupos, por ejemplo)
-- **Filtro de usuario limitado (opcional)** : filtrar usuarios limitados en el AD (para la gestión de grupos, por ejemplo)
+- **Filtro de usuario limitado (opcional)** : filtrar usuarios limitados en el AD (por ejemplo, para la administración de grupos)
 - **Permitir REMOTO\_USER** : Active REMOTE\_USER (usado en SSO por ejemplo).
 
 ### Acceder
@@ -318,7 +318,7 @@ Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamen
 - **Dirección** : Dirección du Mercado.(https://www.Jeedom.com/market).
 - **Apellido d'utilisateur** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
-- **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos).
+- **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de que se estrelle entre ellos)).
 - **[Copia de seguridad de la nube] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella, ya no podrás restaurar tu Jeedom.
 - **[Nube de respaldo] Frecuencia de respaldo completo** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes.
 
@@ -354,7 +354,7 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 
 > **Importante**
 >
-> Jeedom debe ser el único en escribir en esta carpeta y debe estar vacío por defecto (es decir, antes de la configuración y el envío de la primera copia de seguridad, la carpeta no debe contener ningún archivo o carpeta).
+> Jeedom debe ser el único en escribir en esta carpeta y debe estar vacío de forma predeterminada (es decir, antes de la configuración y el envío de la primera copia de seguridad, la carpeta no debe contener ningún archivo o carpeta).
 
 #### URL
 
@@ -371,7 +371,7 @@ Permite monitorear y actuar en el caché Jeedom :
     Tenga en cuenta que esto puede causar pérdida de datos !
 - **Borrar el caché del widget** : Borrar el caché dedicado a los widgets.
 - **Deshabilitar caché de widgets** : Marque la casilla para deshabilitar las cachés de widgets.
-- **Tiempo de pausa para encuestas largas** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, sin embargo, utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
+- **Tiempo de pausa para encuestas largas** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, sin embargo, utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
 
 ## Pestaña API
 

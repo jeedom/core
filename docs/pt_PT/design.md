@@ -26,7 +26,7 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Adicionar equipamento** : Adiciona equipamento.
 - **Adicionar comando** : Adicionar um pedido.
 - **Adicionar imagem / câmera** : Permite adicionar uma imagem ou um fluxo de uma câmera.
-- **Adicionar área** : Permite adicionar uma área transparente clicável que pode executar uma série de ações ao clicar (dependendo ou não do status de outro comando).
+- **Adicionar área** : Permite adicionar uma zona transparente clicável que poderá executar uma série de ações durante um clique (dependendo ou não do status de outro comando).
 - **Adicionar resumo** : Adiciona informações de um objeto ou resumo geral.
 - **Visualizando**
     - **Não** : Não exibe nenhuma grade.
@@ -40,7 +40,7 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Criar um design** : Permite adicionar um novo design.
 - **Duplicar le design** : Duplica o design atual.
 - **Cenografia** : Acesso à configuração do design.
-- **Salvar** : Salve o design (observe que também há backups automáticos durante determinadas ações).
+- **Salvar** : Salve o design (observe, também há backups automáticos durante determinadas ações).
 
 > **IMPORTANTE**
 >
@@ -61,7 +61,7 @@ Encontrado aqui :
         - **Enviar** : Permite adicionar uma imagem de plano de fundo ao design.
         - **Remover l'image** : Excluir imagem.
 - **Tamanhos**
-    - **Tamanho (LxA)** : Permite definir o tamanho em pixels do seu design.
+    - **Tamanho (LxA))** : Permite definir o tamanho em pixels do seu design.
 
 ## Configuração geral de elementos
 
@@ -99,7 +99,7 @@ Permite bloquear o elemento para que ele não seja mais móvel ou redimensionáv
 - **Display le sélecteur de période** : Exibe o seletor de período no canto superior esquerdo.
 - **Display la barre de défilement** : Exibe a barra de rolagem.
 - **Fundo transparente** : Torna o plano de fundo transparente.
-- **Fronteira** : Permite adicionar uma borda, tenha cuidado, a sintaxe é HTML (tenha cuidado, você deve usar a sintaxe CSS, por exemplo : 1px preto sólido).
+- **Fronteira** : Permite adicionar uma borda, tenha cuidado, a sintaxe é HTML (tenha cuidado, você deve usar a sintaxe CSS, por exemplo : sólido 1px preto).
 
 ### Configuração avançada
 
@@ -113,9 +113,9 @@ Permite escolher os comandos para grapher.
 - **Cor de fundo** : permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não)..
 - **Arredonde os ângulos** : permite arredondar os ângulos (não esqueça de colocar%, ex 50%).
-- **Fronteira** : permite adicionar uma borda, cuidado com a sintaxe é HTML (você deve usar a sintaxe CSS, por exemplo : 1px preto sólido).
+- **Fronteira** : permite adicionar uma borda, cuidado com a sintaxe é HTML (você deve usar a sintaxe CSS, por exemplo : sólido 1px preto).
 - **Tamanho da fonte** : permite alterar o tamanho da fonte (ex 50%, você deve colocar o sinal de%).
-- **Alinhamento de texto** : permite escolher o alinhamento do texto (esquerda / direita / centralizado).
+- **Alinhamento de texto** : permite escolher o alinhamento do texto (esquerda / direita / centralizado)).
 - **Gordura** : texto em negrito.
 - **Texto** : Texto em código HTML que estará no elemento.
 
@@ -136,9 +136,9 @@ Permite escolher os comandos para grapher.
 - **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
 - **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** : Permite arredondar os ângulos, não se esqueça de colocar o%.
-- **Fronteira (attention syntaxe CSS, ex : 1px preto sólido)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
+- **Fronteira (attention syntaxe CSS, ex : sólido 1px preto)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
 - **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** : Permite alterar o tamanho da fonte.
-- **Alinhamento de texto** : Permite escolher o alinhamento do texto (esquerda / direita / centralizado).
+- **Alinhamento de texto** : Permite escolher o alinhamento do texto (esquerda / direita / centralizado)).
 - **Gordura** : Texto em negrito.
 
 ## Equipamento
@@ -179,7 +179,7 @@ Exibe a janela de configuração avançada do equipamento (consulte a documenta�
 ### Configurações de exibição específicas
 
 - **Display** : Define o que você deseja exibir, imagem estática ou transmitir a partir de uma câmera.
-- **Imagem** : Permite enviar a imagem em questão (se você escolheu uma imagem).
+- **Imagem** : Envie a imagem em questão (se você escolheu uma imagem).
 - **Câmera** : Câmera a ser exibida (se você escolher a câmera).
 
 ## Area
@@ -207,17 +207,17 @@ Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget
 - **Equipamento** : Widget a ser exibido ao passar o mouse ou clicar em.
 - **Display au survol** : Se marcado, exibe o widget em foco.
 - **Display sur un clic** : Se marcado, o widget será exibido no clique.
-- **Posição** : Permite escolher onde o widget aparecerá (canto inferior direito padrão).
+- **Posição** : Permite escolher onde o widget será exibido (por padrão, no canto inferior direito).
 
 ## Resumo
 
 ### Configurações de exibição específicas
 
-- **Link** : Permite que você indique o resumo a ser exibido (Geral para o global, caso contrário, indique o assunto).
+- **Link** : Permite indicar o resumo a ser exibido (Geral para o global, caso contrário, indique o assunto).
 - **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
 - **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** : Permite arredondar os ângulos, não se esqueça de colocar o%.
-- **Fronteira (attention syntaxe CSS, ex : 1px preto sólido)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
+- **Fronteira (attention syntaxe CSS, ex : sólido 1px preto)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
 - **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** : Permite alterar o tamanho da fonte.
 - **Gordura** : Texto em negrito.
 

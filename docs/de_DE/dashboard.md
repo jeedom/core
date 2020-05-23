@@ -34,7 +34,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 - In der Mitte können Sie in einem Suchfeld nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen.
 - Auf der rechten Seite können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen,
 - Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
-- Ein Klick auf einen Auftrag vom Informationstyp zeigt den Verlauf des Auftrags an (falls er historisch ist).
+- Ein Klick auf eine Bestellung vom Informationstyp zeigt den Verlauf der Bestellung an (sofern er historisch ist).
 
 > **Spitze**
 >
@@ -47,7 +47,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 ## Bearbeitungsmodus
 
-Im Bearbeitungsmodus (*der Bleistift oben rechts*) können Sie die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
+Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
 
 Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten :
 
@@ -70,6 +70,6 @@ Rechts von jedem Objekt können Sie ein Symbol verwenden :
 > **Spitze**
 >
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-> - Klicken Sie auf den Namen des Jeedom (Menüleiste) : Öffnet Einstellungen → System → Konfiguration.
+> - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.
 > - Klicken Sie auf ? (Menüleiste) : Öffnet die Hilfe auf der aktuellen Seite.
 > - Flucht auf ein Forschungsfeld : Löschen Sie das Feld und brechen Sie diese Suche ab .

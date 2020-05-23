@@ -17,7 +17,7 @@ En la página tienes tres botones :
 - **Perfil** : Permite elegir el perfil de usuario :
     - **Administrador** : El usuario obtiene todos los derechos (edición / consulta) sobre Jeedom.
     - **Usuario** : El usuario puede ver Tablero, vistas, diseños, etc. y actuar sobre equipos / controles. Sin embargo, no tendrá acceso a la configuración de los controles / equipos ni a la configuración de Jeedom.
-    - **Usuario limité** : El usuario solo ve el equipo autorizado (configurable con el botón &quot;Derechos&quot;).
+    - **Usuario limité** : El usuario solo ve el equipo autorizado (configurable con el botón "Derechos"").
 - **Clave API** : Clave de API personal del usuario.
 - **Doble autenticación** : Indica si la autenticación doble está activa (OK) o no (NOK).
 - **Fecha de la última conexión** : Fecha de inicio de sesión del último usuario. Tenga en cuenta que esta es la fecha de conexión real, por lo que si guarda su computadora, la fecha de conexión no se actualiza cada vez que regresa.
@@ -25,7 +25,7 @@ En la página tienes tres botones :
 - **Contraseña** : Le permite cambiar la contraseña del usuario.
 - **Remove** : Eliminar usuario.
 - **Regenerar clave API** : Regenera la clave API del usuario.
-- **Administrar derechos** : Le permite administrar los derechos de los usuarios con precisión (tenga en cuenta que el perfil debe ser &quot;usuario limitado&quot;).
+- **Administrar derechos** : Le permite administrar con precisión los derechos de los usuarios (tenga en cuenta que el perfil debe estar en "usuario limitado"").
 
 ## Gestión de derechos
 
@@ -38,13 +38,13 @@ Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite admini
 Obtiene una tabla que permite, para cada dispositivo y cada escenario, definir los derechos del usuario :
 - **No** : el usuario no ve el equipo / escenario.
 - **Visualización** : el usuario ve el equipo / escenario pero no puede actuar sobre él.
-- **Visualización et exécution** : el usuario ve el equipo / escenario y puede actuar sobre él (enciende una lámpara, inicia el escenario, etc.).
+- **Visualización et exécution** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
 
-## Sesiones activas
+## Sesiones activas))
 
 Muestra las sesiones del navegador activas en su Jeedom, con información del usuario, su IP y desde cuándo. Puede cerrar la sesión del usuario con el botón **Desconectar**.
 
-## Dispositivo (s) registrado (s)
+## Dispositivo (s) registrado (s))
 
 Enumere los periféricos (computadoras, móviles, etc.) que han registrado su autenticación en su Jeedom.
 Puede ver qué usuario, su IP, cuándo y eliminar el registro para este dispositivo.

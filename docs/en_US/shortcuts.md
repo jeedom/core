@@ -6,7 +6,7 @@ When opening a page (Dashboard, Scenarios, etc.) the focus is on the search fiel
 
 - Click on the clock (menu bar) : Open the Timeline.
 - Click on the name of the Jeedom (menu bar)  : Opens **Settings → System → Configuration**.
-- Click on ?  (toolbar)  : Opens help on the current page.
+- Click on ?  (Toolbar)  : Opens help on the current page.
 - Escape on a research field : Empty the search field and cancel it.
 
 ## Dashboard

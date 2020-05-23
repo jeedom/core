@@ -1,7 +1,7 @@
 # Relatório
 **Análise → Relatório**
 
-Esta página permite que você veja todos os relatórios que foram gerados pela ação do relatório (consulte a documentação do cenário).
+Esta página permite ver todos os relatórios que foram gerados pela ação do relatório (consulte a documentação do cenário).
 
 ## Princípio
 
@@ -14,7 +14,7 @@ Um relatório é uma captura de tela da interface Jeedom por vez t.
 Você pode fazer isso em vistas, designs, páginas do painel....
 
 A geração é acionada a partir de um cenário com o comando report.
-Você pode optar por receber este relatório usando um comando de mensagem (email, telegrama etc.).
+Você pode optar por receber esse relatório usando um comando de mensagem (email, telegrama etc.)).
 
 ## Uso
 

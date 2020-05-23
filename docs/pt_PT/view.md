@@ -10,7 +10,7 @@ Não é tão poderoso quanto os designs, mas permite em poucos minutos ter uma e
 
 ## Princípio
 
-Também podemos colocar widgets, gráficos (que podem ser compostos por vários dados) ou zonas de tabela (que contêm os widgets de comando).
+Também podemos colocar widgets, gráficos (que podem ser compostos por vários dados) ou zonas de tabela (que contêm os widgets de comandos).
 
 Nesta página, existe um botão no canto superior esquerdo para mostrar ou ocultar a lista de visualizações, bem como o botão para adicionar uma (o Jeedom solicitará seu nome e enviará para a página de edição) :
 
@@ -20,7 +20,7 @@ Nesta página, existe um botão no canto superior esquerdo para mostrar ou ocult
 
 ## Adicionando / Editando uma visualização
 
-O princípio é bastante simples : uma vista é composta de zonas (você pode colocar quantas quiser). Cada zona é do tipo gráfico, widget ou tabela, dependendo do tipo em que você pode colocar equipamentos, controle ou widgets gráficos.
+O princípio é bastante simples : uma visão é composta de zonas (você pode colocar quantas quiser). Cada zona é do tipo gráfico, widget ou tabela, dependendo do tipo em que você pode colocar equipamentos, controle ou widgets gráficos.
 
 > **Dica**
 >
@@ -33,7 +33,7 @@ O princípio é bastante simples : uma vista é composta de zonas (você pode co
 Depois de clicar no botão adicionar zona, o Jeedom solicitará seu nome e tipo.
 Em cada zona, você tem as seguintes opções gerais :
 
-- **Largeur** : Define a largura da área (apenas no modo de área de trabalho).
+- **Largeur** : Define a largura da área (somente no modo área de trabalho).
 - **Editar** : Permite alterar o nome da zona.
 - **Remover** : Excluir a zona.
 
@@ -57,7 +57,7 @@ Depois que o botão Adicionar widget é pressionado, você obtém uma janela sol
 
 Uma área do tipo gráfico permite adicionar gráficos à sua visualização, e possui as seguintes opções :
 
-- **Período** : Permite escolher o período de exibição dos gráficos (30 min, 1 dia, 1 semana, 1 mês, 1 ano ou todos).
+- **Período** : Permite escolher o período para exibição dos gráficos (30 min, 1 dia, 1 semana, 1 mês, 1 ano ou todos).
 - **Adicionar curva** : Adicionar / editar gráficos.
 
 Quando você pressiona o botão "Adicionar curva", o Jeedom exibe a lista de comandos históricos e você pode escolher os que deseja adicionar, uma vez concluído, você tem acesso às seguintes opções :
@@ -91,6 +91,6 @@ Depois de adicionar suas linhas / colunas, você pode adicionar informações na
 
 - **Texto** : apenas texto para escrever.
 - **html** : qualquer código html (é possível javascript, mas é fortemente desencorajado).
-- **widget de comando** : o botão à direita permite escolher o comando a ser exibido (observe que isso exibe o widget para o comando).
+- **widget de comando** : o botão à direita permite escolher o comando a ser exibido (observe que isso exibe o widget do comando).
 
 

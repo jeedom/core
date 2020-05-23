@@ -58,7 +58,7 @@ JSON Event API
 event::changes
 --------------
 
-Returns the list of changes since the datetime passed in parameter (must be in microseconds). You will also have in the response the current datetime of Jeedom (to be reused for the next query)
+Returns the list of changes since the datetime passed in parameter (must be in microseconds). You will also have in the response the current datetime of Jeedom (to be reused for the following query)
 
 Settings :
 
@@ -89,12 +89,12 @@ Returns the list of all objects
 jeeObject::full
 ------------
 
-Returns the list of all the objects, with for each object all its equipment and for each equipment all its commands as well as their states (for commands of type info)
+Returns the list of all objects, with for each object all its equipment and for each equipment all its commands as well as their states (for commands of type info)
 
 jeeObject::fullById
 ----------------
 
-Returns an object with all its equipment and for each equipment all its commands and their states (for info type commands)
+Returns an object with all its equipment and for each equipment all its commands as well as their states (for commands of type info)
 
 Settings :
 
@@ -112,7 +112,7 @@ Settings:
 jeeObject::fullById
 ----------------
 
-Returns an object, its equipment and for each equipment all of its commands as well as the cell states (for info type commands)
+Returns an object, its equipment and for each equipment all its commands as well as the cell states (for info type commands)
 
 jeeObject::save
 ------------
@@ -145,7 +145,7 @@ Return the global summary for the key passed in parameter
 
 Settings:
 
--   string key : (optional), key of the desired summary, if empty then Jeedom sends you the summary for all the keys
+-   string key : (optional), key of the desired summary, if empty then Jeedom returns the summary for all the keys
 
 summary::byId
 -------------
@@ -156,7 +156,7 @@ Settings:
 
 -   int id : object id
 
--   string key : (optional), key of the desired summary, if empty then Jeedom sends you the summary for all the keys
+-   string key : (optional), key of the desired summary, if empty then Jeedom returns the summary for all the keys
 
 JSON EqLogic API
 ================
@@ -169,7 +169,7 @@ Returns the list of all equipment
 eqLogic::fullById
 -----------------
 
-Returns equipment and its commands as well as their states (for info type commands)
+Returns a device and its commands as well as their states (for info type commands)
 
 Settings:
 
@@ -210,7 +210,7 @@ Returns an equipment table according to the parameters.
 The return will be of the form array (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒
 array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))….,id1 ⇒
 array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ array (….)), id2 ⇒ array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
-Array (....)) ..)
+array(…​.))..)
 
 Settings:
 
@@ -227,7 +227,7 @@ Settings:
 
 -   int id (empty if it is a creation)
 
--   string eqType\_name (type of script, virtual equipment, etc.)
+-   string eqType\_name (type of script, virtual equipment…)
 
 -   string name
 
@@ -287,7 +287,7 @@ Settings:
 cmd::getStatistique
 -------------------
 
-Returns statistics on the order (only works on info and historical orders)
+Returns the statistics on the order (only works on info and historical orders)
 
 Settings:
 
@@ -375,7 +375,7 @@ Settings:
 
 -   string value : valeur
 
--   string datetime : (optional) value datetime
+-   string datetime : (optional) datetime value
 
 JSON Scenario API
 =================
@@ -466,7 +466,7 @@ Get the Jeedom logs list
 
 Settings:
 
--   string filter : (optional) filter on the name of the logs to recover 
+-   string filter : (optional) filter on the name of the logs to retrieve 
 
 log::empty
 ----------
@@ -510,7 +510,7 @@ Stores the value of a variable in the datastore
 Settings:
 
 -   string type : type of stored value (for scenarios
-    it&#39;s scenario)
+    it's scenario)
 
 -   id linkId : -1 for global (value for default scenarios,
     or the scenario id)
@@ -739,7 +739,7 @@ Retrieving the list of objects :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all &#39;, array ())){
+if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all ', array())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -750,7 +750,7 @@ Execution of an order (with the option of a title and a message)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'options' => array ('title' => 'Cuckoo', 'message' => 'It works')))){
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' It works')))){
     echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

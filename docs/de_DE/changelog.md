@@ -5,7 +5,7 @@ Changelog Jeedom V4
 4.0.55
 =====
 
-- Die neuen DNS (\*. Eu.jeedom.Link) wird zum primären DNS (der alte DNS funktioniert noch)
+- Die neuen DNS (\*. Eu.jeedom.Link) wird zum primären DNS (der alte DNS funktioniert immer noch)
 
 4.0.54
 =====
@@ -20,7 +20,7 @@ Changelog Jeedom V4
 4.0.52
 =====
 
-- Fehlerkorrektur (Update muss unbedingt durchgeführt werden, wenn Sie sich in 4.0.51 befinden).
+- Fehlerbehebung (Update muss durchgeführt werden, wenn Sie in 4.0.51 sind).
 
 4.0.51
 =====
@@ -80,13 +80,13 @@ Changelog Jeedom V4
 - Fenster Gerätekonfiguration: Strg + Klick auf &quot;Speichern&quot; schließt das Fenster danach.
 - Hinzufügen von Nutzungsinformationen beim Löschen von Geräten.
 - Objekte : Option zur Verwendung benutzerdefinierter Farben hinzugefügt.
-- Objekte : Kontextmenü auf Registerkarten hinzufügen (schnelle Objektänderung).
+- Objekte : Kontextmenü auf Registerkarten hinzufügen (schneller Objektwechsel).
 - Wechselwirkungen : Kontextmenü auf Registerkarten hinzufügen (schnelle Änderung der Interaktion).
 - Plugins : Kontextmenü auf Registerkarten hinzufügen (schneller Gerätewechsel).
 - Plugins : Auf der Plugins-Verwaltungsseite zeigt ein orangefarbener Punkt nicht stabile Plugins an.
 - Tabellenverbesserungen mit Filter- und Sortieroption.
 - Möglichkeit, einer Interaktion ein Symbol zuzuweisen.
-- Jede Jeedom-Seite hat jetzt einen Titel in der Sprache der Benutzeroberfläche (Registerkarte Browser).
+- Jede Jeedom-Seite hat jetzt einen Titel in der Sprache der Benutzeroberfläche (Registerkarte Browser)).
 - Verhinderung des automatischen Ausfüllens des Zugangscodes von Feldern'.
 - Funktionsverwaltung *Vorherige Seite / Nächste Seite* Browser.<br/><br/>
 - Widgets : Neugestaltung des Widget-Systems (Menü Extras / Widgets).
@@ -94,18 +94,18 @@ Changelog Jeedom V4
 - Widgets : Möglichkeit, mehreren Befehlen ein Widget zuzuweisen.
 - Widgets : Fügen Sie ein horizontales numerisches Info-Widget hinzu.
 - Widgets : Hinzufügen eines vertikalen Info-Widgets.
-- Widgets : Hinzufügen eines Info-numerischen Kompass- / Wind-Widgets (danke @thanaus).
-- Widgets : Hinzufügen eines numerischen Regen-Widgets (danke @thanaus)
+- Widgets : Hinzufügung eines Info-numerischen Kompass- / Wind-Widgets (danke @thanaus).
+- Widgets : Hinzufügen eines info numerischen Regen-Widgets (danke @thanaus)
 - Widgets : Anzeige des Info- / Action-Shutter-Widgets proportional zum Wert.<br/><br/>
 - Konfiguration : Verbesserung und Reorganisation von Registerkarten.
-- Konfiguration : Viele hinzufügen *Tooltips* (Hilfe).
+- Konfiguration : Viele hinzufügen *Tooltips* (aide).
 - Konfiguration : Hinzufügen einer Suchmaschine.
-- Konfiguration : Hinzufügen einer Schaltfläche zum Leeren des Widget-Cache (Registerkarte Cache).
-- Konfiguration : Option zum Deaktivieren des Widget-Cache hinzugefügt (Registerkarte Cache).
-- Konfiguration : Möglichkeit, den Inhalt der Kacheln vertikal zu zentrieren (Registerkarte &quot;Schnittstelle&quot;).
-- Konfiguration : Hinzufügen eines Parameters zum globalen Löschen der Historien (Tab-Befehle).
+- Konfiguration : Hinzufügen einer Schaltfläche zum Leeren des Widget-Cache (Registerkarte Cache)).
+- Konfiguration : Fügen Sie eine Option zum Deaktivieren des Widget-Cache hinzu (Registerkarte Cache)).
+- Konfiguration : Möglichkeit, den Inhalt der Kacheln vertikal zu zentrieren (Registerkarte "Schnittstelle")).
+- Konfiguration : Hinzufügen eines Parameters für die globale Bereinigung der Historien (Registerkarte Bestellungen).
 - Konfiguration : Änderung von #message# Bis #subject# in Konfiguration / Protokolle / Nachrichten, um Doppelarbeit der Nachricht zu vermeiden.
-- Konfiguration : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung der Temperaturdurchschnitte, wenn ein Sensor länger als 30 Minuten nichts angehoben hat, wird er von der Berechnung ausgeschlossen )<br/><br/>
+- Konfiguration : Möglichkeit in den Zusammenfassungen, einen Ausschluss der Bestellungen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung der Temperaturmittelwerte, wenn ein Sensor länger als 30 Minuten nichts angehoben hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
 - Szenario : Die Färbung der Blöcke ist nicht mehr zufällig, sondern nach Blocktyp.
 - Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist *Ohne*).
 - Szenario : Löschbestätigung blockieren. Strg + Klicken, um eine Bestätigung zu vermeiden.
@@ -114,11 +114,11 @@ Changelog Jeedom V4
 - Szenario : Die Aktion &quot;Block hinzufügen&quot; wechselt bei Bedarf zur Registerkarte &quot;Szenario&quot;.
 - Szenario : Neue Funktionen zum Kopieren / Einfügen von Blöcken. Strg + Klicken zum Ausschneiden / Ersetzen.
 - Szenario : Ein neuer Block wird am Ende des Szenarios nicht mehr hinzugefügt, sondern nach dem Block, in dem Sie sich vor dem Klicken befanden. Dies wird durch das letzte Feld bestimmt, in das Sie geklickt haben.
-- Szenario : Implementierung eines Rückgängig- / Wiederherstellungssystems (Strg + Umschalt + Z / Strg + Umschalt + Y).
+- Szenario : Implementierung eines Rückgängig / Wiederherstellen-Systems (Strg + Umschalt + Z / Strg + Umschalt + Y)).
 - Szenario : Szenariofreigabe löschen.
 - Szenario : Verbesserung des Verwaltungsfensters für Szenariovorlagen.<br/><br/>
 - Analyse / Ausrüstung : Hinzufügen einer Suchmaschine (Registerkarte Batterien, Suche nach Namen und Eltern).
-- Analyse / Ausrüstung : Die Kalender- / Tageszone des Geräts kann jetzt angeklickt werden, um direkt auf den Batteriewechsel zuzugreifen.
+- Analyse / Ausrüstung : Der Kalender- / Tagesbereich des Geräts kann jetzt angeklickt werden, um direkt auf die Batteriewechsel zuzugreifen).
 - Analyse / Ausrüstung : Hinzufügen eines Suchfeldes.<br/><br/>
 - Update Center : Warnung auf der Registerkarte &quot;Core and Plugins&quot; und / oder &quot;Others&quot;, wenn ein Update verfügbar ist. Wechseln Sie bei Bedarf zu &quot;Andere&quot;.
 - Update Center : Differenzierung nach Version (stabil, Beta, ...).

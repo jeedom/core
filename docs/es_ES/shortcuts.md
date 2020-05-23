@@ -6,7 +6,7 @@ Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de bús
 
 - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 - Haga clic en el nombre de Jeedom (barra de menú)  : Abre **Preferencias → Sistema → Configuración**.
-- Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual.
+- Haga clic en ?  (Barra de menú)  : Abre la ayuda en la página actual.
 - Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
 
 ## Salpicadero

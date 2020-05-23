@@ -16,7 +16,7 @@ Unten finden Sie den Zustand für jedes Plugin. Ein Klick auf den Namen des Plug
 
 Rechts finden Sie die Symbole :
 
--   Zugangsport für Plugin-Hardware (Zwave-Schlüsseltyp).
+-   Zugriffsport für Plugin-Hardware (Zwave-Schlüsseltyp).
 -   Dämonenmodus.
 -   Anzeige der Gerätegesundheitsseite des Plugins.
 -   Anzeige der Plugin-Konfigurationsseite.

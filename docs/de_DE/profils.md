@@ -24,7 +24,7 @@ Definiert bestimmte Schnittstellenverhalten
 
 ### Benachrichtigungen
 
-- **Benutzerbenachrichtigungsbefehl** : Standardbefehl, um Sie zu erreichen (Nachrichtentyp Befehl).
+- **Benutzerbenachrichtigungsbefehl** : Standardbefehl, um sich Ihnen anzuschließen (Nachrichtentyp Befehl).
 
 ## Registerkarte &quot;Sicherheit&quot;
 
@@ -78,7 +78,7 @@ Sicherheit
     Google Authentificator oder Microsoft Authenticator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Für eine lokale Verbindung wird der Code daher nicht angefordert. Wichtig, wenn Sie während der Konfiguration der doppelten Authentifizierung eine Fehlerprüfung haben, dass jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig vorhanden sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert)
 
 -   **Passwort** : ermöglicht es Ihnen, Ihr Passwort zu ändern (nicht
-    vergessen Sie es unten erneut einzugeben)
+    Vergessen Sie, es unten erneut einzugeben)
 
 -   **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel
 

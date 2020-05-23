@@ -24,15 +24,15 @@ Define certos comportamentos da interface
 
 ### Notificações
 
-- **Comando de notificação do usuário** : Comando padrão para alcançá-lo (comando do tipo de mensagem).
+- **Comando de notificação do usuário** : Comando padrão para se juntar a você (comando do tipo de mensagem).
 
 ## Guia Segurança
 
-- **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *google authentificator*) Observe que a autenticação dupla só será solicitada para conexões externas.Para conexões locais, o código não será solicitado.
+- **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *google authentificator*). Observe que a autenticação dupla só será solicitada para conexões externas.Para conexões locais, o código não será solicitado.
 
-  **IMPORTANTE** se durante a configuração da autenticação dupla você tiver um erro, verifique se o Jeedom (veja na página de integridade) e seu telefone estão ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
+  **IMPORTANTE** se durante a configuração da autenticação dupla houver um erro, verifique se o Jeedom (consulte a página de integridade) e o telefone estão ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
 
-- **Senha** : Permite alterar sua senha (não se esqueça de digitá-la novamente abaixo).
+- **Senha** : Permite alterar sua senha (não esqueça de redigitá-la abaixo).
 
 - **Hash Usuário** : Sua chave de API do usuário.
 

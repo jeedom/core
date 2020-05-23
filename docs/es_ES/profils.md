@@ -24,15 +24,15 @@ Define ciertos comportamientos de interfaz
 
 ### Notificaciones
 
-- **Comando de notificación del usuario** : Comando predeterminado para comunicarse con usted (comando de tipo de mensaje).
+- **Comando de notificación del usuario** : Comando predeterminado para unirse a usted (comando de tipo de mensaje).
 
 ## Pestaña de seguridad
 
-- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*) Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código.
+- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código.
 
-  **Importante** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (vea en la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
+  **Importante** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (consulte la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
 
-- **Contraseña** : Le permite cambiar su contraseña (no olvide volver a escribirla a continuación).
+- **Contraseña** : Le permite cambiar su contraseña (no olvide volver a escribirla a continuación)).
 
 - **Hash de usuario** : Su clave de API de usuario.
 
@@ -75,7 +75,7 @@ Seguridad
 -   **Autenticación de 2 pasos** : permite configurar
     Autenticación en 2 pasos (como recordatorio, este es un código cambiante
     aparece cada X segundos en una aplicación móvil, escriba
-    Autenticador de Google o Autenticador de Microsoft). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para la conexión local, el código no será solicitado. Importante si durante la configuración de la autenticación doble tiene un error, compruebe que la libertad (consulte la página de estado) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione)
+    Google Authenticator o Google Authenticator). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para la conexión local, el código no será solicitado. Importante si durante la configuración de la autenticación doble tiene un error, compruebe que la libertad (consulte la página de estado) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione)
 
 -   **Contraseña** : le permite cambiar su contraseña (no
     olvide volver a escribirlo a continuación)

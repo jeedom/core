@@ -6,7 +6,7 @@ Ao abrir uma página (painel, cenários, etc.), o foco está no campo de pesquis
 
 - Clique no relógio (barra de menus) : Abra a linha do tempo.
 - Clique no nome do Jeedom (barra de menus)  : Aberto **Configurações → Sistema → Configuração**.
-- Clique em ?  (barra de menus)  : Abre a ajuda na página atual.
+- Clique em ?  (Barra de menus)  : Abre a ajuda na página atual.
 - Escape em um campo de pesquisa : Esvazie o campo de pesquisa e cancele-o.
 
 ## Painel de instrumentos

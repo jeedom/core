@@ -14,7 +14,7 @@ O Jeedom possui uma versão móvel adequada para uso em celulares e tablets. Há
 Quando você faz login no Jeedom pela primeira vez (e mesmo depois se você não os tiver alterado), o nome de usuário e a senha padrão são admin / admin. Na primeira conexão, é altamente recomendável modificar esses identificadores para obter mais segurança.
 
 ### Não consigo mais me conectar ao meu Jeedom
-Desde o Jeedom 3.2 não é mais possível conectar-se a admin / admin remotamente por razões óbvias de segurança. As credenciais de administrador / administrador funcionam apenas localmente. Atenção, se você passar pelo DNS, mesmo localmente, será necessariamente identificado como remoto. Outro ponto padrão somente IP em 192.168.*.* ou 127.0.0.1 são reconhecidos como locais. Ele é configurado na administração da parte de segurança Jeedom e depois no IP "branco". Se, apesar de tudo que você ainda não consegue conectar, você deve usar o procedimento de redefinição de senha (consulte os tutoriais / como fazer)
+Desde o Jeedom 3.2 não é mais possível conectar-se a admin / admin remotamente por razões óbvias de segurança. As credenciais de administrador / administrador funcionam apenas localmente. Atenção, se você passar pelo DNS, mesmo localmente, será necessariamente identificado como remoto. Outro ponto padrão somente IP em 192.168.*.* ou 127.0.0.1 são reconhecidos como locais. Ele é configurado na administração da parte de segurança Jeedom e depois no IP "branco". Se, apesar de tudo, você ainda não conseguir se conectar, use o procedimento de redefinição de senha (consulte os tutoriais / como)
 
 ### Não vejo todo o meu equipamento no painel
 Geralmente, isso se deve ao fato de o equipamento estar atribuído a um objeto que não é o filho ou o próprio objeto do primeiro objeto selecionado à esquerda na árvore (você pode configurá-lo em seu perfil).
@@ -78,12 +78,12 @@ O aplicativo da web requer um smartphone compatível com HTML5 e CSS3. Por conse
 ### Em que plataformas o Jeedom pode ser executado ?
 Para que o Jeedom funcione, você precisa de uma plataforma linux com direitos de root ou um sistema do tipo docker. Portanto, não funciona em uma plataforma Android pura.
 
-### Não consigo atualizar o plug-in "Falha ao baixar o arquivo. Tente novamente mais tarde (tamanho menor que 100 bytes)..." ?
+### Não consigo atualizar o plug-in "Falha ao baixar o arquivo. Tente novamente mais tarde (tamanho menor que 100 bytes))..." ?
 Isso pode ser devido a várias coisas, :
 
 - Verifique se o seu Jeedom ainda está conectado ao mercado (na página de administração do Jeedom, parte atualizada, você tem um botão de teste).
 - Verifique se a conta do mercado comprou o plug-in em questão.
-- Verifique se você tem espaço suficiente no Jeedom (a página de saúde informará).
+- Verifique se você tem espaço no Jeedom (a página de saúde informará).
 - Verifique se a sua versão do Jeedom é compatível com o plugin.
 
 ### Eu tenho uma página em branco
@@ -155,7 +155,7 @@ Esse tipo de caso acontece se o seu Jeedom não for compatível com o plugin. Em
 Os alertas são classificados por prioridade, do menos importante ao mais importante : tempo limite, aviso de bateria, perigo de bateria, alerta de alerta, alerta de perigo
 
 ### O My Jeedom exibe permanentemente "Inicializando" mesmo após 1 hora ?
-Se você está no DIY e no Debian 9 ou mais, verifique se não houve uma atualização do Apache e, portanto, o retorno do privateTmp (visível fazendo `ls / tmp` e veja se há uma pasta privada \* Apache). Se for esse o caso, você tem que fazer :
+Se você está no DIY e no Debian 9 ou mais, verifique se não houve uma atualização do Apache e, portanto, o retorno do privateTmp (visível fazendo `ls / tmp` e veja se há uma pasta particular \* Apache). Se for esse o caso, você tem que fazer :
 `` ''
 mkdir /etc/systemd/system/apache2.service.d
 echo "[Service]"> /etc/systemd/system/apache2.service.d/privatetmp.conf
@@ -171,7 +171,7 @@ Jeedom não pode encontrar ou não pode executar ping no gateway. Em geral, isso
 ### Recebo a mensagem "Falha ao fazer backup do banco de dados. Verifique se o mysqldump está presente."
 Isso significa que o Jeedom não pode fazer backup do banco de dados, o que pode sugerir um problema com a corrupção do banco de dados e do sistema de arquivos. Infelizmente, não existe um comando milagroso para corrigir. O melhor é iniciar um backup e analisar o log dele. Em casos conhecidos de preocupações, temos:
 
-- uma tabela de base corrompida => aí é um começo ruim, devemos ver para tentar reparar e se não iniciar a partir do último backup bom (se você estiver no cartão SD, é o momento certo para alterá-lo)
+- uma tabela base corrompida => há um início ruim que devemos tentar para reparar e, se não iniciar a partir do último backup bom (se você estiver no cartão SD, é o momento certo para alterá-lo)
 - não há espaço suficiente no sistema de arquivos => veja a página de integridade, isso pode lhe dizer
 
 ### Estou com erros do tipo "Classe 'eqLogic' não encontrado", os arquivos parecem estar ausentes ou tenho uma página em branco
@@ -196,7 +196,7 @@ sim | O comando sudo apt-install -y php-mysql-php-curl php-gd php-imap php-xml p
 Você deve :
 
 - reiniciar o Jeedom
-- vá para a administração (botão de roda dentada no canto superior direito e configuração na v3 ou Configuração -> Sistema -> Configuração na v4)
+- vá para a administração dele (botão de roda dentada no canto superior direito e configuração na v3 ou Configuração -> Sistema -> Configuração na v4)
 - vá para a guia OS / DB
 - iniciar administração do sistema
 - clique em Dpkg configure

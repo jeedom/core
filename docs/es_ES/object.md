@@ -5,7 +5,7 @@ La **objetos** le permite definir la estructura de árbol de su domótica.
 
 Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **pariente** equipo.
 
-Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como los nombres de las habitaciones (por cierto, esta es la configuración recomendada).
+Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como el nombre de las habitaciones (esta también es la configuración recomendada).
 
 ## Administración
 

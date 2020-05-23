@@ -14,7 +14,7 @@ Un informe es una captura de pantalla de la interfaz Jeedom en un momento t.
 Puede hacer esto en vistas, diseños, páginas de paneles....
 
 La generación se desencadena desde un escenario con el comando de informe.
-Puede elegir que se le envíe este informe utilizando un comando de mensaje (correo electrónico, telegrama, etc.).
+Puede elegir que le enviemos este informe mediante un comando de mensaje (correo electrónico, telegrama, etc).
 
 ## Uso
 
@@ -23,7 +23,7 @@ Su uso es muy sencillo. Seleccione a la izquierda si quiere ver :
 - Ver informes.
 - Informes de diseño.
 - Informes del panel de complementos.
-- Informes del equipo (para un resumen de la batería de cada módulo).
+- Informes de equipos (para un resumen de la batería de cada módulo).
 
 Luego seleccione el nombre del informe en cuestión. Luego verá todas las fechas de los informes disponibles.
 

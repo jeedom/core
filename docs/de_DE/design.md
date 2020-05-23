@@ -26,7 +26,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Ausrüstung hinzufügen** : Fügt Ausrüstung hinzu.
 - **Bestellung hinzufügen** : Bestellung hinzufügen.
 - **Bild / Kamera hinzufügen** : Ermöglicht das Hinzufügen eines Bildes oder eines Streams von einer Kamera.
-- **Bereich hinzufügen** : Ermöglicht das Hinzufügen eines anklickbaren transparenten Bereichs, der beim Klicken eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht).
+- **Bereich hinzufügen** : Ermöglicht das Hinzufügen einer anklickbaren transparenten Zone, die während eines Klicks eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht).
 - **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
 - **Anzeigen**
     - **Keine** : Zeigt kein Raster an.
@@ -34,7 +34,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
     - **15x15** : Zeigt ein Raster von 15 mal 15 an.
     - **20x20** : Zeigt ein 20 x 20-Raster an.
     - **Magnetisieren Sie die Elemente** : Fügt eine Magnetisierung zwischen den Elementen hinzu, um das Aufkleben zu erleichtern.
-    - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Je nach Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren.
+    - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Abhängig vom Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren).
     - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
 - **Entfernen le design** : Design löschen.
 - **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
@@ -114,8 +114,8 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
 - **Rund um die Winkel** : erlaubt das Abrunden der Winkel (vergessen Sie nicht,%, ex 50% zu setzen).
 - **Grenze** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
-- **Schriftgröße** : ermöglicht es Ihnen, die Schriftgröße zu ändern (ab 50% müssen Sie das% -Zeichen setzen).
-- **Textausrichtung** : ermöglicht die Auswahl der Ausrichtung des Textes (links / rechts / zentriert).
+- **Schriftgröße** : Mit dieser Option können Sie die Schriftgröße ändern (ab 50% müssen Sie das% -Zeichen eingeben).
+- **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
 - **Fett** : fetter Text.
 - **Text** : Text im HTML-Code, der sich im Element befindet.
 
@@ -138,7 +138,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Mit dieser Option können Sie die Schriftgröße ändern.
-- **Textausrichtung** : Ermöglicht die Auswahl der Ausrichtung des Textes (links / rechts / zentriert).
+- **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
 - **Fett** : Fetter Text.
 
 ## Ausrüstung
@@ -179,8 +179,8 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 ### Spezifische Anzeigeeinstellungen
 
 - **Anzeige** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
-- **Bild** : Ermöglicht das Senden des betreffenden Bildes (wenn Sie ein Bild ausgewählt haben).
-- **Kamera** : Kamera zum Anzeigen (wenn Sie Kamera gewählt haben).
+- **Bild** : Senden Sie das betreffende Bild (wenn Sie ein Bild ausgewählt haben).
+- **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 
 ## Bereich
 
@@ -196,7 +196,7 @@ In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus. Hi
 
 In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. Ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus
 
-- **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus).
+- **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus)).
 
 Sie müssen nur die Aktionen ausführen, die für das Ein und das Aus ausgeführt werden sollen.
 
@@ -207,7 +207,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird.
 - **Anzeige au survol** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
 - **Anzeige sur un clic** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
-- **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (Standard unten rechts).
+- **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (standardmäßig unten rechts)).
 
 ## Zusammenfassung
 

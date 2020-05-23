@@ -25,7 +25,7 @@ You will find, on the left, the parameters and action buttons. On the right is t
 
 - **Delete backup** : Delete the backup selected above, only in the local folder.
 
-- **Send a backup** : Allows you to send an archive located on the computer you are currently using to the backups folder (for example, to restore an archive previously recovered on a new Jeedom or a reinstallation).
+- **Send a backup** : Allows you to send an archive located on the computer you are currently using to the backups folder (for example, restoring an archive previously recovered on a new Jeedom or reinstalling).
 
 - **Download backup** : Download the archive of the backup selected above to your computer.
 

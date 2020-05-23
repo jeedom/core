@@ -5,7 +5,7 @@ Mit dem Interaktionssystem in Jeedom können Sie Aktionen über Text- oder Sprac
 
 Diese Bestellungen erhalten Sie von :
 
-- SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info).
+- SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info)).
 - Katze : Telegramm, Slack usw.
 - Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. Befehle starten (Aktion) oder eine Frage stellen (Info).
 - Http : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
@@ -44,7 +44,7 @@ Das Prinzip der Schöpfung ist recht einfach : Wir werden einen generierenden Mo
 
 Wir werden Antworten auf die gleiche Weise mit einem Modell definieren (dies ermöglicht Jeedom, mehrere Antworten auf eine einzelne Frage zu haben).
 
-Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise die Interaktion nicht mit einer Aktion, sondern mit einer Information verknüpft ist oder wenn wir danach eine bestimmte Aktion ausführen möchten (es ist auch möglich, ein Szenario auszuführen, um es zu steuern mehrere Bestellungen…).
+Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise die Interaktion nicht mit einer Aktion, sondern mit Informationen verknüpft ist oder wenn wir danach eine bestimmte Aktion ausführen möchten (es ist auch möglich, ein Szenario auszuführen, um es zu steuern mehrere Bestellungen…).
 
 ## Konfiguration
 
@@ -58,24 +58,24 @@ Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 ### Registerkarte &quot;Allgemein&quot;
 
 - **Name** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
-- **Gruppe** : Interaktionsgruppe, dies ermöglicht es ihnen, organisiert zu werden (kann leer sein, wird daher in der Gruppe &quot;keine&quot; sein).
+- **Gruppe** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
 - **Aktiva** : Ermöglicht das Aktivieren oder Deaktivieren der Interaktion.
 - **Anwendung** : Der generierende Modellsatz (erforderlich).
 - **Synonym** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
-- **Warten Sie, bevor Sie antworten** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
-- **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo).
+- **Warten Sie, bevor Sie antworten (s)** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
+- **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo)).
 - **Autorisierte Benutzer** : Beschränkt die Interaktion auf bestimmte Benutzer (Anmeldungen getrennt durch |).
 
 ### Registerkarte Filter
 
 - **Beschränken Sie sich auf die Eingabe von Befehlen** : Ermöglicht die Verwendung nur der Arten von Aktionen, Informationen oder der beiden Arten.
 - **Beschränken Sie sich auf Bestellungen mit Subtyp** : Beschränkt die Generierung auf einen oder mehrere Untertypen.
-- **Beschränkung auf Bestellungen mit Einheit** : Wird verwendet, um die Generierung auf eine oder mehrere Einheiten zu beschränken (Jeedom erstellt die Liste automatisch aus den in Ihren Bestellungen definierten Einheiten).
-- **Beschränkung auf Bestellungen, die zum Objekt gehören** : Ermöglicht es Ihnen, die Generierung auf ein oder mehrere Objekte zu beschränken (Jeedom erstellt die Liste automatisch aus den von Ihnen erstellten Objekten).
-- **Beschränken Sie sich auf das Plugin** : Beschränkt die Generierung auf ein oder mehrere Plugins (Jeedom erstellt die Liste automatisch aus installierten Plugins).
+- **Beschränkung auf Bestellungen mit Einheit** : Ermöglicht es Ihnen, die Generierung auf eine oder mehrere Einheiten zu beschränken (Jeedom erstellt die Liste automatisch aus den in Ihren Bestellungen definierten Einheiten).
+- **Beschränkung auf Bestellungen, die zum Objekt gehören** : Beschränkt die Generierung auf ein oder mehrere Objekte (Jeedom erstellt die Liste automatisch aus den von Ihnen erstellten Objekten).
+- **Beschränken Sie sich auf das Plugin** : Ermöglicht es Ihnen, die Generierung auf ein oder mehrere Plugins zu beschränken (Jeedom erstellt die Liste automatisch aus installierten Plugins).
 - **Beschränkung auf Kategorie** : Beschränkt die Generierung auf eine oder mehrere Kategorien.
-- **Beschränkung auf Ausrüstung** : Ermöglicht es Ihnen, die Generierung auf ein einzelnes Gerät / Modul zu beschränken (Jeedom erstellt die Liste automatisch aus den Geräten / Modulen, die Sie haben).
+- **Beschränkung auf Ausrüstung** : Beschränkt die Generierung auf ein einzelnes Gerät / Modul (Jeedom erstellt die Liste automatisch aus den Geräten / Modulen, über die Sie verfügen).
 
 ### Registerkarte &quot;Aktionen&quot;
 
@@ -101,7 +101,7 @@ Wir können uns sehr gut vorstellen, dasselbe mit mehreren Aktionen zu tun, um m
 
 ![interact005](../images/interact005.png)
 
-In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus resultierenden Aktionen ändern sich entsprechend der Konfiguration im Teil &quot;Aktion&quot;. Daher können wir uns bereits mit einer einfachen Interaktion mit einem Satz Aktionen vorstellen, die zwischen diesen kombiniert werden verschiedene Befehle und verschiedene Szenarien (wir können auch Szenarien im Aktionsteil von Interaktionen auslösen).
+In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus resultierenden Aktionen ändern sich entsprechend der Konfiguration im Teil "Aktion". Daher können wir uns bereits mit einer einfachen Interaktion mit einem einzelnen Satz Aktionen vorstellen, die zwischen diesen kombiniert werden verschiedene Befehle und verschiedene Szenarien (wir können auch Szenarien im Aktionsteil von Interaktionen auslösen).
 
 > **Spitze**
 >
@@ -117,7 +117,7 @@ Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugef�
 
 Wir können hier also sehen, dass Jeedom aus unserem Modell 152 Sätze generiert hat. Sie sind jedoch nicht sehr gut gebaut und wir haben von allem etwas.
 
-Um Ordnung zu schaffen, verwenden wir die Filter (rechter Teil unserer Konfigurationsseite). In diesem Beispiel möchten wir Sätze generieren, um das Licht einzuschalten. Wir können daher die Art des Infobefehls deaktivieren (wenn ich speichere, habe ich nur noch 95 Sätze übrig), dann können wir in den Untertypen nur &quot;Standard&quot; aktivieren, das der Aktionsschaltfläche entspricht ( es bleiben nur 16 Sätze übrig).
+Um Ordnung zu schaffen, verwenden wir die Filter (rechter Teil unserer Konfigurationsseite)). In diesem Beispiel möchten wir Sätze generieren, um das Licht einzuschalten. Wir können also den Info-Befehlstyp deaktivieren (wenn ich speichere, habe ich nur noch 95 Sätze), und dann können wir in den Untertypen nur "Standard" aktivieren, das der Aktionsschaltfläche entspricht ( es sind also nur noch 16 Sätze übrig).
 
 ![interact007](../images/interact007.png)
 
@@ -133,7 +133,7 @@ Es ist schon besser, aber es fehlt immer noch für den Befehl &quot;on&quot; &qu
 
 ![interact009](../images/interact009.png)
 
-Wir haben jetzt etwas korrektere Sätze mit Sätzen, die nicht korrekt sind, für unser Beispiel "on" "". so finden wir &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot; usw. Wir haben also alle möglichen Varianten mit dem, was wir zwischen &quot;\ [\]&quot; und diesem für jedes Synonym hinzugefügt haben, was schnell viele Sätze erzeugt (hier 168).
+Wir haben jetzt etwas korrektere Sätze mit Sätzen, die nicht korrekt sind, für unser Beispiel "on" "". so finden wir &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot;, &quot;Eintrag einschalten&quot; usw. Wir haben also alle möglichen Varianten mit dem, was wir zwischen "\ [\]" und diesem für jedes Synonym hinzugefügt haben, was schnell viele Sätze erzeugt (hier 168)).
 
 Um zu verfeinern und keine unwahrscheinlichen Dinge wie &quot;Schalten Sie den Fernseher ein&quot; zu haben, können wir Jeedom erlauben, syntaktisch falsche Anfragen zu löschen. Es wird daher gelöscht, was zu weit von der tatsächlichen Syntax eines Satzes entfernt ist. In unserem Fall gehen wir von 168 Sätzen auf 130 Sätze.
 
@@ -155,11 +155,11 @@ Sie können auch einen beliebigen Wert aus einem anderen Befehl hinzufügen, z. 
 
 ### Binäre Konvertierung
 
-Binäre Konvertierungen gelten für Befehle vom Typ info, deren Subtyp binär ist (gibt nur 0 oder 1 zurück). Sie müssen also die richtigen Filter aktivieren, wie wir auf dem Screenshot etwas unten sehen können (für die Kategorien können wir alle überprüfen, für das Beispiel habe ich nur Licht gehalten).
+Binäre Konvertierungen gelten für Befehle vom Typ Info, deren Subtyp binär ist (gibt nur 0 oder 1 zurück). Sie müssen also die richtigen Filter aktivieren, wie wir auf dem Screenshot etwas unten sehen können (für die Kategorien können wir alle überprüfen, zum Beispiel habe ich nur Licht gehalten).
 
 ![interact013](../images/interact013.png)
 
-Wie wir hier sehen können, habe ich fast die gleiche Struktur für die Anfrage beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren). Natürlich habe ich die Synonyme angepasst, um etwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** nur \ setzen#valeur\.# Dies stellt die 0 oder 1 dar, die Jeedom durch die folgende binäre Konvertierung ersetzen wird.
+Wie wir hier sehen können, habe ich für die Anfrage fast die gleiche Struktur beibehalten (es ist freiwillig, sich auf die Einzelheiten zu konzentrieren). Natürlich habe ich die Synonyme angepasst, um etwas Kohärentes zu haben. Für die Antwort ist es jedoch **Imperativ** nur \ setzen#valeur\.# Dies stellt die 0 oder 1 dar, die Jeedom durch die folgende binäre Konvertierung ersetzen wird.
 
 Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 wert ist, dann ein vertikaler Balken "|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen etwas längeren Satz setzen.
 
@@ -204,7 +204,7 @@ Wenn wir diesen Ausdruck in einen Satz übersetzen, würde er "nach dem Wort Jul
 
 Es ist eine extrem einfache Version von regulären Ausdrücken, aber bereits sehr kompliziert zu verstehen. Ich habe eine Weile gebraucht, um zu verstehen, wie es funktioniert. Als etwas komplexeres Beispiel ein regulärer Ausdruck zum Überprüfen einer URL :
 
-/\.^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*) \*\\ /?\ $ /
+/\.^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*)\.*\\ /?\ $ /
 
 Sobald Sie dies schreiben können, verstehen Sie die regulären Ausdrücke.
 
@@ -261,12 +261,12 @@ Ohne den Regexp erhalten wir hier 11 Sätze, aber meine Interaktion zielt darauf
 
 Wir könnten den Satz hart schreiben, wie zum Beispiel &quot;Was ist die Temperatur des Wohnzimmers?&quot;, Aber es wäre notwendig, für jeden Sensor für Temperatur, Helligkeit und Feuchtigkeit einen zu erstellen. Mit dem Jeedom-Satzgenerierungssystem können wir daher Sätze für alle Sensoren dieser drei Messarten mit einer einzigen Interaktion erzeugen.
 
-Hier ein allgemeines Beispiel, anhand dessen die Temperatur, Luftfeuchtigkeit und Helligkeit der verschiedenen Räume ermittelt werden (Objekt im Sinne von Jeedom).
+Hier ein allgemeines Beispiel, anhand dessen die Temperatur, Luftfeuchtigkeit und Helligkeit der verschiedenen Räume (Objekt im Sinne von Jeedom) ermittelt werden).
 
 ![interact019](../images/interact019.png)
 
-- So können wir sehen, dass ein allgemeiner Satz wie &quot;Was ist die Temperatur im Wohnzimmer&quot; oder &quot;Was ist die Helligkeit des Schlafzimmers&quot; in umgewandelt werden kann : "was ist \ [the |l \\ '\] \#commande\.# Objekt "(die Verwendung von \ [word1 | Mit word2 \] können Sie diese oder jene Möglichkeit sagen, um alle möglichen Varianten des Satzes mit word1 oder word2 zu generieren. Beim Generieren generiert Jeedom alle möglichen Kombinationen von Sätzen mit allen vorhandenen Befehlen (abhängig von den Filtern), indem \ ersetzt wird#commande\.# mit dem Namen des Befehls und \#objet\.# durch den Namen des Objekts.
-- Die Antwort lautet "21 ° C" oder "200 Lux"". Einfach gesagt : \.#valeur\.# \.#unite\.# (Die Einheit muss in der Konfiguration jeder Bestellung ausgefüllt werden, für die wir eine haben möchten.)
+- So können wir sehen, dass ein allgemeiner Satz wie &quot;Was ist die Temperatur im Wohnzimmer&quot; oder &quot;Was ist die Helligkeit des Schlafzimmers&quot; in umgewandelt werden kann : "was ist \ [the |l \\ '\] \#commande\.# Objekt "(die Verwendung von \ [word1 | Mit word2 \] können Sie diese oder jene Möglichkeit sagen, um alle möglichen Varianten des Satzes mit word1 oder word2 zu generieren). Beim Generieren generiert Jeedom alle möglichen Kombinationen von Sätzen mit allen vorhandenen Befehlen (abhängig von den Filtern), indem \ ersetzt wird#commande\.# mit dem Namen des Befehls und \#objet\.# durch den Namen des Objekts.
+- Die Antwort lautet "21 ° C" oder "200 Lux"". Einfach gesagt : \.#valeur\.# \.#unite\.# (Die Einheit ist in der Konfiguration jedes Befehls zu vervollständigen, für den wir einen haben möchten)
 - In diesem Beispiel wird daher ein Satz für alle digitalen Infotypbefehle generiert, die eine Einheit haben, sodass wir Einheiten im rechten Filter deaktivieren können, die auf den Typ beschränkt sind, der uns interessiert.
 
 #### Evolution
@@ -281,7 +281,7 @@ Wir können auch einen Regexp-Filter hinzufügen, um einige Befehle zu entfernen
 
 Wir können also einen regulären Ausdruck sehen :
 
-**(Batterie|latence|pression|vitesse|Verbrauch)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wörter enthält
 
@@ -289,7 +289,7 @@ Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wört
 >
 > Der reguläre Ausdruck hier ist eine vereinfachte Version zur einfachen Verwendung. Wir können daher entweder traditionelle Ausdrücke oder vereinfachte Ausdrücke wie in diesem Beispiel verwenden.
 
-### Steuern Sie einen Dimmer oder einen Thermostat (Schieberegler)
+### Steuern Sie einen Dimmer oder einen Thermostat (Schieberegler))
 
 #### Basisversion
 
@@ -297,11 +297,11 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können setzen, was Sie wollen), die in der Antriebssteuerung verwendet wird, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anwendung : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Anleitung*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anwendung : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Anleitung*.
 
 > **Notiz**
 >
-> Wir können jedes Tag verwenden, außer denjenigen, die bereits von Jeedom verwendet werden. Es können mehrere verwendet werden, um beispielsweise mehrere Befehle zu steuern. Beachten Sie auch, dass alle Tags an die von der Interaktion gestarteten Szenarien übergeben werden (es ist jedoch erforderlich, dass sich das Szenario in &quot;Im Vordergrund ausführen&quot; befindet).
+> Wir können jedes Tag verwenden, außer denjenigen, die bereits von Jeedom verwendet werden. Es können mehrere verwendet werden, um beispielsweise mehrere Befehle zu steuern. Beachten Sie auch, dass alle Tags an die von der Interaktion gestarteten Szenarien übergeben werden (es ist jedoch erforderlich, dass sich das Szenario unter "Im Vordergrund ausführen" befindet").
 
 #### Evolution
 

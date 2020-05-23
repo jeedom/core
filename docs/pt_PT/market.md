@@ -22,13 +22,13 @@ Isso é dividido em várias partes :
 Para desenvolvedores :
 - **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum.
 - **E-mail public** : Seu e-mail para receber nossas comunicações.
-- **Conta Paypal** : O e-mail da sua conta Paypal (usado apenas para pagar desenvolvedores).
+- **Conta Paypal** : O email da sua conta Paypal (usado apenas para pagar desenvolvedores).
 
 Para os profissionais :
 - **Conta de email do instalador** : Seu email de contato profissional.
-- **Destinatário das solicitações de suporte** : saber quem receberá os e-mails de suporte (cliente final, instalador ou ambos).
+- **Destinatário das solicitações de suporte** : saber quem receberá os emails de suporte (cliente final, instalador ou ambos).
     - **Termos e Condições**
-- **Usuário** : condições gerais de uso (tenha o cuidado de lê-las bem, pois elas prendem você).
+- **Usuário** : condições gerais de uso (tenha cuidado para lê-las, pois elas comprometem você).
 - **Desenvolvedor** : termos de uso para desenvolvedores.
     - **Ingressos**
 - **Nomebre de tickets** : Número de ingressos para o mês atual e seu limite.
@@ -61,7 +61,7 @@ Para os profissionais :
     - **URL ** : Listar os diferentes URLs de acesso Jeedom.
     - **Servidor DNS** : Informa o servidor DNS ao qual você está conectado.
     - **Status DNS** : Permite que você veja o status do DNS.
-    - **Data de criação** : Data de criação deste Jeedom na sua conta do Market (como lembrete, isso é feito automaticamente quando você o vincula ao Market).
+    - **Data de criação** : Data de criação deste Jeedom na sua conta do Market (lembrete, isso é feito automaticamente quando você o vincula ao Market).
     - **Última atualização** : A última comunicação da Jeedom com o mercado.
     - **Hardware** : Nome do hardware Jeedom.
     - **Versão** : Versão Jeedom instalada.
@@ -76,7 +76,7 @@ Nesta guia, você pode consultar os backups presentes no Market e baixar um. Aba
 
 ## Meus SMS / Chamadas
 
-Nesta guia, você pode ver seu saldo de SMS / Chamadas (utilizável com o plug-in do mercado de telefones). Abaixo, você tem as diferentes opções para comprar saldo adicional.
+Nesta guia, você pode consultar seu saldo de SMS / Chamadas (utilizável com o plug-in do mercado de telefones). Abaixo, você tem as diferentes opções para comprar saldo adicional.
 
 ## Minhas compras / promoções / doações
 

@@ -47,7 +47,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 ## Modo de edição
 
-No modo de edição (*o lápis no canto superior direito*), você pode alterar o tamanho dos blocos e sua organização no Painel.
+No modo de edição (*o lápis no canto superior direito*), você pode alterar o tamanho dos ladrilhos e sua organização no painel.
 
 Você também pode editar o layout interno dos controles no bloco :
 
@@ -59,7 +59,7 @@ Você também pode editar o layout interno dos controles no bloco :
     - **Adicionar coluna** : adicione uma coluna à tabela (acessível apenas se você estiver no layout da tabela)
     - **Adicionar linha** : adicione uma linha à tabela (acessível apenas se você estiver no layout da tabela)
     - **Excluir coluna** : remover uma coluna da tabela (acessível apenas se você estiver no layout da tabela)
-    - **Eliminar linha** : exclua uma linha da tabela (acessível apenas se você estiver no layout da tabela)
+    - **Eliminar linha** : excluir uma linha da tabela (acessível apenas se você estiver no layout da tabela)
 
 À direita de cada objeto, um ícone permite que você :
 
@@ -71,5 +71,5 @@ Você também pode editar o layout interno dos controles no bloco :
 >
 > - Clique no relógio (barra de menus) : Abra a linha do tempo.
 > - Clique no nome do Jeedom (barra de menus) : Abre Configurações → Sistema → Configuração.
-> - Clique em ? (barra de menus) : Abre a ajuda na página atual.
+> - Clique em ? (Barra de menus) : Abre a ajuda na página atual.
 > - Escape em um campo de pesquisa : Limpe o campo e cancele esta pesquisa .

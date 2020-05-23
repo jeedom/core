@@ -12,7 +12,7 @@ Auf der Seite Geräteanalyse können Sie viele Informationen zu Geräten zentral
 ## Registerkarte &quot;Batterien&quot;
 
 
-Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand)
+Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand))
 
 > **Spitze**
 >
@@ -22,22 +22,22 @@ Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verblei
 
 Auf dieser Registerkarte sehen Sie in Echtzeit die Module in Alarmbereitschaft. Die Warnungen können unterschiedlicher Art sein :
 
-- Zeitüberschreitung (konfiguriert auf der Registerkarte &quot;Definierte Warnungen&quot;).
+- Zeitüberschreitung (konfiguriert auf der Registerkarte "Definierte Warnungen")).
 - Batterie in Warnung oder in Gefahr.
-- Warn- oder Gefahrenbefehl (konfigurierbar in den erweiterten Befehlsparametern).
+- Warn- oder Gefahrenbefehl (konfigurierbar in erweiterten Befehlsparametern).
 
 Andere Arten von Warnungen finden Sie hier.
-Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt.
+Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt).
 
 > **Spitze**
 >
-> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul &quot;sichtbar&quot; ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist.
+> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul "sichtbar" ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist).
 
 ## Registerkarte &quot;Definierte Aktionen&quot;
 
 Auf dieser Registerkarte können Sie die Aktionen anzeigen, die direkt in einem Auftrag definiert sind. In der Tat können wir verschiedene Befehle eingeben und es kann schwierig sein, sich an alle zu erinnern. Diese Registerkarte ist dafür da und fasst verschiedene Dinge zusammen :
 
-- Aktionen zum Status (in den erweiterten Parametern von Info-Befehlen enthalten und Ermöglichen, dass eine oder mehrere Aktionen für den Wert einer Bestellung ausgeführt werden - sofort oder nach einer Verzögerung).
+- Aktionen zum Status (in den erweiterten Parametern von Info-Befehlen enthalten und die Ausführung einer oder mehrerer Aktionen für den Wert einer Bestellung - sofort oder nach einer Verzögerung).
 - Bestätigungen von Aktionen (konfigurierbar an derselben Stelle in einem Info-Befehl und Ermöglichen des Anforderns einer Bestätigung zum Ausführen einer Aktion).
 - Bestätigungen mit Code (wie oben, jedoch mit Eingabe eines Codes).
 - Vor- und Nachaktionen (immer konfigurierbar an derselben Stelle in einem Aktionsbefehl und Ermöglichen der Ausführung einer oder mehrerer anderer Aktionen vor oder nach der betreffenden Aktion).

@@ -1,7 +1,7 @@
 # Bericht
 **Analyse → Bericht**
 
-Auf dieser Seite können Sie alle Berichte anzeigen, die durch die Berichtsaktion generiert wurden (siehe Szenariodokumentation).
+Auf dieser Seite können Sie alle Berichte anzeigen, die von der Berichtsaktion generiert wurden (siehe Szenariodokumentation).
 
 ## Prinzip
 
@@ -14,7 +14,7 @@ Ein Bericht ist ein Screenshot der Jeedom-Schnittstelle zu einem Zeitpunkt t.
 Sie können dies für Ansichten, Designs und Bedienfeldseiten tun....
 
 Die Generierung wird aus einem Szenario mit dem Befehl report ausgelöst.
-Sie können diesen Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie senden lassen.
+Sie können diesen Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie senden lassen).
 
 ## Verwendung
 
@@ -23,7 +23,7 @@ Die Verwendung ist sehr einfach. Wählen Sie links, wenn Sie sehen möchten :
 - Berichte anzeigen.
 - Entwurfsberichte.
 - Plugin-Panel-Berichte.
-- Geräteberichte (für eine Zusammenfassung der Batterie für jedes Modul).
+- Geräteberichte (für eine Zusammenfassung der Batterie jedes Moduls).
 
 Wählen Sie dann den Namen des betreffenden Berichts aus. Sie sehen dann alle Daten der verfügbaren Berichte.
 

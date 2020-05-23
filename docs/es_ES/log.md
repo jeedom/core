@@ -28,4 +28,4 @@ El registro &quot;Evento&quot; es un poco especial. En primer lugar, para que fu
 
 Una vez que hace clic en él, obtiene una ventana que se actualiza en tiempo real y le muestra todos los eventos de su domótica.
 
-En la parte superior derecha tiene un campo de búsqueda (solo funciona si no está en pausa) y un botón para pausar (útil para copiar / pegar, por ejemplo).
+En la parte superior derecha tiene un campo de búsqueda (solo funciona si no está en pausa) y un botón para pausar (útil para hacer una copia / pegar, por ejemplo).

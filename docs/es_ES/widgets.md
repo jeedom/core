@@ -60,19 +60,19 @@ Una vez en la página Herramientas -&gt; Widget, haga clic en &quot;Agregar&quot
 
 Entonces :
 - Usted elige si se aplica a una acción o tipo de información.
-- Dependiendo de su elección anterior, tendrá que elegir el subtipo del comando (binario, digital, otro ...).
+- Dependiendo de su elección anterior, tendrá que elegir el subtipo del comando (binario, digital, otro...).
 - Luego, finalmente, la plantilla en cuestión (planeamos poner ejemplos de representaciones para cada plantilla).
 - Una vez que se ha elegido la plantilla, jeedom le ofrece las opciones para configurarla.
 
 ### Reemplazo
 
-Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quot;encendido&quot; corresponde a dicho icono / imagen (con el botón elegir), el &quot;apagado&quot; es ese, etc. Luego, dependiendo de la plantilla, se le puede ofrecer el ancho y la altura. Esto solo es válido para imágenes.
+Esto es lo que se llama un widget simple, aquí solo tiene que decir que el &quot;encendido&quot; corresponde a dicho icono / imagen (con el botón elegir), el &quot;apagado&quot; es ese, etc. Luego, dependiendo de la plantilla, se le puede ofrecer el ancho (ancho) y la altura (altura). Esto solo es válido para imágenes.
 
 >**Nota**
 >Lamentamos los nombres en inglés, esto es una restricción del sistema de plantillas. Esta elección garantiza una cierta velocidad y eficiencia, tanto para usted como para nosotros. No tuvimos otra opción
 
 >**Consejos**
->Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo si en ancho pones como valor #width# (tenga cuidado de poner el # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) y dar el valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, le evita crear un widget diferente para cada tamaño de imagen que desee
+>Para los usuarios avanzados, en los valores de reemplazo es posible colocar etiquetas y especificar su valor en la configuración avanzada del comando, la visualización de pestañas y el widget "Parámetros opcionales". Por ejemplo si en ancho pones como valor #width# (tenga cuidado de poner el # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) y dar valor. Esto le permite cambiar el tamaño de la imagen de acuerdo con el orden y, por lo tanto, le evita crear un widget diferente para cada tamaño de imagen que desee
 
 ### Prueba
 
@@ -110,10 +110,10 @@ Los equipos tienen ciertos parámetros de configuración :
 - Widget de tiempo : muestra el tiempo desde el cual el sistema ha estado en el estado de visualización.
 - Uno : icono para mostrar si el equipo está encendido / 1.
 - Apagado : icono para mostrar si el equipo está apagado / 0.
-- Luz encendida : ícono para mostrar si el equipo está encendido / 1 y el tema es claro (si está vacío, entonces la libertad toma la imagen oscura encendida).
-- Luz apagada : icono para mostrar si el equipo está apagado / 0 y el tema es claro (si está vacío, entonces la libertad quita la imagen oscura).
-- Oscuro en : ícono para mostrar si el equipo está encendido / 1 y el tema está oscuro (si está vacío, entonces jeedom toma la luz encendida).
-- Oscuro apagado : icono para mostrar si el equipo está apagado / 0 y el tema está oscuro (si está vacío, entonces jeedom apaga la luz de imagen).
+- Luz encendida : icono para mostrar si el equipo está encendido / 1 y el tema es claro (si está vacío, entonces Jeedom toma la imagen oscura).
+- Luz apagada : icono para mostrar si el equipo está apagado / 0 y el tema es claro (si está vacío, entonces Jeedom quita la imagen oscura).
+- Oscuro en : icono para mostrar si el equipo está encendido / 1 y el tema está oscuro (si está vacío, entonces Jeedom enciende la luz img).
+- Oscuro apagado : icono para mostrar si el equipo está apagado / 0 y el tema está oscuro (si está vacío, entonces Jeedom apaga la luz img)).
 - Ancho de escritorio : ancho de la imagen en el escritorio en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 - Ancho movible : ancho de la imagen en el móvil en px (solo ponga el número, no el px). Importante solo se solicita el ancho, Jeedom calculará la altura para no distorsionar la imagen.
 
@@ -126,7 +126,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 >**IMPORTANTE**
 >Es ABSOLUTAMENTE necesario que sus pedidos tengan la temperatura de tipo genérico en el control de temperatura y la humedad en el control de humedad (esto se configura en la configuración avanzada de la configuración de la pestaña de comandos).
 
-##### Parámetros opcionales
+##### Parámetros opcionales)
 
 - escala : Le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño.
 
@@ -135,19 +135,19 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 
 ### Multilínea
 
-##### Parámetros opcionales
+##### Parámetros opcionales)
 
 - maxHeight : Le permite definir su altura máxima (barra de desplazamiento en el lateral si el texto excede este valor).
 
 ### Botón deslizante
 
-##### Parámetros opcionales
+##### Parámetros opcionales)
 
 - paso : Permite ajustar el paso de una acción en un botón (0.5 por defecto).
 
 ### Lluvia
 
-##### Parámetros opcionales
+##### Parámetros opcionales)
 
 - escala : Le permite cambiar su tamaño, por ejemplo, estableciendo la escala en 0.5 será 2 veces más pequeño.
 - mostrarel : Muestra los valores min / max del comando.
@@ -157,7 +157,7 @@ Para configurarlo es bastante simple, debe asignar el widget al control de tempe
 
 ### La tags
 
-En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí hay una lista (no necesariamente exhaustiva) :
+En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí hay una lista (no necesariamente exhaustiva)) :
 
 - #name# : nombre del comando
 - #valueName# : nombre del valor del pedido, y = #name# cuando es un comando de tipo de información
@@ -188,7 +188,7 @@ Aquí hay un ejemplo simple de código JavaScript para poner en su widget :
 
 `` ''
 <script>
-    Jeedom.cmd.update ['#id#'] = función (_opciones){
+    Jeedom.cmd.update ['#id#'] = función (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Fecha de recogida : '+ _options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
@@ -199,7 +199,7 @@ Aquí hay un ejemplo simple de código JavaScript para poner en su widget :
 Aquí hay dos cosas importantes :
 
 `` ''
-Jeedom.cmd.update ['#id#'] = función (_opciones){
+Jeedom.cmd.update ['#id#'] = función (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Fecha de recogida : '+ _options.collectDate)
   $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }

@@ -20,7 +20,7 @@ Registro de cambios Jeedom V4
 4.0.52
 =====
 
-- Corrección de errores (la actualización debe hacerse absolutamente si está en 4.0.51).
+- Corrección de errores (la actualización debe hacerse si está en 4.0.51).
 
 4.0.51
 =====
@@ -95,17 +95,17 @@ Registro de cambios Jeedom V4
 - Reproductores : Agregar widget numérico de información horizontal.
 - Reproductores : Agregar un widget vertical numérico de información.
 - Reproductores : Adición de una brújula de información numérica / widget de viento (gracias @thanaus).
-- Reproductores : Agregar un widget de lluvia de información numérica (gracias @thanaus)
+- Reproductores : Adición de un widget de lluvia numérico de información (gracias @thanaus)
 - Reproductores : Visualización del widget de obturador de información / acción proporcional al valor.<br/><br/>
 - Configuración : Mejora y reorganización de pestañas.
-- Configuración : Agregando muchos *información sobre herramientas* (Ayuda).
+- Configuración : Agregando muchos *información sobre herramientas* (aide).
 - Configuración : Agregar un motor de búsqueda.
 - Configuración : Agregar un botón para vaciar el caché del widget (pestaña Caché).
-- Configuración : Opción agregada para deshabilitar el caché del widget (pestaña Caché).
+- Configuración : Agregue una opción para desactivar la caché del widget (pestaña Caché).
 - Configuración : Capacidad para centrar el contenido de los mosaicos verticalmente (pestaña Interfaz).
-- Configuración : Adición de un parámetro para la purga global de las historias (Comandos Tab).
+- Configuración : Adición de un parámetro para la purga global de las historias (pestaña Órdenes).
 - Configuración : Cambio de #message# A las #subject# en Configuración / Registros / Mensajes para evitar la duplicación del mensaje.
-- Configuración : Posibilidad en los resúmenes de agregar una exclusión de los pedidos que no se han actualizado durante más de XX minutos (ejemplo para el cálculo de los promedios de temperatura si un sensor no ha elevado nada durante más de 30 minutos, se excluirá del cálculo )<br/><br/>
+- Configuración : Posibilidad en los resúmenes de agregar una exclusión de los pedidos que no se han actualizado durante más de XX minutos (por ejemplo, para el cálculo de los promedios de temperatura si un sensor no ha elevado nada durante más de 30 minutos, se excluirá del cálculo)<br/><br/>
 - Guión : La coloración de los bloques ya no es aleatoria, sino por tipo de bloque.
 - Guión : Posibilidad mediante Ctrl + clic en el botón *ejecución* guárdelo, ejecútelo y muestre el registro (si el nivel de registro no está activado *Ninguna*).
 - Guión : Confirmación de eliminación de bloque. Ctrl + clic para evitar la confirmación.
@@ -117,8 +117,8 @@ Registro de cambios Jeedom V4
 - Guión : Implementación de un sistema Deshacer / Rehacer (Ctrl + Shift + Z / Ctrl + Shift + Y).
 - Guión : Eliminar escenario compartido.
 - Guión : Mejora de la ventana de gestión de plantillas de escenarios.<br/><br/>
-- Análisis / Equipamiento : Adición de un motor de búsqueda (pestaña Baterías, búsqueda de nombres y padres).
-- Análisis / Equipamiento : Ahora se puede hacer clic en el área de calendario / días del equipo para acceder directamente al cambio de batería (s).
+- Análisis / Equipamiento : Adición de un motor de búsqueda (pestaña Baterías, búsqueda de nombres y padres)).
+- Análisis / Equipamiento : Ahora se puede hacer clic en el área de calendario / días del equipo para acceder directamente al cambio de batería (s)).
 - Análisis / Equipamiento : Adición de un campo de búsqueda.<br/><br/>
 - Centro de actualizaciones : Advertencia en la pestaña &#39;Núcleo y complementos&#39; y / u &#39;Otros&#39; si hay una actualización disponible. Cambie a &#39;Otros&#39; si es necesario.
 - Centro de actualizaciones : diferenciación por versión (estable, beta, ...).

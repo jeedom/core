@@ -20,7 +20,7 @@ Registro de Alterações Jeedom V4
 4.0.52
 =====
 
-- Correção de bug (atualização a ser feita absolutamente se você estiver na versão 4.0.51).
+- Correção de bug (a atualização deve ser feita se você estiver na versão 4.0.51).
 
 4.0.51
 =====
@@ -80,8 +80,8 @@ Registro de Alterações Jeedom V4
 - Janela Configuração do equipamento: Ctrl + clique em "Salvar" fecha a janela após.
 - Adicionando informações de uso ao excluir equipamentos.
 - Objetos : Adicionada opção para usar cores personalizadas.
-- Objetos : Adicionar menu de contexto nas guias (mudança rápida de objeto).
-- Interações : Adicionar menu de contexto nas guias (alteração rápida da interação).
+- Objetos : Adicionar menu de contexto nas guias (troca rápida de objeto).
+- Interações : Adicionar menu de contexto nas guias (mudança rápida de interação).
 - Plugins : Adicionar menu de contexto nas guias (troca rápida de equipamento).
 - Plugins : Na página de gerenciamento de plug-ins, um ponto laranja indica plug-ins não estáveis.
 - Melhorias na tabela com opção de filtro e classificação.
@@ -95,17 +95,17 @@ Registro de Alterações Jeedom V4
 - Widgets : Adicionar widget numérico de informações horizontais.
 - Widgets : Adicionando um widget vertical numérico de informações.
 - Widgets : Adição de um widget de bússola / vento numérico de informações (obrigado @thanaus).
-- Widgets : Adicionando um widget de chuva numérico de informações (obrigado @thanaus)
+- Widgets : Adição de um widget de chuva numérica de informações (obrigado @thanaus)
 - Widgets : Exibição do widget de obturador de informações / ações proporcional ao valor.<br/><br/>
 - Configuração : Melhoria e reorganização de guias.
-- Configuração : Adicionando muitos *dicas* (ajuda).
+- Configuração : Adicionando muitos *dicas* (aide).
 - Configuração : Adicionando um mecanismo de pesquisa.
 - Configuração : Adicionando um botão para esvaziar o cache do widget (guia Cache).
-- Configuração : Adicionada opção para desativar o cache do widget (guia Cache).
+- Configuração : Adicione uma opção para desativar o cache do widget (guia Cache).
 - Configuração : Capacidade de centralizar o conteúdo dos blocos verticalmente (guia Interface).
-- Configuração : Adição de um parâmetro para a limpeza global dos históricos (comandos da guia).
+- Configuração : Adição de um parâmetro para a limpeza global dos históricos (guia Pedidos).
 - Configuração : Mudança de #message# à #subject# em Configuração / Logs / Mensagens para evitar duplicação da mensagem.
-- Configuração : Possibilidade nos resumos de adicionar uma exclusão dos pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo das médias de temperatura se um sensor não elevar nada por mais de 30 minutos, ele será excluído do cálculo )<br/><br/>
+- Configuração : Possibilidade nos resumos de adicionar uma exclusão dos pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo das médias de temperatura, se um sensor não elevar nada por mais de 30 minutos, ele será excluído do cálculo)<br/><br/>
 - Cenas : A coloração dos blocos não é mais aleatória, mas por tipo de bloco.
 - Cenas : Possibilidade por Ctrl + clique no botão *execução* salve-o, inicie-o e exiba o log (se o nível do log não estiver em *Nemhum*).
 - Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar confirmação.
@@ -117,8 +117,8 @@ Registro de Alterações Jeedom V4
 - Cenas : Implementação de um sistema Desfazer / Refazer (Ctrl + Shift + Z / Ctrl + Shift + Y).
 - Cenas : Excluir compartilhamento de cenário.
 - Cenas : Melhoria da janela de gerenciamento de modelos de cenário.<br/><br/>
-- Análise / Equipamento : Adição de um mecanismo de pesquisa (guia Baterias, pesquisa por nomes e pais).
-- Análise / Equipamento : A área de calendário / dias do equipamento agora pode ser clicada para acessar diretamente a troca de baterias.
+- Análise / Equipamento : Adição de um mecanismo de pesquisa (guia Baterias, pesquisa de nomes e pais).
+- Análise / Equipamento : Agora é possível clicar na área de calendário / dias do equipamento para acessar diretamente a (s) troca (s) da bateria).
 - Análise / Equipamento : Adição de um campo de pesquisa.<br/><br/>
 - Update Center : Aviso na guia 'Núcleo e plug-ins' e / ou 'Outros' se houver uma atualização disponível. Mude para 'Outros' se necessário.
 - Update Center : diferenciação por versão (estável, beta, ...).
@@ -136,7 +136,7 @@ Registro de Alterações Jeedom V4
 - Remova o Font Awesome 4 para manter apenas o Font Awesome 5.
 - Atualização de libs : jquery 3.4.1, CodeMiror 5.46.0, editor de tabelas 2.31.1.
 - Várias correções de bugs.
-- Adicionando um sistema de configuração em massa (usado na página Equipamento para configurar os Alertas de Comunicação neles)
+- Adicionando um sistema de configuração em massa (usado na página Equipamento para configurar Alertas de Comunicação neles)
 - Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G.
 - Correção de segurança
 
@@ -146,5 +146,5 @@ Registro de Alterações Jeedom V4
 
 >**IMPORTANTE**
 >
->O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque as funções foram assumidas internamente no núcleo). Mais informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+>O plug-in de widget não é compatível com esta versão do Jeedom e não será mais suportado (porque as funções foram assumidas internamente no núcleo). Mais informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 

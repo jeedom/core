@@ -22,13 +22,13 @@ Aquí es donde podrá ajustar diferentes parámetros de su perfil :
 Para desarrolladores :
 - **Apellido d'utilisateur sur le forum** : Tu nombre de usuario en el foro.
 - **E-mail public** : Su correo electrónico para recibir nuestras comunicaciones.
-- **Cuenta Paypal** : El correo electrónico de su cuenta de Paypal (solo se usa para pagar a los desarrolladores).
+- **Cuenta Paypal** : El correo electrónico de su cuenta Paypal (solo se usa para pagar a los desarrolladores).
 
 Para los profesionales :
 - **Cuenta de correo electrónico del instalador** : Su correo electrónico de contacto profesional.
 - **Soporte de solicitudes de destinatario** : saber quién recibirá los correos electrónicos de soporte (cliente final, instalador o ambos).
     - **TOS**
-- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas bien porque lo atan).
+- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
 - **Revelador** : condiciones de uso para desarrolladores.
     - **Entradas**
 - **Apellidobre de tickets** : Número de boletos para el mes actual y su límite.
@@ -76,7 +76,7 @@ En esta pestaña puede consultar las copias de seguridad presentes en Market y d
 
 ## Mis SMS / llamadas
 
-En esta pestaña puede ver su saldo de SMS / Llamadas (se puede usar con el complemento del mercado telefónico). A continuación tiene las diferentes opciones para comprar saldo adicional.
+En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el complemento del mercado telefónico). A continuación tiene las diferentes opciones para comprar saldo adicional.
 
 ## Mis compras / promociones / donaciones
 

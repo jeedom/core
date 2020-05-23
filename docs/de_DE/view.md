@@ -10,9 +10,9 @@ Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Mi
 
 ## Prinzip
 
-Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die die Befehls-Widgets enthalten) einfügen.
+Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die Widgets von Befehlen enthalten) einfügen).
 
-Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer Ansicht (Jeedom fragt nach dem Namen und sendet Sie zur Bearbeitungsseite) :
+Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer Ansicht (Jeedom fragt Sie nach dem Namen und sendet Sie zur Bearbeitungsseite) :
 
 > **Spitze**
 >
@@ -20,7 +20,7 @@ Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausbl
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so viele setzen, wie Sie möchten). Jede Zone ist vom Typ Grafik, Widget oder Tabelle, je nachdem, welchen Typ Sie Geräte-, Steuerungs- oder Grafik-Widgets hinzufügen können.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so viele Zonen einfügen, wie Sie möchten). Jede Zone ist vom Typ Grafik, Widget oder Tabelle, je nachdem, welchen Typ Sie Geräte-, Steuerungs- oder Grafik-Widgets hinzufügen können.
 
 > **Spitze**
 >
@@ -57,7 +57,7 @@ Sobald die Schaltfläche Widget hinzufügen gedrückt wird, wird ein Fenster ang
 
 In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folgenden Optionen stehen zur Verfügung :
 
-- **Zeit** : Hier können Sie den Anzeigezeitraum für Grafiken auswählen (30 Minuten, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle).
+- **Zeit** : Hier können Sie den Anzeigezeitraum der Grafiken auswählen (30 Minuten, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle)).
 - **Kurve hinzufügen** : Ermöglicht das Hinzufügen / Ändern von Grafiken.
 
 Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeedom die Liste der historischen Befehle an und Sie können die hinzuzufügenden Befehle auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
@@ -66,7 +66,7 @@ Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeed
 - **Name** : Name des zu zeichnenden Befehls.
 - **Farbe** : Farbe der Kurve.
 - **Typ** : Kurventyp.
-- **Gruppe** : Ermöglicht das Gruppieren von Daten (maximaler Typ pro Tag).
+- **Gruppe** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
 - **Maßstab** : Skala (rechts oder links) der Kurve.
 - **Treppe** : Zeigt die gestufte Kurve an.
 - **Stapel** : Stapeln Sie die Kurve mit den anderen Kurventypen.
@@ -90,7 +90,7 @@ Hier haben Sie die Schaltflächen :
 Nachdem Sie Ihre Zeilen / Spalten hinzugefügt haben, können Sie Informationen in die Felder einfügen :
 
 - **Text** : Nur Text zum Schreiben.
-- **HTML** : jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
-- **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget für den Befehl angezeigt wird).
+- **HTML** : Jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
+- **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget des Befehls angezeigt wird).
 
 

@@ -20,7 +20,7 @@ Changelog Jeedom V4
 4.0.52
 =====
 
-- Bug correction (update to be done absolutely if you are in 4.0.51).
+- Bug fix (update must be done if you are in 4.0.51).
 
 4.0.51
 =====
@@ -81,7 +81,7 @@ Changelog Jeedom V4
 - Adding usage information when deleting equipment.
 - Objects : Added option to use custom colors.
 - Objects : Add context menu on tabs (quick object change).
-- Interactions : Add context menu on tabs (quick interaction change).
+- Interactions : Add context menu on tabs (quick change of interaction).
 - Plugins : Add context menu on tabs (quick change of equipment).
 - Plugins : On the Plugins management page, an orange dot indicates non-stable plugins.
 - Table improvements with filter and sort option.
@@ -95,17 +95,17 @@ Changelog Jeedom V4
 - Widget : Add horizontal info numeric widget.
 - Widget : Adding an info numeric vertical widget.
 - Widget : Addition of an info numeric compass / wind widget (thanks @thanaus).
-- Widget : Adding an info numeric rain widget (thanks @thanaus)
+- Widget : Addition of an info numeric rain widget (thanks @thanaus)
 - Widget : Display of the info / action shutter widget proportional to the value.<br/><br/>
 - D'actualité : Improvement and reorganization of tabs.
-- D'actualité : Adding many *tooltips* (help).
+- D'actualité : Adding many *tooltips* (aide).
 - D'actualité : Adding a search engine.
 - D'actualité : Adding a button to empty the widget cache (Cache tab).
-- D'actualité : Added option to disable widget cache (Cache tab).
+- D'actualité : Add an option to deactivate the widget cache (Cache tab).
 - D'actualité : Ability to center the content of the tiles vertically (Interface tab).
-- D'actualité : Addition of a parameter for the global purging of the histories (Tab Commands).
+- D'actualité : Addition of a parameter for the global purge of the histories (tab Orders).
 - D'actualité : Change of #message# At #subject# in Configuration / Logs / Messages to avoid duplication of the message.
-- D'actualité : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation )<br/><br/>
+- D'actualité : Possibility in the summaries to add an exclusion of the orders which have not been updated for more than XX minutes (example for the calculation of the temperature averages if a sensor has not raised anything for more than 30min it will be excluded from the calculation)<br/><br/>
 - Scenario : The colorization of the blocks is no longer random, but by type of block.
 - Scenario : Possibility by Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *None*).
 - Scenario : Block deletion confirmation. Ctrl + click to avoid confirmation.
@@ -118,7 +118,7 @@ Changelog Jeedom V4
 - Scenario : Delete scenario sharing.
 - Scenario : Improvement of the scenario templates management window.<br/><br/>
 - Analysis / Equipment : Addition of a search engine (Batteries tab, search on names and parents).
-- Analysis / Equipment : The calendar / days area of the equipment is now clickable to directly access the change of battery (s).
+- Analysis / Equipment : The calendar / days area of the equipment is now clickable to directly access the battery change (s).
 - Analysis / Equipment : Addition of a search field.<br/><br/>
 - Update Center : Warning on the &#39;Core and plugins&#39; and / or &#39;Others&#39; tab if an update is available. Switch to &#39;Others&#39; if necessary.
 - Update Center : differentiation by version (stable, beta, ...).
