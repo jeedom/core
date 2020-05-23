@@ -51,14 +51,14 @@ Para los profesionales :
     -   **TOS**
 
 -   **Usuario** : condiciones generales de uso (preste atención a
-    léelos bien porque te comprometen)
+    léelos bien porque te involucran)
 
 -   **Revelador** : condiciones generales de uso para
     desarrolladores
 
     -   **Entradas**
 
--   **Apellidobre de tickets** : Número de boletos para el mes actual
+-   **Numero de entradas** : Número de boletos para el mes actual
     así como tu límite
 
 -   **Apoyo** : botón para enviar una solicitud de soporte (accesible
@@ -86,11 +86,11 @@ Mis jeedoms
 
     -   **Ingrese un número de paquete de servicio** : ingresemos su
         número de paquete de servicio (se puede encontrar en el correo electrónico enviado por
-        Jeedom al hacer el pedido)
+        Jeedom al ordenar)
 
 -   **Clave de instalación**
 
-    -   **Apellidobre de clefs d'installation** : número de pantalla
+    -   **Número de llaves de instalación** : número de pantalla
         de las instalaciones de Jeedom actualmente vinculadas a su cuenta también
         que el límite permitido
 
@@ -104,7 +104,7 @@ Mis jeedoms
 
     -   **Apellido** : el nombre que quieres darle a tu Jeedom (
         encontrado en el nombre de la copia de seguridad si tiene la suscripción de
-        copia de seguridad en la nube)
+        Copia de seguridad en la nube)
 
     -   **Estado** : permite ver el estado de la libertad en cuestión
 

@@ -97,7 +97,7 @@ What is saved ?
 
 During a backup, Jeedom will backup all of its files and the
 database. This therefore contains all of your configuration
-(equipment, orders, history, scenarios, design, etc.).
+(equipment, controls, history, scenarios, design, etc.).
 
 In terms of protocols, only the Z-Wave (OpenZwave) is a bit
 different because it is not possible to save the inclusions.
@@ -107,7 +107,7 @@ keep the same controller to find its Zwave modules.
 > **NOTE**
 >
 > The system on which Jeedom is installed is not backed up. Yes
-> you have modified parameters of this system (notably via SSH),
+> you have modified parameters of this system (in particular via SSH),
 > it&#39;s up to you to find a way to recover them in case of problems.
 
 Cloud backup 
@@ -132,6 +132,6 @@ Frequency of automatic backups
 
 Jeedom performs an automatic backup every day at the same
 hour. It is possible to modify this, from the &quot;Engine
-tasks &quot;(the task is named **Jeedom backup**), but it&#39;s not
+tasks &quot;(the task is named **Jeedom backup**), but it's not
 recommended. Indeed, it is calculated in relation to the load of the
 Market.

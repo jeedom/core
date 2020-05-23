@@ -51,7 +51,7 @@ Anzeigen eines Diagramms
 
 Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
--   indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten),
+-   Indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten)),
 
 -   durch Klicken auf den gewünschten Befehl in einem Widget,
 
@@ -66,7 +66,7 @@ Wenn Sie ein Diagramm auf der Verlaufsseite oder durch Klicken auf anzeigen
 Oben rechts finden wir den Anzeigezeitraum (hier am letzten
 Woche, weil ich standardmäßig nur eine Woche haben möchte - siehe
 2 Absätze oben), dann kommen die Parameter der Kurve
-(Diese Parameter werden von einer Anzeige zur anderen gehalten; Sie daher
+(Diese Parameter werden von einer Anzeige zur anderen gehalten. also tust du es nicht
 als sie einmal konfigurieren).
 
 -   **Treppe** : zeigt die Kurve als an
@@ -93,9 +93,9 @@ Sobald eine Daten aktiviert sind, können Sie auswählen :
 
 -   **Farbe** : die Farbe der Kurve.
 
--   **Typ** : die Art des Diagramms (Fläche, Linie oder Spalte).
+-   **Typ** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
 
--   **Maßstab** : da kann man mehrere kurven (daten) setzen
+-   **Maßstab** : da kann man mehrere kurven (daten) setzen)
     Im selben Diagramm ist es möglich, die Skalen zu unterscheiden
     (rechts oder links).
 
@@ -119,8 +119,8 @@ Berechnete Geschichte
 Wird verwendet, um eine Kurve anzuzeigen, die auf einer Berechnung für mehrere basiert
 Befehl (Sie können so ziemlich alles tun, + - / \* absoluter Wert ... siehe
 PHP-Dokumentation für bestimmte Funktionen). Ex :
-abs (*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Raum von
-Das Leben \] \ [Luftfeuchtigkeit \] \ [Temperatur \] *)
+abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Raum von
+Leben \] \ [Hygrometrie \] \ [Temperatur \]*)
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht
 Speichern Sie sie zur einfacheren Anzeige

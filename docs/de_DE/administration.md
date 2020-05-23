@@ -35,7 +35,7 @@ Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 
 -   **Optionaler Zeitserver** : Gibt an, welcher Zeitserver verwendet werden soll
     verwendet werden, wenn Sie klicken **Synchronisation erzwingen von
-    Zeit**. (für Experten reserviert)
+    Zeit**. (Experten vorbehalten sein)
 
 -   **Zeitprüfung überspringen** : sagt Jeedom, dass er es nicht tun soll
     Überprüfen Sie, ob die Zeit zwischen sich und dem eingeschalteten System konsistent ist
@@ -62,7 +62,7 @@ TTS können Sie deren Umfang definieren :
 -   **Untauglich** : API-Schlüssel kann nicht verwendet werden,
 
 -   **Weiße IP** : Es ist nur eine Liste von IPs autorisiert (siehe
-    Administration → Einstellungen → Netzwerke),
+    Administration → Konfiguration → Netzwerke),
 
 -   **Localhost** : nur Anfragen vom System, auf dem sich befindet
     installierte Jeedom sind erlaubt,
@@ -102,7 +102,7 @@ LDAP
 ----
 
 -   **Aktivieren Sie die LDAP-Authentifizierung** : Aktivieren Sie die Authentifizierung für
-    durch eine AD (LDAP)
+    über ein AD (LDAP)
 
 -   **Gastgeber** : Server, der die AD hostet
 
@@ -123,7 +123,7 @@ LDAP
     Gruppen zum Beispiel)
 
 -   **REMOTE\_USER zulassen** : Aktivieren Sie REMOTE\_USER (wird in SSO verwendet
-    zum Beispiel)
+    Zum Beispiel)
 
 Einloggen 
 ---------
@@ -152,8 +152,8 @@ Netzwerke
 Es ist unbedingt erforderlich, diesen wichtigen Teil von korrekt zu konfigurieren
 Jeedom, sonst funktionieren viele Plugins möglicherweise nicht. es
 Es ist möglich, auf zwei verschiedene Arten auf Jeedom zuzugreifen : L'**Zugang
-intern** (aus demselben lokalen Netzwerk wie Jeedom) und l'**Zugang
-extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
+interne** (aus dem gleichen lokalen Netzwerk wie Jeedom) und l'**Zugang
+externe** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
 > **Wichtig**
 >
@@ -217,14 +217,14 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
     die Liste Ihrer Netzwerkschnittstellen. Sie können Jeedom sagen
     das Netzwerk nicht durch Klicken auf zu überwachen **Deaktivieren Sie die
     Netzwerkmanagement von Jeedom** (Überprüfen Sie, ob Jeedom nicht angeschlossen ist
-    kein Netzwerk). Sie können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (nur für Docker-Installationen zu verwenden)
+    kein Netzwerk). Sie können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (Nur in Docker-Installationen zu verwenden)
 
 -   **Proxy-Markt** : ermöglicht den Fernzugriff auf Ihr Jeedom ohne zu haben
     benötigen ein DNS, eine feste IP oder um die Ports Ihrer Box zu öffnen
     Internet
 
     -   **Verwenden von Jeedom DNS** : aktiviert Jeedom DNS (Aufmerksamkeit
-        Dies erfordert mindestens ein Service Pack
+        Dies erfordert mindestens ein Service Pack)
 
     -   **DNS-Status** : DNS-HTTP-Status
 
@@ -234,7 +234,7 @@ extern** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 >
 > Wenn Sie Jeedom DNS nicht zum Laufen bringen können, überprüfen Sie die
 > Konfiguration der Firewall und des Kindersicherungsfilters Ihrer Internetbox
-> (Auf Livebox benötigen Sie beispielsweise die Firewall auf Medium).
+> (Auf Livebox benötigen Sie beispielsweise die Firewall in Medium).
 
 Farben 
 ========
@@ -249,7 +249,7 @@ Desktop- und Mobile-Version. Wir können uns dann ändern :
 -   die Hintergrundfarbe der Widgets,
 
 -   Die Farbe des Befehls, wenn das Widget vom allmählichen Typ ist (z
-    Lichter, Fensterläden, Temperaturen).
+    Beispiel Lichter, Fensterläden, Temperaturen).
 
 Durch Klicken auf die Farbe wird ein Fenster geöffnet, in dem Sie Ihre auswählen können
 Farbe. Das Kreuz neben der Farbe kehrt zum Parameter zurück
@@ -281,7 +281,7 @@ Historisch
     Befehl entweder digital.
 
 -   **Berechnungszeitraum für min, max, Durchschnitt (in Stunden)** : Zeit
-    Statistikberechnung (standardmäßig 24 Stunden). Es ist nicht möglich
+    Statistikberechnung (standardmäßig 24 Stunden)). Es ist nicht möglich
     weniger als eine Stunde setzen.
 
 -   **Berechnungszeitraum für den Trend (in Stunden)** : Zeitraum von
@@ -289,11 +289,11 @@ Historisch
     weniger als eine Stunde setzen.
 
 -   **Verzögerung vor der Archivierung (in Stunden)** : Zeigt die Verzögerung vor an
-    Jeedom archiviert keine Daten (standardmäßig 24 Stunden). Das heißt, die
+    Jeedom archiviert keine Daten (standardmäßig 24 Stunden)). Das heißt, die
     Historische Daten müssen länger als 24 Stunden archiviert werden
-    (Zur Erinnerung: Die Archivierung ist entweder durchschnittlich oder maximal
+    (Zur Erinnerung: Die Archivierung wird entweder durchschnittlich oder maximal sein
     oder das Minimum der Daten über einen Zeitraum, der dem entspricht
-    Packungsgröße).
+    Paketgröße).
 
 -   **Archiv nach Paket ab (in Stunden)** : Dieser Parameter gibt
     genau die Größe der Pakete (standardmäßig 1 Stunde). Es bedeutet durch
@@ -321,7 +321,7 @@ Historisch
 > Berechnen Sie diese Statistiken. Die Trendberechnungsmethode basiert
 > Berechnung der kleinsten Quadrate (siehe
 > [hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> für Details).
+> für das Detail).
 
 Druck 
 ----
@@ -331,7 +331,7 @@ Bestellaktualisierung. Sie können die folgenden Tags verwenden :
 **\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für die
 Befehlsname, **\.#cmd\._id\.#** für die eindeutige Kennung des
 commande, **\.#humanname\.#** für den vollständigen Namen der Bestellung (z :
-\.#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.#), `#eq_name#`für den Namen des Geräts
+\.#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.#), ``#eq_name#`für den Namen des Geräts
 
 Abdeckung 
 =====
@@ -348,7 +348,7 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
 
 -   **Pause für lange Abfragen** : Wie oft
     Jeedom prüft, ob Ereignisse für Kunden ausstehen
-    (Weboberfläche, mobile Anwendung usw.). Je kürzer diesmal, desto mehr
+    (Webinterface, mobile Anwendung…). Je kürzer diesmal, desto mehr
     Die Schnittstelle wird im Gegenzug schnell aktualisiert
     verbraucht mehr Ressourcen und kann daher Jeedom verlangsamen.
 
@@ -431,7 +431,7 @@ Automatische Interaktion, Kontext &amp; Warnung
     -   *Sie* : Benachrichtigen Sie mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
 
     -   *Jeedom* : OK (* Sobald die Wohnzimmertemperatur 25 ° C überschreitet,
-        Jeedom wird es dir nur einmal sagen *)
+        Jeedom wird es dir nur einmal sagen*)
 
 > **Notiz**
 >
@@ -470,7 +470,7 @@ Hier sind die verschiedenen Optionen verfügbar :
     wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
 
 -   **Synonym für Objekte** : Liste der Synonyme für Objekte
-    (zB : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
+    (ex : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
 
 -   **Synonym für Ausrüstung** : Synonymliste für
     Ausrüstung.
@@ -524,7 +524,7 @@ Ausrüstung, Gegenstände usw.
 -   **Tiefe für Szenarien** : Wird verwendet, um zu definieren, wann
     Anzeigen eines Diagramms der Links eines Szenarios, die Nummer
     Maximale Anzahl der anzuzeigenden Elemente (je mehr Elemente, desto größer die
-    wird langsamer zu generieren sein und je schwieriger es zu lesen sein wird).
+    Die Erstellung von Grafiken ist langsam und das Lesen umso schwieriger).
 
 -   **Tiefe für Objekte** : Gleiches gilt für Objekte.
 
@@ -557,7 +557,7 @@ Objekte :
     -   **Durchschnitt** : Durchschnittswerte,
 
     -   **Text** : Zeigen Sie den Wert wörtlich an (insbesondere für diese
-        Zeichenfolgentyp).
+        vom String-Typ).
 
 -   **Symbol** : Zusammenfassungssymbol.
 
@@ -573,7 +573,7 @@ Objekte :
 -   **Zeigen Sie an, ob der Wert 0 ist** : Aktivieren Sie dieses Kontrollkästchen, um das anzuzeigen
     Wert, auch wenn es 0 ist.
 
--   **Dieier zu un virtuel** : Erstellen Sie virtuelle Bestellungen
+-   **Link zu einem virtuellen** : Erstellen Sie virtuelle Bestellungen
     mit Wert die der Zusammenfassung.
 
 -   **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts erlaubt
@@ -642,7 +642,7 @@ Log
 ---
 
 -   **Log Engine** : Ermöglicht das Ändern der Protokoll-Engine für, z
-    Senden Sie sie beispielsweise an einen Syslog-Daemon (d).
+    Senden Sie sie beispielsweise an einen Syslog-Dämon (d).
 
 -   **Protokollformat** : Zu verwendendes Protokollformat (Achtung : ça
     wirkt sich nicht auf Daemon-Protokolle aus).
@@ -684,7 +684,7 @@ Jeedom Update
 
 -   **Automatisch nach Updates suchen** : Geben Sie an, ob
     Sie müssen automatisch suchen, wenn es neue Updates gibt
-    (Achten Sie darauf, eine Überlastung des Marktes zu vermeiden
+    (Seien Sie vorsichtig, um eine Überlastung des Marktes zu vermeiden
     Überprüfung kann sich ändern).
 
 Einlagen 
@@ -723,7 +723,7 @@ abgelehnt, wenn Sie eine andere Einzahlung als diese verwenden.
 
 -   **Passwort** : Ihr Marktpasswort.
 
--   **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, bei dem die Gefahr eines Absturzes besteht)
+-   **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, wenn das Risiko besteht, dass es zwischen ihnen abstürzt)
 
 -   **[Backup Cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie kannst du deine Freiheit nicht wiederherstellen
 
@@ -744,7 +744,7 @@ eine Samba-Aktie (z : NAS-Synologie).
 -   **\ [Backup \] Passwort** : Benutzerpasswort.
 
 -   **\ [Backup \] Freigabe** : Art des Teilens (sei vorsichtig
-    auf der Freigabeebene anhalten).
+    Halten Sie auf der Freigabeebene an).
 
 -   **\ [Backup \] Pfad** : Pfad beim Teilen (festlegen
     relativ) muss es existieren.
@@ -786,7 +786,7 @@ eine Samba-Aktie (z : NAS-Synologie).
 > Jeedom sollte der einzige sein, der in diesen Ordner schreibt, und er sollte leer sein
 > standardmäßig (d. h. vor dem Konfigurieren und Senden des
 > Bei der ersten Sicherung darf der Ordner keine Datei oder enthalten
-> Ordner).
+> dossier).
 
 ### URLs 
 

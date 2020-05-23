@@ -46,4 +46,4 @@ domotique.
 
 No canto superior direito, você tem um campo de pesquisa (só funciona se você
 pausadas) e um botão para pausar (útil para
-copiar / colar, por exemplo).
+copiar / colar por exemplo).

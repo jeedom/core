@@ -41,7 +41,7 @@ Aqui está o URL =
 -   **Etiquetas** \ [opcional \] : se a ação for "iniciar", você pode pular
     para o cenário (consulte a documentação sobre cenários) em
     as tags do formulário = para% 3D1% 20tata% 3D2 (observe que% 20 corresponde a um
-    espaço e% 3D para =)
+    espaço e% 3D para = )
 
 Comando Info / Ação 
 ====================
@@ -106,7 +106,7 @@ Objeto
 =====
 
 Aqui está o URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
 
 Retorna em json a lista de todos os objetos Jeedom
 
@@ -132,7 +132,7 @@ Dados completos
 =========
 
 Aqui está o URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
 
 Retorna todos os objetos, equipamentos, comandos (e seu valor se este
 são informações) em json
@@ -141,12 +141,12 @@ Variável
 ========
 
 Aqui está o URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variável & nome=#NAME#& value =)*Valor*
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variável & nome=#NAME#&value=)*Valor*
 
 -   **nome** : nome da variável cujo valor é desejado (leitura de
     o valor)
 
 -   **Valor** \ [opcional \] : se "value" for especificado, a variável
-    aceita esse valor (escrevendo um valor)
+    assumirá esse valor (escrever um valor)
 
 

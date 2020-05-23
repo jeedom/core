@@ -12,7 +12,7 @@ Estas órdenes pueden ser obtenidas por :
     iniciar comandos (acción) o hacer una pregunta (información).
 
 -   Http : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack)
-    para iniciar comandos (acción) o hacer una pregunta (información).
+    Para iniciar comandos (acción) o hacer una pregunta (información).
 
 El interés de las interacciones radica en la integración simplificada en
 Otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc.
@@ -52,7 +52,7 @@ Jeedom tendrá varias respuestas para una sola pregunta).
 También podemos definir un comando para ejecutar si, por ejemplo
 la interacción no está vinculada a una acción sino a información o si
 desea llevar a cabo una acción específica después de esto (también es
-posible ejecutar un escenario, controlar varios comandos ...).
+posible ejecutar un escenario, controlar varios comandos).
 
 Configuración 
 =============
@@ -76,18 +76,18 @@ General
     solicitar texto en la lista de interacción).
 
 -   **Grupo** : grupo de interacción, ayuda a organizarlos
-    (puede estar vacío, por lo tanto estará en el grupo &quot;ninguno&quot;).
+    (puede estar vacío, por lo que estará en el grupo "ninguno").
 
 -   **Bienes** : permite activar o desactivar la interacción.
 
--   **Solicitud** : la oración modelo generadora (requerida).
+-   **Solicitud** : La oración modelo generadora (requerida).
 
 -   **Sinónimo** : permite definir sinónimos en nombres
     órdenes.
 
 -   **Respuesta** : la respuesta para proporcionar.
 
--   **Espere antes de responder** : agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
+-   **Espere antes de responder)** : agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
 
 -   **Conversión binaria** : convierte valores binarios a
     abierto / cerrado por ejemplo (solo para comandos de tipo
@@ -107,7 +107,7 @@ Filtros
 
 -   **Limitar a pedidos con unidad** : permite limitar el
     generación con una o más unidades (Jeedom crea la lista
-    automáticamente desde las unidades definidas en sus pedidos).
+    automáticamente de las unidades definidas en sus pedidos).
 
 -   **Limitar a órdenes pertenecientes al objeto** : permite limitar
     generación a uno o más objetos (Jeedom crea la lista
@@ -148,7 +148,7 @@ En el ejemplo que sigue, podemos ver en el campo &quot;Solicitar&quot; la oraci�
 exacta para proporcionar para desencadenar la interacción. Aquí, para encender el
 luz de techo de la sala de estar.
 
-![yonteract004](../images/interact004.png)
+![interact004](../images/interact004.png)
 
 Podemos ver, en esta captura, la configuración para tener un
 interacción vinculada a una acción específica. Esta acción se define en
@@ -157,14 +157,14 @@ la parte de &quot;Acción&quot; de la página.
 Podemos imaginar hacer lo mismo con varias acciones para
 encienda varias lámparas en la sala de estar como el siguiente ejemplo :
 
-![yonteract005](../images/interact005.png)
+![interact005](../images/interact005.png)
 
 En los 2 ejemplos anteriores, la oración modelo es idéntica pero el
 las acciones resultantes cambian según lo que esté configurado
 en la parte &quot;Acción&quot;, por lo tanto, ya podemos con una simple interacción para
 frase única imagina acciones combinadas entre varios comandos y
 varios escenarios (también podemos desencadenar escenarios en el juego
-acción de interacción).
+acción de interacciones).
 
 > **Punta**
 >
@@ -186,7 +186,7 @@ Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre de
 equipo (podemos ver la importancia de tener nombres de
 control / equipo consistente).
 
-![yonteract006](../images/interact006.png)
+![interact006](../images/interact006.png)
 
 Entonces podemos ver aquí que Jeedom generó 152 oraciones a partir de
 nuestro modelo. Sin embargo, no están muy bien construidos y nosotros
@@ -200,7 +200,7 @@ generado), luego, en los subtipos, solo podemos mantener marcados
 "predeterminado "que corresponde al botón de acción (por lo que solo quedan 16
 phrases).
 
-![yonteract007](../images/interact007.png)
+![interact007](../images/interact007.png)
 
 Es mejor, pero podemos hacerlo aún más natural. Si tomo
 el ejemplo generado &quot;Al entrar&quot;, sería bueno poder transformar
@@ -210,10 +210,10 @@ permítanos nombrar pedidos de manera diferente en nuestro
 oraciones &quot;generadas&quot;, aquí está &quot;on&quot;, incluso tengo &quot;on2&quot; en los módulos
 que puede controlar 2 salidas.
 
-En los sinónimos, por lo tanto, indicaremos el nombre del comando y el (los)
+En sinónimos, indicaremos el nombre del comando y el (s)
 sinónimo (s) a utilizar :
 
-![yonteract008](../images/interact008.png)
+![interact008](../images/interact008.png)
 
 Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre
 puede tener varios sinónimos, aquí &quot;on&quot; tiene como sinónimo
@@ -231,7 +231,7 @@ de lo contrario podemos usar variaciones en la demanda. Consiste en
 enumerar una serie de palabras posibles en un lugar de la oración, Jeedom
 generará oraciones con estas variaciones.
 
-![yonteract009](../images/interact009.png)
+![interact009](../images/interact009.png)
 
 Ahora tenemos oraciones un poco más correctas con oraciones que
 no son justos, para nuestro ejemplo "en" "entrada". entonces encontramos
@@ -246,7 +246,7 @@ sintácticamente incorrecto. Entonces eliminará lo que está demasiado lejos
 la sintaxis real de una oración. En nuestro caso, pasamos de 168
 130 oraciones.
 
-![yonteract010](../images/interact010.png)
+![interact010](../images/interact010.png)
 
 Por lo tanto, se vuelve importante construir bien sus oraciones modelo y
 sinónimos, así como seleccionar los filtros correctos para no generar
@@ -268,28 +268,28 @@ Para hacer esto, nuevamente usaremos la etiqueta Jeedom. Para nuestro
 luces, podemos usar una frase como : Me ilumine bien
 \#equipement\# (ver captura de pantalla a continuación).
 
-![yonteract011](../images/interact011.png)
+![interact011](../images/interact011.png)
 
 También puede agregar cualquier valor desde otro comando como
 temperatura, número de personas, etc.
 
-![yonteract012](../images/interact012.png)
+![interact012](../images/interact012.png)
 
 Conversión binaria 
 ------------------
 
 Las conversiones binarias se aplican a los pedidos de tipo de información cuyos
-El subtipo es binario (solo devuelve 0 o 1). Entonces tienes que activar
+el subtipo es binario (solo devuelve 0 o 1). Entonces tienes que activar
 los filtros correctos, como puedes ver en la captura de pantalla a continuación
 (para las categorías, podemos verificarlas todas, para el ejemplo que tengo
 mantuvo esa luz).
 
-![yonteract013](../images/interact013.png)
+![interact013](../images/interact013.png)
 
 Como puede ver aquí, he mantenido casi la misma estructura
 por demanda (es voluntario enfocarse en
 especificidades). Por supuesto, adapté los sinónimos para tener algunos
-cosa coherente. Sin embargo, para la respuesta, es **yompératif** de
+cosa coherente. Sin embargo, para la respuesta, es **imperativo** de
 poner solo \#valeur\# que representa el 0 o 1 que va Jeedom
 reemplazar con la siguiente conversión binaria.
 
@@ -353,7 +353,7 @@ lista de la izquierda, filtro las oraciones para mostrarle solo el
 oraciones a eliminar. En realidad hay 76 oraciones generadas
 con la configuración de la interacción.
 
-![yonteract014](../images/interact014.png)
+![interact014](../images/interact014.png)
 
 Como puede ver en la siguiente captura de pantalla, agregué un
 regexp simple que buscará la palabra &quot;Julie&quot; en las oraciones generadas
@@ -388,13 +388,13 @@ ya muy complicado de entender. Me tomó un tiempo comprenderlo
 el funcionamiento. Como un ejemplo un poco más complejo, una expresión regular para
 verificar una URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
-\\ .- \] \*) \*\\ /?\ $ /
+/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w
+\\ .- \] \*)\*\\ /?\ $ /
 
 Una vez que puedes escribir esto, entiendes las expresiones
 regular.
 
-![yonteract015](../images/interact015.png)
+![interact015](../images/interact015.png)
 
 Para resolver el problema de mayúsculas y minúsculas, podemos agregar a
 nuestra expresión es una opción que hará que no distinga entre mayúsculas y minúsculas, o
@@ -402,7 +402,7 @@ en otras palabras, que considera una letra minúscula igual a una letra mayúscu
 para hacer esto, simplemente tenemos que agregar al final de nuestra expresión un
 "i".
 
-![yonteract016](../images/interact016.png)
+![interact016](../images/interact016.png)
 
 Con la adición de la opción &quot;i&quot; vemos que solo quedan 55
 oraciones generadas y en la lista de la izquierda con el filtro julie para
@@ -430,7 +430,7 @@ Respuesta compuesta de varias piezas de información
 También es posible poner varios comandos de información en uno
 responder, por ejemplo, para obtener un resumen de la situación.
 
-![yonteract021](../images/interact021.png)
+![interact021](../images/interact021.png)
 
 En este ejemplo, vemos una oración simple que devolverá un
 responde con 3 temperaturas diferentes, así que aquí podemos poner un poco
@@ -450,7 +450,7 @@ sola vez.
 -   El comando que responde a eso es &quot;\# \ [Cámara de
     Julie \] \ [GSMF-001-2 \] \ [Presencia \] \#"
 
-![yonteract017](../images/interact017.png)
+![interact017](../images/interact017.png)
 
 Este ejemplo se dirige específicamente a equipos específicos que permiten
 tener una respuesta personalizada. Entonces podríamos imaginar reemplazar
@@ -471,7 +471,7 @@ el ejemplo responde con &quot;no, no hay nadie en la habitación
     que no queremos ver para tener solo las oraciones en el
     Comandos de presencia".
 
-![yonteract018](../images/interact018.png)
+![interact018](../images/interact018.png)
 
 Sin Regexp, obtenemos aquí 11 oraciones, pero mi interacción está dirigida
 generar oraciones solo para preguntar si hay alguien en
@@ -494,16 +494,16 @@ frases para todos los sensores de estos 3 tipos de medida.
 Aquí un ejemplo genérico que se utiliza para conocer la temperatura,
 la humedad, el brillo de las diferentes habitaciones (objeto en el sentido Jeedom).
 
-![yonteract019](../images/interact019.png)
+![interact019](../images/interact019.png)
 
 -   Entonces podemos ver que una oración genérica genérica &quot;¿Cuál es el
     temperatura de la sala "o" Qué tan brillante es el dormitorio"
-    se puede convertir a : "Cuál es la |l \\ '\] \#commande\# Objeto"
+    se puede convertir a : "Cuál es la |l \\ '\] \#commande\# objet"
     (el uso de \ [word1 | mot2 \] digamos esta posibilidad
     o este para generar todas las variaciones posibles de la oración
     con word1 o word2). Al generar Jeedom generará todo
     posibles combinaciones de oraciones con todos los comandos
-    existente (dependiendo de los filtros) reemplazando \#commande\# por
+    existente (dependiendo de los filtros) reemplazando \#commande\# par
     el nombre del comando y \#objet\# por le nom de l'objet.
 
 -   La respuesta será "21 ° C" o "200 lux". Solo pon :
@@ -533,11 +533,11 @@ Usando el ejemplo simple, vemos oraciones &quot;batería&quot; o
 "latencia ", que no tiene nada que ver con nuestra interacción
 temperatura / humedad / brillo.
 
-![yonteract020](../images/interact020.png)
+![interact020](../images/interact020.png)
 
 Entonces podemos ver una expresión regular :
 
-**(batería|latence|pression|vitesse|consumo)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 Esto le permite eliminar todos los pedidos que tengan uno de estos
 palabras en su oración
@@ -557,7 +557,7 @@ Es posible controlar una lámpara de porcentaje (dimmer) o un
 termostato con interacciones. Aquí hay un ejemplo para controlar su
 atenuador en una lámpara con interacciones :
 
-![yonteract022](../images/interact022.png)
+![interact022](../images/interact022.png)
 
 Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (on
 puede poner lo que quiera) que se incluye en el orden de
@@ -574,7 +574,7 @@ el valor le pasamos nuestra etiqueta *Consigna*.
 > Jeedom, puede haber varios para conducir, por ejemplo
 > pedidos múltiples. También tenga en cuenta que todas las etiquetas se pasan a
 > escenarios lanzados por la interacción (sin embargo, el escenario
-> ya sea en &quot;Ejecutar en primer plano&quot;).
+> ya sea en "Ejecutar en primer plano").
 
 ### Evolución 
 
@@ -583,7 +583,7 @@ interacción única. Con el siguiente ejemplo, podremos ordenar
 varias unidades con una sola interacción y, por lo tanto, generan un
 conjunto de oraciones para controlarlos.
 
-![yonteract033](../images/interact033.png)
+![interact033](../images/interact033.png)
 
 En esta interacción, no tenemos comando en la parte de acción, nosotros
 deje que Jeedom genere a partir de etiquetas la lista de oraciones. Podemos
@@ -597,7 +597,7 @@ en una respuesta.
 
 Resultado de la interacción :
 
-![yonteract034](../images/interact034.png)
+![interact034](../images/interact034.png)
 
 Podemos ver que la etiqueta **\#equipement\#** que no se usa
 en la solicitud se completa bien en la respuesta.
@@ -609,14 +609,14 @@ Es posible controlar un comando de color mediante las interacciones en
 pidiéndole a Jeedom por ejemplo que encienda una tira de LED azul.
 Esta es la interacción para hacer :
 
-![yonteract023](../images/interact023.png)
+![interact023](../images/interact023.png)
 
 Hasta entonces, nada muy complicado, sin embargo, debe haber configurado
 colores en Jeedom para que funcione; ir al
 menú → Configuración (arriba a la derecha) luego en la sección
 "Configurar interacciones" :
 
-![yonteract024](../images/interact024.png)
+![interact024](../images/interact024.png)
 
 Como podemos ver en la captura de pantalla, no hay color
 configurado, así que agregue colores con el &quot;+&quot; a la derecha. la
@@ -624,7 +624,7 @@ nombre del color, este es el nombre que va a pasar a la interacción,
 luego en la parte derecha (columna &quot;código HTML&quot;), haciendo clic en el
 color negro puedes elegir un nuevo color.
 
-![yonteract025](../images/interact025.png)
+![interact025](../images/interact025.png)
 
 Podemos agregar tantos como queramos, podemos poner como nombre
 cualquiera, para que puedas imaginar asignar un color a
@@ -642,7 +642,7 @@ Es posible acoplar una interacción a un escenario para
 realizar acciones un poco más complejas que realizar un simple
 acción o solicitud de información.
 
-![yonteract026](../images/interact026.png)
+![interact026](../images/interact026.png)
 
 Por lo tanto, este ejemplo permite iniciar el escenario que está vinculado en el
 parte de acción, por supuesto, podemos tener varios.
@@ -654,9 +654,9 @@ Las interacciones hacen muchas cosas en particular.
 Puedes programar una acción dinámicamente. Ejemplo : "Poner el
 calentamiento a las 10 p.m. para 2:50 p.m". Nada podría ser más simple, solo
 usar etiquetas \#time\# (si se define un tiempo específico) o
-\#duration\# (para en el tiempo X, ejemplo en 1 hora) :
+\#duration\# (para en X tiempo, ejemplo en 1 hora) :
 
-![yonteract23](../images/interact23.JPG)
+![interact23](../images/interact23.JPG)
 
 > **Nota**
 >

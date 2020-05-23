@@ -50,7 +50,7 @@ Settings :
 
 -   string key : configuration value key to save
 
--   string plugin : (optional), plugin of the configuration value to
+-   string plugin : (optional), configuration value plugin to
     enregistrer
 
 JSON Event API
@@ -61,7 +61,7 @@ event::changes
 
 Returns the list of changes since the datetime passed in parameter
 (must be in microseconds). You will also have in the answer the
-Jeedom&#39;s current datetime (to be reused for the next query)
+Jeedom's current datetime (to be reused for the next query)
 
 Settings :
 
@@ -182,7 +182,7 @@ eqLogic::fullById
 -----------------
 
 Returns equipment and its commands as well as their states
-(for info type orders)
+(for info type commands)
 
 Settings:
 
@@ -222,7 +222,7 @@ Returns an equipment table according to the parameters. The return
 will be of the form array (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒
 array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))….,id1 ⇒
 array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ array (….)), id2 ⇒ array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
-Array (....)) ..)
+array(…​.))..)
 
 Settings:
 
@@ -239,7 +239,7 @@ Settings:
 
 -   int id (empty if it is a creation)
 
--   string eqType\_name (type of script, virtual equipment, etc.)
+-   string eqType\_name (type of script, virtual equipment…)
 
 -   string name
 
@@ -392,7 +392,7 @@ Settings:
 
 -   string value : valeur
 
--   string datetime : (optional) value datetime
+-   string datetime : (optional) datetime value
 
 JSON Scenario API
 =================
@@ -467,7 +467,7 @@ Get the Jeedom logs list
 
 Settings:
 
--   string filter : (optional) filter on the name of the logs to recover
+-   string filter : (optional) filter on the name of the logs to retrieve
 
 log::empty
 ----------
@@ -498,7 +498,7 @@ Get the value of a variable stored in the datastore
 Settings:
 
 -   string type : type of stored value (for scenarios
-    it&#39;s scenario)
+    it's scenario)
 
 -   id linkId : -1 for global (value for default scenarios,
     or the scenario id)
@@ -513,7 +513,7 @@ Stores the value of a variable in the datastore
 Settings:
 
 -   string type : type of stored value (for scenarios
-    it&#39;s scenario)
+    it's scenario)
 
 -   id linkId : -1 for global (value for default scenarios,
     or the scenario id)
@@ -723,7 +723,7 @@ Retrieving the list of objects :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;object::all &#39;, array ())){
+if ($ jsonrpc-&gt; sendRequest ( &#39;object::all ', array())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -734,7 +734,7 @@ Execution of an order (with the option of a title and a message)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'options' => array ('title' => 'Cuckoo', 'message' => 'It works')))){
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' It works')))){
     echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

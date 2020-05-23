@@ -13,12 +13,12 @@ deaktiviert sind ausgegraut.
 >
 > Setzen Sie die Maus wie an vielen Stellen auf Jeedom ganz links
 > ruft ein Schnellzugriffsmenü auf (Sie können
-> von deinem Profil immer sichtbar lassen). Hier das Menü
+> Lassen Sie es in Ihrem Profil immer sichtbar). Hier das Menü
 > Ermöglicht die Sortierung der Liste der Plugins nach Kategorien.
 
 Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben du
 Suchen Sie den Namen des Plugins und dann in Klammern den Namen in Jeedom
-(ID) und schließlich die Art der installierten Version (Stable, Beta).
+(ID) und schließlich die Art der installierten Version (stabil, Beta).
 
 > **Wichtig**
 >
@@ -33,7 +33,7 @@ Oben rechts einige Schaltflächen :
 -   **Änderungsprotokoll** : ermöglicht das Anzeigen des Änderungsprotokolls des Plugins, falls vorhanden
 
 -   **Auf den Markt schicken** : ermöglicht das Senden des Plugins auf dem Markt
-    (nur verfügbar, wenn Sie der Autor sind)
+    (Nur verfügbar, wenn Sie der Autor sind)
 
 -   **Details** : ermöglicht es, die Plugin-Seite auf dem Markt zu finden
 
@@ -42,7 +42,7 @@ Oben rechts einige Schaltflächen :
 
 Unten links befindet sich ein Statusbereich mit :
 
--   **Status** : ermöglicht die Anzeige des Status des Plugins (aktiv / inaktiv)
+-   **Status** : Hier können Sie den Status des Plugins anzeigen (aktiv / inaktiv)
 
 -   **Version** : die Version des installierten Plugins
 
@@ -76,7 +76,7 @@ Nebengebäude :
 
 -   **Installation** : wird installiert oder neu installiert
     Abhängigkeiten (wenn Sie es nicht manuell tun und sie sind
-    KO, Jeedom wird nach einer Weile für sich selbst sorgen)
+    KO, Jeedom wird nach einer Weile auf sich selbst aufpassen)
 
 -   **Letzte Installation** : Datum der letzten Installation von
     Nebengebäude
@@ -90,15 +90,15 @@ Dämon :
 -   **Konfiguration** : wird in Ordnung sein, wenn alle Kriterien für den Dämon
     Wendungen sind erfüllt oder geben Anlass zur Blockierung
 
--   **(Re) Anfang** : Ermöglicht das Starten oder Neustarten des Dämons
+-   **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons
 
 -   **Anschlag** : erlaubt den Dämon aufzuhalten (nur für den Fall
-    automatische Verwaltung ist deaktiviert)
+    Die automatische Verwaltung ist deaktiviert)
 
 -   **Automatische Verwaltung** : ermöglicht das Aktivieren oder Deaktivieren der Verwaltung
     automatisch (wodurch Jeedom den Daemon und den verwalten kann
     bei Bedarf wiederbeleben. Sofern nicht anders angegeben, ist dies ratsam
-    automatische Verwaltung aktiv lassen)
+    Lassen Sie die automatische Verwaltung aktiv)
 
 -   **Letzter Start** : Datum des letzten Starts des Dämons
 
@@ -178,7 +178,7 @@ dieser, um seine Karte aufzurufen. Dieses Blatt gibt Ihnen viel
 Informationen über das Plugin, einschließlich :
 
 -   Wenn es offiziell / empfohlen ist oder wenn es veraltet ist (müssen Sie wirklich
-    Vermeiden Sie die Installation veralteter Plugins
+    Vermeiden Sie die Installation veralteter Plugins)
 
 -   4 Aktionen :
 
@@ -189,13 +189,13 @@ Informationen über das Plugin, einschließlich :
         Beta-Version (nur für Beta-Tester)
 
     -   **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr
-        wenig gebraucht)
+        wenig benutzt)
 
     -   **Entfernen** : Wenn das Plugin derzeit installiert ist, ist dies
         Schaltfläche, um es zu löschen
 
 Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität
-(Wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Bewertungen
+(Wenn Jeedom eine Inkompatibilität feststellt, werden Sie darüber informiert
 auf dem Plugin (Sie können es hier bewerten) und Informationen
 komplementär (der Autor, die Person, die das letzte Update vorgenommen hat
 Tag, Link zum Dokument, Anzahl der Downloads). Rechts

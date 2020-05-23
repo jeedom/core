@@ -7,7 +7,7 @@ del menú **Herramientas → Objetos**.
 Para dar libre elección a la personalización, puede nombrar estos
 objetos como quieras. Por lo general, definiremos los diferentes
 partes de su casa, como los nombres de las habitaciones (esto es
-configuración recomendada).
+Configuración recomendada).
 
 Administración 
 =======

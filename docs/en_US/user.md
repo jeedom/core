@@ -27,7 +27,7 @@ Below you have a table :
 
     -   **User limité** : the user only sees the
         authorized equipment (configurable with the &quot;Manage&quot; button
-        rights&quot;)
+        rights")
 
 -   **API key** : user&#39;s personal API key
 
@@ -48,7 +48,7 @@ Below you have a table :
 
 -   **Manage rights** : allows to finely manage the rights of
     the user (attention the profiles must be in
-    "limited user ")
+    "Limited user")
 
 Rights management 
 ==================
@@ -72,6 +72,6 @@ scenario, define user rights :
 
 -   **Visualization et exécution** : the user sees
     the equipment / scenario and can act on it (light a lamp, throw
-    the scenario, etc.)
+    the script, etc.)
 
 

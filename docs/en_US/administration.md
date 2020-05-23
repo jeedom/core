@@ -62,7 +62,7 @@ TTS, you can define their scope :
 -   **Disabled** : API key cannot be used,
 
 -   **White IP** : only a list of IPs is authorized (see
-    Administration → Settings → Networks),
+    Administration → Configuration → Networks),
 
 -   **Localhost** : only requests from the system on which is
     installed Jeedom are allowed,
@@ -123,7 +123,7 @@ LDAP
     groups for example)
 
 -   **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO
-    for example)
+    For example)
 
 Log in 
 ---------
@@ -152,8 +152,8 @@ Networks
 It is absolutely necessary to correctly configure this important part of
 Jeedom, otherwise many plugins may not work. he
 is possible to access Jeedom in two different ways : L'**access
-internal** (from the same local network as Jeedom) and l'**access
-external** (from another network, in particular from the Internet).
+interne** (from the same local network as Jeedom) and l'**access
+externe** (from another network, especially from the Internet).
 
 > **IMPORTANT**
 >
@@ -234,7 +234,7 @@ external** (from another network, in particular from the Internet).
 >
 > If you can&#39;t get Jeedom DNS to work, check the
 > configuration of the firewall and parental filter of your Internet box
-> (on livebox you need for example the firewall on medium).
+> (on livebox you need for example the firewall in medium).
 
 Colors 
 ========
@@ -249,7 +249,7 @@ desktop and mobile version. We can then change :
 -   the background color of the widgets,
 
 -   the color of the command when the widget is of the gradual type (for
-    lights, shutters, temperatures).
+    example lights, shutters, temperatures).
 
 By clicking on the color a window opens, allowing you to choose your
 color. The cross next to the color returns to the parameter
@@ -293,7 +293,7 @@ Historical
     historical data must have more than 24 hours to be archived
     (as a reminder, archiving will either average or take the maximum
     or the minimum of the data over a period which corresponds to the
-    package size).
+    packet size).
 
 -   **Archive by package from (in hours)** : This parameter gives
     precisely the size of the packets (1 hour by default). It means by
@@ -321,7 +321,7 @@ Historical
 > calculate these statistics. The trend calculation method is based
 > on least squares calculation (see
 > [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> for details).
+> for the detail).
 
 Push 
 ----
@@ -331,7 +331,7 @@ order update. You can use the following tags :
 **\#value\#** for the order value, **\#cmd\_name\#** for the
 command name, **\#cmd\_id\#** for the unique identifier of the
 commande, **\#humanname\#** for the full name of the order (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`for the name of the equipment
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), ``#eq_name#`for the name of the equipment
 
 Hidden 
 =====
@@ -348,7 +348,7 @@ Allows monitoring and acting on the Jeedom cache :
 
 -   **Pause time for long polling** : How often
     Jeedom checks if there are any pending events for customers
-    (web interface, mobile application, etc.). The shorter this time, the more
+    (web interface, mobile application…). The shorter this time, the more
     the interface will update quickly, in return this
     uses more resources and can therefore slow Jeedom.
 
@@ -431,7 +431,7 @@ Automatic interaction, contextual &amp; warning
     -   *You* : Notify me if the living room temperature exceeds 25 ° C ?
 
     -   *Jeedom* : OK (* As soon as the living room temperature exceeds 25 ° C,
-        Jeedom will tell you, only once *)
+        Jeedom will tell you, only once*)
 
 > **NOTE**
 >
@@ -470,7 +470,7 @@ Here are the different options available :
     if you have programmed the alert via the mobile interface)
 
 -   **Synonym for objects** : List of synonyms for objects
-    (ex : rdc|ground floor|basement|low; sdb|bathroom).
+    (Ex : rdc|ground floor|basement|low; sdb|Bathroom).
 
 -   **Synonym for equipment** : Synonyms list for
     equipment.
@@ -509,7 +509,7 @@ Configure the generation and management of reports
     waiting after loading the report to take the &quot;photo&quot;, at
     change if your report is incomplete for example.
 
--   **Clean older reports from (days)** : Defines the
+-   **Clean up older reports from (days)** : Defines the
     number of days before deleting a report (reports take
     a little space so be careful not to put too much
     conservation).
@@ -524,7 +524,7 @@ equipment, objects, etc.
 -   **Depth for scenarios** : Used to define, when
     displaying a graph of links of a scenario, the number
     maximum number of elements to display (the more elements the greater the
-    the slower it will be to generate and the more difficult it will be to read).
+    graphic will be slow to generate and the more difficult it will be to read).
 
 -   **Depth for objects** : Same for objects.
 
@@ -557,7 +557,7 @@ objects :
     -   **Average** : averages values,
 
     -   **Text** : display the value verbatim (especially for those
-        string type).
+        of string type).
 
 -   **Icon** : Summary icon.
 
@@ -573,7 +573,7 @@ objects :
 -   **Show if value is 0** : Check this box to display the
     value, even when it is 0.
 
--   **Theier at un virtuel** : Start creating virtual orders
+-   **Link to a virtual** : Start creating virtual orders
     having for value those of the summary.
 
 -   **Delete summary** : The last button, on the far right, allows
@@ -642,7 +642,7 @@ Log
 ---
 
 -   **Log engine** : Allows you to change the log engine for, for
-    example, send them to a syslog daemon (d).
+    example, send them to a syslog demon (d).
 
 -   **Log format** : Log format to use (Caution : ça
     does not affect daemon logs).
@@ -723,7 +723,7 @@ refused if you use a different deposit than this one.
 
 -   **Password** : Your Market password.
 
--   **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
+-   **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of it crashing between them)
 
 -   **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will not be able to restore your Jeedom
 
@@ -786,7 +786,7 @@ a Samba share (ex : NAS Synology).
 > Jeedom should be the only one to write to this folder and it should be empty
 > by default (i.e. before configuring and sending the
 > first backup, the folder must not contain any file or
-> folder).
+> dossier).
 
 ### URLs 
 

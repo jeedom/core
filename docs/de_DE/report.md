@@ -1,21 +1,21 @@
-Auf dieser Seite können Sie alle Berichte anzeigen, die durch die Berichtsaktion generiert wurden (siehe Szenariodokumentation).
+Auf dieser Seite können Sie alle Berichte anzeigen, die von der Berichtsaktion generiert wurden (siehe Szenariodokumentation).
 
 # Was ist ein Bericht? ?
 
-Ein Bericht ist ein Screenshot der Jeedom-Benutzeroberfläche zu einem Zeitpunkt T (die Erfassung wird so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht übernommen werden).
+Ein Bericht ist ein Screenshot der Jeedom-Oberfläche zu einem Zeitpunkt T (die Erfassung wird so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden).
 
 Sie können dies für Ansichten, Design und Bedienfeldseite tun....
 
-Es wird von einem Skript mit dem Befehl report ausgelöst. Sie können festlegen, dass dieser Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie gesendet wird
+Es wird von einem Skript mit dem Befehl report ausgelöst. Sie können festlegen, dass dieser Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm) an Sie gesendet wird....)
 
-# Verwendung
+# Utilisation
 
 Die Verwendung ist sehr einfach, Sie wählen aus, wenn Sie sehen möchten :
 
 -	Berichte anzeigen
 -	Degins Berichte
 -	Plugin-Panel-Berichte
-- Geräteberichte (für eine Zusammenfassung der Batterie für jedes Modul)
+- Geräteberichte (für eine Zusammenfassung der Batterie jedes Moduls)
 
 Anschließend wählen Sie den Namen des betreffenden Berichts aus und sehen alle Daten der Berichte im Speicher
 
@@ -27,7 +27,7 @@ Sobald der Bericht ausgewählt ist, können Sie ihn sehen, erneut herunterladen 
 
 Sie können auch alle Sicherungen eines bestimmten Berichts löschen
 
-# Faq
+# FAQ
 
 > **Wenn Sie einen Detailfehler haben : cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine solche Datei oder Verzeichnis**
 >

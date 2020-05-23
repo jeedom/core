@@ -148,6 +148,6 @@ información en las cajas :
 
 -   **widget de comando** : el botón de la derecha te permite elegir
     el comando para mostrar (cuidado, esto muestra el widget
-    la orden)
+    El orden)
 
 

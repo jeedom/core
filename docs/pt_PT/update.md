@@ -4,13 +4,13 @@ Descrição
 O **Update Center** permite atualizar todos
 Recursos Jeedom, incluindo software básico,
 plugins, widgets, etc. Outras funções de gerenciamento de extensão
-estão disponíveis (excluir, reinstalar, verificar etc.)
+estão disponíveis (excluir, reinstalar, verificar etc.))
 
 A página Centro de Atualização 
 ================================
 
 É acessível a partir do menu **Administração → Centro de atualização
-Dia**.
+jour**.
 
 Você encontrará, à esquerda, todas as funcionalidades do
 Jeedom e na parte direita **Informação** quem descreve o que ele
@@ -43,7 +43,7 @@ Opções :
     o backup.
 
 -   **Update para reaplicar** : Permite reaplicar uma aposta
-    atualizado. (NB : Nem todas as atualizações podem ser reaplicadas.)
+    atualizado. (NB : Todas as atualizações não podem ser reaplicadas.)
 
 > **IMPORTANTE**
 >
@@ -100,8 +100,8 @@ todo elemento :
 > Se o changelog estiver vazio, mas você ainda tiver uma atualização
 > update significa que a documentação foi atualizada.
 > Portanto, não há necessidade de solicitar ao desenvolvedor
-> mudanças, uma vez que não há necessariamente. (geralmente é uma aposta
-> tradução da documentação)
+> mudanças, uma vez que não há necessariamente. (é frequentemente uma aposta
+> da tradução da documentação)
 
 > **Dica**
 >
@@ -119,7 +119,7 @@ Uma vez conectado, este é o comando para executar :
 Os possíveis parâmetros são :
 
 -   **`moda`** : `force ', para iniciar uma atualização no modo forçado (não
-    ignora erros).
+    ignorar erros).
 
 -   **`version`** : seguido do número da versão, para reaplicar o
     mudanças desde esta versão.

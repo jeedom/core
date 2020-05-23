@@ -27,7 +27,7 @@ Abaixo você tem uma tabela :
 
     -   **Usuário limité** : o usuário vê apenas o
         equipamento autorizado (configurável com o botão "Gerenciar"
-        direitos ")
+        direitos")
 
 -   **Chave de API** : Chave de API pessoal do usuário
 
@@ -48,7 +48,7 @@ Abaixo você tem uma tabela :
 
 -   **Gerenciar direitos** : permite gerenciar com precisão os direitos de
     usuário (atenção os perfis devem estar em
-    "usuário limitado ")
+    "Usuário limitado")
 
 Gerenciamento de direitos 
 ==================
@@ -72,6 +72,6 @@ cenário, defina direitos do usuário :
 
 -   **Visualização et exécution** : o usuário vê
     equipamento / cenário e pode atuar sobre ele (acenda uma lâmpada, jogue
-    o cenário etc.)
+    o script etc.)
 
 

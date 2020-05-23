@@ -7,7 +7,7 @@ from the menu **Tools → Objects**.
 To give free choice to customization, you can name these
 objects as you want. Usually, we will define the different
 parts of his house, like the names of the rooms (this is
-recommended configuration).
+Recommended configuration).
 
 Management 
 =======

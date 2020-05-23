@@ -12,7 +12,7 @@ Esses pedidos podem ser obtidos por :
     iniciar comandos (ação) ou fazer uma pergunta (informações).
 
 -   HTTP : inicie uma URL HTTP contendo o texto (ex. Tasker, Slack)
-    iniciar comandos (ação) ou fazer uma pergunta (informações).
+    Para iniciar comandos (ação) ou fazer uma pergunta (informações).
 
 O interesse das interações reside na integração simplificada em
 outros sistemas como smartphone, tablet, outra caixa de automação residencial, etc.
@@ -76,18 +76,18 @@ Geral
     solicitar texto na lista de interação).
 
 -   **Grupo** : grupo de interação, ajuda a organizá-los
-    (pode estar vazio, portanto estará no grupo "nenhum").
+    (pode estar vazio, então estará no grupo "none").
 
 -   **Ativos** : permite ativar ou desativar a interação.
 
--   **Aplicação** : a sentença do modelo de geração (obrigatório).
+-   **Aplicação** : A sentença do modelo de geração (obrigatório).
 
 -   **Sinônimo** : permite definir sinônimos em nomes
     pedidos.
 
 -   **Réponse** : a resposta para fornecer.
 
--   **Aguarde antes de responder (s)** : adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
+-   **Aguarde antes de responder (s))** : adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
 
 -   **Conversão binária** : converte valores binários em
     aberto / fechado, por exemplo (apenas para comandos de tipo
@@ -148,7 +148,7 @@ No exemplo a seguir, podemos ver no campo "Solicitar" a sentença
 exato para fornecer para acionar a interação. Aqui, para ativar o
 plafon de sala.
 
-![Eunteract004](../images/interact004.png)
+![interact004](../images/interact004.png)
 
 Podemos ver, nesta captura, a configuração para ter um
 interação vinculada a uma ação específica. Esta ação é definida em
@@ -157,14 +157,14 @@ a parte "Ação" da página.
 Podemos muito bem imaginar fazendo o mesmo com várias ações para
 acenda várias lâmpadas na sala como no exemplo a seguir :
 
-![Eunteract005](../images/interact005.png)
+![interact005](../images/interact005.png)
 
 Nos 2 exemplos acima, a sentença modelo é idêntica, mas a
 as ações resultantes mudam dependendo do que está configurado
 na parte "Ação", podemos, portanto, já com uma simples interação para
 uma única frase imagine ações combinadas entre vários comandos e
 vários cenários (também podemos ativar cenários no jogo
-ação de interação).
+ação de interações).
 
 > **Dica**
 >
@@ -186,21 +186,21 @@ Jeedom substituirá essas tags pelo nome dos comandos e pelo nome de
 equipamento (podemos ver a importância de ter nomes de
 controle / equipamento consistente).
 
-![Eunteract006](../images/interact006.png)
+![interact006](../images/interact006.png)
 
 Então, podemos ver aqui que Jeedom gerou 152 frases de
 nosso modelo. No entanto, eles não são muito bem construídos e nós
 tem um pouco de tudo.
 
 Para ordenar tudo isso, usaremos os filtros (parte
-à direita da nossa página de configuração). Neste exemplo, queremos
+direito da nossa página de configuração). Neste exemplo, queremos
 gerar sentenças para acender as luzes. Para que possamos desmarcar a
 informações do tipo de comando (se eu salvar, só tenho 95 frases
 gerado), então, nos subtipos, só podemos manter a verificação
 "padrão ", que corresponde ao botão de ação (portanto, apenas 16 permanecem
 phrases).
 
-![Eunteract007](../images/interact007.png)
+![interact007](../images/interact007.png)
 
 É melhor, mas podemos torná-lo ainda mais natural. Se eu tomar
 o exemplo gerado "Na entrada", seria bom poder transformar
@@ -210,10 +210,10 @@ nos permitem nomear pedidos de maneira diferente em nossa
 frases "geradas", aqui está "on", eu até tenho "on2" nos módulos
 que pode controlar 2 saídas.
 
-Nos sinônimos, indicaremos o nome do comando e o (s)
+Nos sinônimos, portanto, indicaremos o nome do comando e o (s)
 sinônimo (s) de usar :
 
-![Eunteract008](../images/interact008.png)
+![interact008](../images/interact008.png)
 
 Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome
 pode ter vários sinônimos, aqui "on" tem como sinônimo
@@ -231,7 +231,7 @@ caso contrário, podemos usar variações na demanda. Consiste em
 listar uma série de palavras possíveis em um local da sentença, Jeedom
 irá gerar frases com essas variações.
 
-![Eunteract009](../images/interact009.png)
+![interact009](../images/interact009.png)
 
 Agora temos frases um pouco mais corretas com frases que
 não são justos, por exemplo, na entrada "on" "". então encontramos
@@ -246,7 +246,7 @@ sintaticamente incorreto. Portanto, ele excluirá o que está muito longe
 a sintaxe real de uma frase. No nosso caso, passamos de 168
 130 frase sentenças.
 
-![Eunteract010](../images/interact010.png)
+![interact010](../images/interact010.png)
 
 Torna-se, portanto, importante criar bem suas frases de modelo e
 sinônimos, bem como selecionar os filtros certos para não gerar
@@ -268,12 +268,12 @@ Para fazer isso, usaremos novamente a tag Jeedom. Para o nosso
 luzes, podemos usar uma frase como : Eu acendi bem
 \#equipement\# (veja a captura de tela abaixo).
 
-![Eunteract011](../images/interact011.png)
+![interact011](../images/interact011.png)
 
 Você também pode adicionar qualquer valor de outro comando como
 temperatura, número de pessoas, etc.
 
-![Eunteract012](../images/interact012.png)
+![interact012](../images/interact012.png)
 
 Conversão binária 
 ------------------
@@ -284,12 +284,12 @@ os filtros certos, como você pode ver na captura de tela abaixo
 (para as categorias, podemos verificar todas elas, por exemplo, eu tenho
 manteve essa luz).
 
-![Eunteract013](../images/interact013.png)
+![interact013](../images/interact013.png)
 
 Como você pode ver aqui, eu mantive quase a mesma estrutura
 demanda (é voluntário se concentrar em
 específicos). Obviamente, eu adaptei os sinônimos para ter
-coisa coerente. No entanto, para a resposta, é **Eumpératif** de
+coisa coerente. No entanto, para a resposta, é **imperativo** de
 colocar apenas \#valeur\# que representa o 0 ou 1 que o Jeedom vai
 substitua pela seguinte conversão binária.
 
@@ -353,7 +353,7 @@ lista da esquerda, filtro as frases para mostrar apenas o
 frases a serem excluídas. Na realidade, existem 76 frases geradas
 com a configuração da interação.
 
-![Eunteract014](../images/interact014.png)
+![interact014](../images/interact014.png)
 
 Como você pode ver na captura de tela a seguir, adicionei um
 regexp simple, que procurará a palavra "Julie" nas frases geradas
@@ -388,13 +388,13 @@ já é muito complicado de entender. Levei um tempo para entender
 a operação. Como um exemplo um pouco mais complexo, uma regexp para
 verificar um URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w
-\\ .- \] \*) \*\\ /?\ $ /
+/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w
+\\ .- \] \*)\*\\ /?\ $ /
 
 Depois de escrever isso, você entende as expressões
 regular.
 
-![Eunteract015](../images/interact015.png)
+![interact015](../images/interact015.png)
 
 Para resolver o problema de maiúsculas e minúsculas, podemos adicionar a
 nossa expressão é uma opção que a diferencia de maiúsculas de minúsculas ou
@@ -402,7 +402,7 @@ em outras palavras, que considera uma letra minúscula igual a uma letra maiúsc
 Para fazer isso, basta adicionar no final de nossa expressão um
 "i".
 
-![Eunteract016](../images/interact016.png)
+![interact016](../images/interact016.png)
 
 Com a adição da opção "i", vemos que restam apenas 55
 sentenças geradas e na lista à esquerda com o filtro julie para
@@ -430,7 +430,7 @@ Resposta composta por várias informações
 Também é possível colocar vários comandos de informação em um
 resposta, por exemplo, para obter um resumo da situação.
 
-![Eunteract021](../images/interact021.png)
+![interact021](../images/interact021.png)
 
 Neste exemplo, vemos uma frase simples que retornará um
 responda com 3 temperaturas diferentes, então aqui podemos colocar um pouco
@@ -450,7 +450,7 @@ Existe alguém na sala ?
 -   O comando que responde a isso é "\# \ [Chamber of
     julie \] \ [FGMS-001-2 \] \ [Presença \] \#"
 
-![Eunteract017](../images/interact017.png)
+![interact017](../images/interact017.png)
 
 Este exemplo visa especificamente equipamentos específicos que permitem
 ter uma resposta personalizada. Então poderíamos imaginar substituir
@@ -471,7 +471,7 @@ o exemplo responde com "não, não há ninguém na sala
     que não queremos ver apenas as frases no
     Comandos de presença".
 
-![Eunteract018](../images/interact018.png)
+![interact018](../images/interact018.png)
 
 Sem o Regexp, chegamos aqui 11 sentenças, mas minha interação é direcionada
 gerar sentenças apenas para perguntar se há alguém em
@@ -494,21 +494,21 @@ sentenças para todos os sensores desses 3 tipos de medição.
 Aqui está um exemplo genérico usado para saber a temperatura,
 a umidade, o brilho das diferentes salas (objeto no sentido Jeedom).
 
-![Eunteract019](../images/interact019.png)
+![interact019](../images/interact019.png)
 
 -   Assim, podemos ver que uma frase genérica genérica "Qual é o
     temperatura da sala de estar "ou" quão brilhante é o quarto"
-    pode ser convertido para : "o que é \ |l \\ '\] \#commande\# Objeto"
+    pode ser convertido para : "o que é \ |l \\ '\] \#commande\# objet"
     (o uso de \ [word1 | mot2 \] digamos essa possibilidade
     ou este para gerar todas as variações possíveis da frase
     com word1 ou word2). Ao gerar o Jeedom irá gerar tudo
     combinações possíveis de frases com todos os comandos
-    existente (dependendo dos filtros) substituindo \#commande\# por
+    existente (dependendo dos filtros) substituindo \#commande\# par
     o nome do comando e \#objet\# por le nom de l'objet.
 
 -   A resposta será "21 ° C" ou "200 lux". Basta colocar :
     \#valeur\# \#unite\# (a unidade deve ser concluída na configuração
-    de cada pedido para o qual queremos ter um)
+    de cada ordem para a qual queremos ter uma)
 
 -   Este exemplo, portanto, gera uma sentença para todos os comandos de
     digite informações digitais que possuem uma unidade, para que possamos desmarcar
@@ -533,11 +533,11 @@ Usando o exemplo simples, vemos as frases "bateria" ou
 "latência ", que nada têm a ver com nossa interação
 temperatura / umidade / brilho.
 
-![Eunteract020](../images/interact020.png)
+![interact020](../images/interact020.png)
 
 Então podemos ver uma regexp :
 
-**(bateria|latence|pression|vitesse|consumo)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 Isso permite excluir todos os pedidos que possuem um destes
 palavras em sua frase
@@ -557,7 +557,7 @@ Controlar um dimmer ou um termostato (controle deslizante)
 termostato com interações. Aqui está um exemplo para controlar sua
 dimmer em uma lâmpada com interações :
 
-![Eunteract022](../images/interact022.png)
+![interact022](../images/interact022.png)
 
 Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (on
 pode colocar o que você deseja), que está incluído na ordem do
@@ -574,7 +574,7 @@ o valor que passamos nossa tag *ordem*.
 > Jeedom, pode haver vários para dirigir, por exemplo
 > pedidos múltiplos. Observe também que todas as tags são passadas para
 > cenários iniciados pela interação (no entanto, o cenário
-> em "Executar em primeiro plano").
+> em "Executar em primeiro plano"").
 
 ### Evolução 
 
@@ -583,7 +583,7 @@ interação única. Com o exemplo abaixo, poderemos solicitar
 várias unidades com uma única interação e, portanto, geram uma
 conjunto de frases para controlá-los.
 
-![Eunteract033](../images/interact033.png)
+![interact033](../images/interact033.png)
 
 Nesta interação, não temos comando na parte de ação, nós
 deixe o Jeedom gerar a partir de tags a lista de frases. Nós podemos
@@ -597,7 +597,7 @@ em uma resposta.
 
 Resultado da interação :
 
-![Eunteract034](../images/interact034.png)
+![interact034](../images/interact034.png)
 
 Podemos ver que a tag **\#equipement\#** que não é usado
 na solicitação está bem concluída na resposta.
@@ -609,14 +609,14 @@ Controlar a cor de uma faixa de LED
 pedindo à Jeedom, por exemplo, para acender uma faixa de LED azul.
 Esta é a interação a ser feita :
 
-![Eunteract023](../images/interact023.png)
+![interact023](../images/interact023.png)
 
 Até então, nada muito complicado, porém deve ter configurado
 cores no Jeedom para fazê-lo funcionar; vá para o
 menu → Configuração (canto superior direito) e depois na seção
 "Configurando interações" :
 
-![Eunteract024](../images/interact024.png)
+![interact024](../images/interact024.png)
 
 Como podemos ver na captura de tela, não há cores
 configurado, adicione cores com o "+" à direita. O
@@ -624,7 +624,7 @@ nome da cor, este é o nome que você passará para a interação,
 depois na parte direita (coluna "código HTML"), clicando no
 cor preta você pode escolher uma nova cor.
 
-![Eunteract025](../images/interact025.png)
+![interact025](../images/interact025.png)
 
 Podemos adicionar quantos quisermos, podemos colocar como um nome
 qualquer um, então você pode imaginar atribuir uma cor a
@@ -642,7 +642,7 @@ Use juntamente com um cenário
 executar ações um pouco mais complexas do que executar uma simples
 ação ou solicitação de informações.
 
-![Eunteract026](../images/interact026.png)
+![interact026](../images/interact026.png)
 
 Portanto, este exemplo possibilita iniciar o cenário vinculado no
 parte da ação, é claro que podemos ter vários.
@@ -654,9 +654,9 @@ As interações fazem muitas coisas em particular.
 Você pode programar uma ação dinamicamente. Exemplo : "Coloque o
 aquecimento às 22h às 14h50". Nada poderia ser mais simples, apenas
 usar tags \#time\# (se um horário específico estiver definido) ou
-\#duration\# (no X tempo, exemplo em 1 hora) :
+\#duration\# (no tempo X, por exemplo, em 1 hora) :
 
-![Eunteract23](../images/interact23.JPG)
+![interact23](../images/interact23.JPG)
 
 > **NOTA**
 >

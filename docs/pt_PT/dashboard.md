@@ -12,7 +12,7 @@ auto-gerado por Jeedom.
 
 -   Você tem no topo um pequeno ícone para fazer
     mostrar / ocultar a árvore de objetos (isso também exibe o
-    informações de resumo do objeto)
+    informações de resumo do assunto)
 
 -   No meio, você pode optar por filtrar apenas determinados tipos
     equipamento
@@ -76,7 +76,7 @@ Você também pode editar o layout interno dos controles do widget
         somente se você estiver em um layout de tabela)
 
     -   **Excluir coluna** : remova uma coluna da tabela
-        (acessível apenas se você tiver um layout de tabela)
+        (acessível apenas se você estiver em um layout de tabela)
 
     -   **Eliminar linha** : excluir uma linha da tabela (acessível
         somente se você estiver em um layout de tabela)

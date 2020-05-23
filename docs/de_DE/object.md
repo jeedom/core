@@ -7,7 +7,7 @@ aus dem Menü **Werkzeuge → Objekte**.
 Um die Anpassung frei wählen zu können, können Sie diese benennen
 Objekte wie Sie wollen. Normalerweise werden wir die verschiedenen definieren
 Teile seines Hauses, wie die Namen der Zimmer (das ist
-empfohlene Konfiguration).
+Empfohlene Konfiguration).
 
 Management 
 =======

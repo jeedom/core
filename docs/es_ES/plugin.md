@@ -18,7 +18,7 @@ deshabilitados están en gris.
 
 Al hacer clic en un complemento, accede a su configuración. Arriba tu
 encuentre el nombre del complemento, luego entre paréntesis, su nombre en Jeedom
-(ID) y, finalmente, el tipo de versión instalada (estable, beta).
+(ID) y finalmente, el tipo de versión instalada (estable, beta).
 
 > **Importante**
 >
@@ -33,7 +33,7 @@ Arriba a la derecha, algunos botones :
 -   **Cambios** : permite ver el registro de cambios del complemento si existe
 
 -   **Enviar al mercado** : permite enviar el complemento en el mercado
-    (solo disponible si usted es el autor)
+    (solo disponible si eres el autor)
 
 -   **Detalles** : permite encontrar la página de complementos en el mercado
 
@@ -42,7 +42,7 @@ Arriba a la derecha, algunos botones :
 
 Abajo a la izquierda, hay un área de estado con :
 
--   **Estatus** : permite ver el estado del complemento (activo / inactivo)
+-   **Estatus** : Le permite ver el estado del complemento (activo / inactivo)
 
 -   **Versión** : la versión del complemento instalado
 
@@ -76,7 +76,7 @@ Dependencias :
 
 -   **Instalación** : instalará o reinstalará
     dependencias (si no lo hace manualmente y son
-    KO, Jeedom se cuidará solo después de un tiempo)
+    KO, Jeedom se cuidará después de un tiempo)
 
 -   **Última instalación** : fecha de la última instalación de
     Dependencias
@@ -90,7 +90,7 @@ Demonio :
 -   **Configuración** : estará bien si todos los criterios para el demonio
     se cumplen los turnos o darán lugar a un bloqueo
 
--   **(Re) Inicio** : permite lanzar o relanzar al demonio
+-   **(Para reiniciar** : permite lanzar o relanzar al demonio
 
 -   **Parar** : permite detener al demonio (solo en caso
     la gestión automática está deshabilitada)
@@ -195,7 +195,7 @@ información sobre el complemento, incluido :
         botón para borrarlo
 
 A continuación, encontrará la descripción del complemento, la compatibilidad
-(si Jeedom detecta una incompatibilidad, se lo notificará), las revisiones
+(si Jeedom detecta una incompatibilidad, se lo notificará), los avisos
 en el complemento (puedes calificarlo aquí) e información
 complementario (el autor, la persona que realizó la última actualización
 día, enlace al documento, número de descargas). Sobre la derecha

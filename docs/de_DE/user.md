@@ -27,7 +27,7 @@ Unten haben Sie eine Tabelle :
 
     -   **Benutzer limité** : Der Benutzer sieht nur die
         autorisierte Geräte (konfigurierbar mit der Schaltfläche &quot;Verwalten&quot;
-        Rechte &quot;)
+        Rechte")
 
 -   **API-Schlüssel** : persönlicher API-Schlüssel des Benutzers
 
@@ -48,7 +48,7 @@ Unten haben Sie eine Tabelle :
 
 -   **Rechte verwalten** : ermöglicht es, die Rechte von fein zu verwalten
     der Benutzer (Aufmerksamkeit, in der sich die Profile befinden müssen
-    "eingeschränkter Benutzer ")
+    "Begrenzter Benutzer")
 
 Rechteverwaltung 
 ==================
@@ -72,6 +72,6 @@ Szenario definieren Benutzerrechte :
 
 -   **Visualisierung et exécution** : der Benutzer sieht
     die Ausrüstung / das Szenario und kann darauf einwirken (eine Lampe anzünden, werfen
-    das Szenario usw.)
+    das Skript usw.)
 
 

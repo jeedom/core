@@ -22,7 +22,7 @@ Befehls-Widgets).
 
 Auf dieser Seite befindet sich oben links eine Schaltfläche zum Anzeigen von oder
 Blenden Sie die Liste der Ansichten und die Schaltfläche zum Hinzufügen einer aus
-(Jeedom fragt nach seinem Namen und schickt Sie zur Bearbeitungsseite.) :
+(Jeedom fragt nach seinem Namen und sendet Sie zur Bearbeitungsseite) :
 
 > **Spitze**
 >
@@ -56,7 +56,7 @@ sein Name und Typ.
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
 -   **Breite** : Definiert die Breite des Bereichs (im Modus
-    nur Desktop)
+    Nur Desktop)
 
 -   **Bearbeiten** : ermöglicht das Ändern des Namens der Zone
 
@@ -144,10 +144,10 @@ Informationen in den Feldern :
 -   **Text** : Nur Text zum Schreiben
 
 -   **HTML** : jeder HTML-Code (Javascript möglich aber
-    stark entmutigt)
+    dringend abgeraten)
 
 -   **Befehls-Widget** : Über die Schaltfläche rechts können Sie auswählen
     den anzuzeigenden Befehl (Vorsicht, dies zeigt das Widget an
-    die Bestellung)
+    Die Bestellung)
 
 

@@ -27,7 +27,7 @@ Abajo tienes una mesa :
 
     -   **Usuario limité** : el usuario solo ve el
         equipo autorizado (configurable con el botón &quot;Administrar&quot;
-        los derechos&quot;)
+        los derechos")
 
 -   **Clave API** : clave de API personal del usuario
 
@@ -48,7 +48,7 @@ Abajo tienes una mesa :
 
 -   **Administrar derechos** : permite gestionar con precisión los derechos de
     el usuario (atención los perfiles deben estar en
-    "usuario limitado ")
+    "Usuario limitado")
 
 Gestión de derechos 
 ==================
@@ -72,6 +72,6 @@ escenario, definir derechos de usuario :
 
 -   **Visualización et exécution** : el usuario ve
     El equipo / escenario y puede actuar sobre él (encender una lámpara, tirar
-    el escenario, etc.)
+    el guión, etc.)
 
 

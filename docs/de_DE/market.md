@@ -17,7 +17,7 @@ Profil :
     -   **Login** : Ihr Login auf dem Markt kann nicht geändert werden
 
     -   **Name** : Ihr Name (diese Informationen sind nur nützlich für
-        E-Mails mehr Spaß machen)
+        E-Mails machen mehr Spaß)
 
     -   **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich
         damit E-Mails mehr Spaß machen)
@@ -39,7 +39,7 @@ Für Entwickler :
     Mitteilungen von uns
 
 -   **Paypal-Konto** : Die E-Mail-Adresse Ihres Paypal-Kontos (wird nur verwendet
-    die Entwickler bezahlen)
+    die Entwickler zu bezahlen)
 
 Für die Profis :
 
@@ -51,14 +51,14 @@ Für die Profis :
     -   **TOS**
 
 -   **Benutzer** : Allgemeine Nutzungsbedingungen (beachten Sie
-    lies sie gut, weil sie dich verpflichten)
+    Lies sie gut, weil sie dich engagieren)
 
 -   **Entwickler** : Allgemeine Nutzungsbedingungen für
     Entwickler
 
     -   **Tickets**
 
--   **Namebre de tickets** : Anzahl der Tickets für den aktuellen Monat
+-   **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat
     sowie Ihr Limit
 
 -   **Unterstützung** : Schaltfläche zum Senden einer Supportanfrage (zugänglich
@@ -68,7 +68,7 @@ Für die Profis :
     -   **Zugang zu Betas**
 
 -   **Aktivieren Sie den Zugriff auf Beta-Plugins** : ermöglicht den Zugriff auf
-    Beta-Plugins (bitte beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können)
+    Beta-Plugins (Vorsicht, dies verhindert, dass Sie auf den Support zugreifen können)
 
     -   **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen
         Rechte und Dienstleistungen
@@ -86,11 +86,11 @@ Meine Jeedoms
 
     -   **Geben Sie eine Service Pack-Nummer ein** : Lassen Sie uns Ihre eingeben
         Service Pack-Nummer (diese finden Sie in der E-Mail von
-        Jeedom bei Bestellung)
+        Jeedom bei der Bestellung)
 
 -   **Installationsschlüssel**
 
-    -   **Namebre de clefs d'installation** : Anzeigenummer
+    -   **Anzahl der Installationsschlüssel** : Anzeigenummer
         of Jeedom-Installationen, die derzeit ebenfalls mit Ihrem Konto verknüpft sind
         dass die Grenze erlaubt
 

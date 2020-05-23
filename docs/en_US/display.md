@@ -70,8 +70,8 @@ On each equipment we find :
 -   **Inactive** (small cross) : Means that the equipment is inactive
     (if it is not there, the equipment is active).
 
--   **Invisible** (crossed out eye) : Means that the equipment is invisible
-    (if not there, the equipment is visible).
+-   **Invisible** (crossed eye) : Means that the equipment is invisible
+    (if it is not there, the equipment is visible).
 
 -   **External link** (square with arrow) : Lets open in a
     new tab the equipment configuration page.
@@ -127,10 +127,10 @@ the equipment and its controls :
 -   **Last name** : Name of equipment.
 
 -   **Id logique** : Logical equipment identifier (can
-    be empty).
+    to be empty).
 
 -   **Id de l'objet** : Unique identifier of the parent object (can
-    be empty).
+    to be empty).
 
 -   **Creation date** : Equipment creation date.
 
@@ -231,9 +231,9 @@ Below for each box, the **d'actualité détaillée** It allows you to
 this :
 
 -   **Box text** : Add text in addition to the command (or
-    alone, if there is no order in the box).
+    all alone, if there is no order in the box).
 
--   **Box style (CSS)** : Change the specific CSS style of the
+-   **Case style (CSS)** : Change the specific CSS style of the
     box (beware this overwrites and replaces the general CSS
     boxes).
 
@@ -250,7 +250,7 @@ This tab provides information on the battery of
 the equipment and define alerts in relation to it. Here are the
 types of information that can be found :
 
--   **Type de piThe**,
+-   **Type de pile**,
 
 -   **Latest feedback**,
 
@@ -316,13 +316,13 @@ ordered :
 -   **Id** : Unique identifier in the database.
 
 -   **Id logique** : Logical identifier of the command (can
-    be empty).
+    to be empty).
 
 -   **Last name** : Name of the order.
 
--   **Type** : Type of order (action or info).
+-   **Type** : Type of command (action or info).
 
--   **Subtype** : Command subtype (binary, digital, etc.).
+-   **Subtype** : Command subtype (binary, digital, etc.)).
 
 -   **Direct url** : Provides the URL to access this equipment. (click
     right, copy the link address) The URL will launch the command for a
@@ -360,7 +360,7 @@ You also have three other orange buttons underneath :
 > **NOTE**
 >
 > This kind of action replaces commands all over Jeedom
-> (scenario, interaction, order, equipment….)
+> (scenario, interaction, command, equipment….)
 
 Below, you will find the list of different equipment,
 commands, scenarios, or interactions that use this command. A
@@ -422,7 +422,7 @@ Configuration tab
     -   **Status return value** : Returns the command to
         this value after a while.
 
-    -   **Duration before status return (min)** : Time before return to
+    -   **Duration before return of status (min)** : Time before return to
         value above.
 
 -   **Other**
@@ -439,7 +439,7 @@ Configuration tab
         next : ``#value#`for the value of the order,`#cmd_name#``
         for the name of the command, `#cmd_id#`for the unique identifier
         of the command, `#humanname#`for the full name of the command
-        (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment
+        (Ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment
 
 ### For an action command : 
 
@@ -463,7 +463,7 @@ Configuration tab
 Alerts tab 
 --------------
 
-Allows you to define an alert level (**Warning** or **Danger**) in
+Allows you to define an alert level (**Warning** or **Danger**) en
 depending on certain conditions. For example, if `value&gt; 8` for 30
 minutes then the equipment can go on alert **Warning**.
 
@@ -496,7 +496,7 @@ mobile.
     widget** or **after the widget** to add a line break
     before or after the widget (to force for example a display in
     column of different equipment commands instead of lines
-    by default)
+    By default)
 
 Below, we find optional display parameters that we
 can switch to widget. These parameters depend on the widget in question,

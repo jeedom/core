@@ -101,10 +101,10 @@ Found here :
         box is checked, the background color is not used
 
     -   **Background color** : design background color (white
-        by default)
+        By default)
 
     -   **Coded** : Access code to your design (if empty, no code
-        is not requested)
+        is not asked)
 
     -   **Icon** : An icon for it (appears in the menu
         choice of design)
@@ -130,7 +130,7 @@ General configuration of elements
 > **NOTE**
 >
 > The selected item is highlighted in red (instead of green
-> for everyone else).
+> for all the others).
 
 Display setting 
 ---------------------
@@ -199,7 +199,7 @@ Text / html
     put transparent, do not forget to pass &quot;Default&quot; on NO
 
 -   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+    texts (be careful to pass Default on No)
 
 -   **Smooth it out** : allows you to round off the angles (do not
     forget to put%, ex 50%)
@@ -247,9 +247,9 @@ Display settings
     put transparent, do not forget to pass &quot;Default&quot; on NO
 
 -   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+    texts (be careful to pass Default on No)
 
--   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
+-   **Round off the angles (don't forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
 -   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
@@ -275,7 +275,7 @@ Advanced configuration
 ---------------------
 
 Displays the advanced equipment configuration window (see
-documentation Home automation summary (&quot;display&quot;))
+home automation summary documentation ("display"))
 
 Ordered 
 ========
@@ -289,7 +289,7 @@ Advanced configuration
 ---------------------
 
 Displays the advanced configuration window of the command (see
-documentation Home automation summary (&quot;display&quot;))
+home automation summary documentation ("display"))
 
 Picture / Camera 
 ============
@@ -303,7 +303,7 @@ Display settings
 -   **Picture** : allows you to send the image in question (if you have
     choose an image)
 
--   **Camera** : camera to display (if you chose camera)
+-   **Camera** : Camera to display (if you chose camera)
 
 Zoned 
 ====
@@ -353,15 +353,15 @@ Summary
 ======
 
 -   **Link** : Used to indicate the summary to be displayed (General for the
-    global if not indicate the object)
+    global otherwise indicate the object)
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
 
 -   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+    texts (be careful to pass Default on No)
 
--   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
+-   **Round off the angles (don't forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
 -   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet

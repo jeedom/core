@@ -67,10 +67,10 @@ En cada equipo encontramos :
 -   La **tipo** equipo : Identificador del complemento al que
     pertenece.
 
--   **Inactivo** (cruz pequeña) : Significa que el equipo está inactivo
+-   **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo
     (si no está allí, el equipo está activo).
 
--   **Invisible** (ojo tachado) : Significa que el equipo es invisible
+-   **Invisible** (ojo cruzado) : Significa que el equipo es invisible
     (si no está allí, el equipo es visible).
 
 -   **Enlace externo** (cuadrado con flecha) : Vamos a abrir en un
@@ -135,7 +135,7 @@ el equipo y sus controles :
 -   **Fecha de creación** : Fecha de creación del equipo.
 
 -   **Activar** : Marque la casilla para activar el equipo (no olvide
-    para guardar).
+    ahorrar).
 
 -   **Visible** : Marque la casilla para hacer visible el equipo (sin
     olvida guardar).
@@ -233,7 +233,7 @@ este :
 -   **Cuadro de texto** : Agregue texto además del comando (o
     solo, si no hay orden en la caja).
 
--   **Estilo de caja (CSS)** : Cambiar el estilo CSS específico de la
+-   **Estilo de caso (CSS)** : Cambiar el estilo CSS específico de la
     cuadro (cuidado, esto sobrescribe y reemplaza el CSS general
     cajas).
 
@@ -250,12 +250,12 @@ Esta pestaña proporciona información sobre la batería de
 el equipo y definir alertas en relación con él. He aquí los
 tipos de información que se pueden encontrar :
 
--   **Tipo de piLa**,
+-   **Tipo de pile**,
 
 -   **Últimos comentarios**,
 
--   **Nivel restante**, (si, por supuesto, su equipo funciona
-    en batería).
+-   **Nivel restante**, (si por supuesto su equipo funciona
+    en la batería).
 
 A continuación, también puede definir umbrales de alerta específicos para
 batería para este equipo. Si dejas las cajas vacías, esas son
@@ -274,7 +274,7 @@ Pestaña de comentarios
 ------------------
 
 Le permite escribir un comentario sobre el equipo (fecha de
-cambiando la batería, por ejemplo).
+cambiar la batería, por ejemplo).
 
 Configuración avanzada de un pedido 
 ====================================
@@ -320,9 +320,9 @@ orden :
 
 -   **Apellido** : Nombre de la orden.
 
--   **Tipo** : Tipo de orden (acción o información).
+-   **Tipo** : Tipo de comando (acción o información).
 
--   **Subtipo** : Subtipo de comando (binario, digital, etc.).
+-   **Subtipo** : Subtipo de comando (binario, digital, etc.)).
 
 -   **URL directa** : Proporciona la URL para acceder a este equipo. (haga clic
     derecha, copie la dirección del enlace) La URL iniciará el comando para un
@@ -360,7 +360,7 @@ También tienes otros tres botones naranjas debajo :
 > **Nota**
 >
 > Este tipo de acción reemplaza los comandos en todo Jeedom
-> (escenario, interacción, orden, equipamiento ...)
+> (escenario, interacción, comando, equipamiento.)
 
 A continuación, encontrará la lista de diferentes equipos,
 comandos, escenarios o interacciones que usan este comando. una
@@ -422,7 +422,7 @@ Pestaña de configuración
     -   **Valor de retorno de estado** : Devuelve el comando a
         este valor después de un tiempo.
 
-    -   **Duración antes del retorno de estado (min)** : Tiempo antes de regresar a
+    -   **Duración antes del retorno del estado (min)** : Tiempo antes de regresar a
         valor por encima.
 
 -   **Otro**
@@ -439,7 +439,7 @@ Pestaña de configuración
         Próximo : ``#value#`por el valor de la orden,`#cmd_name#``
         para el nombre del comando, `#cmd_id#`para el identificador único
         del comando, `#humanname#`para el nombre completo del comando
-        (por ejemplo, : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo
+        (ex : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo
 
 ### Para un comando de acción : 
 
@@ -482,7 +482,7 @@ mobile.
 
 -   **Reproductor** : Le permite elegir el widget en el escritorio o en el móvil (en
     tenga en cuenta que necesita el complemento del widget y también puede hacerlo
-    de ella).
+    de eso).
 
 -   **Visible** : Marque para hacer visible el comando.
 
@@ -496,7 +496,7 @@ mobile.
     Reproductor** o **después del widget** para agregar un salto de línea
     antes o después del widget (para forzar, por ejemplo, una visualización en
     columna de diferentes comandos de equipo en lugar de líneas
-    por defecto)
+    Por defecto)
 
 A continuación, encontramos parámetros de visualización opcionales que
 puede cambiar a widget. Estos parámetros dependen del widget en cuestión,

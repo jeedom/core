@@ -51,14 +51,14 @@ For the pros :
     -   **TOS**
 
 -   **User** : general conditions of use (pay attention to
-    read them well because they commit you)
+    read them well because they engage you)
 
 -   **Developer** : general conditions of use for
     developers
 
     -   **Tickets**
 
--   **Last namebre de tickets** : Number of tickets for the current month
+-   **Number of tickets** : Number of tickets for the current month
     as well as your limit
 
 -   **Support** : button to send a support request (accessible
@@ -68,7 +68,7 @@ For the pros :
     -   **Access to betas**
 
 -   **Enable access to beta plugins** : enables access to
-    beta plugins (please note that this will prevent you from accessing the support)
+    beta plugins (beware this will prevent you from accessing the support)
 
     -   **Summary** Here you will find a summary of your different
         rights and services
@@ -90,7 +90,7 @@ My jeedoms
 
 -   **Installation key**
 
-    -   **Last namebre de clefs d'installation** : display number
+    -   **Number of installation keys** : display number
         of Jeedom installations currently linked to your account as well
         that the limit allowed
 
@@ -104,7 +104,7 @@ My jeedoms
 
     -   **Last name** : the name you want to give to your Jeedom (
         found in the name of the backup if you have the subscription of
-        cloud backup)
+        Cloud backup)
 
     -   **State** : allows to see the state of the Jeedom in question
 

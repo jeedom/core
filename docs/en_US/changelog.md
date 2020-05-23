@@ -6,7 +6,7 @@ Changelog
 =====
 
 - Correction of a problem with stopping the DNS beta
-- Improvement of internal / external access calculation (removal of the port if this is standard for the protocol)
+- Improvement of internal / external access calculation (removal of the port if it is standard for the protocol)
 
 3.3.49
 =====
@@ -16,7 +16,7 @@ Changelog
 3.3.48
 =====
 
-- Bug correction (update to be done absolutely if you are in 3.3.47)
+- Bug correction (update to be absolutely done if you are in 3.3.47)
 
 3.3.47
 =====
@@ -54,7 +54,7 @@ Changelog
 3.3.38
 =====
 
-- Addition of global compatibility of Jeedom DNS with a 4G internet connection. (Important if you use jeedom DNS is that you have a 4g connection, you must check in the configure jeedom dns the corresponding box).
+- Addition of global compatibility of Jeedom DNS with a 4G internet connection. (Important if you use jeedom DNS is that you have a 4g connection you must check in the configure jeedom dns the corresponding box).
 - Spelling corrections.
 - Security fix
 
@@ -116,7 +116,7 @@ Changelog
 
 - Correction of the disappearance of the date of the last update check
 - Fixed a bug that could block cloud backups
-- Correction of a bug on the calculation of the use of the variables if they are in the form : variable (foo, myvalue)
+- Correction of a bug on the calculation of the use of the variables if they are in the form : variable (toto, mavaleur)
 
 
 3.3.28
@@ -129,7 +129,7 @@ Changelog
 =====
 
 - Correction of a bug on the translation of the days in French
-- Improved stability (auto restart of the MySql service and watchdog to check the time on startup)
+- Improved stability (auto restart of the MySql service and watchdog for checking the start time)
 - Bugfix
 - Disabling actions on orders when editing designs, views or dashboards
 
@@ -156,7 +156,7 @@ Changelog
 -	Bug fixes
 -	Improvement of the icon selection window
 -	Automatic update of the battery change date if the battery is more than 90% and 10% higher than the previous value
--	Addition of button on the administration to reset the rights and launch a Jeedom verification (right, cron, database ...)
+-	Addition of button on the administration to reset the rights and launch a Jeedom verification (right, cron, database...)
 -	Removal of advanced visibility choices for equipment on dashboard / view / design / mobile. Now if you want to see or not the equipment on dashboard / mobile just check or not the general visibility box. For views and design just put or not the equipment on it
 
 3.3.22
@@ -164,7 +164,7 @@ Changelog
 
 - Bug fixes
 - Improved order replacement (in views, plan and plan3d)
-- Fixed a bug that could prevent opening certain plugin equipment (alarm or virtual type)
+- Fixed a bug that could prevent opening certain plugin equipment (alarm or virtual type))
 
 3.3.21
 =====
@@ -175,7 +175,7 @@ Changelog
 - Fixed display of disabled equipment on some plugins
 - Correction of a bug when indicating battery change at Jeedom
 - Improved display of logs when updating Jeedom
-- Bug fix during the variable update (which did not always launch the scenarios or did not trigger an update of the commands in all cases)
+- Bug fix when updating variables (which did not always launch the scenarios or did not trigger an update of the commands in all cases)
 - Fixed a bug on Cloud backups, or duplicity was not installing correctly
 - Improvement of internal TTS in Jeedom
 - Improvement of the cron syntax checking system
@@ -206,9 +206,9 @@ Changelog
 =====
 
 -   Ability to delete a variable.
--   Addition of a 3D display (beta)
+-   Adding a 3D display (beta)
 -   Redesign of the cloud backup system (incremental and encrypted backup).
--   Adding an integrated note taking system (in Analysis -&gt; Note).
+-   Adding an integrated note taking system (in Analysis -> Note).
 -   Addition of the notion of tag on equipment (can be found in the advanced configuration of equipment).
 -   Addition of a history system on the deletion of orders, equipment, objects, view, design, 3d design, scenario and user.
 -   Addition of the jeedom_reboot action to launch a restart of Jeedom.
@@ -216,7 +216,7 @@ Changelog
 -   A message is now added if an invalid expression is found when executing a scenario.
 -   Adding a command in the scenarios : value (order) allows to have the value of an order if it is not automatically given by jeedom (case when storing the name of the order in a variable).
 -   Addition of a button to refresh the messages of the message center.
--   Add in the configuration of action on value of a command a button to search for an internal action (scenario, pause ...).
+-   Add in the configuration of action on value of a command a button to search for an internal action (scenario, pause...).
 -   Addition of an action “Reset to zero of the IS” on the scenarios
 -   Ability to add images in the background on the views
 -   Ability to add background images on objects
@@ -236,7 +236,7 @@ Changelog
 -   Ability to delete an element from the design configuration
 -   Possibility of having a report on the battery level (equipment report)
 -   Scenario widgets are now displayed by default on the dashboard
--   Change the pitch of the widgets by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can reset the old values in the configuration of jeedom, widget tab)
+-   Change the pitch of widgets by horizontal 25 to 40, vertical 5 to 20 and margin 1 to 4 (you can reset the old values in the configuration of jeedom, widget tab)
 -   Possibility to put an icon on the scenarios
 -   Addition of daemon management on the task engine
 -   Addition of the color_gradient function in the scenarios
@@ -276,7 +276,7 @@ Changelog
 - Improvement of the update process in particular in the copying of files which now checks the size of the copied file.
 - Bug fixes on the stateDuration, lastStateDuration and lastChangeStateDuration functions (thanks @kiboost).
 - Optimization of the link graph calculation and the use of variables.
-- Improvement of the cron task details window which now displays the scenario as well as the action to be taken for doIn tasks (thanks @kiboost).
+- Improvement of the cron task details window which now displays the scenario as well as the action that will be done for the tasks in doin (thanks @kiboost).
 
 3.2.9
 =====
@@ -342,7 +342,7 @@ Changelog
 
 -   JEED-417 : addition of a time_diff function in the scenarios
 
--   Addition of a configurable delay before response on interactions (allows to wait for the status feedback to take place for example)
+-   Addition of a configurable delay before response on interactions (allows to wait for the return of status to take place for example)
 
 -   JEED-365 : Removal of &quot;User information command&quot; to be replaced by actions on message. Allows you to launch several different commands, to launch a scenario ... Attention if you had a &quot;User information command&quot; it must be reconfigured.
 
@@ -426,7 +426,7 @@ Changelog
     experienced users)
 
 -   Addition of generics Types &quot;State Light&quot; (Binary), &quot;Light
-    Color Temperature &quot;(Info),&quot; Light Color Temperature &quot;(Action)
+    Color Temperature "(Info)," Light Color Temperature "(Action)
 
 -   Ability to make words mandatory in an interaction
 
@@ -689,10 +689,10 @@ Changelog
     celle-ci
 
 -   Possibility to prohibit certain values for an order (in the
-    advanced configuration)
+    advanced configuration of it)
 
 -   Addition of configuration fields on automatic status feedback
-    (eg return to 0 after 4 min) in the advanced configuration of a
+    (ex return to 0 after 4 min) in the advanced configuration of a
     commande
 
 -   Adding a valueDate function in the scenarios (see
@@ -719,7 +719,7 @@ Changelog
     scripts for plugin dependencies
 
 -   Optimization of expression calculations (calculation of tags only
-    if present in expression)
+    if present in the expression)
 
 -   Addition in the function API to access the summary (global
     and object)
@@ -744,7 +744,7 @@ Changelog
     no local doc
 
 -   Interactions can take into account the notion of context (in
-    depending on the previous request as well as that before)
+    function of the previous request as well as that of before)
 
 -   Possibility to weight words according to their size for
     understanding analysis
@@ -765,7 +765,7 @@ Changelog
     commands and summaries that will be used in responses
     contextual and summaries
 
--   Jeedom knows how to manage several related interactions (contextually)
+-   Jeedom knows how to manage several linked interactions (contextually)
     in one. They must be separated by a keyword (by default and).
     Example : "How much is it in the bedroom and in the living room? "Or
     "Turn on the kitchen and bedroom light."
@@ -790,7 +790,7 @@ Changelog
 
 -   Fixed display bug with Chrome 55
 
--   Optimization of the backup (on a RPi2 the time is divided by 2)
+-   Backup optimization (on a RPi2 the time is divided by 2)
 
 -   Optimization of catering
 
@@ -805,7 +805,7 @@ Changelog
     function of the original object
 
 -   Possibility of having real-time scenario logs (slows down
-    execution of scenarios)
+    the execution of the scenarios)
 
 -   Ability to pass tags when launching a scenario
 
@@ -873,7 +873,7 @@ Changelog
     commande
 
 -   Ability to replace an order with another in all Jeedom
-    (even if the order to be replaced no longer exists)
+    (even if the command to be replaced no longer exists)
 
 2.3
 ---
@@ -944,7 +944,7 @@ Changelog
     / tmp is too small (be careful the correction takes effect at
     update n + 1)
 
--   Adding a tag *Jeedom\_name* in the scenarios (give the name
+-   Adding a tag *jeedom\_name* in the scenarios (give the name
     jeedom)
 
 -   Bugfix
@@ -952,7 +952,7 @@ Changelog
 -   Move all temporary files to / tmp
 
 -   Improved sending of plugins (automatic dos2unix on
-    files \*. sh)
+    \*. sh files)
 
 -   Redesign of the log page
 
@@ -969,7 +969,7 @@ Changelog
 -   Various optimization of the code (thanks @ kwizer15)
 
 -   Passage in module of the connection with the market (will allow to have
-    a jeedom without any link to the market)
+    a jeedom with no link to the market)
 
 -   Addition of a &quot;repo&quot; (connection module type connection with
     the market) file (allows sending a zip containing the plugin)
@@ -977,7 +977,7 @@ Changelog
 -   Addition of a github &quot;repo&quot; (allows to use github as source of
     plugin, with update management system)
 
--   Addition of a URL &quot;repo&quot; (allows to use URL as source of plugin)
+-   Addition of a URL "repo" (allows to use URL as a plugin source)
 
 -   Addition of a Samba &quot;repo&quot; (usable to push backups on a
     samba server and recover plugins)
@@ -1090,7 +1090,7 @@ Changelog
     reporting of all information
 
 -   Redesign of the log system (use of monolog) which allows
-    integration with logging systems (syslog (d) type)
+    integration with logging systems (syslog type (d))
 
 -   Optimization of dashboard loading
 
@@ -1119,13 +1119,13 @@ Changelog
     batterie
 
 -   Redesign of Jeedom DNS, use of openvpn (and therefore of
-    openvpn plugin)
+    Openvpn plugin)
 
 -   Update all libs
 
 -   Interaction : addition of a parsing system (allows
     remove interactions with large type syntax errors «
-    le chambre »)
+    the bedroom »)
 
 -   Suppression of the interface update by nodejs (change to
     pulling every second on the event list)
@@ -1187,7 +1187,7 @@ Changelog
     reporting of all information
 
 -   Redesign of the log system (use of monolog) which allows
-    integration with logging systems (syslog (d) type)
+    integration with logging systems (syslog type (d))
 
 -   Optimization of dashboard loading
 
@@ -1216,13 +1216,13 @@ Changelog
     batterie
 
 -   Redesign of Jeedom DNS, use of openvpn (and therefore of
-    openvpn plugin)
+    Openvpn plugin)
 
 -   Update all libs
 
 -   Interaction : addition of a parsing system (allows
     remove interactions with large type syntax errors «
-    le chambre »)
+    the bedroom »)
 
 -   Suppression of the interface update by nodejs (change to
     pulling every second on the event list)

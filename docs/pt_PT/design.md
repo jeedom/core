@@ -101,10 +101,10 @@ Encontrado aqui :
         caixa estiver marcada, a cor do plano de fundo não será usada
 
     -   **Cor de fundo** : cor de fundo do design (branco
-        por padrão)
+        Por padrão)
 
     -   **CÓDIGO** : Código de acesso ao seu design (se vazio, nenhum código
-        não é solicitado)
+        não é perguntado)
 
     -   **ícone** : Um ícone para ele (aparece no menu
         escolha do design)
@@ -117,7 +117,7 @@ Encontrado aqui :
 
 -   **Tamanhos**
 
-    -   **Tamanho (LxA)** : Permite corrigir o tamanho do seu design
+    -   **Tamanho (LxA))** : Permite corrigir o tamanho do seu design
         (moldura cinza no modo de edição)
 
 Configuração geral de elementos 
@@ -130,7 +130,7 @@ Configuração geral de elementos
 > **NOTA**
 >
 > O item selecionado é destacado em vermelho (em vez de verde
-> para todos os outros).
+> por todos os outros).
 
 Configuração de exibição 
 ---------------------
@@ -172,7 +172,7 @@ Configurações de exibição
 -   **Display la légende** : Exibe a legenda
 
 -   **Display le navigateur** : exibir o navegador (segundo gráfico
-    mais claro abaixo do primeiro)
+    mais leve abaixo do primeiro)
 
 -   **Display le sélecteur de période** : exibe o seletor
     período superior esquerdo
@@ -183,7 +183,7 @@ Configurações de exibição
 
 -   **Fronteira** : adicione uma borda, cuidado com a sintaxe
     HTML (tenha cuidado, você deve usar a sintaxe CSS, por exemplo :
-    1px preto sólido)
+    sólido 1px preto)
 
 Configuração avançada 
 ---------------------
@@ -199,20 +199,20 @@ Texto / html
     coloque transparente, não esqueça de passar "Default" em NO
 
 -   **Cor do texto** : permite alterar a cor dos ícones e
-    textos (tenha o cuidado de passar Padrão para Não)
+    textos (tenha o cuidado de passar Padrão em Não)
 
 -   **Arredonde os ângulos** : permite arredondar os ângulos (não
     esqueça de colocar%, ex 50%)
 
 -   **Fronteira** : adicione uma borda, cuidado com a sintaxe
     HTML (use a sintaxe CSS, por exemplo : solid
-    1 px preto)
+    1px preto)
 
 -   **Tamanho da fonte** : Permite alterar o tamanho da fonte
     (ex 50%, você deve colocar o sinal de%)
 
 -   **Alinhamento de texto** : permite escolher o alinhamento do
-    texto (esquerda / direita / centralizado)
+    texto (esquerda / direita / centralizado))
 
 -   **Gordura** : texto em negrito
 
@@ -247,19 +247,19 @@ Configurações de exibição
     coloque transparente, não esqueça de passar "Default" em NO
 
 -   **Cor do texto** : permite alterar a cor dos ícones e
-    textos (tenha o cuidado de passar Padrão para Não)
+    textos (tenha o cuidado de passar Padrão em Não)
 
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (attention syntaxe CSS, ex : 1px preto sólido)** : permet
+-   **Fronteira (attention syntaxe CSS, ex : sólido 1px preto)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :
     Permite alterar o tamanho da fonte
 
 -   **Alinhamento de texto** : permite escolher o alinhamento do
-    texto (esquerda / direita / centralizado)
+    texto (esquerda / direita / centralizado))
 
 -   **Gordura** : texto em negrito
 
@@ -275,7 +275,7 @@ Configuração avançada
 ---------------------
 
 Exibe a janela de configuração avançada do equipamento (consulte
-documentação Resumo da automação residencial ("display"))
+documentação de resumo da automação residencial ("display"))
 
 Ordem 
 ========
@@ -289,7 +289,7 @@ Configuração avançada
 ---------------------
 
 Exibe a janela de configuração avançada do comando (consulte
-documentação Resumo da automação residencial ("display"))
+documentação de resumo da automação residencial ("display"))
 
 Imagem / Câmera 
 ============
@@ -353,18 +353,18 @@ Resumo
 ======
 
 -   **Link** : Usado para indicar o resumo a ser exibido (Geral para o
-    global se não indicar o objeto)
+    global, caso contrário, indique o objeto)
 
 -   **Cor de fundo** : permite alterar a cor do plano de fundo ou
     coloque transparente, não esqueça de passar "Default" em NO
 
 -   **Cor do texto** : permite alterar a cor dos ícones e
-    textos (tenha o cuidado de passar Padrão para Não)
+    textos (tenha o cuidado de passar Padrão em Não)
 
 -   **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** :
     Permite arredondar os ângulos, não se esqueça de colocar o%
 
--   **Fronteira (attention syntaxe CSS, ex : 1px preto sólido)** : permet
+-   **Fronteira (attention syntaxe CSS, ex : sólido 1px preto)** : permet
     adicione uma borda, cuidado com a sintaxe é HTML
 
 -   **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** :

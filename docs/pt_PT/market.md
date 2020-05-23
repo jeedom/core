@@ -17,7 +17,7 @@ Perfil :
     -   **Entrar** : Seu login no Market, não pode ser alterado
 
     -   **Nome** : Seu nome (esta informação é útil apenas para
-        torne os e-mails mais divertidos)
+        Torne os emails mais divertidos)
 
     -   **Primeiro nome** : Seu primeiro nome (esta informação é útil apenas
         para tornar os e-mails mais divertidos)
@@ -39,7 +39,7 @@ Para desenvolvedores :
     comunicações de nós
 
 -   **Conta Paypal** : O email da sua conta Paypal (usado apenas
-    pagar os desenvolvedores)
+    para pagar os desenvolvedores)
 
 Para os profissionais :
 
@@ -51,14 +51,14 @@ Para os profissionais :
     -   **Termos e Condições**
 
 -   **Usuário** : condições gerais de uso (preste atenção às
-    leia-os bem porque eles o comprometem)
+    leia-os bem, porque eles envolvem você)
 
 -   **Desenvolvedor** : condições gerais de uso para
     desenvolvedores
 
     -   **Ingressos**
 
--   **Nomebre de tickets** : Número de ingressos para o mês atual
+-   **Número de bilhetes** : Número de ingressos para o mês atual
     bem como o seu limite
 
 -   **Suporte** : para enviar uma solicitação de suporte (acessível
@@ -68,7 +68,7 @@ Para os profissionais :
     -   **Acesso a betas**
 
 -   **Ativar acesso a plugins beta** : permite o acesso a
-    plugins beta (observe que isso impedirá que você acesse o suporte)
+    plugins beta (cuidado, isso impedirá que você acesse o suporte)
 
     -   **Resumo** Aqui você encontrará um resumo das suas diferentes
         direitos e serviços
@@ -90,7 +90,7 @@ Minhas jeedoms
 
 -   **Key instalação**
 
-    -   **Nomebre de clefs d'installation** : número de exibição
+    -   **Número de chaves de instalação** : número de exibição
         das instalações Jeedom atualmente vinculadas à sua conta também
         que o limite permitido
 
@@ -104,7 +104,7 @@ Minhas jeedoms
 
     -   **Nome** : o nome que você deseja dar ao seu Jeedom (
         encontrado no nome do backup, se você tiver a assinatura de
-        backup na nuvem)
+        Backup em nuvem)
 
     -   **Estado** : Vamos ver o estado do Jeedom em questão
 
@@ -147,7 +147,7 @@ Meus SMS / Chamadas
 ==============
 
 Nesta guia, você pode ver seu saldo de SMS / Chamadas
-(utilizável com o plug-in do mercado de telefones). Abaixo você tem o
+(utilizável com o plugin do mercado de telefones). Abaixo você tem o
 opções diferentes para a compra de saldo adicional.
 
 Minhas compras / promoções / doações 

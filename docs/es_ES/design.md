@@ -81,7 +81,7 @@ siguientes acciones :
 -   **Configura el diseño** : acceso a la configuración de diseño
 
 -   **Guardar** : permite guardar el diseño (atención, hay
-    también copias de seguridad automáticas durante ciertas acciones)
+    También copias de seguridad automáticas durante ciertas acciones)
 
 > **Importante**
 >
@@ -101,10 +101,10 @@ Encontrado aquí :
         la casilla está marcada, no se utiliza el color de fondo
 
     -   **Color de fondo** : diseño de color de fondo (blanco
-        por defecto)
+        Por defecto)
 
     -   **Código** : Código de acceso a su diseño (si está vacío, sin código
-        no es solicitado)
+        no se le pregunta)
 
     -   **Icono** : Un icono para ello (aparece en el menú
         elección de diseño)
@@ -172,7 +172,7 @@ Configuraciones de pantalla
 -   **Visualización la légende** : mostrar leyenda
 
 -   **Visualización le navigateur** : mostrar el navegador (segundo gráfico
-    más claro debajo del primero)
+    más ligero debajo del primero)
 
 -   **Visualización le sélecteur de période** : muestra el selector
     periodo arriba a la izquierda
@@ -199,10 +199,10 @@ Text / html
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
 
 -   **Color del texto** : le permite cambiar el color de los íconos y
-    textos (tenga cuidado de pasar Predeterminado a No)
+    textos (tenga cuidado de pasar Predeterminado en No)
 
 -   **Alrededor de los ángulos** : le permite redondear los ángulos (no
-    olvide poner%, ex 50%)
+    olvida poner%, ex 50%)
 
 -   **Frontera** : agregue un borde, tenga cuidado con la sintaxis
     HTML (use la sintaxis CSS, por ejemplo : solid
@@ -247,7 +247,7 @@ Configuraciones de pantalla
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
 
 -   **Color del texto** : le permite cambiar el color de los íconos y
-    textos (tenga cuidado de pasar Predeterminado a No)
+    textos (tenga cuidado de pasar Predeterminado en No)
 
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%
@@ -275,7 +275,7 @@ Configuración avanzada
 ---------------------
 
 Muestra la ventana de configuración avanzada del equipo (ver
-documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
+documentación resumida de domótica ("pantalla"))
 
 Orden 
 ========
@@ -289,7 +289,7 @@ Configuración avanzada
 ---------------------
 
 Muestra la ventana de configuración avanzada del comando (ver
-documentación Resumen de automatización del hogar (&quot;pantalla&quot;))
+documentación resumida de domótica ("pantalla"))
 
 Imagen / Cámara 
 ============
@@ -303,7 +303,7 @@ Configuraciones de pantalla
 -   **Imagen** : le permite enviar la imagen en cuestión (si tiene
     elige una imagen)
 
--   **Cámara** : cámara para mostrar (si elige cámara)
+-   **Cámara** : Cámara para mostrar (si elige cámara)
 
 Zona 
 ====
@@ -353,13 +353,13 @@ Resumen
 ======
 
 -   **Enlace** : Se utiliza para indicar el resumen que se mostrará (General para
-    global si no indica el objeto)
+    global de lo contrario indique el objeto)
 
 -   **Color de fondo** : le permite cambiar el color de fondo o
     poner transparente, no olvide pasar &quot;Predeterminado&quot; en NO
 
 -   **Color del texto** : le permite cambiar el color de los íconos y
-    textos (tenga cuidado de pasar Predeterminado a No)
+    textos (tenga cuidado de pasar Predeterminado en No)
 
 -   **Redondee los ángulos (no olvide poner%, ex 50%)** :
     le permite redondear los ángulos, no olvide poner el%

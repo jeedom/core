@@ -50,7 +50,7 @@ Configuraciones :
 
 -   clave de cuerda : clave de valor de configuración para guardar
 
--   complemento de cadena : (opcional), complemento del valor de configuración para
+-   complemento de cadena : (opcional), complemento de valor de configuración para
     enregistrer
 
 API de eventos JSON
@@ -61,7 +61,7 @@ event::changes
 
 Devuelve la lista de cambios desde la fecha y hora pasada en el parámetro
 (debe estar en microsegundos). También tendrás en la respuesta el
-Fecha y hora actual de Jeedom (se reutilizará para la próxima consulta)
+La fecha y hora actual de Jeedom (se reutilizará para la próxima consulta)
 
 Configuraciones :
 
@@ -80,7 +80,7 @@ Configuraciones :
 -   int enableOnly = 0 (solo devuelve la lista de complementos activados)
 
 -   int orderByCaterogy = 0 (devuelve la lista de complementos ordenados
-    por categoría)
+    por categoria)
 
 API JSON de objetos
 ==============
@@ -182,7 +182,7 @@ eqLogic::fullById
 -----------------
 
 Devuelve el equipo y sus comandos, así como sus estados
-(para pedidos de tipo de información)
+(para comandos de tipo de información)
 
 Configuraciones:
 
@@ -222,7 +222,7 @@ Devuelve una tabla de equipos según los parámetros. El regreso
 será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
 array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)).,id1 ⇒
 array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)), id2 ⇒ array (&#39; id&#39;⇒ ..., &#39;cmds&#39; ⇒
-Array (....)) ..)
+array(…​.))..)
 
 Configuraciones:
 
@@ -239,7 +239,7 @@ Configuraciones:
 
 -   Identificación del int (vacía si es una creación)
 
--   string eqType\_name (tipo de script, equipo virtual, etc.)
+-   string eqType\_name (tipo de script, equipo virtual)
 
 -   nombre de cadena
 
@@ -392,7 +392,7 @@ Configuraciones:
 
 -   valor de cadena : valeur
 
--   cadena de fecha y hora : (opcional) valor datetime
+-   cadena de fecha y hora : (opcional) valor de fecha y hora
 
 API de escenario JSON
 =================
@@ -427,7 +427,7 @@ Le permite importar un escenario.
 
 Configuraciones:
 
--   int id : ID del escenario en el que importar (vacío si se crea)
+-   int id : ID del escenario en el que importar (vacío si la creación)
 
 -   string humanName : nombre humano del escenario (vacío si creación)
 
@@ -467,7 +467,7 @@ Obtenga la lista de registros de Jeedom
 
 Configuraciones:
 
--   filtro de cadena : (opcional) filtra el nombre de los registros para recuperar
+-   filtro de cadena : (opcional) filtrar en el nombre de los registros para recuperar
 
 log::empty
 ----------
@@ -723,7 +723,7 @@ Recuperando la lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest (objeto&#39;::all &#39;, array ())){
+if ($ jsonrpc-&gt; sendRequest (objeto&#39;::todo ', matriz())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -734,7 +734,7 @@ Ejecución de una orden (con la opción de un título y un mensaje)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'opciones '=> array (' title '=>' Cuckoo ',' message '=>' Funciona ')))){
+if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'opciones '=> array (' title '=>' Cuckoo ',' message '=>' Funciona')))){
     echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

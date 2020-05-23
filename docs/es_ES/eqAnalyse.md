@@ -34,7 +34,7 @@ Módulos en la pestaña de alerta
 En esta pestaña verá en tiempo real los módulos en alerta. la
 las alertas pueden ser de diferentes tipos :
 
--   tiempo de espera (configurado en la pestaña de alertas definidas)
+-   Tiempo de espera (configurado en la pestaña de alertas definidas)
 
 -   batería en advertencia o en peligro
 

@@ -15,7 +15,7 @@ reabastecer.
     dashboard
 
 -   Esta atualização torna obrigatória uma alteração no design
-    plugins (alteração recomendada no 3.0). Alguns plugins
+    plugins (alteração recomendada em 3.0). Alguns plugins
     pode, portanto, não estar mais disponível nesta versão até
     correção pelo autor.
 

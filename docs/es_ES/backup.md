@@ -58,7 +58,7 @@ o restauración), si ha lanzado uno.
 -   **Descargar copia de seguridad** : Permite descargar a tu
     computadora el archivo de copia de seguridad seleccionado anteriormente.
 
-**Copias de seguridad Mercado** 
+**Copias de seguridad Market** 
 ----------------------
 
 -   **Enviar copias de seguridad** : Encarga a Jeedom que envíe el
@@ -97,7 +97,7 @@ Lo que se guarda ?
 
 Durante una copia de seguridad, Jeedom realizará una copia de seguridad de todos sus archivos y
 base de datos. Por lo tanto, esto contiene toda su configuración
-(equipos, pedidos, historia, escenarios, diseño, etc.).
+(equipos, controles, historia, escenarios, diseño, etc.).
 
 En términos de protocolos, solo el Z-Wave (OpenZwave) es un poco
 diferente porque no es posible guardar las inclusiones.
@@ -107,7 +107,7 @@ mantener el mismo controlador para encontrar sus módulos Zwave.
 > **Nota**
 >
 > El sistema en el que está instalado Jeedom no está respaldado. si
-> Ha modificado los parámetros de este sistema (especialmente a través de SSH),
+> ha modificado los parámetros de este sistema (en particular a través de SSH),
 > depende de usted encontrar una manera de recuperarlos en caso de problemas.
 
 Copia de seguridad en la nube 
@@ -132,6 +132,6 @@ Frecuencia de respaldos automáticos
 
 Jeedom realiza una copia de seguridad automática todos los días al mismo tiempo
 hora. Es posible modificar esto, desde el &quot;Motor
-tareas &quot;(la tarea se llama **Jeedom backup**), pero no es
+tareas &quot;(la tarea se llama **Jeedom backup**), pero no lo es
 recomendadas. De hecho, se calcula en relación con la carga de la
 Market.

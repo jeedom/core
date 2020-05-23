@@ -46,4 +46,4 @@ domotique.
 
 Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie
 werden nicht angehalten) und eine Schaltfläche zum Anhalten (nützlich für
-zum Beispiel kopieren / einfügen).
+Kopieren / Einfügen zum Beispiel).

@@ -51,7 +51,7 @@ Ver un gráfico
 
 Hay varias formas de acceder al historial :
 
--   poniendo un área de gráfico en una vista (ver más abajo),
+-   Al poner un área de gráfico en una vista (ver abajo),
 
 -   haciendo clic en el comando deseado en un widget,
 
@@ -66,7 +66,7 @@ el widget, tiene acceso a varias opciones de visualización :
 Encontramos en la parte superior derecha el período de visualización (aquí en el último
 semana porque por defecto quiero que sea solo una semana - ver
 2 párrafos anteriores), luego vienen los parámetros de la curva
-(estos parámetros se guardan de una pantalla a otra; por lo tanto,
+(estos parámetros se guardan de una pantalla a otra; entonces no lo haces
 que configurarlos una vez).
 
 -   **Escalera** : muestra la curva como un
@@ -119,8 +119,8 @@ Historia calculada
 Se usa para mostrar una curva basada en un cálculo en varios
 comando (puedes hacer casi todo, + - / \* valor absoluto ... ver
 Documentación PHP para ciertas funciones). Ex :
-abs (*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio de
-La vida \] \ [Humedad \] \ [Temperatura \] *)
+abs(*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio de
+vida \] \ [Higrometría \] \ [Temperatura \]*)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite
 guárdelos para verlos más fácilmente

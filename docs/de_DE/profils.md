@@ -27,7 +27,7 @@ Im Themenbereich können Sie die Schnittstellenparameter anpassen :
     (zwischen 0 und 1) Widgets im Dashboard
 
 -   **Deckkraft durch Design-Widgets** : erlaubt, Deckkraft zu geben
-    (zwischen 0 und 1) Widgets für Designs
+    (zwischen 0 und 1) Widgets auf Designs
 
 -   **Deckkraft nach Ansichts-Widgets** : erlaubt, Deckkraft zu geben (zwischen
     0 und 1) Widgets in den Ansichten
@@ -80,7 +80,7 @@ Sicherheit
     Google Authentifikator). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert.
 
 -   **Passwort** : ermöglicht es Ihnen, Ihr Passwort zu ändern (nicht
-    vergessen Sie es unten erneut einzugeben)
+    Vergessen Sie, es unten erneut einzugeben)
 
 -   **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel
 

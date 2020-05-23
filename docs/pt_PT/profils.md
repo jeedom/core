@@ -33,7 +33,7 @@ O painel de temas permite ajustar os parâmetros da interface :
     0 e 1) widgets nas visualizações
 
 -   **Opacidade por widgets para celular** : permite dar opacidade
-    (entre 0 e 1) widgets para celular
+    (entre 0 e 1) widgets móveis
 
 Interface 
 ---------

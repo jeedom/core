@@ -35,7 +35,7 @@ Changelog
 - Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startet.
 - Möglichkeit, globale Informationen für Ihr Zuhause in die Jeedom-Verwaltung einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in Plugins eingegeben werden müssen.
 - Aktualisieren des Repositorys auf smart
-- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv, und Sie können bei Bedarf die Verfügbarkeit alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht.)
+- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv, und Sie können bei Bedarf die Verfügbarkeit alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht)
 - Migration auf das neue Überwachungssystem (das alte System bleibt 1 Woche lang aktiv, danach wird es gelöscht)
 
 3.3.39
@@ -54,7 +54,7 @@ Changelog
 3.3.38
 =====
 
-- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wenn Sie jeedom DNS verwenden, ist es wichtig, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen jeedom dns im entsprechenden Feld.).
+- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wichtig, wenn Sie jeedom DNS verwenden, ist, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen jeedom dns im entsprechenden Feld).
 - Rechtschreibkorrekturen.
 - Sicherheitsupdate
 
@@ -116,7 +116,7 @@ Changelog
 
 - Korrektur des Verschwindens des Datums der letzten Aktualisierungsprüfung
 - Es wurde ein Fehler behoben, der Cloud-Backups blockieren konnte
-- Korrektur eines Fehlers bei der Berechnung der Verwendung der Variablen, wenn diese im Formular vorliegen : Variable (foo, myvalue)
+- Korrektur eines Fehlers bei der Berechnung der Verwendung der Variablen, wenn diese im Formular vorliegen : Variable (toto, mavaleur)
 
 
 3.3.28
@@ -129,7 +129,7 @@ Changelog
 =====
 
 - Korrektur eines Fehlers bei der Übersetzung der Tage ins Französische
-- Verbesserte Stabilität (automatischer Neustart des MySQL-Dienstes und des Watchdogs, um die Uhrzeit beim Start zu überprüfen)
+- Verbesserte Stabilität (automatischer Neustart des MySQL-Dienstes und des Watchdogs zur Überprüfung der Startzeit)
 - Fehlerbehebungen
 - Deaktivieren von Aktionen für Aufträge beim Bearbeiten von Designs, Ansichten oder Dashboards
 
@@ -156,7 +156,7 @@ Changelog
 -	Fehlerbehebungen
 -	Verbesserung des Symbolauswahlfensters
 -	Automatische Aktualisierung des Batteriewechseldatums, wenn die Batterie mehr als 90% und 10% höher als der vorherige Wert ist
--	Hinzufügen einer Schaltfläche in der Verwaltung, um die Rechte zurückzusetzen und eine Jeedom-Überprüfung zu starten (rechts, cron, Datenbank ...)
+-	Hinzufügen einer Schaltfläche in der Verwaltung zum Zurücksetzen der Rechte und Starten einer Jeedom-Überprüfung (rechts, cron, Datenbank)...)
 -	Entfernen erweiterter Sichtbarkeitsoptionen für Geräte auf Dashboard / Ansicht / Design / Handy. Wenn Sie nun die Geräte auf dem Dashboard / Handy sehen möchten oder nicht, aktivieren Sie einfach das Kontrollkästchen für die allgemeine Sichtbarkeit. Für Ansichten und Design einfach die Ausrüstung darauf setzen oder nicht
 
 3.3.22
@@ -164,7 +164,7 @@ Changelog
 
 - Fehlerbehebungen
 - Verbesserte Auftragsersetzung (in Ansichten, Plan und Plan3d)
-- Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte
+- Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte)
 
 3.3.21
 =====
@@ -206,17 +206,17 @@ Changelog
 =====
 
 -   Möglichkeit zum Löschen einer Variablen.
--   Hinzufügung eines 3D-Displays (Beta)
+-   Hinzufügen einer 3D-Anzeige (Beta)
 -   Neugestaltung des Cloud-Backup-Systems (inkrementelle und verschlüsselte Sicherung).
--   Hinzufügen eines integrierten Notizen-Systems (unter Analyse -&gt; Notiz).
--   Hinzufügung des Begriffs &quot;Tag&quot; auf Geräten (finden Sie in der erweiterten Konfiguration von Geräten).
+-   Hinzufügen eines integrierten Notizen-Systems (unter Analyse -> Notiz).
+-   Hinzufügung des Begriffs "Tag" auf Geräten (finden Sie in der erweiterten Konfiguration von Geräten).
 -   Hinzufügen eines Verlaufssystems zum Löschen von Aufträgen, Geräten, Objekten, Ansichten, Designs, 3D-Designs, Szenarien und Benutzern.
 -   Hinzufügen der Aktion jeedom_reboot, um einen Neustart von Jeedom zu starten.
 -   Option im Cron-Generierungsfenster hinzufügen.
 -   Eine Nachricht wird jetzt hinzugefügt, wenn beim Ausführen eines Szenarios ein ungültiger Ausdruck gefunden wird.
--   Hinzufügen eines Befehls in den Szenarien : value (order) erlaubt es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
+-   Hinzufügen eines Befehls in den Szenarien : value (order) ermöglicht es, den Wert einer Bestellung zu haben, wenn er nicht automatisch von jeedom angegeben wird (Fall beim Speichern des Namens der Bestellung in einer Variablen).
 -   Hinzufügen einer Schaltfläche zum Aktualisieren der Nachrichten des Nachrichtencenters.
--   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause ...).
+-   Fügen Sie in der Konfiguration der Aktion für den Wert eines Befehls eine Schaltfläche hinzu, um nach einer internen Aktion zu suchen (Szenario, Pause)...).
 -   Hinzufügen einer Aktion &quot;Auf Null des IS zurücksetzen&quot; in den Szenarien
 -   Möglichkeit, Bilder im Hintergrund zu den Ansichten hinzuzufügen
 -   Möglichkeit, Hintergrundbilder zu Objekten hinzuzufügen
@@ -228,13 +228,13 @@ Changelog
 -   Hinzufügen eines Heartbeat durch Plugin und automatischer Neustart des Daemons bei Problemen
 -   Hinzufügen von Listenern auf der Task-Engine-Seite
 -   Optimisations
--   Möglichkeit, die Protokolle in der mobilen Version (wepapp) zu konsultieren
+-   Möglichkeit, die Protokolle in der mobilen Version (wepapp) zu konsultieren)
 -   Hinzufügen eines Aktions-Tags in den Szenarien (siehe Dokumentation)
 -   Möglichkeit einer Vollbildansicht durch Hinzufügen von &quot;&amp; fullscreen = 1&quot; in der URL
--   Hinzufügen von lastCommunication in den Szenarien (um das letzte Kommunikationsdatum eines Geräts zu haben)
--   Echtzeitaktualisierung von Diagrammen (einfach, nicht berechnet oder Zeitleisten)
+-   Hinzufügen von lastCommunication in den Szenarien (um das letzte Kommunikationsdatum eines Geräts zu erhalten)
+-   Echtzeitaktualisierung von Diagrammen (einfach, nicht berechnet oder Zeitleisten))
 -   Möglichkeit, ein Element aus der Entwurfskonfiguration zu löschen
--   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht)
+-   Möglichkeit eines Berichts über den Batteriestand (Gerätebericht))
 -   Szenario-Widgets werden jetzt standardmäßig im Dashboard angezeigt
 -   Ändern Sie die Tonhöhe der Widgets um horizontal 25 bis 40, vertikal 5 bis 20 und Rand 1 bis 4 (Sie können die alten Werte in der Konfiguration von jeedom, Widget-Registerkarte zurücksetzen)
 -   Möglichkeit, den Szenarien ein Symbol hinzuzufügen
@@ -276,7 +276,7 @@ Changelog
 - Verbesserung des Aktualisierungsprozesses insbesondere beim Kopieren von Dateien, bei dem nun die Größe der kopierten Datei überprüft wird.
 - Fehlerbehebungen bei den Funktionen stateDuration, lastStateDuration und lastChangeStateDuration (danke @kiboost).
 - Optimierung der Linkgraphenberechnung und Verwendung von Variablen.
-- Verbesserung des Fensters mit den Cron-Aufgabendetails, in dem nun das Szenario sowie die für doIn-Aufgaben auszuführenden Maßnahmen angezeigt werden (danke @kiboost).
+- Verbesserung des Cron-Task-Detailfensters, in dem nun das Szenario sowie die Aktion angezeigt werden, die für die Aufgaben in doin ausgeführt wird (danke @kiboost).
 
 3.2.9
 =====
@@ -293,7 +293,7 @@ Changelog
 - Fehlerbehebungen
 - Hinzufügen einer Option in der Jeedom-Administration zur Angabe des lokalen IP-Bereichs (nützlich bei Docker-Installationen)
 - Korrektur eines Fehlers bei der Berechnung der Verwendung von Variablen
-- Hinzufügen eines Indikators auf der Gesundheitsseite, der die Anzahl der Prozesse angibt, die aufgrund von Speichermangel abgebrochen wurden (insgesamt bedeutet dies, dass die Jeedom zu geladen ist)
+- Hinzufügen eines Indikators auf der Gesundheitsseite, der die Anzahl der Prozesse angibt, die aufgrund von Speichermangel abgebrochen wurden (insgesamt zeigt dies an, dass die Freiheit zu geladen ist)
 - Verbesserter Datei-Editor
 
 3.2.7
@@ -335,24 +335,24 @@ Changelog
 3.2.2
 =====
 
--   Entfernung des alten Widget-Update-Systems (veraltet seit Version 3.0). Achtung, wenn Ihr Widget das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Verdoppelung). Beispiel Widget [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Entfernen des alten Widget-Update-Systems (seit Version 3.0 veraltet). Achtung Wenn Ihr Widget das neue System nicht verwendet, besteht die Gefahr einer Fehlfunktion (in diesem Fall eine Duplizierung)). Beispiel Widget [hier](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Möglichkeit, die Grafiken in Tabellenform anzuzeigen oder in csv oder xls zu exportieren
 
 -   Benutzer können jetzt ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Dokumentation der Szenarien für die Implementierung
 
 -   Jeed-417 : Hinzufügen einer time_diff-Funktion in den Szenarien
 
--   Hinzufügen einer konfigurierbaren Verzögerung vor der Reaktion auf Interaktionen (ermöglicht beispielsweise das Warten auf die Statusrückmeldung)
+-   Hinzufügen einer konfigurierbaren Verzögerung vor der Reaktion auf Interaktionen (ermöglicht beispielsweise das Warten auf die Rückkehr des Status)
 
 -   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
 
--   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets)
+-   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets))
 
 -   Korrektur eines Rechtefehlers nach Wiederherstellung einer Sicherung
 
 -   Übersetzungen aktualisieren
 
--   Bibliotheksaktualisierung (Abfrage und Highcharts)
+-   Bibliotheksaktualisierung (JQuery und Highcharts)
 
 -   Möglichkeit, eine Bestellung in Interaktionen zu verbieten
     automatique
@@ -426,7 +426,7 @@ Changelog
     erfahrene Benutzer)
 
 -   Hinzufügen von Generika Typen &quot;State Light&quot; (binär), &quot;Light
-    Farbtemperatur &quot;(Info),&quot; Lichtfarbtemperatur &quot;(Aktion)
+    Farbtemperatur "(Info)," Lichtfarbtemperatur "(Aktion)
 
 -   Fähigkeit, Wörter in einer Interaktion verbindlich zu machen
 
@@ -465,7 +465,7 @@ Changelog
     Entwürfe für Text / Ansicht / Gestaltungselemente
 
 -   Hinzufügen von Objektzusammenfassungen im Dashboard (Liste der Objekte)
-    links)
+    nach links)
 
 -   Fügen Sie Interaktionen vom Typ "Benachrichtigen Sie mich-wenn" hinzu"
 
@@ -549,7 +549,7 @@ Changelog
     Wählen Sie für jede Bestellung die Box oder legen Sie sie ab
 
 -   Möglichkeit, Geräte-Widgets von neu anzuordnen
-    Dashboard (im Bearbeitungsmodus Rechtsklick auf das Widget)
+    Dashboard (im Bearbeitungsmodus klicken Sie mit der rechten Maustaste auf das Widget)
 
 -   Ändern Sie die Tonhöhe von Widgets (von 40 \*80 bis 10 \*10). Sei vorsichtig
     wirkt sich auf das Layout Ihres Dashboards / Ihrer Ansicht / Ihres Designs aus
@@ -689,10 +689,10 @@ Changelog
     celle-ci
 
 -   Möglichkeit, bestimmte Werte für eine Bestellung zu verbieten (in der
-    erweiterte Konfiguration)
+    erweiterte Konfiguration davon)
 
 -   Hinzufügen von Konfigurationsfeldern zur automatischen Statusrückmeldung
-    (zB nach 4 min auf 0 zurückkehren) in der erweiterten Konfiguration von a
+    (ex nach 4 min auf 0 zurückkehren) in der erweiterten Konfiguration von a
     commande
 
 -   Hinzufügen einer valueDate-Funktion in den Szenarien (siehe
@@ -744,7 +744,7 @@ Changelog
     kein lokales Dokument
 
 -   Interaktionen können den Begriff des Kontextes berücksichtigen (in
-    abhängig von der vorherigen Anfrage sowie der vorherigen)
+    Funktion der vorherigen Anfrage sowie der vorherigen)
 
 -   Möglichkeit, Wörter nach ihrer Größe zu gewichten für
     Analyse verstehen
@@ -765,7 +765,7 @@ Changelog
     Befehle und Zusammenfassungen, die in Antworten verwendet werden
     Kontext und Zusammenfassungen
 
--   Jeedom weiß, wie man mehrere verwandte Interaktionen verwaltet (kontextbezogen)
+-   Jeedom weiß, wie mehrere verknüpfte Interaktionen (kontextbezogen) verwaltet werden)
     in einem. Sie müssen durch ein Schlüsselwort getrennt werden (standardmäßig und).
     Beispiel : "Wie viel kostet es im Schlafzimmer und im Wohnzimmer? "Oder
     "Schalten Sie das Licht in Küche und Schlafzimmer ein."
@@ -783,14 +783,14 @@ Changelog
     mit dem Befehl &quot;report&quot; in einem Szenario
 
 -   Hinzufügen einer Berichtsverwaltungsseite (zum erneuten Herunterladen oder
-    lösche sie)
+    Lösche sie)
 
 -   Korrektur eines Fehlers am Datum der letzten Eskalation eines Ereignisses
     für einige Plugins (Alarm)
 
 -   Anzeigefehler mit Chrome 55 behoben
 
--   Optimierung des Backups (auf einem RPi2 wird die Zeit durch 2 geteilt)
+-   Backup-Optimierung (auf einem RPi2 wird die Zeit durch 2 geteilt)
 
 -   Optimierung des Caterings
 
@@ -805,12 +805,12 @@ Changelog
     Funktion des ursprünglichen Objekts
 
 -   Möglichkeit von Echtzeit-Szenarioprotokollen (verlangsamt sich)
-    Ausführung von Szenarien)
+    die Ausführung der Szenarien)
 
 -   Möglichkeit, Tags beim Starten eines Szenarios zu übergeben
 
 -   Optimierung des Ladens von Szenarien und Seiten mit
-    Aktionen mit Option (Konfigurationstyp des Alarm-Plugins oder -Modus)
+    Aktionen mit Option (Konfigurationstyp des Alarm-Plugins oder Modus)
 
 2.4.6
 =====
@@ -873,7 +873,7 @@ Changelog
     commande
 
 -   Fähigkeit, eine Bestellung in ganz Jeedom durch eine andere zu ersetzen
-    (auch wenn die zu ersetzende Bestellung nicht mehr existiert)
+    (auch wenn der zu ersetzende Befehl nicht mehr existiert)
 
 2.3
 ---
@@ -936,7 +936,7 @@ Changelog
 
 -   Fix Widget Markt
 
--   Korrektur eines Fehlers beim Marktzugang (Timeout)
+-   Korrektur eines Fehlers beim Marktzugang (Timeout))
 
 -   Korrektur eines Fehlers beim Öffnen von Tickets
 
@@ -944,15 +944,15 @@ Changelog
     / tmp ist zu klein (Vorsicht, die Korrektur wird bei wirksam
     Update n + 1)
 
--   Tag hinzufügen *Jeedom\_name* in den Szenarien (geben Sie den Namen
-    jeedom)
+-   Tag hinzufügen *jeedom\_name* in den Szenarien (geben Sie den Namen
+    Jeedom)
 
 -   Fehlerbehebungen
 
 -   Verschieben Sie alle temporären Dateien nach / tmp
 
 -   Verbessertes Senden von Plugins (automatische Dos2unix ein
-    Dateien \*. sh)
+    \*. sh Dateien)
 
 -   Neugestaltung der Protokollseite
 
@@ -977,24 +977,24 @@ Changelog
 -   Hinzufügen eines Github &quot;Repo&quot; (ermöglicht die Verwendung von Github als Quelle von
     Plugin mit Update Management System)
 
--   Hinzufügen einer URL &quot;repo&quot; (ermöglicht die Verwendung der URL als Quelle des Plugins)
+-   Hinzufügen einer URL "repo" (ermöglicht die Verwendung einer URL als Plugin-Quelle)
 
 -   Hinzufügen eines Samba &quot;Repo&quot; (verwendbar, um Backups auf einem zu pushen
-    Samba-Server und Plugins wiederherstellen)
+    Samba Server und Plugins wiederherstellen)
 
 -   Hinzufügen eines FTP &quot;Repo&quot; (kann verwendet werden, um Backups auf einem zu pushen
-    FTP-Server und Wiederherstellungs-Plugins)
+    FTP-Server und Plugins wiederherstellen)
 
 -   Ergänzung für bestimmte &quot;Repo&quot; der Möglichkeit der Wiederherstellung des Kerns von
     jeedom
 
--   Hinzufügen automatischer Codetests (danke @ kwizer15)
+-   Hinzufügen von automatischen Codetests (danke @ kwizer15)
 
 -   Möglichkeit zum Ein- / Ausblenden von Plugin-Panels auf Mobilgeräten und
     oder Desktop (Vorsicht, standardmäßig sind die Bedienfelder ausgeblendet)
 
 -   Möglichkeit zum Deaktivieren von Plugin-Updates (sowie
-    Überprüfung)
+    der cheking Prozess)
 
 -   Möglichkeit, die Versifikation von Plugin-Updates zu erzwingen
 
@@ -1018,7 +1018,7 @@ Changelog
 -   Lib Reinigung durch Dritte
 
 -   Unterdrückung der reaktionsschnellen Stimme (Funktion in den Szenarien gesagt, die
-    immer weniger gut funktioniert)
+    arbeitete immer weniger gut)
 
 -   Mehrere Sicherheitslücken wurden behoben
 
@@ -1067,7 +1067,7 @@ Changelog
     von einer Station im lokalen Netzwerk
 
 -   Neugestaltung der Widgets-Konfiguration (Vorsicht
-    sicherlich die Konfiguration einiger Widgets wieder aufnehmen)
+    Setzen Sie die Konfiguration einiger Widgets sicher fort)
 
 -   Verstärkung der Fehlerbehandlung bei Widgets
 
@@ -1085,12 +1085,12 @@ Changelog
     bit), es ist in / tmp, daher wird es empfohlen, wenn Sie
     haben mehr als 512 MB RAM, um das / tmp in tmpfs (im RAM für
     schneller und weniger Verschleiß auf der SD-Karte, ich
-    empfehlen eine Größe von 64MB). Seien Sie beim Neustart vorsichtig
+    empfehlen eine Größe von 64 MB). Seien Sie beim Neustart vorsichtig
     Jeedom der Cache wird geleert, so dass Sie auf die warten müssen
     Berichterstattung über alle Informationen
 
 -   Neugestaltung des Protokollsystems (Verwendung von Monolog), die dies ermöglicht
-    Integration in Protokollierungssysteme (Typ Syslog (d))
+    Integration in Protokollierungssysteme (Syslog-Typ (d))
 
 -   Optimierung des Dashboard-Ladens
 
@@ -1110,7 +1110,7 @@ Changelog
 -   Neugestaltung des Jeedom-Menüs
 
 -   Löschen Sie alle Netzwerkverwaltungsteile : WiFi, feste IP…
-    (wird sicherlich als Plugin zurückkommen). ACHTUNG das ist nicht das
+    (werde sicherlich als Plugin wiederkommen). ACHTUNG das ist nicht das
     Jeedom Master / Slave-Modus, der gelöscht wird
 
 -   Batterieanzeige bei Widgets entfernt
@@ -1119,13 +1119,13 @@ Changelog
     batterie
 
 -   Neugestaltung von Jeedom DNS, Verwendung von openvpn (und damit von
-    openvpn plugin)
+    Openvpn Plugin)
 
 -   Aktualisieren Sie alle Bibliotheken
 
 -   Interaktion : Hinzufügen eines Parsing-Systems (ermöglicht
     Entfernen Sie Interaktionen mit großen Syntaxfehlern «
-    le chambre »)
+    das Schlafzimmer »)
 
 -   Unterdrückung der Schnittstellenaktualisierung durch nodejs (Änderung zu
     jede Sekunde auf der Ereignisliste ziehen)
@@ -1136,7 +1136,7 @@ Changelog
 -   Refonte du système « d'action sur valeur » avec possibilité de faire
     mehrere Aktionen und auch die Hinzufügung aller möglichen Aktionen
     in den Szenarien (seien Sie vorsichtig, es kann alles dauern
-    nach dem Update neu konfigurieren)
+    Nach dem Update neu konfigurieren)
 
 -   Möglichkeit, einen Block in einem Szenario zu deaktivieren
 
@@ -1182,12 +1182,12 @@ Changelog
     bit), es ist in / tmp, daher wird es empfohlen, wenn Sie
     haben mehr als 512 MB RAM, um das / tmp in tmpfs (im RAM für
     schneller und weniger Verschleiß auf der SD-Karte, ich
-    empfehlen eine Größe von 64MB). Seien Sie beim Neustart vorsichtig
+    empfehlen eine Größe von 64 MB). Seien Sie beim Neustart vorsichtig
     Jeedom der Cache wird geleert, so dass Sie auf die warten müssen
     Berichterstattung über alle Informationen
 
 -   Neugestaltung des Protokollsystems (Verwendung von Monolog), die dies ermöglicht
-    Integration in Protokollierungssysteme (Typ Syslog (d))
+    Integration in Protokollierungssysteme (Syslog-Typ (d))
 
 -   Optimierung des Dashboard-Ladens
 
@@ -1207,7 +1207,7 @@ Changelog
 -   Neugestaltung des Jeedom-Menüs
 
 -   Löschen Sie alle Netzwerkverwaltungsteile : WiFi, feste IP…
-    (wird sicherlich als Plugin zurückkommen). ACHTUNG das ist nicht das
+    (werde sicherlich als Plugin wiederkommen). ACHTUNG das ist nicht das
     Jeedom Master / Slave-Modus, der gelöscht wird
 
 -   Batterieanzeige bei Widgets entfernt
@@ -1216,13 +1216,13 @@ Changelog
     batterie
 
 -   Neugestaltung von Jeedom DNS, Verwendung von openvpn (und damit von
-    openvpn plugin)
+    Openvpn Plugin)
 
 -   Aktualisieren Sie alle Bibliotheken
 
 -   Interaktion : Hinzufügen eines Parsing-Systems (ermöglicht
     Entfernen Sie Interaktionen mit großen Syntaxfehlern «
-    le chambre »)
+    das Schlafzimmer »)
 
 -   Unterdrückung der Schnittstellenaktualisierung durch nodejs (Änderung zu
     jede Sekunde auf der Ereignisliste ziehen)
@@ -1233,7 +1233,7 @@ Changelog
 -   Refonte du système « d'action sur valeur » avec possibilité de faire
     mehrere Aktionen und auch die Hinzufügung aller möglichen Aktionen
     in den Szenarien (seien Sie vorsichtig, es kann alles dauern
-    nach dem Update neu konfigurieren)
+    Nach dem Update neu konfigurieren)
 
 -   Möglichkeit, einen Block in einem Szenario zu deaktivieren
 

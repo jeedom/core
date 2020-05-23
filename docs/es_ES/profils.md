@@ -77,7 +77,7 @@ Seguridad
 -   **Autenticación de 2 pasos** : permite configurar
     Autenticación en 2 pasos (como recordatorio, este es un código cambiante
     aparece cada X segundos en una aplicación móvil, escriba
-    autentificador de google). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, el código no será solicitado.
+    autenticador de google). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, el código no será solicitado.
 
 -   **Contraseña** : le permite cambiar su contraseña (no
     olvide volver a escribirlo a continuación)

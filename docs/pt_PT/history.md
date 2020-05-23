@@ -27,7 +27,7 @@ exibição de gráfico.
 O arquivamento é uma tarefa que começa à noite e compacta
 dados recuperados durante o dia. Por padrão, o Jeedom recupera tudo
 Dados 2h mais antigos e cria pacotes de 1h (um
-média, mínimo ou máximo, dependendo das configurações). Então nós temos
+média, mínima ou máxima, dependendo das configurações). Então nós temos
 aqui 2 parâmetros, um para o tamanho do pacote e outro para saber
 quando fazê-lo (por padrão, são pacotes
 1 hora com dados com mais de 2 horas de antiguidade).
@@ -66,7 +66,7 @@ o widget, você tem acesso a várias opções de exibição :
 Encontramos no canto superior direito o período de exibição (aqui no último
 semana porque, por padrão, quero que seja apenas uma semana - veja
 2 parágrafos acima), então vêm os parâmetros da curva
-(esses parâmetros são mantidos de um monitor para outro; portanto, você
+(esses parâmetros são mantidos de uma exibição para outra; então você não
 do que configurá-los uma vez).
 
 -   **Escada** : exibe a curva como um
@@ -119,8 +119,8 @@ História calculado
 Usado para exibir uma curva com base em um cálculo em vários
 comando (você pode praticamente fazer tudo, + - / \* valor absoluto ... veja
 Documentação do PHP para determinadas funções). Ex :
-abs (*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço de
-vida \] \ [Higrometria \] \ [Temperatura \] *)
+abs(*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço de
+vida \] \ [Higrometria \] \ [Temperatura \]*)
 
 Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite
 salve-os para facilitar a visualização

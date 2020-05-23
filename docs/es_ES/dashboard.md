@@ -12,7 +12,7 @@ Se puede acceder haciendo clic en **Inicio → Tablero**
 
 -   Tienes en la parte superior izquierda un pequeño ícono para hacer
     muestra / oculta el árbol de objetos (esto también muestra el
-    información de resumen del objeto)
+    información resumida de la asignatura)
 
 -   En el medio, puede elegir filtrar solo en ciertos tipos
     equipo
@@ -70,15 +70,15 @@ También puede editar el diseño interno de los controles del widget
         cajas deseadas. Puedes poner múltiples pedidos por caja
 
     -   **Agregar columna** : agregar una columna a la tabla (accesible
-        solo si está en un diseño de tabla)
+        solo si estás en un diseño de mesa)
 
     -   **Agregar línea** : agregar una fila a la tabla (accesible
-        solo si está en un diseño de tabla)
+        solo si estás en un diseño de mesa)
 
     -   **Eliminar columna** : eliminar una columna de la tabla
-        (accesible solo si tiene un diseño de tabla)
+        (accesible solo si está a bordo)
 
     -   **Eliminar linea** : eliminar una fila en la tabla (accesible
-        solo si está en un diseño de tabla)
+        solo si estás en un diseño de mesa)
 
 

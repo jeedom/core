@@ -4,13 +4,13 @@ Description
 The **update center** allows you to update all
 Jeedom features, including core software,
 plugins, widgets, etc. Other extension management functions
-are available (delete, reinstall, check, etc.)
+are available (delete, reinstall, check, etc)
 
 The Update Center page 
 ================================
 
 It is accessible from the menu **Administration → Updating center
-day**.
+jour**.
 
 You will find, on the left, all the functionalities of
 Jeedom and on the right part **Information** who describes what he
@@ -43,7 +43,7 @@ Jeedoms Sources :
     the backup.
 
 -   **Update to reapply** : Allows you to reapply a bet
-    up to date. (NB : Not all updates can be reapplied.)
+    up to date. (NB : All updates cannot be reapplied.)
 
 > **IMPORTANT**
 >
@@ -101,7 +101,7 @@ every element :
 > update means that the documentation has been updated.
 > There is therefore no need to ask the developer for
 > changes, since there are not necessarily any. (it is often a bet
-> translation of documentation)
+> of the translation of the documentation)
 
 > **Tip**
 >
@@ -119,7 +119,7 @@ Once connected, this is the command to perform :
 The possible parameters are :
 
 -   **`fashion`** : `force`, to launch an update in forced mode (do not
-    ignores errors).
+    ignore errors).
 
 -   **`version`** : followed by the version number, to reapply the
     changes since this version.
