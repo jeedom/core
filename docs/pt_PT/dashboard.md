@@ -10,9 +10,9 @@ Este relatório (diferente das visualizações e designs) é gerado automaticame
 
 - 1 : Menu principal do Jeedom.
 - 2 : Resumo Global.
-- 3 : Tempo do navegador, reduzido para a Linha do tempo.
+- 3 : Hora do navegador, atalho para a Linha do tempo.
 - 4 : Botão para acessar a documentação da página atual.
-- 5 : Nome do seu Jeedom, abreviado para a configuração.
+- 5 : Nome do seu Jeedom, atalho para configuração.
 - 6 : Modo de edição (reordenar / redimensionar blocos).
 - 7 : Filtrar por categorias.
 - 8 : Objeto : Ícone, nome e resumo e seus equipamentos.
