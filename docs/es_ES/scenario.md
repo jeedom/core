@@ -37,7 +37,7 @@ Después de hacer clic en **Añadir**, debes elegir el nombre de tu escenario. L
 Antes de eso, en la parte superior de la página, hay algunas funciones útiles para administrar este escenario :
 
 - **Identificación** : Al lado de la palabra **General**, este es el identificador de escenario.
-- **estatus** : *Larrêté* o *En curso*, indica el estado actual del escenario.
+- **estatus** : *Detenido* o *En curso*, indica el estado actual del escenario.
 - **Estado anterior / siguiente** : Cancelar / rehacer una acción.
 - **Añadir un bloque** : Le permite agregar un bloque del tipo deseado al escenario (ver más abajo).
 - **Registro** : Muestra los registros del escenario.
@@ -47,7 +47,7 @@ Antes de eso, en la parte superior de la página, hay algunas funciones útiles 
 - **Exportación** : Le permite obtener una versión de texto puro del escenario.
 - **Plantilla** : Le permite acceder a las plantillas y aplicar una al mercado desde el mercado. (explicado al final de la página).
 - **Buscar** : Despliega un campo de búsqueda para buscar en el escenario. Esta búsqueda despliega los bloques colapsados si es necesario y los pliega nuevamente después de la búsqueda.
-- **Exécuter** : Le permite iniciar el escenario manualmente (independientemente de los desencadenantes). Guardar de antemano para tener en cuenta las modificaciones.
+- **Realizar** : Le permite iniciar el escenario manualmente (independientemente de los desencadenantes). Guardar de antemano para tener en cuenta las modificaciones.
 - **Remove** : Eliminar escenario.
 - **Guardar** : Guardar los cambios realizados.
 
@@ -158,7 +158,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 #### Laccès aux commandes (capteurs y actionneurs)
 
 -  ``cmd::byString($string);`` : Devuelve el objeto de comando correspondiente.
-    -   ``$string``: Enlace al pedido deseado : ``#[objy][Dispositivos][commande]#`` (ex : ``#[Lappartement][Lalarme][Bienes]#``)
+    -   ``$string``: Enlace al pedido deseado : ``#[objet][Dispositivos][commande]#`` (ex : ``#[Appartement][Alarme][Bienes]#``)
 -  ``cmd::byId($id);`` : Devuelve el objeto de comando correspondiente.
     -  ``$id`` : ID de pedido.
 -  ``$cmd->execCmd($options = null);`` : Ejecute el comando y devuelva el resultado.
@@ -246,8 +246,8 @@ Puede usar cualquiera de los siguientes símbolos para comparar en condiciones :
 - ``<`` : Estrictamente menor que.
 - ``<=`` : Menor o igual que.
 - ``!=`` : Diferente de, no es igual a.
-- ``matches`` : Contiene. Ex : ``[Salle de bain][Hydrometrie][yat] matches "/ /humide/ /"``.
-- ``not ( …​ matches …​)`` : No contiene. Ex :  ``not([Salle de bain][Hydrometrie][yat] matches "/ /humide/ /")``.
+- ``matches`` : Contiene. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/ /humide/ /"``.
+- ``not ( …​ matches …​)`` : No contiene. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/ /humide/ /")``.
 
 Puedes combinar cualquier comparación con los siguientes operadores :
 
@@ -299,15 +299,15 @@ También tiene las siguientes etiquetas adicionales si su escenario fue desencad
 
 Hay varias funciones disponibles para el equipo :
 
-- ``average(commande,période)`` y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``average(commande,période)`` y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``min(commande,période)`` y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``min(commande,période)`` y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``max(commande,période)`` y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``max(commande,période)`` y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
@@ -326,9 +326,9 @@ Hay varias funciones disponibles para el equipo :
 - ``age(commande)`` : Da la edad en segundos del valor del comando (``collecDate``)
     -1 : El comando no existe o no es de tipo información.
 
-- ``stateChanges(commande,[valeur], période)`` y ``stateChangesBetween(commande, [valeur], start, end)`` : Indique el número de cambios de estado (hacia un cierto valor si se indica, o en total si no) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` y ``stateChangesBetween(commande, [valeur], start, end)`` : Indique el número de cambios de estado (hacia un cierto valor si se indica, o en total si no) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales requeridos (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el equipo entre los 2 terminales solicitados (en la forma Ymd H:i:s o [expression PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el equipo entre los 2 terminales solicitados (en la forma Ymd H:i:s o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera el valor de una variable o el valor deseado por defecto.
 
@@ -400,11 +400,11 @@ Aquí hay ejemplos prácticos para comprender los valores devueltos por estas di
 | ``stateChanges(prise,1,période)``      | Devuelve 1 : el enchufe se enciende (cambie a 1) una vez durante el período                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today)`` | Devuelve la última temperatura registrada ayer.                    |
 | ``variable(plop,10)``                  | Devuelve el valor de la variable plop o 10 si está vacía o no existe                         |
-| ``scenario(#[Salle de bain][Lumière][Lauto]#)`` | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
-| ``lastScenarioExecution(#[Salle de bain][Lumière][Lauto]#)``   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
+| ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
+| ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
 | ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Devoluciones 2015-01-01 17:45:12          |
 | ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Devoluciones 2015-01-01 17:50:12          |
-| ``eqEnable(#[Laucun][Basilique]#)``       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
+| ``eqEnable(#[Aucun][Basilique]#)``       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
 | ``tag(montag,toto)``                   | Devuelve el valor de "montag" si existe, de lo contrario devuelve el valor "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Hidrometría de devoluciones                  |
 
@@ -461,14 +461,14 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag). El comando "Restablecer a SI" permite restablecer el estado de "SI" (este estado se utiliza para la no repetición de las acciones de un "SI" si pasa por segunda vez consecutiva en él)
 - **Detener** (stop) : Detener el escenario.
 - **Esperar** (wait) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos (s).
-- **Laller au design** (gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
+- **Ir al diseño** (gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
 - **Añadir un Registro** (log) : Le permite agregar un mensaje a los registros.
 - **Crear mensaje** (message) : Agregar un mensaje al centro de mensajes.
-- **Lactiver/ /Désactiver Masquer/ /afficher un équipement** (equipement) : Le permite modificar las propiedades de los equipos visibles / invisibles, activos / inactivos.
+- **Activar / Desactivar Ocultar / mostrar equipo** (equipement) : Le permite modificar las propiedades de los equipos visibles / invisibles, activos / inactivos.
 - **Hacer una solicitud** (ask) : Permite indicar a Jeedom que es necesario hacerle una pregunta al usuario. La respuesta se almacena en una variable, entonces solo tiene que probar su valor.
     Por el momento, solo los complementos sms, slack, telegram y snips son compatibles, así como la aplicación móvil.
     Atención, esta función está bloqueando. Mientras no haya respuesta o no se alcance el tiempo de espera, el escenario espera.
-- **Larrêter Jeedom** (jeedom_poweroff) : Pídale a Jeedom que cierre.
+- **Stop Jeedom** (jeedom_poweroff) : Pídale a Jeedom que cierre.
 - **Devolver un texto / datos** (vuelta_escenario) : Devuelve un texto o un valor para una interacción por ejemplo.
 - **Icono** (icon) : Permite cambiar el ícono de representación del escenario.
 - **Advertencia** (alert) : Muestra un pequeño mensaje de alerta en todos los navegadores que tienen abierta una página de Jeedom. Además, puedes elegir 4 niveles de alerta.

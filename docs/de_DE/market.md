@@ -31,7 +31,7 @@ Für die Profis :
 - **Benutzer** : Allgemeine Nutzungsbedingungen (lesen Sie sie sorgfältig durch, da sie Sie verpflichten).
 - **Entwickler** : Nutzungsbedingungen für Entwickler.
     - **Tickets**
-- **Namebre de tickets** : Anzahl der Tickets für den aktuellen Monat und Ihr Limit.
+- **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat und Ihr Limit.
 - **Unterstützung** : Schaltfläche zum Senden einer Supportanfrage (auch über das Ausrufezeichen oben rechts auf dem Markt oder in Ihrem Jeedom zugänglich).
     - **Zugang zu Betas**
 - **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können).
@@ -47,7 +47,7 @@ Für die Profis :
     - **Jeedom** : Ihr Service Pack.
     - **Geben Sie eine Service Pack-Nummer ein** : Hier können Sie Ihre Service Pack-Nummer eingeben (diese finden Sie in der E-Mail, die Jeedom während Ihrer Bestellung gesendet hat).
 - **Installationsschlüssel**
-    - **Namebre de clefs d'installation** : Zeigt die Anzahl der Jeedom-Installationen an, die derzeit mit Ihrem Konto verknüpft sind, sowie das autorisierte Limit.
+    - **Anzahl der Installationsschlüssel** : Zeigt die Anzahl der Jeedom-Installationen an, die derzeit mit Ihrem Konto verknüpft sind, sowie das autorisierte Limit.
 
 > **Spitze**
 >

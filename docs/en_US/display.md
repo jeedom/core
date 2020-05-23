@@ -6,9 +6,9 @@ This page allows you to gather on a single page the different elements configure
 ## Information
 
 On the top of the page, we find :
-- **Last namebre d'objets** : Total number of objects configured in our Jeedom, including inactive elements.
-- **Last namebre equipments** : Same for the equipment.
-- **Last namebre de commandes** : Same for orders.
+- **Number of objects** : Total number of objects configured in our Jeedom, including inactive elements.
+- **Number of equipments** : Same for the equipment.
+- **Number of orders** : Same for orders.
 - **Inactive** : Check this box if you want inactive items to be displayed on this page.
 - **Search** : Search for a particular item. It can be the name of a device, an order or the name of the plugin by which the device was created.
 - **CSV export** : Allows you to export all objects, equipment and their commands to a CSV file.
@@ -44,7 +44,7 @@ On each equipment we find :
 - **Invisible** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
 If the equipment plugin is disabled, the two icons on the right do not appear:
-- **Theien externe** (square with arrow) : Allows to open in a new tab the equipment configuration page.
+- **External link** (square with arrow) : Allows to open in a new tab the equipment configuration page.
 - **Advanced configuration** (toothed wheel) : opens the advanced equipment configuration window.
 
 > By clicking on the line containing the name of the equipment, you will display all the commands for this equipment. By clicking on an order, you will access the order configuration window.
@@ -105,8 +105,8 @@ new. For equipment, only the value **style** is currently used, it allows to ins
 
 This part allows you to choose between the standard layout of the commands (side by side in the widget), or in table mode. Nothing to set in default mode. Here are the options available in mode
 **Board** :
-- **Last namebre de lignes**
-- **Last namebre de colonnes**
+- **Number of lines**
+- **Number of columns**
 - **Center in boxes** : Check the box to center the orders in the boxes.
 - **General style of boxes (CSS)** : Allows you to define the general style in CSS code.
 - **Table style (CSS)** : Allows you to define the style of the table only.
@@ -124,7 +124,7 @@ this :
 
 This tab allows you to have information on the battery of the equipment and to define alerts in relation to it. Here are the types of information that can be found :
 
-- **Type de piThe**,
+- **Type de pile**,
 - **Latest feedback**,
 - **Remaining level**, (if of course your equipment runs on battery).
 

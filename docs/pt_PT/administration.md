@@ -58,7 +58,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 > No entanto, no caso de manuseio inadequado do seu Jeedom, a equipe do Jeedom não pode ser responsabilizada e pode recusar qualquer solicitação de suporte.
 
 - **Acesso interno** : informações para ingressar na Jeedom a partir de equipamentos na mesma rede que a Jeedom (LAN)
-    - **Ok/NOk** : indica se a configuração interna da rede está correta.
+    - **OK / NOK** : indica se a configuração interna da rede está correta.
     - **Protocolo** : o protocolo a ser usado, geralmente HTTP.
     - **Morada URL  ou IP** : IP Jeedom para entrar.
     - **Porta** : a porta da interface da web Jeedom, geralmente 80.
@@ -66,7 +66,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
 
 - **Acesso externo** : informações para acessar o Jeedom de fora da rede local. A ser concluído apenas se você não estiver usando o Jeedom DNS.
-    - **Ok/NOk** : indica se a configuração de rede externa está correta.
+    - **OK / NOK** : indica se a configuração de rede externa está correta.
     - **Protocolo** : protocolo usado para acesso ao ar livre.
     - **Morada URL  ou IP** : IP externo, se fixo. Caso contrário, forneça o URL apontando para o endereço IP externo da sua rede.
     - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
@@ -102,7 +102,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Cronograma
 
-- **Nomebre maximum d'évènements** : Define o número máximo de eventos a serem exibidos na linha do tempo.
+- **O número máximo de eventos** : Define o número máximo de eventos a serem exibidos na linha do tempo.
 - **Excluir todos os eventos** : Esvaziar a linha do tempo de todos os seus eventos registrados.
 
 ### Mensagens
@@ -129,7 +129,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 - **Log Motor** : Permite alterar o mecanismo de log para, por exemplo, enviá-los para um daemon syslog (d).
 - **Logs de formato** : Formato de log a ser usado (Cuidado : isso não afeta os logs do daemon).
-- **Nomebre de lignes maximum dans un fichier de log** : Define o número máximo de linhas em um arquivo de log. Recomenda-se não tocar nesse valor, pois um valor muito grande pode preencher o sistema de arquivos e / ou tornar o Jeedom incapaz de exibir o log.
+- **O número máximo de linhas em um arquivo de log** : Define o número máximo de linhas em um arquivo de log. Recomenda-se não tocar nesse valor, pois um valor muito grande pode preencher o sistema de arquivos e / ou tornar o Jeedom incapaz de exibir o log.
 - **Nível de log padrão** : Quando você seleciona "Padrão", para o nível de um log no Jeedom, isso será usado.
 
 Abaixo, você encontrará uma tabela para gerenciar com precisão o nível de log de elementos essenciais do Jeedom, bem como o de plugins.
@@ -176,12 +176,12 @@ Adicionar resumos de objetos. Essas informações são exibidas no canto superio
 - **Unidade** : Unidade de resumo.
 - **Método de contagem** : Se você contar dados binários, terá que colocar esse valor em binário, por exemplo, se contar o número de luzes acesas, mas apenas o valor do dimmer (0 a 100), precisará colocar binários, como o que Jeedom considerou se o valor for maior que 1, a lâmpada estará acesa.
 - **Mostrar se o valor é 0** : Marque esta caixa para exibir o valor, mesmo quando for 0.
-- **Lier à un virtuel** : Lança a criação de pedidos virtuais que têm como valor aqueles do resumo.
+- **Link para um virtual** : Lança a criação de pedidos virtuais que têm como valor aqueles do resumo.
 - **Excluir resumo** : O último botão, na extrema direita, exclui o resumo da linha.
 
 ## Guia Equipamento
 
-- **Nomebre d'échecs avant désactivation de l'équipement** : Número de falhas de comunicação com o equipamento antes da desativação do equipamento (uma mensagem avisará se isso acontecer).
+- **Falha Contagem off equipamentos** : Número de falhas de comunicação com o equipamento antes da desativação do equipamento (uma mensagem avisará se isso acontecer).
 - **Limiares da bateria** : Permite gerenciar os limites de alerta global nas pilhas.
 
 ## Guia Relatórios
@@ -278,7 +278,7 @@ Aqui estão as diferentes opções disponíveis :
 
 ### Logar
 
-- **Nomebre d'échecs tolérés** : define o número de tentativas sucessivas permitidas antes de banir o IP
+- **Número de falhas tolerada** : define o número de tentativas sucessivas permitidas antes de banir o IP
 - **Tempo máximo entre falhas (em segundos)** : tempo máximo para 2 tentativas serem consideradas sucessivas
 - **Duração do banimento (em segundos), -1 para o infinito** : Tempo de proibição de IP
 - **IP "branco"** : lista de IPs que nunca podem ser banidos

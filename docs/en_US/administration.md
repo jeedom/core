@@ -58,7 +58,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 > However, in the event of improper handling of your Jeedom, the Jeedom team cannot be held responsible and may refuse any request for support.
 
 - **Internal access** : information for joining Jeedom from equipment on the same network as Jeedom (LAN)
-    - **Ok/NOk** : indicates if the internal network configuration is correct.
+    - **OK / NOK** : indicates if the internal network configuration is correct.
     - **Protocol** : the protocol to use, often HTTP.
     - **Address URLs ou IP** : Jeedom IP to enter.
     - **Harbor** : the port of the Jeedom web interface, generally 80.
@@ -66,7 +66,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
 - **External access** : information to reach Jeedom from outside the local network. To be completed only if you are not using Jeedom DNS.
-    - **Ok/NOk** : indicates whether the external network configuration is correct.
+    - **OK / NOK** : indicates whether the external network configuration is correct.
     - **Protocol** : protocol used for outdoor access.
     - **Address URLs ou IP** : External IP, if fixed. Otherwise, give the URL pointing to the external IP address of your network.
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
@@ -102,7 +102,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 ### Timeline
 
-- **Last namebre maximum d'évènements** : Defines the maximum number of events to display in the timeline.
+- **Maximum number of events** : Defines the maximum number of events to display in the timeline.
 - **Delete all events** : Empty the timeline of all its recorded events.
 
 ### Posts
@@ -129,7 +129,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 - **Log engine** : Allows you to change the log engine to, for example, send them to a syslog daemon (d).
 - **Log format** : Log format to use (Caution : it doesn't affect daemon logs).
-- **Last namebre de lignes maximum dans un fichier de log** : Defines the maximum number of lines in a log file. It is recommended not to touch this value, as a too large value could fill the file system and / or make Jeedom unable to display the log.
+- **Maximum number of lines in a log file** : Defines the maximum number of lines in a log file. It is recommended not to touch this value, as a too large value could fill the file system and / or make Jeedom unable to display the log.
 - **Default log level** : When you select &quot;Default&quot;, for the level of a log in Jeedom, this will be used.
 
 Below you will find a table for finely managing the log level of essential elements of Jeedom as well as that of plugins.
@@ -176,12 +176,12 @@ Add object summaries. This information is displayed at the top right of the Jeed
 - **Unit** : Summary unit.
 - **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
 - **Show if value is 0** : Check this box to display the value, even when it is 0.
-- **Theier à un virtuel** : Launches the creation of virtual orders having for value those of the summary.
+- **Link to a virtual** : Launches the creation of virtual orders having for value those of the summary.
 - **Delete summary** : The last button, on the far right, deletes the summary from the line.
 
 ## Equipment tab
 
-- **Last namebre d'échecs avant désactivation de l'équipement** : Number of communications failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
+- **Number of failures before deactivation of the equipment** : Number of communications failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
 - **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
 
 ## Reports tab
@@ -278,7 +278,7 @@ Here are the different options available :
 
 ### Log in
 
-- **Last namebre d'échecs tolérés** : defines the number of successive attempts allowed before banning the IP
+- **Number of failures tolerated** : defines the number of successive attempts allowed before banning the IP
 - **Maximum time between failures (in seconds)** : maximum time for 2 attempts to be considered successive
 - **Duration of banishment (in seconds), -1 for infinity** : IP ban time
 - **IP "white"** : list of IPs that can never be banned

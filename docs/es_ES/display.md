@@ -6,9 +6,9 @@ Esta página le permite reunir en una sola página los diferentes elementos conf
 ## Información
 
 En la parte superior de la página, encontramos :
-- **Apellidobre d'objets** : Número total de objetos configurados en nuestro Jeedom, incluidos elementos inactivos.
-- **Apellidobre equipos** : Lo mismo para el equipo.
-- **Apellidobre de commandes** : Lo mismo para pedidos.
+- **Numero de objetos** : Número total de objetos configurados en nuestro Jeedom, incluidos elementos inactivos.
+- **Numero de equipos** : Lo mismo para el equipo.
+- **Numero de ordenes** : Lo mismo para pedidos.
 - **Inactivo** : Marque esta casilla si desea que se muestren elementos inactivos en esta página.
 - **Buscar** : Buscar un artículo en particular. Puede ser el nombre de un dispositivo, un pedido o el nombre del complemento por el cual se creó el dispositivo.
 - **Exportación CSV** : Le permite exportar todos los objetos, equipos y sus comandos a un archivo CSV.
@@ -44,7 +44,7 @@ En cada equipo encontramos :
 - **Invisible** (ojo cruzado) : Significa que el equipo es invisible (si no está allí, el equipo es visible).
 
 Si el complemento del equipo está desactivado, los dos íconos a la derecha no aparecen:
-- **Laien externe** (cuadrado con flecha) : Permite abrir en una nueva pestaña la página de configuración del equipo.
+- **Enlace externo** (cuadrado con flecha) : Permite abrir en una nueva pestaña la página de configuración del equipo.
 - **Configuración avanzada** (rueda dentada) : abre la ventana de configuración avanzada del equipo.
 
 > Al hacer clic en la línea que contiene el nombre del equipo, mostrará todos los comandos para este equipo. Al hacer clic en un pedido, accederá a la ventana de configuración del pedido.
@@ -105,8 +105,8 @@ de nuevo. Para equipos, solo el valor **estilo** actualmente se usa, permite ins
 
 Esta parte le permite elegir entre el diseño estándar de los comandos (uno al lado del otro en el widget) o en modo de tabla. Nada que configurar en modo predeterminado. Aquí están las opciones disponibles en modo
 **Mesa** :
-- **Apellidobre de lignes**
-- **Apellidobre de colonnes**
+- **Numero de lineas**
+- **Numero de columnas**
 - **Centro en cajas** : Marque la casilla para centrar los pedidos en las casillas.
 - **Estilo general de cuadros (CSS)** : Le permite definir el estilo general en código CSS.
 - **Estilo de tabla (CSS)** : Le permite definir solo el estilo de la tabla.
@@ -124,7 +124,7 @@ este :
 
 Esta pestaña le permite tener información sobre la batería del equipo y definir alertas en relación con él. Estos son los tipos de información que se pueden encontrar :
 
-- **Tipo de piLa**,
+- **Tipo de pile**,
 - **Últimos comentarios**,
 - **Nivel restante**, (si, por supuesto, su equipo funciona con batería).
 

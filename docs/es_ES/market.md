@@ -31,7 +31,7 @@ Para los profesionales :
 - **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
 - **Revelador** : condiciones de uso para desarrolladores.
     - **Entradas**
-- **Apellidobre de tickets** : Número de boletos para el mes actual y su límite.
+- **Numero de entradas** : Número de boletos para el mes actual y su límite.
 - **Apoyo** : Botón para enviar una solicitud de soporte (también accesible mediante el signo de exclamación en la esquina superior derecha del Market o en su Jeedom).
     - **Acceso a betas**
 - **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
@@ -47,7 +47,7 @@ Para los profesionales :
     - **Jeedom** : Su nivel de paquete de servicio.
     - **Ingrese un número de paquete de servicio** : Le permite ingresar su número de paquete de servicio (se puede encontrar en el correo electrónico enviado por Jeedom durante su pedido).
 - **Clave de instalación**
-    - **Apellidobre de clefs d'installation** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
+    - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
 
 > **Punta**
 >

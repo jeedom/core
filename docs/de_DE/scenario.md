@@ -37,7 +37,7 @@ Nach dem Klicken auf **Hinzufügen**, Sie müssen den Namen Ihres Szenarios ausw
 Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dieses Szenarios :
 
 - **Identifikation** : Neben dem Wort **General**, Dies ist die Szenariokennung.
-- **Status** : *Bisrrêté* oder *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
+- **Status** : *Verhaftet* oder *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
 - **Vorheriger / nächster Zustand** : Aktion abbrechen / wiederholen.
 - **Hinzufügen un Block** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)).
 - **Log** : Zeigt die Szenarioprotokolle an.
@@ -47,7 +47,7 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
 - **Export** : Ermöglicht es Ihnen, eine reine Textversion des Szenarios zu erhalten.
 - **Schablone** : Ermöglicht den Zugriff auf die Vorlagen und die Anwendung einer Vorlage auf das Szenario aus dem Markt. (am Ende der Seite erklärt).
 - **Suche** : Entfaltet ein Suchfeld für die Suche im Szenario. Diese Suche entfaltet die reduzierten Blöcke bei Bedarf und faltet sie nach der Suche zurück.
-- **Exécuter** : Ermöglicht das manuelle Starten des Szenarios (unabhängig von den Auslösern)). Speichern Sie vorher, um die Änderungen zu berücksichtigen.
+- **Ausführen** : Ermöglicht das manuelle Starten des Szenarios (unabhängig von den Auslösern)). Speichern Sie vorher, um die Änderungen zu berücksichtigen.
 - **Entfernen** : Szenario löschen.
 - **Speichern** : Speichern Sie die vorgenommenen Änderungen.
 
@@ -158,7 +158,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 #### Bisccès aux commandes (capteurs und actionneurs)
 
 -  ``cmd::byString($string);`` : Gibt das entsprechende Befehlsobjekt zurück.
-    -   ``$string``: Link zur gewünschten Bestellung : ``#[objund][Gerät][commande]#`` (ex : ``#[Bisppartement][Bislarme][Aktiva]#``)
+    -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][Gerät][commande]#`` (ex : ``#[Appartement][Alarme][Aktiva]#``)
 -  ``cmd::byId($id);`` : Gibt das entsprechende Befehlsobjekt zurück.
     -  ``$id`` : Bestellnummer.
 -  ``$cmd->execCmd($options = null);`` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
@@ -246,8 +246,8 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 - ``<`` : Streng weniger als.
 - ``<=`` : Kleiner als oder gleich.
 - ``!=`` : Anders als, ist nicht gleich.
-- ``matches`` : Enthält. Ex : ``[Salle de bain][Hydrometrie][undat] matches "/.humide/."``.
-- ``not ( …​ matches …​)`` : Enthält nicht. Ex :  ``not([Salle de bain][Hydrometrie][undat] matches "/.humide/.")``.
+- ``matches`` : Enthält. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/.humide/."``.
+- ``not ( …​ matches …​)`` : Enthält nicht. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/.humide/.")``.
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
@@ -299,15 +299,15 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
-- ``average(commande,période)`` und ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``average(commande,période)`` und ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``min(commande,période)`` und ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``min(commande,période)`` und ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``max(commande,période)`` und ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``max(commande,période)`` und ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` und ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` und ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` und ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` und ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gibt den Trend der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -326,9 +326,9 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``age(commande)`` : Gibt das Alter des Befehlswerts in Sekunden an (``collecDate``)
     -1 : Der Befehl existiert nicht oder ist nicht vom Typ info.
 
-- ``stateChanges(commande,[valeur], période)`` und ``stateChangesBetween(commande, [valeur], start, end)`` : Geben Sie die Anzahl der Statusänderungen (in Richtung eines bestimmten Werts, falls angegeben, oder insgesamt, falls nicht) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` und ``stateChangesBetween(commande, [valeur], start, end)`` : Geben Sie die Anzahl der Statusänderungen (in Richtung eines bestimmten Werts, falls angegeben, oder insgesamt, falls nicht) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Gibt den zuletzt für das Gerät zwischen den beiden angeforderten Terminals aufgezeichneten Wert an (in der Form Ymd H:i:s oder [expression PHP](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Gibt den zuletzt für das Gerät zwischen den beiden angeforderten Terminals aufgezeichneten Wert an (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Ruft standardmäßig den Wert einer Variablen oder den gewünschten Wert ab.
 
@@ -400,11 +400,11 @@ Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschieden
 | ``stateChanges(prise,1,période)``      | Rückgabe 1 : Der Stecker leuchtet während des Zeitraums einmal (auf 1 ändern)                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today)`` | Gibt die zuletzt gestern aufgezeichnete Temperatur zurück.                    |
 | ``variable(plop,10)``                  | Gibt den Wert der Variablen plop oder 10 zurück, wenn sie leer ist oder nicht existiert                         |
-| ``scenario(#[Salle de bain][Lumière][Bisuto]#)`` | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
-| ``lastScenarioExecution(#[Salle de bain][Lumière][Bisuto]#)``   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
+| ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
+| ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
 | ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Rückgabe 2015-01-01 17:45:12          |
 | ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Rückgabe 2015-01-01 17:50:12          |
-| ``eqEnable(#[Bisucun][Basilique]#)``       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
+| ``eqEnable(#[Aucun][Basilique]#)``       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
 | ``tag(montag,toto)``                   | Gibt den Wert von "montag" zurück, falls vorhanden, andernfalls wird der Wert "toto" zurückgegeben"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Gibt Hydrometrie zurück                  |
 
@@ -457,18 +457,18 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 
 - **Pause** (sleep) : Pause von x Sekunden (s).
 - **Variable** (variable) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
-- **Entfernen Variable** (delete_variable) : Ermöglicht das Löschen einer Variablen.
+- **Entfernen variable** (delete_variable) : Ermöglicht das Löschen einer Variablen.
 - **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her). Mit dem Befehl "Auf SI zurücksetzen" können Sie den Status von "SI" zurücksetzen (dieser Status wird verwendet, um die Aktionen eines "SI" nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben)
 - **STOP** (stop) : Stoppen Sie das Szenario.
 - **Erwarten** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
-- **Bisller au design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
+- **Gehe zum Design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
 - **Hinzufügen un log** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
 - **Nachricht erstellen** (message) : Fügen Sie dem Nachrichtencenter eine Nachricht hinzu.
-- **Bisctiver/.Désactiver Masquer/.afficher un équipement** (equipement) : Ermöglicht das Ändern der Eigenschaften von sichtbaren / unsichtbaren, aktiven / inaktiven Geräten.
+- **Geräte ausblenden / deaktivieren** (equipement) : Ermöglicht das Ändern der Eigenschaften von sichtbaren / unsichtbaren, aktiven / inaktiven Geräten.
 - **Stellen Sie eine Anfrage** (ask) : Wird verwendet, um Jeedom anzuzeigen, dass dem Benutzer eine Frage gestellt werden soll. Die Antwort wird in einer Variablen gespeichert, dann müssen Sie nur noch ihren Wert testen.
     Momentan sind nur SMS-, Slack-, Telegramm- und Snips-Plugins sowie die mobile Anwendung kompatibel.
     Achtung, diese Funktion blockiert. Solange keine Antwort erfolgt oder das Zeitlimit nicht erreicht wird, wartet das Szenario.
-- **Bisrrêter Jeedom** (jeedom_poweroff) : Bitten Sie Jeedom, herunterzufahren.
+- **Stoppen Sie Jeedom** (jeedom_poweroff) : Bitten Sie Jeedom, herunterzufahren.
 - **Geben Sie einen Text / Daten zurück** (Szenario_return) : Gibt beispielsweise einen Text oder einen Wert für eine Interaktion zurück.
 - **Symbol** (icon) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
 - **Warnung** (alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.

@@ -58,7 +58,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 > Sin embargo, en caso de manejo inadecuado de su Jeedom, el equipo de Jeedom no se hace responsable y puede rechazar cualquier solicitud de soporte.
 
 - **Acceso interno** : información para unirse a Jeedom desde equipos en la misma red que Jeedom (LAN)
-    - **Bueno/NBueno** : indica si la configuración de la red interna es correcta.
+    - **OK / NOK** : indica si la configuración de la red interna es correcta.
     - **Protocolo** : el protocolo a usar, a menudo HTTP.
     - **Dirección URL ou IP** : Jeedom IP para entrar.
     - **Puerto** : el puerto de la interfaz web de Jeedom, generalmente 80.
@@ -66,7 +66,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - **Complementar** : el fragmento de URL adicional (ejemplo : / jeedom) para acceder a Jeedom.
 
 - **Acceso externo** : información para llegar a Jeedom desde fuera de la red local. Para completar solo si no está utilizando Jeedom DNS.
-    - **Bueno/NBueno** : indica si la configuración de red externa es correcta.
+    - **OK / NOK** : indica si la configuración de red externa es correcta.
     - **Protocolo** : protocolo utilizado para acceso al exterior.
     - **Dirección URL ou IP** : IP externa, si está fija. De lo contrario, proporcione la URL que apunta a la dirección IP externa de su red.
     - **Complementar** : el fragmento de URL adicional (ejemplo : / jeedom) para acceder a Jeedom.
@@ -102,7 +102,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 ### Línea de tiempo
 
-- **Apellidobre maximum d'évènements** : Define el número máximo de eventos para mostrar en la línea de tiempo.
+- **Numero maximo de eventos** : Define el número máximo de eventos para mostrar en la línea de tiempo.
 - **Eliminar todos los eventos** : Vaciar la línea de tiempo de todos sus eventos grabados.
 
 ### Mensajes
@@ -129,7 +129,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 - **Motor de registro** : Le permite cambiar el motor de registro para, por ejemplo, enviarlos a un demonio syslog (d).
 - **Formato de registro** : Formato de registro a utilizar (Precaución : no afecta los registros de demonios).
-- **Apellidobre de lignes maximum dans un fichier de log** : Define el número máximo de líneas en un archivo de registro. Se recomienda no tocar este valor, ya que un valor demasiado grande podría llenar el sistema de archivos y / o hacer que Jeedom no pueda mostrar el registro.
+- **Número máximo de líneas en un archivo de registro** : Define el número máximo de líneas en un archivo de registro. Se recomienda no tocar este valor, ya que un valor demasiado grande podría llenar el sistema de archivos y / o hacer que Jeedom no pueda mostrar el registro.
 - **Nivel de registro predeterminado** : Cuando selecciona &quot;Predeterminado&quot;, para el nivel de un registro en Jeedom, se utilizará.
 
 A continuación encontrará una tabla para administrar con precisión el nivel de registro de los elementos esenciales de Jeedom, así como el de los complementos.
@@ -176,12 +176,12 @@ Agregar resúmenes de objetos. Esta información se muestra en la parte superior
 - **Unidad** : Unidad de resumen.
 - **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
 - **Mostrar si el valor es 0** : Marque esta casilla para mostrar el valor, incluso cuando sea 0.
-- **Laier à un virtuel** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen.
+- **Enlace a un virtual** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen.
 - **Eliminar resumen** : El último botón, en el extremo derecho, elimina el resumen de la línea.
 
 ## Pestaña del equipo
 
-- **Apellidobre d'échecs avant désactivation de l'équipement** : Número de fallas de comunicación con el equipo antes de la desactivación del equipo (un mensaje le avisará si esto sucede).
+- **Número de fallas antes de la desactivación del equipo** : Número de fallas de comunicación con el equipo antes de la desactivación del equipo (un mensaje le avisará si esto sucede).
 - **Umbrales de la batería** : Le permite administrar los umbrales de alerta global en las pilas.
 
 ## Pestaña Informes
@@ -278,7 +278,7 @@ Aquí están las diferentes opciones disponibles :
 
 ### Acceder
 
-- **Apellidobre d'échecs tolérés** : define el número de intentos sucesivos permitidos antes de prohibir la IP
+- **Número de fallas toleradas** : define el número de intentos sucesivos permitidos antes de prohibir la IP
 - **Tiempo máximo entre fallas (en segundos)** : tiempo máximo para 2 intentos para ser considerado sucesivo
 - **Duración del destierro (en segundos), -1 por infinito** : Tiempo de prohibición de IP
 - **IP "blanco"** : lista de IP que nunca se pueden prohibir

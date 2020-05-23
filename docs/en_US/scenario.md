@@ -37,7 +37,7 @@ After clicking on **Add**, you must choose the name of your scenario. You are th
 Before that, at the top of the page, there are some useful functions to manage this scenario :
 
 - **Id** : Next to the word **General**, this is the scenario identifier.
-- **status** : *ATrrêté* or *Running*, it indicates the current state of the scenario.
+- **status** : *Stopped* or *Running*, it indicates the current state of the scenario.
 - **Previous / next state** : Cancel / redo an action.
 - **Add un block** : Allows you to add a block of the desired type to the scenario (see below).
 - **Log** : Displays the scenario logs.
@@ -47,7 +47,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Export** : Allows you to obtain a pure text version of the scenario.
 - **Template** : Allows you to access the templates and apply one to the scenario from the market. (explained at the bottom of the page).
 - **Research** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
-- **Exécuter** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
+- **Perform** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
 - **Remove** : Delete scenario.
 - **Save** : Save the changes made.
 
@@ -158,7 +158,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 #### ATccès aux commandes (capteurs and actionneurs)
 
 -  ``cmd::byString($string);`` : Returns the corresponding command object.
-    -   ``$string``: Link to the desired order : ``#[objand][Equipment][commande]#`` (Ex : ``#[ATppartement][ATlarme][Active]#``)
+    -   ``$string``: Link to the desired order : ``#[objet][Equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Active]#``)
 -  ``cmd::byId($id);`` : Returns the corresponding command object.
     -  ``$id`` : Order ID.
 -  ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
@@ -246,8 +246,8 @@ You can use any of the following symbols for comparisons in conditions :
 - ``<`` : Strictly less than.
 - ``<=`` : Less than or equal to.
 - ``!=`` : Different from, is not equal to.
-- ``matches`` : Contains. Ex : ``[Salle de bain][Hydrometrie][andat] matches "/humide/"``.
-- ``not ( …​ matches …​)`` : Does not contain. Ex :  ``not([Salle de bain][Hydrometrie][andat] matches "/humide/")``.
+- ``matches`` : Contains. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/humide/"``.
+- ``not ( …​ matches …​)`` : Does not contain. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/humide/")``.
 
 You can combine any comparison with the following operators :
 
@@ -299,15 +299,15 @@ You also have the following additional tags if your scenario was triggered by an
 
 Several functions are available for the equipment :
 
-- ``average(commande,période)`` and ``averageBetween(commande,start,end)`` : Give the average of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``average(commande,période)`` and ``averageBetween(commande,start,end)`` : Give the average of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``min(commande,période)`` and ``minBetween(commande,start,end)`` : Give the minimum order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``min(commande,période)`` and ``minBetween(commande,start,end)`` : Give the minimum order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``max(commande,période)`` and ``maxBetween(commande,start,end)`` : Give the maximum of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``max(commande,période)`` and ``maxBetween(commande,start,end)`` : Give the maximum of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` and ``durationbetween(commande,valeur,start,end)`` : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` and ``durationbetween(commande,valeur,start,end)`` : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` and ``statisticsBetween(commande,calcul,start,end)`` : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` and ``statisticsBetween(commande,calcul,start,end)`` : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gives the trend of the order over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -326,9 +326,9 @@ Several functions are available for the equipment :
 - ``age(commande)`` : Gives the age in seconds of the value of the command (``collecDate``)
     -1 : The command does not exist or it is not of type info.
 
-- ``stateChanges(commande,[valeur], période)`` and ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of state changes (towards a certain value if indicated, or in total if not) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` and ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of state changes (towards a certain value if indicated, or in total if not) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Gives the last value recorded for the equipment between the 2 requested terminals (in the form Ymd H:i:s or [Expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Gives the last value recorded for the equipment between the 2 requested terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Retrieves the value of a variable or the desired value by default.
 
@@ -400,11 +400,11 @@ Here are practical examples to understand the values returned by these different
 | ``stateChanges(prise,1,période)``      | Returns 1 : the plug is lit (change to 1) once during the period                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today)`` | Returns the last temperature recorded yesterday.                    |
 | ``variable(plop,10)``                  | Returns the value of the variable plop or 10 if it is empty or does not exist                         |
-| ``scenario(#[Salle de bain][Lumière][ATuto]#)`` | Returns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent                         |
-| ``lastScenarioExecution(#[Salle de bain][Lumière][ATuto]#)``   | Returns 300 if the scenario was started for the last time 5 min ago                                  |
+| ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Returns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent                         |
+| ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Returns 300 if the scenario was started for the last time 5 min ago                                  |
 | ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns 2015-01-01 17:45:12          |
 | ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Returns 2015-01-01 17:50:12          |
-| ``eqEnable(#[ATucun][Basilique]#)``       | Returns -2 if the equipment is not found, 1 if the equipment is active and 0 if it is inactive          |
+| ``eqEnable(#[Aucun][Basilique]#)``       | Returns -2 if the equipment is not found, 1 if the equipment is active and 0 if it is inactive          |
 | ``tag(montag,toto)``                   | Returns the value of "montag" if it exists otherwise returns the value "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns Hydrometry                  |
 
@@ -457,18 +457,18 @@ In addition to home automation commands, you have access to the following action
 
 - **Pause** (sleep) : Pause of x second (s).
 - **Variable** (variable) : Creation / modification of a variable or the value of a variable.
-- **Remove Variable** (delete_variable) : Allows you to delete a variable.
+- **Remove variable** (delete_variable) : Allows you to delete a variable.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it)
 - **STOP** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
-- **ATller au design** (gotodesign) : Change the design displayed on all browsers by the requested design.
+- **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
 - **Add un log** (log) : Allows you to add a message to the logs.
 - **Create message** (message) : Add a message to the message center.
-- **ATctiver/Désactiver Masquer/afficher un équipement** (equipement) : Allows you to modify the properties of visible / invisible, active / inactive equipment.
+- **Activate / Deactivate Hide / display equipment** (equipement) : Allows you to modify the properties of visible / invisible, active / inactive equipment.
 - **To make a request** (ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
     For the moment, only sms, slack, telegram and snips plugins are compatible, as well as the mobile application.
     Attention, this function is blocking. As long as there is no response or the timeout is not reached, the scenario waits.
-- **ATrrêter Jeedom** (jeedom_poweroff) : Ask Jeedom to shut down.
+- **Stop Jeedom** (jeedom_poweroff) : Ask Jeedom to shut down.
 - **Return a text / data** (scenario_return) : Returns a text or a value for an interaction for example.
 - **Icon** (icon) : Allows to change the icon of representation of the scenario.
 - **Alert** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
