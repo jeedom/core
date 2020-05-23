@@ -518,4 +518,4 @@ C'est dans cette *classe* que vous pouvez ajouter vos fonctions, vous y trouvere
 
 > **IMPORTANT**
 >
-> Si vous avez un souci, vous pouvez toujours revenir au fichier d'origine en copiant le contenu de user.function.class.sample.php dans user.function.class.php
+> Si vous avez un souci, vous pouvez toujours revenir au fichier d'origine en copiant le contenu de ``user.function.class.sample.php`` dans ``user.function.class.php``
