@@ -45,7 +45,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		if ($plugin->getHasDependency() == 1) {
 			$dependancy_info = $plugin->dependancy_info();
 			$html .= '<tr>';
-			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+			$html .= '<td style="text-align:right;padding-right:12px;width:35%;">';
 			$html .= '{{Dépendances}}';
 			$html .= '</td>';
 			switch ($dependancy_info['state']) {
@@ -78,7 +78,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				$alert = 'alert-success';
 			}
 			$html .= '<tr>';
-			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+			$html .= '<td style="text-align:right;padding-right:12px;width:35%;">';
 			$html .= '{{Configuration démon}}';
 			if ($deamon_info['launchable_message'] != '') {
 				$html .= ' <sup><i class="fas fa-question-circle tooltips" title="'.$deamon_info['launchable_message'].'"></i></sup>';
@@ -99,7 +99,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			}
 			$html .= '</tr>';
 			$html .= '<tr>';
-			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+			$html .= '<td style="text-align:right;padding-right:12px;width:35%;">';
 			$html .= '{{Statut démon}}';
 			$html .= '</td>';
 			switch ($deamon_info['state']) {
@@ -126,7 +126,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		if (method_exists($plugin->getId(), 'health')) {
 			foreach ($plugin_id::health() as $result) {
 				$html .= '<tr>';
-				$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+				$html .= '<td style="text-align:right;padding-right:12px;width:35%;">';
 				$html .= $result['test'];
 				if ($result['advice'] != '') {
 					$html .= ' <sup><i class="fas fa-question-circle tooltips" title="'.$result['advice'].'"></i></sup>';
@@ -200,7 +200,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 						$count = 0;
 						foreach (jeedom::health() as $datas) {
 							if ($count == 0) echo '<tr>';
-							echo '<td style="font-weight:bold;text-align:right;padding-right:12px;width:20%;">';
+							echo '<td style="text-align:right;padding-right:12px;width:20%;">';
 							echo $datas['name'];
 							if ($datas['comment'] != '') {
 								echo ' <sup><i class="fas fa-question-circle tooltips" title="'.$datas['comment'].'"></i></sup>';
@@ -221,7 +221,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 						}
 						echo '</tr>';
 						if ($globalhtml != '') {
-							echo '<tr><td style="font-weight:bold;text-align:right;padding-right:12px;">{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
+							echo '<tr><td style="text-align:right;padding-right:12px;">{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
 							if ($totalNok == 0 && $totalPending == 0) {
 								echo '<td class="alert alert-success">{{OK}}</td>';
 								echo '<td></td>';
@@ -257,7 +257,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 							<?php
 							foreach (get_loaded_extensions() as $name) {
 								if ($count == 0) echo '<tr>';
-								echo '<td style="font-weight:bold;text-align:right;padding-right:12px;width:10%;">';
+								echo '<td style="text-align:right;padding-right:12px;width:10%;">';
 								echo $name;
 								echo '</td>';
 								$count ++;
