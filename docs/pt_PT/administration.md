@@ -9,7 +9,7 @@ Embora muitos, a maioria dos parâmetros esteja configurada por padrão.
 
 Nesta guia, encontramos informações gerais sobre o Jeedom :
 
-- **Nome de votre Jeedom** : Identifique seu Jeedom, especialmente no mercado. Pode ser reutilizado em cenários ou para identificar um backup.
+- **Nome do seu Jeedom** : Identifique seu Jeedom, especialmente no mercado. Pode ser reutilizado em cenários ou para identificar um backup.
 - **Idioma** : Idioma usado no seu Jeedom.
 - **Sistema** : Tipo de hardware no qual o sistema em que o Jeedom é executado está instalado.
 - **Gerar traduções** : Gere traduções, cuidado, isso pode tornar seu sistema mais lento. Opção especialmente útil para desenvolvedores.
@@ -17,7 +17,7 @@ Nesta guia, encontramos informações gerais sobre o Jeedom :
 - **Servidor de tempo opcional** : Indica qual servidor de horário deve ser usado se você clicar em **Sincronização Time Force** (ser reservado para especialistas).
 - **Ignorar verificar o tempo** : diz ao Jeedom para não verificar se o tempo é consistente entre si e o sistema em que está sendo executado. Pode ser útil, por exemplo, se você não conectar o Jeedom à Internet e ele não tiver uma bateria PSTN no equipamento usado.
 - **Sistema** : Indica o tipo de hardware no qual o Jeedom está instalado.
-- **Chave d'installation** : Chave de hardware do seu Jeedom no mercado. Se o seu Jeedom não aparecer na lista do seu Jeedom no mercado, é recomendável clicar no botão **Restabelecer**.
+- **Key instalação** : Chave de hardware do seu Jeedom no mercado. Se o seu Jeedom não aparecer na lista do seu Jeedom no mercado, é recomendável clicar no botão **Restabelecer**.
 - **Última data conhecida** : Data registrada pela Jeedom, usada após uma reinicialização para sistemas sem bateria PSTN.
 
 ## Guia Interface
@@ -34,9 +34,9 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Tuiles
 
-- **Azulejos Pas horizontal** : Restringe a largura dos blocos a cada x pixels.
-- **Azulejos Pas vertical** : Restringe a altura dos blocos a cada x pixels.
-- **Azulejos Marge** : Espaço vertical e horizontal entre blocos, em pixels.
+- **Ladrilhos não horizontais** : Restringe a largura dos blocos a cada x pixels.
+- **Ladrilhos não verticais** : Restringe a altura dos blocos a cada x pixels.
+- **Ladrilhos de margem** : Espaço vertical e horizontal entre blocos, em pixels.
 
 ### Personnalisation
 
@@ -60,7 +60,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Acesso interno** : informações para ingressar na Jeedom a partir de equipamentos na mesma rede que a Jeedom (LAN)
     - **OK / NOK** : indica se a configuração interna da rede está correta.
     - **Protocolo** : o protocolo a ser usado, geralmente HTTP.
-    - **Morada URL  ou IP** : IP Jeedom para entrar.
+    - **URL ou endereço IP** : IP Jeedom para entrar.
     - **Porta** : a porta da interface da web Jeedom, geralmente 80.
         Observe que alterar a porta aqui não altera a porta Jeedom real, que permanecerá a mesma.
     - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
@@ -68,13 +68,13 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Acesso externo** : informações para acessar o Jeedom de fora da rede local. A ser concluído apenas se você não estiver usando o Jeedom DNS.
     - **OK / NOK** : indica se a configuração de rede externa está correta.
     - **Protocolo** : protocolo usado para acesso ao ar livre.
-    - **Morada URL  ou IP** : IP externo, se fixo. Caso contrário, forneça o URL apontando para o endereço IP externo da sua rede.
+    - **URL ou endereço IP** : IP externo, se fixo. Caso contrário, forneça o URL apontando para o endereço IP externo da sua rede.
     - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
 
 - **Proxy para o mercado** : ativação de proxy.
     - Marque a caixa ativar proxy.
-    - **Morada Proxy** : Digite o endereço do proxy,
-    - **Porta du Proxy** : Digite a porta do proxy,
+    - **Endereço de proxy** : Digite o endereço do proxy,
+    - **Porta proxy** : Digite a porta do proxy,
     - **Entrar** : Digite o login do proxy,
     - **Senha** : Digite a senha.
 
@@ -86,7 +86,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 >
 > Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
-- **Gestão avancée** : Esta parte pode não aparecer, dependendo da compatibilidade com o seu hardware.
+- **Gerenciamento avançado** : Esta parte pode não aparecer, dependendo da compatibilidade com o seu hardware.
     Você encontrará a lista de suas interfaces de rede. Você pode dizer ao Jeedom para não monitorar a rede clicando em **desativar o gerenciamento de rede Jeedom** (verifique se o Jeedom não está conectado a nenhuma rede). Você também pode especificar o intervalo de ip local no formato 192.168.1.* (para ser usado apenas em instalações do tipo docker).
 - **Mercado de proxy** : permite acesso remoto ao seu Jeedom sem a necessidade de um DNS, um IP fixo ou abrir as portas da sua caixa da Internet.
     - **Usando o DNS Jeedom** : ativa o DNS Jeedom (observe que isso requer pelo menos um service pack).
@@ -156,7 +156,7 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 
 ### Push
 
-- **URL  de push globale** : permite adicionar um URL para chamar no caso de uma atualização do pedido. Você pode usar as seguintes tags :
+- **URL esforço global** : permite adicionar um URL para chamar no caso de uma atualização do pedido. Você pode usar as seguintes tags :
 **\#value\#** para o valor do pedido, **\#cmd\_name\#** para o nome do comando,
 **\#cmd\_id\#** para o identificador exclusivo do pedido,
 **\#humanname\#** para o nome completo do pedido (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
@@ -228,7 +228,7 @@ Aqui você tem três parâmetros :
 -   O **interações automáticas** permitir que o Jeedom tente entender uma solicitação de interação, mesmo que não haja nenhuma definida. Ele procurará um nome de objeto e / ou equipamento e / ou ordem para tentar responder da melhor forma possível.
 
 -   O **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
-    - *Jeedom gardant le contexte :*
+    - *Jeedom mantendo o contexto :*
         - *Você* : Quanto ele está na sala ?
         - *Jeedom* : Temperatura 25.2 ° C
         - *Você* : e na sala de estar ?
@@ -246,11 +246,11 @@ Aqui você tem três parâmetros :
 
 Aqui estão as diferentes opções disponíveis :
 
-- **Ativar les interações automáticas** : Marque para ativar interações automáticas.
-- **Ativar les réponses contextuelles** : Marque para ativar interações contextuais.
+- **Activar interacções automatizados** : Marque para ativar interações automáticas.
+- **Ativar respostas contextuais** : Marque para ativar interações contextuais.
 - **Prioridade resposta contextual se a sentença começa** : Se a frase começar com a palavra que você preenche aqui, o Jeedom priorizará uma resposta contextual (você pode colocar várias palavras separadas por **;** ).
 - **Cortar uma interacção 2 se contiver** : O mesmo vale para a divisão de uma interação que contém várias perguntas. Aqui você fornece as palavras que separam as diferentes perguntas.
-- **Ativar les interactions "Avise-me"** : Marque para ativar interações de tipo **Avise-me**.
+- **Ativar interações "Notifique-me""** : Marque para ativar interações de tipo **Avise-me**.
 - **Resposta "Diga-me" se a frase começar com** : Se a frase começar com esta (s) palavra (s), o Jeedom procurará fazer uma interação do tipo **Avise-me** (você pode colocar várias palavras separadas por **;** ).
 - **Ordem de devolução padrão** : Comando de retorno padrão para interação de tipo **Avise-me** (usado, em particular, se você programou o alerta pela interface móvel)
 - **Sinônimo de objetos** : Lista de sinônimos para objetos (ex : rdc|térreo|subterrâneo|banheiro baixo|Casa de banho).
@@ -264,11 +264,11 @@ Aqui estão as diferentes opções disponíveis :
 
 ### LDAP
 
-- **Ativar l'authentification LDAP** : habilitar a autenticação por meio de um AD (LDAP).
+- **Habilitar a autenticação LDAP** : habilitar a autenticação por meio de um AD (LDAP).
 - **Anfitrião** : servidor que hospeda o AD.
 - **Domínio** : domínio do seu anúncio.
 - **DN base** : Base DN do seu AD.
-- **Nome d'utilisateur** : nome de usuário para o Jeedom para entrar no AD.
+- **Nome de Usuário** : nome de usuário para o Jeedom para entrar no AD.
 - **Senha** : senha para o Jeedom se conectar ao AD.
 - **Usuário pesquisar Campos** : campos de pesquisa de login do usuário. Geralmente uid para LDAP, SamAccountName para Windows AD.
 - **Filtro de administradores (opcional)** : os administradores filtram no AD (para gerenciamento de grupo, por exemplo)
@@ -294,7 +294,7 @@ A lista de IPs banidos está na parte inferior desta página. Você encontrará 
 - **Core Version** : Versão principal a recuperar.
 - **Verificar atualizações automaticamente** : Indique se deve verificar automaticamente se há novas atualizações (tenha cuidado para evitar sobrecarregar o mercado, o tempo de verificação pode mudar).
 
-### O dépôts
+### Depósitos
 
 Os repositórios são espaços de armazenamento (e serviço) para poder mover backups, recuperar plugins, recuperar o núcleo do Jeedom, etc.
 
@@ -307,8 +307,8 @@ Depósito usado para ativar o envio de plugins por arquivos.
 Depósito usado para conectar o Jeedom ao Github.
 
 - **Token** : Token para acesso ao depósito privado.
-- **Usuário ou organisation du dépôt pour le core Jeedom** : Nome de usuário ou organização no github para o núcleo.
-- **Nome du dépôt pour le core Jeedom** : Nome do repositório para core.
+- **Usuário ou organização do repositório principal da Jeedom** : Nome de usuário ou organização no github para o núcleo.
+- **Nome do repositório para o núcleo Jeedom** : Nome do repositório para core.
 - **Indústria do núcleo Jeedom** : Ramificação do repositório principal.
 
 #### Market
@@ -316,7 +316,7 @@ Depósito usado para conectar o Jeedom ao Github.
 Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Morada** : Morada du Mercado.(https://www.Jeedom.com/market).
-- **Nome d'utilisateur** : Seu nome de usuário no mercado.
+- **Nome de Usuário** : Seu nome de usuário no mercado.
 - **Senha** : Sua senha do Market.
 - **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom em risco de colidir entre eles).
 - **Senha da [nuvem de backup]** : Senha de backup na nuvem. IMPORTANTE, você não deve perdê-lo, não há como recuperá-lo. Sem ele, você não poderá mais restaurar seu Jeedom.
@@ -358,8 +358,8 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 
 #### URL
 
-- **URL  core Jeedom**
-- **URL  version core Jeedom**
+- **URL principal do Jeedom**
+- **URL da versão principal do Jeedom**
 
 ## Guia Cache
 

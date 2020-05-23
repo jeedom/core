@@ -9,7 +9,7 @@ Although many, a majority of parameters are configured by default.
 
 In this tab we find general information about Jeedom :
 
-- **Last name de votre Jeedom** : Identify your Jeedom, especially in the Market. It can be reused in scenarios or to identify a backup.
+- **Name of your Jeedom** : Identify your Jeedom, especially in the Market. It can be reused in scenarios or to identify a backup.
 - **Language** : Language used in your Jeedom.
 - **System** : Type of hardware on which the system where your Jeedom runs is installed.
 - **Generate translations** : Generate translations, beware, this can slow down your system. Option especially useful for developers.
@@ -17,7 +17,7 @@ In this tab we find general information about Jeedom :
 - **Optional time server** : Indicates which time server should be used if you click on **Force time synchronization** (to be reserved for experts).
 - **Skip time check** : tells Jeedom not to check if the time is consistent between itself and the system it is running on. May be useful for example, if you do not connect Jeedom to the Internet and it does not have a PSTN battery on the equipment used.
 - **System** : Indicates the type of hardware on which Jeedom is installed.
-- **Key d'installation** : Hardware key of your Jeedom on the Market. If your Jeedom does not appear in the list of your Jeedom on the Market, it is advisable to click on the button **Reset**.
+- **Installation key** : Hardware key of your Jeedom on the Market. If your Jeedom does not appear in the list of your Jeedom on the Market, it is advisable to click on the button **Reset**.
 - **Last known date** : Date recorded by Jeedom, used after a restart for systems without a PSTN battery.
 
 ## Interface tab
@@ -34,9 +34,9 @@ In this tab you will find the display customization parameters.
 
 ### Tuiles
 
-- **Roof tiles Pas horizontal** : Constrains the width of the tiles every x pixels.
-- **Roof tiles Pas vertical** : Constrains the height of the tiles every x pixels.
-- **Roof tiles Marge** : Vertical and horizontal space between tiles, in pixels.
+- **Tiles Not horizontal** : Constrains the width of the tiles every x pixels.
+- **Tiles Not vertical** : Constrains the height of the tiles every x pixels.
+- **Margin tiles** : Vertical and horizontal space between tiles, in pixels.
 
 ### Personnalisation
 
@@ -60,7 +60,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Internal access** : information for joining Jeedom from equipment on the same network as Jeedom (LAN)
     - **OK / NOK** : indicates if the internal network configuration is correct.
     - **Protocol** : the protocol to use, often HTTP.
-    - **Address URLs ou IP** : Jeedom IP to enter.
+    - **URL or IP address** : Jeedom IP to enter.
     - **Harbor** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual Jeedom port which will remain the same.
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
@@ -68,13 +68,13 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **External access** : information to reach Jeedom from outside the local network. To be completed only if you are not using Jeedom DNS.
     - **OK / NOK** : indicates whether the external network configuration is correct.
     - **Protocol** : protocol used for outdoor access.
-    - **Address URLs ou IP** : External IP, if fixed. Otherwise, give the URL pointing to the external IP address of your network.
+    - **URL or IP address** : External IP, if fixed. Otherwise, give the URL pointing to the external IP address of your network.
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
 - **Proxy for market** : proxy activation.
     - Check the enable proxy box.
-    - **Address Proxy** : Enter the proxy address,
-    - **Harbor du Proxy** : Enter the proxy port,
+    - **Proxy address** : Enter the proxy address,
+    - **Proxy port** : Enter the proxy port,
     - **Login** : Enter the proxy login,
     - **Password** : Enter the password.
 
@@ -86,7 +86,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 >
 > To find out if you need to set a value in the field **Complement**, look, when you log into Jeedom in your internet browser, if you need to add / Jeedom (or whatever) after the IP.
 
-- **Management avancée** : This part may not appear, depending on the compatibility with your hardware.
+- **Advanced management** : This part may not appear, depending on the compatibility with your hardware.
     You will find there the list of your network interfaces. You can tell Jeedom not to monitor the network by clicking on **disable Jeedom network management** (check if Jeedom is not connected to any network). You can also specify the local ip range in the form 192.168.1.* (to be used only in docker type installations).
 - **Proxy market** : allows remote access to your Jeedom without the need for a DNS, a fixed IP or to open the ports of your Internet box.
     - **Using Jeedom DNS** : activates Jeedom DNS (note that this requires at least one service pack).
@@ -156,7 +156,7 @@ Many orders can be logged. Thus, in Analysis → History, you get graphs represe
 
 ### Push
 
-- **URLs de push globale** : allows you to add a URL to call in the event of an order update. You can use the following tags :
+- **Global push URL** : allows you to add a URL to call in the event of an order update. You can use the following tags :
 **\#value\#** for the order value, **\#cmd\_name\#** for the name of the command,
 **\#cmd\_id\#** for the unique identifier of the order,
 **\#humanname\#** for the full name of the order (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
@@ -228,7 +228,7 @@ Here you have three parameters :
 -   The **automatic interactions** allow Jeedom to try to understand an interaction request even if there is none defined. He will then look for an object name and / or equipment and / or order to try to respond as best as possible.
 
 -   The **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
-    - *Jeedom gardant le contexte :*
+    - *Jeedom keeping the context :*
         - *You* : How much is he in the room ?
         - *Jeedom* : Temperature 25.2 ° C
         - *You* : and in the living room ?
@@ -246,11 +246,11 @@ Here you have three parameters :
 
 Here are the different options available :
 
-- **Activate les automatic interactions** : Check to enable automatic interactions.
-- **Activate les réponses contextuelles** : Check to enable contextual interactions.
+- **Enable automatic interactions** : Check to enable automatic interactions.
+- **Enable contextual responses** : Check to enable contextual interactions.
 - **Priority contextual response if the sentence begins with** : If the sentence begins with the word you enter here, Jeedom will then prioritize a contextual response (you can put several words separated by **;** ).
 - **Cut an interaction in half if it contains** : Same thing for the division of an interaction containing several questions. Here you give the words that separate the different questions.
-- **Activate les interactions "Warn me"** : Check to enable type interactions **Warn me**.
+- **Activate "Notify Me" interactions"** : Check to enable type interactions **Warn me**.
 - **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **;** ).
 - **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
 - **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|Bathroom).
@@ -264,11 +264,11 @@ Here are the different options available :
 
 ### LDAP
 
-- **Activate l'authentification LDAP** : enable authentication through an AD (LDAP).
+- **Enable LDAP authentication** : enable authentication through an AD (LDAP).
 - **Host** : server hosting the AD.
 - **Field** : domain of your AD.
 - **DN base** : DN base of your AD.
-- **Last name d'utilisateur** : username for Jeedom to log into AD.
+- **Username** : username for Jeedom to log into AD.
 - **Password** : password for Jeedom to connect to AD.
 - **User search fields** : user login search fields. Usually uid for LDAP, SamAccountName for Windows AD.
 - **Administrators filter (optional)** : administrators filter on AD (for group management for example)
@@ -294,7 +294,7 @@ The list of banned IPs is at the bottom of this page. You will find the IP, the 
 - **Core version** : Core version to recover.
 - **Automatically check for updates** : Indicate whether to automatically check if there are new updates (be careful to avoid overloading the market, the verification time may change).
 
-### The dépôts
+### Deposits
 
 The repositories are storage (and service) spaces to be able to move backups, recover plugins, recover the core of Jeedom, etc.
 
@@ -307,8 +307,8 @@ Deposit used to activate the sending of plugins by files.
 Deposit used to connect Jeedom to Github.
 
 - **Token** : Token for access to private deposit.
-- **User ou organisation du dépôt pour le core Jeedom** : User or organization name on github for the core.
-- **Last name du dépôt pour le core Jeedom** : Repository name for core.
+- **Jeedom core repository user or organization** : User or organization name on github for the core.
+- **Repository name for the Jeedom core** : Repository name for core.
 - **Jeedom core industry** : Core repository branch.
 
 #### Market
@@ -316,7 +316,7 @@ Deposit used to connect Jeedom to Github.
 Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
 - **Address** : Address du Market.(https://www.Jeedom.com/market).
-- **Last name d'utilisateur** : Your Username on the Market.
+- **Username** : Your Username on the Market.
 - **Password** : Your Market password.
 - **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of it crashing between them).
 - **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will no longer be able to restore your Jeedom.
@@ -358,8 +358,8 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 #### URL
 
-- **URLs core Jeedom**
-- **URLs version core Jeedom**
+- **Jeedom core URL**
+- **Jeedom core version URL**
 
 ## Cache tab
 

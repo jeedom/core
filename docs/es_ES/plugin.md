@@ -18,7 +18,7 @@ Al hacer clic en un complemento, accede a su configuración. En la parte superio
 >
 > Puede hacer Ctrl-clic o hacer clic en Centro para abrir su configuración en una nueva pestaña del navegador.
 
-## Configuración de plugin
+## Configuración del complemento
 
 ### Arriba a la derecha, algunos botones :
 
@@ -33,7 +33,7 @@ Al hacer clic en un complemento, accede a su configuración. En la parte superio
 - **Versión** : La versión del complemento instalado.
 - **Autor** : Autor del complemento.
 - **Acción** : Le permite habilitar o deshabilitar el complemento.
-- **Versión jeedom** : Indica la versión mínima de Jeedom requerida para el complemento.
+- **Versión Jeedom** : Indica la versión mínima de Jeedom requerida para el complemento.
 - **Licencia** : Indica la licencia del complemento que generalmente será AGPL.
 
 ### A la derecha, encontramos el área **Registro y monitoreo** que permite definir :
@@ -88,7 +88,7 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 Podemos encontrar una sección de Panel que habilitará o deshabilitará la visualización del panel en el tablero o en el dispositivo móvil si el complemento ofrece uno.
 
-## Instalación d'un plugin
+## Instalación de complementos
 
 Para instalar un nuevo complemento, simplemente haga clic en el botón "Market" (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
 
@@ -101,7 +101,7 @@ En la parte superior de la ventana tienes filtros :
 - **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
 - **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
 - **Buscar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
-- **Apellido d'utilisateur** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
+- **Nombre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
 
 > **Punta**
 >

@@ -16,7 +16,7 @@ Oben rechts 5 Tasten :
 - **Download** : Ermöglicht das Herunterladen des aktuellen Protokolls.
 - **Leer** : Ermöglicht das Leeren des aktuellen Protokolls.
 - **Entfernen** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
-- **Entfernen tous les logs** : Löschen Sie alle vorhandenen Protokolle.
+- **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 
 > **Spitze**
 >

@@ -128,7 +128,7 @@ Registro de cambios Jeedom V4
 - Resumen de domótica : Adición de equipos e ID de pedidos, en pantalla y en búsqueda.
 - Resumen de domótica : Exportación CSV de objeto primario, id, equipo y su id, comando.
 - Resumen de domótica : Posibilidad de hacer visibles o no uno o más pedidos.<br/><br/>
-- Diseño : Capacidad para especificar el orden (posición) de *Diseños* y *Diseños 3D* (Editar, configurar diseño).
+- Diseño : Capacidad para especificar el orden (posición) de *Diseños* y *Diseños en 3D* (Editar, configurar diseño).
 - Diseño : Adición de un campo CSS personalizado en los elementos del *Diseño*.
 - Diseño : Desplazamiento de las opciones de visualización en Diseño de la configuración avanzada, en los parámetros de visualización de la *Diseño*. Esto para simplificar la interfaz y permitir tener diferentes parámetros por *Diseño*.
 - Diseño : Mover y redimensionar componentes en *Diseño* tiene en cuenta su tamaño, con o sin magnetización.<br/><br/>

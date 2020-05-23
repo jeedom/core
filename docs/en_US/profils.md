@@ -13,7 +13,7 @@ Defines certain interface behaviors
 - **Default page** : Page to display by default to display when connecting to desktop or mobile.
 - **Default object** : Object to display by default upon arrival on the Dashboard / mobile.
 
-- **View par défaut** : View to display by default upon arrival on the Dashboard / mobile.
+- **Default view** : View to display by default upon arrival on the Dashboard / mobile.
 - **Unfold the view panel** : Used to make the view menu (left) visible on the views by default.
 
 - **Default design** : Design to display by default upon arrival on the Dashboard / mobile.
@@ -47,7 +47,7 @@ Defines certain interface behaviors
 -   **Default object on the dashboard** : default display object
     upon arrival on the dashboard / mobile
 
--   **View par défaut** : view to display by default when arriving on
+-   **Default view** : view to display by default when arriving on
     the dashboard / mobile
 
 -   **Default design** : design to display by default when

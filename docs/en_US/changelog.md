@@ -128,7 +128,7 @@ Changelog Jeedom V4
 - Home automation summary : Addition of equipment and order IDs, in display and in search.
 - Home automation summary : CSV export of parent object, id, equipment and their id, command.
 - Home automation summary : Possibility of making visible or not one or more orders.<br/><br/>
-- Design : Ability to specify the order (position) of *Designs* and *Designs 3D* (Edit, Configure Design).
+- Design : Ability to specify the order (position) of *Designs* and *3D designs* (Edit, Configure Design).
 - Design : Addition of a custom CSS field on the elements of the *Design*.
 - Design : Displacement of display options in Design of the advanced configuration, in the display parameters from the *Design*. This in order to simplify the interface, and to allow to have different parameters by *Design*.
 - Design : Moving and resizing components on *Design* takes into account their size, with or without magnetization.<br/><br/>

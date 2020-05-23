@@ -13,7 +13,7 @@ Definiert bestimmte Schnittstellenverhalten
 - **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
 - **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 
-- **Ansicht par défaut** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 - **Klappen Sie das Ansichtsfenster auf** : Wird verwendet, um das Ansichtsmenü (links) standardmäßig in den Ansichten sichtbar zu machen.
 
 - **Standarddesign** : Design, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
@@ -47,7 +47,7 @@ Definiert bestimmte Schnittstellenverhalten
 -   **Standardobjekt auf dem Armaturenbrett** : Standardanzeigeobjekt
     bei der Ankunft auf dem Armaturenbrett / Handy
 
--   **Ansicht par défaut** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
+-   **Standardansicht** : Ansicht, die standardmäßig angezeigt wird, wenn Sie am ankommen
     das Dashboard / Handy
 
 -   **Standarddesign** : Design, das standardmäßig angezeigt wird, wenn

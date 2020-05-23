@@ -21,7 +21,7 @@ O arquivamento é uma tarefa que começa à noite e compacta os dados recuperado
 >
 > Obviamente, esse princípio de arquivamento se aplica apenas a comandos do tipo digital; nos comandos do tipo binário, o Jeedom mantém apenas as datas de mudança de estado.
 
-### Visualizando d'un graphique
+### Visualizando um Gráfico
 
 Existem várias maneiras de acessar o histórico :
 
@@ -66,7 +66,7 @@ Depois que os dados são ativados, você pode escolher :
 
 A página de histórico fornece acesso a algumas opções adicionais
 
-#### Histórico calculé
+#### História calculado
 
 Permite exibir uma curva de acordo com um cálculo em vários comandos (você pode fazer quase tudo, + - / \* valor absoluto ... consulte a documentação do PHP para determinadas funções).
 Ex :
@@ -78,7 +78,7 @@ Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite
 >
 > Basta clicar no nome do objeto para desdobrar e exibir os comandos históricos que podem ser exibidos.
 
-#### Histórico de commande
+#### Histórico de pedidos
 
 Na frente de cada dado que pode ser exibido, você encontrará dois ícones :
 

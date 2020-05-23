@@ -14,14 +14,14 @@ This is where you will be able to adjust different parameters of your profile :
     - **Login** : Your login on the Market, it cannot be changed.
     - **Last name** : Your name (this information is only useful to make emails more pleasant).
     - **First name** : Your first name (this information is only useful to make emails more pleasant).
-    - **Last name d'utilisateur sur le forum** : Your username on the forum.
+    - **Username on the forum** : Your username on the forum.
     - **E-mail** : Your email.
     - **Language** : Your language.
     - **Password &amp;&amp; Confirm password** : Allows you to change your password.
 
 For developers :
-- **Last name d'utilisateur sur le forum** : Your username on the forum.
-- **E-mail public** : Your email to receive any communications from us.
+- **Username on the forum** : Your username on the forum.
+- **Public email** : Your email to receive any communications from us.
 - **Paypal account** : Your Paypal account email (only used to pay developers).
 
 For the pros :

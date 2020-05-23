@@ -36,9 +36,9 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
     - **Magnetisieren Sie die Elemente** : Fügt eine Magnetisierung zwischen den Elementen hinzu, um das Aufkleben zu erleichtern.
     - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Abhängig vom Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren).
     - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
-- **Entfernen le design** : Design löschen.
+- **Design löschen** : Design löschen.
 - **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
-- **Duplikat le design** : Dupliziere das aktuelle Design.
+- **Doppeltes Design** : Dupliziere das aktuelle Design.
 - **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration.
 - **Speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
 
@@ -59,7 +59,7 @@ Hier gefunden :
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
         - **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
-        - **Entfernen l'image** : Bild löschen.
+        - **Bild löschen** : Bild löschen.
 - **Größen**
     - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
 
@@ -94,10 +94,10 @@ Ermöglicht das Sperren des Elements, sodass es nicht mehr beweglich oder in der
 ### Spezifische Anzeigeeinstellungen
 
 - **Zeit** : Hier können Sie den Anzeigezeitraum auswählen
-- **Anzeige la légende** : Legende zeigen.
-- **Anzeige le navigateur** : Zeigt den Browser an (zweite hellere Grafik unter der ersten).
-- **Anzeige le sélecteur de période** : Zeigt den Periodenwähler oben links an.
-- **Anzeige la barre de défilement** : Zeigt die Bildlaufleiste an.
+- **Bildunterschrift anzeigen** : Legende zeigen.
+- **Browser anzeigen** : Zeigt den Browser an (zweite hellere Grafik unter der ersten).
+- **Periodenauswahl anzeigen** : Zeigt den Periodenwähler oben links an.
+- **Bildlaufleiste anzeigen** : Zeigt die Bildlaufleiste an.
 - **Transparenter Hintergrund** : Macht den Hintergrund transparent.
 - **Grenze** : Ermöglicht das Hinzufügen eines Rahmens. Achten Sie darauf, dass die Syntax HTML ist (seien Sie vorsichtig, Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
 
@@ -136,7 +136,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
-- **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
+- **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Mit dieser Option können Sie die Schriftgröße ändern.
 - **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
 - **Fett** : Fetter Text.
@@ -145,7 +145,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Anzeige le nom de l'objet** : Aktivieren Sie diese Option, um den Namen des übergeordneten Objekts des Geräts anzuzeigen.
+- **Objektnamen anzeigen** : Aktivieren Sie diese Option, um den Namen des übergeordneten Objekts des Geräts anzuzeigen.
 - **Name verstecken** : Überprüfen Sie, ob der Name des Geräts ausgeblendet ist.
 - **Hintergrundfarbe** : Ermöglicht die Auswahl einer benutzerdefinierten Hintergrundfarbe oder die Anzeige des Geräts mit transparentem Hintergrund oder die Verwendung der Standardfarbe.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
@@ -205,8 +205,8 @@ Sie müssen nur die Aktionen ausführen, die für das Ein und das Aus ausgeführ
 In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende Widget angezeigt.
 
 - **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird.
-- **Anzeige au survol** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
-- **Anzeige sur un clic** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
+- **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
+- **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
 - **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (standardmäßig unten rechts)).
 
 ## Zusammenfassung
@@ -217,7 +217,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
-- **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
+- **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Mit dieser Option können Sie die Schriftgröße ändern.
 - **Fett** : Fetter Text.
 
@@ -226,5 +226,5 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 >**Ich kann mein Design nicht mehr bearbeiten**
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
->**Entfernen un design qui ne marche plus**
+>**Löschen Sie ein Design, das nicht mehr funktioniert**
 >Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

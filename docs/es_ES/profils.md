@@ -13,7 +13,7 @@ Define ciertos comportamientos de interfaz
 - **Página predeterminada** : Página para mostrar de forma predeterminada para mostrar cuando se conecta a una computadora de escritorio o móvil.
 - **Objeto predeterminado** : Objeto para mostrar por defecto al llegar al Tablero / móvil.
 
-- **Vista par défaut** : Ver para mostrar de forma predeterminada a la llegada en el Panel de control / móvil.
+- **Vista predeterminada** : Ver para mostrar de forma predeterminada a la llegada en el Panel de control / móvil.
 - **Despliegue el panel de vista** : Se usa para hacer que el menú de vista (izquierda) sea visible en las vistas de forma predeterminada.
 
 - **Diseño por defecto** : Diseñe para mostrar por defecto a su llegada al Tablero / móvil.
@@ -47,7 +47,7 @@ Define ciertos comportamientos de interfaz
 -   **Objeto predeterminado en el dashboard** : objeto de visualización predeterminado
     a su llegada en el tablero de instrumentos / móvil
 
--   **Vista par défaut** : ver para mostrar por defecto al llegar
+-   **Vista predeterminada** : ver para mostrar por defecto al llegar
     el tablero de instrumentos / móvil
 
 -   **Diseño por defecto** : diseño para mostrar por defecto cuando

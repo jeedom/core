@@ -128,7 +128,7 @@ Changelog Jeedom V4
 - Zusammenfassung der Hausautomation : Hinzufügen von Ausrüstungs- und Bestell-IDs in Anzeige und Suche.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, eine oder mehrere Bestellungen sichtbar zu machen oder nicht.<br/><br/>
-- Design : Möglichkeit, die Reihenfolge (Position) von anzugeben *Design* und *Design 3D* (Bearbeiten, Design konfigurieren).
+- Design : Möglichkeit, die Reihenfolge (Position) von anzugeben *Design* und *3D-Designs* (Bearbeiten, Design konfigurieren).
 - Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
 - Design : Verschiebung der Anzeigeoptionen im Design der erweiterten Konfiguration, in den Anzeigeparametern aus dem *Design*. Dies, um die Schnittstelle zu vereinfachen und um zu ermöglichen, unterschiedliche Parameter durch zu haben *Design*.
 - Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>

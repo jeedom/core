@@ -36,9 +36,9 @@ En el menú (clic derecho), encontramos las siguientes acciones :
     - **Magnetizar los elementos** : Agrega magnetización entre los elementos para que sea más fácil pegarlos.
     - **Imán en la rejilla** : Agregue una magnetización de los elementos a la cuadrícula (atención : dependiendo del zoom del elemento, esta funcionalidad puede funcionar más o menos).
     - **Ocultar elemento resaltado** : Ocultar resaltado alrededor de elementos.
-- **Remove le design** : Eliminar diseño.
+- **Eliminar diseño** : Eliminar diseño.
 - **Crea un diseño** : Permite agregar un nuevo diseño.
-- **Duplicado le design** : Duplicar el diseño actual.
+- **Diseño duplicado** : Duplicar el diseño actual.
 - **Configura el diseño** : Acceso a la configuración de diseño.
 - **Guardar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
 
@@ -59,7 +59,7 @@ Encontrado aquí :
     - **Icono** : Un icono para ello (aparece en el menú de opciones de diseño).
     - **Imagen**
         - **Enviar a** : Permite agregar una imagen de fondo al diseño.
-        - **Remove l'image** : Borrar imagen.
+        - **Eliminar imagen** : Borrar imagen.
 - **Tamaños**
     - **Tamaño (WxH)** : Le permite establecer el tamaño en píxeles de su diseño.
 
@@ -94,10 +94,10 @@ Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tama�
 ### Configuraciones de pantalla específicas
 
 - **Período** : Le permite elegir el período de visualización
-- **Visualización la légende** : Mostrar leyenda.
-- **Visualización le navigateur** : Muestra el navegador (segundo gráfico más claro debajo del primero).
-- **Visualización le sélecteur de période** : Muestra el selector de período en la esquina superior izquierda.
-- **Visualización la barre de défilement** : Muestra la barra de desplazamiento.
+- **Mostrar subtítulo** : Mostrar leyenda.
+- **Mostrar navegador** : Muestra el navegador (segundo gráfico más claro debajo del primero).
+- **Mostrar selector de período** : Muestra el selector de período en la esquina superior izquierda.
+- **Mostrar barra de desplazamiento** : Muestra la barra de desplazamiento.
 - **Fondo transparente** : Hace que el fondo sea transparente.
 - **Frontera** : Le permite agregar un borde, tenga cuidado, la sintaxis es HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 
@@ -136,7 +136,7 @@ Le permite elegir los comandos para graficar.
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No).
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Le permite redondear los ángulos, no olvide poner el%.
-- **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
+- **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Alineación de texto** : Le permite elegir la alineación del texto (izquierda / derecha / centrado).
 - **Grasa** : Texto en negrita.
@@ -145,7 +145,7 @@ Le permite elegir los comandos para graficar.
 
 ### Configuraciones de pantalla específicas
 
-- **Visualización le nom de l'objet** : Marque para mostrar el nombre del objeto principal del dispositivo.
+- **Mostrar nombre de objeto** : Marque para mostrar el nombre del objeto principal del dispositivo.
 - **Ocultar nombre** : Marque para ocultar el nombre del equipo.
 - **Color de fondo** : Le permite elegir un color de fondo personalizado, mostrar el equipo con un fondo transparente o usar el color predeterminado.
 - **Color del texto** : Le permite elegir un color de fondo personalizado o usar el color predeterminado.
@@ -205,8 +205,8 @@ Solo tiene que poner las acciones a realizar para Activar y Desactivar.
 En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, se mostrará el widget en cuestión.
 
 - **Equipo** : Widget para mostrar al pasar el mouse o al hacer clic.
-- **Visualización au survol** : Si está marcado, muestra el widget al pasar el mouse.
-- **Visualización sur un clic** : Si está marcado, el widget se muestra al hacer clic.
+- **Mostrar en paso elevado** : Si está marcado, muestra el widget al pasar el mouse.
+- **Ver en un clic** : Si está marcado, el widget se muestra al hacer clic.
 - **Posición** : Le permite elegir dónde aparecerá el widget (por defecto, abajo a la derecha).
 
 ## Resumen
@@ -217,7 +217,7 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No).
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Le permite redondear los ángulos, no olvide poner el%.
-- **Frontera (attention syntaxe CSS, ex : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
+- **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Grasa** : Texto en negrita.
 
@@ -226,5 +226,5 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 >**Ya no puedo editar mi diseño**
 >Si ha colocado un widget o una imagen que toma casi todo el diseño, debe hacer clic fuera del widget o imagen para acceder al menú haciendo clic con el botón derecho.
 
->**Remove un design qui ne marche plus**
+>**Eliminar un diseño que ya no funciona**
 >En la parte de administración, luego OS / DB, haga "select * from planHeader", recupere la identificación del diseño en cuestión y haga una "eliminación de planHeader donde id=#TODO#" y "eliminar del plan donde planHeader_id=#todo#" reemplazando bien #TODO# por la identificación de diseño encontrada previamente.

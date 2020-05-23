@@ -69,8 +69,8 @@ A guia **Informação** contém informações gerais sobre o equipamento e seus 
 
 - **ID** : Identificador exclusivo no banco de dados Jeedom.
 - **Nome** : Nome de equipamentos.
-- **ID logique** : Identificador lógico do equipamento (pode estar vazio).
-- **ID de l'objet** : Identificador exclusivo do objeto pai (pode estar vazio).
+- **ID lógico** : Identificador lógico do equipamento (pode estar vazio).
+- **Object ID** : Identificador exclusivo do objeto pai (pode estar vazio).
 - **Data de criação** : Data de criação do equipamento.
 - **Ativar** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
 - **Visivél** : Marque a caixa para tornar o equipamento visível (não esqueça de salvar).
@@ -124,7 +124,7 @@ isto :
 
 Essa guia permite que você tenha informações sobre a bateria do equipamento e defina alertas em relação a ele. Aqui estão os tipos de informações que podem ser encontradas :
 
-- **Tipo de pile**,
+- **Tipo de bateria**,
 - **Comentários mais recentes**,
 - **Nível restante**, (se é claro que seu equipamento funciona com bateria).
 
@@ -164,7 +164,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 A guia **Informação** contém informações gerais sobre o pedido :
 
 - **ID** : Identificador exclusivo no banco de dados.
-- **ID logique** : Identificador lógico do comando (pode estar vazio).
+- **ID lógico** : Identificador lógico do comando (pode estar vazio).
 - **Nome** : Nome do comando.
 - **Tipo** : Tipo de comando (ação ou informação).
 - **Subtipo** : Subtipo de comando (binário, digital etc.)).
@@ -195,7 +195,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 - **Cálculo e arredondamento**
     - **Fórmula de cálculo (\#value\# por valor)** : Permite que você faça uma operação com o valor do pedido antes do processamento por Jeedom, exemplo : ``#value# - 0.2` para subtrair 0.2 (deslocamento em um sensor de temperatura).
     - **Arredondado (número após ponto decimal)** : Usado para arredondar o valor do comando (exemplo : colocar 2 para transformar 16.643.345 em 16,64).
-- **Tipo générique** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
+- **Tipo genérico** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
 - **Ação em valor, se** : Vamos fazer algum tipo de mini cenários. Você pode, por exemplo, dizer que, se o valor vale mais de 50 por 3 minutos, você deve executar essa ação. Isso permite, por exemplo, apagar uma luz X minutos depois de acender.
 
 - **Histórico**
@@ -214,7 +214,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 #### Para um comando de ação :
 
--  **Tipo générique** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
+-  **Tipo genérico** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
 - **Confirmar a ação** : Marque esta caixa para que o Jeedom solicite confirmação quando a ação for iniciada a partir da interface deste comando.
 - **Código de acesso** : Permite definir um código que o Jeedom solicitará quando a ação for iniciada a partir da interface deste comando.
 - **Ação antes de executar o comando** : Adicionar comandos **antes** cada execução da ordem.
@@ -236,7 +236,7 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 - **Visivél** : Marque para tornar o comando visível.
 - **Mostrar nome** : Marque para tornar o nome do comando visível, dependendo do contexto.
 - **Imprimir o nome eo ícone** : Marque para tornar o ícone visível, além do nome do comando.
-- **Envoltório forçado antes Widget** : Tick **antes O  widget** onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
+- **Envoltório forçado antes Widget** : Tick **antes do widget** onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 

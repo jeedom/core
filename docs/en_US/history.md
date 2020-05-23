@@ -21,7 +21,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 >
 > Of course, this archiving principle only applies to digital type commands; on binary type commands, Jeedom keeps only the dates of change of state.
 
-### Display d'un graphique
+### Viewing a graph
 
 There are several ways to access the history :
 
@@ -66,7 +66,7 @@ Once a data is activated, you can choose :
 
 The history page gives access to some additional options
 
-#### History calculé
+#### Calculated history
 
 Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
 Ex :
@@ -78,7 +78,7 @@ You also have access to a management of calculation formulas which allows you to
 >
 > Just click on the name of the object to unfold it, and bring up the historical commands that can be displayed.
 
-#### History de commande
+#### Order history
 
 In front of each data that can be displayed, you will find two icons :
 

@@ -105,7 +105,7 @@ To configure an element on the 3D design, double click on the element you want t
 - Couleur
 	- Color closed : if tick the element will take this color if the shutter is closed
 
-### Color conditionnelle
+### Conditional color
 
 If the condition is valid, allows to give the chosen color to the element. You can put as many colors / conditions as you want.
 

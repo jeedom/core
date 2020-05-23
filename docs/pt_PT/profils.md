@@ -13,7 +13,7 @@ Define certos comportamentos da interface
 - **Página padrão** : Página a ser exibida por padrão para exibição ao conectar-se a computadores ou dispositivos móveis.
 - **Objeto padrão** : Objeto a ser exibido por padrão na chegada ao Painel / dispositivo móvel.
 
-- **Vista par défaut** : Exibir para exibir por padrão na chegada ao painel / dispositivo móvel.
+- **Modo de exibição padrão** : Exibir para exibir por padrão na chegada ao painel / dispositivo móvel.
 - **Desdobrar o painel de vista** : Usado para tornar o menu de visualização (à esquerda) visível nas visualizações por padrão.
 
 - **Projeto padrão** : Design a ser exibido por padrão na chegada ao Painel / dispositivo móvel.
@@ -47,7 +47,7 @@ Define certos comportamentos da interface
 -   **Painel padrão Assunto** : objeto de exibição padrão
     na chegada no painel / móvel
 
--   **Vista par défaut** : para exibir por padrão ao chegar em
+-   **Modo de exibição padrão** : para exibir por padrão ao chegar em
     o painel / móvel
 
 -   **Projeto padrão** : design para exibir por padrão quando
