@@ -24,12 +24,12 @@ class ajax {
 	
 	/*     * *********************Methode static ************************* */
 	
-	public static function init($_checkToken = true) {
+	public static function init($_allowGetAction = array()) {
 		if (!headers_sent()) {
 			header('Content-Type: application/json');
 		}
-		if ($_checkToken && init('jeedom_token') != self::getToken()) {
-			self::error(__('Votre session a expiré, veuillez vous reconnecter', __FILE__));
+		if(isset($_GET['action']) && !in_array($_GET['action'],$_allowGetAction)){
+			throw new \Exception(__('Méthode non autorisé en GET : ',__FILE__).$_GET['action']);
 		}
 	}
 	

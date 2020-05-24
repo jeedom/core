@@ -19,7 +19,7 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	ajax::init(false);
+	ajax::init();
 	
 	if (init('action') == 'useTwoFactorAuthentification') {
 		$user = user::byLogin(init('login'));
