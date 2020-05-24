@@ -659,7 +659,7 @@ $(function () {
 
   //theming:
   if (getCookie('currentTheme') == 'alternate') {
-    var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}'
+    var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
     $('#bootstrap_theme_css').attr('data-nochange',0)
   }
@@ -672,14 +672,14 @@ $(function () {
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
-    var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}'
+    var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
 
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       $('body').attr('data-theme', jeedom.theme.default_bootstrap_theme)
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
       themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
       themeCook = 'default'
-      themeButton = '<i class="fas fa-sync-alt"></i> {{Thème alternatif}}'
+      themeButton = '<i class="fas fa-random"></i> {{Thème alternatif}}'
       $('#bootstrap_theme_css').attr('data-nochange',0)
     } else {
       $('body').attr('data-theme', jeedom.theme.default_bootstrap_theme_night)
