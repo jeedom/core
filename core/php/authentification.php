@@ -151,7 +151,6 @@ function logout() {
 	@session_start();
 	setcookie('PHPSESSID', '', time() - 3600);
 	setcookie('registerDevice', '', time() - 3600);
-	setcookie('jeedom_token', '', time() - 3600);
 	session_unset();
 	session_destroy();
 	return;
