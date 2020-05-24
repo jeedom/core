@@ -175,7 +175,7 @@ $('#bt_chooseIcon').on('click', function () {
 
 $('#bt_uploadImage').fileupload({
 	replaceFileInput: false,
-	url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+	url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id,
 	dataType: 'json',
 	done: function (e, data) {
 		if (data.result.state != 'ok') {
