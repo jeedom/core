@@ -1093,8 +1093,8 @@ function chooseIcon(_callback, _params) {
     url += '&showimg=1';
   }
   if(_params && _params.icon) {
-    icon = _params.icon
-    replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
+    var icon = _params.icon
+    var replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
     replaceAr.forEach(function(element) {
       icon = icon.replace(element, '')
     })

@@ -153,10 +153,10 @@ $('.eqLogicSortable').sortable({
     //set object order:
     var eqLogics = []
     var object = ui.item.closest('.objectSortable')
-    objectId = object.find('.panel-heading').attr('data-id')
-    order = 1
+    var objectId = object.find('.panel-heading').attr('data-id')
+    var order = 1
     object.find('.eqLogic').each(function(){
-      eqLogic = {}
+      var eqLogic = {}
       eqLogic.object_id = objectId
       eqLogic.id = $(this).attr('data-id')
       eqLogic.order = order
@@ -179,9 +179,9 @@ $('.cmdSortable').sortable({
   stop: function (event, ui) {
     var cmds = []
     var eqLogic = ui.item.closest('.eqLogic')
-    order = 1
+    var order = 1
     eqLogic.find('.cmd').each(function(){
-      cmd = {}
+      var cmd = {}
       cmd.id = $(this).attr('data-id')
       cmd.order = order
       cmds.push(cmd)

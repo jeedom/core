@@ -190,7 +190,7 @@ function loadObjectConfiguration(_id){
         return;
       }
       if (isset(data.result.result.filepath)) {
-        filePath = data.result.result.filepath
+        var filePath = data.result.result.filepath
         filePath = '/data/object/' + filePath.split('/data/object/')[1]
         $('.objectImg img').attr('src',filePath);
         $('.objectImg img').show()
@@ -369,7 +369,7 @@ $('#bt_chooseIcon').on('click', function () {
   var color = false
   if ( $('div[data-l2key="icon"] > i').length ) {
     color = '';
-    class_icon = $('div[data-l2key="icon"] > i').attr('class')
+    var class_icon = $('div[data-l2key="icon"] > i').attr('class')
     class_icon = class_icon.replace(' ', '.').split(' ');
     icon = '.'+class_icon[0];
     if(class_icon[1]){
