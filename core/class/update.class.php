@@ -426,13 +426,6 @@ class update {
 			@chmod(__DIR__ . '/../../plugins', 0775);
 		}
 		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
-		log::add('update', 'alert',  __('Supression des fichiers inutiles...', __FILE__));
-		foreach (array('3rdparty','3rparty','desktop','mobile','core','docs','install','script','vendor','plugin_info') as $folder) {
-			if(!file_exists($cibDir. '/'.$folder)){
-				continue;
-			}
-			shell_exec('find '.$cibDir. '/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete 2>/dev/null');
-		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {
 			case 'plugin':
@@ -460,6 +453,14 @@ class update {
 			case 'plugin':
 			try {
 				$plugin = plugin::byId($this->getLogicalId());
+				$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
+				log::add('update', 'alert',  __('Supression des fichiers inutiles...', __FILE__));
+				foreach (array('3rdparty','3rparty','desktop','mobile','core','docs','install','script','vendor','plugin_info') as $folder) {
+					if(!file_exists($cibDir. '/'.$folder)){
+						continue;
+					}
+					shell_exec('find '.$cibDir. '/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete 2>/dev/null');
+				}
 			} catch (Exception $e) {
 				$this->remove();
 				throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
