@@ -785,7 +785,7 @@ function changeThemeAuto() {
       themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
     }
 
-    currentTheme = $('#bootstrap_theme_css').attr('href')
+    var currentTheme = $('#bootstrap_theme_css').attr('href')
     if(currentTheme.indexOf('?md5') != -1){
       currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
     }
