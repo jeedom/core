@@ -291,7 +291,6 @@ class update {
 		} else {
 			$class = 'repo_' . $this->getSource();
 			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
-				$this->preInstallUpdate();
 				$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
@@ -324,6 +323,7 @@ class update {
 					$zip = new ZipArchive;
 					$res = $zip->open($tmp);
 					if ($res === TRUE) {
+						$this->preInstallUpdate();
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
 							throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
