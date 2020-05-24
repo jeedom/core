@@ -441,7 +441,7 @@ function cleanUpdateLog() {
   var currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
-  lines = currentUpdateText.split("\n")
+  var lines = currentUpdateText.split("\n")
   l = lines.length
 
   //update progress bar and clean text!
