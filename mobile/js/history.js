@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'history')
 var page_title = $('body').attr('data-objectName')
 var object_id = $('body').attr('data-object')
@@ -21,7 +23,7 @@ function addChart(_cmd_id, _action) {
 			})
 		}
 	} else {
-		lastId = _cmd_id
+		var lastId = _cmd_id
 		jeedom.history.drawChart({
 			cmd_id: _cmd_id,
 			el: 'div_graph',
@@ -32,6 +34,7 @@ function addChart(_cmd_id, _action) {
 			showLegend : false,
 			mobile : true,
 			success: function (data) {
+				if (!isset(data.cmd)) return false
 				if(isset(data.cmd.display)){
 					if (init(data.cmd.display.graphStep) != '') {
 						$('#cb_step').off().value(init(data.cmd.display.graphStep))

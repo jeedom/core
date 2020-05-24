@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'scenario')
 
 function initScenario() {
@@ -98,7 +100,7 @@ function initScenario() {
     }
     $('.scenario-widget').each(function(){
       var match = false
-      text = normTextLower($(this).find('.widget-name').text())
+      var text = normTextLower($(this).find('.widget-name').text())
       if(match || text.indexOf(search) >= 0){
         match = true;
       }

@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'view')
 
 function initView(_view_id) {
@@ -18,7 +20,7 @@ function initView(_view_id) {
       panel(li)
     }
   })
-  
+
   if (isset(_view_id) && is_numeric(_view_id)) {
     jeedom.history.chart = []
     jeedom.view.toHtml({
@@ -34,7 +36,7 @@ function initView(_view_id) {
   } else {
     $('#bottompanel').panel('open')
   }
-  
+
   $(window).on("resize", function (event) {
     setTimeout(function(){
       if (deviceInfo.type == 'phone') {

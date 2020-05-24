@@ -1,3 +1,4 @@
+"use strict"
 
 function initEquipment(_object_id) {
   $('#searchContainer').show();
@@ -56,12 +57,12 @@ function initEquipment(_object_id) {
         setBackgroundImage(_path)
       }
     })
-    summary = ''
+    var summary = ''
     var childList = [_object_id]
     if(_object_id.indexOf(':') != -1){
-      temp = _object_id.split(':')
+      var temp = _object_id.split(':')
       _object_id = temp[0]
-      summary = temp[1]
+      var summary = temp[1]
     }
     jeedom.object.toHtml({
       id: _object_id,
@@ -73,7 +74,7 @@ function initEquipment(_object_id) {
       success: function (html) {
         if (_object_id == 'all' || _object_id == '') {
           var div = ''
-          summaries = []
+          var summaries = []
           for(var i in html) {
             if($.trim(html[i]) == ''){
               continue
@@ -88,7 +89,7 @@ function initEquipment(_object_id) {
             if (isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
               icon = objects_info[id].display.icon
             }
-            objectName = objects_info[id].name
+            var objectName = objects_info[id].name
             objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
             div += '<span>' + icon + '</span> ' + objectName
             div += '</legend>'

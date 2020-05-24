@@ -1,3 +1,5 @@
+"use strict"
+
 var _SummaryObserver_ = null
 
 $('body').attr('data-page', 'overview')

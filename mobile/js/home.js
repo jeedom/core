@@ -1,5 +1,10 @@
+"use strict"
+
 $('body').attr('data-page', 'home')
 $('#searchContainer').hide()
+
+var $bottomPanelAnalyseActions
+var $bottomPanelOtherActions
 
 function initHome() {
   refreshMessageNumber()

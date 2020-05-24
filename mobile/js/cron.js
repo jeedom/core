@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'cron')
 
 function initCron() {
@@ -23,7 +25,7 @@ function getCronState() {
     },
     success: function (data) {
      var html = ''
-     crons = data
+     var crons = data
      for(var i in crons){
        html += '<tr>'
        html += '<td>'

@@ -1,3 +1,5 @@
+"use strict"
+
 // dates are sorted on desktop by tablesorter. Mobile sort them with 3rdparty momentJs
 $('body').attr('data-page', 'timeline')
 function initTimeline() {
