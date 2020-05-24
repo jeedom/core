@@ -18,7 +18,7 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finde
 >
 > Sie können bei gedrückter Strg-Taste oder Klick-Mitte die Konfiguration in einer neuen Browser-Registerkarte öffnen.
 
-## Konfiguration de plugin
+## Plugin Konfiguration
 
 ### Oben rechts einige Schaltflächen :
 
@@ -33,7 +33,7 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finde
 - **Version** : Die Version des installierten Plugins.
 - **Autor** : Der Plugin-Autor.
 - **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins.
-- **Version jeedom** : Gibt die für das Plugin erforderliche Jeedom-Mindestversion an.
+- **Jeedom Version** : Gibt die für das Plugin erforderliche Jeedom-Mindestversion an.
 - **Lizenz** : Gibt die Lizenz des Plugins an, bei dem es sich im Allgemeinen um AGPL handelt.
 
 ### Rechts finden wir die Gegend **Protokoll und Überwachung** was erlaubt zu definieren :
@@ -88,7 +88,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
 
-## Installation d'un plugin
+## Plugin Installation
 
 Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche "Market" (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
 
@@ -101,7 +101,7 @@ Oben im Fenster befinden sich Filter :
 - **Amtlicher / Empfohlen** : Zeigt nur offizielle oder empfohlene Plugins an.
 - **Dropdown-Menü Kategorie** : zeigt nur bestimmte Kategorien von Plugins an.
 - **Suche** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
-- **Name d'utilisateur** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
+- **Benutzername** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
 
 > **Spitze**
 >

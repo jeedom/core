@@ -23,7 +23,7 @@ El botón **Guardar** se utilizará cuando cambie las opciones en la tabla a con
 El botón **Poner al día** le permite actualizar el Core, los complementos o ambos.
 Una vez que haces clic en él, obtienes estas diferentes opciones :
 - **Pre-actualización** : Le permite actualizar el script de actualización antes de aplicar las nuevas actualizaciones. Generalmente se usa a pedido del soporte.
-- **Guardar avant** : Haga una copia de seguridad de Jeedom antes de actualizar.
+- **Ahorre antes** : Haga una copia de seguridad de Jeedom antes de actualizar.
 - **Actualizar complementos** : Le permite incluir complementos en la actualización.
 - **Actualiza el núcleo** : Le permite incluir el núcleo Jeedom (el núcleo) en la actualización.
 

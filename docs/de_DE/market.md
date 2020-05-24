@@ -14,14 +14,14 @@ Hier können Sie verschiedene Parameter Ihres Profils anpassen :
     - **Login** : Ihr Login auf dem Markt kann nicht geändert werden.
     - **Name** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
-    - **Name d'utilisateur sur le forum** : Dein Benutzername im Forum.
+    - **Benutzername im Forum** : Dein Benutzername im Forum.
     - **E-Mail** : Ihre E-Mail.
     - **Sprache** : Deine Sprache.
     - **Passwort &amp;&amp; Passwort bestätigen** : Ermöglicht das Ändern Ihres Passworts.
 
 Für Entwickler :
-- **Name d'utilisateur sur le forum** : Dein Benutzername im Forum.
-- **E-Mail public** : Ihre E-Mail, um Mitteilungen von uns zu erhalten.
+- **Benutzername im Forum** : Dein Benutzername im Forum.
+- **Öffentliche E-Mail** : Ihre E-Mail, um Mitteilungen von uns zu erhalten.
 - **Paypal-Konto** : Die E-Mail-Adresse Ihres Paypal-Kontos (wird nur zur Bezahlung von Entwicklern verwendet).
 
 Für die Profis :

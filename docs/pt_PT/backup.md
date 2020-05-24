@@ -17,9 +17,9 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 - **Tamanho total máximo de backups (MB)** : Limita o espaço ocupado por todos os backups na pasta de backup. Se esse valor for excedido, o Jeedom excluirá os backups mais antigos até que caiam abaixo do tamanho máximo. No entanto, manterá pelo menos um backup.
 
-## Backups Locales
+## Backups locais
 
-- **Backups disponibles** : Lista de backups disponíveis.
+- **Backups disponíveis** : Lista de backups disponíveis.
 
 - **Restaurar backup** : Inicia a restauração do backup selecionado acima.
 
@@ -29,21 +29,21 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 - **De backup de download** : Faça o download do arquivo do backup selecionado acima para o seu computador.
 
-## Backups Market
+## Backups de mercado
 
 - **Envio de backups** : Diga à Jeedom para enviar backups para a nuvem do Market. Observe que você deve ter se inscrito.
 
 - **Enviar cópia de segurança** : Envie um arquivo de backup localizado no seu computador para a nuvem.
 
-- **Backups disponibles** : Lista de backups em nuvem disponíveis.
+- **Backups disponíveis** : Lista de backups em nuvem disponíveis.
 
 - **Restaurar backup** : Inicia a restauração de um backup na nuvem.
 
-## Backups Samba
+## Backups do Samba
 
 - **Envio de backups** : Diz ao Jeedom para enviar os backups para o compartilhamento de samba configurado aqui Configurações → Sistema → Configuração : Atualizações.
 
-- **Backups disponibles** : Lista de backups de samba disponíveis.
+- **Backups disponíveis** : Lista de backups de samba disponíveis.
 
 - **Restaurar backup** : Inicia a restauração do backup samba selecionado acima.
 

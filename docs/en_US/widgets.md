@@ -155,7 +155,7 @@ To configure it it&#39;s quite simple you have to assign the widget to the tempe
 
 ## Code Widget
 
-### The tags
+### Tags
 
 In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive)) :
 

@@ -17,7 +17,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Tamaño total máximo de copias de seguridad (MB)** : Limita el espacio ocupado por todas las copias de seguridad en la carpeta de copias de seguridad. Si se excede este valor, Jeedom eliminará las copias de seguridad más antiguas hasta que caiga por debajo del tamaño máximo. Sin embargo, mantendrá al menos una copia de seguridad.
 
-## Copias de seguridad Locales
+## Copias de seguridad locales
 
 - **Copias de seguridad disponibles** : Lista de copias de seguridad disponibles.
 
@@ -29,7 +29,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Descargar copia de seguridad** : Descargue el archivo de la copia de seguridad seleccionada anteriormente en su computadora.
 
-## Copias de seguridad Market
+## Copias de seguridad del mercado
 
 - **Enviar copias de seguridad** : Dígale a Jeedom que envíe copias de seguridad a la nube de Market, tenga en cuenta que debe haberse suscrito.
 
@@ -39,7 +39,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Restaurar copia de seguridad** : Comienza a restaurar una copia de seguridad en la nube.
 
-## Copias de seguridad Samba
+## Copias de seguridad de Samba
 
 - **Enviar copias de seguridad** : Le dice a Jeedom que envíe las copias de seguridad al recurso compartido de samba configurado aquí Configuración → Sistema → Configuración : Actualizaciones.
 

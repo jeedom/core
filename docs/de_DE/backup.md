@@ -17,9 +17,9 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Maximale Gesamtgröße der Sicherungen (MB)** : Begrenzt den Speicherplatz aller Sicherungen im Sicherungsordner. Wenn dieser Wert überschritten wird, löscht Jeedom die ältesten Sicherungen, bis die maximale Größe unterschritten wird. Es wird jedoch mindestens eine Sicherung gespeichert.
 
-## Sicherungen Locales
+## Lokale Backups
 
-- **Sicherungen disponibles** : Liste der verfügbaren Backups.
+- **Verfügbare Backups** : Liste der verfügbaren Backups.
 
 - **Backup wiederherstellen** : Startet die Wiederherstellung der oben ausgewählten Sicherung.
 
@@ -29,21 +29,21 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Backup herunterladen** : Laden Sie das Archiv der oben ausgewählten Sicherung auf Ihren Computer herunter.
 
-## Sicherungen Market
+## Marktsicherungen
 
 - **Senden von Backups** : Bitten Sie Jeedom, Backups an die Market Cloud zu senden. Beachten Sie, dass Sie sich angemeldet haben müssen.
 
 - **Senden Sie ein Backup** : Senden Sie ein Sicherungsarchiv auf Ihrem Computer an die Cloud.
 
-- **Sicherungen disponibles** : Liste der verfügbaren Cloud-Backups.
+- **Verfügbare Backups** : Liste der verfügbaren Cloud-Backups.
 
 - **Backup wiederherstellen** : Startet die Wiederherstellung einer Cloud-Sicherung.
 
-## Sicherungen Samba
+## Samba-Backups
 
 - **Senden von Backups** : Weist Jeedom an, die Backups an die hier konfigurierte Samba-Freigabe zu senden. Einstellungen → System → Konfiguration : Updates.
 
-- **Sicherungen disponibles** : Liste der verfügbaren Samba-Backups.
+- **Verfügbare Backups** : Liste der verfügbaren Samba-Backups.
 
 - **Backup wiederherstellen** : Startet die Wiederherstellung des oben ausgewählten Samba-Backups.
 

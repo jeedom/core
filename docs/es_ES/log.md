@@ -16,7 +16,7 @@ Arriba a la derecha 5 botones :
 - **Descargar** : Descargar el registro actual.
 - **Vaciar** : Borrar el registro actual.
 - **Remove** : Eliminar el registro actual. Si Jeedom lo necesita, lo recreará automáticamente.
-- **Remove tous les logs** : Eliminar todos los registros presentes.
+- **Eliminar todos los registros** : Eliminar todos los registros presentes.
 
 > **Punta**
 >

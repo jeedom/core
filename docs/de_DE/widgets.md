@@ -47,7 +47,7 @@ Einfach ausgedrückt ist es Code (hier html / js), der in den Core integriert is
 
 Abhängig von der Art des Widgets können Sie im Allgemeinen Symbole anpassen oder Bilder Ihrer Wahl einfügen.
 
-## Die templates
+## Die Vorlagen
 
 Es gibt zwei Arten von Vorlagen :
 
@@ -155,7 +155,7 @@ Um es zu konfigurieren, müssen Sie das Widget ganz einfach der Temperaturregelu
 
 ## Code-Widget
 
-### Die tags
+### Tags
 
 Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist eine Liste (nicht unbedingt vollständig)) :
 

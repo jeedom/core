@@ -23,7 +23,7 @@ O botão **Salvar** deve ser usado quando você alterar as opções na tabela ab
 O botão **Atualizar** permite atualizar o Core, plugins ou ambos.
 Depois de clicar nele, você obtém essas opções diferentes :
 - **Pré-atualização** : Permite atualizar o script de atualização antes de aplicar as novas atualizações. Geralmente usado a pedido do suporte.
-- **Salvar avant** : Faça backup do Jeedom antes de atualizar.
+- **Salvar antes** : Faça backup do Jeedom antes de atualizar.
 - **Plugins de atualização** : Permite incluir plugins na atualização.
 - **Atualizar o núcleo** : Permite incluir o kernel Jeedom (o Core) na atualização.
 

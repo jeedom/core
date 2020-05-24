@@ -14,14 +14,14 @@ Isso é dividido em várias partes :
     - **Entrar** : Seu login no Market, não pode ser alterado.
     - **Nome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Primeiro nome** : Seu primeiro nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
-    - **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum.
+    - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
     - **E-mail** : Seu email.
     - **Idioma** : Seu idioma.
     - **Senha e Confirmar senha** : Permite alterar sua senha.
 
 Para desenvolvedores :
-- **Nome d'utilisateur sur le forum** : Seu nome de usuário no fórum.
-- **E-mail public** : Seu e-mail para receber nossas comunicações.
+- **Nome de usuário no fórum** : Seu nome de usuário no fórum.
+- **Email público** : Seu e-mail para receber nossas comunicações.
 - **Conta Paypal** : O email da sua conta Paypal (usado apenas para pagar desenvolvedores).
 
 Para os profissionais :

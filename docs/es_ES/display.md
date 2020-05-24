@@ -69,8 +69,8 @@ La pestaña **Información** contiene información general sobre el equipo y sus
 
 - **Identificación** : Identificador único en la base de datos Jeedom.
 - **Apellido** : Nombre del equipo.
-- **Identificación logique** : Identificador lógico del equipo (puede estar vacío).
-- **Identificación de l'objet** : Identificador único del objeto padre (puede estar vacío).
+- **ID lógica** : Identificador lógico del equipo (puede estar vacío).
+- **ID de objeto** : Identificador único del objeto padre (puede estar vacío).
 - **Fecha de creación** : Fecha de creación del equipo.
 - **Activar** : Marque la casilla para activar el equipo (no olvide guardar).
 - **Visible** : Marque la casilla para hacer visible el equipo (no olvide guardar).
@@ -124,7 +124,7 @@ este :
 
 Esta pestaña le permite tener información sobre la batería del equipo y definir alertas en relación con él. Estos son los tipos de información que se pueden encontrar :
 
-- **Tipo de pile**,
+- **Tipo de batería**,
 - **Últimos comentarios**,
 - **Nivel restante**, (si, por supuesto, su equipo funciona con batería).
 
@@ -164,7 +164,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 La pestaña **Información** contiene información general sobre el pedido :
 
 - **Identificación** : Identificador único en la base de datos.
-- **Identificación logique** : Identificador lógico del comando (puede estar vacío).
+- **ID lógica** : Identificador lógico del comando (puede estar vacío).
 - **Apellido** : Nombre de la orden.
 - **Tipo** : Tipo de comando (acción o información).
 - **Subtipo** : Subtipo de comando (binario, digital, etc.)).
@@ -195,7 +195,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 - **Cálculo y redondeo**
     - **Fórmula de cálculo (\#value\# por valor)** : Le permite realizar una operación sobre el valor del pedido antes de procesarlo por Jeedom, ejemplo : ``#value# - 0.2` para restar 0.2 (desplazamiento en un sensor de temperatura).
     - **Redondeado (número después del punto decimal)** : Se usa para redondear el valor del comando (Ejemplo : pon 2 para transformar 16.643,345 en 16.64).
-- **Tipo générique** : Le permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil.
+- **Tipo genérico** : Le permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil.
 - **Acción sobre el valor, si** : Hagamos algún tipo de mini escenarios. Puede, por ejemplo, decir que si el valor vale más de 50 por 3 minutos, entonces tiene que hacer tal acción. Esto permite, por ejemplo, apagar una luz X minutos después de encenderse.
 
 - **Histórico**
@@ -214,7 +214,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 #### Para un comando de acción :
 
--  **Tipo générique** : Le permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil.
+-  **Tipo genérico** : Le permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil.
 - **Confirmar acción** : Marque esta casilla para que Jeedom solicite confirmación cuando la acción se inicie desde la interfaz de este comando.
 - **Código de acceso** : Permite definir un código que Jeedom preguntará cuando la acción se inicie desde la interfaz de este comando.
 - **Acción antes de la ejecución del comando** : Agregar comandos **antes** cada ejecución de la orden.
@@ -236,7 +236,7 @@ En esta parte, podrá configurar ciertos comportamientos de visualización de wi
 - **Visible** : Marque para hacer visible el comando.
 - **Mostrar nombre** : Marque para hacer visible el nombre del comando, dependiendo del contexto.
 - **Mostrar nombre e icono** : Marque para que el icono sea visible además del nombre del comando.
-- **Línea envuelta antes del widget** : Seleccionar **antes La  widget** o **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
+- **Línea envuelta antes del widget** : Seleccionar **antes del widget** o **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
 
 A continuación, hay parámetros de visualización opcionales que se pueden pasar al widget. Estos parámetros dependen del widget en cuestión, por lo que debe consultar su archivo en Market para conocerlos.
 

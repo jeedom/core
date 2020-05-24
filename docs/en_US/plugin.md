@@ -18,7 +18,7 @@ By clicking on a plugin, you access its configuration. At the top, you find the 
 >
 > You can Ctrl-Click or Click Center to open its configuration in a new browser tab.
 
-## D'actualité de plugin
+## Plugin configuration
 
 ### At the top right, some buttons :
 
@@ -33,7 +33,7 @@ By clicking on a plugin, you access its configuration. At the top, you find the 
 - **Version** : The version of the plugin installed.
 - **Author** : The plugin author.
 - **ACTION** : Allows you to enable or disable the plugin.
-- **Version jeedom** : Indicates the minimum Jeedom version required for the plugin.
+- **Jeedom version** : Indicates the minimum Jeedom version required for the plugin.
 - **Licence** : Indicates the license of the plugin which will generally be AGPL.
 
 ### On the right, we find the area **Log and monitoring** which allows to define :
@@ -88,7 +88,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 We can find a Panel section which will enable or disable the display of the panel on the dashboard or mobile if the plugin offers one.
 
-## Setup d'un plugin
+## Plugin installation
 
 To install a new plugin, just click on the "Market" button (and Jeedom is connected to the Internet). After a short loading time, you will get the page.
 
@@ -101,7 +101,7 @@ At the top of the window you have filters :
 - **Official / Recommended** : displays only official or recommended plugins.
 - **Category drop-down menu** : displays only certain categories of plugins.
 - **Search** : allows you to search for a plugin (in the name or description of it).
-- **Last name d'utilisateur** : displays the user name used to connect to the Market as well as the connection status.
+- **Username** : displays the user name used to connect to the Market as well as the connection status.
 
 > **Tip**
 >

@@ -18,7 +18,7 @@ Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, voc
 >
 > Você pode pressionar Ctrl ou Click Center para abrir sua configuração em uma nova guia do navegador.
 
-## Configuração de plugin
+## Configuração de plugins
 
 ### No canto superior direito, alguns botões :
 
@@ -33,7 +33,7 @@ Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, voc
 - **Versão** : A versão do plug-in instalado.
 - **Autor** : O autor do plugin.
 - **Ação** : Permite ativar ou desativar o plug-in.
-- **Versão jeedom** : Indica a versão mínima do Jeedom necessária para o plug-in.
+- **Versão Jeedom** : Indica a versão mínima do Jeedom necessária para o plug-in.
 - **Licença** : Indica a licença do plug-in, que geralmente será AGPL.
 
 ### À direita, encontramos a área **Log e monitoramento** o que permite definir :
@@ -88,7 +88,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 
 Podemos encontrar uma seção Painel que habilitará ou desabilitará a exibição do painel no painel ou no celular, se o plug-in oferecer um.
 
-## Instalação d'un plugin
+## Instalação de plugins
 
 Para instalar um novo plugin, basta clicar no botão "Mercado" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
 
@@ -101,7 +101,7 @@ No topo da janela você tem filtros :
 - **Oficial / Recomendado** : exibe apenas plugins oficiais ou recomendados.
 - **Menu suspenso Categoria** : exibe apenas determinadas categorias de plugins.
 - **Pesquisa** : permite procurar um plugin (no nome ou na descrição dele)).
-- **Nome d'utilisateur** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
+- **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
 
 > **Dica**
 >

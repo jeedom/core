@@ -69,8 +69,8 @@ Die Registerkarte **Informationen** enthält allgemeine Informationen über das 
 
 - **Identifikation** : Eindeutige Kennung in der Jeedom-Datenbank.
 - **Name** : Name der Ausrüstung.
-- **Identifikation logique** : Logische Kennung des Geräts (kann leer sein).
-- **Identifikation de l'objet** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
+- **Logische ID** : Logische Kennung des Geräts (kann leer sein).
+- **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
 - **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
 - **Activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (vergessen Sie nicht, es zu speichern).
 - **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (vergessen Sie nicht, es zu speichern).
@@ -124,7 +124,7 @@ diese :
 
 Auf dieser Registerkarte können Sie Informationen zur Batterie des Geräts abrufen und entsprechende Warnungen definieren. Hier sind die Arten von Informationen, die gefunden werden können :
 
-- **Typ de pile**,
+- **Batterietyp**,
 - **Neuestes Feedback**,
 - **Verbleibendes Niveau**, (wenn Ihre Ausrüstung natürlich mit Batterie betrieben wird).
 
@@ -164,7 +164,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 Die Registerkarte **Informationen** enthält allgemeine Informationen zur Bestellung :
 
 - **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
-- **Identifikation logique** : Logische Kennung des Befehls (kann leer sein).
+- **Logische ID** : Logische Kennung des Befehls (kann leer sein).
 - **Name** : Name der Bestellung.
 - **Typ** : Art des Befehls (Aktion oder Info).
 - **Unterart** : Befehlssubtyp (binär, digital usw.)).
@@ -195,7 +195,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 - **Berechnung und Rundung**
     - **Berechnungsformel (\#value\# für Wert)** : Ermöglicht es Ihnen, den Wert der Bestellung vor der Verarbeitung durch Jeedom zu bearbeiten : ``#value# - 0.2` um 0 zu subtrahieren.2 (Versatz an einem Temperatursensor).
     - **Abgerundet (Zahl nach Dezimalpunkt)** : Wird verwendet, um den Wert des Befehls zu runden (Beispiel : Setze 2, um 16 zu transformieren.643,345 in 16,64).
-- **Typ générique** : Ermöglicht die Konfiguration des generischen Befehlstyps (Jeedom versucht, ihn im automatischen Modus selbst zu finden). Diese Informationen werden von der mobilen Anwendung verwendet.
+- **Generischer Typ** : Ermöglicht die Konfiguration des generischen Befehlstyps (Jeedom versucht, ihn im automatischen Modus selbst zu finden). Diese Informationen werden von der mobilen Anwendung verwendet.
 - **Aktion auf Wert, wenn** : Machen wir eine Art Miniszenario. Sie können beispielsweise sagen, dass Sie eine solche Aktion ausführen müssen, wenn der Wert 3 Minuten lang mehr als 50 wert ist. So kann beispielsweise ein Licht X Minuten nach dem Einschalten ausgeschaltet werden.
 
 - **Historisch**
@@ -214,7 +214,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 #### Für einen Aktionsbefehl :
 
--  **Typ générique** : Ermöglicht die Konfiguration des generischen Befehlstyps (Jeedom versucht, ihn im automatischen Modus selbst zu finden). Diese Informationen werden von der mobilen Anwendung verwendet.
+-  **Generischer Typ** : Ermöglicht die Konfiguration des generischen Befehlstyps (Jeedom versucht, ihn im automatischen Modus selbst zu finden). Diese Informationen werden von der mobilen Anwendung verwendet.
 - **Aktion bestätigen** : Aktivieren Sie dieses Kontrollkästchen, um eine Bestätigung der Jeedom-Anforderung zu erhalten, wenn die Aktion über die Schnittstelle dieses Befehls gestartet wird.
 - **Zugangscode** : Ermöglicht das Definieren eines Codes, den Jeedom beim Starten der Aktion über die Schnittstelle dieses Befehls abfragt.
 - **Aktion vor Ausführung des Befehls** : Befehle hinzufügen **vor** jede Ausführung des Auftrags.
@@ -236,7 +236,7 @@ In diesem Teil können Sie bestimmte Widget-Anzeigeverhalten im Dashboard, in An
 - **Sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
 - **Name anzeigen** : Aktivieren Sie diese Option, um den Namen des Befehls je nach Kontext sichtbar zu machen.
 - **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.
-- **Umbrochene Zeile vor dem Widget** : Wählen **vor Die  widget** oder **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Spaltenanzeige der verschiedenen Befehle des Geräts anstelle von Standardzeilen zu erzwingen)
+- **Umbrochene Zeile vor dem Widget** : Wählen **vor dem Widget** oder **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Spaltenanzeige der verschiedenen Befehle des Geräts anstelle von Standardzeilen zu erzwingen)
 
 Unten finden Sie optionale Anzeigeparameter, die an das Widget übergeben werden können. Diese Parameter hängen vom jeweiligen Widget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 
