@@ -20,7 +20,7 @@ try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 	
-	ajax::init(array('backupupload'));
+	ajax::init(array('backupupload','uploadImageIcon'));
 	
 	if (init('action') == 'getInfoApplication') {
 		$return = jeedom::getThemeConfig();
