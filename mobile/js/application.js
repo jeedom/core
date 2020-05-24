@@ -339,12 +339,6 @@ function initApplication(_reinit) {
       if (init(_reinit, false) == false) {
         document.title = data.result.product_name
         $('#favicon').attr("href", data.result.product_icon)
-        $.ajaxSetup({
-          type: "POST",
-          data: {
-            jeedom_token: data.result.jeedom_token
-          }
-        })
         modal(false)
         panel(false)
         /*************Initialisation environement********************/

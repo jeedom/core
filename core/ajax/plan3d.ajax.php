@@ -1,31 +1,31 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-
+	
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
-	ajax::init();
-
+	
+	ajax::init(array('uploadModel'));
+	
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -42,7 +42,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'plan3dHeader') {
 		$return = array();
 		foreach (plan3d::byPlan3dHeaderId(init('plan3dHeader_id')) as $plan3d) {
@@ -52,7 +52,7 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'create') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -63,7 +63,7 @@ try {
 		$plan3d->save();
 		ajax::success($plan3d->getHtml(init('version')));
 	}
-
+	
 	if (init('action') == 'get') {
 		$plan3d = plan3d::byId(init('id'));
 		if (!is_object($plan3d)) {
@@ -73,7 +73,7 @@ try {
 		$return['additionalData'] = $plan3d->additionalData();
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'byName') {
 		$plan3d = plan3d::byName3dHeaderId(init('name'), init('plan3dHeader_id'));
 		if (!is_object($plan3d)) {
@@ -81,7 +81,7 @@ try {
 		}
 		ajax::success($plan3d->getHtml());
 	}
-
+	
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -93,7 +93,7 @@ try {
 		}
 		ajax::success($plan3d->remove());
 	}
-
+	
 	if (init('action') == 'removeplan3dHeader') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -106,7 +106,7 @@ try {
 		$plan3dHeader->remove();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'allHeader') {
 		$plan3dHeaders = plan3dHeader::all();
 		$return = array();
@@ -117,7 +117,7 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'getplan3dHeader') {
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
@@ -129,7 +129,7 @@ try {
 		$return = utils::o2a($plan3dHeader);
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'saveplan3dHeader') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -147,7 +147,7 @@ try {
 		$plan3dHeader->save();
 		ajax::success(utils::o2a($plan3dHeader));
 	}
-
+	
 	if (init('action') == 'uploadModel') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -202,7 +202,7 @@ try {
 		$plan3dHeader->save();
 		ajax::success();
 	}
-
+	
 	throw new Exception(__('Aucune méthode correspondant à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

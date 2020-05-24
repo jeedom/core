@@ -24,26 +24,13 @@ class ajax {
 	
 	/*     * *********************Methode static ************************* */
 	
-	public static function init($_checkToken = true) {
+	public static function init($_allowGetAction = array()) {
 		if (!headers_sent()) {
 			header('Content-Type: application/json');
 		}
-		if ($_checkToken && init('jeedom_token') != self::getToken()) {
-			self::error(__('Votre session a expiré, veuillez vous reconnecter', __FILE__));
+		if(isset($_GET['action']) && !in_array($_GET['action'],$_allowGetAction)){
+			throw new \Exception(__('Méthode non autorisé en GET : ',__FILE__).$_GET['action']);
 		}
-	}
-	
-	public static function getToken() {
-		if (session_status() == PHP_SESSION_NONE) {
-			@session_start();
-			@session_write_close();
-		}
-		if (!isset($_SESSION['jeedom_token'])) {
-			@session_start();
-			$_SESSION['jeedom_token'] = config::genKey();
-			@session_write_close();
-		}
-		return $_SESSION['jeedom_token'];
 	}
 	
 	public static function success($_data = '') {

@@ -56,26 +56,26 @@ $('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
 	$('.viewAttr[data-l1key=display][data-l2key=icon]').value('');
 });
 $('#bt_chooseIcon').on('click', function () {
-  var _icon = false
-  var icon = false
-  var color = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    color = '';
-    class_icon = $('div[data-l2key="icon"] > i').attr('class')
-    class_icon = class_icon.replace(' ', '.').split(' ');
-    icon = '.'+class_icon[0];
-    if(class_icon[1]){
-      color = class_icon[1];
-    }
-  }
-  chooseIcon(function (_icon) {
-    $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:icon,color:color});
+	var _icon = false
+	var icon = false
+	var color = false
+	if ( $('div[data-l2key="icon"] > i').length ) {
+		color = '';
+		class_icon = $('div[data-l2key="icon"] > i').attr('class')
+		class_icon = class_icon.replace(' ', '.').split(' ');
+		icon = '.'+class_icon[0];
+		if(class_icon[1]){
+			color = class_icon[1];
+		}
+	}
+	chooseIcon(function (_icon) {
+		$('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+	},{icon:icon,color:color});
 });
 
 $('#bt_uploadImage').fileupload({
 	replaceFileInput: false,
-	url: 'core/ajax/view.ajax.php?action=uploadImage&id=' + view.id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+	url: 'core/ajax/view.ajax.php?action=uploadImage&id=' + view.id,
 	dataType: 'json',
 	done: function (e, data) {
 		if (data.result.state != 'ok') {
