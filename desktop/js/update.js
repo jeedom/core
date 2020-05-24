@@ -445,9 +445,9 @@ function cleanUpdateLog() {
   var l = lines.length
 
   //update progress bar and clean text!
-  linesRev = lines.slice().reverse()
+  var linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
-    regExpResult = regExLogProgress.exec(linesRev[i])
+    var regExpResult = regExLogProgress.exec(linesRev[i])
     if(regExpResult !== null) {
       progress = regExpResult[1]
       updateProgressBar()
