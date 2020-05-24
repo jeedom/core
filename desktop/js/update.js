@@ -442,7 +442,7 @@ function cleanUpdateLog() {
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
   var lines = currentUpdateText.split("\n")
-  l = lines.length
+  var l = lines.length
 
   //update progress bar and clean text!
   linesRev = lines.slice().reverse()
@@ -455,15 +455,15 @@ function cleanUpdateLog() {
     }
   }
 
-  newLogText = ''
+  var newLogText = ''
   for(var i=0; i < l; i++) {
-    line = lines[i]
+    var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
 
     //check ok at end of line:
     if (line.endsWith('OK')) {
-      matches = line.match(/[. ]{1,}OK/g)
+      var matches = line.match(/[. ]{1,}OK/g)
       if (matches) {
         line = line.replace(matches[0], '')
         line += ' | OK'
@@ -486,7 +486,7 @@ function cleanUpdateLog() {
     if (lines[i+1].startsWith('[PROGRESS]')) {
       var offset = 2
     }
-    nextLine = lines[i+offset]
+    var nextLine = lines[i+offset]
     var letters = /^[0-9a-zA-Z]+$/
     if(!nextLine.replace('OK', '').match(letters)) {
       matches = nextLine.match(/[.]{2,}/g)
