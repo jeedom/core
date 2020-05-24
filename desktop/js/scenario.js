@@ -1502,7 +1502,7 @@ function saveScenario(_callback) {
     success: function (data) {
       modifyWithoutSave = false;
       resetUndo()
-      url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1';
+      var url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1';
       if (window.location.hash != '') {
         url += window.location.hash;
       }

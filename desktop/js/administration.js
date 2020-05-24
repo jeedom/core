@@ -958,8 +958,8 @@ function addObjectSummary(_summary, _direction=1) {
 }
 
 function saveObjectSummary() {
-  summary = {};
-  temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
+  var summary = {};
+  var temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
   for(var i in temp){
     if(temp[i].key == ''){
       temp[i].key = temp[i].name
@@ -967,7 +967,7 @@ function saveObjectSummary() {
     temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
     summary[temp[i].key] = temp[i]
   }
-  value = {'object:summary' : summary};
+  var value = {'object:summary' : summary};
   $.ajax({
     type: "POST",
     url: "core/ajax/config.ajax.php",
