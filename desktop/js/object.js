@@ -13,6 +13,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
+"use strict"
+
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
@@ -69,9 +72,9 @@ $(function(){
           return;
         }
         var contextmenuitems = {}
-        for(i=0; i<_objects.length; i++)
+        for(var i=0; i<_objects.length; i++)
         {
-          ob = _objects[i]
+          var ob = _objects[i]
           var decay = 0
           if (isset(ob.configuration) && isset(ob.configuration.parentNumber)) {
             decay = ob.configuration.parentNumber

@@ -13,7 +13,10 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-actionOptions = []
+
+"use strict"
+
+var actionOptions = []
 var $pageContainer = $('#div_pageContainer')
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
@@ -22,7 +25,7 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 
 
 //select tab:
-_url = window.location.href
+var _url = window.location.href
 if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
   $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
 }
@@ -877,7 +880,7 @@ function printObjectSummary() {
         return;
       }
       $('#table_objectSummary tbody').empty();
-      _objSumLength = Object.keys(data.result).length
+      var _objSumLength = Object.keys(data.result).length
       var n = 0;
       for (var i in data.result) {
         if(isset(data.result[i].key) && data.result[i].key == ''){
@@ -891,7 +894,7 @@ function printObjectSummary() {
         if(!isset(data.result[i].key)){
           data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
         }
-        _direction = -1
+        var _direction = -1
         if (n > (_objSumLength - 4)) _direction = 1
         addObjectSummary(data.result[i], _direction);
         n++;

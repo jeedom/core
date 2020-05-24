@@ -12,8 +12,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
+"use strict"
 
  $("#sel_plugin").on('change', function(event) {
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value() + '&ajax=1')

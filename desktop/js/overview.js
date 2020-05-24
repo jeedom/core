@@ -14,6 +14,9 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+
 var _SummaryObserver_ = null
 
 $(function() {

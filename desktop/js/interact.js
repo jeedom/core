@@ -14,7 +14,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+var actionOptions = []
 var $interactListContainer = $('.interactListContainer')
+
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
@@ -95,14 +99,14 @@ $(function(){
         interactGroups = Array.from(new Set(interactGroups))
         interactGroups.sort()
         var interactList = []
-        for(i=0; i<interactGroups.length; i++)
+        for(var i=0; i<interactGroups.length; i++)
         {
           group = interactGroups[i]
           interactList[group] = []
-          for(j=0; j<interacts.length; j++)
+          for(var j=0; j<interacts.length; j++)
           {
-            sc = interacts[j]
-            scGroup = sc.group
+            var sc = interacts[j]
+            var scGroup = sc.group
             if (scGroup == null) continue
             if (scGroup == "") scGroup = 'Aucun'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
@@ -114,12 +118,12 @@ $(function(){
         var contextmenuitems = {}
         var uniqId = 0
         for (var group in interactList) {
-          groupinteracts = interactList[group]
-          items = {}
+          var groupinteracts = interactList[group]
+          var items = {}
           for (var index in groupinteracts) {
-            sc = groupinteracts[index]
-            scName = sc[0]
-            scId = sc[1]
+            var sc = groupinteracts[index]
+            var scName = sc[0]
+            var scId = sc[1]
             items[uniqId] = {'name': scName, 'id' : scId}
             uniqId ++
           }

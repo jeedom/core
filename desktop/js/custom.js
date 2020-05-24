@@ -12,14 +12,17 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
- editorDesktopJS = null;
- editorDesktopCSS = null;
- editorMobileJS = null;
- editorMobileCSS = null;
+"use strict"
 
- jeedom.config.load({
+
+var editorDesktopJS = null;
+var editorDesktopCSS = null;
+var editorMobileJS = null;
+var editorMobileCSS = null;
+
+jeedom.config.load({
     configuration: $('#div_spanAlertMessage').getValues('.configKey:not(.noSet)')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -30,7 +33,7 @@
     }
 });
 
- setTimeout(function () {
+setTimeout(function () {
     editorDesktopJS = CodeMirror.fromTextArea(document.getElementById("ta_jsDesktopContent"), {
         lineNumbers: true,
         mode: "text/javascript",
@@ -43,12 +46,12 @@
         matchBrackets: true,
         viewportMargin: Infinity
     });
-   hmenu = $('header.navbar').height();
-   hcontainer = $('#div_pageContainer').height();
-   hwin = $(window).height();
-   h = hwin - (hmenu + hcontainer) + 300;
-   editorDesktopJS.setSize(null, h);
-   editorDesktopCSS.setSize(null, h);
+    var hmenu = $('header.navbar').height();
+    var hcontainer = $('#div_pageContainer').height();
+    var hwin = $(window).height();
+    var h = hwin - (hmenu + hcontainer) + 300;
+    editorDesktopJS.setSize(null, h);
+    editorDesktopCSS.setSize(null, h);
 }, 1);
 
  $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function (e) {

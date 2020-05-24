@@ -15,6 +15,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $('.li_type').on('click',function(){
   $('.li_type').removeClass('active');
   $(this).addClass('active');

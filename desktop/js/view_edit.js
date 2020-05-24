@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $("#ul_view").sortable({
   axis: "y",
   cursor: "move",

@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var JS_ERROR = [];
 var BACKGROUND_IMG = '';
 var PREVIOUS_PAGE = null;
@@ -33,6 +35,9 @@ var _observerConfig_ = {
   subtree: true
 }
 
+var printEqLogic = undefined
+var UPDATE_NUMBER
+
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('3rdparty/') != -1){
     return;
@@ -42,11 +47,11 @@ window.addEventListener('error', function (evt) {
   $.hideLoading();
 });
 
-uniqId_count = 0;
-modifyWithoutSave = false;
-nbActiveAjaxRequest = 0;
-jeedomBackgroundImg = null;
-utid = Date.now();
+var uniqId_count = 0;
+var modifyWithoutSave = false;
+var nbActiveAjaxRequest = 0;
+var jeedomBackgroundImg = null;
+var utid = Date.now();
 
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++;
@@ -363,8 +368,8 @@ $(function () {
   /************************Help*************************/
   setTimeout(function() {
     if ( isset(jeedom_langage) ) {
-      lang = jeedom_langage.substr(0, 2)
-      supportedLangs = ['fr', 'de', 'es']
+      var lang = jeedom_langage.substr(0, 2)
+      var supportedLangs = ['fr', 'de', 'es']
       if ( lang != 'en' && supportedLangs.includes(lang) ) {
         bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
         bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})

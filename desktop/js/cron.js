@@ -14,10 +14,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
 
 printCron();
 printListener();
-initTableSorter(filter=false)
+initTableSorter(false)
 setTimeout(function(){$('#table_cron').find('th[data-column="0"]').trigger('sort')}, 100)
 
 jwerty.key('ctrl+s/⌘+s', function (e) {

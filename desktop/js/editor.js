@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $('#sel_widgetType').off('change').on('change',function(){
   $('#sel_widgetSubtype option').hide();
   if($(this).value() != ''){
@@ -37,13 +39,13 @@ $("#md_widgetCreate").dialog({
   }
 });
 
-fileEditor = null
-var CURRENT_FOLDER=rootPath
+var fileEditor = null
+var CURRENT_FOLDER = rootPath
 printFileFolder(CURRENT_FOLDER);
 
 $('#div_treeFolder').off('click').on('select_node.jstree', function (node, selected) {
   if (selected.node.a_attr['data-path'] != undefined) {
-    path = selected.node.a_attr['data-path'];
+    var path = selected.node.a_attr['data-path'];
     printFileFolder(path);
     ref = $('#div_treeFolder').jstree(true);
     sel = ref.get_selected()[0];

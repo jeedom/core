@@ -14,6 +14,9 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+
 function dbGenerateTableFromResponse(_response){
   var result = '<table class="table table-condensed table-bordered">';
   result += '<thead>';

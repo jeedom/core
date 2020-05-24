@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var widget_parameters_opt = {
   'desktop_width' : {
     'type' : 'input',
@@ -90,7 +92,7 @@ $(function(){
         var widgetsList = []
         widgetsList['info'] = []
         widgetsList['action'] = []
-        for(i=0; i<_widgets.length; i++)
+        for(var i=0; i<_widgets.length; i++)
         {
           wg = _widgets[i]
           if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
@@ -101,12 +103,12 @@ $(function(){
         var contextmenuitems = {}
         var uniqId = 0
         for (var group in widgetsList) {
-          groupWidgets = widgetsList[group]
-          items = {}
+          var groupWidgets = widgetsList[group]
+          var items = {}
           for (var index in groupWidgets) {
-            wg = groupWidgets[index]
-            wgName = wg[0]
-            wgId = wg[1]
+            var wg = groupWidgets[index]
+            var wgName = wg[0]
+            var wgId = wg[1]
             items[uniqId] = {'name': wgName, 'id' : wgId}
             uniqId ++
           }

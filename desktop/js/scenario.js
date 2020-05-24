@@ -14,10 +14,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-SC_CLIPBOARD = null
-PREV_FOCUS = null
-tab = null
+"use strict"
+
+var SC_CLIPBOARD = null
+var PREV_FOCUS = null
+var tab = null
 var $pageContainer = $('#div_pageContainer')
+var actionOptions = []
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
@@ -167,7 +170,7 @@ $(function(){
           return;
         }
         var scenarioGroups = []
-        for(i=0; i<scenarios.length; i++){
+        for(var i=0; i<scenarios.length; i++){
           group = scenarios[i].group
           if (group == null) continue
           if (group == "") group = '{{Aucun}}'
@@ -177,13 +180,13 @@ $(function(){
         scenarioGroups = Array.from(new Set(scenarioGroups))
         scenarioGroups.sort()
         var scenarioList = []
-        for(i=0; i<scenarioGroups.length; i++){
+        for(var i=0; i<scenarioGroups.length; i++){
           group = scenarioGroups[i]
           scenarioList[group] = []
-          for(j=0; j<scenarios.length; j++)
+          for(var j=0; j<scenarios.length; j++)
           {
-            sc = scenarios[j]
-            scGroup = sc.group
+            var sc = scenarios[j]
+            var scGroup = sc.group
             if (scGroup == null) continue
             if (scGroup == "") scGroup = '{{Aucun}}'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
@@ -195,12 +198,12 @@ $(function(){
         var contextmenuitems = {}
         var uniqId = 0
         for (var group in scenarioList) {
-          groupScenarios = scenarioList[group]
-          items = {}
+          var groupScenarios = scenarioList[group]
+          var items = {}
           for (var index in groupScenarios) {
-            sc = groupScenarios[index]
-            scName = sc[0] + '  ('+sc[1]+')'
-            scId = sc[1]
+            var sc = groupScenarios[index]
+            var scName = sc[0] + '  ('+sc[1]+')'
+            var scId = sc[1]
             items[uniqId] = {'name': scName, 'id' : scId}
             uniqId ++
           }
@@ -235,7 +238,7 @@ $(function(){
 })
 
 var editor = [];
-autoCompleteCondition = [
+var autoCompleteCondition = [
   '#rand(MIN,MAX)',
   '##minute#',
   '##heure#',
@@ -274,7 +277,7 @@ autoCompleteCondition = [
   '#lastCommunication(equipement)',
   '#color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'
 ];
-autoCompleteAction = ['setColoredIcon','tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
+var autoCompleteAction = ['setColoredIcon','tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
 setTimeout(function(){
   $('.scenarioListContainer').packery();
@@ -618,9 +621,9 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
   $("#bt_addElementSave").off('click').on('click', function (event) {
     setUndoStack()
     if (expression) {
-      newEL = $(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}))
+      var newEL = $(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}))
     } else {
-      newEL = $(addElement({type: $("#in_addElementType").value()}))
+      var newEL = $(addElement({type: $("#in_addElementType").value()}))
     }
     if (insertAfter) {
       elementDiv.after(newEL.addClass('disableElement'))
@@ -965,7 +968,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
 
   setUndoStack()
   //Removes its id for later save:
-  newBloc = $(SC_CLIPBOARD).clone()
+  var newBloc = $(SC_CLIPBOARD).clone()
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
@@ -1407,7 +1410,7 @@ function printScenario(_id) {
         }
       }
       $('.scenario_link').empty();
-      html = '';
+      var html = '';
       if(data.scenario_link.scenario){
         for(var i in data.scenario_link.scenario){
           if(data.scenario_link.scenario[i].isActive == 1){
@@ -1652,7 +1655,7 @@ function addSubElement(_subElement) {
     noSortable = 'noSortable';
   }
 
-  blocClass = '';
+  var blocClass = '';
   switch (_subElement.type) {
     case 'if':
     blocClass = 'subElementIF';
@@ -1979,7 +1982,7 @@ function addElement(_element) {
     return '';
   }
 
-  elementClass = ''
+  var elementClass = ''
   switch (_element.type) {
     case 'if' :
     elementClass = 'elementIF'
@@ -2127,7 +2130,7 @@ function updateTooltips() {
 
 function getAddButton(_caret) {
   if (!isset(_caret)) _caret = false
-  retour = ''
+  var retour = ''
   if (_caret) {
     retour += '<div class="input-group">'
     retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
@@ -2223,7 +2226,7 @@ function setUndoStack(state=0) {
   syncEditors()
   bt_undo.removeClass('disabled')
   bt_redo.addClass('disabled')
-  newStack = $('#div_scenarioElement').clone()
+  var newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
 
   if (newStack ==  $(_undoStack_[state-1])) return
@@ -2243,9 +2246,9 @@ function undo() {
     return
   }
   try {
-    loadState = _undoState_
+    var loadState = _undoState_
     if (_redo_ == 0) setUndoStack(_undoState_ + 1)
-    loadStack = $(_undoStack_[loadState])
+    var loadStack = $(_undoStack_[loadState])
     $('#div_scenarioElement').replaceWith(loadStack)
     $('.dropdown.open').dropdown("toggle")
     _undoState_ -= 1
@@ -2265,8 +2268,8 @@ function redo() {
   }
   bt_undo.removeClass('disabled')
   try {
-    loadState = _undoState_ + 2
-    loadStack = $(_undoStack_[loadState])
+    var loadState = _undoState_ + 2
+    var loadStack = $(_undoStack_[loadState])
     $('#div_scenarioElement').replaceWith(loadStack)
     $('.dropdown.open').dropdown("toggle")
     _undoState_ += 1

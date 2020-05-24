@@ -22,6 +22,7 @@ jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
 jeedom.changes_timeout = null;
+var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;

@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var hasUpdate = false
 var progress = -2
 var alertTimeout = null
@@ -299,15 +301,15 @@ function addUpdate(_update) {
   tr += '<td><span class="hidden">' + _update.name + '</span><span class="updateAttr" data-l1key="id" style="display:none;"></span>';
   tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>';
   if(_update.configuration && _update.configuration.version){
-    updClass = 'label-warning';
+    var updClass = 'label-warning';
     if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success';
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
 
-  _localVersion = _update.localVersion
+  var _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
-  _remoteVersion = _update.remoteVersion
+  var _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
 
   tr += '</td>';

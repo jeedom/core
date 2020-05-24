@@ -14,6 +14,9 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+
 //infos/actions tile signals:
 $('body')
 .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
@@ -83,7 +86,7 @@ $('#in_searchWidget').off('keyup').on('keyup',function() {
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
-    text = normTextLower($(this).find('.widget-name').text())
+    var text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
 
     if ($(this).attr('data-tags') != undefined) {
@@ -111,7 +114,7 @@ $('#in_searchWidget').off('keyup').on('keyup',function() {
   })
   $('.scenario-widget').each(function() {
     var match = false
-    text = normTextLower($(this).find('.widget-name').text())
+    var text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
     if (match) {
       $(this).show()

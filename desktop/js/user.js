@@ -15,6 +15,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 printUsers();
 $("#bt_addUser").on('click', function (event) {
   $.hideAlert();
@@ -226,7 +228,7 @@ $('#table_user').on( 'click', '.bt_disableTwoFactorAuthentification',function ()
       printUsers();
     }
   });
-  
+
 });
 
 $('.bt_deleteSession').on('click',function(){

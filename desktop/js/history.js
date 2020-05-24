@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 if(getUrlVars('timeline')){
   $('#sel_timelineFolder').value(getUrlVars('timeline'));
   $('#bt_tabTimeline').click();
@@ -194,7 +196,7 @@ function initHistoryTrigger() {
       }
     });
   });
-  
+
   $('#sel_chartType').off('change').on('change', function () {
     if(lastId == null){
       return;
@@ -213,7 +215,7 @@ function initHistoryTrigger() {
       }
     });
   });
-  
+
   $('#cb_derive').off('change').on('change', function () {
     if(lastId == null){
       return;
@@ -232,7 +234,7 @@ function initHistoryTrigger() {
       }
     });
   });
-  
+
   $('#cb_step').off('change').on('change', function () {
     if(lastId == null){
       return;
@@ -251,7 +253,7 @@ function initHistoryTrigger() {
       }
     });
   });
-  
+
   $('.highcharts-legend-item').off('click').on('click',function(event) {
     if (event.ctrlKey || event.altKey) {
       event.stopImmediatePropagation()
@@ -368,7 +370,7 @@ function displayTimeline(){
       data = data.reverse()
       var dataLength = data.length
       var decayFactor = 130
-      
+
       var isFirstOfDay, isLastOfDay = false
       var nextDate, thisDateTs = false
       var prevDate = moment().format("YYYY-MM-DD")
@@ -380,7 +382,7 @@ function displayTimeline(){
         var time = thisData.date.substring(11,19)
         thisDateTs = moment(thisData.date.substring(0,19)).unix()
         var lineClass = ''
-        
+
         if (prevDate != date) {
           isFirstOfDay = true
           prevDateTs = moment(prevDate + ' 00:00:00').unix()
@@ -392,7 +394,7 @@ function displayTimeline(){
             }
           }
         }
-        
+
         //actual time marker:
         if (i == 0) {
           var li = '<li style="background-color:transparent!important;">'
@@ -401,7 +403,7 @@ function displayTimeline(){
           li += '</li>'
           content += li
         }
-        
+
         //time spacing:
         var style = ''
         var height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
@@ -414,7 +416,7 @@ function displayTimeline(){
         }
         var li = '<li style="'+style+'">'
         li += '<div>'
-        
+
         //scenario or cmd info/action:
         li += '<div class="type">'
         if (thisData.group && thisData.plugins) {
@@ -432,26 +434,26 @@ function displayTimeline(){
           lineClass = 'typeScenario'
         }
         li += '</div>'
-        
+
         //html:
         li += '<div class="html">'+thisData.html+'</div>'
-        
+
         li += '</div>'
         li += '<span class="vertLine '+lineClass+'"></span>'
         //time:
         li += '<div class="time '+lineClass+'">'+time+'</div>'
-        
+
         //date:
         li += '<div class="date">'+date+'</div>'
-        
+
         li += '</li>'
         content += li
-        
+
         //newDay ?
         if (isLastOfDay) {
           content += '<div class="label-warning day">'+nextDate+'</div>'
         }
-        
+
         prevDate = date
         prevDateTs = thisDateTs
         isFirstOfDay = isLastOfDay = false

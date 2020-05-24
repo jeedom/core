@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   $("#bt_saveProfils").click();

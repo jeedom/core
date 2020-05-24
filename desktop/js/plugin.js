@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $( function() {
   $('sub.itemsNumber').html('('+$('.pluginDisplayCard').length+')')
 })
@@ -48,9 +50,9 @@ $('#bt_resetPluginSearch').on('click', function () {
 if($('#md_modal').is(':visible')){
   $('#bt_returnToThumbnailDisplay').hide();
   $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
-  alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
+  var alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
 }else{
-  alert_div_plugin_configuration = $('#div_alert');
+  var alert_div_plugin_configuration = $('#div_alert');
 }
 
 setTimeout(function(){
@@ -81,7 +83,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         $('#span_plugin_id').html(data.id);
         $('#span_plugin_name').html(data.name);
         if(isset(data.update) && isset(data.update.localVersion)){
-          localVer = data.update.localVersion
+          var localVer = data.update.localVersion
           if (localVer.length > 20) localVer = localVer.substring(0,20) + '...'
           $('#span_plugin_install_date').html(localVer);
         }else{

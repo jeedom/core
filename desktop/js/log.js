@@ -13,6 +13,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
+"use strict"
+
 $('#bt_downloadLog').click(function() {
   window.open('core/php/downloadFile.php?pathfile=log/' + $('.li_log.active').attr('data-log'), "_blank", null);
 });

@@ -14,6 +14,9 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+
 $('#div_treeObject').off('click').on('select_node.jstree', function (node, selected) {
   if (selected.node.a_attr['data-object_id'] != undefined) {
     object_id = selected.node.a_attr['data-object_id'];

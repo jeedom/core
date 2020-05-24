@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $('#div_pageContainer').on('click','.bt_gotoViewZone',function(){
   var top = $('.div_displayViewContainer').scrollTop()+ $('.lg_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60;
   $('.div_displayViewContainer').animate({ scrollTop: top}, 500);
