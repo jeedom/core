@@ -37,6 +37,7 @@ var _observerConfig_ = {
 
 var printEqLogic = undefined
 var UPDATE_NUMBER
+var MESSAGE_NUMBER
 
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('3rdparty/') != -1){

@@ -438,7 +438,7 @@ function createUpdateObserver() {
 }
 
 function cleanUpdateLog() {
-  currentUpdateText = $('#pre_updateInfo').text()
+  var currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
   lines = currentUpdateText.split("\n")
