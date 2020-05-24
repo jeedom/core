@@ -33,19 +33,6 @@ class ajax {
 		}
 	}
 	
-	public static function getToken() {
-		if (session_status() == PHP_SESSION_NONE) {
-			@session_start();
-			@session_write_close();
-		}
-		if (!isset($_SESSION['jeedom_token'])) {
-			@session_start();
-			$_SESSION['jeedom_token'] = config::genKey();
-			@session_write_close();
-		}
-		return $_SESSION['jeedom_token'];
-	}
-	
 	public static function success($_data = '') {
 		echo self::getResponse($_data);
 		die();

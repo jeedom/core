@@ -14,7 +14,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 		<div class="bs-sidebar nav nav-list bs-sidenav">
 			<div class="form-group">
 				<span class="btn btn-default btn-file" style="width:100%;">
-					<i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;width:100%;">
+					<i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload" style="display : inline-block;width:100%;">
 				</span>
 			</div>
 			<div class="form-group">
@@ -29,7 +29,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 			<ul id="ul_scenarioTemplateList" class="nav nav-list bs-sidenav"></ul>
 		</div>
 	</div>
-
+	
 	<div class="col-lg-10 col-md-9 col-sm-7" id="div_listScenarioTemplate" style="display:none;">
 		<form class="form-horizontal">
 			<legend><i class="fas fa-home"></i> {{Général}}</legend>

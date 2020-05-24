@@ -99,7 +99,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-
+	
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -159,13 +159,7 @@ function setTheme() {
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
-	$.ajaxSetup({
-		type: "POST",
-		data: {
-			jeedom_token: '<?php echo ajax::getToken() ?>'
-		}
-	})
+	JEEDOM_AJAX_TOKEN='';
 	</script>
 	<?php
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
@@ -217,9 +211,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -528,3 +522,4 @@ function setTheme() {
 		<?php } ?>
 	</body>
 	</html>
+	
