@@ -398,7 +398,7 @@ function getObjectHtml(_object_id) {
 
         //rearrange that better:
         var _finalOrder = {}
-        for ([id, order] of Object.entries(_newOrders)) {
+        for (var [id, order] of Object.entries(_newOrders)) {
           if (order <= _draggingNewOrder) _finalOrder[id] = order
           if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
         }
@@ -422,7 +422,7 @@ function getObjectHtml(_object_id) {
         itemElems = container.packery('getItemElements');
         $(itemElems).each( function( i, itemElem ) {
           $(itemElem).attr('data-order', i + 1 )
-          value = i + 1
+          var value = i + 1
           if (isEditing) {
             if ($(itemElem).find(".counterReorderJeedom").length) {
               $(itemElem).find(".counterReorderJeedom").text(value)

@@ -1311,9 +1311,9 @@ function saveWidgetDisplay(_params) {
   var scenarios = [];
   $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function(){
     var eqLogic = $(this);
-    order = 1;
+    var order = 1;
     eqLogic.find('.cmd').each(function(){
-      cmd = {};
+      var cmd = {};
       cmd.id = $(this).attr('data-cmd_id');
       cmd.order = order;
       cmds.push(cmd);
@@ -1322,9 +1322,9 @@ function saveWidgetDisplay(_params) {
   });
   $('.eqLogic-widget.eqLogic_layout_table').each(function(){
     var eqLogic = $(this);
-    order = 1;
+    var order = 1;
     eqLogic.find('.cmd').each(function(){
-      cmd = {};
+      var cmd = {};
       cmd.id = $(this).attr('data-cmd_id');
       cmd.line = $(this).closest('td').attr('data-line');
       cmd.column = $(this).closest('td').attr('data-column');
@@ -1335,7 +1335,7 @@ function saveWidgetDisplay(_params) {
   });
   if(init(_params['dashboard']) == 1){
     $('.div_displayEquipement').each(function(){
-      order = 1;
+      var order = 1;
       $(this).find('.eqLogic-widget,.scenario-widget').each(function(){
         if($(this).hasClass('eqLogic-widget')){
           var eqLogic = {id :$(this).attr('data-eqlogic_id')}
@@ -1376,9 +1376,9 @@ function saveWidgetDisplay(_params) {
       }
     });
   } else if(init(_params['view']) == 1){
-    components = [];
+    var components = [];
     $('.eqLogicZone').each(function(){
-      order = 1;
+      var order = 1;
       $(this).find('.eqLogic-widget,.scenario-widget').each(function(){
         if($(this).hasClass('eqLogic-widget')){
           var eqLogic = {id :$(this).attr('data-eqlogic_id'),type:'eqLogic'}
