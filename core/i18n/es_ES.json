@@ -3938,7 +3938,7 @@
         "Exécution du sous-élément de type [condition] : ": "Ejecución del sub-elemento de tipo [condición]:"
     },
     "core\/class\/ajax.class.php": {
-        "Votre session a expiré, veuillez vous reconnecter": "Su sesión ha expirado, vuelva a conectar"
+        "Méthode non autorisé en GET : ": "Método no permitido en GET:"
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "El tipo debe ser uno de los siguientes:",
@@ -4018,11 +4018,11 @@
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "No se puede instalar el complemento. Los archivos no se pudieron descomprimir:",
         "Impossible de décompresser l\\'archive zip : ": "No se puede descomprimir el archivo zip:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "No puedes eliminar el núcleo de Jeedom",
-        "Supression des fichiers inutiles...": "Eliminar archivos innecesarios",
         "Début de la mise à jour de : ": "Comience la actualización:",
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "No se puede crear la carpeta: '. $ cibDir. . Cuestión de derechos?",
         "Action de pré-update...": "Acción previa a la actualización",
         "Post-installation de ": "Post instalación",
+        "Supression des fichiers inutiles...": "Eliminar archivos innecesarios",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el complemento. El nombre del complemento es diferente de la ID o el complemento no está formado correctamente. Por favor contacte al autor",
         "END UPDATE SUCCESS\\n": "FINALIZAR ÉXITO \\ n",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Buscar actualizaciones deshabilitadas, actualizaciones y reinstalaciones en",

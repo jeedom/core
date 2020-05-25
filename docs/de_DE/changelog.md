@@ -70,4 +70,5 @@
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.1.0.
 - **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 bis 5.13.0.
+- Sichern von Ajax-Anfragen.
 - Fehlerbehebungen und Optimierungen.
