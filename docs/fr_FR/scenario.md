@@ -181,8 +181,7 @@ Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais n
 - ``$scenario->getIsActive();`` : Retourne l’état du scénario.
 - ``$scenario->setIsActive($active);`` : Permet d’activer ou non le scénario.
     - ``$active`` : 1 actif , 0 non actif.
-- ``$scenario->setOnGoing($onGoing);`` : Permet de dire si le scénario est en cours ou non.
-    - ``$onGoing => 1`` : 1 en cours , 0 arrêté.
+- ``$scenario->running();`` : Permet de savoir si le scénario est en cours d'éxécution ou non (true / false).
 - ``$scenario->save();`` : Sauvegarde les modifications.
 - ``$scenario->setData($key, $value);`` : Sauvegarde une donnée (variable).
     - ``$key`` : clé de la valeur (int ou string).
