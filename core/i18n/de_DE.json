@@ -3677,10 +3677,10 @@
         "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "Das Plugin kann nicht installiert werden. Die Dateien konnten nicht dekomprimiert werden:",
         "Impossible de décompresser l\\'archive zip : ": "Das Zip-Archiv kann nicht dekomprimiert werden:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "Sie können den Kern von Jeedom nicht löschen",
-        "Supression des fichiers inutiles...": "Unnötige Dateien löschen",
         "Début de la mise à jour de : ": "Beginn des Updates von:",
         "Action de pré-update...": "Aktion vor dem Update",
         "Post-installation de ": "Nachinstallation von",
+        "Supression des fichiers inutiles...": "Unnötige Dateien löschen",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Das Plugin kann nicht installiert werden. Der Name des Plugins unterscheidet sich von der ID oder das Plugin ist nicht richtig gebildet. Bitte kontaktieren Sie den Autor",
         "Le logical ID ne peut pas être vide": "Die logische ID darf nicht leer sein"
     },
