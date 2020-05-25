@@ -21,6 +21,7 @@ var editorDesktopJS = null;
 var editorDesktopCSS = null;
 var editorMobileJS = null;
 var editorMobileCSS = null;
+var contentHeight = 0
 
 jeedom.config.load({
     configuration: $('#div_spanAlertMessage').getValues('.configKey:not(.noSet)')[0],
@@ -49,9 +50,9 @@ setTimeout(function () {
     var hmenu = $('header.navbar').height();
     var hcontainer = $('#div_pageContainer').height();
     var hwin = $(window).height();
-    var h = hwin - (hmenu + hcontainer) + 300;
-    editorDesktopJS.setSize(null, h);
-    editorDesktopCSS.setSize(null, h);
+    contentHeight = hwin - (hmenu + hcontainer) + 300;
+    editorDesktopJS.setSize(null, contentHeight);
+    editorDesktopCSS.setSize(null, contentHeight);
 }, 1);
 
  $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function (e) {
@@ -71,8 +72,8 @@ setTimeout(function () {
             viewportMargin: Infinity
         });
     }
-   editorMobileCSS.setSize(null, h);
-   editorMobileJS.setSize(null, h);
+   editorMobileCSS.setSize(null, contentHeight);
+   editorMobileJS.setSize(null, contentHeight);
 });
 
  $('.saveCustom').on('click', function () {
