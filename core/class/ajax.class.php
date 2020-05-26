@@ -30,6 +30,10 @@ class ajax {
 		}
 	}
 	
+	public static getToken(){
+		return '';
+	}
+	
 	public static function success($_data = '') {
 		echo self::getResponse($_data);
 		die();
