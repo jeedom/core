@@ -752,7 +752,7 @@ $pageContainer.off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdE
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      message = 'Aucun choix possible';
+      var message = 'Aucun choix possible';
       if(result.cmd.subType == 'numeric'){
         message = '<div class="row">  ' +
         '<div class="col-md-12"> ' +
