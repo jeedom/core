@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 	
-	ajax::init();
+	ajax::init(array('preUploadFile'));
 	
 	if (init('action') == 'nbUpdate') {
 		ajax::success(update::nbNeedUpdate());
