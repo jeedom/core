@@ -25,7 +25,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
-	ajax::init(true);
+	ajax::init();
 
 	if (init('action') == 'list') {
 		$return = array();
