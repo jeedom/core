@@ -3,7 +3,7 @@ Hier finden Sie eine Dokumentation zu API-Methoden.
 Hier sind zunächst die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM * / core / api / jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -58,7 +58,7 @@ JSON-Ereignis-API
 event::changes
 --------------
 
-Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück (muss in Mikrosekunden angegeben werden).. Sie haben in der Antwort auch die aktuelle Datumszeit von Jeedom (die für die nächste Abfrage wiederverwendet werden soll).
+Gibt die Liste der Änderungen seit dem im Parameter übergebenen Datum / Uhrzeit zurück (muss in Mikrosekunden angegeben werden)). Sie haben in der Antwort auch die aktuelle Datumszeit von Jeedom (die für die folgende Abfrage wiederverwendet werden soll)
 
 Einstellungen :
 
@@ -89,12 +89,12 @@ Gibt die Liste aller Objekte zurück
 jeeObject::full
 ------------
 
-Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle Geräte und für jedes Gerät alle Befehle sowie deren Status angegeben werden (für Befehle vom Typ Info).
+Gibt die Liste aller Objekte zurück, mit für jedes Objekt alle seine Geräte und für jedes Gerät alle seine Befehle sowie deren Status (für Befehle vom Typ info)
 
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt mit alle seinen Geräten und für jedes Gerät alle seine Befehle und deren Status zurück (für Befehle vom Typ Info).
+Gibt ein Objekt mit all seinen Geräten und für jedes Gerät alle seine Befehle sowie deren Status zurück (für Befehle vom Typ info)
 
 Einstellungen :
 
@@ -112,7 +112,7 @@ Einstellungen:
 jeeObject::fullById
 ----------------
 
-Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung alle seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info).
+Gibt ein Objekt, seine Ausrüstung und für jede Ausrüstung alle seine Befehle sowie die Zellenzustände zurück (für Befehle vom Typ Info)
 
 jeeObject::save
 ------------
@@ -145,7 +145,7 @@ Gibt die globale Zusammenfassung für den im Parameter übergebenen Schlüssel z
 
 Einstellungen:
 
--   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung aller Schlüssel
+-   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, gibt Jeedom die Zusammenfassung für alle Schlüssel zurück
 
 summary::byId
 -------------
@@ -156,7 +156,7 @@ Einstellungen:
 
 -   int id : Objekt-ID
 
--   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, sendet Jeedom Ihnen die Zusammenfassung aller Schlüssel
+-   String-Schlüssel : (optional), Schlüssel der gewünschten Zusammenfassung. Wenn leer, gibt Jeedom die Zusammenfassung für alle Schlüssel zurück
 
 JSON EqLogic API
 ================
@@ -169,7 +169,7 @@ Gibt die Liste aller Geräte zurück
 eqLogic::fullById
 -----------------
 
-Gibt Geräte und ihre Befehle sowie deren Status zurück (für Befehle vom Typ Info).
+Gibt ein Gerät und seine Befehle sowie deren Status zurück (für Befehle vom Typ "Info")
 
 Einstellungen:
 
@@ -187,7 +187,7 @@ Einstellungen:
 eqLogic::byType
 ---------------
 
-Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin).
+Gibt alle Geräte zurück, die zum angegebenen Typ gehören (Plugin)
 
 Einstellungen:
 
@@ -227,7 +227,7 @@ Einstellungen:
 
 -   int id (leer, wenn es sich um eine Kreation handelt)
 
--   Zeichenfolge eqType\_name (Skripttyp, virtuelle Ausrüstung usw.)
+-   Zeichenfolge eqType\_name (Skripttyp, virtuelle Ausrüstung…)
 
 -   Zeichenfolgenname
 
@@ -282,12 +282,12 @@ Einstellungen:
 
 -   int id : Befehls-ID oder ID-Array, wenn Sie mehrere Befehle gleichzeitig ausführen möchten
     
--   \ [Optionen \] Liste der Befehlsoptionen (abhängig vom Typ und Subtyp des Befehls)
+-   \ [Optionen \] Liste der Befehlsoptionen (abhängig von Typ und Untertyp des Befehls)
 
 cmd::getStatistique
 -------------------
 
-Gibt Statistiken zur Bestellung zurück (funktioniert nur bei Informationen und historischen Bestellungen)
+Gibt die Statistiken zur Bestellung zurück (funktioniert nur bei Informationen und historischen Bestellungen)
 
 Einstellungen:
 
@@ -375,7 +375,7 @@ Einstellungen:
 
 -   Zeichenfolgenwert : valeur
 
--   Zeichenfolge Datetime : (optional) Wert datetime
+-   Zeichenfolge datetime : (optional) Datum / Uhrzeit-Wert
 
 JSON-Szenario-API
 =================
@@ -397,7 +397,7 @@ Einstellungen:
 scenario::export
 ----------------
 
-Gibt den Export des Szenarios sowie den * menschlichen Namen * des Szenarios zurück
+Gibt den Export des Szenarios sowie das zurück *menschlicher Name* aus dem Skript
 
 Einstellungen:
 
@@ -410,9 +410,9 @@ Ermöglicht das Importieren eines Szenarios.
 
 Einstellungen:
 
--   int id : ID des Szenarios, in das importiert werden soll (leer, wenn erstellt)
+-   int id : ID des zu importierenden Szenarios (leer bei Erstellung)
 
--   Zeichenfolge humanName : *menschlicher Name * des Szenarios (leer bei Erstellung)
+-   Zeichenfolge humanName : *menschlicher Name* des Szenarios (leer bei Erstellung)
 
 -   Array-Import : Szenario (aus dem Feld Exportszenario::export)
 
@@ -466,7 +466,7 @@ Holen Sie sich die Jeedom-Protokollliste
 
 Einstellungen:
 
--   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle 
+-   String-Filter : (optional) Filtern Sie nach dem Namen der abzurufenden Protokolle 
 
 log::empty
 ----------
@@ -510,9 +510,9 @@ Speichert den Wert einer Variablen im Datenspeicher
 Einstellungen:
 
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
-    es ist Szenario)
+    Es ist ein Szenario)
 
--   id linkId : -1 für insgesamt (Wert für Standardszenarien,
+-   id linkId : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -611,7 +611,7 @@ Installation / Update eines bestimmten Plugins
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::remove
 --------------
@@ -621,7 +621,7 @@ Löschen eines bestimmten Plugins
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::dependancyInfo
 ----------------------
@@ -631,7 +631,7 @@ Gibt Informationen zum Plugin-Abhängigkeitsstatus zurück
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::dependancyInstall
 -------------------------
@@ -641,7 +641,7 @@ Erzwingen Sie die Installation von Plugin-Abhängigkeiten
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::deamonInfo
 ------------------
@@ -651,7 +651,7 @@ Gibt Informationen zum Status des Plugin-Daemons zurück
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::deamonStart
 -------------------
@@ -661,7 +661,7 @@ Zwinge den Dämon zu starten
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::deamonStop
 ------------------
@@ -671,7 +671,7 @@ Dämonenstopp erzwingen
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 plugin::deamonChangeAutoMode
 ----------------------------
@@ -681,7 +681,7 @@ plugin::deamonChangeAutoMode
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 -   int-Modus : 1 für automatisch, 0 für manuell
 
 JSON-Update-API
@@ -708,7 +708,7 @@ update::doUpdate
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 JSON-Netzwerk-API
 ================
@@ -739,7 +739,7 @@ Abrufen der Objektliste :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::alle &#39;, array ())){
+if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::all ', Array())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -750,11 +750,11 @@ Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚cmd::ExecCmd &#39;, Array (&#39; id &#39;=> # cmd_id #,&#39; options &#39;=> array (&#39; title &#39;=>&#39; Cuckoo &#39;,&#39; Nachricht &#39;=>&#39; It works &#39;))){
+if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' Es funktioniert')))){
     Echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
 `` ''
 
-Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite).
+Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite)

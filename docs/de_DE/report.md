@@ -1,20 +1,20 @@
 # Rapport
 **Analyse → Bericht**
 
-Auf dieser Seite können Sie alle Berichte anzeigen, die durch die Berichtsaktion generiert wurden (siehe Szenariodokumentation)..
+Auf dieser Seite können Sie alle Berichte anzeigen, die von der Berichtsaktion generiert wurden (siehe Szenariodokumentation).
 
 ## Principe
 
 Ein Bericht ist ein Screenshot der Jeedom-Schnittstelle zu einem Zeitpunkt t.
 
-> **Note**
+> **Notiz**
 >
-> Diese Erfassung ist n angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden..
+> Diese Erfassung ist so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden.
 
 Sie können dies für Ansichten, Designs und Bedienfeldseiten tun....
 
 Die Generierung wird aus einem Szenario mit dem Befehl report ausgelöst.
-Sie können diesen Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie senden lassen..
+Sie können diesen Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie senden lassen).
 
 ## Utilisation
 
@@ -23,11 +23,11 @@ Die Verwendung ist sehr einfach. Wählen Sie links, wenn Sie sehen möchten :
 - Berichte anzeigen.
 - Entwurfsberichte.
 - Plugin-Panel-Berichte.
-- Geräteberichte (für eine Zusammenfassung der Batterie für jedes Modul).
+- Geräteberichte (für eine Zusammenfassung der Batterie jedes Moduls).
 
 Wählen Sie dann den Namen des betreffenden Berichts aus. Sie sehen dann alle Daten der verfügbaren Berichte.
 
-> **Important**
+> **Wichtig**
 >
 > Das automatische Löschen erfolgt standardmäßig für Berichte, die älter als 30 Tage sind. Sie können diese Verzögerung in der Konfiguration von Jeedom konfigurieren.
 

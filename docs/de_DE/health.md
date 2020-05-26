@@ -4,7 +4,7 @@
 Auf der Seite Jeedom Health erhalten Sie einen schnellen Überblick über den Gesundheitszustand Ihres Jeedom.
 Es zeigt auch (wenn Plugins es verwenden) den Gesundheitszustand des Plugins an.
 
-> **Note**
+> **Notiz**
 >
 > Klicken Sie auf das Symbol oben rechts, um auf den Benchmark Ihres Jeedom zuzugreifen.
 
@@ -16,16 +16,16 @@ Unten finden Sie den Zustand für jedes Plugin. Ein Klick auf den Namen des Plug
 
 Rechts finden Sie die Symbole :
 
--   Zugangsport für Plugin-Hardware (Zwave-Schlüsseltyp).
+-   Zugriffsport für Plugin-Hardware (Zwave-Schlüsseltyp).
 -   Dämonenmodus.
 -   Anzeige der Gerätegesundheitsseite des Plugins.
 -   Anzeige der Plugin-Konfigurationsseite.
 -   Gesamtzustand des Plugins.
 
-> **Note**
+> **Notiz**
 >
 > Die Symbole können je nach Plugin variieren.
 
-> **Note**
+> **Notiz**
 >
 > Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung und wenn sie rot ist, gibt es ein Problem.

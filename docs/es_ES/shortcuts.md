@@ -6,8 +6,8 @@ Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de bús
 
 - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 - Haga clic en el nombre de Jeedom (barra de menú)  : Abre **Preferencias → Sistema → Configuración**.
-- Haga clic en ?  (barra de menú)  : Abre la ayuda en la página actual..
-- Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo..
+- Haga clic en ?  (Barra de menú)  : Abre la ayuda en la página actual.
+- Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
 
 ## Dashboard
 En modo edición:
@@ -15,7 +15,7 @@ En modo edición:
 	- Cambiar el tamaño de los bordes del mosaico para cambiar su tamaño.
 	- Menú contextual (clic derecho) en los mosaicos.
 
-- Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial..
+- Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial.
 
 ## Configuraciones / Sistema / Configuración
 - Ctrl S : Guardar.
@@ -38,7 +38,7 @@ En modo edición:
 
 ## Herramientas / Objetos
 - En un objeto, Ctrl S : Guardar.
-- En un objeto, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro objeto..
+- En un objeto, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro objeto.
 
 ## Herramientas / widgets
 - En un widget, Ctrl S : Guardar.
@@ -53,10 +53,10 @@ En un escenario :
 - Ctrl Shift Y : Nueva versión.
 
 - Ctrl Haga clic en Ejecutar : Guarde y ejecute el escenario, luego abra el registro.
-- Ctrl Haga clic en el icono * Copie este bloque* : Cortar este bloque.
-- Ctrl Haga clic en el icono * Pegar un bloque* : Reemplace este bloque.
-- Ctrl Haga clic en el icono * Eliminar este bloque* : Eliminar bloque sin confirmación.
-- Ctrl Haga clic en el icono * Ocultar este bloque* : Ocultar o mostrar todos los bloques.
+- Ctrl Haga clic en el icono *Copia este bloque* : Cortar este bloque.
+- Ctrl Haga clic en el icono *Pegar un bloque* : Reemplace este bloque.
+- Ctrl Haga clic en el icono *Eliminar este bloque* : Eliminar bloque sin confirmación.
+- Ctrl Haga clic en el icono *Ocultar este bloque* : Ocultar o mostrar todos los bloques.
 
 En un bloque de código :
 - Ctrl F : Busca en el código.
@@ -65,7 +65,7 @@ En un bloque de código :
 ## Complementos / Gestión de complementos
 - Ctrl S en una configuración de complemento : Guardar.
 
-## Complementos / * complemento*
+## Complementos / *Plugin*
 - En un dispositivo, Ctrl S  : Guardar.
 - En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
 

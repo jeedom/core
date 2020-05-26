@@ -2521,6 +2521,7 @@
         "Test réussi": "Test réussi",
         "Administration système": "Administration système",
         "Administration base de données": "Administration base de données",
+        "Vérification des packages": "Vérification des packages",
         "Vérification base de données": "Vérification base de données",
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb",
         "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
@@ -3602,7 +3603,7 @@
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : "
     },
     "core\/class\/ajax.class.php": {
-        "Token d\\'accès invalide": "Token d\\'accès invalide"
+        "Votre session a expiré, veuillez vous reconnecter": "Votre session a expiré, veuillez vous reconnecter"
     },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "Le type doit être un des suivants : ",
@@ -3679,6 +3680,7 @@
         "Début de la mise à jour de : ": "Début de la mise à jour de : ",
         "Action de pré-update...": "Action de pré-update...",
         "Post-installation de ": "Post-installation de ",
+        "Supression des fichiers inutiles...": "Supression des fichiers inutiles...",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.",
         "Le logical ID ne peut pas être vide": "Le logical ID ne peut pas être vide"
     },

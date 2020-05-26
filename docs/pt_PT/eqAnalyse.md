@@ -14,7 +14,7 @@ A página Análise de equipamento permite visualizar muitas informações relaci
 
 Você pode ver nesta guia a lista dos módulos de bateria, o nível restante (a cor do ladrilho depende desse nível), o tipo e o número de baterias que devem ser colocadas no módulo, o tipo de módulo também que a data em que as informações sobre o nível da bateria foram atualizadas. Você também pode ver se um limite específico foi definido para o módulo específico (representado por uma mão)
 
-> **Tip**
+> **Dica**
 >
 > Os limites de alerta / aviso nos níveis da bateria podem ser configurados globalmente na configuração do Jeedom (Configurações → Sistemas → Configuração : Equipamento) ou por equipamento na página de configuração avançada na guia alertas.
 
@@ -24,14 +24,14 @@ Nesta guia, você verá em tempo real os módulos em alerta. Os alertas podem se
 
 - Tempo limite (configurado na guia de alertas definidos).
 - Bateria em aviso ou em perigo.
-- Comando de aviso ou perigo (configurável nos parâmetros avançados de comando).
+- Comando de aviso ou perigo (configurável em parâmetros de comando avançados).
 
 Outros tipos de alertas podem ser encontrados aqui.
 Cada alerta será representado pela cor do bloco (o nível de alerta) e um logotipo no canto superior esquerdo (o tipo de alerta).
 
-> **Tip**
+> **Dica**
 >
-> Aqui serão exibidos todos os módulos em alerta, mesmo aqueles configurados em "não visível"". No entanto, é interessante notar que, se o módulo estiver "visível", o alerta também estará visível no painel (no objeto em questão).
+> Aqui serão exibidos todos os módulos em alerta, mesmo aqueles configurados em "não visível"". No entanto, é interessante notar que, se o módulo estiver "visível", o alerta também será visível no painel (no objeto em questão)).
 
 ## Guia Ações definidas
 
@@ -42,7 +42,7 @@ Essa guia permite visualizar as ações definidas diretamente em um pedido. De f
 - Confirmações com código (o mesmo que acima, mas com a inserção de um código).
 - Ações pré e pós (sempre configuráveis no mesmo local em um comando de ação e permitindo executar uma ou mais outras ações antes ou depois da ação em questão).
 
-> **Tip**
+> **Dica**
 >
 > A tabela fornece uma visão muito textual das ações definidas. Outros tipos de ações definidas podem ser adicionados.
 
@@ -68,6 +68,6 @@ E usado em muitos outros lugares como (não exaustivo) :
 - Em ação no status do pedido.
 - Em alguns plugins.
 
-> **Tip**
+> **Dica**
 >
 > A tabela fornece uma visão muito textual dos comandos órfãos. Seu objetivo é ser capaz de identificar rapidamente todos os pedidos "órfãos" através de todos os plugins Jeedom e. Pode ser que algumas áreas não sejam analisadas; a tabela será cada vez mais exaustiva ao longo do tempo.

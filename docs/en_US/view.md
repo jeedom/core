@@ -10,7 +10,7 @@ It is not as powerful as the designs but it allows in a few minutes to have a mo
 
 ## Principe
 
-We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the command widgets).
+We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the widgets of commands).
 
 On this page, there is a button at the top left to show or hide the list of views as well as the button to add one (Jeedom will ask for its name and send you to the edit page) :
 
@@ -28,14 +28,14 @@ The principle is quite simple : a view is made up of zones (you can put as many 
 
 - On the left of the page we find the list of views and an add button.
 - A button at the top right allows you to edit the current view.
-- In the center you have a button to rename a view, a button to add an area, a button to see the result, a button to save and a button to delete the view..
+- In the center you have a button to rename a view, a button to add an area, a button to see the result, a button to save and a button to delete the view.
 
 After clicking on the add zone button, Jeedom will ask for its name and type.
 On each zone you have the following general options :
 
-- **Largeur** : Defines the width of the area (in desktop mode only).
-- **Editer** : Allows to change the name of the zone.
-- **Supprimer** : Allows to delete the zone.
+- **Width** : Defines the width of the area (in desktop mode only).
+- **Edit** : Allows to change the name of the zone.
+- **Remove** : Allows to delete the zone.
 
 ### Widget type area
 
@@ -57,19 +57,19 @@ Once the add widget button is pressed, you get a window that will ask you for th
 
 A graphics type area allows you to add graphics to your view, it has the following options :
 
-- **Period** : Allows you to choose the graphics display period (30 min, 1 day, 1 week, 1 month, 1 year or all).
+- **Period** : Allows you to choose the display period of the graphics (30 min, 1 day, 1 week, 1 month, 1 year or all).
 - **Add curve** : Allows to add / modify graphics.
 
 When you press the &quot;Add curve&quot; button Jeedom displays the list of historical commands and you can choose the one (s) to add, once done you have access to the following options :
 
-- **Poubelle** : Remove command from chart.
-- **Nom** : Name of the command to draw.
-- **Couleur** : Color of the curve.
+- **Trash can** : Remove command from chart.
+- **Last name** : Name of the command to draw.
+- **Color** : Color of the curve.
 - **Type** : Curve type.
-- **Groupement** : Allows you to group data (maximum type per day).
-- **Echelle** : scale (right or left) of the curve.
-- **Escalier** : Displays the stepped curve.
-- **Empiler** : Stack the curve with the other type curves.
+- **Group** : Allows grouping of data (maximum type per day).
+- **Ladder** : scale (right or left) of the curve.
+- **Staircase** : Displays the stepped curve.
+- **Stack** : Stack the curve with the other type curves.
 - **Variation** : Only draw variations with the previous value.
 
 > **Tip**
@@ -83,14 +83,14 @@ Here you have the buttons :
 - **Add column** : Add a column to the table.
 - **Add line** : Add a row to the table.
 
-> **Note**
+> **NOTE**
 >
 > It is possible to reorganize the rows by dragging and dropping but not the columns.
 
 Once you have added your rows / columns you can add information in the boxes :
 
-- **texte** : just text to write.
-- **html** : any l'opération à mener code (javascript possible but strongly discouraged).
-- **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget for the command).
+- **text** : just text to write.
+- **l'opération à mener** : any html code (javascript possible but strongly discouraged).
+- **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget of the command).
 
 

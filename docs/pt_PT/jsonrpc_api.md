@@ -3,7 +3,7 @@ Aqui está a documentação sobre métodos de API.
 Primeiro, aqui estão as especificações (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-O acesso à API é via URL : *URL\_JEEDOM * / core / api / jeeApi.php
+O acesso à API é via URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Divers
 ======
@@ -35,7 +35,7 @@ Configurações :
 
 -   chave de cadeia : chave do valor de configuração a retornar
 
--   plugin de string : (opcional), plug-in de valor de configuração
+-   plugin de string : (opcional), plugin de valor de configuração
 
 -   padrão de cadeia : (opcional), valor a retornar se a chave não existir
 
@@ -50,7 +50,7 @@ Configurações :
 
 -   chave de cadeia : chave do valor de configuração para salvar
 
--   plugin de string : (opcional), plug-in do valor de configuração a ser salvo
+-   plugin de string : (opcional), plug-in do valor de configuração para salvar
 
 API de eventos JSON
 ==============
@@ -58,7 +58,7 @@ API de eventos JSON
 event::changes
 --------------
 
-Retorna a lista de alterações desde a data / hora passada no parâmetro (deve estar em microssegundos). Você também terá na resposta a data e hora atual do Jeedom (a ser reutilizado para a próxima consulta)
+Retorna a lista de alterações desde a data / hora passada no parâmetro (deve estar em microssegundos). Você também terá na resposta a data e hora atual do Jeedom (a ser reutilizado para a consulta a seguir)
 
 Configurações :
 
@@ -74,7 +74,7 @@ Retorna a lista de todos os plugins
 
 Configurações :
 
--   int activOnOnly = 0 (retorna apenas a lista de plugins ativados)
+-   int activationOnly = 0 (retorna apenas a lista de plugins ativados)
 
 -   int orderByCaterogy = 0 (retorna a lista de plugins classificados por categoria)
 
@@ -94,7 +94,7 @@ Retorna a lista de todos os objetos, com para cada objeto todo o seu equipamento
 jeeObject::fullById
 ----------------
 
-Retorna um objeto com todo o seu equipamento e para cada equipamento todos os seus comandos e seus estados (para comandos do tipo info)
+Retorna um objeto com todo o seu equipamento e, para cada equipamento, todos os seus comandos e seus estados (para comandos do tipo info)
 
 Configurações :
 
@@ -145,7 +145,7 @@ Retornar o resumo global da chave passada no parâmetro
 
 Configurações:
 
--   chave de cadeia : (opcional), chave do resumo desejado, se vazio, o Jeedom envia o resumo de todas as chaves
+-   chave de cadeia : (opcional), chave do resumo desejado, se vazio, o Jeedom retorna o resumo de todas as chaves
 
 summary::byId
 -------------
@@ -156,7 +156,7 @@ Configurações:
 
 -   int id : Object ID
 
--   chave de cadeia : (opcional), chave do resumo desejado, se vazio, o Jeedom envia o resumo de todas as chaves
+-   chave de cadeia : (opcional), chave do resumo desejado, se vazio, o Jeedom retorna o resumo de todas as chaves
 
 API JSON EqLogic
 ================
@@ -169,7 +169,7 @@ Retorna a lista de todos os equipamentos
 eqLogic::fullById
 -----------------
 
-Retorna o equipamento e seus comandos, bem como seus estados (para comandos do tipo info)
+Retorna um dispositivo e seus comandos, bem como seus estados (para comandos do tipo info)
 
 Configurações:
 
@@ -227,11 +227,11 @@ Configurações:
 
 -   int id (vazio se for uma criação)
 
--   string eqType\_name (tipo de script, equipamento virtual etc.)
+-   string eqType\_name (tipo de script, equipamento virtual…)
 
 -   nome da string
 
--   Log de stringicId = ''
+-   string logicId = ''
 
 -   int objeto\_id = nulo
 
@@ -287,13 +287,13 @@ Configurações:
 cmd::getStatistique
 -------------------
 
-Retorna estatísticas do pedido (funciona apenas em informações e pedidos históricos)
+Retorna as estatísticas do pedido (funciona apenas em informações e pedidos históricos)
 
 Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do cálculo das estatísticas
+-   string startTime : data de início do cálculo das estatísticas
 
 -   string endTime : data final do cálculo das estatísticas
 
@@ -306,7 +306,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do cálculo de tendência
+-   string startTime : data de início do cálculo de tendência
 
 -   string endTime : data de término do cálculo de tendência
 
@@ -319,7 +319,7 @@ Configurações:
 
 -   int id
 
--   início da cordaTime : data de início do histórico
+-   string startTime : data de início do histórico
 
 -   string endTime : data final do histórico
 
@@ -334,7 +334,7 @@ Configurações:
 
 -   nome da string
 
--   Log de stringicId
+-   string logicId
 
 -   string eqType
 
@@ -397,7 +397,7 @@ Configurações:
 scenario::export
 ----------------
 
-Retorna a exportação do cenário, bem como o * nome humano * do cenário
+Retorna a exportação do cenário, bem como o *nome humano* do script
 
 Configurações:
 
@@ -410,9 +410,9 @@ Permite importar um cenário.
 
 Configurações:
 
--   int id : ID do cenário no qual importar (vazio se criação)
+-   int id : ID do cenário no qual importar (vazio se a criação)
 
--   string humanName : *nome humano * do cenário (vazio se criação)
+-   string humanName : *nome humano* do cenário (vazio se a criação)
 
 -   importação de matriz : cenário (do campo cenário de exportação::export)
 
@@ -427,7 +427,7 @@ Configurações:
 
 -   estado da string: \ [executar, parar, ativar, desativar \]
 
-API de Log JSON
+API de log JSON
 ============
 
 log::get
@@ -437,7 +437,7 @@ Permite recuperar um log
 
 Configurações:
 
--   Log de string : nome do Log a recuperar 
+-   log de string : nome do log a recuperar 
 
 -   início da corda : número da linha na qual começar a ler
 
@@ -450,13 +450,13 @@ Permite escrever em um log
 
 Configurações:
 
--   Log de string : nome do Log a recuperar 
+-   log de string : nome do log a recuperar 
 
--   tipo de string : tipo de Log (depuração, informações, aviso, erro)
+-   tipo de string : tipo de log (depuração, informações, aviso, erro)
 
 -   mensagem de string : mensagem de texto para escrever
 
--   Log de stringicId : logicId da mensagem gerada
+-   string logicId : logicId da mensagem gerada
 
 
 log::list
@@ -475,7 +475,7 @@ Esvaziar um log
 
 Configurações:
 
--   Log de string : nome do Log para esvaziar
+-   log de string : nome do log para esvaziar
 
 log::remove
 -----------
@@ -484,7 +484,7 @@ Permite excluir um log
 
 Configurações:
 
--   Log de string : nome do Log a ser excluído
+-   log de string : nome do log a ser excluído
 
 API de armazenamento de dados JSON (variável)
 =============================
@@ -534,13 +534,13 @@ Permite escrever em um log
 
 Configurações:
 
--   tipo de string : tipo de Log (depuração, informações, aviso, erro)
+-   tipo de string : tipo de log (depuração, informações, aviso, erro)
 
 -   mensagem de string : message
 
 -   ação de string : action
 
--   Log de stringicId : logicalId
+-   string logicId : logicalId
 
 message::removeAll
 ------------------
@@ -739,7 +739,7 @@ Recuperando a lista de objetos :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-> sendRequest ('jeeObject::TODOS ', array ())){
+if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', matriz())){
     print_r ($ jsonrpc-> getResult ());
 }else{
     echo $ jsonrpc-> getError ();
@@ -750,7 +750,7 @@ Execução de uma ordem (com a opção de um título e uma mensagem)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id '=> # cmd_id #,' options '=> array (' title '=>' Cuckoo ',' Mensagem '=>' Funciona '))){
+if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' Funciona')))){
     eco 'OK';
 }else{
     echo $ jsonrpc-> getError ();

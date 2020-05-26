@@ -24,14 +24,14 @@ On this tab you will see in real time the modules in alert. The alerts can be of
 
 - Timeout (configured in the defined alerts tab).
 - Battery in warning or in danger.
-- Warning or danger command (configurable in the advanced command parameters).
+- Warning or danger command (configurable in advanced command parameters).
 
 Other types of alerts may be found here.
 Each alert will be represented by the color of the tile (the alert level) and a logo at the top left (the alert type).
 
 > **Tip**
 >
-> Here will be displayed all the modules in alert even those configured in "not visible". It is however interesting to note that if the module is &quot;visible&quot; the alert will also be visible on the dashboard (in the object concerned).
+> Here will be displayed all the modules in alert even those configured in "not visible". It is however interesting to note that if the module is "visible" the alert will also be visible on the dashboard (in the object concerned).
 
 ## Defined Actions tab
 

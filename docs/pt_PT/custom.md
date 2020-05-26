@@ -10,7 +10,7 @@ Portanto, nesta página, você pode adicionar scripts JS e CSS executados em qua
 Para pessoas não sofisticadas que desejam descobrir CSS :
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
-> **Important**
+> **IMPORTANTE**
 >
 > Qualquer erro em um desses scripts pode tornar o Jeedom completamente inoperante. 
 >

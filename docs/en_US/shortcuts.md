@@ -6,7 +6,7 @@ When opening a page (Dashboard, Scenarios, etc.) the focus is on the search fiel
 
 - Click on the clock (menu bar) : Open the Timeline.
 - Click on the name of the Jeedom (menu bar)  : Opens **Settings → System → Configuration**.
-- Click on ?  (toolbar)  : Opens help on the current page.
+- Click on ?  (Toolbar)  : Opens help on the current page.
 - Escape on a research field : Empty the search field and cancel it.
 
 ## Dashboard
@@ -53,10 +53,10 @@ On a scenario :
 - Ctrl Shift Y : Remake.
 
 - Ctrl Click on Execute : Save and execute the scenario, then open the log.
-- Ctrl Click on icon * Copy this block* : Cut this block.
-- Ctrl Click on icon * Paste a block* : Replace this block.
-- Ctrl Click on icon * Delete this block* : Delete block without confirmation.
-- Ctrl Click on icon * Hide this block* : Hide or show all blocks.
+- Ctrl Click on icon *Copy this block* : Cut this block.
+- Ctrl Click on icon *Paste a block* : Replace this block.
+- Ctrl Click on icon *Delete this block* : Delete block without confirmation.
+- Ctrl Click on icon *Hide this block* : Hide or show all blocks.
 
 In a Code block :
 - Ctrl F : Search in the code.
@@ -65,7 +65,7 @@ In a Code block :
 ## Plugins / Plugins management
 - Ctrl S on a plugin configuration : Save.
 
-## Plugins / * plugin*
+## Plugins / *Plugin*
 - On a device, Ctrl S  : Save.
 - On a device, Right click on a tab : Contextual menu to go directly to another device.
 
