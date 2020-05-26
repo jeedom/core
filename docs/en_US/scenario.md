@@ -181,8 +181,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 - ``$scenario->getIsActive();`` : Returns the state of the scenario.
 - ``$scenario->setIsActive($active);`` : Allows you to activate or not the scenario.
     - ``$active`` : 1 active, 0 not active.
-- ``$scenario->setOnGoing($onGoing);`` : Lets say if the scenario is running or not.
-    - ``$onGoing => 1`` : 1 in progress, 0 stopped.
+- ``$scenario->running();`` : Used to find out if the scenario is running or not (true / false).
 - ``$scenario->save();`` : Save changes.
 - ``$scenario->setData($key, $value);`` : Save a data (variable).
     - ``$key`` : value key (int or string).

@@ -181,8 +181,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 - ``$scenario->getIsActive();`` : Devuelve el estado del escenario.
 - ``$scenario->setIsActive($active);`` : Le permite activar o no el escenario.
     - ``$active`` : 1 activo, 0 no activo.
-- ``$scenario->setOnGoing($onGoing);`` : Digamos si el escenario se está ejecutando o no.
-    - ``$onGoing => 1`` : 1 en progreso, 0 detenido.
+- ``$scenario->running();`` : Se usa para averiguar si el escenario se está ejecutando o no (verdadero / falso).
 - ``$scenario->save();`` : Guardar cambios.
 - ``$scenario->setData($key, $value);`` : Guardar un dato (variable).
     - ``$key`` : clave de valor (int o string).
