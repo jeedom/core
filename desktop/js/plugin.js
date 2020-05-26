@@ -241,7 +241,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           log_conf += '<div class="form-group">';
           log_conf += '<label class="col-sm-3 control-label">{{Logs}}</label>';
           log_conf += '<div class="col-sm-9">';
-          for(j in data.logs[i].log){
+          for(var j in data.logs[i].log){
             log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fas fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
           }
           log_conf += '</div>';
