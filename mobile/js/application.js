@@ -265,26 +265,29 @@ function changeThemeAuto(_ambiantLight){
     sensor.start()
   } else if (jeedom.theme.theme_changeAccordingTime == "1") {
     setInterval(function () {
-      if ($('#jQMnDColor').attr('data-nochange') == 1) {
-        return
-      }
-      var theme = jeedom.theme.mobile_theme_color_night
-      var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
-      var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes())
-      if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
-        theme = jeedom.theme.mobile_theme_color
-        themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
-      }
-      if ($('#jQMnDColor').attr('href') != themeCss) {
-        $('body').attr('data-theme',theme)
-        $('#jQMnDColor').attr('href', themeCss)
-        setBackgroundImage(BACKGROUND_IMG)
-        triggerThemechange()
-      }
+      checkThemechange()
     }, 60000)
   }
 }
 
+function checkThemechange() {
+  if ($('#jQMnDColor').attr('data-nochange') == 1) {
+    return
+  }
+  var theme = jeedom.theme.mobile_theme_color_night
+  var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes())
+  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
+    theme = jeedom.theme.mobile_theme_color
+    themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+  }
+  if ($('#jQMnDColor').attr('href') != themeCss) {
+    $('body').attr('data-theme',theme)
+    $('#jQMnDColor').attr('href', themeCss)
+    setBackgroundImage(BACKGROUND_IMG)
+    triggerThemechange()
+  }
+}
 
 
 function insertHeader(rel, href, size=null, media=null, id=null, type=null) {
@@ -410,6 +413,7 @@ function initApplication(_reinit) {
         $('#jQMnDColor').attr('href', themeCSS)
 
         changeThemeAuto()
+        checkThemechange()
         if (widget_shadow) {
           insertHeader("stylesheet", themeShadowCSS, null, null, 'shadows_theme_css', 'text/css')
         }
