@@ -2,6 +2,11 @@
 Changelog Jeedom V4
 =========
 
+4.0.57
+=====
+
+- Renforcement de la securité des cookies
+
 4.0.55
 =====
 
