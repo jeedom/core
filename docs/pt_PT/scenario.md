@@ -181,8 +181,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 - ``$scenario->getIsActive();`` : Retorna o estado do cenário.
 - ``$scenario->setIsActive($active);`` : Permite ativar ou não o cenário.
     - ``$active`` : 1 ativo, 0 inativo.
-- ``$scenario->setOnGoing($onGoing);`` : Vamos dizer se o cenário está em execução ou não.
-    - ``$onGoing => 1`` : 1 em andamento, 0 parado.
+- ``$scenario->running();`` : Usado para descobrir se o cenário está em execução ou não (verdadeiro / falso).
 - ``$scenario->save();`` : Salvar alterações.
 - ``$scenario->setData($key, $value);`` : Salvar um dado (variável).
     - ``$key`` : chave de valor (int ou string).

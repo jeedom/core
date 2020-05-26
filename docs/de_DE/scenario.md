@@ -181,8 +181,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->getIsActive();`` : Gibt den Status des Szenarios zurück.
 - ``$scenario->setIsActive($active);`` : Ermöglicht das Aktivieren oder Nicht-Aktivieren des Szenarios.
     - ``$active`` : 1 aktiv, 0 nicht aktiv.
-- ``$scenario->setOnGoing($onGoing);`` : Sagen wir, ob das Szenario läuft oder nicht.
-    - ``$onGoing => 1`` : 1 in Bearbeitung, 0 gestoppt.
+- ``$scenario->running();`` : Wird verwendet, um herauszufinden, ob das Szenario ausgeführt wird oder nicht (true / false)).
 - ``$scenario->save();`` : Änderungen speichern.
 - ``$scenario->setData($key, $value);`` : Speichern Sie eine Daten (Variable).
     - ``$key`` : Werteschlüssel (int oder string).
