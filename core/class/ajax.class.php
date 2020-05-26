@@ -28,7 +28,7 @@ class ajax {
 		if (!headers_sent()) {
 			header('Content-Type: application/json');
 		}
-		if ($_checkToken && init('jeedom_token') != self::getToken()) {
+		if ($_checkToken === true && init('jeedom_token') != self::getToken()) {
 			self::error(__('Token d\'accès invalide', __FILE__));
 		}
 	}
