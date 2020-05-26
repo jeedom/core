@@ -250,7 +250,6 @@ legend .pull-right:not(.input-group) {
 .name > .labelObjectHuman {
   padding-left: 0x !important;
   display: inline-block;
-  padding: 0 5px;
 }
 
 /* résumé domo */
@@ -797,10 +796,13 @@ div[class*="ListContainer"] > div.cursor,
   width : 130px !important;
   font-size: 14px !important;
 }
-div[class*="ListContainer"] > div.cursor i,
+div[class*="ListContainer"] > div.cursor:not(.objectDisplayCard) i,
 .eqLogicThumbnailContainer > div.cursor > i {
   font-size: 38px !important;
   font-weight: 900;
+}
+.objectDisplayCard i {
+  font-size: 38px !important;
 }
 div[class*="ListContainer"] i[class*=jeedom-batt] {
   font-weight: normal;
@@ -860,14 +862,20 @@ div[class*="DisplayCard"] .name {
   font-weight: 700;
   line-height: 14px !important;
 }
-div[class*="DisplayCard"] .name > .label {
-  line-height: 24px !important;
-}
 
 .pluginDisplayCard,
 .objectDisplayCard {
   height: 130px;
   min-height: 130px !important;
+}
+.objectDisplayCard > i {
+  display: inline-block;
+  height: 42px !important;
+}
+.objectDisplayCard .name {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--border-radius) !important;
 }
 .pluginListContainer div.cursor > center > img,
 .interactListContainer div.cursor > img {
