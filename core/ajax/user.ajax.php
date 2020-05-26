@@ -19,7 +19,7 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	ajax::init(false);
+	ajax::init();
 	
 	if (init('action') == 'useTwoFactorAuthentification') {
 		$user = user::byLogin(init('login'));
@@ -97,8 +97,6 @@ try {
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-	
-	ajax::init();
 	
 	if (init('action') == 'validateTwoFactorCode') {
 		unautorizedInDemo();
