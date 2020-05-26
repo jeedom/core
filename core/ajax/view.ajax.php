@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	
-	ajax::init();
+	ajax::init(array('uploadImage'));
 	
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
