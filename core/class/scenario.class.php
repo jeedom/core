@@ -1316,7 +1316,7 @@ class scenario {
 		} else {
 			if ($_complete) {
 				if ($_tag) {
-					$name .= '<span class="label label-default">' . __('Aucun', __FILE__) . '</span>';
+					$name .= '<span class="label labelObjectHuman">' . __('Aucun', __FILE__) . '</span>';
 				} else {
 					$name .= '[' . __('Aucun', __FILE__) . ']';
 				}
