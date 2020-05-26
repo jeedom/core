@@ -30,7 +30,7 @@ class ajax {
 		}
 	}
 	
-	public static getToken(){
+	public static function getToken(){
 		return '';
 	}
 	
