@@ -115,7 +115,8 @@ $('#bt_libraryBackgroundImage').on('click', function () {
 });
 
 setTimeout(function(){
-  $('.objectListContainer').packery();
+  $('.objectDisplayCard').show()
+  $('.objectListContainer').packery()
 },100);
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
@@ -221,9 +222,9 @@ function loadObjectConfiguration(_id){
       }
 
       if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
-        bodyStyles = window.getComputedStyle(document.body);
-        objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
-        objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
+        var bodyStyles = window.getComputedStyle(document.body);
+        var objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
+        var objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
 
         if (!objectBkgdColor === undefined){
           objectBkgdColor = rgbToHex(objectBkgdColor)
