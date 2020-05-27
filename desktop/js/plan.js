@@ -670,12 +670,11 @@ function fullScreen(_mode) {
   }
 }
 
-
+//constrain dragging inside design area, supporting zoom:
 var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
 var dragStep = false
 var minLeft = 0
-var minTop = 0
 var maxLeft = 0
 var maxTop = 0
 var isDragLocked = false
@@ -709,10 +708,9 @@ function draggableStartFix(event, ui) {
   var marginLeft = parseFloat(marginLeft.replace('px', ''))
 
   minLeft = 0 - marginLeft
-  minTop = 0
 
   maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
-  maxTop = containerHeight + minTop - (clientHeight * zoomScale)
+  maxTop = containerHeight - (clientHeight * zoomScale)
 }
 function draggableDragFix(event, ui) {
   if (isDragLocked == true) return false
@@ -722,7 +720,7 @@ function draggableDragFix(event, ui) {
   if (newLeft < minLeft) newLeft = minLeft
   if (newLeft > maxLeft) newLeft = maxLeft
 
-  if (newTop < minTop) newTop = minTop
+  if (newTop < 0) newTop = 0
   if (newTop > maxTop) newTop = maxTop
 
   if (dragStep) {
@@ -743,6 +741,8 @@ function initEditOption(_state) {
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
+
+    //drag item:
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
       cancel: '.locked',
       containment: 'parent',
@@ -763,10 +763,16 @@ function initEditOption(_state) {
     }else{
       $('.div_grid').hide();
     }
+
+    //resize item:
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
       cancel: '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
+      containment: $('.div_displayObject'),
       start: function( event, ui ) {
+        if ($(this).attr('data-zoom') != '1') {
+          $(this).resizable("option", "containment", null)
+        }
         var zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
         if (editOption.grid == 1) {
           dragStep = editOption.gridSize[0]
@@ -777,8 +783,8 @@ function initEditOption(_state) {
       },
       resize: function( event, ui ) {
         if (dragStep) {
-          newWidth = (Math.round(ui.size.width / dragStep) * dragStep)
-          newHeight = (Math.round(ui.size.height / dragStep) * dragStep)
+          var newWidth = (Math.round(ui.size.width / dragStep) * dragStep)
+          var newHeight = (Math.round(ui.size.height / dragStep) * dragStep)
           ui.element.width(newWidth)
           ui.element.height(newHeight)
         }
@@ -786,7 +792,7 @@ function initEditOption(_state) {
       },
       stop: function( event, ui ) {
         savePlan(false,false);
-      }
+      },
     });
     $('.div_displayObject a').each(function () {
       if ($(this).attr('href') != '#') {
