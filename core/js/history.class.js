@@ -109,10 +109,9 @@ jeedom.history.drawChart = function (_params) {
           } else {
             message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd:'';
           }
-          $('#div_alert').showAlert({message: message, level: 'warning'});
-          //None will close history modal
+          $('#div_alertHistory').showAlert({message: message, level: 'warning'});
           if (typeof (init(_params.success)) == 'function') {
-            _params.success('None');
+            _params.success({'error': message})
           }
         }
         return;

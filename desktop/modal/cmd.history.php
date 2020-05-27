@@ -12,6 +12,7 @@ if(trim($id) == ''){
 }
 sendVarToJs('cmd_id',$id);
 ?>
+<div style="display: none;" id="div_alertHistory"></div>
 <div class="md_history">
   <div class="row">
     <div class="col-lg-12">
@@ -62,13 +63,6 @@ $(function() {
       showLegend : _showLegend,
       height : jQuery(window).height() - 270,
       success: function (data) {
-        if (data == 'None') {
-          if (cmdIds.length == 1) {
-            noChart = false
-            $('#md_modal2').dialog('close')
-            return
-          }
-        }
         noChart = false
         done -= 1
         setModal()
