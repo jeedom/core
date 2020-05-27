@@ -674,6 +674,12 @@ function fullScreen(_mode) {
 var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
 var dragStep = false
+var minLeft = 0
+var minTop = 0
+var maxLeft = 0
+var maxTop = 0
+var isDragLocked = false
+var zoomScale = 1
 function draggableStartFix(event, ui) {
   isDragLocked = false
   if ($(event.target).hasClass('locked')) {
@@ -692,15 +698,15 @@ function draggableStartFix(event, ui) {
   dragClick.y = event.clientY
   dragStartPos = ui.originalPosition
 
-  $container = $('.div_displayObject')
-  containerWidth = $container.width()
-  containerHeight = $container.height()
+  var $container = $('.div_displayObject')
+  var containerWidth = $container.width()
+  var containerHeight = $container.height()
 
-  clientWidth = $(ui.helper[0]).width()
-  clientHeight = $(ui.helper[0]).height()
+  var clientWidth = $(ui.helper[0]).width()
+  var clientHeight = $(ui.helper[0]).height()
 
-  marginLeft = $(ui.helper[0]).css('margin-left')
-  marginLeft = parseFloat(marginLeft.replace('px', ''))
+  var marginLeft = $(ui.helper[0]).css('margin-left')
+  var marginLeft = parseFloat(marginLeft.replace('px', ''))
 
   minLeft = 0 - marginLeft
   minTop = 0
@@ -710,8 +716,8 @@ function draggableStartFix(event, ui) {
 }
 function draggableDragFix(event, ui) {
   if (isDragLocked == true) return false
-  newLeft = event.clientX - dragClick.x + dragStartPos.left
-  newTop = event.clientY - dragClick.y + dragStartPos.top
+  var newLeft = event.clientX - dragClick.x + dragStartPos.left
+  var newTop = event.clientY - dragClick.y + dragStartPos.top
 
   if (newLeft < minLeft) newLeft = minLeft
   if (newLeft > maxLeft) newLeft = maxLeft
@@ -761,7 +767,7 @@ function initEditOption(_state) {
       cancel: '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
       start: function( event, ui ) {
-        zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+        var zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
         if (editOption.grid == 1) {
           dragStep = editOption.gridSize[0]
           dragStep = dragStep / zoomScale
