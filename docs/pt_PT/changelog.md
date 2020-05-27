@@ -2,6 +2,12 @@
 Registro de Alterações Jeedom V4
 =========
 
+4.0.57
+=====
+
+- Reforçar a segurança dos cookies
+- Uso de cromo (se instalado) para relatórios
+
 4.0.55
 =====
 

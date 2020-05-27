@@ -1282,6 +1282,9 @@
     },
     "changelog.md": {
         "Changelog Jeedom V4": "Changelog Jeedom V4",
+        "4.0.57": "4.0.57",
+        "Renforcement de la securité des cookies": "Stärkung der Sicherheit von Cookies",
+        "Utilisation de chromium (si il est installé) pour les rapports": "Verwendung von Chrom (falls installiert) für Berichte",
         "4.0.55": "4.0.55",
         "Le nouveau dns (\\*.eu.jeedom": "Die neuen DNS (\\*. Eu.jeedom",
         "link) devient le DNS primaire (l'ancien DNS marche toujours": "Link) wird zum primären DNS (der alte DNS funktioniert immer noch",

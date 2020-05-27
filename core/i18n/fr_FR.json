@@ -3602,9 +3602,6 @@
         "Exécution du sous-élément de type [action] : ": "Exécution du sous-élément de type [action] : ",
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : "
     },
-    "core\/class\/ajax.class.php": {
-        "Votre session a expiré, veuillez vous reconnecter": "Votre session a expiré, veuillez vous reconnecter"
-    },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "Le type doit être un des suivants : ",
         "Link_id doit être un chiffre": "Link_id doit être un chiffre",
@@ -3824,17 +3821,16 @@
         "Design": "Design",
         "Plugin": "Plugin",
         "Equipement": "Equipement",
+        "URL": "URL",
         "Panel": "Panel",
         "Exporter en": "Exporter en",
         "PNG": "PNG",
         "PDF": "PDF",
-        "JPEG": "JPEG",
-        "SVG": "SVG",
         "Commandes": "Commandes",
         "Sélectionner la commande": "Sélectionner la commande",
-        "Largeur  (px)": "Largeur  (px)",
+        "Largeur (px)": "Largeur (px)",
         "Hauteur (px)": "Hauteur (px)",
-        "Delai (ms)": "Delai (ms)",
+        "Délai": "Délai",
         "Option(s)": "Option(s)"
     },
     "core\/api\/marketApi.php": {

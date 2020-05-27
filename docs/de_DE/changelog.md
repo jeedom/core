@@ -2,6 +2,12 @@
 Changelog Jeedom V4
 =========
 
+4.0.57
+=====
+
+- Stärkung der Sicherheit von Cookies
+- Verwendung von Chrom (falls installiert) für Berichte
+
 4.0.55
 =====
 

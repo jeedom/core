@@ -3602,9 +3602,6 @@
         "Exécution du sous-élément de type [action] : ": "Esecuzione del sotto-elemento di tipo [azione]",
         "Exécution du sous-élément de type [condition] : ": "Esecuzione del sotto-elemento di tipo [condizione]:"
     },
-    "core\/class\/ajax.class.php": {
-        "Votre session a expiré, veuillez vous reconnecter": ""
-    },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "Il tipo deve essere uno dei seguenti:",
         "Link_id doit être un chiffre": "Link_id deve essere un numero",
@@ -3824,17 +3821,16 @@
         "Design": "Disegno",
         "Plugin": "",
         "Equipement": "Dispositivo",
+        "URL": "URL",
         "Panel": "Pannello",
         "Exporter en": "Esporta in",
         "PNG": "",
         "PDF": "",
-        "JPEG": "",
-        "SVG": "",
         "Commandes": "Comandi",
         "Sélectionner la commande": "Seleziona comando",
-        "Largeur  (px)": "Larghezza (px)",
+        "Largeur (px)": "Larghezza (px)",
         "Hauteur (px)": "Altezza (px)",
-        "Delai (ms)": "Ritardo (ms)",
+        "Délai": "Preavviso",
         "Option(s)": "Opzione (s)"
     },
     "core\/api\/marketApi.php": {

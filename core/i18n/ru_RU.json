@@ -3602,9 +3602,6 @@
         "Exécution du sous-élément de type [action] : ": "Запуск вложенного элемента [действие]:",
         "Exécution du sous-élément de type [condition] : ": "Запуск вложенного элемента [состояние]:"
     },
-    "core\/class\/ajax.class.php": {
-        "Votre session a expiré, veuillez vous reconnecter": ""
-    },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "",
         "Link_id doit être un chiffre": "",
@@ -3824,17 +3821,16 @@
         "Design": "Дизайн",
         "Plugin": "Плагин",
         "Equipement": "Оборудование",
+        "URL": "URL ",
         "Panel": "Панель",
         "Exporter en": "экспорт",
         "PNG": "",
         "PDF": "",
-        "JPEG": "",
-        "SVG": "",
         "Commandes": "Команды",
         "Sélectionner la commande": "Выберите команду",
-        "Largeur  (px)": "Ширина (ПВ)",
+        "Largeur (px)": "Ширина (ПВ)",
         "Hauteur (px)": "Высота (пикселей)",
-        "Delai (ms)": "Задержка (мс)",
+        "Délai": "",
         "Option(s)": ""
     },
     "core\/api\/marketApi.php": {

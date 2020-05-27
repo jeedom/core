@@ -3602,9 +3602,6 @@
         "Exécution du sous-élément de type [action] : ": "Alt türünün uygulanması [işlem] :",
         "Exécution du sous-élément de type [condition] : ": "Bu tipdeki alt-elementin uygulanması [şart] :"
     },
-    "core\/class\/ajax.class.php": {
-        "Votre session a expiré, veuillez vous reconnecter": ""
-    },
     "core\/class\/dataStore.class.php": {
         "Le type doit être un des suivants : ": "Tür aşağıdakilerden biri olmalıdır:",
         "Link_id doit être un chiffre": "Link_id bir sayı olmalı",
@@ -3824,17 +3821,16 @@
         "Design": "Dizayn",
         "Plugin": "Eklenti",
         "Equipement": "Cihaz",
+        "URL": "URL'ler",
         "Panel": "",
         "Exporter en": "Dışa aktar",
         "PNG": "",
         "PDF": "",
-        "JPEG": "",
-        "SVG": "",
         "Commandes": "Komutalar",
         "Sélectionner la commande": "Komutayı seçin",
-        "Largeur  (px)": "Genişlik (px)",
+        "Largeur (px)": "Genişlik (px)",
         "Hauteur (px)": "Yükseklik (px)",
-        "Delai (ms)": "Gecikme (ms)",
+        "Délai": "Ihbar",
         "Option(s)": "İsteğe bağlı (lar)"
     },
     "core\/api\/marketApi.php": {
