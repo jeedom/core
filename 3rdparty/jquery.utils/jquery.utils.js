@@ -302,7 +302,7 @@ function is_array(a) {
         if (options.show) {
           $(this).show();
         }
-        if ($(this).offset() != 'undefined' && $(this).offset().top - $(window).scrollTop() < $(this).height()) {
+        if ($(this).offset() != undefined && $(this).offset().top - $(window).scrollTop() < $(this).height()) {
           $('html, body').animate({
             scrollTop: $(this).offset().top - 60
           }, 650);
