@@ -92,6 +92,7 @@ function loadPage(_url,_noPushHistory){
   }catch(e){
 
   }
+
   if(!isset(_noPushHistory) || _noPushHistory == false) {
     try {
       if(PREVIOUS_PAGE == null){
@@ -109,6 +110,11 @@ function loadPage(_url,_noPushHistory){
   if(isset(bootbox)){
     bootbox.hideAll();
   }
+
+  $('.in_datepicker').datepicker( "destroy" )
+  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
+  $('#ui-datepicker-div').remove()
+
   jeedom.cmd.update = Array();
   jeedom.scenario.update = Array();
   $('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','');
@@ -885,7 +891,7 @@ function initTooltips(_el) {
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
-      me = _el.closest('.cmd-widget[title]')
+      var me = _el.closest('.cmd-widget[title]')
       if (me.hasClass('tooltipstered')) me.tooltipster('destroy')
       me.tooltipster(TOOLTIPSOPTIONS)
       return;
