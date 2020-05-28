@@ -44,10 +44,7 @@ if (jeedom.history.chart['div_historyChart'] != undefined) {
 }
 
 $.hideAlert()
-var datePickerRegion = jeedom_langage.substring(0,2)
-var datePickerRegional = $.datepicker.regional[datePickerRegion]
-datePickerRegional.dateFormat = "yy-mm-dd"
-$('.in_datepicker').datepicker(datePickerRegional)
+datePickerInit()
 
 var _showLegend = (cmdIds.length > 1) ? true : false
 var done = cmdIds.length

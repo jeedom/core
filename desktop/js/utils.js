@@ -111,9 +111,7 @@ function loadPage(_url,_noPushHistory){
     bootbox.hideAll();
   }
 
-  $('.in_datepicker').datepicker( "destroy" )
-  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
-  $('#ui-datepicker-div').remove()
+  datePickerDestroy()
 
   jeedom.cmd.update = Array();
   jeedom.scenario.update = Array();
@@ -1628,4 +1626,21 @@ function editWidgetCmdMode(_mode) {
       }
     })
   }
+}
+
+function datePickerDestroy() {
+  $('.in_datepicker').datepicker( "destroy" )
+  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
+  $('#ui-datepicker-div').remove()
+}
+
+function datePickerInit() {
+  var datePickerRegion = jeedom_langage.substring(0,2)
+  if (isset($.datepicker.regional[datePickerRegion])) {
+    var datePickerRegional = $.datepicker.regional[datePickerRegion]
+  } else {
+    var datePickerRegional = $.datepicker.regional['en']
+  }
+  datePickerRegional.dateFormat = "yy-mm-dd"
+  $('.in_datepicker').datepicker(datePickerRegional)
 }

@@ -116,10 +116,7 @@ $('#bt_clearGraph').on('click',function(){
   setChartOptions()
 });
 
-var datePickerRegion = jeedom_langage.substring(0,2)
-var datePickerRegional = $.datepicker.regional[datePickerRegion]
-datePickerRegional.dateFormat = "yy-mm-dd"
-$('.in_datepicker').datepicker(datePickerRegional)
+datePickerInit()
 
 $(".li_history .history").on('click', function (event) {
   $.hideAlert();
