@@ -96,7 +96,7 @@ sendVarToJS('market_display_info', $market_array);
 				$purchase_info = repo_market::getPurchaseInfo();
 				if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 					?>
-					<a class="btn btn-default" href='https://www.jeedom.com/market/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
+					<a class="btn btn-default" href='<?php echo config::byKey('market::address'); ?>/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
 					<?php
 					if ($market->getCertification() !== 'Premium') {
 						echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
@@ -174,7 +174,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='col-sm-6'>
 		<legend>{{Compatibilité plateforme}}</legend>
 		<?php
-        if ($market->getHardwareCompatibility('v4') == 1) {
+		if ($market->getHardwareCompatibility('v4') == 1) {
 			echo '<img src="core/img/logo_market_v4.png" style="width:60px;height:60px;" />';
 		}
 		if ($market->getHardwareCompatibility('diy') == 1) {
@@ -215,7 +215,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-
+			
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -235,7 +235,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-
+			
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -267,7 +267,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-
+	
 </div>
 
 <style>
@@ -333,7 +333,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-
+	
 });
 
 $('#bt_removeFromMarket').on('click', function () {
