@@ -185,7 +185,7 @@
         "Parent": "Pariente",
         "Visible": "Visible",
         "Masquer": "Ocultar",
-        "sur le Dashboard": "en el tablero",
+        "sur le Dashboard": "En el Dashboard",
         "sur la Synthèse": "en la síntesis",
         "Résumé Défini": "Resumen definido",
         "Si grisé, alors il n'est pas remonté en résumé global": "Si está atenuado, entonces no ha subido en resumen general",
@@ -359,7 +359,7 @@
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Equipement": "Dispositivos",
-        "Droits": "Derechos",
+        "Droits": "Permisos",
         "Aucun": "Ninguno",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
@@ -376,7 +376,7 @@
     "desktop\/modal\/object.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Informations": "Información",
-        "ID": "Identificación",
+        "ID": "ID",
         "Nom": "Nombre",
         "Visible": "Visible"
     },
@@ -397,22 +397,22 @@
         "Pause": "Pausa",
         "Variable": "Variable",
         "Supprimer une variable": "Eliminar variable",
-        "Scénario": "Escena",
+        "Scénario": "Escenario",
         "Stop": "Detener",
         "Attendre": "Esperar",
         "Aller au design": "Ir al diseño",
         "Ajouter un log": "Añadir un log",
         "Créer un message": "Crear mensaje",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Habilitar Mostrar \/ Ocultar equipos \/ Desactivar",
-        "Faire une demande": "Hacer un pedido",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Activar\/Desactivar Ocultar\/Mostrar dispositivo",
+        "Faire une demande": "Hacer un solicitud",
         "Arrêter": "Detener",
         "Redémarrer": "Reiniciar",
-        "Retourner un texte\/une donnée": "Devolver un texto \/ un determinado",
+        "Retourner un texte\/une donnée": "Devolver un texto\/datos",
         "Icône": "Icono",
         "Alerte": "Alerta",
         "Pop-up": "Pop-up",
         "Rapport": "Reporte",
-        "Supprimer bloc DANS\/A programmé": "Eliminar bloque IN \/ A programado",
+        "Supprimer bloc DANS\/A programmé": "Eliminar bloque Dentro de\/A programado",
         "Evènement": "Evento",
         "Tag": "Etiqueta",
         "Coloration des icones": "Coloración de icono",
@@ -420,8 +420,8 @@
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Espera hasta que la condición sea válida (máximo 2 horas)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Crear\/modificar una variable o valor de una variable",
         "Suppression d’une variable": "Eliminar una variable",
-        "Permet le contrôle des scénarios": "Permite el control de las escenas",
-        "Arrête le scénario": "Para la escena",
+        "Permet le contrôle des scénarios": "Permite el control de los escenarios",
+        "Arrête le scénario": "Para el escenario",
         "Permet de faire dire un texte à": "Permite hacer que un texto diga a",
         "(ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "(solo funciona si hay una pestaña Jeedom abierta en el navegador)",
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "En todos los navegadores que muestran un diseño, sustituido por uno solicitado",
@@ -435,9 +435,9 @@
         "Permet d'affecter une icône au scénario": "Le permite asignar un icono a la secuencia de comandos",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Muestra una pequeña alerta en todos los navegadores que tienen una página Jeedom abierta. También puede elegir entre cuatro niveles de alerta",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Permite mostrar una ventana emergente que debe validarse absolutamente en todos los navegadores que tienen una página",
-        "ouverte.": "abrió.",
-        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Enviar, un puesto de mando, un informe de una vista, un diseño o un panel PNG \/ PDF \/ JPEG \/ SVG",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Eliminar la programación de todos los bloques y un escenario de",
+        "ouverte.": "abierta.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permite enviar un informe de una vista, diseño o panel en PNG\/PDF\/JPEG\/SVG usando un comando de mensaje",
+        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permite borrar la programación de todos los bloques Dentro de y A del escenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Le permite insertar un valor en un comando de tipo de información arbitrariamente",
         "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permitir agregar \/ modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)",
         "Permets d'activer ou non la coloration des icones sur le dashboard": "Permitir activar o no el color de los iconos en el tablero"
@@ -606,7 +606,7 @@
         "Alertes": "Alertas",
         "Affichage": "Visualización",
         "Général": "General",
-        "ID": "Identificación",
+        "ID": "ID",
         "Logical ID": "ID lógica",
         "Nom": "Nombre",
         "Type": "Tipo",
@@ -614,7 +614,7 @@
         "Commande déclenchant une mise à jour": "Comando desencadenar una actualización",
         "Valeurs possibles": "Valores posibles",
         "Valeur": "Valor",
-        "Date collecte": "Fecha de colección",
+        "Date collecte": "Fecha de recolección",
         "Date valeur": "Fecha valor",
         "URL directe": "URL directa",
         "Unité": "Unidad",
@@ -847,7 +847,7 @@
         "Disposition": "Provisión",
         "Alertes": "Alertas",
         "Commentaire": "Comentario",
-        "ID": "Identificación",
+        "ID": "ID",
         "Nom": "Nombre",
         "ID logique": "ID logical",
         "ID de l'objet": "ID del objeto",
@@ -1016,7 +1016,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Tablero",
+        "Dashboard": "Dashboard",
         "Je veux remplacer": "Quiero reemplazar",
         "Par": "Por",
         "Remplacer": "Reemplazar",
@@ -1055,16 +1055,16 @@
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Advertencia: demasiado grande rango de fechas puede tardar mucho tiempo para calcular o ni siquiera aparece",
-        "Ouvrir dans Analyse \/ Historique.": "Abierto en Análisis \/ Historia",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Precaución: Un rango de fechas demasiado grande puede tardar mucho tiempo en ser calculado o incluso no ser mostrado",
+        "Ouvrir dans Analyse \/ Historique.": "Abierto en Análisis\/Historial",
         "Historique": "Historial"
     },
     "desktop\/modal\/expression.test.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Test": "Prueba",
-        "Rechercher une commande": "Buscar una orden",
-        "Rechercher un scenario": "Buscar una escena",
-        "Rechercher un équipement": "Busca equipo",
+        "Rechercher une commande": "Buscar un comando",
+        "Rechercher un scenario": "Buscar un escenario",
+        "Rechercher un équipement": "Buscar un dispositivo",
         "Exécuter": "Ejecutar",
         "Résultat": "Resultado",
         "Historique": "Guardar historial",
@@ -1215,7 +1215,7 @@
     },
     "desktop\/php\/editor.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Widget": "Reproductor",
+        "Widget": "Widget",
         "Dossiers": "Archivos",
         "Fichiers": "Archivos",
         "Edition": "Edición",
@@ -2267,7 +2267,7 @@
         "Nombre de commandes :": "Numero de pedidos:",
         "Afficher les éléments inactifs": "Mostrar elementos inactivos",
         "Inactifs": "Inactivo",
-        "Export CSV": "Exportación CSV",
+        "Export CSV": "Exportar CSV",
         "Rechercher": "Buscar",
         "Aucun": "Ninguno",
         "Désélectionner les équipements": "Deseleccionar equipo",
@@ -2316,7 +2316,7 @@
     },
     "desktop\/js\/editor.js": {
         "Aucun fichier ouvert.": "No hay archivos abiertos",
-        "Fichier enregistré avec succès": "Archivo guardado exitosamente",
+        "Fichier enregistré avec succès": "Archivo guardado correctamente",
         "Êtes-vous sûr de vouloir supprimer ce fichier : ": "¿Está seguro de que desea eliminar este archivo?",
         "Fichier supprimé avec succès": "Archivo eliminado con éxito",
         "Le sous-type ne peut être vide": "El subtipo no puede estar vacío",
@@ -2441,7 +2441,7 @@
         "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "¿Estás seguro de que deseas eliminar todo este equipo?",
         "Historique des suppressions": "Historial de borrado",
-        "Historique vidé avec succès": "La historia se vació con éxito"
+        "Historique vidé avec succès": "EL histórico se vació con éxito"
     },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Desactivar el sistema cron",
@@ -2466,11 +2466,11 @@
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Historique supprimé avec succès": "Historial eliminado correctamente",
-        "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/database.js": {
-        "Commande : ": "Orden :",
+        "Commande : ": "Comando :",
         "Temps d\\'éxécution": "Tiempo de ejecución"
     },
     "desktop\/js\/message.js": {
@@ -2501,7 +2501,7 @@
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuración del plugin",
         "Santé": "Salud",
-        "Jeedom benchmark": "Punto de referencia de Jeedom"
+        "Jeedom benchmark": "Jeedom benchmark"
     },
     "desktop\/js\/dashboard.js": {
         "Historique": "Historial",
@@ -2594,7 +2594,7 @@
         "Modification(s) appliquée(s) avec succès": "Modificación(es) aplicada(os) con éxito",
         "Choisir": "Elegir",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Advertencia: Usted está dejando una página con datos modificados sin guardar. ¿Quiere continuar?",
-        "Widgets": "Reproductores",
+        "Widgets": "Widgets",
         "Test": "Prueba",
         "Résultat si test ok": "Resultado si la prueba está bien",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
@@ -2612,8 +2612,8 @@
     },
     "desktop\/js\/administration.js": {
         "Êtes-vous sûr de vouloir réinitialiser la clé API de ": "¿Está seguro de que desea restablecer la clave API para",
-        "Commande réalisée avec succès": "Orden ejecutada con éxito",
-        "Attention ceci est une opération risquée de vidage de cahce est risquée, Confirmez vous vouloir la faire ?": "Atención, esta es una operación arriesgada de vaciado de cahce es arriesgado, ¿Confirma que desea hacerlo?",
+        "Commande réalisée avec succès": "Comando ejecutada con éxito",
+        "Attention ceci est une opération risquée de vidage de cahce est risquée, Confirmez vous vouloir la faire ?": "Atención, esta es una operación arriesgada de vaciado de cache es arriesgado, ¿Confirma que desea hacerlo?",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Tenga en cuenta que esta es una operación arriesgada. Confirme que comprende los riesgos y que si",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "no funciona a partir de entonces no se aceptará ninguna solicitud de soporte (este intento de acceso se registra)",
@@ -2650,7 +2650,7 @@
     "desktop\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Advertencia: Usted está dejando una página con datos modificados sin guardar. ¿Quiere continuar?",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
-        "Suppression effectuée avec succès": "Eliminación exitosa",
+        "Suppression effectuée avec succès": "Eliminación correcta",
         "A propos": "A proposito",
         "Bienvenue dans Jeedom": "Bienvenido a Jeedom",
         "Evénements en temps réel": "Eventos en tiempo real",
@@ -2665,7 +2665,7 @@
         "Choisissez une icône": "Elige un ícono",
         "Configuration avancée": "Configuración avanzada",
         "Configuration du widget": "Configuración del widget",
-        "Defaut": "Fallo",
+        "Defaut": "Por defecto",
         "Table": "Tabla",
         "Ajouter colonne": "Añadir columna",
         "Ajouter ligne": "Añadir fila",
@@ -2742,7 +2742,7 @@
         "Ouvert": "Abierto",
         "Fermé": "Cerrado",
         "Allumé": "Encendido",
-        "Eteint": "Apagar",
+        "Eteint": "Apagado",
         "Déclenché": "Activado",
         "Au repos": "En espera",
         "Ajout d'une nouvelle condition": "Agregar una nueva condición",
@@ -2751,7 +2751,7 @@
         "Template de scénario": "Plantilla de escenario",
         "Erreur": "Error",
         "Actif": "Activo",
-        "Démarrage": "La puesta en marcha",
+        "Démarrage": "Inicia",
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Jamais": "Nunca",
@@ -2760,14 +2760,14 @@
         "Choisir une commande": "Elija una orden",
         "Choisir une variable": "Elija una variable",
         "Programmation": "Programación",
-        "Rechercher une commande": "Buscar una orden",
-        "Rechercher un scenario": "Buscar una escena",
-        "Rechercher un équipement": "Busca equipo",
+        "Rechercher une commande": "Buscar un comando",
+        "Rechercher un scenario": "Buscar un escenario",
+        "Rechercher un équipement": "Buscar un dispositivo",
         "Décocher pour désactiver l\\'action": "Desactive la casilla para desactivar Acción",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Compruebe si la ejecución del comando \\'s en otras acciones paralelas",
         "Supprimer l\\'action": "Borrar acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Sélectionner la commande": "Seleccione la orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Décocher pour désactiver l\\'élément": "Desactive para desactivar elemento",
         "SI": "Si",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Permitir o no permitir la repetición de acciones si la evaluación de la condición es la misma que la anterior",
@@ -2775,7 +2775,7 @@
         "SINON": "SI NO",
         "DE 1 A": "DE 1 A",
         "Action DANS x minutes": "Acción IN x minutos",
-        "DANS": "DENTRO",
+        "DANS": "DENTRO DE",
         "A": "A las",
         "FAIRE": "HACER",
         "CODE": "CODIGO",
@@ -2789,12 +2789,12 @@
         "Afficher\/masquer le bloc Sinon": "Mostrar \/ ocultar bloque lo contrario",
         "Ajouter": "Añadir",
         "Action": "ACCIÓN",
-        "Bloc Si\/Alors\/Sinon": "Si \/ Entonces \/ De lo contrario bloque",
+        "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",
         "Bloc Boucle": "Bloque de bucle",
-        "Bloc Dans": "Bloquear en",
+        "Bloc Dans": "Bloquear Dentro de",
         "Bloc A": "Bloque A",
-        "Bloc Code": "Código de bloque",
+        "Bloc Code": "Bloque Código",
         "Bloc Commentaire": "Bloque de comentarios"
     },
     "core\/php\/utils.inc.php": {
@@ -2969,7 +2969,7 @@
         "Santé": "Salud",
         "Nature": "Naturaleza",
         "Timeout": "Tiempo de espera",
-        "Batterie en Warning": "Batería de advertencia",
+        "Batterie en Warning": "Batería en advertencia",
         "Batterie en Danger": "Batería en peligro",
         "Warning": "Advertencia",
         "Danger": "Peligro",
@@ -2994,7 +2994,7 @@
         "Volet Bouton Descendre": "Botón de Bajar Persiana",
         "Volet Bouton Stop": "Botón de Parar Persiana",
         "Volet Bouton Slider": "Regulador de Persiana",
-        "Volet BSO Etat": "Componente estatal de BSO",
+        "Volet BSO Etat": "Estado BSO Persiana",
         "Volet BSO Bouton Monter": "Botón de arriba del panel BSO",
         "Volet BSO Bouton Descendre": "Botón abajo del panel BSO",
         "Chauffage fil pilote Bouton ON": "Encendido de Calefacción",
@@ -3128,7 +3128,7 @@
         "Erreur cURL : ": "Error de CURL:",
         " sur la commande ": "en la orden",
         " après ": "después",
-        " relance(s)": "holgura (s)",
+        " relance(s)": "aviso(s)",
         "Echec de la requête HTTP : ": "Solicitud HTTP fallida:"
     },
     "core\/ajax\/interact.ajax.php": {
@@ -3275,7 +3275,7 @@
     },
     "core\/ajax\/plan.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun plan correspondant": "Sin plan a juego",
+        "Aucun plan correspondant": "Sin plan correspondiente",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconocido Verifica la identificación",
         "Plan header inconnu. Vérifiez l\\'ID ": "Plan de encabezado desconocido. Verifica la identificación",
         "Code d\\'accès invalide": "Código de acceso inválido",
@@ -3397,7 +3397,7 @@
         "Version : beta, stable": "Versión: beta, estable",
         "Lancement de l\\'installation de ": "Lanzamiento de la instalación de",
         " en version ": "en versión",
-        "Objet introuvable sur le market : ": "Objeto no encontrado en el mercado:",
+        "Objet introuvable sur le market : ": "Objeto no encontrado en el market:",
         "Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?": "No se ha definido un servidor de respaldo. ¿Tiene una suscripción de respaldo en la nube?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Debe tener una contraseña para la copia de seguridad en la nube (vaya a Configuración -> Sistema -> Configuración y luego a la pestaña Actualizar \/ Market)",
         "Clef de chiffrement invalide. Si vous oubliez votre mot de passe aucune récupération n\\'est possible. Veuillez supprimer le backup à partir de votre page profil sur le market": "Clave de cifrado no válida Si olvida su contraseña, no es posible la recuperación. Elimine la copia de seguridad de su página de perfil de mercado",
@@ -3408,9 +3408,9 @@
         "Téléchargement de ": "Descarga de",
         "URL ": "URL",
         "Installation des plugin, widget, scénario...": "Instalación de plugin, widget, escenario",
-        "OK\\n": "Aceptar \\ n",
+        "OK\\n": "Aceptar\\n",
         "Impossible de supprimer : ": "No se puede eliminar:",
-        ". Vérifiez les droits": "Comprueba los derechos",
+        ". Vérifiez les droits": "Comprueba los permisos",
         "Echec de création de l\\'archive zip": "Error al crear archivo zip",
         "Aucune fonction correspondante à : ": "Ninguna función correspondiente a:",
         "Impossible de trouver le fichier à envoyer : ": "No se puede encontrar el archivo para enviar:"
@@ -3423,12 +3423,12 @@
         "Payant": "Pago",
         "Officiel": "Oficial",
         "Conseillé": "Recomendable",
-        "Premium": "Prima",
-        "Partenaire": "Pareja",
-        "Legacy": "Legado",
-        "Top et nouveautés": "Top y nuevo",
+        "Premium": "Premium",
+        "Partenaire": "Socio",
+        "Legacy": "Legacy",
+        "Top et nouveautés": "Top y novedades",
         "Rechercher": "Buscar",
-        "Retour": "Regreso",
+        "Retour": "Volver",
         "Aucune": "Ninguna",
         "Widget pour la version mobile": "Widget para versión móvil",
         "Widget pour la version bureau": "Widget de versión de escritorio",
@@ -3442,7 +3442,7 @@
         "Token (facultatif)": "Token (opcional)",
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Usuario u organización del repositorio principal de Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nombre del repositorio para el núcleo Jeedom",
-        "Branche pour le core Jeedom": "Industria central de Jeedom",
+        "Branche pour le core Jeedom": "Rama para el núcleo Jeedom",
         "Dépot github non trouvé : ": "Repositorio de Github no encontrado:",
         "Impossible d\\'écrire dans le répertoire : ": "No se puede escribir en el directorio:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Ejecute el siguiente comando en SSH: sudo chmod 777 -R",
@@ -3450,9 +3450,9 @@
     },
     "core\/repo\/market.send.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Vous ne pouvez plus partager un plugin directement depuis Jeedom. Il faut le faire maintenant en synchronisation github depuis le market": "Ya no puede compartir un complemento directamente desde Jeedom. Tienes que hacerlo ahora en la sincronización de github del mercado",
-        "Vous n\\'êtes pas l\\'auteur du plugin": "No eres el autor del complemento",
-        "Le plugin :": "El complemento:",
+        "Vous ne pouvez plus partager un plugin directement depuis Jeedom. Il faut le faire maintenant en synchronisation github depuis le market": "Ya no puede compartir un plugin directamente desde Jeedom. Tienes que hacerlo ahora en la sincronización con github desde el market",
+        "Vous n\\'êtes pas l\\'auteur du plugin": "No eres el autor del plugin",
+        "Le plugin :": "El plugin:",
         "est introuvable": "no se encuentra",
         "Envoyer": "Enviar",
         "Gratuit": "Gratis",
@@ -3461,17 +3461,17 @@
         "Libre": "Libre",
         "Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)": "Sobre este precio, el 65% será donado al desarrollador (debe ser mayor o igual a 5 €)",
         "N'oubliez pas de rajouter une image à votre création en passant par le market.": "No olvide agregar una imagen a su creación a través del mercado",
-        "ID": "Identificación",
+        "ID": "ID",
         "Nom": "Nombre",
         "Type": "Tipo",
         "Plugin": "Plugin",
-        "Widget": "Reproductor",
+        "Widget": "Widget",
         "[Z-Wave] Configuration module": "[Z-Wave] Configuración del módulo",
-        "Script": "Guión",
+        "Script": "Script",
         "Scénario": "Escenario",
         "[Caméra] Modèle": "[Cámara] Modelo",
         "[SNMP] Configuration": "[SNMP] Configuración",
-        "[My Sensors] Noeud": "[Mis sensores] Nudo",
+        "[My Sensors] Noeud": "[Mis sensores] Nodo",
         "Catégorie": "Categoría",
         "Description": "Descripción",
         "Video": "Vídeo",
@@ -3501,20 +3501,20 @@
         "Nom": "Nombre",
         "Développé par": "Desarrollado por",
         "Conseillé": "Recomendable",
-        "Legacy": "Legado",
+        "Legacy": "Legacy",
         "Obsolète": "Obsoleto",
-        "Premium": "Prima",
-        "Partenaire": "Pareja",
+        "Premium": "Premium",
+        "Partenaire": "Socio",
         "Installer": "Instalar",
-        "Ce plugin est pour le moment privé. Vous devez attendre qu\\'il devienne public ou avoir un code pour y accéder": "Este complemento es actualmente privado. Debe esperar a que se haga público o tener un código para acceder a él",
+        "Ce plugin est pour le moment privé. Vous devez attendre qu\\'il devienne public ou avoir un code pour y accéder": "Este plugin es actualmente privado. Debe esperar a que se haga público o tener un código para acceder a él",
         "Code promo": "Código promocional",
         "Acheter": "Comprar",
         "Nous Contacter": "Contáctenos",
-        "Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\\'acheter": "Este artículo es de pago. Debe tener una cuenta en el mercado y haber ingresado los identificadores de mercado en Jeedom para poder comprarla",
+        "Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\\'acheter": "Este artículo es de pago. Debe tener una cuenta en el market y haber ingresado los identificadores de market en Jeedom para poder comprarla",
         "Supprimer": "Borrar",
         "Gratuit": "Gratis",
-        "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Tenga en cuenta que este complemento no es un complemento oficial en caso de problemas con él (directo o indirecto), cualquier solicitud de soporte puede ser rechazada",
-        "Attention ce plugin ne semble pas être compatible avec votre système": "Tenga en cuenta que este complemento no parece ser compatible con su sistema",
+        "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Tenga en cuenta que este plugin no es un plugin oficial en caso de problemas con él (directo o indirecto), cualquier solicitud de soporte puede ser rechazada",
+        "Attention ce plugin ne semble pas être compatible avec votre système": "Tenga en cuenta que este plugin no parece ser compatible con su sistema",
         "Description": "Descripción",
         "Documentation": "Documentación",
         "Changelog": "Cambios",
@@ -3560,7 +3560,7 @@
         " minute(s)": "minuto(s)",
         "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('nombre', 'núcleo', 'JEEDOM'). ']",
         "Appels de l\\'URL de push pour la commande ": "Push URL llama para ordenar",
-        "Erreur push sur : ": "Empujar error en:",
+        "Erreur push sur : ": "Push error en:",
         "Commande": "Comando"
     },
     "core\/class\/jeedom.class.php": {
@@ -3765,7 +3765,7 @@
         "FAIRE": "HACER",
         "CODE": "CODIGO",
         "ACTION": "ACCIÓN",
-        "DANS": "DENTRO",
+        "DANS": "DENTRO DE",
         "A": "A las"
     },
     "core\/class\/scenario.class.php": {
@@ -4006,26 +4006,26 @@
         "Aller au scénario": "Ir al escenario"
     },
     "core\/class\/update.class.php": {
-        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "Buscar actualizaciones deshabilitadas, actualizaciones y reinstalaciones en",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "Compruebe si hay actualizaciones, actualícelas y vuelva a instalarlas desactivadas en",
         "Impossible de créer le dossier  : ": "No se puede crear la carpeta:",
-        ". Problème de droits ?": "Cuestión de derechos?",
+        ". Problème de droits ?": "Problema de permisos?",
         "Téléchargement du plugin...": "Descargar el plugin",
-        "OK\\n": "Aceptar \\ n",
-        "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión con el mercado (verifique en la configuración de jeedom que funciona una prueba de conexión de mercado) o relacionado con la falta de espacio, se requiere una versión mínima no compatible con su versión de Jeedom, un preocupación por el complemento en el mercado, etc",
-        "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de' . jeedom::getHardwareName() . 'qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de' . jeedom::getHardwareName() . 'un souci du plugin sur le market, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión con el mercado (verifique la configuración de '. Jeedom :: getHardwareName ().' Que funciona una prueba de conexión al mercado) o vinculado a la falta de espacio, se requiere una versión mínima no es coherente con su versión de '. jeedom :: getHardwareName (). '' una preocupación con el complemento en el mercado, etc",
+        "OK\\n": "Aceptar\\n",
+        "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión con el mercado (verifique en la configuración de jeedom que funciona una prueba de conexión de mercado) o relacionado con la falta de espacio, se requiere una versión mínima no compatible con su versión de Jeedom, un problema con el plugin en el market, etc",
+        "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de' . jeedom::getHardwareName() . 'qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de' . jeedom::getHardwareName() . 'un souci du plugin sur le market, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión con el market (verifique la configuración de '. Jeedom :: getHardwareName ().' Que funciona una prueba de conexión al market) o vinculado a la falta de espacio, se requiere una versión mínima no es coherente con su versión de '. jeedom :: getHardwareName (). 'un problema con el plugin en el market, etc",
         "Extension du fichier non valide (autorisé .zip) : ": "Extensión de archivo no válida (.zip autorizado):",
         "Décompression du zip...": "Descomprimiendo archivo zip",
-        "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "No se puede instalar el complemento. Los archivos no se pudieron descomprimir:",
+        "Impossible d\\'installer le plugin. Les fichiers n\\'ont pas pu être décompressés : ": "No se puede instalar el plugin. Los archivos no se pudieron descomprimir:",
         "Impossible de décompresser l\\'archive zip : ": "No se puede descomprimir el archivo zip:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "No puedes eliminar el núcleo de Jeedom",
-        "Début de la mise à jour de : ": "Comience la actualización:",
+        "Début de la mise à jour de : ": "Comienza la actualización:",
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "No se puede crear la carpeta: '. $ cibDir. . Cuestión de derechos?",
         "Action de pré-update...": "Acción previa a la actualización",
         "Post-installation de ": "Post instalación",
         "Supression des fichiers inutiles...": "Eliminar archivos innecesarios",
-        "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el complemento. El nombre del complemento es diferente de la ID o el complemento no está formado correctamente. Por favor contacte al autor",
-        "END UPDATE SUCCESS\\n": "FINALIZAR ÉXITO \\ n",
-        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Buscar actualizaciones deshabilitadas, actualizaciones y reinstalaciones en",
+        "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el plugin. El nombre del plugin es diferente de la ID o el plugin no está formado correctamente. Por favor contacte al autor",
+        "END UPDATE SUCCESS\\n": "ACTUALIZACIÓN FINALIZADA CON ÉXITO\\n",
+        "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Compruebe si hay actualizaciones, actualícelas y vuelva a instalarlas desactivadas en",
         "Le logical ID ne peut pas être vide": "El ID lógico no puede estar vacío"
     },
     "core\/class\/listener.class.php": {
@@ -4049,7 +4049,7 @@
         "Activer": "Activar",
         "Desactiver": "Desactivar",
         "Dernier lancement": "Última ejecución",
-        "Min": "Bajo",
+        "Min": "Min",
         "Moyenne": "Media",
         "Max": "Max"
     },
@@ -4057,31 +4057,31 @@
         "Durée": "Duración"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Escenario",
         "Action": "Acción",
-        "Démarrer": "Comienzo",
-        "Démarrer (sync)": "Inicio (sincronización)",
+        "Démarrer": "Iniciar",
+        "Démarrer (sync)": "Iniciar (sync)",
         "Arrêter": "Detener",
         "Activer": "Activar",
         "Désactiver": "Desactivar",
         "Remise à zero des SI": "Restablecimiento de IS",
         "Tags": "Etiquetas",
-        "Aucun": "No"
+        "Aucun": "Ninguno"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condición",
-        "Sélectionner la commande": "Seleccione la orden",
-        "Time out": "Tiempo fuera"
+        "Sélectionner la commande": "Seleccione el comando",
+        "Time out": "Time out"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Sélectionner la commande": "Seleccione la orden"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nombre",
@@ -4099,7 +4099,7 @@
     },
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Dispositivos",
-        "Selectionner un équipement": "Seleccionar equipo",
+        "Selectionner un équipement": "Seleccionar dispositivo",
         "Action": "Acción",
         "Visible": "Visible",
         "Masquer": "Ocultar",
@@ -4112,31 +4112,31 @@
         "Variable": "Variable",
         "Délai": "Aviso",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Diseño"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nombre",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Activo",
@@ -4144,19 +4144,19 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
     },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Nivel",
-        "Succès": "éxito",
+        "Succès": "Conseguido",
         "Avertissement": "Advertencia",
         "Important": "Importante",
         "Information": "Información",
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensaje",
@@ -4175,11 +4175,11 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Seleccione la orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Largeur (px)": "Ancho (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai": "Aviso",
-        "Option(s)": "Opción (s)"
+        "Option(s)": "Opción(es)"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "No tiene autorización para realizar esta acción 1, IP:",

@@ -109,9 +109,10 @@ jeedom.history.drawChart = function (_params) {
           } else {
             message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd:'';
           }
-          $('#div_alert').showAlert({message: message, level: 'warning'});
-          //None will close history modal
-          _params.success('None');
+          $('#div_alertHistory').showAlert({message: message, level: 'warning'});
+          if (typeof (init(_params.success)) == 'function') {
+            _params.success({'error': message})
+          }
         }
         return;
       }
@@ -119,7 +120,7 @@ jeedom.history.drawChart = function (_params) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
       }
       _params.option.graphDerive = (data.result.derive == "1") ? true : false;
-      
+
       //series colors:
       var colors = Highcharts.getOptions().colors
       var seriesNumber = 1
@@ -132,7 +133,7 @@ jeedom.history.drawChart = function (_params) {
       if(! _params.option.graphColor){
         _params.option.graphColor = colors[seriesNumber-1];
       }
-      
+
       _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
       if(isset(data.result.cmd)){
         if (init(_params.option.graphStep) == '') {
@@ -149,7 +150,7 @@ jeedom.history.drawChart = function (_params) {
           _params.option.groupingType = {function :split[0],time : split[1] };
         }
       }
-      
+
       var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
       _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
       _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
@@ -157,13 +158,13 @@ jeedom.history.drawChart = function (_params) {
       _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
       _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
       _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
-      
+
       var legend = {borderColor: 'black',borderWidth: 2,shadow: true};
       legend.enabled = init(_params.showLegend, true);
       if (isset(_params.newGraph) && _params.newGraph == true) {
         delete jeedom.history.chart[_params.el];
       }
-      
+
       var charts = {
         zoomType: 'x',
         renderTo: _params.el,
@@ -181,7 +182,7 @@ jeedom.history.drawChart = function (_params) {
               var solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
               $(solidClip).css('transform', 'translate(5px)')
             })
-            
+
             $('.highcharts-zone-graph-1.customDotZone').each(function() {
               var customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
               $(customClip).css('transform', 'translate(5px)')
@@ -198,7 +199,7 @@ jeedom.history.drawChart = function (_params) {
       if (isset(jeedom.history.chart[_params.el]) && jeedom.history.chart[_params.el].type == 'pie') {
         _params.option.graphType = 'pie';
       }
-      
+
       if( _params.option.graphType == 'pie'){
         var series = {
           type: _params.option.graphType,
@@ -274,7 +275,7 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].nbTimeline++;
             nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
           }
-          
+
           var series = {
             type: 'flags',
             visible: _visible,
@@ -310,7 +311,7 @@ jeedom.history.drawChart = function (_params) {
               }
             }
           }
-          
+
           for(var i in data.result.data){
             series.data.push({
               x : data.result.data[i][0],
@@ -321,7 +322,7 @@ jeedom.history.drawChart = function (_params) {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
-          
+
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
@@ -366,7 +367,7 @@ jeedom.history.drawChart = function (_params) {
               }
             }
           };
-          
+
           //continue value to now, dotted if last value older than one minute (ts in millisecond):
           var dateEnd = new Date(data.result.dateEnd)
           dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
@@ -381,17 +382,17 @@ jeedom.history.drawChart = function (_params) {
             ]
           }
         }
-        
+
         if(isset(_params.option.graphZindex)){
           series.zIndex = _params.option.graphZindex;
         }
-        
+
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
           jeedom.history.chart[_params.el].cmd = new Array();
           jeedom.history.chart[_params.el].color = seriesNumber - 1;
           jeedom.history.chart[_params.el].nbTimeline = 1;
-          
+
           if(_params.dateRange == '30 min'){
             var dateRange = 1
           }else  if(_params.dateRange == '1 hour'){
@@ -519,7 +520,7 @@ jeedom.history.drawChart = function (_params) {
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange};
       }
-      
+
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
       var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
       for(var i in plotband){
