@@ -177,8 +177,9 @@ $("#md_overviewSummary").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  width: 480,
-  height: 400,
+  width: 500,
+  height: 200,
+  position: {my: 'left top', at: 'left+20 top+60', of: window},
   open: function () {
     modal.find('.ui-dialog-titlebar-close').appendTo(modal)
   }

@@ -743,7 +743,7 @@ div.ui-dialog[aria-describedby="md_overviewSummary"] {
   display: none;
 }
 .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
-  margin-top: 3px;
+  margin-top: 5px;
   margin-right: -7px;
 }
 
@@ -3503,6 +3503,7 @@ path.highcharts-graph {
   margin-bottom: 0 !important;
   font-size: 16px;
   font-weight: normal;
+  cursor: move !important;
 }
 .ui-dialog .ui-dialog-title:before {
   content: '\f105\00a0\00a0';
