@@ -1,7 +1,9 @@
 # Synthèse
 **Accueil → Synthèse**
 
-La page *Synthèse* vous propose une synthèse visuelle et rapide de vos objets et de leurs résumés.
+La page *Synthèse* vous propose une synthèse visuelle et centralisée de vos objets et de leurs résumés.
+
+Pour qu'elle prenne tous son sens, il faut sur chaque objet, configurer les résumés et une image de fond.
 
 Vous pouvez la configurer comme page par défaut dans **Réglages → Préférences**, en desktop et/ou mobile.
 
@@ -35,7 +37,7 @@ La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 Pour chaque objet, vous pouvez cliquer :
 - Sur le titre de l'objet pour afficher le Dashboard de cet objet avec ses objets enfants (également accessible par le menu *Accueil → Dashboard → Objet*).
 - Sur l'image, pour ouvrir la page des équipements de cet objet seulement.
-- Sur un élément de résumé pour afficher les éléments de cet objet, de ce type.
+- Sur un élément de résumé pour afficher les éléments de cet objet, de ce type. Ceux-ci s'affichent dans une modale, sans changer de page, et permet de rapidement fermer un volet, allumer une lumière, etc. La taille de la modale s'adapte aux équipements qu'elle doit afficher, mais vous pouvez la déplacer. Même avec la modale de résumés ouverte, vous pouvez cliquer sur d'autres résumés.
 
 
 > **Tip**
