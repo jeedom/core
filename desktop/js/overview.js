@@ -16,8 +16,32 @@
 
 "use strict"
 
-
 var _SummaryObserver_ = null
+var $summaryContainer = null
+var modal = null
+var modalContent = null
+
+//infos/actions tile signals:
+$('body').off()
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+  })
+
 
 $(function() {
   //move to top summary:
@@ -98,7 +122,9 @@ $('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function 
 $('#objectOverviewContainer .objectSummaryParent').off('click').on('click', function (event) {
   event.stopPropagation()
   event.preventDefault()
-  loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0')
+  var objectId = $(this).closest('.objectPreview').attr('data-object_id')
+  var summaryType = $(this).attr('data-summary')
+  getSummaryHtml(objectId, summaryType)
 })
 
 //Tile click or center-click
@@ -145,3 +171,92 @@ $('.objectPreview .name').off('mouseup').on('mouseup', function (event) {
     $('.objectPreview[data-object_id="'+id+'"] .name').trigger(jQuery.Event('click', {ctrlKey: true}))
   }
 })
+
+
+$("#md_overviewSummary").dialog({
+  closeText: '',
+  autoOpen: false,
+  modal: true,
+  width: 480,
+  height: 400,
+  open: function () {
+    modal.find('.ui-dialog-titlebar-close').appendTo(modal)
+  }
+}).siblings('.ui-dialog-titlebar').css('opacity', 0)
+
+$(function() {
+  $summaryContainer = $('#summaryEqlogics')
+  $summaryContainer.packery()
+  modal = $summaryContainer.parents('.ui-dialog.ui-resizable')
+  modalContent = modal.find('.ui-dialog-content.ui-widget-content')
+  modal.resize(function() {
+    $summaryContainer.packery()
+  })
+
+
+  modalContent.off()
+  modalContent.off('click').on('click', function (event) {
+    if (!$(event.target).parents('.eqLogic-widget').length) {
+      $("#md_overviewSummary").dialog('close')
+    }
+  })
+
+  //history in summary modal:
+  modalContent.delegate('.eqLogic-widget .history', 'click', function () {
+    event.stopImmediatePropagation()
+    event.stopPropagation()
+    if (event.ctrlKey) {
+      var cmdIds = []
+      $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+        cmdIds.push($(this).data('cmd_id'))
+      })
+      cmdIds = cmdIds.join('-')
+    } else {
+      var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+    }
+    $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+  })
+})
+
+function getSummaryHtml(_object_id, _summary) {
+  jeedom.object.toHtml({
+    id: _object_id,
+    version: 'dashboard',
+    category : null,
+    summary : _summary,
+    tag : null,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function (html) {
+      $summaryContainer.empty().packery('destroy')
+      $summaryContainer.append(html)
+      $('#md_overviewSummary').dialog({title: "{{Résumé}}"}).dialog('open')
+
+      //adapt modal size:
+      var brwSize = {
+        width: window.innerWidth || document.body.clientWidth,
+        height: window.innerHeight || document.body.clientHeight
+      }
+      var fullWidth = 0
+      var fullHeight = 0
+      var thisWidth = 0
+      var thisHeight = 0
+      $('.eqLogic-widget').each(function( index ) {
+        thisWidth = $(this).outerWidth(true)
+        thisHeight = $(this).outerHeight(true)
+        if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
+        if ( (fullWidth + thisWidth + 150) < brwSize.width ) {
+          fullWidth += thisWidth + 5
+        } else {
+          fullHeight += thisHeight + 5
+        }
+      })
+      fullWidth += 5
+      fullHeight += 5
+      modal.width(fullWidth + 26).height(fullHeight + 50)
+      modalContent.width(fullWidth).height(fullHeight)
+      $summaryContainer.packery({gutter: 10})
+    }
+  })
+}

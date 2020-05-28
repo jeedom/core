@@ -735,6 +735,22 @@ sup i {
   border-radius: 0 0 var(--border-radius) 0 !important;
 }
 
+
+div.ui-dialog[aria-describedby="md_overviewSummary"] {
+  box-shadow: none !important;
+}
+[data-page="overview"] .ui-widget-overlay {
+  display: none;
+}
+.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
+  margin-top: 3px;
+  margin-right: -7px;
+}
+
+#md_overviewSummary {
+  background: rgba(var(--contrast-color), 0.6) !important;
+}
+
 /* __________________________________________________________________________________________________________DIVERS */
 
 #div_widgetPreview {
@@ -3530,7 +3546,7 @@ path.highcharts-graph {
 }
 #ui-datepicker-div {
   background: rgb(var(--bg-color)) !important;
-  z-index: 1020 !important;
+  z-index: 1030 !important;
 }
 #ui-datepicker-div .ui-datepicker-header a {
   color: red !important;

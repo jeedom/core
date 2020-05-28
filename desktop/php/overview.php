@@ -31,7 +31,9 @@ $allObject = jeeObject::all(true);
     ?>
   </div>
 </div>
+<div id="md_overviewSummary" style="overflow-x: hidden;">
+  <div id="summaryEqlogics"></div>
 </div>
-</div>
+
 
 <?php include_file('desktop', 'overview', 'js'); ?>
