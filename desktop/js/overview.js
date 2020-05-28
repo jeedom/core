@@ -179,7 +179,7 @@ $("#md_overviewSummary").dialog({
   modal: true,
   width: 500,
   height: 200,
-  position: {my: 'left top', at: 'left+20 top+60', of: window},
+  position: {my: 'left top', at: 'left+19 top+96', of: window},
 })
 
 $(function() {

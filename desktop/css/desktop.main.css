@@ -738,13 +738,14 @@ sup i {
 
 div.ui-dialog[aria-describedby="md_overviewSummary"] {
   box-shadow: none !important;
+  border: 1px solid rgba(var(--contrast-color), 0.15) !important;
 }
 [data-page="overview"] .ui-widget-overlay {
   display: none;
 }
 div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
   line-height: 12px;
-  background: rgba(var(--defaultBkg-color), 0.9) !important;
+  background: rgba(var(--defaultBkg-color), 0.95) !important;
 }
 div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
   font-size: 14px;
@@ -762,7 +763,7 @@ div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dia
   color: var(--link-color) !important;
 }
 #md_overviewSummary {
-  background: rgba(var(--defaultBkg-color), 0.6) !important;
+  background: rgba(var(--defaultBkg-color), 0.8) !important;
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
