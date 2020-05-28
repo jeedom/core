@@ -253,6 +253,10 @@ function getSummaryHtml(_object_id, _summary, _title) {
           fullHeight += thisHeight + 5
         }
       })
+      if (fullWidth == 0) {
+        fullWidth = 120
+        fullHeight = 120
+      }
       fullWidth += 5
       fullHeight += 5
       modal.width(fullWidth + 26).height(fullHeight + 50)
