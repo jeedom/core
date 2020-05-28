@@ -33,8 +33,6 @@ sendVarToJs('cmd_id',$id);
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
-$(".in_datepicker").datepicker($.datepicker.regional[jeedom_langage.substring(0,2)])
-$('#ui-datepicker-div').hide()
 
 $('#div_historyChart').css('position', 'relative').css('width', '100%')
 //remove any previously loaded history:
@@ -46,6 +44,10 @@ if (jeedom.history.chart['div_historyChart'] != undefined) {
 }
 
 $.hideAlert()
+var datePickerRegion = jeedom_langage.substring(0,2)
+var datePickerRegional = $.datepicker.regional[datePickerRegion]
+datePickerRegional.dateFormat = "yy-mm-dd"
+$('.in_datepicker').datepicker(datePickerRegional)
 
 var _showLegend = (cmdIds.length > 1) ? true : false
 var done = cmdIds.length
@@ -172,6 +174,7 @@ function setModal() {
     }
 
     resizeHighChartModal()
+
   }
 }
 </script>
