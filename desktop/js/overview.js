@@ -42,7 +42,6 @@ $('body').off('mouseenter').off('mouseleave')
     $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
   })
 
-
 $(function() {
   //move to top summary:
   $('.objectPreview').each(function() {
@@ -124,7 +123,8 @@ $('#objectOverviewContainer .objectSummaryParent').off('click').on('click', func
   event.preventDefault()
   var objectId = $(this).closest('.objectPreview').attr('data-object_id')
   var summaryType = $(this).attr('data-summary')
-  getSummaryHtml(objectId, summaryType)
+  var title = $(this).closest('.objectPreview').find('.topPreview .name').html()
+  getSummaryHtml(objectId, summaryType, title)
 })
 
 //Tile click or center-click
@@ -180,10 +180,7 @@ $("#md_overviewSummary").dialog({
   width: 500,
   height: 200,
   position: {my: 'left top', at: 'left+20 top+60', of: window},
-  open: function () {
-    modal.find('.ui-dialog-titlebar-close').appendTo(modal)
-  }
-}).siblings('.ui-dialog-titlebar').css('opacity', 0)
+})
 
 $(function() {
   $summaryContainer = $('#summaryEqlogics')
@@ -203,7 +200,7 @@ $(function() {
   })
 
   //history in summary modal:
-  modalContent.delegate('.eqLogic-widget .history', 'click', function () {
+  modalContent.delegate('.eqLogic-widget .history', 'click', function (event) {
     event.stopImmediatePropagation()
     event.stopPropagation()
     if (event.ctrlKey) {
@@ -219,7 +216,7 @@ $(function() {
   })
 })
 
-function getSummaryHtml(_object_id, _summary) {
+function getSummaryHtml(_object_id, _summary, _title) {
   jeedom.object.toHtml({
     id: _object_id,
     version: 'dashboard',
@@ -232,7 +229,10 @@ function getSummaryHtml(_object_id, _summary) {
     success: function (html) {
       $summaryContainer.empty().packery('destroy')
       $summaryContainer.append(html)
-      $('#md_overviewSummary').dialog({title: "{{Résumé}}"}).dialog('open')
+
+      _title = $.parseHTML('<span>'+_title+'</span>')
+      $('.ui-dialog[aria-describedby="md_overviewSummary"] span.ui-dialog-title').empty().append(_title)
+      $('#md_overviewSummary').dialog('open')
 
       //adapt modal size:
       var brwSize = {
