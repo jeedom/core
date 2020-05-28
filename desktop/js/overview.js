@@ -22,7 +22,7 @@ var modal = null
 var modalContent = null
 
 //infos/actions tile signals:
-$('body').off()
+$('body').off('mouseenter').off('mouseleave')
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
     $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
   })

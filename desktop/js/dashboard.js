@@ -17,7 +17,7 @@
 "use strict"
 
 //infos/actions tile signals:
-$('body').off()
+$('body').off('mouseenter').off('mouseleave')
 .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
   if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
 })
