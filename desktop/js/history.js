@@ -116,7 +116,10 @@ $('#bt_clearGraph').on('click',function(){
   setChartOptions()
 });
 
-$(".in_datepicker").datepicker($.datepicker.regional[jeedom_langage.substring(0,2)])
+var datePickerRegion = jeedom_langage.substring(0,2)
+var datePickerRegional = $.datepicker.regional[datePickerRegion]
+datePickerRegional.dateFormat = "yy-mm-dd"
+$('.in_datepicker').datepicker(datePickerRegional)
 
 $(".li_history .history").on('click', function (event) {
   $.hideAlert();
