@@ -2443,6 +2443,9 @@
         "Historique des suppressions": "Löschverlauf",
         "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert"
     },
+    "desktop\/js\/overview.js": {
+        "Historique": "Chronik"
+    },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Cron-System deaktivieren",
         "Activer le système cron": "Aktivieren Sie das Cron-System",

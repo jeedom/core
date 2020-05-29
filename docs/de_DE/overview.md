@@ -1,7 +1,9 @@
 # Synthese
 **Home → Zusammenfassung**
 
-Die Seite *Synthese* bietet Ihnen eine schnelle und visuelle Synthese Ihrer Objekte und ihrer Zusammenfassungen.
+Die Seite *Synthese* bietet Ihnen eine zentralisierte visuelle Synthese Ihrer Objekte und ihrer Zusammenfassungen.
+
+Damit es seine volle Bedeutung annimmt, müssen Sie die Zusammenfassungen und ein Hintergrundbild für jedes Objekt konfigurieren.
 
 Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.
 
@@ -35,7 +37,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 Für jedes Objekt können Sie klicken :
 - Über den Titel des Objekts wird das Dashboard dieses Objekts mit seinen untergeordneten Objekten angezeigt (auch über das Menü zugänglich *Home → Dashboard → Objekt*).
 - Auf dem Bild nur die Ausrüstungsseite dieses Objekts öffnen.
-- Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen.
+- Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen. Diese werden modal angezeigt, ohne die Seite zu ändern, und ermöglichen es Ihnen, einen Verschluss schnell zu schließen, ein Licht einzuschalten usw. Die Größe des Modals passt sich an das Gerät an, das angezeigt werden muss, aber Sie können es verschieben. Selbst wenn das Modal der Zusammenfassungen geöffnet ist, können Sie auf andere Zusammenfassungen klicken.
 
 
 > **Spitze**

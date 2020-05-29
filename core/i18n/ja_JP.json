@@ -2443,6 +2443,9 @@
         "Historique des suppressions": "削除履歴",
         "Historique vidé avec succès": "履歴が空になりました"
     },
+    "desktop\/js\/overview.js": {
+        "Historique": "歴史的"
+    },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Cronシステムを無効にする",
         "Activer le système cron": "Cronシステムをアクティブにします",

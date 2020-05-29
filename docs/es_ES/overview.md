@@ -1,7 +1,9 @@
 # Síntesis
 **Inicio → Resumen**
 
-La página *Síntesis* le ofrece una síntesis rápida y visual de sus objetos y sus resúmenes.
+La página *Síntesis* le ofrece una síntesis visual centralizada de sus objetos y sus resúmenes.
+
+Para que tome su significado completo, debe configurar los resúmenes y una imagen de fondo en cada objeto.
 
 Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
@@ -35,7 +37,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 Para cada objeto, puede hacer clic :
 - En el título del objeto para mostrar el Panel de este objeto con sus objetos secundarios (también accesible desde el menú *Inicio → Panel de control → Objeto*).
 - En la imagen, para abrir la página del equipo de este objeto solamente.
-- En un elemento de resumen para mostrar los elementos de este objeto, de este tipo.
+- En un elemento de resumen para mostrar los elementos de este objeto, de este tipo. Estos se muestran en modo modal, sin cambiar la página, y le permite cerrar rápidamente un obturador, encender una luz, etc. El tamaño del modal se adapta al equipo que debe mostrar, pero puede moverlo. Incluso con el modal de resúmenes abierto, puede hacer clic en otros resúmenes.
 
 
 > **Punta**

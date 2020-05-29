@@ -2443,6 +2443,9 @@
         "Historique des suppressions": "Historique des suppressions",
         "Historique vidé avec succès": "Historique vidé avec succès"
     },
+    "desktop\/js\/overview.js": {
+        "Historique": "Historique"
+    },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Désactiver le système cron",
         "Activer le système cron": "Activer le système cron",

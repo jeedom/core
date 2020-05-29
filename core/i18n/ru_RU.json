@@ -2443,6 +2443,9 @@
         "Historique des suppressions": "История удаления",
         "Historique vidé avec succès": "История успешно опустошена"
     },
+    "desktop\/js\/overview.js": {
+        "Historique": "История"
+    },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Отключить систему cron",
         "Activer le système cron": "Активировать систему cron",

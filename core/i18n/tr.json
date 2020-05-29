@@ -2443,6 +2443,9 @@
         "Historique des suppressions": "",
         "Historique vidé avec succès": ""
     },
+    "desktop\/js\/overview.js": {
+        "Historique": "Geçmiş"
+    },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Cron sistemini dezaktive et",
         "Activer le système cron": "Cron sistemini aktifleştirin",

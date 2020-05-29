@@ -1,7 +1,9 @@
 # Synthesis
 **Home → Summary**
 
-The page *Synthesis* offers you a quick and visual synthesis of your objects and their summaries.
+The page *Synthesis* offers you a centralized visual synthesis of your objects and their summaries.
+
+For it to take on its full meaning, you must configure the summaries and a background image on each object.
 
 You can configure it as the default page in **Settings → Preferences**, in desktop and / or mobile.
 
@@ -35,7 +37,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 For each object, you can click :
 - On the title of the object to display the Dashboard of this object with its child objects (also accessible from the menu *Home → Dashboard → Object*).
 - On the image, to open the equipment page of this object only.
-- On a summary element to display the elements of this object, of this type.
+- On a summary element to display the elements of this object, of this type. These are displayed in a modal, without changing the page, and allows you to quickly close a shutter, turn on a light, etc. The size of the modal adapts to the equipment it must display, but you can move it. Even with the modal of summaries open, you can click on other summaries.
 
 
 > **Tip**

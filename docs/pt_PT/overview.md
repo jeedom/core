@@ -1,7 +1,9 @@
 # Síntese
 **Home → Resumo**
 
-A página *Síntese* oferece uma síntese rápida e visual de seus objetos e seus resumos.
+A página *Síntese* oferece uma síntese visual centralizada de seus objetos e seus resumos.
+
+Para que assuma todo o seu significado, você deve configurar os resumos e uma imagem de plano de fundo em cada objeto.
 
 Você pode configurá-lo como a página padrão em **Configurações → Preferências**, no computador e / ou celular.
 
@@ -35,7 +37,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 Para cada objeto, você pode clicar em :
 - No título do objeto para exibir o Painel desse objeto com seus objetos filhos (também acessível no menu *Página inicial → Painel de controle → Objeto*).
 - Na imagem, para abrir apenas a página de equipamento deste objeto.
-- Em um elemento de resumo para exibir os elementos deste objeto, deste tipo.
+- Em um elemento de resumo para exibir os elementos deste objeto, deste tipo. Eles são exibidos em um modal, sem alterar a página, e permitem fechar rapidamente um obturador, acender uma luz, etc. O tamanho do modal se adapta ao equipamento que ele deve exibir, mas você pode movê-lo. Mesmo com o modal de resumos aberto, você pode clicar em outros resumos.
 
 
 > **Dica**
