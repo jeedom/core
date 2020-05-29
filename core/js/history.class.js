@@ -367,19 +367,20 @@ jeedom.history.drawChart = function (_params) {
               }
             }
           };
-          
-          //continue value to now, dotted if last value older than one minute (ts in millisecond):
-          var dateEnd = new Date(data.result.dateEnd)
-          dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
-          var dateEndTs = dateEnd.getTime()
-          var diffms = dateEndTs - data.result.data[data.result.data.length - 1][0]
-          if (diffms > 60000) {
-            series.zoneAxis = 'x'
-            data.result.data.push([dateEndTs, data.result.data[data.result.data.length - 1][1]])
-            series.zones = [
-              {value: data.result.data[data.result.data.length - 2][0], dashStyle: 'Solid', className: 'customSolidZone'},
-              {value: data.result.data[data.result.data.length - 1][0], dashStyle: 'ShortDash', className: 'customDotZone'}
-            ]
+          if(init(_params.option.groupingType) == ''){
+            //continue value to now, dotted if last value older than one minute (ts in millisecond):
+            var dateEnd = new Date(data.result.dateEnd)
+            dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
+            var dateEndTs = dateEnd.getTime()
+            var diffms = dateEndTs - data.result.data[data.result.data.length - 1][0]
+            if (diffms > 60000) {
+              series.zoneAxis = 'x'
+              data.result.data.push([dateEndTs, data.result.data[data.result.data.length - 1][1]])
+              series.zones = [
+                {value: data.result.data[data.result.data.length - 2][0], dashStyle: 'Solid', className: 'customSolidZone'},
+                {value: data.result.data[data.result.data.length - 1][0], dashStyle: 'ShortDash', className: 'customDotZone'}
+              ]
+            }
           }
         }
         
