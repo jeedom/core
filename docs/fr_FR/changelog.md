@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur
+
 3.3.50
 =====
 
