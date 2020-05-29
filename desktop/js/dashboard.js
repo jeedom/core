@@ -54,7 +54,7 @@ $(function(){
   setTimeout(function() {
     $('.eqLogic-widget > div.autoResize').each(function( index ) {
       var h = $(this).outerHeight(true) + $(this).parent().find('.widget-name').outerHeight(true) + 20
-      for (i = 1; i < 40; i++) {
+      for (var i = 1; i < 40; i++) {
         if (h <= i * 25) {
           h = i * 25
           break
