@@ -657,9 +657,10 @@ $(function () {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   });
 
-  $('body').on('click','.objectSummaryParent',function(){
-    loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
-  });
+  $('body').on('click','.objectSummaryParent',function() {
+    if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
+    loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'))
+  })
 
   //theming:
   if (getCookie('currentTheme') == 'alternate') {
