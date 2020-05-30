@@ -7,6 +7,7 @@ Registro de cambios Jeedom V4
 
 - Fortalecimiento de la seguridad de las cookies
 - Uso de cromo (si está instalado) para informes
+- Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria jeedom no es la misma que la del navegador
 
 4.0.55
 =====

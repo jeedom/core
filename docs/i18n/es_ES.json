@@ -1285,6 +1285,7 @@
         "4.0.57": "4.0.57",
         "Renforcement de la securité des cookies": "Fortalecimiento de la seguridad de las cookies",
         "Utilisation de chromium (si il est installé) pour les rapports": "Uso de cromo (si está instalado) para informes",
+        "Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur": "Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria jeedom no es la misma que la del navegador",
         "4.0.55": "4.0.55",
         "Le nouveau dns (\\*.eu.jeedom": "El nuevo dns (\\*. Eu.jeedom",
         "link) devient le DNS primaire (l'ancien DNS marche toujours": "enlace) se convierte en el DNS primario (el antiguo DNS todavía funciona",

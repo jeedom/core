@@ -7,6 +7,7 @@ Changelog Jeedom V4
 
 - Strengthening the security of cookies
 - Use of chromium (if installed) for reports
+- Fixed a problem with calculating state time on widgets if the jeedom time zone is not the same as that of the browser
 
 4.0.55
 =====

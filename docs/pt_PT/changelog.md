@@ -7,6 +7,7 @@ Registro de Alterações Jeedom V4
 
 - Reforçar a segurança dos cookies
 - Uso de cromo (se instalado) para relatórios
+- Corrigido um problema com o cálculo da hora do estado nos widgets se o fuso horário do jeedom não fosse o mesmo do navegador
 
 4.0.55
 =====
