@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Fixed a problem with calculating state time on widgets if the jeedom time zone is not the same as that of the browser
+
 3.3.50
 =====
 

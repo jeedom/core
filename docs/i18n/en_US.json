@@ -1704,6 +1704,8 @@
         " Market*": " Market*"
     },
     "changelog.md": {
+        "3.3.51": "3.3.51",
+        "Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur": "Fixed a problem with calculating state time on widgets if the jeedom time zone is not the same as that of the browser",
         "3.3.50": "3.3.50",
         "Correction d'un soucis d'arret du DNS beta": "Correction of a problem with stopping the DNS beta",
         "Amélioration du calcul des accès interne\/externe (suppression du port si celui-ci est standard pour le protocole": "Improvement of internal \/ external access calculation (removal of the port if it is standard for the protocol",

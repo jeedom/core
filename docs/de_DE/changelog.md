@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Es wurde ein Problem mit der Berechnung der Statuszeit für Widgets behoben, wenn die Zeitzone jeedom nicht mit der des Browsers übereinstimmt
+
 3.3.50
 =====
 

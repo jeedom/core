@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria jeedom no es la misma que la del navegador
+
 3.3.50
 =====
 
