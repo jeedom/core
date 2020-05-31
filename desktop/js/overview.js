@@ -123,7 +123,7 @@ $('#objectOverviewContainer .objectSummaryParent').off('click').on('click', func
   event.preventDefault()
   var objectId = $(this).closest('.objectPreview').attr('data-object_id')
   var summaryType = $(this).attr('data-summary')
-  var title = $(this).closest('.objectPreview').find('.topPreview .name').html()
+  var title = $(this).get(0).firstChild.outerHTML + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
   getSummaryHtml(objectId, summaryType, title)
 })
 
