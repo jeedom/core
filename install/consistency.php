@@ -413,7 +413,7 @@ if(method_exists('utils','attrChanged')){
 				$changed = true;
 			}
 			if($changed){
-				$cmd->save();
+				$cmd->save(true);
 			}
 		} catch (Exception $exc) {
 			
