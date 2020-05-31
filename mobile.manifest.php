@@ -52,7 +52,6 @@ $other_file = array(
 	'mobile/css/mobile.main.css',
 	'3rdparty/jquery.mobile/jquery.mobile.min.css',
 	'3rdparty/jquery.mobile/css/nativedroid2.css',
-	'3rdparty/jquery.mobile/css/fonts.css',
 	'3rdparty/jquery.mobile/css/flexboxgrid.min.css',
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
 	'3rdparty/waves/waves.min.css',
