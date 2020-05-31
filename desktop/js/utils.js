@@ -16,10 +16,12 @@
 
 "use strict"
 
-var JS_ERROR = [];
-var BACKGROUND_IMG = '';
-var PREVIOUS_PAGE = null;
-var NO_POPSTAT = false;
+var JS_ERROR = []
+var BACKGROUND_IMG = ''
+
+var PREVIOUS_PAGE = null
+var NO_POPSTAT = false
+
 var TOOLTIPSOPTIONS = {
   arrow: false,
   delay: 650,
@@ -27,7 +29,7 @@ var TOOLTIPSOPTIONS = {
   contentAsHTML: true
 }
 
-var __OBSERVER__ = null;
+var __OBSERVER__ = null
 var _observerConfig_ = {
   attributes: true,
   childList: true,
@@ -39,20 +41,20 @@ var printEqLogic = undefined
 var UPDATE_NUMBER
 var MESSAGE_NUMBER
 
-window.addEventListener('error', function (evt) {
-  if(evt.filename.indexOf('3rdparty/') != -1){
-    return;
+window.addEventListener('error', function (event) {
+  if (event.filename.indexOf('3rdparty/') != -1) {
+    return
   }
-  JS_ERROR.push(evt)
-  $('#bt_jsErrorModal').show();
-  $.hideLoading();
+  JS_ERROR.push(event)
+  $('#bt_jsErrorModal').show()
+  $.hideLoading()
 });
 
-var uniqId_count = 0;
-var modifyWithoutSave = false;
-var nbActiveAjaxRequest = 0;
-var jeedomBackgroundImg = null;
-var utid = Date.now();
+var uniqId_count = 0
+var modifyWithoutSave = false
+var nbActiveAjaxRequest = 0
+var jeedomBackgroundImg = null
+var utid = Date.now()
 
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++;
@@ -355,7 +357,19 @@ $(function () {
   });
 
   /*********************Dialogs********************************/
-  $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+  $.fn.modal.Constructor.prototype.enforceFocus = function () {}
+  setTimeout(function() {
+    if ( isset(jeedom_langage) ) {
+      var lang = jeedom_langage.substr(0, 2)
+      var supportedLangs = ['fr', 'de', 'es']
+      if ( lang != 'en' && supportedLangs.includes(lang) ) {
+        bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
+        bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})
+        bootbox.addLocale('es', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular'})
+        bootbox.setLocale('fr')
+      }
+    }
+  }, 250)
 
   $('body').on('show', '.modal',function () {
     document.activeElement.blur()
@@ -370,21 +384,6 @@ $(function () {
     $(this).find(".bootbox-accept").focus()
   })
 
-  /************************Help*************************/
-  setTimeout(function() {
-    if ( isset(jeedom_langage) ) {
-      var lang = jeedom_langage.substr(0, 2)
-      var supportedLangs = ['fr', 'de', 'es']
-      if ( lang != 'en' && supportedLangs.includes(lang) ) {
-        bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
-        bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})
-        bootbox.addLocale('es', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular'})
-        bootbox.setLocale('fr')
-      }
-    }
-  }, 250)
-
-  //Display report bug
   $("#md_reportBug").dialog({
     autoOpen: false,
     modal: true,
@@ -482,6 +481,21 @@ $(function () {
     }
   }
 
+  $(window).resize(function () {
+    initRowOverflow();
+  });
+
+  if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
+    $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
+  }
+
+  $(window).bind('beforeunload', function (e) {
+    if (modifyWithoutSave) {
+      return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
+    }
+  });
+
+  //*********************Standard Jeedom buttons interface:
   $('#bt_jeedomAbout').on('click', function () {
     $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   });
@@ -503,20 +517,6 @@ $(function () {
   $('body').on( 'click','.bt_reportBug', function () {
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
   });
-
-  $(window).bind('beforeunload', function (e) {
-    if (modifyWithoutSave) {
-      return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
-    }
-  });
-
-  $(window).resize(function () {
-    initRowOverflow();
-  });
-
-  if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-    $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
-  }
 
   $('#bt_showEventInRealTime').on('click',function(event) {
     if (event.ctrlKey || event.originalEvent.which == 2) {
@@ -657,11 +657,12 @@ $(function () {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   });
 
-  $('body').on('click','.objectSummaryParent',function(){
-    loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
-  });
+  $('body').on('click','.objectSummaryParent',function() {
+    if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
+    loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'))
+  })
 
-  //theming:
+  //*********************theming:
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
@@ -703,12 +704,13 @@ $(function () {
     }
   }
 
-  $('body').attr('data-coloredIcons',0);
-  if(typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1'){
-    $('body').attr('data-coloredIcons',1);
+  if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
+    $('body').attr('data-coloredIcons',1)
+  } else {
+    $('body').attr('data-coloredIcons',0)
   }
 
-  $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function(){
+  $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
     var el = $(this).closest('div').find('input');
     jeedom.getCronSelectModal({},function (result) {
       el.value(result.value);
@@ -717,10 +719,10 @@ $(function () {
 
   initPage();
   changeThemeAuto();
-  if(jeedomBackgroundImg != null){
-    setBackgroundImg(jeedomBackgroundImg);
-  }else{
-    setBackgroundImg('');
+  if (jeedomBackgroundImg != null) {
+    setBackgroundImg(jeedomBackgroundImg)
+  } else {
+    setBackgroundImg('')
   }
 
   setTimeout(function(){
@@ -977,6 +979,24 @@ function initHelp(){
   });
 }
 
+function datePickerDestroy() {
+  $('.in_datepicker').datepicker( "destroy" )
+  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
+  $('#ui-datepicker-div').remove()
+}
+
+function datePickerInit() {
+  var datePickerRegion = jeedom_langage.substring(0,2)
+  if (isset($.datepicker.regional[datePickerRegion])) {
+    var datePickerRegional = $.datepicker.regional[datePickerRegion]
+  } else {
+    var datePickerRegional = $.datepicker.regional['en']
+  }
+  datePickerRegional.dateFormat = "yy-mm-dd"
+  $('.in_datepicker').datepicker(datePickerRegional)
+}
+
+//General functions__
 function normTextLower(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
@@ -989,32 +1009,6 @@ function linkify(inputText) {
   var replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
   var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
   return replacedText
-}
-
-function showHelpModal(_name, _plugin) {
-  if (init(_plugin) != '' && _plugin != undefined) {
-    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary', function () {
-      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $.trim($('#div_helpWebsite').text()) == '') {
-        $('a[href="#div_helpSpe"]').click();
-        $('a[href="#div_helpWebsite"]').hide();
-      } else {
-        $('a[href="#div_helpWebsite"]').show();
-        $('a[href="#div_helpWebsite"]').click();
-      }
-    });
-    $('#div_helpSpe').load('index.php?v=d&plugin=' + _plugin + '&modal=help.' + init(_name));
-  } else {
-    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_' + init(_name) + '.php #primary', function () {
-      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $.trim($('#div_helpWebsite').text()) == '') {
-        $('a[href="#div_helpSpe"]').click();
-        $('a[href="#div_helpWebsite"]').hide();
-      } else {
-        $('a[href="#div_helpWebsite"]').show();
-        $('a[href="#div_helpWebsite"]').click();
-      }
-    });
-    $('#div_helpSpe').load('index.php?v=d&modal=help.' + init(_name));
-  }
 }
 
 function refreshMessageNumber() {
@@ -1067,112 +1061,6 @@ function sleep(milliseconds) {
     if ((new Date().getTime() - start) > milliseconds){
       break;
     }
-  }
-}
-
-function chooseIcon(_callback, _params) {
-  if ($("#mod_selectIcon").length == 0) {
-    $('#div_pageContainer').append('<div id="mod_selectIcon"></div>');
-    $("#mod_selectIcon").dialog({
-      title: '{{Choisissez une icône}}',
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: (jQuery(window).height() - 150),
-      width: 1500,
-      open: function () {
-        if ((jQuery(window).width() - 50) < 1500) {
-          $('#mod_selectIcon').dialog({width: jQuery(window).width() - 50});
-        }
-        $("body").css({overflow: 'hidden'});
-        setTimeout(function(){initTooltips($("#mod_selectIcon"))},500);
-      },
-      beforeClose: function (event, ui) {
-        $("body").css({overflow: 'inherit'});
-      }
-    });
-  }
-  var url = 'index.php?v=d&modal=icon.selector';
-  if(_params && _params.img && _params.img === true) {
-    url += '&showimg=1';
-  }
-  if(_params && _params.icon) {
-    var icon = _params.icon
-    var replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
-    replaceAr.forEach(function(element) {
-      icon = icon.replace(element, '')
-    })
-    icon = icon.trim().replace(new RegExp('  ', 'g'), ' ')
-    icon = icon.trim().replace(new RegExp(' ', 'g'), '.')
-    url += '&selectIcon=' + icon;
-  }
-  if(_params && _params.color) {
-    url += '&colorIcon=' + _params.color;
-  }
-  $('#mod_selectIcon').empty().load(url,function(){
-    $("#mod_selectIcon").dialog('option', 'buttons', {
-      "Annuler": function () {
-        $(this).dialog("close");
-      },
-      "Valider": function () {
-        var icon = $('.iconSelected .iconSel').html();
-        if (icon == undefined) {
-          icon = '';
-        }
-        icon = icon.replace(/"/g, "'");
-        _callback(icon);
-        $(this).dialog('close');
-      }
-    });
-    $('#mod_selectIcon').dialog('open');
-  });
-}
-
-function calculWidgetSize(_size,_step,_margin){
-  var result = Math.ceil(_size / _step) * _step - (2*_margin);
-  if(result < _size){
-    result += Math.ceil((_size - result) / _step)* _step;
-  }
-  return result;
-}
-
-function positionEqLogic(_id,_preResize,_scenario) {
-  if(_id != undefined){
-    var widget = (_scenario) ? $('.scenario-widget[data-scenario_id='+_id+']') : $('.eqLogic-widget[data-eqlogic_id='+_id+']');
-    widget.css('margin','0px').css('padding','0px');
-    if($(this).width() == 0){
-      $(this).width('230');
-    }
-    if($(this).height() == 0){
-      $(this).height('110');
-    }
-    if(init(_preResize,true)){
-      widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']));
-      widget.height(Math.floor(widget.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']));
-    }
-    widget.width(calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']));
-    widget.height(calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']));
-    if(!widget.hasClass(widget.attr('data-category'))){
-      widget.addClass(widget.attr('data-category'));
-    }
-    widget.css('margin',jeedom.theme['widget::margin']+'px');
-  }else{
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').each(function () {
-      if($(this).width() == 0){
-        $(this).width('230');
-      }
-      if($(this).height() == 0){
-        $(this).height('110');
-      }
-      $(this).width(calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']));
-      $(this).height(calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']));
-      if(!$(this).hasClass($(this).attr('data-category'))){
-        $(this).addClass($(this).attr('data-category'));
-      }
-    });
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',jeedom.theme['widget::margin']+'px');
-    $('.eqLogic-widget,.scenario-widget').addClass('jeedomAlreadyPosition');
   }
 }
 
@@ -1257,6 +1145,141 @@ function addOrUpdateUrl(_param,_value,_title){
   }
 }
 
+
+
+//Global UI functions__
+function positionEqLogic(_id,_preResize,_scenario) {
+  if(_id != undefined){
+    var widget = (_scenario) ? $('.scenario-widget[data-scenario_id='+_id+']') : $('.eqLogic-widget[data-eqlogic_id='+_id+']');
+    widget.css('margin','0px').css('padding','0px');
+    if($(this).width() == 0){
+      $(this).width('230');
+    }
+    if($(this).height() == 0){
+      $(this).height('110');
+    }
+    if(init(_preResize,true)){
+      widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']));
+      widget.height(Math.floor(widget.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']));
+    }
+    widget.width(calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']));
+    widget.height(calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']));
+    if(!widget.hasClass(widget.attr('data-category'))){
+      widget.addClass(widget.attr('data-category'));
+    }
+    widget.css('margin',jeedom.theme['widget::margin']+'px');
+  }else{
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').each(function () {
+      if($(this).width() == 0){
+        $(this).width('230');
+      }
+      if($(this).height() == 0){
+        $(this).height('110');
+      }
+      $(this).width(calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']));
+      $(this).height(calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']));
+      if(!$(this).hasClass($(this).attr('data-category'))){
+        $(this).addClass($(this).attr('data-category'));
+      }
+    });
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',jeedom.theme['widget::margin']+'px');
+    $('.eqLogic-widget,.scenario-widget').addClass('jeedomAlreadyPosition');
+  }
+}
+
+function showHelpModal(_name, _plugin) {
+  if (init(_plugin) != '' && _plugin != undefined) {
+    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary', function () {
+      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $.trim($('#div_helpWebsite').text()) == '') {
+        $('a[href="#div_helpSpe"]').click();
+        $('a[href="#div_helpWebsite"]').hide();
+      } else {
+        $('a[href="#div_helpWebsite"]').show();
+        $('a[href="#div_helpWebsite"]').click();
+      }
+    });
+    $('#div_helpSpe').load('index.php?v=d&plugin=' + _plugin + '&modal=help.' + init(_name));
+  } else {
+    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_' + init(_name) + '.php #primary', function () {
+      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $.trim($('#div_helpWebsite').text()) == '') {
+        $('a[href="#div_helpSpe"]').click();
+        $('a[href="#div_helpWebsite"]').hide();
+      } else {
+        $('a[href="#div_helpWebsite"]').show();
+        $('a[href="#div_helpWebsite"]').click();
+      }
+    });
+    $('#div_helpSpe').load('index.php?v=d&modal=help.' + init(_name));
+  }
+}
+
+function chooseIcon(_callback, _params) {
+  if ($("#mod_selectIcon").length == 0) {
+    $('#div_pageContainer').append('<div id="mod_selectIcon"></div>');
+    $("#mod_selectIcon").dialog({
+      title: '{{Choisissez une icône}}',
+      closeText: '',
+      autoOpen: false,
+      modal: true,
+      height: (jQuery(window).height() - 150),
+      width: 1500,
+      open: function () {
+        if ((jQuery(window).width() - 50) < 1500) {
+          $('#mod_selectIcon').dialog({width: jQuery(window).width() - 50});
+        }
+        $("body").css({overflow: 'hidden'});
+        setTimeout(function(){initTooltips($("#mod_selectIcon"))},500);
+      },
+      beforeClose: function (event, ui) {
+        $("body").css({overflow: 'inherit'});
+      }
+    });
+  }
+  var url = 'index.php?v=d&modal=icon.selector';
+  if(_params && _params.img && _params.img === true) {
+    url += '&showimg=1';
+  }
+  if(_params && _params.icon) {
+    var icon = _params.icon
+    var replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
+    replaceAr.forEach(function(element) {
+      icon = icon.replace(element, '')
+    })
+    icon = icon.trim().replace(new RegExp('  ', 'g'), ' ')
+    icon = icon.trim().replace(new RegExp(' ', 'g'), '.')
+    url += '&selectIcon=' + icon;
+  }
+  if(_params && _params.color) {
+    url += '&colorIcon=' + _params.color;
+  }
+  $('#mod_selectIcon').empty().load(url,function(){
+    $("#mod_selectIcon").dialog('option', 'buttons', {
+      "Annuler": function () {
+        $(this).dialog("close");
+      },
+      "Valider": function () {
+        var icon = $('.iconSelected .iconSel').html();
+        if (icon == undefined) {
+          icon = '';
+        }
+        icon = icon.replace(/"/g, "'");
+        _callback(icon);
+        $(this).dialog('close');
+      }
+    });
+    $('#mod_selectIcon').dialog('open');
+  });
+}
+
+function calculWidgetSize(_size,_step,_margin){
+  var result = Math.ceil(_size / _step) * _step - (2*_margin);
+  if(result < _size){
+    result += Math.ceil((_size - result) / _step)* _step;
+  }
+  return result;
+}
+
 function getOpenedModal() {
   var _return = false
   var modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
@@ -1268,7 +1291,7 @@ function getOpenedModal() {
   return _return
 }
 
-//Extensions
+//Extensions__
 jQuery.fn.findAtDepth = function (selector, maxDepth) {
   var depths = [], i
   if (maxDepth > 0) {
@@ -1301,11 +1324,7 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
   return this
 }
 
-//deprecated
-function initCheckBox(){}
-
-
-//Dashboard Editing Mode
+//Dashboard Editing Mode__
 function saveWidgetDisplay(_params) {
   if(init(_params) == ''){
     _params = {};
@@ -1628,19 +1647,6 @@ function editWidgetCmdMode(_mode) {
   }
 }
 
-function datePickerDestroy() {
-  $('.in_datepicker').datepicker( "destroy" )
-  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
-  $('#ui-datepicker-div').remove()
-}
 
-function datePickerInit() {
-  var datePickerRegion = jeedom_langage.substring(0,2)
-  if (isset($.datepicker.regional[datePickerRegion])) {
-    var datePickerRegional = $.datepicker.regional[datePickerRegion]
-  } else {
-    var datePickerRegional = $.datepicker.regional['en']
-  }
-  datePickerRegional.dateFormat = "yy-mm-dd"
-  $('.in_datepicker').datepicker(datePickerRegional)
-}
+//deprecated
+function initCheckBox(){}

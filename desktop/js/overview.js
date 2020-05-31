@@ -262,6 +262,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
       modal.width(fullWidth + 26).height(fullHeight + 50)
       modalContent.width(fullWidth).height(fullHeight)
       $summaryContainer.packery({gutter: 10})
+      initTooltips($('#md_overviewSummary'))
     }
   })
 }
