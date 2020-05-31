@@ -148,6 +148,9 @@ a.btn,
 .ui-resizable-nw { cursor: nw-resize !important; }
 .ui-resizable-ne { cursor: ne-resize !important; }
 
+.nocursor {
+  cursor: default !important;
+}
 a > img:hover {
   opacity: 0.75;
 }
