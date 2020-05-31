@@ -682,7 +682,6 @@ sup i {
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
-  min-width: 80px !important;
   font-weight: 300;
   text-align: right;
 }
