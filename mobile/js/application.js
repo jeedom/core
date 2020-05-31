@@ -1,20 +1,22 @@
 "use strict"
 
 /***************Fonction d'initialisation*********************/
-var PAGE_HISTORY = []
+var PAGE_HISTORY = [];
 var PANEL_SCROLL= 0
 var APP_MODE=false
-var MESSAGE_NUMBER
+var MESSAGE_NUMBER = null
 var BACKGROUND_IMG = ''
 var nbActiveAjaxRequest = 0
-var utid
-var deviceInfo
+var utid = 0
 
 var serverDatetime
-var clientDatetime
 var clientServerDiffDatetime
 var serverTZoffsetMin
+var user_id
 var plugins
+var userProfils
+var deviceInfo
+var $backForJeedom
 
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++
@@ -40,8 +42,8 @@ if ('serviceWorker' in navigator) {
 }
 
 $(function() {
-  MESSAGE_NUMBER = null
-  nbActiveAjaxRequest = 0
+  //MESSAGE_NUMBER = null
+  //nbActiveAjaxRequest = 0
   utid = Date.now()
 
   $(window).on('orientationchange', function(event) {
@@ -139,8 +141,8 @@ function setBackgroundImage(_path) {
   if(typeof jeedom.theme == 'undefined' || typeof jeedom.theme.showBackgroundImg  == 'undefined' || jeedom.theme.showBackgroundImg == 0) {
     return
   }
-  var backForJeedom = $('.backgroundforJeedom')
-  backForJeedom.css({
+  $backForJeedom = $('.backgroundforJeedom')
+  $backForJeedom.css({
     'background-image':'',
     'background-position':'',
     'background-repeat':'no-repeat'
@@ -148,7 +150,7 @@ function setBackgroundImage(_path) {
   BACKGROUND_IMG = _path
   if (_path === null) {
     document.body.style.setProperty('--dashBkg-url','url("")')
-    backForJeedom.css('background-image','url("") !important')
+    $backForJeedom.css('background-image','url("") !important')
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
@@ -161,10 +163,10 @@ function setBackgroundImage(_path) {
     if (['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1) {
       _path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg'
     }
-    backForJeedom.css('background-image','url("'+_path+'") !important')
+    $backForJeedom.css('background-image','url("'+_path+'") !important')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }else{
-    backForJeedom.css('background-image','url("'+_path+'") !important')
+    $backForJeedom.css('background-image','url("'+_path+'") !important')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }
 }
@@ -359,12 +361,12 @@ function initApplication(_reinit) {
         panel(false)
         /*************Initialisation environement********************/
         serverDatetime  = data.result.serverDatetime
-        clientDatetime = new Date()
+        var clientDatetime = new Date()
         clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime()
         serverTZoffsetMin = data.result.serverTZoffsetMin
-        var user_id = data.result.user_id
+        user_id = data.result.user_id
         plugins = data.result.plugins
-        var userProfils = data.result.userProfils
+        userProfils = data.result.userProfils
         jeedom.init()
         var include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
