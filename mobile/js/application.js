@@ -1,7 +1,7 @@
 "use strict"
 
 /***************Fonction d'initialisation*********************/
-var PAGE_HISTORY = [];
+var PAGE_HISTORY = []
 var PANEL_SCROLL= 0
 var APP_MODE=false
 var MESSAGE_NUMBER = null
@@ -42,8 +42,6 @@ if ('serviceWorker' in navigator) {
 }
 
 $(function() {
-  //MESSAGE_NUMBER = null
-  //nbActiveAjaxRequest = 0
   utid = Date.now()
 
   $(window).on('orientationchange', function(event) {
