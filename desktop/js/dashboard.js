@@ -152,7 +152,6 @@ $('#catFilterAll').on('click', function() {
   })
   filterByCategory()
 })
-
 $('#categoryfilter .catFilterKey').off('mouseup').on('mouseup', function(event) {
   event.preventDefault()
   event.stopPropagation()
@@ -218,7 +217,7 @@ function filterByCategory() {
   }
 }
 
-
+//Handle history modal:
 $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
   if (isEditing) return false
   event.stopImmediatePropagation()
@@ -502,10 +501,9 @@ function displayChildObject(_object_id, _recursion) {
   if (_recursion === false) {
     $('.div_object').addClass('hideByObjectSel').hide()
   }
-  $('.div_object[data-object_id='+_object_id+']')
-    .show({effect : 'drop',queue : false})
-    .each(function() {
-      $(this).show({effect : 'drop',queue : false}).find('.div_displayEquipement').packery()
-      displayChildObject($(this).attr('data-object_id'),true)
-    })
+  $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false})
+  $('.div_object[data-father_id='+_object_id+']').each(function() {
+    $(this).show({effect : 'drop',queue : false}).find('.div_displayEquipement').packery()
+    displayChildObject($(this).attr('data-object_id'),true)
+  })
 }
