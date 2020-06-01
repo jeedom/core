@@ -576,9 +576,11 @@ class eqLogic {
 			$html .= '<i class="icon techno-fingerprint41 pull-right" title="{{Seuil manuel défini}}"></i>';
 		}
 		if ($batteryTime != 'NA') {
-			$html .= '<i class="icon divers-calendar2" title="{{Pile(s) changée(s) il y a}} ' . $batterySince . ' {{jour(s)}} (' . $batteryTime . ')"></i><span> ('.$batterySince.'j)</span>';
+			$text = __('Pile(s) changée(s) il y a', __FILE__).' ';
+			$text .= ($batterySince > 1) ? $batterySince.__('jours', __FILE__).' ('.$batteryTime.')' : $batterySince.__('jour', __FILE__).' ('.$batteryTime.')';
+			$html .= '<i class="icon divers-calendar2" title="'.$text.'"></i><span> ('.$batterySince.'j)</span>';
 		} else {
-			$html .= '<i class="icon divers-calendar2" title="{{Pas de date de changement de pile(s) renseignée}}"></i>';
+			$html .= '<i class="icon divers-calendar2" title="'.__('Pas de date de changement de pile(s) renseignée', __FILE__).'"></i>';
 		}
 		$html .= '</span>';
 		if ($this->getConfiguration('battery_type', '') != '') {
