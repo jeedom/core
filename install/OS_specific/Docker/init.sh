@@ -59,7 +59,17 @@ chmod 777 -R /tmp
 chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
+echo 'Verify .dockerinit to recognize docker installation for jeedom'
+if ! [ -f /.dockerinit ]; then
+        touch /.dockerinit
+        chmod 755 /.dockerinit
+fi
+
+echo 'Remove /tmp/jeedom/started file'
+rm -f /tmp/jeedom/started
+
 echo 'Start apache2'
 service apache2 start
 
+echo 'Start cron'
 cron -f
