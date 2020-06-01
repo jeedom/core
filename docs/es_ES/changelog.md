@@ -5,7 +5,7 @@ Changelog
 3.3.51
 ======
 
-- Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria jeedom no es la misma que la del navegador
+- Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria de Jeedom no es la misma que la del navegador
 
 3.3.50
 =====
@@ -40,7 +40,7 @@ Changelog
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
 - Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
 - Actualización del repositorio en smart
-- Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 1 semana y, si es necesario, puede solicitar la disponibilidad de copias de seguridad antiguas para soportar, pasar este período, se eliminará el sistema antiguo)
+- Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 1 semana y, si es necesario, puede solicitar la disponibilidad de copias de seguridad antiguas para soportar, pasar este período, el sistema antiguo se eliminará)
 - Migración al nuevo sistema de monitoreo (el sistema anterior permanecerá activo durante 1 semana, luego de lo cual se eliminará)
 
 3.3.39
@@ -59,7 +59,7 @@ Changelog
 3.3.38
 =====
 
-- Adición de compatibilidad global de Jeedom DNS con una conexión a internet 4G. (Importante si usa jeedom DNS es que tiene una conexión 4g, debe marcar en configurar jeedom dns la casilla correspondiente).
+- Adición de compatibilidad global de Jeedom DNS con una conexión a internet 4G. (Importante si usa el DNS de Jeedom es que tiene una conexión 4g, debe verificar la configuración del Jeedom en la casilla correspondiente).
 - Correcciones ortográficas.
 - Arreglo de seguridad
 

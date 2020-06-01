@@ -5,7 +5,7 @@ Changelog
 3.3.51
 ======
 
-- Corrigido um problema com o cálculo da hora do estado nos widgets se o fuso horário do jeedom não fosse o mesmo do navegador
+- Corrigido um problema ao calcular o horário do estado nos widgets se o fuso horário do Jeedom não fosse o mesmo do navegador
 
 3.3.50
 =====
@@ -40,7 +40,7 @@ Changelog
 - Rotação automática da chave API de usuários administrativos a cada 3 meses. Posso desativá-lo (mas não é recomendado) no gerenciamento de usuários. Observe que esta atualização lança uma rotação de chaves de API para usuários administradores.
 - Capacidade de inserir informações globais para sua casa na administração Jeedom (posição geográfica, altitude ...) para evitar a necessidade de digitá-las novamente em plug-ins ao criar equipamentos.
 - Atualizando o repositório no smart
-- Migração para o novo sistema de backup em nuvem (o sistema antigo permanecerá ativo por 1 semana e, se necessário, você poderá solicitar a disponibilidade de backups antigos para suporte, passar esse período, o sistema antigo será excluído)
+- Migração para o novo sistema de backup em nuvem (o sistema antigo permanecerá ativo por 1 semana e, se necessário, você poderá solicitar a disponibilidade dos backups antigos para suporte, passar esse período, o sistema antigo será excluído)
 - Migração para o novo sistema de monitoramento (o sistema antigo permanecerá ativo por 1 semana, após o qual será excluído)
 
 3.3.39
@@ -59,7 +59,7 @@ Changelog
 3.3.38
 =====
 
-- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G. (Importante se você usa o DNS jeedom é que você possui uma conexão 4G, verifique na caixa correspondente configure dns jeedom).
+- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G. (Importante se você usa o DNS Jeedom é que você tem uma conexão 4G, você deve verificar na configuração do DNS Jeedom a caixa correspondente).
 - Correções ortográficas.
 - Correção de segurança
 

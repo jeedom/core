@@ -5,7 +5,7 @@ Changelog
 3.3.51
 ======
 
-- Es wurde ein Problem mit der Berechnung der Statuszeit für Widgets behoben, wenn die Zeitzone jeedom nicht mit der des Browsers übereinstimmt
+- Es wurde ein Problem bei der Berechnung der Statuszeit für Widgets behoben, wenn die Jeedom-Zeitzone nicht mit der des Browsers übereinstimmt
 
 3.3.50
 =====
@@ -40,7 +40,7 @@ Changelog
 - Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startet.
 - Möglichkeit, globale Informationen für Ihr Zuhause in die Jeedom-Verwaltung einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in Plugins eingegeben werden müssen.
 - Aktualisieren des Repositorys auf smart
-- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv, und Sie können bei Bedarf die Verfügbarkeit alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht)
+- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv. Falls erforderlich, können Sie die Verfügbarkeit alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht)
 - Migration auf das neue Überwachungssystem (das alte System bleibt 1 Woche lang aktiv, danach wird es gelöscht)
 
 3.3.39
@@ -59,7 +59,7 @@ Changelog
 3.3.38
 =====
 
-- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wichtig, wenn Sie jeedom DNS verwenden, ist, dass Sie eine 4g-Verbindung haben. Aktivieren Sie das Kontrollkästchen jeedom dns im entsprechenden Feld).
+- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung. (Wichtig, wenn Sie den Jeedom DNS verwenden, ist, dass Sie eine 4g-Verbindung haben. Überprüfen Sie in der Konfiguration des Jeedom DNS das entsprechende Feld).
 - Rechtschreibkorrekturen.
 - Sicherheitsupdate
 

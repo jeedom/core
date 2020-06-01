@@ -5,7 +5,7 @@ Changelog
 3.3.51
 ======
 
-- Fixed a problem with calculating state time on widgets if the jeedom time zone is not the same as that of the browser
+- Fixed a problem with calculating state time on widgets if the Jeedom time zone is not the same as that of the browser
 
 3.3.50
 =====
@@ -40,7 +40,7 @@ Changelog
 - Automatic rotation of the API key of admin users every 3 months. I can deactivate it (but it is not recommended) in the user management. Please note this update launches a rotation of API keys for admins users.
 - Ability to enter global information for your home in the Jeedom administration (geographic position, altitude ...) to avoid having to re-enter it in plugins when creating equipment.
 - Updating the repository on smart
-- Migration to the new cloud backup system (the old system will remain active for 1 week and you could, if necessary, request the availability of old backups to support, pass this period the old system will be deleted)
+- Migration to the new cloud backup system (the old system will remain active for 1 week and if necessary you can request the availability of the old backups to support, pass this period the old system will be deleted)
 - Migration to the new monitoring system (the old system will remain active for 1 week, after which it will be deleted)
 
 3.3.39
@@ -59,7 +59,7 @@ Changelog
 3.3.38
 =====
 
-- Addition of global compatibility of Jeedom DNS with a 4G internet connection. (Important if you use jeedom DNS is that you have a 4g connection you must check in the configure jeedom dns the corresponding box).
+- Addition of global compatibility of Jeedom DNS with a 4G internet connection. (Important if you use the Jeedom DNS is that you have a 4g connection you must check in the configuration of the Jeedom dns the corresponding box).
 - Spelling corrections.
 - Security fix
 
