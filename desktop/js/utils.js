@@ -16,6 +16,9 @@
 
 "use strict"
 
+//cmd update:
+var utid = 0
+
 //js error in ! ui:
 var JS_ERROR = []
 window.addEventListener('error', function(event) {
