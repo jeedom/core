@@ -18,7 +18,7 @@ usort($list, function ($a, $b) {
 <a class="btn btn-sm pull-right" id="bt_massConfigureEqLogic"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 <ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
 	<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
-	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
+	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Equipements en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
 	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
 	<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
@@ -54,7 +54,7 @@ usort($list, function ($a, $b) {
 				echo $eqLogic->toHtml('dashboard');
 			}
 			if (!$hasAlert) {
-				echo '<br/><div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
+				echo '<br/><div class="alert alert-success">{{Aucun équipement en Alerte.}}</div>';
 			}
 			?>
 		</div>
