@@ -18,17 +18,17 @@ sendVarToJs('initSearch', init('search', 0));
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer">
-			<div class="cursor logoPrimary" id="bt_addScenario2">
+			<div class="cursor logoPrimary" id="bt_addScenario">
 				<center><i class="fas fa-plus-circle"></i></center>
 				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
-				<div class="cursor success" id="bt_changeAllScenarioState2" data-state="1">
+				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<center><i class="fas fa-check"></i></center>
 					<span class="txtColor"><center>{{Activer scénarios}}</center></span>
 				</div>
 			<?php } else {?>
-				<div class="cursor danger" id="bt_changeAllScenarioState2" data-state="0">
+				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<center><i class="fas fa-times"></i></center>
 					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
 				</div>
@@ -145,10 +145,10 @@ sendVarToJs('initSearch', init('search', 0));
 				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
 				<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
 
-				<a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
+				<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
+				</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
