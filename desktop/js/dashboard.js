@@ -37,6 +37,7 @@ $('body').off('mouseenter').off('mouseleave')
   if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
 })
 
+$('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 $(function() {
   setTimeout(function() {
