@@ -342,7 +342,6 @@ function editWidgetMode(_mode,_save) {
 }
 
 function getObjectHtml(_object_id) {
-  $('.eqLogic-widget').remove()
   jeedom.object.toHtml({
     id: _object_id,
     version: 'dashboard',
