@@ -343,6 +343,7 @@ var user_id
 var plugins
 var userProfils
 var deviceInfo
+var defaultMobilePage = null
 function initApplication(_reinit) {
   $.ajax({
     type: 'POST',
@@ -473,16 +474,20 @@ function initApplication(_reinit) {
                 if (res[0] == 'core') {
                   switch (res[1]) {
                     case 'overview':
-                      page('overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}")
+                      defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
+                      page(defaultMobilePage)
                       break
                     case 'dashboard':
-                      page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
+                      defaultMobilePage = ['equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject]
+                      page(defaultMobilePage)
                       break
                     case 'plan':
+                      defaultMobilePage = null
                       window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
                       break
                     case 'view':
-                      page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
+                      defaultMobilePage = ['view', userProfils.defaultMobileViewName, userProfils.defaultMobileView]
+                      page(defaultMobilePage)
                       break
                   }
                 } else {
@@ -505,7 +510,15 @@ function initApplication(_reinit) {
   })
 }
 
-function page(_page, _title, _option, _plugin,_dialog) {
+function page(_page, _title, _option, _plugin, _dialog) {
+  //handle default mobile home switching:
+  if (Array.isArray(_page)) {
+    _title = _page[1]
+    _option = _page[2]
+    _page = _page[0]
+  }
+
+  //handle browser history:
   if (PAGE_HISTORY[PAGE_HISTORY.length - 1]) {
     PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop()
   }
@@ -551,6 +564,13 @@ function page(_page, _title, _option, _plugin,_dialog) {
   if (isset(_dialog) && _dialog) {
     page += '&modal='+_page
   } else {
+    //alternate between defaultMobilePage and home:
+    var thisPage = $('body').attr('data-page')
+    if (defaultMobilePage != null && defaultMobilePage[0] != thisPage && _page == 'home') {
+      _page = defaultMobilePage[0]
+      _title = defaultMobilePage[1]
+      _option = defaultMobilePage[2]
+    }
     page += '&p=' + _page
   }
   if (init(_plugin) != '') {
@@ -587,7 +607,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#page').hide().load(page, function () {
       $('body').attr('data-page', _page)
       $('#page').trigger('create')
-      window.history.pushState('','','index.php?v=m&p=home')
+      window.history.pushState('', '', 'index.php?v=m&p=home')
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
@@ -607,7 +627,9 @@ function page(_page, _title, _option, _plugin,_dialog) {
         $('#pagecontainer').css('padding-top',0)
       } else {
         $('#pagecontainer').css('padding-top','64px')
-        setTimeout(function(){$('#pagecontainer').css('padding-top','64px'); }, 100)
+        setTimeout(function() {
+          $('#pagecontainer').css('padding-top','64px')
+        }, 100)
       }
       $('#page').fadeIn(400)
     })
