@@ -66,7 +66,11 @@ $(function() {
       $(this).closest('.div_displayEquipement').packery()
     })
     if ($('.eqLogic-widget > div.autoResize').length) saveWidgetDisplay({dashboard : 1})
-  },250)
+  }, 250)
+
+  setTimeout(function() {
+    $('input', 'textarea', 'select').click(function() { $(this).focus() })
+  }, 750)
 })
 
 var isEditing = false
@@ -352,89 +356,35 @@ function getObjectHtml(_object_id) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
+      var $divDisplayEq = $('#div_ob'+_object_id)
       try {
-        $('#div_ob'+_object_id).empty().html(html).parent().show()
+        $divDisplayEq.empty().html(html).parent().show()
       } catch(err) {
         console.log(err)
       }
-      var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
       if (SEL_SUMMARY != '') {
-        var count = $divDisplayEq.find('.scenario-widget:visible').length + $divDisplayEq.find('.eqLogic-widget:visible').length
-        if (count == 0) {
-          $('#div_ob'+_object_id).closest('.div_object').remove()
+        if ($divDisplayEq.find('.eqLogic-widget:visible, .scenario-widget:visible').length == 0) {
+          $divDisplayEq.closest('.div_object').remove()
           return
         }
       }
       positionEqLogic()
-
-      $divDisplayEq.disableSelection()
-      $('input', 'textarea', 'select').click(function() { $(this).focus() })
 
       var container = $divDisplayEq.packery()
       var packData = $divDisplayEq.data('packery')
       if (isset(packData) && packData.items.length == 1) {
         $divDisplayEq.packery('destroy').packery()
       }
-      var itemElems =  container.find('.eqLogic-widget').draggable()
-      container.packery('bindUIDraggableEvents',itemElems)
-      var itemElems =  container.find('.scenario-widget').draggable()
-      container.packery('bindUIDraggableEvents',itemElems)
+      var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
+      container.packery('bindUIDraggableEvents', itemElems)
 
-      function orderItems() {
-        var itemElems = container.packery('getItemElements')
-        var isEditing = ($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) ? true : false
-
-        var _draggingOrder = _orders[_draggingId]
-        var _newOrders = {}
-        $(itemElems).each( function(i, itemElem ) {
-          _newOrders[$(this).attr('data-editId')] = i + 1
-        })
-        var _draggingNewOrder = _newOrders[_draggingId]
-        //----->moved _draggingId from _draggingOrder to _draggingNewOrder
-
-        //rearrange that better:
-        var _finalOrder = {}
-        for (var [id, order] of Object.entries(_newOrders)) {
-          if (order <= _draggingNewOrder) _finalOrder[id] = order
-          if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
-        }
-
-        //set dom positions:
-        var arrKeys = Object.keys(_finalOrder)
-        var arrLength = arrKeys.length
-        var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-        $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
-
-        for (var i = 2; i < arrLength + 1; i++) {
-          var thisId = arrKeys.find(key => _finalOrder[key] === i)
-          var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-          $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
-        }
-
-        //reload from dom positions:
-        $('.div_displayEquipement').packery('reloadItems').packery()
-
-        itemElems = container.packery('getItemElements')
-        $(itemElems).each( function(i, itemElem ) {
-          $(itemElem).attr('data-order', i + 1 )
-          var value = i + 1
-          if (isEditing) {
-            if ($(itemElem).find(".counterReorderJeedom").length) {
-              $(itemElem).find(".counterReorderJeedom").text(value)
-            } else {
-              $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
-            }
-          }
-        })
-      }
-
-      var itemElems = container.packery('getItemElements')
-      $(itemElems).each( function( i, itemElem ) {
+      $(itemElems).each( function(i, itemElem ) {
         $(itemElem).attr('data-order', i + 1 )
       })
-      container.on('dragItemPositioned',orderItems)
-
-      $('#div_ob'+_object_id+'.div_displayEquipement').find('.eqLogic-widget', '.scenario-widget').draggable('disable')
+      container.on('dragItemPositioned', function() {
+          orderItems(container)
+      })
+      itemElems.draggable('disable')
     }
   })
 }
@@ -504,5 +454,53 @@ function displayChildObject(_object_id, _recursion) {
   $('.div_object[data-father_id='+_object_id+']').each(function() {
     $(this).show({effect : 'drop',queue : false}).find('.div_displayEquipement').packery()
     displayChildObject($(this).attr('data-object_id'),true)
+  })
+}
+
+function orderItems(_container) {
+  var itemElems = _container.packery('getItemElements')
+  var isEditing = ($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) ? true : false
+
+  var _draggingOrder = _orders[_draggingId]
+  var _newOrders = {}
+  $(itemElems).each( function(i, itemElem ) {
+    _newOrders[$(this).attr('data-editId')] = i + 1
+  })
+  var _draggingNewOrder = _newOrders[_draggingId]
+  //----->moved _draggingId from _draggingOrder to _draggingNewOrder
+
+  //rearrange that better:
+  var _finalOrder = {}
+  for (var [id, order] of Object.entries(_newOrders)) {
+    if (order <= _draggingNewOrder) _finalOrder[id] = order
+    if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
+  }
+
+  //set dom positions:
+  var arrKeys = Object.keys(_finalOrder)
+  var arrLength = arrKeys.length
+  var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
+  $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
+
+  for (var i = 2; i < arrLength + 1; i++) {
+    var thisId = arrKeys.find(key => _finalOrder[key] === i)
+    var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
+    $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
+  }
+
+  //reload from dom positions:
+  $('.div_displayEquipement').packery('reloadItems').packery()
+
+  itemElems = _container.packery('getItemElements')
+  $(itemElems).each( function(i, itemElem ) {
+    $(itemElem).attr('data-order', i + 1 )
+    var value = i + 1
+    if (isEditing) {
+      if ($(itemElem).find(".counterReorderJeedom").length) {
+        $(itemElem).find(".counterReorderJeedom").text(value)
+      } else {
+        $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+      }
+    }
   })
 }
