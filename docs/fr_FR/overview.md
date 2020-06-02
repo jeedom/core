@@ -3,6 +3,8 @@
 
 La page *Synthèse* vous propose une synthèse visuelle et centralisée de vos objets et de leurs résumés.
 
+![Synthèse](./images/synthesis_intro.gif)
+
 Pour qu'elle prenne tous son sens, il faut sur chaque objet, configurer les résumés et une image de fond.
 
 Vous pouvez la configurer comme page par défaut dans **Réglages → Préférences**, en desktop et/ou mobile.
