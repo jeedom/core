@@ -573,7 +573,7 @@ class eqLogic {
 			$html .= '<span class="pull-left batteryTime cursor">';
 		}
 		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
-			$html .= '<i class="icon techno-fingerprint41 pull-right" title="{{Seuil manuel défini}}"></i>';
+			$html .= '<i class="icon techno-fingerprint41 pull-right" title="' . __('Seuil manuel défini', __FILE__) . '"></i>';
 		}
 		if ($batteryTime != 'NA') {
 			$text = __('Pile(s) changée(s) il y a', __FILE__).' ';
@@ -584,7 +584,7 @@ class eqLogic {
 		}
 		$html .= '</span>';
 		if ($this->getConfiguration('battery_type', '') != '') {
-			$html .= '<span class="pull-right" title="{{Piles}}">' . $this->getConfiguration('battery_type', '') . '</span>';
+			$html .= '<span class="pull-right" title="' . __('Piles', __FILE__) . '">' . $this->getConfiguration('battery_type', '') . '</span>';
 		}
 		$html .= '</div>';
 		return $html;
