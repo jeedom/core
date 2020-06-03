@@ -24,9 +24,9 @@ In the menu (right click), we find the following actions :
     - **Towards a view** : Add a link to a view.
     - **Towards a design** : Add a link to another design.
 - **Add equipment** : Adds equipment.
-- **Add order** : Add an order.
+- **Add command** : Add a command.
 - **Add image / camera** : Allows you to add a picture or a stream from a camera.
-- **Add area** : Allows you to add a clickable transparent area which can execute a series of actions when clicking (depending on or not the status of another command).
+- **Add area** : Allows to add a clickable transparent zone which will be able to execute a series of actions during a click (depending or not on the status of another command).
 - **Add summary** : Adds information from an object or general summary.
 - **Viewing**
     - **Any** : Does not display any grid.
@@ -53,7 +53,7 @@ Found here :
 - **General**
     - **Last name** : The name of your design.
     - **Position** : The position of the design in the menu. Allows you to order the designs.
-    - **Transparent background** : Makes the background transparent. Warning if the box is checked, the background color is not used.
+    - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
     - **Access code* : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
@@ -77,19 +77,19 @@ Found here :
 - **Width (px)** : Element width in pixels.
 - **Height (px)** : Element height in pixels.
 
-### Remove
+### Supprimer
 
 Remove item
 
-### Duplicate
+### Dupliquer
 
 Allows you to duplicate the element
 
-### Lock
+### Verrouiller
 
 Allows you to lock the element so that it is no longer movable or resizable.
 
-## Graphic
+## Graphique
 
 ### Specific display settings
 
@@ -115,7 +115,7 @@ Allows you to choose the commands to grapher.
 - **Smooth it out** : allows to round the angles (do not forget to put%, ex 50%).
 - **Border** : allows you to add a border, beware the syntax is HTML (you must use CSS syntax, for example : solid 1px black).
 - **Font size** : allows you to change the font size (ex 50%, you must put the% sign).
-- **Text alignment** : allows to choose the alignment of the text (left / right / centered).
+- **Text alignment** : allows you to choose the alignment of the text (left / right / centered).
 - **Fat** : bold text.
 - **Text** : Text in HTML code that will be in the element.
 
@@ -127,7 +127,7 @@ Allows you to choose the commands to grapher.
 
 *No specific display settings*
 
-## Link
+## Lien
 
 ### Specific display settings
 
@@ -135,13 +135,13 @@ Allows you to choose the commands to grapher.
 - **Link** : Link to the design or view in question.
 - **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
 - **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
-- **Round off the angles (don&#39;t forget to put%, ex 50%)** : Allows to round the angles, do not forget to put the%.
+- **Round off the angles (don't forget to put%, ex 50%)** : Allows to round the angles, do not forget to put the%.
 - **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
-- **Text alignment** : Allows to choose the alignment of the text (left / right / centered).
+- **Text alignment** : Allows you to choose the alignment of the text (left / right / centered).
 - **Fat** : Bold text.
 
-## Equipment
+## Equipement
 
 ### Specific display settings
 
@@ -155,7 +155,7 @@ Allows you to choose the commands to grapher.
 - **Custom CSS** : CSS rules to apply on the equipment.
 - **Apply custom css on** : CSS selector on which to apply custom CSS.
 
-### Orders
+### Commandes
 
 The list of commands present on the equipment allows you, for each command, to:
 - Hide command name.
@@ -166,7 +166,7 @@ The list of commands present on the equipment allows you, for each command, to:
 
 Displays the advanced equipment configuration window (see documentation **Home automation summary**).
 
-## Ordered
+## Commande
 
 *No specific display settings*
 
@@ -179,10 +179,10 @@ Displays the advanced equipment configuration window (see documentation **Home a
 ### Specific display settings
 
 - **Pin up** : Defines what you want to display, still image or stream from a camera.
-- **Picture** : Allows you to send the image in question (if you have chosen an image).
+- **Picture** : Send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 
-## Zoned
+## Zone
 
 ### Specific display settings
 
@@ -207,7 +207,7 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 - **Equipment** : Widget to display when hovering or clicking.
 - **Show on flyover** : If checked, displays the widget on hover.
 - **View on one click** : If checked, then the widget is displayed on click.
-- **Position** : Allows you to choose where the widget will appear (default bottom right).
+- **Position** : Allows you to choose where the widget will appear (by default bottom right).
 
 ## Summary
 
@@ -216,15 +216,15 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 - **Link** : Allows you to indicate the summary to display (General for the global otherwise indicate the subject).
 - **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
 - **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
-- **Round off the angles (don&#39;t forget to put%, ex 50%)** : Allows to round the angles, do not forget to put the%.
+- **Round off the angles (don't forget to put%, ex 50%)** : Allows to round the angles, do not forget to put the%.
 - **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
 - **Fat** : Bold text.
 
-## Faq
+## FAQ
 
 >**I can no longer edit my design**
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
 >**Delete a design that no longer works**
->In the administration part then OS / DB, make &quot;select * from planHeader&quot;, recover the id of the design in question and make a &quot;delete from planHeader where id = # TODO #&quot; and &quot;delete from plan where planHeader_id = # todo # &quot;by replacing # TODO # with the design id previously found.
+>In the administration part then OS / DB, make "select * from planHeader", recover the id of the design in question and make a "delete from planHeader where id=#TODO#" and "delete from plan where planHeader_id=#todo#" replacing well #TODO# by the design id previously found.

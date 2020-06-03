@@ -20,13 +20,14 @@ global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
 	'eqLogic' => array(
 		'category' => array(
-			'heating' => array('name' => __('Chauffage',__FILE__), 'icon' => 'fa fa-fire'),
-			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fa fa-lock'),
-			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fa fa-bolt'),
-			'light' => array('name' => __('Lumière',__FILE__), 'icon' => 'fa fa-lightbulb-o'),
-			'automatism' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fa fa-magic'),
+			'heating' => array('name' => __('Chauffage',__FILE__), 'icon' => 'fas fa-fire'),
+			'security' => array('name' => __('Sécurité',__FILE__), 'icon' => 'fas fa-lock'),
+			'energy' => array('name' => __('Energie',__FILE__), 'icon' => 'fas fa-bolt'),
+			'light' => array('name' => __('Lumière',__FILE__), 'icon' => 'far fa-lightbulb'),
+			'opening' => array('name' => __('Ouvrant',__FILE__), 'icon' => 'fas fa-door-open'),
+			'automatism' => array('name' => __('Automatisme',__FILE__), 'icon' => 'fas fa-magic'),
 			'multimedia' => array('name' => __('Multimédia',__FILE__), 'icon' => 'fas fa-sliders-h'),
-			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'fa fa-circle-o'),
+			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'far fa-circle'),
 		),
 		'style' => array(
 			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
@@ -66,10 +67,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'alerts' => array(
 		'timeout' => array('name' => __('Timeout',__FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
-		'batterywarning' => array('name' => __('Batterie en Warning',__FILE__), 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
-		'batterydanger' => array('name' => __('Batterie en Danger',__FILE__), 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
-		'warning' => array('name' => __('Warning',__FILE__), 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
-		'danger' => array('name' => __('Danger',__FILE__), 'icon' => 'fa fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
+		'batterywarning' => array('name' => __('Batterie en Warning',__FILE__), 'icon' => 'fas fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
+		'batterydanger' => array('name' => __('Batterie en Danger',__FILE__), 'icon' => 'fas fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
+		'warning' => array('name' => __('Warning',__FILE__), 'icon' => 'fas fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
+		'danger' => array('name' => __('Danger',__FILE__), 'icon' => 'fas fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
 	),
 	'cmd' => array(
 		'widgets' => array(
@@ -271,6 +272,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'VOLTAGE' => array('name' => __('Tension',__FILE__), 'family' => __('Electricité',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'NOISE' => array('name' => __('Son (dB)',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'PRESSURE' => array('name' => __('Pression',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info', 'noapp' => true),
+		'WATER_LEAK' => array('name' => __('Fuite d\'eau',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info', 'noapp' => true),
+		'FILTER_CLEAN_STATE' => array('name' => __('Etat du filtre',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'RAIN_CURRENT' => array('name' => __('Pluie (mm/h)',__FILE__), 'family' => __('Météo',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'RAIN_TOTAL' => array('name' => __('Pluie (accumulation)',__FILE__), 'family' => __('Météo',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'WIND_SPEED' => array('name' => __('Vent (vitesse)',__FILE__), 'family' => __('Météo',__FILE__), 'type' => 'Info', 'noapp' => true),
@@ -289,6 +292,13 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'MEDIA_PREVIOUS' => array('name' => __('Précedent',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action'),
 		'GENERIC_INFO' => array('name' => __(' Générique',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'Info'),
 		'GENERIC_ACTION' => array('name' => __(' Générique',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'Action'),
+		'FAN_SPEED' => array('name' => __('Vitesse ventilateur',__FILE__), 'family' => __('Ventilateur',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'FAN_SPEED_STATE' => array('name' => __('Vitesse ventilateur',__FILE__), 'family' => __('Ventilateur',__FILE__), 'type' => 'Info', 'noapp' => true),
+		'REBOOT' => array('name' => __('Redémarrage',__FILE__), 'family' => __('Electricité',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'ROTATION' => array('name' => __('Rotation',__FILE__), 'family' => __('Ventilateur',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'ROTATION_STATE' => array('name' => __('Rotation',__FILE__), 'family' => __('Ventilateur',__FILE__), 'type' => 'Info', 'noapp' => true),
+		'DOCK' => array('name' => __('Sur sa base',__FILE__), 'family' => __('Robot',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'DOCK_STATE' => array('name' => __('Sur sa base',__FILE__), 'family' => __('Robot',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'DONT' => array('name' => __('Ne pas tenir compte de cette commande',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'All'),
 	),
 	'type' => array(
@@ -308,104 +318,105 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'icon' => array('visible' => true, 'parentVisible' => true),
 						),
 					),
-				'binary' => array(
-					'name' => __('Binaire',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => false),
-						'maxValue' => array('visible' => false),
-						'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => true, 'parentVisible' => true),
-							'icon' => array('visible' => true, 'parentVisible' => true),
+					'binary' => array(
+						'name' => __('Binaire',__FILE__),
+						'configuration' => array(
+							'minValue' => array('visible' => false),
+							'maxValue' => array('visible' => false),
+							'listValue' => array('visible' => false)),
+							'unite' => array('visible' => false),
+							'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
+							'display' => array(
+								'invertBinary' => array('visible' => true, 'parentVisible' => true),
+								'icon' => array('visible' => true, 'parentVisible' => true),
+							),
+						),
+						'string' => array(
+							'name' => __('Autre',__FILE__),
+							'configuration' => array(
+								'minValue' => array('visible' => false),
+								'maxValue' => array('visible' => false),
+								'listValue' => array('visible' => false)),
+								'unite' => array('visible' => true),
+								'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
+								'display' => array(
+									'invertBinary' => array('visible' => false),
+									'icon' => array('visible' => true, 'parentVisible' => true),
+								),
+							),
 						),
 					),
-				'string' => array(
-					'name' => __('Autre',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => false),
-						'maxValue' => array('visible' => false),
-						'listValue' => array('visible' => false)),
-						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				),
-		),
-		'action' => array(
-			'name' => __('Action',__FILE__),
-			'subtype' => array(
-				'other' => array(
-					'name' => __('Défaut',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => false),
-						'maxValue' => array('visible' => false),
-						'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				'slider' => array(
-					'name' => __('Curseur',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => true),
-						'maxValue' => array('visible' => true),
-						'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				'message' => array(
-					'name' => __('Message',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => false),
-						'maxValue' => array('visible' => false),
-						'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				'color' => array(
-					'name' => __('Couleur',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => false),
-						'maxValue' => array('visible' => false),
-						'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				'select' => array(
-					'name' => __('Liste',__FILE__),
-					'configuration' => array(
-						'minValue' => array('visible' => false),
-						'maxValue' => array('visible' => false),
-						'listValue' => array('visible' => true)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				),
-			),
-		),
-	),
-);
+					'action' => array(
+						'name' => __('Action',__FILE__),
+						'subtype' => array(
+							'other' => array(
+								'name' => __('Défaut',__FILE__),
+								'configuration' => array(
+									'minValue' => array('visible' => false),
+									'maxValue' => array('visible' => false),
+									'listValue' => array('visible' => false)),
+									'unite' => array('visible' => false),
+									'isHistorized' => array('visible' => false),
+									'display' => array(
+										'invertBinary' => array('visible' => false),
+										'icon' => array('visible' => true, 'parentVisible' => true),
+									),
+								),
+								'slider' => array(
+									'name' => __('Curseur',__FILE__),
+									'configuration' => array(
+										'minValue' => array('visible' => true),
+										'maxValue' => array('visible' => true),
+										'listValue' => array('visible' => false)),
+										'unite' => array('visible' => false),
+										'isHistorized' => array('visible' => false),
+										'display' => array(
+											'invertBinary' => array('visible' => false),
+											'icon' => array('visible' => true, 'parentVisible' => true),
+										),
+									),
+									'message' => array(
+										'name' => __('Message',__FILE__),
+										'configuration' => array(
+											'minValue' => array('visible' => false),
+											'maxValue' => array('visible' => false),
+											'listValue' => array('visible' => false)),
+											'unite' => array('visible' => false),
+											'isHistorized' => array('visible' => false),
+											'display' => array(
+												'invertBinary' => array('visible' => false),
+												'icon' => array('visible' => true, 'parentVisible' => true),
+											),
+										),
+										'color' => array(
+											'name' => __('Couleur',__FILE__),
+											'configuration' => array(
+												'minValue' => array('visible' => false),
+												'maxValue' => array('visible' => false),
+												'listValue' => array('visible' => false)),
+												'unite' => array('visible' => false),
+												'isHistorized' => array('visible' => false),
+												'display' => array(
+													'invertBinary' => array('visible' => false),
+													'icon' => array('visible' => true, 'parentVisible' => true),
+												),
+											),
+											'select' => array(
+												'name' => __('Liste',__FILE__),
+												'configuration' => array(
+													'minValue' => array('visible' => false),
+													'maxValue' => array('visible' => false),
+													'listValue' => array('visible' => true)),
+													'unite' => array('visible' => false),
+													'isHistorized' => array('visible' => false),
+													'display' => array(
+														'invertBinary' => array('visible' => false),
+														'icon' => array('visible' => true, 'parentVisible' => true),
+													),
+												),
+											),
+										),
+									),
+								),
+							);
+							

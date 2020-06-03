@@ -14,7 +14,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+var actionOptions = []
 var $interactListContainer = $('.interactListContainer')
+
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
@@ -95,14 +99,14 @@ $(function(){
         interactGroups = Array.from(new Set(interactGroups))
         interactGroups.sort()
         var interactList = []
-        for(i=0; i<interactGroups.length; i++)
+        for(var i=0; i<interactGroups.length; i++)
         {
           group = interactGroups[i]
           interactList[group] = []
-          for(j=0; j<interacts.length; j++)
+          for(var j=0; j<interacts.length; j++)
           {
-            sc = interacts[j]
-            scGroup = sc.group
+            var sc = interacts[j]
+            var scGroup = sc.group
             if (scGroup == null) continue
             if (scGroup == "") scGroup = 'Aucun'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
@@ -114,12 +118,12 @@ $(function(){
         var contextmenuitems = {}
         var uniqId = 0
         for (var group in interactList) {
-          groupinteracts = interactList[group]
-          items = {}
+          var groupinteracts = interactList[group]
+          var items = {}
           for (var index in groupinteracts) {
-            sc = groupinteracts[index]
-            scName = sc[0]
-            scId = sc[1]
+            var sc = groupinteracts[index]
+            var scName = sc[0]
+            var scId = sc[1]
             items[uniqId] = {'name': scName, 'id' : scId}
             uniqId ++
           }
@@ -162,6 +166,7 @@ $('#bt_chooseIcon').on('click', function () {
   chooseIcon(function (_icon) {
     $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   },{icon:_icon});
+  modifyWithoutSave = true
 });
 
 $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
@@ -171,8 +176,7 @@ $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function()
 $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 $('.displayInteracQuery').on('click', function () {
-  $('#md_modal').dialog({title: "{{Liste des interactions}}"});
-  $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Liste des interactions}}"}).load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open')
 });
 
 setTimeout(function(){
@@ -252,8 +256,7 @@ if (is_numeric(getUrlVars('id'))) {
 }
 
 $('#bt_testInteract,#bt_testInteract2').on('click', function () {
-  $('#md_modal').dialog({title: "{{Tester les interactions}}"});
-  $('#md_modal').load('index.php?v=d&modal=interact.test').dialog('open');
+  $('#md_modal').dialog({title: "{{Tester les interactions}}"}).load('index.php?v=d&modal=interact.test').dialog('open')
 });
 
 $('#div_pageContainer').delegate('.listEquipementInfoReply', 'click', function () {
@@ -360,7 +363,8 @@ $("#bt_removeInteract").on('click', function () {
 });
 
 $('#bt_addAction').off('click').on('click',function(){
-  addAction({}, 'action','{{Action}}');
+  addAction({}, 'action','{{Action}}')
+  modifyWithoutSave = true
 });
 
 $('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
@@ -412,6 +416,7 @@ $("body").undelegate(".listCmdAction", 'click').delegate(".listCmdAction", 'clic
 $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
   var type = $(this).attr('data-type');
   $(this).closest('.' + type).remove();
+  modifyWithoutSave = true
 });
 
 function printInteract(_id) {

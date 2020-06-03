@@ -28,7 +28,7 @@ For the pros :
 - **Installer email account** : Your professional contact email.
 - **Support requests recipient** : know who will receive support emails (end customer, installer or both).
     - **TOS**
-- **User** : general conditions of use (be careful to read them well because they bind you).
+- **User** : general conditions of use (be careful to read them because they commit you).
 - **Developer** : terms of use for developers.
     - **Tickets**
 - **Number of tickets** : Number of tickets for the current month and your limit.
@@ -54,13 +54,13 @@ For the pros :
 > It is possible that the Market sometimes asks you to reset your installation keys, this is normal, just follow what is requested.
 
 - **My jeedoms** : This is where all your Jeedoms are listed
-    - **Last name** : The name you want to give to your Jeedom (can be found in the name of the backup if you have the cloud backup subscription).
+    - **Last name** : The name you want to give to your Jeedom (can be found in the backup name if you have the cloud backup subscription).
     - **State** : Lets see the state of the Jeedom in question.
     - **Local / remote IP** : IP or address of this Jeedom, configure in Jeedom, if you do not put anything it will be the last known IP.
-    - **Dns** : Allows you to customize the name of your Dns.
-    - **URLs** : List the different Jeedom access URLss.
-    - **Dns server** : Tells you the Dns server to which you are attached.
-    - **Dns status** : Allows you to see the status of the Dns.
+    - **Dns** : Allows you to customize the name of your DNS.
+    - **URLs** : List the different Jeedom access URLs.
+    - **DNS server** : Tells you the DNS server to which you are attached.
+    - **DNS status** : Allows you to see the status of the DNS.
     - **Creation date** : Date of creation of this Jeedom on your Market account (as a reminder, this is done automatically when you link it to the Market).
     - **Last update** : Jeedom&#39;s last communication with the Market.
     - **Hardware** : Jeedom hardware name.
@@ -76,7 +76,7 @@ On this tab you can consult the backups present on the Market and download one. 
 
 ## My SMS / Calls
 
-On this tab you can view your SMS / Calls balance (usable with the Phone market plugin). Below you have the different options to buy additional balance.
+On this tab you can consult your SMS / Calls balance (usable with the Phone market plugin). Below you have the different options to buy additional balance.
 
 ## My purchases / promotions / donations
 

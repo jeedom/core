@@ -2,15 +2,13 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'visjs/vis.min', 'css');
-include_file('3rdparty', 'visjs/vis.min', 'js');
 $date = array(
 	'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),
 	'end' => date('Y-m-d'),
 );
 ?>
-
-<ul class="nav nav-tabs" role="tablist" style="margin-top:4px;">
+<div style="display: none;" id="div_alertHistory"></div>
+<ul class="nav nav-tabs reportModeHidden" role="tablist" style="margin-top:4px;">
 	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-chart-bar"></i> {{Historique}}</a></li>
 	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-clock"></i> {{Timeline}}</a></li>
 </ul>
@@ -135,36 +133,33 @@ $date = array(
 		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
-		<div class="input-group pull-right" style="display:inline-flex">
-			<span class="input-group-btn">
-				<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
-					<?php
-					foreach (timeline::listFolder() as $folder) {
-						if($folder == 'main'){
-							echo '<option value="'.$folder.'">{{Principal}}</option>';
-						}else{
-							echo '<option value="'.$folder.'">'.$folder.'</option>';
+		<div id="timelineOptions" class="reportModeHidden">
+			<div class="input-group pull-right" style="display:inline-flex">
+				<span class="input-group-btn">
+					<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
+						<?php
+						foreach (timeline::listFolder() as $folder) {
+							if($folder == 'main'){
+								echo '<option value="'.$folder.'">{{Principal}}</option>';
+							}else{
+								echo '<option value="'.$folder.'">'.$folder.'</option>';
+							}
 						}
-					}
-					?>
-				</select>
-				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
-				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
-			</span>
+						?>
+					</select>
+					<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
+					</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				</span>
+			</div>
 		</div>
-		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
-			<thead>
-				<tr>
-					<th data-sorter="shortDate">{{Date}}</th>
-					<th>{{Type}}</th>
-					<th>{{Visuel}}</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-
+		<div id="timelineContainer">
+			<ul>
+			</ul>
+		</div>
 	</div>
 </div>
 
-<?php include_file("desktop", "history", "js");?>
+<?php
+include_file("desktop", "history", "js");
+include_file('3rdparty', 'moment/lib.moment', 'js');
+?>

@@ -17,7 +17,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			{{Merci de vérifier avant toute ouverture de ticket :}}<br/>
 			{{- que la question n'a pas déjà été posée sur le <a href='https://community.jeedom.com/'>forum</a>}}<br/>
 			{{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
-			{{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}
+			{{- que la réponse n'est pas déjà dans la <a href='https://doc.jeedom.com/'>documentation</a>}}
 		</div>
 	</div>
 	<div class="panel panel-danger">
@@ -65,7 +65,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 	<div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">
-			<div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target="_blank" href="https://jeedom.github.io/documentation/howto/fr_FR/remonter_un_bug">documentation}}</a></div>
+			<div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target="_blank" href="https://doc.jeedom.com/fr_FR/howto/remonter_un_bug">documentation}}</a></div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">{{Titre}}</label>
 				<div class="col-sm-7">

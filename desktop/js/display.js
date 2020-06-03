@@ -13,6 +13,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
+"use strict"
+
 var GLOBAL_ACTION_MODE = null
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
@@ -150,10 +153,10 @@ $('.eqLogicSortable').sortable({
     //set object order:
     var eqLogics = []
     var object = ui.item.closest('.objectSortable')
-    objectId = object.find('.panel-heading').attr('data-id')
-    order = 1
+    var objectId = object.find('.panel-heading').attr('data-id')
+    var order = 1
     object.find('.eqLogic').each(function(){
-      eqLogic = {}
+      var eqLogic = {}
       eqLogic.object_id = objectId
       eqLogic.id = $(this).attr('data-id')
       eqLogic.order = order
@@ -176,9 +179,9 @@ $('.cmdSortable').sortable({
   stop: function (event, ui) {
     var cmds = []
     var eqLogic = ui.item.closest('.eqLogic')
-    order = 1
+    var order = 1
     eqLogic.find('.cmd').each(function(){
-      cmd = {}
+      var cmd = {}
       cmd.id = $(this).attr('data-id')
       cmd.order = order
       cmds.push(cmd)
@@ -195,18 +198,15 @@ $('.cmdSortable').sortable({
 
 //Modals:
 $('.configureObject').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'objet}}"})
-  $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
+  $('#md_modal').dialog({title: "{{Configuration de l'objet}}"}).load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
 })
 
 $('.configureEqLogic').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
-  $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
+  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
 })
 
 $('.configureCmd').off('click').on('click',function() {
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"})
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open')
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open')
 })
 
 $('.cmd').off('dblclick').on('dblclick',function() {
@@ -263,7 +263,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
     event.stopPropagation()
     return false
   }
-  $el = $(this).find('ul.cmdSortable')
+  var $el = $(this).find('ul.cmdSortable')
   if ($el.is(':visible')) {
     $el.hide()
   } else {
@@ -420,8 +420,7 @@ $('.bt_setIsEnable').on('click',function(){
 })
 
 $('#bt_removeHistory').on('click',function(){
-  $('#md_modal').dialog({title: "{{Historique des suppressions}}"})
-  $('#md_modal').load('index.php?v=d&modal=remove.history').dialog('open')
+  $('#md_modal').dialog({title: "{{Historique des suppressions}}"}).load('index.php?v=d&modal=remove.history').dialog('open')
 })
 
 $('#bt_emptyRemoveHistory').on('click',function(){

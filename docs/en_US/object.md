@@ -1,13 +1,13 @@
-# Objects
+# Objets
 **Tools → Objects**
 
 The **Objects** allow you to define the tree structure of your home automation.
 
-All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
+All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **parent** equipment.
 
-To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the names of the rooms (this is the recommended configuration, by the way).
+To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
 
-## Management
+## Gestion
 
 You have two options :
 - **Add** : Create a new object.
@@ -39,19 +39,20 @@ By clicking on an object, you access its configuration page. Whatever changes yo
 Here are the different characteristics to configure an object :
 
 - **Object name** : The name of your object.
-- **Dad** : Indicates the relative of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one relative but several objects can have the same relative.
+- **Dad** : Indicates the parent of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one parent but several objects can have the same parent.
 - **Jeedom** : Check this box to make this object visible.
-- **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly..
-- **Hide on summary'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly..
+- **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
+- **Hide on summary'** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
 - **Icon** : Allows you to choose an icon for your object.
 - **Custom colors** : Activates the consideration of the two optional color parameters.
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
 - **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
-- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard.
+- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
+- **Only on synthesis** : Allows to put an image for the Synthesis without it being used as background image.
 
 > **Tip**
 >
-> You can change the display order of objects in the Dashboard. In the overview, select your object with the mouse with a drag and drop to give it a new place.
+> You can change the display order of objects in the Dashboard. In the overview (or by the Home Automation Summary), select your object with the mouse with a drag and drop to give it a new place.
 
 > **Tip**
 >
@@ -59,11 +60,11 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> When a device is created and no relative has been defined, it will have as relative : **No**.
+> When a device is created and no parent has been defined, it will have as parent : **No**.
 
 ## Summary tab
 
-Summaries are global information, assigned to an object, which are displayed in particular on the Dashboard next to its name..
+Summaries are global information, assigned to an object, which are displayed in particular on the Dashboard next to its name.
 
 ### Bulletin board
 
@@ -73,9 +74,9 @@ The columns represent the summaries assigned to the current object. Three lines 
 - **Hide on desktop** : Check the box if you do not want the summary to appear next to the object name on the Dashboard.
 - **Hide on mobile** : Check the box if you do not want the summary to appear when you view it from a mobile.
 
-### Orders
+### Commandes
 
-Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add an order** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as relative.
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add a command** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 
 > **Tip**
 >
@@ -85,11 +86,11 @@ Each tab represents a type of summary defined in the configuration of Jeedom. Cl
 
 The overview allows you to view all the objects in Jeedom, as well as their configuration :
 
-- **Id** : Object Id.
+- **Id** : Object ID.
 - **Object** : Object name.
-- **Dad** : Name of relative object.
+- **Dad** : Name of parent object.
 - **Jeedom** : Object visibility.
 - **Mask** : Indicates if the object is hidden on the Dashboard.
-- **Summary Defined** : Indicates the number of orders per summary. What is in blue is taken into account in the global summary.
+- **Summary Defined** : Indicates the number of commands per summary. What is in blue is taken into account in the global summary.
 - **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
 - **Hidden Mobile Summary** : Show hidden summaries on mobile.

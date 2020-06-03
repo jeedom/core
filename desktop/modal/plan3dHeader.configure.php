@@ -44,11 +44,11 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Icône}}</label>
+						<div class="col-lg-1">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
 						<div class="col-lg-2">
 							<div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -145,7 +145,7 @@ $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',
 
 $('#bt_upload3dModel').fileupload({
 	replaceFileInput: false,
-	url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+	url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + id,
 	dataType: 'json',
 	done: function (e, data) {
 		if (data.result.state != 'ok') {

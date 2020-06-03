@@ -10,11 +10,11 @@ Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
 > **Wichtig**
 >
-> Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken. Achten Sie darauf, dass dies im Design gut funktioniert. Beim Erstellen müssen Sie dies in der Mitte der Seite tun (um sicherzugehen, dass Sie sich im Design befinden)..
+> Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken. Achten Sie darauf, dass dies im Design gut funktioniert. Beim Erstellen müssen Sie dies in der Mitte der Seite tun (um sicherzugehen, dass Sie sich im Design befinden).
 
 Im Menü (Rechtsklick) finden wir folgende Aktionen :
 
-- **Design** : Zeigt die Liste Ihrer Design an und ermöglicht Ihnen den Zugriff darauf.
+- **Design** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
 - **Ausgabe** : Wechseln Sie in den Bearbeitungsmodus.
 - **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite, wodurch das Jeedom-Menü von oben entfernt wird.
 - **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu.
@@ -26,7 +26,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Ausrüstung hinzufügen** : Fügt Ausrüstung hinzu.
 - **Bestellung hinzufügen** : Bestellung hinzufügen.
 - **Bild / Kamera hinzufügen** : Ermöglicht das Hinzufügen eines Bildes oder eines Streams von einer Kamera.
-- **Bereich hinzufügen** : Ermöglicht das Hinzufügen eines anklickbaren transparenten Bereichs, der beim Klicken eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht)..
+- **Bereich hinzufügen** : Ermöglicht das Hinzufügen einer anklickbaren transparenten Zone, die während eines Klicks eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht).
 - **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
 - **Anzeigen**
     - **Keine** : Zeigt kein Raster an.
@@ -34,13 +34,13 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
     - **15x15** : Zeigt ein Raster von 15 mal 15 an.
     - **20x20** : Zeigt ein 20 x 20-Raster an.
     - **Magnetisieren Sie die Elemente** : Fügt eine Magnetisierung zwischen den Elementen hinzu, um das Aufkleben zu erleichtern.
-    - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Je nach Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren..
+    - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Abhängig vom Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren).
     - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
 - **Design löschen** : Design entfernen.
-- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Design.
+- **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
-- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Design.
-- **Speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden)..
+- **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
+- **Speichern** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
 
 > **Wichtig**
 >
@@ -51,8 +51,8 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **Name** : Der Name Ihres Design.
-    - **Position** : Die Position des Design im Menü. Ermöglicht die Bestellung der Design.
+    - **Name** : Der Name Ihres Designs.
+    - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode* : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
@@ -61,7 +61,7 @@ Hier gefunden :
         - **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Größen**
-    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Design in Pixel.
+    - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
 
 ## Allgemeine Konfiguration der Elemente
 
@@ -77,19 +77,19 @@ Hier gefunden :
 - **Breite (px)** : Elementbreite in Pixel.
 - **Höhe (px)** : Elementhöhe in Pixel.
 
-### Entfernen
+### Supprimer
 
 Gegenstand entfernen
 
-### Duplikat
+### Dupliquer
 
 Ermöglicht das Duplizieren des Elements
 
-### Schloss
+### Verrouiller
 
 Ermöglicht das Sperren des Elements, sodass es nicht mehr beweglich oder in der Größe veränderbar ist.
 
-## Grafik
+## Graphique
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -111,11 +111,11 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 - **Symbol** : Symbol vor dem Designnamen.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Textn ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)...
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
 - **Rund um die Winkel** : erlaubt das Abrunden der Winkel (vergessen Sie nicht,%, ex 50% zu setzen).
 - **Grenze** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
-- **Schriftgröße** : ermöglicht es Ihnen, die Schriftgröße zu ändern (ab 50% müssen Sie das% -Zeichen setzen).
-- **Textausrichtung** : ermöglicht die Auswahl der Ausrichtung des Texts (links / rechts / zentriert).
+- **Schriftgröße** : Mit dieser Option können Sie die Schriftgröße ändern (ab 50% müssen Sie das% -Zeichen eingeben).
+- **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
 - **Fett** : fetter Text.
 - **Text** : Text im HTML-Code, der sich im Element befindet.
 
@@ -127,21 +127,21 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 *Keine spezifischen Anzeigeeinstellungen*
 
-## Link
+## Lien
 
 ### Spezifische Anzeigeeinstellungen
 
 - **Name** : Name des Links (angezeigter Text).
 - **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Textn ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
-- **Textausrichtung** : Ermöglicht die Auswahl der Ausrichtung des Texts (links / rechts / zentriert).
+- **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
 - **Fett** : Fetter Text.
 
-## Ausrüstung
+## Equipement
 
 ### Spezifische Anzeigeeinstellungen
 
@@ -155,7 +155,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
-### Befehle
+### Commandes
 
 Die Liste der auf dem Gerät vorhandenen Befehle ermöglicht es Ihnen, für jeden Befehl Folgendes zu tun:
 - Befehlsname ausblenden.
@@ -166,7 +166,7 @@ Die Liste der auf dem Gerät vorhandenen Befehle ermöglicht es Ihnen, für jede
 
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation **Zusammenfassung der Hausautomation**).
 
-## Bestellen
+## Commande
 
 *Keine spezifischen Anzeigeeinstellungen*
 
@@ -179,24 +179,24 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 ### Spezifische Anzeigeeinstellungen
 
 - **Anzeige** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
-- **Bild** : Ermöglicht das Senden des betreffenden Bildes (wenn Sie ein Bild ausgewählt haben).
+- **Bild** : Senden Sie das betreffende Bild (wenn Sie ein Bild ausgewählt haben).
 - **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 
-## Bereich
+## Zone
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Art der Bereich** : Hier wählen Sie die Art des Bereichs : Einfaches Makro, Binärmakro oder Widget beim Hover.
+- **Art der Zone** : Hier wählen Sie die Art des Bereichs : Einfaches Makro, Binärmakro oder Widget beim Hover.
 
 ### Einzelne Makro
 
-In diesem Modus führt ein Klick auf die Bereich eine oder mehrere Aktionen aus. Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
+In diesem Modus führt ein Klick auf die Zone eine oder mehrere Aktionen aus. Hier müssen Sie nur die Liste der Aktionen angeben, die ausgeführt werden sollen, wenn Sie auf den Bereich klicken.
 
 ### Binäres Makro
 
-In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. Ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus.
+In diesem Modus führt Jeedom je nach Status des von Ihnen angegebenen Befehls die Ein- oder Ausschaltaktion (en) aus. Ex : Wenn der Befehl 0 wert ist, führt Jeedom die Ein-Aktion (en) aus, andernfalls führt es die Aus-Aktion (en) aus
 
-- **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus).
+- **Binäre Informationen** : Befehl, der den Status zum Überprüfen angibt, um zu entscheiden, welche Aktion ausgeführt werden soll (Ein oder Aus)).
 
 Sie müssen nur die Aktionen ausführen, die für das Ein und das Aus ausgeführt werden sollen.
 
@@ -207,7 +207,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird.
 - **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
 - **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
-- **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (Standard unten rechts)..
+- **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (standardmäßig unten rechts)).
 
 ## Zusammenfassung
 
@@ -215,16 +215,16 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 
 - **Link** : Ermöglicht die Angabe der anzuzeigenden Zusammenfassung (Allgemein für die globale Angabe andernfalls das Thema).
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Textn ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
 - **Fett** : Fetter Text.
 
-## Faq
+## FAQ
 
 >**Ich kann mein Design nicht mehr bearbeiten**
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
 >**Löschen Sie ein Design, das nicht mehr funktioniert**
->Machen Sie im Administrationsteil dann OS / DB &quot;select * from planHeader&quot;, stellen Sie die ID des betreffenden Design wieder her und führen Sie &quot;delete from planHeader where id = # TODO #&quot; und &quot;delete from plan where planHeader_id = # todo #&quot; aus. &quot;durch Ersetzen von # TODO # durch die zuvor gefundene Design-ID.
+>Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

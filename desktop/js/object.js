@@ -13,6 +13,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
+"use strict"
+
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
@@ -39,7 +42,7 @@ $('#in_searchObject').keyup(function () {
     return;
   }
   search = normTextLower(search)
-  
+
   $('.objectDisplayCard').hide()
   $('.objectDisplayCard .name').each(function(){
     var text = $(this).text()
@@ -69,16 +72,16 @@ $(function(){
           return;
         }
         var contextmenuitems = {}
-        for(i=0; i<_objects.length; i++)
+        for(var i=0; i<_objects.length; i++)
         {
-          ob = _objects[i]
+          var ob = _objects[i]
           var decay = 0
           if (isset(ob.configuration) && isset(ob.configuration.parentNumber)) {
             decay = ob.configuration.parentNumber
           }
           contextmenuitems[i] = {'name': '\u00A0\u00A0\u00A0'.repeat(decay) + ob.name, 'id' : ob.id}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -112,7 +115,8 @@ $('#bt_libraryBackgroundImage').on('click', function () {
 });
 
 setTimeout(function(){
-  $('.objectListContainer').packery();
+  $('.objectDisplayCard').show()
+  $('.objectListContainer').packery()
 },100);
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
@@ -175,11 +179,11 @@ function loadObjectConfiguration(_id){
     $('#bt_uploadImage').fileupload('destroy');
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
   } catch(error) {
-    
+
   }
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
-    url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id +'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+    url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id,
     dataType: 'json',
     done: function (e, data) {
       if (data.result.state != 'ok') {
@@ -187,7 +191,7 @@ function loadObjectConfiguration(_id){
         return;
       }
       if (isset(data.result.result.filepath)) {
-        filePath = data.result.result.filepath
+        var filePath = data.result.result.filepath
         filePath = '/data/object/' + filePath.split('/data/object/')[1]
         $('.objectImg img').attr('src',filePath);
         $('.objectImg img').show()
@@ -212,16 +216,16 @@ function loadObjectConfiguration(_id){
       $('.objectAttr[data-l1key=father_id] option').show();
       $('#summarytab input[type=checkbox]').value(0);
       $('.object').setValues(data, '.objectAttr');
-      
+
       if (!isset(data.configuration.hideOnOverview)) {
         $('input[data-l2key="hideOnOverview"]').prop('checked', false)
       }
-      
+
       if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
-        bodyStyles = window.getComputedStyle(document.body);
-        objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
-        objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
-        
+        var bodyStyles = window.getComputedStyle(document.body);
+        var objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
+        var objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
+
         if (!objectBkgdColor === undefined){
           objectBkgdColor = rgbToHex(objectBkgdColor)
         } else {
@@ -232,10 +236,10 @@ function loadObjectConfiguration(_id){
         } else {
           objectTxtColor = '#ebebeb'
         }
-        
+
         $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value(objectBkgdColor);
         $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value(objectTxtColor);
-        
+
         $('.objectAttr[data-l1key=display][data-l2key=tagColor]').click(function () {
           $('input[data-l2key="useCustomColor"').prop('checked', true)
         })
@@ -243,18 +247,22 @@ function loadObjectConfiguration(_id){
           $('input[data-l2key="useCustomColor"').prop('checked', true)
         })
       }
-      
+
+      if (!isset(data.configuration.useBackground)) {
+        $('.objectAttr[data-l1key=configuration][data-l2key=useBackground]').prop('checked', false)
+      }
+
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
       $('.div_summary').empty();
       $('.tabnumber').empty();
-      
+
       if (isset(data.img)) {
         $('.objectImg img').attr('src',data.img);
         $('.objectImg img').show()
       } else {
         $('.objectImg img').hide()
       }
-      
+
       if (isset(data.configuration) && isset(data.configuration.summary)) {
         for(var i in data.configuration.summary){
           var el = $('.type'+i);
@@ -266,10 +274,10 @@ function loadObjectConfiguration(_id){
               $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
             }
           }
-          
+
         }
       }
-      
+
       var hash = window.location.hash
       addOrUpdateUrl('id',data.id);
       if (hash == '') {
@@ -278,9 +286,9 @@ function loadObjectConfiguration(_id){
         window.location.hash = hash
       }
       modifyWithoutSave = false;
-      setTimeout(function(){
-        modifyWithoutSave = false;
-      },1000)
+      setTimeout(function() {
+        modifyWithoutSave = false
+      }, 500)
     }
   });
 }
@@ -318,7 +326,7 @@ $("#bt_saveObject").on('click', function (event) {
   $('.object .div_summary').each(function () {
     var type = $(this).attr('data-type');
     object.configuration.summary[type] = [];
-    summaries = {};
+    var summaries = {};
     $(this).find('.summary').each(function () {
       var summary = $(this).getValues('.summaryAttr')[0];
       object.configuration.summary[type].push(summary);
@@ -362,7 +370,7 @@ $('#bt_chooseIcon').on('click', function () {
   var color = false
   if ( $('div[data-l2key="icon"] > i').length ) {
     color = '';
-    class_icon = $('div[data-l2key="icon"] > i').attr('class')
+    var class_icon = $('div[data-l2key="icon"] > i').attr('class')
     class_icon = class_icon.replace(' ', '.').split(' ');
     icon = '.'+class_icon[0];
     if(class_icon[1]){
@@ -371,8 +379,9 @@ $('#bt_chooseIcon').on('click', function () {
   }
   chooseIcon(function (_icon) {
     $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:icon,color:color});
-});
+  },{icon:icon,color:color})
+  modifyWithoutSave = true
+})
 
 if (is_numeric(getUrlVars('id'))) {
   if ($('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').length != 0) {
@@ -383,13 +392,14 @@ if (is_numeric(getUrlVars('id'))) {
 }
 
 $('#div_pageContainer').off('change','.objectAttr').on('change','.objectAttr:visible', function () {
-  modifyWithoutSave = true;
+  modifyWithoutSave = true
 });
 
 $('.addSummary').on('click',function(){
   var type = $(this).attr('data-type');
   var el = $('.type'+type);
   addSummaryInfo(el);
+  modifyWithoutSave = true
 });
 
 $('.bt_checkAll').on('click',function(){
@@ -446,6 +456,5 @@ function addSummaryInfo(_el, _summary) {
 }
 
 $('.bt_showObjectSummary').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Résumé Objets}}"});
-  $("#md_modal").load('index.php?v=d&modal=object.summary').dialog('open');
+  $('#md_modal').dialog({title: "{{Résumé Objets}}"}).load('index.php?v=d&modal=object.summary').dialog('open')
 });

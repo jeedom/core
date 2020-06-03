@@ -20,6 +20,12 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 - **Clef d’installation** : Clef matérielle de votre Jeedom sur le Market. Si votre Jeedom n’apparaît pas dans la liste de vos Jeedom sur le Market, il est conseillé de cliquer sur le bouton **Remise à zéro**.
 - **Dernière date connue** : Date enregistrée par Jeedom, utilisée après un redémarrage pour des systèmes n'ayant pas de pile RTC.
 
+En dessous, plusieurs paramètres qui centralisent des informations pouvant être utilisés par les plugins, évitant de les renseigner dans chaque plugin.
+
+- Coordonnées : Latitude, Longitude et Altitude de votre habitation / site.
+- Adresse : Adresse postale de votre habitation / site.
+- Divers : Surface et nombre d'occupants de votre habitation / site.
+
 ## Onglet Interface
 
 Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichage.
@@ -41,7 +47,7 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 ### Personnalisation
 
 - **Activer** : Active l'utilisation des options en dessous.
-- **Transparence** : Affiche les tuiles du Dashboard et certains contenu avec une transparence. 1 : totalement opaque, 0 : totalement transparent.
+- **Transparence** : Affiche les tuiles du Dashboard et certains contenus avec une transparence. 1 : totalement opaque, 0 : totalement transparent.
 - **Arrondi** : Affiche les éléments de l'interface avec des angles arrondis. 0 : aucun arrondi, 1 : arrondi maximal.
 - **Désactiver les ombres** : Désactive les ombres des tuiles sur le Dashboard, des menus, et de certains éléments de l'interface.
 
@@ -84,7 +90,7 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 
 > **Tip**
 >
-> Pour savoir si vous avez besoin de définir une valeur dans le champs **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
+> Pour savoir si vous avez besoin de définir une valeur dans le champ **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
 
 - **Gestion avancée** : Cette partie peut ne pas apparaître, en fonction de la compatibilité avec votre matériel.
     Vous y trouverez la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom de ne pas monitorer le réseau en cliquant sur **désactiver la gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à aucun réseau). Vous pouvez aussi y préciser la plage d'ip locale sous la forme 192.168.1.* (à n'utiliser que dans des installations de type docker).
@@ -134,11 +140,33 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 
 En dessous vous retrouvez un tableau permettant de gérer finement le niveau de log des éléments essentiels de Jeedom ainsi que celui des plugins.
 
-## Onglet Commandes
+## Onglet Résumés
+
+Permet d’ajouter des résumés d’objets. Cette information est affichée tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des objets :
+
+- **Clef** : Clé du résumé, à ne surtout pas toucher.
+- **Nom** : Nom du résumé.
+- **Calcul** : Méthode de calcul, peut être de type :
+    - **Somme** : fait la somme des différentes valeurs,
+    - **Moyenne** : fait la moyenne des valeurs,
+    - **Texte** : affiche textuellement la valeur (surtout pour celles de type chaine de caractères).
+- **Icone** : Icône du résumé.
+- **Unité** : Unité du résumé.
+- **Méthode de comptage** : Si vous comptez une donnée binaire alors il faut mettre cette valeur à binaire, exemple si vous comptez le nombre de lampes allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom considéra que si la valeur est supérieure à 1, alors la lampe est allumée.
+- **Afficher si valeur égale 0** : Cochez cette case pour afficher la valeur, même quand elle vaut 0.
+- **Lier à un virtuel** : Lance la création de commandes virtuelles ayant pour valeur celles du résumé.
+- **Supprimer le résumé** : Le dernier bouton, tout à droite, permet de supprimer le résumé de la ligne.
+
+## Onglet Equipements
+
+### Equipements
+
+- **Nombre d’échecs avant désactivation de l’équipement** : Nombre d’échecs de communication avec l’équipement avant désactivation de celui-ci (un message vous préviendra si cela arrive).
+- **Seuils des piles** : Permet de gérer les seuils d’alertes globaux sur les piles.
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Historique, vous obtenez des graphiques représentant leur utilisation. Cet onglet permet de fixer des paramètres globaux à l’historisation des commandes.
 
-### Historique
+### Historique des commandes
 
 - **Afficher les statistiques sur les widgets** : Permet d’afficher les statistiques sur les widgets. Il faut que le widget soit compatible, ce qui est le cas pour la plupart. Il faut aussi que la commande soit de type numérique.
 - **Période de calcul pour min, max, moyenne (en heures)** : Période de calcul des statistiques (24h par défaut). Il n’est pas possible de mettre moins d’une heure.
@@ -161,28 +189,6 @@ De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Histor
 **\#cmd\_id\#** pour l’identifiant unique de la commande,
 **\#humanname\#** pour le nom complet de la commande (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
 **\#eq_name\#** pour le nom de l'équipement
-
-## Onglet Résumés
-
-Permet d’ajouter des résumés d’objets. Cette information est affichée tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des objets :
-
-- **Clef** : Clé du résumé, à ne surtout pas toucher.
-- **Nom** : Nom du résumé.
-- **Calcul** : Méthode de calcul, peut être de type :
-    - **Somme** : fait la somme des différentes valeurs,
-    - **Moyenne** : fait la moyenne des valeurs,
-    - **Texte** : affiche textuellement la valeur (surtout pour celles de type chaine de caractères).
-- **Icone** : Icône du résumé.
-- **Unité** : Unité du résumé.
-- **Méthode de comptage** : Si vous comptez une donnée binaire alors il faut mettre cette valeur à binaire, exemple si vous comptez le nombre de lampes allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom considéra que si la valeur est supérieure à 1, alors la lampe est allumée.
-- **Afficher si valeur égale 0** : Cochez cette case pour afficher la valeur, même quand elle vaut 0.
-- **Lier à un virtuel** : Lance la création de commandes virtuelles ayant pour valeur celles du résumé.
-- **Supprimer le résumé** : Le dernier bouton, tout à droite, permet de supprimer le résumé de la ligne.
-
-## Onglet Equipements
-
-- **Nombre d’échecs avant désactivation de l’équipement** : Nombre d’échecs de communication avec l’équipement avant désactivation de celui-ci (un message vous préviendra si cela arrive).
-- **Seuils des piles** : Permet de gérer les seuils d’alertes globaux sur les piles.
 
 ## Onglet Rapports
 
@@ -215,8 +221,8 @@ Cet onglet permet de fixer des paramètres globaux concernant les interactions q
 
 Vous avez ici trois paramètres :
 
-- **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99)
-    -   pour 1 mot : le niveau de correspondance pour les interactions à un seul mot.
+- **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité va de 1 (correspond exactement) à 99) pour
+    -   1 mot : le niveau de correspondance pour les interactions à un seul mot.
     -   2 mots : le niveau de correspondance pour les interactions à deux mots.
     -   3 mots : le niveau de correspondance pour les interactions à trois mots.
     -   + de 3 mots : le niveau de correspondance pour les interactions à plus de trois mots.
@@ -225,7 +231,7 @@ Vous avez ici trois paramètres :
 
 ### Interaction automatique, contextuelle & avertissement
 
--   Les **interactions automatiques** permettent à Jeedom de tenter de comprendre une demande d’interaction même si il n’y en a aucune de définie. Il va alors chercher un nom d’objet et/ou d’équipement et/ou de commande pour essayer de répondre au mieux.
+-   Les **interactions automatiques** permettent à Jeedom de tenter de comprendre une demande d’interaction même si aucune n'est définie. Il va alors chercher un nom d’objet et/ou d’équipement et/ou de commande pour essayer de répondre au mieux.
 
 -   Les **interactions contextuelles** vous permettent d’enchaîner plusieurs demandes sans tout répéter, par exemple :
     - *Jeedom gardant le contexte :*
@@ -242,7 +248,7 @@ Vous avez ici trois paramètres :
 
 > **Note**
 >
-> Par défaut Jeedom vous répondra par le même canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n’en trouve pas, il utilisera alors la commande par défaut spécifiée dans cet onglet : **Commande de retour par défaut**.
+> Par défaut Jeedom vous répondra par le même canal que celui que vous avez utilisé pour lui demander de vous prévenir. S'il n’en trouve pas, il utilisera alors la commande par défaut spécifiée dans cet onglet : **Commande de retour par défaut**.
 
 Voici donc les différentes options disponibles :
 
@@ -256,7 +262,7 @@ Voici donc les différentes options disponibles :
 - **Synonyme pour les objets** : Liste des synonymes pour les objets (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
 - **Synonyme pour les équipements** : Liste des synonymes pour les équipements.
 - **Synonyme pour les commandes** : Liste des synonymes pour les commandes.
-- **Synonyme pour les résumé** : Liste des synonymes pour les résumés.
+- **Synonyme pour les résumés** : Liste des synonymes pour les résumés.
 - **Synonyme commande slider maximum** : Synonyme pour mettre une commande de type slider au maximum (ex ouvre pour ouvre le volet de la chambre ⇒ volet chambre à 100%).
 - **Synonyme commande slider minimum** : Synonyme pour mettre une commande de type slider au minimu (ex ferme pour fermer le volet de la chambre ⇒ volet chambre à 0%).
 
@@ -292,7 +298,7 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l’IP,
 
 - **Source de mise à jour** : Choisissez la source de mise à jour du core de Jeedom.
 - **Version du core** : Version du core à récupérer.
-- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement si il y a de nouvelles mises à jour (attention pour éviter de surcharger le market, l’heure de vérification peut changer).
+- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement s'il y a de nouvelles mises à jour (attention pour éviter de surcharger le market, l’heure de vérification peut changer).
 
 ### Les dépôts
 
@@ -370,8 +376,8 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
 - **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
 - **Vider le cache des widgets** : Vide le cache dédié aux widgets.
-- **Désactiver le cache des widgets** : Cocher la case pour désactiver le caches des widgets.
-- **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie si il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre partie cela utilise plus de ressources et peut donc ralentir Jeedom.
+- **Désactiver le cache des widgets** : Cocher la case pour désactiver le cache des widgets.
+- **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre-partie cela utilise plus de ressources et peut donc ralentir Jeedom.
 
 ## Onglet API
 
@@ -392,18 +398,23 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 
 > **Important**
 >
-> Cet onglet est réservée aux experts.
+> Cet onglet est réservé aux experts.
 > Si vous modifiez Jeedom avec l’une de ces deux solutions, le support peut refuser de vous aider.
 
-- **Général** :
-    - **Vérification générale** : Permet de lancer de test de consistence de Jeedom.
-- **&gt;\_Système** :
-    - **Administration** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
-    - Rétablissement des droits : Permet de réappliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
+### Vérifications Système
+
+- **Vérification générale** : Permet de lancer de test de consistence de Jeedom.
+- **Rétablissement des droits** : Permet de réappliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
+- **Vérification des packages système** : Permet de lancer une vérification des packages installés.
+- **Vérification de la base de données** : Permet de lancer une vérification sur la base de données de Jeedom et de corriger si nécessaire les erreurs.
+- **Nettoyage de la base de données** : Lance une vérification de la base de données et nettoie d'éventuelles entrées non utilisées.
+
+
+### Outils Système
+
 - **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système d'exploitation et de les éditer ou supprimer ou d'en créer.
-- **Base de données** :
-    - **Administration** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champs du haut.
-    - **Vérification** : Permet de lancer une vérification sur la base de données de Jeedom et de corriger si nécessaire les erreurs
-    - **Nettoyage** : Lance une vérification de la base de donnée et nettoie d'éventuelles entrées non utilisées.
-    - **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans la base de données,
-    - **Mot de passe** : mot de passe d’accès à la base de données utilisé par Jeedom.
+- **Administration Système** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
+- **Administration Base de données** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champ du haut.
+- **Utilisateur / Mot de passe** : Nom de l’utilisateur et mot de passe d’accès à la base de données utilisé par Jeedom.
+
+

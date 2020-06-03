@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var hasUpdate = false
 var progress = -2
 var alertTimeout = null
@@ -23,19 +25,20 @@ $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  height: 600,
-  width: 600,
+  width: 480,
+  height: 400,
   open: function () {
-    $("body").css({overflow: 'hidden'});
+    $("body").css({overflow: 'hidden'})
+    $(this).parent().css({'top': 120})
   },
   beforeClose: function (event, ui) {
     $("body").css({overflow: 'inherit'});
   }
 });
 
+
 $('#bt_updateJeedom').off('click').on('click', function () {
-  $('#md_specifyUpdate').dialog({title: "{{Options}}"});
-  $("#md_specifyUpdate").dialog('open');
+  $('#md_specifyUpdate').dialog({title: "{{Options}}"}).dialog('open')
 });
 
 $('.updateOption[data-l1key=force]').off('click').on('click',function(){
@@ -298,15 +301,15 @@ function addUpdate(_update) {
   tr += '<td><span class="hidden">' + _update.name + '</span><span class="updateAttr" data-l1key="id" style="display:none;"></span>';
   tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>';
   if(_update.configuration && _update.configuration.version){
-    updClass = 'label-warning';
+    var updClass = 'label-warning';
     if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success';
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
 
-  _localVersion = _update.localVersion
+  var _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
-  _remoteVersion = _update.remoteVersion
+  var _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
 
   tr += '</td>';
@@ -346,14 +349,15 @@ function addUpdate(_update) {
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
   jeedom.getDocumentationUrl({
     page: 'changelog',
+    theme: $('body').attr('data-theme'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(url) {
-      window.open(url,'_blank');
+      window.open(url,'_blank')
     }
-  });
-});
+  })
+})
 
 function updateProgressBar(){
   if(progress == -4){
@@ -434,16 +438,16 @@ function createUpdateObserver() {
 }
 
 function cleanUpdateLog() {
-  currentUpdateText = $('#pre_updateInfo').text()
+  var currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
-  lines = currentUpdateText.split("\n")
-  l = lines.length
+  var lines = currentUpdateText.split("\n")
+  var l = lines.length
 
   //update progress bar and clean text!
-  linesRev = lines.slice().reverse()
+  var linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
-    regExpResult = regExLogProgress.exec(linesRev[i])
+    var regExpResult = regExLogProgress.exec(linesRev[i])
     if(regExpResult !== null) {
       progress = regExpResult[1]
       updateProgressBar()
@@ -451,15 +455,15 @@ function cleanUpdateLog() {
     }
   }
 
-  newLogText = ''
+  var newLogText = ''
   for(var i=0; i < l; i++) {
-    line = lines[i]
+    var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
 
     //check ok at end of line:
     if (line.endsWith('OK')) {
-      matches = line.match(/[. ]{1,}OK/g)
+      var matches = line.match(/[. ]{1,}OK/g)
       if (matches) {
         line = line.replace(matches[0], '')
         line += ' | OK'
@@ -482,7 +486,7 @@ function cleanUpdateLog() {
     if (lines[i+1].startsWith('[PROGRESS]')) {
       var offset = 2
     }
-    nextLine = lines[i+offset]
+    var nextLine = lines[i+offset]
     var letters = /^[0-9a-zA-Z]+$/
     if(!nextLine.replace('OK', '').match(letters)) {
       matches = nextLine.match(/[.]{2,}/g)

@@ -89,6 +89,25 @@ function getUrlVars(_key) {
   return vars;
 }
 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;samesite=Strict";
+}
+
+function getCookie(name) {
+  var cookies = document.cookie.split(';');
+  for(var i in cookies){
+    var csplit = cookies[i].split('=');
+    if(name.trim() == csplit[0].trim()){
+      return csplit[1];
+    }
+  }
+  return '';
+}
+
+
 function getDeviceType() {
   var result = {};
   result.type = 'desktop';
@@ -123,7 +142,7 @@ function getDeviceType() {
     } else { //portrait
       result.bSize = (result.width / 2) - 12
     }
-
+    
   }
   return result;
 }

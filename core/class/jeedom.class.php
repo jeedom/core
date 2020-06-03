@@ -26,7 +26,7 @@ class jeedom {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function mimify(){
+	public static function minify(){
 		$folders = array('/../../desktop/js','/../../core/js','/../../mobile/js');
 		foreach ($folders as $folder) {
 			foreach (ls(__DIR__.$folder,'*.jeemin.js') as $file) {
@@ -68,9 +68,10 @@ class jeedom {
 			'logo_light',
 			'logo_dark',
 			'logo_mobile_light',
-			'logo_mobile_dark'
+			'logo_mobile_dark',
+			'objectBackgroundBlur'
 		);
-		$css_convert = array();
+
 		$return = config::byKeys($key);
 		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
@@ -78,11 +79,15 @@ class jeedom {
 			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
 			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
 		}
+
+		$css_convert = array();
 		$return['css'] = array();
 		if($return['interface::advance::enable'] == 1){
 			$css_convert['css::background-opacity'] = '--opacity';
 			$css_convert['css::border-radius'] = '--border-radius';
 		}
+		$css_convert['css::objectBackgroundBlur'] = '--objectBackgroundBlur';
+
 		$css = config::byKeys(array_keys($css_convert));
 		foreach ($css as $key => $value) {
 			if($value == ''){
@@ -102,6 +107,12 @@ class jeedom {
 						$value = 1;
 					}
 					$value.='rem';
+					break;
+					case '--objectBackgroundBlur':
+					if($value == ''){
+						$value=0;
+					}
+					$value.='px';
 					break;
 				}
 			}
@@ -246,7 +257,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://jeedom.github.io/documentation/compatibility/fr_FR/index" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://doc.jeedom.com/fr_FR/compatibility/" target="_blank">ici</a>)', __FILE__),
 			'key' => 'os::version'
 		);
 
@@ -396,7 +407,7 @@ class jeedom {
 			'name' => __('Apache private tmp', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://doc.jeedom.com/fr_FR/core/4.1/faq" target="_blank">' . __('ici', __FILE__) . '</a>',
 			'key' => 'apache2::privateTmp'
 		);
 
@@ -1071,7 +1082,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
-			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600))) {
+			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600) || strtotime('now') < strtotime(config::byKey('update::lastCheck')))) {
 				update::checkAllUpdate();
 				$updates = update::byStatus('update');
 				if (count($updates) > 0) {

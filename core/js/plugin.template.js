@@ -24,9 +24,8 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 //contextMenu
 $(function(){
   try{
-    if ('undefined' !== typeof Core_noEqContextMenu) {
-      if (Core_noEqContextMenu == 1) return false
-    }
+    if ('undefined' !== typeof Core_noEqContextMenu) return false
+    if ($('.nav.nav-tabs').length == 0) return false
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     pluginId =  $('body').attr('data-page')
     jeedom.eqLogic.byType({
@@ -185,6 +184,8 @@ $(".eqLogicDisplayCard").on('click', function (event) {
           data.timeout = '';
         }
         $('body').setValues(data, '.eqLogicAttr');
+        if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
+
         if ('function' == typeof (printEqLogic)) {
           printEqLogic(data);
         }

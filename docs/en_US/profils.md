@@ -24,15 +24,15 @@ Defines certain interface behaviors
 
 ### Notifications
 
-- **User notification command** : Default command to reach you (message type command).
+- **User notification command** : Default command to join you (message type command).
 
 ## Security tab
 
-- **2-step authentication** : allows you to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type * google authentificator *). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested..
+- **2-step authentication** : allows to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type *google authentificator*). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested.
 
-  **IMPORTANT** if during the configuration of double authentication you have an error, you must check that Jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work).
+  **IMPORTANT** if during the configuration of the double authentication you have an error, you must check that Jeedom (see on the health page) and your phone are at the same time (1 min difference is enough for it not to work).
 
-- **Password** : Allows you to change your password (don&#39;t forget to type it again below).
+- **Password** : Allows you to change your password (do not forget to retype it below).
 
 - **User hash** : Your user API key.
 

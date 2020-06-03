@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $('#sel_widgetType').off('change').on('change',function(){
   $('#sel_widgetSubtype option').hide();
   if($(this).value() != ''){
@@ -37,13 +39,13 @@ $("#md_widgetCreate").dialog({
   }
 });
 
-fileEditor = null
-var CURRENT_FOLDER=rootPath
+var fileEditor = null
+var CURRENT_FOLDER = rootPath
 printFileFolder(CURRENT_FOLDER);
 
 $('#div_treeFolder').off('click').on('select_node.jstree', function (node, selected) {
   if (selected.node.a_attr['data-path'] != undefined) {
-    path = selected.node.a_attr['data-path'];
+    var path = selected.node.a_attr['data-path'];
     printFileFolder(path);
     ref = $('#div_treeFolder').jstree(true);
     sel = ref.get_selected()[0];
@@ -135,11 +137,13 @@ function displayFile(_path){
         setTimeout(function () {
           fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_fileContent"), {
             lineNumbers: true,
+            lineWrapping: true,
             mode: getEditorMode(_path),
-            matchBrackets: true
+            matchBrackets: true,
+            viewportMargin : Infinity
           });
-          fileEditor.getWrapperElement().style.height = ($('#ta_fileContent').closest('.row-overflow').find('.col-lg-2').height() - 60) + 'px';
-          fileEditor.refresh();
+          //fileEditor.getWrapperElement().style.height = ($('#ta_fileContent').closest('.row-overflow').find('.col-lg-2').height() - 60) + 'px';
+          //fileEditor.refresh();
         }, 1);
       }
     }
@@ -230,11 +234,10 @@ $('#bt_widgetCreate').off('click').on('click',function(){
 });
 
 $('#bt_createFile').off('click').on('click',function(){
-  if(editorType == 'widget'){
-    $('#md_widgetCreate').dialog({title: "{{Options}}"});
-    $("#md_widgetCreate").dialog('open');
+  if (editorType == 'widget') {
+    $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open');
     $('#sel_widgetType').trigger('change');
-  }else{
+  } else {
     bootbox.prompt("Nom du fichier ?", function (result) {
       if (result !== null) {
         jeedom.createFile({

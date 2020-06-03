@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $('#in_login_username').on('focusout change keypress',function(){
   jeedom.user.useTwoFactorAuthentification({
     login: $('#in_login_username').value(),

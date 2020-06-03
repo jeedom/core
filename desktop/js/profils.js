@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   $("#bt_saveProfils").click();
@@ -21,8 +23,7 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 
 $('#bt_configureTwoFactorAuthentification').on('click',function(){
   var profil = $('#div_pageContainer').getValues('.userAttr')[0];
-  $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
-  $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
+  $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"}).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
 });
 
 $("#bt_saveProfils").on('click', function (event) {

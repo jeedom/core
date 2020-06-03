@@ -31,7 +31,7 @@ $title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
-$page = '';
+$page = 'dashboard';
 if (isConnect() && init('p') != '') {
 	$page = secureXSS(init('p'));
 	$title = ucfirst($page) . ' - ' . $title;
@@ -150,6 +150,7 @@ function setTheme() {
 	<?php
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
+	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
@@ -158,13 +159,7 @@ function setTheme() {
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
-	$.ajaxSetup({
-		type: "POST",
-		data: {
-			jeedom_token: '<?php echo ajax::getToken() ?>'
-		}
-	})
+	JEEDOM_AJAX_TOKEN='';
 	</script>
 	<?php
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
@@ -277,7 +272,7 @@ function setTheme() {
 									<li><a id="bt_gotoOverview" href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (jeeObject::buildTree(null, false) as $object_li) {
@@ -289,7 +284,7 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (view::all() as $view_menu) {
@@ -301,7 +296,7 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (planHeader::all() as $plan_menu) {
@@ -313,7 +308,7 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
 											foreach (plan3dHeader::all() as $plan3d_menu) {
@@ -358,6 +353,7 @@ function setTheme() {
 										<li><a id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
 										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur expression}}</a></li>
 										<li><a id="bt_showDatastoreVariable"><i class="fas fa-eye"></i> {{Variables}}</a></li>
+										<li><a id="bt_showSearching"><i class="fas fa-search"></i> {{Recherche}}</a></li>
 									</ul>
 								</li>
 							<?php } ?>
@@ -400,7 +396,7 @@ function setTheme() {
 									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 									<li role="separator" class="divider"></li>
 									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
-										<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Thème alternatif}}</a></li>
+										<li><a id="bt_switchTheme"><i class="fas fa-random"></i> {{Thème alternatif}}</a></li>
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li role="separator" class="divider"></li>
@@ -521,5 +517,8 @@ function setTheme() {
 			<?php
 		}
 		?>
+		<?php if(init('report') == 1 && init('delay',-1) != -1){ ?>
+			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
+		<?php } ?>
 	</body>
 	</html>

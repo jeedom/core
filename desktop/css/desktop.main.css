@@ -19,6 +19,7 @@ html {
 
 body {
   font-family: 'Roboto' !important;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.42;
   padding-top: 50px;
@@ -52,6 +53,18 @@ p.state,
   scrollbar-width: thin;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: var(--linkHover-color) !important;
+}
+
 .backgroundforJeedom {
   width: 100%;
   height: calc(100% - 50px);
@@ -63,6 +76,9 @@ p.state,
   background-repeat: no-repeat;
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
+}
+[data-page="dashboard"] .backgroundforJeedom {
+  filter: blur(var(--objectBackgroundBlur));
 }
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
@@ -90,6 +106,10 @@ header a.navbar-brand {
   height: calc(100% - 5px) !important;
 }
 
+#categoryfilter i {
+  width: 15px;
+}
+
 /* __________________________________________________________________________________________________________LINKS */
 
 .widget-name,
@@ -100,6 +120,11 @@ span,
   cursor: default !important;
   word-break: break-word;
 }
+#div_graphLinkRenderer text,
+#div_graphLinkRenderer image {
+  cursor: grab;
+}
+
 a,
 a i,
 a > span,
@@ -123,6 +148,9 @@ a.btn,
 .ui-resizable-nw { cursor: nw-resize !important; }
 .ui-resizable-ne { cursor: ne-resize !important; }
 
+.nocursor {
+  cursor: default !important;
+}
 a > img:hover {
   opacity: 0.75;
 }
@@ -131,7 +159,9 @@ a > img:hover {
   text-align: center;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,
+h3 a:visited {
+  font-weight: 400;
   color: var(--link-color);
 }
 
@@ -223,7 +253,6 @@ legend .pull-right:not(.input-group) {
 .name > .labelObjectHuman {
   padding-left: 0x !important;
   display: inline-block;
-  padding: 0 5px;
 }
 
 /* résumé domo */
@@ -302,13 +331,23 @@ legend .pull-right:not(.input-group) {
 }
 .div_object legend .objectDashLegend {
   padding: 3px 20px;
-  background-color: rgba(var(--bg-color), 0.65) !important;
+  background-color: rgba(var(--bg-color), var(--opacity)) !important;
+  width: 100%;
+  display: inline-block;
 }
 .div_object legend .objectDashLegend > a {
-  padding-right: 20px;
+  padding-right: 35px;
+  font-weight: 500;
+  transition-property: padding;
+  transition: 0.5s;
 }
-.div_object legend > span {
-  margin-left:10px;
+.div_object:hover legend .objectDashLegend > a {
+  padding-right: 80px;
+  transition-property: padding;
+  transition: 0.5s;
+}
+.div_object legend .objectDashLegend > a > i{
+  padding-right: 10px;
 }
 
 /* legend on equipements pages */
@@ -390,7 +429,7 @@ div.eqLogic.eqLogic-widget:empty {
 .cmd-widget > center {
   fill: var(--txt-color) !important;
   color: var(--txt-color);
-  font-weight: bold;
+  font-weight: 700;
 }
 .tableCmd {
   font-size: 12px;
@@ -428,6 +467,7 @@ div.eqLogic.eqLogic-widget:empty {
 .label {
   font-size: 12px !important;
   font-weight: normal;
+  display: inline-block;
   padding: 4px 12px;
 }
 .label-sm {
@@ -573,6 +613,18 @@ sup i {
   color: rgb(var(--contrast-color)) !important;
   margin: 5px;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+  padding-right: 5px;
+  transition-property: padding;
+  transition: 0.5s
+}
+.objectPreview:hover .topPreview > .name > i {
+  color: var(--link-color);
+  padding-right: 15px;
+  transition-property: padding;
+  transition: 0.5s
+}
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
 }
@@ -589,13 +641,16 @@ sup i {
 }
 .objectPreview > .topPreview > .name {
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 300;
   max-width: 195px;
   max-height: 30px !important;
   overflow: hidden;
   display: inline-block;
   line-height: 1.6;
   margin-top: -4px;
+}
+.objectPreview > .topPreview > .name:first-letter {
+  text-transform: uppercase;
 }
 .objectPreview > .topPreview > .bt_config {
   position: absolute;
@@ -630,8 +685,7 @@ sup i {
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
-  min-width: 80px !important;
-  font-weight: 200;
+  font-weight: 300;
   text-align: right;
 }
 .objectPreview .resume .objectSummaryParent {
@@ -681,6 +735,37 @@ sup i {
 
 .objectPreview .resume .objectSummaryParent:last-child {
   border-radius: 0 0 var(--border-radius) 0 !important;
+}
+
+
+div.ui-dialog[aria-describedby="md_overviewSummary"] {
+  box-shadow: none !important;
+  border: 1px solid rgba(var(--contrast-color), 0.15) !important;
+}
+[data-page="overview"] .ui-widget-overlay {
+  display: none;
+}
+div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
+  line-height: 12px;
+  background: rgba(var(--defaultBkg-color), 0.95) !important;
+}
+div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--link-color) !important;
+}
+div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title:before {
+  content: '';
+}
+.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
+  margin-top: -27px;
+  margin-right: -5px;
+}
+.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close:before {
+  color: var(--link-color) !important;
+}
+#md_overviewSummary {
+  background: rgba(var(--defaultBkg-color), 0.8) !important;
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
@@ -744,10 +829,13 @@ div[class*="ListContainer"] > div.cursor,
   width : 130px !important;
   font-size: 14px !important;
 }
-div[class*="ListContainer"] > div.cursor i,
+div[class*="ListContainer"] > div.cursor:not(.objectDisplayCard) i,
 .eqLogicThumbnailContainer > div.cursor > i {
   font-size: 38px !important;
   font-weight: 900;
+}
+.objectDisplayCard i {
+  font-size: 38px !important;
 }
 div[class*="ListContainer"] i[class*=jeedom-batt] {
   font-weight: normal;
@@ -807,14 +895,20 @@ div[class*="DisplayCard"] .name {
   font-weight: 700;
   line-height: 14px !important;
 }
-div[class*="DisplayCard"] .name > .label {
-  line-height: 24px !important;
-}
 
 .pluginDisplayCard,
 .objectDisplayCard {
   height: 130px;
   min-height: 130px !important;
+}
+.objectDisplayCard > i {
+  display: inline-block;
+  height: 42px !important;
+}
+.objectDisplayCard .name {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--border-radius) !important;
 }
 .pluginListContainer div.cursor > center > img,
 .interactListContainer div.cursor > img {
@@ -865,6 +959,7 @@ div[class*="DisplayCard"] .name > .label {
 
 .eqLogic.eqLogic-widget .widget-name,
 .scenario-widget .widget-name {
+  font-weight: 300;
   padding-right: 22px;
   padding-left: 12px;
   max-height: 45px;
@@ -929,6 +1024,9 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
+table.tablesorter thead .tablesorter-filter-row input {
+  height: 20px;
+}
 
 #table_cron .tablesorter-filter {
   display: none;
@@ -969,6 +1067,25 @@ div[data-market_type=script]:hover {
 }
 
 /* analyse equipment */
+#table_Action thead th[data-column="2"] {
+  width: 180px;
+}
+#table_Action thead th[data-column="4"] {
+  width: 40px;
+}
+#actionCmd tr td {
+  vertical-align: top !important;
+}
+#actionCmd tr td div {
+  min-height: 25px;
+  display: list-item;
+  position: relative;
+  top: 5px;
+}
+#actionCmd tr td div span > i,
+#actionCmd tr td div span {
+  color: var(--linkHoverLight-color) !important;
+}
 #battery,
 #alertEqlogic {
   margin-bottom: 20px !important;
@@ -1049,6 +1166,10 @@ div[data-market_type=script]:hover {
 .form-group .label {
   padding: 3px 6px !important;
   min-width: 40px !important;
+  font-weight: 500 !important;
+}
+.control-label {
+  font-weight: 500;
 }
 
 pre {
@@ -1244,7 +1365,7 @@ sup.danger {
 
 :not(.tableCmdcss) .cmdName {
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 400;
 }
 :not(.tableCmdcss) .cmd:not(.label) .state,
 .cmd {
@@ -1259,7 +1380,7 @@ p.state {
 .eqLogic.eqLogic-widget .cmd.label .state,
 .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
   color: var(--sc-lightTxt-color) !important;
-  font-weight: normal;
+  font-weight: 400;
 }
 .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
   display: inline-block;
@@ -1415,6 +1536,133 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
+
+/*______Timeline cards */
+body[data-page="history"] #div_pageContainer {
+  height: 100%;
+}
+body[data-page="history"] #div_pageContainer .tab-content {
+  height: 100% !important;
+  padding-bottom: 0 !important;
+}
+#timelinetab {
+  height: 100% !important;
+}
+#timelineContainer {
+  padding-top: 40px;
+}
+
+#timelineContainer .html i {
+  color: var(--linkHoverLight-color) !important;
+}
+
+#timelineContainer ul {
+  padding-top: 15px;
+  list-style: none;
+  padding-left: 130px;
+  background-color: rgb(var(--bg-color));
+}
+/*dotted vertical line:*/
+#timelineContainer ul:before {
+  content: '';
+  width: 1px;
+  height: calc(100% - 200px);
+  position: absolute;
+  border-left: 3px dotted var(--al-info-color);
+}
+#timelineContainer ul li {
+  position: relative;
+  margin-top: 5px;
+  min-height: 22px;
+  width: calc(100% - 40px);
+  margin-left: 30px ;
+  padding: 6px;
+  border-radius: var(--border-radius);
+  background-color: rgb(var(--eq-bg-color)) !important;
+}
+#timelineContainer ul li > span.vertLine {
+  position: absolute;
+  width: 3px;
+  height: 116%;
+  left: -30px;
+  top: 0;
+}
+#timelineContainer ul li > span.vertLine.typeAction {
+  background: var(--al-warning-color);
+}
+#timelineContainer ul li > span.vertLine.typeInfo {
+  background: var(--al-info-color);
+}
+#timelineContainer ul li > span.vertLine.typeScenario {
+  background: var(--bt-success-color);
+}
+#timelineContainer ul .day {
+  position: relative;
+  padding: 5px 0 5px 25px;
+  top: 20px;
+  margin-bottom: 40px;
+  margin-left: -115px ;
+  width: 150px;
+  z-index: 200 !important;
+  border-radius: var(--border-radius);
+}
+
+/* pastilles: */
+#timelineContainer ul li .time:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--al-info-color);
+  position: absolute;
+  background: rgb(var(--eq-bg-color)) !important;
+  left: 65px;
+  top: 5px;
+  z-index: 5;
+}
+#timelineContainer ul li .time.typeAction:after {
+  border: 3px solid var(--al-warning-color);
+}
+#timelineContainer ul li .time.typeScenario:after {
+  border: 3px solid var(--bt-success-color);
+}
+
+#timelineContainer div.time {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 700;
+  left: -100px;
+  margin-top: -5px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.date {
+  position: absolute;
+  font-size: 11px;
+  left: -120px;
+  margin-top: 12px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.type {
+  width: 30%;
+  display: inline-block
+}
+#timelineContainer div.html {
+  width: 70%;
+  display: inline-block
+}
+
+#timelineOptions {
+  position: fixed;
+  text-align: right;
+  right: 25px;
+  z-index: 5;
+  background: rgba(var(--panel-bg-color), var(--opacity));
+  padding: 5px;
+}
+
+
 #historytab .label.displayObject {
   margin-top: 2.2px;
 }
@@ -1426,11 +1674,6 @@ button .fas.fa-plus-circle {
 }
 #historytab .history.disabled {
   color: var(--placeholder-color) !important;
-}
-#timelinetab .tml-cmd,
-#timelinetab .tml-scenario {
-  font-size: 14px;
-  color: var(--txt-color) !important;
 }
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
@@ -1534,6 +1777,8 @@ header .navbar-toggle {
 .dropdown-menu,
 .dropdown-menu > ul {
   z-index: 9999 !important;
+  scrollbar-color: var(--form-bg-color) transparent !important;
+  scrollbar-width: thin;
 }
 ul.dropdown-menu {
   border-bottom: 2px solid var(--el-defaultColor);
@@ -1584,6 +1829,28 @@ ul.dropdown-menu {
 .dropdown-submenu.pull-left > .dropdown-menu {
   left: -100%;
   margin-left: 10px;
+}
+
+ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+  border-top: 1px solid var(--el-defaultColor);
+  height: auto;
+  overflow-x: hidden;
+}
+
+@media screen and (max-height: 400px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 114px; /* 4 items */
+  }
+}
+@media screen and (min-height: 400px) and (max-height: 800px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 238px; /* 9 items */
+  }
+}
+@media screen and (min-height: 801px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 600px;
+  }
 }
 
 /* __________________________________________________________________________________________________________PANELS */
@@ -1640,6 +1907,17 @@ div.panel {
   padding: 8px 15px;
   display: inline-block;
 }
+#accordionHealth td:not([class*="alert"]) {
+  text-align:right;
+  padding-right:12px;
+}
+#accordionHealth table:not(#jeedomTable) tr td:first-child {
+  width:35%;
+}
+#accordionHealth #jeedomTable td[class*="alert"] {
+  width:20%;
+}
+
 [data-page="health"] .panel-title > a.accordion-toggle {
   width: auto;
 }
@@ -1723,8 +2001,11 @@ input.inputPassword  {
   top: 0 !important;
 }
 .form-group {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   vertical-align: middle !important;
+}
+.form-group .form-control {
+  margin-bottom: 1.1px !important;
 }
 
 .form-control {
@@ -1878,30 +2159,6 @@ textarea {
 
 .checkbox-inline > input[type=checkbox] {
   margin-top: -2px;
-}
-
-.checkbox-inline.disabled,
-.checkbox.disabled label,
-.radio-inline.disabled,
-.radio.disabled label,
-fieldset[disabled] .checkbox label,
-fieldset[disabled] .checkbox-inline,
-fieldset[disabled] .radio label,
-fieldset[disabled] .radio-inline,
-fieldset[disabled] input[type=checkbox],
-fieldset[disabled] input[type=radio],
-input[type=checkbox].disabled,
-input[type=checkbox][disabled],
-input[type=radio].disabled,
-input[type=radio][disabled],
-select.disabled,
-select[disabled] {
-  cursor: not-allowed !important;
-}
-
-select:disabled,
-input:disabled {
-  opacity: 0.35 !important;
 }
 
 /* custom universal select */
@@ -2061,12 +2318,67 @@ input[type=checkbox].summaryAttr {
   padding: 0 !important;
 }
 
+.checkbox-inline.disabled,
+.checkbox.disabled label,
+.radio-inline.disabled,
+.radio.disabled label,
+fieldset[disabled] .checkbox label,
+fieldset[disabled] .checkbox-inline,
+fieldset[disabled] .radio label,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] input[type=checkbox],
+fieldset[disabled] input[type=radio],
+select.disabled,
+input.disabled,
+input[disabled],
+select[disabled] {
+  cursor: not-allowed !important;
+}
+
+select:disabled,
+input:disabled {
+  opacity: 0.7 !important;
+}
+
+.disabled .btn:not(.enabled),
+.disabled input:not(.enabled),
+.disabled button:not(.enabled),
+.disabled span:not(.enabled),
+.disabled button:not(.enabled) i,
+.disabled a:not(.enabled) > i {
+  cursor: not-allowed !important;
+  filter: alpha(opacity=65);
+  opacity: .65;
+}
+a.disabled,
+a.disabled > i {
+  cursor: default !important;
+}
+
 /* __________________________________________________________________________________________________________TABS */
 .tab-content {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   padding-bottom: 12px !important;
+  min-height: 120px;
   height: unset !important;
+  max-height:calc(100% - 50px);
+  overflow:auto;
+  overflow-x: hidden;
 }
+#scenariotab {
+  min-height: 80vh;
+}
+body[data-page="custom"] #div_pageContainer {
+  height: calc(100% - 5px);
+  }
+body[data-page="custom"] div[role="tabpanel"],
+body[data-page="custom"] .tab-content {
+  height: calc(100% - 55px) !important;
+}
+body[data-page="custom"] .CodeMirror {
+  height: 100% !important;
+}
+
 .tab-content .tab-content,
 .tab-content pre {
   background-color: rgba(0,0,0,0)!important;
@@ -2225,6 +2537,9 @@ table.table-condensed tbody tr > td {
 #table_packages tbody td > span.label {
   display: block;
 }
+#table_ObjectSummary tbody td {
+  height: 25px !important;
+}
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
@@ -2263,46 +2578,18 @@ hr {
 
 /* __________________________________________________________________________________________________________CodeMirror */
 div.CodeMirror {
+  font-family: "CamingoCode", monospace;
+  font-size: 13px;
   height: auto;
-  background: var(--form-bg-color) !important;
+  background: var(--objectTxt-color) !important;
+}
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d9d9d9; }
+
+div.CodeMirror pre {
+  background-color: transparent !important;
 }
 
-[data-page=custom] .CodeMirror,
-[data-page=custom] .CodeMirror textarea,
-[data-page=custom] .CodeMirror-gutters {
-  height: 100% !important;
-}
-
-.CodeMirror:not(class*=cm-s-),
-.CodeMirror-code,
-.CodeMirror-sizer {
-  color: var(--sc-formTxt-color)!important;
-}
-.CodeMirror-gutters {
-  background: var(--form-bg-color)!important;
-  border-right: 0;
-  border: none !important;
-}
-.CodeMirror-linenumber {
-  color: var(--txt-color);
-}
-.CodeMirror-lines {
-  border-top: 4px solid var(--form-bg-color) !important;
-  padding: 0;
-  background: var(--sc-form-color) !important;
-}
-
-.CodeMirror-focused,
-.CodeMirror-sizer,
-.CodeMirror pre,
-.CodeMirror-code {
-  background: var(--sc-form-color) !important;
-}
-
-.CodeMirror-focused,
-.CodeMirror-selected {
-  background-color: rgba(0,0,0,1) !important;
-}
 
 
 /* hihgly special */
@@ -2484,6 +2771,13 @@ div[id^=__lpform_] { /*lastpass*/
   color: var(--linkHoverLight-color) !important;
   font-size : 12px !important;
   line-height: 15px;
+}
+/* translation trick */
+.dropdown-menu .bt_addAction {
+  text-transform: lowercase
+}
+.dropdown-menu .bt_addAction::first-letter {
+  text-transform: uppercase
 }
 
 /* scenarios fields */
@@ -2859,6 +3153,7 @@ textarea {
   font-size: 12px !important;
   width : calc(100% - 340px);
   height: 24px;
+  overflow: hidden;
   opacity: 0.8;
 }
 
@@ -2866,6 +3161,10 @@ textarea {
 
 #jqueryLoadingDiv {
   color: var(--link-color)!important
+}
+#jqueryLoadingDiv .loadingImg {
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
 }
 
 .col-lg-9.col-md-8.col-sm-7 {
@@ -2974,6 +3273,13 @@ textarea {
 :not(.gauge) >.highcharts-container .highcharts-axis-line { stroke: var(--txt-color) }
 .highcharts-axis-labels text tspan { fill: var(--txt-color)!important; }
 
+.highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
+  font-weight: bold;
+  font-size: 12px;
+  transform: translate(0,10px) !important;
+  fill: var(--contrast-color)!important;
+}
+
 .highcharts-background {
   fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
   fill-opacity: var(--opacity);
@@ -2987,7 +3293,7 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
-.graph-widget {
+.graph-widget:not(.transparent) {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
 .graph-widget .highcharts-plot-band,
@@ -3214,6 +3520,7 @@ path.highcharts-graph {
   margin-bottom: 0 !important;
   font-size: 16px;
   font-weight: normal;
+  cursor: move !important;
 }
 .ui-dialog .ui-dialog-title:before {
   content: '\f105\00a0\00a0';
@@ -3257,7 +3564,7 @@ path.highcharts-graph {
 }
 #ui-datepicker-div {
   background: rgb(var(--bg-color)) !important;
-  z-index: 1020 !important;
+  z-index: 1030 !important;
 }
 #ui-datepicker-div .ui-datepicker-header a {
   color: red !important;
@@ -3266,18 +3573,6 @@ path.highcharts-graph {
 #ui-datepicker-div .ui-state-hover {
   color: var(--linkHoverLight-color) !important;
   background: var(--link-color);
-}
-
-div.vis-item,
-div.vis-item-content {
-  background-color: white;
-  border-color: #D7D7D7;
-  padding:0px !important;
-  margin:0px !important;
-}
-.vis-timeline,
-.vis-timeline div {
-  border-color: var(--placeholder-color) !important;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
@@ -3389,6 +3684,12 @@ input:invalid {
   background-color: rgb(var(--defaultBkg-color))
 }
 
+#div_displayCmdConfigure .form-group div > span.cmdAttr {
+  max-width: 98% !important;
+  display: inline-block;
+  padding: 5px !important;
+}
+
 
 /* __________________________________________________________________________________________________________TooltipSter */
 .tooltipWrapper {
@@ -3472,10 +3773,13 @@ pre {
   letter-spacing: 0.05em;
   line-height: 14px;
 }
-#pre_globallog {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  line-height: 15px;
+#pre_globallog,
+#pre_scenariolog,
+#pre_commandResult,
+#div_commandResult {
+  font-family: "CamingoCode", monospace;
+  font-size: 13px;
+  line-height: 14px;
 }
 
 .input-group .btn,

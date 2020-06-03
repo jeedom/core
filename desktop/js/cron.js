@@ -14,10 +14,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
 
 printCron();
 printListener();
-initTableSorter(filter=false)
+initTableSorter(false)
 setTimeout(function(){$('#table_cron').find('th[data-column="0"]').trigger('sort')}, 100)
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
@@ -92,13 +93,11 @@ $("#table_cron").delegate(".start", 'click', function () {
 });
 
 $("#table_cron").delegate(".display", 'click', function () {
-  $('#md_modal').dialog({title: "{{Détails du cron}}"});
-  $("#md_modal").load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Détails du cron}}"}).load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open')
 });
 
 $("#table_listener").delegate(".display", 'click', function () {
-  $('#md_modal').dialog({title: "{{Détails du listener}}"});
-  $("#md_modal").load('index.php?v=d&modal=object.display&class=listener&id='+$(this).closest('tr').attr('id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Détails du listener}}"}).load('index.php?v=d&modal=object.display&class=listener&id='+$(this).closest('tr').attr('id')).dialog('open')
 });
 
 $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
@@ -192,7 +191,7 @@ function addCron(_cron) {
   }
   tr += '<span class="' + label + '">' + state + '</span>';
   tr += '</td>';
-  
+
   tr += '<td style="width:85px;">';
   if(init(_cron.id) != ''){
     tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> ';

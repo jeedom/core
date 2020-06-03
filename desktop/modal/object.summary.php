@@ -25,7 +25,7 @@ if (!isConnect()) {
 		foreach ($allObject as $object) {
 			$html = '';
 			$html .= '<tr class="tr_object" data-object_id="' . $object->getId() . '"><td style="width:40px;"><span class="label label-info">' . $object->getId() . '</span></td>';
-			$html .= '<td style="width:50px;">';
+			$html .= '<td style="width:auto;">';
 			for ($i = 0; $i < $object->getConfiguration('parentNumber'); $i++) {
 				$html .= '&nbsp;&nbsp;&nbsp;';
 			}

@@ -13,7 +13,10 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-actionOptions = []
+
+"use strict"
+
+var actionOptions = []
 var $pageContainer = $('#div_pageContainer')
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
@@ -22,7 +25,7 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 
 
 //select tab:
-_url = window.location.href
+var _url = window.location.href
 if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
   $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
 }
@@ -774,24 +777,20 @@ $('.testRepoConnection').on('click',function(){
 
 /**************************SYSTEM***********************************/
 $('#bt_accessSystemAdministration').on('click',function(){
-  $('#md_modal').dialog({title: "{{Administration système}}"})
-  .load('index.php?v=d&modal=system.action').dialog('open');
+  $('#md_modal').dialog({title: "{{Administration système}}"}).load('index.php?v=d&modal=system.action').dialog('open');
 });
 
 /**************************Database***********************************/
 $('#bt_accessDbAdministration').on('click',function(){
-  $('#md_modal').dialog({title: "{{Administration base de données}}"})
-  .load('index.php?v=d&modal=db.action').dialog('open');
+  $('#md_modal').dialog({title: "{{Administration base de données}}"}).load('index.php?v=d&modal=db.action').dialog('open');
 });
 
 $('#bt_checkDatabase').on('click',function(){
-  $('#md_modal').dialog({title: "{{Vérification base de données}}"})
-  .load('index.php?v=d&modal=db.check').dialog('open');
+  $('#md_modal').dialog({title: "{{Vérification base de données}}"}).load('index.php?v=d&modal=db.check').dialog('open');
 });
 
 $('#bt_checkPackage').on('click',function(){
-  $('#md_modal').dialog({title: "{{Vérification des packages}}"})
-  .load('index.php?v=d&modal=package.check').dialog('open');
+  $('#md_modal').dialog({title: "{{Vérification des packages}}"}).load('index.php?v=d&modal=package.check').dialog('open');
 });
 
 $('#bt_cleanDatabase').off('click').on('click',function(){
@@ -812,9 +811,23 @@ $('#bt_addObjectSummary').on('click', function () {
 
 $pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
   var objectSummary = $(this).closest('.objectSummary');
+
+  var _icon = false
+  var icon = false
+  var color = false
+  if ( $(this).parent().find('.objectSummaryAttr > i').length ) {
+    var color = ''
+    var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
+    class_icon = class_icon.replace(' ', '.').split(' ')
+    var icon = '.'+class_icon[0];
+    if (class_icon[1]) {
+      color = class_icon[1]
+    }
+
+  }
   chooseIcon(function (_icon) {
     objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon);
-  });
+  },{icon:icon,color:color});
 });
 
 $pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
@@ -867,7 +880,7 @@ function printObjectSummary() {
         return;
       }
       $('#table_objectSummary tbody').empty();
-      _objSumLength = Object.keys(data.result).length
+      var _objSumLength = Object.keys(data.result).length
       var n = 0;
       for (var i in data.result) {
         if(isset(data.result[i].key) && data.result[i].key == ''){
@@ -881,7 +894,7 @@ function printObjectSummary() {
         if(!isset(data.result[i].key)){
           data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
         }
-        _direction = -1
+        var _direction = -1
         if (n > (_objSumLength - 4)) _direction = 1
         addObjectSummary(data.result[i], _direction);
         n++;
@@ -945,8 +958,8 @@ function addObjectSummary(_summary, _direction=1) {
 }
 
 function saveObjectSummary() {
-  summary = {};
-  temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
+  var summary = {};
+  var temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
   for(var i in temp){
     if(temp[i].key == ''){
       temp[i].key = temp[i].name
@@ -954,7 +967,7 @@ function saveObjectSummary() {
     temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
     summary[temp[i].key] = temp[i]
   }
-  value = {'object:summary' : summary};
+  var value = {'object:summary' : summary};
   $.ajax({
     type: "POST",
     url: "core/ajax/config.ajax.php",

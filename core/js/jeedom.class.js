@@ -22,6 +22,7 @@ jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
 jeedom.changes_timeout = null;
+var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;
@@ -119,6 +120,7 @@ jeedom.init = function () {
   ]
 });
 
+
 $('body').on('cmd::update', function (_event,_options) {
   jeedom.cmd.refreshValue(_options);
 });
@@ -194,6 +196,25 @@ $('body').on('notify', function (_event,_options) {
 if (typeof user_id !== 'undefined') {
   jeedom.changes();
 }
+}
+
+jeedom.getStringUsedBy = function (_params) {
+  var paramsRequired = ['search'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'getStringUsedBy',
+    search: _params.search
+  };
+  $.ajax(paramsAJAX);
 }
 
 jeedom.getConfiguration = function (_params) {
@@ -515,7 +536,6 @@ jeedom.getGraphData = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.getDocumentationUrl = function (_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -532,10 +552,10 @@ jeedom.getDocumentationUrl = function (_params) {
     action: 'getDocumentationUrl',
     plugin: params.plugin || null,
     page: params.page || null,
+    theme: params.theme || null,
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.addWarnme = function(_params) {
   var paramsRequired = [];
@@ -616,7 +636,6 @@ jeedom.setFileContent = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.deleteFile = function(_params) {
   var paramsRequired = ['path'];
   var paramsSpecifics = {};
@@ -655,7 +674,6 @@ jeedom.createFile = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.emptyRemoveHistory = function(_params) {
   var paramsRequired = [];
@@ -765,7 +783,6 @@ jeedom.cleanDatabase = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.massEditSave = function(_params) {
   var paramsRequired = ['type','objects'];

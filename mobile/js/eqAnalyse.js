@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'eqAnalyse')
 
 function initEqanalyse() {
@@ -7,7 +9,7 @@ function initEqanalyse() {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'})
 		},
 		success: function (eqLogics) {
-			div = ''
+			var div = ''
 			for (var i in eqLogics) {
 				div += eqLogics[i].html
 			}
@@ -25,7 +27,7 @@ function initEqanalyse() {
 					$('#div_alert').showAlert({message: error.message, level: 'danger'})
 				},
 				success: function (eqLogics) {
-					div = ''
+					var div = ''
 					for (var i in eqLogics) {
 						div += eqLogics[i].html
 					}

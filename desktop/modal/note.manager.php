@@ -2,6 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+
+$id = init('id', '');
+sendVarToJs('note_id', $id);
 ?>
 <div style="display: none;" id="div_noteManagementAlert"></div>
 <div class="row row-overflow">
@@ -104,6 +107,14 @@ $('#bt_noteManagerRemove').on('click',function(){
 	}
 });
 
-updateNoteList();
-taAutosize();
+$(function() {
+	updateNoteList()
+	taAutosize()
+	if (note_id != '') {
+		setTimeout(function(){
+			$('li.li_noteDisplay[data-id="'+note_id+'"]').trigger('click')
+		}, 500)
+	}
+})
+
 </script>

@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'cron')
 
 function initDeamon() {

@@ -1,9 +1,11 @@
+"use strict"
+
 $('body').attr('data-page', 'about')
 function initAbout() {
   var currentTheme = $('body').attr('data-theme')
   if (currentTheme.endsWith('Dark')) {
     $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
-  }  
+  }
   $('.licenceText').removeClass('ui-body-inherit')
   $.ajax({
     url:'../desktop/modal/about.txt',

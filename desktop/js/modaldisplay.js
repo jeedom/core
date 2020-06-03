@@ -14,18 +14,20 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var params = getUrlVars()
 var title = params['title']
 var modal = params['loadmodal']
+var url = false
 
 delete params['p']
 delete params['v']
 delete params['loadmodal']
 delete params['title']
-delete params['length']
 
 var url = 'index.php?v=d&modal=' + modal
-for ([key, value] of Object.entries(params)) {
+for (var [key, value] of Object.entries(params)) {
   url += '&' + key + '=' + value
 }
 

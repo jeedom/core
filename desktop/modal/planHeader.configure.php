@@ -55,11 +55,11 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Icône}}</label>
+						<div class="col-lg-1">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
 						<div class="col-lg-2">
 							<div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -175,7 +175,7 @@ $('#bt_chooseIcon').on('click', function () {
 
 $('#bt_uploadImage').fileupload({
 	replaceFileInput: false,
-	url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+	url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id,
 	dataType: 'json',
 	done: function (e, data) {
 		if (data.result.state != 'ok') {

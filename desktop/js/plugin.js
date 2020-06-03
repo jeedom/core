@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 $( function() {
   $('sub.itemsNumber').html('('+$('.pluginDisplayCard').length+')')
 })
@@ -28,7 +30,7 @@ $('#in_searchPlugin').off('keyup').keyup(function () {
     return;
   }
   search = normTextLower(search)
-  
+
   $('.pluginDisplayCard').hide()
   $('.pluginDisplayCard .name').each(function(){
     var text = $(this).text()
@@ -48,9 +50,9 @@ $('#bt_resetPluginSearch').on('click', function () {
 if($('#md_modal').is(':visible')){
   $('#bt_returnToThumbnailDisplay').hide();
   $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
-  alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
+  var alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
 }else{
-  alert_div_plugin_configuration = $('#div_alert');
+  var alert_div_plugin_configuration = $('#div_alert');
 }
 
 setTimeout(function(){
@@ -81,7 +83,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         $('#span_plugin_id').html(data.id);
         $('#span_plugin_name').html(data.name);
         if(isset(data.update) && isset(data.update.localVersion)){
-          localVer = data.update.localVersion
+          var localVer = data.update.localVersion
           if (localVer.length > 20) localVer = localVer.substring(0,20) + '...'
           $('#span_plugin_install_date').html(localVer);
         }else{
@@ -94,13 +96,13 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           $('#span_plugin_installation').closest('.panel').show();
           $('#span_plugin_installation').html(data.installation);
         }
-        
+
         if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
           $('#span_plugin_install_version').html(data.update.configuration.version);
         }else{
           $('#span_plugin_install_version').html('');
         }
-        
+
         $('#div_plugin_dependancy').closest('.panel').parent().addClass('col-md-6')
         $('#div_plugin_deamon').closest('.panel').parent().addClass('col-md-6')
         if(data.hasDependency == 0 || data.activate != 1){
@@ -111,7 +113,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           $('#div_plugin_dependancy').closest('.panel')
           $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
         }
-        
+
         if(data.hasOwnDeamon == 0 || data.activate != 1){
           $('#div_plugin_deamon').closest('.panel').hide();
           $('#div_plugin_dependancy').closest('.panel').parent().removeClass('col-md-6')
@@ -136,7 +138,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         } else {
           $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>');
         }
-        
+
         $('#div_configPanel').hide();
         $('#div_plugin_panel').empty();
         if(isset(data.display) && data.display != ''){
@@ -149,7 +151,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           config_panel_html += '</div>';
           $('#div_plugin_panel').append(config_panel_html);
         }
-        
+
         if(isset(data.mobile) && data.mobile != ''){
           $('#div_configPanel').show();
           var config_panel_html = '<div class="form-group">';
@@ -160,7 +162,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           config_panel_html += '</div>';
           $('#div_plugin_panel').append(config_panel_html);
         }
-        
+
         $('#div_plugin_functionality').empty();
         count = 0;
         var config_panel_html = '<div class="row">';
@@ -192,7 +194,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         config_panel_html += '</div>';
         config_panel_html += '</div>';
         $('#div_plugin_functionality').append(config_panel_html);
-        
+
         $('#div_plugin_toggleState').empty();
         if (data.checkVersion != -1) {
           var html = '<form class="form-horizontal"><fieldset>';
@@ -239,14 +241,14 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           log_conf += '<div class="form-group">';
           log_conf += '<label class="col-sm-3 control-label">{{Logs}}</label>';
           log_conf += '<div class="col-sm-9">';
-          for(j in data.logs[i].log){
+          for(var j in data.logs[i].log){
             log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fas fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
           }
           log_conf += '</div>';
           log_conf += '</div>';
           log_conf += '</form>';
         }
-        
+
         log_conf += '<form class="form-horizontal">';
         log_conf += '<div class="form-group">';
         log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>';
@@ -261,7 +263,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         }
         log_conf += '</div>';
         log_conf += '</form>';
-        
+
         $('#div_plugin_log').empty().append(log_conf);
         $('#div_plugin_configuration').empty();
         if (data.checkVersion != -1) {
@@ -413,8 +415,7 @@ $("#bt_savePluginConfig").on('click', function (event) {
 });
 
 $('.displayStore').on('click', function () {
-  $('#md_modal').dialog({title: "{{Market}}"});
-  $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open');
+  $('#md_modal').dialog({title: "{{Market}}"}).load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open')
 });
 
 $('.pullInstall').on('click', function () {
@@ -476,11 +477,9 @@ $('#bt_savePluginLogConfig').off('click').on('click',function(){
 
 $('#div_plugin_log').on('click','.bt_plugin_conf_view_log',function(){
   if($('#md_modal').is(':visible')){
-    $('#md_modal2').dialog({title: "{{Log du plugin}}"});
-    $("#md_modal2").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open');
+    $('#md_modal2').dialog({title: "{{Log du plugin}}"}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
   }else{
-    $('#md_modal').dialog({title: "{{Log du plugin}}"});
-    $("#md_modal").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open');
+    $('#md_modal').dialog({title: "{{Log du plugin}}"}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
   }
 });
 
@@ -525,6 +524,5 @@ function savePluginConfig(_param) {
 }
 
 $('#bt_addPluginFromOtherSource').on('click',function(){
-  $('#md_modal').dialog({title: "{{Ajouter un plugin}}"});
-  $('#md_modal').load('index.php?v=d&modal=update.add').dialog('open');
+  $('#md_modal').dialog({title: "{{Ajouter un plugin}}"}).load('index.php?v=d&modal=update.add').dialog('open')
 });

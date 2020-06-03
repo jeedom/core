@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var widget_parameters_opt = {
   'desktop_width' : {
     'type' : 'input',
@@ -90,29 +92,29 @@ $(function(){
         var widgetsList = []
         widgetsList['info'] = []
         widgetsList['action'] = []
-        for(i=0; i<_widgets.length; i++)
+        for(var i=0; i<_widgets.length; i++)
         {
           wg = _widgets[i]
           if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
           if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
         }
-        
+
         //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
         for (var group in widgetsList) {
-          groupWidgets = widgetsList[group]
-          items = {}
+          var groupWidgets = widgetsList[group]
+          var items = {}
           for (var index in groupWidgets) {
-            wg = groupWidgets[index]
-            wgName = wg[0]
-            wgId = wg[1]
+            var wg = groupWidgets[index]
+            var wgName = wg[0]
+            var wgId = wg[1]
             items[uniqId] = {'name': wgName, 'id' : wgId}
             uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -144,6 +146,7 @@ $('#bt_chooseIcon').on('click', function () {
   chooseIcon(function (_icon) {
     $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   },{icon:_icon});
+  modifyWithoutSave = true
 });
 
 $('#bt_editCode').off('click').on('click', function () {
@@ -151,15 +154,16 @@ $('#bt_editCode').off('click').on('click', function () {
 })
 
 $('#bt_replaceWidget').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Remplacement de widget}}"}).load('index.php?v=d&modal=widget.replace').dialog('open')
-  $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 500)
-  $("#md_modal").dialog({
-    position: {
-      my: "center center",
-      at: "center center",
-      of: window
-    }
-  })
+  $('#md_modal').load('index.php?v=d&modal=widget.replace').dialog('open')
+    .dialog("option", "width", 800).dialog("option", "height", 500)
+    .dialog({
+      title: "{{Remplacement de widget}}",
+      position: {
+        my: "center center",
+        at: "center center",
+        of: window
+      }
+    })
 })
 
 
@@ -169,17 +173,17 @@ $('#bt_applyToCmd').off('click').on('click', function () {
   $('#div_usedBy .cmdAdvanceConfigure').each(function() {
     checkedId.push($(this).data('cmd_id'))
   })
-  
-  $('#md_modal').dialog({title: "{{Appliquer sur}}"})
+
+  $('#md_modal').dialog({title: "{{Appliquer ce widget à}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter();
-    
+
     $('#table_cmdConfigureSelectMultiple tbody tr').each(function( index ) {
       if (checkedId.includes($(this).data('cmd_id'))) {
         $(this).find('.selectMultipleApplyCmd').prop('checked', true)
       }
     })
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
       var state = false;
       if ($(this).attr('data-state') == 0) {
@@ -194,7 +198,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
         $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
       }
     });
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
       var widgets = $('.widgets').getValues('.widgetsAttr')[0]
       widgets.test = $('#div_templateTest .test').getValues('.testAttr')
@@ -207,7 +211,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
           modifyWithoutSave = false
           cmd = {template : {dashboard : 'custom::'+$('.widgetsAttr[data-l1key=name]').value(),mobile : 'custom::'+$('.widgetsAttr[data-l1key=name]').value()}}
           cmdDefault = {template : {dashboard : 'default', mobile : 'default'}}
-          
+
           $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
             var thisId = $(this).data('cmd_id')
             if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
@@ -228,7 +232,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
                 },
                 success: function () {}
               });
-              
+
             } else {
               if (checkedId.includes(thisId)) {
                 cmdDefault.id = thisId
@@ -276,6 +280,7 @@ $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', f
   chooseIcon(function (_icon) {
     bt.closest('.form-group').find('.widgetsAttr[data-l1key=replace]').value(_icon);
   },{img:true});
+  modifyWithoutSave = true
 });
 
 $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', function () {
@@ -283,6 +288,7 @@ $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', func
   chooseIcon(function (_icon) {
     bt.closest('.input-group').find('.testAttr').value(_icon);
   },{img:true});
+  modifyWithoutSave = true
 });
 
 function capitalizeFirstLetter(string) {
@@ -348,7 +354,7 @@ function loadTemplateConfiguration(_template,_data){
         }
         loadTemplateConfiguration('cmd.'+ $('.widgetsAttr[data-l1key=type]').value()+'.'+$('.widgetsAttr[data-l1key=subtype]').value()+'.'+$(this).value());
       });
-      modifyWithoutSave = false;
+      modifyWithoutSave = true
     }
   });
 }
@@ -390,6 +396,7 @@ $('#bt_widgetsAddTest').off('click').on('click', function (event) {
 
 $('#div_templateTest').off('click','.bt_removeTest').on('click','.bt_removeTest',function(){
   $(this).closest('.test').remove();
+  modifyWithoutSave = true
 });
 
 function printWidget(_id) {
@@ -397,7 +404,7 @@ function printWidget(_id) {
   $('#div_conf').show()
   $('#div_widgetsList').hide()
   $('#div_templateTest').empty()
-  
+
   jeedom.widgets.byId({
     id: _id,
     cache: false,
@@ -439,7 +446,7 @@ function printWidget(_id) {
       }
       loadTemplateConfiguration(template,data);
       addOrUpdateUrl('id',data.id);
-      modifyWithoutSave = false;
+      modifyWithoutSave = false
       jeedom.widgets.getPreview({
         id: data.id,
         cache: false,
@@ -451,6 +458,9 @@ function printWidget(_id) {
           $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
         }
       })
+      setTimeout(function() {
+        modifyWithoutSave = false
+      }, 1000)
     }
   });
 }
@@ -472,7 +482,7 @@ function addTest(_test){
   div += '</div>';
   div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="Résultat si test ok (light)"/>';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="{{Résultat si test ok}} (light)"/>';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
@@ -480,13 +490,13 @@ function addTest(_test){
   div += '</div>';
   div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="Résultat si test ok (dark)"/>';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="{{Résultat si test ok}} (dark)"/>';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
-  
+
   div += '</div>';
   div += '</div>';
   $('#div_templateTest').append(div);
@@ -512,8 +522,7 @@ $("#bt_addWidgets").off('click').on('click', function (event) {
 });
 
 $('#div_usedBy').off('click','.cmdAdvanceConfigure').on('click','.cmdAdvanceConfigure',function(){
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
 });
 
 $(".widgetsDisplayCard").off('click').on('click', function (event) {
@@ -592,7 +601,7 @@ $("#bt_mainImportWidgets").change(function(event) {
     $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
     return false
   }
-  
+
   if (uploadedFile) {
     bootbox.prompt("Nom du widget ?", function (result) {
       if (result !== null) {
@@ -647,7 +656,7 @@ $("#bt_importWidgets").change(function(event) {
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.readAsText(uploadedFile)
-    
+
     readFile.onload = function(e) {
       objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {

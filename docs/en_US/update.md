@@ -27,7 +27,7 @@ Once you click on it, you get these different options :
 - **Update plugins** : Allows you to include plugins in the update.
 - **Update the Core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
-- **Forced fashion** : Perform the update in forced fashion, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This fashion disables saving!).
+- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving !).
 - **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
 > **IMPORTANT**
@@ -40,13 +40,13 @@ Once you click on it, you get these different options :
 
 ## Core and Plugins tabs
 
-The table contains the Versions of the Core and installed plugins.
+The table contains the versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their Version, green in * stable *, or orange in * beta * or other.
+The plugins have a badge next to their name, specifying their version, green in color *Stable*, or orange in *Beta* Or other.
 
 - **Status** : OK or NOK.
 - **Last name** : Name and origin of the plugin
-- **Version** : Indicates the precise Version of the Core or plugin.
+- **Version** : Indicates the precise version of the Core or plugin.
 - **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
 On each line, you can use the following functions:
@@ -59,7 +59,7 @@ On each line, you can use the following functions:
 
 > **IMPORTANT**
 >
-> If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, of the documentation).
+> If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
 
 > **Tip**
@@ -68,28 +68,28 @@ On each line, you can use the following functions:
 
 ## Information tab
 
-During or after an update, this tab allows you to read the log of this update in real time..
+During or after an update, this tab allows you to read the log of this update in real time.
 
 > **NOTE**
 >
-> This log normally ends with * [END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this..
+> This log normally ends with *[END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
 
 ## Command line update
 
 It is possible to update Jeedom directly in SSH.
 Once connected, this is the command to perform :
 
-```sudo php /var/www/html/install/update.php```
+``````sudo php /var/www/html/install/update.php``````
 
 The possible parameters are :
 
-- **fashion** : `force`, pour lancer une mise à jour en fashion forcé (ne tient pas compte des erreurs).
-- **Version** : Version number tracking, to re-apply changes from this Version.
+- **fashion** : `force`, to launch an update in forced mode (ignores errors).
+- **Version** : Version number tracking, to re-apply changes from this version.
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 
-```sudo php  /var/www/html/install/update.php fashion=force Version=4.0.04```
+``````sudo php  /var/www/html/install/update.php mode=force version=4.0.04``````
 
 Attention, after an update on command line, it is necessary to re-apply the rights on the Jeedom folder :
 
-```sudo chown -R www-data:www-data /var/www/html```
+``````sudo chown -R www-data:www-data /var/www/html``````

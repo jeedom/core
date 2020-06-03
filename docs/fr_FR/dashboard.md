@@ -6,6 +6,19 @@
 Le dashboard  est une des pages principales de Jeedom, il affiche un compte-rendu de toute votre domotique.
 Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom, et comprend l'ensemble des objets visibles et leurs équipements.
 
+![Dashboard](../images/doc-dashboard-legends.png)
+
+- 1 : Menu principal de Jeedom.
+- 2 : Résumé global.
+- 3 : Heure du navigateur, raccourci vers la Timeline.
+- 4 : Bouton pour accéder à la documentation de la page en cours.
+- 5 : Nom de votre Jeedom, raccourci vers la configuration.
+- 6 : Mode édition (Réordonner / redimensionner les tuiles).
+- 7 : Filtre par catégories.
+- 8 : Objet : Icône, nom et résumé, et ses équipements.
+- 9 : Tuile d'un équipement.
+- 10 : Widget d'une commande.
+
 > **Tip**
 >
 > L'ordre d'affichage des objets sur le Dashboard est celui visible dans **Analyse → Résumé domotique**. Vous pouvez sur cette page modifier cet ordre par glisser - déposer.
@@ -30,11 +43,15 @@ De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) 
 > Cela permet de n’avoir que les équipements qui vous intéressent, et de charger la page plus rapidement.
 
 - Vous avez en haut à gauche une petite icône pour faire afficher/masquer l’arbre des objets.
-- La deuxième icône à gauche permet d'afficher seulement les informations des résumés des objets.
-- Au milieu, un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
-- A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile, 
+- Un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
+- L'icône à gauche du champ de recherche permet de filtrer les équipements affichés en fonction de leur catégorie. Un clic centre permet de rapidement sélectionner une seule catégorie.
+- A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile.
+
 - En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que les équipements ayant pour parent cet objet et qui concernent ce résumé d’objet.
+
 - Un clic sur une commande de type information permet d’afficher l’historique de la commande (si elle est historisée).
+- Un Ctrl+Clic sur une commande de type information permet d’afficher l’historique de toutes les commandes (historisées) de cette tuile.
+- Un clic sur l'information *time* d'une commande action permet d’afficher l’historique de la commande (si elle est historisée).
 
 > **Tip**
 >

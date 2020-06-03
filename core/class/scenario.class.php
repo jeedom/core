@@ -818,10 +818,11 @@ class scenario {
 			$replace['#isVerticalAlign#'] = 'verticalAlign';
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
+		$html =  translate::exec($html, 'core/template/widgets.html');
 		if(config::byKey('widget::disableCache','core',0) == 0){
 			cache::set('scenarioHtml' . $version . $this->getId(), $html);
 		}
-		return translate::exec($html, 'core/template/widgets.html');
+		return $html;
 	}
 	/**
 	*
@@ -1315,7 +1316,7 @@ class scenario {
 		} else {
 			if ($_complete) {
 				if ($_tag) {
-					$name .= '<span class="label label-default">' . __('Aucun', __FILE__) . '</span>';
+					$name .= '<span class="label labelObjectHuman">' . __('Aucun', __FILE__) . '</span>';
 				} else {
 					$name .= '[' . __('Aucun', __FILE__) . ']';
 				}

@@ -1,4 +1,4 @@
-# Ansichten
+# Vues
 **Home → Anzeigen**
 
 Mit Ansichten können Sie eine benutzerdefinierte Ansicht erstellen.
@@ -8,11 +8,11 @@ Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Mi
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
 
-## Prinzip
+## Principe
 
-Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die die Befehls-Widgets enthalten) einfügen..
+Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die Widgets von Befehlen enthalten) einfügen).
 
-Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer Ansicht (Jeedom fragt nach dem Namen und sendet Sie zur Bearbeitungsseite). :
+Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer Ansicht (Jeedom fragt Sie nach dem Namen und sendet Sie zur Bearbeitungsseite) :
 
 > **Spitze**
 >
@@ -20,7 +20,7 @@ Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausbl
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so viele setzen, wie Sie möchten).. Jede Zone ist vom Typ Grafik, Widget oder Tabelle, je nachdem, welchen Typ Sie Geräte-, Steuerungs- oder Grafik-Widgets hinzufügen können.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so viele Zonen einfügen, wie Sie möchten). Jede Zone ist vom Typ Grafik, Widget oder Tabelle, je nachdem, welchen Typ Sie Geräte-, Steuerungs- oder Grafik-Widgets hinzufügen können.
 
 > **Spitze**
 >
@@ -28,7 +28,7 @@ Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so vi
 
 - Links auf der Seite finden wir die Liste der Ansichten und eine Schaltfläche zum Hinzufügen.
 - Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht bearbeiten.
-- In der Mitte haben Sie eine Schaltfläche zum Umbenennen einer Ansicht, eine Schaltfläche zum Hinzufügen eines Bereichs, eine Schaltfläche zum Anzeigen des Ergebnisses, eine Schaltfläche zum Speichern und eine Schaltfläche zum Löschen der Ansicht..
+- In der Mitte haben Sie eine Schaltfläche zum Umbenennen einer Ansicht, eine Schaltfläche zum Hinzufügen eines Bereichs, eine Schaltfläche zum Anzeigen des Ergebnisses, eine Schaltfläche zum Speichern und eine Schaltfläche zum Löschen der Ansicht.
 
 Nach dem Klicken auf die Schaltfläche Zone hinzufügen fragt Jeedom nach Name und Typ.
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
@@ -57,7 +57,7 @@ Sobald die Schaltfläche Widget hinzufügen gedrückt wird, wird ein Fenster ang
 
 In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folgenden Optionen stehen zur Verfügung :
 
-- **Zeit** : Hier können Sie den Anzeigezeitraum für Grafiken auswählen (30 Minuten, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle)..
+- **Zeit** : Hier können Sie den Anzeigezeitraum der Grafiken auswählen (30 Minuten, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle)).
 - **Kurve hinzufügen** : Grafiken hinzufügen / bearbeiten.
 
 Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeedom die Liste der historischen Befehle an und Sie können die hinzuzufügenden Befehle auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
@@ -66,11 +66,11 @@ Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeed
 - **Name** : Name des zu zeichnenden Befehls.
 - **Farbe** : Farbe der Kurve.
 - **Typ** : Art der Kurve.
-- **Gruppe** : Ermöglicht das Gruppieren von Daten (maximaler Typ pro Tag).
+- **Gruppe** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
 - **Maßstab** : Skalieren (rechts oder links) der Kurve.
 - **Treppe** : Zeigt die Treppenkurve an.
 - **Stapel** : Stapelt die Kurve mit den anderen Kurventypen.
-- **Veränderung** : Zeichnen Sie nur Veränderungen mit dem vorherigen Wert.
+- **Veränderung** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
 
 > **Spitze**
 >
@@ -90,7 +90,7 @@ Hier haben Sie die Schaltflächen :
 Nachdem Sie Ihre Zeilen / Spalten hinzugefügt haben, können Sie Informationen in die Felder einfügen :
 
 - **Text** : Nur Text zum Schreiben.
-- **HTML** : jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
-- **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget für den Befehl angezeigt wird)..
+- **HTML** : Jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
+- **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget des Befehls angezeigt wird).
 
 

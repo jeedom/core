@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 var deviceInfo = getDeviceType()
 var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true}
 var clickedOpen = false
@@ -29,7 +31,7 @@ function unload_page(){
 
 $('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
 
-planHeaderContextMenu = {};
+var planHeaderContextMenu = {};
 for(var i in planHeader){
   planHeaderContextMenu[planHeader[i].id] = {
     name:planHeader[i].name,
@@ -351,8 +353,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
         },
         callback: function(key, opt){
           savePlan(false,false);
-          $('#md_modal').dialog({title: "{{Configuration du design}}"});
-          $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+          $('#md_modal').dialog({title: "{{Configuration du design}}"}).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open')
         }
       },
       sep3 : "---------",
@@ -389,8 +390,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
         icon:'fas fa-cogs',
         callback: function(key, opt){
           savePlan(false,false);
-          $('#md_modal').dialog({title: "{{Configuration du composant}}"});
-          $('#md_modal').load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open');
+          $('#md_modal').dialog({title: "{{Configuration du composant}}"}).load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open')
         }
       },
       configuration: {
@@ -616,7 +616,7 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
 $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
   if(editOption.state == true) return false
   event.stopPropagation()
-  var cmdIds = new Array()
+  var cmdIds = []
   $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
     cmdIds.push($(this).data('cmd_id'))
   })
@@ -670,10 +670,15 @@ function fullScreen(_mode) {
   }
 }
 
-
+//constrain dragging inside design area, supporting zoom:
 var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
 var dragStep = false
+var minLeft = 0
+var maxLeft = 0
+var maxTop = 0
+var isDragLocked = false
+var zoomScale = 1
 function draggableStartFix(event, ui) {
   isDragLocked = false
   if ($(event.target).hasClass('locked')) {
@@ -692,31 +697,30 @@ function draggableStartFix(event, ui) {
   dragClick.y = event.clientY
   dragStartPos = ui.originalPosition
 
-  $container = $('.div_displayObject')
-  containerWidth = $container.width()
-  containerHeight = $container.height()
+  var $container = $('.div_displayObject')
+  var containerWidth = $container.width()
+  var containerHeight = $container.height()
 
-  clientWidth = $(ui.helper[0]).width()
-  clientHeight = $(ui.helper[0]).height()
+  var clientWidth = $(ui.helper[0]).width()
+  var clientHeight = $(ui.helper[0]).height()
 
-  marginLeft = $(ui.helper[0]).css('margin-left')
-  marginLeft = parseFloat(marginLeft.replace('px', ''))
+  var marginLeft = $(ui.helper[0]).css('margin-left')
+  var marginLeft = parseFloat(marginLeft.replace('px', ''))
 
   minLeft = 0 - marginLeft
-  minTop = 0
 
   maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
-  maxTop = containerHeight + minTop - (clientHeight * zoomScale)
+  maxTop = containerHeight - (clientHeight * zoomScale)
 }
 function draggableDragFix(event, ui) {
   if (isDragLocked == true) return false
-  newLeft = event.clientX - dragClick.x + dragStartPos.left
-  newTop = event.clientY - dragClick.y + dragStartPos.top
+  var newLeft = event.clientX - dragClick.x + dragStartPos.left
+  var newTop = event.clientY - dragClick.y + dragStartPos.top
 
   if (newLeft < minLeft) newLeft = minLeft
   if (newLeft > maxLeft) newLeft = maxLeft
 
-  if (newTop < minTop) newTop = minTop
+  if (newTop < 0) newTop = 0
   if (newTop > maxTop) newTop = maxTop
 
   if (dragStep) {
@@ -737,6 +741,8 @@ function initEditOption(_state) {
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
+
+    //drag item:
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
       cancel: '.locked',
       containment: 'parent',
@@ -757,11 +763,17 @@ function initEditOption(_state) {
     }else{
       $('.div_grid').hide();
     }
+
+    //resize item:
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
       cancel: '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
+      containment: $('.div_displayObject'),
       start: function( event, ui ) {
-        zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+        if ($(this).attr('data-zoom') != '1') {
+          $(this).resizable("option", "containment", null)
+        }
+        var zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
         if (editOption.grid == 1) {
           dragStep = editOption.gridSize[0]
           dragStep = dragStep / zoomScale
@@ -771,8 +783,8 @@ function initEditOption(_state) {
       },
       resize: function( event, ui ) {
         if (dragStep) {
-          newWidth = (Math.round(ui.size.width / dragStep) * dragStep)
-          newHeight = (Math.round(ui.size.height / dragStep) * dragStep)
+          var newWidth = (Math.round(ui.size.width / dragStep) * dragStep)
+          var newHeight = (Math.round(ui.size.height / dragStep) * dragStep)
           ui.element.width(newWidth)
           ui.element.height(newHeight)
         }
@@ -780,7 +792,7 @@ function initEditOption(_state) {
       },
       stop: function( event, ui ) {
         savePlan(false,false);
-      }
+      },
     });
     $('.div_displayObject a').each(function () {
       if ($(this).attr('href') != '#') {
@@ -921,6 +933,7 @@ function displayPlan(_code) {
           addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom');
           initEditOption(editOption.state);
           initReportMode();
+          $(window).scrollTop(0);
         }
       });
     },
@@ -1026,6 +1039,9 @@ function displayObject(_plan,_html, _noRender) {
     }
     css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
+    if (init(_plan.display.transparentBackground, false)) {
+      _html = _html.replace('class="graph-widget"', 'class="graph-widget transparent"')
+    }
   }
   var html = $(_html);
 

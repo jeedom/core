@@ -11,23 +11,24 @@ if (is_array($scenarioListGroup)) {
 		$scenarios[$group['group']] = scenario::all($group['group']);
 	}
 }
+sendVarToJs('initSearch', init('search', 0));
 ?>
 
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer">
-			<div class="cursor logoPrimary" id="bt_addScenario2">
+			<div class="cursor logoPrimary" id="bt_addScenario">
 				<center><i class="fas fa-plus-circle"></i></center>
 				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
-				<div class="cursor success" id="bt_changeAllScenarioState2" data-state="1">
+				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<center><i class="fas fa-check"></i></center>
 					<span class="txtColor"><center>{{Activer scénarios}}</center></span>
 				</div>
 			<?php } else {?>
-				<div class="cursor danger" id="bt_changeAllScenarioState2" data-state="0">
+				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<center><i class="fas fa-times"></i></center>
 					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
 				</div>
@@ -129,7 +130,11 @@ if (is_array($scenarioListGroup)) {
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
-				<a class="btn btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
+
+				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)"><i class="fas fa-chevron-left"></i>
+				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)"><i class="fas fa-chevron-right"></i></a>
+
+				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
 				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
@@ -138,20 +143,20 @@ if (is_array($scenarioListGroup)) {
 				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
 
 				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
-				<a id="bt_resetInsideScenarioSearch" class="btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+				<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
 
-				<a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
+				<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
+				</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
+			<li role="presentation" class="active"><a id="bt_generalTab" href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
 			<li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Scénario}}</a></li>
 		</ul>
-		<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
+		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
 				<br/>
 				<div class="row">
@@ -243,7 +248,13 @@ if (is_array($scenarioListGroup)) {
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
 									</div>
 									<div class="col-xs-5">
-										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%">
+										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%;display:none;">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Dernier lancement}}</label>
+									<div class="col-xs-3">
+										<span class="label label-info scenarioAttr" data-l1key="lastLaunch"></span>
 									</div>
 								</div>
 								<div class="form-group">

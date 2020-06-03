@@ -15,7 +15,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+"use strict"
 
 $('.bt_systemCommand').off('click').on('click',function(){
   var command = $(this).attr('data-command');

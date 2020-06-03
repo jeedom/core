@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
 positionEqLogic();
 
 $("#tab_deadCmd").off("click").on("click", function () {

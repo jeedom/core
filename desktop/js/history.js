@@ -14,6 +14,14 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
+
+if(getUrlVars('timeline')){
+  $('#sel_timelineFolder').value(getUrlVars('timeline'));
+  $('#bt_tabTimeline').click();
+  displayTimeline();
+}
+
 var chart;
 var noChart = 1;
 var colorChart = 0;
@@ -39,7 +47,9 @@ $(function() {
 
 $(window).resize(function() {
   if ($('#div_graph').attr('data-highcharts-chart')) {
-    $('#div_graph').highcharts().setSize( $('#div_graph').width(), $('#div_graph').height())
+    var chart = $('#div_graph').highcharts()
+    chart.setSize( $('#div_graph').width(), $('#div_graph').height())
+    chart.pointer.chartPosition = void 0
   }
 })
 
@@ -91,8 +101,7 @@ $('#bt_displayCalculHistory').on('click',function(){
 });
 
 $('#bt_configureCalculHistory').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-  $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open');
 });
 
 $('#bt_clearGraph').on('click',function(){
@@ -107,7 +116,7 @@ $('#bt_clearGraph').on('click',function(){
   setChartOptions()
 });
 
-$(".in_datepicker").datepicker($.datepicker.regional[jeedom_langage.substring(0,2)])
+datePickerInit()
 
 $(".li_history .history").on('click', function (event) {
   $.hideAlert();
@@ -155,8 +164,7 @@ $(".li_history .export").on('click', function () {
 });
 
 $('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"});
-  $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
 
 $('#bt_validChangeDate').on('click',function(){
@@ -334,24 +342,23 @@ $('#bt_tabTimeline').on('click',function(){
   displayTimeline();
 });
 
-$('#table_timeline').on('click','.bt_scenarioLog',function(){
-  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
-});
+$('#timelineContainer ul').on('click','.bt_scenarioLog',function(){
+  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
+})
 
-$('#table_timeline').on('click','.bt_gotoScenario',function(){
+$('#timelineContainer ul').on('click','.bt_gotoScenario',function(){
   loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'));
 });
 
-$('#table_timeline').on('click','.bt_configureCmd',function(){
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open');
+$('#timelineContainer ul').on('click','.bt_configureCmd',function(){
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
 });
 
 $('#bt_refreshTimeline').on('click',function(){
   displayTimeline();
 });
 
+//exact same success function desktop/mobile:
 function displayTimeline(){
   jeedom.timeline.byFolder({
     folder : $('#sel_timelineFolder').value(),
@@ -359,52 +366,114 @@ function displayTimeline(){
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (data) {
+      data.sort(sortByDateConsistentASC)
       data = data.reverse()
-      var tr = ''
+      var dataLength = data.length
+      var decayFactor = 130
+
+      var isFirstOfDay, isLastOfDay = false
+      var nextDate, thisDateTs = false
+      var prevDate = moment().format("YYYY-MM-DD")
+      var prevDateTs = moment().unix()
+      var content = '<div class="label-warning day">'+data[0].date.substring(0,10)+'</div>'
       for (var i in data) {
-        tr += '<tr>'
-        tr += '<td>'
-        tr += data[i].date
-        tr += '</td>'
-        tr += '<td>'
-        if (data[i].group && data[i].plugins) {
-          if (data[i].group == 'action') {
-            tr += data[i].type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
-          } else {
-            tr += data[i].type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
+        var thisData = data[i]
+        var date = thisData.date.substring(0,10)
+        var time = thisData.date.substring(11,19)
+        thisDateTs = moment(thisData.date.substring(0,19)).unix()
+        var lineClass = ''
+
+        if (prevDate != date) {
+          isFirstOfDay = true
+          prevDateTs = moment(prevDate + ' 00:00:00').unix()
+        } else {
+          if (i < dataLength -1) {
+            nextDate = data[parseInt(i)+1].date.substring(0,10)
+            if (date != nextDate) {
+              isLastOfDay = true
+            }
           }
-          tr += '&#160&#160' + data[i].plugins
         }
-        if (data[i].type == 'scenario') {
-          tr += data[i].type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+
+        //actual time marker:
+        if (i == 0) {
+          var li = '<li style="background-color:transparent!important;">'
+          li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
+          li += '<div class="date">' + date + '</div>'
+          li += '</li>'
+          content += li
         }
-        tr += '</td>'
-        tr += '<td>'
-        tr += data[i].html
-        tr += '</td>'
-        tr += '</tr>'
+
+        //time spacing:
+        var style = ''
+        var height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
+        if (height > 5) {
+          style = 'margin-top:'+height+'px!important;'
+        }
+        if (isLastOfDay && i < dataLength -1) {
+          height = Math.abs((thisDateTs - moment(data[parseInt(i)+1].date.substring(0,19)).unix()) / decayFactor)
+          style += 'margin-bottom:'+height+'px!important;'
+        }
+        var li = '<li style="'+style+'">'
+        li += '<div>'
+
+        //scenario or cmd info/action:
+        li += '<div class="type">'
+        if (thisData.group && thisData.plugins) {
+          if (thisData.group == 'action') {
+            li += thisData.type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
+            lineClass = 'typeAction'
+          } else {
+            li += thisData.type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
+            lineClass = 'typeInfo'
+          }
+          li += '&#160&#160' + thisData.plugins
+        }
+        if (thisData.type == 'scenario') {
+          li += thisData.type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+          lineClass = 'typeScenario'
+        }
+        li += '</div>'
+
+        //html:
+        li += '<div class="html">'+thisData.html+'</div>'
+
+        li += '</div>'
+        li += '<span class="vertLine '+lineClass+'"></span>'
+        //time:
+        li += '<div class="time '+lineClass+'">'+time+'</div>'
+
+        //date:
+        li += '<div class="date">'+date+'</div>'
+
+        li += '</li>'
+        content += li
+
+        //newDay ?
+        if (isLastOfDay) {
+          content += '<div class="label-warning day">'+nextDate+'</div>'
+        }
+
+        prevDate = date
+        prevDateTs = thisDateTs
+        isFirstOfDay = isLastOfDay = false
       }
-      $('#table_timeline tbody').empty().append(tr).trigger('update')
-      $('#table_timeline').on('sortEnd', function(){
-        sepDays()
-      })
-      $('#timelinetab #table_timeline').find('th[data-column="0"]').trigger('sort').trigger('sort')
+      $('#timelineContainer ul').empty().append(content)
     }
-  });
-}
-
-function sepDays() {
-  doIt = false
-  if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-
-  prevDate = ''
-  $('#table_timeline tbody tr').each(function() {
-    thisDate = $(this).text().substring(0,10)
-    if (doIt && thisDate != prevDate) {
-      $(this).style('border-top', '1px dotted var(--txt-color)', 'important')
-    } else {
-      $(this).removeAttr('style')
-    }
-    prevDate = thisDate
   })
+}
+function sortByDateConsistentASC(itemA, itemB) {
+  var valueA = itemA.date
+  var valueB = itemB.date
+  var a = moment(valueA)
+  var b = moment(valueB)
+  var r = 0
+  if (a.isValid() && b.isValid()) {
+    r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
+  }
+  if(r === 0){
+    r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined')?
+    itemA.key - itemB.key : 0
+  }
+  return r
 }

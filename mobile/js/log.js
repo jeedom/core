@@ -1,5 +1,6 @@
-$('body').attr('data-page', 'log')
+"use strict"
 
+$('body').attr('data-page', 'log')
 
 function initLog(_log) {
 	$('#bt_eraseLogSearch').insertAfter($('#in_globalLogSearch'))

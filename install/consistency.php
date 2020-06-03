@@ -189,7 +189,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
+	$cron->setSchedule(rand(0,59).' '.rand(0,3).' * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
@@ -202,7 +202,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule('00 * * * * *');
+	$cron->setSchedule(rand(0,59).' * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -410,7 +410,7 @@ if(method_exists('utils','attrChanged')){
 				$changed = true;
 			}
 			if($changed){
-				$cmd->save();
+				$cmd->save(true);
 			}
 		} catch (Exception $exc) {
 			
@@ -436,7 +436,7 @@ if(version_compare($duplicity_version, '0.7.19','<')){
 	exec('sudo apt remove -y --purge duplicity');
 	exec('sudo wget https://images.jeedom.com/resources/duplicity/duplicity.tar.gz -O /tmp/duplicity.tar.gz');
 	exec('tar xvf /tmp/duplicity.tar.gz');
-	exec('cd duplicity-0.7.19; sudo python setup.py install');
+	exec('cd duplicity-0.7.19; sudo python setup.py install 2>&1 >> /dev/null');
 	exec('sudo rm -rf /tmp/duplicity.tar.gz');
 	exec('sudo rm -rf duplicity-0.7.19');
 }

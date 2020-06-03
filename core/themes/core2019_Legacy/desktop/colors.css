@@ -43,6 +43,7 @@ colors Legacy
   --cat-heating-color: 41, 128, 185;
   --cat-automatism-color: 128, 128, 128;
   --cat-light-color: 243, 156, 18;
+  --cat-opening-color: 100, 100, 100;
   --cat-multimedia-color: 52, 73, 94;
   --cat-energy-color: 46, 176, 75;
   --cat-other-color: 25, 188, 156;
@@ -52,6 +53,7 @@ colors Legacy
   --cat-heating-BtnColor: rgb(81, 168, 225);
   --cat-automatism-BtnColor: rgb(168, 168, 168);
   --cat-light-BtnColor: rgb(248, 189, 65);
+  --cat-opening-BtnColor: rgb(140, 140, 140);
   --cat-multimedia-BtnColor: rgb(98, 120, 145);
   --cat-energy-BtnColor: rgb(86, 216, 115);
   --cat-other-BtnColor: rgb(65, 228, 196);

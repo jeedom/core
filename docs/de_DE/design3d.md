@@ -12,9 +12,9 @@ Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhäng
 
 > **WICHTIG**
 >
-> Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Wir empfehlen das sehr gute SweetHome3d (http://www.sweethome3d.com/fr/).
+> Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein)..
+Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein).
 
 > **WICHTIG**
 >
@@ -47,7 +47,7 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 
 > **Spitze**
 >
-> Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5)..
+> Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
 
 
 ## Konfiguration von Elementen
@@ -58,25 +58,25 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 
 Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Element im 3D-Design zu konfigurieren. Dies zeigt ein Fenster an, in dem Sie können :
 
-- Geben Sie eine Art von Link an (derzeit ist nur Ausrüstung vorhanden).
+- Geben Sie einen Verbindungstyp an (derzeit ist nur Ausrüstung vorhanden)
 - Geben Sie den Link zu dem betreffenden Element ein. Hier können Sie momentan nur einen Link zu einem Gerät setzen. Dies ermöglicht es beim Klicken auf den Gegenstand, die Ausrüstung aufzurufen
 - Spezifität definieren: Es gibt einige, die wir gleich danach sehen werden. Dies ermöglicht es, den Gerätetyp und damit die Anzeige von Informationen festzulegen
 
 ### Licht
 
 - Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
-- Macht : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt)
+- Macht : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
 
-### Text
+### Texte
 
 - Text : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
 - Textgröße
 - Textfarbe
-- Texttransparenz : von 0 (unsichtbar) bis 1 (sichtbar)
+- Texttransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
 - Hintergrundfarbe
-- Hintergrundtransparenz : von 0 (unsichtbar) bis 1 (sichtbar)
+- Hintergrundtransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
 - Randfarbe
-- Grenztransparenz : von 0 (unsichtbar) bis 1 (sichtbar)
+- Grenztransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
 - Platz über dem Objekt : Ermöglicht die Angabe des Abstands des Texts zum Element
 
 ### Tür / Fenster
@@ -84,25 +84,25 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 #### Tür / Fenster
 
 - Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
-- Drehung
+- Rotation
 	- Activate : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
 	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
-- Übersetzung
-	- Activate : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp)
+- Translation
+	- Activate : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp))
 	- Bedeutung : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
 	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
 - Verstecken, wenn die Tür / das Fenster geöffnet ist
 	- Activate : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
-- Farbe
+- Couleur
 	- Farbe öffnen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
 
-#### Klappe
+#### Volet
 
 - Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
 	- Activate : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
-- Farbe
+- Couleur
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 
 ### Bedingte Farbe

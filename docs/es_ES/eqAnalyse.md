@@ -1,7 +1,7 @@
 # Análisis de equipos
 **Análisis → Equipo**
 
-La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada. :
+La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada :
 
 - El estado de tus baterías
 - Módulos en alerta
@@ -20,18 +20,18 @@ Puede ver en esta pestaña la lista de sus módulos de batería, su nivel restan
 
 ## Módulos en la pestaña de alerta
 
-En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos. :
+En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos :
 
 - Tiempo de espera (configurado en la pestaña de alertas definidas).
 - Batería en advertencia o en peligro.
-- Comando de advertencia o peligro (configurable en los parámetros del comando avanzado).
+- Comando de advertencia o peligro (configurable en parámetros de comando avanzados).
 
 Otros tipos de alertas se pueden encontrar aquí.
 Cada alerta estará representada por el color del mosaico (el nivel de alerta) y un logotipo en la parte superior izquierda (el tipo de alerta).
 
 > **Punta**
 >
-> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está &quot;visible&quot;, la alerta también estará visible en el tablero (en el objeto en cuestión).
+> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está "visible", la alerta también estará visible en el tablero (en el objeto en cuestión)).
 
 ## Pestaña Acciones definidas
 
@@ -44,7 +44,7 @@ Esta pestaña le permite ver las acciones definidas directamente en un pedido. D
 
 > **Punta**
 >
-> La tabla proporciona una vista muy textual de las acciones definidas.. Se pueden agregar otros tipos de acciones definidas.
+> La tabla proporciona una vista muy textual de las acciones definidas. Se pueden agregar otros tipos de acciones definidas.
 
 ## Pestaña Alertas definidas
 
@@ -70,4 +70,4 @@ Y se usa en muchos otros lugares como (no exhaustivo) :
 
 > **Punta**
 >
-> La tabla proporciona una vista muy textual de los comandos huérfanos.. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.
+> La tabla proporciona una vista muy textual de los comandos huérfanos. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.

@@ -96,7 +96,7 @@ sendVarToJS('market_display_info', $market_array);
 				$purchase_info = repo_market::getPurchaseInfo();
 				if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 					?>
-					<a class="btn btn-default" href='https://www.jeedom.com/market/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
+					<a class="btn btn-default" href='<?php echo config::byKey('market::address'); ?>/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
 					<?php
 					if ($market->getCertification() !== 'Premium') {
 						echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
@@ -174,7 +174,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='col-sm-6'>
 		<legend>{{Compatibilité plateforme}}</legend>
 		<?php
-        if ($market->getHardwareCompatibility('v4') == 1) {
+		if ($market->getHardwareCompatibility('v4') == 1) {
 			echo '<img src="core/img/logo_market_v4.png" style="width:60px;height:60px;" />';
 		}
 		if ($market->getHardwareCompatibility('diy') == 1) {
@@ -202,17 +202,6 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 					<span class="marketAttr" data-l1key="rating" style="font-size: 4em;"></span>/5
 				</center>
 			</div>
-			<div class='col-sm-6'>
-				<?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {?>
-					<div class="form-group">
-						<label class="col-sm-4 control-label">{{Ma Note}}</label>
-						<div class="col-sm-8">
-							<span><input style="display:none;" type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
-						</div>
-					</div><br/>
-				<?php }
-				?>
-			</div>
 		</div>
 	</div>
 	<div class='col-sm-6'>
@@ -226,7 +215,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-
+			
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -234,11 +223,11 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			<div class='col-sm-2'>
 				<label class="control-label">{{Lien}}</label><br/>
 				<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br/>
 				<?php }
 				?>
 				<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br/>
 				<?php }
 				?>
 			</div>
@@ -246,7 +235,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-
+			
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -278,7 +267,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-
+	
 </div>
 
 <style>
@@ -344,7 +333,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-
+	
 });
 
 $('#bt_removeFromMarket').on('click', function () {
