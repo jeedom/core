@@ -82,8 +82,6 @@ step_2_mainpackage() {
 step_3_database() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
-  echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
-  echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
   apt_install mariadb-client mariadb-common mariadb-server
   
   service_action status mysql > /dev/null 2>&1
@@ -262,7 +260,7 @@ step_8_jeedom_customization() {
 step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}commence l'étape 9 configuration de jeedom${NORMAL}"
-  echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
+  echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot > /dev/null 2>&1
   mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
   mysql_sql "DROP DATABASE IF EXISTS jeedom;"
   mysql_sql "CREATE DATABASE jeedom;"
