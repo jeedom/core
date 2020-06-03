@@ -16,6 +16,8 @@
 
 "use strict"
 
+var deepUrl = window.location.href
+
 $('#in_login_username').on('focusout change keypress',function(){
   jeedom.user.useTwoFactorAuthentification({
     login: $('#in_login_username').value(),
@@ -53,7 +55,11 @@ $('#bt_login_validate').on('click', function() {
       }else{
         $('.veen').animateCss('bounceOut', function(){
           $('.veen').hide();
-          window.location.href = 'index.php?v=d';
+          if (isset(deepUrl) && deepUrl.includes('index.php?v=d')) {
+            window.location.href = deepUrl;
+          } else {
+            window.location.href = 'index.php?v=d';
+          }
         });
       }
     }
