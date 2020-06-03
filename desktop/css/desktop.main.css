@@ -2383,6 +2383,9 @@ body[data-page="custom"] .CodeMirror {
 .tab-content pre {
   background-color: rgba(0,0,0,0)!important;
 }
+.tab-content ul.nav.nav-tabs li a {
+  border-top: 1px solid var(--el-defaultColor) !important;
+}
 ul.nav.nav-tabs li,
 .nav-tabs > li > a {
   font-size: 14px;

@@ -1491,13 +1491,13 @@ user::isBan();
 		<div role="tabpanel" class="tab-pane" id="updatetab">
 			<br/>
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<form class="form-horizontal">
 						<fieldset>
 							<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
 							<div class="form-group">
-								<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
-								<div class="col-lg-4 col-xs-6">
+								<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
+								<div class="col-lg-3 col-md-4 col-xs-5">
 									<select class="form-control configKey" data-l1key="core::repo::provider">
 										<option value="default">{{Défaut}}</option>
 										<?php
@@ -1515,27 +1515,30 @@ user::isBan();
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}
+								<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Version du core}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 								</label>
-								<div class="col-lg-4 col-xs-6">
+								<div class="col-lg-3 col-md-4 col-xs-5">
 									<select class="form-control configKey" data-l1key="core::branch">
 										<option value="V4-stable">{{Stable v4}}</option>
 										<option value="beta">{{Beta (Pas de support)}}</option>
 										<option value="alpha">{{Alpha (Pas de support)}}</option>
 									</select>
 								</div>
-								<div class="form-group">
-									<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
-									<div class="col-sm-1">
-										<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
+								<div class="col-sm-1">
+									<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
 								</div>
 							</div>
 						</fieldset>
 					</form>
 				</div>
-				<div class="col-sm-6">
+			</div>
+			<br/><br/>
+			<div class="row">
+				<div class="col-sm-12">
 					<form class="form-horizontal">
 						<fieldset>
 							<legend>{{Configuration des dépôts}}</legend>
@@ -1555,7 +1558,7 @@ user::isBan();
 									$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
 									$div .= '<br/>';
 									$div .= '<div class="form-group">';
-									$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
+									$div .= '<label class="col-lg-3 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
 									$div .= '<div class="col-sm-1">';
 									$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
 									$div .= '</div>';
@@ -1568,10 +1571,10 @@ user::isBan();
 									$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
 									foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
 										$div .= '<div class="form-group">';
-										$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
+										$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">';
 										$div .= $parameter['name'];
 										$div .= '</label>';
-										$div .= '<div class="col-sm-6">';
+										$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
 										$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 										switch ($parameter['type']) {
 											case 'checkbox':
@@ -1599,8 +1602,8 @@ user::isBan();
 									}
 									if (isset($value['scope']['test']) && $value['scope']['test']) {
 										$div .= '<div class="form-group">';
-										$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
-										$div .= '<div class="col-sm-4">';
+										$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
+										$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
 										$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
 										$div .= '</div>';
 										$div .= '</div>';
