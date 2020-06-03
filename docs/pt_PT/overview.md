@@ -3,6 +3,8 @@
 
 A página *Síntese* oferece uma síntese visual centralizada de seus objetos e seus resumos.
 
+![Síntese](./images/synthesis_intro.gif)
+
 Para que assuma todo o seu significado, você deve configurar os resumos e uma imagem de plano de fundo em cada objeto.
 
 Você pode configurá-lo como a página padrão em **Configurações → Preferências**, no computador e / ou celular.

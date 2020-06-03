@@ -3,6 +3,8 @@
 
 Die Seite *Synthese* bietet Ihnen eine zentralisierte visuelle Synthese Ihrer Objekte und ihrer Zusammenfassungen.
 
+![Synthese](./images/synthesis_intro.gif)
+
 Damit es seine volle Bedeutung annimmt, müssen Sie die Zusammenfassungen und ein Hintergrundbild für jedes Objekt konfigurieren.
 
 Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.

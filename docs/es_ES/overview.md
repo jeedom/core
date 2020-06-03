@@ -3,6 +3,8 @@
 
 La página *Síntesis* le ofrece una síntesis visual centralizada de sus objetos y sus resúmenes.
 
+![Síntesis](./images/synthesis_intro.gif)
+
 Para que tome su significado completo, debe configurar los resúmenes y una imagen de fondo en cada objeto.
 
 Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
