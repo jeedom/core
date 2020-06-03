@@ -610,7 +610,7 @@ class scenarioExpression {
 		return history::stateChanges($cmd_id, $_value, $_startTime, $_endTime);
 	}
 
-	public static function duration($_cmd_id, $_value, $_period = '1 hour') {
+	public static function duration($_cmd_id, $_value, $_period = '1 hour', $_unit = 60) {
 		$cmd_id = str_replace('#', '', $_cmd_id);
 		if (!is_numeric($cmd_id)) {
 			$cmd_id = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
@@ -656,10 +656,10 @@ class scenarioExpression {
 		if ($lastValue == $_value && $lastDuration <= $endTime) {
 			$duration = $duration + ($endTime - $lastDuration);
 		}
-		return floor($duration / 60);
+		return floor($duration / $_unit);
 	}
 
-	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate) {
+	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate, $_unit = 60) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
@@ -699,7 +699,7 @@ class scenarioExpression {
 		if ($lastValue == $_value && $lastDuration <= strtotime($_endTime)) {
 			$duration = $duration + (strtotime($_endTime) - $lastDuration);
 		}
-		return floor($duration / 60);
+		return floor($duration / $_unit);
 	}
 
 	public static function lastBetween($_cmd_id, $_startDate, $_endDate) {
