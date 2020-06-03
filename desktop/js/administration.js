@@ -816,12 +816,12 @@ $pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=choose
   var icon = false
   var color = false
   if ( $(this).parent().find('.objectSummaryAttr > i').length ) {
-    color = '';
-    class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
-    class_icon = class_icon.replace(' ', '.').split(' ');
-    icon = '.'+class_icon[0];
-    if(class_icon[1]){
-      color = class_icon[1];
+    var color = ''
+    var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
+    class_icon = class_icon.replace(' ', '.').split(' ')
+    var icon = '.'+class_icon[0];
+    if (class_icon[1]) {
+      color = class_icon[1]
     }
 
   }
