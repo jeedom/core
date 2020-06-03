@@ -47,6 +47,9 @@ function initOverview() {
           $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
             $(this).detach().appendTo(parent)
           })
+          if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
+            $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
+          }
           $(this).find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
         })
 
@@ -98,10 +101,14 @@ function createSummaryObserver() {
 
 function updateSummary(_className) {
   var parent = $('.'+_className).closest('.objectPreview')
+  var pResume = parent.find('.resume')
   parent.find('.topPreview').find('.objectSummaryParent').remove()
-  parent.find('.resume').find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
-      $(this).detach().appendTo(parent.find('.topPreview'))
-    })
-  parent.find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
+  pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
+    $(this).detach().appendTo(parent.find('.topPreview'))
+  })
+  if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
+    pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
+  }
+  pResume.find('.objectSummaryParent').eq(-7).after("<br />")
   colorizeSummary()
 }

@@ -709,18 +709,18 @@ sup i {
   left: -5px;
   top: -5px;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
   top: 10px;
   right: 58px;
   font-size: 20px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="humidity"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
   top: 10px;
   right: 6px;
   font-size: 20px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] i,
-.objectPreview .objectSummaryParent[data-summary="humidity"] i {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] i {
   display: none;
 }
 

@@ -1402,16 +1402,16 @@ a.ui-table-columntoggle-btn {
   top: -3px;
 }
 
-.objectPreview .objectSummaryParent[data-summary="temperature"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
   right: 55px;
   font-size: 18px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="humidity"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
   right: 2px;
   font-size: 18px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] i,
-.objectPreview .objectSummaryParent[data-summary="humidity"] i {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] i {
   display: none;
 }
 
