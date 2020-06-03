@@ -359,20 +359,17 @@ distrib_1_spe(){
 STEP=0
 VERSION=V4-stable
 WEBSERVER_HOME=/var/www/html
-HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-INSTALLATION_TYPE=''
+INSTALLATION_TYPE='standard'
 
-while getopts ":s:v:w:h:m:" opt; do
+while getopts ":s:v:w:m:i:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
     v) VERSION="$OPTARG"
     ;;
     w) WEBSERVER_HOME="$OPTARG"
-    ;;
-    h) HTML_OUTPUT=1
     ;;
     m) MYSQL_ROOT_PASSWD="$OPTARG"
     ;;
@@ -383,27 +380,10 @@ while getopts ":s:v:w:h:m:" opt; do
   esac
 done
 
-if [ ${HTML_OUTPUT} -eq 1 ]; then
-  VERT="</pre><span style='color:green;font-weight: bold;'>"
-  NORMAL="</span><pre>"
-  ROUGE="<span style='color:red;font-weight: bold;'>"
-  ROSE="<span style='color:pink;font-weight: bold;'>"
-  BLEU="<span style='color:blue;font-weight: bold;'>"
-  BLANC="<span style='color:white;font-weight: bold;'>"
-  BLANCLAIR="<span style='color:blue;font-weight: bold;'>"
-  JAUNE="<span style='color:#FFBF00;font-weight: bold;'>"
-  CYAN="<span style='color:blue;font-weight: bold;'>"
-  echo "<script>"
-  echo "setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 100);"
-  echo "setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 300);"
-  echo "setTimeout(function(){ location.reload(); }, 1000);"
-  echo "</script>"
-  echo "<pre>"
-fi
-
-echo "${JAUNE}Bienvenue dans l'installateur de Jeedom${NORMAL}"
-echo "${JAUNE}Version d'installation de Jeedom : ${VERSION}${NORMAL}"
-echo "${JAUNE}Dossier principal du serveur web : ${WEBSERVER_HOME}${NORMAL}"
+echo "${JAUNE}Welcome to Jeedom installer${NORMAL}"
+echo "${JAUNE}Jeedom version : ${VERSION}${NORMAL}"
+echo "${JAUNE}Web folder : ${WEBSERVER_HOME}${NORMAL}"
+echo "${JAUNE}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
 
 case ${STEP} in
   0)
