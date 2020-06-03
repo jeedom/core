@@ -24,7 +24,7 @@ apt_install() {
 }
 
 mysql_sql() {
-  echo "$@" | mysql -uroot -p${MYSQL_ROOT_PASSWD}
+  echo "$@" | mysql -uroot
   if [ $? -ne 0 ]; then
     echo "${ROUGE}Ne peut exécuter $@ dans MySQL - Annulation${NORMAL}"
     exit 1
@@ -82,8 +82,6 @@ step_2_mainpackage() {
 step_3_database() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
-  echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
-  echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
   apt_install mariadb-client mariadb-common mariadb-server
   
   service_action status mysql > /dev/null 2>&1
@@ -95,8 +93,6 @@ step_3_database() {
     echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
     exit 1
   fi
-  
-  mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
   
   echo "${VERT}étape 3 base de données réussie${NORMAL}"
 }
@@ -264,7 +260,7 @@ step_8_jeedom_customization() {
 step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}commence l'étape 9 configuration de jeedom${NORMAL}"
-  echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
+  echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot > /dev/null 2>&1
   mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
   mysql_sql "DROP DATABASE IF EXISTS jeedom;"
   mysql_sql "CREATE DATABASE jeedom;"
@@ -360,7 +356,6 @@ distrib_1_spe(){
 STEP=0
 VERSION=V4-stable
 WEBSERVER_HOME=/var/www/html
-MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
 
@@ -371,8 +366,6 @@ while getopts ":s:v:w:m:i:" opt; do
     v) VERSION="$OPTARG"
     ;;
     w) WEBSERVER_HOME="$OPTARG"
-    ;;
-    m) MYSQL_ROOT_PASSWD="$OPTARG"
     ;;
     i) INSTALLATION_TYPE="$OPTARG"
     ;;
@@ -402,7 +395,6 @@ case ${STEP} in
   step_11_jeedom_post
   step_12_jeedom_check
   distrib_1_spe
-  echo "/!\ IMPORTANT /!\ Le mot de passe root MySQL est ${MYSQL_ROOT_PASSWD}"
   echo "Installation finie. Un redémarrage devrait être effectué"
   ;;
   1) step_1_upgrade
