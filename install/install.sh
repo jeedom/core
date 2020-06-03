@@ -31,6 +31,19 @@ mysql_sql() {
   fi
 }
 
+service_action(){
+  if [ ${INSTALLATION_TYPE} == 'pigen' ];then
+    service $2 $1
+    exit $?
+  else
+    systemctl $1 $2
+    if [ $? -ne 0 ]; then
+      service $2 $1
+      exit $?
+    fi
+  fi
+}
+
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 1 de la révision${NORMAL}"
@@ -75,23 +88,14 @@ step_3_database() {
   
   mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
   
-  systemctl status mysql > /dev/null 2>&1
+  service_action status mysql > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    service mysql status
-    if [ $? -ne 0 ]; then
-      systemctl start mysql > /dev/null 2>&1
-      if [ $? -ne 0 ]; then
-        service mysql start > /dev/null 2>&1
-      fi
-    fi
+    service_action start mysql > /dev/null 2>&1
   fi
-  systemctl status mysql > /dev/null 2>&1
+  service_action status mysql > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    service mysql status
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
-      exit 1
-    fi
+    echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
+    exit 1
   fi
   echo "${VERT}étape 3 base de données réussie${NORMAL}"
 }
@@ -162,13 +166,10 @@ step_7_jeedom_customization_mysql() {
   echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
   systemctl daemon-reload
   
-  systemctl stop mysql > /dev/null 2>&1
+  service_action stop mysql > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    service mysql stop
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Ne peut arrêter mysql - Annulation${NORMAL}"
-      exit 1
-    fi
+    echo "${ROUGE}Ne peut arrêter mysql - Annulation${NORMAL}"
+    exit 1
   fi
   
   rm /var/lib/mysql/ib_logfile*
@@ -191,13 +192,10 @@ step_7_jeedom_customization_mysql() {
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
-  systemctl start mysql > /dev/null 2>&1
+  service_action start mysql > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    service mysql start
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
-      exit 1
-    fi
+    echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
+    exit 1
   fi
   
   echo "${VERT}étape 7 personnalisation de jeedom mysql réussie${NORMAL}"
@@ -242,13 +240,10 @@ step_8_jeedom_customization() {
   done
   
   a2dismod status
-  systemctl restart apache2 > /dev/null 2>&1
+  service_action restart apache2 > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    service apache2 restart
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Ne peut redémarrer apache - Annulation${NORMAL}"
-      exit 1
-    fi
+    echo "${ROUGE}Ne peut redémarrer apache - Annulation${NORMAL}"
+    exit 1
   fi
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
@@ -260,7 +255,7 @@ step_8_jeedom_customization() {
   echo 'Restart=always' >> /lib/systemd/system/fail2ban.service.d/override.conf
   echo 'RestartSec=10' >> /lib/systemd/system/fail2ban.service.d/override.conf
   systemctl daemon-reload
-  systemctl restart fail2ban > /dev/null 2>&1
+  service_action restart fail2ban > /dev/null 2>&1
   
   echo "${VERT}étape 8 personnalisation de jeedom réussie${NORMAL}"
 }
@@ -367,6 +362,7 @@ WEBSERVER_HOME=/var/www/html
 HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+INSTALLATION_TYPE=''
 
 while getopts ":s:v:w:h:m:" opt; do
   case $opt in
@@ -379,6 +375,8 @@ while getopts ":s:v:w:h:m:" opt; do
     h) HTML_OUTPUT=1
     ;;
     m) MYSQL_ROOT_PASSWD="$OPTARG"
+    ;;
+    i) INSTALLATION_TYPE="$OPTARG"
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
