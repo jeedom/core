@@ -226,7 +226,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<a class="btn btn-default" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
+								<a class="btn btn-default btn-sm" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
 							</div>
 							<?php
 							if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
@@ -258,11 +258,8 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<span class="userAttr" data-l1key="hash"></span>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
 						<div class="col-lg-2 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
+							<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
 						</div>
 					</div>
 				</fieldset>

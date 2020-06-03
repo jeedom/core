@@ -2044,7 +2044,7 @@ fieldset > div {
 
 [class*="col-"] {
   position: relative;
-  min-height: 1px;
+  min-height: 28px !important;
   padding-left: 1em !important;
   padding-right: 1em !important;
 }
