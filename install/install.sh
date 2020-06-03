@@ -26,20 +26,20 @@ apt_install() {
 mysql_sql() {
   echo "$@" | mysql -uroot -p${MYSQL_ROOT_PASSWD}
   if [ $? -ne 0 ]; then
-    echo "C${ROUGE}Ne peut exécuter $@ dans MySQL - Annulation${NORMAL}"
+    echo "${ROUGE}Ne peut exécuter $@ dans MySQL - Annulation${NORMAL}"
     exit 1
   fi
 }
 
 service_action(){
-  if [ ${INSTALLATION_TYPE} == 'pigen' ];then
+  if [ "${INSTALLATION_TYPE}" = "pigen" ];then
     service $2 $1
-    exit $?
+    return $?
   else
     systemctl $1 $2
     if [ $? -ne 0 ]; then
       service $2 $1
-      exit $?
+      return $?
     fi
   fi
 }
@@ -86,8 +86,6 @@ step_3_database() {
   echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
   apt_install mariadb-client mariadb-common mariadb-server
   
-  mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
-  
   service_action status mysql > /dev/null 2>&1
   if [ $? -ne 0 ]; then
     service_action start mysql > /dev/null 2>&1
@@ -97,6 +95,9 @@ step_3_database() {
     echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
     exit 1
   fi
+  
+  mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
+  
   echo "${VERT}étape 3 base de données réussie${NORMAL}"
 }
 
