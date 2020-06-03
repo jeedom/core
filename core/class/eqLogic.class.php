@@ -318,12 +318,13 @@ class eqLogic {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifiez les piles)', __FILE__);
+						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
-						if (config::byKey('alert::addMessageOnTimeout') == 1) {
+						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
 							message::add('core', $message, '', $logicalId);
 						}
 						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
-						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '') {
+						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '' && $prevStatus == 0) {
 							foreach ($cmds as $id) {
 								$cmd = cmd::byId(str_replace('#', '', $id));
 								if (is_object($cmd)) {
