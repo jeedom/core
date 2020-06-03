@@ -8,6 +8,7 @@ Changelog Jeedom V4
 - Renforcement de la securité des cookies
 - Utilisation de chromium (si il est installé) pour les rapports
 - Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur
+- Correction de bugs
 
 4.0.55
 =====
