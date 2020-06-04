@@ -1,12 +1,43 @@
 #!/bin/bash
 echo 'Start init'
 
+if [ -f /var/www/html/core/config/common.config.php ]; then
+	echo 'Jeedom is already install'
+else
+	echo 'Start jeedom installation'
+	rm -rf /root/install.sh
+	wget https://raw.githubusercontent.com/jeedom/core/alpha/install/install.sh -O /root/install.sh
+	chmod +x /root/install.sh
+	/root/install.sh -s 6
+	if [ $(which mysqld | wc -l) -ne 0 ]; then
+		chown -R mysql:mysql /var/lib/mysql
+		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
+		service mysql restart
+		MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+		echo "DROP USER 'jeedom'@'localhost';" | mysql > /dev/null 2>&1
+		echo  "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
+		echo  "DROP DATABASE IF EXISTS jeedom;" | mysql
+		echo  "CREATE DATABASE jeedom;" | mysql
+		echo  "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
+		cp /var/www/html/core/config/common.config.sample.php /var/www/html/core/config/common.config.php
+		sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#DBNAME#/jeedom/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#USERNAME#/jeedom/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#PORT#/3306/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#HOST#/localhost/g" /var/www/html/core/config/common.config.php
+		/root/install.sh -s 10
+		/root/install.sh -s 11
+	fi
+fi
+
 echo 'Start atd'
-service atd start
+service atd restart
 
-
-echo 'Starting mysql'
-service mysql start
+if [ $(which mysqld | wc -l) -ne 0 ]; then
+	echo 'Starting mysql'
+	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
+	service mysql restart
+fi
 
 if ! [ -f /.jeedom_backup_restore ]; then
 	if [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
@@ -28,17 +59,7 @@ chmod 777 -R /tmp
 chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
-echo 'Verify .dockerinit to recognize docker installation for jeedom'
-if ! [ -f /.dockerinit ]; then
-        touch /.dockerinit
-        chmod 755 /.dockerinit
-fi
-
-echo 'Remove /tmp/jeedom/started file'
-rm -f /tmp/jeedom/started
-
 echo 'Start apache2'
 service apache2 start
 
-echo 'Start cron'
 cron -f
