@@ -26,7 +26,7 @@ $("#md_specifyUpdate").dialog({
   autoOpen: false,
   modal: true,
   width: 480,
-  height: 400,
+  height: 460,
   open: function () {
     $("body").css({overflow: 'hidden'})
     $(this).parent().css({'top': 120})
