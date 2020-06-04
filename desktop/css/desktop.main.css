@@ -2048,6 +2048,11 @@ fieldset > div {
   padding-left: 1em !important;
   padding-right: 1em !important;
 }
+
+.eqLogic-widget [class*="col-"] {
+  min-height: 1px !important;
+}
+
 :not(.form-group) > [class*="col-xs-"] {
   margin-bottom: 4px;
 }
