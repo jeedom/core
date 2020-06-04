@@ -238,10 +238,7 @@ step_8_jeedom_customization() {
   
   a2dismod status
   service_action restart apache2 > /dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut redémarrer apache - Annulation${NORMAL}"
-    exit 1
-  fi
+  
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
   
