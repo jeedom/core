@@ -396,7 +396,7 @@ function triggerThemechange() {
   }
 }
 
-function setBackgroundImg(_path){
+function setBackgroundImg(_path) {
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
@@ -427,25 +427,24 @@ function setBackgroundImg(_path){
 //Jeedom UI__
 function initJeedomModals() {
   $.fn.modal.Constructor.prototype.enforceFocus = function () {}
-  setTimeout(function() {
-    if ( isset(jeedom_langage) ) {
-      var lang = jeedom_langage.substr(0, 2)
-      var supportedLangs = ['fr', 'de', 'es']
-      if ( lang != 'en' && supportedLangs.includes(lang) ) {
-        bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
-        bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})
-        bootbox.addLocale('es', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular'})
-        bootbox.setLocale('fr')
-      }
-    }
-  }, 250)
 
-  $('body').on('show', '.modal',function () {
+  if ( isset(jeedom_langage) ) {
+    var lang = jeedom_langage.substr(0, 2)
+    var supportedLangs = ['fr', 'de', 'es']
+    if ( lang != 'en' && supportedLangs.includes(lang) ) {
+      bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
+      bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})
+      bootbox.addLocale('es', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular'})
+      bootbox.setLocale('fr') //needed for date format
+    }
+  }
+
+  $('body').on('show', '.modal',function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   });
 
-  $('body').on('focusin','.bootbox-input', function (event) {
+  $('body').on('focusin','.bootbox-input', function(event) {
     event.stopPropagation()
   })
 
@@ -453,51 +452,51 @@ function initJeedomModals() {
     $(this).find(".bootbox-accept").focus()
   })
 
-  $("#md_reportBug").dialog({
+  $('#md_reportBug').dialog({
     autoOpen: false,
     modal: true,
     closeText: '',
     height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
     width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-    position: { my: "center center-10", at: "center center", of: window },
-    open: function () {
-      $("body").css({overflow: 'hidden'})
-      $(this).closest( ".ui-dialog" ).find(":button").blur()
+    position: { my: 'center center-10', at: 'center center', of: window },
+    open: function() {
+      $('body').css({overflow: 'hidden'})
+      $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-        position: { my: "center center-10", at: "center center", of: window },
+        position: { my: 'center center-10', at: 'center center', of: window }
       })
-      setTimeout(function(){initTooltips($("#md_reportBug"))}, 500)
+      setTimeout(function(){initTooltips($('#md_reportBug'))}, 500)
     },
-    beforeClose: function (event, ui) {
+    beforeClose: function(event, ui) {
       emptyModal('md_reportBug')
     }
   })
 
-  $("#md_modal").dialog({
+  $('#md_modal').dialog({
     autoOpen: false,
     modal: true,
     closeText: '',
     height: (jQuery(window).height() - 125),
     width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
     position: {my: 'center bottom-50', at: 'center bottom', of: window},
-    open: function () {
-      $('body').css({overflow: 'hidden'});
+    open: function() {
+      $('body').css({overflow: 'hidden'})
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: (jQuery(window).height() - 125),
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center bottom-50', at: 'center bottom', of: window},
-      });
-      setTimeout(function(){initTooltips($("#md_modal"))} ,500)
+        position: {my: 'center bottom-50', at: 'center bottom', of: window}
+      })
+      setTimeout(function(){initTooltips($('#md_modal'))}, 500)
     },
-    beforeClose: function (event, ui) {
+    beforeClose: function(event, ui) {
       emptyModal('md_modal')
     }
   })
 
-  $("#md_modal2").dialog({
+  $('#md_modal2').dialog({
     autoOpen: false,
     modal: true,
     closeText: '',
@@ -505,21 +504,21 @@ function initJeedomModals() {
     width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
     position: {my: 'center bottom-50', at: 'center bottom',  of: window},
     open: function () {
-      $("body").css({overflow: 'hidden'});
-      $(this).closest( ".ui-dialog" ).find(":button").blur();
+      $('body').css({overflow: 'hidden'})
+      $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: (jQuery(window).height() - 125),
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
-      });
-      setTimeout(function(){initTooltips($("#md_modal2"))}, 500)
+      })
+      setTimeout(function(){initTooltips($('#md_modal2'))}, 500)
     },
     beforeClose: function (event, ui) {
       emptyModal('md_modal2')
     }
   })
 
-  $("#md_modal3").dialog({
+  $('#md_modal3').dialog({
     autoOpen: false,
     modal: true,
     closeText: '',
@@ -527,14 +526,14 @@ function initJeedomModals() {
     width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
     position: {my: 'center bottom-50', at: 'center bottom',  of: window},
     open: function () {
-      $("body").css({overflow: 'hidden'});
-      $(this).closest( ".ui-dialog" ).find(":button").blur()
+      $('body').css({overflow: 'hidden'})
+      $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height : (jQuery(window).height() - 125),
         width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
-      });
-      setTimeout(function(){initTooltips($("#md_modal3"))}, 500)
+      })
+      setTimeout(function(){initTooltips($('#md_modal3'))}, 500)
     },
     beforeClose: function (event, ui) {
       emptyModal('md_modal3')
@@ -543,7 +542,7 @@ function initJeedomModals() {
 
   function emptyModal(_id='') {
     if (_id == '') return
-    $("body").css({overflow: 'inherit'})
+    $('body').css({overflow: 'inherit'})
     var contain = document.getElementById(_id)
     while(contain.firstChild){
         contain.removeChild(contain.firstChild)
