@@ -124,6 +124,7 @@ $(function() {
 
 var PAGE_HISTORY = []
 $(window).on('popstate', function(event) {
+  if (isset(event.isTrigger)) return
   if (isset(event.historyState)) return
   if ($('.ui-popup-container:not(.ui-popup-hidden)').length > 0) return
   event.preventDefault()
@@ -574,6 +575,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
   }
+
   if (isset(_dialog) && _dialog) {
     $('#popupDialog .content').load(page, function () {
       var functionName = ''
