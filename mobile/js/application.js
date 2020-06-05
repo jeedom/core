@@ -124,9 +124,9 @@ $(function() {
 
 var PAGE_HISTORY = []
 $(window).on('popstate', function(event) {
+  if (isset(event.historyState)) return
   if ($('.ui-popup-container:not(.ui-popup-hidden)').length > 0) return
   event.preventDefault()
-  if (event.historyState) event.stopPropagation()
   if (PAGE_HISTORY.length <= 1) return
 
   PAGE_HISTORY.pop()
