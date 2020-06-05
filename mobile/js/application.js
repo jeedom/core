@@ -465,7 +465,7 @@ function initApplication(_reinit) {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
 
-            if(APP_MODE){
+            if (APP_MODE) {
               page('home', 'Accueil')
             } else {
               if (getUrlVars('p') == 'view') {
@@ -500,7 +500,7 @@ function initApplication(_reinit) {
             }
 
             if (APP_MODE) {
-              $('#pagecontainer').css('padding-top',0);
+              $('#pagecontainer').css('padding-top',0)
             } else {
               $('#pagecontainer').css('padding-top','64px')
             }
@@ -571,12 +571,14 @@ function page(_page, _title, _option, _plugin, _dialog) {
       _page = defaultMobilePage[0]
       _title = defaultMobilePage[1]
       _option = defaultMobilePage[2]
+      $('#pageTitle').empty().append(_title)
     }
     page += '&p=' + _page
   }
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
   }
+
 
   if (isset(_dialog) && _dialog) {
     $('#popupDialog .content').load(page, function () {
@@ -616,6 +618,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
       } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
       }
+
       if ('function' == typeof (window[functionName])) {
         if (init(_option) != '') {
           window[functionName](_option)
