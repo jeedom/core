@@ -135,6 +135,8 @@ $(window).on('popstate', function(event) {
   if (!history_page || !history_page.page) {
     return
   }
+  modal(false)
+  panel(false)
   if (!history_page.option) {
     page(history_page.page, history_page.title)
   } else if (!history_page.plugin) {
