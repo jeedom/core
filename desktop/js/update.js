@@ -18,7 +18,7 @@
 
 var hasUpdate = false
 var progress = -2
-var alertTimeout = null
+
 printUpdate()
 
 $("#md_specifyUpdate").dialog({
@@ -27,145 +27,142 @@ $("#md_specifyUpdate").dialog({
   modal: true,
   width: 480,
   height: 460,
-  open: function () {
+  open: function() {
     $("body").css({overflow: 'hidden'})
     $(this).parent().css({'top': 120})
   },
-  beforeClose: function (event, ui) {
-    $("body").css({overflow: 'inherit'});
+  beforeClose: function(event, ui) {
+    $("body").css({overflow: 'inherit'})
   }
-});
+})
 
-
-$('#bt_updateJeedom').off('click').on('click', function () {
+$('#bt_updateJeedom').off('click').on('click', function() {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"}).dialog('open')
-});
+})
 
-$('.updateOption[data-l1key=force]').off('click').on('click',function(){
-  if($(this).value() == 1){
-    $('.updateOption[data-l1key="backup::before"]').value(0);
-    $('.updateOption[data-l1key="backup::before"]').attr('disabled','disabled');
-  }else{
-    $('.updateOption[data-l1key="backup::before"]').attr('disabled',false);
+$('.updateOption[data-l1key=force]').off('click').on('click',function() {
+  if ($(this).value() == 1) {
+    $('.updateOption[data-l1key="backup::before"]').value(0).attr('disabled','disabled')
+  } else {
+    $('.updateOption[data-l1key="backup::before"]').attr('disabled',false)
   }
-});
+})
 
-$('#bt_doUpdate').off('click').on('click', function () {
-  $("#md_specifyUpdate").dialog('close');
-  var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
-  $.hideAlert();
-  progress = 0;
+$('#bt_doUpdate').off('click').on('click', function() {
+  $("#md_specifyUpdate").dialog('close')
+  var options = $('#md_specifyUpdate').getValues('.updateOption')[0]
+  $.hideAlert()
+  progress = 0
   $('.progressbarContainer').removeClass('hidden')
-  updateProgressBar();
+  updateProgressBar()
   jeedom.update.doAll({
     options: options,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function () {
-      getJeedomLog(1, 'update');
+    success: function() {
+      getJeedomLog(1, 'update')
     }
-  });
-});
+  })
+})
 
-$('#bt_checkAllUpdate').off('click').on('click', function () {
+$('#bt_checkAllUpdate').off('click').on('click', function() {
   if ($('a[href="#log"]').parent().hasClass('active')) $('a[href="#coreplugin"]').trigger('click')
   checkAllUpdate()
-});
+})
 
-$('#table_update,#table_updateOther').delegate('.update', 'click', function () {
-  var id = $(this).closest('tr').attr('data-id');
-  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour cet objet ?}}', function (result) {
+$('#table_update, #table_updateOther').delegate('.update', 'click', function() {
+  var id = $(this).closest('tr').attr('data-id')
+  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour cet objet ?}}', function(result) {
     if (result) {
       progress = -1;
       $('.progressbarContainer').removeClass('hidden')
-      updateProgressBar();
-      $.hideAlert();
+      updateProgressBar()
+      $.hideAlert()
       jeedom.update.do({
         id: id,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          getJeedomLog(1, 'update');
+        success: function() {
+          getJeedomLog(1, 'update')
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$('#table_update,#table_updateOther').delegate('.remove', 'click', function () {
+$('#table_update, #table_updateOther').delegate('.remove', 'click', function() {
   var id = $(this).closest('tr').attr('data-id');
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet objet ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet objet ?}}', function(result) {
     if (result) {
       $.hideAlert();
       jeedom.update.remove({
         id: id,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          printUpdate();
+        success: function() {
+          printUpdate()
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$('#table_update,#table_updateOther').delegate('.checkUpdate', 'click', function () {
-  var id = $(this).closest('tr').attr('data-id');
-  $.hideAlert();
+$('#table_update, #table_updateOther').delegate('.checkUpdate', 'click', function() {
+  var id = $(this).closest('tr').attr('data-id')
+  $.hideAlert()
   jeedom.update.check({
     id: id,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function () {
-      printUpdate();
+    success: function() {
+      printUpdate()
     }
-  });
-});
+  })
+})
 
-$('#bt_saveUpdate').on('click',function(){
+$('#bt_saveUpdate').on('click',function() {
   jeedom.update.saves({
     updates : $('tbody tr').getValues('.updateAttr'),
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      loadPage('index.php?v=d&p=update&saveSuccessFull=1');
+    success: function(data) {
+      loadPage('index.php?v=d&p=update&saveSuccessFull=1')
     }
-  });
-});
+  })
+})
 
-$(function () {
+$(function() {
   if (isUpdating == '1') {
     $.hideAlert()
     progress = 7
     $('.progressbarContainer').removeClass('hidden')
     updateProgressBar()
-
     getJeedomLog(1, 'update')
   }
 
-
-  $('[data-l2key="doNotUpdate"]').on('click',function(){
+  $('[data-l2key="doNotUpdate"]').on('click',function() {
     $(this).tooltipster('open')
   })
 })
 
 function checkAllUpdate() {
-  $.hideAlert();
+  $.hideAlert()
   jeedom.update.checkAll({
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function () {
-      printUpdate();
+    success: function() {
+      printUpdate()
     }
-  });
+  })
 }
 
+var alertTimeout = null
 function getJeedomLog(_autoUpdate, _log) {
   $.ajax({
     type: 'POST',
@@ -176,57 +173,57 @@ function getJeedomLog(_autoUpdate, _log) {
     },
     dataType: 'json',
     global: false,
-    error: function (request, status, error) {
-      setTimeout(function () {
+    error: function(request, status, error) {
+      setTimeout(function() {
         getJeedomLog(_autoUpdate, _log)
-      }, 1000);
+      }, 1000)
     },
-    success: function (data) {
+    success: function(data) {
       if (data.state != 'ok') {
-        setTimeout(function () {
+        setTimeout(function() {
           getJeedomLog(_autoUpdate, _log)
-        }, 1000);
-        return;
+        }, 1000)
+        return
       }
-      var log = '';
-      if($.isArray(data.result)){
+      var log = ''
+      if ($.isArray(data.result)) {
         for (var i in data.result.reverse()) {
-          log += data.result[i]+"\n";
+          log += data.result[i]+"\n"
           //Update end success:
-          if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
-            progress = 100;
-            updateProgressBar();
-            printUpdate();
-            if(alertTimeout != null){
-              clearTimeout(alertTimeout);
+          if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
+            progress = 100
+            updateProgressBar()
+            printUpdate()
+            if (alertTimeout != null) {
+              clearTimeout(alertTimeout)
             }
             _autoUpdate = 0
             promptEndUpdate()
           }
           //update error:
-          if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
-            progress = -3;
-            updateProgressBar();
-            printUpdate();
-            if(alertTimeout != null){
-              clearTimeout(alertTimeout);
+          if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
+            progress = -3
+            updateProgressBar()
+            printUpdate()
+            if (alertTimeout != null) {
+              clearTimeout(alertTimeout)
             }
-            $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
-            _autoUpdate = 0;
+            $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'})
+            _autoUpdate = 0
           }
         }
       }
-      $('#pre_' + _log + 'Info').text(log);
+      $('#pre_' + _log + 'Info').text(log)
       if (init(_autoUpdate, 0) == 1) {
-        setTimeout(function () {
+        setTimeout(function() {
           getJeedomLog(_autoUpdate, _log)
         }, 1000);
       } else {
-        $('#bt_' + _log + 'Jeedom .fa-refresh').hide();
-        $('.bt_' + _log + 'Jeedom .fa-refresh').hide();
+        $('#bt_' + _log + 'Jeedom .fa-refresh').hide()
+        $('.bt_' + _log + 'Jeedom .fa-refresh').hide()
       }
     }
-  });
+  })
 }
 
 function promptEndUpdate() {
@@ -243,7 +240,7 @@ function promptEndUpdate() {
             className: 'btn-info'
         }
     },
-    callback: function (result) {
+    callback: function(result) {
         if (result) {
           window.location.reload(true)
         }
@@ -251,13 +248,12 @@ function promptEndUpdate() {
   })
 }
 
-
 function printUpdate() {
   jeedom.update.get({
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
       var tr_update = []
       for (var i in data) {
         if (!isset(data[i].status)) continue
@@ -268,43 +264,41 @@ function printUpdate() {
       $('#table_update tbody').empty().append(tr_update).trigger('update');
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
     }
-  });
+  })
 
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      $('#span_lastUpdateCheck').value(data['update::lastCheck']);
-      $('#span_lastUpdateCheck').attr('title','{{Dernière mise à jour du core : }}'+data['update::lastDateCore']);
+    success: function(data) {
+      $('#span_lastUpdateCheck').attr('title','{{Dernière mise à jour du core : }}' + data['update::lastDateCore']).value(data['update::lastCheck'])
     }
-  });
+  })
 }
 
 function addUpdate(_update) {
   if (init(_update.status) == '') {
-    _update.status = 'OK';
+    _update.status = 'OK'
   }
-  _update.status = _update.status.toUpperCase();
-  var labelClass = 'label-success';
+  _update.status = _update.status.toUpperCase()
+  var labelClass = 'label-success'
   if (_update.status == 'UPDATE') {
-    labelClass = 'label-warning';
+    labelClass = 'label-warning'
     if (_update.type == 'core' || _update.type == 'plugin') {
-      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true;
+      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true
     }
   }
 
-  var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-  tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
-  tr += '</td>';
-  tr += '<td><span class="hidden">' + _update.name + '</span><span class="updateAttr" data-l1key="id" style="display:none;"></span>';
-  tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>';
-  if(_update.configuration && _update.configuration.version){
-    var updClass = 'label-warning';
-    if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success';
-    if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
-    tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
+  var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
+  tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span></td>'
+  tr += '<td><span class="hidden">' + _update.name + '</span><span class="updateAttr" data-l1key="id" style="display:none;"></span>'
+  tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
+  if (_update.configuration && _update.configuration.version) {
+    var updClass = 'label-warning'
+    if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success'
+    if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger'
+    tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
   }
 
   var _localVersion = _update.localVersion
@@ -312,38 +306,38 @@ function addUpdate(_update) {
   var _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
 
-  tr += '</td>';
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
-  tr += '<td style="width:180px;">';
+  tr += '</td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>'
+  tr += '<td style="width:180px;">'
   if (_update.type != 'core') {
-    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span>{{Ne pas mettre à jour}}</span>';
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span>{{Ne pas mettre à jour}}</span>'
   }
-  tr += '</td>';
-  tr += '<td style="width:350px;">';
+  tr += '</td>'
+  tr += '<td style="width:350px;">'
   if (_update.type != 'core') {
     if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-      tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ';
+      tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> '
     }
   } else {
-    tr += '<a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> ';
+    tr += '<a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> '
   }
   if (_update.type != 'core') {
     if (_update.status == 'UPDATE') {
-      tr += '<a class="btn btn-warning btn-xs update""><i class="fas fa-sync"></i> {{Mettre à jour}}</a> ';
+      tr += '<a class="btn btn-warning btn-xs update""><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
     } else if (_update.type != 'core') {
-      tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Réinstaller}}</a> ';
+      tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
     }
   }
   if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i> {{Supprimer}}</a> ';
+    tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i> {{Supprimer}}</a> '
   }
-  tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
-  tr += '</td>';
-  tr += '</tr>';
-  var html = $(tr);
-  html.setValues(_update, '.updateAttr');
-  return html;
+  tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>'
+  tr += '</td>'
+  tr += '</tr>'
+  var html = $(tr)
+  html.setValues(_update, '.updateAttr')
+  return html
 }
 
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
@@ -359,56 +353,56 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
   })
 })
 
-function updateProgressBar(){
-  if(progress == -4){
-    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger');
-    $('#div_progressbar').addClass('progress-bar-warning');
+function updateProgressBar() {
+  if (progress == -4) {
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger')
+      .addClass('progress-bar-warning')
+    return
+  }
+  if (progress == -3) {
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-warning')
+      .addClass('progress-bar-danger')
+    return
+  }
+  if (progress == -2) {
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger progress-bar-warning')
+      .width(0)
+      .attr('aria-valuenow', 0)
+      .html('0%')
+    return
+  }
+  if (progress == -1) {
+    $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
+      .addClass('active progress-bar-info')
+      .width('100%')
+      .attr('aria-valuenow', 100)
+      .html('N/A');
+    return
+  }
+  if (progress == 100) {
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-danger progress-bar-warning')
+      .addClass('progress-bar-success')
+      .width(progress+'%')
+      .attr('aria-valuenow', progress)
+      .html(progress+'%')
     return;
   }
-  if(progress == -3){
-    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-warning');
-    $('#div_progressbar').addClass('progress-bar-danger');
-    return;
-  }
-  if(progress == -2){
-    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger progress-bar-warning');
-    $('#div_progressbar').width(0);
-    $('#div_progressbar').attr('aria-valuenow',0);
-    $('#div_progressbar').html('0%');
-    return;
-  }
-  if(progress == -1){
-    $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning');
-    $('#div_progressbar').addClass('active progress-bar-info');
-    $('#div_progressbar').width('100%');
-    $('#div_progressbar').attr('aria-valuenow',100);
-    $('#div_progressbar').html('N/A');
-    return;
-  }
-  if(progress == 100){
-    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-danger progress-bar-warning');
-    $('#div_progressbar').addClass('progress-bar-success');
-    $('#div_progressbar').width(progress+'%');
-    $('#div_progressbar').attr('aria-valuenow',progress);
-    $('#div_progressbar').html(progress+'%');
-    return;
-  }
-  $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning');
-  $('#div_progressbar').addClass('active progress-bar-info');
-  $('#div_progressbar').width(progress+'%');
-  $('#div_progressbar').attr('aria-valuenow',progress);
-  $('#div_progressbar').html(progress+'%');
+  $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
+    .addClass('active progress-bar-info')
+    .width(progress+'%')
+    .attr('aria-valuenow', progress)
+    .html(progress+'%')
 }
 
 //___log interceptor beautifier___
 
-//listen change in log to update the cleaned one:
+//listen change in log to update cleaned one:
 var prevUpdateText = ''
 var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
 var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm
 var _pre_updateInfo_clean = null
 var _UpdateObserver_ = null
-$(function () {
+$(function() {
   //create a second <pre> for cleaned text to avoid change event infinite loop:
   var newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>{{Aucune mise à jour en cours.}}</i></pre>'
   $('#pre_updateInfo').after($(newLogClean)).hide()
@@ -448,7 +442,7 @@ function cleanUpdateLog() {
   var linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
     var regExpResult = regExLogProgress.exec(linesRev[i])
-    if(regExpResult !== null) {
+    if (regExpResult !== null) {
       progress = regExpResult[1]
       updateProgressBar()
       break
@@ -456,7 +450,7 @@ function cleanUpdateLog() {
   }
 
   var newLogText = ''
-  for(var i=0; i < l; i++) {
+  for (var i=0; i < l; i++) {
     var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
@@ -488,7 +482,7 @@ function cleanUpdateLog() {
     }
     var nextLine = lines[i+offset]
     var letters = /^[0-9a-zA-Z]+$/
-    if(!nextLine.replace('OK', '').match(letters)) {
+    if (!nextLine.replace('OK', '').match(letters)) {
       matches = nextLine.match(/[.]{2,}/g)
       if (matches) {
         matches.forEach(function(match) {
@@ -514,12 +508,12 @@ function cleanUpdateLog() {
       }
     }
   }
-  clearTimeout(alertTimeout);
-  alertTimeout = setTimeout(alertTimeout,60000*10);
+  clearTimeout(alertTimeout)
+  alertTimeout = setTimeout(alertTimeout, 60000*10)
 }
 
-function alertTimeout(){
-  progress = -4;
-  updateProgressBar();
-  $('#div_alert').showAlert({message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}', level: 'warning'});
+function alertTimeout() {
+  progress = -4
+  updateProgressBar()
+  $('#div_alert').showAlert({message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}', level: 'warning'})
 }
