@@ -3384,6 +3384,11 @@ path.highcharts-graph {
   user-select: none;
 }
 
+.div_backgroundPlan .text-widget {
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  color: var(--txt-color) !important;
+}
+
 /* view data table */
 .highcharts-data-table {
   width: 100%;
@@ -3730,7 +3735,8 @@ input:invalid {
 .jqAlert,
 .expressionACTION,
 .progressbarContainer .progress,
-.element .blocPreview {
+.element .blocPreview,
+.div_backgroundPlan .text-widget {
   border-radius: var(--border-radius) !important;
 }
 
