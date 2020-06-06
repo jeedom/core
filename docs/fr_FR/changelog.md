@@ -34,6 +34,7 @@
 - **Analyse / Historique** : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
 - **Vue** : possibilité de mettre des scénarios.
+- **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
 - **Historique** : Intégration de la Timeline en DB pour des raisons de fiabilité.
 - **Historique** : Gestion de Timelines multiples.
 - **Historique** : Refonte graphique de la timeline.

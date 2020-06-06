@@ -68,8 +68,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 		<?php } ?>
 		<center><h3>
 			<?php
-			echo trim($view->getDisplay('icon')).' ';
-			echo $view->getName();
+				echo trim($view->getDisplay('icon')).' '.$view->getName();
 			?>
 		</h3></center>
 	</legend>

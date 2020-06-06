@@ -298,7 +298,7 @@ function editWidgetMode(_mode,_save) {
     })
 
     //set unique id whatever we have:
-    divEquipements.find('.eqLogic-widget,.scenario-widget').each(function(index) {
+    divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
       $(this).addClass('editingMode')
       $(this).attr('data-editId', index)
     })
@@ -309,7 +309,7 @@ function editWidgetMode(_mode,_save) {
       start: function(event, ui) {
         _draggingId = $(this).attr('data-editId')
         _orders = {}
-        $(this).parent().find('.ui-draggable').each( function( i, itemElem ) {
+        $(this).parent().find('.ui-draggable').each(function(i, itemElem ) {
           _orders[_draggingId] = parseInt($(this).attr('data-order'))
         })
       }
@@ -459,9 +459,8 @@ function displayChildObject(_object_id, _recursion) {
 }
 
 function orderItems(_container) {
+  //exact same function dashboard and view!
   var itemElems = _container.packery('getItemElements')
-  var isEditing = ($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) ? true : false
-
   var _draggingOrder = _orders[_draggingId]
   var _newOrders = {}
   $(itemElems).each( function(i, itemElem ) {
@@ -490,11 +489,11 @@ function orderItems(_container) {
   }
 
   //reload from dom positions:
-  $('.div_displayEquipement').packery('reloadItems').packery()
+  _container.packery('reloadItems').packery()
 
   itemElems = _container.packery('getItemElements')
-  $(itemElems).each( function(i, itemElem ) {
-    $(itemElem).attr('data-order', i + 1 )
+  $(itemElems).each(function(i, itemElem) {
+    $(itemElem).attr('data-order', i + 1)
     var value = i + 1
     if (isEditing) {
       if ($(itemElem).find(".counterReorderJeedom").length) {

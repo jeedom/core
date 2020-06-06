@@ -21,6 +21,55 @@ $('#div_pageContainer').on('click','.bt_gotoViewZone',function() {
   $('.div_displayViewContainer').animate({ scrollTop: top}, 500)
 })
 
+var isEditing = false
+var _draggingId = false
+var _orders = {}
+function orderItems(_container) {
+  //exact same function dashboard and view!
+  var itemElems = _container.packery('getItemElements')
+  var _draggingOrder = _orders[_draggingId]
+  var _newOrders = {}
+  $(itemElems).each( function(i, itemElem ) {
+    _newOrders[$(this).attr('data-editId')] = i + 1
+  })
+  var _draggingNewOrder = _newOrders[_draggingId]
+  //----->moved _draggingId from _draggingOrder to _draggingNewOrder
+
+  //rearrange that better:
+  var _finalOrder = {}
+  for (var [id, order] of Object.entries(_newOrders)) {
+    if (order <= _draggingNewOrder) _finalOrder[id] = order
+    if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
+  }
+
+  //set dom positions:
+  var arrKeys = Object.keys(_finalOrder)
+  var arrLength = arrKeys.length
+  var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
+  $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
+
+  for (var i = 2; i < arrLength + 1; i++) {
+    var thisId = arrKeys.find(key => _finalOrder[key] === i)
+    var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
+    $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
+  }
+
+  //reload from dom positions:
+  _container.packery('reloadItems').packery()
+
+  itemElems = _container.packery('getItemElements')
+  $(itemElems).each(function(i, itemElem) {
+    $(itemElem).attr('data-order', i + 1)
+    var value = i + 1
+    if (isEditing) {
+      if ($(itemElem).find(".counterReorderJeedom").length) {
+        $(itemElem).find(".counterReorderJeedom").text(value)
+      } else {
+        $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+      }
+    }
+  })
+}
 
 function fullScreen(_mode) {
   if (_mode) {
@@ -44,6 +93,19 @@ function fullScreen(_mode) {
   }
 }
 
+$('#bt_editViewWidgetOrder').off('click').on('click',function() {
+  if ($(this).attr('data-mode') == 1) {
+    $.hideAlert()
+    $(this).attr('data-mode',0)
+    $('.counterReorderJeedom').remove()
+    editWidgetMode(0)
+  } else {
+    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'})
+    $(this).attr('data-mode',1)
+    editWidgetMode(1)
+  }
+})
+
 if (view_id != '') {
   jeedom.view.toHtml({
     id: view_id,
@@ -64,57 +126,37 @@ if (view_id != '') {
           summary += '<li style="padding:0px 0px"><a style="padding:2px 20px" class="cursor bt_gotoViewZone" data-zone_id="'+html.raw.viewZone[i].id+'">'+html.raw.viewZone[i].name+'</a></li>'
         }
         $('#ul_viewSummary').empty().append(summary)
-      }catch(err) {
+      } catch(err) {
         console.log(err)
       }
 
       try {
         $('.div_displayView').last().empty().html(html.html)
-      }catch(err) {
+      } catch(err) {
         console.log(err)
       }
       setTimeout(function() {
         initReportMode()
         positionEqLogic()
         $('.eqLogicZone').disableSelection()
-        $( "input").click(function() { $(this).focus() })
-        $( "textarea").click(function() { $(this).focus() })
+        $('input', 'textarea', 'select').click(function() { $(this).focus() })
+
         $('.eqLogicZone').each(function() {
           var container = $(this).packery()
-          var itemElems =  container.find('.eqLogic-widget,.scenario-widget')
-          itemElems.draggable()
-          container.packery('bindUIDraggableEvents', itemElems )
-          container.packery('on', 'dragItemPositioned',function() {
-            $('.eqLogicZone').packery()
+          var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
+          container.packery('bindUIDraggableEvents', itemElems)
+
+          $(itemElems).each( function(i, itemElem ) {
+            $(itemElem).attr('data-order', i + 1 )
           })
-          function orderItems() {
-            setTimeout(function() {
-              $('.eqLogicZone').packery()
-            },1)
-            var itemElems = container.packery('getItemElements')
-            $( itemElems ).each(function(i, itemElem) {
-              $( itemElem ).attr('data-order', i + 1)
-            })
-          }
-          container.on('layoutComplete', orderItems)
-          container.on('dragItemPositioned', orderItems)
+          container.on('dragItemPositioned', function() {
+            orderItems(container)
+          })
+          itemElems.draggable('disable')
         })
 
-        $('.eqLogicZone .eqLogic-widget, .eqLogicZone .scenario-widget').draggable('disable')
-        $('#bt_editViewWidgetOrder').off('click').on('click',function() {
-          if ($(this).attr('data-mode') == 1) {
-            $.hideAlert()
-            $(this).attr('data-mode',0)
-            editWidgetMode(0)
-          } else {
-            $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'})
-            $(this).attr('data-mode',1)
-            editWidgetMode(1)
-          }
-        })
         if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
-          $('.eqLogic-widget').addClass('displayObjectName')
-          $('.scenario-widget').addClass('displayObjectName')
+          $('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
         }
         if (getUrlVars('fullscreen') == 1) {
           fullScreen(true)
@@ -159,46 +201,71 @@ function editWidgetMode(_mode, _save) {
     }
     return
   }
+  var divEquipements = $('.div_displayView')
   if (_mode == 0 || _mode == '0') {
-    $('.eqLogic-widget, .scenario-widget').removeClass('editingMode')
+    isEditing = false
     jeedom.cmd.disableExecute = false
+
+    divEquipements.find('.editingMode.allowResize').resizable('destroy')
+    divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
     if (!isset(_save) || _save) {
       saveWidgetDisplay({view : 1})
     }
-    if ( $('.eqLogicZone .eqLogic-widget.ui-draggable').length > 0) {
-      $('.eqLogicZone .eqLogic-widget').draggable('disable')
-      $('.eqLogicZone .eqLogic-widget.allowResize').resizable('destroy')
-    }
-    if ( $('.eqLogicZone .scenario-widget.ui-draggable').length > 0) {
-      $('.eqLogicZone .scenario-widget').draggable('disable')
-      $('.eqLogicZone .scenario-widget.allowResize').resizable('destroy')
-    }
   } else {
-    $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
+    isEditing = true
     jeedom.cmd.disableExecute = true
-    $('.eqLogicZone .eqLogic-widget, .eqLogicZone .scenario-widget').draggable('enable')
+    $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
+
+    //show orders:
+    $('.ui-draggable').each(function() {
+      var value = $(this).attr('data-order')
+      if ($(this).find(".counterReorderJeedom").length) {
+        $(this).find(".counterReorderJeedom").text(value)
+      } else {
+        $(this).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+      }
+    })
+
+    //set unique id whatever we have:
+    divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
+      $(this).addClass('editingMode')
+      $(this).attr('data-editId', index)
+    })
+
+    //set draggables:
+    divEquipements.find('.editingMode').draggable({
+      disabled: false,
+      start: function(event, ui) {
+        _draggingId = $(this).attr('data-editId')
+        _orders = {}
+        $(this).parent().find('.ui-draggable').each( function(i, itemElem ) {
+          _orders[_draggingId] = parseInt($(this).attr('data-order'))
+        })
+      }
+    })
+
     $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
       grid: [ 2, 2 ],
       resize: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-eqlogic_id'),false)
+        positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.eqLogicZone').packery()
       },
       stop: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-eqlogic_id'),false)
+        positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.eqLogicZone').packery()
       }
-    });
+    })
     $('.eqLogicZone .scenario-widget.allowResize').resizable({
       grid: [ 2, 2 ],
       resize: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-scenario_id'),false,true)
+        positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.eqLogicZone').packery()
       },
       stop: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-scenario_id'),false,true)
+        positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.eqLogicZone').packery()
       }
-    });
+    })
   }
   editWidgetCmdMode(_mode)
 }
