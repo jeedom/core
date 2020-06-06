@@ -884,8 +884,8 @@ function displayPlan(_code) {
         $divDisplayObject.height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX)
         $('.div_displayObject img').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX)
       } else {
-        $divDisplayObject.width($('.div_displayObject img').attr('data-sixe_x')).height($('.div_displayObject img').attr('data-sixe_y'));
-        $('.div_displayObject img').css('height', ($('.div_displayObject img').attr('data-sixe_y')) + 'px').css('width', ($('.div_displayObject img').attr('data-sixe_x')) + 'px');
+        $divDisplayObject.width($('.div_displayObject img').attr('data-sixe_x')).height($('.div_displayObject img').attr('data-sixe_y'))
+        $('.div_displayObject img').css({'height': ($('.div_displayObject img').attr('data-sixe_y')) + 'px', 'width': ($('.div_displayObject img').attr('data-sixe_x')) + 'px'})
       }
 
       if ($('body').height() > $divDisplayObject.height()) {

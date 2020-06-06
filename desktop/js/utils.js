@@ -104,7 +104,7 @@ function loadPage(_url, _noPushHistory) {
 
   jeedom.cmd.update = []
   jeedom.scenario.update = []
-  $('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','')
+  $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
   $('#div_pageContainer').add("#div_pageContainer *").off()
   $.hideAlert()
   $('.bt_pluginTemplateShowSidebar').remove()
@@ -836,7 +836,7 @@ function initRowOverflow() {
   if ($('.row-overflow').attr('data-offset') != undefined) {
     hWindow -= $('.row-overflow').attr('data-offset')
   }
-  $('.row-overflow > div:not(#div_displayObjectList)').css('padding-top','0px').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px')
+  $('.row-overflow > div:not(#div_displayObjectList)').height(hWindow).css({'padding-top': '0px', 'overflow-y': 'auto', 'overflow-x': 'hidden', 'padding-top': '5px'})
 }
 
 function initReportMode() {
@@ -1151,7 +1151,7 @@ function setJeedomMenu() {
 function positionEqLogic(_id, _preResize, _scenario) {
   if (_id != undefined) {
     var widget = (_scenario) ? $('.scenario-widget[data-scenario_id='+_id+']') : $('.eqLogic-widget[data-eqlogic_id='+_id+']')
-    widget.css('margin','0px').css('padding','0px')
+    widget.css({'margin': '0px', 'padding': '0px'})
     if ($(this).width() == 0) {
       $(this).width('230')
     }
