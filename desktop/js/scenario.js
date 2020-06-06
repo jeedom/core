@@ -1103,14 +1103,14 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
         ui.placeholder.removeClass('sortable-placeholderLast')
       }
 
-      getClass = true
+      var getClass = true
       if (ui.placeholder.parent().hasClass('subElement')) {
         getClass = false
       }
       if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
         getClass = false
       }
-      thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
+      var thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
         getClass = false
       }
@@ -1136,7 +1136,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
             $(this).attr('data-tmp-value',value)
           }
         })
-        el = $(addExpression({type: 'element', element: {html: ui.item.wrapAll("<div/>").parent().html()}}))
+        var el = $(addExpression({type: 'element', element: {html: ui.item.wrapAll("<div/>").parent().html()}}))
         el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
           var value = $(this).attr('data-tmp-value')
           if (value != undefined && value != '') {
