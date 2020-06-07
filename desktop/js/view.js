@@ -193,6 +193,11 @@ $('.bt_displayView').on('click', function () {
   }
 })
 
+$('#div_pageContainer').delegate('.editOptions', 'click', function () {
+  var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
+  $('#md_modal').dialog({title: "{{Configuration}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+eqId).dialog('open')
+})
+
 function editWidgetMode(_mode, _save) {
   if (!isset(_mode)) {
     if ($('#bt_editViewWidgetOrder').attr('data-mode') != undefined && $('#bt_editViewWidgetOrder').attr('data-mode') == 1) {
@@ -208,6 +213,8 @@ function editWidgetMode(_mode, _save) {
 
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
     divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
+    divEquipements.find('.cmd.editOptions').remove()
+
     if (!isset(_save) || _save) {
       saveWidgetDisplay({view : 1})
     }
@@ -230,6 +237,7 @@ function editWidgetMode(_mode, _save) {
     divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
       $(this).addClass('editingMode')
       $(this).attr('data-editId', index)
+      $(this).append('<span class="cmd editOptions cursor"></span>')
     })
 
     //set draggables:

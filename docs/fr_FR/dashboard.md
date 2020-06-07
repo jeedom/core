@@ -66,6 +66,8 @@ De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) 
 
 En mode édition (*le crayon tout en haut à droite*), vous pouvez changer la taille des tuiles et leur disposition sur le Dashboard.
 
+les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
+
 Vous pouvez aussi éditer la disposition interne des commandes sur la tuile :
 
 - Soit les réorganiser par glisser - déposer.

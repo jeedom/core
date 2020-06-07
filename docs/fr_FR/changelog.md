@@ -5,6 +5,7 @@
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
 - **Dashboard** : Mode Édition maintenant en insertion de la tuile déplacée.
+- **Dashboard** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
 - **Dashboard** : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - **Dashboard** : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - **Dashboard** : Ajout (retour !) d'un bouton pour filtrer les éléments affichés par catégorie.
@@ -35,6 +36,7 @@
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
 - **Vue** : possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
+- **Vue** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
 - **Historique** : Intégration de la Timeline en DB pour des raisons de fiabilité.
 - **Historique** : Gestion de Timelines multiples.
 - **Historique** : Refonte graphique de la timeline.

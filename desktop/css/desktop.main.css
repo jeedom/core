@@ -986,6 +986,22 @@ div[class*="DisplayCard"] .name {
   100% { transform: rotate(1turn); }
 }
 
+.eqLogic-widget.editingMode .cmd.refresh {
+  display: none;
+}
+
+.eqLogic-widget .cmd.editOptions {
+  position: absolute;
+  top: 5px;
+  right: -2px;
+  z-index: 500;
+}
+.eqLogic-widget .cmd.editOptions:after {
+  content: '\2807';
+  color: var(--eqTitle-color);
+  font-size: 20px;
+  }
+
 .eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
   display: none;
 }

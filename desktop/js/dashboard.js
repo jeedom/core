@@ -256,6 +256,13 @@ $('#bt_displayObject').on('click', function () {
   }
 })
 
+
+$('#div_pageContainer').delegate('.editOptions', 'click', function () {
+  var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
+  $('#md_modal').dialog({title: "{{Configuration}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+eqId).dialog('open')
+})
+
+
 var _draggingId = false
 var _orders = {}
 function editWidgetMode(_mode,_save) {
@@ -277,6 +284,7 @@ function editWidgetMode(_mode,_save) {
 
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
     divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
+    divEquipements.find('.cmd.editOptions').remove()
 
     $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
@@ -301,6 +309,7 @@ function editWidgetMode(_mode,_save) {
     divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
       $(this).addClass('editingMode')
       $(this).attr('data-editId', index)
+      $(this).append('<span class="cmd editOptions cursor"></span>')
     })
 
     //set draggables:
@@ -337,7 +346,7 @@ function editWidgetMode(_mode,_save) {
     })
 
     $('#div_displayObject .row').css('margin-top', '27px')
-    $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'})
+    $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"500","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'})
     $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
     .style("color", "var(--linkHoverLight-color)", "important")
     .val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
