@@ -1090,9 +1090,7 @@ class jeedom {
 					foreach ($updates as $update) {
 						$toUpdate .= $update->getLogicalId() . ',';
 					}
-				}
-				$updates = update::byStatus('update');
-				if (count($updates) > 0) {
+					message::removeAll('update', 'newUpdate');
 					message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 				}
 			}
