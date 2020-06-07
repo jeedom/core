@@ -42,9 +42,9 @@ $('#bt_updateJeedom').off('click').on('click', function() {
 
 $('.updateOption[data-l1key=force]').off('click').on('click',function() {
   if ($(this).value() == 1) {
-    $('.updateOption[data-l1key="backup::before"]').value(0).attr('disabled','disabled')
+    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled','disabled')
   } else {
-    $('.updateOption[data-l1key="backup::before"]').attr('disabled',false)
+    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled',false)
   }
 })
 
