@@ -77,7 +77,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
+                <label class="col-xs-4 control-label">{{Mise à jour par}}</label>
                 <div class="col-xs-8">
                   <span class="cmdAttr" data-l1key="value"></span>
                 </div>
@@ -823,12 +823,26 @@ $(function() {
     var arrValues = values.split('#')
     var spans = ''
     arrValues.forEach(function(thisValue) {
-      if (thisValue != '') {
-        spans += '<span class="label label-primary">#' + thisValue + '#</span><br>'
+      if (thisValue != '' && !thisValue.includes('#')) {
+        jeedom.cmd.getHumanCmdName({
+          id: thisValue,
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            var span = '<span class="label label-primary">' + data + '</span><br>'
+            spanValues.parent().prepend(span)
+          }
+        })
+      } else {
+        if (thisValue != '') {
+          var span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
+          spanValues.parent().prepend(span)
+        }
       }
     })
-    spanValues.parent().prepend(spans)
   }
+
   jeedom.timeline.autocompleteFolder()
 })
 

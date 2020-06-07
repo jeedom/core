@@ -100,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else if(data.code == -32006){
@@ -140,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else{
@@ -491,6 +491,35 @@ jeedom.cmd.byId = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+
+jeedom.cmd.getHumanCmdName = function(_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {
+    pre_success: function(data) {
+      jeedom.cmd.cache.byId[data.result.id] = data.result;
+      return data;
+    }
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
+    params.success(jeedom.cmd.cache.byId[params.id]);
+    return;
+  }
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getHumanCmdName',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.cmd.byHumanName = function(_params) {
   var paramsRequired = ['humanName'];
   var paramsSpecifics = {
@@ -617,7 +646,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -655,7 +684,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
