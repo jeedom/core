@@ -59,7 +59,7 @@ function orderItems(_container) {
 
   itemElems = _container.packery('getItemElements')
   $(itemElems).each(function(i, itemElem) {
-    $(itemElem).attr('data-order', i + 1)
+    $(itemElem).attr('order', i + 1)
     var value = i + 1
     if (isEditing) {
       if ($(itemElem).find(".counterReorderJeedom").length) {
@@ -147,7 +147,7 @@ if (view_id != '') {
           container.packery('bindUIDraggableEvents', itemElems)
 
           $(itemElems).each( function(i, itemElem ) {
-            $(itemElem).attr('data-order', i + 1 )
+            $(itemElem).attr('order', i + 1 )
           })
           container.on('dragItemPositioned', function() {
             orderItems(container)
@@ -225,7 +225,7 @@ function editWidgetMode(_mode, _save) {
 
     //show orders:
     $('.ui-draggable').each(function() {
-      var value = $(this).attr('data-order')
+      var value = $(this).attr('order')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
       } else {
@@ -247,7 +247,7 @@ function editWidgetMode(_mode, _save) {
         _draggingId = $(this).attr('data-editId')
         _orders = {}
         $(this).parent().find('.ui-draggable').each( function(i, itemElem ) {
-          _orders[_draggingId] = parseInt($(this).attr('data-order'))
+          _orders[_draggingId] = parseInt($(this).attr('order'))
         })
       }
     })
@@ -275,6 +275,5 @@ function editWidgetMode(_mode, _save) {
       }
     })
   }
-  editWidgetCmdMode(_mode)
 }
 

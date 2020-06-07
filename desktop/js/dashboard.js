@@ -352,7 +352,6 @@ function editWidgetMode(_mode,_save) {
     .val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
     .prop('readonly', true)
   }
-  editWidgetCmdMode(_mode)
 }
 
 function getObjectHtml(_object_id) {
