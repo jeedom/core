@@ -463,19 +463,26 @@ user::isBan();
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Permet de modifier les paramètres par défaut des thèmes}}"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+						<div class="col-lg-2 col-md-1 col-sm-1 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
 						</div>
-						<span class="col-lg-2 col-md-3 col-sm-3 col-xs-6"></span>
+						<span class="col-lg-1 col-sm-1 col-xs-6"></span>
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-							<a class="btn btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
+							<a class="btn btn-sm btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
+						</div>
+
+						<label class="col-lg-1 col-sm-2 col-xs-3 control-label">{{Activer}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Activer la Personnalisation avancée.}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-sm-2 col-xs-3">
+							<input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparence}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface.}}"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
 						</div>
 					</div>
@@ -483,7 +490,7 @@ user::isBan();
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" />
 						</div>
 					</div>
