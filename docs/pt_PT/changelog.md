@@ -34,6 +34,7 @@
 - **Análise / História** : Agora podemos usar a opção *área* com a opção *Escada*.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Vista** : possibilidade de colocar cenários.
+- **Vista** : Modo de edição agora inserindo o bloco movido.
 - **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Histórico** : Gerenciamento de várias linhas do tempo.
 - **Histórico** : Revisão gráfica do cronograma.
