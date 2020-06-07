@@ -34,6 +34,7 @@
 - **Analysis / History** : We can now use the option *Area* with the option *Steps*.
 - **Analysis / Logs** : New monospace type font for logs.
 - **View** : possibility to put scenarios.
+- **View** : Edit mode now inserting the moved tile.
 - **History** : Integration of the Timeline in DB for reliability reasons.
 - **History** : Management of multiple timelines.
 - **History** : Timeline graphic overhaul.

@@ -34,6 +34,7 @@
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Fläche* mit der Option *Treppe*.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
 - **Ansicht** : Möglichkeit, Szenarien zu setzen.
+- **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - **Chronik** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Chronik** : Verwaltung mehrerer Zeitleisten.
 - **Chronik** : Überarbeitung der Timeline-Grafik.

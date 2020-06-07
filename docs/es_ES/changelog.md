@@ -34,6 +34,7 @@
 - **Análisis / Historia** : Ahora podemos usar la opción *Area* con la opción *Escalera*.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
 - **Vista** : posibilidad de poner escenarios.
+- **Vista** : El modo de edición ahora inserta el mosaico movido.
 - **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Historial** : Gestión de múltiples líneas de tiempo.
 - **Historial** : Revisión gráfica del cronograma.
