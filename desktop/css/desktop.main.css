@@ -2301,7 +2301,8 @@ input[type=checkbox] {
   top : 5px;
   min-height : 0px !important;
 }
-td > input[type=checkbox] {
+td > input[type=checkbox],
+td > center > input[type=checkbox] {
   top: initial;
 }
 input[type=checkbox],
