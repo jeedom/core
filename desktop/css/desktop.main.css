@@ -2301,6 +2301,9 @@ input[type=checkbox] {
   top : 5px;
   min-height : 0px !important;
 }
+td > input[type=checkbox] {
+  top: initial;
+}
 input[type=checkbox],
 input[type=radio] {
   font-size: 14px !important;
