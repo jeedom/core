@@ -120,6 +120,7 @@ if (view_id != '') {
       } else {
         setBackgroundImg('')
       }
+
       try {
         var summary = ''
         for (var i in html.raw.viewZone) {
@@ -135,6 +136,7 @@ if (view_id != '') {
       } catch(err) {
         console.log(err)
       }
+
       setTimeout(function() {
         initReportMode()
         positionEqLogic()
@@ -146,12 +148,14 @@ if (view_id != '') {
           var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
           container.packery('bindUIDraggableEvents', itemElems)
 
+          //set viewOrder for editMode:
           $(itemElems).each( function(i, itemElem ) {
             $(itemElem).attr('data-viewOrder', i + 1 )
           })
           container.on('dragItemPositioned', function() {
             orderItems(container, 'data-viewOrder')
           })
+
           itemElems.draggable('disable')
         })
 

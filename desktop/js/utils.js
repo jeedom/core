@@ -1409,7 +1409,7 @@ function saveWidgetDisplay(_params) {
           eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
           eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
           eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
-          eqLogic.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
+          eqLogic.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
           components.push(eqLogic)
         } else if ($(this).hasClass('scenario-widget')) {
           var scenario = {id :$(this).attr('data-scenario_id'),type:'scenario'}
@@ -1417,7 +1417,7 @@ function saveWidgetDisplay(_params) {
           scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
           scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
           scenario.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
-          scenario.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
+          scenario.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
           components.push(scenario)
         }
         order++
