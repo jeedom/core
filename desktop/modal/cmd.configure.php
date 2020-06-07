@@ -58,8 +58,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Nom}}</label>
-                <div class="col-xs-8">
+                <div class="col-xs-4">
                   <span class="cmdAttr label label-primary" data-l1key="name"></span>
+                  <!--<input type="text" class="cmdAttr form-control" data-l1key="name">-->
                 </div>
               </div>
               <div class="form-group">
@@ -1039,6 +1040,7 @@ $('#bt_cmdConfigureSave').on('click', function (event) {
     success: function () {
       modifyWithoutSave = false;
       $('#md_displayCmdConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+      synchModalToCmd()
       if (event.ctrlKey) {
         setTimeout(function() { $('#md_modal').dialog('close') }, 500);
       }
@@ -1046,6 +1048,15 @@ $('#bt_cmdConfigureSave').on('click', function (event) {
   })
 });
 
+function synchModalToCmd() {
+  var cmdId = $('#div_displayCmdConfigure .cmdAttr[data-l1key="id"]').text()
+  var $cmdTr = $('#div_pageContainer tr[data-cmd_id="'+cmdId+'"]')
+  if ($cmdTr) {
+    //$cmdTr.find('input.cmdAttr[data-l1key="name"]').val($('#div_displayCmdConfigure input.cmdAttr[data-l1key="name"]').val())
+    $cmdTr.find('input.cmdAttr[data-l1key="isVisible"]').prop('checked', $('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').prop('checked'))
+    $cmdTr.find('.cmdAttr[data-l1key=display][data-l2key=icon]').html( $('#div_displayCmdConfigure .cmdAttr[data-l1key=display][data-l2key=icon]').html())
+  }
+}
 
 $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
   var type = $(this).attr('data-type');
@@ -1170,13 +1181,11 @@ $('#bt_cmdConfigureChooseIcon').on('click', function () {
   var iconeGeneric = $(this).closest('.iconeGeneric');
   chooseIcon(function (_icon) {
     iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-    $('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
   });
 });
 
 $('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
   $(this).empty();
-  $('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty();
 });
 
 $('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {

@@ -52,7 +52,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<div class="form-group">
 							<label class="col-sm-6 control-label">{{Nom}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="name"></span>
+								<input type="text" class="eqLogicAttr form-control" data-l1key="name">
 							</div>
 						</div>
 						<div class="form-group">
@@ -616,6 +616,8 @@ $('#bt_eqLogicConfigureSave').on('click', function (event) {
 				},
 				success : function(){
 					$('#md_displayEqLogicConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+					synchModalToEq()
+
 					if (event.ctrlKey) {
 						setTimeout(function() { $('#md_modal').dialog('close') }, 500);
 					}else{
@@ -629,6 +631,12 @@ $('#bt_eqLogicConfigureSave').on('click', function (event) {
 		}
 	});
 });
+
+function synchModalToEq() {
+	$('#div_pageContainer input.eqLogicAttr[data-l1key="name"]').val($('#div_displayEqLogicConfigure input.eqLogicAttr[data-l1key="name"').val())
+	$('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]').prop('checked', $('#div_displayEqLogicConfigure input.eqLogicAttr[data-l1key="isEnable"').prop('checked'))
+	$('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').prop('checked', $('#div_displayEqLogicConfigure input.eqLogicAttr[data-l1key="isVisible"').prop('checked'))
+}
 
 $('#bt_eqLogicConfigureRemove').on('click',function(){
 	bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
