@@ -24,7 +24,7 @@ $('#div_pageContainer').on('click','.bt_gotoViewZone',function() {
 var isEditing = false
 var _draggingId = false
 var _orders = {}
-function orderItems(_container) {
+function orderItems(_container, _orderAttr='data-order') {
   //exact same function dashboard and view!
   var itemElems = _container.packery('getItemElements')
   var _draggingOrder = _orders[_draggingId]
@@ -59,7 +59,7 @@ function orderItems(_container) {
 
   itemElems = _container.packery('getItemElements')
   $(itemElems).each(function(i, itemElem) {
-    $(itemElem).attr('order', i + 1)
+    $(itemElem).attr(_orderAttr, i + 1)
     var value = i + 1
     if (isEditing) {
       if ($(itemElem).find(".counterReorderJeedom").length) {
@@ -147,10 +147,10 @@ if (view_id != '') {
           container.packery('bindUIDraggableEvents', itemElems)
 
           $(itemElems).each( function(i, itemElem ) {
-            $(itemElem).attr('order', i + 1 )
+            $(itemElem).attr('data-viewOrder', i + 1 )
           })
           container.on('dragItemPositioned', function() {
-            orderItems(container)
+            orderItems(container, 'data-viewOrder')
           })
           itemElems.draggable('disable')
         })
@@ -225,7 +225,7 @@ function editWidgetMode(_mode, _save) {
 
     //show orders:
     $('.ui-draggable').each(function() {
-      var value = $(this).attr('order')
+      var value = $(this).attr('data-viewOrder')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
       } else {
@@ -247,7 +247,7 @@ function editWidgetMode(_mode, _save) {
         _draggingId = $(this).attr('data-editId')
         _orders = {}
         $(this).parent().find('.ui-draggable').each( function(i, itemElem ) {
-          _orders[_draggingId] = parseInt($(this).attr('order'))
+          _orders[_draggingId] = parseInt($(this).attr('data-viewOrder'))
         })
       }
     })

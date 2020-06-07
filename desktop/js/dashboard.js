@@ -466,7 +466,7 @@ function displayChildObject(_object_id, _recursion) {
   })
 }
 
-function orderItems(_container) {
+function orderItems(_container, _orderAttr='data-order') {
   //exact same function dashboard and view!
   var itemElems = _container.packery('getItemElements')
   var _draggingOrder = _orders[_draggingId]
@@ -501,7 +501,7 @@ function orderItems(_container) {
 
   itemElems = _container.packery('getItemElements')
   $(itemElems).each(function(i, itemElem) {
-    $(itemElem).attr('data-order', i + 1)
+    $(itemElem).attr(_orderAttr, i + 1)
     var value = i + 1
     if (isEditing) {
       if ($(itemElem).find(".counterReorderJeedom").length) {
