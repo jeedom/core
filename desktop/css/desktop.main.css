@@ -1187,6 +1187,9 @@ div[data-market_type=script]:hover {
 .control-label {
   font-weight: 500;
 }
+.form-horizontal .control-label {
+  padding-top: 4px;
+}
 
 pre {
   color: var(--link-color);
