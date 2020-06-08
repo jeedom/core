@@ -3644,7 +3644,7 @@
         "Test de connexion au market": "Piyasa bağlantı testi",
         "Erreur sur la connexion au market : ": "Pazara bağlanma hatası:",
         "Démarrage de jeedom fini avec succès": "Jeedom başlangıcı başarıyla tamamlandı",
-        "De nouvelles mises à jour sont disponibles : ": "Yeni güncellemeler var:",
+        "De nouvelles mises à jour sont disponibles": "",
         "Vous pouvez arrêter le système": "Sistemi durdurabilirsiniz",
         "Vous pouvez lancer le redémarrage du système": "Sistemi yeniden başlatmayı başlatabilirsiniz"
     },

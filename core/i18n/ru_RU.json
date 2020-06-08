@@ -3644,7 +3644,7 @@
         "Test de connexion au market": "Тест подключения рынка",
         "Erreur sur la connexion au market : ": "",
         "Démarrage de jeedom fini avec succès": "Jeedom Запуск успешно завершен",
-        "De nouvelles mises à jour sont disponibles : ": "Новые обновления доступны:",
+        "De nouvelles mises à jour sont disponibles": "",
         "Vous pouvez arrêter le système": "",
         "Vous pouvez lancer le redémarrage du système": ""
     },

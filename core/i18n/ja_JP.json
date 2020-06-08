@@ -3644,7 +3644,7 @@
         "Test de connexion au market": "接続テスト市場",
         "Erreur sur la connexion au market : ": "",
         "Démarrage de jeedom fini avec succès": "Jeedom開始が正常に終了しました",
-        "De nouvelles mises à jour sont disponibles : ": "新しいアップデートが利用可能です。",
+        "De nouvelles mises à jour sont disponibles": "",
         "Vous pouvez arrêter le système": "",
         "Vous pouvez lancer le redémarrage du système": ""
     },
