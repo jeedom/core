@@ -20,18 +20,17 @@ try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 	
-	ajax::init(false);
+	ajax::init(array('backupupload','uploadImageIcon'));
 	
 	if (init('action') == 'getInfoApplication') {
 		$return = jeedom::getThemeConfig();
 		$return['serverDatetime'] = getmicrotime();
+		$return['serverTZoffsetMin'] = getTZoffsetMin();
 		if (!isConnect()) {
 			$return['connected'] = false;
 			ajax::success($return);
 		}
-		
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['jeedom_token'] = ajax::getToken();
 		@session_start();
 		$_SESSION['user']->refresh();
 		@session_write_close();
@@ -79,6 +78,14 @@ try {
 	}
 	
 	if (init('action') == 'getDocumentationUrl') {
+		$theme = 'light';
+		if (init('theme') != '' || init('theme') == 'false') {
+			if (strpos(init('theme'),'Dark') !== false)
+			$theme = 'dark';
+		} elseif (strpos(config::byKey('default_bootstrap_theme'),'Dark') !== false) {
+			$theme = 'dark';
+		}
+		
 		$plugin = null;
 		if (init('plugin') != '' || init('plugin') == 'false') {
 			try {
@@ -89,7 +96,7 @@ try {
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			if ($plugin->getDocumentation() != '') {
-				ajax::success($plugin->getDocumentation());
+				ajax::success($plugin->getDocumentation().'?theme='.$theme);
 			}
 		} else {
 			$page = init('page');
@@ -99,8 +106,16 @@ try {
 				$page = 'view';
 			} else if (init('page') == 'plan') {
 				$page = 'design';
+			}else if (init('page') == 'plan3d') {
+				$page = 'design3d';
 			}
-			ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
+			$version = '3.3';
+			if(strpos(jeedom::version(),'4.0') !== false){
+				$version = '4.0';
+			}elseif(strpos(jeedom::version(),'4.1') !== false){
+				$version = '4.1';
+			}
+			ajax::success('https://doc.jeedom.com/' . config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page).'?theme='.$theme);
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
@@ -110,10 +125,6 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande non trouvée : ', __FILE__) . init('cmd_id'));
 		}
-		$listener = new listener();
-		$listener->setClass('interactQuery');
-		$listener->setFunction('warnMeExecute');
-		$listener->addEvent($cmd->getId());
 		$options = array(
 			'type' => 'cmd',
 			'cmd_id' => $cmd->getId(),
@@ -121,9 +132,19 @@ try {
 			'test' => init('test'),
 			'reply_cmd' => init('reply_cmd', $_SESSION['user']->getOptions('notification::cmd')),
 		);
-		$listener->setOption($options);
-		$listener->save(true);
-		ajax::success();
+		
+		if ($options['reply_cmd'] != '') {
+			$listener = new listener();
+			$listener->setClass('interactQuery');
+			$listener->setFunction('warnMeExecute');
+			$listener->addEvent($cmd->getId());
+			$listener->setOption($options);
+			$listener->save(true);
+			ajax::success();
+		} else {
+			throw new Exception(__('Aucune Commande de Notification : ', __FILE__) . init('cmd_id'));
+			ajax::error();
+		}
 	}
 	
 	if (!isConnect('admin')) {
@@ -143,12 +164,87 @@ try {
 	
 	if (init('action') == 'db') {
 		unautorizedInDemo();
-		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+		$microtime = getmicrotime();
+		$result = array('sql' => DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+		$result['time'] = getmicrotime() - $microtime;
+		ajax::success($result);
+	}
+	
+	if (init('action') == 'getStringUsedBy') {
+		$_search = init('search');
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'interactDef' => array(), 'note' => array());
+		
+		$result = scenarioExpression::searchExpression($_search);
+		foreach ($result as $expr) {
+			$expr = utils::o2a($expr);
+			$subElement = scenarioSubElement::byId($expr['scenarioSubElement_id']);
+			if (is_object($subElement)) {
+				$scenario = $subElement->getElement()->getScenario();
+				$info['humanName'] = $scenario->getHumanName();
+				$info['link'] = $scenario->getLinkToConfiguration();
+				$info['linkId'] = $scenario->getId();
+				$return['scenario'][] = $info;
+			}
+		}
+		
+		$result = interactQuery::searchQueries($_search);
+		foreach ($result as $interactQuery) {
+			$interact = $interactQuery->getInteractDef();
+			$info = utils::o2a($interact);
+			$info['humanName'] = $interact->getHumanName();
+			$info['link'] = $interact->getLinkToConfiguration();
+			$info['linkId'] = $interact->getId();
+			$return['interactDef'][] = $info;
+		}
+		
+		$result = eqLogic::searchByString($_search);
+		foreach ($result as $eqLogic) {
+			$info['humanName'] = $eqLogic->getHumanName();
+			$info['link'] = $eqLogic->getLinkToConfiguration();
+			$info['linkId'] = $eqLogic->getId();
+			$return['eqLogic'][] = $info;
+		}
+		
+		$result = cmd::searchByString($_search);
+		foreach ($result as $cmd) {
+			$info['humanName'] = $cmd->getHumanName();
+			$info['link'] = $cmd->getEqLogic()->getLinkToConfiguration();
+			$info['linkId'] = $cmd->getId();
+			$return['cmd'][] = $info;
+		}
+		
+		$result = note::searchByString($_search);
+		foreach ($result as $note) {
+			$info['humanName'] = $note->getName();
+			$info['linkId'] = $note->getId();
+			$return['note'][] = $info;
+		}
+		ajax::success($return);
 	}
 	
 	if (init('action') == 'dbcorrectTable') {
 		unautorizedInDemo();
 		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true),init('table'));
+		ajax::success();
+	}
+	
+	if (init('action') == 'systemCorrectPackage') {
+		unautorizedInDemo();
+		if(init('package') != 'all'){
+			$cmd = "set -x\n";
+			$cmd .= system::checkInstallationLog();
+			$cmd .= system::getCmdSudo()." apt update\n";
+			$package = explode('::',init('package'));
+			$cmd .= system::installPackage($package[0],$package[1])."\n";
+			if(file_exists('/tmp/jeedom_fix_package')){
+				shell_exec(system::getCmdSudo() .' rm /tmp/jeedom_fix_package');
+			}
+			file_put_contents('/tmp/jeedom_fix_package',$cmd);
+			system::launchScriptPackage();
+		}else{
+			$packages = json_decode(file_get_contents(__DIR__.'/../../install/packages.json'),true);
+			system::checkAndInstall($packages,true);
+		}
 		ajax::success();
 	}
 	
@@ -219,10 +315,10 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.gz'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .tar.gz) : ' . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz) : ', __FILE__) . $extension);
 		}
-		if (filesize($_FILES['file']['tmp_name']) > 300000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 300Mo)', __FILE__));
+		if (filesize($_FILES['file']['tmp_name']) > 1000000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 1Go)', __FILE__));
 		}
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
@@ -241,6 +337,21 @@ try {
 	if (init('action') == 'rebootSystem') {
 		unautorizedInDemo();
 		ajax::success(jeedom::rebootSystem());
+	}
+	
+	if (init('action') == 'cleanDatabase') {
+		unautorizedInDemo();
+		ajax::success(jeedom::cleanDatabase());
+	}
+	
+	if (init('action') == 'cleanFileSystemRight') {
+		unautorizedInDemo();
+		ajax::success(jeedom::cleanFileSytemRight());
+	}
+	
+	if (init('action') == 'consistency') {
+		unautorizedInDemo();
+		ajax::success(jeedom::consistency());
 	}
 	
 	if (init('action') == 'forceSyncHour') {
@@ -273,36 +384,14 @@ try {
 		$return = array('node' => array(), 'link' => array());
 		$object = null;
 		$type = init('filter_type');
+		if($type == 'object'){
+			$type = 'jeeObject';
+		}
 		$object = $type::byId(init('filter_id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id : ', __FILE__) . init('filter_id') . __(' inconnu', __FILE__));
 		}
 		ajax::success($object->getLinkData());
-	}
-	
-	if (init('action') == 'getTimelineEvents') {
-		$return = array();
-		$events = jeedom::getTimelineEvent();
-		foreach ($events as $event) {
-			$info = null;
-			switch ($event['type']) {
-				case 'cmd':
-				$info = cmd::timelineDisplay($event);
-				break;
-				case 'scenario':
-				$info = scenario::timelineDisplay($event);
-				break;
-			}
-			if ($info != null) {
-				$return[] = $info;
-			}
-		}
-		ajax::success($return);
-	}
-	
-	if (init('action') == 'removeTimelineEvents') {
-		unautorizedInDemo();
-		ajax::success(jeedom::removeTimelineEvent());
 	}
 	
 	if (init('action') == 'getFileFolder') {
@@ -313,8 +402,8 @@ try {
 	if (init('action') == 'getFileContent') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css','html'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		ajax::success(file_get_contents(init('path')));
 	}
@@ -322,8 +411,8 @@ try {
 	if (init('action') == 'setFileContent') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css','html'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		ajax::success(file_put_contents(init('path'), init('content')));
 	}
@@ -331,8 +420,8 @@ try {
 	if (init('action') == 'deleteFile') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css','html'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		ajax::success(unlink(init('path')));
 	}
@@ -340,8 +429,8 @@ try {
 	if (init('action') == 'createFile') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('name'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css','html'))) {
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		touch(init('path') . init('name'));
 		if (!file_exists(init('path') . init('name'))) {
@@ -353,6 +442,73 @@ try {
 	if (init('action') == 'emptyRemoveHistory') {
 		unautorizedInDemo();
 		unlink(__DIR__ . '/../../data/remove_history.json');
+		ajax::success();
+	}
+	
+	if (init('action') == 'uploadImageIcon') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.jpg', '.png','.gif'))) {
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) : ', __FILE__) . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+		}
+		if(!file_exists(__DIR__ . '/../../data/img')){
+			mkdir(__DIR__ . '/../../data/img');
+		}
+		$filename = $_FILES['file']['name'];
+		$filepath = __DIR__ . '/../../data/img/' . $filename;
+		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
+		if(!file_exists($filepath)){
+			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
+		}
+		ajax::success(array('filepath' => $filepath));
+	}
+	
+	if (init('action') == 'removeImageIcon') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$filepath = __DIR__ . '/../../data/img/' . init('filename');
+		if(!file_exists($filepath)){
+			throw new Exception(__('Fichier introuvable, impossible de le supprimer', __FILE__));
+		}
+		unlink($filepath);
+		if(file_exists($filepath)){
+			throw new Exception(__('Impossible de supprimer le fichier', __FILE__));
+		}
+		ajax::success();
+	}
+	
+	if (init('action') == 'massEditSave') {
+		unautorizedInDemo();
+		$type = init('type');
+		if(!class_exists($type)){
+			throw new Exception('{{Type non trouvé : }}'.$type);
+		}
+		$datas = is_json(init('objects'),array());
+		if(count($datas) > 0){
+			foreach ($datas as $data) {
+				$object = $type::byId($data['id']);
+				if(!is_object($object)){
+					continue;
+				}
+				utils::a2o($object,$data);
+				try {
+					$object->save(true);
+				} catch (\Exception $e) {
+					var_dump($e);
+				}
+			}
+		}
 		ajax::success();
 	}
 	

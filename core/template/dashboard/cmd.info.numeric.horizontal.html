@@ -1,25 +1,30 @@
-<div style="min-width:115px; min-height:62px; position:relative; top:-7px; padding:0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div style="width:95px;" class="hgauge cursor #history#" data-cmd_id="#id#" >
-    <div class="cmdName" style="#hideCmdName#">#name_display#</div>
+<div class="cmd cmd-widget hgauge #history#" data-type="info" data-subtype="numeric" data-template="horizontal" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-sm" data-cmd_id="#id#">
     <div class="hgauge-bckg"></div>
     <div class="hgauge-value"></div>
-    <div class="hgauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
-  <div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block" class="cmdStats">
-    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  <div class="value" data-cmd_id="#id#">
+    <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
+  <div class="cmdStats #hide_history#">
+    <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
+
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      width = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+      var width = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
       width = Math.round(parseFloat(width) * 10) / 10
-      $('.cmd[data-cmd_uid=#uid#] .hgauge .hgauge-value').width(width)
-      $('.cmd[data-cmd_uid=#uid#] .hgauge-state strong').first().text(_options.display_value)
+      cmd.find('.hgauge-value').width(width+'%')
+      cmd.find('.state strong').first().text(_options.display_value)
     }
-    
-    if (is_numeric('#state#')) {
-      jeedom.cmd.update['#id#']({display_value:'#state#'});
-    } else {
-      $('.cmd[data-cmd_uid=#uid#] .hgauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>')
-    }
+
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
   </script>
 </div>

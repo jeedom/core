@@ -1,0 +1,13 @@
+<div class="cmd cmd-widget #history#" data-type="info" data-subtype="string"data-template="buttonImage" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+	<div class="content-sm">
+    <a class="btn btn-sm btn-default action tooltips">#name_display#</a>
+  </div>
+  <script>
+    $('.cmd[data-cmd_uid=#uid#] .action').on('click', function() {
+		$('#md_modal2').dialog({
+			title: "Image"
+		});
+		$('#md_modal2').load('index.php?v=d&modal=widget.modal&data=#state#&type=image').dialog('open');
+	});
+  </script>
+</div>

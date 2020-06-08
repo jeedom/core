@@ -17,7 +17,7 @@ if (!isConnect()) {
 		<option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
 		<option value="ask">{{Faire une demande}}</option>
 		<option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
-		<option value="jeedom_reboot">{{Reémarrer}} <?php echo config::byKey('product_name'); ?></option>
+		<option value="jeedom_reboot">{{Redémarrer}} <?php echo config::byKey('product_name'); ?></option>
 		<option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
 		<option value="icon" class="scenarioOnly">{{Icône}}</option>
 		<option value="alert">{{Alerte}}</option>
@@ -26,6 +26,7 @@ if (!isConnect()) {
 		<option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
 		<option value="event">{{Evènement}}</option>
 		<option value="tag">{{Tag}}</option>
+		<option value="setColoredIcon">{{Coloration des icones}}</option>
 	</select>
 </center>
 <br/>
@@ -81,6 +82,10 @@ if (!isConnect()) {
 	{{Envoi l'ordre à Jeedom de s'éteindre}}
 </div>
 
+<div class="alert alert-info mod_actionValue_selDescription jeedom_reboot" style="display:none;">
+	{{Envoi l'ordre à Jeedom de redémarrer}}
+</div>
+
 <div class="alert alert-info mod_actionValue_selDescription scenario_return" style="display:none;">
 	{{Retourne un texte ou une valeur pour une interaction par exemple}}
 </div>
@@ -113,31 +118,43 @@ if (!isConnect()) {
 	{{Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)}}
 </div>
 
+<div class="alert alert-info mod_actionValue_selDescription setColoredIcon" style="display:none;">
+	{{Permets d'activer ou non la coloration des icones sur le dashboard}}
+</div>
+
 <script>
-$('#mod_actionValue_sel').on('change',function(){
-	var value = $(this).value();
-	if(value == 'alert'){
-		value = 'alert2';
+	$(function() {
+		var select = $('#mod_actionValue_sel')
+		select.html(select.find('option').sort(function(x, y) {
+			return $(x).text() > $(y).text() ? 1 : -1
+		}))
+		select.prop("selectedIndex", 0)
+		select.trigger("change")
+	})
+
+	$('#mod_actionValue_sel').on('change',function() {
+		var value = $(this).value();
+		if(value == 'alert') {
+			value = 'alert2'
+		}
+		$('.mod_actionValue_selDescription').hide()
+		$('.mod_actionValue_selDescription.'+value).show()
+	});
+
+	function mod_insertAction() {}
+
+	mod_insertAction.options = {}
+
+	mod_insertAction.setOptions = function (_options) {
+		mod_insertAction.options = _options;
+		if (init(_options.scenario,false) == false) {
+			$('#mod_actionValue_sel .scenarioOnly').hide()
+		} else {
+			$('#mod_actionValue_sel .scenarioOnly').show()
+		}
 	}
-	$('.mod_actionValue_selDescription').hide();
-	$('.mod_actionValue_selDescription.'+value).show();
-});
 
-function mod_insertAction() {
-}
-
-mod_insertAction.options = {};
-
-mod_insertAction.setOptions = function (_options) {
-	mod_insertAction.options = _options;
-	if(init(_options.scenario,false) == false){
-		$('#mod_actionValue_sel .scenarioOnly').hide();
-	}else{
-		$('#mod_actionValue_sel .scenarioOnly').show();
+	mod_insertAction.getValue = function () {
+		return $('#mod_actionValue_sel').value()
 	}
-}
-
-mod_insertAction.getValue = function () {
-	return $('#mod_actionValue_sel').value();
-}
 </script>

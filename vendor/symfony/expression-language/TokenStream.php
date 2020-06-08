@@ -25,6 +25,8 @@ class TokenStream
     private $expression;
 
     /**
+     * Constructor.
+     *
      * @param array  $tokens     An array of tokens
      * @param string $expression
      */
@@ -50,11 +52,11 @@ class TokenStream
      */
     public function next()
     {
-        ++$this->position;
-
         if (!isset($this->tokens[$this->position])) {
             throw new SyntaxError('Unexpected end of expression', $this->current->cursor, $this->expression);
         }
+
+        ++$this->position;
 
         $this->current = $this->tokens[$this->position];
     }
@@ -82,7 +84,7 @@ class TokenStream
      */
     public function isEOF()
     {
-        return Token::EOF_TYPE === $this->current->type;
+        return $this->current->type === Token::EOF_TYPE;
     }
 
     /**

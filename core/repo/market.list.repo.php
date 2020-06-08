@@ -34,8 +34,7 @@ if ($author == null && $name === null && $categorie === null && init('certificat
 			'author' => $author,
 			'cost' => init('cost', null),
 			'timeState' => init('timeState'),
-			'certification' => init('certification', null),
-			'limit' => 50,
+			'certification' => init('certification', null)
 		)
 	);
 }
@@ -72,22 +71,22 @@ function displayWidgetName($_name) {
 	}
 	switch ($name[2]) {
 		case 'other':
-		$result .= '<span class="label label-warning" style="text-shadow: none;">other</span> ';
+		$result .= '<span class="label label-warning">other</span> ';
 		break;
 		case 'color':
-		$result .= '<span class="label label-success" style="text-shadow: none;">color</span> ';
+		$result .= '<span class="label label-success">color</span> ';
 		break;
 		case 'slider':
-		$result .= '<span class="label label-primary" style="text-shadow: none;">slider</span> ';
+		$result .= '<span class="label label-primary">slider</span> ';
 		break;
 		case 'binary':
-		$result .= '<span class="label label-info" style="text-shadow: none;">binary</span> ';
+		$result .= '<span class="label label-info">binary</span> ';
 		break;
 		case 'numeric':
-		$result .= '<span class="label label-danger" style="text-shadow: none;">numeric</span> ';
+		$result .= '<span class="label label-danger">numeric</span> ';
 		break;
 		case 'string':
-		$result .= '<span class="label label-default" style="text-shadow: none;">string</span> ';
+		$result .= '<span class="label label-default">string</span> ';
 		break;
 		default:
 		$result .= $name[2];
@@ -149,52 +148,48 @@ function displayWidgetSubtype($_name) {
 }
 ?>
 
-<style type="text/css">
-.noPaddingLeft { padding-left: 0;}
-.noPaddingRight { padding-right: 0;}
-.noMarginBottom { margin-bottom: 0;}
-.noPaddingWell {
-	padding-bottom: 0;
-	padding-top: 0;
-}
 
-.market:hover{
-	background-color : #F2F1EF !important;
-}
-</style>
 
 <div style="margin-bottom: 5px;">
 	<form class="form-inline" role="form" onsubmit="return false;">
 		<?php if (init('type', 'plugin') == 'plugin') {?>
 			<div class="input-group input-group-sm">
 				<span class="input-group-btn">
-					<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+					<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}
+					</a><a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fas fa-times"></i></a>
 				</span>
 			</div>
 		<?php }
 		?>
 		<div class="input-group input-group-sm">
 			<span class="input-group-btn">
-				<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
+				<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}
+				</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}
+				</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Premium') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Premium'); ?>">{{Premium}}
+				</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Partenaire') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Partenaire'); ?>">{{Partenaire}}
+				</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}
+				</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fas fa-times"></i></a>
 			</span>
 		</div>
-		<div class="input-group input-group-sm">
+		<div class="input-group">
 			<span class="input-group-btn">
-				<a class="btn btn-default bt_installFilter roundedLeft" data-state="-1">{{Installé}}</a><a class="btn btn-default bt_installFilter" data-state="1">{{Non installé}}</a><a class="btn btn-default bt_installFilter roundedRight" data-state="0"><i class="fa fa-times"></i></a>
-			</span>
-		</div>
-		<div class="input-group input-group-sm">
-			<span class="input-group-btn">
-				<select class="form-control input-sm roundedLeft" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
+				<select class="form-control roundedLeft" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
 					<?php
 					if (init('categorie') == '') {
 						echo '<option value="" selected>{{Top et nouveautés}}</option>';
 					} else {
 						echo '<option value="">{{Top et nouveautés}}</option>';
 					}
+
 					if ($type !== null && $type != 'plugin') {
+						$categories = array();
 						foreach (repo_market::distinctCategorie($type) as $id => $category) {
-							if (trim($category) != '' && is_numeric($id)) {
+							array_push($categories, array(trim($category), $id));
+						}
+						sort($categories);
+
+						foreach ($categories as $id => $category) {
+							if ($category != '' && is_numeric($id)) {
 								echo '<option value="' . $category . '"';
 								echo (init('categorie') == $category) ? 'selected >' : '>';
 								echo $category;
@@ -203,17 +198,23 @@ function displayWidgetSubtype($_name) {
 						}
 					} else {
 						global $JEEDOM_INTERNAL_CONFIG;
+						$categories = array();
 						foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
-							echo '<option value="' . $key . '"';
-							echo (init('categorie') == $key) ? 'selected >' : '>';
-							echo $value['name'];
+							array_push($categories, array($value['name'], $key));
+						}
+						sort($categories);
+
+						foreach ($categories as $cat) {
+							echo '<option value="' . $cat[1] . '"';
+							echo (init('categorie') == $cat[1]) ? 'selected >' : '>';
+							echo $cat[0];
 							echo '</option>';
 						}
 					}
 					?>
 				</select>
-				<input class="form-control input-sm" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
-				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fa fa-search"></i></a>
+				<input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="{{Rechercher}}" id="in_search" value="<?php echo $name ?>"/>
+				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fas fa-search"></i></a>
 			</span>
 		</div>
 		<?php
@@ -221,9 +222,9 @@ function displayWidgetSubtype($_name) {
 			echo '<span class="label label-info pull-right">' . config::byKey('market::username');
 			try {
 				repo_market::test();
-				echo ' <i class="fa fa-check"></i>';
+				echo ' <i class="fas fa-check"></i>';
 			} catch (Exception $e) {
-				echo ' <i class="fa fa-times"></i>';
+				echo ' <i class="fas fa-times"></i>';
 			}
 			echo '</span>';
 		}
@@ -232,7 +233,7 @@ function displayWidgetSubtype($_name) {
 </div>
 <?php
 if ($name !== null && strpos($name, '$') !== false) {
-	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fa fa-arrow-circle-left"></i> {{Retour}}</a>';
+	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fas fa-arrow-circle-left"></i> {{Retour}}</a>';
 }
 ?>
 
@@ -245,6 +246,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 	if ($default) {
 		echo '<div class="pluginContainer">';
 	}
+
 	foreach ($markets as $market) {
 		$update = update::byLogicalId($market->getLogicalId());
 		$category = $market->getCategorie();
@@ -272,7 +274,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 		if (!is_object($update)) {
 			$install = 'install';
 		}
-		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 220px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="height : 220px;width : 160px;margin-left : 10px;" >';
 
 		if ($market->getType() != 'widget') {
 			if ($market->getCertification() == 'Officiel') {
@@ -287,6 +289,12 @@ if ($name !== null && strpos($name, '$') !== false) {
 			if ($market->getCertification() == 'Obsolète') {
 				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Obsolete.png" /></div>';
 			}
+			if ($market->getCertification() == 'Premium') {
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Premium.png" /></div>';
+			}
+			if ($market->getCertification() == 'Partenaire') {
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Partenaire.png" /></div>';
+			}
 		}
 
 		if ($market->getType() == 'widget') {
@@ -297,7 +305,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 			}
 		}
 		if (is_object($update)) {
-			echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
+			echo '<i class="fas fa-check" style="position : absolute; right : 5px;"></i>';
 		}
 
 		echo "<br/><center>";
@@ -340,8 +348,10 @@ if ($name !== null && strpos($name, '$') !== false) {
 		if ($market->getCost() > 0) {
 			echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
 			if ($market->getPurchase() == 1) {
-				echo ' <i class="fa fa-check-circle"></i>';
-			} else {
+				echo ' <i class="fas fa-check-circle"></i>';
+			} else	if ($market->getCertification() == 'Premium') {
+				echo '';
+			}else{
 				if ($market->getCost() != $market->getRealCost()) {
 					echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
 				}
@@ -358,15 +368,6 @@ if ($name !== null && strpos($name, '$') !== false) {
 	}
 	?>
 </div>
-<style>
-.market:hover{
-	background-color : #F2F1EF !important;
-}
-
-#md_modal{
-	background-color: #e7e7e7
-}
-</style>
 
 <script>
 $(function () {

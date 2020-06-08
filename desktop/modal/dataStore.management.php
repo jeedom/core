@@ -6,7 +6,7 @@ sendVarToJS('dataStore_type', init('type'));
 sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
-<a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus"></i> {{Ajouter}}</a>
+<a class="btn btn-sm pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 <table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
 	<thead>
 		<tr>
@@ -17,17 +17,22 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 		</tr>
 	</thead>
 	<tbody>
-		
+
 	</tbody>
 </table>
 
 <script>
 $(function() {
-	initTableSorter();
-	refreshDataStoreMangementTable();
+	initTableSorter()
+	refreshDataStoreMangementTable()
+	setTimeout(function(){$('#table_dataStore').find('th[data-column="0"]').trigger('sort')}, 100)
 	$('#table_dataStore').delegate('.bt_removeDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
-		bootbox.confirm('Etes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
+		if (tr.attr('data-datastore_id') == '') {
+			tr.remove()
+			return
+		}
+		bootbox.confirm('Êtes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
 			if (result) {
 				jeedom.dataStore.remove({
 					id: tr.attr('data-dataStore_id'),
@@ -42,7 +47,7 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$('#table_dataStore').delegate('.bt_saveDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		jeedom.dataStore.save({
@@ -60,13 +65,13 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		$('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"});
 		$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open');
 	});
-	
+
 	$('#bt_dataStoreManagementAdd').on('click', function() {
 		var tr = '<tr data-dataStore_id="">';
 		tr += '<td>';
@@ -78,15 +83,15 @@ $(function() {
 		tr += '<td>';
 		tr += '</td>';
 		tr += '<td>';
-		tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fas fa-check"></i></a>';
-		tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="far fa-trash-alt"></i></a>';
+		tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore"><i class="fas fa-check"></i></a>';
+		tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore"><i class="far fa-trash-alt"></i></a>';
 		tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
 		tr += '</td>';
 		tr += '</tr>';
-		$('#table_dataStore tbody').append(tr);
+		$('#table_dataStore tbody').prepend(tr);
 		$("#table_dataStore").trigger("update");
 	});
-	
+
 	function refreshDataStoreMangementTable() {
 		jeedom.dataStore.all({
 			type: dataStore_type,
@@ -99,35 +104,36 @@ $(function() {
 				var tr = '';
 				for (var i in data) {
 					tr += '<tr data-dataStore_id="' + data[i].id + '">';
-					tr += '<td>';
-					tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
+					tr += '<td style="min-width:55px;">';
+					tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" readonly />';
 					tr += '</td>';
-					tr += '<td>';
+					tr += '<td style="min-width:90px;">';
 					tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />';
 					tr += '</td>';
 					tr += '<td>';
 					for(var j in data[i].usedBy.scenario){
-						tr += '<span class="label label-primary">'+data[i].usedBy.scenario[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.scenario[j]['link']+'&search='+encodeURI(data[i].key)+'" class="btn btn-xs btn-primary">'+data[i].usedBy.scenario[j]['humanName']+'</a>';
 					}
 					for(var j in data[i].usedBy.eqLogic){
-						tr += '<span class="label label-primary">'+data[i].usedBy.eqLogic[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.eqLogic[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.eqLogic[j]['humanName']+'</a>';
 					}
 					for(var j in data[i].usedBy.cmd){
-						tr += '<span class="label label-primary">'+data[i].usedBy.cmd[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.cmd[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.cmd[j]['humanName']+'</a>';
 					}
 					for(var j in data[i].usedBy.interactDef){
-						tr += '<span class="label label-primary">'+data[i].usedBy.interactDef[j]+'</span> ';
+						tr += ' <a href="'+data[i].usedBy.interactDef[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.interactDef[j]['humanName']+'</a>';
 					}
 					tr += '</td>';
 					tr += '<td style="min-width:120px; width:120px;">';
-					tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fas fa-check"></i></a>';
-					tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="far fa-trash-alt"></i></a>';
-					tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
+					tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore"><i class="fas fa-check"></i></a>';
+					tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore"><i class="far fa-trash-alt"></i></a>';
+					tr += '<a class="btn pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
 					tr += '</td>';
 					tr += '</tr>';
 				}
 				$('#table_dataStore tbody').append(tr);
 				$("#table_dataStore").trigger("update");
+
 			}
 		});
 	}

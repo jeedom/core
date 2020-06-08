@@ -1,13 +1,14 @@
-<div style="min-width:90px;min-height:60px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-	<center>
-		<div  class="cmdName" style="#hideCmdName#">#name_display#</div>
-		<span style="font-size: 2.5em;font-weight: bold;margin-top: 5px;" class="state"></span><br/>
-		<span style="color: #666666;font-weight: bold;">#unite#</span>
-	</center>
+<div class="cmd cmd-widget #history#" data-type="info" data-subtype="string" data-template="tile" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+	<div class="title #hide_name#">
+		<div class="cmdName">#name_display#</div>
+	</div>
+	<div class="content-sm ">
+		<span class="iconCmd"></span>
+	</div>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
-			$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
+			$('.cmd[data-cmd_id=#id#]').attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+			$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(_options.display_value);
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 	</script>

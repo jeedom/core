@@ -1,16 +1,9 @@
 /*
 Theme Core 2019 @Jeedom
+Mobile Light
 */
 
-@import url("../../../../mobile/css/mobile.main.css");
 @import url("colors.css");
-
-.ui-link[data-title=Accueil] {
-	background: url(./jeedom_home.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 32px 32px;
-}
 
 /* _____________________________DASHBOARD CATEGORIES title coloring */
 .eqLogic.eqLogic-widget {
@@ -25,9 +18,6 @@ Theme Core 2019 @Jeedom
 
 .ui-btn {
 	color: var(--link-color) !important;
-}
-.ui-btn i:hover {
-	color: var(--linkHoverLight-color) !important;
 }
 
 .eqLogic.eqLogic-widget,
@@ -46,6 +36,9 @@ Theme Core 2019 @Jeedom
 }
 [data-category=light] .widget-name {
 	background-color: rgba(var(--cat-light-color), var(--opacity));
+}
+[data-category=opening] .widget-name {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
 }
 [data-category=multimedia] .widget-name {
 	background-color: rgba(var(--cat-multimedia-color), var(--opacity));
@@ -108,7 +101,8 @@ a.action.ui-btn {
 	color: var(--linkHover-color) !important;
 }
 
-.fa-refresh,
+.eqLogic.eqLogic-widget .fa-refresh,
+.scenario.scenario-widget .fa-refresh,
 .statusCmd > i {
 	color: var(--eqTitle-color) !important;
 }
@@ -120,6 +114,12 @@ a.action.ui-btn {
 	color: var(--txt-color);
 }
 
+.ui-slider-track .ui-slider-handle {
+	background-color: var(--link-color) !important;
+}
+.ui-slider-handle:hover {
+	background-color: var(--linkHover-color) !important;
+}
 /* ___________________________________________________________GAUGES */
 .shuttergauge-value {
 	background: var(--link-color);
@@ -131,55 +131,4 @@ a.action.ui-btn {
 	border-top: 6px solid var(--el-defaultColor) !important;
 	border-left: 4px solid var(--el-defaultColor) !important;
 	border-right: 4px solid var(--el-defaultColor) !important;
-}
-
-.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
-	fill: var(--link-color) !important;
-}
-.highcharts-legend-item.highcharts-legend-item-hidden text {
-	fill: var(--txt-color) !important;
-}
-.highcharts-background {
-	fill: var(--defaultBkg-color) !important;
-}
-.gauge .highcharts-background {
-	fill: transparent !important;
-}
-.highcharts-range-selector-buttons > text {
-	fill: var(--link-color) !important;
-}
-.highcharts-container {
-	color: var(--txt-color) !important;
-}
-.highcharts-plot-band {
-	fill: var(--bg-color) !important;
-}
-.highcharts-grid-line {
-	stroke: var(--defaultBkg-color);
-}
-.highcharts-button-box {
-	fill: var(--el-defaultColor) !important;
-}
-.highcharts-button > text,
-.highcharts-button-disabled > text{
-	fill: var(--link-color) !important;
-}
-.highcharts-axis-labels > text {
-	fill: var(--link-color) !important;
-}
-
-.highcharts-pane {
-	fill: var(--el-defaultColor);
-}
-.highcharts-data-label > span > span {
-	color: var(--txt-color) !important;
-}
-.highcharts-color-0 {
-	fill: var(--link-color);
-}
-.ui-slider-handle {
-	background-color: var(--link-color) !important;
-}
-.ui-slider-handle:hover {
-	background-color: var(--linkHover-color) !important;
 }

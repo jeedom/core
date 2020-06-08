@@ -1,77 +1,61 @@
-C’est ici que l’on va pouvoir définir la liste des utilisateurs
-autorisés à se connecter à Jeedom, mais également leurs droits
-d’administrateur
+# Utilisateurs
+**Einstellungen → System → Benutzer**
 
-Accessible par Administration → Utilisateurs.
+Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt sind, eine Verbindung zu Jeedom herzustellen, sowie deren Administratorrechte.
 
-En haut à droite vous avez un bouton pour ajouter un utilisateur, un
-pour sauvegarder et un bouton pour ouvrir un accès au support.
+Auf der Seite haben Sie drei Schaltflächen :
 
-Darunter haben Sie eine Tabelle :
+- Benutzer hinzufügen.
+- Speichern.
+- Öffnen Sie den Support-Zugriff.
 
--   **Nom d’utilisateur** : l’identifiant de l’utilisateur
+## Liste der Benutzer
 
--   **Actif** : permet de désactiver le compte
+- **Benutzername** : Benutzer-ID.
+- **Aktiva** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
+- **Lokal** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
+- **Profil** : Ermöglicht die Auswahl des Benutzerprofils :
+    - **Verwalter** : Der Benutzer erhält alle Rechte (Bearbeitung / Beratung) an Jeedom.
+    - **Benutzer** : Der Benutzer kann Dashboard, Ansichten, Designs usw. anzeigen. und auf Geräte / Kontrollen einwirken. Er hat jedoch weder Zugriff auf die Konfiguration der Steuerungen / Geräte noch auf die Konfiguration von Jeedom.
+    - **Begrenzter Benutzer** : Der Benutzer sieht nur das autorisierte Gerät (konfigurierbar mit der Schaltfläche "Rechte"").
+- **API-Schlüssel** : Persönlicher API-Schlüssel des Benutzers.
+- **Doppelte Authentifizierung** : Gibt an, ob die doppelte Authentifizierung aktiv ist (OK) oder nicht (NOK)).
+- **Datum der letzten Verbindung** : Datum der letzten Benutzeranmeldung. Bitte beachten Sie, dass dies das tatsächliche Verbindungsdatum ist. Wenn Sie also Ihren Computer speichern, wird das Verbindungsdatum nicht bei jeder Rückkehr aktualisiert.
+- **Rechte** : Benutzerrechte ändern.
+- **Passwort** : Ermöglicht das Ändern des Benutzerpassworts.
+- **Entfernen** : Benutzer entfernen.
+- **API-Schlüssel neu generieren** : Benutzer-API-Schlüssel neu generieren.
+- **Rechte verwalten** : Ermöglicht die Feinverwaltung von Benutzerrechten (beachten Sie, dass sich das Profil in "eingeschränkter Benutzer" befinden muss)").
 
--   **Local seulement** : autorise la connexion de l’utilisateur
-    uniquement s’il est sur le réseau local de Jeedom
+## Rechteverwaltung
 
--   **Profils** : permet de choisir le profil de l’utilisateur :
+Wenn Sie auf &quot;Rechte&quot; klicken, wird ein Fenster angezeigt, in dem Sie die Benutzerrechte genau verwalten können. Auf der ersten Registerkarte werden die verschiedenen Geräte angezeigt. Der zweite zeigt die Szenarien.
 
-    -   **Administrateur** : obtient tous les droits sur Jeedom
-
-    -   **Utilisateur** : peut voir le dashboard, les vues, les
-        design, etc. et agir sur les équipements/commandes. En revanche,
-        il n’aura pas accès à la configuration des commandes/équipements
-        ni à la configuration de Jeedom.
-
-    -   **Utilisateur limité** : l’utilisateur ne voit que les
-        équipements autorisés (configurable avec le bouton "Gérer
-        les droits")
-
--   **Clef API** : clef API personnelle de l’utilisateur
-
--   **Double authentification** : indique si la double authentification
-    est active (OK) ou non (NOK)
-
--   **Date de dernière connexion** : date de la dernière connexion de
-    l’utilisateur à Jeedom. Attention, ici c’est la date de connexion
-    réelle, ainsi si vous enregistrez votre ordinateur, la date de
-    connexion n’est pas mise à jour à chaque fois que vous y retournez.
-
--   **Changer le mot de passe** : permet de changer le mot de passe de
-    l’utilisateur
-
--   **Supprimer** : permet de supprimer l’utilisateur
-
--   **Regénerer clef API** : regénère la clef API de l’utilisateur
-
--   **Gérer les droits** : permet de gérer finement les droits de
-    l’utilisateur (attention le profils doit être en
-    "utilisateur limité")
-
-Gestion des droits 
-==================
-
-Lors du clic sur "Gérer les droits" une fenêtre apparait et vous permet
-de gérer finement les droits de l’utilisateur. Le premier onglet affiche
-les différents équipements. Le deuxième présente les scénarios.
-
-> **Important**
+> **Wichtig**
 >
-> Le profil doit être en limité sinon aucune restriction mise ici ne
-> sera prise en compte
+> Das Profil muss eingeschränkt sein, da sonst keine hier aufgeführten Einschränkungen berücksichtigt werden.
 
-Vous obtenez un tableau qui permet, pour chaque équipement et chaque
-scénario, de définir les droits de l’utilisateur :
+Sie erhalten eine Tabelle, in der für jedes Gerät und jedes Szenario die Rechte des Benutzers definiert werden können :
+- **Keine** : Der Benutzer sieht die Ausrüstung / das Szenario nicht.
+- **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, kann jedoch nicht darauf reagieren.
+- **Visualisierung und Ausführung** : Der Benutzer sieht die Ausrüstung / das Szenario und kann darauf reagieren (Anzünden einer Lampe, Starten des Szenarios usw.)).
 
--   **Aucun** : l’utilisateur ne voit pas l’équipement/scénario
+## Aktive Sitzungen))
 
--   **Visualisation** : l’utilisateur voit l’équipement/scénario mais ne
-    peut pas agir dessus
+Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, deren IP und seit wann an. Sie können den Benutzer über die Schaltfläche abmelden **Trennen**.
 
--   **Visualisation et exécution** : l’utilisateur voit
-    l’équipement/scénario et peut agir dessus (allumer une lampe, lancer
-    le scénario, etc.)
+## Registrierte Geräte)
+
+Listen Sie die Peripheriegeräte (Computer, Handys usw.) auf, deren Authentifizierung auf Ihrem Jeedom aufgezeichnet wurde.
+Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
+
+> **Notiz**
+>
+> Der gleiche Benutzer hat möglicherweise verschiedene Geräte registriert. Zum Beispiel sein Desktop-Computer, Laptop, Handy usw.
+
+
+
+
+
 
 

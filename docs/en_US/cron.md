@@ -1,72 +1,55 @@
-It informs about all Jeedom application tasks that run on the
-server. This menu is to be used knowingly, or at the
-request technical support.
+# Task engine
+**Settings → System → Task engine**
 
-> **Important**
+This page informs about all Jeedom application tasks running on the server.
+This page is to be used knowingly or at the request of technical support.
+
+> **IMPORTANT**
 >
-> In case of mishandling on this page, any request for
-> support may be refused.
+> In case of mishandling on this page, any request for support may be refused.
 
-To access it, go to **Administration → Task Engine**
-:
+## Cron tab
 
-At the top, on the right, you have:
+At the top right, you have :
 
--   **Disable the cron system**: a button to disable or
-    reactivate all tasks (if you disable them all, more
-    nothing will be functional on your Jeedom)
+- **Disable cron system** : a button to deactivate or reactivate all tasks (if you deactivate them all, nothing will be functional on your Jeedom).
+- **Refresh** : Refreshes the task table.
+- **Add** : Add a cron job manually.
+- **Save** : Save your changes.
 
--   **Refresh**: a button to refresh the task board
+Below, you have the table of all existing tasks (attention, some tasks can launch subtasks, so it is strongly recommended never to modify information on this page).
 
--   **Add**: a button to add a cron job
+In this table, we find :
 
--   **Save**: a button to save your changes.
+- **\#** : Task ID, useful for linking a running process to what it really does.
+- **Active** : Indicates if the task is active (can be launched by Jeedom) or not.
+- **PID** : Indicates the current process ID.
+- **Devil** : If this box is &quot;yes&quot; then the task must always be in progress. Beside, you find the frequency of the daemon, it is advised never to modify this value and especially never to decrease it.
+- **Unique** : If it is &quot;yes&quot; then the task will launch once and then delete itself.
+- **Class** : PHP class called to execute the task (can be empty).
+- **Function** : PHP function called in the called class (or not if the class is empty).
+- **Programming** : Programming of the task in CRON format.
+- **Timeout** : Maximum task run time. If the task is a daemon then it will be automatically stopped and restarted at the end of the timeout.
+- **Last launch** : Date of last task launch.
+- **Last duration** : Last execution time of the task (a daemon will always be at 0s, don't worry about other tasks can be at 0s).
+- **Status** : Current status of the task (as a reminder, a daemon task is always "run"").
 
-Below you have the table of all the existing tasks
-(be careful some tasks can launch subtasks, so it is
-strongly recommended never to change information about this
-page). In this table we find:
-
--   **\ #**: ID of the task, can be useful to make the link between a
-    process that turns and what it really does
-
--   **Action**: a button to start or stop the task based
-    of its status
-
--   **Active**: indicates if the task is active (can be started
-    by Jeedom) or not
-
--   **PID**: indicates the current process ID
-
--   **Demon**: if this box is "yes" then the task must always
-    to be in lessons. Beside you find the frequency of the demon, it is
-    advised never to touch this value and especially never
-    decrease it
-
--   **Unique**: if it's "yes" then the task will run once
-    then will be deleted
-
--   **Class**: PHP class called to execute the task (can
-    to be empty)
-
--   **Function**: PHP function called in the called class (or not
-    if the class is empty)
-
--   **Programming**: programming the task in CRON format
-
--   **Timeout**: maximum duration of operation of the task. If the
-    task is a daemon so it will automatically be stopped and
-    restarted at the end of the timeout
-
--   **Last launch**: last task launch date
-
--   **Last duration**: last time to complete the task (a
-    demon will always be at 0s, do not worry about other tasks
-    can be at 0s)
-
--   **Status**: current status of the task (to recall a daemon task
-    is still at "run")
-
--   **Deletion**: delete the task
+- **ACTION** :
+    - **Details** : See the cron in detail (as stored in base).
+    - **Start / Stop** : Start or stop the task (depending on its status).
+    - **Suppression** : Delete task.
 
 
+## Listener tab
+
+The listeners are just visible in reading and allow you to see the functions called on an event (update of a command...).
+
+## Demon tab
+
+Summary table of the demons with their state, the date of last launch as well as the possibility of
+- Start / Restart a daemon.
+- Stop a daemon if automatic management is deactivated.
+- Enable / disable automatic management of a daemon.
+
+> Tip
+> Demons of disabled plugins do not appear on this page.

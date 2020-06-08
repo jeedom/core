@@ -17,8 +17,14 @@
 */
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use League\ColorExtractor\Color;
+use League\ColorExtractor\ColorExtractor;
+use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
+	if(strpos($_folder,'..') !== false || strpos($_fn,'..') !== false){
+		return;
+	}
 	$_rescue = false;
 	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
 		$_rescue = true;
@@ -56,7 +62,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('Fichier introuvable : ' . $path, 35486);
+		throw new Exception(__('Fichier introuvable : ', __FILE__) . secureXSS($path), 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -77,7 +83,14 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		return;
 	}
 	if ($type == 'js') {
-		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		$md5 = md5_file($path);
+		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false){
+			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path).'"></script>';
+		}elseif(file_exists($_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js')){
+			echo '<script type="text/javascript" src="' .$_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js"></script>';
+		}else{
+			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		}
 		return;
 	}
 }
@@ -621,53 +634,58 @@ function date_fr($date_en) {
 		return $date_en;
 	}
 	$texte_long_en = array(
-		"Monday", "Tuesday", "Wednesday", "Thursday",
-		"Friday", "Saturday", "Sunday", "January",
-		"February", "March", "April", "May",
-		"June", "July", "August", "September",
-		"October", "November", "December",
+		'/(^| )Monday($| )/', '/(^| )Tuesday($| )/', '/(^| )Wednesday($| )/', '/(^| )Thursday($| )/',
+		'/(^| )Friday($| )/', '/(^| )Saturday($| )/', '/(^| )Sunday($| )/', '/(^| )January($| )/',
+		'/(^| )February($| )/', '/(^| )March($| )/', '/(^| )April($| )/', '/(^| )May($| )/',
+		'/(^| )June($| )/', '/(^| )July($| )/', '/(^| )August($| )/', '/(^| )September($| )/',
+		'/(^| )October($| )/', '/(^| )November($| )/', '/(^| )December($| )/',
 	);
-	$texte_short_en = array(
-		"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-		"Aug", "Sep", "Oct", "Nov", "Dec",
+	$texte_short_day_en = array(
+		'/(^| )Mon($| )/', '/(^| )Tue($| )/', '/(^| )Wed($| )/', '/(^| )Thu($| )/', '/(^| )Fri($| )/', '/(^| )Sat($| )/', '/(^| )Sun($| )/'
+	);
+	$texte_short_month_en = array(
+		'/(^| )Jan($| )/', '/(^| )Feb($| )/', '/(^| )Mar($| )/', '/(^| )Apr($| )/', '/(^| )May($| )/', '/(^| )Jun($| )/', '/(^| )Jul($| )/',
+		'/(^| )Aug($| )/', '/(^| )Sep($| )/', '/(^| )Oct($| )/', '/(^| )Nov($| )/', '/(^| )Dec($| )/',
 	);
 	
 	switch (config::byKey('language', 'core', 'fr_FR')) {
 		case 'fr_FR':
 		$texte_long = array(
-			"Lundi", "Mardi", "Mercredi", "Jeudi",
-			"Vendredi", "Samedi", "Dimanche", "Janvier",
-			"Février", "Mars", "Avril", "Mai",
-			"Juin", "Juillet", "Août", "Septembre",
-			"Octobre", "Novembre", "Décembre",
+			'Lundi', 'Mardi', 'Mercredi', 'Jeudi',
+			'Vendredi', 'Samedi', 'Dimanche', 'Janvier',
+			'Février', 'Mars', 'Avril', 'Mai',
+			'Juin', 'Juillet', 'Août', 'Septembre',
+			'Octobre', 'Novembre', 'Décembre',
 		);
-		$texte_short = array(
-			"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
-			"Jan", "Fev", "Mar", "Avr", "Mai", "Jui",
-			"Jui", "Aou;", "Sep", "Oct", "Nov", "Dec",
+		$texte_short_day = array(
+			'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'
+		);
+		$texte_short_month = array(
+			'Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin',
+			'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.',
 		);
 		break;
 		case 'de_DE':
 		$texte_long = array(
-			"Montag", "Dienstag", "Mittwoch", "Donnerstag",
-			"Freitag", "Samstag", "Sonntag", "Januar",
-			"Februar", "März", "April", "May",
-			"Juni", "July", "August", "September",
-			"October", "November", "December",
+			'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag',
+			'Freitag', 'Samstag', 'Sonntag', 'Januar',
+			'Februar', 'März', 'April', 'May',
+			'Juni', 'July', 'August', 'September',
+			'October', 'November', 'December',
 		);
-		
-		$texte_short = array(
-			"Mon", "Die", "Mit", "Thu", "Don", "Sam", "Son",
-			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-			"Aug", "Sep", "Oct", "Nov", "Dec",
+		$texte_short_day = array(
+			'Mon', 'Die', 'Mit', 'Thu', 'Don', 'Sam', 'Son'
+		);
+		$texte_short_month = array(
+			'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+			'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 		);
 		break;
 		default:
 		return $date_en;
 		break;
 	}
-	return str_replace($texte_short_en, $texte_short, str_replace($texte_long_en, $texte_long, $date_en));
+	return preg_replace($texte_short_day_en, $texte_short_day, preg_replace($texte_short_month_en, $texte_short_month, preg_replace($texte_long_en, $texte_long, $date_en)));
 }
 
 function convertDayEnToFr($_day) {
@@ -896,25 +914,6 @@ function getNtpTime() {
 function cast($sourceObject, $destination) {
 	$obj_in = serialize($sourceObject);
 	return unserialize('O:' . strlen($destination) . ':"' . $destination . '":' . substr($obj_in, $obj_in[2] + 7));
-	/*if (is_string($destination)) {
-	$destination = new $destination();
-}
-$sourceReflection = new ReflectionObject($sourceObject);
-$destinationReflection = new ReflectionObject($destination);
-$sourceProperties = $sourceReflection->getProperties();
-foreach ($sourceProperties as $sourceProperty) {
-$sourceProperty->setAccessible(true);
-$name = $sourceProperty->getName();
-$value = $sourceProperty->getValue($sourceObject);
-if ($destinationReflection->hasProperty($name)) {
-$propDest = $destinationReflection->getProperty($name);
-$propDest->setAccessible(true);
-$propDest->setValue($destination, $value);
-} else {
-$destination->$name = $value;
-}
-}
-*/
 }
 
 function getIpFromString($_string) {
@@ -940,18 +939,18 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
-	if (strpos($_string, '"') !== false || strpos($_string, '\'') !== false) {
+	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or ', ' xor '), array(' && ', ' && ', ' || ', ' || ', ' ^ '), $_string);
+	if (strpos($string, '"') !== false || strpos($string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
-		$r = preg_match_all($regex, $_string, $matches);
+		$r = preg_match_all($regex, $string, $matches);
 		$c = count($matches[0]);
 		for ($i = 0; $i < $c; $i++) {
-			$_string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $_string);
+			$string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $string);
 		}
 	} else {
 		$c = 0;
 	}
-	$expr = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
-	$expr = str_replace('==', '=', $expr);
+	$expr = str_replace('==', '=', $string);
 	$expr = str_replace('=', '==', $expr);
 	$expr = str_replace('<==', '<=', $expr);
 	$expr = str_replace('>==', '>=', $expr);
@@ -969,39 +968,7 @@ function evaluate($_string) {
 		//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
 	try {
-		$expr = str_replace('""', '"', $expr);
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
-	} catch (Exception $e) {
-		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
-	}
-	if ($c > 0) {
-		for ($i = 0; $i < $c; $i++) {
-			$_string = str_replace('--preparsed' . $i . '--', $matches[0][$i], $_string);
-		}
-	}
-	return $_string;
-}
-
-function evaluate_old($_string) {
-	if (!isset($GLOBALS['ExpressionLanguage'])) {
-		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
-	}
-	$expr = str_replace(array(' et ', ' ET ', ' AND ', ' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ', ' && ', ' && ', ' && ', ' || ', ' || ', ' || ', ' || '), $_string);
-	$expr = str_replace('==', '=', $expr);
-	$expr = str_replace('=', '==', $expr);
-	$expr = str_replace('<==', '<=', $expr);
-	$expr = str_replace('>==', '>=', $expr);
-	$expr = str_replace('!==', '!=', $expr);
-	$expr = str_replace('!===', '!==', $expr);
-	$expr = str_replace('====', '===', $expr);
-	try {
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
-	} catch (Exception $e) {
-		//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
-	}
-	try {
-		$expr = str_replace('""', '"', $expr);
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+		return $GLOBALS['ExpressionLanguage']->evaluate(str_replace('""', '"', $expr));
 	} catch (Exception $e) {
 		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
@@ -1047,6 +1014,12 @@ function sanitizeAccent($_message) {
 	}
 	
 	function isConnect($_right = '') {
+		if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
+			$user = user::byId($_SESSION['user']->getId());
+			if(!is_object($user)){
+				return false;
+			}
+		}
 		if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
 			return $GLOBALS['isConnect::' . $_right];
 		}
@@ -1180,27 +1153,68 @@ function sanitizeAccent($_message) {
 		return array($r, $g, $b);
 	}
 	
-	function getDominantColor($_pathimg) {
-		$rTotal = 0;
-		$gTotal = 0;
-		$bTotal = 0;
-		$total = 0;
+	function getDominantColor($_pathimg,$_level = null,$_smartMode = false) {
+		$colors = array();
 		$i = imagecreatefromjpeg($_pathimg);
 		$imagesX = imagesx($i);
+		$imagesY = imagesy($i);
+		$ratio = $imagesX / $imagesY;
+		$size = 270;
+		$img = imagecreatetruecolor($size, $size / $ratio);
+		imagecopyresized($img, $i, 0, 0, 0, 0, $size, $size / $ratio, $imagesX, $imagesY);
+		$imagesX = imagesx($img);
+		$imagesY = imagesy($img);
 		for ($x = 0; $x < $imagesX; $x++) {
-			$imagesY = imagesy($i);
 			for ($y = 0; $y < $imagesY; $y++) {
-				$rgb = imagecolorat($i, $x, $y);
-				$r = ($rgb >> 16) & 0xFF;
-				$g = ($rgb >> 8) & 0xFF;
-				$b = $rgb & 0xFF;
-				$rTotal += $r;
-				$gTotal += $g;
-				$bTotal += $b;
-				$total++;
+				$rgb = imagecolorat($img, $x, $y);
+				if($_smartMode){
+					$sum = (($rgb >> 16) & 0xFF) + (($rgb >> 8) & 0xFF) + ($rgb & 0xFF);
+					if($sum < 150){
+						continue;
+					}
+					if($sum > 650){
+						continue;
+					}
+				}
+				if(!isset($colors[$rgb])){
+					$colors[$rgb] = array('value' => $rgb,'nb' => 0);
+				}
+				$colors[$rgb]['nb']++;
 			}
 		}
-		return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+		usort($colors, function ($a, $b) {
+			return $b['nb'] - $a['nb'];
+		});
+		
+		if($_level == null){
+			if($colors[0]['value'] == 0){
+				return '#' . substr("000000".dechex($colors[1]['value']),-6);
+			}
+			return '#' . substr("000000".dechex($colors[0]['value']),-6);
+		}
+		$return = array();
+		$colors = array_slice($colors,0,$_level*50);
+		$previous_color = -1;
+		foreach ($colors as $color) {
+			if($_smartMode && $previous_color > 0 && colorsAreClose($previous_color,$color['value'],50)){
+				continue;
+			}
+			$return[] = '#' . substr("000000".dechex($color['value']),-6);
+			$previous_color = $color['value'];
+		}
+		if(count($return) < $_level && count($return) > 0){
+			for($i=0;$i<($_level - count($return));$i++){
+				$return[] = $return[$i];
+			}
+		}
+		return $return;
+	}
+	
+	function colorsAreClose($_c1,$_c2,$_threshold){
+		$rDist = abs((($_c1 >> 16) & 0xFF) - (($_c2 >> 16) & 0xFF));
+		$gDist = abs((($_c1 >> 8) & 0xFF) - (($_c2 >> 8) & 0xFF));
+		$bDist = abs(($_c1 & 0xFF) - ($_c2 & 0xFF));
+		return (($rDist + $gDist + $bDist) < $_threshold);
 	}
 	
 	function sha512($_string) {
@@ -1208,13 +1222,14 @@ function sanitizeAccent($_message) {
 	}
 	
 	function findCodeIcon($_icon) {
-		$icon = trim(str_replace(array('fa ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"','icon_green','icon_blue','icon_yellow','icon_orange','icon_red'), '', trim($_icon)));
+		
 		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
 		
-		$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome/css/font-awesome.css');
+		$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');
 		preg_match($re, $css, $matches);
 		if (isset($matches[1])) {
-			return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'FontAwesome');
+			return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome 5 Free');
 		}
 		
 		foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
@@ -1318,14 +1333,21 @@ function sanitizeAccent($_message) {
 	
 	function listSession() {
 		$return = array();
-		try {
-			$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
-			foreach ($sessions as $session) {
+		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
+		if(count($sessions) > 100){
+			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : ',__FILE__).'"sudo rm -rf '.session_save_path().';sudo mkdir '.session_save_path().';sudo chmod 777 '.session_save_path().'"');
+		}
+		foreach ($sessions as $session) {
+			try {
 				$data = com_shell::execute(system::getCmdSudo() . ' cat ' . session_save_path() . '/' . $session);
 				if ($data == '') {
 					continue;
 				}
-				$data_session = decodeSessionData($data);
+				try {
+					$data_session = decodeSessionData($data);
+				} catch (Exception $e) {
+					continue;
+				}
 				if (!isset($data_session['user']) || !is_object($data_session['user'])) {
 					continue;
 				}
@@ -1336,21 +1358,16 @@ function sanitizeAccent($_message) {
 				$return[$session_id]['login'] = $data_session['user']->getLogin();
 				$return[$session_id]['user_id'] = $data_session['user']->getId();
 				$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
+			} catch (Exception $e) {
+				
 			}
-		} catch (Exception $e) {
-			
 		}
 		return $return;
 	}
 	
+	
 	function deleteSession($_id) {
-		$cSsid = session_id();
-		@session_start();
-		session_id($_id);
-		session_unset();
-		session_destroy();
-		session_id($cSsid);
-		@session_write_close();
+		@unlink(session_save_path().'/sess_'.$_id);
 	}
 	
 	function unautorizedInDemo($_user = null) {
@@ -1369,6 +1386,118 @@ function sanitizeAccent($_message) {
 	}
 	
 	function checkAndFixCron($_cron){
-		return str_replace('*/ ','* ',$_cron);
+		$return = $_cron;
+		$return = str_replace('*/ ','* ',$return);
+		preg_match_all('/([0-9]*\/\*)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
+		preg_match_all('/(\*\/0)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
+		return $return;
+	}
+	
+	function getTZoffsetMin() {
+		$tz = date_default_timezone_get();
+		date_default_timezone_set( "UTC" );
+		$seconds = timezone_offset_get( timezone_open($tz), new DateTime() );
+		date_default_timezone_set($tz);
+		return($seconds/60);
+	}
+	
+	function pageTitle($_page){
+		switch ($_page) {
+			case 'overview':
+			$return = __('Synthèse',__FILE__);
+			break;
+			case 'view':
+			$return = __('Vues',__FILE__);
+			break;
+			case 'plan':
+			$return = __('Designs',__FILE__);
+			break;
+			case 'plan3d':
+			$return = __('Designs 3D',__FILE__);
+			break;
+			case 'eqAnalyse':
+			$return = __('Equipements',__FILE__);
+			break;
+			case 'display':
+			$return = __('Résumé',__FILE__);
+			break;
+			case 'history':
+			$return = __('Historique',__FILE__);
+			break;
+			case 'report':
+			$return = __('Rapports',__FILE__);
+			break;
+			case 'health':
+			$return = __('Santé',__FILE__);
+			break;
+			case 'object':
+			$return = __('Objets',__FILE__);
+			break;
+			case 'scenario':
+			$return = __('Scénarios',__FILE__);
+			break;
+			case 'interact':
+			$return = __('Interactions',__FILE__);
+			break;
+			case 'widgets':
+			$return = __('Widgets',__FILE__);
+			break;
+			case 'plugin':
+			$return = __('Gestion Plugins',__FILE__);
+			break;
+			case 'administration':
+			$return = __('Configuration',__FILE__);
+			break;
+			case 'backup':
+			$return = __('Sauvegardes',__FILE__);
+			break;
+			case 'cron':
+			$return = __('Moteur de tâches',__FILE__);
+			break;
+			case 'custom':
+			$return = __('Personnalisation',__FILE__);
+			break;
+			case 'user':
+			$return = __('Utilisateurs',__FILE__);
+			break;
+			case 'profils':
+			$return = __('Préférences',__FILE__);
+			break;
+			case 'log':
+			$return = __('Logs',__FILE__);
+			break;
+			case 'update':
+			$return = __('Mises à jour',__FILE__);
+			break;
+			case 'panel':
+			try {
+				if(isset($_SERVER['REQUEST_URI'])){
+					$url = $_SERVER['REQUEST_URI'];
+					$plugin = explode('m=', $url)[1];
+					$plugin = explode('&', $plugin)[0];
+					$return = __('Panel '.ucfirst($plugin),__FILE__);
+				}else{
+					$return = __('Panel',__FILE__);
+				}
+				break;
+			} catch(Exception $e) {
+				$return = __('Panel',__FILE__);
+				break;
+			}
+			default:
+			$return = $_page;
+			break;
+		}
+		return ucfirst($return);
+	}
+	
+	function cleanComponanteName($_name){
+		return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name));
 	}
 	

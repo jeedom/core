@@ -22,7 +22,7 @@ class WebDAVAdapter extends AbstractAdapter
     }
     use NotSupportingVisibilityTrait;
 
-    private static $metadataFields = [
+    protected static $metadataFields = [
         '{DAV:}displayname',
         '{DAV:}getcontentlength',
         '{DAV:}getcontenttype',
@@ -88,7 +88,7 @@ class WebDAVAdapter extends AbstractAdapter
         $location = $this->applyPathPrefix($this->encodePath($path));
 
         try {
-            $result = $this->client->propFind($location, self::$metadataFields);
+            $result = $this->client->propFind($location, static::$metadataFields);
 
             if (empty($result)) {
                 return false;
@@ -283,13 +283,13 @@ class WebDAVAdapter extends AbstractAdapter
     public function listContents($directory = '', $recursive = false)
     {
         $location = $this->applyPathPrefix($this->encodePath($directory));
-        $response = $this->client->propFind($location . '/', self::$metadataFields, 1);
+        $response = $this->client->propFind($location . '/', static::$metadataFields, 1);
 
         array_shift($response);
         $result = [];
 
         foreach ($response as $path => $object) {
-            $path = rawurldecode($this->removePathPrefix($path));
+            $path = $this->removePathPrefix(rawurldecode($path));
             $object = $this->normalizeObject($object, $path);
             $result[] = $object;
 
@@ -400,7 +400,7 @@ class WebDAVAdapter extends AbstractAdapter
         return $result;
     }
 
-    private function isDirectory(array $object)
+    protected function isDirectory(array $object)
     {
         return isset($object['{DAV:}iscollection']) && $object['{DAV:}iscollection'] === '1';
     }

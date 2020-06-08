@@ -1,181 +1,177 @@
 <?php
 if (!isConnect()) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+  throw new Exception('{{401 - Accès non autorisé}}');
 }
 $date = array(
-	'start' => init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d')))),
-	'end' => init('endDate', date('Y-m-d')),
+  'start' => init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d')))),
+  'end' => init('endDate', date('Y-m-d')),
 );
+$id = init('id');
+if(trim($id) == ''){
+  $id = init('showId');
+}
+sendVarToJs('cmd_id',$id);
 ?>
+<div style="display: none;" id="div_alertHistory"></div>
 <div class="md_history">
-    <input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start']; ?>"/>
-    <input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end']; ?>"/>
-    <a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
-    <select class="form-control pull-right sel_groupingType" style="width: 200px;">
-        <option value="">{{Aucun groupement}}</option>
-        <option value="sum::hour">{{Somme par heure}}</option>
-        <option value="average::hour">{{Moyenne par heure}}</option>
-        <option value="low::hour">{{Minimum par heure}}</option>
-        <option value="high::hour">{{Maximum par heure}}</option>
-        <option value="sum::day">{{Somme par jour}}</option>
-        <option value="average::day">{{Moyenne par jour}}</option>
-        <option value="low::day">{{Minimum par jour}}</option>
-        <option value="high::day">{{Maximum par jour}}</option>
-        <option value="sum::week">{{Somme par semaine}}</option>
-        <option value="average::week">{{Moyenne par semaine}}</option>
-        <option value="low::week">{{Minimum par semaine}}</option>
-        <option value="high::week">{{Maximum par semaine}}</option>
-        <option value="sum::month">{{Somme par mois}}</option>
-        <option value="average::month">{{Moyenne par mois}}</option>
-        <option value="low::month">{{Minimum par mois}}</option>
-        <option value="high::month">{{Maximum par mois}}</option>
-        <option value="sum::year">{{Somme par année}}</option>
-        <option value="average::year">{{Moyenne par année}}</option>
-        <option value="low::year">{{Minimum par année}}</option>
-        <option value="high::year">{{Maximum par année}}</option>
-    </select>
-    <select class="pull-right sel_chartType form-control" data-cmd_id="#id#" style="width: 200px;display: inline-block;">
-        <option value="line"> {{Ligne}} </option>
-        <option value="area"> {{Aire}} </option>
-        <option value="column">{{Colonne}}</option>
-    </select>
-
-    <?php
-if (init('derive', 0) == 1) {
-	echo '<span class="pull-right">{{Variation}} <input type="checkbox" class="cb_derive" checked /></span>';
-} else {
-	echo '<span class="pull-right">{{Variation}} <input type="checkbox" class="cb_derive" /></span>';
-}
-if (init('step', 0) == 1) {
-	echo '<span class="pull-right">{{Escalier}} <input type="checkbox" class="cb_step" checked /></span>';
-} else {
-	echo '<span class="pull-right">{{Escalier}} <input type="checkbox" class="cb_step" /></span>';
-}
-?>
-   <center><div id="div_historyChart"></div></center>
-   <script>
-     $(".in_datepicker").datepicker();
-     $('#ui-datepicker-div').hide();
-
-     $('#div_historyChart').css('position', 'relative').css('width', '100%');
-     delete jeedom.history.chart['div_historyChart'];
-     jeedom.history.drawChart({
-        cmd_id: "<?php echo init('id'); ?>",
-        el: 'div_historyChart',
-        dateRange : 'all',
-        dateStart : $('#in_startDate').value(),
-        dateEnd :  $('#in_endDate').value(),
-        newGraph : true,
-        height : jQuery(window).height() - 270,
-        success: function (data) {
-            if(isset(data.cmd.display)){
-                if (init(data.cmd.display.graphStep) != '') {
-                    $('.cb_step').off().value(init(data.cmd.display.graphStep));
-                }
-                if (init(data.cmd.display.groupingType) != '') {
-                    $('.sel_groupingType').off().value(init(data.cmd.display.groupingType));
-                }
-                if (init(data.cmd.display.graphType) != '') {
-                    $('.sel_chartType').off().value(init(data.cmd.display.graphType));
-                }
-                if (init(data.cmd.display.graphDerive) != '') {
-                    $('.cb_derive').off().value(init(data.cmd.display.graphDerive));
-                }
-            }
-
-            $('.sel_chartType').on('change', function () {
-                jeedom.cmd.save({
-                    cmd: {id: <?php echo init('id'); ?>, display: {graphType: $(this).value()}},
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                        var modal = false;
-                        if($('#md_modal').is(':visible')){
-                            modal = $('#md_modal');
-                        }else if($('#md_modal2').is(':visible')){
-                            modal = $('#md_modal2');
-                        }
-                        if(modal !== false){
-                            modal.dialog({title: "{{Historique}}"});
-                            modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
-                        }
-                    }
-                });
-            });
-            $('.sel_groupingType').on('change', function () {
-                jeedom.cmd.save({
-                    cmd: {id: <?php echo init('id'); ?>, display: {groupingType: $(this).value()}},
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                       var modal = false;
-                       if($('#md_modal').is(':visible')){
-                        modal = $('#md_modal');
-                    }else if($('#md_modal2').is(':visible')){
-                        modal = $('#md_modal2');
-                    }
-                    if(modal !== false){
-                        modal.dialog({title: "{{Historique}}"});
-                        modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
-                    }
-                }
-            });
-            });
-            $('.cb_derive').on('change', function () {
-                jeedom.cmd.save({
-                    cmd: {id: <?php echo init('id'); ?>, display: {graphDerive: $(this).value()}},
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                        var modal = false;
-                        if($('#md_modal').is(':visible')){
-                            modal = $('#md_modal');
-                        }else if($('#md_modal2').is(':visible')){
-                            modal = $('#md_modal2');
-                        }
-                        if(modal !== false){
-                            modal.dialog({title: "{{Historique}}"});
-                            modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
-                        }
-                    }
-                });
-            });
-            $('.cb_step').on('change', function () {
-                jeedom.cmd.save({
-                    cmd: {id: <?php echo init('id'); ?>, display: {graphStep: $(this).value()}},
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                        var modal = false;
-                        if($('#md_modal').is(':visible')){
-                            modal = $('#md_modal');
-                        }else if($('#md_modal2').is(':visible')){
-                            modal = $('#md_modal2');
-                        }
-                        if(modal !== false){
-                            modal.dialog({title: "{{Historique}}"});
-                            modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
-                        }
-                    }
-                });
-            });
-            $('#bt_validChangeDate').on('click',function(){
-                var modal = false;
-                if($('#md_modal').is(':visible')){
-                    modal = $('#md_modal');
-                }else if($('#md_modal2').is(':visible')){
-                    modal = $('#md_modal2');
-                }
-                if(modal !== false){
-                    modal.dialog({title: "{{Historique}}"});
-                    modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
-                }
-            });
-        }
-    });
-</script>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group input-group-sm">
+        <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
+        <input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
+        <a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
+          <i class="fas fa-check"></i>
+        </a>
+        <a class="btn btn-success btn-sm pull-right" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
+      </div>
+    </div>
+  </div>
+  <center><div id="div_historyChart"></div></center>
 </div>
+
+<script>
+var cmdIds = cmd_id.split('-')
+cmdIds = $.unique(cmdIds)
+cmdIds = cmdIds.filter(Boolean)
+
+$('#div_historyChart').css('position', 'relative').css('width', '100%')
+//remove any previously loaded history:
+if (jeedom.history.chart['div_historyChart'] != undefined) {
+  while (jeedom.history.chart['div_historyChart'].chart.series.length > 0) {
+    jeedom.history.chart['div_historyChart'].chart.series[0].remove(true)
+  }
+  delete jeedom.history.chart['div_historyChart']
+}
+
+$.hideAlert()
+datePickerInit()
+
+var _showLegend = (cmdIds.length > 1) ? true : false
+var done = cmdIds.length
+var noChart = true
+
+$(function() {
+  cmdIds.forEach(function(cmd_id) {
+    jeedom.history.drawChart({
+      cmd_id: cmd_id,
+      el: 'div_historyChart',
+      dateRange : 'all',
+      dateStart : $('#in_startDate').value(),
+      dateEnd :  $('#in_endDate').value(),
+      newGraph : false,
+      showLegend : _showLegend,
+      height : jQuery(window).height() - 270,
+      success: function (data) {
+        noChart = false
+        done -= 1
+        setModal()
+      }
+    })
+  })
+})
+
+
+function setModal() {
+  if (done == 0 || noChart) {
+    $('#bt_validChangeDate').on('click', function() {
+      var modal = false;
+      if ($('#md_modal').is(':visible')) {
+        modal = $('#md_modal')
+      } else if ($('#md_modal2').is(':visible')) {
+        modal = $('#md_modal2')
+      }
+      if (modal !== false) {
+        modal.dialog({title: "{{Historique}}"})
+        modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+      }
+    })
+
+    $('#bt_openInHistory').on('click', function() {
+      loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
+    });
+
+    $('.highcharts-legend-item').on('click',function(event) {
+      if (!event.ctrlKey && !event.altKey) return
+      event.stopImmediatePropagation()
+      var chart = $('#div_historyChart').highcharts()
+      if (!chart) return
+      if (event.altKey) {
+        $(chart.series).each(function(idx, item) {
+          item.show()
+        })
+      } else {
+        var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
+        $(chart.series).each(function(idx, item) {
+          item.hide()
+        })
+        chart.series[serieId].show()
+      }
+    })
+
+    var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
+    var modal = modalContent.parents('.ui-dialog.ui-resizable')
+    var divHighChart = $('#div_historyChart')
+    var chart = divHighChart.highcharts()
+
+    //check previous size/pos:
+    var datas = modal.data()
+    if (datas && datas.width && datas.height && datas.top && datas.left) {
+      modal.width(datas.width).height(datas.height).css('top',datas.top).css('left',datas.left)
+      modalContent.width(datas.width-26).height(datas.height-40)
+      resizeHighChartModal()
+    } else if ($(window).width() > 860) {
+      width = 800
+      height = 560
+      modal.width(width).height(height)
+      modal.position({
+        my: "center",
+        at: "center",
+        of: window
+      })
+      modalContent.width(width-26).height(height-40)
+    }
+
+    //handle resizing:
+    var resizeDone
+    function resizeDn() {
+      modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
+      resizeHighChartModal()
+    }
+    modal.resize(function() {
+      clearTimeout(resizeDone);
+      resizeDone = setTimeout(resizeDn, 100);
+    })
+
+    //store size/pos:
+    modal.find('.ui-draggable-handle').on('mouseup', function(event) {
+      modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
+    })
+
+    //highstock v8.0.4 crosshair positionning bug after modal moved:
+    $('#div_historyChart').on('mouseenter', function(event) {
+      chart.pointer.chartPosition = void 0
+    })
+
+    //only one history loaded:
+    if (cmdIds.length == 1) {
+      if (chart) {
+        modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
+      }
+    }
+
+    function resizeHighChartModal() {
+      if(!divHighChart || !chart){
+        return;
+      }
+      chart.setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
+      setTimeout(function() {
+        chart.setSize()
+        chart.pointer.chartPosition = void 0
+      }, 500)
+    }
+
+    resizeHighChartModal()
+
+  }
+}
+</script>

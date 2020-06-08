@@ -28,7 +28,6 @@ class eqLogic {
 	protected $generic_type;
 	protected $object_id = null;
 	protected $eqType_name;
-	protected $eqReal_id = null;
 	protected $isVisible = 0;
 	protected $isEnable = 0;
 	protected $configuration;
@@ -104,22 +103,12 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqRealId($_eqReal_id) {
-		$values = array(
-			'eqReal_id' => $_eqReal_id,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM eqLogic
-		WHERE eqReal_id=:eqReal_id';
-		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
-	}
-
-	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
+	public static function byObjectId($_object_id, $_onlyEnable=true, $_onlyVisible=false, $_eqType_name=null, $_logicalId=null, $_orderByName=false, $_onlyHasCmds=false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic';
 		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL';
+			$sql .= ' WHERE object_id IS NULL OR object_id = -1';
 		} else {
 			$values['object_id'] = $_object_id;
 			$sql .= ' WHERE object_id=:object_id';
@@ -138,6 +127,20 @@ class eqLogic {
 			$values['logicalId'] = $_logicalId;
 			$sql .= ' AND logicalId=:logicalId';
 		}
+		if ($_onlyHasCmds !== false) {
+			$sql .= ' AND id IN (SELECT eqLogic_id FROM cmd WHERE 1=1';
+				if (is_array($_onlyHasCmds)) {
+					if (isset($_onlyHasCmds['type'])) {
+						$values['cmd_type'] = $_onlyHasCmds['type'];
+						$sql .= ' AND type=:cmd_type';
+					}
+					if (isset($_onlyHasCmds['subType'])) {
+						$values['cmd_subType'] = $_onlyHasCmds['subType'];
+						$sql .= ' AND subType=:cmd_subType';
+					}
+				}
+				$sql .= ' )';
+			}
 		if ($_orderByName) {
 			$sql .= ' ORDER BY `name`';
 		} else {
@@ -200,6 +203,16 @@ class eqLogic {
 		WHERE eqType_name=:eqType_name
 		AND configuration LIKE :configuration
 		ORDER BY name';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
+	public static function searchByString($_search) {
+		$values = array(
+				'search' => '%'.$_search.'%'
+			);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM eqLogic
+			WHERE name LIKE :search or logicalId LIKE :search or eqType_name LIKE :search or comment LIKE :search or tags LIKE :search';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -305,12 +318,13 @@ class eqLogic {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifiez les piles)', __FILE__);
+						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
-						if (config::byKey('alert::addMessageOnTimeout') == 1) {
+						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
 							message::add('core', $message, '', $logicalId);
 						}
 						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
-						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '') {
+						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '' && $prevStatus == 0) {
 							foreach ($cmds as $id) {
 								$cmd = cmd::byId(str_replace('#', '', $id));
 								if (is_object($cmd)) {
@@ -454,7 +468,7 @@ class eqLogic {
 	}
 
 	public static function byString($_string) {
-		$eqLogic = self::byId(str_replace('#', '', self::fromHumanReadable($_string)));
+		$eqLogic = self::byId(str_replace(array('#','eqLogic'), '', self::fromHumanReadable($_string)));
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('L\'équipement n\'a pas pu être trouvé : ', __FILE__) . $_string . __(' => ', __FILE__) . self::fromHumanReadable($_string));
 		}
@@ -478,13 +492,16 @@ class eqLogic {
 		if (!isset($_options['styletable'])) {
 			$_options['styletable'] = '';
 		}
+
 		$return['html'] .= '<table style="' . $_options['styletable'] . '" class="tableCmd" data-line="' . $_nbLine . '" data-column="' . $_nbColumn . '">';
 		$return['html'] .= '<tbody>';
 		for ($i = 1; $i <= $_nbLine; $i++) {
 			$return['html'] .= '<tr>';
 			for ($j = 1; $j <= $_nbColumn; $j++) {
-				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : $_options['styletd'];
-				$return['html'] .= '<td style="min-width:30px;height:30px;' . $styletd . '" data-line="' . $i . '" data-column="' . $j . '">';
+				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : '';
+				$styletd = $_options['styletd'] . $styletd;
+				$classTd = ($styletd != '') ? 'tableCmdcss' : '';
+				$return['html'] .= '<td class="'.$classTd.'" style="' . $styletd . '" data-line="' . $i . '" data-column="' . $j . '">';
 				if ($_options['center'] == 1) {
 					$return['html'] .= '<center>';
 				}
@@ -516,10 +533,10 @@ class eqLogic {
 		$batteryTime = $this->getConfiguration('batterytime', 'NA');
 		$batterySince = 'NA';
 		if ($batteryTime != 'NA') {
-			$batterySince = ((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400);
+			$batterySince = round((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400,1);
 		}
 		if (strpos($battery, ' ') !== false) {
-			$battery = substr(strrchr($battery, " "), 1);
+			$battery = mb_substr(strrchr($battery, " "), 1);
 		}
 		$plugins = $this->getEqType_name();
 		$object_name = 'Aucun';
@@ -537,29 +554,39 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . ' id="' . $idAttr . '">';
+		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="'. $this->getId() . '">';
+
+		$eqName = $this->getName();
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name">' . $this->getName() . '<br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span><span class="object">' . $object_name . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $this->getName() . '</a><br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><span>' . $object_name . '</span></div>';
 		}
-		$html .= '<center class="jeedom-batterie"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%"></i></center>';
-		$html .= '<center class="batteryLevel"><span>' . $this->getStatus('battery', -2) . '%</span></center>';
-		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
-		if ($this->getConfiguration('battery_type', '') != '') {
-			$html .= '<span class="pull-right" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
-		}
+		$html .= '<center class="jeedom-batterie">';
+		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
+		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
+		$html .= '</center>';
+		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("Y-m-d H:i:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
 		$html .= '<span class="pull-left pluginName">' . ucfirst($this->getEqType_name()) . '</span>';
-		$html .= '<span class="pull-left batteryTime">';
+		if ($_version == 'mobile') {
+			$html .= '<span class="pull-left batteryTime">';
+		} else {
+			$html .= '<span class="pull-left batteryTime cursor">';
+		}
 		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
-			$html .= '<i class="icon techno-fingerprint41 pull-right" title="Seuil manuel défini"></i>';
+			$html .= '<i class="icon techno-fingerprint41 pull-right" title="' . __('Seuil manuel défini', __FILE__) . '"></i>';
 		}
 		if ($batteryTime != 'NA') {
-			$html .= '<i class="icon divers-calendar2 pull-right" title="Pile(s) changée(s) il y a ' . $batterySince . ' jour(s) (' . $batteryTime . ')"> ('.$batterySince.'j)</i>';
+			$text = __('Pile(s) changée(s) il y a', __FILE__).' ';
+			$text .= ($batterySince > 1) ? $batterySince.__('jours', __FILE__).' ('.$batteryTime.')' : $batterySince.__('jour', __FILE__).' ('.$batteryTime.')';
+			$html .= '<i class="icon divers-calendar2" title="'.$text.'"></i><span> ('.$batterySince.'j)</span>';
 		} else {
-			$html .= '<i class="icon divers-calendar2 pull-right" title="Pas de date de changement de pile(s) renseignée"></i>';
+			$html .= '<i class="icon divers-calendar2" title="'.__('Pas de date de changement de pile(s) renseignée', __FILE__).'"></i>';
 		}
 		$html .= '</span>';
+		if ($this->getConfiguration('battery_type', '') != '') {
+			$html .= '<span class="pull-right" title="' . __('Piles', __FILE__) . '">' . $this->getConfiguration('battery_type', '') . '</span>';
+		}
 		$html .= '</div>';
 		return $html;
 	}
@@ -573,11 +600,11 @@ class eqLogic {
 			return false;
 		}
 		$oldValue = $cmd->execCmd();
-		if (($oldValue != $cmd->formatValue($_value)) || $oldValue === '') {
+		if ($oldValue !== $cmd->formatValue($_value) || $oldValue === '') {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		if ($_updateTime !== null) {
+		if ($_updateTime !== null && $_updateTime !== false) {
 			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime)) {
 				$cmd->event($_value, $_updateTime);
 				return true;
@@ -587,8 +614,10 @@ class eqLogic {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
-		$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
+		if ($_updateTime !== false) {
+			$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
+			$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
+		}
 		return false;
 	}
 
@@ -630,22 +659,16 @@ class eqLogic {
 
 	public function preToHtml($_version = 'dashboard', $_default = array(), $_noCache = false) {
 		global $JEEDOM_INTERNAL_CONFIG;
+		$_version = jeedom::versionAlias($_version);
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
-		if (!$this->hasRight('r')) {
+		if (!$this->hasRight('r') || !$this->getIsEnable()) {
 			return '';
 		}
-		if (!$this->getIsEnable()) {
-			return '';
-		}
-		$version = jeedom::versionAlias($_version, false);
-		if ($this->getDisplay('showOn' . $version, 1) == 0) {
-			return '';
-		}
-		if (!$_noCache) {
+		if (!$_noCache && config::byKey('widget::disableCache','core',0) == 0) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
-			if ($mc->getValue() != '') {
+			if (trim($mc->getValue()) != '') {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
@@ -656,17 +679,17 @@ class eqLogic {
 			}
 		}
 		$translate_category = trim($translate_category,',');
+		$name_display = $this->getName();
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
-			'#name_display#' => $this->getName(),
-			'#hideEqLogicName#' => '',
+			'#name_display#' => $name_display,
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
 			'#style#' => '',
 			'#logicalId#' => $this->getLogicalId(),
-			'#object_name#' => '',
+			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun',__FILE__),
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
@@ -677,8 +700,17 @@ class eqLogic {
 			'#eqType#' => $this->getEqType_name(),
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tags#' => $this->getTags(),
-			'#generic_type#' => $this->getGenericType()
+			'#generic_type#' => $this->getGenericType(),
+			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering','core',0) == 1) ? 'verticalAlign':'',
+			'#class#' => '',
 		);
+		if ($this->getDisplay('height', 'auto') == 'auto') {
+			$replace['#height#'] = '110px';
+			$replace['#isVerticalAlign#'] = $replace['#isVerticalAlign#'].' autoResize';
+		}
+		if ($replace['#width#'] == 'auto') {
+			$replace['#width#'] = '230px';
+		}
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
 			$replace['#alert_name#'] = $alert['name'];
@@ -690,29 +722,29 @@ class eqLogic {
 			foreach ($this->getCmd('action') as $cmd) {
 				if ($cmd->getConfiguration('isRefreshCmd') == 1) {
 					$refresh_cmd = $cmd;
+					break;
 				}
 			}
 		}
-		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1 && $refresh_cmd->getDisplay('showOn' . $version, 1) == 1) {
+		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
-		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
-			$object = $this->getObject();
-			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		}
-		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
-			$replace['#hideEqLogicName#'] = 'display:none;';
+		if(is_array($this->getDisplay('parameters')) && count($this->getDisplay('parameters')) > 0){
+			foreach ($this->getDisplay('parameters') as $key => $value) {
+				if($key == $_version.'_class'){
+					$replace['#class#'] = $value;
+					continue;
+				}
+				$replace['#'.$key.'#'] = $value;
+			}
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
-		if (is_array($this->widgetPossibility('parameters'))) {
+		if (is_array($this->widgetPossibility('parameters')) && count($this->widgetPossibility('parameters')) > 0) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
-				if (!isset($parameter['allow_displayType'])) {
+				if (!isset($parameter['allow_displayType']) || !isset($parameter['type'])) {
 					continue;
 				}
-				if (!isset($parameter['type'])) {
-					continue;
-				}
-				if (is_array($parameter['allow_displayType']) && !in_array($version, $parameter['allow_displayType'])) {
+				if (is_array($parameter['allow_displayType']) && !in_array($_version, $parameter['allow_displayType'])) {
 					continue;
 				}
 				if ($parameter['allow_displayType'] === false) {
@@ -722,20 +754,20 @@ class eqLogic {
 				if (isset($parameter['default'])) {
 					$default = $parameter['default'];
 				}
-				if ($this->getDisplay('advanceWidgetParameter' . $pKey . $version . '-default', 1) == 1) {
+				if ($this->getDisplay('advanceWidgetParameter' . $pKey . $_version . '-default', 1) == 1) {
 					$replace['#' . $pKey . '#'] = $default;
 					continue;
 				}
 				switch ($parameter['type']) {
 					case 'color':
-					if ($this->getDisplay('advanceWidgetParameter' . $pKey . $version . '-transparent', 0) == 1) {
+					if ($this->getDisplay('advanceWidgetParameter' . $pKey . $_version . '-transparent', 0) == 1) {
 						$replace['#' . $pKey . '#'] = 'transparent';
 					} else {
-						$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $version, $default);
+						$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $_version, $default);
 					}
 					break;
 					default:
-					$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $version, $default);
+					$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $_version, $default);
 					break;
 				}
 			}
@@ -748,18 +780,18 @@ class eqLogic {
 		if (!is_array($replace)) {
 			return $replace;
 		}
-		$version = jeedom::versionAlias($_version);
+		$_version = jeedom::versionAlias($_version);
 
-		switch ($this->getDisplay('layout::' . $version)) {
+		switch ($this->getDisplay('layout::' . $_version)) {
 			case 'table':
 			$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
-			$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine', 1), $this->getDisplay('layout::' . $version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $version . '::table::parameters'));
+			$table = self::generateHtmlTable($this->getDisplay('layout::'.$_version.'::table::nbLine', 1), $this->getDisplay('layout::'.$_version.'::table::nbColumn', 1), $this->getDisplay('layout::'.$_version.'::table::parameters'));
 			$br_before = 0;
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 					continue;
 				}
-				$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+				$tag = '#cmd::' . $this->getDisplay('layout::'.$_version.'::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::'.$_version.'::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
 				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$table['tag'][$tag] .= '<br/>';
 				}
@@ -772,6 +804,7 @@ class eqLogic {
 			}
 			$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
 			break;
+
 			default:
 			$replace['#eqLogic_class#'] = 'eqLogic_layout_default';
 			$cmd_html = '';
@@ -780,12 +813,12 @@ class eqLogic {
 				if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 					continue;
 				}
-				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+				if ($_version == 'dashboard' && $br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$cmd_html .= '<br/>';
 				}
 				$cmd_html .= $cmd->toHtml($_version, '');
 				$br_before = 0;
-				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+				if ($_version == 'dashboard' && $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 					$cmd_html .= '<br/>';
 					$br_before = 1;
 				}
@@ -793,26 +826,25 @@ class eqLogic {
 			$replace['#cmd#'] = $cmd_html;
 			break;
 		}
-		if (!isset(self::$_templateArray[$version])) {
-			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
+		if (!isset(self::$_templateArray[$_version])) {
+			self::$_templateArray[$_version] = getTemplate('core', $_version, 'eqLogic');
 		}
-		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$version]));
+		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$_version]));
 	}
 
 	public function postToHtml($_version, $_html) {
-		cache::set('widgetHtml' . $this->getId() . $_version, $_html);
+		if(config::byKey('widget::disableCache','core',0) == 0){
+			cache::set('widgetHtml' . $this->getId() . $_version, $_html);
+		}
 		return $_html;
 	}
 
 	public function emptyCacheWidget() {
-		$users = user::all();
-		foreach (array('dashboard', 'mobile', 'mview', 'dview', 'dplan', 'view', 'plan') as $version) {
-			$mc = cache::byKey('widgetHtml' . $this->getId() . $version);
+		if(config::byKey('widget::disableCache','core',0) == 0){
+			$mc = cache::byKey('widgetHtml' . $this->getId() . 'mobile');
 			$mc->remove();
-			foreach ($users as $user) {
-				$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
-				$mc->remove();
-			}
+			$mc = cache::byKey('widgetHtml' . $this->getId() . 'dashboard');
+			$mc->remove();
 		}
 	}
 
@@ -869,57 +901,60 @@ class eqLogic {
 		}
 		if($this->getChanged()){
 			if ($this->getId() != '') {
-
 				$this->emptyCacheWidget();
 				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 			}
-			if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
-				$this->setDisplay('showObjectNameOnview', 1);
-			}
-			if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
-				$this->setDisplay('showObjectNameOndview', 1);
-			}
-			if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
-				$this->setDisplay('showObjectNameOnmview', 1);
-			}
-			if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
-				$this->setDisplay('height', 'auto');
-			}
-			if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
-				$this->setDisplay('width', 'auto');
-			}
-			foreach (array('dashboard', 'mobile') as $key) {
-				if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
-					$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
-				}
-				if ($this->getDisplay('layout::' . $key) == 'table') {
-					if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
-						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
-					}
-					if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
-						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+			if($this->getDisplay('layout::dashboard') != 'table'){
+				$displays = $this->getDisplay();
+				foreach ($displays as $key => $value) {
+					if(strpos($key,'layout::') === 0){
+						$this->setDisplay($key,null);
+						continue;
 					}
 				}
-				foreach ($this->getCmd() as $cmd) {
-					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
-						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+			}else{
+				$cmd_ids = array();
+				foreach (array('dashboard') as $key) {
+					if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
+						$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
 					}
-					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
-						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+					if ($this->getDisplay('layout::' . $key) == 'table') {
+						if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
+							$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+						}
+						if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
+							$this->setDisplay('layout::' . $key . '::table::nbColumn', 1);
+						}
 					}
-					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
-						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
+					foreach ($this->getCmd() as $cmd) {
+						$cmd_ids[$cmd->getId()] = $cmd->getId();
+						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
+							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+						}
+						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
+							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+						}
+						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
+							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
+						}
+						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
+							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
+						}
+						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
+							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
+						}
+						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
+							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+						}
 					}
-					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
-						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
-					}
-					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
-						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
-					}
-					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
-						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+				}
+				$displays = $this->getDisplay();
+				foreach ($displays as $key => $value) {
+					preg_match_all('/::cmd::(.*?)::/m', $key, $matches, PREG_SET_ORDER, 0);
+					if(isset($matches[1]) && !isset($cmd_ids[$matches[1]])){
+						$this->setDisplay($key,null);
 					}
 				}
 			}
@@ -961,18 +996,10 @@ class eqLogic {
 		$name = '';
 		$object = $this->getObject();
 		if (is_object($object)) {
-			if ($_tag) {
-				if ($object->getDisplay('tagColor') != '') {
-					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
-				} else {
-					$name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
-				}
-			} else {
-				$name .= '[' . $object->getName() . ']';
-			}
+			$name .= $object->getHumanName($_tag,$_prettify);
 		} else {
 			if ($_tag) {
-				$name .= '<span class="label label-default" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
+				$name .= '<span class="label labelObjectHuman" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
 			} else {
 				$name .= '[' . __('Aucun', __FILE__) . ']';
 			}
@@ -992,23 +1019,10 @@ class eqLogic {
 	}
 
 	public function getPrimaryCategory() {
-		if ($this->getCategory('security', 0) == 1) {
-			return 'security';
-		}
-		if ($this->getCategory('heating', 0) == 1) {
-			return 'heating';
-		}
-		if ($this->getCategory('light', 0) == 1) {
-			return 'light';
-		}
-		if ($this->getCategory('automatism', 0) == 1) {
-			return 'automatism';
-		}
-		if ($this->getCategory('energy', 0) == 1) {
-			return 'energy';
-		}
-		if ($this->getCategory('multimedia', 0) == 1) {
-			return 'multimedia';
+		foreach ($this->category as $cat => $value) {
+			if ($value == 1) {
+				return ($cat != 'default' ? $cat : '');
+			}
 		}
 		return '';
 	}
@@ -1033,12 +1047,16 @@ class eqLogic {
 		if ($_pourcent < 0) {
 			$_pourcent = 0;
 		}
+		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.5)){
+			$this->setConfiguration('batterytime',date('Y-m-d H:i:s'));
+			$this->save(true);
+		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
 		if ($_pourcent !== '' && $_pourcent < $danger_threshold) {
 			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
-			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
+			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
@@ -1063,7 +1081,7 @@ class eqLogic {
 		} else if ($_pourcent !== '' && $_pourcent < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
-			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
+			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
@@ -1087,12 +1105,8 @@ class eqLogic {
 				}
 			}
 		} else {
-			foreach (message::byPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId()) as $message) {
-				$message->remove();
-			}
-			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
-				$message->remove();
-			}
+			message::removeByPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId());
+			message::removeByPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId());
 			$this->setStatus('batterydanger', 0);
 			$this->setStatus('batterywarning', 0);
 		}
@@ -1128,7 +1142,7 @@ class eqLogic {
 		return false;
 	}
 
-	public function import($_configuration) {
+	public function import($_configuration,$_dontRemove = false) {
 		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {
 			foreach ($_configuration['configuration'] as $key => $value) {
@@ -1148,7 +1162,7 @@ class eqLogic {
 			foreach ($this->getCmd() as $eqLogic_cmd) {
 				$exists = 0;
 				foreach ($_configuration['commands'] as $command) {
-					if ($command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
+					if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
 						$exists++;
 					}
 				}
@@ -1156,11 +1170,13 @@ class eqLogic {
 					$arrayToRemove[] = $eqLogic_cmd;
 				}
 			}
-			foreach ($arrayToRemove as $cmdToRemove) {
-				try {
-					$cmdToRemove->remove();
-				} catch (Exception $e) {
+			if(!$_dontRemove){
+				foreach ($arrayToRemove as $cmdToRemove) {
+					try {
+						$cmdToRemove->remove();
+					} catch (Exception $e) {
 
+					}
 				}
 			}
 			foreach ($_configuration['commands'] as $command) {
@@ -1356,6 +1372,7 @@ class eqLogic {
 		addGraphLink($this, 'eqLogic', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'eqLogic', $usedBy['plan3d'], 'plan3d', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'eqLogic', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		if (!isset($_data['object' . $this->getObject_id()])) {
 			addGraphLink($this, 'eqLogic', $this->getObject(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
@@ -1371,17 +1388,34 @@ class eqLogic {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'interactDef' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = eqLogic::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
+		$return['eqLogic'] = self::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
 		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
-			array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
-			array('action' => '#eqLogic' . $this->getId() . '#'),
-		));
+														array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
+														array('action' => '#eqLogic' . $this->getId() . '#'),
+													));
 		$return['view'] = view::searchByUse('eqLogic', $this->getId());
 		$return['plan'] = planHeader::searchByUse('eqLogic', $this->getId());
+		$return['plan3d'] = plan3dHeader::searchByUse('eqLogic', $this->getId());
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
+			}
+		}
+		return $return;
+	}
+
+	public static function deadCmdGeneric($_plugin_id) {
+		$return = array();
+		foreach (eqLogic::byType($_plugin_id) as $eqLogic) {
+			$eqLogic_json = json_encode(utils::o2a($eqLogic));
+			preg_match_all("/#([0-9]*)#/", $eqLogic_json, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => ucfirst($_plugin_id).' ' . $eqLogic->getHumanName(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+					}
+				}
 			}
 		}
 		return $return;
@@ -1483,17 +1517,6 @@ class eqLogic {
 		return cmd::searchConfigurationEqLogic($this->id, $_configuration, $_type);
 	}
 
-	public function getEqReal_id($_default = null) {
-		if ($this->eqReal_id == '' || !is_numeric($this->eqReal_id)) {
-			return $_default;
-		}
-		return $this->eqReal_id;
-	}
-
-	public function getEqReal() {
-		return eqReal::byId($this->eqReal_id);
-	}
-
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
@@ -1501,7 +1524,7 @@ class eqLogic {
 	}
 
 	public function setName($_name) {
-		$_name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $_name);
+		$_name = substr(cleanComponanteName($_name),0,127);
 		if($_name != $this->name){
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -1526,12 +1549,6 @@ class eqLogic {
 	public function setEqType_name($eqType_name) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->eqType_name,$eqType_name);
 		$this->eqType_name = $eqType_name;
-		return $this;
-	}
-
-	public function setEqReal_id($_eqReal_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->eqReal_id,$_eqReal_id);
-		$this->eqReal_id = $_eqReal_id;
 		return $this;
 	}
 
@@ -1562,7 +1579,7 @@ class eqLogic {
 
 	public function setConfiguration($_key, $_value) {
 		if (in_array($_key, array('battery_warning_threshold', 'battery_danger_threshold'))) {
-			if ($this->getConfiguration($_key, '') != $_value) {
+			if ($this->getConfiguration($_key, '') !== $_value) {
 				$this->_batteryUpdated = True;
 			}
 		}
@@ -1577,11 +1594,11 @@ class eqLogic {
 	}
 
 	public function setDisplay($_key, $_value) {
-		if ($this->getDisplay($_key) != $_value) {
+		if ($this->getDisplay($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 	}
 
@@ -1704,7 +1721,7 @@ class eqLogic {
 			}
 		}else{
 			if(isset($JEEDOM_INTERNAL_CONFIG['alerts'][$_key])){
-				$changed = ($this->getStatus($_key) !== $_value);
+				$changed = ($this->getStatus($_key) != $_value);
 			}
 		}
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));

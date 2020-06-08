@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	
-	ajax::init();
+	ajax::init(array('uploadImage'));
 	
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
@@ -53,7 +53,7 @@ try {
 	}
 	
 	if (init('action') == 'all') {
-		$objects = jeeObject::buildTree();
+		$objects = jeeObject::buildTree(null,init('onlyVisible',true));
 		if (init('onlyHasEqLogic') != '') {
 			$return = array();
 			foreach ($objects as $object) {
@@ -99,11 +99,17 @@ try {
 				$objects = json_decode(init('id'), true);
 			} else {
 				$objects = array();
-				foreach (jeeObject::all() as $object) {
-					if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
-						continue;
+				if(init('summary') == ''){
+					foreach (jeeObject::buildTree(null, true) as $object) {
+						if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
+							continue;
+						}
+						$objects[] = $object->getId();
 					}
-					$objects[] = $object->getId();
+				}else{
+					foreach (jeeObject::all() as $object) {
+						$objects[] = $object->getId();
+					}
 				}
 			}
 			$return = array();
@@ -148,44 +154,43 @@ try {
 				$i++;
 			}
 			ajax::success($return);
+		}
+		$html = array();
+		if (init('summary') == '') {
+			$eqLogics = eqLogic::byObjectId(init('id'), true, true);
 		} else {
-			$html = array();
-			if (init('summary') == '') {
-				$eqLogics = eqLogic::byObjectId(init('id'), true, true);
-			} else {
-				$object = jeeObject::byId(init('id'));
-				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+			$object = jeeObject::byId(init('id'));
+			$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+		}
+		if(count($eqLogics) > 0){
+			foreach ($eqLogics as $eqLogic) {
+				if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
+					continue;
+				}
+				if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+					continue;
+				}
+				$order = $eqLogic->getOrder();
+				while(isset($html[$order])){
+					$order++;
+				}
+				$html[$order] = $eqLogic->toHtml(init('version'));
 			}
-			if(count($eqLogics) > 0){
-				foreach ($eqLogics as $eqLogic) {
-					if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
-						continue;
-					}
-					if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
-						continue;
-					}
-					$order = $eqLogic->getOrder();
+		}
+		if (init('summary') == '') {
+			$scenarios = scenario::byObjectId(init('id'),false,true);
+			if(count($scenarios) > 0){
+				foreach ($scenarios as $scenario) {
+					$order = $scenario->getOrder();
 					while(isset($html[$order])){
 						$order++;
 					}
-					$html[$order] = $eqLogic->toHtml(init('version'));
+					$html[$order] = $scenario->toHtml(init('version'));
 				}
 			}
-			if (init('summary') == '') {
-				$scenarios = scenario::byObjectId(init('id'),false,true);
-				if(count($scenarios) > 0){
-					foreach ($scenarios as $scenario) {
-						$order = $scenario->getOrder();
-						while(isset($html[$order])){
-							$order++;
-						}
-						$html[$order] = $scenario->toHtml(init('version'));
-					}
-				}
-			}
-			ksort($html);
-			ajax::success(implode($html));
 		}
+		ksort($html);
+		ajax::success(implode($html));
 	}
 	
 	if (init('action') == 'setOrder') {
@@ -242,12 +247,12 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$object = object::byId(init('id'));
+		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
 		$object->setImage('data', '');
-		$object->setImage('sha1', '');
+		$object->setImage('sha512', '');
 		$object->save();
 		@rrmdir(__DIR__ . '/../../core/img/object');
 		ajax::success();
@@ -258,37 +263,43 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$object = object::byId(init('id'));
+		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		if(init('file') == ''){
+			if (!isset($_FILES['file'])) {
+				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+			}
+			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+			if (!in_array($extension, array('.jpg', '.png'))) {
+				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
+			}
+			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+			}
+			$upfilepath = $_FILES['file']['tmp_name'];
+		}else{
+			$extension = strtolower(strrchr(init('file'), '.'));
+			$upfilepath = init('file');
 		}
-		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
-		}
-		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
-		}
-		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'*');
+		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
+		
 		if(count($files)  > 0){
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/object/'.$file);
 			}
 		}
 		$object->setImage('type', str_replace('.', '', $extension));
-		$object->setImage('sha512', sha512($object->getImage('data')));
-		
+		$object->setImage('sha512', sha512(file_get_contents($upfilepath)));
 		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
 		$filepath = __DIR__ . '/../../data/object/' . $filename;
-		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
+		file_put_contents($filepath,file_get_contents($upfilepath));
 		if(!file_exists($filepath)){
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
 		$object->save();
-		ajax::success();
+		ajax::success(array('filepath' => $filepath));
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

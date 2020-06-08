@@ -2,130 +2,157 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-echo '<script>';
-echo 'REPO_LIST = []';
-echo '</script>';
+echo '<script>REPO_LIST = []</script>';
 ?>
+
 <div id="backup">
-    <div class="row row-overflow">
-        <div class="col-sm-6">
-            <legend><i class="fas fa-floppy-o"></i>  {{Sauvegardes}}</legend>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
-                        <div class="col-sm-8 col-xs-6">
-                            <a class="btn btn-success bt_backupJeedom"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="fas fa-floppy-o"></i> {{Lancer}}</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Emplacement des sauvegardes}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <input type="text" class="configKey form-control" data-l1key="backup::path" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Nombre de jours de mémorisation des sauvegardes}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Taille totale maximale des sauvegardes (Mo)}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <input type="text" class="configKey form-control" data-l1key="backup::maxSize" />
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-            <legend><i class="fas fa-folder-open"></i>  {{Sauvegardes locales}}</legend>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
-                        <div class="col-sm-6 col-xs-6">
-                            <select class="form-control" id="sel_restoreBackup"> </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-danger" id="bt_removeBackup"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
-                        <div class="col-sm-8 col-xs-6">
-                            <span class="btn btn-default btn-file">
-                                <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Télécharger la sauvegarde}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-            <?php
-
-foreach (update::listRepo() as $rkey => $value) {
-	if ($value['scope']['backup'] == false) {
-		continue;
-	}
-	if ($value['enable'] == 0) {
-		continue;
-	}
-	$class = 'repo_' . $rkey;
-	echo '<legend><i class="fas fa-cloud"></i> {{Sauvegardes}} ' . $value['name'] . '</legend>';
-	echo '<form class="form-horizontal repo">';
-	echo '<fieldset>';
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoi des sauvegardes}}</label>';
-	echo '<div class="col-sm-4 col-xs-6">';
-	echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
-	echo '</div>';
-	echo '</div>';
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>';
-	echo '<div class="col-sm-6 col-xs-6">';
-	echo '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
-	echo '<option>{{Chargement...}}</option>';
-	echo '</select>';
-	echo '<script>';
-	echo 'REPO_LIST.push("' . $rkey . '");';
-	echo '</script>';
-	echo '</div>';
-	echo '</div>';
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>';
-	echo '<div class="col-sm-4 col-xs-6">';
-	echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>';
-	echo '</div>';
-	echo '</div>';
-	echo '</fieldset>';
-	echo '</form>';
-}
-?>
-
-        <div class="form-actions" style="height: 20px;">
-            <a class="btn btn-success" id="bt_saveBackup"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <legend><i class="fas fa-info-circle"></i>  {{Informations}}</legend>
-        <pre id="pre_backupInfo" style="overflow: scroll;"></pre>
-    </div>
+	<br/>
+	<div class="pull-right" style="display:inline-flex;">
+		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+	</div>
+	<br/><br/>
+	<div class="row">
+		<div class="col-lg-6 col-sm-12">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="fas fa-folder-open"></i> {{Sauvegardes locales}}</h3>
+						</div>
+						<div class="panel-body">
+							<form class="form-horizontal">
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-6 col-xs-6 control-label">{{Emplacement}}</label>
+										<div class="col-sm-6 col-xs-6">
+											<input type="text" class="configKey form-control" data-l1key="backup::path" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-6 col-xs-6 control-label">{{Rétention temporelle (jours)}}</label>
+										<div class="col-sm-6 col-xs-6">
+											<input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-6 col-xs-6 control-label">{{Taille totale maximale (Mo)}}</label>
+										<div class="col-sm-6 col-xs-6">
+											<input type="text" class="configKey form-control" data-l1key="backup::maxSize" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-6 col-xs-6"></div>
+										<div class="col-sm-6 col-xs-6">
+											<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>
+										<div class="col-xs-12">
+											<select class="form-control" id="sel_restoreBackup"> </select>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-6 col-xs-12">
+											<a class="btn btn-danger" id="bt_removeBackup" style="width:100%;"><i class="far fa-trash-alt"></i> {{Supprimer la sauvegarde}}</a>
+										</div>
+										<div class="col-sm-6 col-xs-12">
+											<a class="btn btn-warning" id="bt_restoreJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</a>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-6 col-xs-12">
+											<a class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</a>
+										</div>
+										<div class="col-sm-6 col-xs-12">
+											<span class="btn btn-default btn-file" style="width:100%;">
+												<i class="fas fa-cloud-upload-alt"></i> {{Ajouter une sauvegarde}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload">
+											</span>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+					
+					<?php
+					foreach (update::listRepo() as $rkey => $value) {
+						if ($value['scope']['backup'] == false) {
+							continue;
+						}
+						if ($value['enable'] == 0) {
+							continue;
+						}
+						$class = 'repo_' . $rkey;
+						
+						$icon = '<i class="fas fa-network-wired"></i>';
+						if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
+						
+						$div = '<div class="panel panel-primary">';
+						$div .= '<div class="panel-heading">';
+						$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}} ' . $value['name'];
+						$div .= '</div>';
+						$div .= '<div class="panel-body">';
+						
+						$div .= '<form class="form-horizontal repo">';
+						$div .= '<fieldset>';
+						$div .= '<div class="form-group">';
+						$div .= '<label class="col-sm-6 col-xs-6">{{Envoi des sauvegardes}}</label>';
+						$div .= '<div class="col-sm-4 col-xs-6">';
+						$div .= '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
+						$div .= '</div>';
+						$div .= '</div>';
+						if (isset($value['scope']['hasRetentionDay']) && $value['scope']['hasRetentionDay']) {
+							$div .= '<div class="form-group">';
+							$div .= '<label class="col-sm-6 col-xs-6 control-label">{{Rétention temporelle (jours)}}</label>';
+							$div .= '<div class="col-sm-6 col-xs-6">';
+							$div .= '<input type="text" class="configKey form-control" data-l1key="'.$rkey.'::keepDays" />';
+							$div .= '</div>';
+							$div .= '</div>';
+						}
+						$div .= '<div class="form-group">';
+						$div .= '<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>';
+						$div .= '<div class="col-xs-12">';
+						$div .= '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
+						$div .= '<option>{{Chargement...}}</option>';
+						$div .= '</select>';
+						$div .= '<script>';
+						$div .= 'REPO_LIST.push("' . $rkey . '");';
+						$div .= '</script>';
+						$div .= '</div>';
+						$div .= '</div>';
+						$div .= '<div class="form-group">';
+						$div .= '<label class="col-sm-6 col-xs-12"></label>';
+						$div .= '<div class="col-sm-6 col-xs-12">';
+						$div .= '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Rapatrier la sauvegarde en local}}</a>';
+						$div .= '</div>';
+						$div .= '</div>';
+						$div .= '</fieldset>';
+						$div .= '</form>';
+						$div .= '</div>';
+						$div .= '</div>';
+						echo $div;
+					}
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-sm-12">
+			<div class="row">
+				<div class="col-sm-12 panel-backupinfo">
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations}}</h3>
+						</div>
+						<div class="panel-body">
+							<pre id="pre_backupInfo"></pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-</div>
-
 
 <?php include_file("desktop", "backup", "js");?>

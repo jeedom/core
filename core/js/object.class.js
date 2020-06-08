@@ -31,12 +31,7 @@ if (!isset(jeedom.object.cache.byId)) {
 
 jeedom.object.getEqLogic = function(_params) {
   var paramsRequired = ['id'];
-  var paramsSpecifics = {
-    pre_success: function(data) {
-      jeedom.object.cache.getEqLogic[_params.id] = data.result;
-      return data;
-    }
-  };
+  var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -44,17 +39,14 @@ jeedom.object.getEqLogic = function(_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.object.cache.getEqLogic[params.id])) {
-    params.success(jeedom.object.cache.getEqLogic[params.id]);
-    return;
-  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: "listByObject",
     object_id: _params.id,
     onlyEnable: _params.onlyEnable || 0,
-    orderByName : _params.orderByName || 0
+    orderByName : _params.orderByName || 0,
+    onlyHasCmds : json_encode(_params.onlyHasCmds) || 0
   };
   $.ajax(paramsAJAX);
 };
@@ -80,12 +72,16 @@ jeedom.object.all = function(_params) {
     params.success(jeedom.object.cache.all);
     return;
   }
+  if(_params.onlyVisible == undefined){
+    _params.onlyVisible = true
+  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'all',
     onlyHasEqLogic : _params.onlyHasEqLogic || '',
-    searchOnchild : _params.searchOnchild || '1'
+    searchOnchild : _params.searchOnchild || '1',
+    onlyVisible : _params.onlyVisible
   };
   $.ajax(paramsAJAX);
 };
@@ -294,6 +290,9 @@ jeedom.object.summaryUpdate = function(_params) {
 };
 
 jeedom.object.getImgPath = function(_params){
+  if(_params.id == 'all'){
+    return;
+  }
   jeedom.object.byId({
     id : _params.id,
     global: false,
@@ -304,6 +303,9 @@ jeedom.object.getImgPath = function(_params){
     success : function(data){
       if(!isset(data.img)){
         return '';
+      }
+      if (isset(data.configuration.useBackground) && data.configuration.useBackground == 1) {
+        return
       }
       _params.success(data.img);
     }
@@ -326,6 +328,26 @@ jeedom.object.removeImage = function (_params) {
   paramsAJAX.data = {
     action: 'removeImage',
     id: _params.id
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.object.uploadImage = function (_params) {
+  var paramsRequired = ['id','file'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/object.ajax.php';
+  paramsAJAX.data = {
+    action: 'uploadImage',
+    id: _params.id,
+    file: _params.file
   };
   $.ajax(paramsAJAX);
 };

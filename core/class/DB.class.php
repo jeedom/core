@@ -26,44 +26,40 @@ class DB {
 	
 	/*     * **************  Attributs  ***************** */
 	
-	private $connection;
-	private $lastConnection;
-	private static $sharedInstance;
+	private static $connection = null;
+	private static $lastConnection;
 	private static $fields = array();
 	
 	/*     * **************  Fonctions statiques  ***************** */
 	
-	private function __construct() {
+	private static function initConnection() {
 		global $CONFIG;
 		if(isset($CONFIG['db']['unix_socket'])) {
-			$this->connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+			self::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
 		} else {
-			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+			self::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
 		}
 	}
 	
 	public static function getLastInsertId() {
-		if (!isset(self::$sharedInstance)) {
-			throw new Exception('DB : Aucune connection active - impossible d\'avoir le dernier ID inséré');
-		}
-		return self::$sharedInstance->connection->lastInsertId();
+		return self::getConnection()->lastInsertId();
 	}
 	
 	public static function getConnection() {
-		if (!isset(self::$sharedInstance)) {
-			self::$sharedInstance = new self();
-		} else if (self::$sharedInstance->lastConnection + 120 < strtotime('now')) {
+		if(self::$connection == null){
+			self::initConnection();
+		}else if (self::$lastConnection + 120 < strtotime('now')) {
 			try {
-				$result = @self::$sharedInstance->connection->query('select 1;');
+				$result = @self::$connection->query('select 1;');
 				if (!$result) {
-					self::$sharedInstance = new self();
+					self::initConnection();
 				}
 			} catch (Exception $e) {
-				self::$sharedInstance = new self();
+				self::initConnection();
 			}
 		}
-		self::$sharedInstance->lastConnection = strtotime('now');
-		return self::$sharedInstance->connection;
+		self::$lastConnection = strtotime('now');
+		return self::$connection;
 	}
 	
 	public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL) {
@@ -186,13 +182,14 @@ class DB {
 				if (!$_direct && method_exists($object, 'getId')) {
 					$parameters['id'] = $object->getId(); //override if necessary
 				}
-				$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				if ($_replace) {
+					$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+				}else{
+					$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				}
 				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			}else{
 				$res = true;
-			}
-			if(method_exists($object, 'setChanged')){
-				$object->setChanged(false);
 			}
 			if (!$_direct && method_exists($object, 'postUpdate')) {
 				$object->postUpdate();
@@ -200,6 +197,9 @@ class DB {
 		}
 		if (!$_direct && method_exists($object, 'postSave')) {
 			$object->postSave();
+		}
+		if(method_exists($object, 'setChanged')){
+			$object->setChanged(false);
 		}
 		return (null !== $res && false !== $res);
 	}
@@ -508,7 +508,7 @@ class DB {
 	
 	/*************************DB ANALYZER***************************/
 	
-	function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
+	public static function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
 		$result = DB::compareDatabase($_database);
 		$error = '';
 		foreach ($result as $tname => $tinfo) {
@@ -525,7 +525,7 @@ class DB {
 					$error .= $e->getMessage()."\n";
 				}
 			}
-			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+			if(isset($tinfo['indexes']) && count($tinfo['indexes']) > 0){
 				foreach ($tinfo['indexes'] as $iname => $iinfo) {
 					if(!isset($iinfo['presql']) || trim($iinfo['presql']) == ''){
 						continue;
@@ -556,7 +556,7 @@ class DB {
 					}
 				}
 			}
-			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+			if(isset($tinfo['indexes']) && count($tinfo['indexes']) > 0){
 				foreach ($tinfo['indexes'] as $iname => $iinfo) {
 					if(!isset($iinfo['sql']) || trim($iinfo['sql']) == ''){
 						continue;
@@ -581,7 +581,7 @@ class DB {
 		return true;
 	}
 	
-	function compareDatabase($_database){
+	public static function compareDatabase($_database){
 		$return = array();
 		foreach ($_database['tables'] as $table) {
 			$return = array_merge($return,self::compareTable($table));
@@ -590,14 +590,12 @@ class DB {
 	}
 	
 	
-	function compareTable($_table){
+	public static function compareTable($_table){
 		try {
 			$describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
 		} catch (\Exception $e) {
 			$describes = array();
 		}
-		
-		
 		$return =  array($_table['name'] => array('status' => 'ok','fields' => array(),'indexes' => array(),'sql' => ''));
 		if(count($describes) == 0){
 			$return = array($_table['name'] => array(
@@ -629,6 +627,7 @@ class DB {
 			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],';');
 			return $return;
 		}
+		$forceRebuildIndex = false;
 		foreach ($_table['fields'] as $field) {
 			$found = false;
 			foreach ($describes as $describe) {
@@ -636,6 +635,9 @@ class DB {
 					continue;
 				}
 				$return[$_table['name']]['fields'] = array_merge($return[$_table['name']]['fields'],self::compareField($field,$describe,$_table['name']));
+				if(isset($return[$_table['name']]['fields'][$field['name']]) && $return[$_table['name']]['fields'][$field['name']]['status'] == 'nok'){
+					$forceRebuildIndex = true;
+				}
 				$found = true;
 			}
 			if(!$found){
@@ -670,7 +672,8 @@ class DB {
 				if($showIndex['Key_name'] != $index['Key_name']){
 					continue;
 				}
-				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'],self::compareIndex($index,$showIndex,$_table['name']));
+				
+				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'],self::compareIndex($index,$showIndex,$_table['name'],$forceRebuildIndex));
 				$found = true;
 			}
 			if(!$found){
@@ -701,7 +704,7 @@ class DB {
 		return $return;
 	}
 	
-	function prepareIndexCompare($indexes){
+	public static function prepareIndexCompare($indexes){
 		$return = array();
 		foreach ($indexes as $index) {
 			if($index['Key_name'] == 'PRIMARY'){
@@ -720,7 +723,7 @@ class DB {
 		return $return;
 	}
 	
-	function compareField($_ref_field,$_real_field,$_table_name){
+	public static function compareField($_ref_field,$_real_field,$_table_name){
 		$return = array($_ref_field['name'] => array('status' => 'ok','sql' => ''));
 		if($_ref_field['type'] != $_real_field['Type']){
 			$return[$_ref_field['name']]['status'] = 'nok';
@@ -745,7 +748,7 @@ class DB {
 		return $return;
 	}
 	
-	function compareIndex($_ref_index,$_real_index,$_table_name){
+	public static function compareIndex($_ref_index,$_real_index,$_table_name,$_forceRebuild = false){
 		$return = array($_ref_index['Key_name'] => array('status' => 'ok','presql' => '','sql' => ''));
 		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
@@ -755,6 +758,10 @@ class DB {
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
 		}
+		if($_forceRebuild){
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Force rebuild';
+		}
 		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
 			$return[$_ref_index['Key_name']]['presql'] =  'ALTER TABLE `'.$_table_name.'` DROP INDEX `'.$_ref_index['Key_name'].'`;';
 			$return[$_ref_index['Key_name']]['sql'] = "\n".self::buildDefinitionIndex($_ref_index,$_table_name);
@@ -762,7 +769,7 @@ class DB {
 		return $return;
 	}
 	
-	function buildDefinitionField($_field){
+	public static function buildDefinitionField($_field){
 		$return = ' '.$_field['type'];
 		if($_field['null'] == 'NO'){
 			$return .= ' NOT NULL';
@@ -778,7 +785,7 @@ class DB {
 		return $return;
 	}
 	
-	function buildDefinitionIndex($_index,$_table_name){
+	public static function buildDefinitionIndex($_index,$_table_name){
 		if($_index['Non_unique'] == 0){
 			$return = 'CREATE UNIQUE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
 		}else{

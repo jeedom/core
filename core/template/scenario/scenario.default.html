@@ -3,9 +3,9 @@
   <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
   <span class="input-group-addon">{{Action}}</span>
   <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="action" data-cmd_id="#id#" data-uid="#uid#">
-    <option value="start">{{Start}}</option>
-    <option value="startsync">{{Start (sync)}}</option>
-    <option value="stop">{{Stop}}</option>
+    <option value="start">{{Démarrer}}</option>
+    <option value="startsync">{{Démarrer (sync)}}</option>
+    <option value="stop">{{Arrêter}}</option>
     <option value="activate">{{Activer}}</option>
     <option value="deactivate">{{Désactiver}}</option>
     <option value="resetRepeatIfStatus">{{Remise à zero des SI}}</option>
@@ -25,7 +25,7 @@
     },
     success: function (scenarios) {
       var options = '';
-      options += '<option value="-1">Aucun</option>';
+      options += '<option value="-1">{{Aucun}}</option>';
       for (var i in scenarios) {
         options += '<option value="' + scenarios[i].id + '">' + scenarios[i].humanName + '</option>';
       }

@@ -1,0 +1,11 @@
+<span class="cmd cmd-widget" data-type="info" data-subtype="other" data-template="buttonImage" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+    <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised">#name_display#</a>
+    <script>
+        $('.cmd[data-cmd_uid=#uid#] .action').click(function() {
+            jeedom.cmd.execute({id: '#id#'});
+        });
+		 $('.cmd[data-cmd_uid=#uid#] .action').on('click', function() {
+			page('index.php?v=m&modal=widget.modal&data='+encodeURI('#state#')+'&type=image','Image',null,'core',true);
+		});
+    </script>
+</span>

@@ -7,7 +7,11 @@ sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
 if (init('object_id') == '') {
-	$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+	if(init('summary') != ''){
+		$object = jeeObject::rootObject();
+	}else{
+		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+	}
 } else {
 	$object = jeeObject::byId(init('object_id'));
 }
@@ -15,14 +19,20 @@ if (!is_object($object)) {
 	$object = jeeObject::rootObject();
 }
 if (!is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
-$allObject = jeeObject::buildTree(null, true);
+if (init('childs', 1) == 1) {
+	$allObject = jeeObject::buildTree(null, true);
+} else {
+	$allObject = array();
+}
+
 foreach ($allObject as $value) {
 	if ($value->getId() == $object->getId()) {
 		$child_object = $value->getChilds();
 	}
 }
+
 sendVarToJs('rootObjectId', $object->getId());
 ?>
 <div class="row row-overflow">
@@ -35,15 +45,13 @@ sendVarToJs('rootObjectId', $object->getId());
 	?>
 	<div class="bs-sidebar">
 		<ul id="ul_object" class="nav nav-list bs-sidenav">
-			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			<?php
 			foreach ($allObject as $object_li) {
 				$margin = 5 * $object_li->getConfiguration('parentNumber');
-				if ($object_li->getId() == $object->getId()) {
-					echo '<li class="cursor li_object active" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;font-size:0.85em;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
-				} else {
-					echo '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;font-size:0.85em;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
-				}
+				$liobject = '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
+				if ($object_li->getId() == $object->getId()) $liobject = str_replace('class="cursor li_object"', 'class="cursor li_object active"', $liobject);
+				echo $liobject;
 			}
 			?>
 		</ul>
@@ -57,37 +65,58 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 }
 ?>
 
-<div class="input-group">
+<div id="dashTopBar" class="input-group">
 	<div class="input-group-btn">
-		<a id="bt_displayObject" class="btn btn-default roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="fa fa-picture-o"></i></a>
+	<?php
+		if (init('childs', 1) == 1) {?>
+			<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i>
+		<?php } else { ?>
+			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
+		<?php } ?>
+		</a>
 	</div>
-	<input class="form-control input-sm" id="in_searchWidget" placeholder="Rechercher">
+	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
-		<a id="bt_resetDashboardSearch" class="btn btn-default"><i class="fas fa-times"></i></a>
+		<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
+		</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
+			<i class="fas fa-filter"></i></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+		</button>
+		<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:28px;left:-110px;">
+			<li>
+				<a id="catFilterAll"> {{Toutes}}</a>
+				<a id="catFilterNone"> {{Aucune}}</a>
+			</li>
+			 <li class="divider"></li>
+			<?php
+				foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+					if ($key=='default') $key = '';
+					echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
+				}
+			?>
+			<li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
+		</ul>
 	</div>
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<div class="input-group-btn">
-			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn btn-default roundedRight"><i class="fas fa-pencil-alt"></i></a>
+			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn enabled roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
 		</div>
 	<?php } ?>
 </div>
 
 <?php include_file('desktop', 'dashboard', 'js'); ?>
+
 <div class="row" >
 	<?php
-	if (init('object_id') != '') {
-		echo '<div class="col-md-12">';
-	} else {
-		echo '<div class="col-md-12">';
-	}
-	echo '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
-	echo '<legend><a class="div_object" style="text-decoration:none" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $object->getHtmlSummary() . '</span> <i class="fas fa-compress pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" data-mode="0" style="margin-right : 10px; display: none;"></i> </legend>';
-	echo '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
-	echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
-	echo '</div>';
-	echo '</div>';
-	echo '</div>';
+	$div =  '<div class="col-md-12">';
+	$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
+	$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+	$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
+	$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
+	$div .= '</div>';
+	$div .= '</div>';
+	$div .= '</div>';
+	echo $div;
 	foreach ($allObject as $value) {
 		if ($value->getId() != $object->getId()) {
 			continue;
@@ -96,14 +125,15 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
 				continue;
 			}
-			echo '<div class="col-md-12">';
-			echo '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" style="margin-bottom : 3px;" class="div_object">';
-			echo '<legend><a style="text-decoration:none" href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $child->getHtmlSummary() . '</span> <i class="fas fa-compress pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" data-mode="0" style="margin-right : 10px; display: none;"></i></legend>';
-			echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
-			echo '<script>getObjectHtml(' . $child->getId() . ')</script>';
-			echo '</div>';
-			echo '</div>';
-			echo '</div>';
+			$div = '<div class="col-md-12">';
+			$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
+			$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+			$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
+			$div .= '<script>getObjectHtml(' . $child->getId() . ')</script>';
+			$div .= '</div>';
+			$div .= '</div>';
+			$div .= '</div>';
+			echo $div;
 		}
 	}
 	?>

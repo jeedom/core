@@ -1,11 +1,32 @@
-body{
-	background: linear-gradient(180deg, rgba(147,204,1,0.6), rgba(147,204,1,1));
-	transition: all .5s;
+html {
+	overflow: hidden;
 }
+
+body {
+	transition: all .5s;
+	background-image: linear-gradient(to bottom right, rgba(147,204,1,0.6), rgba(147,204,1,1));
+	padding-top: 0;
+	height: 100% !important;		
+	overflow: hidden;
+}
+
+.backgroundforJeedom {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: fixed;
+  opacity: 0.2;
+  background-size: cover !important;
+  background-position: right bottom !important;
+  background-repeat: no-repeat;
+  background-image: var(--dashBkg-url) !important;
+  background-color: transparent !important;
+}
+
 .veen {
 	width: 70%;
 	margin: 100px auto;
-	background: rgba(245,245,245,1);
+	background-color: rgb(255,255,255);
 	display: table;
 	position: relative;
 	transition: all .5s;
@@ -16,6 +37,7 @@ body{
 	text-align: center;
 	color: #fff;
 }
+
 .veen button{
 	display: inline-block;
 	padding: 10px 30px;
@@ -35,6 +57,7 @@ body{
 }
 .veen .splits p{
 	font-size: 15px;
+
 }
 .veen button:active{
 	box-shadow: none;
@@ -53,6 +76,7 @@ body{
 	transition: all .5s;
 	color: #303030;
 	overflow: hidden;
+	box-shadow: 0 8px 22px 2px rgba(0,0,0,0.2);
 }
 .veen .wrapper > .form-group{
 	padding: 15px 30px 30px;
@@ -76,7 +100,7 @@ body{
 
 }
 .veen .wrapper.move #register{
-	transform: translateY(-80%) translateX(0%);
+	transform: translateY(-120%) translateX(0%);
 	visibility: visible;
 }
 .veen .wrapper.move #login{
@@ -117,7 +141,7 @@ body{
 }
 .veen .wrapper input:focus{
 	outline: none;
-	border-color: #ff4931;
+	border-color: #e0b722;
 }
 .veen > .wrapper.move{
 	left: 45%;
@@ -127,12 +151,19 @@ body{
 }
 
 #cb_storeConnection {
-	right: 10px
+	right: 10px !important;
+	top: 0 !important;
+}
+
+#in_login_password,
+#in_login_username,
+#cb_storeConnection {
+	background: rgb(240,240,240) !important;
 }
 
 .btn_help{
 	right: 3%;
-	bottom: 5%;
+	bottom: 8%;
 	width: 50px;
 	height:50px;
 	color: rgba(147,204,1,1);
@@ -155,6 +186,8 @@ textarea:-webkit-autofill,
 select:-webkit-autofill {
   box-shadow: inset 0 0 0 50px #fff
 }
+
+
 
 @media (max-width: 1520px){
   .veen{
@@ -181,7 +214,7 @@ select:-webkit-autofill {
 	}
 	.splits{
 		width: 50%;
-		background: #fff;
+		background: #fff !important;
 		float: left;
 	}
 	.splits button{

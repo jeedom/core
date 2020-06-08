@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/LICENSE
 
 (function() {
   var mode = CodeMirror.getMode({indentUnit: 4}, "rust");
@@ -26,7 +26,6 @@
      '[string "\\"foo\\""]',
      '[string r#""foo""#]',
      '[string "foo #\\"# bar"]',
-     '[string r##"foo #"# bar"##]',
 
      '[string b"foo"]',
      '[string br"foo"]',

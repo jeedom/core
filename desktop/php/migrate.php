@@ -2,6 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
+	include_file('3rdparty', 'animate/animate', 'css');
+	include_file('3rdparty', 'animate/animate', 'js');
 ?>
 <div id="contenu">
 	<div id="step1">
@@ -124,12 +126,12 @@ if (!isConnect('admin')) {
       </div>
       <div class="modal-body">
         <p>{{- Il vous faut une clé USB de plus de 8Go.}}</p>
-	<p>{{- Il vous faut etre sur le meme reseau Local que votre Jeedom.}}</p>
-	<p>{{- Accéder à votre Jeedom depuis sont adresse interne.}}</p>
+	<p>{{- Il vous faut être sur le meme réseau Local que votre Jeedom.}}</p>
+	<p>{{- Accéder à votre Jeedom depuis son adresse interne.}}</p>
 	<p>{{- Pouvoir laisser cette page ouverte au minimum 1h30.}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{{C'est Partie}}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{C'est parti}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

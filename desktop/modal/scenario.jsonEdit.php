@@ -9,7 +9,7 @@ if (!is_object($scenario)) {
 sendVarToJs('scenarioJsonEdit_scenario_id', init('id'));
 ?>
 <div id="div_alertScenarioJsonEdit"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <br/><br/>
 <textarea id="ta_scenarioJsonEdit_scenario">
 	<?php

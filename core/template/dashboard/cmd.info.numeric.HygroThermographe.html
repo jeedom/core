@@ -1,0 +1,135 @@
+<div class="cmd cmd-widget #history# widget-hygrothermographe" data-type="info" data-subtype="numeric" data-template="HygroThermographe" data-cmd_id="#id#" title="#collectDate#">
+  <img class="hygrothermographe-background" width="220px" height="220px" src="core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_Dark.png">
+  <span class="intNumTemp fontDigital value"></span>
+  <span class="decNumTemp fontDigital value"></span>
+  <span class="uniteTemp fontDigital">°C</span>
+  <span class="intNumHumidity fontDigital value"></span>
+  <span class="decNumHumidity fontDigital value"></span>
+  <span class="uniteHumidity fontDigital">%</span>
+  <style>
+    @font-face {
+      font-family: "Digital-7";
+      src:  url("core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.eot?") format("eot"),
+      url("core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.woff") format("woff"),
+      url("core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.ttf") format("truetype"),
+      url("core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.svg#Digital-7") format("svg");
+      font-weight:normal;
+      font-style:normal;
+    }
+    .widget-hygrothermographe span.fontDigital{
+      font-family: "Digital-7";
+      position: absolute;
+      color: 	#181818;
+    }
+    .widget-hygrothermographe span.fontDigital.value{
+      transform : scale(0.7,1);
+      -webkit-transform:scale(0.7,1);
+      -moz-transform:scale(0.7,1);
+      -ms-transform:scale(0.7,1);
+      -o-transform:scale(0.7,1);
+    }
+    .widget-hygrothermographe span.intNumTemp {
+      font-size:80px;
+      letter-spacing: 6px;
+      top: 80px;
+      right: 7px;
+    }
+    .widget-hygrothermographe span.decNumTemp {
+      font-size:50px;
+      top: 90px;
+      right: -30px;
+    }
+    .widget-hygrothermographe span.uniteTemp {
+      font-size:20px;
+      font-weight: bold;
+      top: 55px;
+      right: 85px;
+    }
+    .widget-hygrothermographe span.intNumHumidity {
+      font-size: 65px;
+      letter-spacing: 6px;
+      top: 143px;
+      right: 4px;
+    }
+    .widget-hygrothermographe span.decNumHumidity {
+      font-size:35px;
+      top: 154px;
+      right: -32px;
+    }
+    .widget-hygrothermographe span.uniteHumidity {
+      display : none;
+      font-size:20px;
+      font-weight: bold;
+      top: 130px;
+      right: 85px;
+    }
+  </style>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+      var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first');
+      if('#generic_type#' == 'TEMPERATURE'){
+        var n = parseFloat(_options.display_value).toFixed(1)
+        var _int = n.split('.')[0]
+        var _dec = n.split('.')[1]
+        widget.find('.intNumTemp').text(_int+".").attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+        widget.find('.decNumTemp').text(_dec);
+      }
+      if('#generic_type#' == 'HUMIDITY'){
+        widget.find('.uniteHumidity').show();
+        widget.find('.intNumHumidity').text(Math.floor(_options.display_value)+".").attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+        widget.find('.decNumHumidity').text(Math.round((_options.display_value - Math.floor(_options.display_value)) * 10));
+      }
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+
+    setTimeout(function(){
+      if($('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').length > 1){
+        $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:not(:first)').hide();
+      }
+    },100)
+
+    if('#scale#' != '') {
+      let cmd = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').first();
+      if (cmd.attr('scaled') != '1' && '#scale#' > 0) {
+        cmd.attr('scaled', '1')
+        cmd.width(cmd.width()*'#scale#');
+        cmd.height(cmd.height()*'#scale#');
+        cmd.find('.hygrothermographe-background').width(cmd.find('.hygrothermographe-background').width()*'#scale#');
+        cmd.find('.hygrothermographe-background').height(cmd.find('.hygrothermographe-background').height()*'#scale#');
+        cmd.find('.intNumTemp').css('font-size',(cmd.find('.intNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+        .css('top',(cmd.find('.intNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
+        .css('right',(cmd.find('.intNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
+        cmd.find('.decNumTemp').css('font-size',(cmd.find('.decNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+        .css('top',(cmd.find('.decNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
+        .css('right',(cmd.find('.decNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
+        cmd.find('.uniteTemp').css('font-size',(cmd.find('.uniteTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+        .css('top',(cmd.find('.uniteTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
+        .css('right',(cmd.find('.uniteTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
+        cmd.find('.intNumHumidity').css('font-size',(cmd.find('.intNumHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+        .css('top',(cmd.find('.intNumHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
+        .css('right',(cmd.find('.intNumHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+        cmd.find('.decNumHumidity').css('font-size',(cmd.find('.decNumHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+        .css('top',(cmd.find('.decNumHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
+        .css('right',(cmd.find('.decNumHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+        cmd.find('.uniteHumidity').css('font-size',(cmd.find('.uniteHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+        .css('top',(cmd.find('.uniteHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
+        .css('right',(cmd.find('.uniteHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+      }
+    }
+
+    if ($('body')[0].hasAttribute('data-theme')) {
+      if ($('body').attr('data-theme').endsWith('Light')) {
+        $('.cmd[data-cmd_id=#id#]').find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_Light.png')
+      }
+    }
+
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if (theme == 'Light') {
+        cmd.find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_Light.png')
+      } else {
+        cmd.find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_Dark.png')
+      }
+    });
+  </script>
+</div>

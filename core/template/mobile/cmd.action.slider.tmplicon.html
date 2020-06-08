@@ -1,0 +1,43 @@
+<div class="cmd cmd-widget #history#" data-type="action" data-subtype="slider" data-template="tmplicon" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+  <center>
+    <div class="cmdName #hide_name#">#name_display#</div>
+    <span class="cursor iconCmd"></span>
+    <div class="slider full-width-slider ui-slider">
+      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
+    </div>
+    <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
+  </center>
+  <script>
+    $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
+      if ($(this).attr('data-state') == 'on') {
+        var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
+        jeedom.cmd.execute({id: '#id#', value: {slider:value }});
+      } else {
+        var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}});
+      }
+    });
+    $("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
+    $("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
+    });
+    jeedom.cmd.update['#id#'] = function(_options){
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if('#_time_widget_#' == '1'){
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+      }else{
+        cmd.find('.timeCmd').remove();
+      }
+      cmd.find('.slider input').value(_options.display_value);
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
+      var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+      if (stateValue > minValue) {
+        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
+      }else {
+        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
+      }
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+  </script>
+</div>

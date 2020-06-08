@@ -146,7 +146,7 @@ class scenarioElement {
 						$expresssion_str = $expression->getExpression();
 					}
 				}
-				message::add('scenario', __('Expression non valide  [', __FILE__) . $expresssion_str . __('] trouvée dans le scénario : ', __FILE__) . $_scenario->getHumanName(), '', 'invalidExprScenarioElement::' . $this->getId());
+				message::add('scenario', __('Expression non valide  [', __FILE__) . $expresssion_str . __('] trouvée dans le scénario : ', __FILE__) . $_scenario->getHumanName().__(', résultat : ',__FILE__).$result, '', 'invalidExprScenarioElement::' . $this->getId());
 				return;
 			}
 			if ($result) {
@@ -242,7 +242,7 @@ class scenarioElement {
 			if (!is_numeric($next) || $next < 0) {
 				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
-			if ($next < date('Gi', strtotime('+1 minute' . date('G:i')))) {
+			if ($next <= date('Gi')) {
 				$next = str_repeat('0', 4 - strlen($next)) . $next;
 				$next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
 			} else {

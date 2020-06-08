@@ -1,38 +1,31 @@
-The Jeedom health page gives you a quick overview of
-the state of health of your Jeedom. It also indicates (if the plugins
-use it) health status by plugin.
+# Santé
+**Analysis → Health**
 
-The page is accessible by Analysis → Health
+The Jeedom Health page allows you to have a quick overview of the health status of your Jeedom.
+It also indicates (if plugins use it) the state of health by plugin.
 
-> **Note**
+> **NOTE**
 >
-> Click on the icon on the right to access the benchmark of your
-> Jeedom.
+> Click on the icon at the top right to access the benchmark of your Jeedom.
 
-The health page of Jeedom is in the form of a table. The 1st
-gives you a description of what Jeedom checks and whose status
-is displayed in the 2nd column. Finally the last column can you
-give resolution advice if the check is not OK.
+Jeedom&#39;s health page is presented in the form of a double table.
+The 1st column gives you a description of what Jeedom checks, the status is displayed in the 2nd column.
+Tooltips can give you resolution tips if the verification is not OK.
 
-Below you find health for each plugin, a click on the
-plugin name gives the health detail of it. On the right
-find the icons:
+Below you find the health for each plugin, a click on the name of the plugin gives the health detail of it.
 
--   Plugin hardware access port (Zwave key type)
+On the right you find the icons :
 
--   Demon mode
+-   Access port for plugin hardware (Zwave key type).
+-   Demon mode.
+-   Display of the plugin&#39;s equipment health page.
+-   Display of the plugin configuration page.
+-   Overall state of the plugin.
 
--   Display health page of plugin equipment
-
--   Displaying the plugin configuration page
-
--   Global state of the plugin
-
-> **Note**
+> **NOTE**
 >
-> Icons may vary depending on the plugin
+> Icons may vary depending on plugin.
 
-> **Note**
+> **NOTE**
 >
-> Generally, when the line is green, it's all right,
-> and when it's red, it's because there is a problem.
+> Generally when the line is green, everything is fine and when it is red, there is a problem.

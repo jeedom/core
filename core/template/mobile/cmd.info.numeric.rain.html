@@ -1,0 +1,55 @@
+<div class="cmd cmd-widget widget-rain #history#" data-type="info" data-subtype="numeric" data-template="rain" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title widget-rain-title #hide_name#">
+        <span class="cmdName">#name_display#</span><br/>
+        <span class="value"></span>
+        <span class="unite">#unite#</span>
+  </div>
+  <div class="widget-rain-container">
+    <span class="plage unite" style="display:none;"></span>
+    <div class="widget-rain-main">
+    </div>
+    <div class="widget-rain-water" style=""></div>
+  </div>
+  <div class="cmdStats #hide_history#">
+    <div class="col-xs-12 center-block">
+      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
+  </div>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd_#id# = $('.cmd[data-cmd_id=#id#]')
+      var value_#id# = parseFloat(_options.display_value);
+      cmd_#id#.find('.value').empty().append(value_#id#);
+
+      var minValue_#id# = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue_#id# = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      if (value_#id# >= maxValue_#id#) {
+        value_#id# = maxValue_#id#;
+        cmd_#id#.find('.value').css('color','var(--al-danger-color)');
+      } else {
+        cmd_#id#.find('.value').css('color','');
+      }
+      var height_#id# = ((value_#id# - minValue_#id#) * 100) / (maxValue_#id# - minValue_#id#)
+      height_#id# = Math.round(parseFloat(height_#id#) * 10) / 10
+      cmd_#id#.find('.widget-rain-water').height(height_#id#+'%')
+
+      if ('#showRange#' == '1') {
+        cmd_#id#.find('.plage').empty().append(minValue_#id# + ' | ' + maxValue_#id#);
+      }
+    }
+
+    if ('#scale#' != '') {
+      var el_#id# = $('.cmd[data-cmd_id=#id#] .widget-rain-container')
+      el_#id#.width(el_#id#.width() * '#scale#')
+      el_#id#.height(el_#id#.height() * '#scale#')
+    }
+    if ('#animate#' == '0') {
+      $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('animation','none')
+    }
+    if ('#showRange#' == '1') {
+      $('.cmd[data-cmd_id=#id#] .plage').show()
+    }
+
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+  </script>
+</div>

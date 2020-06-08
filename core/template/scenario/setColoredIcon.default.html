@@ -1,0 +1,11 @@
+<div class="input-group input-group-sm" style="width: 100%">
+  <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="state" data-cmd_id="#id#" data-uid="#uid#">
+    <option value="1">{{Actif}}</option>
+    <option value="0">{{Inactif}}</option>
+  </select>
+</div>
+<script>
+  if ('#state#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=state] option[value=#state#]').html() != undefined) {
+    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=state]').value('#state#');
+  }
+</script>

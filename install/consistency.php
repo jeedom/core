@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @console */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,51 +19,55 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Statut: 404 Page non trouvée");
-	header('HTTP/1.0 404 Not Found');
-	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Non trouvé</h1>";
-	echo "La page que vous demandez ne peut être trouvée.";
-	exit();
-}
+require_once dirname(__DIR__).'/core/php/console.php';
+
 set_time_limit(1800);
 
 echo "[START CONSISTENCY]\n";
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_GET[$argList[0]] = $argList[1];
-		}
+try {
+	if(file_exists(__DIR__.'/database.php')){
+		$output = shell_exec('php ' . __DIR__.'/database.php');
+		echo $output;
 	}
+} catch (Exception $ex) {
+	echo "***ERREUR*** " . $ex->getMessage() . "\n";
 }
-
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
-	if(method_exists ('DB','compareAndFix')){
-		try {
-			echo "Check jeedom database...";
-			DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true),'all',true);
-			echo "OK\n";
-		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
-		}
+	
+	/*if(method_exists ('system','checkAndInstall')){
+	try {
+	echo "Check jeedom package...";
+	system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/packages.json'),true),true);
+	echo "OK\n";
+} catch (Exception $ex) {
+echo "***ERREUR*** " . $ex->getMessage() . "\n";
+}
+}*/
+
+if(method_exists ('DB','compareAndFix')){
+	try {
+		echo "Check jeedom database...";
+		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true),'all',true);
+		echo "OK\n";
+	} catch (Exception $ex) {
+		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
-	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
-		config::save('object:summary',
-		array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'motion' => array('key' => 'motion', 'name' => 'Mouvement', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-mouvement"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'door' => array('key' => 'door', 'name' => 'Porte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-porte-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'windows' => array('key' => 'windows', 'name' => 'Fenêtre', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-fenetre-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'shutter' => array('key' => 'shutter', 'name' => 'Volet', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-volet-ouvert"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'light' => array('key' => 'light', 'name' => 'Lumière', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-lumiere-on"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'outlet' => array('key' => 'outlet', 'name' => 'Prise', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-prise"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-		'temperature' => array('key' => 'temperature', 'name' => 'Température', 'calcul' => 'avg', 'icon' => '<i class="icon divers-thermometer31"></i>', 'unit' => '°C', 'allowDisplayZero' => true),
-		'humidity' => array('key' => 'humidity', 'name' => 'Humidité', 'calcul' => 'avg', 'icon' => '<i class="fa fa-tint"></i>', 'unit' => '%', 'allowDisplayZero' => true),
-		'luminosity' => array('key' => 'luminosity', 'name' => 'Luminosité', 'calcul' => 'avg', 'icon' => '<i class="icon meteo-soleil"></i>', 'unit' => 'lx', 'allowDisplayZero' => false),
-		'power' => array('key' => 'power', 'name' => 'Puissance', 'calcul' => 'sum', 'icon' => '<i class="fa fa-bolt"></i>', 'unit' => 'W', 'allowDisplayZero' => false),
-	)
+}
+if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
+	config::save('object:summary',
+	array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'motion' => array('key' => 'motion', 'name' => 'Mouvement', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-mouvement"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'door' => array('key' => 'door', 'name' => 'Porte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-porte-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'windows' => array('key' => 'windows', 'name' => 'Fenêtre', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-fenetre-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'shutter' => array('key' => 'shutter', 'name' => 'Volet', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-volet-ouvert"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'light' => array('key' => 'light', 'name' => 'Lumière', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-lumiere-on"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'outlet' => array('key' => 'outlet', 'name' => 'Prise', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-prise"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+	'temperature' => array('key' => 'temperature', 'name' => 'Température', 'calcul' => 'avg', 'icon' => '<i class="icon divers-thermometer31"></i>', 'unit' => '°C', 'allowDisplayZero' => true),
+	'humidity' => array('key' => 'humidity', 'name' => 'Humidité', 'calcul' => 'avg', 'icon' => '<i class="fa fa-tint"></i>', 'unit' => '%', 'allowDisplayZero' => true),
+	'luminosity' => array('key' => 'luminosity', 'name' => 'Luminosité', 'calcul' => 'avg', 'icon' => '<i class="icon meteo-soleil"></i>', 'unit' => 'lx', 'allowDisplayZero' => false),
+	'power' => array('key' => 'power', 'name' => 'Puissance', 'calcul' => 'sum', 'icon' => '<i class="fa fa-bolt"></i>', 'unit' => 'W', 'allowDisplayZero' => false),
+)
 );
 }
 
@@ -182,7 +189,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
+	$cron->setSchedule(rand(0,59).' '.rand(0,3).' * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
@@ -195,7 +202,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule('00 * * * * *');
+	$cron->setSchedule(rand(0,59).' * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -212,6 +219,19 @@ if(method_exists('utils','attrChanged')){
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
+	$cron->save();
+	
+	$cron = cron::byClassAndFunction('jeedom', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(10);
 	$cron->save();
 	
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
@@ -247,6 +267,18 @@ if(method_exists('utils','attrChanged')){
 	$cron->setFunction('cron5');
 	$cron->setSchedule('*/5 * * * * *');
 	$cron->setTimeout(5);
+	$cron->setDeamon(0);
+	$cron->save();
+	
+	$cron = cron::byClassAndFunction('plugin', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * * *');
+	$cron->setTimeout(10);
 	$cron->setDeamon(0);
 	$cron->save();
 	
@@ -345,34 +377,70 @@ if(method_exists('utils','attrChanged')){
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
 	try {
-		cache::flushWidget();
+		if(method_exists('cache','flushWidget')){
+			cache::flushWidget();
+		}
 	} catch (Exception $e) {
 		
 	} catch (Error $e) {
 		
 	}
 	
-	
-	try {
-		foreach (object::all() as $object) {
+	foreach (jeeObject::all() as $object) {
+		try {
 			$object->save();
+		} catch (Exception $exc) {
+			
 		}
-	} catch (Exception $exc) {
-		
 	}
 	
 	foreach (cmd::all() as $cmd) {
-		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
-			$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+		try {
+			$changed = false;
+			if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
+				$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+				$changed = true;
+			}
+			if(trim($cmd->getTemplate('dashboard')) != '' && strpos($cmd->getTemplate('dashboard'),'::') === false){
+				$cmd->setTemplate('dashboard','core::'.$cmd->getTemplate('dashboard'));
+				$changed = true;
+			}
+			if(trim($cmd->getTemplate('mobile')) != '' && strpos($cmd->getTemplate('mobile'),'::') === false){
+				$cmd->setTemplate('mobile','core::'.$cmd->getTemplate('mobile'));
+				$changed = true;
+			}
+			if($changed){
+				$cmd->save(true);
+			}
+		} catch (Exception $exc) {
+			
 		}
-		$cmd->save();
 	}
 }
-
-
 if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
 	copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
 }
+if(!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')){
+	if(!file_exists('/etc/systemd/system/mariadb.service.d')){
+		exec('sudo mkdir /etc/systemd/system/mariadb.service.d');
+	}
+	exec('sudo chmod 777 -R /etc/systemd/system/mariadb.service.d');
+	exec('sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf');
+	exec('sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf');
+	exec('sudo systemctl daemon-reload');
+}
+
+$duplicity_version = trim(str_replace('duplicity','',shell_exec('duplicity --version')));
+if(version_compare($duplicity_version, '0.7.19','<')){
+	echo "Upgrade duplicity to 0.7.19\n";
+	exec('sudo apt remove -y --purge duplicity');
+	exec('sudo wget https://images.jeedom.com/resources/duplicity/duplicity.tar.gz -O /tmp/duplicity.tar.gz');
+	exec('tar xvf /tmp/duplicity.tar.gz');
+	exec('cd duplicity-0.7.19; sudo python setup.py install 2>&1 >> /dev/null');
+	exec('sudo rm -rf /tmp/duplicity.tar.gz');
+	exec('sudo rm -rf duplicity-0.7.19');
+}
+
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();

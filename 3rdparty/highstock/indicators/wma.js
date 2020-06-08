@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.0.3 (2019-02-06)
+ Highstock JS v8.1.0 (2020-05-05)
 
  Indicator series type for Highstock
 
@@ -7,6 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define(function(){return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){(function(a){function g(b,c){c*=(c+1)/2;return b.reduce(function(b,c,a){return[null,b[1]+c[1]*(a+1)]})[1]/c}function m(b,c,a,e){a=g(b,b.length);c=c[e-1];b.shift();return[c,a]}var p=a.isArray;a=a.seriesType;a("wma","sma",{params:{index:3,period:9}},{getValues:function(b,c){var a=
-c.period,e=b.xData,g=(b=b.yData)?b.length:0,d=1,q=e[0],n=b[0],h=[],k=[],l=[],f=-1;if(e.length<a)return!1;p(b[0])&&(f=c.index,n=b[0][f]);for(c=[[q,n]];d!==a;)c.push([e[d],0>f?b[d]:b[d][f]]),d++;for(a=d;a<g;a++)d=m(c,e,b,a),h.push(d),k.push(d[0]),l.push(d[1]),c.push([e[a],0>f?b[a]:b[a][f]]);d=m(c,e,b,a);h.push(d);k.push(d[0]);l.push(d[1]);return{values:h,xData:k,yData:l}}})})(a)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/wma",["highcharts","highcharts/modules/stock"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,c,g,h){a.hasOwnProperty(c)||(a[c]=h.apply(null,g))}a=a?a._modules:{};c(a,"indicators/wma.src.js",[a["parts/Utilities.js"]],function(a){function c(a,b){b*=(b+1)/2;return a.reduce(function(a,
+k,b){return[null,a[1]+k[1]*(b+1)]})[1]/b}function g(a,b,e,q){e=c(a,a.length);b=b[q-1];a.shift();return[b,e]}var h=a.isArray;a=a.seriesType;a("wma","sma",{params:{index:3,period:9}},{getValues:function(a,b){var e=b.period,c=a.xData,k=(a=a.yData)?a.length:0,d=1,r=c[0],p=a[0],l=[],m=[],n=[],f=-1;if(!(c.length<e)){h(a[0])&&(f=b.index,p=a[0][f]);for(b=[[r,p]];d!==e;)b.push([c[d],0>f?a[d]:a[d][f]]),d++;for(e=d;e<k;e++)d=g(b,c,a,e),l.push(d),m.push(d[0]),n.push(d[1]),b.push([c[e],0>f?a[e]:a[e][f]]);d=g(b,
+c,a,e);l.push(d);m.push(d[0]);n.push(d[1]);return{values:l,xData:m,yData:n}}}});""});c(a,"masters/indicators/wma.src.js",[],function(){})});
 //# sourceMappingURL=wma.js.map

@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.0.3 (2019-02-06)
+ Highstock JS v8.1.0 (2020-05-05)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define(function(){return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){(function(b){b=b.seriesType;b("zigzag","sma",{params:{lowIndex:2,highIndex:1,deviation:1}},{nameComponents:["deviation"],nameSuffixes:["%"],nameBase:"Zig Zag",getValues:function(b,k){var f=k.lowIndex,h=k.highIndex,e=k.deviation/100;k=1+e;var u=1-e,e=b.xData,c=b.yData;b=c?c.length:
-0;var g=[],n=[],p=[],a,v,d,q,r,l,t=!1,m=!1;if(1>=e.length||b&&(void 0===c[0][f]||void 0===c[0][h]))return!1;q=c[0][f];r=c[0][h];for(a=1;a<b;a++)c[a][f]<=r*u?(g.push([e[0],r]),d=[e[a],c[a][f]],t=l=!0):c[a][h]>=q*k&&(g.push([e[0],q]),d=[e[a],c[a][h]],l=!1,t=!0),t&&(n.push(g[0][0]),p.push(g[0][1]),v=a++,a=b);for(a=v;a<b;a++)l?(c[a][f]<=d[1]&&(d=[e[a],c[a][f]]),c[a][h]>=d[1]*k&&(m=h)):(c[a][h]>=d[1]&&(d=[e[a],c[a][h]]),c[a][f]<=d[1]*u&&(m=f)),!1!==m&&(g.push(d),n.push(d[0]),p.push(d[1]),d=[e[a],c[a][m]],
-l=!l,m=!1);f=g.length;0!==f&&g[f-1][0]<e[b-1]&&(g.push(d),n.push(d[0]),p.push(d[1]));return{values:g,xData:n,yData:p}}})})(b)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/zigzag",["highcharts","highcharts/modules/stock"],function(h){a(h);a.Highcharts=h;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function h(a,m,k,e){a.hasOwnProperty(m)||(a[m]=e.apply(null,k))}a=a?a._modules:{};h(a,"indicators/zigzag.src.js",[a["parts/Utilities.js"]],function(a){a=a.seriesType;a("zigzag","sma",{params:{lowIndex:2,
+highIndex:1,deviation:1}},{nameComponents:["deviation"],nameSuffixes:["%"],nameBase:"Zig Zag",getValues:function(a,k){var e=k.lowIndex,l=k.highIndex,f=k.deviation/100;k=1+f;var h=1-f;f=a.xData;var c=a.yData;a=c?c.length:0;var g=[],q=[],r=[],b,n,t=!1,p=!1;if(!(!f||1>=f.length||a&&(void 0===c[0][e]||void 0===c[0][l]))){var m=c[0][e];var u=c[0][l];for(b=1;b<a;b++){if(c[b][e]<=u*h){g.push([f[0],u]);var d=[f[b],c[b][e]];t=n=!0}else c[b][l]>=m*k&&(g.push([f[0],m]),d=[f[b],c[b][l]],n=!1,t=!0);if(t){q.push(g[0][0]);
+r.push(g[0][1]);var v=b++;b=a}}for(b=v;b<a;b++)n?(c[b][e]<=d[1]&&(d=[f[b],c[b][e]]),c[b][l]>=d[1]*k&&(p=l)):(c[b][l]>=d[1]&&(d=[f[b],c[b][l]]),c[b][e]<=d[1]*h&&(p=e)),!1!==p&&(g.push(d),q.push(d[0]),r.push(d[1]),d=[f[b],c[b][p]],n=!n,p=!1);e=g.length;0!==e&&g[e-1][0]<f[a-1]&&(g.push(d),q.push(d[0]),r.push(d[1]));return{values:g,xData:q,yData:r}}}});""});h(a,"masters/indicators/zigzag.src.js",[],function(){})});
 //# sourceMappingURL=zigzag.js.map

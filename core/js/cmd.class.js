@@ -14,6 +14,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 jeedom.cmd = function() {};
+jeedom.cmd.disableExecute = false;
 jeedom.cmd.cache = Array();
 if (!isset(jeedom.cmd.cache.byId)) {
   jeedom.cmd.cache.byId = Array();
@@ -24,11 +25,35 @@ if (!isset(jeedom.cmd.cache.byHumanName)) {
 if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
+
+jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
+  if (!_eqlogic){
+    return;
+  }
+  if (_eqlogic.find('.cmd.refresh').length) {
+    _eqlogic.find('.cmd.refresh').addClass('spinning')
+  } else {
+    _eqlogic.find('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
+  }
+  if (_hide) {
+    setTimeout(function() {
+      if (_eqlogic.find('.cmd.refresh').hasClass('remove')) {
+        _eqlogic.find('.cmd.refresh').remove()
+      } else {
+        _eqlogic.find('.cmd.refresh').removeClass('spinning')
+      }
+    }, 1000);
+  }
+}
+
 jeedom.cmd.execute = function(_params) {
+  if(jeedom.cmd.disableExecute){
+    return;
+  }
   var notify = _params.notify || true;
   if (notify) {
-    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic');
-    eqLogic.find('.statusCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic-widget');
+    jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = json_encode(_params.value);
@@ -53,10 +78,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                setTimeout(function() {
-                  eqLogic.find('.statusCmd').empty();
-                }, 3000);
+                jeedom.cmd.notifyEq(eqLogic, true)
               }
               return data;
             }
@@ -74,19 +96,16 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                  setTimeout(function() {
-                    eqLogic.find('.statusCmd').empty();
-                  }, 3000);
+                  jeedom.cmd.notifyEq(eqLogic, true)
                 }
                 return data;
               }
-              
+
             });
           }
         }else if(data.code == -32006){
           if ($.mobile) {
-            var result = confirm("{{Etes-vous sûr de vouloir faire cette action ?}}")
+            var result = confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}")
             if(result){
               _params.confirmAction = 1;
               jeedom.cmd.execute(_params);
@@ -99,15 +118,12 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                setTimeout(function() {
-                  eqLogic.find('.statusCmd').empty();
-                }, 3000);
+                jeedom.cmd.notifyEq(eqLogic, true)
               }
               return data;
             }
           }else{
-            bootbox.confirm("{{Etes-vous sûr de vouloir faire cette action ?}}", function (result) {
+            bootbox.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function (result) {
               if(result){
                 _params.confirmAction = 1;
                 jeedom.cmd.execute(_params);
@@ -120,14 +136,11 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                  setTimeout(function() {
-                    eqLogic.find('.statusCmd').empty();
-                  }, 3000);
+                  jeedom.cmd.notifyEq(eqLogic, true)
                 }
                 return data;
               }
-              
+
             });
           }
         }else{
@@ -138,19 +151,13 @@ jeedom.cmd.execute = function(_params) {
             });
           }
           if (notify) {
-            eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-            setTimeout(function() {
-              eqLogic.find('.statusCmd').empty();
-            }, 3000);
+            jeedom.cmd.notifyEq(eqLogic, true)
           }
           return data;
         }
       }
       if (notify) {
-        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
-        setTimeout(function() {
-          eqLogic.find('.statusCmd').empty();
-        }, 3000);
+        jeedom.cmd.notifyEq(eqLogic, true)
       }
       return data;
     }
@@ -306,21 +313,28 @@ jeedom.cmd.test = function(_params) {
 
 jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
-  if(cmds.length > 0){
-    $(cmds).each(function(){
-      if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
-        return true;
-      }
-      jeedom.cmd.toHtml({
-        global : false,
-        id : $(this).attr('data-cmd_id'),
-        version : $(this).attr('data-version'),
-        success : function(data){
-          $('.cmd[data-cmd_id=' + data.id + ']').replaceWith(data.html);
-        }
-      })
-    });
+  if(cmds.length == 0){
+    return;
   }
+  $(cmds).each(function(){
+    var cmd = $(this);
+    if(cmd.closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+      return true;
+    }
+    jeedom.cmd.toHtml({
+      global : false,
+      id : $(this).attr('data-cmd_id'),
+      version : $(this).attr('data-version'),
+      success : function(data){
+        var html = $(data.html);
+        var uid = html.attr('data-cmd_uid');
+        if(uid != 'undefined'){
+          cmd.attr('data-cmd_uid',uid);
+        }
+        cmd.empty().html(html.children()).attr("class", html.attr("class"));
+      }
+    })
+  });
 }
 
 jeedom.cmd.refreshValue = function(_params) {
@@ -333,24 +347,6 @@ jeedom.cmd.refreshValue = function(_params) {
       continue;
     }
     jeedom.cmd.update[_params[i].cmd_id](_params[i]);
-    
-  }
-  for(var i in _params){
-    try {
-      for(var j in jeedom.history.chart){
-        if (isset(jeedom.history.chart[j].chart) && isset(jeedom.history.chart[j].chart.series)) {
-          $(jeedom.history.chart['div_graph'].chart.series).each(function(k, serie){
-            try {
-              if(serie.options.id ==  _params[i].cmd_id){
-                serie.addPoint([Date.parse(_params[i].collectDate+' UTC') - 1, _params[i].value], true, true);
-              }
-            }catch(error) {
-            }
-          });
-        }
-      }
-    } catch (e) {
-    }
   }
 };
 
@@ -423,6 +419,26 @@ jeedom.cmd.save = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.setIsVisibles = function(_params) {
+  var paramsRequired = ['cmds','isVisible'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'setIsVisibles',
+    cmds: json_encode(_params.cmds),
+    isVisible : _params.isVisible
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.cmd.multiSave = function(_params) {
   var paramsRequired = ['cmds'];
   var paramsSpecifics = {
@@ -470,6 +486,35 @@ jeedom.cmd.byId = function(_params) {
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'byId',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
+};
+
+
+jeedom.cmd.getHumanCmdName = function(_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {
+    pre_success: function(data) {
+      jeedom.cmd.cache.byId[data.result.id] = data.result;
+      return data;
+    }
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
+    params.success(jeedom.cmd.cache.byId[params.id]);
+    return;
+  }
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getHumanCmdName',
     id: _params.id
   };
   $.ajax(paramsAJAX);
@@ -601,7 +646,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -639,7 +684,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
@@ -766,47 +811,40 @@ jeedom.cmd.displayActionsOption = function(_params) {
 };
 
 jeedom.cmd.normalizeName = function(_tagname) {
-  var arrayOn = ['on', 'marche', 'go', 'lock'];
-  var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
-  var name = $.trim(_tagname.toLowerCase().replace('<br/>','').replace('<br>',''));
-  if (arrayOn.indexOf(name) >= 0) {
-    return 'on';
-  } else if (arrayOff.indexOf(name) >= 0) {
-    return 'off';
+  cmdName = _tagname.toLowerCase().trim()
+  var cmdTests = []
+  var cmdType = null
+  var cmdList = {
+    'on':'on',
+    'off':'off',
+    'monter':'on',
+    'descendre':'off',
+    'ouvrir':'on',
+    'ouvrirStop':'on',
+    'ouvert':'on',
+    'fermer':'off',
+    'activer':'on',
+    'desactiver':'off',
+    'désactiver':'off',
+    'lock':'on',
+    'unlock':'off',
+    'marche':'on',
+    'arret':'off',
+    'arrêt':'off',
+    'stop':'off',
+    'go':'on'
   }
-  if (name.indexOf("lock") == 0) {
-    return 'on';
+  var cmdTestsList = [' ', '-', '_']
+  for(var i in cmdTestsList){
+    cmdTests = cmdTests.concat(cmdName.split(cmdTestsList[i]))
   }
-  if (name.indexOf("unlock") == 0) {
-    return 'off';
-  }
-  if (name.indexOf("descendre") == 0) {
-    return 'off';
-  }
-  if (name.indexOf("on") != -1) {
-    return 'on';
-  }
-  if (name.indexOf("off") != -1) {
-    return 'off';
-  }
-  if (name.indexOf("désactiver") != -1) {
-    return 'off';
-  }
-  if (name.indexOf("desactiver") != -1) {
-    return 'off';
-  }
-  if (name.indexOf("activer") != -1) {
-    return 'on';
-  }
-  if (name.indexOf("ouvrir") != -1) {
-    return 'ouvrir';
-  }
-  if (name.indexOf("fermer") != -1) {
-    return 'fermer';
+  for(var j in cmdTests){
+    if(cmdList[cmdTests[j]]){
+      return cmdList[cmdTests[j]];
+    }
   }
   return _tagname;
 }
-
 
 jeedom.cmd.setOrder = function(_params) {
   var paramsRequired = ['cmds'];
@@ -827,41 +865,91 @@ jeedom.cmd.setOrder = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.getDeadCmd = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getDeadCmd'
+  };
+  $.ajax(paramsAJAX);
+};
+
 
 jeedom.cmd.displayDuration = function(_date,_el){
+  var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
   var arrDate = _date.split(/-|\s|:/);
   var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
   _el.attr('data-time',timeInMillis);
   if(_el.attr('data-interval') != undefined){
     clearInterval(_el.attr('data-interval'));
   }
-  if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-    var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+  if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
     var j = Math.floor(d / 86400);
     var h = Math.floor(d % 86400 / 3600);
     var m = Math.floor(d % 3600 / 60);
-    _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+    var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+    if (d > 86399) {
+      var interval = 3600000;
+      _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+    } else if (d > 3599 && d < 86400) {
+      var interval = 60000;
+      _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+    } else {
+      var interval = 10000;
+      _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+    }
     var myinterval = setInterval(function(){
-      var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+      var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
-      _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-    }, 60000);
+      var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+      if (d > 86399) {
+        var interval = 3600000;
+        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+      } else if (d > 3599 && d < 86400) {
+        var interval = 60000;
+        _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+      } else {
+        var interval = 10000;
+        _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+      }
+    }, interval);
     _el.attr('data-interval',myinterval);
   }else{
-    _el.empty().append("0 min");
+    _el.empty().append("0 s");
+    var interval = 10000;
     var myinterval = setInterval(function(){
-      if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-        var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+      if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+        var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
         var j = Math.floor(d / 86400);
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
-        _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+        var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+        if (d > 86399) {
+          interval = 3600000;
+          _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+        } else if (d > 3599 && d < 86400) {
+          interval = 60000;
+          _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+        } else {
+          interval = 10000;
+          _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+        }
       }else{
-        _el.empty().append("0 min");
+        _el.empty().append("0 s");
       }
-    }, 60000);
+    }, interval);
     _el.attr('data-interval',myinterval);
   }
 };

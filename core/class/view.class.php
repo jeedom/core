@@ -56,7 +56,13 @@ class view {
 		$viewDatas = array_merge($viewDatas, viewData::searchByConfiguration($search));
 		foreach ($viewDatas as $viewData) {
 			$viewZone = $viewData->getviewZone();
+			if(!is_object($viewZone)){
+				continue;
+			}
 			$view = $viewZone->getView();
+			if(!is_object($view)){
+				continue;
+			}
 			$return[$view->getId()] = $view;
 		}
 		return $return;
@@ -114,7 +120,7 @@ class view {
 		return $return;
 	}
 	
-	public function toAjax($_version = 'dview', $_html = false) {
+	public function toAjax($_version = 'dashboard', $_html = false) {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
@@ -209,7 +215,7 @@ class view {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$icon = findCodeIcon('fa-picture-o');
+		$icon = findCodeIcon($this->getDisplay('icon','<i class="far fa-image"></i>'));
 		$_data['node']['view' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
 			'type' => __('Vue',__FILE__),

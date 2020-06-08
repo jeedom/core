@@ -14,6 +14,11 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+window.addEventListener('click', function(event) {
+  if (!event.path) {
+    return;
+  }
+});
 if (getUrlVars('fullscreen') == '1') {
   $('#div_colPlan3d').removeClass('col-lg-10').addClass('col-lg-12');
   $('#div_colMenu').remove();
@@ -65,8 +70,7 @@ $('#bt_showAllObject').on('click',function(){
 });
 
 $('#bt_plan3dHeaderConfigure').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration du plan 3D}}"});
-  $('#md_modal').load('index.php?v=d&modal=plan3dHeader.configure&plan3dHeader_id='+plan3dHeader_id).dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration du plan 3D}}"}).load('index.php?v=d&modal=plan3dHeader.configure&plan3dHeader_id='+plan3dHeader_id).dialog('open')
 });
 
 $('#bt_plan3dHeaderAdd').on('click',function(){
@@ -99,7 +103,7 @@ $('body').on('cmd::update',function(_event,_options){
         try{
           jeedom3d[j].update(_options[i]);
         }catch (e) {
-          
+
         }
       }
     }
@@ -129,8 +133,7 @@ window.addEventListener('dblclick', function(){
   raycaster.setFromCamera( mouse, camera );
   var intersects = raycaster.intersectObjects( scene.children,true );
   if(intersects.length > 0 && intersects[0].object.name != ''){
-    $('#md_modal').dialog({title: "{{Configuration de l\'objet}}"});
-    $('#md_modal').load('index.php?v=d&modal=plan3d.configure&&plan3dHeader_id='+plan3dHeader_id+'&name=' + intersects[0].object.name).dialog('open');
+    $('#md_modal').dialog({title: "{{Configuration de l\'objet}}"}).load('index.php?v=d&modal=plan3d.configure&&plan3dHeader_id='+plan3dHeader_id+'&name=' + intersects[0].object.name).dialog('open')
   }
 }, false );
 
@@ -183,9 +186,19 @@ function display3d(_id){
       THREE.Vector3.XAxis = new THREE.Vector3( 1, 0, 0 );
       container =  document.getElementById("div_display3d");
       scene = new THREE.Scene();
-      scene.background = new THREE.Color( 0xaaaaaa );;
+      if(data.configuration.backgroundColor && data.configuration.backgroundColor != '#000000'){
+        scene.background = new THREE.Color( data.configuration.backgroundColor );
+      }else{
+        scene.background = new THREE.Color( 0xaaaaaa );
+      }
       camera = new THREE.PerspectiveCamera(45,SCREEN_WIDTH/SCREEN_HEIGHT,0.1,99999999);
       scene.add(camera);
+      if(data.configuration.globalLightPower){
+        var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, data.configuration.globalLightPower);
+      }else{
+        var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.3);
+      }
+      scene.add(hemiLight);
       renderer = new THREE.WebGLRenderer({antialias: true});
       renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
       container.appendChild( renderer.domElement );
@@ -358,21 +371,33 @@ jeedom3d.light.update = function(_options) {
 /***************************************TEXT***************************/
 
 jeedom3d.text = function() {};
+jeedom3d.text.data = {};
 
-jeedom3d.text.create = function(_info,_object) {
-  if(!_info.additionalData.cmd_id){
+jeedom3d.text.reset = function(_info,_object){
+  if(!jeedom3d.text.data[_object.uuid]){
     return;
   }
+  for(var j in scene.children){
+    if(scene.children[j].uuid == jeedom3d.text.data[_object.uuid]){
+      scene.remove(scene.children[j]);
+    }
+  }
+}
+
+jeedom3d.text.create = function(_info,_object) {
   var text = jeedom3d.text.generate(_info,_object,_info.additionalData.text);
   scene.add(text);
-  for(var i in _info.additionalData.cmds){
-    cmd_id = _info.additionalData.cmds[i];
-    if(! CMDS[cmd_id]){
-      CMDS[cmd_id] = {'text' :  []};
-    }else if(!CMDS[cmd_id]['text']){
-      CMDS[cmd_id]['text'] = [];
+  jeedom3d.text.data[_object.uuid] = text.uuid;
+  if(_info.additionalData.cmds){
+    for(var i in _info.additionalData.cmds){
+      cmd_id = _info.additionalData.cmds[i];
+      if(!CMDS[cmd_id]){
+        CMDS[cmd_id] = {'text' :  []};
+      }else if(!CMDS[cmd_id]['text']){
+        CMDS[cmd_id]['text'] = [];
+      }
+      CMDS[cmd_id]['text'].push({text : text,info:_info,object : _object});
     }
-    CMDS[cmd_id]['text'].push({text : text,info:_info,object : _object});
   }
 };
 
@@ -430,8 +455,8 @@ jeedom3d.text.generate = function(_options,_object,_text){
     spritey.position.set((bBox.max.x - bBox.min.x) / 2 + bBox.min.x,bBox.max.y + parseInt(_options.configuration['3d::widget::text::space::z']),(bBox.max.z - bBox.min.z) / 2 + bBox.min.z);
     return spritey;
   }
-  
-  
+
+
   jeedom3d.text.makeTextSprite = function( message, parameters ){
     message = " " + message + " ";
     if (parameters === undefined) parameters = {};
@@ -442,6 +467,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
     var backgroundColor = parameters.hasOwnProperty("backgroundColor") ? parameters["backgroundColor"] : { r: 255, g: 255, b: 255, a: 1.0 };
     var textColor = parameters.hasOwnProperty("textColor") ?	parameters["textColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
     var canvas = document.createElement('canvas');
+
     var context = canvas.getContext('2d');
     context.font = "Bold " + fontsize + "px " + fontface;
     var texts = message.split('\n');
@@ -469,7 +495,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
     sprite.scale.set(300,150,1.0);
     return sprite;
   }
-  
+
   jeedom3d.text.roundRect = function(ctx, x, y, w, h, r) {
     ctx.beginPath();
     ctx.moveTo(x+r, y);
@@ -485,25 +511,25 @@ jeedom3d.text.generate = function(_options,_object,_text){
     ctx.fill();
     ctx.stroke();
   }
-  
+
   jeedom3d.text.getMaxWidth =  function(context, texts){
     let maxWidth = 0;
     for(let i in texts)
     maxWidth = Math.max(maxWidth, context.measureText(texts[i]).width);
     return maxWidth;
   }
-  
+
   /***************************************DOOR***************************/
-  
+
   jeedom3d.door = function() {};
   jeedom3d.door.data = {};
-  
+
   jeedom3d.door.reset = function(_info,_object){
     if(jeedom3d.door.data[_object.uuid]){
       _object.material.color = jeedom3d.door.data[_object.uuid];
     }
   }
-  
+
   jeedom3d.door.create = function(_info,_object) {
     _object.material = _object.material.clone();
     for(var i in _info.additionalData.cmds){
@@ -520,7 +546,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
       jeedom3d.door.update({state : _info.additionalData.state, cmd_id : cmd_id,object : _object});
     }
   };
-  
+
   jeedom3d.door.update = function(_options) {
     var doors = CMDS[_options.cmd_id]['door'];
     for(var i in doors){
@@ -541,7 +567,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
       }
     }
   }
-  
+
   jeedom3d.door.doUpdate = function(_state,_door){
     var result = ''
     var convert = {
@@ -625,7 +651,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
     }
     return result;
   }
-  
+
   jeedom3d.door.rotate = function(_obj,_params){
     if(!_params.repeat || !_params.mode){
       return
@@ -650,7 +676,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
       _obj.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(translate.x,translate.y,translate.z));
     }
   }
-  
+
   jeedom3d.door.translate = function(_obj,_params){
     if(!_params.repeat || !_params.way){
       return
@@ -676,19 +702,19 @@ jeedom3d.text.generate = function(_options,_object,_text){
       _obj.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(translate.x,translate.y,translate.z));
     }
   }
-  
-  
+
+
   /***************************************CONDITIONAL COLOR***************************/
-  
+
   jeedom3d.conditionalColor = function() {};
   jeedom3d.conditionalColor.data = {};
-  
+
   jeedom3d.conditionalColor.reset = function(_info,_object){
     if(jeedom3d.conditionalColor.data[_object.uuid]){
       _object.material.color = jeedom3d.conditionalColor.data[_object.uuid];
     }
   }
-  
+
   jeedom3d.conditionalColor.create = function(_info,_object) {
     _object.material = _object.material.clone();
     for(var i in _info.additionalData.cmds){
@@ -699,10 +725,10 @@ jeedom3d.text.generate = function(_options,_object,_text){
         CMDS[cmd_id]['conditionalColor'] = [];
       }
       CMDS[cmd_id]['conditionalColor'].push({object : _object,info:_info});
+      jeedom3d.conditionalColor.update({color : _info.additionalData.color, cmd_id : cmd_id,object : _object});
     }
-    jeedom3d.conditionalColor.update({state : _info.additionalData.state, cmd_id : cmd_id,object : _object});
   };
-  
+
   jeedom3d.conditionalColor.update = function(_options) {
     var conditionalColor = CMDS[_options.cmd_id]['conditionalColor']
     for(var i in conditionalColor){
@@ -710,9 +736,6 @@ jeedom3d.text.generate = function(_options,_object,_text){
         continue;
       }
       if(_options.color){
-        if(data.additionalData.color == ''){
-          continue;
-        }
         if(!jeedom3d.conditionalColor.data[conditionalColor[i].object.uuid]){
           jeedom3d.conditionalColor.data[conditionalColor[i].object.uuid] = {r:conditionalColor[i].object.material.color.r,g:conditionalColor[i].object.material.color.g,b:conditionalColor[i].object.material.color.b};
         }
@@ -735,4 +758,48 @@ jeedom3d.text.generate = function(_options,_object,_text){
       }
     }
   }
-  
+
+  /***************************************CONDITIONAL SHOW***************************/
+
+  jeedom3d.conditionalShow = function() {};
+
+  jeedom3d.conditionalShow.reset = function(_info,_object){
+    _object.visible = true;
+  }
+
+  jeedom3d.conditionalShow.create = function(_info,_object) {
+    for(var i in _info.additionalData.cmds){
+      cmd_id = _info.additionalData.cmds[i];
+      if(!CMDS[cmd_id]){
+        CMDS[cmd_id] = {'conditionalShow' :  []};
+      }else if(!CMDS[cmd_id]['conditionalShow']){
+        CMDS[cmd_id]['conditionalShow'] = [];
+      }
+      CMDS[cmd_id]['conditionalShow'].push({object : _object,info:_info});
+      jeedom3d.conditionalShow.update({show : _info.additionalData.show, cmd_id : cmd_id,object : _object});
+    }
+  };
+
+  jeedom3d.conditionalShow.update = function(_options) {
+    var conditionalShow = CMDS[_options.cmd_id]['conditionalShow']
+    for(var i in conditionalShow){
+      if(_options.object && _options.object != conditionalShow[i].object){
+        continue;
+      }
+      if(typeof _options.show != 'undefined'){
+        _options.object.visible =  _options.show;
+      }else{
+        jeedom.plan3d.byId({
+          id: conditionalShow[i].info.id,
+          global:false,
+          async : false,
+          success: function (data) {
+            if(typeof data.additionalData.show == 'undefined'){
+              return;
+            }
+            conditionalShow[i].object.visible =  data.additionalData.show;
+          }
+        });
+      }
+    }
+  }

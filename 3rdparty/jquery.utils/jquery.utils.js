@@ -293,21 +293,16 @@ function is_array(a) {
           }
         }
         $(this).empty();
-        $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
+        $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative;top:-2px; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
         $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
-        $(this).addClass('alert jqAlert');
+        $(this).addClass('jqAlert');
         if (options.level != '') {
           $(this).addClass('alert-' + options.level);
         }
         if (options.show) {
           $(this).show();
-          $(this).css('padding', '7px 35px 7px 15px');
-          $(this).css('margin-bottom', '5px');
-          $(this).css('max-height', $(window).height() - 100 + 'px');
-          $(this).css('z-index', '9999');
         }
-        
-        if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
+        if ($(this).offset() != undefined && $(this).offset().top - $(window).scrollTop() < $(this).height()) {
           $('html, body').animate({
             scrollTop: $(this).offset().top - 60
           }, 650);
@@ -315,6 +310,9 @@ function is_array(a) {
         
         $(this).find('.btn_closeAlert').on('click', function () {
           $(this).closest('.jqAlert').hide();
+          if(typeof initRowOverflow == 'function'){
+            initRowOverflow();
+          }
         });
         if(typeof initRowOverflow == 'function'){
           initRowOverflow();
@@ -338,6 +336,9 @@ function is_array(a) {
       $('#jqAlertSpacer' + $(this).attr('id')).remove();
       $(this).text('').hide();
       $.alertTrigger();
+      if(typeof initRowOverflow == 'function'){
+        initRowOverflow();
+      }
       return $(this);
     };
     
@@ -346,6 +347,9 @@ function is_array(a) {
         $('.jqAlert').text('');
         $('.jqAlert').hide();
         $.alertTrigger();
+        if(typeof initRowOverflow == 'function'){
+          initRowOverflow();
+        }
       }
     };
     
@@ -389,7 +393,7 @@ function is_array(a) {
           }else if ($(this).is('select')) {
             if (init(_value) == '') {
               $(this).val('');
-              $(this).find('option:first').attr('selected',true);
+              $(this).find('option:first').prop('selected',true);
             } else {
               $(this).val(init(_value));
             }
@@ -629,6 +633,75 @@ function is_array(a) {
       return this.replace(chars_rgx, function (match) {
         return transl[match];
       });
+    };
+  })(jQuery);
+  
+  
+  (function($) {
+    if ($.fn.style) {
+      return;
+    }
+    
+    // Escape regex chars with \
+    var escape = function(text) {
+      return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    };
+    
+    // For those who need them (< IE 9), add support for CSS functions
+    var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
+    if (!isStyleFuncSupported) {
+      CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+        return this.getAttribute(a);
+      };
+      CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+        this.setAttribute(styleName, value);
+        var priority = typeof priority != 'undefined' ? priority : '';
+        if (priority != '') {
+          // Add priority manually
+          var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
+          '(\\s*;)?', 'gmi');
+          this.cssText =
+          this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+        }
+      };
+      CSSStyleDeclaration.prototype.removeProperty = function(a) {
+        return this.removeAttribute(a);
+      };
+      CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+        var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
+        'gmi');
+        return rule.test(this.cssText) ? 'important' : '';
+      }
+    }
+    
+    // The style function
+    $.fn.style = function(styleName, value, priority) {
+      // DOM node
+      var node = this.get(0);
+      // Ensure we have a DOM node
+      if (typeof node == 'undefined') {
+        return this;
+      }
+      // CSSStyleDeclaration
+      var style = this.get(0).style;
+      if(!style){
+        return this;
+      }
+      // Getter/Setter
+      if (typeof styleName != 'undefined') {
+        if (typeof value != 'undefined') {
+          // Set style property
+          priority = typeof priority != 'undefined' ? priority : '';
+          style.setProperty(styleName, value, priority);
+          return this;
+        } else {
+          // Get style property
+          return style.getPropertyValue(styleName);
+        }
+      } else {
+        // Get CSSStyleDeclaration
+        return style;
+      }
     };
   })(jQuery);
   

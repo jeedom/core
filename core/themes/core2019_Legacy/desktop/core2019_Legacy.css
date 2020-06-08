@@ -2,17 +2,7 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("../../../../desktop/css/desktop.main.css");
 @import url("colors.css");
-
-header a.navbar-brand {
-  background-image: url(logo-jeedom.svg) !important;
-  background-size: 60px !important;
-  background-repeat: no-repeat;
-  background-position: 10px 7px;
-  height: 50px;
-  width: 90px;
-}
 
 span.cursor > i:hover,
 i.cursor:hover,
@@ -26,13 +16,6 @@ i.cursor:focus {
 a,
 i.cursor {
   color: var(--link-color) !important;
-}
-a:hover,
-a:active,
-a:focus {
-  color: var(--linkHover-color) !important;
-  text-decoration: none !important;
-  outline: none;
 }
 
 .widget-name a,
@@ -54,6 +37,9 @@ a:focus {
 }
 [data-category=light] {
   background-color: rgba(var(--cat-light-color), var(--opacity));
+}
+[data-category=opening] {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
 }
 [data-category=multimedia] {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
@@ -89,6 +75,9 @@ a:focus {
 [data-category=light] .btn {
   background-color: var(--cat-light-BtnColor) !important;
 }
+[data-category=opening] .btn {
+  background-color: var(--cat-opening-BtnColor) !important;
+}
 [data-category=multimedia] .btn {
   background-color: var(--cat-multimedia-BtnColor) !important;
 }
@@ -122,10 +111,24 @@ span.cursor > i:hover {
 .eqLogic.eqLogic-widget .state,
 .scenario-widget .state,
 .eqLogic.eqLogic-widget p.state,
-.eqLogic.eqLogic-widget .iconCmd > i,
+.eqLogic.eqLogic-widget .iconCmd > i:not([class*="icon_"]),
 .eqLogic.eqLogic-widget .cmd,
 .eqLogic.eqLogic-widget .cmd-widget > center,
 .eqLogic.eqLogic-widget .cmd-widget .history {
+  color: var(--linkHoverLight-color) !important;
+}
+.eqLogic.eqLogic-widget .tableCmd td:not(.tableCmdcss) {
+  color: var(--sc-lightTxt-color) !important;
+}
+.eqLogic.eqLogic-widget .tableCmd td.tableCmdcss {
+  color: var(--sc-lightTxt-color);
+}
+
+.eqLogic.eqLogic-widget .cmd-widget .timeCmd.history {
+  color: var(--txt-color) !important;
+}
+
+.cmd-widget .sliderValue {
   color: var(--linkHoverLight-color) !important;
 }
 
@@ -147,35 +150,49 @@ span.cursor > i:hover {
   color: var(--linkHoverLight-color) !important;
 }
 
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject {
+div.cmd-widget div[class^="content"] {
+  color: var(--linkHoverLight-color) !important;
+}
+
+#dashTopBar > div > a,
+#dashTopBar button {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
 }
 
+.scenario-widget .iconCmd,
+.eqLogic-widget .iconCmd,
+.eqLogic-widget .cmdName,
+.eqLogic-widget .cmdStats,
+.eqLogic-widget :not(.tableCmdcss) .cmd:not(.label) .state,
+.eqLogic-widget .cmd {
+  color: var(--sc-lightTxt-color) !important;
+}
+
+
 /* analyse equipment */
 #battery .eqLogic-widget {
-  color: var(--linkHoverLight-color);
+  color: var(--linkHoverLight-color) !important;
 }
 #battery .eqLogic-widget .widget-name span {
-  color: var(--txt-color);
-  background-color: rgb(var(--bg-color));
+  color: var(--txt-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
-#battery .eqLogic-widget.critical { 
-  background-color: var(--al-danger-color);
+#battery .eqLogic-widget.critical {
+  background-color: var(--al-danger-color) !important;
 }
-#battery .eqLogic-widget.warning { 
-  background-color: var(--al-warning-color);
+#battery .eqLogic-widget.warning {
+  background-color: var(--al-warning-color) !important;
 }
-#battery .eqLogic-widget.good { 
-  background-color: var(--al-success-color);
+#battery .eqLogic-widget.good {
+  background-color: var(--al-success-color) !important;
 }
-#battery .eqLogic-widget .jeedom-batterie {
-  color: var(--linkHoverLight-color);
+#battery .eqLogic-widget .jeedom-batterie i,
+#battery .eqLogic-widget .jeedom-batterie span {
+  color: var(--linkHoverLight-color) !important;
 }
 #battery .eqLogic-widget .batteryLevel {
-  color: var(--linkHoverLight-color);
+  color: var(--linkHoverLight-color) !important;
 }
 
 div[data-subtype=select],
@@ -187,6 +204,9 @@ div[data-subtype=select] select {
 .vgauge-value,
 .shuttergauge-value{
   background: var(--linkHoverLight-color) !important;
+}
+.state.valueshutter strong {
+  color: var(--link-color) !important;
 }
 
 .highcharts-data-label > span > span {
@@ -207,3 +227,10 @@ div[data-subtype=select] select {
 span[style*="transform: translate(-50%, 150%)"] {
   color: var(--linkHoverLight-color);
 }
+
+
+/* widgets specific */
+.widget-compass-needle:after {
+  border-top: 22px solid var(--linkHoverLight-color);
+}
+

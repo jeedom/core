@@ -32,23 +32,27 @@ if ($selectPlugin != '') {
 	<thead>
 		<tr>
 			<th data-sorter="false" data-filter="false"></th>
-			<th>{{Date et heure}}</th>
-			<th>{{Plugin}}</th>
+			<th style="width:150px;">{{Date et heure}}</th>
+			<th>{{Source}}</th>
 			<th>{{Description}}</th>
 			<th data-sorter="false" data-filter="false">{{Action}}</th>
+			<th>{{Occurrences}}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
+		$trs = '';
 		foreach ($listMessage as $message) {
-			echo '<tr data-message_id="' . $message->getId() . '">';
-			echo '<td><center><i class="far fa-trash-alt cursor removeMessage"></i></center></td>';
-			echo '<td class="datetime">' . $message->getDate() . '</td>';
-			echo '<td class="plugin">' . $message->getPlugin() . '</td>';
-			echo '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
-			echo '<td class="message_action">' . $message->getAction() . '</td>';
-			echo '</tr>';
+			$trs .= '<tr data-message_id="' . $message->getId() . '">';
+			$trs .= '<td><center><i class="far fa-trash-alt cursor removeMessage"></i></center></td>';
+			$trs .= '<td class="datetime">' . $message->getDate() . '</td>';
+			$trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
+			$trs .= '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
+			$trs .= '<td class="message_action">' . $message->getAction() . '</td>';
+			$trs .= '<td class="occurrences" style="text-align: center">' . $message->getOccurrences() . '</td>';
+			$trs .= '</tr>';
 		}
+		if ($trs != '') echo $trs;
 		?>
 	</tbody>
 </table>

@@ -195,7 +195,7 @@ class plan3d {
 		return null;
 	}
 	
-	public function getHtml($_version = 'dplan') {
+	public function getHtml($_version = 'dashboard') {
 		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
 			$link = $this->getLink();
 			if (!is_object($link)) {
@@ -218,11 +218,9 @@ class plan3d {
 		}
 		if ($this->getLink_type() == 'eqLogic') {
 			if ($this->getConfiguration('3d::widget') == 'text') {
-				if (is_object($cmd) && $cmd->getType() == 'info') {
-					$return['text'] = scenarioExpression::setTags($this->getConfiguration('3d::widget::text::text'));
-					preg_match_all("/#([0-9]*)#/", $this->getConfiguration('3d::widget::text::text'), $matches);
-					$return['cmds'] = $matches[1];
-				}
+				$return['text'] = scenarioExpression::setTags($this->getConfiguration('3d::widget::text::text'));
+				preg_match_all("/#([0-9]*)#/", $this->getConfiguration('3d::widget::text::text'), $matches);
+				$return['cmds'] = $matches[1];
 			}
 			if ($this->getConfiguration('3d::widget') == 'door') {
 				$return['cmds'] = array(str_replace('#', '', $this->getConfiguration('3d::widget::door::window')), str_replace('#', '', $this->getConfiguration('3d::widget::door::shutter')));
@@ -238,7 +236,11 @@ class plan3d {
 				if ($return['state'] > 0) {
 					$cmd = cmd::byId(str_replace('#', '', $this->getConfiguration('3d::widget::door::shutter')));
 					if (is_object($cmd) && $cmd->getType() == 'info') {
-						if ($cmd->execCmd()) {
+						$cmd_value = $cmd->execCmd();
+						if ($cmd->getSubType() == 'binary' && $cmd->getDisplay('invertBinary') == 1) {
+							$cmd_value = ($cmd_value == 1) ? 0 : 1;
+						}
+						if ($cmd_value) {
 							$return['state'] = 2;
 						}
 					}
@@ -272,6 +274,32 @@ class plan3d {
 					}
 					if (jeedom::evaluateExpression($condition['cmd'])) {
 						$return['color'] = $condition['color'];
+						return $return;
+					}
+				}
+			}
+			if ($this->getConfiguration('3d::widget') == 'conditionalShow') {
+				$return['show'] = true;
+				$return['cmds'] = array();
+				$conditions = $this->getConfiguration('3d::widget::conditionalShow::condition');
+				if (!is_array($conditions) || count($conditions) == 0) {
+					return $return;
+				}
+				foreach ($conditions as $condition) {
+					if (!isset($condition['cmd'])) {
+						continue;
+					}
+					preg_match_all("/#([0-9]*)#/", $condition['cmd'], $matches);
+					foreach ($matches[1] as $cmd_id) {
+						$return['cmds'][] = $cmd_id;
+					}
+				}
+				foreach ($conditions as $condition) {
+					if (!isset($condition['cmd'])) {
+						continue;
+					}
+					if (jeedom::evaluateExpression($condition['cmd'])) {
+						$return['show'] = false;
 						return $return;
 					}
 				}

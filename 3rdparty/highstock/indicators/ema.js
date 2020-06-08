@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.0.3 (2019-02-06)
+ Highstock JS v8.1.0 (2020-05-05)
 
  Indicator series type for Highstock
 
@@ -7,6 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define(function(){return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){(function(a){var n=a.isArray,p=a.seriesType,q=a.correctFloat;p("ema","sma",{params:{index:3,period:9}},{accumulatePeriodPoints:function(r,c,b){for(var a=0,d=0,e;d<r;)e=0>c?b[d]:b[d][c],a+=e,d++;return a},calculateEma:function(a,c,b,g,d,e,h){a=a[b-1];c=0>e?c[b-1]:c[b-1][e];g=void 0===
-d?h:q(c*g+d*(1-g));return[a,g]},getValues:function(a,c){var b=c.period,g=a.xData,d=(a=a.yData)?a.length:0,e=2/(b+1),h=[],l=[],m=[],k=-1,f;if(d<b)return!1;n(a[0])&&(k=c.index?c.index:0);for(c=this.accumulatePeriodPoints(b,k,a)/b;b<d+1;b++)f=this.calculateEma(g,a,b,e,f,k,c),h.push(f),l.push(f[0]),m.push(f[1]),f=f[1];return{values:h,xData:l,yData:m}}})})(a)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/ema",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,b,l,e){a.hasOwnProperty(b)||(a[b]=e.apply(null,l))}a=a?a._modules:{};b(a,"indicators/ema.src.js",[a["parts/Utilities.js"]],function(a){var b=a.correctFloat,l=a.isArray;a=a.seriesType;
+a("ema","sma",{params:{index:3,period:9}},{accumulatePeriodPoints:function(a,d,c){for(var e=0,b=0,f;b<a;)f=0>d?c[b]:c[b][d],e+=f,b++;return e},calculateEma:function(a,d,c,k,h,f,q){a=a[c-1];d=0>f?d[c-1]:d[c-1][f];k="undefined"===typeof h?q:b(d*k+h*(1-k));return[a,k]},getValues:function(a,b){var c=b.period,d=a.xData,h=(a=a.yData)?a.length:0,f=2/(c+1),e=[],n=[],p=[],m=-1;if(!(h<c)){l(a[0])&&(m=b.index?b.index:0);b=this.accumulatePeriodPoints(c,m,a);for(b/=c;c<h+1;c++){var g=this.calculateEma(d,a,c,f,
+g,m,b);e.push(g);n.push(g[0]);p.push(g[1]);g=g[1]}return{values:e,xData:n,yData:p}}}});""});b(a,"masters/indicators/ema.src.js",[],function(){})});
 //# sourceMappingURL=ema.js.map

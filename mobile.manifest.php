@@ -20,6 +20,7 @@ $js_file = array(
 	'3rdparty/waves/waves.min.js',
 	'3rdparty/jquery.utils/jquery.utils.js',
 	'3rdparty/jquery.ui/jquery-ui.min.js',
+	'3rdparty/moment/lib.moment.js',
 	'core/js/cmd.class.js',
 	'core/js/private.class.js',
 	'core/js/core.js',
@@ -36,6 +37,9 @@ $js_file = array(
 	'core/js/scenario.class.js',
 	'core/js/plan.class.js',
 	'core/js/plan3d.class.js',
+	'core/js/log.class.js',
+	'core/js/widgets.class.js',
+	'core/js/timeline.class.js',
 	'3rdparty/jquery.packery/jquery.packery.js',
 );
 if (file_exists(__DIR__ . '/mobile/custom/custom.js')) {
@@ -44,38 +48,34 @@ if (file_exists(__DIR__ . '/mobile/custom/custom.js')) {
 
 $other_file = array(
 	'core/php/icon.inc.php',
-	'3rdparty/jquery.mobile/css/font-awesome.min.css',
+	'mobile/css/coreWidgets.css',
+	'mobile/css/mobile.main.css',
 	'3rdparty/jquery.mobile/jquery.mobile.min.css',
 	'3rdparty/jquery.mobile/css/nativedroid2.css',
-	'3rdparty/jquery.mobile/css/fonts.css',
 	'3rdparty/jquery.mobile/css/flexboxgrid.min.css',
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
 	'3rdparty/waves/waves.min.css',
-	'core/css/core.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
-	'mobile/css/commun.css',
-	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2',
-	'3rdparty/font-awesome/css/font-awesome.min.css',
-	'3rdparty/font-awesome5/css/fontawesome-all.min.css',
+	'3rdparty/font-awesome5/css/all.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
 	'core/img/logo-jeedom-sans-nom-couleur-25x25.png',
 	'3rdparty/font-awesome5/webfonts/fa-solid-900.woff2',
-	'3rdparty/jquery.mobile/css/fonts/fontawesome-webfont.woff2?v=4.3.0',
-	'3rdparty/roboto/Roboto-Black.ttf',
-	'3rdparty/roboto/Roboto-BlackItalic.ttf',
-	'3rdparty/roboto/Roboto-Bold.ttf',
-	'3rdparty/roboto/Roboto-BoldItalic.ttf',
+	'3rdparty/roboto/roboto.css',
+	'3rdparty/roboto/Roboto-Thin.ttf',
+	'3rdparty/roboto/Roboto-ThinItalic.ttf',
 	'3rdparty/roboto/Roboto-Light.ttf',
 	'3rdparty/roboto/Roboto-LightItalic.ttf',
 	'3rdparty/roboto/Roboto-Medium.ttf',
 	'3rdparty/roboto/Roboto-MediumItalic.ttf',
 	'3rdparty/roboto/Roboto-Regular.ttf',
-	'3rdparty/roboto/Roboto-Thin.ttf',
-	'3rdparty/roboto/Roboto-ThinItalic.ttf',
-	'3rdparty/roboto/roboto.css',
+	'3rdparty/roboto/Roboto-Italic.ttf',
+	'3rdparty/roboto/Roboto-Bold.ttf',
+	'3rdparty/roboto/Roboto-BoldItalic.ttf',
 	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Medium-webfont.woff',
-
+	'3rdparty/camingocode/camingocode.css',
+	'3rdparty/camingocode/CamingoCode-Regular.ttf',
+	'3rdparty/camingocode/CamingoCode-Italic.ttf',
 );
 if (file_exists(__DIR__ . '/mobile/custom/custom.css')) {
 	$other_file[] = 'mobile/custom/custom.css';
@@ -179,9 +179,9 @@ foreach ($js_file as $file) {
 		echo '#' . md5_file(__DIR__ . '/' . $file);
 		echo "\n";
 	}
-	echo 'core/php/getJS.php?file=' . $file;
+	echo 'core/php/getJS.php?file=' . urlencode($file);
 	echo "\n";
-	echo 'core/php/getJS.php?file=' . $file . '&md5=' . md5_file(__DIR__ . '/' . $file);
+	echo 'core/php/getJS.php?file=' . urlencode($file) . '&md5=' . md5_file(__DIR__ . '/' . $file);
 	echo "\n";
 }
 foreach ($other_file as $file) {
@@ -199,7 +199,7 @@ foreach (ls('mobile/js', '*.js') as $file) {
 		echo '#' . md5_file(__DIR__ . '/mobile/js/' . $file);
 		echo "\n";
 	}
-	echo 'core/php/getResource.php?file=mobile/js/' . $file;
+	echo 'core/php/getResource.php?file=mobile/js/' . urlencode($file);
 	echo "\n";
 }
 foreach (ls('mobile/html', '*.html') as $file) {
@@ -218,7 +218,7 @@ foreach (ls('mobile/modal', '*.html') as $file) {
 		echo '#' . md5_file(__DIR__ . '/mobile/modal/' . $file);
 		echo "\n";
 	}
-	echo 'index.php?v=m&ajax=1&modal=' . substr($file, 0, -5);
+	echo 'index.php?v=m&ajax=1&modal=' . substr(urlencode($file), 0, -5);
 	echo "\n";
 }
 

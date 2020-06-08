@@ -22,7 +22,10 @@ sendVarToJS('log_display_name', init('log', 'event'));
 sendVarToJS('log_default_search', init('search', ''));
 if(init('log','event') == 'event'){
 	if(log::getLogLevel('event') > 200){
-		echo '<div class="alert alert-danger">{{Attention votre niveau de log (event) est inférieure à info, vous ne pouvez donc pas voir de temps réel}}</div>';
+      $alert = '<div class="alert alert-danger">{{Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. }}';
+      $alert .= ' <a href="/index.php?v=d&p=administration#logtab" class="success">{{Configuration}}</a>';
+      $alert .= '</div>';
+	  echo $alert;
 	}
 }
 ?>
@@ -30,12 +33,15 @@ if(init('log','event') == 'event'){
 <div class="input-group pull-right" style="display:inline-flex">
 	<input class="form-control input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
 	<span class="input-group-btn">
-		<a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-warning btn-sm" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
+		<a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
+		</a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
+		</a><a class="btn btn-warning btn-sm" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}
+		</a><a class="btn btn-danger roundedRight btn-sm" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
 	</span>
 </div>
 
 <br/><br/>
-<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 70px);width:100%;'></pre>
+<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 90px);width:100%;'></pre>
 <script>
 jeedom.log.autoupdate({
 	log : log_display_name,

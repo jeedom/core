@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -15,9 +14,17 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+"use strict"
 
 printCron();
 printListener();
+initTableSorter(false)
+setTimeout(function(){$('#table_cron').find('th[data-column="0"]').trigger('sort')}, 100)
+
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  $("#bt_save").click();
+});
 
 $("#bt_refreshCron").on('click', function () {
   printCron();
@@ -25,12 +32,7 @@ $("#bt_refreshCron").on('click', function () {
 });
 
 $("#bt_addCron").on('click', function () {
-  $('#table_cron tbody').append(addCron({}));
-});
-
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_save").click();
+  $('#table_cron tbody').prepend(addCron({}));
 });
 
 $("#bt_save").on('click', function () {
@@ -39,7 +41,9 @@ $("#bt_save").on('click', function () {
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
-    success: printCron
+    success: function () {
+      printCron();
+    }
   });
 });
 
@@ -89,13 +93,11 @@ $("#table_cron").delegate(".start", 'click', function () {
 });
 
 $("#table_cron").delegate(".display", 'click', function () {
-  $('#md_modal').dialog({title: "{{Détails du cron}}"});
-  $("#md_modal").load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Détails du cron}}"}).load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open')
 });
 
 $("#table_listener").delegate(".display", 'click', function () {
-  $('#md_modal').dialog({title: "{{Détails du listener}}"});
-  $("#md_modal").load('index.php?v=d&modal=object.display&class=listener&id='+$(this).closest('tr').attr('id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Détails du listener}}"}).load('index.php?v=d&modal=object.display&class=listener&id='+$(this).closest('tr').attr('id')).dialog('open')
 });
 
 $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
@@ -106,7 +108,7 @@ $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () 
   }
 });
 
-$('#div_pageContainer').delegate('.cronAttr', 'change', function () {
+$('#div_pageContainer').off('change','.cronAttr').on('change','.cronAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
@@ -121,7 +123,11 @@ function printCron() {
         tr.push(addCron(data[i]));
       }
       $('#table_cron tbody').append(tr);
+      $("#table_cron").trigger("update");
       modifyWithoutSave = false;
+      setTimeout(function(){
+        modifyWithoutSave = false;
+      },1000)
       $.hideLoading();
     }
   });
@@ -134,69 +140,74 @@ function addCron(_cron) {
     disabled ='disabled';
   }
   var tr = '<tr id="' + init(_cron.id) + '">';
-  tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
-  tr += '<td>';
-  if(init(_cron.id) != ''){
-    tr += '<a class="btn btn-default btn-xs display"><i class="fas fa-file"></i></a> ';
-  }
-  if(init(_cron.deamon) == 0){
-    if (init(_cron.state) == 'run') {
-      tr += ' <a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fas fa-stop"></i></a>';
-    }
-    if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-      tr += ' <a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
-    }
-  }
-  tr += '</td>';
-  tr += '<td class="enable"><center>';
+  tr += '<td style="min-width:50px;"><span class="cronAttr label label-info" data-l1key="id"></span></td>';
+  tr += '<td style="min-width:65px;"><center>';
   tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked '+disabled+'/>';
   tr += '</center></td>';
-  tr += '<td>';
+  tr += '<td style="min-width:52px;">';
   tr += init(_cron.pid);
   tr += '</td>';
-  tr += '<td class="deamons">';
+  tr += '<td style="min-width:100px;">';
   tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" '+disabled+' /></span> ';
   tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;" />';
   tr += '</td>';
-  tr += '<td class="once">';
+  tr += '<td style="min-width:80px;">';
   if(init(_cron.deamon) == 0){
-    tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> ';
+    tr += '<center><input type="checkbox" class="cronAttr" data-l1key="once" /></center></span> ';
   }
   tr += '</td>';
-  tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
-  tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
-  tr += '<td class="schedule"><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
-  tr += '<td class="function">';
+  tr += '<td style="min-width:75px;"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
+  tr += '<td style="min-width:85px;"><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
+  tr += '<td style="min-width:142px;"><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
+  tr += '<td style="min-width:115px;">';
   if(init(_cron.deamon) == 0){
     tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />';
   }
   tr += '</td>';
-  tr += '<td class="lastRun">';
+  tr += '<td style="min-width:148px;">';
   tr += init(_cron.lastRun);
   tr += '</td>';
-  tr += '<td class="runtime">';
+  tr += '<td style="min-width:120px;">';
   tr += init(_cron.runtime,'0')+'s';
   tr += '</td>';
-  tr += '<td class="state">';
+  tr += '<td style="min-width:60px;">';
   var label = 'label label-info';
+  var state = init(_cron.state);
   if (init(_cron.state) == 'run') {
     label = 'label label-success';
+    state = '{{En cours}}';
   }
   if (init(_cron.state) == 'stop') {
     label = 'label label-danger';
+    state = '{{Arrêté}}'
   }
   if (init(_cron.state) == 'starting') {
     label = 'label label-warning';
+    state = '{{Démarrage}}';
   }
   if (init(_cron.state) == 'stoping') {
     label = 'label label-warning';
+    state = '{{Arrêt}}';
   }
-  tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
+  tr += '<span class="' + label + '">' + state + '</span>';
   tr += '</td>';
-  tr += '<td class="action">';
-  tr += '<i class="fas fa-minus-circle remove pull-right cursor"></i>';
+
+  tr += '<td style="width:85px;">';
+  if(init(_cron.id) != ''){
+    tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> ';
+  }
+  if(init(_cron.deamon) == 0){
+    if (init(_cron.state) == 'run') {
+      tr += ' <a class="btn btn-danger btn-xs stop" title="{{Arrêter cette tâche}}"><i class="fas fa-stop"></i></a>';
+    }
+    if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
+      tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>';
+    }
+  }
+  tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>';
   tr += '</td>';
   tr += '</tr>';
+  $("#table_cron").trigger("update");
   var result = $(tr);
   result.setValues(_cron, '.cronAttr');
   return result;
@@ -220,7 +231,6 @@ function printListener() {
   });
 }
 
-
 function addListener(_listener) {
   $.hideAlert();
   var disabled ='';
@@ -228,17 +238,28 @@ function addListener(_listener) {
   tr += '<td class="option"><span class="listenerAttr" data-l1key="id"></span></td>';
   tr += '<td>';
   if(init(_listener.id) != ''){
-    tr += '<a class="btn btn-default btn-xs display"><i class="fas fa-file"></i></a> ';
+    tr += '<a class="btn btn-xs display"><i class="fas fa-file"></i></a> ';
   }
   tr += '</td>';
   tr += '<td><textarea class="form-control listenerAttr input-sm" data-l1key="event_str" disabled ></textarea></td>';
   tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="class" disabled /></td>';
   tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="function" disabled /></td>';
+  tr += '<td><a class="btn btn-danger btn-xs removeListener pull-right" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a></td>';
   tr += '</tr>';
   var result = $(tr);
   result.setValues(_listener, '.listenerAttr');
   return result;
 }
+
+$('#table_listener').off('click','.removeListener').on('click','.removeListener',function(){
+  var tr = $(this).closest('tr');
+  jeedom.listener.remove({
+    id : tr.attr('id'),
+    success: function () {
+      tr.remove();
+    }
+  })
+});
 
 /***********************DEAMON*****************************/
 
@@ -251,6 +272,7 @@ $('#bt_refreshDeamon').on('click',function(){
 function getDeamonState(){
   $('#table_deamon tbody').empty();
   jeedom.plugin.all({
+    activateOnly : true,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -271,18 +293,22 @@ function getDeamonState(){
             html += deamonInfo.plugin.name;
             html += '</td>';
             html += '<td>';
-            html += deamonInfo.state;
+            if ( deamonInfo.state == 'ok') {
+              html += '<span class="label label-success">OK</span>';
+            } else {
+              html += '<span class="label label-danger">' + deamonInfo.state.toUpperCase() + '</span>';
+            }
             html += '</td>';
             html += '<td>';
             html += deamonInfo.last_launch;
             html += '</td>';
             html += '<td>';
-            html += '<a class="bt_deamonAction btn btn-success" data-action="start" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
+            html += '<a class="bt_deamonAction btn btn-xs btn-success" data-action="start" title="{{Démarrer ou re-démarrer}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
             if(deamonInfo.auto == 0){
-              html += '<a class="bt_deamonAction btn btn-danger" data-action="stop" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
-              html += '<a class="bt_deamonAction btn btn-danger" data-action="enableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-danger" data-action="stop" title="{{Arrêter}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="enableAuto" title="{{Activer la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
             }else{
-              html += '<a class="bt_deamonAction btn btn-success" data-action="disableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="disableAuto" title="{{Désactiver la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
             }
             html += '</td>';
             html += '</tr>';

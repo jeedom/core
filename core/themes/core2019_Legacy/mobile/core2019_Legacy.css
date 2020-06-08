@@ -1,16 +1,9 @@
 /*
 Theme Core 2019 @Jeedom
+Mobile Legacy
 */
 
-@import url("../../../../mobile/css/mobile.main.css");
 @import url("colors.css");
-
-.ui-link[data-title=Accueil] {
-	background: url(./jeedom_home.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 32px 32px;
-}
 
 /* ___________________________________________________________DASHBOARD CATEGORIES coloring */
 
@@ -26,6 +19,9 @@ Theme Core 2019 @Jeedom
 .eqLogic.eqLogic-widget[data-category=light] {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+.eqLogic.eqLogic-widget[data-category=opening] {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 .eqLogic.eqLogic-widget[data-category=multimedia] {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -40,7 +36,7 @@ Theme Core 2019 @Jeedom
 }
 
 .scenario-widget {
-	background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
+  background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
 }
 
 .eqLogic.eqLogic-widget[data-category=security] .ui-btn {
@@ -54,6 +50,9 @@ Theme Core 2019 @Jeedom
 }
 .eqLogic.eqLogic-widget[data-category=light] .ui-btn {
   background-color: var(--cat-light-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=opening] .ui-btn {
+  background-color: var(--cat-opening-BtnColor) !important;
 }
 .eqLogic.eqLogic-widget[data-category=multimedia] .ui-btn {
   background-color: var(--cat-multimedia-BtnColor) !important;
@@ -85,46 +84,54 @@ Theme Core 2019 @Jeedom
 #div_displayBattery .eqLogic-widget {
   color: var(--eqTitle-color);
 }
-#div_displayBattery .eqLogic-widget.critical { 
+#div_displayBattery .eqLogic-widget.critical {
   background-color: var(--al-danger-color);
 }
-#div_displayBattery .eqLogic-widget.warning { 
+#div_displayBattery .eqLogic-widget.warning {
   background-color: var(--al-warning-color);
 }
-#div_displayBattery .eqLogic-widget.good { 
+#div_displayBattery .eqLogic-widget.good {
   background-color: var(--al-success-color);
 }
-#div_displayBattery .eqLogic-widget .jeedom-batterie {
-  color: var(--eqTitle-color);
+#div_displayBattery .eqLogic-widget .jeedom-batterie,
+#div_displayBattery .eqLogic-widget .jeedom-batterie span,
+#div_displayBattery .eqLogic-widget .jeedom-batterie i {
+  color: var(--eqTitle-color) !important;
 }
+
 #div_displayBattery .eqLogic-widget .batteryLevel {
   color: var(--eqTitle-color);
 }
 
-
+.ui-grid-a {
+  color: var(--link-color);
+}
 /* ___________________________________________________________EQs */
+
 .ui-overlay-a,
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper,
-.cmdName {
-	color: var(--linkHoverLight-color) !important;
+{
+  color: var(--link-color) !important;
 }
 
-.iconCmd > i {
-  color: var(--linkHoverLight-color) !important;
-}
-p.state {
-  color: var(--linkHoverLight-color) !important;
-}
+.eqLogic.eqLogic-widget,
+.cmdName,
 .state,
-.state i {
+.state i,
+p.state,
+.iconCmd,
+.iconCmd i,
+.iconCmd span,
+.cmd .iconCmd i:not([class*="icon_"]),
+[data-coloredicons="0"] .cmd .iconCmd i[class*="icon_"],
+.cmd {
   color: var(--linkHoverLight-color) !important;
 }
-
 
 /* buttons */
 .eqLogic.eqLogic-widget .ui-input-text input {
-	color: var(--linkHoverLight-color);
+  color: var(--linkHoverLight-color);
 }
 
 .objectSummaryParent {
@@ -150,9 +157,16 @@ p.state {
   opacity: 0.75;
 }
 
-.fa-refresh,
+.eqLogic.eqLogic-widget .fa-refresh,
+.scenario.scenario-widget .fa-refresh,
 .statusCmd > i {
   color: var(--linkHoverLight-color) !important;
+}
+
+.hgauge-value,
+.vgauge-value,
+.shuttergauge-value{
+  background: var(--linkHoverLight-color) !important;
 }
 
 .tableCmd,
@@ -164,26 +178,33 @@ p.state {
 
 /* select */
 .ui-select .ui-btn {
-	background-color: var(--linkHoverLight-color) !important;
-	color: var(--linkHover-color) !important;
+  background-color: var(--linkHoverLight-color) !important;
+  color: var(--linkHover-color) !important;
 }
 .ui-select .ui-btn:hover {
-	background-color: var(--sc-form-color) !important;
+  background-color: var(--sc-form-color) !important;
   opacity: 0.5;
-	color: var(--linkHover-color);
+  color: var(--linkHover-color);
 }
 .ui-select option {
-	background-color: var(--bg-modal-color) !important;
-	color: var(--link-color);
+  background-color: var(--bg-modal-color) !important;
+  color: var(--link-color);
 }
 
 .eqLogic.eqLogic-widget .ui-select .ui-btn {
-	background-color: transparent !important;
-	color: var(--linkHoverLight-color) !important;
+  background-color: transparent !important;
+  color: var(--linkHoverLight-color) !important;
 }
 
 .ui-checkbox {
   color: var(--link-color);
+}
+
+.ui-slider-track .ui-slider-handle {
+  background-color: var(--linkHoverLight-color) !important;
+}
+.ui-slider-handle:hover {
+  background-color: var(--linkHoverLight-color) !important;
 }
 
 /* ___________________________________________________________GAUGES */
@@ -199,53 +220,8 @@ p.state {
   border-right: 4px solid var(--el-defaultColor) !important;
 }
 
-.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
-  fill: var(--link-color) !important;
-}
-.highcharts-legend-item.highcharts-legend-item-hidden text {
-  fill: var(--txt-color) !important;
-}
-.highcharts-background {
-  fill: var(--defaultBkg-color) !important;
-}
-.gauge .highcharts-background {
-  fill: transparent !important;
-}
-.highcharts-range-selector-buttons > text {
-  fill: var(--link-color) !important;
-}
-.highcharts-container {
-  color: var(--txt-color) !important;
-}
-.highcharts-plot-band {
-  fill: var(--bg-color) !important;
-}
-.highcharts-grid-line {
-  stroke: var(--defaultBkg-color);
-}
-.highcharts-button-box {
-  fill: var(--el-defaultColor) !important;
-}
-.highcharts-button > text,
-.highcharts-button-disabled > text{
-  fill: var(--link-color) !important;
-}
-.highcharts-axis-labels > text {
-  fill: var(--link-color) !important;
-}
 
-.highcharts-pane {
-  fill: var(--el-defaultColor);
-}
-.highcharts-data-label > span > span {
-  color: var(--txt-color) !important;
-}
-.highcharts-color-0 {
-  fill: var(--link-color);
-}
-.ui-slider-track .ui-slider-handle {
-  background-color: var(--linkHoverLight-color) !important;
-}
-.ui-slider-handle:hover {
-  background-color: var(--linkHoverLight-color) !important;
+/* widgets specific */
+.widget-compass-needle:after {
+  border-top: 22px solid var(--linkHoverLight-color);
 }

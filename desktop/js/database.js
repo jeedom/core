@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -15,10 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('#bt_checkDatabase').on('click',function(){
-  $('#md_modal').dialog({title: "{{Vérification base de données}}"});
-  $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
-});
+"use strict"
+
 
 function dbGenerateTableFromResponse(_response){
   var result = '<table class="table table-condensed table-bordered">';
@@ -54,9 +51,9 @@ $('.bt_dbCommand').off('click').on('click',function(){
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
-    success : function(log){
-      $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
-      $('#div_commandResult').append(dbGenerateTableFromResponse(log));
+    success : function(result){
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
+      $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
       $('.row-overflow > div').css('overflow','auto');
     }
   })
@@ -70,10 +67,10 @@ $('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
-    success : function(log){
-      $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
+    success : function(result){
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
       $('#in_specificCommand').value(command)
-      $('#div_commandResult').append(dbGenerateTableFromResponse(log));
+      $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
       $('.row-overflow > div').css('overflow','auto');
     }
   })
@@ -87,9 +84,9 @@ $('#bt_validateSpecifiCommand').off('click').on('click',function(){
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
-    success : function(log){
-      $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
-      $('#div_commandResult').append(dbGenerateTableFromResponse(log));
+    success : function(result){
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
+      $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
       $('.row-overflow > div').css('overflow','auto');
       $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command+'">'+command+'</a></li>');
       var kids = $('#ul_listSqlHistory').children();
@@ -109,9 +106,9 @@ $('#in_specificCommand').keypress(function(e) {
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
-      success : function(log){
-        $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
-        $('#div_commandResult').append(dbGenerateTableFromResponse(log));
+      success : function(result){
+        $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
+        $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
         $('.row-overflow > div').css('overflow','auto');
         if($('.bt_dbCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined){
           $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>');

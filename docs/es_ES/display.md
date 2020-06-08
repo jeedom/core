@@ -1,513 +1,245 @@
-descripción
-===========
+# Resumen de automatización del hogar
+**Análisis → Resumen de domótica**
 
-Esta página reúne en una sola página los diferentes
-elementos configurados en su Jeedom. También da acceso a
-funciones de organización de los equipos y controles, su
-configuración avanzada, así como opciones de configuración
-pantalla.
+Esta página le permite reunir en una sola página los diferentes elementos configurados en su Jeedom. También da acceso a funciones para organizar equipos y controles, a su configuración avanzada y para mostrar las posibilidades de configuración.
 
-Esta página es accesible desde Herramientas → ** ** Resumen de automatización.
+## Informations
 
-el Top
-------------------
+En la parte superior de la página, encontramos :
+- **Numero de objetos** : Número total de objetos configurados en nuestro Jeedom, incluidos elementos inactivos.
+- **Numero de equipos** : Lo mismo para el equipo.
+- **Numero de ordenes** : Lo mismo para pedidos.
+- **Inactivo** : Marque esta casilla si desea que se muestren elementos inactivos en esta página.
+- **Buscar** : Buscar un artículo en particular. Puede ser el nombre de un dispositivo, un pedido o el nombre del complemento por el cual se creó el dispositivo.
+- **Exportación CSV** : Le permite exportar todos los objetos, equipos y sus comandos a un archivo CSV.
 
-En la parte superior, encontramos: \ * ** ** número de objetos: Número
-objetos totales configurados en nuestra Jeedom, contando los elementos
-Inactivo. \ * ** ** Número de dispositivos: Lo mismo para el equipo. \ *
-**** Número de órdenes: Lo mismo para los pedidos. \ *** ** No:
-Marque esta casilla si desea que los elementos inactivos están bien
-que aparece en esta página. \ * ** ** Buscar: Buscar una
-tema en particular. Este puede ser el nombre de un dispositivo, un control
-o el nombre del plugin mediante el cual se creó el equipo.
+También tienes una pestaña **Histórico**, Mostrar el historial de pedidos, equipos, objetos, vistas, diseño, diseño 3D, escenarios y usuarios eliminados.
 
-Los cuadros de objetos
-----------------
+## Marcos de objetos
 
-A continuación nos encontramos con un marco de objeto. En cada trama, hay
-lista de equipo (en azul) que tienen un objeto padre. la
-** ** No primer cuadro representa un equipo que no tiene
-padre afectado. Para cada objeto, junto a su redacción, tres botones
-están disponibles. De izquierda a derecha :
+Debajo hay un cuadro por objeto. En cada cuadro, encontramos la lista de equipos que tienen este objeto como padre.
+El primer cuadro **No** representa dispositivos que no tienen padre asignado.
 
--   El primero se utiliza para abrir la página de configuración del objeto en una
-    nueva pestaña,
+Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
+- El primero se usa para abrir la página de configuración de objetos en una pestaña nueva.
+- El segundo proporciona información sobre el objeto,
 
--   el segundo proporciona alguna información sobre el tema,
-
--   el último para mostrar u ocultar la lista de equipos
-    asignado a la misma.
-
-> **Tip**
+> **Punta**
 >
-> El color de fondo de los objetos depende marcos en el color seleccionado en
-> Configuración del objeto.
+> El color de fondo de los marcos del objeto depende del color elegido en la configuración del objeto.
 
-> **Tip**
+> **Punta**
 >
-> Haga clic / depositar en el equipo, puede cambiar su
-> Orden o incluso asignar a otro objeto. Es a partir de la orden
-> Establecido en esta página, se calcula la pantalla del salpicadero.
+> Con un clic y soltar sobre los objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden establecido en esta página que se calcula la visualización del Tablero.
 
-Los equipos
----------------
+## Los equipos
 
-En cada dispositivo incluir:
+En cada equipo encontramos :
 
--   ** ** Una casilla de verificación para seleccionar el equipo (se puede
-    seleccionar varios). Si se selecciona un dispositivo
-    Tiene botones de acción que aparecen en la parte superior izquierda
-    **** borrar, hacer visible** **/** ** invisible,
-    **activo**/** ** equipo seleccionado inactivo.
+- Una **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **remove**, maquillaje **visible**/ /**invisible**,  **bienes**/ /**Inactivo** equipo seleccionado.
+- L'**identificación** equipo.
+- La **tipo** equipo : Identificador del complemento al que pertenece.
+- La **apellido** equipo.
+- **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
+- **Invisible** (ojo cruzado) : Significa que el equipo es invisible (si no está allí, el equipo es visible).
 
--   ** ** El nombre del equipo.
+Si el complemento del equipo está desactivado, los dos íconos a la derecha no aparecen:
+- **Enlace externo** (cuadrado con flecha) : Permite abrir en una nueva pestaña la página de configuración del equipo.
+- **Configuración avanzada** (rueda dentada) : abre la ventana de configuración avanzada del equipo.
 
--   ** ** Los tipos de equipos: Plugin Nombre cual
-    pertenece.
+> Al hacer clic en la línea que contiene el nombre del equipo, mostrará todos los comandos para este equipo. Al hacer clic en un pedido, accederá a la ventana de configuración del pedido.
 
--   ** ** Inactivo (cruz pequeña) significa que el equipo está inactivo
-    (Si no está allí, el equipo está activo).
+## Configuración avanzada de equipos
 
--   **Ocultos** (ojo cruzado): significa que el equipo es invisible
-    (Si no lo hay, el dispositivo es visible).
-
--   ** ** URL (cuadrado con una flecha) Se abre en una
-    nueva pestaña la página de configuración del equipo.
-
--   ** ** Configuración avanzada (rueda dentada): Se abre la
-    ventana de configuración avanzada de los equipos.
-
--   ** ** Lista de comandos (flecha): para desplegar la lista
-    comandos (fondo naranja).
-
-Si se despliegue la lista de comandos, cada bloque es de color naranja
-un comando de su equipo (un nuevo clic en la flecha pequeña
-Equipo ocultará).
-
-Si hace doble clic en el control o haga clic en la pequeña
-rueda dentada que se abre la ventana de configuración.
-
-La configuración avanzada de los equipos
-=====================================
-
-> **Tip**
+> **Punta**
 >
-> Es posible el acceso (si el plugin soporta) directamente
-> Ventana de la página de configuración del equipo
-> Haga clic en el botón Configuración avanzada
+> Es posible acceder (si el complemento lo admite) directamente a esta ventana desde la página de configuración del equipo haciendo clic en el botón de configuración avanzada
 
-**La ventana de configuración de equipos avanzados permite que el**
-Editar. En primer lugar, arriba a la derecha, algunos botones
-disponibles:
+La ventana de **Configuración avanzada de equipos** permite modificarlo. Primero, en la parte superior derecha, algunos botones disponibles :
 
--   ** ** Enlaces: Muestra enlaces a equipos con
-    Objetos, comandos, guiones, las variables, las interacciones ... formulario
-    gráfico (en esto, hacer doble clic en un elemento que se llevará a
-    su configuración).
+- **Información** : muestra las propiedades en bruto del equipo.
+- **Vínculos** : Permite mostrar los enlaces del equipo con los objetos, comandos, escenarios, variables, interacciones ... en forma gráfica (en este caso, un doble clic en un elemento lo llevará a su configuración).
+- **Registro** : muestra los eventos del equipo en cuestión.
+- **Guardar** : Guarde las modificaciones realizadas en el equipo.
+- **Remove** : Retirar equipo.
 
--   ** ** Conectarse: Muestra los eventos del equipo en cuestión.
+### Pestaña de información
 
--   ** ** Información: muestra las propiedades sin procesar de los equipos.
+La pestaña **Información** contiene información general sobre el equipo y sus controles :
 
--   ** ** Guardar: Guarda los cambios realizados
-    en el equipo.
+- **Identificación** : Identificador único en la base de datos Jeedom.
+- **Apellido** : Nombre del equipo.
+- **ID lógica** : Identificador lógico del equipo (puede estar vacío).
+- **ID de objeto** : Identificador único del objeto padre (puede estar vacío).
+- **Fecha de creación** : Fecha de creación del equipo.
+- **Activar** : Marque la casilla para activar el equipo (no olvide guardar).
+- **Visible** : Marque la casilla para hacer visible el equipo (no olvide guardar).
+- **Tipo** : Identificador del complemento por el cual fue creado.
+- **Intento fallido** : Número de intentos fallidos de comunicaciones consecutivas con el equipo.
+- **Fecha de la última comunicación** : Fecha de la última comunicación del equipo.
+- **última actualización** : Fecha de la última comunicación con el equipo.
+- **Etiquetas** : etiquetas de equipo, para ser separadas por ','. Permite en el tablero hacer filtros personalizados
 
--   ** ** Eliminar: Eliminar el equipo.
+A continuación encontrará una tabla con la lista de comandos de equipos con, para cada uno, un enlace a su configuración.
 
-ficha información
--------------------
+### Ver pestaña
 
-El ** ** ficha Información contiene información general
-equipos y sus controles:
+En la pestaña **Viendo**, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
 
--   ** ** ID: identificador único en la base de datos Jeedom.
+#### Widget
 
--   ** ** Nombre: Nombre del equipo.
+-  **Visible** : Marque la casilla para hacer visible el equipo.
+- **Mostrar nombre** : Marque la casilla para mostrar el nombre del equipo en el mosaico.
+- **Mostrar nombre de objeto** : Marque la casilla para mostrar el nombre del objeto principal del equipo, junto al mosaico.
 
--   ** ** Logical ID: identificador lógico Equipo (puede
-    estar vacío).
+### Parámetros opcionales en el mosaico
 
--   ** ** Artículo ID: Steam ID del objeto padre (mayo
-    estar vacío).
+A continuación, hay parámetros de visualización opcionales que se pueden aplicar al equipo. Estos parámetros están compuestos de un nombre y un valor. Solo haz clic en **Añadir** aplicar uno
+de nuevo. Para equipos, solo el valor **estilo** actualmente se usa, permite insertar código CSS en el equipo en cuestión.
 
--   ** ** Fecha de Inicio: Fecha de creación del equipo.
-
--   ** ** Activar: Marque la casilla para activar el equipo (no olvidar
-    guardar).
-
--   Visible ** ** Consulte a hacer visible el equipo (sin
-    se olvide de guardar).
-
--   ** ** Tipo: Name Complemento por la que fue creada.
-
--   ** ** intento fallido: Número de intentos de comunicación
-    consecutiva con el equipo que ha fallado.
-
--   **Fecha de la última comunicación**: Fecha de la última
-    equipos de comunicaciones.
-
--   ** ** Última actualización: Fecha de la última llamada
-    con el equipo.
-
-A continuación encontrará una tabla con la lista de comandos
-equipo con, para cada uno, un enlace a su configuración.
-
-ficha pantalla
-----------------
-
-En el ** ** pestaña de visualización, puede configurar algunos
-comportamiento de presentación del azulejo en el salpicadero, las vistas, la
-diseño, así como móvil.
-
-### Reproductor
-
--   ** ** visible: Compruebe para hacer visible el equipo.
-
--   ** ** Mostrar Nombre: Marque la casilla para mostrar el nombre de
-    equipos en el azulejo.
-
--   ** ** nombre Listados de objeto: Marque la casilla para mostrar el nombre
-    el objeto principal del equipo al lado de la baldosa.
-
--   ** ** Color del fondo: seleccione la casilla para mantener el color de fondo
-    predeterminado (dependiendo de la categoría ** ** de su equipo, consulte
-    **Administración → Configuración → Colores**). Si desactiva esta
-    caja, se puede elegir un color diferente. También puede
-    marcar una casilla **nueva** Transparente para que el
-    fondo transparente.
-
--   ** ** Opacidad: Opacidad del color de fondo de la baldosa.
-
--   ** ** El color del texto: Marque la casilla para mantener el color de
-    Texto por defecto.
-
--   ** ** fronteras: Marque la casilla para mantener el borde predeterminado.
-    De lo contrario, usted tiene que poner el código CSS, `propiedad border` (por ejemplo,
-    `Dashed` 3px para el azul borde discontinuo de 3px azul).
-
--   ** ** fronteras de redondeo (en píxeles): Marque la casilla para mantener
-    el redondeo por defecto. De lo contrario, usted tiene que poner el código CSS, propiedad
-    `Border-radius` (eg` 10px`)
-
-### Los parámetros opcionales en el azulejo
-
-A continuación, hay parámetros opcionales que pueden mostrar
-puede solicitar al equipo. Estos ajustes consisten en un nombre y
-de un valor. Simplemente haga clic en ** ** Añadir a aplicar
-de nuevo. Para el equipo, sólo el estilo de valor ** ** es
-cuando se usa, se usa para insertar el código CSS en el equipo
-pregunta.
-
-> **Tip**
+> **Punta**
 >
-> No se olvide de guardar después de la modificación.
+> No olvide guardar después de cualquier modificación.
 
-ficha de presentación
-------------------
+### Pestaña Diseño
 
-Esta sección le permite elegir entre estándar disponibles
-comandos (lado a lado en el widget) o en modo de mesa. No hay
-nada ajustado en el modo por defecto. Las opciones disponibles en el modo de
-** ** Tabla:
+Esta parte le permite elegir entre el diseño estándar de los comandos (uno al lado del otro en el widget) o en modo de tabla. Nada que configurar en modo predeterminado. Aquí están las opciones disponibles en modo
+**Mesa** :
+- **Numero de lineas**
+- **Numero de columnas**
+- **Centro en cajas** : Marque la casilla para centrar los pedidos en las casillas.
+- **Estilo general de cuadros (CSS)** : Le permite definir el estilo general en código CSS.
+- **Estilo de tabla (CSS)** : Le permite definir solo el estilo de la tabla.
 
--   ** ** Número de líneas
+A continuación para cada cuadro, el **configuración detallada** te permite
+este :
+- **Cuadro de texto** : Agregue texto además del comando (o todo solo, si no hay un comando en el cuadro).
+- **Estilo de caso (CSS)** : Modifique el estilo CSS específico del cuadro (tenga en cuenta que sobrescribe y reemplaza el CSS general de los cuadros).
 
--   ** ** El número de columnas
-
--   ** ** Centro de las cajas: Seleccione la casilla de verificación para el centro
-    Los comandos de las cajas.
-
--   **cajas de General Estilo (CSS)**: Conjunto estilo
-    CSS general.
-
--   **Tabla de estilo (CSS)**: Establecer el estilo de
-    tabla sólo.
-
-Debajo de cada cuadro, la configuración detallada ** ** le permite
-esto:
-
--   ** ** Cuadro de texto: Añadir texto en la parte superior de la orden (o
-    solo, si no hay un control en el cuadro).
-
--   **cuadro de estilo (CSS)**: Cambiar el estilo específico CSS
-    cuadro (ver sobrescribe y sustituye general CSS
-    cajas).
-
-> **Tip**
+> **Punta**
 >
-> En una celda de la tabla, si usted quiere pedir uno de cada 2
-> Por debajo de la otra, no se olvide de añadir un retorno a
-> Línea después de la primera avanzada ** ** en la configuración de la misma.
+> En un cuadro de la tabla, si desea colocar 2 comandos uno debajo del otro, no olvide agregar un salto de línea después del primero en el **Configuración avanzada** del mismo.
 
-pestaña de alertas
---------------
+### Pestaña Alertas
 
-Esta ficha le permite tener la información sobre la batería
-equipos y establecer alertas sobre él. He aquí los
-tipos de información se pueden encontrar:
+Esta pestaña le permite tener información sobre la batería del equipo y definir alertas en relación con él. Estos son los tipos de información que se pueden encontrar :
 
--   ** ** Tipo de batería
+- **Tipo de batería**,
+- **Últimos comentarios**,
+- **Nivel restante**, (si, por supuesto, su equipo funciona con batería).
 
--   **Última retroalimentación de la información**
+A continuación, también puede definir los umbrales de alerta de batería específicos para este equipo. Si deja las casillas vacías, esos son los umbrales predeterminados que se aplicarán.
 
--   ** **, el nivel remanente (si, por supuesto, su equipo funciona
-    en la pila).
+También puede administrar el tiempo de espera, en minutos, del equipo. Por ejemplo, 30 le dice a Jeedom que si el equipo no se ha comunicado durante 30 minutos, entonces debe ponerse en alerta.
 
-A continuación, también se pueden definir los umbrales de alerta específicos
-la batería de este equipo. Si deja las cajas vacías, esos son
-se aplicarán los umbrales predeterminados.
-
-También puede manejar el tiempo de espera, en minutos, de los equipos. por
-por ejemplo, 30 indica jeedom si el equipo no ha establecido
-durante 30 minutos, por lo que debe ser puesto en estado de alerta.
-
-> **Tip**
+> **Punta**
 >
-> Configuración general están en Administración → Configuración → ** ** Registros
-> (o Instalaciones ** **)
+> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Troncos** o **Comodidades**
 
-ficha comentario
-------------------
+### Pestaña de comentarios
 
-Le permite escribir un comentario sobre el equipo (fecha
-cambiar la batería, por ejemplo).
+Le permite escribir un comentario sobre el equipo.
 
-configuración avanzada de un control
-====================================
+## Configuración avanzada de un pedido
 
-En primer lugar, arriba a la derecha, algunos botones disponibles:
+Primero, en la parte superior derecha, algunos botones disponibles :
 
--   ** ** Prueba: Para probar el comando.
+- **Prueba** : Se usa para probar el comando.
+- **Vínculos** : Permite visualizar los enlaces del equipo con objetos, comandos, escenarios, variables, interacciones. en forma gráfica.
+- **Registro** : Muestra los eventos del equipo en cuestión.
+- **Información** : Muestra las propiedades en bruto del equipo.
+-  **Aplicar a** : Permite que la misma configuración se aplique a varios comandos.
+- **Guardar** : Guarde las modificaciones realizadas en el equipo.
 
--   ** ** Enlaces: Muestra enlaces a equipos con
-    objetos, comandos, guiones, las variables, la interacción .... bajo
-    forma gráfica.
-
--   ** ** Conectarse: Mostrar eventos del equipo en cuestión.
-
--   ** ** Información: Muestra las propiedades primas de los equipos.
-
--   Aplicar \ *: le permite aplicar la misma configuración en
-    varios comandos.
-
--   ** ** Guardar: Guarda los cambios realizados en
-    equipo
-
-> **Tip**
+> **Punta**
 >
-> En un gráfico, haga doble clic en un elemento que se llevará a su
-> Configuración.
+> En un gráfico, un doble clic en un elemento lo lleva a su configuración.
 
 > **Nota**
 >
-> Dependiendo del tipo de mando, información / acciones muestran
-> Puede cambiar.
+> Dependiendo del tipo de orden, la información / acciones mostradas pueden cambiar.
 
-ficha información
--------------------
+### Pestaña de información
 
-El ** ** ficha Información contiene información general sobre la
-comando:
+La pestaña **Información** contiene información general sobre el pedido :
 
--   ** ** ID: identificador único en la base de datos.
+- **Identificación** : Identificador único en la base de datos.
+- **ID lógica** : Identificador lógico del comando (puede estar vacío).
+- **Apellido** : Nombre de la orden.
+- **Tipo** : Tipo de comando (acción o información).
+- **Subtipo** : Subtipo de comando (binario, digital, etc.)).
+- **URL directa** : Proporciona la URL para acceder a este equipo. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **acción** y devolver la información para un **Información**.
+- **Unidad** : Unidad de control.
+- **Comando que desencadena una actualización** : Da el identificador de otro comando que, si este otro comando cambia, forzará la actualización del comando mostrado.
+- **Visible** : Marque esta casilla para hacer visible el comando.
+- **Sigue en la línea de tiempo** : Marque esta casilla para hacer que este comando sea visible en la línea de tiempo cuando se use. Puede especificar una línea de tiempo específica en el campo que aparece si la opción está marcada.
+- **Prohibir en interacciones automáticas** : prohíbe las interacciones automáticas en este comando
+- **Icono** : Le permite cambiar el ícono de comando.
 
--   ** ** ID lógico: identificador lógico del control (mayo
-    estar vacío).
+También tienes otros tres botones naranjas debajo :
 
--   ** ** Nombre: Nombre del comando.
-
--   ** ** Tipo: Escriba el comando (acción o Info).
-
--   ** ** subtipo: control de subtipo (binario, digital ...).
-
--   ** ** URL directa: Proporciona la URL para acceder al equipo. (haga clic
-    derecho, copiar dirección del enlace) URL se ejecutará el comando de
-    **** Compartir y devolver información para obtener información** **.
-
--   ** ** unidad: Unidad de mando.
-
--   **Comando desencadenar una actualización** Dar el identificador de una
-    Otro comando que, si los otros cambios de mando, obligará a la
-    actualizar el orden que se muestra.
-
--   ** ** visible: Compruebe para el fin de ser visible.
-
--   ** ** Siga la línea de tiempo: Marque esta casilla para hacer que este
-    con el fin de ser visible en la línea de tiempo cuando se utiliza.
-
--   **Prohibir en las interacciones automáticas** prohibido
-    interacciones automáticas en este comando
-
--   ** ** icono: Cambiar el icono de la orden.
-
-También tiene otros tres botones de color naranja a continuación:
-
--   **Este comando reemplaza el ID**: Para reemplazar un ID
-    control por parte del comando en cuestión. Es útil si se ha eliminado una
-    Jeedom equipos y tiene secuencias de comandos que utilizan
-    comandos de la misma.
-
--   **Este comando reemplaza el comando** Reemplaza una orden
-    el comando actual.
-
--   **Cambie este comando por comando** El revés reemplaza
-    el orden de otro comando.
+- **Este comando reemplaza la ID** : Le permite reemplazar un ID de pedido con el pedido en cuestión. Útil si ha eliminado un equipo en Jeedom y tiene escenarios que usan comandos de él.
+- **Este comando reemplaza el comando** : Reemplazar comando con comando actual.
+- **Reemplace este comando con el comando** : Por el contrario, reemplace el comando con otro comando.
 
 > **Nota**
 >
-> Este tipo de acción reemplaza pedidos en cualquier parte Jeedom
-> (Escenario, interacción, control, equipo ....)
+> Este tipo de acción reemplaza los comandos en todas partes en Jeedom (escenario, interacción, comando, equipo.).
 
-A continuación encontrará una lista de los diferentes equipos,
-comandos, scripts o interacciones utilizando este comando. una
-clic que le permite ir directamente a su configuración
-respectivamente.
+A continuación, encontrará la lista de los diferentes equipos, comandos, escenarios o interacciones que utilizan este comando. Haga clic en él para ir directamente a su configuración respectiva.
 
-pestaña de configuración
---------------------
+### Pestaña de configuración
 
-### Para un tipo de información de control:
+#### Para una orden de tipo de información :
 
--   **Calcular y redondeada**
+- **Cálculo y redondeo**
+    - **Fórmula de cálculo (\#value\# por valor)** : Le permite realizar una operación sobre el valor del pedido antes de procesarlo por Jeedom, ejemplo : ``#value# - 0.2` para restar 0.2 (desplazamiento en un sensor de temperatura).
+    - **Redondeado (número después del punto decimal)** : Se usa para redondear el valor del comando (Ejemplo : pon 2 para transformar 16.643,345 en 16.64).
+- **Tipo genérico** : Le permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil.
+- **Acción sobre el valor, si** : Hagamos algún tipo de mini escenarios. Puede, por ejemplo, decir que si el valor vale más de 50 por 3 minutos, entonces tiene que hacer tal acción. Esto permite, por ejemplo, apagar una luz X minutos después de encenderse.
 
-    -   **Fórmula (\ #value \ # para el valor)**: Permite
-        realizar una operación sobre el valor de la orden antes
-        Jeedom tratamiento, por ejemplo, el valor `# # - 0.2` a replegarse
-        0,2 (offset en un sensor de temperatura).
+- **Histórico**
+    - **Historizar** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
+    - **Modo de suavizado** : Modo de **alisar** o d'**archivado** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, La **mínimo**, o **No**. **No** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom.
 
-    -   **redondeado (decimal)**: Permite redondeo la
-        valor del control (ejemplo: para 2 tranformer
-        16.643345 en 16.64).
+- **Gestión de valores**
+    - **Valor prohibido** : Si el comando toma uno de estos valores, Jeedom lo ignora antes de aplicarlo.
+    - **Valor de retorno de estado** : Devuelve el comando a este valor después de cierto tiempo.
+    - **Duración antes del retorno del estado (min)** : Tiempo antes de volver al valor anterior.
 
--   ** ** Tipo genérico: Establece el tipo genérico de
-    comando (Jeedom tratando de encontrarse a sí misma en el modo automático).
-    Esta información es utilizada por la aplicación móvil.
+- **Otro**
+    - **Gestión de la repetición de valores** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario)). Puede forzar la repetición del valor o prohibirlo por completo.
+    - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedido. Puedes usar las siguientes etiquetas : ``#value#`por el valor de la orden,`#cmd_name#`para el nombre del comando,`#cmd_id#`para el identificador único de la orden,`#humanname#`para el nombre completo del comando (ex : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo.
 
--   **Acción en el valor, si**: Para hacer clases de
-    las mini escenarios. Puede, por ejemplo, que si el valor es
-    más del 50 por 3 minutos, así que hay que dicha acción. lo
-    permite, por ejemplo, para apagar una luz X minutos después de
-    que estará encendida.
+#### Para un comando de acción :
 
--   **Historia**
+-  **Tipo genérico** : Le permite configurar el tipo genérico del comando (Jeedom intenta encontrarlo solo en modo automático). Esta información es utilizada por la aplicación móvil.
+- **Confirmar acción** : Marque esta casilla para que Jeedom solicite confirmación cuando la acción se inicie desde la interfaz de este comando.
+- **Código de acceso** : Permite definir un código que Jeedom preguntará cuando la acción se inicie desde la interfaz de este comando.
+- **Acción antes de la ejecución del comando** : Agregar comandos **antes** cada ejecución de la orden.
+- **Acción después de la ejecución del comando** : Agregar comandos **después** cada ejecución de la orden.
 
-    -   Historizar ** ** Marque la casilla para los valores de este
-        mando está en el sistema. (Ver ** ** Análisis → Historia)
+### Pestaña Alertas
 
-    -   **modo de suavizado**: **modo de suavizado**o** ** archivado
-        le permite elegir cómo archivar los datos. Por defecto,
-        es un promedio ** **. También es posible elegir el
-        **** Máximo, mínimo** **** o cualquier**. ** ** no permite
-        Jeedom decir que no debe hacer que este archivo
-        comando (tanto en el primer período de 5 minutos con el
-        La tarea de archivar). Esto es peligroso porque Jeedom
-        conserva todo: que va a ser mucho más
-        retenido de datos.
-
-    -   **la historia más antigua de purga si**: contar
-        Jeedom eliminar todos los datos mayores de
-        período. Puede ser útil para mantener sin
-        datos si no es necesario y por lo tanto limitar la cantidad
-        información registrada por Jeedom.
-
--   ** ** Los valores de gestión
-
-    -   ** ** Valor prohibida: Si el comando tiene uno de estos valores,
-        Jeedom no sabía antes de aplicar.
-
-    -   ** ** valor de retorno de estado: permite volver al comando
-        este valor después de un tiempo.
-
-    -   Tiempo para volver a: **Tiempo de estado (min)** regreso
-        valor anterior.
-
--   ** ** Otros
-
-    -   ** ** Gestión repitiendo valores: En automática si el
-        el control pasa de nuevo 2 veces el mismo valor en una fila, a continuación, Jeedom
-        no tienen en cuenta la 2ª ascensión (evita la activación
-        varias veces al escenario, a menos que el orden es
-        binario). Puede forzar la repetición del valor o
-        prohibición total.
-
-    -   ** ** Enviar URL: Permite agregar una dirección URL para llamar en caso de
-        actualizar la orden. Puede utilizar etiquetas
-        siguiente: `` valor # # para el valor del comando, `` # # cmd_name
-        para el nombre del comando, `` # # cmd_id para el identificador único
-        mando, `` # # humanname para el nombre completo del comando
-        (Por ejemplo, `# [baño] [Hydrometrie] [humedad] #`)
-
-### Para un comando de acción:
-
--   ** ** Tipo genérico: Establece el tipo genérico de
-    comando (Jeedom tratando de encontrarse a sí misma en el modo automático).
-    Esta información es utilizada por la aplicación móvil.
-
--   ** ** Confirmar Acción: Marque esta casilla para solicitar que Jeedom
-    una confirmación cuando se inicia la acción desde la interfaz
-    este comando.
-
--   ** ** Código de acceso: Permite definir un código que solicitará Jeedom
-    cuando la acción se inicia desde la interfaz de este comando.
-
--   **Acción antes de ejecutar el comando** Añade
-    ** ** comandos antes de cada ejecución de la orden.
-
--   **Acción después de la ejecución de la orden** Añade
-    ** ** comandos después de cada ejecución de la orden.
-
-pestaña de alertas
---------------
-
-Establece un nivel de alerta (**advertencia**o** ** riesgo) en
-dependiendo de ciertas condiciones. Por ejemplo, si el valor `> 8` de 30
-minutos, mientras que el equipo puede ir en alerta ** ** advertencia.
+Le permite definir un nivel de alerta (**advertencia** o **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **advertencia**.
 
 > **Nota**
 >
-> En las **Administración → Configuración → Registro**, consulta
-> Configurar un tipo de puesto de mando que permite Jeedom
-> Se notifica cuando se alcanza el umbral de aviso o seguro.
+> En la página **→ Configuración → Configuración del Sistema : Troncos**, puede configurar un comando de tipo de mensaje que permitirá que Jeedom le notifique si se alcanza el umbral de advertencia o peligro.
 
-ficha pantalla
-----------------
+### Ver pestaña
 
-En esta parte agarre, usted será capaz de configurar un determinado comportamiento
-widget de pantalla en el salpicadero, vistas, diseño y
-móvil.
+En esta parte, podrá configurar ciertos comportamientos de visualización de widgets en el Panel de control, vistas, diseño y en dispositivos móviles.
 
--   ** ** Widget: Elija widget en dekstop o móvil (en
-    en cuenta que se necesita el plugin widget y usted también puede hacerlo
-    de los mismos).
+- **Reproductor** : Le permite elegir el widget en el escritorio o en el dispositivo móvil (tenga en cuenta que necesita el complemento del widget y que también puede hacerlo desde él)).
+- **Visible** : Marque para hacer visible el comando.
+- **Mostrar nombre** : Marque para hacer visible el nombre del comando, dependiendo del contexto.
+- **Mostrar nombre e icono** : Marque para que el icono sea visible además del nombre del comando.
+- **Línea envuelta antes del widget** : Seleccionar **antes del widget** o **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
 
--   Visible ** **: Hora de hacer visible el comando.
+A continuación, hay parámetros de visualización opcionales que se pueden pasar al widget. Estos parámetros dependen del widget en cuestión, por lo que debe consultar su archivo en Market para conocerlos.
 
--   ** ** Mostrar Nombre: Hora de hacer visible el nombre de la
-    ordenar, dependiendo del contexto.
-
--   **Muestra el nombre y el icono**: Hora de hacer visible el icono
-    además del nombre del comando.
-
--   **Envuelva forzado por widget de** ** El registro antes
-    Reproductor **o** ** después de widget para añadir un salto de línea
-    antes o después el widget (por ejemplo, para forzar una pantalla
-    columna de los controles del equipo en lugar de líneas
-    por defecto)
-
-A continuación, hay parámetros opcionales que pueden mostrar
-puede ir al widget. Estos parámetros dependen del widget en cuestión
-por lo que tiene que ver su cotización en el mercado para conocerlos.
-
-> **Tip**
+> **Punta**
 >
-> No se olvide de guardar después de la modificación.
-
-ficha código
------------
-
-Cambia el código sólo Widget para el comando actual.
-
-> **Nota**
->
-> Si desea cambiar el código recuerde revisar la caja
-> **Habilitar la personalización el widget**
+> No olvide guardar después de cualquier modificación.

@@ -79,7 +79,7 @@ class cron {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 			$value['option'] = $_option;
@@ -102,7 +102,7 @@ class cron {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$value['option'] = '%' . $_option . '%';
 			$sql .= ' AND `option` LIKE :option';
@@ -259,7 +259,7 @@ class cron {
 			if (!$_noErrorReport) {
 				$this->halt();
 				if (!$this->running()) {
-					exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
+					system::php($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 				} else {
 					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}

@@ -1,159 +1,75 @@
-Jeedom has the ability to be backed up and restored from or from
-from different locations.
+# Sauvegardes
+**Settings → System → Backups**
 
-Configuration
-=============
+Jeedom offers the possibility of being saved and restored from or from different locations.
+This page allows the management of backups, restores.
 
-Accessible from **Administration → Backup**, this page allows
-backup management.
 
-On the left there are the parameters and the action buttons. On the
-right is the real-time status of the current action (backup
-or restore), if you have started one.
+You will find, on the left, the parameters and action buttons. On the right is the real-time status of the action in progress (backup or restore), if you have launched one.
 
-**Backup**
----------------
+## Sauvegardes
 
--   **Backups**: Allows you to start a backup manually and
-    immediately (useful if you want to make a critical change.
-    This will allow you to go back). You also have a
-    button to launch a backup without sending the archive on the
-    cloud (requires a subscription see below). Sending a
-    Cloud backup can take a long time. This option
-    thus avoids a loss of time too important.
+- **Backups** : Allows you to start a backup manually and immediately (useful if you want to make a critical change. This will allow you to go back). You also have a button to launch a backup without sending the archive to the cloud (requires a subscription see below). Sending a backup to the cloud can take a while. This option therefore avoids excessive loss of time.
 
--   **Location of Backups**: Indicates the folder in which
-    Jeedom copies the backups. It is recommended not to
-    change him. If you are on a relative path, its origin is
-    the place where Jeedom is installed.
+- **Backup location** : Indicates the folder in which Jeedom copies the backups. It is recommended not to change it. If you are on a relative path, its origin is where Jeedom is installed.
 
--   **Number of day (s) of storage of backups**: Number of
-    backup days to keep. Once this time has elapsed,
-    backups will be deleted. Be careful not to put a number
-    of days too high, otherwise your file system may
-    to be saturated.
+- **Number of day (s) of storage of backups** : Number of backup days to keep. Once this period has passed, the backups will be deleted. Be careful not to put too many days, otherwise your file system may be saturated.
 
--   **Maximum Total Size of Backups (MB)**: Allows you to limit
-    the place taken by all the backups in the folder
-    backup. If this value is exceeded, Jeedom will remove the
-    older backups to fall below the
-    maximum size. It will however keep at least one backup.
+- **Maximum total size of backups (MB)** : Limits the space taken by all backups in the backup folder. If this value is exceeded, Jeedom will delete the oldest backups until it drops below the maximum size. It will however keep at least one backup.
 
-**Local Backups**
------------------------
+## Local backups
 
--   **Available Backups**: List of available backups.
+- **Available backups** : List of available backups.
 
--   **Restore Backup**: Starts Backup Restore
-    selected above.
+- **Restore backup** : Launches the restoration of the backup selected above.
 
--   **Delete Backup**: Deletes the selected backup
-    above, only in the local folder.
+- **Delete backup** : Delete the backup selected above, only in the local folder.
 
--   **Send backup**: Allows to send in the folder of
-    backups an archive located on the computer that one
-    currently using (allows for example to restore an archive
-    previously recovered on a new Jeedom or reinstallation).
+- **Send a backup** : Allows you to send an archive located on the computer you are currently using to the backups folder (for example, restoring an archive previously recovered on a new Jeedom or reinstalling).
 
--   **Download Backup**: Allows you to download to your
-    computer the archive of the backup selected above.
+- **Download backup** : Download the archive of the backup selected above to your computer.
 
-**Market Backups**
-----------------------
+## Market backups
 
--   **Send backups**: Tell Jeedom to send them
-    backups on the Market's cloud, be careful you have to
-    took the subscription.
+- **Sending backups** : Tell Jeedom to send backups to the Market cloud, please note that you must have subscribed.
 
--   **Send backup**: Allows to send to the cloud a
-    backup archive located on your computer.
+- **Send a backup** : Send a backup archive located on your computer to the cloud.
 
--   **Available Backups**: Backups List
-    cloud available.
+- **Available backups** : List of available cloud backups.
 
--   **Restore Backup**: Starts the restore of a
-    cloud backup.
+- **Restore backup** : Starts restoring a cloud backup.
 
-**Samba backups**
----------------------
+## Samba backups
 
--   **Send backups**: Tell Jeedom to send them
-    backups on the samba share configured here
-    Administration → Configuration → Updates Tab.
+- **Sending backups** : Tells Jeedom to send the backups to the samba share configured here Settings → System → Configuration : Updates.
 
--   **Available Backups**: Backups List
-    samba available.
+- **Available backups** : List of available samba backups.
 
--   **Restore Backup**: Starts Backup Restore
-    samba selected above.
+- **Restore backup** : Starts restoring the samba backup selected above.
+
+> **Important**
+>
+> Jeedom backups must be saved absolutely in a folder only for him ! It will delete everything that is not a jeedom backup from the folder.
+
+
+# What is saved ?
+
+During a backup, Jeedom will backup all of its files and the database. This therefore contains all of your configuration (equipment, controls, history, scenarios, design, etc.).
+
+At the protocol level, only the Z-Wave (OpenZwave) is a little different because it is not possible to save the inclusions. These are directly included in the controller, so you must keep the same controller to find its Zwave modules.
+
+> **NOTE**
+>
+> The system on which Jeedom is installed is not backed up. If you have changed settings for this system (including via SSH), it&#39;s up to you to find a way to recover them if you have any concerns.
+
+# Cloud backup
+
+Cloud backup allows Jeedom to send your backups directly to the Market. This allows you to restore them easily and be sure not to lose them. The Market keeps the last 6 backups. To subscribe just go to your page **profile** on the Market, then in the tab **my backups**. You can, from this page, retrieve a backup or buy a subscription (for 1, 3, 6 or 12 months).
 
 > **Tip**
 >
-> Depending on what will be activated, in the page
-> Administration → Configuration → Updates tab, you can see
-> more or fewer sections.
+> You can customize the name of the backup files from the tab **My jeedoms**, avoiding however the exotic characters.
 
-> **Tip**
->
-> When reinstalling Jeedom and taking the subscription of
-> backup to the cloud of the market, you must fill in your account
-> Market on your new Jeedom (Administration → Configuration → Tab
-> Updates) then come here to start the restoration.
+# Frequency of automatic backups
 
-> **Tip**
->
-> It is possible, in case of problems, to make an online backup of
-> command: `sudo php / usr / share / nginx / www / jeedom / install / backup.php`
-> or `sudo php / var / www / html / install / backup.php` according to your system.
-
-> **Tip**
->
-> It is also possible to restore an online backup of
-> commands (by default, Jeedom restores the most recent backup
-> in the backup directory):
-> `sudo php / usr / share / nginx / www / jeedom / install / restore.php` or
-> `sudo php / var / www / html / install / restore.php`.
-
-What is backed up?
-==============================
-
-During a backup, Jeedom will back up all of its files and the
-database. This contains all your configuration
-(equipment, controls, history, scenarios, design, etc.).
-
-At the protocol level, only the Z-Wave (OpenZwave) is a bit
-different because it is not possible to save the inclusions.
-These are directly included in the controller, so you have to
-keep the same controller to find its Zwave modules.
-
-> **Note**
->
-> The system on which Jeedom is installed is not backed up. Yes
-> you have modified parameters of this system (notably via SSH),
-> It's up to you to find a way to recover them in case of trouble.
-
-Cloud backup
-================
-
-Cloud backup allows Jeedom to send your backups
-directly on the Market. This allows you to restore them easily
-and to be sure not to lose them. The Market keeps the last 6
-backups. To subscribe just go to your page
-**profile** on the Market, then, in the tab **my backups**. You
-can, from this page, recover a backup or buy a
-subscription (for 1, 3, 6 or 12 months).
-
-> **Tip**
->
-> You can customize the name of the backup files from
-> of the tab **My Jeedoms**, while avoiding the characters
-> exotic.
-
-Frequency of automatic backups
-======================================
-
-Jeedom performs an automatic backup every day at the same
-hour. It is possible to modify this one, from the "Engine of
-tasks "(the task is named **Jeedom backup**), but it's not
-recommended. Indeed, it is calculated in relation to the burden of
-Market.
+Jeedom performs an automatic backup every day at the same time. It is possible to modify it, from the &quot;Task engine&quot; (the task is named **Jeedom backup**), but it is not recommended. Indeed, it is calculated in relation to the load of the Market.

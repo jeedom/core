@@ -1,5 +1,6 @@
 /*
 Theme Core 2019 @Jeedom
+colors Dark
 */
 :root {
   --lineheight : 1.42em;
@@ -7,59 +8,69 @@ Theme Core 2019 @Jeedom
   --border-radius: 0rem;
   --opacity: 1;
 
+  --url-logo: url('/core/themes/core2019_Dark/desktop/logo-jeedom.png');
+
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
-  --bg-color: 38, 38, 38;
-  --bg-modal-color: rgb(45, 47, 49);
+  --logo-secondary-color: rgb(189, 188, 190);
+  --bg-color: 25, 25, 25;
+  --bg-modal-color: rgb(35, 35, 36);
+  --contrast-color: 205, 205, 205;
 
-  --txt-color: rgb(178, 178, 178);
-  --link-color: rgb(207, 207, 207);
-  --linkHover-color: rgb(238, 238, 238);
-  --linkHoverLight-color: rgb(250, 250, 250);
-  --placeholder-color: rgb(115, 115, 115);
+  --txt-color: rgb(172, 172, 172);
+  --link-color: rgb(195, 195, 195);
+  --linkHover-color: rgb(228, 228, 228);
+  --linkHoverLight-color: rgb(230, 230, 230);
+  --placeholder-color: rgb(100, 100, 100);
 
-  --sc-form-color: rgba(220, 220, 220, 0.85);
-  --sc-formTxt-color: rgb(62, 62, 62);
+  --sc-form-color: rgba(225, 225, 225, 0.85);
+  --sc-formTxt-color: rgb(56, 56, 56);
   --sc-lightTxt-color: rgb(230, 230, 230);
 
-  --el-defaultColor: rgb(30, 32, 33);
-  --defaultBkg-color: rgb(50, 51, 51);
-  --form-bg-color: rgb(53, 53, 53);
+  --el-defaultColor: rgb(17, 19, 20);
+  --defaultBkg-color: 38, 40, 40;
+  --form-bg-color: rgb(47, 47, 47);
   --btnEq-default-color: rgb(62, 62, 62);
   --btn-default-color: rgb(69, 70, 72);
-  --panel-bg-color: rgb(44, 44, 44);
+  --panel-bg-color: 33, 33, 33;
 
   --eqTitle-color: rgb(240, 240, 240);
+  --objectBkgd-color: rgb(62, 62, 62);
+  --objectTxt-color: rgb(200, 200, 200);
 
-  --eq-bg-color: 42, 42, 42;
+  --eq-bg-color: 38, 38, 38;
   --cat-security-color: 145, 65, 60;
   --cat-heating-color: 46, 98, 138;
   --cat-automatism-color: 100, 100, 100;
   --cat-light-color: 153, 100, 40;
+  --cat-opening-color: 58, 58, 58;
   --cat-multimedia-color: 54, 73, 94;
   --cat-energy-color: 50, 120, 60;
   --cat-other-color: 58, 90, 85;
-  --cat-scenario-color: 65, 70, 76;
+  --cat-scenario-color: 55, 55, 62;
 
   --url-iconsDark: url(../img/ui-icons-black.png);
   --url-iconsLight: url(../img/ui-icons-white.png);
 
   --lb-info-color: rgb(80, 160, 180);
-  --al-info-color: rgb(90, 130, 190);
+  --lb-yellow-color: rgb(210, 180, 0);
+  --al-info-color: rgb(80, 120, 170);
   --al-primary-color:  rgb(50, 110, 160);
   --al-success-color: rgb(50, 130, 60);
   --al-warning-color: rgb(195, 125, 40);
-  --al-danger-color: rgb(160, 50, 50);
-  
-  --scBloc-color1: rgb(130,120,102);
-  --scBloc-color2: rgb(122,112,100);
-  --scBloc-color3: rgb(110,102, 98);
-  --scBloc-color4: rgb(100, 96, 96);
-  --scBloc-color5: rgb(86, 86, 85);
-  --scBloc-color6: rgb(74, 76, 78);
-  --scBloc-color7: rgb(65, 69, 71);
-  --scBloc-color8: rgb(60, 64, 67);
-  --scBloc-color0: rgb(48, 51, 54);
+  --al-danger-color: rgb(185, 58, 62);
+  --bt-success-color: rgb(150, 201, 39);
 
-  --shd-color: rgba(15, 15, 15, 0.85);
+  --scBlocIF: rgb(65,90,110);
+  --scBlocElse: rgb(50,75,95);
+  --scBlocACTION: rgb(132,120,112);
+  --scBlocIN: rgb(75,128,62);
+  --scBlocAT: rgb(92,122,132);
+  --scBlocFOR: rgb(152,116,22);
+  --scBlocCODE: rgb(160,60,25);
+  --scBlocCOM: rgb(60,60,60);
+
+  --scBlocSep: rgb(35,35,35);
+
+  --shd-color: rgba(15, 15, 15, 0.55);
 }

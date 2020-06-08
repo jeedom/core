@@ -1,112 +1,46 @@
-La página de perfil le permite configurar ciertos comportamientos
-Jeedom específica para el usuario: Inicio de los temas
-versión de escritorio, la versión móvil, gráficos ... Permite
-también cambiar su contraseña.
+# Preferencias
+**Configuración → Preferencias**
 
-A encontrar la parte superior derecha hacer clic en el icono del hombre
-y Perfil (seguido de su identificación).
+La página de Preferencias le permite configurar ciertos comportamientos de Jeedom específicos del usuario.
 
-temas
-======
+## Pestaña de preferencias
 
-El panel de temas le permite ajustar los parámetros de la interfaz:
+### Interface
 
--   ** ** escritorio: temas para su uso en el modo de escritorio, sólo el enfoque
-    tema por defecto es apoyado oficialmente por Jeedom
+Define ciertos comportamientos de interfaz
 
--   ** ** móvil de color: elegir el color de la interfaz
-    (Aquí todo es compatible)
+- **Panel de objetos en el tablero** : Muestra el panel de objetos (a la izquierda) en el Panel, sin tener que hacer clic en el botón dedicado.
+- **Página predeterminada** : Página para mostrar de forma predeterminada para mostrar cuando se conecta a una computadora de escritorio o móvil.
+- **Objeto predeterminado** : Objeto para mostrar por defecto al llegar al Tablero / móvil.
 
--   ** ** gráficos de escritorio: Establecer el tema por defecto
-    la moda de escritorio gráficos
+- **Vista predeterminada** : Ver para mostrar de forma predeterminada a la llegada en el Panel de control / móvil.
+- **Despliegue el panel de vista** : Se usa para hacer que el menú de vista (izquierda) sea visible en las vistas de forma predeterminada.
 
--   **móviles** Gráfico: establecer el tema predeterminado
-    gráficos en modo móvil
+- **Diseño por defecto** : Diseñe para mostrar por defecto a su llegada al Tablero / móvil.
+- **Diseño de pantalla completa** : Visualización predeterminada en pantalla completa al llegar a los diseños.
 
--   ** ** La opacidad de los widgets del Dashboard: para dar opacidad
-    (Entre 0 y 1) de los widgets en el tablero de instrumentos
+- **Diseño 3D por defecto** : Diseño 3D para mostrar por defecto al llegar al Tablero / móvil.
+- **Diseño de pantalla completa en 3D** : Visualización predeterminada en pantalla completa a la llegada en diseños 3D.
 
--   **La opacidad Diseño de los widgets**: dar opacidad
-    (Entre 0 y 1) de widgets en diseños
+### Notifications
 
--   **La opacidad de los widgets Vista**: para dar opacidad (entre
-    0 y 1) de widgets en vistas
+- **Comando de notificación del usuario** : Comando predeterminado para unirse a usted (comando de tipo de mensaje).
 
--   **La opacidad de los widgets móviles**: permite dar opacidad
-    (Entre 0 y 1) de widgets móviles
+## Pestaña de seguridad
 
-interfaz
----------
+- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código.
 
-Se puede definir ciertos comportamientos de la interfaz:
+  **Importante** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (consulte la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
 
--   **General**
+- **Contraseña** : Le permite cambiar su contraseña (no olvide volver a escribirla a continuación)).
 
-    -   ** ** Muestra los menús dice panel de visualización Jeedom
-        la izquierda, en su caso, para devolver este panel es
-        disponible en la mayoría de las páginas plugins, así como
-        escenarios de página, interacciones, objetos ....
+- **Hash de usuario** : Tu clave de API de usuario.
 
--   ** ** defecto Página: página por defecto para mostrar cuando
-    escritorio conexión / móvil
+### Sesiones activas
 
--   **objeto predeterminado en el salpicadero** objeto a visualizar de forma predeterminada
-    a su llegada en el salpicadero / móvil
+Aquí tiene la lista de sus sesiones conectadas actualmente, su ID, su IP, así como la fecha de la última comunicación. Al hacer clic en &quot;Desconectar&quot; esto desconectará al usuario. Atención, si está en un dispositivo registrado, esto también eliminará la grabación.
 
--   ** ** Vista predeterminada: Ver para mostrar de forma predeterminada a la llegada de
-    el salpicadero / móvil
+### Dispositivo registrado
 
--   ** ** predeterminado Diseño: Diseño que se mostrará por defecto cuando
-    la llegada en el salpicadero / móvil
-
-    -   ** ** pantalla completa: pantalla completa por defecto cuando
-        llegada en diseños
-
--   ** ** tablero de instrumentos
-
-    -   **Se desarrollan los escenarios del panel**: permite hacer visible
-        escenarios de incumplimiento del menú (derecha) en el salpicadero
-
-    -   **Se desarrollan los objetos del panel**: permite hacer visible
-        elementos de menú por defecto (izquierda) en el salpicadero
-
--   ** ** Ver
-
-    -   **Se desarrollan las vistas del panel**: permite hacer visible
-        menú de puntos de vista por defecto (izquierda) en vistas
-
-seguridad
---------
-
--   Autenticación ** ** 2 pasos: Configurar
-    la autenticación en dos pasos (como un recordatorio, este es un cambio de código
-    cada X segundos que se muestra en un tipo de aplicación móvil
-    Google Authenticator)
-
--   ** ** Contraseña: Cambiar la contraseña (no hacer
-    se olvide de volver a escribir a continuación)
-
--   ** ** hash de usuario: su clave de usuario API
-
-### sesiones activas
-
-Aquí tienes una lista de sus sesiones que están conectados, identificaciones,
-su IP y fecha de la última comunicación. Al hacer clic
-"Desconexión" que desconecta el usuario. Tenga cuidado si está en
-un dispositivo registrado se eliminará grabación églagement.
-
-### unidad periférica registró
-
-Aquí encontrará la lista de todos los periféricos registrados (que
-conectarse sin autenticación) a su Jeedom y la fecha de
-último uso. Aquí se puede anular el registro de una
-periférica. Tenga en cuenta que esto no se desconecta pero evitará la derecha
-su reconexión automática.
-
-Notificaciones
--------------
-
--   **Control de usuario de notificación**: control por defecto para
-    join (control de mensajes estándar)
-
-
+Aquí encontrará la lista de todos los dispositivos registrados (que se conectan sin autenticación) a su Jeedom, así como la fecha del último uso.
+Aquí puede eliminar el registro de un dispositivo. Atención, no lo desconecta, solo impedirá su reconexión automática.

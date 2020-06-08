@@ -15,13 +15,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+"use strict"
 
 $('.bt_systemCommand').off('click').on('click',function(){
   var command = $(this).attr('data-command');
   $('#pre_commandResult').empty();
   if($(this).parent().hasClass('list-group-item-danger')){
-    bootbox.confirm('{{Etes-vous sûr de vouloir éxécuter cette commande : }}<strong>'+command+'</strong> ? {{Celle-ci est classé en dangereuse}}', function (result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande : }}<strong>'+command+'</strong> ? {{Celle-ci est classé en dangereuse}}', function (result) {
       if (result) {
         jeedom.ssh({
           command : command,

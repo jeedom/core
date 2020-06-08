@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -20,6 +19,14 @@ jeedom.eqLogic = function () {
 };
 
 jeedom.eqLogic.cache = Array();
+
+jeedom.eqLogic.changeDisplayObjectName = function(_display){
+  if(_display){
+    $('.eqLogic-widget').addClass('displayObjectName');
+  }else{
+    $('.eqLogic-widget').removeClass('displayObjectName');
+  }
+}
 
 if (!isset(jeedom.eqLogic.cache.getCmd)) {
   jeedom.eqLogic.cache.getCmd = Array();
@@ -63,6 +70,45 @@ jeedom.eqLogic.save = function (_params) {
   $.ajax(paramsAJAX);
 }
 
+
+jeedom.eqLogic.byType = function (_params) {
+  var paramsRequired = ['type'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'listByType',
+    type: _params.type,
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.eqLogic.byObjectId = function (_params) {
+  var paramsRequired = ['object_id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'listByObject',
+    object_id: _params.object_id,
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.eqLogic.simpleSave = function (_params) {
   var paramsRequired = ['eqLogic'];
   var paramsSpecifics = {};
@@ -101,12 +147,31 @@ jeedom.eqLogic.getUseBeforeRemove = function (_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.eqLogic.usedBy = function (_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'usedBy',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.eqLogic.remove = function (_params) {
   var paramsRequired = ['id', 'type'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -132,8 +197,8 @@ jeedom.eqLogic.copy = function (_params) {
   var paramsRequired = ['id', 'name'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -159,7 +224,9 @@ jeedom.eqLogic.print = function (_params) {
   var paramsRequired = ['id', 'type'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      jeedom.eqLogic.cache.getCmd[_params.id] = data.result.cmd;
+      if(data.result && data.result.cmd){
+        jeedom.eqLogic.cache.getCmd[_params.id] = data.result.cmd;
+      }
       return data;
     }
   };
@@ -245,7 +312,7 @@ jeedom.eqLogic.byId = function (_params) {
     return;
   }
   if (init(_params.noCache, false) == false && isset(jeedom.eqLogic.cache.byId[_params.id]) && 'function' == typeof (_params.success)) {
-    _params.success(jeedom.eqLogic.cache.byId[_params.eqLogic_id]);
+    _params.success(jeedom.eqLogic.cache.byId[_params.id]);
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
@@ -288,7 +355,7 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
   }
   if ($("#mod_insertEqLogicValue").length == 0) {
     $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
-    
+
     $("#mod_insertEqLogicValue").dialog({
       closeText: '',
       autoOpen: false,
@@ -323,7 +390,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var eqLogics = {};
   var sends = {};
   for(var i in _params){
-    jeedom.cmd.refreshByEqLogic({eqLogic_id : _params[i].eqLogic_id});
     var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
       continue;
@@ -338,53 +404,20 @@ jeedom.eqLogic.refreshValue = function (_params) {
     global: false,
     success: function (result) {
       for(var i in result){
-        var gridstack = false;
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
-        var visible = eqLogic.is(":visible");
         var uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }
-        eqLogic.empty().html(html.children());
-        eqLogic.attr("class", html.attr("class"));
-        var top =  eqLogic.css('top');
-        var left =  eqLogic.css('left');
-        var width =  eqLogic.css('width');
-        var height =  eqLogic.css('height');
-        var marginTop =  eqLogic.css('margin-top');
-        var marginBottom =  eqLogic.css('margin-bottom');
-        var marginLeft =  eqLogic.css('margin-left');
-        var marginRight =  eqLogic.css('margin-right');
-        var paddingTop =  eqLogic.css('padding-top');
-        var paddingBottom =  eqLogic.css('padding-bottom');
-        var paddingRight =  eqLogic.css('padding-left');
-        var paddingLeft =  eqLogic.css('padding-right');
-        var position =  eqLogic.css('position');
-        var transform_origin =  eqLogic.css('transform-origin');
-        var transform =  eqLogic.css('transform');
-        var zindex =  eqLogic.css('z-index');
-        eqLogic.attr("style", html.attr("style"));
-        eqLogic.css('top',top);
-        eqLogic.css('left',left);
-        eqLogic.css('width',width);
-        eqLogic.css('height',height);
-        eqLogic.css('margin-top',marginTop);
-        eqLogic.css('margin-bottom',marginBottom);
-        eqLogic.css('margin-left',marginLeft);
-        eqLogic.css('margin-right',marginRight);
-        eqLogic.css('padding-top',paddingTop);
-        eqLogic.css('padding-bottom',paddingBottom);
-        eqLogic.css('padding-left',paddingLeft);
-        eqLogic.css('padding-right',paddingRight);
-        eqLogic.css('position',position);
-        eqLogic.css('transform-origin',transform_origin);
-        eqLogic.css('transform',transform);
-        eqLogic.css('z-index',zindex);
-        if(!visible){
-          eqLogic.hide();
+        eqLogic.addClass(html.attr('class'));
+        if(!html.hasClass('eqLogic_layout_table')){
+          eqLogic.removeClass('eqLogic_layout_table');
         }
-        eqLogic.trigger('change');
+        if(!html.hasClass('eqLogic_default_table')){
+          eqLogic.removeClass('eqLogic_default_table');
+        }
+        eqLogic.empty().html(html.children()).trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
           setTileSize('.eqLogic');

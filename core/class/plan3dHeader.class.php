@@ -25,6 +25,7 @@ class plan3dHeader {
 	private $id;
 	private $name;
 	private $configuration;
+	private $order = 9999;
 	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
@@ -41,7 +42,8 @@ class plan3dHeader {
 	
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM plan3dHeader';
+		FROM plan3dHeader
+		ORDER BY `order`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
@@ -56,6 +58,9 @@ class plan3dHeader {
 		$plan3ds = array_merge(plan3d::byLinkTypeLinkId($_type, $_id), plan3d::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plan3ds as $plan3d) {
 			$plan3dHeader = $plan3d->get3dHeader();
+			if(!is_object($plan3dHeader)){
+				continue;
+			}
 			$return[$plan3dHeader->getId()] = $plan3dHeader;
 		}
 		return $return;
@@ -86,6 +91,30 @@ class plan3dHeader {
 		return plan3d::byPlan3dHeaderId($this->getId());
 	}
 	
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['plan3d' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon($this->getConfiguration('icon','<i class="fas fa-paint-brush"></i>'));
+		$_data['node']['plan3d' . $this->getId()] = array(
+			'id' => 'plan3d' . $this->getId(),
+			'type' => __('Design 3d',__FILE__),
+			'name' => substr($this->getName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Design 3d :', __FILE__) . ' ' . $this->getName(),
+			'url' => 'index.php?v=d&p=plan3d&plan3d_id=' . $this->getId(),
+		);
+	}
+	
 	/*     * **********************Getteur Setteur*************************** */
 	
 	public function getId() {
@@ -94,6 +123,13 @@ class plan3dHeader {
 	
 	public function getName() {
 		return $this->name;
+	}
+	
+	public function getOrder() {
+		if ($this->order == '' || !is_numeric($this->order)) {
+			return 0;
+		}
+		return $this->order;
 	}
 	
 	public function setId($_id) {
@@ -105,6 +141,12 @@ class plan3dHeader {
 	public function setName($_name) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
+		return $this;
+	}
+	
+	public function setOrder($_order) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->order = $_order;
 		return $this;
 	}
 	

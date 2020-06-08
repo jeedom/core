@@ -2,29 +2,16 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("../../../../desktop/css/desktop.main.css");
 @import url("colors.css");
-
-header a.navbar-brand {
-  background-image: url(logo-jeedom.svg) !important;
-  background-size: 60px !important;
-  background-repeat: no-repeat;
-  background-position: 10px 7px;
-  height: 50px;
-  width: 90px;
-}
 
 a,
 span.cursor > i,
 i.cursor {
   color: var(--link-color) !important;
 }
-a:hover,
-a:active,
-a:focus {
+
+.panel-default .panel-title {
   color: var(--linkHover-color) !important;
-  text-decoration: none !important;
-  outline: none;
 }
 
 
@@ -46,16 +33,12 @@ a:focus {
 
 .eqLogic-widget > .widget-name a,
 .scenario-widget > .widget-name a,
-.eqLogic-widget > .refresh .fa,
-.eqLogic-widget > .fa-refresh,
 .eqLogic-widget > span:first-child.statusCmd i {
   color: var(--eqTitle-color) !important;
   font-size: 16px !important;
 }
 .eqLogic-widget > .widget-name a:hover,
-.scenario-widget > .widget-name a:hover,
-.eqLogic-widget > .refresh .fa:hover,
-.eqLogic-widget > .fa-refresh:hover {
+.scenario-widget > .widget-name a:hover {
   color: var(--linkHoverLight-color) !important;
 }
 
@@ -75,6 +58,9 @@ a:focus {
 [data-category=light]>.widget-name {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+[data-category=opening]>.widget-name {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 [data-category=multimedia]>.widget-name {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -93,25 +79,24 @@ a:focus {
 .input-group-addon,
 .scenario-widget .btn-default {
   background-color: var(--btn-default-color) !important;
-  background: linear-gradient(var(--btn-default-color), var(--btn-default-color)) fixed !important;
 }
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject {
+#dashTopBar > div > a,
+#dashTopBar button {
   background-color: var(--btnEq-default-color) !important;
-  background: linear-gradient(var(--btnEq-default-color), var(--btnEq-default-color)) fixed !important;
 }
 
 /* buttons on eq widgets */
 .eqLogic.eqLogic-widget .btn,
+.scenario.scenario-widget .btn,
 #div_displayObject .btn {
   color: var(--link-color) !important;
 }
 .eqLogic.eqLogic-widget .btn:hover,
+.scenario.scenario-widget .btn:hover,
 #div_displayObject .btn:hover {
-  color: var(--linkHoverLight-color) !important;
+  color: var(--txt-color) !important;
 }
 

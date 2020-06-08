@@ -1,18 +1,13 @@
-<div class="cmd" data-type="action"  data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-subtype="color" data-cmd_id="#id#" data-cmd_uid="#uid#" style="width : 149px;">
-  <input class="action_colorpicker_change cursor" type="color" data-clear-btn="false">
-  <a data-mini="true" class="action_colorpicker_off ui-btn ui-mini ui-btn-raised">Off</a>
-  <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
-      $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
-      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
-        jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
-      });
-    }
-    $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
-      jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
-    });
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
-  </script>
-  
+<div class="cmd cmd-widget" data-type="action" data-subtype="color" data-template="default" data-version="#version#" data-eqLogic_id="#eqLogic_id#"  data-cmd_id="#id#" data-cmd_uid="#uid#">
+	<input type="color" class="action_colorpicker_change cursor" data-mini="true">
+	<script>
+		jeedom.cmd.update['#id#'] = function(_options){
+			$('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
+			$('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
+			$('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
+				jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
+			});
+		}
+		jeedom.cmd.update['#id#']({display_value:'#state#'});
+	</script>
 </div>

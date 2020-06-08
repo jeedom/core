@@ -32,6 +32,7 @@ class interactDef {
 	private $enable;
 	private $group;
 	private $actions;
+	private $display;
 	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
@@ -123,7 +124,7 @@ class interactDef {
 		preg_match_all("/#(.*?)#/", $_def, $tags);
 		if (count($tags[1]) > 0) {
 			foreach ($tags[1] as $match) {
-				$regexp = str_replace('#' . $match . '#', '(.*?)', $regexp);
+				$regexp = str_replace(preg_quote('#' . $match . '#'), '(.*?)', $regexp);
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
 			if (isset($matches[0])) {
@@ -154,22 +155,24 @@ class interactDef {
 	public static function deadCmd() {
 		$return = array();
 		foreach (interactDef::all() as $interact) {
-			if (is_string($interact->getActions('cmd')) && $interact->getActions('cmd') != '') {
-				preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
+			//var_dump($interact->getActions('cmd'));
+			foreach ($interact->getActions('cmd') as $cmd) {
+				$json = json_encode($cmd);
+				preg_match_all("/#([0-9]*)#/", $json, $matches);
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if (!cmd::byId(str_replace('#', '', $cmd_id))) {
-							$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+							$return[] = array('detail' => 'Interaction : ' . $interact->getHumanName(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
 						}
 					}
 				}
-			}
-			if (is_string($interact->getReply()) && $interact->getReply() != '') {
-				preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
-				foreach ($matches[1] as $cmd_id) {
-					if (is_numeric($cmd_id)) {
-						if (!cmd::byId(str_replace('#', '', $cmd_id))) {
-							$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+				if (is_string($interact->getReply()) && $interact->getReply() != '') {
+					preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
+					foreach ($matches[1] as $cmd_id) {
+						if (is_numeric($cmd_id)) {
+							if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+								$return[] = array('detail' => 'Interaction : ' . $interact->getHumanName(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+							}
 						}
 					}
 				}
@@ -728,6 +731,17 @@ class interactDef {
 		$actions = utils::setJsonAttr($this->actions, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->actions,$actions);
 		$this->actions = $actions;
+		return $this;
+	}
+	
+	public function getDisplay($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->display, $_key, $_default);
+	}
+	
+	public function setDisplay($_key, $_value) {
+		$display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->display = $display;
 		return $this;
 	}
 	

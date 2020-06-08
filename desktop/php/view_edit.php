@@ -4,21 +4,6 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<style>
-.viewZone{
-	padding: 9.5px;
-	margin: 0 0px 5px;
-	font-size: 13px;
-	line-height: 20px;
-	background-color: #f5f5f5;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0,0,0,0.15);
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-</style>
-
 <div class="row row-overflow">
 	<div class="col-lg-2 col-md-3 col-sm-4">
 		<div class="bs-sidebar">
@@ -36,20 +21,23 @@ if (!isConnect('admin')) {
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
-		<legend style="height: 35px;">
+		<legend>
 			{{Edition}}
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
-					<a class="btn btn-default btn-sm roundedLeft" id="bt_editView"><i class="fas fa-pencil-alt"></i> {{Configuration}}</a><a class="btn btn-default btn-sm" id="bt_addviewZone"><i class="fas fa-plus-circle"></i> {{Ajouter une zone}}</a><a class="btn btn-primary btn-sm" id="bt_viewResult"><i class="fas fa fa-eye"></i> {{Voir le résultat}}</a><a class="btn btn-success btn-sm" id="bt_saveView"><i class="far fa-check-circle"></i> {{Enregistrer}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeView"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+					<a class="btn btn-default btn-sm roundedLeft" id="bt_editView"><i class="fas fa-pencil-alt"></i> {{Configuration}}
+					</a><a class="btn btn-default btn-sm" id="bt_addviewZone"><i class="fas fa-plus-circle"></i> {{Ajouter une zone}}
+					</a><a class="btn btn-primary btn-sm" id="bt_viewResult"><i class="fas fa fa-eye"></i> {{Voir le résultat}}
+					</a><a class="btn btn-success btn-sm" id="bt_saveView"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeView"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 				</span>
 			</div>
 		</legend>
-		
+
 		<div id="div_viewZones" style="margin-top: 10px;"></div>
 	</div>
-	
 </div>
 
 <div class="modal fade" id="md_addEditviewZone">
@@ -83,7 +71,7 @@ if (!isConnect('admin')) {
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addEditviewZoneSave"><i class="fas fa-save"></i> {{Enregistrer}}</a>
+				<a class="btn btn-success" id="bt_addEditviewZoneSave"><i class="fas fa-save"></i> {{Sauvegarder}}</a>
 			</div>
 		</div>
 	</div>

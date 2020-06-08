@@ -1,6 +1,6 @@
-<div class="cmd shuttergauge" data-type="info" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
-  <div class="cmdName" style="#hideCmdName#">#name_display#</div>
-  <div class="shuttergauge-chart" style="min-height:85px;">
+<div class="cmd cmd-widget shuttergauge" data-type="info" data-subtype="numeric" data-template="shutter" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+  <div class="cmdName #hide_name#">#name_display#</div>
+  <div class="shuttergauge-chart">
     <div class="shuttergauge-bckg">
       <div class="shuttergauge-value"></div>
     </div>
@@ -8,12 +8,13 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      var height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
-      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
-      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-state strong').first().text(_options.display_value)
+      cmd.find('.shuttergauge-value').height(height+'%')
+      cmd.find('.shuttergauge-state strong').first().text(_options.display_value)
     }
-    
+
     jeedom.cmd.update['#id#']({display_value:'#state#'});
   </script>
 </div>

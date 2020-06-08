@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('jeedomBackgroundImg', 'core/img/background/scenario.png');
 $scenarios = array();
 $totalScenario = scenario::all();
 $scenarios[-1] = scenario::all(null);
@@ -12,109 +11,117 @@ if (is_array($scenarioListGroup)) {
 		$scenarios[$group['group']] = scenario::all($group['group']);
 	}
 }
+sendVarToJs('initSearch', init('search', 0));
 ?>
+
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer">
-			<div class="cursor" id="bt_addScenario2" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-plus-circle" style="font-size : 5em;color:#94ca02;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+			<div class="cursor logoPrimary" id="bt_addScenario">
+				<center><i class="fas fa-plus-circle"></i></center>
+				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
-				<div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-					<center><i class="fas fa-check" style="font-size : 5em;color:#5cb85c;"></i></center>
-					<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
+					<center><i class="fas fa-check"></i></center>
+					<span class="txtColor"><center>{{Activer scénarios}}</center></span>
 				</div>
 			<?php } else {?>
-				<div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-					<center><i class="fas fa-times" style="font-size : 5em;color:#d9534f;"></i></center>
-					<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
+					<center><i class="fas fa-times"></i></center>
+					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
 				</div>
 			<?php } ?>
-			<div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-eye" style="font-size : 5em;color:#337ab7;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
-			</div>
-			<div class="cursor bt_showScenarioSummary" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-list" style="font-size : 5em;color:#337ab7;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
-			</div>
-			<div class="cursor bt_showExpressionTest" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-check" style="font-size : 5em;color:#337ab7;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
+			<div class="cursor logoSecondary  bt_showScenarioSummary">
+				<center><i class="fas fa-list"></i></center>
+				<span class="txtColor"><center>{{Vue d'ensemble}}</center></span>
 			</div>
 		</div>
 
-		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
+		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalScenario) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
 		} else {
-			echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchScenario" />';
-			echo '<div class="panel-group" id="accordionScenario">';
+			$div = '<div class="input-group" style="margin-bottom:5px;">';
+			$div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchScenario"/>';
+			$div .= '<div class="input-group-btn">';
+			$div .= '<a id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>';
+			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			$div .= '</div>';
+			$div .= '</div>';
+
+			$div .= '<div class="panel-group" id="accordionScenario">';
 			if (count($scenarios[-1]) > 0) {
-				echo '<div class="panel panel-default">';
-				echo '<div class="panel-heading">';
-				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_none" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
-				echo '</h3>';
-				echo '</div>';
-				echo '<div id="config_none" class="panel-collapse collapse">';
-				echo '<div class="panel-body">';
-				echo '<div class="scenarioListContainer">';
+				$div .= '<div class="panel panel-default">';
+				$div .= '<div class="panel-heading">';
+				$div .= '<h3 class="panel-title">';
+				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">{{Aucun}} - ';
+				$c = count($scenarios[-1]);
+				$div .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
+				$div .= '</h3>';
+				$div .= '</div>';
+				$div .= '<div id="config_none" class="panel-collapse collapse">';
+				$div .= '<div class="panel-body">';
+				$div .= '<div class="scenarioListContainer">';
 				foreach ($scenarios[-1] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
+					$div .= '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
 					if($scenario->getDisplay('icon') != ''){
-						echo '<span>'.$scenario->getDisplay('icon').'</span>';
+						$div .= '<span>'.$scenario->getDisplay('icon').'</span>';
 					}else{
-						echo '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
+						$div .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
 					}
-					echo "<br>";
-					echo '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
-					echo '</div>';
+					$div .= "<br>";
+					$div .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+					$div .= '</div>';
 				}
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
 			}
+			echo $div;
+
 			$i = 0;
+			$div = '';
 			foreach ($scenarioListGroup as $group) {
 				if ($group['group'] == '') {
 					continue;
 				}
-				echo '<div class="panel panel-default">';
-				echo '<div class="panel-heading">';
-				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ';
+				$div .= '<div class="panel panel-default">';
+				$div .= '<div class="panel-heading">';
+				$div .= '<h3 class="panel-title">';
+				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
 				$c = count($scenarios[$group['group']]);
-				echo $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
-				echo '</h3>';
-				echo '</div>';
-				echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
-				echo '<div class="panel-body">';
-				echo '<div class="scenarioListContainer">';
+				$div .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
+				$div .= '</h3>';
+				$div .= '</div>';
+				$div .= '<div id="config_' . $i . '" class="panel-collapse collapse">';
+				$div .= '<div class="panel-body">';
+				$div .= '<div class="scenarioListContainer">';
 				foreach ($scenarios[$group['group']] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
+					$div .= '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
 					if($scenario->getDisplay('icon') != ''){
-						echo '<span>'.$scenario->getDisplay('icon').'</span>';
+						$div .= '<span>'.$scenario->getDisplay('icon').'</span>';
 					}else{
-						echo '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
+						$div .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
 					}
-					echo '<br/>';
-					echo '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
-					echo '</div>';
+					$div .= '<br/>';
+					$div .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+					$div .= '</div>';
 				}
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
 				$i += 1;
 			}
-			echo '</div>';
+			$div .= '</div>';
+			echo $div;
 		}
 		?>
 	</div>
@@ -123,197 +130,204 @@ if (is_array($scenarioListGroup)) {
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
-				<a class="btn btn-default btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}
-				</a><a class="btn btn-primary btn-sm" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}
-				</a><a class="btn btn-primary btn-sm bt_showExpressionTest"><i class="fas fa-check"></i> {{Expression}}
-				</a><a class="btn btn-default btn-sm" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i>
-				</a><a class="btn btn-default btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
-				</a><a class="btn btn-default btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
-				</a><a class="btn btn-default btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
-				</a><a class="btn btn-default btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i>
-				</a><a class="btn btn-default btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i>
-				</a><a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.CTRL+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> {{Exécuter}}
+
+				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)"><i class="fas fa-chevron-left"></i>
+				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)"><i class="fas fa-chevron-right"></i></a>
+
+				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
+				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
+				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
+				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
+				</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
+				</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fas fa-share"></i>
+				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+
+				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
+				<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+
+				<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
+			<li role="presentation" class="active"><a id="bt_generalTab" href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
 			<li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Scénario}}</a></li>
 		</ul>
-	<div class="tab-content" style="height:calc(100% - 40px);overflow:auto;overflow-x: hidden;">
-		<div role="tabpanel" class="tab-pane active" id="generaltab">
-			<br/>
-			<div class="row">
-				<div class="col-sm-6">
-					<form class="form-horizontal">
-						<fieldset>
-							<div class="form-group">
-								<label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
-								<div class="col-xs-6">
-									<input class="form-control scenarioAttr" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="generaltab">
+				<br/>
+				<div class="row">
+					<div class="col-sm-6">
+						<form class="form-horizontal">
+							<fieldset>
+								<legend><i class="fas fa-users-cog"></i> {{Paramètres}}</legend>
+								<div class="form-group">
+									<label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
+									<div class="col-xs-6">
+										<input class="form-control scenarioAttr" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label" >{{Nom à afficher}}</label>
-								<div class="col-xs-6">
-									<input class="form-control scenarioAttr" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
+								<div class="form-group">
+									<label class="col-xs-5 control-label" >{{Nom à afficher}}</label>
+									<div class="col-xs-6">
+										<input class="form-control scenarioAttr" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label" >{{Groupe}}</label>
-								<div class="col-xs-6">
-									<input class="form-control scenarioAttr" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
+								<div class="form-group">
+									<label class="col-xs-5 control-label" >{{Groupe}}</label>
+									<div class="col-xs-6">
+										<input class="form-control scenarioAttr" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label"></label>
-								<label>
-									{{Actif}}&nbsp;&nbsp;<input type="checkbox" class="scenarioAttr" data-l1key="isActive">
-								</label>
-								<label>
-									{{Visible}}&nbsp;&nbsp;<input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
-								</label>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label" >{{Objet parent}}</label>
-								<div class="col-xs-6">
-									<div class="dropdown dynDropdown">
-										<button class="btn btn-xs btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="object_id">
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-right">
-											<li><a href="#" data-value="">{{Aucun}}</a></li>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Actif}}</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Visible}}</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-5 control-label" >{{Objet parent}}</label>
+									<div class="col-xs-6">
+										<select class="form-control scenarioAttr" data-l1key="object_id">
+											<option value="">{{Aucun}}</option>
 											<?php
 											foreach (jeeObject::all() as $object) {
-												echo '<li><a href="#" data-value="' . $object->getId() . '">' . $object->getName() . '</a></li>';
+												echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 											}
 											?>
-										</ul>
+										</select>
 									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Timeout en secondes (0 = illimité)}}</label>
-								<div class="col-xs-6">
-									<input class="form-control scenarioAttr" data-l1key="timeout">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Log}}</label>
-								<div class="col-xs-6">
-									<div class="dropdown dynDropdown">
-										<button class="btn btn-xs btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="configuration" data-l2key="logmode">
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-right">
-											<li><a href="#" data-value="default">{{Défaut}}</a></li>
-											<li><a href="#" data-value="none">{{Aucun}}</a></li>
-											<li><a href="#" data-value="realtime">{{Temps réel}}</a></li>
-										</ul>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Log}}</label>
+									<div class="col-xs-6">
+										<select class="form-control scenarioAttr" data-l1key="configuration" data-l2key="logmode">
+											<option value="default">{{Défaut}}</option>
+											<option value="none">{{Aucun}}</option>
+											<option value="realtime">{{Temps réel}}</option>
+										</select>
 									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Multi-lancement}}</label>
-								<div class="col-xs-1">
-									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Timeout}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.}}"></i></sup>
+										<sub>s</sub>
+									</label>
+									<div class="col-xs-6">
+										<input class="form-control scenarioAttr" data-l1key="timeout">
+									</div>
 								</div>
-								<label class="col-xs-2 control-label">{{Synchrone}}</label>
-								<div class="col-xs-1">
-									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Multi-lancement}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario pourra s'éxécuter plusieurs fois en même temps.}}"></i></sup>
+									</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">
+									</div>
+									<label class="col-xs-2 control-label">{{Synchrone}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.}}"></i></sup>
+									</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Timeline}}</label>
-								<div class="col-xs-1">
-									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les exécutions du scénario pourront être vues dans la timeline.}}">
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Timeline}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Les exécutions du scénario pourront être vues dans la timeline.}}"></i></sup>
+									</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
+									</div>
+									<div class="col-xs-5">
+										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%;display:none;">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Icône}}</label>
-								<div class="col-xs-3">
-									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Dernier lancement}}</label>
+									<div class="col-xs-3">
+										<span class="label label-info scenarioAttr" data-l1key="lastLaunch"></span>
+									</div>
 								</div>
-								<div class="col-xs-3">
-									<div class="scenarioAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Icône}}</label>
+									<div class="col-xs-3">
+										<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+									</div>
+									<div class="col-xs-3">
+										<div class="scenarioAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+									</div>
 								</div>
-							</div>
-						</fieldset>
-					</form>
+							</fieldset>
+						</form>
+					</div>
+					<div class="col-sm-6">
+						<form class="form-horizontal">
+							<fieldset>
+								<legend><i class="fas fa-play-circle"></i> {{Déclenchement}}</legend>
+								<div class="form-group">
+									<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+									<div class="col-sm-9 col-xs-6">
+										<div class="input-group">
+											<select class="form-control roundedLeft scenarioAttr" data-l1key="mode">
+												<option value="provoke">{{Provoqué}}</option>
+												<option value="schedule">{{Programmé}}</option>
+												<option value="all">{{Les deux}}</option>
+											</select>
+											<span class="input-group-btn">
+												<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
+												</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
+											</span>
+										</div>
+									</div>
+									<label id="emptyModeWarning" class="warning col-xs-12" style="display: none;"><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
+								</div>
+								<div class="scheduleDisplay" style="display: none;">
+									<div class="form-group">
+										<label class="col-xs-3 control-label" >{{Précédent}}</label>
+										<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+										<label class="col-xs-3 control-label" >{{Prochain}}</label>
+										<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
+									</div>
+									<div class="scheduleMode"></div>
+								</div>
+								<div class="provokeMode provokeDisplay" style="display: none;">
+								</div>
+							</fieldset>
+						</form>
+						<hr class="hrPrimary">
+						<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
+						<div class="scenario_link"></div>
+					</div>
 				</div>
-				<div class="col-sm-6">
-					<form class="form-horizontal">
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<hr class="hrPrimary">
 						<div class="form-group">
 							<div class="col-md-12">
 								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
-							<div class="col-sm-9 col-xs-6">
-								<div class="input-group">
-									<div class="dropdown dynDropdown">
-										<button class="btn btn-xs btn-default dropdown-toggle roundedLeft scenarioAttr" type="button" data-toggle="dropdown" data-l1key="mode">
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-right">
-											<li><a href="#" data-value="provoke">{{Provoqué}}</a></li>
-											<li><a href="#" data-value="schedule">{{Programmé}}</a></li>
-											<li><a href="#" data-value="all">{{Les deux}}</a></li>
-										</ul>
-									</div>
-									<span class="input-group-btn">
-										<a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
-										</a><a class="btn btn-default btn-sm roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="scheduleDisplay" style="display: none;">
-							<div class="form-group">
-								<label class="col-xs-3 control-label" >{{Précédent}}</label>
-								<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-								<label class="col-xs-3 control-label" >{{Prochain}}</label>
-								<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
-							</div>
-							<div class="scheduleMode"></div>
-						</div>
-						<div class="provokeMode provokeDisplay" style="display: none;">
-
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div role="tabpanel" class="tab-pane" id="scenariotab">
-			<div id="div_scenarioElement" class="element" style="padding-bottom: 20px;"></div>
-		</div>
-	</div>
 
-</div>
-</div>
 
-<div class="modal fade" id="md_copyScenario">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal">×</button>
-				<h3>{{Dupliquer le scénario}}</h3>
-			</div>
-			<div class="modal-body">
-				<div style="display: none;" id="div_copyScenarioAlert"></div>
-				<center>
-					<input class="form-control" type="text"  id="in_copyScenarioName" size="16" placeholder="{{Nom du scénario}}"/><br/><br/>
-				</center>
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_copyScenarioSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+			<div role="tabpanel" class="tab-pane" id="scenariotab">
+				<div id="div_scenarioElement" class="element"></div>
 			</div>
 		</div>
+
 	</div>
 </div>
 
@@ -322,7 +336,7 @@ if (is_array($scenarioListGroup)) {
 		<div class="modal-content">
 			<div class="modal-header">
 				<button class="close" data-dismiss="modal">×</button>
-				<h3>{{Ajouter élément}}</h3>
+				<h4>{{Ajouter un bloc}}</h4>
 			</div>
 			<div class="modal-body">
 				<center>
@@ -368,14 +382,17 @@ if (is_array($scenarioListGroup)) {
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+				<a class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>
 </div>
 
 <?php
-include_file('3rdparty', 'jquery.sew/jquery.caretposition', 'js');
-include_file('3rdparty', 'jquery.sew/jquery.sew.min', 'js');
 include_file('desktop', 'scenario', 'js');
+include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
+include_file('3rdparty', 'codemirror/addon/search/search', 'js');
+include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
 ?>

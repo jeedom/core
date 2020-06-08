@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
-	ajax::init();
-	
+
+	ajax::init(array('uploadImage'));
+
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -38,11 +38,11 @@ try {
 		$view->remove();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'all') {
 		ajax::success(utils::o2a(view::all()));
 	}
-	
+
 	if (init('action') == 'get') {
 		if (init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
@@ -56,7 +56,7 @@ try {
 			}
 			$return = array();
 			foreach (view::all() as $view) {
-				$return[$view->getId()] = $view->toAjax(init('version', 'dview'), init('html'));
+				$return[$view->getId()] = $view->toAjax(init('version', 'dashboard'), init('html'));
 			}
 			ajax::success($return);
 		} else {
@@ -64,10 +64,10 @@ try {
 			if (!is_object($view)) {
 				throw new Exception(__('Vue non trouvée. Vérifiez l\'ID', __FILE__));
 			}
-			ajax::success($view->toAjax(init('version', 'dview'), init('html')));
+			ajax::success($view->toAjax(init('version', 'dashboard'), init('html')));
 		}
 	}
-	
+
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -102,7 +102,7 @@ try {
 		}
 		ajax::success(utils::o2a($view));
 	}
-	
+
 	if (init('action') == 'getEqLogicviewZone') {
 		$viewZone = viewZone::byId(init('viewZone_id'));
 		if (!is_object($viewZone)) {
@@ -117,32 +117,41 @@ try {
 		}
 		ajax::success($return);
 	}
-	
-	if (init('action') == 'setEqLogicOrder') {
+
+	if (init('action') == 'setComponentOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$eqLogics = json_decode(init('eqLogics'), true);
+		$components = json_decode(init('components'), true);
 		$sql = '';
-		foreach ($eqLogics as $eqLogic_json) {
-			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
+		foreach ($components as $component) {
+			if (!isset($component['viewZone_id']) || !is_numeric($component['viewZone_id']) || !is_numeric($component['id']) || !is_numeric($component['viewOrder']) || (isset($component['object_id']) && !is_numeric($component['object_id']))) {
 				continue;
 			}
-			$sql .= 'UPDATE viewData SET `order`= ' . $eqLogic_json['order'] . '  WHERE link_id=' . $eqLogic_json['id'] . ' AND  viewZone_id=' . $eqLogic_json['viewZone_id'] . ';';
-			$eqLogic = eqLogic::byId($eqLogic_json['id']);
-			if (!is_object($eqLogic)) {
-				continue;
+			$sql .= 'UPDATE viewData SET `order`= ' . $component['viewOrder'] . '  WHERE link_id=' . $component['id'] . ' AND type="' . $component['type'] . '" AND  viewZone_id=' . $component['viewZone_id'] . ';';
+			if($component['type'] == 'eqLogic'){
+				$eqLogic = eqLogic::byId($component['id']);
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				utils::a2o($eqLogic, $component);
+				$eqLogic->save(true);
+			}elseif($component['type'] == 'scenario'){
+				$scenario = scenario::byId($component['id']);
+				if (!is_object($scenario)) {
+					continue;
+				}
+				utils::a2o($scenario, $component);
+				$scenario->save(true);
 			}
-			utils::a2o($eqLogic, $eqLogic_json);
-			$eqLogic->save(true);
 		}
 		if ($sql != '') {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'setOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -159,7 +168,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'removeImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -169,13 +178,12 @@ try {
 		if (!is_object($view)) {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
-		$view->setImage('data', '');
-		$view->setImage('sha1', '');
+		$view->setImage('sha512', '');
 		$view->save();
 		@rrmdir(__DIR__ . '/../../core/img/view');
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'uploadImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -190,7 +198,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -212,10 +220,9 @@ try {
 		$view->save();
 		ajax::success();
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
 }
-?>

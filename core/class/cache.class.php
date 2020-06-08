@@ -126,7 +126,12 @@ class cache {
 			break;
 			case 'RedisCache':
 			$redis = new Redis();
-			$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
+			$redisAddr = config::byKey('cache::redisaddr');
+			if (strncmp($redisAddr, '/', 1) === 0) {
+				$redis->connect($redisAddr);
+			} else {
+				$redis->connect($redisAddr, config::byKey('cache::redisport'));
+			}
 			self::$cache = new \Doctrine\Common\Cache\RedisCache();
 			self::$cache->setRedis($redis);
 			break;
@@ -170,9 +175,14 @@ class cache {
 				
 			}
 		}
+		foreach (scenario::all() as $scenario) {
+			try {
+				$scenario->emptyCacheWidget();
+			} catch (Exception $e) {
+				
+			}
+		}
 	}
-	
-	
 	
 	public static function search() {
 		return array();
@@ -211,7 +221,7 @@ class cache {
 		if (!file_exists($filename)) {
 			return false;
 		}
-		if (filemtime($filename) < strtotime('-35min')) {
+		if (filemtime($filename) < strtotime('-65min')) {
 			return false;
 		}
 		return true;

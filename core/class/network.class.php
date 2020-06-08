@@ -91,6 +91,15 @@ class network {
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
 				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
+			if(config::byKey('internalPort', 'core', '') == ''){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			if(config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort', 'core', 80) == 80){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			if(config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort', 'core', 443) == 443){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
 			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			
 		}
@@ -173,8 +182,18 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
+			
 			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
+			}
+			if(config::byKey('externalPort', 'core', '') == ''){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			if(config::byKey('externalProtocol') == 'http://' && config::byKey('externalPort', 'core', 80) == 80){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			if(config::byKey('externalProtocol') == 'https://' && config::byKey('externalPort', 'core', 443) == 443){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 		}
@@ -230,9 +249,13 @@ class network {
 		}
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
-			log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
-			curl_close($ch);
-			return false;
+			usleep(rand(1000,100000));
+			$data = curl_exec($ch);
+			if (curl_errno($ch)) {
+				log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
+				curl_close($ch);
+				return false;
+			}
 		}
 		curl_close($ch);
 		if (trim($data) != 'ok') {
@@ -244,7 +267,7 @@ class network {
 	
 	/*     * *********************DNS************************* */
 	
-	public static function dns_create() {
+	public static function dns2_create() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -296,12 +319,21 @@ class network {
 		$openvpn->setEqType_name('openvpn');
 		$openvpn->setConfiguration('dev', 'tun');
 		$openvpn->setConfiguration('proto', 'udp');
-		$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
+		if(config::byKey('dns::vpnurl') != ''){
+			$openvpn->setConfiguration('remote_host', config::byKey('dns::vpnurl'));
+		}else{
+			$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
+		}
 		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
 		$openvpn->setConfiguration('password', config::byKey('dns::token'));
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
+		if(config::byKey('connection::4g') == 1){
+			$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu '.config::byKey('market::dns::mtu'));
+		}else{
+			$openvpn->setConfiguration('optionsAfterStart', '');
+		}
 		$openvpn->save($direct);
 		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
@@ -317,39 +349,23 @@ class network {
 		return $openvpn;
 	}
 	
-	public static function dns_start() {
+	
+	public static function dns2_start() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
-		$openvpn = self::dns_create();
+		$openvpn = self::dns2_create();
 		$cmd = $openvpn->getCmd('action', 'start');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
-		$interface = $openvpn->getInterfaceName();
-		if ($interface !== null && $interface != '' && $interface !== false) {
-			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
-			if (config::byKey('dns::openport') != '') {
-				foreach (explode(',', config::byKey('dns::openport')) as $port) {
-					if (is_nan($port)) {
-						continue;
-					}
-					try {
-						shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port ' . $port . ' -j ACCEPT');
-					} catch (Exception $e) {
-						
-					}
-				}
-			}
-			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -j DROP');
-		}
 	}
 	
-	public static function dns_run() {
+	public static function dns2_run() {
 		if (config::byKey('dns::token') == '') {
 			return false;
 		}
@@ -357,7 +373,7 @@ class network {
 			return false;
 		}
 		try {
-			$openvpn = self::dns_create();
+			$openvpn = self::dns2_create();
 		} catch (Exception $e) {
 			return false;
 		}
@@ -368,11 +384,11 @@ class network {
 		return $cmd->execCmd();
 	}
 	
-	public static function dns_stop() {
+	public static function dns2_stop() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		$openvpn = self::dns_create();
+		$openvpn = self::dns2_create();
 		$cmd = $openvpn->getCmd('action', 'stop');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
@@ -380,7 +396,116 @@ class network {
 		$cmd->execCmd();
 	}
 	
+	public static function dns_start() {
+		if (config::byKey('service::tunnel::enable') != 1) {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		try {
+			self::dns_stop();
+		} catch (\Exception $e) {
+			
+		}
+		log::clear('tunnel');
+		$exec = 'tunnel-linux-'.system::getArch();
+		$dir = __DIR__.'/../../script/tunnel';
+		if(!file_exists($dir)){
+			return;
+		}
+		if(!file_exists($dir.'/'.$exec)){
+			echo shell_exec('cd '.$dir.';wget https://images.jeedom.com/resources/tunnel/'.$exec.' > '.log::getPathToLog('tunnel').' 2>&1');
+		}
+		if(!file_exists($dir.'/'.$exec)){
+			throw new \Exception(__('Impossible de télécharger : ',__FILE__).'https://images.jeedom.com/resources/tunnel/'.$exec);
+		}
+		if(filesize($dir.'/'.$exec) < 7000000){
+			unlink($dir.'/'.$exec);
+			throw new \Exception(__('Taille invalide pour : ',__FILE__).$dir.'/'.$exec);
+		}
+		shell_exec('chmod +x '.$dir.'/'.$exec);
+		if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
+			shell_exec('cd '.$dir.';openssl req -x509 -nodes -newkey rsa:2048 -sha256 -keyout client.key -out client.crt -subj "/C=EU/ST=FR/L=Paris/O=Jeedom, Inc./OU=IT/CN=jeedom.com"> '.log::getPathToLog('tunnel').' 2>&1');
+			if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
+				throw new \Exception(__('Impossible de générer le certificat et la clef privé',__FILE__));
+			}
+		}
+		$replace = array(
+			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
+			'#PORT#' =>80,
+			'#SERVER_ADDR#' => config::byKey('service::tunnel::eu::backend::1')
+		);
+		for($i=1;$i<3;$i++){
+			$infos = explode(':',config::byKey('service::tunnel::eu::backend::'.$i));
+			log::add('tunnel','debug','Test access to '.$infos[0].' on port '.$infos[1]);
+			if(count($infos) < 2){
+				break;
+			}
+			if(network::portOpen($infos[0],$infos[1])){
+				log::add('tunnel','debug','Access is open, used it');
+				$replace['#SERVER_ADDR#'] = config::byKey('service::tunnel::eu::backend::'.$i);
+				break;
+			}
+			log::add('tunnel','debug','Access is close test next');
+		}
+		if(file_exists($dir.'/tunnel.yml')){
+			unlink($dir.'/tunnel.yml');
+		}
+		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
+		$client_id = shell_exec('cd '.$dir.';./'.$exec.' id');
+		log::add('tunnel','debug','Client id is : '.$client_id);
+		try {
+			repo_market::sendTunnelClientId(trim($client_id));
+		} catch (\Exception $e) {
+			log::add('tunnel','debug','Error on on send tunnel id to market : '.$e->getMessage());
+		}
+		$replace['#URL#'] = str_replace('https://','',config::byKey('service::tunnel::host'));
+		if(file_exists($dir.'/tunnel.yml')){
+			unlink($dir.'/tunnel.yml');
+		}
+		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
+		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all >> '.log::getPathToLog('tunnel').' 2>&1 &');
+		try {
+			self::dns2_start();
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
+	public static function dns_run() {
+		if (config::byKey('service::tunnel::enable') != 1) {
+			return false;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return false;
+		}
+		$exec = 'tunnel-linux-'.system::getArch();
+		return (shell_exec('ps ax | grep '.$exec.' | grep  -c -v grep') > 0);
+	}
+	
+	public static function dns_stop() {
+		if (config::byKey('service::tunnel::enable') != 1) {
+			return;
+		}
+		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".system::getArch()."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
+		try {
+			self::dns2_stop();
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
 	/*     * *********************Network management************************* */
+	
+	public static function portOpen($host, $port) {
+		$fp = @fsockopen($host, $port, $errno, $errstr, 0.1);
+		if (!is_resource($fp)){
+			return false;
+		}
+		fclose($fp);
+		return true;
+	}
 	
 	public static function getInterfaceIp($_interface) {
 		$ip = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " | grep \"inet .*" . $_interface . "\" | awk '{print $2}' | cut -d '/' -f 1"));
@@ -405,12 +530,25 @@ class network {
 			if (trim($value) == '') {
 				continue;
 			}
-			$return[] = $value;
+			$return[] = explode('@',$value)[0];
 		}
 		return $return;
 	}
 	
 	public static function cron5() {
+		try {
+			if(config::byKey('service::tunnel::enable') == 1 && config::byKey('market::allowDNS')){
+				if(!self::dns_run()){
+					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (tunnel pas démarré)', __FILE__));
+					self::dns_start();
+				}elseif(file_exists(log::getPathToLog('tunnel')) && shell_exec('tail -n 50 '.log::getPathToLog('tunnel').' | grep -c "action handshake"') < 1){
+					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (pas de handshake trouvé)', __FILE__));
+					self::dns_start();
+				}
+			}
+		} catch (\Exception $e) {
+			
+		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}

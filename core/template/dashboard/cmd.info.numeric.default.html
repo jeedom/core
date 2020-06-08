@@ -1,108 +1,101 @@
-<div style="min-width: 115px;min-height: 100px;top : -7px;padding: 0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-    <div style="width:95px;height : 95px;" class="gauge cursor #history#" data-cmd_id="#id#" ></div>
+<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="{{Date de valeur}} : #valueDate#<br/>{{Date de collecte}} : #collectDate#" >
+<div class="title #hide_name#">
+  <span class="cmdName">#name_display#</span>
+</div>
+<div class="content-sm">
+  <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
+</div>
+<div class="cmdStats #hide_history#">
+  <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+</div>
+<script>
+  jeedom.cmd.update['#id#'] = function(_options) {
+    $('.cmd[data-cmd_id=#id#]').attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+    $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value)
+  }
 
-    <div style="#displayHistory#" class="col-xs-12 center-block" class="cmdStats">
-        <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-    </div>
-    <script>
-       jeedom.cmd.update['#id#'] = function(_options){
-           $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value);
-       }
-
-       if (is_numeric('#state#')) {
-        // The speed gauge
-        $('.cmd[data-cmd_uid=#uid#] .gauge').empty().highcharts({
-            chart: {
-                events: {
-                    click: function (event) {
-                        if (!$.mobile && '#history#' == 'history cursor') {
-                            $('#md_modal2').dialog({title: "Historique"});
-                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=#id#').dialog('open');
-                        }
-                    }
-                },
-                style: {
-                    fontFamily: 'Roboto'
-                },
-                type: 'solidgauge',
-                height : 92,
-                plotBackgroundColor: null,
-                plotBackgroundImage: null,
-                backgroundColor: null,
-                plotBorderWidth: 0,
-                plotShadow: false,
-                spacingTop: 0,
-                spacingLeft: 0,
-                spacingRight: 0,
-                spacingBottom: 0,
-                borderWidth : 0
-            },
-            title: null,
-            pane: {
-                center: ['50%', '85%'],
-                size: '100%',
-                startAngle: - 90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '90%',
-                    outerRadius: '100%',
-                    shape: 'arc',
-                    borderWidth: 0
-                }
-            },
-            tooltip: {
-                enabled: false
-            },
-                // the value axis
-                yAxis: {
-                    stops: [
-                    [0, '#cmdColor#']
-                    ],
-                    lineWidth: 0,
-                    minorTickInterval: null,
-                    tickPixelInterval: 400,
-                    labels : {enabled: false},
-                    tickWidth: 0,
-                    title: {
-                        y: - 70
-                    },
-                    min: #minValue#,
-                    max: #maxValue#,
-                    title: {
-                        text: '<span style="#hideCmdName#">#name_display#</span>',
-                        y: - 35
-                    }
-                },
-                labels : {enabled: false},
-                plotOptions: {
-                    solidgauge: {
-                        dataLabels: {
-                            y: 5,
-                            borderWidth: 0,
-                            useHTML: true
-                        }
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                exporting : {
-                    enabled: false
-                },
-                series: [{
-                    name: '',
-                    data: [Math.round(parseFloat('#state#') * 10) / 10],
-                  	radius: 92,
-            		innerRadius: 72,
-                    dataLabels: {
-                        format: '<span>{y}</span> <span>#unite#</span>'
-                    },
-                }]
-            });
-    } else {
-        $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>');
-    }
+  if (is_numeric('#state#')) {
+    $('.cmd[data-cmd_uid=#uid#] .gauge').empty().highcharts({
+      chart: {
+        style: {
+          fontFamily: 'Roboto'
+        },
+        type: 'solidgauge',
+        plotBackgroundColor: null,
+        plotBackgroundImage: null,
+        backgroundColor: null,
+        plotBorderWidth: 0,
+        plotShadow: false,
+        height: 40,
+        spacingTop: 0,
+        spacingLeft: 0,
+        spacingRight: 0,
+        spacingBottom: 0,
+        borderWidth : 0
+      },
+      title: null,
+      pane: {
+        center: ['50%', '100%'],
+        size: 80,
+        startAngle: - 90,
+        endAngle: 90,
+        background: {
+          backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+          innerRadius: '90%',
+          outerRadius: '100%',
+          shape: 'arc',
+          borderWidth: 0
+        }
+      },
+      tooltip: {
+        enabled: false
+      },
+      // the value axis
+      yAxis: {
+        stops: [
+        [0, '#cmdColor#']
+        ],
+        lineWidth: 0,
+        minorTickInterval: null,
+        tickPixelInterval: 400,
+        labels : {enabled: false},
+        tickWidth: 0,
+        min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
+        max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
+        title: {
+          text: ''
+        }
+      },
+      labels : {enabled: false},
+      plotOptions: {
+        solidgauge: {
+          dataLabels: {
+            y: 9,
+            borderWidth: 0,
+            useHTML: true
+          }
+        }
+      },
+      credits: {
+        enabled: false
+      },
+      exporting : {
+        enabled: false
+      },
+      series: [{
+        name: '',
+        data: [Math.round(parseFloat('#state#') * 10) / 10],
+        radius: 92,
+        innerRadius: 72,
+        dataLabels: {
+          y: 6,
+          format: '<span>{y}</span> <span>#unite#</span>'
+        },
+      }]
+    })
+  } else {
+    $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>')
+  }
 </script>
 
 </div>

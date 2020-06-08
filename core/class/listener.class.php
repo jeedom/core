@@ -31,6 +31,27 @@ class listener {
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
+	public static function clean(){
+		foreach (self::all() as $listener) {
+			$events = $listener->getEvent();
+			if(count($events) > 0){
+				$listener->emptyEvent();
+				foreach ($events as $event) {
+					$cmd = cmd::byId(str_replace('#','',$event));
+					if(is_object($cmd)){
+						$listener->addEvent($cmd->getId());
+					}
+				}
+				$listener->save();
+				$events = $listener->getEvent();
+			}
+			if(count($events) == 0){
+				log::add('listener','debug','Remove listener : '.json_encode(utils::o2a($listener)));
+				$listener->remove();
+			}
+		}
+	}
+	
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener';
@@ -65,7 +86,7 @@ class listener {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 			$value['option'] = $_option;
@@ -83,7 +104,7 @@ class listener {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener
 		WHERE class=:class
-		AND function=:function
+		AND `function`=:function
 		AND `option` LIKE :option';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -97,7 +118,7 @@ class listener {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener
 		WHERE class=:class
-		AND function=:function
+		AND `function`=:function
 		AND event=:event';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -110,7 +131,7 @@ class listener {
 		);
 		$sql = 'DELETE FROM listener
 		WHERE class=:class
-		AND function=:function
+		AND `function`=:function
 		AND event=:event';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
@@ -136,9 +157,9 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public static function check($_event, $_value, $_datetime) {
+	public static function check($_event, $_value, $_datetime = null) {
 		$listeners = self::searchEvent($_event);
-		if (count($listeners) > 0) {
+		if (is_array($listeners) && count($listeners) > 0) {
 			foreach ($listeners as $listener) {
 				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
 			}
@@ -169,7 +190,7 @@ class listener {
 			$option = $this->getOption();
 		}
 		if (isset($option['background']) && $option['background'] == false) {
-			$this->execute($_event, $_value);
+			$this->execute($_event, $_value,$_datetime);
 		} else {
 			$cmd = __DIR__ . '/../php/jeeListener.php';
 			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' "value=' . escapeshellarg($_value) . '"';
@@ -196,7 +217,7 @@ class listener {
 				if (class_exists($class) && method_exists($class, $function)) {
 					$class::$function($option);
 				} else {
-					log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $this->getName());
+					log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . json_encode(utils::o2a($this)));
 					$this->remove();
 					return;
 				}
@@ -205,7 +226,7 @@ class listener {
 				if (function_exists($function)) {
 					$function($option);
 				} else {
-					log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . $this->getName());
+					log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . json_encode(utils::o2a($this)));
 					return;
 				}
 			}

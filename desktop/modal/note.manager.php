@@ -2,6 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+
+$id = init('id', '');
+sendVarToJs('note_id', $id);
 ?>
 <div style="display: none;" id="div_noteManagementAlert"></div>
 <div class="row row-overflow">
@@ -15,15 +18,17 @@ if (!isConnect('admin')) {
 	<div class="col-lg-10 col-md-9 col-sm-8" style="overflow:hidden;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-default btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus"></i> {{Ajouter}}</a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-save"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+				<a class="btn btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus-circle"></i> {{Ajouter}}
+				</a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 			</span>
 		</div>
 		<br/><br/>
 		<div id="div_noteManagerDisplay">
 			<input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>
-			<input class="noteAttr form-control" data-l1key="name"/>
+			<input class="noteAttr form-control" data-l1key="name" placeholder="{{Titre}}"/>
 			<br/>
-			<textarea class="noteAttr form-control ta_autosize" data-l1key="text"></textarea>
+			<textarea class="noteAttr form-control ta_autosize" data-l1key="text" placeholder="{{Texte}}"></textarea>
 		</div>
 	</div>
 </div>
@@ -50,6 +55,7 @@ function updateNoteList(){
 
 $('#bt_noteManagerAdd').on('click',function(){
 	$('#div_noteManagerDisplay .noteAttr').value('');
+	$('#ul_noteList li.active').removeClass('active');
 });
 
 $('#ul_noteList').on('click','.li_noteDisplay',function(){
@@ -85,7 +91,7 @@ $('#bt_noteManagerSave').on('click',function(){
 
 $('#bt_noteManagerRemove').on('click',function(){
 	var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0];
-	var r = confirm('{{Etês vous sur de vouloir supprimer la note : }}'+note.name+' ?');
+	var r = confirm('{{Voulez-vous vraiment supprimer la note : }}'+note.name+' ?');
 	if (r == true) {
 		jeedom.note.remove({
 			id : note.id,
@@ -101,6 +107,14 @@ $('#bt_noteManagerRemove').on('click',function(){
 	}
 });
 
-updateNoteList();
-taAutosize();
+$(function() {
+	updateNoteList()
+	taAutosize()
+	if (note_id != '') {
+		setTimeout(function(){
+			$('li.li_noteDisplay[data-id="'+note_id+'"]').trigger('click')
+		}, 500)
+	}
+})
+
 </script>

@@ -14,7 +14,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Général}}</a></li>
 	<li role="presentation"><a href="#components" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Composants}}</a></li>
-	<a class='btn btn-success btn-sm pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+	<a class='btn btn-success btn-sm pull-right cursor' id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
 </ul>
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="main">
@@ -27,6 +27,12 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 						<label class="col-lg-4 control-label">{{Nom}}</label>
 						<div class="col-lg-2">
 							<input class="planHeaderAttr form-control" data-l1key="name" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Position}}</label>
+						<div class="col-lg-2">
+							<input type="number" class="planHeaderAttr form-control" data-l1key="order" min="0" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -44,16 +50,16 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Code d'accès}}</label>
 						<div class="col-lg-2">
-							<input type="password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
+							<input class="planHeaderAttr form-control inputPassword" data-l1key="configuration" data-l2key="accessCode" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Icône}}</label>
+						<div class="col-lg-1">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
 						<div class="col-lg-2">
 							<div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -109,13 +115,22 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							echo $plan->getLink_id();
 							echo '</td>';
 							echo '<td>';
-							$link = $plan->	getLink();
-							if(is_object($link)){
-								echo $link->getHumanName();
+							if(in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone'))){
+								echo '<span class="label label-default">N/A</span>';
+							}else{
+								$link = $plan->	getLink();
+								if(is_object($link)){
+									echo $link->getHumanName();
+								}else{
+									echo '<span class="label label-danger">{{Lien mort ou absent}}</span>';
+								}
 							}
 							echo '</td>';
 							echo '<td>';
-							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a> ';
+							if(is_object($link)){
+								echo '<a class="btn btn-default btn-xs bt_configurePlanComposant pull-right"><i class="fas fa-cog"></i> {{Configuration}}</a>';
+							}
 							echo '</td>';
 							echo '</tr>';
 						}
@@ -142,6 +157,12 @@ $('.bt_removePlanComposant').off('click').on('click',function(){
 	});
 });
 
+$('.bt_configurePlanComposant').off('click').on('click',function(){
+	var tr = $(this).closest('tr');
+	$('#md_modal2').dialog({title: "{{Configuration du composant}}"});
+	$('#md_modal2').load('index.php?v=d&modal=plan.configure&id='+tr.attr('data-id')).dialog('open');
+});
+
 $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){
 	$('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('');
 });
@@ -154,7 +175,7 @@ $('#bt_chooseIcon').on('click', function () {
 
 $('#bt_uploadImage').fileupload({
 	replaceFileInput: false,
-	url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+	url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id,
 	dataType: 'json',
 	done: function (e, data) {
 		if (data.result.state != 'ok') {
@@ -185,6 +206,7 @@ $('#bt_saveConfigurePlanHeader').on('click', function () {
 		},
 		success: function () {
 			$('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'});
+			$('#div_pageContainer').data('editOption.state', false);
 			loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id);
 		},
 	});

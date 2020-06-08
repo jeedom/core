@@ -1,8 +1,13 @@
-<div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="select" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="width: 146px;height: 44px;">
-    <select class="selectCmd" style="width: 146px; vertical-align: middle;margin-top: 0.5em;height: 28px;" title="#name_display#">#listValue#</select>
-    <script>
-      $(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
-        jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}});
+<div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="select" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-xs">
+    <select class="selectCmd">#listValue#</select>
+  </div>
+  <script>
+    $(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
+      jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}});
     });
-</script>
+  </script>
 </div>

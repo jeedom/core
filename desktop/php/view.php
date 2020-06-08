@@ -33,8 +33,6 @@ sendVarToJS('view_id', $view->getId());
 	?>
 	<div class="bs-sidebar">
 		<ul id="ul_viewSummary" class="nav nav-list bs-sidenav" style="font-size:0.9em;"></ul>
-	</div>
-	<div class="bs-sidebar">
 		<ul id="ul_view" class="nav nav-list bs-sidenav">
 			<?php if (isConnect('admin')) {?>
 				<a class="btn btn-default bt_hideFullScreen" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fas fa-plus-circle"></i> {{Ajouter une vue}}</a>
@@ -60,22 +58,21 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor pull-left bt_displayView reportModeHidden hidden-xs' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
-
-<legend style="height: 35px;color : #563d7c;">{{Vue}} <?php
-echo $view->getName();
-?>
-<?php
-if (init('noControl') == '') {
-	if (isConnect('admin')) {
-		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden bt_hideFullScreen hidden-xs"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }
-		?>
-		
-		<i class="fas fa-pencil-alt pull-right cursor reportModeHidden bt_hideFullScreen hidden-xs" id="bt_editViewWidgetOrder" data-mode="0"></i>
-	<?php }
-	?>
-</legend>
-<div class="row div_displayView"></div>
+<legend class="no-bordered">
+	<i class='far fa-image cursor pull-left bt_displayView reportModeHidden hidden-xs' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
+	<?php
+	if (init('noControl') == '') {
+		if (isConnect('admin')) {
+			?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden bt_hideFullScreen hidden-xs"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }	?>
+			<i class="fas fa-pencil-alt pull-right cursor reportModeHidden bt_hideFullScreen hidden-xs" id="bt_editViewWidgetOrder" data-mode="0" title="{{Mode édition}}"></i>
+		<?php } ?>
+		<center><h3>
+			<?php
+				echo trim($view->getDisplay('icon')).' '.$view->getName();
+			?>
+		</h3></center>
+	</legend>
+	<div class="row div_displayView"></div>
 </div>
 
 </div>

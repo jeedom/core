@@ -1,174 +1,93 @@
-Doc un poco especial porque va a tratar sólo con su página
-mercado de perfiles.
+# Mercado de la libertad
 
-Disponible yendo a su nombre de usuario y el perfil de la
-mercado (al igual que en Jeedom).
 
-Se divide en varias partes:
+Doc un poco especial porque solo se ocupará de su página de perfil de Market.
+Disponible yendo a su nombre de usuario y luego al perfil de Market (un poco como en Jeedom).
 
-Mi perfil
-==========
+Esto se divide en varias partes :
 
-Aquí puede ajustar diversas opciones de su
-perfil:
+## Mi perfil
 
--   ** ** Perfil
+Aquí es donde podrá ajustar diferentes parámetros de su perfil :
 
-    -   ** ** ingreso: Su nombre de usuario en el mercado, no puede ser cambiado
+- **Perfil**
+    - **Login** : Su inicio de sesión en el mercado, no se puede cambiar.
+    - **Apellido** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
+    - **Primer nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
+    - **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
+    - **E-mail** : Su email.
+    - **Lengua** : Tu idioma.
+    - **Contraseña &amp;&amp; Confirmar contraseña** : Le permite cambiar su contraseña.
 
-    -   ** ** Nombre: Su nombre (esta información sólo es útil para
-        hacer que el correo más fresco)
+Para desarrolladores :
+- **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
+- **Correo público** : Su correo electrónico para recibir nuestras comunicaciones.
+- **Cuenta Paypal** : El correo electrónico de su cuenta Paypal (solo se usa para pagar a los desarrolladores).
 
-    -   ** ** Nombre: Su nombre (esta información sólo es útil
-        para hacer el correo más fresco)
+Para los profesionales :
+- **Cuenta de correo electrónico del instalador** : Su correo electrónico de contacto profesional.
+- **Soporte de solicitudes de destinatario** : saber quién recibirá los correos electrónicos de soporte (cliente final, instalador o ambos).
+    - **TOS**
+- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
+- **Revelador** : condiciones de uso para desarrolladores.
+    - **Entradas**
+- **Numero de entradas** : Número de boletos para el mes actual y su límite.
+- **Apoyo** : Botón para enviar una solicitud de soporte (también accesible mediante el signo de exclamación en la esquina superior derecha del Market o en su Jeedom).
+    - **Acceso a betas**
+- **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
+    - **Resumen** Aquí encontrará un resumen de sus diferentes derechos y servicios.
 
-    -   ** ** Nombre de usuario en el foro: Su nombre del foro
-
-    -   ** ** Tu email
-
-    -   ** ** Idioma: Su lengua
-
-    -   **&& Contraseña Confirmar contraseña**: a
-        cambiar su contraseña
-
-Para los desarrolladores:
-
--   ** ** Nombre de usuario en el foro: Su nombre del foro
-
--   ** ** Pública Email: mail para recibir cualquier
-    comunicaciones de nosotros
-
--   ** ** cuenta PayPal: Su correo electrónico cuenta de Paypal (sólo se utiliza
-    para pagar los desarrolladores)
-
-Para los profesionales:
-
--   ** ** cuenta de correo instalador: Su contactos de correo electrónico Pro
-
--   **Receptor de solicitudes de apoyo**: que recibirá
-    apoyo mail (cliente final, instalador o ambos)
-
-    -   ** ** Condiciones
-
--   ** ** Usuario: términos y condiciones (nota
-    leerlos porque se cometen)
-
--   Desarrollador ** ** términos y condiciones para
-    desarrolladores
-
-    -   ** ** Entradas
-
--   ** ** Número de entradas: Número de entradas para el mes en curso
-    y su límite
-
--   ** ** Soporte botón para enviar una solicitud de soporte (accesible
-    También por el signo de exclamación en la parte superior derecha en el mercado o
-    su Jeedom)
-
-    -   ** ** El acceso a versiones beta
-
--   **Habilitar el acceso a los plugins beta**: Habilitar el acceso
-    plugins betas (tenga en cuenta que va a prohibir cualquier acceso al soporte)
-
-    -   ** ** Resumen Aquí encontrará un resumen de su diferente
-        derechos y servicios
-
-> **Tip**
+> **Punta**
 >
-> No se olvide de guardar
+> No olvides guardar.
 
-mis Jeedoms
-===========
+## Mis jeedoms
 
--   ** ** Nivel
+- **Nivel**
+    - **Jeedom** : Su nivel de paquete de servicio.
+    - **Ingrese un número de paquete de servicio** : Le permite ingresar su número de paquete de servicio (se puede encontrar en el correo electrónico enviado por Jeedom durante su pedido).
+- **Clave de instalación**
+    - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
 
-    -   Jeedom ** **: el nivel de Service Pack
-
-    -   **Introduzca un número de paquete de servicio**: introduzca su
-        servicio de número de paquete (que está en el correo enviado por
-        Jeedom en el pedido)
-
--   ** ** Instalación Llave
-
-    -   **Número de instalación de llaves** muestra el número
-        Jeedom de las instalaciones actualmente vinculada a su cuenta y
-        que el límite
-
-> **Tip**
+> **Punta**
 >
-> Es posible que el mercado a veces exige que restablezca
-> Su instalación de llaves, esto es normal, simplemente seguirlo
-> Pide
+> Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
 
--   ** ** Mi Jeedoms: es aquí que indique todos sus Jeedom
+- **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
+    - **Apellido** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
+    - **Estado** : Veamos el estado de la libertad en cuestión.
+    - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
+    - **Dns** : Le permite personalizar el nombre de su DNS.
+    - **URL** : Enumere las diferentes URL de acceso de Jeedom.
+    - **Servidor DNS** : Le informa el servidor DNS al que está conectado.
+    - **Estado DNS** : Le permite ver el estado del DNS.
+    - **Fecha de creación** : Fecha de creación de este Jeedom en su cuenta de Market (como recordatorio, esto se hace automáticamente cuando lo vincula al Market).
+    - **última actualización** : Última comunicación de Jeedom con el mercado.
+    - **Hardware** : Nombre de hardware Jeedom.
+    - **Versión** : Versión Jeedom instalada.
 
-    -   ** ** Nombre: el nombre que desea dar a su Jeedom (si
-        encontrado en el nombre de la copia de seguridad si tiene suscripción
-        Nube de copia de seguridad)
-
-    -   ** ** Estado: para ver el estado de Jeedom en cuestión
-
-    -   **/** IP remota local o la dirección IP de este Jeedom si
-        Jeedom se establece, si usted no pone nada lo hará
-        la última conocida IP
-
-    -   ** ** DNS le permite personalizar el nombre de su DNS
-
-    -   ** ** URL: enumerar los diversos URL para acceder a Jeedom.
-
-    -   Servidor DNS ** ** le indica si el servidor DNS
-        se adjuntan
-
-    -   ** ** DNS Estado: muestra el estado del DNS
-
-    -   ** ** Fecha de Inicio: Fecha de creación de este en su Jeedom
-        cuenta de mercado (recuerda que esto se hace automáticamente cuando
-        se enlaza al mercado)
-
-    -   ** ** Última actualización: última comunicación con el Jeedom
-        el mercado
-
-    -   ** ** hardware: el hardware Nombre Jeedom
-
-    -   ** ** Versión: versión instalada Jeedom
-
-> **Tip**
+> **Punta**
 >
-> No se olvide de guardar
+> No olvides guardar.
 
-mis copias de seguridad
-===========
+## Mis copias de seguridad
 
-En esta pestaña se pueden ver las copias de seguridad en el presente
-Mercado y descargar uno. A continuación puede acceder al enlace
-comprar 1,3,6 ó 12 meses de suscripción a la copia de seguridad de nube
+En esta pestaña puede consultar las copias de seguridad presentes en Market y descargar una. A continuación tiene acceso al enlace para comprar 1,3,6 o 12 meses de suscripción de copia de seguridad en la nube.
 
-Mis SMS / Llamadas
-==============
+## Mis SMS / llamadas
 
-En esta ficha puede comprobar el saldo de SMS / Llamadas
-(Se puede utilizar con el mercado de la telefonía plug-in). A continuación tiene la
-opciones de compra de equilibrio adicional.
+En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el complemento del mercado telefónico). A continuación tiene las diferentes opciones para comprar saldo adicional.
 
-Compras / especiales / donaciones
-======================
+## Mis compras / promociones / donaciones
 
-Aquí encontrará todas sus compras y se puede solicitar la devolución de
-factura o recibo electrónico
+Aquí encontrará todas sus compras y puede solicitar la devolución de la factura o recibo por correo electrónico.
 
 > **Importante**
 >
-> Si usted compra un plugin oficial recibe una factura. en
-> Sin embargo, para una tercera plugin es un recibo de la factura debe
-> Preguntar al desarrollador
+> Si compra un complemento oficial, recibirá una factura. Sin embargo, para un complemento de terceros es un recibo, para la factura debe solicitar al desarrollador.
 
-Puede también de esta ficha para introducir un código de cupón (código de
-un plugin, por ejemplo, que el desarrollador fue capaz de transmitir a usted) y
-hacer una donación.
+También puede ingresar desde esta pestaña un código de promoción (un código para un complemento, por ejemplo, que el desarrollador podría enviarle) y hacer una donación.
 
-mis développments
-=================
+## Mis desarrollos
 
-Si usted es un desarrollador se dará cuenta de que aquí la lista de todos sus
-Ventas sobre la lista de sus pagos y un resumen de
-número de descargas, el número de ventas ...
+Si es un desarrollador, encontrará aquí la lista de todas sus ventas durante un período, la lista de sus pagos, así como un resumen de la cantidad de descargas, la cantidad de ventas

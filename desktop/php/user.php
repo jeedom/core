@@ -4,25 +4,23 @@ if (!isConnect('admin')) {
 }
 sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 ?>
+
 <div id="div_administration">
-	
-	
-	<!--********************Onglet utilisateur********************************-->
 	<div class="tab-pane" id="user">
 		<br/>
 		<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
-					<a class="btn btn-warning btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
-					<?php if (config::byKey('ldap::enable') != '1') {
-						$user = user::byLogin('jeedom_support');
-						if (!is_object($user)) {
-							echo '<a class="btn btn-success btn-sm " id="bt_supportAccess" data-enable="1"><i class="fas fa-user"></i> {{Activer accès support}}</a>';
-						} else {
-							echo '<a class="btn btn-danger btn-sm " id="bt_supportAccess" data-enable="0"><i class="fas fa-user"></i> {{Désactiver accès support}}</a>';
-						}
-						?>
-						<a class="btn btn-success btn-sm roundedRight" id="bt_saveUser"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+					<a class="btn btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}
+						<?php if (config::byKey('ldap::enable') != '1') {
+							$user = user::byLogin('jeedom_support');
+							if (!is_object($user)) {
+								echo '</a><a class="btn btn-success btn-sm " id="bt_supportAccess" data-enable="1"><i class="fas fa-user"></i> {{Activer accès support}}';
+							} else {
+								echo '</a><a class="btn btn-danger btn-sm " id="bt_supportAccess" data-enable="0"><i class="fas fa-user"></i> {{Désactiver accès support}}';
+							}
+							?>
+						</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUser"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 					<?php }
 					?>
 				</span>
@@ -30,8 +28,8 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		</legend>
 		<table class="table table-condensed table-bordered" id="table_user">
 			<thead>
-				<th>{{Utilisateur}}</th>
-				<th style="width: 100px;">{{Actif}}</th>
+				<th style="min-width: 120px;">{{Utilisateur}}</th>
+				<th style="width: 250px;">{{Actif}}</th>
 				<th>{{Profil}}</th>
 				<th>{{Clef API}}</th>
 				<th>{{Double authentification}}</th>
@@ -54,7 +52,11 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</thead>
 			<tbody>
 				<?php
-				$sessions = listSession();
+				try{
+					$sessions = listSession();
+				}catch (Exception $e) {
+					echo '<div class="alert alert-danger">'.$e->getMessage().'</div>';
+				}
 				if (is_array($sessions) && count($sessions) > 0) {
 					foreach ($sessions as $id => $session) {
 						if (!isset($session['ip'])) {
@@ -63,13 +65,15 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						if (!isset($session['datetime'])) {
 							$session['datetime'] = '';
 						}
-						echo '<tr data-id="' . $id . '">';
-						echo '<td>' . $id . '</td>';
-						echo '<td>' . $session['login'] . '</td>';
-						echo '<td>' . $session['ip'] . '</td>';
-						echo '<td>' . $session['datetime'] . '</td>';
-						echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
-						echo '</tr>';
+						$tr = '';
+						$tr .= '<tr data-id="' . $id . '">';
+						$tr .= '<td>' . $id . '</td>';
+						$tr .= '<td>' . $session['login'] . '</td>';
+						$tr .= '<td>' . $session['ip'] . '</td>';
+						$tr .= '<td>' . $session['datetime'] . '</td>';
+						$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+						$tr .= '</tr>';
+						echo $tr;
 					}
 				}
 				?>
@@ -79,7 +83,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 </form>
 <form class="form-horizontal">
 	<fieldset>
-		<legend>{{Périphériques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+		<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
 		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>
@@ -97,23 +101,25 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						continue;
 					}
 					foreach ($user->getOptions('registerDevice') as $key => $value) {
-						echo '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
-						echo '<td>';
-						echo substr($key, 0, 10) . '...';
-						echo '</td>';
-						echo '<td>';
-						echo $user->getLogin();
-						echo '</td>';
-						echo '<td>';
-						echo $value['ip'];
-						echo '</td>';
-						echo '<td>';
-						echo $value['datetime'];
-						echo '</td>';
-						echo '<td>';
-						echo '<a class="btn btn-warning btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-						echo '</td>';
-						echo '</tr>';
+						$tr = '';
+						$tr .= '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
+						$tr .= '<td>';
+						$tr .= substr($key, 0, 10) . '...';
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $user->getLogin();
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $value['ip'];
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $value['datetime'];
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+						$tr .= '</td>';
+						$tr .= '</tr>';
+						echo $tr;
 					}
 				}
 				?>
@@ -133,12 +139,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 				<div style="display: none;" id="div_newUserAlert"></div>
 				<center>
 					<input class="form-control" type="text"  id="in_newUserLogin" placeholder="{{Identifiant}}"/><br/><br/>
-					<input class="form-control" type="password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
+					<input class="form-control" type="password" autocomplete="new-password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
 				</center>
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary" id="bt_newUserSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+				<a class="btn btn-primary bootbox-accept" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.0.3 (2019-02-06)
+ Highstock JS v8.1.0 (2020-05-05)
 
  Indicator series type for Highstock
 
@@ -7,6 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define(function(){return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){(function(b){var k=b.seriesType;k("ad","sma",{params:{volumeSeriesID:"volume"}},{nameComponents:!1,nameBase:"Accumulation/Distribution",getValues:function(e,g){var c=g.period,m=e.xData,f=e.yData,a=g.volumeSeriesID,d=e.chart.get(a);g=d&&d.yData;var n=f?f.length:0,h=[],p=[],q=[];
-if(m.length<=c&&n&&4!==f[0].length)return!1;if(!d)return b.error("Series "+a+" not found! Check `volumeSeriesID`.",!0,e.chart);for(;c<n;c++){e=h.length;var a=f[c][1],d=f[c][2],l=f[c][3],k=g[c],a=[m[c],l===a&&l===d||a===d?0:(2*l-d-a)/(a-d)*k];0<e&&(a[1]+=h[e-1][1]);h.push(a);p.push(a[0]);q.push(a[1])}return{values:h,xData:p,yData:q}}})})(b)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/accumulation-distribution",["highcharts","highcharts/modules/stock"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,c,k,f){a.hasOwnProperty(c)||(a[c]=f.apply(null,k))}a=a?a._modules:{};c(a,"indicators/accumulation-distribution.src.js",[a["parts/Utilities.js"]],function(a){var c=
+a.error;a=a.seriesType;a("ad","sma",{params:{volumeSeriesID:"volume"}},{nameComponents:!1,nameBase:"Accumulation/Distribution",getValues:function(a,f){var d=f.period,m=a.xData,g=a.yData,b=f.volumeSeriesID,e=a.chart.get(b);f=e&&e.yData;var n=g?g.length:0,h=[],p=[],q=[];if(!(m.length<=d&&n&&4!==g[0].length)){if(e){for(;d<n;d++){a=h.length;b=g[d][1];e=g[d][2];var l=g[d][3],k=f[d];b=[m[d],l===b&&l===e||b===e?0:(2*l-e-b)/(b-e)*k];0<a&&(b[1]+=h[a-1][1]);h.push(b);p.push(b[0]);q.push(b[1])}return{values:h,
+xData:p,yData:q}}c("Series "+b+" not found! Check `volumeSeriesID`.",!0,a.chart)}}});""});c(a,"masters/indicators/accumulation-distribution.src.js",[],function(){})});
 //# sourceMappingURL=accumulation-distribution.js.map

@@ -31,18 +31,24 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Position}}</label>
+						<div class="col-lg-2">
+							<input type="number" class="plan3dHeaderAttr form-control" data-l1key="order" min="0" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Code d'accès}}</label>
 						<div class="col-lg-2">
-							<input type="password" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
+							<input class="plan3dHeaderAttr form-control inputPassword" data-l1key="configuration" data-l2key="accessCode" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Icône}}</label>
+						<div class="col-lg-1">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
 						<div class="col-lg-2">
 							<div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -51,6 +57,18 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 							<span class="btn btn-default btn-file">
 								<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
 							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Couleur du fond}}</label>
+						<div class="col-lg-2">
+							<input type="color" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="backgroundColor" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Puissance eclairage général (0.4 defaut)}}</label>
+						<div class="col-lg-2">
+							<input type="number" min="0" step="0.1" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="globalLightPower" />
 						</div>
 					</div>
 				</fieldset>
@@ -88,6 +106,7 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-danger btn-xs bt_removePlan3dComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+							echo '<a class="btn btn-default btn-xs bt_configurePlan3dComposant pull-right"><i class="fas fa-gear"></i> {{Configuration}}</a>';
 							echo '</td>';
 							echo '</tr>';
 						}
@@ -114,13 +133,19 @@ $('.bt_removePlan3dComposant').off('click').on('click',function(){
 	});
 });
 
+$('.bt_configurePlan3dComposant').off('click').on('click',function(){
+	var tr = $(this).closest('tr');
+	$('#md_modal2').dialog({title: "{{Configuration du composant}}"});
+	$('#md_modal2').load('index.php?v=d&modal=plan3d.configure&id='+tr.attr('data-id')).dialog('open');
+});
+
 $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){
 	$('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('');
 });
 
 $('#bt_upload3dModel').fileupload({
 	replaceFileInput: false,
-	url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+	url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + id,
 	dataType: 'json',
 	done: function (e, data) {
 		if (data.result.state != 'ok') {
