@@ -154,7 +154,6 @@ function setTheme() {
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
 	?>
 	<script>
