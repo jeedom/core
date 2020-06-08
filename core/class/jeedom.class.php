@@ -1086,13 +1086,6 @@ class jeedom {
 				update::checkAllUpdate();
 				$updates = update::byStatus('update');
 				if (count($updates) > 0) {
-					$toUpdate = '';
-					foreach ($updates as $update) {
-						$toUpdate .= $update->getLogicalId() . ',';
-					}
-				}
-				$updates = update::byStatus('update');
-				if (count($updates) > 0) {
 					message::add('update', __('De nouvelles mises à jour sont disponibles', __FILE__), '', 'newUpdate');
 				}
 			}
