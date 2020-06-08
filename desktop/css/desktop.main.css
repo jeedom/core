@@ -1571,7 +1571,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding-top: 40px;
 }
 
-#timelineContainer .html i {
+#timelineContainer .html .tml-cmd > span >span i {
   color: var(--linkHoverLight-color) !important;
 }
 
