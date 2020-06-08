@@ -37,6 +37,7 @@
 - **Vue** : possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
 - **Vue** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
+- **Vue** : L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard.
 - **Historique** : Intégration de la Timeline en DB pour des raisons de fiabilité.
 - **Historique** : Gestion de Timelines multiples.
 - **Historique** : Refonte graphique de la timeline.
