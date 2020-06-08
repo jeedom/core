@@ -30,9 +30,8 @@ if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _ur
   $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
 }
 
-$.showLoading()
-
 $(function() {
+  $.showLoading()
   setTimeout(function() {
     modifyWithoutSave = false
   }, 1000)

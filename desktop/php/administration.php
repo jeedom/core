@@ -94,8 +94,8 @@ user::isBan();
 								<option value="pico">Pico</option>
 								<option value="espeak">Espeak</option>
 								<?php
-								foreach (plugin::listPlugin(true) as $plugin) {
-									if(!$plugin->getHasTtsEngine()){
+								foreach ((plugin::listPlugin(true)) as $plugin) {
+									if (!$plugin->getHasTtsEngine()) {
 										continue;
 									}
 									echo '<option value="plugin::'.$plugin->getId().'">{{Plugin}} '.$plugin->getName().'</option>';
@@ -335,7 +335,7 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<select class="form-control configKey" data-l1key="default_bootstrap_theme">
 								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+								foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
 										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 									}
@@ -347,7 +347,7 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<select class="form-control configKey" data-l1key="default_bootstrap_theme_night">
 								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+								foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
 										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 									}
@@ -361,7 +361,7 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<select class="form-control configKey" data-l1key="mobile_theme_color">
 								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+								foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
 										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 									}
@@ -373,7 +373,7 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<select class="form-control configKey" data-l1key="mobile_theme_color_night">
 								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+								foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
 										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 									}
@@ -568,22 +568,16 @@ user::isBan();
 						</thead>
 						<tbody>
 							<?php
-							$div = '';
-							foreach (network::getInterfaces() as $interface) {
-								$mac = network::getInterfaceMac($interface);
-								$div .= '<tr>';
-								$div .= '<td>';
-								$div .= $interface;
-								$div .= '</td>';
-								$div .= '<td>';
-								$div .= network::getInterfaceIp($interface);
-								$div .= '</td>';
-								$div .= '<td>';
-								$div .= network::getInterfaceMac($interface);
-								$div .= '</td>';
-								$div .= '</tr>';
-							}
-							echo $div;
+								$div = '';
+								$interfaces = network::getInterfaces();
+								foreach ($interfaces as $interface) {
+									$div .= '<tr>';
+									$div .= '<td>' . $interface . '</td>';
+									$div .= '<td>'. network::getInterfaceIp($interface) . '</td>';
+									$div .= '<td>'. network::getInterfaceMac($interface) . '</td>';
+									$div .= '</tr>';
+								}
+								echo $div;
 							?>
 						</tbody>
 					</table>
@@ -849,7 +843,7 @@ user::isBan();
 							if ($div != '') echo $div;
 							if (init('rescue', 0) == 0) {
 								$div = '';
-								foreach (plugin::listPlugin(true) as $plugin) {
+								foreach ((plugin::listPlugin(true)) as $plugin) {
 									$div .= '<form class="form-horizontal">';
 									$div .= '<div class="form-group">';
 									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . $plugin->getName() . '</label>';
@@ -1824,7 +1818,7 @@ user::isBan();
 					<?php
 					if (init('rescue', 0) == 0) {
 						$div = '';
-						foreach (plugin::listPlugin(true) as $plugin) {
+						foreach ((plugin::listPlugin(true)) as $plugin) {
 							if (config::byKey('api', $plugin->getId()) == '') {
 								continue;
 							}

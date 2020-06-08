@@ -55,7 +55,6 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/flexboxgrid.min.css',
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
 	'3rdparty/waves/waves.min.css',
-	'3rdparty/jquery.utils/jquery.utils.css',
 	'3rdparty/font-awesome5/css/all.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
