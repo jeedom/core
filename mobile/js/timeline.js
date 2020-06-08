@@ -36,13 +36,13 @@ function initTimeline() {
 }
 
 //exact same success function desktop/mobile:
-function displayTimeline(_folder){
+function displayTimeline() {
   jeedom.timeline.byFolder({
-    folder : $('.changeTimelineFolder.active').attr('data-value'),
-    error: function (error) {
+    folder : $('#sel_timelineFolder').value(),
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
       data.sort(sortByDateConsistentASC)
       data = data.reverse()
       var dataLength = data.length
@@ -53,12 +53,14 @@ function displayTimeline(_folder){
       var prevDate = moment().format("YYYY-MM-DD")
       var prevDateTs = moment().unix()
       var content = '<div class="label-warning day">'+data[0].date.substring(0,10)+'</div>'
+
+      var thisData, date, time, lineClass, style, height, li
       for (var i in data) {
-        var thisData = data[i]
-        var date = thisData.date.substring(0,10)
-        var time = thisData.date.substring(11,19)
+        thisData = data[i]
+        date = thisData.date.substring(0,10)
+        time = thisData.date.substring(11,19)
         thisDateTs = moment(thisData.date.substring(0,19)).unix()
-        var lineClass = ''
+        lineClass = ''
 
         if (prevDate != date) {
           isFirstOfDay = true
@@ -74,7 +76,7 @@ function displayTimeline(_folder){
 
         //actual time marker:
         if (i == 0) {
-          var li = '<li style="background-color:transparent!important;">'
+          li = '<li style="background-color:transparent!important;">'
           li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
           li += '<div class="date">' + date + '</div>'
           li += '</li>'
@@ -82,8 +84,8 @@ function displayTimeline(_folder){
         }
 
         //time spacing:
-        var style = ''
-        var height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
+        style = ''
+        height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
         if (height > 5) {
           style = 'margin-top:'+height+'px!important;'
         }
@@ -91,7 +93,7 @@ function displayTimeline(_folder){
           height = Math.abs((thisDateTs - moment(data[parseInt(i)+1].date.substring(0,19)).unix()) / decayFactor)
           style += 'margin-bottom:'+height+'px!important;'
         }
-        var li = '<li style="'+style+'">'
+        li = '<li style="'+style+'">'
         li += '<div>'
 
         //scenario or cmd info/action:

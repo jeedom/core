@@ -7,16 +7,15 @@ $date = array(
 	'end' => date('Y-m-d'),
 );
 ?>
-<div style="display: none;" id="div_alertHistory"></div>
+
 <ul class="nav nav-tabs reportModeHidden" role="tablist" style="margin-top:4px;">
 	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-chart-bar"></i> {{Historique}}</a></li>
 	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-clock"></i> {{Timeline}}</a></li>
+	<div id="div_alertHistory" style="display: inline-block;"></div>
 </ul>
 
 <div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
-		<br/>
-
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -38,7 +37,8 @@ $date = array(
 					<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
 					<?php
 					$object_id = -1;
-					foreach (cmd::allHistoryCmd() as $cmd) {
+					$historyAll = cmd::allHistoryCmd();
+					foreach ($historyAll as $cmd) {
 						$eqLogic = $cmd->getEqLogic();
 						if (!$eqLogic->hasRight('r')) {
 							continue;
