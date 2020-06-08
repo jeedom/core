@@ -34,7 +34,7 @@ user::isBan();
 	<ul class="nav nav-tabs nav-primary" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
-		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
+		<li role="presentation"><a id="bt_networkTab" href="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
 		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-file" title="{{Logs}}"></i><span> {{Logs}}</span></a></li>
 		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-table" title="{{Résumés}}"></i><span> {{Résumés}}</span></a></li>
 		<li role="presentation"><a href="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon divers-svg" title="{{Equipements}}"></i><span> {{Equipements}}</span></a></li>
@@ -558,7 +558,7 @@ user::isBan();
 			<div class="row">
 				<div class="col-sm-6">
 					<legend>{{Gestion avancée}}</legend>
-					<table class="table table-condensed table-bordered">
+					<table id="networkInterfacesTable" class="table table-condensed table-bordered">
 						<thead>
 							<tr>
 								<th>{{Interface}}</th>
@@ -566,20 +566,7 @@ user::isBan();
 								<th>{{Mac}}</th>
 							</tr>
 						</thead>
-						<tbody>
-							<?php
-								$div = '';
-								$interfaces = network::getInterfaces();
-								foreach ($interfaces as $interface) {
-									$div .= '<tr>';
-									$div .= '<td>' . $interface . '</td>';
-									$div .= '<td>'. network::getInterfaceIp($interface) . '</td>';
-									$div .= '<td>'. network::getInterfaceMac($interface) . '</td>';
-									$div .= '</tr>';
-								}
-								echo $div;
-							?>
-						</tbody>
+						<tbody></tbody>
 					</table>
 					<form class="form-horizontal">
 						<fieldset>

@@ -169,6 +169,29 @@ $pageContainer.delegate('.configKey[data-l1key="log::engine"]', 'change', functi
   $('.logEngine.'+$(this).value()).show()
 })
 
+$('#bt_networkTab').on('click',function() {
+  var tableBody = $('#networkInterfacesTable tbody')
+  if (tableBody.children().length == 0) {
+    jeedom.network.getInterfacesInfo({
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(data) {
+        var div = ''
+        for (var _interface in data) {
+          div += '<tr>'
+          div += '<td>'+_interface+'</td>'
+          div += '<td>'+(data[_interface].ip != false ? data[_interface].ip : '')+'</td>'
+          div += '<td>'+(data[_interface].mac != false ? data[_interface].mac : '')+'</td>'
+          div += '</tr>'
+        }
+        tableBody.empty().append(div)
+      }
+    })
+  }
+})
+
+
 $(".bt_regenerate_api").on('click', function(event) {
   $.hideAlert()
   var el = $(this)
