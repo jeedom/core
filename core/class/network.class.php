@@ -422,6 +422,9 @@ class network {
 		log::clear('tunnel');
 		$exec = 'tunnel-linux-'.system::getArch();
 		$dir = __DIR__.'/../../script/tunnel';
+		if(!file_exists($dir)){
+			return;
+		}
 		if(!file_exists($dir.'/'.$exec)){
 			echo shell_exec('cd '.$dir.';wget https://images.jeedom.com/resources/tunnel/'.$exec.' > '.log::getPathToLog('tunnel').' 2>&1');
 		}
