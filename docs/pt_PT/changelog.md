@@ -5,6 +5,7 @@
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **Painel de instrumentos** : Modo de edição agora inserindo o bloco movido.
+- **Painel de instrumentos** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acessar sua configuração.
 - **Painel de instrumentos** : Agora podemos clicar no *Tempo* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
 - **Painel de instrumentos** : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
 - **Painel de instrumentos** : Adicionar (voltar!) Um botão para filtrar os itens exibidos por categoria.
@@ -35,6 +36,7 @@
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Vista** : possibilidade de colocar cenários.
 - **Vista** : Modo de edição agora inserindo o bloco movido.
+- **Vista** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acessar sua configuração.
 - **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Histórico** : Gerenciamento de várias linhas do tempo.
 - **Histórico** : Revisão gráfica do cronograma.

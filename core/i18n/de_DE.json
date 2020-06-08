@@ -611,7 +611,7 @@
         "Nom": "Name",
         "Type": "Typ",
         "Sous-type": "Untertyp",
-        "Commande déclenchant une mise à jour": "Befehl löst ein Update aus",
+        "Mise à jour par": "Aktualisiert von",
         "Valeurs possibles": "Mögliche Werte",
         "Valeur": "Wert",
         "Date collecte": "Zeiterfassung",
@@ -1493,6 +1493,7 @@
         "Activer": "Aktivieren",
         "Permet de modifier les paramètres par défaut des thèmes": "Ändern Sie die Standardeinstellungen für Themen",
         "Personnalisation avancée": "Erweiterte Anpassung",
+        "Activer la Personnalisation avancée.": "Aktivieren Sie die erweiterte Personalisierung",
         "Transparence": "Transparenz",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "Transparenz (Deckkraft) von Kacheln und bestimmten Oberflächenelementen",
         "Arrondi": "Runde",
@@ -2368,7 +2369,8 @@
         "Configuration de l\\'objet": "Konfiguration des Objekts"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Im Bearbeitungsmodus können Sie die Widgets verschieben, ihre Größe ändern und die Reihenfolge der Befehle in den Widgets ändern"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Im Bearbeitungsmodus können Sie die Widgets verschieben, ihre Größe ändern und die Reihenfolge der Befehle in den Widgets ändern",
+        "Configuration": "Konfiguration"
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Name der Ansicht?",
@@ -2508,6 +2510,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Historique": "Chronik",
+        "Configuration": "Konfiguration",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sie befinden sich im Bearbeitungsmodus, in dem Sie die Widgets verschieben, ihre Größe ändern und die Reihenfolge der Befehle in den Widgets ändern können. Vergessen Sie nicht, den Bearbeitungsmodus zu verlassen, um zu speichern"
     },
     "desktop\/js\/plan.js": {
@@ -2665,15 +2668,7 @@
         "Recherche": "Suche",
         "Centre de Messages": "Nachrichtencenter",
         "Erreur Javascript": "Javascript-Fehler",
-        "Choisissez une icône": "Wählen Sie ein Symbol",
-        "Configuration avancée": "Erweiterte Konfiguration",
-        "Configuration du widget": "Widget-Konfiguration",
-        "Defaut": "Standard",
-        "Table": "Tabelle",
-        "Ajouter colonne": "Spalte hinzufügen",
-        "Ajouter ligne": "Zeile hinzufügen",
-        "Supprimer colonne": "Säule entfernen",
-        "Supprimer ligne": "Zeile löschen"
+        "Choisissez une icône": "Wählen Sie ein Symbol"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Befehlskonfiguration",

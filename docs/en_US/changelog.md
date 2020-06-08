@@ -5,6 +5,7 @@
 - **Synthesis** : New page **Home → Synthesis** offering a global visual synthesis of objects (rooms).
 - **Research** : Add of a search engine in **Tools → Search**.
 - **Dashboard** : Edit mode now inserting the moved tile.
+- **Dashboard** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to its configuration.
 - **Dashboard** : We can now click on the *time* time actions widgets to open the history window of the linked info command.
 - **Dashboard** : The size of a new equipment&#39;s tile adapts to its content.
 - **Dashboard** : Add (back!) A button to filter the displayed items by category.
@@ -35,6 +36,7 @@
 - **Analysis / Logs** : New monospace type font for logs.
 - **View** : possibility to put scenarios.
 - **View** : Edit mode now inserting the moved tile.
+- **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to its configuration.
 - **History** : Integration of the Timeline in DB for reliability reasons.
 - **History** : Management of multiple timelines.
 - **History** : Timeline graphic overhaul.

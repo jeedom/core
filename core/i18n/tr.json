@@ -611,7 +611,7 @@
         "Nom": "İsim",
         "Type": "Ceşit",
         "Sous-type": "Alt türü(tipi)",
-        "Commande déclenchant une mise à jour": "Güncelleme başlatma komutası",
+        "Mise à jour par": "",
         "Valeurs possibles": "",
         "Valeur": "Değer",
         "Date collecte": "Toplama tarihi",
@@ -1493,6 +1493,7 @@
         "Activer": "Etkinleştirmek",
         "Permet de modifier les paramètres par défaut des thèmes": "",
         "Personnalisation avancée": "Gelişmiş kişileştirme",
+        "Activer la Personnalisation avancée.": "",
         "Transparence": "",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "",
         "Arrondi": "",
@@ -2368,7 +2369,8 @@
         "Configuration de l\\'objet": "Yapılandırma \\ 'in nesne"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz",
+        "Configuration": "Ayar"
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Görünümün ismi ?",
@@ -2508,6 +2510,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Historique": "Geçmiş",
+        "Configuration": "Ayar",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sen widget'lar taşımak, yeniden boyutlandırmak ve widget'larda komutların sırasını değiştirebilirsiniz düzenleme modunda bulunmaktadır. kaydetmek için düzenleme modundan çıkmak için unutmayın"
     },
     "desktop\/js\/plan.js": {
@@ -2665,15 +2668,7 @@
         "Recherche": "",
         "Centre de Messages": "",
         "Erreur Javascript": "",
-        "Choisissez une icône": "",
-        "Configuration avancée": "Gelişmiş ayarlar",
-        "Configuration du widget": "Widgetin ayarları",
-        "Defaut": "Varsayılan",
-        "Table": "Tablo",
-        "Ajouter colonne": "Sütun ekle",
-        "Ajouter ligne": "Satır ekle",
-        "Supprimer colonne": "Sütun sil",
-        "Supprimer ligne": "Satır sil"
+        "Choisissez une icône": ""
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Komuta ayarları",

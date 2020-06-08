@@ -66,6 +66,8 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
 
+Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf die Konfiguration ermöglicht.
+
 Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten :
 
 - Ordnen Sie sie entweder durch Ziehen und Ablegen neu an.

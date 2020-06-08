@@ -5,6 +5,7 @@
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
 - **Buscar** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
 - **Salpicadero** : El modo de edición ahora inserta el mosaico movido.
+- **Salpicadero** : Modo de edición: los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
 - **Salpicadero** : Ahora podemos hacer clic en el *tiempo* widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
 - **Salpicadero** : El tamaño del mosaico de un equipo nuevo se adapta a su contenido.
 - **Salpicadero** : Agregar (¡atrás!) Un botón para filtrar los elementos mostrados por categoría.
@@ -35,6 +36,7 @@
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
 - **Vista** : posibilidad de poner escenarios.
 - **Vista** : El modo de edición ahora inserta el mosaico movido.
+- **Vista** : Modo de edición: los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
 - **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Historial** : Gestión de múltiples líneas de tiempo.
 - **Historial** : Revisión gráfica del cronograma.

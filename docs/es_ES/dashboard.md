@@ -66,6 +66,8 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 En modo edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
 
+los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
+
 También puede editar el diseño interno de los controles en el mosaico :
 
 - O bien reorganícelos arrastrando y soltando.

@@ -611,7 +611,7 @@
         "Nom": "Nome",
         "Type": "Tipo",
         "Sous-type": "Sotto-tipo",
-        "Commande déclenchant une mise à jour": "Comando che innesca un aggiornamento",
+        "Mise à jour par": "",
         "Valeurs possibles": "",
         "Valeur": "Valore",
         "Date collecte": "Data collezione",
@@ -1493,6 +1493,7 @@
         "Activer": "Attivare",
         "Permet de modifier les paramètres par défaut des thèmes": "Modifica le impostazioni predefinite per i temi",
         "Personnalisation avancée": "Personalizzazione avanzata",
+        "Activer la Personnalisation avancée.": "",
         "Transparence": "Trasparenza",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "Trasparenza (opacità) di piastrelle e alcuni elementi dell'interfaccia",
         "Arrondi": "Tondo",
@@ -2368,7 +2369,8 @@
         "Configuration de l\\'objet": "Oggetto Configuration \\ 's"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Sei in modalità di modifica, puoi spostare i widget, ridimensionarli e cambiare l'ordine dei comandi nei widget"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Sei in modalità di modifica, puoi spostare i widget, ridimensionarli e cambiare l'ordine dei comandi nei widget",
+        "Configuration": "Configurazione"
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Nome della vista?",
@@ -2508,6 +2510,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Historique": "Storico",
+        "Configuration": "Configurazione",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sei in modalità di modifica, puoi spostare i widget, ridimensionarli e cambiare l'ordine dei comandi nei widget. Non dimenticare di uscire dalla modalità di modifica per salvare"
     },
     "desktop\/js\/plan.js": {
@@ -2665,15 +2668,7 @@
         "Recherche": "",
         "Centre de Messages": "",
         "Erreur Javascript": "Errore Javascript",
-        "Choisissez une icône": "",
-        "Configuration avancée": "Configurazione avanzata",
-        "Configuration du widget": "Impostazione Widget",
-        "Defaut": "Predefinito",
-        "Table": "Tavolo",
-        "Ajouter colonne": "Aggiungi colonna",
-        "Ajouter ligne": "Aggiungi linea",
-        "Supprimer colonne": "Eliminare la colonna",
-        "Supprimer ligne": "Elimina fila"
+        "Choisissez une icône": ""
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configurazione del comando",

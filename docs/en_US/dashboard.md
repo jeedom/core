@@ -66,6 +66,8 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 
 In edit mode (*the pencil at the top right*), you can change the size of the tiles and their arrangement on the Dashboard.
 
+the equipment refresh icons are replaced by an icon allowing access to its configuration.
+
 You can also edit the internal layout of the controls on the tile :
 
 - Either rearrange them by dragging and dropping.

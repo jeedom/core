@@ -611,7 +611,7 @@
         "Nom": "Nombre",
         "Type": "Tipo",
         "Sous-type": "Sub-tipo",
-        "Commande déclenchant une mise à jour": "Comando desencadenar una actualización",
+        "Mise à jour par": "Actualizado por",
         "Valeurs possibles": "Valores posibles",
         "Valeur": "Valor",
         "Date collecte": "Fecha de recolección",
@@ -1493,6 +1493,7 @@
         "Activer": "Activar",
         "Permet de modifier les paramètres par défaut des thèmes": "Cambiar la configuración predeterminada para los temas",
         "Personnalisation avancée": "Personalización avanzada",
+        "Activer la Personnalisation avancée.": "Activa la personalización avanzada",
         "Transparence": "Transparencia",
         "Transparence (Opacité) des tuiles et de certains éléments d'interface.": "Transparencia (opacidad) de mosaicos y ciertos elementos de la interfaz",
         "Arrondi": "Ronda",
@@ -2368,7 +2369,8 @@
         "Configuration de l\\'objet": "Objeto de configuración \\'s"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Estás en modo de edición puedes mover los widgets, redimensionarlos y cambiar el orden de los comandos en los widgets"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Estás en modo de edición puedes mover los widgets, redimensionarlos y cambiar el orden de los comandos en los widgets",
+        "Configuration": "Configuración"
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Nombre de la vista ?",
@@ -2508,6 +2510,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Historique": "Historial",
+        "Configuration": "Configuración",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Estás en modo de edición puedes mover los widgets, redimensionarlos y cambiar el orden de los comandos en los widgets. No olvide salir del modo de edición para guardar"
     },
     "desktop\/js\/plan.js": {
@@ -2665,15 +2668,7 @@
         "Recherche": "Buscar",
         "Centre de Messages": "Centro de mensajes",
         "Erreur Javascript": "Error de Javascript",
-        "Choisissez une icône": "Elige un ícono",
-        "Configuration avancée": "Configuración avanzada",
-        "Configuration du widget": "Configuración del widget",
-        "Defaut": "Por defecto",
-        "Table": "Tabla",
-        "Ajouter colonne": "Añadir columna",
-        "Ajouter ligne": "Añadir fila",
-        "Supprimer colonne": "Eliminar columna",
-        "Supprimer ligne": "Eliminar fila"
+        "Choisissez une icône": "Elige un ícono"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Comando de configuración",
