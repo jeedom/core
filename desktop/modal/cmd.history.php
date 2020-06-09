@@ -7,11 +7,12 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 $id = init('id');
-if(trim($id) == ''){
+if (trim($id) == '') {
   $id = init('showId');
 }
 sendVarToJs('cmd_id',$id);
 ?>
+
 <div style="display: none;" id="div_alertHistory"></div>
 <div class="md_history">
   <div class="row">
@@ -61,7 +62,7 @@ $(function() {
       newGraph : false,
       showLegend : _showLegend,
       height : jQuery(window).height() - 270,
-      success: function (data) {
+      success: function(data) {
         noChart = false
         done -= 1
         setModal()
@@ -160,8 +161,8 @@ function setModal() {
     }
 
     function resizeHighChartModal() {
-      if(!divHighChart || !chart){
-        return;
+      if (!divHighChart || !chart) {
+        return
       }
       chart.setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
       setTimeout(function() {
@@ -171,7 +172,6 @@ function setModal() {
     }
 
     resizeHighChartModal()
-
   }
 }
 </script>

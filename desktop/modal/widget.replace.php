@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 global $JEEDOM_INTERNAL_CONFIG;
 $select = array('dashboard' => '','mobile'=>'');
 $seld = array();
-foreach (cmd::availableWidget('dashboard') as $type => $value) {
+foreach ((cmd::availableWidget('dashboard')) as $type => $value) {
   if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
     continue;
   }
@@ -24,7 +24,7 @@ foreach (cmd::availableWidget('dashboard') as $type => $value) {
 sort($seld);
 $select['dashboard'] = implode('',$seld);
 $selm = array();
-foreach (cmd::availableWidget('mobile') as $type => $value) {
+foreach ((cmd::availableWidget('mobile')) as $type => $value) {
   if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
     continue;
   }

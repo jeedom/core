@@ -11,6 +11,7 @@ sendVarToJS('cmdInfo', jeedom::toHumanReadable(utils::o2a($cmd)));
 sendVarToJS('cmdInfoSearchString', urlencode(str_replace('#', '', $cmd->getHumanName())));
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
+$configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 ?>
 
 <div style="display: none;" id="md_displayCmdConfigure"></div>
@@ -283,7 +284,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <option value="">{{Aucun}}</option>
                 <?php
                 $groups = array();
-                foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
+                foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
                   if (strtolower($cmd->getType()) != strtolower($info['type'])) {
                     continue;
                   }
@@ -577,7 +578,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <th style="width:200px;"></th>
               <?php
               $display = '';
-              foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+              foreach ($configEqDisplayType as $key => $value) {
                 $display .= '<th>' . $value['name'] . '</th>';
               }
               echo $display;
@@ -695,7 +696,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <td>{{Afficher le nom}}</td>
                 <?php
                 $display = '';
-                foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+                foreach ($configEqDisplayType as $key => $value) {
                   $display .= '<td>';
                   if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
                     $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
@@ -713,7 +714,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <td>{{Afficher le nom ET l'icône}}</td>
                 <?php
                 $display = '';
-                foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+                foreach ($configEqDisplayType as $key => $value) {
                   $display .= '<td>';
                   if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
                     $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
@@ -730,7 +731,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <td>{{Afficher les statistiques}}</td>
                 <?php
                 $display = '';
-                foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+                foreach ($configEqDisplayType as $key => $value) {
                   $display .= '<td>';
                   if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
                     $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
@@ -775,7 +776,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <?php
               if ($cmd->getDisplay('parameters') != '') {
                 $tr = '';
-                foreach ($cmd->getDisplay('parameters') as $key => $value) {
+                foreach (($cmd->getDisplay('parameters')) as $key => $value) {
                   $tr .= '<tr>';
                   $tr .= '<td>';
                   $tr .= '<input class="form-control key" value="' . $key . '" />';
@@ -822,6 +823,7 @@ $(function() {
   if (values != '') {
     var arrValues = values.split('#')
     var spans = ''
+    var span
     arrValues.forEach(function(thisValue) {
       if (thisValue != '' && !thisValue.includes('#')) {
         jeedom.cmd.getHumanCmdName({
@@ -836,7 +838,7 @@ $(function() {
         })
       } else {
         if (thisValue != '') {
-          var span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
+          span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
           spanValues.parent().prepend(span)
         }
       }

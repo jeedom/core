@@ -33,31 +33,33 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
     foreach ($listeCmds as $listCmd) {
       $eqLogic = $listCmd->getEqLogic();
       $object = null;
-      if(is_object($eqLogic)){
+      if (is_object($eqLogic)) {
         $object = $eqLogic->getObject();
       }
-      echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
-      echo '<td>';
+      $tr = '';
+      $tr .= '<tr data-cmd_id="' . $listCmd->getId() . '">';
+      $tr .= '<td>';
       if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
-        echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
       } else {
-        echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
+        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" />';
       }
-      echo '</td>';
-      echo '<td>';
+      $tr .= '</td>';
+      $tr .= '<td>';
       if(is_object($object)){
-        echo $object->getName();
+        $tr .= $object->getName();
       }
-      echo '</td>';
-      echo '<td>';
+      $tr .= '</td>';
+      $tr .= '<td>';
       if(is_object($eqLogic)){
-        echo $eqLogic->getName();
+        $tr .= $eqLogic->getName();
       }
-      echo '</td>';
-      echo '<td>';
-      echo $listCmd->getName();
-      echo '</td>';
-      echo '</tr>';
+      $tr .= '</td>';
+      $tr .= '<td>';
+      $tr .= $listCmd->getName();
+      $tr .= '</td>';
+      $tr .= '</tr>';
+      echo $tr;
     }
     ?>
   </tbody>

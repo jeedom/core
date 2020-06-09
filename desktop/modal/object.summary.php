@@ -55,12 +55,12 @@ if (!isConnect()) {
 				$html .= '<td align="center" style="width:140px;"><input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="hideOnOverview" /></td>';
 			}
 			$html .= '<td>';
-			foreach (config::byKey('object:summary') as $key => $value) {
+			foreach ((config::byKey('object:summary')) as $key => $value) {
 				$title = '';
 				if (!isset($object->getConfiguration('summary')[$key]) || !is_array($object->getConfiguration('summary')[$key]) || count($object->getConfiguration('summary')[$key]) == 0) {
 					continue;
 				}
-				foreach ($object->getConfiguration('summary')[$key] as $summary) {
+				foreach (($object->getConfiguration('summary')[$key]) as $summary) {
 					if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
 						$title .= '&#10;' . cmd::byId(str_replace('#', '', $summary['cmd']))->getHumanName();
 					} else {
@@ -77,14 +77,14 @@ if (!isConnect()) {
 			}
 			$html .= '</td>';
 			$html .= '<td>';
-			foreach (config::byKey('object:summary') as $key => $value) {
+			foreach ((config::byKey('object:summary')) as $key => $value) {
 				if ($object->getConfiguration('summary::hide::desktop::' . $key) == 1) {
 					$html .= '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 				}
 			}
 			$html .= '</td>';
 			$html .= '<td>';
-			foreach (config::byKey('object:summary') as $key => $value) {
+			foreach ((config::byKey('object:summary')) as $key => $value) {
 				if ($object->getConfiguration('summary::hide::mobile::' . $key) == 1) {
 					$html .= '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 				}

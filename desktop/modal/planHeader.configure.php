@@ -103,36 +103,38 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 					</thead>
 					<tbody>
 						<?php
-						foreach ($planHeader->getPlan() as $plan) {
-							echo '<tr  class="plan" data-id="'.$plan->getId().'">';
-							echo '<td>';
-							echo $plan->getId();
-							echo '</td>';
-							echo '<td>';
-							echo $plan->getLink_type();
-							echo '</td>';
-							echo '<td>';
-							echo $plan->getLink_id();
-							echo '</td>';
-							echo '<td>';
-							if(in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone'))){
-								echo '<span class="label label-default">N/A</span>';
-							}else{
+						foreach (($planHeader->getPlan()) as $plan) {
+							$tr = '';
+							$tr .= '<tr  class="plan" data-id="'.$plan->getId().'">';
+							$tr .= '<td>';
+							$tr .= $plan->getId();
+							$tr .= '</td>';
+							$tr .= '<td>';
+							$tr .= $plan->getLink_type();
+							$tr .= '</td>';
+							$tr .= '<td>';
+							$tr .= $plan->getLink_id();
+							$tr .= '</td>';
+							$tr .= '<td>';
+							if (in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone'))) {
+								$tr .= '<span class="label label-default">N/A</span>';
+							} else {
 								$link = $plan->	getLink();
 								if(is_object($link)){
-									echo $link->getHumanName();
+									$tr .= $link->getHumanName();
 								}else{
-									echo '<span class="label label-danger">{{Lien mort ou absent}}</span>';
+									$tr .= '<span class="label label-danger">{{Lien mort ou absent}}</span>';
 								}
 							}
-							echo '</td>';
-							echo '<td>';
-							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a> ';
-							if(is_object($link)){
-								echo '<a class="btn btn-default btn-xs bt_configurePlanComposant pull-right"><i class="fas fa-cog"></i> {{Configuration}}</a>';
+							$tr .= '</td>';
+							$tr .= '<td>';
+							$tr .= '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a> ';
+							if (is_object($link)) {
+								$tr .= '<a class="btn btn-default btn-xs bt_configurePlanComposant pull-right"><i class="fas fa-cog"></i> {{Configuration}}</a>';
 							}
-							echo '</td>';
-							echo '</tr>';
+							$tr .= '</td>';
+							$tr .= '</tr>';
+							echo tr;
 						}
 						?>
 					</tbody>

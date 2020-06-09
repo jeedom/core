@@ -13,12 +13,12 @@ foreach ($cmds as $cmd) {
   }
 }
 ?>
+
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
 <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
 <center>
   <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
 </center>
-
 <br/>
 <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory">
   <thead>
@@ -102,59 +102,61 @@ foreach ($cmds as $cmd) {
 </table>
 
 <script>
-initTableSorter();
-$("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
-$('#table_cmdConfigureHistory tbody tr').attr('data-change','0');
-$("#table_cmdConfigureHistory").trigger("update");
-$("#table_cmdConfigureHistory").width('100%');
+initTableSorter()
+var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
+$tableCmdConfigureHistory.tablesorter({headers:{0:{sorter:'checkbox'}}})
+$tableCmdConfigureHistory.find('tbody tr').attr('data-change','0')
+$tableCmdConfigureHistory.trigger("update")
+$tableCmdConfigureHistory.width('100%')
 
-$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
+$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
   $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
-});
+})
 
-$(".bt_configureHistoryExportData").on('click', function () {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
-});
+$(".bt_configureHistoryExportData").on('click', function() {
+  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null)
+})
 
-$('.cmdAttr').on('change click',function(){
-  $(this).closest('tr').attr('data-change','1');
-});
+$('.cmdAttr').on('change click', function() {
+  $(this).closest('tr').attr('data-change','1')
+})
 
 $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
-  var cmds = [];
-  $('#table_cmdConfigureHistory tbody tr').each(function(){
-    if($(this).attr('data-change') == '1'){
-      cmds.push($(this).getValues('.cmdAttr')[0]);
+  var cmds = []
+  $tableCmdConfigureHistory.find('tbody tr').each(function(){
+    if ($(this).attr('data-change') == '1') {
+      cmds.push($(this).getValues('.cmdAttr')[0])
     }
   })
+
   jeedom.cmd.multiSave({
     cmds : cmds,
-    error: function (error) {
-      $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      $("#table_cmdConfigureHistory").trigger("update");
-      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
+    success: function(data) {
+      $tableCmdConfigureHistory.trigger("update")
+      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'})
     }
-  });
-});
+  })
+})
 
-$('#bt_canceltimeline').on('click',function(){
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-    $(this).prop('checked', false);
-    $(this).closest('tr').attr('data-change','1');
-  });
-});
+$('#bt_canceltimeline').on('click', function() {
+  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+    $(this).prop('checked', false)
+    $(this).closest('tr').attr('data-change','1')
+  })
+})
 
-$('#bt_applytimeline').on('click',function(){
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-    $(this).prop('checked', true);
-    $(this).closest('tr').attr('data-change','1');
-  });
-});
+$('#bt_applytimeline').on('click', function() {
+  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+    $(this).prop('checked', true)
+    $(this).closest('tr').attr('data-change','1')
+  })
+})
 
 $(function() {
   jeedom.timeline.autocompleteFolder()
-  initTooltips($("#table_cmdConfigureHistory"))
+  initTooltips($tableCmdConfigureHistory)
 })
 </script>

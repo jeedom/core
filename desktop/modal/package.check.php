@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $result = array();
 $result['core'] = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../install/packages.json'),true));
-foreach (plugin::listPlugin(true,false,false,true) as $plugin) {
+foreach ((plugin::listPlugin(true,false,false,true)) as $plugin) {
   if(file_exists(__DIR__.'/../../plugins/'.$plugin.'/plugin_info/packages.json')){
     $result[$plugin] = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin.'/plugin_info/packages.json'),true));
   }

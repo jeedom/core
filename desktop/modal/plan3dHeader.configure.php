@@ -90,7 +90,7 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 					</thead>
 					<tbody>
 						<?php
-						foreach ($plan3dHeader->getPlan3d() as $plan3d) {
+						foreach (($plan3dHeader->getPlan3d()) as $plan3d) {
 							echo '<tr  class="plan" data-id="'.$plan3d->getId().'">';
 							echo '<td>';
 							echo $plan3d->getId();

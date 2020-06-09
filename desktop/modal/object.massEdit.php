@@ -51,7 +51,7 @@ sendVarToJs('edit_type',$type);
   </thead>
   <tbody>
     <?php
-    foreach ($type::all() as $object) {
+    foreach (($type::all()) as $object) {
       $data_object = utils::o2a($object);
       echo '<tr class="editObject" data-id="'.$object->getId().'">';
       echo '<td>';

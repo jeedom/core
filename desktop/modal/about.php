@@ -62,7 +62,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 </div>
 
 <script>
-$(function(){
+$(function() {
     var currentTheme = $('body').attr('data-theme')
     if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
       $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
@@ -109,5 +109,5 @@ $('body').off('click','#bt_faq').on('click','#bt_faq',function() {
 
 $('#bt_firstUse').on('click',function(){
   $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
-});
+})
 </script>

@@ -31,19 +31,21 @@ if ($user->getProfils() != 'restrict') {
 			</thead>
 			<tbody>
 				<?php
-foreach (eqLogic::all() as $eqLogic) {
-	echo '<tr>';
-	echo '<td>' . $eqLogic->getHumanName(true) . '</td>';
-	echo '<td>';
-	echo '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="eqLogic' . $eqLogic->getId() . '">';
-	echo '<option value="n">{{Aucun}}</option>';
-	echo '<option value="r">{{Visualisation}}</option>';
-	echo '<option value="rx">{{Visualisation et exécution}}</option>';
-	echo '</select>';
-	echo '</td>';
-	echo '</tr>';
-}
-?>
+					foreach ((eqLogic::all()) as $eqLogic) {
+						$eq = '';
+						$eq .= '<tr>';
+						$eq .= '<td>' . $eqLogic->getHumanName(true) . '</td>';
+						$eq .= '<td>';
+						$eq .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="eqLogic' . $eqLogic->getId() . '">';
+						$eq .= '<option value="n">{{Aucun}}</option>';
+						$eq .= '<option value="r">{{Visualisation}}</option>';
+						$eq .= '<option value="rx">{{Visualisation et exécution}}</option>';
+						$eq .= '</select>';
+						$eq .= '</td>';
+						$eq .= '</tr>';
+						echo $eq;
+					}
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -57,19 +59,21 @@ foreach (eqLogic::all() as $eqLogic) {
 			</thead>
 			<tbody>
 				<?php
-foreach (scenario::all() as $scenario) {
-	echo '<tr>';
-	echo '<td>' . $scenario->getHumanName(true, true, true) . '</td>';
-	echo '<td>';
-	echo '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="scenario' . $scenario->getId() . '">';
-	echo '<option value="n">{{Aucun}}</option>';
-	echo '<option value="r">{{Visualisation}}</option>';
-	echo '<option value="rx">{{Visualisation et exécution}}</option>';
-	echo '</select>';
-	echo '</td>';
-	echo '</tr>';
-}
-?>
+					foreach ((scenario::all()) as $scenario) {
+						$sc = '';
+						$sc .= '<tr>';
+						$sc .= '<td>' . $scenario->getHumanName(true, true, true) . '</td>';
+						$sc .= '<td>';
+						$sc .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="scenario' . $scenario->getId() . '">';
+						$sc .= '<option value="n">{{Aucun}}</option>';
+						$sc .= '<option value="r">{{Visualisation}}</option>';
+						$sc .= '<option value="rx">{{Visualisation et exécution}}</option>';
+						$sc .= '</select>';
+						$sc .= '</td>';
+						$sc .= '</tr>';
+						echo $sc;
+					}
+				?>
 			</tbody>
 		</table>
 	</div>

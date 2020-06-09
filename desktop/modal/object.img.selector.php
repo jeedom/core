@@ -46,17 +46,21 @@ sendVarToJs('img_object_id',init('object_id'));
 	</div>
 	<div class="imgContainer" style="width:calc(100% - 15px)">
 		<?php
-		foreach (ls(__DIR__.'/../../core/img/object_background','*') as $category) {
-			echo '<div class="imgCategory"><legend>'.ucfirst(str_replace(array('/','_'),array('',' '),$category)).'</legend>';
-			echo '<div class="row">';
-			foreach (ls(__DIR__.'/../../core/img/object_background/'.$category,'*') as $file) {
-				echo '<div class="col-lg-1 divImgSel">';
-				echo '<span class="imgSel"><img src="core/img/object_background/'.$category.$file.'" /></span>';
-				echo '<center class="imgDesc">'.ucfirst(substr(str_replace(array('/','_','.jpg'),array('',' ',''),basename($file)),0,12)).'</center>';
-				echo '<center><a class="btn btn-success btn-xs btSelectImgObj" data-filename="'.__DIR__.'/../../core/img/object_background/'.$category.$file.'"><i class="fas fa-check"></i> {{Selectionner}}</a></center>';
-				echo '</div>';
+		$ls1 = ls(__DIR__.'/../../core/img/object_background','*');
+		foreach ($ls1 as $category) {
+			$div = '';
+			$div .= '<div class="imgCategory"><legend>'.ucfirst(str_replace(array('/','_'),array('',' '),$category)).'</legend>';
+			$div .= '<div class="row">';
+			$ls2 = ls(__DIR__.'/../../core/img/object_background/'.$category,'*');
+			foreach ($ls2 as $file) {
+				$div .= '<div class="col-lg-1 divImgSel">';
+				$div .= '<span class="imgSel"><img src="core/img/object_background/'.$category.$file.'" /></span>';
+				$div .= '<center class="imgDesc">'.ucfirst(substr(str_replace(array('/','_','.jpg'),array('',' ',''),basename($file)),0,12)).'</center>';
+				$div .= '<center><a class="btn btn-success btn-xs btSelectImgObj" data-filename="'.__DIR__.'/../../core/img/object_background/'.$category.$file.'"><i class="fas fa-check"></i> {{Selectionner}}</a></center>';
+				$div .= '</div>';
 			}
-			echo '</div></div>';
+			$div .= '</div></div>';
+			echo $div;
 		}
 		?>
 	</div>

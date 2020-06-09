@@ -14,7 +14,7 @@ sendVarToJs('scenarioJsonEdit_scenario_id', init('id'));
 <textarea id="ta_scenarioJsonEdit_scenario">
 	<?php
 $json = array();
-foreach ($scenario->getElement() as $element) {
+foreach (($scenario->getElement()) as $element) {
 	$json[] = $element->getAjaxElement();
 }
 echo json_encode($json, JSON_PRETTY_PRINT);

@@ -6,7 +6,7 @@ if (!isConnect()) {
 <center>
     <select id="mod_insertScenariocValue_value" class="form-control">
         <?php
-        foreach (scenario::all() as $scenario) {
+        foreach ((scenario::all()) as $scenario) {
             echo '<option value="#' . $scenario->getHumanName(true) . '#" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(true) . '</option>';
         }
         ?>

@@ -141,7 +141,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 					<tbody>
 						<?php
 						$display = '';
-						foreach ($eqLogic->getCmd() as $cmd) {
+						foreach (($eqLogic->getCmd()) as $cmd) {
 							$display .= '<tr class="advanceCmdConfigurationCmdConfigure" data-id="' . $cmd->getId() . '">';
 							$display .= '<td>' . $cmd->getHumanName() . '</td>';
 							$display .= '<td>';
@@ -168,7 +168,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 							<th></th>
 							<?php
 							$display = '';
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+							foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
 								$display .= '<th style="width:20%">' . $value['name'] . '';
 								$display .= '</th>';
 							}
@@ -180,12 +180,12 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<?php
 						if (is_array($eqLogic->widgetPossibility('parameters'))) {
 							$echo = '';
-							foreach ($eqLogic->widgetPossibility('parameters') as $pKey => $parameter) {
+							foreach (($eqLogic->widgetPossibility('parameters')) as $pKey => $parameter) {
 								$echo .= '<tr>';
 								$echo .= '<td>';
 								$echo .= $parameter['name'];
 								$echo .= '</td>';
-								foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+								foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
 									$echo .= '<td>';
 									if (!isset($parameter['allow_displayType'])) {
 										continue;
@@ -250,7 +250,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<?php
 						if ($eqLogic->getDisplay('parameters') != '') {
 							$echo = '';
-							foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
+							foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
 								$echo .= '<tr>';
 								$echo .= '<td>';
 								$echo .= '<input class="form-control key" value="' . $key . '" />';
@@ -381,7 +381,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<tbody>
 				<?php
 				$table = array();
-				foreach ($eqLogic->getCmd(null, null, true) as $cmd) {
+				foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
 					$line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
 					$column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
 					if (!isset($table[$line])) {
