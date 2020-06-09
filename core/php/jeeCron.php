@@ -177,7 +177,7 @@ if (init('cron_id') != '') {
 	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
-	foreach (cron::all() as $cron) {
+	foreach((cron::all()) as $cron) {
 		try {
 			if ($cron->getDeamon() == 1) {
 				$cron->refresh();
