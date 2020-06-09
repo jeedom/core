@@ -120,9 +120,18 @@ span,
   cursor: default !important;
   word-break: break-word;
 }
+
 #div_graphLinkRenderer text,
 #div_graphLinkRenderer image {
   cursor: grab;
+}
+#div_graphLinkRenderer > svg {
+  height: 100%;
+  width: 100%
+}
+#div_graphLinkRenderer .nodeNoActive {
+  filter: grayscale(100%);
+  opacity: 0.75;
 }
 
 a,
@@ -793,14 +802,32 @@ select.selectCmd {
   height: 2em;
 }
 
-.divIconSel {
+#tabicon .divIconSel {
+  text-align: center;
   min-width: 100px;
   width: 100px;
-  height: 75px !important;
-  overflow: hidden !important;
-  border: none !important;
+  height: 75px;
+  overflow: hidden;
+  border: none;
 }
-.divImgSel {
+
+#tabicon .iconSel {
+  line-height: 1.4;
+  font-size: 1.5em;
+}
+
+#tabicon .iconSelected {
+  background-color: #563d7c;
+  color: white;
+}
+
+#tabicon .imgContainer img {
+  max-width: 120px;
+  max-height: 70px;
+  padding: 10px;
+}
+
+#tabicon .divImgSel {
   min-width: 120px;
   width: 120px;
   height: 115px !important;
@@ -808,7 +835,8 @@ select.selectCmd {
   text-align: center;
 }
 
-.iconDesc {
+#tabicon .iconDesc {
+  font-size: 0.8em;
   word-wrap: break-word;
 }
 

@@ -28,6 +28,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
   echo '<div class="alert alert-danger">{{Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\'a ce que ca soit fini}}</div>';
 }
 ?>
+
 <div style="display: none;" id="div_packageCheckAlert"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
@@ -110,32 +111,30 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
 </table>
 
 <script>
+$('#bt_refreshPackage').off('click').on('click',function() {
+  $('#md_modal').dialog({title: "{{Vérification des packages}}"}).load('index.php?v=d&modal=package.check').dialog('open')
+})
 
-$('#bt_refreshPackage').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Vérification des packages}}"})
-  .load('index.php?v=d&modal=package.check').dialog('open');
-});
-
-$('.bt_correctPackage').off('click').on('click',function(){
-  var el = $(this);
+$('.bt_correctPackage').off('click').on('click',function() {
+  var el = $(this)
   if(el.data('package') == 'all'){
-    var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnel ?}}';
+    var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnel ?}}'
   }else{
-    var text = '{{Êtes-vous sûr de vouloir installer le package}} '+el.data('package')+' ?';
+    var text = '{{Êtes-vous sûr de vouloir installer le package}} '+el.data('package')+' ?'
   }
-  bootbox.confirm(text, function (result) {
+  bootbox.confirm(text, function(result) {
     if (result) {
       jeedom.systemCorrectPackage({
-        package : el.data('package'),
-        error : function(error){
-          $('#div_packageCheckAlert').showAlert({message: error.message, level: 'danger'});
+        package: el.data('package'),
+        error: function(error) {
+          $('#div_packageCheckAlert').showAlert({message: error.message, level: 'danger'})
         },
-        success : function(){
-          $('#div_packageCheckAlert').showAlert({message:'{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}', level: 'success'});
+        success: function() {
+          $('#div_packageCheckAlert').showAlert({message:'{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}', level: 'success'})
           $('#md_modal2').dialog({title: "{{Installation des packages}}"}).load('index.php?v=d&modal=log.display&log=packages').dialog('open')
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 </script>

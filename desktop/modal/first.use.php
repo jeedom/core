@@ -9,10 +9,9 @@ try {
 	$plugin = plugin::byId('jeeasy');
 	?>
 	<script>
-	$( document ).ready(function() {
-		$('#md_modal').dialog({title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>"});
-		$('#md_modal').load('index.php?v=d&plugin=jeeasy&modal=wizard').dialog('open');
-	});
+	$(document ).ready(function() {
+		$('#md_modal').dialog({title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>"}).load('index.php?v=d&plugin=jeeasy&modal=wizard').dialog('open');
+	})
 	</script>
 	<?php
 } catch (Exception $e) {
@@ -84,17 +83,16 @@ try {
 	      modalContent.width(width-26).height(height-40)
 	    }
 
-
-		$('#bt_doNotDisplayFirstUse').on('click', function () {
+		$('#bt_doNotDisplayFirstUse').on('click', function() {
 			jeedom.config.save({
 				configuration: {'jeedom::firstUse': 0},
-				error: function (error) {
-					$('#div_alertFirstUse').showAlert({message: error.message, level: 'danger'});
+				error: function(error) {
+					$('#div_alertFirstUse').showAlert({message: error.message, level: 'danger'})
 				},
-				success: function () {
-					$('#div_alertFirstUse').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+				success: function() {
+					$('#div_alertFirstUse').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
 				}
-			});
-		});
+			})
+		})
 	</script>
 <?php } ?>

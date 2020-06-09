@@ -8,36 +8,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 ?>
 
 <div style="display: none;" id="div_iconSelectorAlert"></div>
-<style>
-.divIconSel{
-	height: 80px;
-	border: 1px solid #fff;
-	box-sizing: border-box;
-	cursor: pointer;
-	text-align: center;
-}
-
-.iconSel{
-	line-height: 1.4;
-	font-size: 1.5em;
-}
-
-.iconSelected{
-	background-color: #563d7c;
-	color: white;
-}
-
-.iconDesc{
-	font-size: 0.8em;
-}
-
-.imgContainer img{
-	max-width: 120px;
-	max-height: 70px;
-	padding: 10px;
-}
-</style>
-
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#tabicon" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icône}}</a></li>
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
@@ -89,31 +59,31 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				replaceFileInput: false,
 				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon',
 				dataType: 'json',
-				done: function (e, data) {
+				done: function(e, data) {
 					if (data.result.state != 'ok') {
-						$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'});
-						return;
+						$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'})
+						return
 					}
-					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
+					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1')
 				}
 			});
 
-			$('.bt_removeImgIcon').on('click',function(){
-				var filename = $(this).attr('data-filename');
-				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
+			$('.bt_removeImgIcon').on('click',function() {
+				var filename = $(this).attr('data-filename')
+				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function(result) {
 					if (result) {
 						jeedom.removeImageIcon({
 							filename : filename,
-							error: function (error) {
-								$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'});
+							error: function(error) {
+								$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'})
 							},
-							success: function (data) {
-								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
+							success: function(data) {
+								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1')
 							}
 						})
 					}
-				});
-			});
+				})
+			})
 			</script>
 		</div>
 	<?php } ?>
@@ -123,7 +93,8 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 		$scanPaths = array('core/css/icon', 'data/fonts');
 		$echo = '';
 		foreach ($scanPaths as $root) {
-			foreach (ls($root, '*') as $dir) {
+			$ls = ls($root, '*');
+			foreach ($ls as $dir) {
 				$root .= '/';
 				if (!is_dir($root . $dir) || !file_exists($root . $dir . '/style.css')) {
 					continue;
@@ -134,28 +105,28 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
-				$echo .= '<div class="iconCategory"><legend>' . str_replace('/', '', $dir) . '</legend>';
+				$div .= '<div class="iconCategory"><legend>' . str_replace('/', '', $dir) . '</legend>';
 
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
 						if ($number == 1) {
-							$echo .= '<div class="row">';
+							$div .= '<div class="row">';
 						}
-						$echo .= '<div class="col-lg-1 divIconSel">';
+						$div .= '<div class="col-lg-1 divIconSel">';
 						$icon = str_replace(array(':', '.'), '', $match[0]);
-						$echo .= '<span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span>';
-						$echo .= '</div>';
+						$div .= '<span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span>';
+						$div .= '</div>';
 						$number++;
 					}
 				}
 				if($number != 0){
-					$echo .= '</div>';
+					$div .= '</div>';
 				}
-				$echo .= '</div>';
+				$div .= '</div>';
 			}
 		}
-		echo $echo;
+		echo $div;
 		?>
 		<div class="iconCategory generalCategory">
 			<legend>{{Général}}</legend>
@@ -337,14 +308,14 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 <script>
 setTimeout(function() {
 	if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
-}, 500);
+}, 500)
 
 $('#sel_colorIcon').off('change').on('change',function() {
-	$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value());
-});
+	$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value())
+})
 
 //searching
-$('#in_searchIconSelector').on('keyup',function(){
+$('#in_searchIconSelector').on('keyup',function() {
 	$('.divIconSel').show()
 	$('.customIcon').hide()
 	$('.iconCategory').show()
@@ -368,42 +339,42 @@ $('#in_searchIconSelector').on('keyup',function(){
 		}
 	})
 	if (somethingFound == 0) {
-		$('.customIcon').show()
 		$('.generalCategory').show()
-		$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>')
+		$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>').show()
 	}
 })
-$('#bt_resetSearch').on('click', function () {
-	$('#in_searchIconSelector').val('')
-	$('#in_searchIconSelector').keyup();
+
+$('#bt_resetSearch').on('click', function() {
+	$('#in_searchIconSelector').val('').keyup()
 })
 
-$('.divIconSel').on('click', function () {
-	$('.divIconSel').removeClass('iconSelected');
-	$(this).closest('.divIconSel').addClass('iconSelected');
-});
-$('.divIconSel').on('dblclick', function () {
-	$('.divIconSel').removeClass('iconSelected');
-	$(this).closest('.divIconSel').addClass('iconSelected');
-	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
-});
+$('.divIconSel').on('click', function() {
+	$('.divIconSel').removeClass('iconSelected')
+	$(this).closest('.divIconSel').addClass('iconSelected')
+})
+
+$('.divIconSel').on('dblclick', function() {
+	$('.divIconSel').removeClass('iconSelected')
+	$(this).closest('.divIconSel').addClass('iconSelected')
+	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'))
+})
 
 setTimeout(function() {
-	if(tabimg && tabimg == 1) {
-		$('#mod_selectIcon ul li a[href="#img"]').click();
+	if (tabimg && tabimg == 1) {
+		$('#mod_selectIcon ul li a[href="#img"]').click()
 	}
-}, 500);
+}, 500)
 
-$('#mod_selectIcon ul li a[href="#tabicon"]').click(function(e) {
+$('#mod_selectIcon ul li a[href="#tabicon"]').click(function() {
 	$('#mySearch').show()
 	$('.iconCategory').show()
 })
-$('#mod_selectIcon ul li a[href="#tabimg"]').click(function(e) {
+$('#mod_selectIcon ul li a[href="#tabimg"]').click(function() {
 	$('#mySearch').hide()
 	$('.iconCategory').hide()
 })
 
-$('#mod_selectIcon').css('overflow', 'hidden');
+$('#mod_selectIcon').css('overflow', 'hidden')
 
 $(function() {
 	$('.imgContainer').show()
@@ -413,7 +384,7 @@ $(function() {
 	var mySearch = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('#mySearch')
 	buttonSet.append(mySearch)
 	//auto select actual icon:
-	var iconName = (selectIcon.split('.').join(' ')).trim();
+	var iconName = (selectIcon.split('.').join(' ')).trim()
 	if (selectIcon != "0") {
 		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
 		setTimeout(function() {
@@ -423,9 +394,8 @@ $(function() {
 				pos = elem.position().top + container.scrollTop() - container.position().top
 				container.animate({scrollTop: pos-20})
 			} else {
-				$('.customIcon').show();
-				$('.customIcon').empty().append('<span class="iconSel"><i class="' + iconName + '"></i></span><br/><span class="iconDesc">' + iconName + '</span>');
-				$(selectIcon).closest('.divIconSel').addClass('iconSelected');
+				$('.customIcon').empty().append('<span class="iconSel"><i class="' + iconName + '"></i></span><br/><span class="iconDesc">' + iconName + '</span>').show()
+				$(selectIcon).closest('.divIconSel').addClass('iconSelected')
 				elem = $('div.divIconSel.iconSelected')
 				if (elem.position()) {
 					container = $('#mod_selectIcon > .tab-content')
@@ -433,10 +403,10 @@ $(function() {
 					container.animate({scrollTop: pos-20})
 				}
 			}
-		}, 250);
+		}, 250)
 	}
 	if (colorIcon != "0") {
-		$('#sel_colorIcon').value(colorIcon);
+		$('#sel_colorIcon').value(colorIcon)
 	}
 })
 </script>

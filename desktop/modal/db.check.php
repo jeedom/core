@@ -76,26 +76,25 @@ $result = DB::compareDatabase($database);
 </table>
 
 <script>
-$('.bt_correctTable').off('click').on('click',function(){
-  var el = $(this);
-  if(el.data('package') == 'all'){
-    var text = '{{Êtes-vous sûr de vouloir corriger toute les tables ?}}';
-  }else{
-    var text = '{{Êtes-vous sûr de vouloir corriger la table }}'+el.data('table')+' ?';
+$('.bt_correctTable').off('click').on('click',function() {
+  var el = $(this)
+  if (el.data('package') == 'all') {
+    var text = '{{Êtes-vous sûr de vouloir corriger toute les tables ?}}'
+  } else {
+    var text = '{{Êtes-vous sûr de vouloir corriger la table }}'+el.data('table')+' ?'
   }
-  bootbox.confirm(text, function (result) {
+  bootbox.confirm(text, function(result) {
     if (result) {
       jeedom.dbcorrectTable({
         table : el.data('table'),
-        error : function(error){
-          $('#div_dbCheckAlert').showAlert({message: error.message, level: 'danger'});
+        error : function(error) {
+          $('#div_dbCheckAlert').showAlert({message: error.message, level: 'danger'})
         },
-        success : function(){
-          $('#md_modal').dialog({title: "{{Vérification base de données}}"});
-          $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
+        success : function() {
+          $('#md_modal').dialog({title: "{{Vérification base de données}}"}).load('index.php?v=d&modal=db.check').dialog('open')
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 </script>

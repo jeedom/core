@@ -22,6 +22,7 @@ foreach (explode('|',init('fields')) as &$field) {
 }
 sendVarToJs('edit_type',$type);
 ?>
+
 <div id="div_alertMassEdit"></div>
 <a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <table class="table table-condensed tablesorter" id="table_massEdit">
@@ -90,18 +91,18 @@ sendVarToJs('edit_type',$type);
 </table>
 
 <script>
-initTableSorter();
+initTableSorter()
 
-$('#bt_saveMassEdit').off('click').on('click',function(){
+$('#bt_saveMassEdit').off('click').on('click',function() {
   jeedom.massEditSave({
     type : edit_type,
     objects : $('#table_massEdit .editObject').getValues('.editObjectAttr'),
-    error: function (error) {
+    error: function(error) {
       $('#div_alertMassEdit').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(data){
+    success : function(data) {
       $('#div_alertMassEdit').showAlert({message: '{{Modification sauvegardées avec succès}}', level: 'success'})
     }
   })
-});
+})
 </script>
