@@ -1,6 +1,7 @@
 "use strict"
 
 $('body').attr('data-page', 'home')
+
 $('#searchContainer').hide()
 
 var $bottomPanelAnalyseActions
@@ -35,21 +36,22 @@ function initHome() {
 
   //fill bottom menus:
   jeedom.object.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (objects) {
+    success: function(objects) {
       var li = ''
       var summaries = []
       li += '<a href="#" class="summaryMenu link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"><i class="fab fa-hubspot"></i> {{Synthèse}}</a>'
       li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"></i> {{Tout}}</a>'
+      var icon, decay
       for (var i in objects) {
         if (objects[i].isVisible == 1) {
-          var icon = ''
+          icon = ''
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
             icon = objects[i].display.icon
           }
-          var decay = 0
+          decay = 0
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
@@ -65,14 +67,15 @@ function initHome() {
   })
 
   jeedom.view.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (views) {
+    success: function(views) {
       if (views.length) {
         var li = ''
+        var icon
         for (var i in views) {
-          var icon = ''
+          icon = ''
           if (isset(views[i].display) && isset(views[i].display.icon)) {
             icon = views[i].display.icon
           }
@@ -84,14 +87,15 @@ function initHome() {
   })
 
   jeedom.plan.allHeader({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (planHeader) {
+    success: function(planHeader) {
       if (planHeader.length) {
         var li = ''
+        var icon
         for (var i in planHeader) {
-          var icon = ''
+          icon = ''
           if (isset(planHeader[i].configuration) && isset(planHeader[i].configuration.icon)) {
             icon = planHeader[i].configuration.icon
           }
@@ -104,14 +108,15 @@ function initHome() {
   })
 
   jeedom.plan3d.allHeader({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (plan3dHeader) {
+    success: function(plan3dHeader) {
       if (plan3dHeader.length) {
         var li = ''
+        var icon
         for (var i in plan3dHeader) {
-          var icon = ''
+          icon = ''
           if (isset(plan3dHeader[i].configuration) && isset(plan3dHeader[i].configuration.icon)) {
             icon = plan3dHeader[i].configuration.icon
           }
@@ -127,20 +132,17 @@ function initHome() {
   if (plugins.length > 0) {
     var li = ''
     for (var i in plugins) {
-      if(plugins[i].mobile == ''){
-        continue
-      }
-      if(plugins[i].displayMobilePanel == 0){
-        continue
-      }
+      if (plugins[i].mobile == '') continue
+      if (plugins[i].displayMobilePanel == 0) continue
+
       li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">'
       li += '<img src="plugins/'+plugins[i].id +'/plugin_info/'+plugins[i].id +'_icon.png" onerror=\'this.style.display = "none"\' /> '
       li +=  plugins[i].name
       li +=  '</a>'
     }
-    if(li != ''){
+    if (li != '') {
       $('#bottompanel_pluginList').empty().append(li)
-    }else{
+    } else {
       $('#bt_listPlugin').hide()
     }
   } else {
@@ -148,7 +150,7 @@ function initHome() {
   }
 
   //buttons:
-  $('#bt_logout').off('click').on('click', function () {
+  $('#bt_logout').off('click').on('click', function() {
     $.ajax({
       type: "POST",
       url: "core/ajax/user.ajax.php",
@@ -156,10 +158,10 @@ function initHome() {
         action: "logout",
       },
       dataType: 'json',
-      error: function (request, status, error) {
+      error: function(request, status, error) {
         handleAjaxError(request, status, error, $('#div_alert'))
       },
-      success: function (data) {
+      success: function(data) {
         if (data.state != 'ok') {
           $('#div_alert').showAlert({message: data.result, level: 'danger'})
           return
@@ -169,22 +171,26 @@ function initHome() {
     })
   })
 
-  $('#bt_forceReload').off('click').on('click', function () {
+  $('#bt_forceReload').off('click').on('click', function() {
     window.location.reload(true)
   })
 
-  jeedom.version({success : function(version) {
-    $('#homeVersion').html(version)
-  }
-})
+  jeedom.version({
+    success : function(version) {
+      $('#homeVersion').html(version)
+    }
+  })
 
-jeedom.config.load({
-  configuration: 'name',
-  success: function (data) {
-    $('#jeedomName').html(data+'<br>WebApp Jeedom<br>')
-  }
-})
+  jeedom.config.load({
+    configuration: 'name',
+    success: function(data) {
+      $('#jeedomName').html(data+'<br>WebApp Jeedom<br>')
+    }
+  })
 
-if(!APP_MODE){
-  setTimeout(function() {$('#pagecontainer').css('padding-top','64px')}, 100)}
+  if (!APP_MODE) {
+    setTimeout(function() {
+      $('#pagecontainer').css('padding-top','64px')
+    }, 100)
+  }
 }

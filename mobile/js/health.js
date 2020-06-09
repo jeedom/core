@@ -20,12 +20,12 @@ $('#bt_refreshCron').on('click',function(){
 function getHealth(){
   $('#table_health tbody').empty()
   jeedom.health({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
       var html = ''
-      for(var i in data){
+      for (var i in data) {
         html += '<tr>'
         html += '<td>'
         html += data[i].name

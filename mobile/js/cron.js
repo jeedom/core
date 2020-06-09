@@ -20,10 +20,10 @@ $('#bt_refreshCron').on('click',function(){
 function getCronState() {
   $('#table_cron tbody').empty()
   jeedom.cron.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
      var html = ''
      var crons = data
      for(var i in crons){

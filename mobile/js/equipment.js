@@ -6,10 +6,10 @@ function initEquipment(_object_id) {
   var objects_info = {}
 
   jeedom.object.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (objects) {
+    success: function(objects) {
       var summaries = []
       var li = '<ul data-role="listview" data-inset="false">'
       li += '<li class="li-splitter">'
@@ -18,9 +18,11 @@ function initEquipment(_object_id) {
       li += '<a href="#" class="link" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}" style="float: right;margin: 0;padding: 0 !important;"><i class="fab fa-hubspot"> </i> {{Aperçu}}</a>'
       li += '</div>'
       li += '</li>'
+
+      var icon, decay
       for (var i in objects) {
         if (objects[i].isVisible == 1) {
-          var icon = ''
+          icon = ''
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
             icon = objects[i].display.icon
           }
@@ -32,7 +34,7 @@ function initEquipment(_object_id) {
               objectMapping[objects[i].father_id] = [parseInt(objects[i].id)]
             }
           }
-          var decay = 0
+          decay = 0
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
@@ -68,28 +70,30 @@ function initEquipment(_object_id) {
       id: _object_id,
       version: 'mobile',
       summary: summary,
-      error: function (error) {
+      error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function (html) {
+      success: function(html) {
         if (_object_id == 'all' || _object_id == '') {
           var div = ''
           var summaries = []
-          for(var i in html) {
-            if($.trim(html[i]) == ''){
+
+          var id, icon, objectName
+          for (var i in html) {
+            if ($.trim(html[i]) == '') {
               continue
             }
-            var id = i.split('::')[1]
+            id = i.split('::')[1]
             if (!isset(objects_info[id])) {
               continue
             }
             div += '<div class="div_displayEquipement">'
             div += '<legend>'
-            var icon = ''
+            icon = ''
             if (isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
               icon = objects_info[id].display.icon
             }
-            var objectName = objects_info[id].name
+            objectName = objects_info[id].name
             objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
             div += '<span>' + icon + '</span> ' + objectName
             div += '</legend>'
@@ -122,7 +126,7 @@ function initEquipment(_object_id) {
     $('#bottompanel').panel('open')
   }
 
-  $('body').on('orientationChanged', function (event, _orientation) {
+  $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
     setTileSize('.scenario')
@@ -141,44 +145,46 @@ function initEquipment(_object_id) {
       return
     }
     search = normTextLower(search)
+    var match
     $('.eqLogic-widget').each(function() {
-      var match = false
-      if(match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0){
+      match = false
+      if (match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
-      if(match || ($(this).attr('data-tags') != undefined && normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)){
+      if (match || ($(this).attr('data-tags') != undefined && normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)) {
         match = true
       }
-      if(match ||($(this).attr('data-category') != undefined && normTextLower($(this).attr('data-category')).indexOf(search) >= 0)){
+      if (match ||($(this).attr('data-category') != undefined && normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
         match = true
       }
-      if(match ||($(this).attr('data-eqType') != undefined && normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)){
+      if (match ||($(this).attr('data-eqType') != undefined && normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
         match = true
       }
-      if(match ||($(this).attr('data-translate-category') != undefined && normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)){
+      if (match ||($(this).attr('data-translate-category') != undefined && normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
         match = true
       }
-      if(match){
+      if (match) {
         $(this).show()
-      }else{
+      } else {
         $(this).hide()
       }
     })
     $('.scenario-widget').each(function(){
-      var match = false
-      if(match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0){
+      match = false
+      if (match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
-      if(match){
+      if (match) {
         $(this).show()
-      }else{
+      } else {
         $(this).hide()
       }
     })
     $('.objectHtml').packery()
+    var count
     $('.objectHtml').each(function(){
-      var count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
-      if(count == 0){
+      count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
+      if (count == 0) {
         $(this).closest('.div_displayEquipement').hide()
       }
     })
@@ -187,5 +193,4 @@ function initEquipment(_object_id) {
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('').keyup()
   })
-
 }

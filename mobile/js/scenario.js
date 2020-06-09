@@ -3,18 +3,19 @@
 $('body').attr('data-page', 'scenario')
 
 function initScenario() {
-  $('#searchContainer').show();
+  $('#searchContainer').show()
   jeedom.scenario.toHtml({
     id: 'all',
     version: 'mobile',
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (htmls) {
+    success: function(htmls) {
       //get groups
       var scenarioGroups = []
+      var group
       htmls.forEach(function(html) {
-        var group = $(html).data('group')
+        group = $(html).data('group')
         if (group == "") group = '{{Aucun}}'
         group = group[0].toUpperCase() + group.slice(1)
         scenarioGroups.push(group)
@@ -24,12 +25,13 @@ function initScenario() {
 
       //set each group:
       var fullDiv = ''
+      var inner, nbr
       scenarioGroups.forEach(function(group) {
         if (group != '{{Aucun}}') {
           return
         }
-        var inner = ''
-        var nbr = 0
+        inner = ''
+        nbr = 0
         htmls.forEach(function(html) {
           if ($(html).data('group') == "") {
             inner += "\n"+html
@@ -63,12 +65,11 @@ function initScenario() {
       $('#div_displayScenario').empty().html(fullDiv).trigger('create')
 
       //size and pack:
-      setTimeout(function () {
+      setTimeout(function() {
         deviceInfo = getDeviceType()
         setTileSize('.scenario')
         $('#div_displayScenario').packery({gutter : 0})
       }, 100)
-
     }
   })
 
@@ -76,13 +77,13 @@ function initScenario() {
     var toggle = true
     if ($(this).next(".groupContainer").is(":visible")) toggle = false
     $('.groupContainer').hide()
-    if (toggle) $(this).next(".groupContainer").show()
-    setTimeout(function () {
-        $('#div_displayScenario').packery({gutter : 0})
-      }, 100)
+    if (toggle) $(this).next('.groupContainer').show()
+    setTimeout(function() {
+      $('#div_displayScenario').packery({gutter : 0})
+    }, 100)
   })
 
-  $('body').on('orientationChanged', function (event, _orientation) {
+  $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.scenario')
     $('#div_displayScenario').packery({gutter : 0})
@@ -93,29 +94,29 @@ function initScenario() {
     $('.groupContainer').hide()
     var search = $(this).value()
     search = normTextLower(search)
-    if(search == ''){
+    if (search == '') {
       $('.scenario-widget').show()
       $('#div_displayScenario').packery()
       return
     }
-    $('.scenario-widget').each(function(){
-      var match = false
-      var text = normTextLower($(this).find('.widget-name').text())
-      if(match || text.indexOf(search) >= 0){
+    var match, text
+    $('.scenario-widget').each(function() {
+      match = false
+      text = normTextLower($(this).find('.widget-name').text())
+      if (match || text.indexOf(search) >= 0) {
         match = true;
       }
-      if(match){
+      if (match) {
         $(this).show()
         $(this).closest(".groupContainer").show()
-      }else{
+      } else {
         $(this).hide()
       }
     })
     $('#div_displayScenario').packery()
   })
 
-  $('#bt_eraseSearchInput').off('click').on('click',function(){
+  $('#bt_eraseSearchInput').off('click').on('click',function() {
     $('#in_searchWidget').val('').keyup()
   })
-
 }

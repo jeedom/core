@@ -44,8 +44,9 @@ $('body').off('mouseenter').off('mouseleave')
 
 $(function() {
   //move to top summary:
+  var parent
   $('.objectPreview').each(function() {
-    var parent = $(this).find('.topPreview')
+    parent = $(this).find('.topPreview')
     $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
       $(this).detach().appendTo(parent)
     })
@@ -62,9 +63,10 @@ $(function() {
 })
 
 function checkResumeEmpty() {
+  var button
   $('.objectPreview ').each(function() {
     if (!$(this).find('.objectSummaryParent').length) {
-     var button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
+     button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
      $(this).find('.bt_config').remove()
      $(this).find('.topPreview').append(button)
     }
@@ -72,8 +74,9 @@ function checkResumeEmpty() {
 }
 
 function colorizeSummary() {
+  var value
   $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
-    var value = $(this).html()
+    value = $(this).html()
     if (value == 0) {
       $(this).closest('.objectSummaryParent').addClass('success')
     } else {

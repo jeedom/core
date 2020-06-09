@@ -38,9 +38,8 @@ $(function() {
   })
 
   if (getUrlVars('app_mode') == 1) {
-    APP_MODE = true;
-    $('.backgroundforJeedom').height('100%')
-    $('.backgroundforJeedom').css('top','0')
+    APP_MODE = true
+    $('.backgroundforJeedom').height('100%').css('top','0')
     $('#pagecontainer').prepend($('#searchContainer'))
     $('div[data-role=header]').remove()
     $('#searchContainer').css('top',0)
@@ -116,9 +115,7 @@ $(function() {
     webappCache.addEventListener('updateready', updateCacheEvent, false)
     try {
       webappCache.update()
-    } catch(e) {
-
-    }
+    } catch(e) {}
   }
 })
 
@@ -234,15 +231,10 @@ function triggerThemechange() {
 }
 
 function changeThemeAuto(_ambiantLight){
-  if (typeof jeedom.theme == 'undefined') {
-    return
-  }
-  if (typeof jeedom.theme.mobile_theme_color_night == 'undefined' || typeof jeedom.theme.mobile_theme_color == 'undefined') {
-    return
-  }
-  if (jeedom.theme.mobile_theme_color == jeedom.theme.mobile_theme_color_night) {
-    return
-  }
+  if (typeof jeedom.theme == 'undefined') return
+  if (typeof jeedom.theme.mobile_theme_color_night == 'undefined' || typeof jeedom.theme.mobile_theme_color == 'undefined') return
+  if (jeedom.theme.mobile_theme_color == jeedom.theme.mobile_theme_color_night) return
+
   if (jeedom.theme.mobile_theme_useAmbientLight == "1" && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor()
     sensor.onreading = () => {
@@ -287,9 +279,8 @@ function changeThemeAuto(_ambiantLight){
 }
 
 function checkThemechange() {
-  if ($('#jQMnDColor').attr('data-nochange') == 1) {
-    return
-  }
+  if ($('#jQMnDColor').attr('data-nochange') == 1) return
+
   var theme = jeedom.theme.mobile_theme_color_night
   var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
   var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes())
@@ -374,7 +365,7 @@ function initApplication(_reinit) {
         modal(false)
         panel(false)
         page('connection', 'Connexion')
-        return;
+        return
       }
       if (init(_reinit, false) == false) {
         document.title = data.result.product_name

@@ -1,29 +1,29 @@
 "use strict"
 
-var _SummaryObserver_ = null
-
 $('body').attr('data-page', 'overview')
 
+var _SummaryObserver_ = null
 function initOverview() {
   jeedom.object.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (objects) {
+    success: function(objects) {
       $('#objectOverviewContainer').empty()
       var summaries = []
+      var _this, icon, _backUrl, div
       for (var i in objects) {
         if (objects[i].isVisible == 1 && objects[i].configuration.hideOnOverview != 1) {
-          var _this = objects[i]
-          var icon = ''
+          _this = objects[i]
+          icon = ''
           if (isset(_this.display) && isset(_this.display.icon)) {
             icon = _this.display.icon
           }
-          var _backUrl = _this.img
+          _backUrl = _this.img
           if (_backUrl == '') {
             _backUrl = 'core/img/background/jeedom_abstract_04_light.jpg'
           }
-          var div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-option="'+_this.id+'" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'") + '">'
+          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-option="'+_this.id+'" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'") + '">'
             div += '<div class="topPreview topCorner">'
               div += '<span class="name">'+icon +' '+_this.name+'</span>'
             div += '</div>'
@@ -42,8 +42,9 @@ function initOverview() {
 
       setTimeout(function() {
         //move to top summary:
+        var parent
         $('.objectPreview').each(function() {
-          var parent = $(this).find('.topPreview')
+          parent = $(this).find('.topPreview')
           $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
             $(this).detach().appendTo(parent)
           })
@@ -58,7 +59,7 @@ function initOverview() {
         createSummaryObserver()
       }, 500)
 
-      $('.objectPreview').off('click').on('click', function (event) {
+      $('.objectPreview').off('click').on('click', function(event) {
         if (event.target !== this) return
         modal(false)
         panel(false)
@@ -82,7 +83,7 @@ function colorizeSummary() {
 function createSummaryObserver() {
   var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if ( mutation.type == 'childList' && mutation.target.className == 'resume') {
+      if (mutation.type == 'childList' && mutation.target.className == 'resume') {
         updateSummary(mutation.addedNodes[0].className)
       }
     })
