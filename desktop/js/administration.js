@@ -37,25 +37,25 @@ $(function() {
   }, 1000)
   updateTooltips()
   initPickers()
-  
+
   if (getUrlVars('panel') != false) {
     $('a[href="#'+getUrlVars('panel')+'"]').click()
   }
-  
+
   printConvertColor()
 })
 
 //searching
 $('#in_searchConfig').keyup(function() {
   var search = $(this).value()
-  
+
   //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
     el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
     el.removeAttr('searchId')
     $(this).replaceWith(el)
   })
-  
+
   $('#searchResult').empty()
   if (search == '') {
     $('.nav-tabs.nav-primary').show()
@@ -66,10 +66,10 @@ $('#in_searchConfig').keyup(function() {
   }
   if (search.length < 3) return
   search = normTextLower(search)
-  
+
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
-  
+
   var prevTab = ''
   var text, tooltip, tabId, tabName, el, searchId
   $('.form-group > .control-label').each(function() {
@@ -84,7 +84,7 @@ $('#in_searchConfig').keyup(function() {
         $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
       }
       prevTab = tabId
-      
+
       el = $(this).closest('.form-group')
       searchId = Math.random()
       el.attr('searchId', searchId)
@@ -121,7 +121,7 @@ $('#bt_resetConfigSearch').on('click', function() {
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-  
+
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"}
   })
@@ -176,13 +176,13 @@ $('#bt_networkTab').on('click',function() {
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function(interfaces) {
+      success: function(_interfaces) {
         var div = ''
-        for (var i in data) {
+        for (var i in _interfaces) {
           div += '<tr>'
-          div += '<td>'+interfaces[i].ifname+'</td>'
-          div += '<td>'+(interfaces[i].addr_info[0] ? interfaces[i].addr_info[0].local : '')+'</td>'
-          div += '<td>'+(interfaces[i].address ? interfaces[i].address : '')+'</td>'
+          div += '<td>'+_interfaces[i].ifname+'</td>'
+          div += '<td>'+(_interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '')+'</td>'
+          div += '<td>'+(_interfaces[i].address ? _interfaces[i].address : '')+'</td>'
           div += '</tr>'
         }
         tableBody.empty().append(div)
@@ -827,7 +827,7 @@ $pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=choose
     if (class_icon[1]) {
       color = class_icon[1]
     }
-    
+
   }
   chooseIcon(function(_icon) {
     objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon)
@@ -911,27 +911,27 @@ function printObjectSummary() {
 function addObjectSummary(_summary, _direction=1) {
   var tr = '<tr class="objectSummary">'
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="key" /></td>'
-  
+
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="name" /></td>'
-  
+
   tr += '<td><select class="form-control objectSummaryAttr input-sm" data-l1key="calcul">'
   tr += '<option value="sum">{{Somme}}</option>'
   tr += '<option value="avg">{{Moyenne}}</option>>'
   tr += '<option value="text">{{Texte}}</option>'
   tr += '</select></td>'
-  
+
   tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>'
   tr += '<span class="objectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span></td>'
-  
+
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
-  
+
   tr += '<td><select class="objectSummaryAttr input-sm" data-l1key="count">'
   tr += '<option value="">{{Aucun}}</option>'
   tr += '<option value="binary">{{Binaire}}</option>'
   tr += '</select></td>'
-  
+
   tr += '<td><center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center></td>'
-  
+
   tr += '<td><center><input class="objectSummaryAttr form-control input-sm" data-l1key="ignoreIfCmdOlderThan" /></center></td>'
   tr += ''
   tr += '<td>'
@@ -939,9 +939,9 @@ function addObjectSummary(_summary, _direction=1) {
     tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i> {{Créer virtuel}}</a>'
   }
   tr += '</td>'
-  
+
   tr += '<td><a class="objectSummaryAction cursor" data-l1key="remove"><i class="fas fa-minus-circle"></i></a></td>'
-  
+
   tr += '</tr>'
   $('#table_objectSummary tbody').append(tr)
   if (isset(_summary)) {
