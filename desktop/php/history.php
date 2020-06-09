@@ -138,7 +138,7 @@ $date = array(
 				<span class="input-group-btn">
 					<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
 						<?php
-						foreach (timeline::listFolder() as $folder) {
+						foreach ((timeline::listFolder()) as $folder) {
 							if($folder == 'main'){
 								echo '<option value="'.$folder.'">{{Principal}}</option>';
 							}else{

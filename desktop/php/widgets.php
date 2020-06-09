@@ -14,7 +14,7 @@ if(!file_exists($rootPath.'/mobile')){
 }
 global $JEEDOM_INTERNAL_CONFIG;
 $widgets = array('action' => array(),'info' => array());
-foreach (widgets::all() as $widget) {
+foreach ((widgets::all()) as $widget) {
   $widgets[$widget->getType()][] = $widget;
 }
 ?>
@@ -194,7 +194,7 @@ foreach (widgets::all() as $widget) {
                 <label class="col-lg-4 col-xs-4 control-label">{{Template}}</label>
                 <div class="col-lg-4 col-xs-5">
                   <?php
-                  foreach (widgets::listTemplate() as $type => $values) {
+                  foreach ((widgets::listTemplate()) as $type => $values) {
                     foreach ($values as $subtype => $namelist) {
                       echo '<select class="form-control selectWidgetTemplate" data-l1key="template" data-type="'.$type.'" data-subtype="'.$subtype.'">';
                       foreach ($namelist as $name) {

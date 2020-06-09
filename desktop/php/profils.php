@@ -19,7 +19,7 @@ $homePageMobile = array(
 	'core::plan' => '{{Design}}',
 	'core::plan3d' => '{{Design 3D}}',
 );
-foreach (plugin::listPlugin() as $pluginList) {
+foreach ((plugin::listPlugin()) as $pluginList) {
 	if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
 		$homePageDesktop[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
 	}
@@ -84,7 +84,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardObject">
 								<?php
-								foreach (jeeObject::all() as $object) {
+								foreach ((jeeObject::all()) as $object) {
 									echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
 								}
 								?>
@@ -95,7 +95,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileObject">
 								<option value="all">{{Tout}}</option>
 								<?php
-								foreach (jeeObject::all() as $object) {
+								foreach ((jeeObject::all()) as $object) {
 									echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
 								}
 								?>
@@ -111,7 +111,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDesktopView">
 								<?php
-								foreach (view::all() as $view) {
+								foreach ((view::all()) as $view) {
 									echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
 								}
 								?>
@@ -121,7 +121,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileView">
 								<?php
-								foreach (view::all() as $view) {
+								foreach ((view::all()) as $view) {
 									echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
 								}
 								?>
@@ -143,7 +143,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan">
 								<?php
-								foreach (planHeader::all() as $plan) {
+								foreach ((planHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -153,7 +153,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan">
 								<?php
-								foreach (planHeader::all() as $plan) {
+								foreach ((planHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -175,7 +175,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan3d">
 								<?php
-								foreach (plan3dHeader::all() as $plan) {
+								foreach ((plan3dHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -185,7 +185,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan3d">
 								<?php
-								foreach (plan3dHeader::all() as $plan) {
+								foreach ((plan3dHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -277,17 +277,19 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<tbody>
 							<?php
 							$sessions = listSession();
-							if(count($sessions) > 0){
+							if (count($sessions) > 0) {
 								foreach ($sessions as $id => $session) {
 									if ($session['user_id'] != $_SESSION['user']->getId()) {
 										continue;
 									}
-									echo '<tr data-id="' . $id . '">';
-									echo '<td>' . $id . '</td>';
-									echo '<td>' . $session['ip'] . '</td>';
-									echo '<td>' . $session['datetime'] . '</td>';
-									echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
-									echo '</tr>';
+									$tr = '';
+									$tr .= '<tr data-id="' . $id . '">';
+									$tr .= '<td>' . $id . '</td>';
+									$tr .= '<td>' . $session['ip'] . '</td>';
+									$tr .= '<td>' . $session['datetime'] . '</td>';
+									$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+									$tr .= '</tr>';
+									echo $tr;
 								}
 							}
 							?>
@@ -310,21 +312,23 @@ foreach (plugin::listPlugin() as $pluginList) {
 						</thead>
 						<tbody>
 							<?php
-							foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
-								echo '<tr data-key="' . $key . '">';
-								echo '<td title="'.$key.'">';
-								echo substr($key, 0, 10) . '...';
-								echo '</td>';
-								echo '<td>';
-								echo $value['ip'];
-								echo '</td>';
-								echo '<td>';
-								echo $value['datetime'];
-								echo '</td>';
-								echo '<td>';
-								echo '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-								echo '</td>';
-								echo '</tr>';
+							foreach (($_SESSION['user']->getOptions('registerDevice')) as $key => $value) {
+								$tr = '';
+								$tr .= '<tr data-key="' . $key . '">';
+								$tr .= '<td title="'.$key.'">';
+								$tr .= substr($key, 0, 10) . '...';
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= $value['ip'];
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= $value['datetime'];
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+								$tr .= '</td>';
+								$tr .= '</tr>';
+								echo $tr;
 							}
 
 							?>

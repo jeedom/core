@@ -96,11 +96,11 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</thead>
 			<tbody>
 				<?php
-				foreach (user::all() as $user) {
+				foreach ((user::all()) as $user) {
 					if (!is_array($user->getOptions('registerDevice')) || count($user->getOptions('registerDevice')) == 0) {
 						continue;
 					}
-					foreach ($user->getOptions('registerDevice') as $key => $value) {
+					foreach (($user->getOptions('registerDevice')) as $key => $value) {
 						$tr = '';
 						$tr .= '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
 						$tr .= '<td>';

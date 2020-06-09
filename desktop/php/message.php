@@ -14,7 +14,7 @@ if ($selectPlugin != '') {
 	<select id="sel_plugin" class="form-control input-sm roundedLeft" style="width: 200px;">
 		<option value="" selected>{{Tout}}</option>
 		<?php
-		foreach (message::listPlugin() as $plugin) {
+		foreach ((message::listPlugin()) as $plugin) {
 			if ($selectPlugin == $plugin['plugin']) {
 				echo '<option value="' . $plugin['plugin'] . '" selected>' . $plugin['plugin'] . '</option>';
 			} else {

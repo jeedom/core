@@ -6,7 +6,7 @@ $count = 0;
 $globalhtml = '';
 $totalNok = 0;
 $totalPending = 0;
-foreach (plugin::listPlugin(true) as $plugin) {
+foreach ((plugin::listPlugin(true)) as $plugin) {
 	$plugin_id = $plugin->getId();
 	$hasSpecificHealth = 0;
 	$hasSpecificHealthIcon = '';
@@ -124,7 +124,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
-			foreach ($plugin_id::health() as $result) {
+			foreach (($plugin_id::health()) as $result) {
 				$html .= '<tr>';
 				$html .= '<td>';
 				$html .= $result['test'];
@@ -198,7 +198,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<tbody>
 						<?php
 						$count = 0;
-						foreach (jeedom::health() as $datas) {
+						foreach ((jeedom::health()) as $datas) {
 							if ($count == 0) echo '<tr>';
 							echo '<td>';
 							echo $datas['name'];
@@ -255,7 +255,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					<table id="jeedomTable" class="table table-condensed table-bordered">
 						<tbody>
 							<?php
-							foreach (get_loaded_extensions() as $name) {
+							foreach ((get_loaded_extensions()) as $name) {
 								if ($count == 0) echo '<tr>';
 								echo '<td>';
 								echo $name;

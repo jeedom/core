@@ -118,7 +118,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 						<option value="">{{Aucune}}</option>
 						<?php
 						$updates = array();
-						foreach (update::listCoreUpdate() as $udpate) {
+						foreach ((update::listCoreUpdate()) as $udpate) {
 							$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
 						}
 						usort($updates, 'version_compare');

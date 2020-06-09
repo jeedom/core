@@ -88,7 +88,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			</li>
 			 <li class="divider"></li>
 			<?php
-				foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+				foreach ((jeedom::getConfiguration('eqLogic:category')) as $key => $value) {
 					if ($key=='default') $key = '';
 					echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
 				}
@@ -121,7 +121,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		if ($value->getId() != $object->getId()) {
 			continue;
 		}
-		foreach ($value->getChilds() as $child) {
+		foreach (($value->getChilds()) as $child) {
 			if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
 				continue;
 			}
