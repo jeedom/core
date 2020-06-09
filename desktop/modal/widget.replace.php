@@ -1,4 +1,20 @@
 <?php
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -43,6 +59,7 @@ foreach ((cmd::availableWidget('mobile')) as $type => $value) {
 sort($selm);
 $select['mobile'] = implode('',$selm);
 ?>
+
 <div id="form_widgetReplace">
   <div style="display: none;" id="md_widgetReplaceAlert"></div>
   <legend><i class="fas fa-desktop"></i> {{Dashboard}}</legend>
@@ -100,30 +117,31 @@ $select['mobile'] = implode('',$selm);
     </fieldset>
   </form>
 </div>
+
 <script>
-$('.bt_replaceWidget').off('click').on('click',function(){
-  var version = $(this).attr('data-version');
-  var opt1 = $('.widgetReplaceAttr'+version+'[data-l1key=replace] option:selected');
-  var opt2 = $('.widgetReplaceAttr'+version+'[data-l1key=by] option:selected');
-  if(opt1.attr('data-type') != opt2.attr('data-type')){
-    $('#md_widgetReplaceAlert').showAlert({message: '{{Le type de la commande à replacer doit etre le meme que le type de la commande remplacante}}', level: 'danger'});
-    return;
+$('.bt_replaceWidget').off('click').on('click',function() {
+  var version = $(this).attr('data-version')
+  var opt1 = $('.widgetReplaceAttr'+version+'[data-l1key=replace] option:selected')
+  var opt2 = $('.widgetReplaceAttr'+version+'[data-l1key=by] option:selected')
+  if (opt1.attr('data-type') != opt2.attr('data-type')) {
+    $('#md_widgetReplaceAlert').showAlert({message: '{{Le type de la commande à replacer doit etre le meme que le type de la commande remplacante}}', level: 'danger'})
+    return
   }
-  if(opt1.attr('data-subtype') != opt2.attr('data-subtype')){
-    $('#md_widgetReplaceAlert').showAlert({message: '{{Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante}}', level: 'danger'});
-    return;
+  if (opt1.attr('data-subtype') != opt2.attr('data-subtype')) {
+    $('#md_widgetReplaceAlert').showAlert({message: '{{Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante}}', level: 'danger'})
+    return
   }
-  var info = $('#form_widgetReplace').getValues('.widgetReplaceAttr'+version)[0];
+  var info = $('#form_widgetReplace').getValues('.widgetReplaceAttr'+version)[0]
   jeedom.widgets.replacement({
     version : version,
     replace : info.replace,
     by : info.by,
-    error: function (error) {
-      $('#md_widgetReplaceAlert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#md_widgetReplaceAlert').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(data){
-      $('#md_widgetReplaceAlert').showAlert({message: '{{Remplacement réalisé avec succès. Nombre de widget remplacé :}} '+data, level: 'success'});
+    success : function(data) {
+      $('#md_widgetReplaceAlert').showAlert({message: '{{Remplacement réalisé avec succès. Nombre de widget remplacé :}} '+data, level: 'success'})
     }
   })
-});
+})
 </script>
