@@ -16,108 +16,103 @@
 
 "use strict"
 
+var $divCommandResult = $('#div_commandResult')
+function dbGenerateTableFromResponse(_response) {
+  var result = '<table class="table table-condensed table-bordered">'
+  result += '<thead>'
+  result += '<tr>'
+  for (var i in _response[0]) {
+    result += '<th>'+i+'</th>'
+  }
+  result += '</tr></thead>'
 
-function dbGenerateTableFromResponse(_response){
-  var result = '<table class="table table-condensed table-bordered">';
-  result += '<thead>';
-  result += '<tr>';
-  for(var i in _response[0]){
-    result += '<th>';
-    result += i;
-    result += '</th>';
-  }
-  result += '</tr>';
-  result += '</thead>';
-  result += '<tbody>';
-  for(var i in _response){
-    result += '<tr>';
-    for(var j in _response[i]){
-      result += '<td>';
-      result += _response[i][j];
-      result += '</td>';
+  result += '<tbody>'
+  for (var i in _response) {
+    result += '<tr>'
+    for (var j in _response[i]) {
+      result += '<td>'+_response[i][j]+'</td>'
     }
-    result += '</tr>';
+    result += '</tr>'
   }
-  result += '</tbody>';
-  result += '</table>';
-  return result;
+  result += '</tbody></table>'
+  return result
 }
 
-$('.bt_dbCommand').off('click').on('click',function(){
-  var command = $(this).attr('data-command');
-  $('#div_commandResult').empty();
+$('.bt_dbCommand').off('click').on('click',function() {
+  var command = $(this).attr('data-command')
+  $divCommandResult.empty()
   jeedom.db({
     command : command,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(result){
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
-      $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
-      $('.row-overflow > div').css('overflow','auto');
+    success : function(result) {
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
+      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
+      $('.row-overflow > div').css('overflow','auto')
     }
   })
-});
+})
 
-$('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',function(){
-  var command = $(this).attr('data-command');
-  $('#div_commandResult').empty();
+$('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',function() {
+  var command = $(this).attr('data-command')
+  $divCommandResult.empty()
   jeedom.db({
     command : command,
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(result){
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
+    success : function(result) {
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
       $('#in_specificCommand').value(command)
-      $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
-      $('.row-overflow > div').css('overflow','auto');
+      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
+      $('.row-overflow > div').css('overflow','auto')
     }
   })
-});
+})
 
-$('#bt_validateSpecifiCommand').off('click').on('click',function(){
-  var command = $('#in_specificCommand').value();
-  $('#div_commandResult').empty();
+$('#bt_validateSpecifiCommand').off('click').on('click',function() {
+  var command = $('#in_specificCommand').value()
+  $divCommandResult.empty()
   jeedom.db({
     command : command,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(result){
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
-      $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
-      $('.row-overflow > div').css('overflow','auto');
-      $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command+'">'+command+'</a></li>');
-      var kids = $('#ul_listSqlHistory').children();
+    success : function(result) {
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
+      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
+      $('.row-overflow > div').css('overflow','auto')
+      $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command+'">'+command+'</a></li>')
+      var kids = $('#ul_listSqlHistory').children()
       if (kids.length >= 10) {
-        kids.last().remove();
+        kids.last().remove()
       }
     }
   })
-});
+})
 
-$('#in_specificCommand').keypress(function(e) {
-  if(e.which == 13) {
-    var command = $('#in_specificCommand').value();
-    $('#div_commandResult').empty();
+$('#in_specificCommand').keypress(function(event) {
+  if (event.which == 13) {
+    var command = $('#in_specificCommand').value()
+    $divCommandResult.empty()
     jeedom.db({
       command : command,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success : function(result){
-        $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s');
-        $('#div_commandResult').append(dbGenerateTableFromResponse(result.sql));
-        $('.row-overflow > div').css('overflow','auto');
-        if($('.bt_dbCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined){
-          $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>');
+      success : function(result) {
+        $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
+        $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
+        $('.row-overflow > div').css('overflow','auto')
+        if ($('.bt_dbCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined) {
+          $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>')
         }
-        var kids = $('#ul_listSqlHistory').children();
+        var kids = $('#ul_listSqlHistory').children()
         if (kids.length >= 10) {
-          kids.last().remove();
+          kids.last().remove()
         }
       }
     })
   }
-});
+})
