@@ -123,10 +123,10 @@ class view {
 	public function toAjax($_version = 'dashboard', $_html = false) {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
-		foreach ($this->getViewZone() as $viewZone) {
+		foreach(($this->getViewZone()) as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
 			$viewZone_info['viewData'] = array();
-			foreach ($viewZone->getViewData() as $viewData) {
+			foreach(($viewZone->getViewData()) as $viewData) {
 				$viewData_info = utils::o2a($viewData);
 				$viewData_info['name'] = '';
 				switch ($viewData->getType()) {

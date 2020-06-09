@@ -58,7 +58,7 @@ try {
 	
 	if (init('action') == 'listScenarioHtml') {
 		$return = array();
-		foreach (scenario::all() as $scenario) {
+		foreach((scenario::all()) as $scenario) {
 			if ($scenario->getIsVisible() == 1) {
 				$return[] = $scenario->toHtml(init('version'));
 			}
@@ -338,7 +338,7 @@ try {
 		$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
 		$return['forecast'] = $scenario->calculateScheduleDate();
 		$return['elements'] = array();
-		foreach ($scenario->getElement() as $element) {
+		foreach(($scenario->getElement()) as $element) {
 			$return['elements'][] = $element->getAjaxElement();
 		}
 		$return['scenario_link'] = array('scenario' => array());

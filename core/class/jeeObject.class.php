@@ -131,7 +131,7 @@ class jeeObject {
 					if (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()])) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
-						foreach ($eqLogic->getCmd() as $cmd) {
+						foreach(($eqLogic->getCmd()) as $cmd) {
 							if (!isset($_restrict['cmd']) || !is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
 								$cmd_return = utils::o2a($cmd);
 								if ($cmd->getType() == 'info') {
@@ -161,7 +161,7 @@ class jeeObject {
 
 	public static function deadCmd() {
 		$return = array();
-		foreach (jeeObject::all() as $object) {
+		foreach((jeeObject::all()) as $object) {
 			$sumaries = $object->getConfiguration('summary');
 			if(!is_array($sumaries) || count($sumaries) < 1){
 				continue;
@@ -412,7 +412,7 @@ class jeeObject {
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
 
-		foreach (jeeObject::all() as $object) {
+		foreach((jeeObject::all()) as $object) {
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
@@ -523,7 +523,7 @@ class jeeObject {
 
 	public function getChilds() {
 		$return = array();
-		foreach ($this->getChild() as $child) {
+		foreach(($this->getChild()) as $child) {
 			$return[] = $child;
 			$return = array_merge($return, $child->getChilds());
 		}

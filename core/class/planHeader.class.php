@@ -84,7 +84,7 @@ class planHeader {
 		$planHeaderCopy->setName($_name);
 		$planHeaderCopy->setId('');
 		$planHeaderCopy->save();
-		foreach ($this->getPlan() as $plan) {
+		foreach(($this->getPlan()) as $plan) {
 			$planCopy = clone $plan;
 			$planCopy->setId('');
 			$planCopy->setPlanHeader_id($planHeaderCopy->getId());

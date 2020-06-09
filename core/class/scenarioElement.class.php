@@ -120,7 +120,7 @@ class scenarioElement {
 	}
 	
 	public function remove() {
-		foreach ($this->getSubElement() as $subelement) {
+		foreach(($this->getSubElement()) as $subelement) {
 			$subelement->remove();
 		}
 		DB::remove($this);
@@ -142,7 +142,7 @@ class scenarioElement {
 				$_scenario->setLog(__('Expression non valide : ', __FILE__) . $result);
 				$expresssion_str = '';
 				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
-					foreach ($this->getSubElement('if')->getExpression() as $expression) {
+					foreach(($this->getSubElement('if')->getExpression()) as $expression) {
 						$expresssion_str = $expression->getExpression();
 					}
 				}
@@ -307,7 +307,7 @@ class scenarioElement {
 			}
 		}
 		$return['subElements'] = array();
-		foreach ($this->getSubElement() as $subElement) {
+		foreach(($this->getSubElement()) as $subElement) {
 			$subElement_ajax = utils::o2a($subElement);
 			if ($_mode == 'array') {
 				if (isset($subElement_ajax['id'])) {
@@ -324,7 +324,7 @@ class scenarioElement {
 				}
 			}
 			$subElement_ajax['expressions'] = array();
-			foreach ($subElement->getExpression() as $expression) {
+			foreach(($subElement->getExpression()) as $expression) {
 				$expression_ajax = utils::o2a($expression);
 				if ($_mode == 'array') {
 					if (isset($expression_ajax['id'])) {
@@ -374,7 +374,7 @@ class scenarioElement {
 			'subelement' => array(),
 			'expression' => array(),
 		);
-		foreach ($this->getSubElement() as $subelement) {
+		foreach(($this->getSubElement()) as $subelement) {
 			$result = $subelement->getAllId();
 			$return['element'] = array_merge($return['element'], $result['element']);
 			$return['subelement'] = array_merge($return['subelement'], $result['subelement']);
@@ -384,12 +384,12 @@ class scenarioElement {
 	}
 	
 	public function resetRepeatIfStatus() {
-		foreach ($this->getSubElement() as $subElement) {
+		foreach(($this->getSubElement()) as $subElement) {
 			if ($subElement->getType() == 'if') {
 				$subElement->setOptions('previousState', -1);
 				$subElement->save();
 			}
-			foreach ($subElement->getExpression() as $expression) {
+			foreach(($subElement->getExpression()) as $expression) {
 				$expression->resetRepeatIfStatus();
 			}
 		}
@@ -397,7 +397,7 @@ class scenarioElement {
 	
 	public function export() {
 		$return = '';
-		foreach ($this->getSubElement() as $subElement) {
+		foreach(($this->getSubElement()) as $subElement) {
 			$return .= "\n";
 			switch ($subElement->getType()) {
 				case 'if':
@@ -432,7 +432,7 @@ class scenarioElement {
 							break;
 						}
 						
-						foreach ($subElement->getExpression() as $expression) {
+						foreach(($subElement->getExpression()) as $expression) {
 							$export = $expression->export();
 							if ($expression->getType() != 'condition' && trim($export) != '') {
 								$return .= "\n";
@@ -449,7 +449,7 @@ class scenarioElement {
 					$elementCopy = clone $this;
 					$elementCopy->setId('');
 					$elementCopy->save();
-					foreach ($this->getSubElement() as $subelement) {
+					foreach(($this->getSubElement()) as $subelement) {
 						$subelement->copy($elementCopy->getId());
 					}
 					return $elementCopy->getId();

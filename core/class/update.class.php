@@ -226,7 +226,7 @@ class update {
 	}
 	
 	public static function findNewUpdateObject() {
-		foreach (plugin::listPlugin() as $plugin) {
+		foreach((plugin::listPlugin()) as $plugin) {
 			$plugin_id = $plugin->getId();
 			$update = self::byTypeAndLogicalId('plugin', $plugin_id);
 			if (!is_object($update)) {
@@ -238,7 +238,7 @@ class update {
 			}
 			$find = array();
 			if (method_exists($plugin_id, 'listMarketObject')) {
-				foreach ($plugin_id::listMarketObject() as $logical_id) {
+				foreach(($plugin_id::listMarketObject()) as $logical_id) {
 					$find[$logical_id] = true;
 					$update = self::byTypeAndLogicalId($plugin_id, $logical_id);
 					if (!is_object($update)) {

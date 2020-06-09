@@ -476,7 +476,7 @@ class eqLogic {
 	}
 
 	public static function clearCacheWidget() {
-		foreach (self::all() as $eqLogic) {
+		foreach((self::all()) as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
 		}
 	}
@@ -626,18 +626,18 @@ class eqLogic {
 		$eqLogicCopy->setName($_name);
 		$eqLogicCopy->setId('');
 		$eqLogicCopy->save();
-		foreach ($eqLogicCopy->getCmd() as $cmd) {
+		foreach(($eqLogicCopy->getCmd()) as $cmd) {
 			$cmd->remove();
 		}
 		$cmd_link = array();
-		foreach ($this->getCmd() as $cmd) {
+		foreach(($this->getCmd()) as $cmd) {
 			$cmdCopy = clone $cmd;
 			$cmdCopy->setId('');
 			$cmdCopy->setEqLogic_id($eqLogicCopy->getId());
 			$cmdCopy->save();
 			$cmd_link[$cmd->getId()] = $cmdCopy;
 		}
-		foreach ($this->getCmd() as $cmd) {
+		foreach(($this->getCmd()) as $cmd) {
 			if (!isset($cmd_link[$cmd->getId()])) {
 				continue;
 			}
@@ -883,7 +883,7 @@ class eqLogic {
 	}
 
 	public function remove() {
-		foreach ($this->getCmd() as $cmd) {
+		foreach(($this->getCmd()) as $cmd) {
 			$cmd->remove();
 		}
 		viewData::removeByTypeLinkId('eqLogic', $this->getId());
@@ -928,7 +928,7 @@ class eqLogic {
 							$this->setDisplay('layout::' . $key . '::table::nbColumn', 1);
 						}
 					}
-					foreach ($this->getCmd() as $cmd) {
+					foreach(($this->getCmd()) as $cmd) {
 						$cmd_ids[$cmd->getId()] = $cmd->getId();
 						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
 							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
@@ -1159,7 +1159,7 @@ class eqLogic {
 		$link_actions = array();
 		$arrayToRemove = [];
 		if (isset($_configuration['commands'])) {
-			foreach ($this->getCmd() as $eqLogic_cmd) {
+			foreach(($this->getCmd()) as $eqLogic_cmd) {
 				$exists = 0;
 				foreach ($_configuration['commands'] as $command) {
 					if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
@@ -1181,7 +1181,7 @@ class eqLogic {
 			}
 			foreach ($_configuration['commands'] as $command) {
 				$cmd = null;
-				foreach ($this->getCmd() as $liste_cmd) {
+				foreach(($this->getCmd()) as $liste_cmd) {
 					if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
 					|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
 						$cmd = $liste_cmd;
@@ -1216,7 +1216,7 @@ class eqLogic {
 			}
 		}
 		if (count($link_cmds) > 0) {
-			foreach ($this->getCmd() as $eqLogic_cmd) {
+			foreach(($this->getCmd()) as $eqLogic_cmd) {
 				foreach ($link_cmds as $cmd_id => $link_cmd) {
 					if ($link_cmd == $eqLogic_cmd->getName()) {
 						$cmd = cmd::byId($cmd_id);
@@ -1229,7 +1229,7 @@ class eqLogic {
 			}
 		}
 		if (count($link_actions) > 0) {
-			foreach ($this->getCmd() as $eqLogic_cmd) {
+			foreach(($this->getCmd()) as $eqLogic_cmd) {
 				foreach ($link_actions as $cmd_id => $link_action) {
 					if ($link_action == $eqLogic_cmd->getName()) {
 						$cmd = cmd::byId($cmd_id);
@@ -1277,7 +1277,7 @@ class eqLogic {
 		}
 		if ($_withCmd) {
 			$return['cmd'] = array();
-			foreach ($this->getCmd() as $cmd) {
+			foreach(($this->getCmd()) as $cmd) {
 				$return['cmd'][] = $cmd->export();
 			}
 		}

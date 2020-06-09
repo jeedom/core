@@ -265,7 +265,7 @@ class scenario {
 	}
 
 	public static function control() {
-		foreach (scenario::all() as $scenario) {
+		foreach((scenario::all()) as $scenario) {
 			if ($scenario->getState() != 'in progress') {
 				continue;
 			}
@@ -324,8 +324,8 @@ class scenario {
 			'subelement' => array(),
 			'expression' => array(),
 		);
-		foreach (scenario::all() as $scenario) {
-			foreach ($scenario->getElement() as $element) {
+		foreach((scenario::all()) as $scenario) {
+			foreach(($scenario->getElement()) as $element) {
 				$result = $element->getAllId();
 				$ids['element'] = array_merge($ids['element'], $result['element']);
 				$ids['subelement'] = array_merge($ids['subelement'], $result['subelement']);
@@ -371,7 +371,7 @@ class scenario {
 			}
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
-				foreach ($scenario->getTrigger() as $trigger) {
+				foreach(($scenario->getTrigger()) as $trigger) {
 					$trigger_list .= cmd::cmdToHumanReadable($trigger) . '_';
 				}
 				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
@@ -608,7 +608,7 @@ class scenario {
 	* @return boolean
 	*/
 	public function testTrigger($_event) {
-		foreach ($this->getTrigger() as $trigger) {
+		foreach(($this->getTrigger()) as $trigger) {
 			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
 			if ($trigger == $_event) {
 				return true;
@@ -739,7 +739,7 @@ class scenario {
 		$this->setState('in progress');
 		$this->setPID(getmypid());
 		$this->setRealTrigger($_trigger);
-		foreach ($this->getElement() as $element) {
+		foreach(($this->getElement()) as $element) {
 			if (!$this->getDo()) {
 				break;
 			}
@@ -761,7 +761,7 @@ class scenario {
 		$scenarioCopy->setName($_name);
 		$scenarioCopy->setId('');
 		$scenario_element_list = array();
-		foreach ($this->getElement() as $element) {
+		foreach(($this->getElement()) as $element) {
 			$scenario_element_list[] = $element->copy();
 		}
 		$scenarioCopy->setScenarioElement($scenario_element_list);
@@ -934,7 +934,7 @@ class scenario {
 	public function remove() {
 		viewData::removeByTypeLinkId('scenario', $this->getId());
 		dataStore::removeByTypeLinkId('scenario', $this->getId());
-		foreach ($this->getElement() as $element) {
+		foreach(($this->getElement()) as $element) {
 			$element->remove();
 		}
 		$this->emptyCacheWidget();
@@ -1002,7 +1002,7 @@ class scenario {
 		$calculatedDate = array('prevDate' => '', 'nextDate' => '');
 		if (is_array($this->getSchedule())) {
 			$calculatedDate_tmp = array('prevDate' => '', 'nextDate' => '');
-			foreach ($this->getSchedule() as $schedule) {
+			foreach(($this->getSchedule()) as $schedule) {
 				try {
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
@@ -1045,7 +1045,7 @@ class scenario {
 			return false;
 		}
 		if (is_array($this->getSchedule())) {
-			foreach ($this->getSchedule() as $schedule) {
+			foreach(($this->getSchedule()) as $schedule) {
 				try {
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					try {
@@ -1176,7 +1176,7 @@ class scenario {
 		$return = array();
 		$elements = $this->getScenarioElement();
 		if (is_array($elements)) {
-			foreach ($this->getScenarioElement() as $element_id) {
+			foreach(($this->getScenarioElement()) as $element_id) {
 				$element = scenarioElement::byId($element_id);
 				if (is_object($element)) {
 					$return[] = $element;
@@ -1221,14 +1221,14 @@ class scenario {
 				}
 			}
 			if ($this->getMode() == 'provoke' || $this->getMode() == 'all') {
-				foreach ($this->getTrigger() as $trigger) {
+				foreach(($this->getTrigger()) as $trigger) {
 					$return .= '    - Evènement : ' . jeedom::toHumanReadable($trigger) . "\n";
 				}
 			}
 			$return .= "\n";
 			$return .= $this->getDescription();
 			$return .= "\n\n";
-			foreach ($this->getElement() as $element) {
+			foreach(($this->getElement()) as $element) {
 				$exports = explode("\n", $element->export());
 				foreach ($exports as $export) {
 					$return .= "    " . $export . "\n";
@@ -1239,7 +1239,7 @@ class scenario {
 			$return = utils::o2a($this);
 			$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
 			$return['elements'] = array();
-			foreach ($this->getElement() as $element) {
+			foreach(($this->getElement()) as $element) {
 				$return['elements'][] = $element->getAjaxElement('array');
 			}
 			if (isset($return['id'])) {
@@ -1495,7 +1495,7 @@ class scenario {
 	}
 
 	public function resetRepeatIfStatus() {
-		foreach ($this->getElement() as $element) {
+		foreach(($this->getElement()) as $element) {
 			$element->resetRepeatIfStatus();
 		}
 	}

@@ -107,7 +107,7 @@ try {
 						$objects[] = $object->getId();
 					}
 				}else{
-					foreach (jeeObject::all() as $object) {
+					foreach((jeeObject::all()) as $object) {
 						$objects[] = $object->getId();
 					}
 				}

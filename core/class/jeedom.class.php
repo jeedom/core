@@ -411,7 +411,7 @@ class jeedom {
 			'key' => 'apache2::privateTmp'
 		);
 		
-		foreach (update::listRepo() as $repo) {
+		foreach((update::listRepo()) as $repo) {
 			if (!$repo['enable']) {
 				continue;
 			}
@@ -765,7 +765,7 @@ class jeedom {
 	public static function stop() {
 		echo "Disable all task";
 		config::save('enableCron', 0);
-		foreach (cron::all() as $cron) {
+		foreach((cron::all()) as $cron) {
 			if ($cron->running()) {
 				try {
 					$cron->halt();
@@ -795,7 +795,7 @@ class jeedom {
 		
 		echo "Disable all scenario";
 		config::save('enableScenario', 0);
-		foreach (scenario::all() as $scenario) {
+		foreach((scenario::all()) as $scenario) {
 			try {
 				$scenario->stop();
 				echo '.';
@@ -886,7 +886,7 @@ class jeedom {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
 					$class::cron5();
@@ -908,7 +908,7 @@ class jeedom {
 	
 	public static function cron10() {
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
 					$class::cron10();
@@ -927,7 +927,7 @@ class jeedom {
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
 			try {
 				log::add('starting', 'debug', __('Arrêt des crons', __FILE__));
-				foreach (cron::all() as $cron) {
+				foreach((cron::all()) as $cron) {
 					if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 						try {
 							$cron->halt();
@@ -1060,7 +1060,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronDaily') && config::byKey($name . '::enable') == 1) {
 					$class::cronDaily();
@@ -1095,7 +1095,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
 					$class::cronHourly();

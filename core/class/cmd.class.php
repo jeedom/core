@@ -716,7 +716,7 @@ class cmd {
 				continue;
 			}
 			$plugin_id = $plugin->getId();
-			foreach ($plugin_id::templateWidget() as $type => $data1) {
+			foreach(($plugin_id::templateWidget()) as $type => $data1) {
 				foreach ($data1 as $subtype => $data2) {
 					foreach ($data2 as $name => $data3) {
 						if(!isset($return[$type])){
@@ -730,7 +730,7 @@ class cmd {
 				}
 			}
 		}
-		foreach (widgets::all() as $widgets) {
+		foreach((widgets::all()) as $widgets) {
 			if(!isset($return[$widgets->getType()])){
 				$return[$widgets->getType()] = array();
 			}
@@ -771,7 +771,7 @@ class cmd {
 
 	public static function deadCmd() {
 		$return = array();
-		foreach (cmd::all() as $cmd) {
+		foreach((cmd::all()) as $cmd) {
 			if (is_array($cmd->getConfiguration('actionCheckCmd', ''))) {
 				foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
 					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {

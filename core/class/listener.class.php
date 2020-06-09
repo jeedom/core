@@ -32,7 +32,7 @@ class listener {
 	/*     * ***********************Méthodes statiques*************************** */
 	
 	public static function clean(){
-		foreach (self::all() as $listener) {
+		foreach((self::all()) as $listener) {
 			$events = $listener->getEvent();
 			if(count($events) > 0){
 				$listener->emptyEvent();

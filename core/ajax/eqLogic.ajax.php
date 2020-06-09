@@ -34,7 +34,7 @@ try {
 		}
 		$return = utils::o2a($object);
 		$return['eqLogic'] = array();
-		foreach ($object->getEqLogic() as $eqLogic) {
+		foreach(($object->getEqLogic()) as $eqLogic) {
 			if ($eqLogic->getIsVisible() == '1') {
 				$info_eqLogic = array();
 				$info_eqLogic['id'] = $eqLogic->getId();
@@ -87,7 +87,7 @@ try {
 
 	if (init('action') == 'htmlAlert') {
 		$return = array();
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			if ($eqLogic->getAlert() == '') {
 				continue;
 			}
@@ -104,7 +104,7 @@ try {
 	if (init('action') == 'htmlBattery') {
 		$return = array();
 		$list = array();
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
 			if ($eqLogic->getIsEnable() && $eqLogic->getStatus('battery', -2) != -2) {
 				$list[] = $eqLogic;
@@ -288,7 +288,7 @@ try {
 		if(isset($used['eqLogic'.$eqLogic->getId()])){
 			unset($used['eqLogic'.$eqLogic->getId()]);
 		}
-		foreach ($eqLogic->getCmd() as $cmd) {
+		foreach(($eqLogic->getCmd()) as $cmd) {
 			if(isset($used['cmd'.$cmd->getId()])){
 				unset($used['cmd'.$cmd->getId()]);
 			}
@@ -482,7 +482,7 @@ try {
 
 	if (init('action') == 'getAlert') {
 		$alerts = array();
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			if ($eqLogic->getAlert() == '') {
 				continue;
 			}

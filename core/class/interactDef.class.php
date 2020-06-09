@@ -111,7 +111,7 @@ class interactDef {
 	}
 	
 	public static function regenerateInteract() {
-		foreach (self::all() as $interactDef) {
+		foreach((self::all()) as $interactDef) {
 			$interactDef->save();
 		}
 	}
@@ -154,7 +154,7 @@ class interactDef {
 	
 	public static function deadCmd() {
 		$return = array();
-		foreach (interactDef::all() as $interact) {
+		foreach((interactDef::all()) as $interact) {
 			//var_dump($interact->getActions('cmd'));
 			foreach ($interact->getActions('cmd') as $cmd) {
 				$json = json_encode($cmd);
@@ -183,7 +183,7 @@ class interactDef {
 	
 	public static function cleanInteract() {
 		$list_id = array();
-		foreach (self::all() as $interactDef) {
+		foreach((self::all()) as $interactDef) {
 			$list_id[$interactDef->getId()] = $interactDef->getId();
 		}
 		if (count($list_id) > 0) {
@@ -451,14 +451,14 @@ class interactDef {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
-				foreach (jeeObject::all() as $object) {
+				foreach((jeeObject::all()) as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
 					}
 					if (isset($visible_filter['object']) && $visible_filter['object'] == 1 && $object->getIsVisible() != 1) {
 						continue;
 					}
-					foreach ($object->getEqLogic() as $eqLogic) {
+					foreach(($object->getEqLogic()) as $eqLogic) {
 						if ($this->getFiltres('eqLogic_id', 'all') != 'all' && $eqLogic->getId() != $this->getFiltres('eqLogic_id')) {
 							continue;
 						}
@@ -488,7 +488,7 @@ class interactDef {
 						if (!$category_ok) {
 							continue;
 						}
-						foreach ($eqLogic->getCmd() as $cmd) {
+						foreach(($eqLogic->getCmd()) as $cmd) {
 							if (isset($visible_filter['cmd']) && $visible_filter['cmd'] == 1 && $cmd->getIsVisible() != 1) {
 								continue;
 							}

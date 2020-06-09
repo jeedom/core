@@ -55,7 +55,7 @@ try {
 				$views = view::all();
 			}
 			$return = array();
-			foreach (view::all() as $view) {
+			foreach((view::all()) as $view) {
 				$return[$view->getId()] = $view->toAjax(init('version', 'dashboard'), init('html'));
 			}
 			ajax::success($return);
@@ -110,7 +110,7 @@ try {
 		}
 		$return = utils::o2a($viewZone);
 		$return['eqLogic'] = array();
-		foreach ($viewZone->getviewData() as $viewData) {
+		foreach(($viewZone->getviewData()) as $viewData) {
 			$infoViewDatat = utils::o2a($viewData->getLinkObject());
 			$infoViewDatat['html'] = $viewData->getLinkObject()->toHtml(init('version'));
 			$return['viewData'][] = $infoViewDatat;

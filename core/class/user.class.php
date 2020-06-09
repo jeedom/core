@@ -387,7 +387,7 @@ class user {
 
 	public static function deadCmd() {
 		$return = array();
-		foreach (user::all() as $user) {
+		foreach((user::all()) as $user) {
 			$cmd = $user->getOptions('notification::cmd');
 			if ($cmd != '') {
 				if (!cmd::byId(str_replace('#', '', $cmd))) {
@@ -399,7 +399,7 @@ class user {
 	}
 
 	public static function regenerateHash(){
-		foreach (user::all() as $user) {
+		foreach((user::all()) as $user) {
 			if($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash',0) == 1 || $user->getEnable() == 0){
 				continue;
 			}

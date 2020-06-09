@@ -168,14 +168,14 @@ class cache {
 	
 	
 	public static function flushWidget() {
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			try {
 				$eqLogic->emptyCacheWidget();
 			} catch (Exception $e) {
 				
 			}
 		}
-		foreach (scenario::all() as $scenario) {
+		foreach((scenario::all()) as $scenario) {
 			try {
 				$scenario->emptyCacheWidget();
 			} catch (Exception $e) {

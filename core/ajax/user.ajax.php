@@ -149,7 +149,7 @@ try {
 		}
 		unautorizedInDemo();
 		$users = array();
-		foreach (user::all() as $user) {
+		foreach((user::all()) as $user) {
 			$user_info = utils::o2a($user);
 			$users[] = $user_info;
 		}
@@ -232,7 +232,7 @@ try {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 			}
-			foreach (user::all() as $user) {
+			foreach((user::all()) as $user) {
 				if ($user->getId() == $_SESSION['user']->getId()) {
 					@session_start();
 					$_SESSION['user']->refresh();
