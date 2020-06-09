@@ -216,7 +216,7 @@ class network {
 			config::save($_mode . 'Complement', '');
 		}
 		if ($_mode == 'internal') {
-			foreach (self::getInterfacesInfo() as $interface) {
+			foreach ((self::getInterfacesInfo()) as $interface) {
 				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info'])) {
 					continue;
 				}
