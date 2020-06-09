@@ -27,6 +27,7 @@ $(function() {
     var alert_div_plugin_configuration = $('#div_alert')
   }
 
+  $('.pluginDisplayCard').show()
   setTimeout(function() {
     $('.pluginListContainer').packery()
   }, 100)

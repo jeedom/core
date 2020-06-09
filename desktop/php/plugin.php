@@ -19,7 +19,7 @@ $plugins_list = plugin::listPlugin(false, true);
       </div>
       <?php
       $div = '';
-      foreach (update::listRepo() as $key => $value) {
+      foreach ((update::listRepo()) as $key => $value) {
         if (!$value['enable']) {
           continue;
         }
@@ -52,9 +52,9 @@ $plugins_list = plugin::listPlugin(false, true);
       <div class="panel-body">
         <div class="pluginListContainer">
           <?php
-          foreach (plugin::listPlugin() as $plugin) {
+          foreach ((plugin::listPlugin()) as $plugin) {
             $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-            $div = '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
+            $div = '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'; display: none;">';
             $div .= '<center>';
             $div .= '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
             $div .= '</center>';
