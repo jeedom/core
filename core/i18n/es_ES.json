@@ -2533,7 +2533,7 @@
         "Binaire": "Binario",
         "Créer virtuel": "Crear virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "Restablecimiento de los derechos de acceso con éxito",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "Verificación realizada, visualice la consistencia del registro para el resultado"
+        "Log consistency": "Consistencia de registro"
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de seguridad: <br\/> Su contraseña debe ser cambiada",

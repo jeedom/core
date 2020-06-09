@@ -2533,7 +2533,7 @@
         "Binaire": "バイナリ",
         "Créer virtuel": "仮想作成",
         "Rétablissement des droits d\\'accès effectué avec succès": "正常に復元されたアクセス権",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "検証が実行され、結果のログの一貫性が表示されます。"
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",

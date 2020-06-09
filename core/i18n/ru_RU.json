@@ -2533,7 +2533,7 @@
         "Binaire": "двоичный",
         "Créer virtuel": "Создание виртуального",
         "Rétablissement des droits d\\'accès effectué avec succès": "Успешно восстановлены права доступа",
-        "Vérification effectuée, afficher le log consistency pour le résultat.": "Проверка выполнена, отобразится лог последовательности для результата"
+        "Log consistency": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
