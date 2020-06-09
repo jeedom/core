@@ -37,6 +37,7 @@
 - **Vista** : possibilidade de colocar cenários.
 - **Vista** : Modo de edição agora inserindo o bloco movido.
 - **Vista** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acessar sua configuração.
+- **Vista** : A ordem de exibição agora é independente da ordem no painel.
 - **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Histórico** : Gerenciamento de várias linhas do tempo.
 - **Histórico** : Revisão gráfica do cronograma.

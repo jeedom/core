@@ -37,6 +37,7 @@
 - **View** : possibility to put scenarios.
 - **View** : Edit mode now inserting the moved tile.
 - **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to its configuration.
+- **View** : The display order is now independent of that on the Dashboard.
 - **History** : Integration of the Timeline in DB for reliability reasons.
 - **History** : Management of multiple timelines.
 - **History** : Timeline graphic overhaul.

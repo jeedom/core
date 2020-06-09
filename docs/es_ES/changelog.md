@@ -37,6 +37,7 @@
 - **Vista** : posibilidad de poner escenarios.
 - **Vista** : El modo de edición ahora inserta el mosaico movido.
 - **Vista** : Modo de edición: los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
+- **Vista** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
 - **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Historial** : Gestión de múltiples líneas de tiempo.
 - **Historial** : Revisión gráfica del cronograma.

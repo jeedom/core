@@ -37,6 +37,7 @@
 - **Ansicht** : Möglichkeit, Szenarien zu setzen.
 - **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - **Ansicht** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf die Konfiguration ermöglicht.
+- **Ansicht** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
 - **Chronik** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Chronik** : Verwaltung mehrerer Zeitleisten.
 - **Chronik** : Überarbeitung der Timeline-Grafik.

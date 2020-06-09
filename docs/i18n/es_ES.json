@@ -1338,6 +1338,7 @@
         "Analyse \/ Logs": "Análisis \/ Registros",
         "Nouvelle police de type monospace pour les logs": "Nueva fuente tipo monoespacio para registros",
         "possibilité de mettre des scénarios": "posibilidad de poner escenarios",
+        "L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard": "El orden de visualización ahora es independiente del que se muestra en el Panel de control",
         "Intégration de la Timeline en DB pour des raisons de fiabilité": "Integración de la línea de tiempo en DB por razones de confiabilidad",
         "Gestion de Timelines multiples": "Gestión de múltiples líneas de tiempo",
         "Refonte graphique de la timeline": "Revisión gráfica del cronograma",

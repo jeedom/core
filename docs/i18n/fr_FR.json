@@ -815,6 +815,7 @@
         "Nouvelle police de type monospace pour les logs": "Nouvelle police de type monospace pour les logs",
         "Vue": "Vue",
         "possibilité de mettre des scénarios": "possibilité de mettre des scénarios",
+        "L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard": "L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard",
         "Historique": "Historique",
         "Intégration de la Timeline en DB pour des raisons de fiabilité": "Intégration de la Timeline en DB pour des raisons de fiabilité",
         "Gestion de Timelines multiples": "Gestion de Timelines multiples",
