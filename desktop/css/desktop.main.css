@@ -1647,7 +1647,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   margin-bottom: 40px;
   margin-left: -115px ;
   width: 150px;
-  z-index: 200 !important;
+  z-index: 9 !important;
   border-radius: var(--border-radius);
 }
 
@@ -1701,7 +1701,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   position: fixed;
   text-align: right;
   right: 25px;
-  z-index: 5;
+  z-index: 10;
   background: rgba(var(--panel-bg-color), var(--opacity));
   padding: 5px;
 }
