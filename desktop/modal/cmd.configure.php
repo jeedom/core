@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
-  throw new Exception('Commande non trouvé : ' . init('cmd_id'));
+  throw new Exception('{{Commande non trouvé}}'.' : ' . init('cmd_id'));
 }
 global $JEEDOM_INTERNAL_CONFIG;
 sendVarToJS('cmdInfo', jeedom::toHumanReadable(utils::o2a($cmd)));
