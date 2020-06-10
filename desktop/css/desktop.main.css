@@ -83,9 +83,6 @@ a:hover {
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }
-.ui-widget-overlay.ui-front {
-  background: rgba(10,10,10,1);
-}
 
 header a.navbar-brand {
   padding: 7px;
@@ -1748,8 +1745,14 @@ body[data-page="history"] #div_pageContainer .tab-content {
 .navbar:hover {
   z-index: 50000;
 }
-.ui-widget-overlay.ui-front {
+.ui-widget-overlay.ui-front,
+.modal-backdrop {
   z-index: 90 !important;
+  background: var(--el-defaultColor) !important;
+  opacity: 0.7;
+}
+.ui-dialog {
+  box-shadow: none !important;
 }
 
 .navbar-collapse {
@@ -3528,9 +3531,6 @@ path.highcharts-graph {
 }
 #div_confPlugin {
   height: auto !important;
-}
-:not(.elfinder-dialog).ui-dialog {
-  box-shadow: 0px 0px 0px 1500px var(--shd-color) !important;
 }
 
 .modal-header {
