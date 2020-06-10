@@ -303,7 +303,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
                 <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input>
               </div>
               <div class="col-sm-3">
-                <a class="btn btn-success" id="bt_resetbattery"><i class="fas fa-refresh"></i> Pile(s) changée(s)</a>
+                <a class="btn btn-success" id="bt_resetbattery"><i class="fas fa-refresh"></i> {{Pile(s) changée(s)}}</a>
               </div>
             </div>
           </fieldset>
