@@ -100,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else if(data.code == -32006){
@@ -140,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else{
@@ -338,8 +338,9 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 }
 
 jeedom.cmd.refreshValue = function(_params) {
+  var cmd = null;
   for(var i in _params){
-    var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
+    cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
     if (cmd.html() == undefined || cmd.hasClass('noRefresh')) {
       continue;
     }
@@ -646,7 +647,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-
+            
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -684,7 +685,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-
+      
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
