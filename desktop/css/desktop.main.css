@@ -3588,6 +3588,7 @@ path.highcharts-graph {
 
 .ui-dialog {
   background-color: rgb(var(--defaultBkg-color));
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
