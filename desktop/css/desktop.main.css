@@ -1747,9 +1747,10 @@ body[data-page="history"] #div_pageContainer .tab-content {
 }
 .ui-widget-overlay.ui-front,
 .modal-backdrop {
-  z-index: 90 !important;
+  z-index: 100 !important;
   background: var(--el-defaultColor) !important;
-  opacity: 0.7;
+  opacity: 0.6;
+  backdrop-filter: blur(3px);
 }
 .ui-dialog {
   box-shadow: none !important;
