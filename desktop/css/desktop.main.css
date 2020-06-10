@@ -80,6 +80,10 @@ a:hover {
 [data-page="dashboard"] .backgroundforJeedom {
   filter: blur(var(--objectBackgroundBlur));
 }
+[data-page="dashboard"] div.col-md-12:empty {
+  display:none;
+}
+
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }
