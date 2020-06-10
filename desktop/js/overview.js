@@ -190,6 +190,12 @@ $("#md_overviewSummary").dialog({
   width: 500,
   height: 200,
   position: {my: 'left top', at: 'left+19 top+96', of: window},
+  open: function() {
+    $('.ui-widget-overlay.ui-front').css('display', 'none')
+  },
+  beforeClose: function(event, ui) {
+    $('.ui-widget-overlay.ui-front').css('display')
+  }
 })
 
 $(function() {
