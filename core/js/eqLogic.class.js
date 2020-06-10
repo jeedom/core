@@ -355,7 +355,7 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
   }
   if ($("#mod_insertEqLogicValue").length == 0) {
     $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
-
+    
     $("#mod_insertEqLogicValue").dialog({
       closeText: '',
       autoOpen: false,
@@ -389,8 +389,9 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsRequired = [];
   var eqLogics = {};
   var sends = {};
+  var eqLogic = null;
   for(var i in _params){
-    var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
+    eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
       continue;
     }
@@ -403,10 +404,13 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsSpecifics = {
     global: false,
     success: function (result) {
+      var html = null;
+      var eqLogic = null;
+      var uid = null;
       for(var i in result){
-        var html = $(result[i].html);
-        var eqLogic = eqLogics[i].eqLogic;
-        var uid = html.attr('data-eqLogic_uid');
+        html = $(result[i].html);
+        eqLogic = eqLogics[i].eqLogic;
+        uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }

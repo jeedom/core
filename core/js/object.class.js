@@ -225,15 +225,18 @@ jeedom.object.setOrder = function(_params) {
 jeedom.object.summaryUpdate = function(_params) {
   var objects = {};
   var sends = {};
+  var object = null;
+  var keySpan = null;
+  var updated = null;
   for(var i in _params){
-    var object = $('.objectSummary' + _params[i].object_id);
+    object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
       continue;
     }
     if(isset(_params[i]['keys'])){
-      var updated = false;
+      updated = false;
       for(var j in _params[i]['keys']){
-        var keySpan = object.find('.objectSummary'+j);
+        keySpan = object.find('.objectSummary'+j);
         if(keySpan.html() != undefined){
           updated = true;
           if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){

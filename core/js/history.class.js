@@ -178,13 +178,14 @@ jeedom.history.drawChart = function (_params) {
         events : {
           render: function () {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
+            var solidClip = null;
             $('.highcharts-zone-graph-0.customSolidZone').each(function() {
-              var solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
+              solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
               $(solidClip).css('transform', 'translate(5px)')
             })
-            
+            var customClip = null;
             $('.highcharts-zone-graph-1.customDotZone').each(function() {
-              var customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
+              customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
               $(customClip).css('transform', 'translate(5px)')
             })
           }

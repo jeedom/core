@@ -36,8 +36,9 @@ function getTemplate(_folder, _version, _filename, _replace) {
     },
     success: function (data) {
       if (isset(_replace) && _replace != null) {
+        var reg = null;
         for (i in _replace) {
-          var reg = new RegExp(i, "g");
+          reg = new RegExp(i, "g");
           data = data.replace(reg, _replace[i]);
         }
       }
@@ -98,8 +99,9 @@ function setCookie(cname, cvalue, exdays) {
 
 function getCookie(name) {
   var cookies = document.cookie.split(';');
+  var csplit = null;
   for(var i in cookies){
-    var csplit = cookies[i].split('=');
+    csplit = cookies[i].split('=');
     if(name.trim() == csplit[0].trim()){
       return csplit[1];
     }
