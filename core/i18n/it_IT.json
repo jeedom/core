@@ -598,6 +598,7 @@
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Commande non trouvé": "",
         "Tester": "Prova",
         "Liens": "Connessioni",
         "Informations": "Informazioni",
@@ -838,6 +839,7 @@
     },
     "desktop\/modal\/eqLogic.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "EqLogic non trouvé : ": "",
         "Informations": "Informazioni",
         "Log": "Registro",
         "Liens": "Connessioni",
@@ -868,6 +870,7 @@
         "Paramètres optionnels sur la tuile": "Parametri opzionali per il titolo",
         "Valeur": "Valore",
         "Informations Batteries": "Informazioni Batterie",
+        "Pile(s) changée(s)": "",
         "Seuils spécifiques Batteries": "Soglie specifiche Batterie",
         "Danger": "Pericolo",
         "Warning": "Avvertimento",

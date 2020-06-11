@@ -598,6 +598,7 @@
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Commande non trouvé": "",
         "Tester": "Test et",
         "Liens": "Linkler",
         "Informations": "Bilgiler",
@@ -838,6 +839,7 @@
     },
     "desktop\/modal\/eqLogic.configure.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "EqLogic non trouvé : ": "",
         "Informations": "Bilgiler",
         "Log": "",
         "Liens": "Linkler",
@@ -868,6 +870,7 @@
         "Paramètres optionnels sur la tuile": "Döşeme üzerinde isteğe bağlı parametreler",
         "Valeur": "Değer",
         "Informations Batteries": "Piller bilgi",
+        "Pile(s) changée(s)": "",
         "Seuils spécifiques Batteries": "Belirli eşikleri Piller",
         "Danger": "Tehlike",
         "Warning": "Uyarı",
