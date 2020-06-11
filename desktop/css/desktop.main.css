@@ -80,9 +80,6 @@ a:hover {
 [data-page="dashboard"] .backgroundforJeedom {
   filter: blur(var(--objectBackgroundBlur));
 }
-[data-page="dashboard"] div.col-md-12:empty {
-  display:none;
-}
 
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
@@ -384,6 +381,14 @@ legend .pull-right:not(.input-group) {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+[data-page="dashboard"] div.col-md-12:empty {
+  display:none;
+}
+
+.bt_editDashboardWidgetAutoResize {
+  margin-top: 5px;
+}
+
 div.eqLogic.eqLogic-widget:empty {
   display: none;
 }
@@ -1752,7 +1757,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
 }
 .ui-widget-overlay.ui-front,
 .modal-backdrop {
-  z-index: 100 !important;
+  z-index: 90 !important;
   background: var(--el-defaultColor) !important;
   opacity: 0.6;
   backdrop-filter: blur(3px);
