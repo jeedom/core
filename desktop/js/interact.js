@@ -183,11 +183,7 @@ $('.displayInteracQuery').on('click', function() {
 })
 
 $('#bt_interactThumbnailDisplay').on('click', function() {
-  if (modifyWithoutSave) {
-    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) return
-    modifyWithoutSave = false
-  }
-
+  if (checkPageModified()) return
   $('#div_conf').hide()
   $('#interactThumbnailDisplay').show()
   $interactListContainer.packery()

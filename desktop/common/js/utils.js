@@ -387,7 +387,7 @@ function triggerThemechange() {
   }
 
   //trigger event for widgets:
-  if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
+  if ($('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
@@ -426,9 +426,9 @@ function setBackgroundImg(_path) {
 
 //Jeedom UI__
 function initJeedomModals() {
-  $.fn.modal.Constructor.prototype.enforceFocus = function () {}
+  $.fn.modal.Constructor.prototype.enforceFocus = function() {}
 
-  if ( isset(jeedom_langage) ) {
+  if (isset(jeedom_langage) ) {
     var lang = jeedom_langage.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
     if ( lang != 'en' && supportedLangs.includes(lang) ) {
