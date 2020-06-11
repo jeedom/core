@@ -16,6 +16,14 @@
 
 "use strict"
 
+//show each object elements:
+Array.from(document.getElementsByClassName('div_object')).forEach(
+  function(element, index, array) {
+    getObjectHtml(element.getAttribute('data-object_id'))
+    element.style.display = 'block'
+  }
+)
+
 //infos/actions tile signals:
 $('body').off('mouseenter').off('mouseleave')
 .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
@@ -315,6 +323,7 @@ function editWidgetMode(_mode,_save) {
     //set draggables:
     divEquipements.find('.editingMode').draggable({
       disabled: false,
+      distance: 10,
       start: function(event, ui) {
         _draggingId = $(this).attr('data-editId')
         _orders = {}
@@ -367,7 +376,7 @@ function getObjectHtml(_object_id) {
     success: function(html) {
       var $divDisplayEq = $('#div_ob'+_object_id)
       try {
-        $divDisplayEq.empty().html(html).parent().show()
+        $divDisplayEq.empty().html(html)
       } catch(err) {
         console.log(err)
       }
@@ -391,7 +400,7 @@ function getObjectHtml(_object_id) {
         $(itemElem).attr('data-order', i + 1 )
       })
       container.on('dragItemPositioned', function() {
-          orderItems(container)
+          jeedomUI.orderItems(container)
       })
       itemElems.draggable('disable')
     }
@@ -463,52 +472,5 @@ function displayChildObject(_object_id, _recursion) {
   $('.div_object[data-father_id='+_object_id+']').each(function() {
     $(this).show({effect : 'drop',queue : false}).find('.div_displayEquipement').packery()
     displayChildObject($(this).attr('data-object_id'),true)
-  })
-}
-
-function orderItems(_container, _orderAttr='data-order') {
-  //exact same function dashboard and view!
-  var itemElems = _container.packery('getItemElements')
-  var _draggingOrder = _orders[_draggingId]
-  var _newOrders = {}
-  $(itemElems).each( function(i, itemElem ) {
-    _newOrders[$(this).attr('data-editId')] = i + 1
-  })
-  var _draggingNewOrder = _newOrders[_draggingId]
-  //----->moved _draggingId from _draggingOrder to _draggingNewOrder
-
-  //rearrange that better:
-  var _finalOrder = {}
-  for (var [id, order] of Object.entries(_newOrders)) {
-    if (order <= _draggingNewOrder) _finalOrder[id] = order
-    if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
-  }
-
-  //set dom positions:
-  var arrKeys = Object.keys(_finalOrder)
-  var arrLength = arrKeys.length
-  var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-  $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
-
-  for (var i = 2; i < arrLength + 1; i++) {
-    var thisId = arrKeys.find(key => _finalOrder[key] === i)
-    var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-    $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
-  }
-
-  //reload from dom positions:
-  _container.packery('reloadItems').packery()
-
-  itemElems = _container.packery('getItemElements')
-  $(itemElems).each(function(i, itemElem) {
-    $(itemElem).attr(_orderAttr, i + 1)
-    var value = i + 1
-    if (isEditing) {
-      if ($(itemElem).find(".counterReorderJeedom").length) {
-        $(itemElem).find(".counterReorderJeedom").text(value)
-      } else {
-        $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
-      }
-    }
   })
 }

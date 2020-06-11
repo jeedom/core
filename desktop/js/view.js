@@ -22,54 +22,6 @@ $('#div_pageContainer').on('click','.bt_gotoViewZone',function() {
 })
 
 var isEditing = false
-var _draggingId = false
-var _orders = {}
-function orderItems(_container, _orderAttr='data-order') {
-  //exact same function dashboard and view!
-  var itemElems = _container.packery('getItemElements')
-  var _draggingOrder = _orders[_draggingId]
-  var _newOrders = {}
-  $(itemElems).each( function(i, itemElem ) {
-    _newOrders[$(this).attr('data-editId')] = i + 1
-  })
-  var _draggingNewOrder = _newOrders[_draggingId]
-  //----->moved _draggingId from _draggingOrder to _draggingNewOrder
-
-  //rearrange that better:
-  var _finalOrder = {}
-  for (var [id, order] of Object.entries(_newOrders)) {
-    if (order <= _draggingNewOrder) _finalOrder[id] = order
-    if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
-  }
-
-  //set dom positions:
-  var arrKeys = Object.keys(_finalOrder)
-  var arrLength = arrKeys.length
-  var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-  $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
-
-  for (var i = 2; i < arrLength + 1; i++) {
-    var thisId = arrKeys.find(key => _finalOrder[key] === i)
-    var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-    $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
-  }
-
-  //reload from dom positions:
-  _container.packery('reloadItems').packery()
-
-  itemElems = _container.packery('getItemElements')
-  $(itemElems).each(function(i, itemElem) {
-    $(itemElem).attr(_orderAttr, i + 1)
-    var value = i + 1
-    if (isEditing) {
-      if ($(itemElem).find(".counterReorderJeedom").length) {
-        $(itemElem).find(".counterReorderJeedom").text(value)
-      } else {
-        $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
-      }
-    }
-  })
-}
 
 function fullScreen(_mode) {
   if (_mode) {
@@ -153,7 +105,7 @@ if (view_id != '') {
             $(itemElem).attr('data-viewOrder', i + 1 )
           })
           container.on('dragItemPositioned', function() {
-            orderItems(container, 'data-viewOrder')
+            jeedomUI.orderItems(container, 'data-viewOrder')
           })
 
           itemElems.draggable('disable')
@@ -202,6 +154,8 @@ $('#div_pageContainer').delegate('.editOptions', 'click', function () {
   $('#md_modal').dialog({title: "{{Configuration}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+eqId).dialog('open')
 })
 
+var _draggingId = false
+var _orders = {}
 function editWidgetMode(_mode, _save) {
   if (!isset(_mode)) {
     if ($('#bt_editViewWidgetOrder').attr('data-mode') != undefined && $('#bt_editViewWidgetOrder').attr('data-mode') == 1) {
@@ -247,6 +201,7 @@ function editWidgetMode(_mode, _save) {
     //set draggables:
     divEquipements.find('.editingMode').draggable({
       disabled: false,
+      distance: 10,
       start: function(event, ui) {
         _draggingId = $(this).attr('data-editId')
         _orders = {}
