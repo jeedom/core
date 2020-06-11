@@ -20,7 +20,6 @@
 Array.from(document.getElementsByClassName('div_object')).forEach(
   function(element, index, array) {
     getObjectHtml(element.getAttribute('data-object_id'))
-    element.style.display = 'block'
   }
 )
 
