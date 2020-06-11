@@ -618,17 +618,21 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
 
 $pageContainer.off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function(event) {
   if (editOption.state == true) return false
+  event.stopImmediatePropagation()
   event.stopPropagation()
-  var cmdIds = []
-  $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function() {
-    cmdIds.push($(this).data('cmd_id'))
-  })
-  cmdIds = cmdIds.join('-')
-  var cmdShow = $(this).closest('.history[data-cmd_id]').data('cmd_id')
-  $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds + '&showId=' + cmdShow).dialog('open')
+  if (event.ctrlKey) {
+    var cmdIds = []
+    $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+      cmdIds.push($(this).data('cmd_id'))
+    })
+    cmdIds = cmdIds.join('-')
+  } else {
+    var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+  }
+  $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
 })
-/***********************************************************************************/
 
+/***********************************************************************************/
 function createNewDesign() {
   bootbox.prompt("{{Nom du design ?}}", function(result) {
     if (result !== null) {
