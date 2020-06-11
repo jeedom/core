@@ -174,7 +174,7 @@ function editWidgetMode(_mode, _save) {
     divEquipements.find('.cmd.editOptions').remove()
 
     if (!isset(_save) || _save) {
-      saveWidgetDisplay({view : 1})
+      jeedomUI.saveWidgetDisplay({view : 1})
     }
   } else {
     isEditing = true

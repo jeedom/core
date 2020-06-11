@@ -74,7 +74,7 @@ $(function() {
       .width($(this).outerWidth(true) + 'px')
       $(this).closest('.div_displayEquipement').packery()
     })
-    if ($('.eqLogic-widget > div.autoResize').length) saveWidgetDisplay({dashboard : 1})
+    if ($('.eqLogic-widget > div.autoResize').length) jeedomUI.saveWidgetDisplay({dashboard : 1})
   }, 250)
 
   setTimeout(function() {
@@ -287,7 +287,7 @@ function editWidgetMode(_mode,_save) {
     isEditing = false
     $('#dashTopBar').removeClass('disabled')
     if (!isset(_save) || _save) {
-      saveWidgetDisplay({dashboard : 1})
+      jeedomUI.saveWidgetDisplay({dashboard : 1})
     }
 
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
