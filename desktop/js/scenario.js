@@ -325,8 +325,8 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
 
 
 /* ---------Scenario UI---------- */
-jwerty.key('ctrl+s/⌘+s', function(e) {
-  e.preventDefault()
+jwerty.key('ctrl+s/⌘+s', function(event) {
+  event.preventDefault()
   if ($('#bt_saveScenario').is(':visible')) {
     if (!getOpenedModal()) saveScenario()
   }
