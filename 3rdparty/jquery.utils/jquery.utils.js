@@ -254,21 +254,10 @@ function init(_value, _default) {
 
   /********************************loading************************/
   $.showLoading = function () {
-    if ($.mobile) {
-      $('#div_loadingSpinner, #spinnerContainer').show()
-    } else {
-      if ($('#jqueryLoadingDiv').length == 0) {
-        $('body').append('<div id="jqueryLoadingDiv"><div class="overlay"></div><i class="fa fa-cog fa-spin loadingImg"></i></div>');
-      }
-      $('#jqueryLoadingDiv').show();
-    }
+    $('#div_jeedomLoading').show();
   };
   $.hideLoading = function () {
-    if ($.mobile) {
-      $('#div_loadingSpinner, #spinnerContainer').hide()
-    } else {
-      $('#jqueryLoadingDiv').hide();
-    }
+    $('#div_jeedomLoading').hide();
   };
 
   /*********************jquery alert*************************************/

@@ -229,6 +229,9 @@ function setTheme() {
 </head>
 <body>
 	<div class="backgroundforJeedom"></div>
+	<div id="div_jeedomLoading" style="display:none;">
+    	<div class="loadingSpinner"></div>
+    </div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
 	sendVarToJS('jeedom.theme',$jeedom_theme);
@@ -519,5 +522,5 @@ function setTheme() {
 		<?php if(init('report') == 1 && init('delay',-1) != -1){ ?>
 			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
 		<?php } ?>
-	</body>
-	</html>
+</body>
+</html>
