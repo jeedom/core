@@ -94,6 +94,35 @@ a, .ui-link {
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }
+
+#spinnerContainer {
+  position: fixed;
+  text-align: center;
+  top: 40%;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+#spinnerContainer > .spinner-border {
+ display: inline-block;
+ width: 12vh;
+ height: 12vh;
+ vertical-align: text-bottom;
+ border: 2vh solid rgb(var(--defaultBkg-color));
+ border-right-color: transparent;
+ border-radius: 50%;
+ -webkit-animation: spinner-border .75s linear infinite;
+ animation: spinner-border .75s linear infinite
+}
+
+@keyframes spinner-border {
+ to {
+  -webkit-transform:rotate(360deg);
+  transform:rotate(360deg)
+ }
+}
+
+
 #pagecontainer {
   padding-top: 64px;
   background-color: transparent !important;
