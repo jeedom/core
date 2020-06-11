@@ -598,6 +598,7 @@
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Commande non trouvé": "",
         "Tester": "テスト",
         "Liens": "接続",
         "Informations": "情報",
@@ -838,6 +839,7 @@
     },
     "desktop\/modal\/eqLogic.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "EqLogic non trouvé : ": "",
         "Informations": "情報",
         "Log": "ログ",
         "Liens": "接続",
@@ -868,6 +870,7 @@
         "Paramètres optionnels sur la tuile": "タイル上のオプションのパラメーター",
         "Valeur": "値",
         "Informations Batteries": "バッテリー情報",
+        "Pile(s) changée(s)": "",
         "Seuils spécifiques Batteries": "バッテリー固有のしきい値",
         "Danger": "危険",
         "Warning": "警告",
