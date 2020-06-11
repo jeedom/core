@@ -23,27 +23,6 @@ Array.from(document.getElementsByClassName('div_object')).forEach(
   }
 )
 
-//infos/actions tile signals:
-$('body').off('mouseenter').off('mouseleave')
-.on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-})
-.on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-})
-.on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-})
-.on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-})
-.on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-})
-.on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-})
-
 $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 $(function() {
@@ -79,6 +58,9 @@ $(function() {
   setTimeout(function() {
     $('input', 'textarea', 'select').click(function() { $(this).focus() })
   }, 750)
+
+  jeedomUI.setEqSignals()
+  jeedomUI.setHistoryModalHandler()
 })
 
 var isEditing = false
@@ -229,23 +211,6 @@ function filterByCategory() {
   }
 }
 
-//Handle history modal:
-$('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
-  if (isEditing) return false
-  event.stopImmediatePropagation()
-  event.stopPropagation()
-  if (event.ctrlKey) {
-    var cmdIds = []
-    $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
-      cmdIds.push($(this).data('cmd_id'))
-    })
-    cmdIds = cmdIds.join('-')
-  } else {
-    var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
-  }
-  $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
-})
-
 $('#bt_displayObject').on('click', function () {
   if (isEditing) return
   if ($(this).attr('data-display') == 1) {
@@ -263,12 +228,10 @@ $('#bt_displayObject').on('click', function () {
   }
 })
 
-
 $('#div_pageContainer').delegate('.editOptions', 'click', function () {
   var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
   $('#md_modal').dialog({title: "{{Configuration}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+eqId).dialog('open')
 })
-
 
 var _draggingId = false
 var _orders = {}

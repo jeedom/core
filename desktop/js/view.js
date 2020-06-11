@@ -16,12 +16,19 @@
 
 "use strict"
 
+$(function() {
+  setTimeout(function() {
+    $('input', 'textarea', 'select').click(function() { $(this).focus() })
+  }, 750)
+
+  jeedomUI.setEqSignals()
+  jeedomUI.setHistoryModalHandler()
+})
+
 $('#div_pageContainer').on('click','.bt_gotoViewZone',function() {
   var top = $('.div_displayViewContainer').scrollTop()+ $('.lg_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60
   $('.div_displayViewContainer').animate({ scrollTop: top}, 500)
 })
-
-var isEditing = false
 
 function fullScreen(_mode) {
   if (_mode) {
@@ -122,17 +129,6 @@ if (view_id != '') {
   })
 }
 
-$('#div_pageContainer').off('click','.history[data-cmd_id]').on('click','.history[data-cmd_id]', function(event) {
-  event.stopPropagation()
-  var cmdIds = []
-  $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
-    cmdIds.push($(this).data('cmd_id'))
-  })
-  cmdIds = cmdIds.join('-')
-  var cmdShow = $(this).data('cmd_id')
-  $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds + '&showId=' + cmdShow).dialog('open')
-})
-
 $('.bt_displayView').on('click', function () {
   if ($(this).attr('data-display') == 1) {
     $(this).closest('.row').find('.div_displayViewList').hide()
@@ -154,6 +150,7 @@ $('#div_pageContainer').delegate('.editOptions', 'click', function () {
   $('#md_modal').dialog({title: "{{Configuration}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+eqId).dialog('open')
 })
 
+var isEditing = false
 var _draggingId = false
 var _orders = {}
 function editWidgetMode(_mode, _save) {
