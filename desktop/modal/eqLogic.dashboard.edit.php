@@ -120,6 +120,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
       <div class="panel-heading">
         <h3 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#layout">{{Disposition}}</a>
+          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.}}"></i></sup>
         </h3>
       </div>
       <div id="layout" class="panel-collapse collapse">
@@ -218,6 +219,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
       <div class="panel-heading">
         <h3 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands">{{Commandes}}</a>
+          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
         </h3>
       </div>
       <div id="commands" class="panel-collapse collapse">
@@ -346,6 +348,7 @@ $(function() {
   })
 
   setTableLayoutSortable()
+  initTooltips()
   initPickers()
 })
 
