@@ -30,13 +30,15 @@ window.addEventListener('error', function(event) {
   $.hideLoading()
 })
 
+var $document = $(document)
+
 //ajax queuing:
 var nbActiveAjaxRequest = 0
-$(document).ajaxStart(function() {
+$document.ajaxStart(function() {
   nbActiveAjaxRequest++
   $.showLoading()
 })
-$(document).ajaxStop(function() {
+$document.ajaxStop(function() {
   nbActiveAjaxRequest--
   if (nbActiveAjaxRequest <= 0) {
     nbActiveAjaxRequest = 0
@@ -51,7 +53,6 @@ setInterval(function() {
   $('#horloge').text(dateJeed.toLocaleTimeString())
 }, 1000)
 
-
 var modifyWithoutSave = false
 function checkPageModified() {
   if (modifyWithoutSave) {
@@ -63,6 +64,7 @@ function checkPageModified() {
   }
 }
 
+//OnePage design PageLoader -------------------------------------
 var PREVIOUS_PAGE = null
 var NO_POPSTAT = false
 var printEqLogic = undefined
@@ -78,9 +80,7 @@ function loadPage(_url, _noPushHistory) {
   }
   try {
     $(".ui-dialog-content").dialog("close")
-  } catch(e) {
-
-  }
+  } catch(e) {}
 
   if (!isset(_noPushHistory) || _noPushHistory == false) {
     try {
@@ -205,7 +205,7 @@ $(function() {
     }
     window.location.hash = event.target.hash
   })
-  window.addEventListener('hashchange', function(event){
+  window.addEventListener('hashchange', function(event) {
     NO_POPSTAT = true
     setTimeout(function() {
       NO_POPSTAT = false
@@ -689,7 +689,7 @@ function setJeedomGlobalUI() {
 }
 
 //Initiators__
-function initPage(){
+function initPage() {
   initTableSorter()
   initReportMode()
   $.initTableFilter()
@@ -697,7 +697,7 @@ function initPage(){
   initHelp()
   initTextArea()
   $('.nav-tabs a').on('click',function() {
-    var scrollHeight = $(document).scrollTop()
+    var scrollHeight = $document.scrollTop()
     $(this).tab('show')
     $(window).scrollTop(scrollHeight)
     setTimeout(function() {
@@ -1004,25 +1004,23 @@ function addOrUpdateUrl(_param,_value,_title) {
   }
 }
 
-
-
 //Global UI functions__
 var userDeviceType = 'mobile'
 function setJeedomMenu() {
-  $('body').on('click','a',function(event){
+  $('body').on('click', 'a', function(event) {
     if ($(window).width() < 768) {
       $('ul.dropdown-menu').css('display', '')
     }
-    if($(this).hasClass('noOnePageLoad')){
+    if ($(this).hasClass('noOnePageLoad')) {
       return
     }
-    if($(this).hasClass('fancybox-nav')){
+    if ($(this).hasClass('fancybox-nav')) {
       return
     }
-    if($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#'){
+    if ($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#') {
       return
     }
-    if($(this).attr('href').match("^data:")){
+    if ($(this).attr('href').match("^data:")) {
       return
     }
     if ($(this).attr('href').match("^http")) {
@@ -1031,14 +1029,14 @@ function setJeedomMenu() {
     if ($(this).attr('href').match("^#")) {
       return
     }
-    if($(this).attr('target') == '_blank'){
+    if ($(this).attr('target') == '_blank') {
       return
     }
     $('li.dropdown.open').click()
+
+    $('.dropdown-toggle').dropdown("close")
     $('.navbar-collapse').removeClass('in')
-    if (userDeviceType == 'mobile') {
-      $('.dropdown-toggle').dropdown("close")
-    }
+
     loadPage($(this).attr('href'))
     event.preventDefault()
     event.stopPropagation()
@@ -1270,6 +1268,6 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
 }
 
 //deprecated
-function initCheckBox(){}
+function initCheckBox() {}
 
 function editWidgetCmdMode(_mode) {}

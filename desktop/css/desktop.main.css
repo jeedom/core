@@ -1889,6 +1889,10 @@ ul.dropdown-menu {
   margin-left: 10px;
 }
 
+.navbar-fixed-top .navbar-collapse {
+  max-height: 80vh;
+}
+
 ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
   border-top: 1px solid var(--el-defaultColor);
   height: auto;
@@ -4058,6 +4062,12 @@ ul.dropdown-menu {
   #div_displayLogList {
     padding-top: 0 !important;
     max-height: 11.5em;
+  }
+  .navbar .container-fluid {
+    box-shadow:  0 26px 18px 3px var(--shd-color);
+  }
+  .navbar-nav.navbar-right {
+    display: none;
   }
 }
 @media screen and (max-width: 992px) {
