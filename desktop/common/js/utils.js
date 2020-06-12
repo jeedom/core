@@ -554,6 +554,7 @@ function initJeedomModals() {
 
 function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
   $(_button).on('click', function(event) {
+    $('header.navbar-fixed-top li.dropdown > .dropdown-menu').hide()
     if (event.ctrlKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
