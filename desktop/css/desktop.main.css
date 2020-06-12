@@ -1841,7 +1841,7 @@ header .navbar-toggle {
 ul.dropdown-menu {
   border-bottom: 2px solid var(--el-defaultColor);
 }
-.nav .open > a,
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   background-color: rgb(var(--bg-color)) !important;
@@ -4068,8 +4068,8 @@ ul.dropdown-menu {
     padding-top: 0 !important;
     max-height: 11.5em;
   }
-  .navbar .container-fluid {
-    box-shadow:  0 26px 18px 3px var(--shd-color);
+  .navbar .container-fluid .navbar-collapse.collapse.in {
+    box-shadow:  0 16px 16px 3px var(--shd-color);
   }
   .navbar-nav.navbar-right {
     display: none;
