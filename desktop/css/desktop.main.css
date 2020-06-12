@@ -3234,11 +3234,17 @@ textarea {
 /* __________________________________________________________________________________________________________FLOATING BARS */
 #div_jeedomLoading {
   position: absolute;
-  top: 40%;
-  left: calc(50% - 75px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 9999;
+  backdrop-filter: blur(2px);
 }
 #div_jeedomLoading .loadingSpinner {
+  position: relative;
+  top: 40%;
+  left: calc(50% - 10vh);
   height: 20vh;
   width: 20vh;
   border: 1vh solid transparent;
@@ -3246,7 +3252,6 @@ textarea {
   border-top: 1vh solid var(--al-warning-color);
   -webkit-animation: spin 3s linear infinite;
   animation: spin 3s linear infinite;
-  position: relative;
 }
 #div_jeedomLoading .loadingSpinner::before,
 #div_jeedomLoading .loadingSpinner::after {
