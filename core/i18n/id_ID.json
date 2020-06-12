@@ -2356,7 +2356,6 @@
         "Heartbeat (min)": "",
         "Redémarrer démon": "",
         "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Apakah Anda yakin ingin menghapus plugin ini?",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Gestion Plugins": "",
         "Market": "",
         "Synchronisation réussi. Nombre de plugins installé : ": "",
@@ -2512,7 +2511,6 @@
         "Jeedom benchmark": "Jeedom patokan"
     },
     "desktop\/js\/dashboard.js": {
-        "Historique": "Historis",
         "Configuration": "Konfigurasi",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Anda berada dalam mode edit Anda dapat memindahkan widget, mengubah ukuran dan mengubah urutan perintah dalam widget. Ingat untuk meninggalkan mode edit untuk menyimpan"
     },
@@ -2548,12 +2546,12 @@
         "Supprimer": "Menghapus",
         "Dupliquer": "Duplikat",
         "Verrouiller": "Mengunci",
+        "Historique": "Historis",
         "Nom du design ?": "Nama desain?",
         "Veuillez indiquer le code ?": "Harap menunjukkan kode?"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Daftar interaksi",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Interactions": "Interaksi",
         "Tester les interactions": "Interaksi uji",
         "Sauvegarde réussie avec succès": "Backup sukses berhasil",
@@ -2602,7 +2600,6 @@
         "Appliquer ce widget à": "",
         "Modification(s) appliquée(s) avec succès": "Modifikasi (s) diterapkan (s) berhasil",
         "Choisir": "Memilih",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Widgets": "",
         "Test": "Uji",
         "Résultat si test ok": "",
@@ -2656,23 +2653,6 @@
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
         "Information importante :": ""
     },
-    "desktop\/js\/utils.js": {
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
-        "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
-        "Suppression effectuée avec succès": "Berhasil dihapus",
-        "Thème principal": "",
-        "Thème alternatif": "",
-        "Bienvenue dans Jeedom": "Selamat Datang Jeedom",
-        "A propos": "",
-        "Evénements en temps réel": "",
-        "Notes": "",
-        "Testeur d'expression": "Ekspresi tester",
-        "Variables des scénarios": "Variabel skenario",
-        "Recherche": "",
-        "Centre de Messages": "",
-        "Erreur Javascript": "",
-        "Choisissez une icône": ""
-    },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Perintah setup",
         "Configuration de l'équipement": "Konfigurasi peralatan",
@@ -2681,7 +2661,6 @@
     "desktop\/js\/object.js": {
         "Graphique des liens": "Link grafis",
         "Bibliotheque d'images": "",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Objets": "Item",
         "Image supprimée": "Gambar dihapus",
         "Envoyer": "Kirim",
@@ -2796,6 +2775,26 @@
         "Bloc A": "",
         "Bloc Code": "",
         "Bloc Commentaire": ""
+    },
+    "desktop\/common\/js\/ui.js": {
+        "Historique": "Historis"
+    },
+    "desktop\/common\/js\/utils.js": {
+        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
+        "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
+        "Suppression effectuée avec succès": "Berhasil dihapus",
+        "Thème principal": "",
+        "Thème alternatif": "",
+        "Bienvenue dans Jeedom": "Selamat Datang Jeedom",
+        "A propos": "",
+        "Evénements en temps réel": "",
+        "Notes": "",
+        "Testeur d'expression": "Ekspresi tester",
+        "Variables des scénarios": "Variabel skenario",
+        "Recherche": "",
+        "Centre de Messages": "",
+        "Erreur Javascript": "",
+        "Choisissez une icône": ""
     },
     "core\/php\/utils.inc.php": {
         "Fichier introuvable : ": "",

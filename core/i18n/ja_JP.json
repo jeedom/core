@@ -2356,7 +2356,6 @@
         "Heartbeat (min)": "ハートビート（分）",
         "Redémarrer démon": "デーモンを再起動する",
         "Êtes-vous sûr de vouloir supprimer ce plugin ?": "このプラグインを削除してもよろしいですか？",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Gestion Plugins": "プラグイン管理",
         "Market": "市場",
         "Synchronisation réussi. Nombre de plugins installé : ": "同期に成功しました。インストールされているプラグインの数：",
@@ -2512,7 +2511,6 @@
         "Jeedom benchmark": "Jeedomベンチマーク"
     },
     "desktop\/js\/dashboard.js": {
-        "Historique": "歴史的",
         "Configuration": "コンフィギュレーション",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "編集モードでは、ウィジェットを移動したり、ウィジェットのサイズを変更したり、ウィジェット内のコマンドの順序を変更したりできます。編集モードを終了して保存することを忘れないでください"
     },
@@ -2548,12 +2546,12 @@
         "Supprimer": "取り除きます",
         "Dupliquer": "重複",
         "Verrouiller": "ロック",
+        "Historique": "歴史的",
         "Nom du design ?": "デザインの名前？",
         "Veuillez indiquer le code ?": "コードを指定してください？"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "相互作用のリスト",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Interactions": "相互作用",
         "Tester les interactions": "相互作用をテストする",
         "Sauvegarde réussie avec succès": "バックアップが成功しました",
@@ -2602,7 +2600,6 @@
         "Appliquer ce widget à": "",
         "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
         "Choisir": "選択",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Widgets": "ウィジェット",
         "Test": "テスト",
         "Résultat si test ok": "",
@@ -2656,23 +2653,6 @@
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",
         "Information importante :": "重要な情報："
     },
-    "desktop\/js\/utils.js": {
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
-        "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
-        "Suppression effectuée avec succès": "削除に成功",
-        "Thème principal": "メインテーマ",
-        "Thème alternatif": "代替テーマ",
-        "Bienvenue dans Jeedom": "Jeedomへようこそ",
-        "A propos": "について",
-        "Evénements en temps réel": "リアルタイムイベント",
-        "Notes": "注釈",
-        "Testeur d'expression": "発現テスター",
-        "Variables des scénarios": "シナリオ変数",
-        "Recherche": "",
-        "Centre de Messages": "メッセージセンター",
-        "Erreur Javascript": "Javascriptエラー",
-        "Choisissez une icône": "アイコンを選択してください"
-    },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "コマンド構成",
         "Configuration de l'équipement": "機器構成",
@@ -2681,7 +2661,6 @@
     "desktop\/js\/object.js": {
         "Graphique des liens": "グラフィックリンク",
         "Bibliotheque d'images": "画像ライブラリ",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Objets": "オブジェクト",
         "Image supprimée": "削除された画像",
         "Envoyer": "送ります",
@@ -2796,6 +2775,26 @@
         "Bloc A": "ブロックA",
         "Bloc Code": "ブロックコード",
         "Bloc Commentaire": "コメントブロック"
+    },
+    "desktop\/common\/js\/ui.js": {
+        "Historique": "歴史的"
+    },
+    "desktop\/common\/js\/utils.js": {
+        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
+        "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
+        "Suppression effectuée avec succès": "削除に成功",
+        "Thème principal": "メインテーマ",
+        "Thème alternatif": "代替テーマ",
+        "Bienvenue dans Jeedom": "Jeedomへようこそ",
+        "A propos": "について",
+        "Evénements en temps réel": "リアルタイムイベント",
+        "Notes": "注釈",
+        "Testeur d'expression": "発現テスター",
+        "Variables des scénarios": "シナリオ変数",
+        "Recherche": "",
+        "Centre de Messages": "メッセージセンター",
+        "Erreur Javascript": "Javascriptエラー",
+        "Choisissez une icône": "アイコンを選択してください"
     },
     "core\/php\/utils.inc.php": {
         "Fichier introuvable : ": "",

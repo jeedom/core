@@ -2356,7 +2356,6 @@
         "Heartbeat (min)": "Batimento cardíaco (min)",
         "Redémarrer démon": "Reiniciar demônio",
         "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Tem certeza de que quer apagar este plugin?",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Gestion Plugins": "Gerenciamento de plugins",
         "Market": "Mercado",
         "Synchronisation réussi. Nombre de plugins installé : ": "Sincronização bem sucedida. Número de plugins instalados:",
@@ -2512,7 +2511,6 @@
         "Jeedom benchmark": "Jeedom referência"
     },
     "desktop\/js\/dashboard.js": {
-        "Historique": "Histórico",
         "Configuration": "Configuração",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Você está em modo de edição você pode mover widgets, redimensionar e alterar a ordem dos comandos em widgets. Lembre-se de deixar o modo de edição para salvar"
     },
@@ -2548,12 +2546,12 @@
         "Supprimer": "Remover",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Trancar",
+        "Historique": "Histórico",
         "Nom du design ?": "Nome do projeto?",
         "Veuillez indiquer le code ?": "Por favor, indicar o código?"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Lista de interação",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Interactions": "Interações",
         "Tester les interactions": "Interações de teste",
         "Sauvegarde réussie avec succès": "Backup bem-sucedido com sucesso",
@@ -2602,7 +2600,6 @@
         "Appliquer ce widget à": "Aplique este widget a",
         "Modification(s) appliquée(s) avec succès": "Modificação (s) aplicada (s) com sucesso",
         "Choisir": "Escolher",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Widgets": "Widgets",
         "Test": "Teste",
         "Résultat si test ok": "Resultado se teste ok",
@@ -2656,23 +2653,6 @@
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/> Sua senha deve ser alterada",
         "Information importante :": "Informação importante:"
     },
-    "desktop\/js\/utils.js": {
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
-        "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
-        "Suppression effectuée avec succès": "Apagado com sucesso",
-        "Thème principal": "Tema principal",
-        "Thème alternatif": "Tema alternativo",
-        "Bienvenue dans Jeedom": "Bem-vindo no Jeedom",
-        "A propos": "Sobre",
-        "Evénements en temps réel": "Eventos em tempo real",
-        "Notes": "Anotações",
-        "Testeur d'expression": "Expressão Tester",
-        "Variables des scénarios": "Cenários variáveis",
-        "Recherche": "Pesquisa",
-        "Centre de Messages": "Centro de Mensagens",
-        "Erreur Javascript": "Erro de Javascript",
-        "Choisissez une icône": "Escolha um ícone"
-    },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Comando de instalação",
         "Configuration de l'équipement": "Configuração de equipamento",
@@ -2681,7 +2661,6 @@
     "desktop\/js\/object.js": {
         "Graphique des liens": "Ligações gráficos",
         "Bibliotheque d'images": "Biblioteca de imagens",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Objets": "Objetos",
         "Image supprimée": "Imagem excluída",
         "Envoyer": "Enviar",
@@ -2796,6 +2775,26 @@
         "Bloc A": "Bloco A",
         "Bloc Code": "Código de bloco",
         "Bloc Commentaire": "Bloco de comentários"
+    },
+    "desktop\/common\/js\/ui.js": {
+        "Historique": "Histórico"
+    },
+    "desktop\/common\/js\/utils.js": {
+        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
+        "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
+        "Suppression effectuée avec succès": "Apagado com sucesso",
+        "Thème principal": "Tema principal",
+        "Thème alternatif": "Tema alternativo",
+        "Bienvenue dans Jeedom": "Bem-vindo no Jeedom",
+        "A propos": "Sobre",
+        "Evénements en temps réel": "Eventos em tempo real",
+        "Notes": "Anotações",
+        "Testeur d'expression": "Expressão Tester",
+        "Variables des scénarios": "Cenários variáveis",
+        "Recherche": "Pesquisa",
+        "Centre de Messages": "Centro de Mensagens",
+        "Erreur Javascript": "Erro de Javascript",
+        "Choisissez une icône": "Escolha um ícone"
     },
     "core\/php\/utils.inc.php": {
         "Fichier introuvable : ": "Arquivo não encontrado:",

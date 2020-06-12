@@ -2356,7 +2356,6 @@
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
         "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Êtes-vous sûr de vouloir supprimer ce plugin ?",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Gestion Plugins": "Gestion Plugins",
         "Market": "Market",
         "Synchronisation réussi. Nombre de plugins installé : ": "Synchronisation réussi. Nombre de plugins installé : ",
@@ -2512,7 +2511,6 @@
         "Jeedom benchmark": "Jeedom benchmark"
     },
     "desktop\/js\/dashboard.js": {
-        "Historique": "Historique",
         "Configuration": "Configuration",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
     },
@@ -2548,12 +2546,12 @@
         "Supprimer": "Supprimer",
         "Dupliquer": "Dupliquer",
         "Verrouiller": "Verrouiller",
+        "Historique": "Historique",
         "Nom du design ?": "Nom du design ?",
         "Veuillez indiquer le code ?": "Veuillez indiquer le code ?"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Liste des interactions",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Interactions": "Interactions",
         "Tester les interactions": "Tester les interactions",
         "Sauvegarde réussie avec succès": "Sauvegarde réussie avec succès",
@@ -2602,7 +2600,6 @@
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Modification(s) appliquée(s) avec succès",
         "Choisir": "Choisir",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Widgets": "Widgets",
         "Test": "Test",
         "Résultat si test ok": "Résultat si test ok",
@@ -2656,23 +2653,6 @@
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.",
         "Information importante :": "Information importante :"
     },
-    "desktop\/js\/utils.js": {
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
-        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
-        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
-        "Thème principal": "Thème principal",
-        "Thème alternatif": "Thème alternatif",
-        "Bienvenue dans Jeedom": "Bienvenue dans Jeedom",
-        "A propos": "A propos",
-        "Evénements en temps réel": "Evénements en temps réel",
-        "Notes": "Notes",
-        "Testeur d'expression": "Testeur d'expression",
-        "Variables des scénarios": "Variables des scénarios",
-        "Recherche": "Recherche",
-        "Centre de Messages": "Centre de Messages",
-        "Erreur Javascript": "Erreur Javascript",
-        "Choisissez une icône": "Choisissez une icône"
-    },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuration commande",
         "Configuration de l'équipement": "Configuration de l'équipement",
@@ -2681,7 +2661,6 @@
     "desktop\/js\/object.js": {
         "Graphique des liens": "Graphique des liens",
         "Bibliotheque d'images": "Bibliotheque d'images",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Objets": "Objets",
         "Image supprimée": "Image supprimée",
         "Envoyer": "Envoyer",
@@ -2796,6 +2775,26 @@
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
         "Bloc Commentaire": "Bloc Commentaire"
+    },
+    "desktop\/common\/js\/ui.js": {
+        "Historique": "Historique"
+    },
+    "desktop\/common\/js\/utils.js": {
+        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Thème principal": "Thème principal",
+        "Thème alternatif": "Thème alternatif",
+        "Bienvenue dans Jeedom": "Bienvenue dans Jeedom",
+        "A propos": "A propos",
+        "Evénements en temps réel": "Evénements en temps réel",
+        "Notes": "Notes",
+        "Testeur d'expression": "Testeur d'expression",
+        "Variables des scénarios": "Variables des scénarios",
+        "Recherche": "Recherche",
+        "Centre de Messages": "Centre de Messages",
+        "Erreur Javascript": "Erreur Javascript",
+        "Choisissez une icône": "Choisissez une icône"
     },
     "core\/php\/utils.inc.php": {
         "Fichier introuvable : ": "Fichier introuvable : ",

@@ -2356,7 +2356,6 @@
         "Heartbeat (min)": "",
         "Redémarrer démon": "",
         "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Eğer bu eklentiyi silmek istediğinizden emin misiniz?",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Gestion Plugins": "Eklenti yönetimi",
         "Market": "Pazar",
         "Synchronisation réussi. Nombre de plugins installé : ": "",
@@ -2512,7 +2511,6 @@
         "Jeedom benchmark": ""
     },
     "desktop\/js\/dashboard.js": {
-        "Historique": "Geçmiş",
         "Configuration": "Ayar",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sen widget'lar taşımak, yeniden boyutlandırmak ve widget'larda komutların sırasını değiştirebilirsiniz düzenleme modunda bulunmaktadır. kaydetmek için düzenleme modundan çıkmak için unutmayın"
     },
@@ -2548,12 +2546,12 @@
         "Supprimer": "Sil",
         "Dupliquer": "Kopyala",
         "Verrouiller": "Kilitle",
+        "Historique": "Geçmiş",
         "Nom du design ?": "Disaynın ismi ?",
         "Veuillez indiquer le code ?": "Pin i girin"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Etkileşimlerin listesi",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Interactions": "Etkileşim",
         "Tester les interactions": "Etkileşimi test et",
         "Sauvegarde réussie avec succès": "Kayıt başarıyla sonuçlandı",
@@ -2602,7 +2600,6 @@
         "Appliquer ce widget à": "",
         "Modification(s) appliquée(s) avec succès": "Değişiklik (ler) başarıyla uygulandı",
         "Choisir": "Seç",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Widgets": "Widget'lar",
         "Test": "Test, denetleme",
         "Résultat si test ok": "",
@@ -2656,23 +2653,6 @@
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
         "Information importante :": ""
     },
-    "desktop\/js\/utils.js": {
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
-        "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
-        "Suppression effectuée avec succès": "Silme başarıyla sonuçlandı",
-        "Thème principal": "",
-        "Thème alternatif": "",
-        "Bienvenue dans Jeedom": "Jeedom\\'a hoşgeldiniz",
-        "A propos": "Hakkında",
-        "Evénements en temps réel": "",
-        "Notes": "",
-        "Testeur d'expression": "Ifade testcisi",
-        "Variables des scénarios": "Senaryoların değişkenleri",
-        "Recherche": "",
-        "Centre de Messages": "",
-        "Erreur Javascript": "",
-        "Choisissez une icône": ""
-    },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Komuta ayarları",
         "Configuration de l'équipement": "Cihazın ayarları",
@@ -2681,7 +2661,6 @@
     "desktop\/js\/object.js": {
         "Graphique des liens": "Linkler grafiği",
         "Bibliotheque d'images": "",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Objets": "Nesneler",
         "Image supprimée": "Fotoğraf silindi",
         "Envoyer": "Gönder",
@@ -2796,6 +2775,26 @@
         "Bloc A": "",
         "Bloc Code": "",
         "Bloc Commentaire": ""
+    },
+    "desktop\/common\/js\/ui.js": {
+        "Historique": "Geçmiş"
+    },
+    "desktop\/common\/js\/utils.js": {
+        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
+        "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
+        "Suppression effectuée avec succès": "Silme başarıyla sonuçlandı",
+        "Thème principal": "",
+        "Thème alternatif": "",
+        "Bienvenue dans Jeedom": "Jeedom\\'a hoşgeldiniz",
+        "A propos": "Hakkında",
+        "Evénements en temps réel": "",
+        "Notes": "",
+        "Testeur d'expression": "Ifade testcisi",
+        "Variables des scénarios": "Senaryoların değişkenleri",
+        "Recherche": "",
+        "Centre de Messages": "",
+        "Erreur Javascript": "",
+        "Choisissez une icône": ""
     },
     "core\/php\/utils.inc.php": {
         "Fichier introuvable : ": "",
