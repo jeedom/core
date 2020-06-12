@@ -19,229 +19,226 @@
 var _draggingId = false
 var _orders = {}
 
-var jeedomUI = {
+var jeedomUI = {}
 
-  /*
-  @dashboard
-  @view
-  draggable call to reorder/insert drag
-  */
-  orderItems: function(_container, _orderAttr='data-order') {
-    var itemElems = _container.packery('getItemElements')
-    var _draggingOrder = _orders[_draggingId]
-    var _newOrders = {}
-    $(itemElems).each( function(i, itemElem ) {
-      _newOrders[$(this).attr('data-editId')] = i + 1
-    })
-    var _draggingNewOrder = _newOrders[_draggingId]
-    //----->moved _draggingId from _draggingOrder to _draggingNewOrder
+/*
+@dashboard
+@view
+draggable call to reorder/insert drag
+*/
+jeedomUI.orderItems = function(_container, _orderAttr='data-order') {
+  var itemElems = _container.packery('getItemElements')
+  var _draggingOrder = _orders[_draggingId]
+  var _newOrders = {}
+  $(itemElems).each( function(i, itemElem ) {
+    _newOrders[$(this).attr('data-editId')] = i + 1
+  })
+  var _draggingNewOrder = _newOrders[_draggingId]
+  //----->moved _draggingId from _draggingOrder to _draggingNewOrder
 
-    //rearrange that better:
-    var _finalOrder = {}
-    for (var [id, order] of Object.entries(_newOrders)) {
-      if (order <= _draggingNewOrder) _finalOrder[id] = order
-      if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
-    }
+  //rearrange that better:
+  var _finalOrder = {}
+  for (var [id, order] of Object.entries(_newOrders)) {
+    if (order <= _draggingNewOrder) _finalOrder[id] = order
+    if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
+  }
 
-    //set dom positions:
-    var arrKeys = Object.keys(_finalOrder)
-    var arrLength = arrKeys.length
-    var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-    $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
+  //set dom positions:
+  var arrKeys = Object.keys(_finalOrder)
+  var arrLength = arrKeys.length
+  var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
+  $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
 
-    for (var i = 2; i < arrLength + 1; i++) {
-      var thisId = arrKeys.find(key => _finalOrder[key] === i)
-      var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-      $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
-    }
+  for (var i = 2; i < arrLength + 1; i++) {
+    var thisId = arrKeys.find(key => _finalOrder[key] === i)
+    var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
+    $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
+  }
 
-    //reload from dom positions:
-    _container.packery('reloadItems').packery()
+  //reload from dom positions:
+  _container.packery('reloadItems').packery()
 
-    itemElems = _container.packery('getItemElements')
-    $(itemElems).each(function(i, itemElem) {
-      $(itemElem).attr(_orderAttr, i + 1)
-      var value = i + 1
-      if (isEditing) {
-        if ($(itemElem).find(".counterReorderJeedom").length) {
-          $(itemElem).find(".counterReorderJeedom").text(value)
-        } else {
-          $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
-        }
-      }
-    })
-  },
-
-  /*
-  @dashboard
-  @view
-  save eqlogics/scenarios size/order
-  */
-  saveWidgetDisplay: function(_params) {
-    if (init(_params) == '') {
-      _params = {}
-    }
-    var cmds = []
-    var eqLogics = []
-    var scenarios = []
-    $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function() {
-      var eqLogic = $(this)
-      var order = 1
-      eqLogic.find('.cmd').each(function() {
-        var cmd = {};
-        cmd.id = $(this).attr('data-cmd_id')
-        cmd.order = order
-        cmds.push(cmd)
-        order++
-      })
-    })
-    $('.eqLogic-widget.eqLogic_layout_table').each(function() {
-      var eqLogic = $(this)
-      var order = 1
-      eqLogic.find('.cmd').each(function() {
-        var cmd = {}
-        cmd.id = $(this).attr('data-cmd_id')
-        cmd.line = $(this).closest('td').attr('data-line')
-        cmd.column = $(this).closest('td').attr('data-column')
-        cmd.order = order
-        cmds.push(cmd)
-        order++
-      })
-    })
-    if (init(_params['dashboard']) == 1) {
-      $('.div_displayEquipement').each(function() {
-        var order = 1
-        $(this).find('.eqLogic-widget,.scenario-widget').each(function() {
-          if ($(this).hasClass('eqLogic-widget')) {
-            var eqLogic = {id :$(this).attr('data-eqlogic_id')}
-            eqLogic.display = {}
-            eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-            eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-            eqLogic.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
-            eqLogics.push(eqLogic)
-          } else if ($(this).hasClass('scenario-widget')) {
-            var scenario = {id :$(this).attr('data-scenario_id')}
-            scenario.display = {}
-            scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-            scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-            scenario.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
-            scenarios.push(scenario)
-          }
-          order++
-        })
-      })
-      jeedom.eqLogic.setOrder({
-        eqLogics: eqLogics,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        },
-        success:function(data){
-          jeedom.cmd.setOrder({
-            cmds: cmds,
-            error: function (error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'})
-            }
-          });
-        }
-      })
-      jeedom.scenario.setOrder({
-        scenarios: scenarios,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        }
-      })
-    } else if (init(_params['view']) == 1) {
-      var components = []
-      $('.eqLogicZone').each(function() {
-        var order = 1
-        $(this).find('.eqLogic-widget,.scenario-widget').each(function() {
-          if ($(this).hasClass('eqLogic-widget')) {
-            var eqLogic = {id :$(this).attr('data-eqlogic_id'),type:'eqLogic'}
-            eqLogic.display = {}
-            eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-            eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-            eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
-            eqLogic.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
-            components.push(eqLogic)
-          } else if ($(this).hasClass('scenario-widget')) {
-            var scenario = {id :$(this).attr('data-scenario_id'),type:'scenario'}
-            scenario.display = {}
-            scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-            scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-            scenario.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
-            scenario.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
-            components.push(scenario)
-          }
-          order++
-        })
-      })
-      jeedom.view.setComponentOrder({
-        components: components,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        },
-        success:function(data){
-          jeedom.cmd.setOrder({
-            cmds: cmds,
-            error: function (error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'})
-            }
-          })
-        }
-      })
-    }
-  },
-
-  /*
-  @dashboard
-  @view
-  infos/actions tile signals
-  */
-  setEqSignals: function() {
-    $('body').off('mouseenter').off('mouseleave')
-    .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-      if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-    })
-    .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-      if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-    })
-    .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-      if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-    })
-    .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-      if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-    })
-    .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-      if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-    })
-    .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-      if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-    })
-  },
-
-  /*
-  @dashboard
-  @view
-  Handle history modal openning on infos
-  */
-  setHistoryModalHandler: function() {
-    $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
-      if (isEditing) return false
-      event.stopImmediatePropagation()
-      event.stopPropagation()
-      if (event.ctrlKey) {
-        var cmdIds = []
-        $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
-          cmdIds.push($(this).data('cmd_id'))
-        })
-        cmdIds = cmdIds.join('-')
+  itemElems = _container.packery('getItemElements')
+  $(itemElems).each(function(i, itemElem) {
+    $(itemElem).attr(_orderAttr, i + 1)
+    var value = i + 1
+    if (isEditing) {
+      if ($(itemElem).find(".counterReorderJeedom").length) {
+        $(itemElem).find(".counterReorderJeedom").text(value)
       } else {
-        var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+        $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
       }
-      $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
-    })
-  },
-
+    }
+  })
 }
 
+/*
+@dashboard
+@view
+save eqlogics/scenarios size/order
+*/
+jeedomUI.saveWidgetDisplay = function(_params) {
+  if (init(_params) == '') {
+    _params = {}
+  }
+  var cmds = []
+  var eqLogics = []
+  var scenarios = []
+  $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function() {
+    var eqLogic = $(this)
+    var order = 1
+    eqLogic.find('.cmd').each(function() {
+      var cmd = {};
+      cmd.id = $(this).attr('data-cmd_id')
+      cmd.order = order
+      cmds.push(cmd)
+      order++
+    })
+  })
+  $('.eqLogic-widget.eqLogic_layout_table').each(function() {
+    var eqLogic = $(this)
+    var order = 1
+    eqLogic.find('.cmd').each(function() {
+      var cmd = {}
+      cmd.id = $(this).attr('data-cmd_id')
+      cmd.line = $(this).closest('td').attr('data-line')
+      cmd.column = $(this).closest('td').attr('data-column')
+      cmd.order = order
+      cmds.push(cmd)
+      order++
+    })
+  })
+  if (init(_params['dashboard']) == 1) {
+    $('.div_displayEquipement').each(function() {
+      var order = 1
+      $(this).find('.eqLogic-widget,.scenario-widget').each(function() {
+        if ($(this).hasClass('eqLogic-widget')) {
+          var eqLogic = {id :$(this).attr('data-eqlogic_id')}
+          eqLogic.display = {}
+          eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
+          eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
+          eqLogic.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
+          eqLogics.push(eqLogic)
+        } else if ($(this).hasClass('scenario-widget')) {
+          var scenario = {id :$(this).attr('data-scenario_id')}
+          scenario.display = {}
+          scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
+          scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
+          scenario.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
+          scenarios.push(scenario)
+        }
+        order++
+      })
+    })
+    jeedom.eqLogic.setOrder({
+      eqLogics: eqLogics,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success:function(data){
+        jeedom.cmd.setOrder({
+          cmds: cmds,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          }
+        });
+      }
+    })
+    jeedom.scenario.setOrder({
+      scenarios: scenarios,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      }
+    })
+  } else if (init(_params['view']) == 1) {
+    var components = []
+    $('.eqLogicZone').each(function() {
+      var order = 1
+      $(this).find('.eqLogic-widget,.scenario-widget').each(function() {
+        if ($(this).hasClass('eqLogic-widget')) {
+          var eqLogic = {id :$(this).attr('data-eqlogic_id'),type:'eqLogic'}
+          eqLogic.display = {}
+          eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
+          eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
+          eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
+          eqLogic.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
+          components.push(eqLogic)
+        } else if ($(this).hasClass('scenario-widget')) {
+          var scenario = {id :$(this).attr('data-scenario_id'),type:'scenario'}
+          scenario.display = {}
+          scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
+          scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
+          scenario.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
+          scenario.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
+          components.push(scenario)
+        }
+        order++
+      })
+    })
+    jeedom.view.setComponentOrder({
+      components: components,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success:function(data){
+        jeedom.cmd.setOrder({
+          cmds: cmds,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          }
+        })
+      }
+    })
+  }
+}
+
+/*
+@dashboard
+@view
+infos/actions tile signals
+*/
+jeedomUI.setEqSignals = function() {
+  $('body').off('mouseenter').off('mouseleave')
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+  })
+}
+
+/*
+@dashboard
+@view
+Handle history modal openning on infos
+*/
+jeedomUI.setHistoryModalHandler = function() {
+  $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
+    if (isEditing) return false
+    event.stopImmediatePropagation()
+    event.stopPropagation()
+    if (event.ctrlKey) {
+      var cmdIds = []
+      $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+        cmdIds.push($(this).data('cmd_id'))
+      })
+      cmdIds = cmdIds.join('-')
+    } else {
+      var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+    }
+    $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+  })
+}
 
