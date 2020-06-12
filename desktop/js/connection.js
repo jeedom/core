@@ -17,6 +17,8 @@
 "use strict"
 
 var deepUrl = window.location.href
+if (deepUrl.includes('logout')) deepUrl = ''
+
 
 $('#in_login_username').on('focusout change keypress',function() {
   jeedom.user.useTwoFactorAuthentification({
@@ -54,6 +56,7 @@ $('#bt_login_validate').on('click', function() {
         $(".veen .login-btn button").removeClass('active')
         $(this).addClass('active')
       } else {
+        console.log('log ok')
         $('.veen').animateCss('bounceOut', function() {
           $('.veen').hide()
           if (isset(deepUrl) && deepUrl.includes('index.php?v=d')) {
