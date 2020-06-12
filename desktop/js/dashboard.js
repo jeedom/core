@@ -230,7 +230,7 @@ $('#bt_displayObject').on('click', function () {
 
 $('#div_pageContainer').delegate('.editOptions', 'click', function () {
   var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
-  $('#md_modal').dialog({title: "{{Configuration}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+eqId).dialog('open')
+  $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
 })
 
 var _draggingId = false
