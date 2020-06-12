@@ -522,23 +522,11 @@ $('#bt_eqLogicConfigureSave').off().on('click', function(event) {
   var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0]
   if (!isset(eqLogic.display)) eqLogic.display = {}
   if (!isset(eqLogic.display.parameters)) eqLogic.display.parameters = {}
-  
   $('#table_widgetParameters tbody tr').each(function() {
     eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
   })
-  jeedom.eqLogic.save({
-    eqLogics: [eqLogic],
-    type: eqLogic.eqType_name,
-    error: function(error) {
-      $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      
-    }
-  })
-  
   //save cmds:
-  var cmds = []
+  eqLogic.cmd = []
   var cmd, attribClass
   $('#div_eqLogicCmds .cmdConfig').each(function() {
     attribClass = $(this).data('attribclass')
@@ -549,16 +537,17 @@ $('#bt_eqLogicConfigureSave').off().on('click', function(event) {
     $(this).find('tr.cmdoptparam').each(function() {
       cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
     })
-    
-    jeedom.cmd.save({
-      cmd: cmd,
-      error: function(error) {
-        $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function() {
-        
-      }
-    })
+    eqLogic.cmd.push(cmd);
+  })
+  jeedom.eqLogic.save({
+    eqLogics: [eqLogic],
+    type: eqLogic.eqType_name,
+    error: function(error) {
+      $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function() {
+      
+    }
   })
 })
 </script>
