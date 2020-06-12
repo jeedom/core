@@ -145,6 +145,7 @@ function loadPage(_url, _noPushHistory) {
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
     }
+
     setTimeout(function() {
       modifyWithoutSave = false
     },500)
@@ -1034,8 +1035,10 @@ function setJeedomMenu() {
     }
     $('li.dropdown.open').click()
 
-    $('.dropdown-toggle').dropdown("close")
     $('.navbar-collapse').removeClass('in')
+    if (userDeviceType == 'mobile') {
+      $('.dropdown-toggle').dropdown("close")
+    }
 
     loadPage($(this).attr('href'))
     event.preventDefault()
