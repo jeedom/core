@@ -1033,9 +1033,10 @@ function setJeedomMenu() {
     if ($(this).attr('target') == '_blank') {
       return
     }
-    $('li.dropdown.open').click()
 
-    $('.navbar-collapse').removeClass('in')
+    //hide first level main menu:
+    $('header.navbar-fixed-top li.dropdown > .dropdown-menu').hide()
+
     if (userDeviceType == 'mobile') {
       $('.dropdown-toggle').dropdown("close")
     }
