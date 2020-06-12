@@ -257,7 +257,7 @@ function setTheme() {
 			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" height="30px"></a>
+						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="$.showLoading()" height="30px"></a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
 							<span class="icon-bar"></span>
