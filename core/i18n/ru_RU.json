@@ -457,6 +457,38 @@
         "Télécharger": "скачать",
         "Copier": "копия"
     },
+    "desktop\/modal\/eqLogic.dashboard.edit.php": {
+        "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "EqLogic non trouvé : ": "",
+        "Annuler": "Отменить",
+        "Sauvegarder": "Сохранить",
+        "Nom": "Имя",
+        "Visible": "Видимый",
+        "Paramètres optionnels sur la tuile": "Необязательные параметры на плитке",
+        "Valeur": "Значение",
+        "Action": "Действие",
+        "Disposition": "обеспечение",
+        "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "",
+        "Défaut": "По умолчанию",
+        "Tableau": "стол",
+        "Lignes": "",
+        "Colonnes": "",
+        "Appliquer": "применять",
+        "Centrer dans les cases": "Центр в коробках",
+        "Style général des cases (CSS)": "Общий стиль ящиков (CSS)",
+        "Style du tableau (CSS)": "Стиль таблицы (CSS)",
+        "Texte de la case": "Текст в поле",
+        "Style de la case (CSS)": "Стиль коробки (CSS)",
+        "Commandes": "Команды",
+        "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "",
+        "Widget": "Виджет",
+        "Afficher le nom": "Показать имя",
+        "Afficher le nom ET l\\'icône": "",
+        "Afficher les statistiques": "Показать статистику",
+        "Retour à la ligne avant le widget": "",
+        "Retour à la ligne après le widget": "",
+        "Paramètres optionnels sur le widget:": ""
+    },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Objet": "Объект",
@@ -2372,7 +2404,7 @@
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы находитесь в режиме редактирования, вы можете перемещать виджеты, изменять их размер и изменять порядок команд в виджетах",
-        "Configuration": "Конфигурация"
+        "Configuration Affichage": ""
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Название вида?",
@@ -2511,7 +2543,7 @@
         "Jeedom benchmark": "Тест Jeedom"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration": "Конфигурация",
+        "Configuration Affichage": "",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Вы находитесь в режиме редактирования вы можете перемещать виджеты, изменять размер и изменить порядок команд в виджетах. Не забудьте выйти из режима редактирования, чтобы сохранить"
     },
     "desktop\/js\/plan.js": {

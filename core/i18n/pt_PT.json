@@ -457,6 +457,38 @@
         "Télécharger": "Baixar",
         "Copier": "Copiar"
     },
+    "desktop\/modal\/eqLogic.dashboard.edit.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "EqLogic non trouvé : ": "EqLogic não encontrado:",
+        "Annuler": "Cancelar",
+        "Sauvegarder": "Salvar",
+        "Nom": "Nome",
+        "Visible": "Visivél",
+        "Paramètres optionnels sur la tuile": "Parâmetros opcionais na telha",
+        "Valeur": "Valor",
+        "Action": "Ação",
+        "Disposition": "Provisão",
+        "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "Layout de widgets no modo Padrão ou Tabela. <br> Edição da tabela e o layout dos controles",
+        "Défaut": "Falha",
+        "Tableau": "Mesa",
+        "Lignes": "Linhas",
+        "Colonnes": "Colunas",
+        "Appliquer": "Aplicar",
+        "Centrer dans les cases": "Centro nas caixas",
+        "Style général des cases (CSS)": "Estilo geral das caixas (CSS)",
+        "Style du tableau (CSS)": "Estilo mesa (CSS)",
+        "Texte de la case": "Caixa de texto",
+        "Style de la case (CSS)": "Caixa de estilo (CSS)",
+        "Commandes": "Comandos",
+        "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Exibir configurações para cada comando. <br> Para exibição no layout padrão, a ordem dos comandos pode ser modificada ao arrastar e soltar",
+        "Widget": "Widget",
+        "Afficher le nom": "Mostrar nome",
+        "Afficher le nom ET l\\'icône": "Mostrar nome E ícone",
+        "Afficher les statistiques": "Mostrar estatísticas",
+        "Retour à la ligne avant le widget": "Quebrar antes do widget",
+        "Retour à la ligne après le widget": "Quebrar após o widget",
+        "Paramètres optionnels sur le widget:": "Parâmetros opcionais no widget:"
+    },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Objet": "Objeto",
@@ -2372,7 +2404,7 @@
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Você está editando você pode moda widgets de mover, redimensionar e alterar a ordem dos comandos widgets",
-        "Configuration": "Configuração"
+        "Configuration Affichage": "Configuração de exibição"
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Ver nome?",
@@ -2511,7 +2543,7 @@
         "Jeedom benchmark": "Jeedom referência"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration": "Configuração",
+        "Configuration Affichage": "Configuração de exibição",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Você está em modo de edição você pode mover widgets, redimensionar e alterar a ordem dos comandos em widgets. Lembre-se de deixar o modo de edição para salvar"
     },
     "desktop\/js\/plan.js": {

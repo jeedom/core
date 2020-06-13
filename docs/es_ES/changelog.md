@@ -5,7 +5,7 @@
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
 - **Buscar** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
 - **Salpicadero** : El modo de edición ahora inserta el mosaico movido.
-- **Salpicadero** : Modo de edición: los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
+- **Salpicadero** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
 - **Salpicadero** : Ahora podemos hacer clic en el *tiempo* widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
 - **Salpicadero** : El tamaño del mosaico de un equipo nuevo se adapta a su contenido.
 - **Salpicadero** : Agregar (¡atrás!) Un botón para filtrar los elementos mostrados por categoría.
@@ -34,9 +34,9 @@
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - **Análisis / Historia** : Ahora podemos usar la opción *Area* con la opción *Escalera*.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
-- **Vista** : posibilidad de poner escenarios.
+- **Vista** : Posibilidad de poner escenarios.
 - **Vista** : El modo de edición ahora inserta el mosaico movido.
-- **Vista** : Modo de edición: los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
+- **Vista** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
 - **Vista** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
 - **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Historial** : Gestión de múltiples líneas de tiempo.
@@ -46,8 +46,8 @@
 - **Resumen de domótica** : Posibilidad de mover varios equipos de un objeto a otro.
 - **Resumen de domótica** : Posibilidad de seleccionar todo el equipo de un objeto.
 - **Motor de tareas** : En la pestaña *Demonio*, los complementos deshabilitados ya no aparecen.
-- **Reporte** : uso de chronium si está disponible.
-- **Reporte** : posibilidad de exportar cronogramas.
+- **Reporte** : Uso de chronium si está disponible.
+- **Reporte** : Posibilidad de exportar cronogramas.
 - **Configuración** : La pestaña *Información* ahora está en la pestaña *Principal*.
 - **Configuración** : La pestaña *Comandos* ahora está en la pestaña *Dispositivos*.
 - **Ventana de configuración avanzada del equipo** : Cambio dinámico de la configuración de la centralita.

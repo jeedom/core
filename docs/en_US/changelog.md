@@ -5,7 +5,7 @@
 - **Synthesis** : New page **Home → Synthesis** offering a global visual synthesis of objects (rooms).
 - **Research** : Add of a search engine in **Tools → Search**.
 - **Dashboard** : Edit mode now inserting the moved tile.
-- **Dashboard** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to its configuration.
+- **Dashboard** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
 - **Dashboard** : We can now click on the *time* time actions widgets to open the history window of the linked info command.
 - **Dashboard** : The size of a new equipment&#39;s tile adapts to its content.
 - **Dashboard** : Add (back!) A button to filter the displayed items by category.
@@ -34,9 +34,9 @@
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Steps*.
 - **Analysis / Logs** : New monospace type font for logs.
-- **View** : possibility to put scenarios.
+- **View** : Possibility to put scenarios.
 - **View** : Edit mode now inserting the moved tile.
-- **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to its configuration.
+- **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
 - **View** : The display order is now independent of that on the Dashboard.
 - **History** : Integration of the Timeline in DB for reliability reasons.
 - **History** : Management of multiple timelines.
@@ -46,8 +46,8 @@
 - **Domotic overview** : Possibility to move several pieces of equipment from one object to another.
 - **Domotic overview** : Possibility to select all the equipment of an object.
 - **Task engine** : On the tab *Daemon*, disabled plugins no longer appear.
-- **Report** : use of chronium if available.
-- **Report** : possibility to export timelines.
+- **Report** : Use of chronium if available.
+- **Report** : Possibility to export timelines.
 - **Configuration** : The tab *Information* is now in the tab *Main*.
 - **Configuration** : The tab *Commands* is now in the tab *Equipments*.
 - **Advanced equipment configuration window** : Dynamic change of table configuration.

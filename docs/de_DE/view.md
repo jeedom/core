@@ -1,8 +1,8 @@
 # Vues
 **Home → Anzeigen**
 
-Mit Ansichten können Sie eine benutzerdefinierte Ansicht erstellen.
-Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Minuten eine individuellere Anzeige.
+Mit Ansichten können Sie benutzerdefinierte Ansichten erstellen.
+Es ist nicht so leistungsfähig wie die Designs, ermöglicht jedoch in wenigen Minuten eine individuellere Anzeige als das Dashboard mit Geräten für verschiedene Objekte, Grafiken oder Steuerelemente.
 
 > **Spitze**
 >
@@ -10,9 +10,13 @@ Es ist nicht so leistungsstark wie die Designs, ermöglicht jedoch in wenigen Mi
 
 ## Principe
 
-Wir können auch Widgets, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die Widgets von Befehlen enthalten) einfügen).
+Wir können auch Gerätekacheln, Diagramme (die aus mehreren Daten bestehen können) oder Tabellenzonen (die die Widgets der Befehle enthalten) einfügen).
 
-Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer Ansicht (Jeedom fragt Sie nach dem Namen und sendet Sie zur Bearbeitungsseite) :
+Auf einer Ansicht finden wir :
+
+- Eine Schaltfläche oben links zum Ein- oder Ausblenden der Liste der Ansichten sowie die Schaltfläche zum Hinzufügen einer.
+- Der Bleistift auf der rechten Seite zum Bearbeiten der Reihenfolge und Größe des Geräts auf die gleiche Weise wie das Dashboard.
+- Ein Knopf *Komplette Ausgabe* So können Sie die Zonen und Elemente der Ansicht bearbeiten.
 
 > **Spitze**
 >
@@ -20,38 +24,40 @@ Auf dieser Seite befindet sich oben links eine Schaltfläche zum Ein- oder Ausbl
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Zonen (Sie können so viele Zonen einfügen, wie Sie möchten). Jede Zone ist vom Typ Grafik, Widget oder Tabelle, je nachdem, welchen Typ Sie Geräte-, Steuerungs- oder Grafik-Widgets hinzufügen können.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Grafik*, *Widget* oder *Tabelle*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
+
+- Auf der linken Seite finden Sie die Liste der Ansichten sowie eine Schaltfläche zum Erstellen.
+- Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht (Konfiguration) bearbeiten).
+- Eine Schaltfläche zum Hinzufügen einer Zone. Sie werden dann nach dem Namen und dem Typ der Zone gefragt.
+- Ein Knopf *Siehe das Ergebnis*, um den vollständigen Bearbeitungsmodus zu verlassen und diese Ansicht anzuzeigen.
+- Eine Schaltfläche zum Speichern dieser Ansicht.
+- Eine Schaltfläche zum Löschen dieser Ansicht.
 
 > **Spitze**
 >
 > Sie können die Reihenfolge der Zonen durch Ziehen und Ablegen verschieben.
 
-- Links auf der Seite finden wir die Liste der Ansichten und eine Schaltfläche zum Hinzufügen.
-- Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht bearbeiten.
-- In der Mitte haben Sie eine Schaltfläche zum Umbenennen einer Ansicht, eine Schaltfläche zum Hinzufügen eines Bereichs, eine Schaltfläche zum Anzeigen des Ergebnisses, eine Schaltfläche zum Speichern und eine Schaltfläche zum Löschen der Ansicht.
-
-Nach dem Klicken auf die Schaltfläche Zone hinzufügen fragt Jeedom nach Name und Typ.
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
-- **Breite** : Definiert die Breite des Bereichs (nur im Desktop-Modus).
+- **Breite** : Definiert die Breite des Bereichs (nur im Desktop-Modus). 1 für die Breite von 1/12 des Navigators, 12 für die Gesamtbreite.
+- Eine Schaltfläche zum Hinzufügen eines Elements zu dieser Zone, abhängig vom Zonentyp (siehe unten)).
 - **Bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
 - **Entfernen** : Löschen Sie die Zone.
 
 ### Widget-Typ-Bereich
 
-In einem Widget-Typbereich können Sie Widgets hinzufügen :
+In einem Widget-Bereich können Sie Geräte hinzufügen :
 
-- **Widget hinzufügen** : Hinzufügen / Bearbeiten von Widgets zur Anzeige im Bereich.
+- **Widget hinzufügen** : Ermöglicht das Hinzufügen / Ändern von Geräten, die im Bereich angezeigt werden sollen.
 
 > **Spitze**
 >
-> Sie können ein Widget direkt löschen, indem Sie auf den Papierkorb davor klicken.
+> Sie können ein Widget direkt löschen, indem Sie auf den Papierkorb links davon klicken.
 
 > **Spitze**
 >
 > Sie können die Reihenfolge der Widgets im Bereich durch Ziehen und Ablegen ändern.
 
-Sobald die Schaltfläche Widget hinzufügen gedrückt wird, wird ein Fenster angezeigt, in dem Sie aufgefordert werden, das Widget hinzuzufügen
 
 ### Grafiktypbereich
 
@@ -60,7 +66,7 @@ In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folge
 - **Zeit** : Hier können Sie den Anzeigezeitraum der Grafiken auswählen (30 Minuten, 1 Tag, 1 Woche, 1 Monat, 1 Jahr oder alle)).
 - **Kurve hinzufügen** : Grafiken hinzufügen / bearbeiten.
 
-Wenn Sie auf die Schaltfläche &quot;Kurve hinzufügen&quot; klicken, zeigt Jeedom die Liste der historischen Befehle an und Sie können die hinzuzufügenden Befehle auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
+Wenn Sie die Taste drücken **Kurve hinzufügen**, Jeedom zeigt die Liste der historischen Befehle an und Sie können den hinzuzufügenden auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
 - **Mülleimer** : Befehl aus Diagramm entfernen.
 - **Name** : Name des zu zeichnenden Befehls.
@@ -89,8 +95,6 @@ Hier haben Sie die Schaltflächen :
 
 Nachdem Sie Ihre Zeilen / Spalten hinzugefügt haben, können Sie Informationen in die Felder einfügen :
 
-- **Text** : Nur Text zum Schreiben.
-- **HTML** : Jeder HTML-Code (Javascript möglich, aber dringend davon abgeraten).
-- **Befehls-Widget** : Über die Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen (beachten Sie, dass hier das Widget des Befehls angezeigt wird).
-
-
+- Ein Text.
+- HTML-Code (Javascript möglich, aber stark davon abgeraten).
+- Das Widget einer Bestellung : Mit der Schaltfläche rechts können Sie den anzuzeigenden Befehl auswählen.

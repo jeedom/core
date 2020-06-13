@@ -66,19 +66,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 No modo de edição (*o lápis no canto superior direito*), você pode alterar o tamanho dos ladrilhos e sua organização no painel.
 
-os ícones de atualização do equipamento são substituídos por um ícone que permite acessar sua configuração.
-
-Você também pode editar o layout interno dos controles no bloco :
-
-- Reorganize-os arrastando e soltando.
-- Ou clicando com o botão direito do mouse no widget. Você então acessa :
-    - **Configuração avançada** : dá acesso à configuração avançada do comando.
-    - **Padrão** : layout padrão, tudo é automático com apenas a possibilidade de reorganizar a ordem dos pedidos.
-    - **Mesa** : permite colocar os comandos em uma tabela : colunas e linhas são adicionadas e excluídas com o botão direito do mouse e, em seguida, basta mover os comandos nas caixas desejadas. Você pode fazer vários pedidos por caixa
-    - **Adicionar coluna** : adicione uma coluna à tabela (acessível apenas se você estiver no layout da tabela)
-    - **Adicionar linha** : adicione uma linha à tabela (acessível apenas se você estiver no layout da tabela)
-    - **Excluir coluna** : remover uma coluna da tabela (acessível apenas se você estiver no layout da tabela)
-    - **Eliminar linha** : excluir uma linha da tabela (acessível apenas se você estiver no layout da tabela)
+os ícones de atualização do equipamento são substituídos por um ícone que permite acessar suas configurações. Este ícone abre uma janela de edição com os parâmetros de exibição do equipamento e seus controles.
 
 À direita de cada objeto, um ícone permite que você :
 

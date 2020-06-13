@@ -66,19 +66,7 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 
 In edit mode (*the pencil at the top right*), you can change the size of the tiles and their arrangement on the Dashboard.
 
-the equipment refresh icons are replaced by an icon allowing access to its configuration.
-
-You can also edit the internal layout of the controls on the tile :
-
-- Either rearrange them by dragging and dropping.
-- Either by right-clicking on the widget. You then access :
-    - **Advanced configuration** : gives access to the advanced configuration of the command.
-    - **Standard** : default layout, everything is automatic with just the possibility of rearranging the order of commands.
-    - **Board** : allows to put the commands in a table : columns and rows are added and deleted by right click, then just move the commands in the desired boxes. You can put multiple commands per box
-    - **Add column** : add a column to the table (accessible only if you are in table layout)
-    - **Add line** : add a row to the table (accessible only if you are in table layout)
-    - **Remove column** : remove a column from the table (accessible only if you are in table layout)
-    - **Delete line** : delete a row in the table (accessible only if you are in table layout)
+the equipment refresh icons are replaced by an icon allowing access to their configuration. This icon opens an editing window with the display parameters of the equipment and its controls.
 
 To the right of each object, an icon allows you to :
 

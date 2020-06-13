@@ -5,7 +5,7 @@
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **Painel de instrumentos** : Modo de edição agora inserindo o bloco movido.
-- **Painel de instrumentos** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acessar sua configuração.
+- **Painel de instrumentos** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
 - **Painel de instrumentos** : Agora podemos clicar no *Tempo* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
 - **Painel de instrumentos** : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
 - **Painel de instrumentos** : Adicionar (voltar!) Um botão para filtrar os itens exibidos por categoria.
@@ -34,9 +34,9 @@
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
 - **Análise / História** : Agora podemos usar a opção *área* com a opção *Escada*.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
-- **Vista** : possibilidade de colocar cenários.
+- **Vista** : Possibilidade de colocar cenários.
 - **Vista** : Modo de edição agora inserindo o bloco movido.
-- **Vista** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acessar sua configuração.
+- **Vista** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
 - **Vista** : A ordem de exibição agora é independente da ordem no painel.
 - **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Histórico** : Gerenciamento de várias linhas do tempo.
@@ -46,8 +46,8 @@
 - **Resumo Automation** : Possibilidade de mover várias peças de equipamento de um objeto para outro.
 - **Resumo Automation** : Possibilidade de selecionar todo o equipamento de um objeto.
 - **Mecanismo de tarefas** : Na guia *Demônio*, plugins desativados não aparecem mais.
-- **Relatório** : uso de crônio, se disponível.
-- **Relatório** : possibilidade de exportar cronogramas.
+- **Relatório** : Uso de crônio, se disponível.
+- **Relatório** : Possibilidade de exportar cronogramas.
 - **Configuração** : A guia *Informação* agora está na guia *Geral*.
 - **Configuração** : A guia *Comandos* agora está na guia *Instalações*.
 - **Janela de configuração avançada de equipamentos** : Alteração dinâmica da configuração do quadro de distribuição.
