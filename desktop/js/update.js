@@ -46,6 +46,7 @@ $('.updateOption[data-l1key=force]').off('click').on('click',function(){
     $('.updateOption[data-l1key="backup::before"]').value(0);
     $('.updateOption[data-l1key="backup::before"]').attr('disabled','disabled');
   }else{
+    $('.updateOption[data-l1key="backup::before"]').value(1);
     $('.updateOption[data-l1key="backup::before"]').attr('disabled',false);
   }
 });
