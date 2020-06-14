@@ -317,7 +317,7 @@ class plan {
 			}
 			$html .= '</div>';
 			return array(
-				'plan' => utils::o2a($this),
+				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
 				'html' => $html,
 			);
 		}
