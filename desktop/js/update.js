@@ -42,8 +42,10 @@ $('#bt_updateJeedom').off('click').on('click', function() {
 
 $('.updateOption[data-l1key=force]').off('click').on('click',function() {
   if ($(this).value() == 1) {
+    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').value(0);
     $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled','disabled')
   } else {
+    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').value(1);
     $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled',false)
   }
 })
@@ -144,7 +146,7 @@ $(function() {
     updateProgressBar()
     getJeedomLog(1, 'update')
   }
-
+  
   $('[data-l2key="doNotUpdate"]').on('click',function() {
     $(this).tooltipster('open')
   })
@@ -231,19 +233,19 @@ function promptEndUpdate() {
     title: '<h4><i class="success fas fa-check-circle"></i> {{Mise(s) à jour terminée(s) avec succès.}}</h4>',
     message: '{{Voulez vous recharger la page maintenant ?}}',
     buttons: {
-        confirm: {
-            label: '{{Recharger}}',
-            className: 'btn-success'
-        },
-        cancel: {
-            label: '{{Rester sur la page}}',
-            className: 'btn-info'
-        }
+      confirm: {
+        label: '{{Recharger}}',
+        className: 'btn-success'
+      },
+      cancel: {
+        label: '{{Rester sur la page}}',
+        className: 'btn-info'
+      }
     },
     callback: function(result) {
-        if (result) {
-          window.location.reload(true)
-        }
+      if (result) {
+        window.location.reload(true)
+      }
     }
   })
 }
@@ -265,7 +267,7 @@ function printUpdate() {
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
     }
   })
-
+  
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function(error) {
@@ -289,7 +291,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true
     }
   }
-
+  
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span></td>'
   tr += '<td><span class="hidden">' + _update.name + '</span><span class="updateAttr" data-l1key="id" style="display:none;"></span>'
@@ -300,12 +302,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger'
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
   }
-
+  
   var _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   var _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-
+  
   tr += '</td>'
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>'
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>'
@@ -356,42 +358,42 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
 function updateProgressBar() {
   if (progress == -4) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger')
-      .addClass('progress-bar-warning')
+    .addClass('progress-bar-warning')
     return
   }
   if (progress == -3) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-warning')
-      .addClass('progress-bar-danger')
+    .addClass('progress-bar-danger')
     return
   }
   if (progress == -2) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger progress-bar-warning')
-      .width(0)
-      .attr('aria-valuenow', 0)
-      .html('0%')
+    .width(0)
+    .attr('aria-valuenow', 0)
+    .html('0%')
     return
   }
   if (progress == -1) {
     $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
-      .addClass('active progress-bar-info')
-      .width('100%')
-      .attr('aria-valuenow', 100)
-      .html('N/A');
+    .addClass('active progress-bar-info')
+    .width('100%')
+    .attr('aria-valuenow', 100)
+    .html('N/A');
     return
   }
   if (progress == 100) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-danger progress-bar-warning')
-      .addClass('progress-bar-success')
-      .width(progress+'%')
-      .attr('aria-valuenow', progress)
-      .html(progress+'%')
-    return;
-  }
-  $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
-    .addClass('active progress-bar-info')
+    .addClass('progress-bar-success')
     .width(progress+'%')
     .attr('aria-valuenow', progress)
     .html(progress+'%')
+    return;
+  }
+  $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
+  .addClass('active progress-bar-info')
+  .width(progress+'%')
+  .attr('aria-valuenow', progress)
+  .html(progress+'%')
 }
 
 //___log interceptor beautifier___
@@ -419,14 +421,14 @@ function createUpdateObserver() {
       }
     })
   })
-
+  
   var observerConfig = {
     attributes: true,
     childList: true,
     characterData: true,
     subtree: true
   }
-
+  
   var targetNode = document.getElementById('pre_updateInfo')
   _UpdateObserver_.observe(targetNode, observerConfig)
 }
@@ -437,7 +439,7 @@ function cleanUpdateLog() {
   if (prevUpdateText == currentUpdateText) return false
   var lines = currentUpdateText.split("\n")
   var l = lines.length
-
+  
   //update progress bar and clean text!
   var linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -448,13 +450,13 @@ function cleanUpdateLog() {
       break
     }
   }
-
+  
   var newLogText = ''
   for (var i=0; i < l; i++) {
     var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-
+    
     //check ok at end of line:
     if (line.endsWith('OK')) {
       var matches = line.match(/[. ]{1,}OK/g)
@@ -465,7 +467,7 @@ function cleanUpdateLog() {
         line = line.replace('OK', ' | OK')
       }
     }
-
+    
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -474,7 +476,7 @@ function cleanUpdateLog() {
       })
     }
     line = line.trim()
-
+    
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -495,7 +497,7 @@ function cleanUpdateLog() {
       line += ' | OK'
       lines[i+offset] = ''
     }
-
+    
     if (line != '') {
       newLogText += line + '\n'
       _pre_updateInfo_clean.value(newLogText)
