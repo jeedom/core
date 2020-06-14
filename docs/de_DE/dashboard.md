@@ -66,19 +66,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
 
-Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf die Konfiguration ermöglicht.
-
-Sie können auch das interne Layout der Steuerelemente auf der Kachel bearbeiten :
-
-- Ordnen Sie sie entweder durch Ziehen und Ablegen neu an.
-- Entweder durch Klicken mit der rechten Maustaste auf das Widget. Sie greifen dann zu :
-    - **Erweiterte Konfiguration** : Ermöglicht den Zugriff auf die erweiterte Konfiguration des Befehls.
-    - **Standard** : Standardlayout, alles ist automatisch mit nur der Möglichkeit, die Reihenfolge der Bestellungen neu zu ordnen.
-    - **Tabelle** : ermöglicht das Einfügen der Befehle in eine Tabelle : Spalten und Zeilen werden durch Klicken mit der rechten Maustaste hinzugefügt und gelöscht. Verschieben Sie dann einfach die Befehle in die gewünschten Felder. Sie können mehrere Bestellungen pro Box aufgeben
-    - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu (nur verfügbar, wenn Sie sich im Tabellenlayout befinden)
-    - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu (nur verfügbar, wenn Sie sich im Tabellenlayout befinden)
-    - **Säule entfernen** : Entfernen Sie eine Spalte aus der Tabelle (nur verfügbar, wenn Sie sich im Tabellenlayout befinden)
-    - **Zeile löschen** : Löschen Sie eine Zeile in der Tabelle (nur verfügbar, wenn Sie sich im Tabellenlayout befinden)
+Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf ihre Konfiguration ermöglicht. Dieses Symbol öffnet ein Bearbeitungsfenster mit den Anzeigeparametern des Geräts und seiner Steuerelemente.
 
 Rechts von jedem Objekt können Sie ein Symbol verwenden :
 

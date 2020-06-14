@@ -66,19 +66,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 En modo edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
 
-los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración.
-
-También puede editar el diseño interno de los controles en el mosaico :
-
-- O bien reorganícelos arrastrando y soltando.
-- Ya sea haciendo clic derecho en el widget. Entonces accedes :
-    - **Configuración avanzada** : da acceso a la configuración avanzada del comando.
-    - **Estándar** : diseño predeterminado, todo es automático con solo la posibilidad de reorganizar el orden de los pedidos.
-    - **Mesa** : permite poner los comandos en una tabla : Las columnas y filas se agregan y eliminan haciendo clic derecho, luego simplemente mueva los comandos en los cuadros deseados. Puedes poner múltiples pedidos por caja
-    - **Agregar columna** : agregar una columna a la tabla (accesible solo si está en el diseño de la tabla)
-    - **Agregar línea** : agregar una fila a la tabla (accesible solo si está en el diseño de la tabla)
-    - **Eliminar columna** : eliminar una columna de la tabla (accesible solo si está en el diseño de la tabla)
-    - **Eliminar linea** : eliminar una fila en la tabla (accesible solo si está en el diseño de la tabla)
+los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración. Este icono abre una ventana de edición con los parámetros de visualización del equipo y sus controles.
 
 A la derecha de cada objeto, un icono le permite :
 

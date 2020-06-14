@@ -5,7 +5,7 @@
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
 - **Dashboard** : Mode Édition maintenant en insertion de la tuile déplacée.
-- **Dashboard** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
+- **Dashboard** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
 - **Dashboard** : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - **Dashboard** : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - **Dashboard** : Ajout (retour !) d'un bouton pour filtrer les éléments affichés par catégorie.
@@ -34,9 +34,9 @@
 - **Analyse / Historique** : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - **Analyse / Historique** : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
-- **Vue** : possibilité de mettre des scénarios.
+- **Vue** : Possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
-- **Vue** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
+- **Vue** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
 - **Vue** : L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard.
 - **Historique** : Intégration de la Timeline en DB pour des raisons de fiabilité.
 - **Historique** : Gestion de Timelines multiples.
@@ -46,8 +46,8 @@
 - **Résumé domotique** : Possibilité de déplacer plusieurs équipements d'un objet dans un autre.
 - **Résumé domotique** : Possibilité de sélectionner tous les équipements d'un objet.
 - **Moteur de tâches** : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
-- **Rapport** : utilisation de chronium si disponible.
-- **Rapport** : possibilité d'exporter les timelines.
+- **Rapport** : Utilisation de chronium si disponible.
+- **Rapport** : Possibilité d'exporter les timelines.
 - **Configuration** : L'onglet *Informations* est maintenant dans l'onglet *Général*.
 - **Configuration** : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - **Fenêtre de configuration avancée d'équipement** : Changement dynamique de la configuration tableau.

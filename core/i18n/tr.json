@@ -457,6 +457,38 @@
         "Télécharger": "İndir",
         "Copier": ""
     },
+    "desktop\/modal\/eqLogic.dashboard.edit.php": {
+        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "EqLogic non trouvé : ": "",
+        "Annuler": "Iptal et",
+        "Sauvegarder": "Kaydet",
+        "Nom": "İsim",
+        "Visible": "Görülebilir",
+        "Paramètres optionnels sur la tuile": "Döşeme üzerinde isteğe bağlı parametreler",
+        "Valeur": "Değer",
+        "Action": "Eylem",
+        "Disposition": "Hüküm",
+        "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "",
+        "Défaut": "Varsayılan",
+        "Tableau": "Tablo",
+        "Lignes": "",
+        "Colonnes": "",
+        "Appliquer": "Uygula",
+        "Centrer dans les cases": "Kutularda Merkezi",
+        "Style général des cases (CSS)": "Kutularının genel tarzı (CSS)",
+        "Style du tableau (CSS)": "Tablo Stili (CSS)",
+        "Texte de la case": "Metin kutusu",
+        "Style de la case (CSS)": "Stil kutusu (CSS)",
+        "Commandes": "Komutalar",
+        "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "",
+        "Widget": "Widget'ı",
+        "Afficher le nom": "Ismi göster",
+        "Afficher le nom ET l\\'icône": "",
+        "Afficher les statistiques": "",
+        "Retour à la ligne avant le widget": "",
+        "Retour à la ligne après le widget": "",
+        "Paramètres optionnels sur le widget:": ""
+    },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Objet": "Konu",
@@ -2372,7 +2404,7 @@
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz",
-        "Configuration": "Ayar"
+        "Configuration Affichage": ""
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Görünümün ismi ?",
@@ -2511,7 +2543,7 @@
         "Jeedom benchmark": ""
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration": "Ayar",
+        "Configuration Affichage": "",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sen widget'lar taşımak, yeniden boyutlandırmak ve widget'larda komutların sırasını değiştirebilirsiniz düzenleme modunda bulunmaktadır. kaydetmek için düzenleme modundan çıkmak için unutmayın"
     },
     "desktop\/js\/plan.js": {

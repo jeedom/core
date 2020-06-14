@@ -457,6 +457,38 @@
         "Télécharger": "Download",
         "Copier": ""
     },
+    "desktop\/modal\/eqLogic.dashboard.edit.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "EqLogic non trouvé : ": "",
+        "Annuler": "Tidak jadi",
+        "Sauvegarder": "Menyimpan",
+        "Nom": "Nama",
+        "Visible": "Terlihat",
+        "Paramètres optionnels sur la tuile": "Parameter opsional pada ubin",
+        "Valeur": "Nilai",
+        "Action": "Tindakan",
+        "Disposition": "Ketentuan",
+        "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "",
+        "Défaut": "Kesalahan",
+        "Tableau": "Tabel",
+        "Lignes": "",
+        "Colonnes": "",
+        "Appliquer": "Berlaku",
+        "Centrer dans les cases": "Pusat di kotak",
+        "Style général des cases (CSS)": "Gaya umum kotak (CSS)",
+        "Style du tableau (CSS)": "Tabel Style (CSS)",
+        "Texte de la case": "Kotak teks",
+        "Style de la case (CSS)": "Box gaya (CSS)",
+        "Commandes": "Perintah",
+        "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "",
+        "Widget": "",
+        "Afficher le nom": "Tampilkan Nama",
+        "Afficher le nom ET l\\'icône": "",
+        "Afficher les statistiques": "",
+        "Retour à la ligne avant le widget": "",
+        "Retour à la ligne après le widget": "",
+        "Paramètres optionnels sur le widget:": ""
+    },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Objet": "Item",
@@ -2372,7 +2404,7 @@
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Anda mengedit Anda dapat mode bergerak widget, mengubah ukuran dan mengubah urutan perintah dalam widget",
-        "Configuration": "Konfigurasi"
+        "Configuration Affichage": ""
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "View nama?",
@@ -2511,7 +2543,7 @@
         "Jeedom benchmark": "Jeedom patokan"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration": "Konfigurasi",
+        "Configuration Affichage": "",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Anda berada dalam mode edit Anda dapat memindahkan widget, mengubah ukuran dan mengubah urutan perintah dalam widget. Ingat untuk meninggalkan mode edit untuk menyimpan"
     },
     "desktop\/js\/plan.js": {

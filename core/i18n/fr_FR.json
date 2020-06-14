@@ -457,6 +457,38 @@
         "Télécharger": "Télécharger",
         "Copier": "Copier"
     },
+    "desktop\/modal\/eqLogic.dashboard.edit.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "EqLogic non trouvé : ": "EqLogic non trouvé : ",
+        "Annuler": "Annuler",
+        "Sauvegarder": "Sauvegarder",
+        "Nom": "Nom",
+        "Visible": "Visible",
+        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
+        "Valeur": "Valeur",
+        "Action": "Action",
+        "Disposition": "Disposition",
+        "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.",
+        "Défaut": "Défaut",
+        "Tableau": "Tableau",
+        "Lignes": "Lignes",
+        "Colonnes": "Colonnes",
+        "Appliquer": "Appliquer",
+        "Centrer dans les cases": "Centrer dans les cases",
+        "Style général des cases (CSS)": "Style général des cases (CSS)",
+        "Style du tableau (CSS)": "Style du tableau (CSS)",
+        "Texte de la case": "Texte de la case",
+        "Style de la case (CSS)": "Style de la case (CSS)",
+        "Commandes": "Commandes",
+        "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.",
+        "Widget": "Widget",
+        "Afficher le nom": "Afficher le nom",
+        "Afficher le nom ET l\\'icône": "Afficher le nom ET l\\'icône",
+        "Afficher les statistiques": "Afficher les statistiques",
+        "Retour à la ligne avant le widget": "Retour à la ligne avant le widget",
+        "Retour à la ligne après le widget": "Retour à la ligne après le widget",
+        "Paramètres optionnels sur le widget:": "Paramètres optionnels sur le widget:"
+    },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Objet": "Objet",
@@ -2372,7 +2404,7 @@
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets",
-        "Configuration": "Configuration"
+        "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Nom de la vue ?",
@@ -2511,7 +2543,7 @@
         "Jeedom benchmark": "Jeedom benchmark"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration": "Configuration",
+        "Configuration Affichage": "Configuration Affichage",
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
     },
     "desktop\/js\/plan.js": {

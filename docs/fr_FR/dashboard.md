@@ -66,19 +66,7 @@ De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) 
 
 En mode édition (*le crayon tout en haut à droite*), vous pouvez changer la taille des tuiles et leur disposition sur le Dashboard.
 
-les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à sa configuration.
-
-Vous pouvez aussi éditer la disposition interne des commandes sur la tuile :
-
-- Soit les réorganiser par glisser - déposer.
-- Soit en faisant un clic droit sur le widget. Vous accédez alors à :
-    - **Configuration avancée** : permet d’accéder à la configuration avancée de la commande.
-    - **Standard** : disposition par défaut, tout est en automatique avec juste la possibilité de réorganiser l’ordre des commandes.
-    - **Tableau** : permet de mettre les commandes dans un tableau : les colonnes et les lignes s’ajoutent et se suppriment par clic droit, ensuite il suffit de déplacer les commandes dans les cases voulues. Vous pouvez mettre plusieurs commandes par case
-    - **Ajouter colonne** : ajoute une colonne au tableau (accessible uniquement si vous êtes en disposition tableau)
-    - **Ajouter ligne** : ajoute une ligne au tableau (accessible uniquement si vous êtes en disposition tableau)
-    - **Supprimer colonne** : supprime une colonne au tableau (accessible uniquement si vous êtes en disposition tableau)
-    - **Supprimer ligne** : supprime une ligne au tableau (accessible uniquement si vous êtes en disposition tableau)
+les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration. Cette icône ouvre une fenêtre d'édition comportant les paramètres d'affichage de l'équipement et de ses commandes.
 
 A droite de chaque objet, une icône permet de :
 

@@ -1,8 +1,8 @@
 # Vues
 **Home → View**
 
-Views allow you to create a custom view.
-It is not as powerful as the designs but it allows in a few minutes to have a more personalized display.
+Views allow you to create custom views.
+It is not as powerful as the designs but it allows in a few minutes to have a more personalized display than the Dashboard, with equipment of different objects, graphics, or controls.
 
 > **Tip**
 >
@@ -10,48 +10,54 @@ It is not as powerful as the designs but it allows in a few minutes to have a mo
 
 ## Principe
 
-We can also put widgets, graphs (which can be composed of several data) or table zones (which contain the widgets of commands).
+We can also put equipment tiles, graphs (which can be composed of several data) or table zones (which contain the widgets of the commands).
 
-On this page, there is a button at the top left to show or hide the list of views as well as the button to add one (Jeedom will ask for its name and send you to the edit page) :
+On a View, we find :
+
+- A button at the top left to show or hide the list of Views, as well as the button to add one.
+- The pencil on the right to edit the order and size of the equipment, in the same way as the Dashboard.
+- A button *Full Edition* allowing to edit the zones and elements of the View.
 
 > **Tip**
 >
-> You can modify this option in your profile so that the list of views is visible by default.
+> You can, in your profile, modify this option so that the list of Views is visible by default.
 
 ## Adding / Editing a view
 
-The principle is quite simple : a view is made up of zones (you can put as many as you want). Each zone is of graphic, widget or table type, depending on the type you can put equipment, control or graphic widgets in it.
+The principle is quite simple : a View is made up of areas. Each zone is of type *Graphic*, *Widget* or *Table*. Depending on this type, you can add graphics, equipment, or commands to it.
+
+- On the left of the page we find the list of Views as well as a creation button.
+- A button at the top right allows you to edit the Current View (Configuration).
+- A button to add a zone. You will then be asked for the name and type of zone.
+- A button *Display the result*, to exit the complete editing mode and display this View.
+- A button allowing to save this View.
+- A button allowing to delete this View.
 
 > **Tip**
 >
 > You can move the order of the zones by dragging and dropping.
 
-- On the left of the page we find the list of views and an add button.
-- A button at the top right allows you to edit the current view.
-- In the center you have a button to rename a view, a button to add an area, a button to see the result, a button to save and a button to delete the view.
-
-After clicking on the add zone button, Jeedom will ask for its name and type.
 On each zone you have the following general options :
 
-- **Width** : Defines the width of the area (in desktop mode only).
+- **Width** : Defines the width of the area (in desktop mode only). 1 for the width of 1/12 of the navigator, 12 for the total width.
+- A button allowing to add an element to this zone, depending on the type of zone (see below).
 - **Edit** : Allows you to change the name of the zone.
 - **Remove** : Delete the zone.
 
 ### Widget type area
 
-A widget type area allows you to add widgets :
+A widget type area allows you to add equipment :
 
-- **Add widget** : Add / edit widgets to display in the area.
+- **Add widget** : Allows you to add / modify equipment to display in the area.
 
 > **Tip**
 >
-> You can delete a widget directly by clicking on the trash can in front of it.
+> You can delete a widget directly by clicking on the trash can to the left of it.
 
 > **Tip**
 >
 > You can change the order of widgets in the area by dragging and dropping.
 
-Once the add widget button is pressed, you get a window that will ask you for the widget to add
 
 ### Graphic type area
 
@@ -60,7 +66,7 @@ A graphics type area allows you to add graphics to your view, it has the followi
 - **Period** : Allows you to choose the display period of the graphics (30 min, 1 day, 1 week, 1 month, 1 year or all).
 - **Add curve** : Add / edit graphics.
 
-When you press the &quot;Add curve&quot; button Jeedom displays the list of historical commands and you can choose the one (s) to add, once done you have access to the following options :
+When you press the button **Add curve**, Jeedom displays the list of historical commands and you can choose the one to add. Once done you have access to the following options :
 
 - **Trash can** : Remove command from chart.
 - **Last name** : Name of the command to draw.
@@ -89,8 +95,6 @@ Here you have the buttons :
 
 Once you have added your rows / columns you can add information in the boxes :
 
-- **text** : just text to write.
-- **l'opération à mener** : any html code (javascript possible but strongly discouraged).
-- **command widget** : the button on the right allows you to choose the command to display (note that this displays the widget of the command).
-
-
+- A text.
+- HTML code (javascript possible but strongly discouraged).
+- The Widget of an order : The button on the right allows you to choose the command to display.
