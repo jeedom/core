@@ -247,7 +247,6 @@ function editWidgetMode(_mode,_save) {
   if (_mode == 0) {
     jeedom.cmd.disableExecute = false
     isEditing = false
-    $('#md_modal').dialog('close')
     $('#dashTopBar').removeClass('disabled')
     if (!isset(_save) || _save) {
       jeedomUI.saveWidgetDisplay({dashboard : 1})
@@ -267,7 +266,7 @@ function editWidgetMode(_mode,_save) {
     $('#dashTopBar').addClass('disabled')
 
     //show orders:
-    $('.ui-draggable').each( function() {
+    $('.jeedomAlreadyPosition.ui-draggable').each( function() {
       var value = $(this).attr('data-order')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
@@ -372,16 +371,17 @@ function getObjectHtml(_object_id) {
 
 $('#bt_editDashboardWidgetOrder').on('click',function() {
   if ($(this).attr('data-mode') == 1) {
+    $('#md_modal').dialog('close')
     $('.tooltipstered').tooltipster('enable')
     $.hideAlert()
-    $(this).attr('data-mode',0)
+    $(this).attr('data-mode', 0)
     editWidgetMode(0)
     $(this).css('color','black')
     $('.bt_editDashboardWidgetAutoResize').hide()
     $('.counterReorderJeedom').remove()
     $('.div_displayEquipement').packery()
   } else {
-    $('.eqLogic-widget .tooltipstered,.scenario-widget .tooltipstered').tooltipster('disable')
+    $('.eqLogic-widget .tooltipstered, .scenario-widget .tooltipstered').tooltipster('disable')
     $(this).attr('data-mode',1)
     $('.bt_editDashboardWidgetAutoResize').show()
     $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function() {

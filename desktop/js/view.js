@@ -54,6 +54,7 @@ function fullScreen(_mode) {
 
 $('#bt_editViewWidgetOrder').off('click').on('click',function() {
   if ($(this).attr('data-mode') == 1) {
+    $('#md_modal').dialog('close')
     $.hideAlert()
     $(this).attr('data-mode',0)
     $('.counterReorderJeedom').remove()
@@ -165,7 +166,6 @@ function editWidgetMode(_mode, _save) {
   if (_mode == 0 || _mode == '0') {
     isEditing = false
     jeedom.cmd.disableExecute = false
-    $('#md_modal').dialog('close')
 
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
     divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
@@ -180,7 +180,7 @@ function editWidgetMode(_mode, _save) {
     $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
 
     //show orders:
-    $('.ui-draggable').each(function() {
+    $('.jeedomAlreadyPosition.ui-draggable').each(function() {
       var value = $(this).attr('data-viewOrder')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
