@@ -19,6 +19,8 @@
 //cmd update:
 var utid = 0
 
+var isEditing = false
+
 //js error in ! ui:
 var JS_ERROR = []
 window.addEventListener('error', function(event) {
@@ -129,6 +131,7 @@ function loadPage(_url, _noPushHistory) {
   //disable Tiles visual feedback:
   $('body').off('mouseenter').off('mouseleave')
 
+  isEditing = false
   $('#div_pageContainer').empty().load(url,function() {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
@@ -552,7 +555,6 @@ function initJeedomModals() {
   }
 }
 
-var isEditing = false
 function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
   $(_button).on('click', function(event) {
     if (isEditing == true) return false
