@@ -327,8 +327,9 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 </div>
 
 <script>
-$('.ui-widget-overlay').css('opacity', 0)
+$('.ui-widget-overlay').hide()
 var modal
+
 $(function() {
   modal = $('#md_modal').parents('.ui-dialog.ui-resizable')
   setModal()

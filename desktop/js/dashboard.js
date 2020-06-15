@@ -247,6 +247,7 @@ function editWidgetMode(_mode,_save) {
   if (_mode == 0) {
     jeedom.cmd.disableExecute = false
     isEditing = false
+    $('#md_modal').dialog('close')
     $('#dashTopBar').removeClass('disabled')
     if (!isset(_save) || _save) {
       jeedomUI.saveWidgetDisplay({dashboard : 1})

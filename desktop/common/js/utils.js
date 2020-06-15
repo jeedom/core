@@ -552,8 +552,10 @@ function initJeedomModals() {
   }
 }
 
+var isEditing = false
 function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
   $(_button).on('click', function(event) {
+    if (isEditing == true) return false
     $('header.navbar-fixed-top li.dropdown > .dropdown-menu').hide()
     if (event.ctrlKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)

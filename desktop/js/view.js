@@ -165,6 +165,7 @@ function editWidgetMode(_mode, _save) {
   if (_mode == 0 || _mode == '0') {
     isEditing = false
     jeedom.cmd.disableExecute = false
+    $('#md_modal').dialog('close')
 
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
     divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
