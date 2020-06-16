@@ -99,7 +99,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-
+	
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -210,9 +210,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -230,8 +230,8 @@ function setTheme() {
 <body>
 	<div class="backgroundforJeedom"></div>
 	<div id="div_jeedomLoading" style="display:none;">
-    	<div class="loadingSpinner"></div>
-    </div>
+		<div class="loadingSpinner"></div>
+	</div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
 	sendVarToJS('jeedom.theme',$jeedom_theme);
@@ -271,9 +271,9 @@ function setTheme() {
 							<li class="dropdown cursor">
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a id="bt_gotoOverview" href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
+									<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
 									<li class="dropdown-submenu">
-										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
+										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
@@ -522,5 +522,6 @@ function setTheme() {
 		<?php if(init('report') == 1 && init('delay',-1) != -1){ ?>
 			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
 		<?php } ?>
-</body>
-</html>
+	</body>
+	</html>
+	
