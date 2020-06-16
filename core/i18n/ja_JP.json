@@ -460,8 +460,6 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "EqLogic non trouvé : ": "",
-        "Annuler": "キャンセル",
-        "Sauvegarder": "セーブ",
         "Nom": "表題",
         "Visible": "目に見えます",
         "Paramètres optionnels sur la tuile": "タイル上のオプションのパラメーター",
@@ -487,7 +485,8 @@
         "Afficher les statistiques": "統計を表示",
         "Retour à la ligne avant le widget": "",
         "Retour à la ligne après le widget": "",
-        "Paramètres optionnels sur le widget:": ""
+        "Paramètres optionnels sur le widget:": "",
+        "Sauvegarder": "セーブ"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

@@ -460,8 +460,6 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "EqLogic non trouvé : ": "",
-        "Annuler": "Iptal et",
-        "Sauvegarder": "Kaydet",
         "Nom": "İsim",
         "Visible": "Görülebilir",
         "Paramètres optionnels sur la tuile": "Döşeme üzerinde isteğe bağlı parametreler",
@@ -487,7 +485,8 @@
         "Afficher les statistiques": "",
         "Retour à la ligne avant le widget": "",
         "Retour à la ligne après le widget": "",
-        "Paramètres optionnels sur le widget:": ""
+        "Paramètres optionnels sur le widget:": "",
+        "Sauvegarder": "Kaydet"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

@@ -460,8 +460,6 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "EqLogic non trouvé : ": "EqLogic nicht gefunden:",
-        "Annuler": "Abbrechen",
-        "Sauvegarder": "Speichern",
         "Nom": "Name",
         "Visible": "Sichtbar",
         "Paramètres optionnels sur la tuile": "Optionale Parameter auf der Kachel",
@@ -487,7 +485,8 @@
         "Afficher les statistiques": "Statistiken anzeigen",
         "Retour à la ligne avant le widget": "Vor Widget wickeln",
         "Retour à la ligne après le widget": "Nach Widget umbrechen",
-        "Paramètres optionnels sur le widget:": "Optionale Parameter im Widget:"
+        "Paramètres optionnels sur le widget:": "Optionale Parameter im Widget:",
+        "Sauvegarder": "Speichern"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",

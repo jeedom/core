@@ -1759,8 +1759,8 @@ body[data-page="history"] #div_pageContainer .tab-content {
 .modal-backdrop {
   z-index: 90 !important;
   background: var(--el-defaultColor) !important;
-  opacity: 0.6;
-  backdrop-filter: blur(3px);
+  opacity: 0.6 !important;
+  backdrop-filter: blur(2px);
 }
 
 .navbar-collapse {
@@ -3591,8 +3591,13 @@ path.highcharts-graph {
 .modal-header {
   border-bottom-width: 0 !important;
 }
+.modal-dialog {
+  top: 80px;
+  background-color: rgb(var(--panel-bg-color)) !important;
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+}
 .modal-content {
-  background-color: var(--bg-modal-color)!important
+  background: transparent;
 }
 .modal-footer {
   border-top-color: rgb(var(--bg-color))!important
@@ -3949,7 +3954,8 @@ pre {
   margin-right: 3px !important;
 }
 
-.ui-dialog {
+.ui-dialog,
+.bootbox.modal, .modal-dialog, .modal-content, .modal-body, .modal-footer {
   border-radius: var(--border-radius) !important;
 }
 .ui-dialog-titlebar {

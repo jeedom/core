@@ -460,8 +460,6 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "EqLogic non trouvé : ": "",
-        "Annuler": "Отменить",
-        "Sauvegarder": "Сохранить",
         "Nom": "Имя",
         "Visible": "Видимый",
         "Paramètres optionnels sur la tuile": "Необязательные параметры на плитке",
@@ -487,7 +485,8 @@
         "Afficher les statistiques": "Показать статистику",
         "Retour à la ligne avant le widget": "",
         "Retour à la ligne après le widget": "",
-        "Paramètres optionnels sur le widget:": ""
+        "Paramètres optionnels sur le widget:": "",
+        "Sauvegarder": "Сохранить"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",

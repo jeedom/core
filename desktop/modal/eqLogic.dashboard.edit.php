@@ -40,171 +40,64 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 <div id="div_displayEqLogicConfigure">
-  <div class="input-group pull-right" style="display:inline-flex">
-    <span class="input-group-btn">
-      <!--<a id="bt_eqLogicConfigCancel" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-window-close"></i> {{Annuler}}
-    </a>--><a id="bt_eqLogicConfigureSave" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-  </span>
-</div>
-
-<div class="row">
-  <div class="col-sm-12" >
-
-    <!-- Global parameters -->
-    <span class="eqLogicAttr hidden" data-l1key="id"></span>
-    <span class="eqLogicAttr hidden" data-l1key="eqType_name"></span>
-    <form class="form-horizontal">
-      <fieldset>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{Nom}}</label>
-          <div class="col-sm-4">
-            <input type="text" class=" eqLogicAttr form-control" data-l1key="name">
+  <div style="margin: 0 -13px; overflow: hidden;">
+      <!-- Global parameters -->
+      <span class="eqLogicAttr hidden" data-l1key="id"></span>
+      <span class="eqLogicAttr hidden" data-l1key="eqType_name"></span>
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{Nom}}</label>
+            <div class="col-sm-4">
+              <input type="text" class=" eqLogicAttr form-control" data-l1key="name">
+            </div>
+            <label class="col-sm-2 control-label">{{Visible}}</label>
+            <div class="col-sm-1">
+              <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>
+            </div>
           </div>
-          <label class="col-sm-2 control-label">{{Visible}}</label>
-          <div class="col-sm-1">
-            <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-    <br/>
+        </fieldset>
+      </form>
+      <br/>
 
-    <!-- Optionnal parameters -->
-    <div id="panel_optParams" class="panel panel-default" style="display:none">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Paramètres optionnels sur la tuile}}</a>
-          <span>
-            <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> Ajouter</a>
-          </span>
-        </h3>
-      </div>
-      <div id="optParams" class="panel-collapse collapse">
-        <div class="panel-body">
-          <table class="table table-bordered table-condensed" id="table_widgetParameters">
-            <thead>
-              <tr>
-                <th>{{Nom}}</th>
-                <th>{{Valeur}}</th>
-                <th>{{Action}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              if ($eqLogic->getDisplay('parameters') != '') {
-                $echo = '';
-                foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
-                  $echo .= '<tr>';
-                  $echo .= '<td>';
-                  $echo .= '<input class="form-control key" value="' . $key . '" />';
-                  $echo .= '</td>';
-                  $echo .= '<td>';
-                  $echo .= '<input class="form-control value" value="' . $value . '" />';
-                  $echo .= '</td>';
-                  $echo .= '<td>';
-                  $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> Supprimer</a>';
-                  $echo .= '</td>';
-                  $echo .= '</tr>';
-                }
-                echo $echo;
-              }
-              ?>
-            </tbody>
-          </table>
+      <!-- Optionnal parameters -->
+      <div id="panel_optParams" class="panel panel-default" style="display:none">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Paramètres optionnels sur la tuile}}</a>
+            <span>
+              <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> Ajouter</a>
+            </span>
+          </h3>
         </div>
-      </div>
-    </div>
-
-    <!-- Layout -->
-    <div id="panel_layout" class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#layout">{{Disposition}}</a>
-          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.}}"></i></sup>
-        </h3>
-      </div>
-      <div id="layout" class="panel-collapse collapse">
-        <div class="panel-body">
-          <form class="form-horizontal">
-            <fieldset>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">{{Disposition}}</label>
-                <div class="col-sm-4">
-                  <select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::dashboard">
-                    <option value="default">{{Défaut}}</option>
-                    <option value="table">{{Tableau}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="widget_layout table" style="display: none;">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">{{Lignes}}</label>
-                  <div class="col-sm-2">
-                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
-                  </div>
-                  <label class="col-sm-2 control-label">{{Colonnes}}</label>
-                  <div class="col-sm-2">
-                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
-                  </div>
-                  <a class="btn btn-success btn-sm" id="bt_eqLogicLayoutApply"><i class="fas fa-hammer"></i></i> {{Appliquer}}</a>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-4 control-label">{{Centrer dans les cases}}</label>
-                  <div class="col-sm-2">
-                    <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="center" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-4 control-label">{{Style général des cases (CSS)}}</label>
-                  <div class="col-sm-8">
-                    <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-4 control-label">{{Style du tableau (CSS)}}</label>
-                  <div class="col-sm-8">
-                    <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </form>
-          <div class="widget_layout table" style="display: none;">
-            <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
+        <div id="optParams" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table class="table table-bordered table-condensed" id="table_widgetParameters">
+              <thead>
+                <tr>
+                  <th>{{Nom}}</th>
+                  <th>{{Valeur}}</th>
+                  <th>{{Action}}</th>
+                </tr>
+              </thead>
               <tbody>
                 <?php
-                $table = array();
-                foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
-                  $line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
-                  $column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
-                  if (!isset($table[$line])) {
-                    $table[$line] = array();
+                if ($eqLogic->getDisplay('parameters') != '') {
+                  $echo = '';
+                  foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
+                    $echo .= '<tr>';
+                    $echo .= '<td>';
+                    $echo .= '<input class="form-control key" value="' . $key . '" />';
+                    $echo .= '</td>';
+                    $echo .= '<td>';
+                    $echo .= '<input class="form-control value" value="' . $value . '" />';
+                    $echo .= '</td>';
+                    $echo .= '<td>';
+                    $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> Supprimer</a>';
+                    $echo .= '</td>';
+                    $echo .= '</tr>';
                   }
-                  if (!isset($table[$line][$column])) {
-                    $table[$line][$column] = array();
-                  }
-                  $table[$line][$column][] = $cmd;
-                }
-                $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
-                $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
-                for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
-                  $tr = '<tr>';
-                  for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
-                    $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
-                    $string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
-                    if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
-                      foreach ($table[$i][$j] as $cmd) {
-                        $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
-                      }
-                    }
-                    $tr .= $string_cmd . '</center>';
-                    $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
-                    $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-
-                    $tr .= '</td>';
-                  }
-                  $tr .= '</tr>';
-                  echo $tr;
+                  echo $echo;
                 }
                 ?>
               </tbody>
@@ -212,126 +105,244 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Commands -->
-    <div id="panel_cmds" class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands">{{Commandes}}</a>
-          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
-        </h3>
-      </div>
-      <div id="commands" class="panel-collapse collapse">
-        <div class="panel-body">
-          <div id="div_eqLogicCmds">
-            <?php
-            $display = '';
-            foreach (($eqLogic->getCmd()) as $cmd) {
-              $thisclassAttrib = 'cmdAttr'.$cmd->getId();
-              $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="'.$thisclassAttrib.'" data-id="' . $cmd->getId() . '">';
-              $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="id"></span>';
-              $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="name"></span>';
-
-              $display .= '<a class="btn btn-default btn-xs cursor bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">'.$cmd->getName().' ('.$cmd->getType().' | '.$cmd->getSubType().')</a>';
-
-              $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
-              $display .= '<table class="table table-bordered table-condensed">';
-
-              $display .= '<tr><td style="width:60%"><label class="control-label">{{Visible}}</label></td>';
-              $display .= '<td style="width:40%"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" /></td></tr>';
-
-              $display .= '<tr class="widgetPossibilityDashboard" style="display: none;"><td><label class="control-label">{{Widget}}</label></td>';
-              $display .= '<td><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
-              $display .= '<option value="default">Défaut</option>';
-              if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
-                $types = array();
-                foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
-                  if (isset($info['type'])) {
-                    $info['key'] = $key;
-                    if (!isset($types[$info['type']])) {
-                      $types[$info['type']][0] = $info;
-                    } else {
-                      array_push($types[$info['type']], $info);
+      <!-- Layout -->
+      <div id="panel_layout" class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#layout">{{Disposition}}</a>
+            <sup class="pull-right"><i class="fas fa-question-circle" title="{{Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.}}"></i></sup>
+          </h3>
+        </div>
+        <div id="layout" class="panel-collapse collapse">
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">{{Disposition}}</label>
+                  <div class="col-sm-4">
+                    <select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::dashboard">
+                      <option value="default">{{Défaut}}</option>
+                      <option value="table">{{Tableau}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="widget_layout table" style="display: none;">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">{{Lignes}}</label>
+                    <div class="col-sm-2">
+                      <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
+                    </div>
+                    <label class="col-sm-2 control-label">{{Colonnes}}</label>
+                    <div class="col-sm-2">
+                      <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
+                    </div>
+                    <a class="btn btn-success btn-sm" id="bt_eqLogicLayoutApply"><i class="fas fa-hammer"></i></i> {{Appliquer}}</a>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Centrer dans les cases}}</label>
+                    <div class="col-sm-2">
+                      <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="center" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Style général des cases (CSS)}}</label>
+                    <div class="col-sm-8">
+                      <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Style du tableau (CSS)}}</label>
+                    <div class="col-sm-8">
+                      <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            <div class="widget_layout table" style="display: none;">
+              <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
+                <tbody>
+                  <?php
+                  $table = array();
+                  foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
+                    $line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
+                    $column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
+                    if (!isset($table[$line])) {
+                      $table[$line] = array();
                     }
+                    if (!isset($table[$line][$column])) {
+                      $table[$line][$column] = array();
+                    }
+                    $table[$line][$column][] = $cmd;
                   }
-                }
-                ksort($types);
-                foreach ($types as $type) {
-                  usort($type, function($a, $b) {
-                    return strcmp($a['name'], $b['name']);
-                  });
-                  foreach ($type as $key => $widget) {
-                    if ($widget['name'] == 'default') {
-                      continue;
+                  $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
+                  $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
+                  for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
+                    $tr = '<tr>';
+                    for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
+                      $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
+                      $string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
+                      if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
+                        foreach ($table[$i][$j] as $cmd) {
+                          $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
+                        }
+                      }
+                      $tr .= $string_cmd . '</center>';
+                      $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
+                      $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
+
+                      $tr .= '</td>';
                     }
-                    if ($key == 0) {
-                      $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-                    }
-                    if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
-                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
-                    }else{
-                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
-                    }
+                    $tr .= '</tr>';
+                    echo $tr;
                   }
-                  $display .= '</optgroup>';
-                }
-              }
-              $display .= '</select></td></tr>';
-
-              $display .= '<tr><td><label class="control-label">{{Afficher le nom}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOndashboard" checked></td></tr>';
-
-              $display .= '<tr><td><label class="control-label">{{Afficher le nom ET l\'icône}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td></tr>';
-
-              $display .= '<tr><td><label class="control-label">{{Afficher les statistiques}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOndashboard" checked></td></tr>';
-
-              $display .= '<tr><td><label class="control-label">{{Retour à la ligne avant le widget}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
-
-              $display .= '<tr><td><label class="control-label">{{Retour à la ligne après le widget}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
-
-              $display .= '<tr><td><label class="control-label">{{Paramètres optionnels sur le widget:}}</label></td>';
-              $display .= '<td><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
-
-              if ($cmd->getDisplay('parameters') != '') {
-                foreach (($cmd->getDisplay('parameters')) as $key => $value) {
-                  $display .= '<tr class="cmdoptparam">';
-                  $display .= '<td>';
-                  $display .= '<input class="input-sm key" value="' . $key . '" style="width: 100%;"/>';
-                  $display .= '</td>';
-                  $display .= '<td>';
-                  $display .= '<input class="input-sm value" value="' . $value . '" style="width: calc(100% - 30px);"/>';
-                  $display .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i></a>';
-                  $display .= '</td>';
-                  $display .= '</tr>';
-                }
-              }
-
-              $display .= '</table>';
-
-              $display .= '</div>';
-              $display .= '</div>';
-            }
-            echo $display;
-            ?>
+                  ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Commands -->
+      <div id="panel_cmds" class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands">{{Commandes}}</a>
+            <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
+          </h3>
+        </div>
+        <div id="commands" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div id="div_eqLogicCmds">
+              <?php
+              $display = '';
+              foreach (($eqLogic->getCmd()) as $cmd) {
+                $thisclassAttrib = 'cmdAttr'.$cmd->getId();
+                $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="'.$thisclassAttrib.'" data-id="' . $cmd->getId() . '">';
+                $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="id"></span>';
+                $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="name"></span>';
+
+                $display .= '<a class="btn btn-default btn-xs cursor bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">'.$cmd->getName().' ('.$cmd->getType().' | '.$cmd->getSubType().')</a>';
+
+                $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
+                $display .= '<table class="table table-bordered table-condensed">';
+
+                $display .= '<tr><td style="width:60%"><label class="control-label">{{Visible}}</label></td>';
+                $display .= '<td style="width:40%"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" /></td></tr>';
+
+                $display .= '<tr class="widgetPossibilityDashboard" style="display: none;"><td><label class="control-label">{{Widget}}</label></td>';
+                $display .= '<td><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
+                $display .= '<option value="default">Défaut</option>';
+                if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
+                  $types = array();
+                  foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
+                    if (isset($info['type'])) {
+                      $info['key'] = $key;
+                      if (!isset($types[$info['type']])) {
+                        $types[$info['type']][0] = $info;
+                      } else {
+                        array_push($types[$info['type']], $info);
+                      }
+                    }
+                  }
+                  ksort($types);
+                  foreach ($types as $type) {
+                    usort($type, function($a, $b) {
+                      return strcmp($a['name'], $b['name']);
+                    });
+                    foreach ($type as $key => $widget) {
+                      if ($widget['name'] == 'default') {
+                        continue;
+                      }
+                      if ($key == 0) {
+                        $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
+                      }
+                      if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
+                        $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+                      }else{
+                        $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+                      }
+                    }
+                    $display .= '</optgroup>';
+                  }
+                }
+                $display .= '</select></td></tr>';
+
+                $display .= '<tr><td><label class="control-label">{{Afficher le nom}}</label></td>';
+                $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOndashboard" checked></td></tr>';
+
+                $display .= '<tr><td><label class="control-label">{{Afficher le nom ET l\'icône}}</label></td>';
+                $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td></tr>';
+
+                $display .= '<tr><td><label class="control-label">{{Afficher les statistiques}}</label></td>';
+                $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOndashboard" checked></td></tr>';
+
+                $display .= '<tr><td><label class="control-label">{{Retour à la ligne avant le widget}}</label></td>';
+                $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
+
+                $display .= '<tr><td><label class="control-label">{{Retour à la ligne après le widget}}</label></td>';
+                $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
+
+                $display .= '<tr><td><label class="control-label">{{Paramètres optionnels sur le widget:}}</label></td>';
+                $display .= '<td><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
+
+                if ($cmd->getDisplay('parameters') != '') {
+                  foreach (($cmd->getDisplay('parameters')) as $key => $value) {
+                    $display .= '<tr class="cmdoptparam">';
+                    $display .= '<td>';
+                    $display .= '<input class="input-sm key" value="' . $key . '" style="width: 100%;"/>';
+                    $display .= '</td>';
+                    $display .= '<td>';
+                    $display .= '<input class="input-sm value" value="' . $value . '" style="width: calc(100% - 30px);"/>';
+                    $display .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i></a>';
+                    $display .= '</td>';
+                    $display .= '</tr>';
+                  }
+                }
+
+                $display .= '</table>';
+
+                $display .= '</div>';
+                $display .= '</div>';
+              }
+              echo $display;
+              ?>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-</div>
+  </div>
 </div>
 
 <script>
-$('.ui-widget-overlay').css('opacity', 0)
+$('.ui-widget-overlay').hide()
 var modal
+
 $(function() {
   modal = $('#md_modal').parents('.ui-dialog.ui-resizable')
+
+  //add save buttons:
+  var button = {
+    "Save": {
+      text: "{{Sauvegarder}}",
+      click: editSaveEqlogic
+    }
+  }
+  $('#md_modal').dialog('option', 'buttons', button)
+
+  //remove dialog buttons and bindings before closing:
+  $('#md_modal').on('dialogbeforeclose', function(event, ui) {
+    modal.find('.ui-dialog-buttonpane').remove()
+    modal.find('.ui-draggable-handle').off('mouseup')
+    $(this).off('dialogbeforeclose')
+  })
+
   setModal()
+
+  //display options:
   if (eqLogicWidgetPossibility == 1) $('#panel_optParams').show()
   $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr')
 
@@ -353,13 +364,11 @@ $(function() {
 })
 
 function setModal() {
-  $('#md_modal').dialog("option","width",'auto')
-
   //check previous size/pos:
   var datas = modal.data()
   if (datas && datas.width && datas.height && datas.top && datas.left) {
     modal.width(datas.width).height(datas.height).css('top', datas.top).css('left', datas.left)
-    $('#md_modal').height(datas.height-34)
+    $('#md_modal').height(datas.height-100)
   } else if ($(window).width() > 600) {
     width = 550
     height = 700
@@ -369,7 +378,7 @@ function setModal() {
       at: "center",
       of: window
     })
-    $('#md_modal').height(height-34)
+    $('#md_modal').height(height-100)
   }
 
   //store size/pos:
@@ -524,12 +533,7 @@ $('.accordion-toggle').click(function() {
   $('.collapse').collapse('hide')
 })
 
-$('#bt_eqLogicConfigCancel').off().on('click', function(event) {
-  var eqId = eqLogicInfo.id
-  $('#md_modal').dialog('close')
-})
-
-$('#bt_eqLogicConfigureSave').off().on('click', function(event) {
+function editSaveEqlogic() {
   //save eqLogic:
   var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0]
   if (!isset(eqLogic.display)) eqLogic.display = {}
@@ -557,9 +561,7 @@ $('#bt_eqLogicConfigureSave').off().on('click', function(event) {
     error: function(error) {
       $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
     },
-    success: function() {
-
-    }
+    success: function() {}
   })
-})
+}
 </script>

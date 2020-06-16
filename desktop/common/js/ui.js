@@ -35,29 +35,29 @@ jeedomUI.orderItems = function(_container, _orderAttr='data-order') {
   })
   var _draggingNewOrder = _newOrders[_draggingId]
   //----->moved _draggingId from _draggingOrder to _draggingNewOrder
-
+  
   //rearrange that better:
   var _finalOrder = {}
   for (var [id, order] of Object.entries(_newOrders)) {
     if (order <= _draggingNewOrder) _finalOrder[id] = order
     if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
   }
-
+  
   //set dom positions:
   var arrKeys = Object.keys(_finalOrder)
   var arrLength = arrKeys.length
   var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
   $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
-
+  
   for (var i = 2; i < arrLength + 1; i++) {
     var thisId = arrKeys.find(key => _finalOrder[key] === i)
     var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
     $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
   }
-
+  
   //reload from dom positions:
   _container.packery('reloadItems').packery()
-
+  
   itemElems = _container.packery('getItemElements')
   $(itemElems).each(function(i, itemElem) {
     $(itemElem).attr(_orderAttr, i + 1)
@@ -225,11 +225,11 @@ jeedomUI.setEqSignals = function() {
 Handle history modal openning on infos
 */
 jeedomUI.setHistoryModalHandler = function() {
-  $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
+  $('#div_pageContainer').off('click','.cmd-widget.history').on('click','.cmd-widget.history', function (event) {
     if (isEditing) return false
     event.stopImmediatePropagation()
     event.stopPropagation()
-    if (event.ctrlKey) {
+    if (event.ctrlKey && $(this).closest('.eqLogic.eqLogic-widget').html() != undefined) {
       var cmdIds = []
       $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
         cmdIds.push($(this).data('cmd_id'))
@@ -241,4 +241,3 @@ jeedomUI.setHistoryModalHandler = function() {
     $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
   })
 }
-
