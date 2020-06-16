@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 sendVarToJs('jeedomBackgroundImg', 'core/img/background/object.png');
 sendVarToJS('select_id', init('id', '-1'));
-$allObject = jeeObject::buildTree(null, false);
+$allObject = jeeObject::all();
 ?>
 <div class="row row-overflow">
 	<div id="div_resumeObjectList" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
