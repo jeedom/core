@@ -1223,7 +1223,9 @@ body[data-page="history"] #div_pageContainer .tab-content {
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;
 }
-
+.highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
+  font-weight: bold;
+}
 .highcharts-pane {
   fill: var(--el-defaultColor);
 }
