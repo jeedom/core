@@ -152,13 +152,7 @@ function setTheme() {
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
-	$.ajaxSetup({
-		type: "POST",
-		data: {
-			jeedom_token: '<?php echo ajax::getToken() ?>'
-		}
-	})
+	JEEDOM_AJAX_TOKEN='';
 	</script>
 	<?php
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
@@ -499,5 +493,8 @@ function setTheme() {
 				<div id="md_reportBug" title="{{Demande de support}}"></div>
 			</main>
 		<?php } 	?>
+			<?php if(init('report') == 1 && init('delay',-1) != -1){ ?>
+			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
+		<?php } ?>
 	</body>
 	</html>

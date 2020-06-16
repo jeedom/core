@@ -32,6 +32,9 @@ if(strpos($engine,'plugin::') !== false){
 		$engine = 'pico';
 	}
 }
+if(trim($engine) == ''){
+	$engine = 'pico';
+}
 $text = init('text');
 if ($text == '') {
 	echo __('Aucun texte à dire', __FILE__);

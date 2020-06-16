@@ -24,6 +24,8 @@ try {
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+	
+	ajax::init();
 
 	if (init('action') == 'all') {
 		if (!isConnect('admin')) {

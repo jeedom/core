@@ -2,8 +2,16 @@
 Changelog Jeedom V4
 =========
 
-4.0.56
+4.0.57
 =====
+
+- Renforcement de la securité des cookies
+- Utilisation de chromium (si il est installé) pour les rapports
+- Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur
+- Correction de bugs
+
+4.0.55
+=======
 
 - Le nouveau dns (\*.eu.jeedom.link) devient le DNS primaire (l'ancien DNS marche toujours)
 

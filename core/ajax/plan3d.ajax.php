@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	ajax::init();
+	ajax::init(array('uploadModel'));
 
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {

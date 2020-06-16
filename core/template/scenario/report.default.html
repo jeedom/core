@@ -5,6 +5,7 @@
     <option value="plan">{{Design}}</option>
     <option value="plugin">{{Plugin}}</option>
     <option value="eqAnalyse">{{Equipement}}</option>
+    <option value="url">{{URL}}</option>
   </select>
   <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
   <select class="expressionAttr form-control input-sm type view roundedRight" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
@@ -14,14 +15,15 @@
   
   <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
   <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+
+  <span class="input-group-addon type url" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{URL}}</span>
+  <input class="expressionAttr form-control input-sm type url roundedRight" data-l1key="options" data-l2key="url" data-cmd_id="#id#" data-uid="#uid#" style="display:none;" />
 </div>
 <div class="input-group input-group-sm">
   <span class="input-group-addon roundedLeft" style="width:100px;">{{Exporter en}}</span>
   <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="export_type" data-cmd_id="#id#" data-uid="#uid#">
     <option value="png">{{PNG}}</option>
     <option value="pdf">{{PDF}}</option>
-    <option value="jpeg">{{JPEG}}</option>
-    <option value="svg">{{SVG}}</option>
   </select>
   <span class="input-group-addon" style="width:100px;">{{Commandes}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
@@ -30,12 +32,12 @@
   </span>
 </div>
 <div class="input-group input-group-sm" style="width: calc(100% - 3px)">
-  <span class="input-group-addon roundedLeft" style="width:100px;">{{Largeur  (px)}}</span>
+  <span class="input-group-addon roundedLeft" style="width:100px;">{{Largeur (px)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="width" placeholder="1280" value="#width#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-addon" style="width:100px;">{{Hauteur (px)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="height" placeholder="720" value="#height#" data-cmd_id="#id#" data-uid="#uid#"/>
-  <span class="input-group-addon" style="width:90px;">{{Delai (ms)}}</span>
-  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="delay" placeholder="10000" value="#delay#" data-cmd_id="#id#" data-uid="#uid#"/>
+  <span class="input-group-addon" style="width:100px;">{{Délai}}</span>
+  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="delay" placeholder="1000" value="#delay#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-addon" style="width:90px;">{{Option(s)}}</span>
   <input class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="arg" value="#arg#" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
@@ -102,7 +104,6 @@
     }
   });
   
-  
   if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').value('#export_type#');
   }
@@ -114,4 +115,7 @@
       $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').value(result.human);
     });
   });
+  if ('#url#' != '') {
+    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=url]').value('#url#');
+  }
 </script>

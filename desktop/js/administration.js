@@ -983,13 +983,13 @@ $('#bt_cleanFileSystemRight').off('click').on('click',function(){
   });
 });
 
-$('#bt_consitency').off('click').on('click',function(){
+$('#bt_consistency').off('click').on('click',function() {
   jeedom.consistency({
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      $('#div_alert').showAlert({message: '{{Vérification effectuée, afficher le log consistency pour le résultat.}}', level: 'success'});
+    success: function(data) {
+      $('#md_modal2').dialog({title: "{{Log consistency}}"}).load('index.php?v=d&modal=log.display&log=consistency').dialog('open')
     }
-  });
-});
+  })
+})

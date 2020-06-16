@@ -70,7 +70,7 @@ function displayView(html) {
   }catch(err) {
     console.log(err)
   }
-  if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName)){
+  if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1){
     $('.eqLogic-widget').addClass('displayObjectName');
   }
   if (deviceInfo.type == 'phone') {

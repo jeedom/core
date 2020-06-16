@@ -2,6 +2,14 @@
 Changelog Jeedom V4
 =========
 
+4.0.57
+=====
+
+- Stärkung der Sicherheit von Cookies
+- Verwendung von Chrom (falls installiert) für Berichte
+- Es wurde ein Problem mit der Berechnung der Statuszeit für Widgets behoben, wenn die Zeitzone jeedom nicht mit der des Browsers übereinstimmt
+- Fehlerbehebungen
+
 4.0.55
 =====
 
