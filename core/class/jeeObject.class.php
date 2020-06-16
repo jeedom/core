@@ -549,7 +549,6 @@ class jeeObject {
 	}
 
 	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
-
 		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
 			return null;
@@ -568,12 +567,15 @@ class jeeObject {
 			if (is_object($cmd)) {
 				$id = $cmd->getEqLogic_id();
 				$eqLogic = eqLogic::byId($id);
-				if (is_object($eqLogic)) $return[] = utils::o2a($eqLogic);
+				if (is_object($eqLogic)) {
+					if ($_onlyEnable && $eqLogic->getIsEnable() == 0) continue;
+					if ($_onlyVisible && $eqLogic->getIsVisible() == 0) continue;
+					$return[] = utils::o2a($eqLogic);
+				}
 			}
 		}
 		return $return;
 	}
-
 
 	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
 		$def = config::byKey('object:summary');
@@ -587,7 +589,7 @@ class jeeObject {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$eqLogics_id = array();
 		foreach ($summaries[$_summary] as $infos) {
-			if(isset($infos['enable']) && $infos['enable'] != 1){
+			if (isset($infos['enable']) && $infos['enable'] != 1) {
 				continue;
 			}
 			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
