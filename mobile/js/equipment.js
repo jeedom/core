@@ -246,11 +246,8 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
     },
     success: function(eqLogics) {
       var nbEqs = eqLogics.length
-      if (eqLogics.length == 0) return
-
-      var thisEqlogic
+      if (nbEqs == 0) return
       for (var j in eqLogics) {
-        thisEqlogic = eqLogics[j]
         jeedom.eqLogic.toHtml({
           id: eqLogics[j].id,
           version: 'mobile',
@@ -266,7 +263,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
               setTileSize('.eqLogic')
               setTimeout(function() {
                 $('#div_displayEquipement .objectHtml').packery({gutter :0})
-              }, 100)
+              }, 250)
             }
           }
         })
