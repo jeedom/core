@@ -2,38 +2,44 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('SEL_OBJECT_ID', init('object_id'));
+
 sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
+
+$DisplayByObject = true;
 if (init('object_id') == '') {
-	if(init('summary') != ''){
+	if (init('summary') != '') {
 		$object = jeeObject::rootObject();
-	}else{
+		$DisplayByObject = false;
+	} else {
+		sendVarToJs('SHOW_BY_SUMMARY', '');
 		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 	}
 } else {
+	sendVarToJs('SHOW_BY_SUMMARY', '');
 	$object = jeeObject::byId(init('object_id'));
 }
-if (!is_object($object)) {
+if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
 }
-if (!is_object($object)) {
+if ($DisplayByObject && !is_object($object)) {
 	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
-if (init('childs', 1) == 1) {
-	$allObject = jeeObject::buildTree(null, true);
-} else {
-	$allObject = array();
-}
 
-foreach ($allObject as $value) {
-	if ($value->getId() == $object->getId()) {
-		$child_object = $value->getChilds();
+if ($DisplayByObject) {
+	sendVarToJs('rootObjectId', $object->getId());
+	if (init('childs', 1) == 1) {
+		$allObject = jeeObject::buildTree(null, true);
+	} else {
+		$allObject = array();
 	}
+} else {
+	sendVarToJs('rootObjectId', 'undefined');
+	sendVarToJs('SHOW_BY_SUMMARY', init('summary'));
+	$allObject = jeeObject::all(true);
 }
 
-sendVarToJs('rootObjectId', $object->getId());
 ?>
 <div class="row row-overflow">
 	<?php
@@ -47,11 +53,13 @@ sendVarToJs('rootObjectId', $object->getId());
 		<ul id="ul_object" class="nav nav-list bs-sidenav">
 			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			<?php
-			foreach ($allObject as $object_li) {
-				$margin = 5 * $object_li->getConfiguration('parentNumber');
-				$liobject = '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
-				if ($object_li->getId() == $object->getId()) $liobject = str_replace('class="cursor li_object"', 'class="cursor li_object active"', $liobject);
-				echo $liobject;
+			if ($DisplayByObject) {
+				foreach ($allObject as $object_li) {
+					$margin = 5 * $object_li->getConfiguration('parentNumber');
+					$liobject = '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
+					if ($object_li->getId() == $object->getId()) $liobject = str_replace('class="cursor li_object"', 'class="cursor li_object active"', $liobject);
+					echo $liobject;
+				}
 			}
 			?>
 		</ul>
@@ -106,32 +114,48 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 
 <div class="row" >
 	<?php
-	$div =  '<div class="col-md-12">';
-	$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
-	$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
-	$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
-	$div .= '</div>';
-	$div .= '</div>';
-	$div .= '</div>';
-	echo $div;
-	foreach ($allObject as $value) {
-		if ($value->getId() != $object->getId()) {
-			continue;
-		}
-		foreach (($value->getChilds()) as $child) {
-			if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
+	if ($DisplayByObject) {
+		//show root object and all its childs:
+		$div =  '<div class="col-md-12">';
+		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
+		$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+		$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
+		$div .= '</div>';
+		$div .= '</div>';
+		$div .= '</div>';
+		echo $div;
+		foreach ($allObject as $value) {
+			if ($value->getId() != $object->getId()) {
 				continue;
 			}
-			$div = '<div class="col-md-12">';
-			$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
-			$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
-			$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
+			foreach (($value->getChilds()) as $child) {
+				if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
+					continue;
+				}
+				$div = '<div class="col-md-12">';
+				$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
+				$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+				$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				echo $div;
+			}
+		}
+	} else {
+		//show all objects for summaries:
+		foreach ($allObject as $object) {
+			$div =  '<div class="col-md-12">';
+			$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object hidden">';
+			$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+			$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
 			$div .= '</div>';
 			$div .= '</div>';
 			$div .= '</div>';
 			echo $div;
 		}
 	}
+
 	?>
 </div>
 </div>

@@ -17,17 +17,29 @@
 "use strict"
 
 //show each object elements:
-Array.from(document.getElementsByClassName('div_object')).forEach(
-  function(element, index, array) {
-    getObjectHtml(element.getAttribute('data-object_id'))
-  }
-)
+if (SHOW_BY_SUMMARY == '') {
+  Array.from(document.getElementsByClassName('div_object')).forEach(
+    function(element, index, array) {
+      getObjectHtml(element.getAttribute('data-object_id'))
+    }
+  )
+} else {
+  Array.from(document.getElementsByClassName('div_object')).forEach(
+    function(element, index, array) {
+      getObjectHtmlFromSummary(element.getAttribute('data-object_id'))
+    }
+  )
+}
+
+if (SEL_SUMMARY != '') {
+  $('#bt_displayObject, #bt_editDashboardWidgetOrder').hide()
+}
 
 $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 $(function() {
   setTimeout(function() {
-    if (typeof rootObjectId != 'undefined') {
+    if (typeof rootObjectId != 'undefined' && SHOW_BY_SUMMARY == '') {
       jeedom.object.getImgPath({
         id : rootObjectId,
         success : function(_path) {
@@ -325,6 +337,56 @@ function editWidgetMode(_mode,_save) {
   }
 }
 
+function getObjectHtmlFromSummary(_object_id) {
+  console.log('getObjectHtmlFromSummary -> '+_object_id)
+  if (_object_id == null) return
+  var $divDisplayEq = $('#div_ob'+_object_id)
+  jeedom.object.getEqLogicsFromSummary({
+    id: _object_id,
+    onlyEnable: 1,
+    onlyVisible: 1,
+    version: 'dashboard',
+    summary : SEL_SUMMARY,
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(data) {
+      console.log(data)
+      var nbEqs = data.length
+      if (nbEqs == 0) {
+        $divDisplayEq.closest('.div_object').remove()
+        return
+      } else {
+        $divDisplayEq.closest('.div_object').removeClass('hidden')
+      }
+      for (var i=0; i<nbEqs; i++) {
+        jeedom.eqLogic.toHtml({
+          id: data[i].id,
+          version: 'dashboard',
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(html) {
+            if (html.html != '') {
+              $divDisplayEq.append(html.html)
+            }
+            nbEqs--
+
+            //is last ajax:
+            if (nbEqs == 0) {
+              positionEqLogic()
+              $divDisplayEq.packery()
+              if ($divDisplayEq.find('.eqLogic-widget:visible, .scenario-widget:visible').length == 0) {
+                $divDisplayEq.closest('.div_object').remove()
+              }
+            }
+          }
+        })
+      }
+    }
+  })
+}
+
 function getObjectHtml(_object_id) {
   jeedom.object.toHtml({
     id: _object_id,
@@ -349,13 +411,14 @@ function getObjectHtml(_object_id) {
         }
       }
       positionEqLogic()
-
       var container = $divDisplayEq.packery()
+      /*
       var packData = $divDisplayEq.data('packery')
       if (isset(packData) && packData.items.length == 1) {
         $divDisplayEq.packery('destroy').packery()
       }
-      var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
+      */
+      var itemElems = container.find('.eqLogic-widget, .scenario-widget') //.draggable()
       container.packery('bindUIDraggableEvents', itemElems)
 
       $(itemElems).each( function(i, itemElem ) {
@@ -364,7 +427,7 @@ function getObjectHtml(_object_id) {
       container.on('dragItemPositioned', function() {
           jeedomUI.orderItems(container)
       })
-      itemElems.draggable('disable')
+      //itemElems.draggable('disable')
     }
   })
 }
@@ -409,12 +472,12 @@ $('#bt_editDashboardWidgetOrder').on('click',function() {
 })
 
 $('.li_object').on('click',function() {
-  $('.div_object').removeClass('hideByObjectSel')
+  $('.div_object').parent().removeClass('hideByObjectSel')
   var object_id = $(this).find('a').attr('data-object_id')
   if ($('.div_object[data-object_id='+object_id+']').html() != undefined) {
     jeedom.object.getImgPath({
       id : object_id,
-      success : function(_path){
+      success : function(_path) {
         setBackgroundImg(_path)
       }
     })
@@ -429,11 +492,11 @@ $('.li_object').on('click',function() {
 
 function displayChildObject(_object_id, _recursion) {
   if (_recursion === false) {
-    $('.div_object').addClass('hideByObjectSel').hide()
+    $('.div_object').parent().addClass('hideByObjectSel').hide()
   }
-  $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false})
+  $('.div_object[data-object_id='+_object_id+']').parent().removeClass('hideByObjectSel').show({effect: 'drop', queue: false})
   $('.div_object[data-father_id='+_object_id+']').each(function() {
-    $(this).show({effect : 'drop',queue : false}).find('.div_displayEquipement').packery()
-    displayChildObject($(this).attr('data-object_id'),true)
+    $(this).parent().show({effect: 'drop', queue: false}).find('.div_displayEquipement').packery()
+    displayChildObject($(this).attr('data-object_id'), true)
   })
 }

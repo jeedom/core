@@ -548,6 +548,33 @@ class jeeObject {
 		return $eqLogics;
 	}
 
+	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+
+		$def = config::byKey('object:summary');
+		if ($_summary == '' || !isset($def[$_summary])) {
+			return null;
+		}
+		$summaries = $this->getConfiguration('summary');
+		if (!isset($summaries[$_summary])) {
+			return array();
+		}
+		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$return = array();
+		foreach ($summaries[$_summary] as $infos) {
+			if (isset($infos['enable']) && $infos['enable'] != 1) {
+				continue;
+			}
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
+			if (is_object($cmd)) {
+				$id = $cmd->getEqLogic_id();
+				$eqLogic = eqLogic::byId($id);
+				if (is_object($eqLogic)) $return[] = utils::o2a($eqLogic);
+			}
+		}
+		return $return;
+	}
+
+
 	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
 		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
