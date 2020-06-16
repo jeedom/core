@@ -1025,6 +1025,9 @@ function displayObject(_plan,_html, _noRender) {
     }
     css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
+    if (init(_plan.display.transparentBackground, false)) {
+      _html = _html.replace('class="graph-widget"', 'class="graph-widget transparent"')
+    }
   }
   var html = $(_html);
   
