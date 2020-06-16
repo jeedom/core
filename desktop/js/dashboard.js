@@ -338,7 +338,6 @@ function editWidgetMode(_mode,_save) {
 }
 
 function getObjectHtmlFromSummary(_object_id) {
-  console.log('getObjectHtmlFromSummary -> '+_object_id)
   if (_object_id == null) return
   var $divDisplayEq = $('#div_ob'+_object_id)
   jeedom.object.getEqLogicsFromSummary({
@@ -351,7 +350,6 @@ function getObjectHtmlFromSummary(_object_id) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      console.log(data)
       var nbEqs = data.length
       if (nbEqs == 0) {
         $divDisplayEq.closest('.div_object').remove()
