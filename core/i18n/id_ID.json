@@ -460,8 +460,6 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "EqLogic non trouvé : ": "",
-        "Annuler": "Tidak jadi",
-        "Sauvegarder": "Menyimpan",
         "Nom": "Nama",
         "Visible": "Terlihat",
         "Paramètres optionnels sur la tuile": "Parameter opsional pada ubin",
@@ -487,7 +485,8 @@
         "Afficher les statistiques": "",
         "Retour à la ligne avant le widget": "",
         "Retour à la ligne après le widget": "",
-        "Paramètres optionnels sur le widget:": ""
+        "Paramètres optionnels sur le widget:": "",
+        "Sauvegarder": "Menyimpan"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
