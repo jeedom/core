@@ -2,6 +2,11 @@
 Changelog Jeedom V4
 =========
 
+4.0.58
+=====
+
+- Correction de bugs sur les widgets time
+
 4.0.57
 =====
 
