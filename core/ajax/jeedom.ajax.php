@@ -25,6 +25,7 @@ try {
 	if (init('action') == 'getInfoApplication') {
 		$return = jeedom::getThemeConfig();
 		$return['serverDatetime'] = getmicrotime();
+		$return['serverTZoffsetMin'] = getTZoffsetMin();
 		if (!isConnect()) {
 			$return['connected'] = false;
 			ajax::success($return);

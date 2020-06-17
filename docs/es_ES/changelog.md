@@ -11,7 +11,7 @@ Registro de cambios Jeedom V4
 - Correcciones de errores
 
 4.0.55
-=====
+=======
 
 - El nuevo dns (\*. Eu.jeedom.enlace) se convierte en el DNS primario (el antiguo DNS todavía funciona)
 

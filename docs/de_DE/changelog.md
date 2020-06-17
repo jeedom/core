@@ -11,7 +11,7 @@ Changelog Jeedom V4
 - Fehlerbehebungen
 
 4.0.55
-=====
+=======
 
 - Die neuen DNS (\*. Eu.jeedom.Link) wird zum primären DNS (der alte DNS funktioniert immer noch)
 
