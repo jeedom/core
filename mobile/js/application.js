@@ -266,6 +266,8 @@ function isset() {
   return!0
 }
 
+var serverTZoffsetMin
+
 function initApplication(_reinit) {
   $.ajax({
     type: 'POST',
@@ -311,6 +313,7 @@ function initApplication(_reinit) {
         serverDatetime  = data.result.serverDatetime
         var clientDatetime = new Date()
         clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime()
+        serverTZoffsetMin = data.result.serverTZoffsetMin
         user_id = data.result.user_id
         plugins = data.result.plugins
         userProfils = data.result.userProfils
