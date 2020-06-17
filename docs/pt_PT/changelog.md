@@ -41,6 +41,7 @@
 - **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Histórico** : Gerenciamento de várias linhas do tempo.
 - **Histórico** : Revisão gráfica do cronograma.
+- **Resumo Global** : Visualização Resumo, suporte para resumos de um objeto diferente ou com um objeto raiz vazio (Desktop e WebApp).
 - **Resumo Automation** : Equipamentos de plug-in desativados e seus controles não têm mais os ícones à direita (configuração do equipamento e configuração avançada).
 - **Resumo Automation** : Capacidade de pesquisar nas categorias de equipamentos.
 - **Resumo Automation** : Possibilidade de mover várias peças de equipamento de um objeto para outro.

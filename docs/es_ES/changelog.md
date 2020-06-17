@@ -41,6 +41,7 @@
 - **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Historial** : Gestión de múltiples líneas de tiempo.
 - **Historial** : Revisión gráfica del cronograma.
+- **Resumen global** : Vista de resumen, soporte para resúmenes de un objeto diferente o con un objeto raíz vacío (escritorio y aplicación web).
 - **Resumen de domótica** : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
 - **Resumen de domótica** : Posibilidad de buscar en categorías de equipos.
 - **Resumen de domótica** : Posibilidad de mover varios equipos de un objeto a otro.

@@ -41,6 +41,7 @@
 - **History** : Integration of the Timeline in DB for reliability reasons.
 - **History** : Management of multiple timelines.
 - **History** : Timeline graphic overhaul.
+- **Global Summary** : Summary view, support for summaries from a different object or with an empty root object (Desktop and WebApp).
 - **Domotic overview** : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
 - **Domotic overview** : Ability to search on equipment categories.
 - **Domotic overview** : Possibility to move several pieces of equipment from one object to another.

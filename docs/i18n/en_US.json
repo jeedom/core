@@ -1342,6 +1342,8 @@
         "Intégration de la Timeline en DB pour des raisons de fiabilité": "Integration of the Timeline in DB for reliability reasons",
         "Gestion de Timelines multiples": "Management of multiple timelines",
         "Refonte graphique de la timeline": "Timeline graphic overhaul",
+        "Résumé global": "Global Summary",
+        "Affichage par résumé, support des résumés depuis un objet différent ou avec un objet racine vide (Desktop et WebApp": "Summary view, support for summaries from a different object or with an empty root object (Desktop and WebApp",
         "Résumé domotique": "Domotic overview",
         "Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée": "Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration",
         "Possibilité de chercher sur les catégories d'équipements": "Ability to search on equipment categories",

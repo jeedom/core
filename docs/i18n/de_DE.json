@@ -1342,6 +1342,8 @@
         "Intégration de la Timeline en DB pour des raisons de fiabilité": "Integration der Timeline in die DB aus Zuverlässigkeitsgründen",
         "Gestion de Timelines multiples": "Verwaltung mehrerer Zeitleisten",
         "Refonte graphique de la timeline": "Überarbeitung der Timeline-Grafik",
+        "Résumé global": "Globale Zusammenfassung",
+        "Affichage par résumé, support des résumés depuis un objet différent ou avec un objet racine vide (Desktop et WebApp": "Zusammenfassungsansicht, Unterstützung für Zusammenfassungen von einem anderen Objekt oder mit einem leeren Stammobjekt (Desktop und WebApp)",
         "Résumé domotique": "Zusammenfassung der Hausautomation",
         "Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée": "Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)",
         "Possibilité de chercher sur les catégories d'équipements": "Möglichkeit zur Suche nach Gerätekategorien",

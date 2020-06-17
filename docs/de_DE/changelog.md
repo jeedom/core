@@ -41,6 +41,7 @@
 - **Chronik** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Chronik** : Verwaltung mehrerer Zeitleisten.
 - **Chronik** : Überarbeitung der Timeline-Grafik.
+- **Globale Zusammenfassung** : Zusammenfassungsansicht, Unterstützung für Zusammenfassungen von einem anderen Objekt oder mit einem leeren Stammobjekt (Desktop und WebApp)).
 - **Zusammenfassung der Hausautomation** : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)).
 - **Zusammenfassung der Hausautomation** : Möglichkeit zur Suche nach Gerätekategorien.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
