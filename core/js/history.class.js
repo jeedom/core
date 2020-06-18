@@ -127,8 +127,8 @@ jeedom.history.drawChart = function(_params) {
 
       //series colors, options defined in core/js/jeedom.class.js jeedom.init():
       var colors = Highcharts.getOptions().colors
-      var opacityHigh = 0.85
-      var opacityLow = 0.1
+      var opacityHigh = 0.1
+      var opacityLow = 0.85
       var seriesNumber = 1
       var colorsNbr = colors.length
       if (isset(jeedom.history.chart[_params.el])) {
