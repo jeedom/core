@@ -127,8 +127,8 @@ jeedom.history.drawChart = function(_params) {
 
       //series colors, options defined in core/js/jeedom.class.js jeedom.init():
       var colors = Highcharts.getOptions().colors
-      var opacityHigh = 0.1
-      var opacityLow = 0.85
+      var opacityHigh = 0.85
+      var opacityLow = 0.1
       var seriesNumber = 1
       var colorsNbr = colors.length
       if (isset(jeedom.history.chart[_params.el])) {
@@ -171,7 +171,7 @@ jeedom.history.drawChart = function(_params) {
       var legend = {borderColor: 'black', borderWidth: 2, shadow: true};
       legend.enabled = init(_params.showLegend, true);
       if (isset(_params.newGraph) && _params.newGraph == true) {
-        delete jeedom.history.chart[_params.el];
+        delete jeedom.history.chart[_params.el]
       }
 
       //jeedom default chart params:

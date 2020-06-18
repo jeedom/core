@@ -107,9 +107,7 @@ $('#bt_configureCalculHistory').on('click', function() {
 })
 
 $('#bt_clearGraph').on('click', function() {
-  if (jeedom.history.chart['div_graph'] === undefined) {
-    return
-  }
+  if (jeedom.history.chart['div_graph'] === undefined) return
   while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
     jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
@@ -169,7 +167,8 @@ $('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click', funct
   $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
 })
 
-$('#bt_validChangeDate').on('click',function(){
+$('#bt_validChangeDate').on('click',function() {
+  if (jeedom.history.chart['div_graph'] === undefined) return
   $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
     if (serie.options && !isNaN(serie.options.id)) {
       var cmd_id = serie.options.id
