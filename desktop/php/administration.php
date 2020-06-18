@@ -337,10 +337,10 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Connexion Internet}}
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Connexion Internet}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Info binaire qui affiche le statut de votre connexion cette Internet. Paramètre utilisé par les plugins pour vérifier que la connexion est ok avant d'exécuter leurs actions.}}"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 input-group">
+						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 input-group">
 							<input type="text" class="configKey form-control" data-l1key="info::internet" />
 							<span class="input-group-btn">
 								<a class="btn btn-default" id="bt_selectInfoInternet" title="{{Sélectionner une information}}">
