@@ -307,9 +307,18 @@ function addChart(_cmd_id, _action, _options) {
             serie.remove()
             setChartOptions()
           }
-        } catch(error) {
-        }
+        } catch(error) {}
       })
+      //Reset yAxis scale if only one curve:
+      var isEmpty = $('.cmdList .li_history.active').length
+      if (isEmpty == 1) {
+        try {
+          var chart = jeedom.history.chart['div_graph'].chart
+          var min = chart.series[0].dataMin / 1.1
+          var max = chart.series[0].dataMax * 1.1
+          chart.yAxis[0].setExtremes(min, max, true, true)
+        } catch(error) {}
+      }
     }
     return
   }

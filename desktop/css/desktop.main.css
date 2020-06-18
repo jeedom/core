@@ -440,9 +440,7 @@ div.eqLogic.eqLogic-widget:empty {
 
 /* dashboard equipments text color */
 .tableCmd,
-.highcharts-axis-title > tspan,
 .cmd-widget > center {
-  fill: var(--txt-color) !important;
   color: var(--txt-color);
   font-weight: 700;
 }
@@ -1734,10 +1732,6 @@ body[data-page="history"] #div_pageContainer .tab-content {
 }
 #in_testExpression {
   font-size: 14px !important;
-}
-
-.highcharts-button-disabled{
-  display: none !important;
 }
 
 /* __________________________________________________________________________________________________________NAVBAR */
@@ -3426,8 +3420,7 @@ textarea {
 }
 .graph-widget .highcharts-plot-band,
 .chartContainer .highcharts-plot-band,
-#div_graph .highcharts-plot-band,
-#div_historyChart .highcharts-plot-band {
+#div_graph .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
 }
 .highcharts-button-box {
@@ -3448,13 +3441,23 @@ textarea {
   stroke-width: 0.1 !important;
   stroke: var(--link-color) !important;
 }
+.highcharts-axis-title > tspan {
+  fill: var(--txt-color) !important;
+  font-weight: 700;
+}
+.div_viewZone .highcharts-button-disabled,
+.graph-widget .highcharts-button-disabled,
+#div_graph .highcharts-button-disabled {
+  opacity: 0.3;
+}
 path.highcharts-graph {
   stroke-width: 1.2;
 }
 .highcharts-selection-marker {
-  fill: var(--al-info-color);
+  fill: rgb(var(--eq-bg-color));
   fill-opacity: 0.5;
-  stroke: var(--al-warning-color);
+  stroke: rgb(var(--contrast-color));
+  stroke-width: 1px !important;
 }
 
 

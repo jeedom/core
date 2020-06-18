@@ -31,7 +31,7 @@ jeedom.history.get = function(_params) {
   };
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
+  } catch(e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
@@ -52,7 +52,7 @@ jeedom.history.copyHistoryToCmd = function(_params) {
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
+  } catch(e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
@@ -308,6 +308,8 @@ jeedom.history.drawChart = function(_params) {
             units: [[_params.option.groupingType.time,[1]]]
           };
         }
+
+        //cmd info string has no value:
         if (data.result.timelineOnly) {
           if (!isset(jeedom.history.chart[_params.el]) || !isset(jeedom.history.chart[_params.el].nbTimeline)) {
             nbTimeline = 1;
@@ -575,7 +577,7 @@ jeedom.history.drawChart = function(_params) {
 
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
       var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
-      for(var i in plotband){
+      for (var i in plotband) {
         jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);
       }
       $.hideLoading();
@@ -588,7 +590,7 @@ jeedom.history.drawChart = function(_params) {
 
 jeedom.history.generatePlotBand = function(_startTime, _endTime) {
   var plotBands = [];
-  if((_endTime - _startTime) > (7* 86400000)){
+  if ((_endTime - _startTime) > (7* 86400000)) {
     return plotBands;
   }
   var pas = 86400000;
@@ -634,7 +636,7 @@ jeedom.history.changePoint = function(_params) {
   };
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
+  } catch(e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }

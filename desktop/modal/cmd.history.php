@@ -43,7 +43,7 @@ sendVarToJs('cmd_id',$id);
       </div>
     </div>
   </div>
-  <center><div id="div_historyChart"></div></center>
+  <center><div id="div_graph"></div></center>
 </div>
 
 <script>
@@ -51,13 +51,13 @@ var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
 
-$('#div_historyChart').css('position', 'relative').css('width', '100%')
+$('#div_graph').css('position', 'relative').css('width', '100%')
 //remove any previously loaded history:
-if (jeedom.history.chart['div_historyChart'] != undefined) {
-  while (jeedom.history.chart['div_historyChart'].chart.series.length > 0) {
-    jeedom.history.chart['div_historyChart'].chart.series[0].remove(true)
+if (jeedom.history.chart['div_graph'] != undefined) {
+  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
+    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
-  delete jeedom.history.chart['div_historyChart']
+  delete jeedom.history.chart['div_graph']
 }
 
 $.hideAlert()
@@ -71,7 +71,7 @@ $(function() {
   cmdIds.forEach(function(cmd_id) {
     jeedom.history.drawChart({
       cmd_id: cmd_id,
-      el: 'div_historyChart',
+      el: 'div_graph',
       dateRange : 'all',
       dateStart : $('#in_startDate').value(),
       dateEnd :  $('#in_endDate').value(),
@@ -110,7 +110,7 @@ function setModal() {
     $('.highcharts-legend-item').on('click',function(event) {
       if (!event.ctrlKey && !event.altKey) return
       event.stopImmediatePropagation()
-      var chart = $('#div_historyChart').highcharts()
+      var chart = $('#div_graph').highcharts()
       if (!chart) return
       if (event.altKey) {
         $(chart.series).each(function(idx, item) {
@@ -127,7 +127,7 @@ function setModal() {
 
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
-    var divHighChart = $('#div_historyChart')
+    var divHighChart = $('#div_graph')
     var chart = divHighChart.highcharts()
 
     //check previous size/pos:
@@ -165,7 +165,7 @@ function setModal() {
     })
 
     //highstock v8.0.4 crosshair positionning bug after modal moved:
-    $('#div_historyChart').on('mouseenter', function(event) {
+    $('#div_graph').on('mouseenter', function(event) {
       chart.pointer.chartPosition = void 0
     })
 
