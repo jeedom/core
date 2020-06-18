@@ -1217,9 +1217,15 @@ body[data-page="history"] #div_pageContainer .tab-content {
   fill: var(--el-defaultColor) !important;
 }
 .highcharts-button > text,
-.highcharts-button-disabled > text{
+.highcharts-button-disabled > text {
   fill: var(--link-color) !important;
 }
+.div_viewZone .highcharts-button-disabled,
+.graph-widget .highcharts-button-disabled,
+#div_graph .highcharts-button-disabled {
+  opacity: 0.3;
+}
+
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;
 }

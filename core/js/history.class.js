@@ -177,6 +177,7 @@ jeedom.history.drawChart = function(_params) {
       //jeedom default chart params:
       var charts = {
         zoomType: 'xy',
+        pinchType: 'xy',
         renderTo: _params.el,
         alignTicks: false,
         spacingBottom: 5,
