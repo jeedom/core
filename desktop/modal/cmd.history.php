@@ -98,8 +98,7 @@ function setModal() {
         modal = $('#md_modal2')
       }
       if (modal !== false) {
-        modal.dialog({title: "{{Historique}}"})
-        modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+        modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
       }
     })
 

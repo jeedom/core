@@ -3421,7 +3421,7 @@ textarea {
 .graph-widget .highcharts-plot-band,
 .chartContainer .highcharts-plot-band,
 #div_graph .highcharts-plot-band {
-  fill: rgb(var(--bg-color)) !important;
+  fill: rgba(var(--bg-color), 0.5) !important;
 }
 .highcharts-button-box {
   fill: var(--el-defaultColor) !important;
@@ -3475,6 +3475,13 @@ path.highcharts-graph {
 }
 .highcharts-tooltip .highcharts-shadow {
   display: none;
+}
+.highcharts-label.highcharts-point path {
+  fill: var(--btnEq-default-color) !important;
+  stroke: none;
+}
+.highcharts-label.highcharts-point text {
+  fill: var(--txt-color);
 }
 
 

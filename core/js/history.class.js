@@ -577,7 +577,7 @@ jeedom.history.drawChart = function(_params) {
       }
 
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
-      var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
+      var plotband = jeedom.history.generatePlotBand(extremes.min, extremes.max);
       for (var i in plotband) {
         jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);
       }
@@ -591,22 +591,21 @@ jeedom.history.drawChart = function(_params) {
 
 jeedom.history.generatePlotBand = function(_startTime, _endTime) {
   var plotBands = [];
-  if ((_endTime - _startTime) > (7* 86400000)) {
+  var day = 86400000
+  if ((_endTime - _startTime) > (9 * day)) {
     return plotBands;
   }
-  var pas = 86400000;
-  var offset = 0;
-  _startTime = (Math.floor(_startTime / 86400000) * 86400000) - offset;
+  _startTime = Math.floor(_startTime / day) * day;
+  var plotBand
   while (_startTime < _endTime) {
-    var plotBand = {};
-    plotBand.color = '#F8F8F8';
+    plotBand = {};
     plotBand.from = _startTime;
-    plotBand.to = _startTime + pas;
-    if(plotBand.to > _endTime){
+    plotBand.to = _startTime + day;
+    if (plotBand.to > _endTime) {
       plotBand.to = _endTime;
     }
     plotBands.push(plotBand);
-    _startTime += 2 * pas;
+    _startTime += 2 * day;
   }
   return plotBands;
 }

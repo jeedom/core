@@ -1241,6 +1241,13 @@ body[data-page="history"] #div_pageContainer .tab-content {
 .highcharts-color-0 {
   fill: var(--link-color);
 }
+.highcharts-label.highcharts-point path {
+  fill: var(--btnEq-default-color) !important;
+  stroke: none;
+}
+.highcharts-label.highcharts-point text {
+  fill: var(--txt-color);
+}
 
 /* ___________________________________________________________POPUP */
 .ui-popup-screen.in {

@@ -169,6 +169,7 @@ $('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click', funct
 
 $('#bt_validChangeDate').on('click',function() {
   if (jeedom.history.chart['div_graph'] === undefined) return
+  $('.highcharts-plot-band').remove()
   $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
     if (serie.options && !isNaN(serie.options.id)) {
       var cmd_id = serie.options.id
