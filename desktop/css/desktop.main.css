@@ -3451,6 +3451,11 @@ textarea {
 path.highcharts-graph {
   stroke-width: 1.2;
 }
+.highcharts-selection-marker {
+  fill: var(--al-info-color);
+  fill-opacity: 0.5;
+  stroke: var(--al-warning-color);
+}
 
 
 .highcharts-tooltip .highcharts-tooltip-box,
