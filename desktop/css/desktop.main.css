@@ -3434,8 +3434,12 @@ textarea {
   fill: var(--el-defaultColor) !important;
 }
 .highcharts-button > text,
-.highcharts-button-disabled > text{
+.highcharts-button-disabled > text,
+.highcharts-button-box > text {
   fill: var(--link-color) !important;
+}
+.highcharts-button-box {
+  stroke: transparent;
 }
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;

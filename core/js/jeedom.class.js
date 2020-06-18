@@ -101,23 +101,25 @@ jeedom.init = function () {
   if ($.mobile) {
     jeedom.display.version = 'mobile';
   }
+  var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
     lang: {
       months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
       shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
       weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
     },
-    colors :['rgb(73, 111, 153)',
-    'rgb(153, 122, 73)',
-    'rgb(73, 153, 77)',
-    'rgb(172, 54, 87)',
-    'rgb(42, 184, 181)',
-    'rgb(167, 48, 161)',
-    'rgb(89, 54, 171)',
-    'rgb(152, 179, 47)',
-    'rgb(99, 99, 99)',
-    'rgb(70, 156, 32)'
-  ]
+    colors: [
+      cssComputedStyle.getPropertyValue('--al-info-color'),
+      cssComputedStyle.getPropertyValue('--al-warning-color'),
+      cssComputedStyle.getPropertyValue('--al-success-color'),
+      cssComputedStyle.getPropertyValue('--lb-yellow-color'),
+      cssComputedStyle.getPropertyValue('--al-primary-color'),
+      cssComputedStyle.getPropertyValue('--al-danger-color'),
+      cssComputedStyle.getPropertyValue('--scBlocCOM'),
+      cssComputedStyle.getPropertyValue('--scBlocFOR'),
+      cssComputedStyle.getPropertyValue('--scBlocACTION'),
+      cssComputedStyle.getPropertyValue('--scBlocAT')
+    ]
 });
 
 
