@@ -11,11 +11,13 @@ if (!isConnect('admin')) {
 				<a id="bt_addView" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Créer une vue}}</a>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
-				foreach (view::all() as $view) {
-					echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '">';
-					echo '<i class="fas fa-arrows-alt-v pull-left cursor"></i>';
-					echo '<a style="position:relative;left:15px;">' . trim($view->getDisplay('icon')) . ' ' . $view->getName() . '</a>';
-					echo '</li>';
+				foreach ((view::all()) as $view) {
+					$li = '';
+					$li .=  '<li class="cursor li_view" data-view_id="' . $view->getId() . '">';
+					$li .=  '<i class="fas fa-arrows-alt-v pull-left cursor"></i>';
+					$li .=  '<a style="position:relative;left:15px;">' . trim($view->getDisplay('icon')) . ' ' . $view->getName() . '</a>';
+					$li .=  '</li>';
+					echo $li;
 				}
 				?>
 			</ul>

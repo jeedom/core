@@ -163,11 +163,8 @@ div.cmd > div.center-block {
   left: 0;
 }
 .slider.ui-slider-vertical {
-  position: absolute;
   margin: 5px;
   height: 48px;
-  top: 16px !important;
-  right: 3px;
 }
 
 .sliderValue {
@@ -342,7 +339,13 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
   width: 60px;
   top: 16px !important;
 }
-
+.shuttergauge .slider.ui-slider-vertical {
+  position: absolute;
+  margin: 5px;
+  height: 48px;
+  top: 16px !important;
+  right: 3px;
+}
 .shuttergauge .ui-slider-vertical > .sliderValue {
   bottom: -5px;
   right: 26px;
@@ -423,9 +426,16 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
 }
 
 /* __________________________________________________________________________________________________________Rain */
+
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] {
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 0;
+}
+
 @keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
 
-.widget-rain-water{
+.widget-rain-water {
   height: 0pt;
   background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
   border-top: 0;
@@ -434,7 +444,6 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
   border-radius: 0 0 1px 1px;
   bottom: 0;
   width : 100%;
-  max-height: 45px;
   transition: water 3s ease-out;
   z-index: 0;
   animation: homeweatherstationraingauge 3000s linear infinite;
@@ -442,21 +451,27 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
   position: absolute;
 }
 
-.widget-rain-title{
-  padding-top: 10%;
-}
-
-.widget-rain-container{
+.widget-rain-container {
   background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
   background-size: cover;
-  height: 100%;
+  position: relative;
+  height: 60px;
   z-index: 20;
 }
 
-.widget-rain-main{
-  height: 80px;
+.widget-rain-container .plage {
+  position: absolute;
+  bottom: 5px;
+  right: 5%;
+  left: 5%;
+  z-index: 2;
+}
+
+.widget-rain-main {
   overflow: hidden;
   width: 80px;
   z-index: 0;
   position : relative;
 }
+
+

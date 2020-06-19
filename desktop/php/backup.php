@@ -8,7 +8,7 @@ echo '<script>REPO_LIST = []</script>';
 <div id="backup">
 	<br/>
 	<div class="pull-right" style="display:inline-flex;">
-		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> Sauvegarder</a>
+		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	</div>
 	<br/><br/>
 	<div class="row">
@@ -46,7 +46,7 @@ echo '<script>REPO_LIST = []</script>';
 											<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>
 										<div class="col-xs-12">
@@ -67,7 +67,7 @@ echo '<script>REPO_LIST = []</script>';
 										</div>
 										<div class="col-sm-6 col-xs-12">
 											<span class="btn btn-default btn-file" style="width:100%;">
-												<i class="fas fa-cloud-upload-alt"></i> {{Ajouter une sauvegarde}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
+												<i class="fas fa-cloud-upload-alt"></i> {{Ajouter une sauvegarde}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload">
 											</span>
 										</div>
 									</div>
@@ -75,9 +75,9 @@ echo '<script>REPO_LIST = []</script>';
 							</form>
 						</div>
 					</div>
-					
+
 					<?php
-					foreach (update::listRepo() as $rkey => $value) {
+					foreach ((update::listRepo()) as $rkey => $value) {
 						if ($value['scope']['backup'] == false) {
 							continue;
 						}
@@ -85,16 +85,16 @@ echo '<script>REPO_LIST = []</script>';
 							continue;
 						}
 						$class = 'repo_' . $rkey;
-						
+
 						$icon = '<i class="fas fa-network-wired"></i>';
 						if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
-						
+
 						$div = '<div class="panel panel-primary">';
 						$div .= '<div class="panel-heading">';
 						$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}} ' . $value['name'];
 						$div .= '</div>';
 						$div .= '<div class="panel-body">';
-						
+
 						$div .= '<form class="form-horizontal repo">';
 						$div .= '<fieldset>';
 						$div .= '<div class="form-group">';
@@ -125,7 +125,7 @@ echo '<script>REPO_LIST = []</script>';
 						$div .= '<div class="form-group">';
 						$div .= '<label class="col-sm-6 col-xs-12"></label>';
 						$div .= '<div class="col-sm-6 col-xs-12">';
-						$div .= '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</a>';
+						$div .= '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Rapatrier la sauvegarde en local}}</a>';
 						$div .= '</div>';
 						$div .= '</div>';
 						$div .= '</fieldset>';

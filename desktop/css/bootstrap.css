@@ -2301,7 +2301,6 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
 
 .media,.media-body {
   overflow: hidden;
-  zoom: 1;
 }
 
 .media-body {

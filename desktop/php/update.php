@@ -9,6 +9,12 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 		echo '<div class="alert alert-danger">{{Erreur sur la verification des mies à jour : }}'.$e->getMessage().'</div>';
 	}
 }
+$logUpdate = log::get('update', 0, -1);
+if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
+  sendVarToJS('isUpdating', '0');
+} else {
+  sendVarToJS('isUpdating', '1');
+}
 ?>
 
 <br/>
@@ -16,9 +22,9 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a href="#" class="btn btn-sm btn-warning roundedLeft" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
-		</a><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
-		</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+		<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+		</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+		</a><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 	</span>
 </div>
 <br/><br/>
@@ -64,9 +70,10 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 <div id="md_specifyUpdate" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
-			<div class="alert alert-danger">
-				{{Avant toute mise à jour, merci de consulter}} <a class="warning" style="color:var(--al-warning-color)!important" target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{la note de version}}</a> {{du core de Jeedom}}.
+			<div class="alert alert-warning">
+				{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
 			</div>
+
 			<div class="form-group">
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Pré-update}}
@@ -103,20 +110,21 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 					</div>
 				</div>
 			</div>
-			<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur "Aucune"}}</div>
-			<div class="form-group has-error">
+			<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.}}</div>
+			<div class="form-group">
 				<label class="col-xs-6 control-label ">{{Mise à jour à réappliquer}}</label>
 				<div class="col-xs-5">
 					<select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
 						<option value="">{{Aucune}}</option>
 						<?php
 						$updates = array();
-						foreach (update::listCoreUpdate() as $udpate) {
+						foreach ((update::listCoreUpdate()) as $udpate) {
 							$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
 						}
 						usort($updates, 'version_compare');
 						$updates = array_reverse($updates);
 						foreach ($updates as $value) {
+							//if ($value < 4.0) continue;
 							echo '<option value="' . $value . '">' . $value . '</option>';
 						}
 						?>
@@ -125,7 +133,8 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 			</div>
 		</fieldset>
 	</form>
-	<a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+	<br>
+	<a class="btn btn-warning pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>

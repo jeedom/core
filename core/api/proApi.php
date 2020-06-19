@@ -42,7 +42,7 @@ try {
 	}
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
-		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ' . $jsonrpc->getJsonrpc(), __FILE__), -32001);
+		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
 	}
 
 	$params = $jsonrpc->getParams();
@@ -55,7 +55,7 @@ try {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	log::add('api', 'info', __('connexion valide et verifiée : ' . $jsonrpc->getMethod(), __FILE__));
+	log::add('api', 'info', __('connexion valide et verifiée : ', __FILE__) . $jsonrpc->getMethod());
 
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
@@ -824,7 +824,7 @@ try {
 			$market->remove();
 			$jsonrpc->makeSuccess('ok');
 		}
-		
+
 		if ($jsonrpc->getMethod() == 'plugin::specificInfos') {
 		    $infos = array();
 		    foreach (plugin::listPlugin() as $plugin) {

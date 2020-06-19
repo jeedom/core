@@ -11,23 +11,24 @@ if (is_array($scenarioListGroup)) {
 		$scenarios[$group['group']] = scenario::all($group['group']);
 	}
 }
+sendVarToJs('initSearch', init('search', 0));
 ?>
 
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer">
-			<div class="cursor logoPrimary" id="bt_addScenario2">
+			<div class="cursor logoPrimary" id="bt_addScenario">
 				<center><i class="fas fa-plus-circle"></i></center>
 				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
-				<div class="cursor success" id="bt_changeAllScenarioState2" data-state="1">
+				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<center><i class="fas fa-check"></i></center>
 					<span class="txtColor"><center>{{Activer scénarios}}</center></span>
 				</div>
 			<?php } else {?>
-				<div class="cursor danger" id="bt_changeAllScenarioState2" data-state="0">
+				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<center><i class="fas fa-times"></i></center>
 					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
 				</div>
@@ -57,7 +58,7 @@ if (is_array($scenarioListGroup)) {
 				$div .= '<div class="panel panel-default">';
 				$div .= '<div class="panel-heading">';
 				$div .= '<h3 class="panel-title">';
-				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">Aucun - ';
+				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">{{Aucun}} - ';
 				$c = count($scenarios[-1]);
 				$div .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
 				$div .= '</h3>';
@@ -129,7 +130,11 @@ if (is_array($scenarioListGroup)) {
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
-				<a class="btn btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
+
+				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)"><i class="fas fa-chevron-left"></i>
+				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)"><i class="fas fa-chevron-right"></i></a>
+
+				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
 				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
@@ -138,26 +143,27 @@ if (is_array($scenarioListGroup)) {
 				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
 
 				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
-				<a id="bt_resetInsideScenarioSearch" class="btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+				<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
 
-				<a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
+				<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
+				</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
+			<li role="presentation" class="active"><a id="bt_generalTab" href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
 			<li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Scénario}}</a></li>
 		</ul>
-		<div class="tab-content" style="height:calc(100% - 45px);overflow:auto;overflow-x: hidden;">
+		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
 				<br/>
 				<div class="row">
 					<div class="col-sm-6">
 						<form class="form-horizontal">
 							<fieldset>
+								<legend><i class="fas fa-users-cog"></i> {{Paramètres}}</legend>
 								<div class="form-group">
 									<label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
 									<div class="col-xs-6">
@@ -202,12 +208,6 @@ if (is_array($scenarioListGroup)) {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label">{{Timeout en secondes (0 = illimité)}}</label>
-									<div class="col-xs-6">
-										<input class="form-control scenarioAttr" data-l1key="timeout">
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Log}}</label>
 									<div class="col-xs-6">
 										<select class="form-control scenarioAttr" data-l1key="configuration" data-l2key="logmode">
@@ -218,14 +218,23 @@ if (is_array($scenarioListGroup)) {
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Timeout}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.}}"></i></sup>
+										<sub>s</sub>
+									</label>
+									<div class="col-xs-6">
+										<input class="form-control scenarioAttr" data-l1key="timeout">
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Multi-lancement}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario pourra tourner plusieurs fois en même temps}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario pourra s'éxécuter plusieurs fois en même temps.}}"></i></sup>
 									</label>
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">
 									</div>
 									<label class="col-xs-2 control-label">{{Synchrone}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.}}"></i></sup>
 									</label>
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">
@@ -239,7 +248,13 @@ if (is_array($scenarioListGroup)) {
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
 									</div>
 									<div class="col-xs-5">
-										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%">
+										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%;display:none;">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Dernier lancement}}</label>
+									<div class="col-xs-3">
+										<span class="label label-info scenarioAttr" data-l1key="lastLaunch"></span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -256,45 +271,58 @@ if (is_array($scenarioListGroup)) {
 					</div>
 					<div class="col-sm-6">
 						<form class="form-horizontal">
-							<div class="form-group">
-								<div class="col-md-12">
-									<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
-								<div class="col-sm-9 col-xs-6">
-									<div class="input-group">
-										<select class="form-control roundedLeft scenarioAttr" data-l1key="mode">
-											<option value="provoke">{{Provoqué}}</option>
-											<option value="schedule">{{Programmé}}</option>
-											<option value="all">{{Les deux}}</option>
-										</select>
-										<span class="input-group-btn">
-											<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
-											</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="scheduleDisplay" style="display: none;">
+							<fieldset>
+								<legend><i class="fas fa-play-circle"></i> {{Déclenchement}}</legend>
 								<div class="form-group">
-									<label class="col-xs-3 control-label" >{{Précédent}}</label>
-									<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-									<label class="col-xs-3 control-label" >{{Prochain}}</label>
-									<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
+									<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+									<div class="col-sm-9 col-xs-6">
+										<div class="input-group">
+											<select class="form-control roundedLeft scenarioAttr" data-l1key="mode">
+												<option value="provoke">{{Provoqué}}</option>
+												<option value="schedule">{{Programmé}}</option>
+												<option value="all">{{Les deux}}</option>
+											</select>
+											<span class="input-group-btn">
+												<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
+												</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
+											</span>
+										</div>
+									</div>
+									<label id="emptyModeWarning" class="warning col-xs-12" style="display: none;"><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
 								</div>
-								<div class="scheduleMode"></div>
-							</div>
-							<div class="provokeMode provokeDisplay" style="display: none;">
-							</div>
-							<br>
-							<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
-							<div class="scenario_link"></div>
+								<div class="scheduleDisplay" style="display: none;">
+									<div class="form-group">
+										<label class="col-xs-3 control-label" >{{Précédent}}</label>
+										<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+										<label class="col-xs-3 control-label" >{{Prochain}}</label>
+										<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
+									</div>
+									<div class="scheduleMode"></div>
+								</div>
+								<div class="provokeMode provokeDisplay" style="display: none;">
+								</div>
+							</fieldset>
 						</form>
+						<hr class="hrPrimary">
+						<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
+						<div class="scenario_link"></div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<div class="col-md-12">
+								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+
+
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
 				<div id="div_scenarioElement" class="element"></div>
 			</div>

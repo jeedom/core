@@ -2,7 +2,8 @@
 **Outils → Objets**
 
 Les **objets** permettent de définir l’arborescence de votre domotique.
-Tous les équipements que vous créerez devront appartenir à un objet et pourront ainsi être plus facilement repérables. On dit alors que l’objet est le **parent** de l’équipement.
+
+Tous les équipements que vous créez doivent appartenir à un objet et sont ainsi plus facilement repérables. On dit alors que l’objet est le **parent** de l’équipement.
 
 Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Usuellement, on y définira les différentes parties de sa maison, comme le nom des pièces (c’est d’ailleurs la configuration recommandée).
 
@@ -24,6 +25,7 @@ Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
 Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des objets. La touche Echap annule la recherche.
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+
 - La croix pour annuler la recherche.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les objets.
 - Le dossier fermé pour replier tout les panneaux.
@@ -32,8 +34,7 @@ Une fois sur la configuration d'un objet, vous disposez d'un menu contextuel au 
 
 ## Onglet Objet
 
-En cliquant sur un objet, vous accédez à sa page de configuration.
-Quels que soient les changements effectués, n’oubliez pas de le sauvegarder.
+En cliquant sur un objet, vous accédez à sa page de configuration. Quels que soient les changements effectués, n’oubliez pas de sauvegarder vos modifications.
 
 Voici donc les différentes caractéristiques pour configurer un objet :
 
@@ -46,11 +47,12 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 - **Couleurs personnalisées** : Active la prise en compte des deux paramètres de couleurs optionnels.
 - **Couleur du tag** : Permet de choisir la couleur de l’objet et des équipements qui lui sont rattachés.
 - **Couleur du texte du tag** : Permet de choisir la couleur du texte de l’objet. Ce texte sera par dessus la **couleur du tag**. A vous de choisir une couleur pour rendre le texte lisible.
-- **Image** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard.
+- **Image** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard. Elle sera aussi utilisée pour la vignette de la pièce sur la Synthèse.
+- **Seulement sur la synthèse** : Permet de mettre une image pour la Synthèse sans qu'elle soit utilisée comme image de fond.
 
 > **Tip**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble, sélectionnez votre objet à la souris et en glisser/déposer pour lui donner une nouvelle place.
+> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble (ou par le Résumé Domotique), sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
 >

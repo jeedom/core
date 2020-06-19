@@ -283,6 +283,24 @@ class config {
 		cache::flushWidget();
 	}
 	
+	public static function postConfig_object_summary($_value){
+		try {
+			foreach((jeeObject::all()) as $object) {
+				$object->cleanSummary();
+			}
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
+	public static function preConfig_historyArchivePackage($_value){
+		return self::checkValueBetween($_value,1);
+	}
+	
+	public static function preConfig_historyArchiveTime($_value){
+		return self::checkValueBetween($_value,2);
+	}
+	
 	public static function preConfig_market_password($_value) {
 		if (!is_sha1($_value)) {
 			return sha1($_value);
@@ -320,6 +338,17 @@ class config {
 	
 	public static function preConfig_info_longitude($_value){
 		return str_replace(',','.',$_value);
+	}
+	
+	public static function preConfig_tts_engine($_value){
+		try {
+			if($_value != config::byKey('tts::engine')){
+				rrmdir(jeedom::getTmpFolder('tts'));
+			}
+		} catch (\Exception $e) {
+			
+		}
+		return $_value;
 	}
 	
 	/*     * *********************Methode d'instance************************* */

@@ -1,4 +1,4 @@
-<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Date de valeur : #valueDate#<br/>Date de collecte : #collectDate#" >
+<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="{{Date de valeur}} : #valueDate#<br/>{{Date de collecte}} : #collectDate#" >
 <div class="title #hide_name#">
   <span class="cmdName">#name_display#</span>
 </div>
@@ -6,11 +6,11 @@
   <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
 </div>
 <div class="cmdStats #hide_history#">
-  <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
 </div>
 <script>
   jeedom.cmd.update['#id#'] = function(_options) {
-    $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+    $('.cmd[data-cmd_id=#id#]').attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
     $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value)
   }
 

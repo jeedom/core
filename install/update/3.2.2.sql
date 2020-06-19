@@ -1,1 +1,0 @@
-ALTER TABLE interactDef DROP COLUMN position;

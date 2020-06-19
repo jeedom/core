@@ -18,11 +18,11 @@ $allObject = jeeObject::all(true);
       }
       $div .= '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">';
       $div .= '<div class="objectPreview cursor shadowed fullCorner" style="background:url('.$backUrl.')" data-object_id="'.$_object->getId().'">';
-      $div .= '<div class="topPreview topCorner">';
-      $div .= '<span class="name">' . $_object->getName() . '</span>';
+      $div .= '<div class="topPreview topCorner nocursor">';
+      $div .= '<span class="name cursor">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
       $div .= '</div>';
       $div .= '<div class="bottomPreview bottomCorner">';
-      $div .= '<div class="resume">' . $_object->getHtmlSummary() . '</div>';
+      $div .= '<div class="resume" style="display:none;">' . $_object->getHtmlSummary() . '</div>';
       $div .= '</div>';
       $div .= '</div>';
       $div .= '</div>';
@@ -31,7 +31,9 @@ $allObject = jeeObject::all(true);
     ?>
   </div>
 </div>
+<div id="md_overviewSummary" style="overflow-x: hidden;">
+  <div id="summaryEqlogics"></div>
 </div>
-</div>
+
 
 <?php include_file('desktop', 'overview', 'js'); ?>

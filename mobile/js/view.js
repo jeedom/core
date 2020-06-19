@@ -1,14 +1,17 @@
+"use strict"
+
 $('body').attr('data-page', 'view')
 
 function initView(_view_id) {
   jeedom.view.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (views) {
+    success: function(views) {
       var li = ' <ul data-role="listview">'
+      var icon
       for (var i in views) {
-        var icon = ''
+        icon = ''
         if (isset(views[i].display) && isset(views[i].display.icon)) {
           icon = views[i].display.icon
         }
@@ -18,24 +21,24 @@ function initView(_view_id) {
       panel(li)
     }
   })
-  
+
   if (isset(_view_id) && is_numeric(_view_id)) {
     jeedom.history.chart = []
     jeedom.view.toHtml({
       id: _view_id,
       version: 'mobile',
-      error: function (error) {
+      error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function (html) {
+      success: function(html) {
         displayView(html)
       }
     })
   } else {
     $('#bottompanel').panel('open')
   }
-  
-  $(window).on("resize", function (event) {
+
+  $(window).on("resize", function(event) {
     setTimeout(function(){
       if (deviceInfo.type == 'phone') {
         $('.chartContainer').width((deviceInfo.width - 20))
@@ -47,8 +50,7 @@ function initView(_view_id) {
       $('.eqLogicZone').packery({gutter : 0})
       var screenWidth = $(window).width() - 5
       $('.div_viewZone .table-responsive').each(function(){
-        $(this).width('auto')
-        $(this).css('max-width','none')
+        $(this).width('auto').css('max-width','none')
         if ($(this).width() < screenWidth) {
           $(this).width(screenWidth)
         } else {
@@ -60,18 +62,18 @@ function initView(_view_id) {
 }
 
 function displayView(html) {
-  if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
+  if (isset(html.raw) && isset(html.raw.img) && html.raw.img != '') {
     setBackgroundImage(html.raw.img)
-  }else{
+  } else {
     setBackgroundImage('')
   }
-  try{
+  try {
     $('#div_displayView').empty().html(html.html).trigger('create')
-  }catch(err) {
+  } catch(err) {
     console.log(err)
   }
-  if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName)){
-    $('.eqLogic-widget').addClass('displayObjectName');
+  if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
+    $('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
   }
   if (deviceInfo.type == 'phone') {
     $('.chartContainer').width((deviceInfo.width - 20))
@@ -86,10 +88,10 @@ function displayView(html) {
   }, 750)
   $('#div_displayView .ui-table-columntoggle-btn').remove()
   var screenWidth = $(window).width() - 5
-  $('.div_viewZone .table-responsive').each(function(){
-    if($(this).width() < screenWidth){
+  $('.div_viewZone .table-responsive').each(function() {
+    if ($(this).width() < screenWidth) {
       $(this).width(screenWidth)
-    }else{
+    } else {
       $(this).css({'overflow':'auto', 'max-width':screenWidth+'px'})
     }
   })

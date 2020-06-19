@@ -1,22 +1,14 @@
-Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se trouve à côté de l’heure en haut à droite.
+# Nachrichtencenter
+**Menüleiste**
 
-Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
-nombre de messages.
+Das Nachrichtencenter fasst alle wichtigen Nachrichten zusammen, die Sie konsultieren sollten. Es befindet sich links von der Uhrzeit rechts in der Jeedom-Menüleiste.
 
-Es ist ziemlich einfach. Es zeigt Ihnen das Datum und die Uhrzeit der
-Nachricht, das Plugin, das es ausgegeben hat und die betreffende Nachricht.
-Sie können die betreffende Nachricht löschen, indem Sie die Schaltfläche
-am Anfang der Nachrichtenzeile drücken. (die Nachricht wird zurückkehren,
-wenn das Problem immer noch relevant ist).
+Sie können nur auf Nachrichten zugreifen, indem Sie auf die Anzahl der Nachrichten klicken.
 
-Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein
-bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu
-löschen.
+Es ist ganz einfach. Es zeigt Ihnen Datum und Uhrzeit der Nachricht, das Plugin, das sie gesendet hat, und die betreffende Nachricht. Sie können die betreffende Nachricht durch Drücken der Taste ganz am Anfang der Zeile einer Nachricht löschen (sie wird wieder angezeigt, wenn das Problem weiterhin besteht)).
 
-> **Tipp**
+Oben befindet sich eine Auswahl zum Filtern von Nachrichten in einem bestimmten Plugin und ganz rechts eine Schaltfläche zum Leeren aller Nachrichten.
+
+> **Spitze**
 >
-> Wenn Sie einen Fehler in der Nachrichtenzentrale haben, versuchen Sie
-> zunächst die Nachricht zu entfernen und sehen dann ob der Fehler
-> zurückkommt, bevor Sie den Support kontaktieren. Manchmal ist es nur ein
-> Problem mit der Netzwerkverbindung.
+> Wenn im Nachrichtencenter ein Fehler auftritt, versuchen Sie zunächst, die Nachricht zu löschen, und prüfen Sie dann, ob der Fehler erneut auftritt, bevor Sie sich an den Support wenden. Manchmal liegt es nur an einem Netzwerkverbindungsproblem.

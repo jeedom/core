@@ -19,7 +19,7 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	ajax::init(false);
+	ajax::init();
 	
 	if (init('action') == 'useTwoFactorAuthentification') {
 		$user = user::byLogin(init('login'));
@@ -73,15 +73,16 @@ try {
 				'ip' => getClientIp(),
 				'session_id' =>session_id(),
 			);
-			setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
+			if (version_compare(PHP_VERSION, '7.3') >= 0) {
+				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk,['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']=='https')]);
+			}else{
+				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '',  (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+			}
 			@session_start();
 			$_SESSION['user']->refresh();
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
 			$_SESSION['user']->save();
 			@session_write_close();
-			if (!isset($_COOKIE['jeedom_token'])) {
-				setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
-			}
 		}
 		ajax::success();
 	}
@@ -148,7 +149,7 @@ try {
 		}
 		unautorizedInDemo();
 		$users = array();
-		foreach (user::all() as $user) {
+		foreach((user::all()) as $user) {
 			$user_info = utils::o2a($user);
 			$users[] = $user_info;
 		}
@@ -231,7 +232,7 @@ try {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 			}
-			foreach (user::all() as $user) {
+			foreach((user::all()) as $user) {
 				if ($user->getId() == $_SESSION['user']->getId()) {
 					@session_start();
 					$_SESSION['user']->refresh();

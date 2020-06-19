@@ -19,7 +19,7 @@ $homePageMobile = array(
 	'core::plan' => '{{Design}}',
 	'core::plan3d' => '{{Design 3D}}',
 );
-foreach (plugin::listPlugin() as $pluginList) {
+foreach ((plugin::listPlugin()) as $pluginList) {
 	if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
 		$homePageDesktop[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
 	}
@@ -36,7 +36,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
 	</ul>
 
-	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+	<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="interfacetab">
 			<br>
 			<form class="form-horizontal">
@@ -44,7 +44,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 					<legend><i class="fas fa-laptop"></i> {{Interface}}</legend>
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}
-							<sup><i class="fas fa-question-circle tooltips" title="Affiche le panneau des objets sur le dashboard"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Affiche le panneau des objets sur le dashboard}}"></i></sup>
 						</label>
 						<div class="col-sm-1 col-xs-6">
 							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
@@ -52,7 +52,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}
-							<sup><i class="fas fa-question-circle tooltips" title="Page affichée après connexion"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Page affichée après connexion}}"></i></sup>
 						</label>
 						<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 						<div class="col-sm-2 col-xs-6">
@@ -78,13 +78,13 @@ foreach (plugin::listPlugin() as $pluginList) {
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}
-							<sup><i class="fas fa-question-circle tooltips" title="Objet affiché lors de l’arrivée sur le dashboard"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Objet affiché lors de l’arrivée sur le dashboard}}"></i></sup>
 						</label>
 						<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardObject">
 								<?php
-								foreach (jeeObject::all() as $object) {
+								foreach ((jeeObject::all()) as $object) {
 									echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
 								}
 								?>
@@ -95,7 +95,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileObject">
 								<option value="all">{{Tout}}</option>
 								<?php
-								foreach (jeeObject::all() as $object) {
+								foreach ((jeeObject::all()) as $object) {
 									echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
 								}
 								?>
@@ -105,13 +105,13 @@ foreach (plugin::listPlugin() as $pluginList) {
 					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}
-							<sup><i class="fas fa-question-circle tooltips" title="Vue affichée lors de l’arrivée sur le dashboard"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Vue affichée lors de l’arrivée sur le dashboard}}"></i></sup>
 						</label>
 						<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDesktopView">
 								<?php
-								foreach (view::all() as $view) {
+								foreach ((view::all()) as $view) {
 									echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
 								}
 								?>
@@ -121,7 +121,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileView">
 								<?php
-								foreach (view::all() as $view) {
+								foreach ((view::all()) as $view) {
 									echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
 								}
 								?>
@@ -137,13 +137,13 @@ foreach (plugin::listPlugin() as $pluginList) {
 					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design par défaut}}
-							<sup><i class="fas fa-question-circle tooltips" title="Design affiché lors de l’arrivée sur le dashboard"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Design affiché lors de l’arrivée sur le dashboard}}"></i></sup>
 						</label>
 						<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan">
 								<?php
-								foreach (planHeader::all() as $plan) {
+								foreach ((planHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -153,7 +153,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan">
 								<?php
-								foreach (planHeader::all() as $plan) {
+								foreach ((planHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -169,13 +169,13 @@ foreach (plugin::listPlugin() as $pluginList) {
 					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}
-							<sup><i class="fas fa-question-circle tooltips" title="Design 3D affiché lors de l’arrivée sur le dashboard"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Design 3D affiché lors de l’arrivée sur le dashboard}}"></i></sup>
 						</label>
 						<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan3d">
 								<?php
-								foreach (plan3dHeader::all() as $plan) {
+								foreach ((plan3dHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -185,7 +185,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan3d">
 								<?php
-								foreach (plan3dHeader::all() as $plan) {
+								foreach ((plan3dHeader::all()) as $plan) {
 									echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 								}
 								?>
@@ -208,7 +208,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 							<div class="input-group">
 								<input type="text" class="userAttr form-control roundedLeft" data-l1key="options" data-l2key="notification::cmd" />
 								<span class="input-group-btn">
-									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
+									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
 								</span>
 							</div>
 						</div>
@@ -226,7 +226,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<a class="btn btn-default" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
+								<a class="btn btn-default btn-sm" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
 							</div>
 							<?php
 							if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
@@ -258,11 +258,8 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<span class="userAttr" data-l1key="hash"></span>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
 						<div class="col-lg-2 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
+							<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
 						</div>
 					</div>
 				</fieldset>
@@ -280,17 +277,19 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<tbody>
 							<?php
 							$sessions = listSession();
-							if(count($sessions) > 0){
+							if (count($sessions) > 0) {
 								foreach ($sessions as $id => $session) {
 									if ($session['user_id'] != $_SESSION['user']->getId()) {
 										continue;
 									}
-									echo '<tr data-id="' . $id . '">';
-									echo '<td>' . $id . '</td>';
-									echo '<td>' . $session['ip'] . '</td>';
-									echo '<td>' . $session['datetime'] . '</td>';
-									echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
-									echo '</tr>';
+									$tr = '';
+									$tr .= '<tr data-id="' . $id . '">';
+									$tr .= '<td>' . $id . '</td>';
+									$tr .= '<td>' . $session['ip'] . '</td>';
+									$tr .= '<td>' . $session['datetime'] . '</td>';
+									$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+									$tr .= '</tr>';
+									echo $tr;
 								}
 							}
 							?>
@@ -313,21 +312,23 @@ foreach (plugin::listPlugin() as $pluginList) {
 						</thead>
 						<tbody>
 							<?php
-							foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
-								echo '<tr data-key="' . $key . '">';
-								echo '<td title="'.$key.'">';
-								echo substr($key, 0, 10) . '...';
-								echo '</td>';
-								echo '<td>';
-								echo $value['ip'];
-								echo '</td>';
-								echo '<td>';
-								echo $value['datetime'];
-								echo '</td>';
-								echo '<td>';
-								echo '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-								echo '</td>';
-								echo '</tr>';
+							foreach (($_SESSION['user']->getOptions('registerDevice')) as $key => $value) {
+								$tr = '';
+								$tr .= '<tr data-key="' . $key . '">';
+								$tr .= '<td title="'.$key.'">';
+								$tr .= substr($key, 0, 10) . '...';
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= $value['ip'];
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= $value['datetime'];
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+								$tr .= '</td>';
+								$tr .= '</tr>';
+								echo $tr;
 							}
 
 							?>

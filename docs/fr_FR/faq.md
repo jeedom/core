@@ -117,7 +117,7 @@ Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est e
 
 ### Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH
 Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
+Si celui-ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware. Voici la [documentation](https://doc.jeedom.com/fr_FR/installation/smart) pour la Smart
 
 ### Mon scénario ne s’arrête plus/pas
 Il est conseillé de regarder les commandes exécutées par le scénario, souvent cela vient d’une commande qui ne se termine pas.
@@ -165,7 +165,7 @@ echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 ### J'ai un soucis d'heure sur mes historiques
 Essayez de vider le cache de chrome, l'affichage des historiques est calculé par rapport à l'heure du navigateur.
 
-### J'ai l'erreur "Soucis réseaux détecté, redémarrage du réseaux"
+### J'ai l'erreur "Souci réseaux détecté, redémarrage du réseaux"
 Jeedom ne trouve pas ou n'arrive pas a pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeedom n'a pas redémarré ou a redémarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connexion réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
 
 ### J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."
@@ -202,3 +202,14 @@ Il faut :
 - cliquer sur Dpkg configure
 - attendre 10min
 - relancer les dépendances du plugins qui bloque
+
+### J'ai cette erreur sur l'installation des dependances d'un plugin : "from pip._internal import main"
+
+Il faut dans la console systeme de Jeedom ou en ssh faire
+
+````
+sudo easy_install pip
+sudo easy_install3 pip
+````
+
+Puis relancer les dependances

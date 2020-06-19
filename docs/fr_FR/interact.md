@@ -1,7 +1,7 @@
 # Interactions
 **Outils → Interactions**
 
-Le système d’interaction dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
+Le système d’interactions dans Jeedom permet de réaliser des actions à partir de commandes textes ou vocales.
 
 Ces commandes peuvent être obtenues par :
 

@@ -1,17 +1,26 @@
-Reserved for experts, this page allows you to add CSS or JS script
-in addition in Jeedom, which will be executed on each page.
+# Advanced customization
+**Settings → System → Advanced customization**
 
-Accessible par **Réglages → Système → Personnalisation avancée**
+This page, reserved for experts, allows you to add CSS or JS scripts to Jeedom, which will be executed on each page.
 
-So from this page you can add JS and CSS scripts
-executed everywhere in Jeedom by distinguishing the desktop version from the
-mobile version.
+You can add your own JS functions, and add or modify CSS classes.
 
-For unsuspecting people who want to discover CSS
-<Http://css.mammouthland.net/premiers-pas-en-css.php>
+The two parts, JS and CSS, are differentiated according to the Desktop or Mobile display.
 
-> **Important**
->
-> Any error in one of these scripts can make Jeedom totally
-> unavailable and it will connect in SSH and delete the
-> customization files to be able to retrieve it
+## Ressources
+
+[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+[Tips for customizing the interface](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
+
+## In case of problem
+
+Injecting JS and / or CSS can make Jeedom inoperative.
+
+In this case, two solutions:
+
+- Open a browser in rescue mode : `IP / index.php?rescue=1`
+- Connect in SSH and delete the customization files : `desktop / custopn` and` mobile / custom`
+

@@ -1,4 +1,20 @@
 <?php
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -13,12 +29,12 @@ foreach ($cmds as $cmd) {
   }
 }
 ?>
+
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
 <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
 <center>
   <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
 </center>
-
 <br/>
 <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory">
   <thead>
@@ -89,10 +105,10 @@ foreach ($cmds as $cmd) {
       }
       $tr .= '</td>';
       $tr .= '<td style="width:90px;">';
+      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       if ($cmd->getType() == 'info') {
         $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
-      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       $tr .= '</td>';
       $tr .= '</tr>';
     }
@@ -102,59 +118,61 @@ foreach ($cmds as $cmd) {
 </table>
 
 <script>
-initTableSorter();
-$("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
-$('#table_cmdConfigureHistory tbody tr').attr('data-change','0');
-$("#table_cmdConfigureHistory").trigger("update");
-$("#table_cmdConfigureHistory").width('100%');
+initTableSorter()
+var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
+$tableCmdConfigureHistory.tablesorter({headers:{0:{sorter:'checkbox'}}})
+$tableCmdConfigureHistory.find('tbody tr').attr('data-change','0')
+$tableCmdConfigureHistory.trigger("update")
+$tableCmdConfigureHistory.width('100%')
 
-$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
-});
+$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+})
 
-$(".bt_configureHistoryExportData").on('click', function () {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
-});
+$(".bt_configureHistoryExportData").on('click', function() {
+  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null)
+})
 
-$('.cmdAttr').on('change click',function(){
-  $(this).closest('tr').attr('data-change','1');
-});
+$('.cmdAttr').on('change click', function() {
+  $(this).closest('tr').attr('data-change','1')
+})
 
 $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
-  var cmds = [];
-  $('#table_cmdConfigureHistory tbody tr').each(function(){
-    if($(this).attr('data-change') == '1'){
-      cmds.push($(this).getValues('.cmdAttr')[0]);
+  var cmds = []
+  $tableCmdConfigureHistory.find('tbody tr').each(function(){
+    if ($(this).attr('data-change') == '1') {
+      cmds.push($(this).getValues('.cmdAttr')[0])
     }
   })
+
   jeedom.cmd.multiSave({
     cmds : cmds,
-    error: function (error) {
-      $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      $("#table_cmdConfigureHistory").trigger("update");
-      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
+    success: function(data) {
+      $tableCmdConfigureHistory.trigger("update")
+      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'})
     }
-  });
-});
+  })
+})
 
-$('#bt_canceltimeline').on('click',function(){
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-    $(this).prop('checked', false);
-    $(this).closest('tr').attr('data-change','1');
-  });
-});
+$('#bt_canceltimeline').on('click', function() {
+  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+    $(this).prop('checked', false)
+    $(this).closest('tr').attr('data-change','1')
+  })
+})
 
-$('#bt_applytimeline').on('click',function(){
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-    $(this).prop('checked', true);
-    $(this).closest('tr').attr('data-change','1');
-  });
-});
+$('#bt_applytimeline').on('click', function() {
+  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+    $(this).prop('checked', true)
+    $(this).closest('tr').attr('data-change','1')
+  })
+})
 
 $(function() {
   jeedom.timeline.autocompleteFolder()
+  initTooltips($tableCmdConfigureHistory)
 })
 </script>

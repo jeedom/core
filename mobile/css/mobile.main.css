@@ -88,9 +88,77 @@ a, .ui-link {
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
+[data-page="equipment"] .backgroundforJeedom {
+  filter: blur(var(--objectBackgroundBlur));
+}
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }
+
+#div_jeedomLoading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+#div_jeedomLoading .loadingSpinner {
+  position: relative;
+  top: 40%;
+  left: calc(50% - 10vh);
+  height: 20vh;
+  width: 20vh;
+  border: 1vh solid transparent;
+  border-radius: 50%;
+  border-top: 1vh solid var(--al-warning-color);
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+#div_jeedomLoading .loadingSpinner::before,
+#div_jeedomLoading .loadingSpinner::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  border-radius: 50%;
+  border: 1vh solid transparent;
+}
+#div_jeedomLoading .loadingSpinner::before {
+  border-top-color: var(--al-info-color);
+  -webkit-animation: 2s spin linear infinite;
+  animation: 2s spin linear infinite;
+}
+#div_jeedomLoading .loadingSpinner::after {
+  border-top-color: var(--logo-primary-color);
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
 #pagecontainer {
   padding-top: 64px;
   background-color: transparent !important;
@@ -100,6 +168,25 @@ a, .ui-link {
   cursor: pointer;
 }
 
+#jqueryLoadingDiv {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  color: var(--link-color)!important;
+  z-index: 99998;
+}
+
+#jqueryLoadingDiv .loadingImg {
+  opacity: 1;
+  position: absolute;
+  font-size : 15em;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  border: none;
+  outline-style: none;
+}
 
 [data-page="about"] textarea {
   color: var(--linkHoverLight-color);
@@ -197,6 +284,15 @@ a, .ui-link {
   text-shadow: none !important;
   min-height: 20px;
 }
+
+#div_displayScenario .toggleShowGroup {
+  font-size: 16px !important;
+  font-weight: 300;
+  padding: 3px 0;
+  margin: 3px;
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+}
+
 .cmd.refresh {
   position: absolute;
   right: 0;
@@ -253,11 +349,11 @@ a, .ui-link {
   color: var(--sc-lightTxt-color) !important;
   font-size: 16px !important;
   font-weight: 300;
-
 }
 .widget-name {
   padding-right: 22px;
   padding-left: 12px;
+  padding-top: 2px;
   word-break: break-word;
   max-height: 41px;
   overflow: hidden;
@@ -269,6 +365,11 @@ a, .ui-link {
   font-size: 14px !important;
 }
 
+.scenario-widget .widget-name,
+.scenario-widget .widget-name a {
+  pointer-events: auto;
+  cursor: pointer;
+}
 .scenario-widget.disabled .widget-name {
   background-color: var(--al-warning-color) !important;;
 }
@@ -424,10 +525,6 @@ p.state {
 .objectSummaryParent {
   font-size: 15px;
 }
-#div_displayEquipement span[class^="objectSummary"]:nth-last-child(6):before {
-  content: ' ';
-  display: block;
-}
 
 #bottompanel_objectList .objectSummaryParent,
 .ui-listview .objectSummaryParent {
@@ -499,14 +596,16 @@ p.state {
   padding: 4px 10px;
 }
 .ui-header.ui-bar-inherit #summaryglobalContainer {
+  scrollbar-width: thin;
   position: relative;
   right: 2px !important;
-  text-align: right !important;
   max-height: 24px;
-  overflow-x: scroll;
+  text-align: right !important;
+  overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   margin: 0 8px;
+  padding: 4px 0;
 }
 
 .objectSummaryglobal .objectSummaryParent {
@@ -601,10 +700,13 @@ legend {
   color: var(--link-color) !important;
   background-color: transparent !important;
   text-align: center;
-  margin: 0.7em 0 0.2em 0;
+  margin: 0 0 0.2em 0;
   border-bottom: none !important;
   font-size: 22px !important;
   width : 100%;
+}
+.objectHtml {
+  margin-bottom: 0.7em !important;
 }
 legend,
 .ui-input-text input,
@@ -660,6 +762,7 @@ a.ui-slider-handle {
 select option {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color));
+  font-family: 'Roboto', 'Verdana';
 }
 
 
@@ -865,6 +968,12 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 
 
 /* ________________OTHERS */
+[data-page="log"] #page,
+[data-page="scenariolog"] #page {
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
 .ui-table-columntoggle-btn,
 .ui-table,
 #pre_globallog {
@@ -872,34 +981,194 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   background: rgb(var(--bg-color));
 }
 #pre_globallog {
-  font-size: 14px;
-  line-height: 15px;
-  font-family: "Roboto";
+  width: calc(100% - 8px);
+  font-size: 13px;
+  line-height: 14px;
+  font-family: "CamingoCode", monospace;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  user-select: text;
+  -webkit-user-select: text;
 }
 #in_globalLogSearch {
   margin-top: 5px;
 }
 
-#table_timeline {
+
+
+/*______Timeline cards */
+body[data-page="history"] #div_pageContainer {
+  height: 100%;
+}
+body[data-page="history"] #div_pageContainer .tab-content {
+  height: 100% !important;
+  padding-bottom: 0 !important;
+}
+#timelinetab {
+  height: 100% !important;
+}
+#timelineContainer {
+  padding-top: 40px;
+}
+
+#timelineContainer .html .tml-cmd > span >span i {
+  color: var(--linkHoverLight-color) !important;
+}
+
+#timelineContainer ul {
+  padding-top: 15px;
+  list-style: none;
+  padding-left: 130px;
+  background-color: rgb(var(--bg-color));
+}
+/*dotted vertical line:*/
+#timelineContainer ul:before {
+  content: '';
+  width: 1px;
+  height: calc(100% - 200px);
+  position: absolute;
+  border-left: 3px dotted var(--al-info-color);
+}
+#timelineContainer ul li  {
+  position: relative;
+  margin-top: 5px;
+  min-height: 22px;
+  width: calc(100% - 40px);
+  margin-left: 30px ;
+  padding: 6px;
+  border-radius: var(--border-radius);
+  background-color: rgb(var(--eq-bg-color)) !important;
+}
+#timelineContainer ul li > span.vertLine {
+  position: absolute;
+  width: 3px;
+  height: 116%;
+  left: -30px;
+  top: 0;
+}
+#timelineContainer ul li > span.vertLine.typeAction {
+  background: var(--al-warning-color);
+}
+#timelineContainer ul li > span.vertLine.typeInfo {
+  background: var(--al-info-color);
+}
+#timelineContainer ul li > span.vertLine.typeScenario {
+  background: var(--bt-success-color);
+}
+#timelineContainer ul .day {
+  position: relative;
+  padding: 5px 0 5px 25px;
+  top: 20px;
+  margin-bottom: 40px;
+  margin-left: -115px ;
+  width: 150px;
+  z-index: 200 !important;
+  border-radius: var(--border-radius);
+}
+
+/* pastilles: */
+#timelineContainer ul li .time:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--al-info-color);
+  position: absolute;
+  background: rgb(var(--eq-bg-color)) !important;
+  left: 65px;
+  top: 5px;
+  z-index: 5;
+}
+#timelineContainer ul li .time.typeAction:after {
+  border: 3px solid var(--al-warning-color);
+}
+#timelineContainer ul li .time.typeScenario:after {
+  border: 3px solid var(--bt-success-color);
+}
+
+#timelineContainer div.time {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 700;
+  left: -100px;
+  margin-top: -5px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.date {
+  position: absolute;
+  font-size: 11px;
+  left: -120px;
+  margin-top: 12px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.type {
+  width: 30%;
+  display: inline-block
+}
+#timelineContainer div.html {
+  width: 70%;
+  display: inline-block
+}
+
+/* timeline special mobile */
+#timelineContainer {
+  padding-top: 0;
+}
+#timelineContainer ul:before {
+  left: 78px;
+}
+#timelineContainer ul {
+  padding-left: 105px;
+}
+#timelineContainer ul li {
+  width: calc(100% - 6px);
+  margin-left: -12px;
+  font-size: 14px;
+}
+#timelineContainer ul li > span.vertLine {
+  left: -17px;
+}
+#timelineContainer .html i {
   font-size: 12px;
 }
-#table_timeline tbody td > i{
-  font-size: 18px;
+#timelineContainer div.time {
+  left: -88px;
 }
-#table_timeline tr {
-  min-height: 22px;
-  padding: 0;
-  margin: 0;
-  border: 1px solide red !important;
+#timelineContainer ul li .time:after {
+  width: 11px;
+  height: 11px;
+  left: 64px;
+  top: 2px;
 }
-#table_timeline .label-sm {
-  padding: 5px;
-  border-radius: var(--border-radius);
-  line-height: 27px;
+#timelineContainer ul .html .bt_scenarioLog,
+#timelineContainer ul .html .bt_gotoScenario,
+#timelineContainer ul .html .bt_configureCmd {
+  display: none;
 }
-#table_timeline .sepDay td {
-  border-top: 2px dotted var(--txt-color);
+#timelineContainer ul .html .label-sm {
+  padding: 1px 5px;
 }
+#timelineContainer div.date {
+  left: -85px;
+}
+@media screen and (max-width: 780px) and (orientation: portrait) {
+  #timelineContainer div.type,
+  #timelineContainer div.html {
+    width: 100%;
+    min-height: 25px;
+    display: inline-block
+  }
+}
+@media screen and (min-width: 1200px) {
+  #timelineContainer ul:before {
+    left: 86px;
+  }
+}
+
+
 
 /* ________________HIGHCHARTS */
 .highcharts-tooltip .highcharts-tooltip-box,
@@ -948,13 +1217,21 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   fill: var(--el-defaultColor) !important;
 }
 .highcharts-button > text,
-.highcharts-button-disabled > text{
+.highcharts-button-disabled > text {
   fill: var(--link-color) !important;
 }
+.div_viewZone .highcharts-button-disabled,
+.graph-widget .highcharts-button-disabled,
+#div_graph .highcharts-button-disabled {
+  opacity: 0.3;
+}
+
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;
 }
-
+.highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
+  font-weight: bold;
+}
 .highcharts-pane {
   fill: var(--el-defaultColor);
 }
@@ -963,6 +1240,13 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 }
 .highcharts-color-0 {
   fill: var(--link-color);
+}
+.highcharts-label.highcharts-point path {
+  fill: var(--btnEq-default-color) !important;
+  stroke: none;
+}
+.highcharts-label.highcharts-point text {
+  fill: var(--txt-color);
 }
 
 /* ___________________________________________________________POPUP */
@@ -1138,6 +1422,9 @@ a.ui-table-columntoggle-btn {
   margin: 10px !important;
   display: inline-block;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+}
 
 .objectPreview > .topPreview,
 .objectPreview > .bottomPreview {
@@ -1187,8 +1474,9 @@ a.ui-table-columntoggle-btn {
   position: absolute;
   top: 5px;
   min-width: 80px !important;
-  font-weight: 200;
+  font-weight: 300;
   text-align: right;
+  color: var(--contrast-color) !important;
 }
 .objectPreview .resume .objectSummaryParent {
   background-color: rgb(var(--bg-color));
@@ -1212,25 +1500,27 @@ a.ui-table-columntoggle-btn {
   top: -3px;
 }
 
-.objectPreview .objectSummaryParent[data-summary="temperature"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
   right: 55px;
   font-size: 18px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="humidity"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
   right: 2px;
   font-size: 18px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] i,
-.objectPreview .objectSummaryParent[data-summary="humidity"] i {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] i {
   display: none;
 }
 
 .objectPreview .success,
-.objectPreview .success > i {
+.objectPreview .topPreview .objectSummaryParent.success,
+.objectPreview .topPreview .objectSummaryParent.success i {
   color: var(--bt-success-color) !important;
 }
 .objectPreview .danger,
-.objectPreview .danger > i {
+.objectPreview .topPreview .objectSummaryParent.danger,
+.objectPreview .topPreview .objectSummaryParent.danger i {
   color: var(--al-danger-color) !important;
 }
 
@@ -1268,6 +1558,10 @@ a.ui-table-columntoggle-btn {
   }
 }
 @media screen and (max-width: 560px) {
+  #div_displayEquipement span[class^="objectSummary"]:nth-last-child(6):before {
+    content: ' ';
+    display: block;
+  }
   .objectPreview {
     width: 95%;
   }

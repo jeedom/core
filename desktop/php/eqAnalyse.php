@@ -4,7 +4,8 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $list = array();
-foreach (eqLogic::all() as $eqLogic) {
+$eqLogicsAll = eqLogic::all();
+foreach ($eqLogicsAll as $eqLogic) {
 	$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
 	if ($eqLogic->getIsEnable() && $eqLogic->getStatus('battery', -2) != -2) {
 		array_push($list, $eqLogic);
@@ -18,7 +19,7 @@ usort($list, function ($a, $b) {
 <a class="btn btn-sm pull-right" id="bt_massConfigureEqLogic"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 <ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
 	<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
-	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
+	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Equipements en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
 	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
 	<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
@@ -46,7 +47,7 @@ usort($list, function ($a, $b) {
 		<div class="alertListContainer">
 			<?php
 			$hasAlert = false;
-			foreach (eqLogic::all() as $eqLogic) {
+			foreach ($eqLogicsAll as $eqLogic) {
 				if ($eqLogic->getAlert() == '') {
 					continue;
 				}
@@ -54,7 +55,7 @@ usort($list, function ($a, $b) {
 				echo $eqLogic->toHtml('dashboard');
 			}
 			if (!$hasAlert) {
-				echo '<br/><div class="alert alert-success">{{Aucun module en Alerte pour le moment}}</div>';
+				echo '<br/><div class="alert alert-success">{{Aucun équipement en Alerte.}}</div>';
 			}
 			?>
 		</div>
@@ -73,14 +74,14 @@ usort($list, function ($a, $b) {
 			</thead>
 			<tbody>
 				<?php
-				foreach (eqLogic::all() as $eqLogic) {
+				foreach ($eqLogicsAll as $eqLogic) {
 					$div = '';
-					foreach ($eqLogic->getCmd('info') as $cmd) {
+					foreach (($eqLogic->getCmd('info')) as $cmd) {
 						if (count($cmd->getConfiguration('actionCheckCmd', array())) > 0) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
 							$div .= '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
 							$actions = '';
-							foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd) {
+							foreach (($cmd->getConfiguration('actionCheckCmd')) as $actionCmd) {
 								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
 							}
 							$div .= trim($actions);
@@ -93,12 +94,12 @@ usort($list, function ($a, $b) {
 					}
 					if ($div != '') echo $div;
 					$div = '';
-					foreach ($eqLogic->getCmd('action') as $cmd) {
+					foreach (($eqLogic->getCmd('action')) as $cmd) {
 						if (count($cmd->getConfiguration('jeedomPreExecCmd', array())) > 0) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
+								$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
 							}
 							$div .= trim($actions);
 							$div .= '</td>';
@@ -110,8 +111,8 @@ usort($list, function ($a, $b) {
 						if (count($cmd->getConfiguration('jeedomPostExecCmd', array())) > 0) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
 							$actions = '';
-							foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd)  . '<br/>';
+							foreach (($cmd->getConfiguration('jeedomPostExecCmd')) as $actionCmd) {
+								$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
 							}
 							$div .= trim($actions);
 							$div .= '</td>';
@@ -123,7 +124,7 @@ usort($list, function ($a, $b) {
 						if ($cmd->getConfiguration('actionConfirm')) {
 							$code = '';
 							if ($cmd->getConfiguration('actionCodeAccess')) {
-								$code = ' avec code';
+								$code = '{{ avec code}}';
 							}
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 							$div .= 'Confirmation de l\'action' . $code;
@@ -135,7 +136,7 @@ usort($list, function ($a, $b) {
 						}
 						if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
-							$div .= 'Code de confirmation de l\'action';
+							$div .= '{{Code de confirmation de l\'action}}';
 							$div .= '</td>';
 							$div .= '<td>';
 							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
@@ -163,7 +164,7 @@ usort($list, function ($a, $b) {
 			</thead>
 			<tbody>
 				<?php
-				foreach (eqLogic::all() as $eqLogic) {
+				foreach ($eqLogicsAll as $eqLogic) {
 					$hasSomeAlerts = 0;
 					$listCmds = array();
 					foreach ($eqLogic->getCmd('info') as $cmd) {

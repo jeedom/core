@@ -19,6 +19,7 @@ html {
 
 body {
   font-family: 'Roboto' !important;
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.42;
   padding-top: 50px;
@@ -52,6 +53,18 @@ p.state,
   scrollbar-width: thin;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: var(--linkHover-color) !important;
+}
+
 .backgroundforJeedom {
   width: 100%;
   height: calc(100% - 50px);
@@ -64,11 +77,12 @@ p.state,
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
+[data-page="dashboard"] .backgroundforJeedom {
+  filter: blur(var(--objectBackgroundBlur));
+}
+
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
-}
-.ui-widget-overlay.ui-front {
-  background: rgba(10,10,10,1);
 }
 
 header a.navbar-brand {
@@ -90,6 +104,10 @@ header a.navbar-brand {
   height: calc(100% - 5px) !important;
 }
 
+#categoryfilter i {
+  width: 15px;
+}
+
 /* __________________________________________________________________________________________________________LINKS */
 
 .widget-name,
@@ -100,6 +118,20 @@ span,
   cursor: default !important;
   word-break: break-word;
 }
+
+#div_graphLinkRenderer text,
+#div_graphLinkRenderer image {
+  cursor: grab;
+}
+#div_graphLinkRenderer > svg {
+  height: 100%;
+  width: 100%
+}
+#div_graphLinkRenderer .nodeNoActive {
+  filter: grayscale(100%);
+  opacity: 0.75;
+}
+
 a,
 a i,
 a > span,
@@ -123,6 +155,9 @@ a.btn,
 .ui-resizable-nw { cursor: nw-resize !important; }
 .ui-resizable-ne { cursor: ne-resize !important; }
 
+.nocursor {
+  cursor: default !important;
+}
 a > img:hover {
   opacity: 0.75;
 }
@@ -131,7 +166,9 @@ a > img:hover {
   text-align: center;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,
+h3 a:visited {
+  font-weight: 400;
   color: var(--link-color);
 }
 
@@ -207,6 +244,9 @@ legend > sub {
   font-size: 12px;
   font-style: italic
 }
+legend .pull-right:not(.input-group) {
+  margin-right: 15px !important;
+}
 
 :not([data-page=display])legend {
   color: var(--link-color) !important;
@@ -220,7 +260,6 @@ legend > sub {
 .name > .labelObjectHuman {
   padding-left: 0x !important;
   display: inline-block;
-  padding: 0 5px;
 }
 
 /* résumé domo */
@@ -254,6 +293,8 @@ legend > sub {
 }
 [data-page=display] #div_pageContainer #displaytab ul > li input {
   top: 2px;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  font-size: 12px !important;
 }
 [data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
   margin: 0 !important;
@@ -297,13 +338,23 @@ legend > sub {
 }
 .div_object legend .objectDashLegend {
   padding: 3px 20px;
-  background-color: rgba(var(--bg-color), 0.65) !important;
+  background-color: rgba(var(--bg-color), var(--opacity)) !important;
+  width: 100%;
+  display: inline-block;
 }
 .div_object legend .objectDashLegend > a {
-  padding-right: 20px;
+  padding-right: 35px;
+  font-weight: 500;
+  transition-property: padding;
+  transition: 0.5s;
 }
-.div_object legend > span {
-  margin-left:10px;
+.div_object:hover legend .objectDashLegend > a {
+  padding-right: 80px;
+  transition-property: padding;
+  transition: 0.5s;
+}
+.div_object legend .objectDashLegend > a > i{
+  padding-right: 10px;
 }
 
 /* legend on equipements pages */
@@ -330,6 +381,17 @@ legend > sub {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+[data-page="dashboard"] div.col-md-12:empty {
+  display:none;
+}
+
+.bt_editDashboardWidgetAutoResize {
+  margin-top: 5px;
+}
+
+div.eqLogic.eqLogic-widget:empty {
+  display: none;
+}
 
 .eqLogic-widget.eqSignalInfo:after,
 .eqLogic-widget.eqSignalAction:after {
@@ -378,11 +440,9 @@ legend > sub {
 
 /* dashboard equipments text color */
 .tableCmd,
-.highcharts-axis-title > tspan,
 .cmd-widget > center {
-  fill: var(--txt-color) !important;
   color: var(--txt-color);
-  font-weight: bold;
+  font-weight: 700;
 }
 .tableCmd {
   font-size: 12px;
@@ -420,6 +480,7 @@ legend > sub {
 .label {
   font-size: 12px !important;
   font-weight: normal;
+  display: inline-block;
   padding: 4px 12px;
 }
 .label-sm {
@@ -430,7 +491,9 @@ legend > sub {
 .label-sm:empty{
   display: none !important;
 }
-
+label.radio-inline {
+  padding-top: unset !important;
+}
 
 .iconCmd {
   top: 0 !important;
@@ -525,12 +588,20 @@ sup i {
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
 
-
+#tableCmdLayoutConfiguration .form-control {
+  display: unset;
+}
 #tableCmdLayoutConfiguration .cmdLayout {
   display: inline-block
 }
+#tableCmdLayoutConfiguration .cmdLayoutContainer {
+  min-height: 24px;
+}
 #tableCmdLayoutConfiguration td {
   vertical-align: bottom;
+}
+#tableCmdLayoutConfiguration td input {
+  margin-top: 2px;
 }
 
 /* summary */
@@ -555,6 +626,18 @@ sup i {
   color: rgb(var(--contrast-color)) !important;
   margin: 5px;
 }
+.objectPreview .topPreview > .name > i {
+  color: var(--link-color);
+  padding-right: 5px;
+  transition-property: padding;
+  transition: 0.5s
+}
+.objectPreview:hover .topPreview > .name > i {
+  color: var(--link-color);
+  padding-right: 15px;
+  transition-property: padding;
+  transition: 0.5s
+}
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
 }
@@ -571,13 +654,16 @@ sup i {
 }
 .objectPreview > .topPreview > .name {
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 300;
   max-width: 195px;
   max-height: 30px !important;
   overflow: hidden;
   display: inline-block;
   line-height: 1.6;
   margin-top: -4px;
+}
+.objectPreview > .topPreview > .name:first-letter {
+  text-transform: uppercase;
 }
 .objectPreview > .topPreview > .bt_config {
   position: absolute;
@@ -612,8 +698,7 @@ sup i {
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
-  min-width: 80px !important;
-  font-weight: 200;
+  font-weight: 300;
   text-align: right;
 }
 .objectPreview .resume .objectSummaryParent {
@@ -637,18 +722,18 @@ sup i {
   left: -5px;
   top: -5px;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
   top: 10px;
   right: 58px;
   font-size: 20px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="humidity"] {
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
   top: 10px;
   right: 6px;
   font-size: 20px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] i,
-.objectPreview .objectSummaryParent[data-summary="humidity"] i {
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] i {
   display: none;
 }
 
@@ -663,6 +748,34 @@ sup i {
 
 .objectPreview .resume .objectSummaryParent:last-child {
   border-radius: 0 0 var(--border-radius) 0 !important;
+}
+
+
+div.ui-dialog[aria-describedby="md_overviewSummary"] {
+  box-shadow: none !important;
+  border: 1px solid rgba(var(--contrast-color), 0.15) !important;
+}
+div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
+  line-height: 12px;
+  background: rgba(var(--defaultBkg-color), 0.95) !important;
+}
+div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--link-color) !important;
+}
+div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title:before {
+  content: '';
+}
+.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
+  margin-top: -27px;
+  margin-right: -5px;
+}
+.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close:before {
+  color: var(--link-color) !important;
+}
+#md_overviewSummary {
+  background: rgba(var(--defaultBkg-color), 0.8) !important;
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
@@ -690,14 +803,32 @@ select.selectCmd {
   height: 2em;
 }
 
-.divIconSel {
+#tabicon .divIconSel {
+  text-align: center;
   min-width: 100px;
   width: 100px;
-  height: 75px !important;
-  overflow: hidden !important;
-  border: none !important;
+  height: 75px;
+  overflow: hidden;
+  border: none;
 }
-.divImgSel {
+
+#tabicon .iconSel {
+  line-height: 1.4;
+  font-size: 1.5em;
+}
+
+#tabicon .iconSelected {
+  background-color: #563d7c;
+  color: white;
+}
+
+#tabicon .imgContainer img {
+  max-width: 120px;
+  max-height: 70px;
+  padding: 10px;
+}
+
+#tabicon .divImgSel {
   min-width: 120px;
   width: 120px;
   height: 115px !important;
@@ -705,7 +836,8 @@ select.selectCmd {
   text-align: center;
 }
 
-.iconDesc {
+#tabicon .iconDesc {
+  font-size: 0.8em;
   word-wrap: break-word;
 }
 
@@ -726,10 +858,13 @@ div[class*="ListContainer"] > div.cursor,
   width : 130px !important;
   font-size: 14px !important;
 }
-div[class*="ListContainer"] > div.cursor i,
+div[class*="ListContainer"] > div.cursor:not(.objectDisplayCard) i,
 .eqLogicThumbnailContainer > div.cursor > i {
   font-size: 38px !important;
   font-weight: 900;
+}
+.objectDisplayCard i {
+  font-size: 38px !important;
 }
 div[class*="ListContainer"] i[class*=jeedom-batt] {
   font-weight: normal;
@@ -789,14 +924,20 @@ div[class*="DisplayCard"] .name {
   font-weight: 700;
   line-height: 14px !important;
 }
-div[class*="DisplayCard"] .name > .label {
-  line-height: 24px !important;
-}
 
 .pluginDisplayCard,
 .objectDisplayCard {
   height: 130px;
   min-height: 130px !important;
+}
+.objectDisplayCard > i {
+  display: inline-block;
+  height: 42px !important;
+}
+.objectDisplayCard .name {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--border-radius) !important;
 }
 .pluginListContainer div.cursor > center > img,
 .interactListContainer div.cursor > img {
@@ -847,6 +988,7 @@ div[class*="DisplayCard"] .name > .label {
 
 .eqLogic.eqLogic-widget .widget-name,
 .scenario-widget .widget-name {
+  font-weight: 300;
   padding-right: 22px;
   padding-left: 12px;
   max-height: 45px;
@@ -871,6 +1013,26 @@ div[class*="DisplayCard"] .name > .label {
 @keyframes spin-animation {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(1turn); }
+}
+
+.eqLogic-widget.editingMode .cmd.refresh {
+  display: none;
+}
+
+.eqLogic-widget .cmd.editOptions {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width: 15px;
+  height: 22px;
+  padding: 5px 7px;
+  text-align: center;
+  z-index: 500;
+}
+.eqLogic-widget .cmd.editOptions:after {
+  content: '\2807';
+  color: var(--eqTitle-color);
+  font-size: 20px;
 }
 
 .eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
@@ -911,8 +1073,16 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
+table.tablesorter thead .tablesorter-filter-row input {
+  height: 20px;
+}
+
 #table_cron .tablesorter-filter {
   display: none;
+}
+
+#div_commandResult {
+  overflow: auto;
 }
 
 #md_modal table.tablesorter {
@@ -946,6 +1116,25 @@ div[data-market_type=script]:hover {
 }
 
 /* analyse equipment */
+#table_Action thead th[data-column="2"] {
+  width: 180px;
+}
+#table_Action thead th[data-column="4"] {
+  width: 40px;
+}
+#actionCmd tr td {
+  vertical-align: top !important;
+}
+#actionCmd tr td div {
+  min-height: 25px;
+  display: list-item;
+  position: relative;
+  top: 5px;
+}
+#actionCmd tr td div span > i,
+#actionCmd tr td div span {
+  color: var(--linkHoverLight-color) !important;
+}
 #battery,
 #alertEqlogic {
   margin-bottom: 20px !important;
@@ -1026,6 +1215,13 @@ div[data-market_type=script]:hover {
 .form-group .label {
   padding: 3px 6px !important;
   min-width: 40px !important;
+  font-weight: 500 !important;
+}
+.control-label {
+  font-weight: 500;
+}
+.form-horizontal .control-label {
+  padding-top: 4px;
 }
 
 pre {
@@ -1221,7 +1417,7 @@ sup.danger {
 
 :not(.tableCmdcss) .cmdName {
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 400;
 }
 :not(.tableCmdcss) .cmd:not(.label) .state,
 .cmd {
@@ -1236,7 +1432,7 @@ p.state {
 .eqLogic.eqLogic-widget .cmd.label .state,
 .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
   color: var(--sc-lightTxt-color) !important;
-  font-weight: normal;
+  font-weight: 400;
 }
 .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
   display: inline-block;
@@ -1291,7 +1487,7 @@ li.alert-info.eqLogic {
   top: -6px !important;
 }
 .ui-slider-vertical .ui-slider-handle {
-  left: -5px !important;
+  left: -6px !important;
 }
 .ui-slider-horizontal {
   height: 3.2px !important;
@@ -1392,6 +1588,133 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
+
+/*______Timeline cards */
+body[data-page="history"] #div_pageContainer {
+  height: 100%;
+}
+body[data-page="history"] #div_pageContainer .tab-content {
+  height: 100% !important;
+  padding-bottom: 0 !important;
+}
+#timelinetab {
+  height: 100% !important;
+}
+#timelineContainer {
+  padding-top: 40px;
+}
+
+#timelineContainer .html .tml-cmd > span >span i {
+  color: var(--linkHoverLight-color) !important;
+}
+
+#timelineContainer ul {
+  padding-top: 15px;
+  list-style: none;
+  padding-left: 130px;
+  background-color: rgb(var(--bg-color));
+}
+/*dotted vertical line:*/
+#timelineContainer ul:before {
+  content: '';
+  width: 1px;
+  height: calc(100% - 200px);
+  position: absolute;
+  border-left: 3px dotted var(--al-info-color);
+}
+#timelineContainer ul li {
+  position: relative;
+  margin-top: 5px;
+  min-height: 22px;
+  width: calc(100% - 40px);
+  margin-left: 30px ;
+  padding: 6px;
+  border-radius: var(--border-radius);
+  background-color: rgb(var(--eq-bg-color)) !important;
+}
+#timelineContainer ul li > span.vertLine {
+  position: absolute;
+  width: 3px;
+  height: 116%;
+  left: -30px;
+  top: 0;
+}
+#timelineContainer ul li > span.vertLine.typeAction {
+  background: var(--al-warning-color);
+}
+#timelineContainer ul li > span.vertLine.typeInfo {
+  background: var(--al-info-color);
+}
+#timelineContainer ul li > span.vertLine.typeScenario {
+  background: var(--bt-success-color);
+}
+#timelineContainer ul .day {
+  position: relative;
+  padding: 5px 0 5px 25px;
+  top: 20px;
+  margin-bottom: 40px;
+  margin-left: -115px ;
+  width: 150px;
+  z-index: 9 !important;
+  border-radius: var(--border-radius);
+}
+
+/* pastilles: */
+#timelineContainer ul li .time:after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--al-info-color);
+  position: absolute;
+  background: rgb(var(--eq-bg-color)) !important;
+  left: 65px;
+  top: 5px;
+  z-index: 5;
+}
+#timelineContainer ul li .time.typeAction:after {
+  border: 3px solid var(--al-warning-color);
+}
+#timelineContainer ul li .time.typeScenario:after {
+  border: 3px solid var(--bt-success-color);
+}
+
+#timelineContainer div.time {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 700;
+  left: -100px;
+  margin-top: -5px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.date {
+  position: absolute;
+  font-size: 11px;
+  left: -120px;
+  margin-top: 12px;
+  height: 100%;
+  top: 0;
+}
+#timelineContainer div.type {
+  width: 30%;
+  display: inline-block
+}
+#timelineContainer div.html {
+  width: 70%;
+  display: inline-block
+}
+
+#timelineOptions {
+  position: fixed;
+  text-align: right;
+  right: 25px;
+  z-index: 10;
+  background: rgba(var(--panel-bg-color), var(--opacity));
+  padding: 5px;
+}
+
+
 #historytab .label.displayObject {
   margin-top: 2.2px;
 }
@@ -1401,17 +1724,14 @@ button .fas.fa-plus-circle {
 #historytab .label.displayObject i:hover {
   color: inherit !important;
 }
-#timelinetab .tml-cmd,
-#timelinetab .tml-scenario {
-  font-size: 14px;
-  color: var(--txt-color) !important;
+#historytab .history.disabled {
+  color: var(--placeholder-color) !important;
 }
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
 }
-
-.highcharts-button-disabled{
-  display: none !important;
+#in_testExpression {
+  font-size: 14px !important;
 }
 
 /* __________________________________________________________________________________________________________NAVBAR */
@@ -1429,8 +1749,12 @@ button .fas.fa-plus-circle {
 .navbar:hover {
   z-index: 50000;
 }
-.ui-widget-overlay.ui-front {
+.ui-widget-overlay.ui-front,
+.modal-backdrop {
   z-index: 90 !important;
+  background: var(--el-defaultColor) !important;
+  opacity: 0.6 !important;
+  backdrop-filter: blur(2px);
 }
 
 .navbar-collapse {
@@ -1505,11 +1829,13 @@ header .navbar-toggle {
 .dropdown-menu,
 .dropdown-menu > ul {
   z-index: 9999 !important;
+  scrollbar-color: var(--form-bg-color) transparent !important;
+  scrollbar-width: thin;
 }
 ul.dropdown-menu {
   border-bottom: 2px solid var(--el-defaultColor);
 }
-.nav .open > a,
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   background-color: rgb(var(--bg-color)) !important;
@@ -1555,6 +1881,32 @@ ul.dropdown-menu {
 .dropdown-submenu.pull-left > .dropdown-menu {
   left: -100%;
   margin-left: 10px;
+}
+
+.navbar-fixed-top .navbar-collapse {
+  max-height: 80vh;
+}
+
+ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+  border-top: 1px solid var(--el-defaultColor);
+  height: auto;
+  overflow-x: hidden;
+}
+
+@media screen and (max-height: 400px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 114px; /* 4 items */
+  }
+}
+@media screen and (min-height: 400px) and (max-height: 800px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 238px; /* 9 items */
+  }
+}
+@media screen and (min-height: 801px) {
+  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
+    max-height: 600px;
+  }
 }
 
 /* __________________________________________________________________________________________________________PANELS */
@@ -1611,6 +1963,17 @@ div.panel {
   padding: 8px 15px;
   display: inline-block;
 }
+#accordionHealth td:not([class*="alert"]) {
+  text-align:right;
+  padding-right:12px;
+}
+#accordionHealth table:not(#jeedomTable) tr td:first-child {
+  width:35%;
+}
+#accordionHealth #jeedomTable td[class*="alert"] {
+  width:20%;
+}
+
 [data-page="health"] .panel-title > a.accordion-toggle {
   width: auto;
 }
@@ -1694,8 +2057,11 @@ input.inputPassword  {
   top: 0 !important;
 }
 .form-group {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   vertical-align: middle !important;
+}
+.form-group .form-control {
+  margin-bottom: 1.1px !important;
 }
 
 .form-control {
@@ -1734,10 +2100,15 @@ fieldset > div {
 
 [class*="col-"] {
   position: relative;
-  min-height: 1px;
+  min-height: 28px !important;
   padding-left: 1em !important;
   padding-right: 1em !important;
 }
+
+.eqLogic-widget [class*="col-"] {
+  min-height: 1px !important;
+}
+
 :not(.form-group) > [class*="col-xs-"] {
   margin-bottom: 4px;
 }
@@ -1851,30 +2222,6 @@ textarea {
   margin-top: -2px;
 }
 
-.checkbox-inline.disabled,
-.checkbox.disabled label,
-.radio-inline.disabled,
-.radio.disabled label,
-fieldset[disabled] .checkbox label,
-fieldset[disabled] .checkbox-inline,
-fieldset[disabled] .radio label,
-fieldset[disabled] .radio-inline,
-fieldset[disabled] input[type=checkbox],
-fieldset[disabled] input[type=radio],
-input[type=checkbox].disabled,
-input[type=checkbox][disabled],
-input[type=radio].disabled,
-input[type=radio][disabled],
-select.disabled,
-select[disabled] {
-  cursor: not-allowed !important;
-}
-
-select:disabled,
-input:disabled {
-  opacity: 0.35 !important;
-}
-
 /* custom universal select */
 select,
 input[type=color] {
@@ -1935,6 +2282,7 @@ select option {
   color: var(--txt-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
   font-size: 13px;
+  font-family: 'Roboto', 'Verdana';
 }
 select optgroup {
   color: var(--txt-color) !important;
@@ -1990,6 +2338,10 @@ input[type=checkbox] {
   top : 5px;
   min-height : 0px !important;
 }
+td > input[type=checkbox],
+td > center > input[type=checkbox] {
+  top: initial;
+}
 input[type=checkbox],
 input[type=radio] {
   font-size: 14px !important;
@@ -2031,14 +2383,73 @@ input[type=checkbox].summaryAttr {
   padding: 0 !important;
 }
 
+.checkbox-inline.disabled,
+.checkbox.disabled label,
+.radio-inline.disabled,
+.radio.disabled label,
+fieldset[disabled] .checkbox label,
+fieldset[disabled] .checkbox-inline,
+fieldset[disabled] .radio label,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] input[type=checkbox],
+fieldset[disabled] input[type=radio],
+select.disabled,
+input.disabled,
+input[disabled],
+select[disabled] {
+  cursor: not-allowed !important;
+}
+
+select:disabled,
+input:disabled {
+  opacity: 0.7 !important;
+}
+
+.disabled .btn:not(.enabled),
+.disabled input:not(.enabled),
+.disabled button:not(.enabled),
+.disabled span:not(.enabled),
+.disabled button:not(.enabled) i,
+.disabled a:not(.enabled) > i {
+  cursor: not-allowed !important;
+  filter: alpha(opacity=65);
+  opacity: .65;
+}
+a.disabled,
+a.disabled > i {
+  cursor: default !important;
+}
+
 /* __________________________________________________________________________________________________________TABS */
 .tab-content {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
-  padding-bottom: 2px !important;
+  padding-bottom: 12px !important;
+  min-height: 120px;
+  height: unset !important;
+  max-height:calc(100% - 50px);
+  overflow:auto;
+  overflow-x: hidden;
 }
+#scenariotab {
+  min-height: 80vh;
+}
+body[data-page="custom"] #div_pageContainer {
+  height: calc(100% - 5px);
+  }
+body[data-page="custom"] div[role="tabpanel"],
+body[data-page="custom"] .tab-content {
+  height: calc(100% - 55px) !important;
+}
+body[data-page="custom"] .CodeMirror {
+  height: 100% !important;
+}
+
 .tab-content .tab-content,
 .tab-content pre {
   background-color: rgba(0,0,0,0)!important;
+}
+.tab-content ul.nav.nav-tabs li a {
+  border-top: 1px solid var(--el-defaultColor) !important;
 }
 ul.nav.nav-tabs li,
 .nav-tabs > li > a {
@@ -2146,10 +2557,12 @@ th {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
 }
 
+#logsForms .form-group:nth-child(odd){
+  background-color: rgb(var(--bg-color)) !important;
+}
 :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
   background-color: rgb(var(--bg-color)) !important;
 }
-
 :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
   background-color: var(--bg-modal-color) !important;
 }
@@ -2179,15 +2592,22 @@ tr.tablesorter-filter-row td {
   transition-property: background-color;
 }
 
-.table-condensed tr,
-.table-condensed td {
-  height: 25px;
-}
-.table-condensed tbody tr td {
+table.table-condensed tbody tr,
+table.table-condensed tbody td {
+  height: 21px !important;
+  line-height: 14px !important;
   padding-top: 1px;
   padding-bottom: 2px;
 }
-
+table.table-condensed tbody tr > td {
+  vertical-align: middle !important;
+}
+#table_packages tbody td > span.label {
+  display: block;
+}
+#table_ObjectSummary tbody td {
+  height: 25px !important;
+}
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
@@ -2226,46 +2646,18 @@ hr {
 
 /* __________________________________________________________________________________________________________CodeMirror */
 div.CodeMirror {
+  font-family: "CamingoCode", monospace;
+  font-size: 13px;
   height: auto;
-  background: var(--form-bg-color) !important;
+  background: var(--objectTxt-color) !important;
+}
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d9d9d9; }
+
+div.CodeMirror pre {
+  background-color: transparent !important;
 }
 
-[data-page=custom] .CodeMirror,
-[data-page=custom] .CodeMirror textarea,
-[data-page=custom] .CodeMirror-gutters {
-  height: 100% !important;
-}
-
-.CodeMirror:not(class*=cm-s-),
-.CodeMirror-code,
-.CodeMirror-sizer {
-  color: var(--sc-formTxt-color)!important;
-}
-.CodeMirror-gutters {
-  background: var(--form-bg-color)!important;
-  border-right: 0;
-  border: none !important;
-}
-.CodeMirror-linenumber {
-  color: var(--txt-color);
-}
-.CodeMirror-lines {
-  border-top: 4px solid var(--form-bg-color) !important;
-  padding: 0;
-  background: var(--sc-form-color) !important;
-}
-
-.CodeMirror-focused,
-.CodeMirror-sizer,
-.CodeMirror pre,
-.CodeMirror-code {
-  background: var(--sc-form-color) !important;
-}
-
-.CodeMirror-focused,
-.CodeMirror-selected {
-  background-color: rgba(0,0,0,1) !important;
-}
 
 
 /* hihgly special */
@@ -2447,6 +2839,13 @@ div[id^=__lpform_] { /*lastpass*/
   color: var(--linkHoverLight-color) !important;
   font-size : 12px !important;
   line-height: 15px;
+}
+/* translation trick */
+.dropdown-menu .bt_addAction {
+  text-transform: lowercase
+}
+.dropdown-menu .bt_addAction::first-letter {
+  text-transform: uppercase
 }
 
 /* scenarios fields */
@@ -2650,6 +3049,21 @@ textarea {
 .element .subElement:first-of-type legend {
   margin: 0 0 0 30px !important;
 }
+.element .subElement.subElementAT legend {
+  position: relative;
+  display: inline;
+  top: 5px;
+}
+.element .subElement.subElementAT legend + span {
+  position: relative;
+  display: inline;
+  top: 5px;
+  padding-left: 3px;
+  color: var(--link-color);
+}
+.element .subElement.subElementAT .expression {
+   top: 6px;
+}
 .element .subElement.subElementIF legend {
   margin: 0 0 0 59px !important;
 }
@@ -2807,13 +3221,72 @@ textarea {
   font-size: 12px !important;
   width : calc(100% - 340px);
   height: 24px;
+  overflow: hidden;
   opacity: 0.8;
 }
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
-
-#jqueryLoadingDiv {
-  color: var(--link-color)!important
+#div_jeedomLoading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+#div_jeedomLoading .loadingSpinner {
+  position: relative;
+  top: 40%;
+  left: calc(50% - 10vh);
+  height: 20vh;
+  width: 20vh;
+  border: 1vh solid transparent;
+  border-radius: 50%;
+  border-top: 1vh solid var(--al-warning-color);
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+#div_jeedomLoading .loadingSpinner::before,
+#div_jeedomLoading .loadingSpinner::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  border-radius: 50%;
+  border: 1vh solid transparent;
+}
+#div_jeedomLoading .loadingSpinner::before {
+  border-top-color: var(--al-info-color);
+  -webkit-animation: 2s spin linear infinite;
+  animation: 2s spin linear infinite;
+}
+#div_jeedomLoading .loadingSpinner::after {
+  border-top-color: var(--logo-primary-color);
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+         transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 .col-lg-9.col-md-8.col-sm-7 {
@@ -2922,6 +3395,13 @@ textarea {
 :not(.gauge) >.highcharts-container .highcharts-axis-line { stroke: var(--txt-color) }
 .highcharts-axis-labels text tspan { fill: var(--txt-color)!important; }
 
+.highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
+  font-weight: bold;
+  font-size: 12px;
+  transform: translate(0,10px) !important;
+  fill: var(--contrast-color)!important;
+}
+
 .highcharts-background {
   fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
   fill-opacity: var(--opacity);
@@ -2935,21 +3415,24 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
-.graph-widget {
+.graph-widget:not(.transparent) {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
 .graph-widget .highcharts-plot-band,
 .chartContainer .highcharts-plot-band,
-#div_graph .highcharts-plot-band,
-#div_historyChart .highcharts-plot-band {
-  fill: rgb(var(--bg-color)) !important;
+#div_graph .highcharts-plot-band {
+  fill: rgba(var(--bg-color), 0.5) !important;
 }
 .highcharts-button-box {
   fill: var(--el-defaultColor) !important;
 }
 .highcharts-button > text,
-.highcharts-button-disabled > text{
+.highcharts-button-disabled > text,
+.highcharts-button-box > text {
   fill: var(--link-color) !important;
+}
+.highcharts-button-box {
+  stroke: transparent;
 }
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;
@@ -2958,8 +3441,23 @@ textarea {
   stroke-width: 0.1 !important;
   stroke: var(--link-color) !important;
 }
+.highcharts-axis-title > tspan {
+  fill: var(--txt-color) !important;
+  font-weight: 700;
+}
+.div_viewZone .highcharts-button-disabled,
+.graph-widget .highcharts-button-disabled,
+#div_graph .highcharts-button-disabled {
+  opacity: 0.3;
+}
 path.highcharts-graph {
   stroke-width: 1.2;
+}
+.highcharts-selection-marker {
+  fill: rgb(var(--eq-bg-color));
+  fill-opacity: 0.5;
+  stroke: rgb(var(--contrast-color));
+  stroke-width: 1px !important;
 }
 
 
@@ -2977,6 +3475,13 @@ path.highcharts-graph {
 }
 .highcharts-tooltip .highcharts-shadow {
   display: none;
+}
+.highcharts-label.highcharts-point path {
+  fill: var(--btnEq-default-color) !important;
+  stroke: none;
+}
+.highcharts-label.highcharts-point text {
+  fill: var(--txt-color);
 }
 
 
@@ -3016,6 +3521,11 @@ path.highcharts-graph {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.div_backgroundPlan .text-widget {
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  color: var(--txt-color) !important;
 }
 
 /* view data table */
@@ -3096,15 +3606,17 @@ path.highcharts-graph {
 #div_confPlugin {
   height: auto !important;
 }
-:not(.elfinder-dialog).ui-dialog {
-  box-shadow: 0px 0px 0px 1500px var(--shd-color) !important;
-}
 
 .modal-header {
   border-bottom-width: 0 !important;
 }
+.modal-dialog {
+  top: 80px;
+  background-color: rgb(var(--panel-bg-color)) !important;
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+}
 .modal-content {
-  background-color: var(--bg-modal-color)!important
+  background: transparent;
 }
 .modal-footer {
   border-top-color: rgb(var(--bg-color))!important
@@ -3150,6 +3662,7 @@ path.highcharts-graph {
 
 .ui-dialog {
   background-color: rgb(var(--defaultBkg-color));
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
@@ -3162,6 +3675,7 @@ path.highcharts-graph {
   margin-bottom: 0 !important;
   font-size: 16px;
   font-weight: normal;
+  cursor: move !important;
 }
 .ui-dialog .ui-dialog-title:before {
   content: '\f105\00a0\00a0';
@@ -3205,7 +3719,7 @@ path.highcharts-graph {
 }
 #ui-datepicker-div {
   background: rgb(var(--bg-color)) !important;
-  z-index: 1020 !important;
+  z-index: 1030 !important;
 }
 #ui-datepicker-div .ui-datepicker-header a {
   color: red !important;
@@ -3214,18 +3728,6 @@ path.highcharts-graph {
 #ui-datepicker-div .ui-state-hover {
   color: var(--linkHoverLight-color) !important;
   background: var(--link-color);
-}
-
-div.vis-item,
-div.vis-item-content {
-  background-color: white;
-  border-color: #D7D7D7;
-  padding:0px !important;
-  margin:0px !important;
-}
-.vis-timeline,
-.vis-timeline div {
-  border-color: var(--placeholder-color) !important;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
@@ -3337,6 +3839,12 @@ input:invalid {
   background-color: rgb(var(--defaultBkg-color))
 }
 
+#div_displayCmdConfigure .form-group div > span.cmdAttr {
+  max-width: 98% !important;
+  display: inline-block;
+  padding: 5px !important;
+}
+
 
 /* __________________________________________________________________________________________________________TooltipSter */
 .tooltipWrapper {
@@ -3369,7 +3877,8 @@ input:invalid {
 .jqAlert,
 .expressionACTION,
 .progressbarContainer .progress,
-.element .blocPreview {
+.element .blocPreview,
+.div_backgroundPlan .text-widget {
   border-radius: var(--border-radius) !important;
 }
 
@@ -3420,10 +3929,13 @@ pre {
   letter-spacing: 0.05em;
   line-height: 14px;
 }
-#pre_globallog {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  line-height: 15px;
+#pre_globallog,
+#pre_scenariolog,
+#pre_commandResult,
+#div_commandResult {
+  font-family: "CamingoCode", monospace;
+  font-size: 13px;
+  line-height: 14px;
 }
 
 .input-group .btn,
@@ -3461,7 +3973,8 @@ pre {
   margin-right: 3px !important;
 }
 
-.ui-dialog {
+.ui-dialog,
+.bootbox.modal, .modal-dialog, .modal-content, .modal-body, .modal-footer {
   border-radius: var(--border-radius) !important;
 }
 .ui-dialog-titlebar {
@@ -3579,6 +4092,12 @@ ul.dropdown-menu {
   #div_displayLogList {
     padding-top: 0 !important;
     max-height: 11.5em;
+  }
+  .navbar .container-fluid .navbar-collapse.collapse.in {
+    box-shadow:  0 16px 16px 3px var(--shd-color);
+  }
+  .navbar-nav.navbar-right {
+    display: none;
   }
 }
 @media screen and (max-width: 992px) {

@@ -140,7 +140,7 @@ $optionMaxSize = 15;
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 
-	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+	<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
 				<br/>
@@ -197,7 +197,7 @@ $optionMaxSize = 15;
 							<textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
 						</div>
 						<div class="col-sm-1">
-							<a class="btn btn-default cursor listEquipementInfoReply input-sm" title="Rechercher une commande"><i class="fas fa-list-alt "></i></a>
+							<a class="btn btn-default cursor listEquipementInfoReply input-sm" title="{{Rechercher une commande}}"><i class="fas fa-list-alt "></i></a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -246,7 +246,7 @@ $optionMaxSize = 15;
 								<?php
 								$size = 0;
 								$html = '';
-								foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
+								foreach ((jeedom::getConfiguration('cmd:type')) as $id => $type) {
 									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="'.$id.'">'.$type['name'].'</option>';
 									$size += 1;
 								}
@@ -261,7 +261,7 @@ $optionMaxSize = 15;
 								<?php
 								$size = 0;
 								$html = '';
-								foreach (jeedom::getConfiguration('cmd:type') as $type) {
+								foreach ((jeedom::getConfiguration('cmd:type')) as $type) {
 									foreach ($type['subtype'] as $id => $subtype) {
 										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="'.$id.'">'.$subtype['name'].'</option>';
 										$size += 1;
@@ -278,7 +278,7 @@ $optionMaxSize = 15;
 								<?php
 								$size = 1;
 								$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
-								foreach (cmd::allUnite() as $unite) {
+								foreach ((cmd::allUnite()) as $unite) {
 									if (trim($unite['unite']) == '') {
 										continue;
 									}
@@ -296,7 +296,7 @@ $optionMaxSize = 15;
 								<?php
 								$size = 0;
 								$html = '';
-								foreach (jeeObject::all() as $object) {
+								foreach ((jeeObject::all()) as $object) {
 									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="'.$object->getId().'">'.$object->getName().'</option>';
 									$size += 1;
 								}
@@ -311,7 +311,7 @@ $optionMaxSize = 15;
 								<?php
 								$size = 0;
 								$html = '';
-								foreach (eqLogic::allType() as $type) {
+								foreach ((eqLogic::allType()) as $type) {
 									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="'.$type['type'].'">'.$type['type'].'</option>';
 									$size += 1;
 								}
@@ -326,7 +326,7 @@ $optionMaxSize = 15;
 								<?php
 								$size = 1;
 								$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
-								foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
+								foreach ((jeedom::getConfiguration('eqLogic:category')) as $id => $category) {
 									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="'.$id.'">'.$category['name'].'</option>';
 									$size += 1;
 								}
@@ -361,7 +361,7 @@ $optionMaxSize = 15;
 								<select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
 									<option value="all">{{Tous}}</option>
 									<?php
-									foreach (eqLogic::all() as $eqLogic) {
+									foreach ((eqLogic::all()) as $eqLogic) {
 										echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
 									}
 									?>

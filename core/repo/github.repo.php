@@ -32,46 +32,49 @@ class repo_github {
 		'core' => true,
 	);
 	
-	public static $_configuration = array(
-		'parameters_for_add' => array(
-			'user' => array(
-				'name' => 'Utilisateur ou organisation du dépôt',
-				'type' => 'input',
-			),
-			'repository' => array(
-				'name' => 'Nom du dépôt',
-				'type' => 'input',
-			),
-			'version' => array(
-				'name' => 'Branche',
-				'type' => 'input',
-				'default' => 'master',
-			),
-		),
-		'configuration' => array(
-			'token' => array(
-				'name' => 'Token (facultatif)',
-				'type' => 'input',
-			),
-			'core::user' => array(
-				'name' => 'Utilisateur ou organisation du dépôt pour le core Jeedom',
-				'type' => 'input',
-				'default' => 'jeedom',
-			),
-			'core::repository' => array(
-				'name' => 'Nom du dépôt pour le core Jeedom',
-				'type' => 'input',
-				'default' => 'core',
-			),
-			'core::branch' => array(
-				'name' => 'Branche pour le core Jeedom',
-				'type' => 'input',
-				'default' => 'stable',
-			),
-		),
-	);
 	
 	/*     * ***********************Méthodes statiques*************************** */
+	
+	public static function getConfigurationOption(){
+		return array(
+			'parameters_for_add' => array(
+				'user' => array(
+					'name' =>  __('Utilisateur ou organisation du dépôt',__FILE__),
+					'type' => 'input',
+				),
+				'repository' => array(
+					'name' =>  __('Nom du dépôt',__FILE__),
+					'type' => 'input',
+				),
+				'version' => array(
+					'name' =>  __('Branche',__FILE__),
+					'type' => 'input',
+					'default' => 'master',
+				),
+			),
+			'configuration' => array(
+				'token' => array(
+					'name' =>  __('Token (facultatif)',__FILE__),
+					'type' => 'input',
+				),
+				'core::user' => array(
+					'name' =>  __('Utilisateur ou organisation du dépôt pour le core Jeedom',__FILE__),
+					'type' => 'input',
+					'default' => 'jeedom',
+				),
+				'core::repository' => array(
+					'name' =>  __('Nom du dépôt pour le core Jeedom',__FILE__),
+					'type' => 'input',
+					'default' => 'core',
+				),
+				'core::branch' => array(
+					'name' =>  __('Branche pour le core Jeedom',__FILE__),
+					'type' => 'input',
+					'default' => 'stable',
+				),
+			),
+		);
+	}
 	
 	public static function getGithubClient() {
 		$client = new \Github\Client(

@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	ajax::init();
+	ajax::init(array('uploadImage'));
 
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
@@ -55,7 +55,7 @@ try {
 				$views = view::all();
 			}
 			$return = array();
-			foreach (view::all() as $view) {
+			foreach((view::all()) as $view) {
 				$return[$view->getId()] = $view->toAjax(init('version', 'dashboard'), init('html'));
 			}
 			ajax::success($return);
@@ -110,7 +110,7 @@ try {
 		}
 		$return = utils::o2a($viewZone);
 		$return['eqLogic'] = array();
-		foreach ($viewZone->getviewData() as $viewData) {
+		foreach(($viewZone->getviewData()) as $viewData) {
 			$infoViewDatat = utils::o2a($viewData->getLinkObject());
 			$infoViewDatat['html'] = $viewData->getLinkObject()->toHtml(init('version'));
 			$return['viewData'][] = $infoViewDatat;
@@ -126,10 +126,10 @@ try {
 		$components = json_decode(init('components'), true);
 		$sql = '';
 		foreach ($components as $component) {
-			if (!isset($component['viewZone_id']) || !is_numeric($component['viewZone_id']) || !is_numeric($component['id']) || !is_numeric($component['order']) || (isset($component['object_id']) && !is_numeric($component['object_id']))) {
+			if (!isset($component['viewZone_id']) || !is_numeric($component['viewZone_id']) || !is_numeric($component['id']) || !is_numeric($component['viewOrder']) || (isset($component['object_id']) && !is_numeric($component['object_id']))) {
 				continue;
 			}
-			$sql .= 'UPDATE viewData SET `order`= ' . $component['order'] . '  WHERE link_id=' . $component['id'] . ' AND type="' . $component['type'] . '" AND  viewZone_id=' . $component['viewZone_id'] . ';';
+			$sql .= 'UPDATE viewData SET `order`= ' . $component['viewOrder'] . '  WHERE link_id=' . $component['id'] . ' AND type="' . $component['type'] . '" AND  viewZone_id=' . $component['viewZone_id'] . ';';
 			if($component['type'] == 'eqLogic'){
 				$eqLogic = eqLogic::byId($component['id']);
 				if (!is_object($eqLogic)) {
@@ -198,7 +198,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));

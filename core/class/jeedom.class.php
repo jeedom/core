@@ -26,7 +26,7 @@ class jeedom {
 	
 	/*     * ***********************Methode static*************************** */
 	
-	public static function mimify(){
+	public static function minify(){
 		$folders = array('/../../desktop/js','/../../core/js','/../../mobile/js');
 		foreach ($folders as $folder) {
 			foreach (ls(__DIR__.$folder,'*.jeemin.js') as $file) {
@@ -68,9 +68,10 @@ class jeedom {
 			'logo_light',
 			'logo_dark',
 			'logo_mobile_light',
-			'logo_mobile_dark'
+			'logo_mobile_dark',
+			'objectBackgroundBlur'
 		);
-		$css_convert = array();
+		
 		$return = config::byKeys($key);
 		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
@@ -78,11 +79,15 @@ class jeedom {
 			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
 			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
 		}
+		
+		$css_convert = array();
 		$return['css'] = array();
 		if($return['interface::advance::enable'] == 1){
 			$css_convert['css::background-opacity'] = '--opacity';
 			$css_convert['css::border-radius'] = '--border-radius';
 		}
+		$css_convert['css::objectBackgroundBlur'] = '--objectBackgroundBlur';
+		
 		$css = config::byKeys(array_keys($css_convert));
 		foreach ($css as $key => $value) {
 			if($value == ''){
@@ -102,6 +107,12 @@ class jeedom {
 						$value = 1;
 					}
 					$value.='rem';
+					break;
+					case '--objectBackgroundBlur':
+					if($value == ''){
+						$value=0;
+					}
+					$value.='px';
 					break;
 				}
 			}
@@ -220,6 +231,15 @@ class jeedom {
 			'key' => 'php::version'
 		);
 		
+		$apaches = count(system::ps('apache2'));
+		$return[] = array(
+			'name' => __('Apache', __FILE__),
+			'state' => ($apaches > 0),
+			'result' => $apaches,
+			'comment' => '',
+			'key' => 'jeedom::version'
+		);
+		
 		$state = true;
 		$version = '';
 		$uname = shell_exec('uname -a');
@@ -237,7 +257,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://jeedom.github.io/documentation/compatibility/fr_FR/index" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://doc.jeedom.com/fr_FR/compatibility/" target="_blank">ici</a>)', __FILE__),
 			'key' => 'os::version'
 		);
 		
@@ -282,7 +302,7 @@ class jeedom {
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
 			'result' => $value,
-			'comment' => ($value == 0) ? '' : __('Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios', __FILE__),
+			'comment' => ($value == 0) ? '' : __('Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou les scénarios', __FILE__),
 			'key' => 'oom'
 		);
 		
@@ -365,7 +385,7 @@ class jeedom {
 			'key' => 'network::external'
 		);
 		
-		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
+		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__),'key' => 'cache::persit');
 		if (cache::isPersistOk()) {
 			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 				$cache_health['state'] = true;
@@ -379,9 +399,7 @@ class jeedom {
 			$cache_health['state'] = false;
 			$cache_health['result'] = __('NOK', __FILE__);
 			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.', __FILE__);
-			$state = network::test('external');
 		}
-		$cache_health['key'] = 'cache::persit';
 		$return[] = $cache_health;
 		
 		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
@@ -389,11 +407,11 @@ class jeedom {
 			'name' => __('Apache private tmp', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://doc.jeedom.com/fr_FR/core/4.1/faq" target="_blank">' . __('ici', __FILE__) . '</a>',
 			'key' => 'apache2::privateTmp'
 		);
 		
-		foreach (update::listRepo() as $repo) {
+		foreach((update::listRepo()) as $repo) {
 			if (!$repo['enable']) {
 				continue;
 			}
@@ -606,7 +624,7 @@ class jeedom {
 			if (isset($bluetoothMapping[$_name])) {
 				return $bluetoothMapping[$_name];
 			}
-			$bluetoothMapping = self::getBluetoothMapping('', true);
+			$bluetoothMapping = self::getBluetoothMapping('');
 			if (isset($bluetoothMapping[$_name])) {
 				return $bluetoothMapping[$_name];
 			}
@@ -656,7 +674,7 @@ class jeedom {
 		if (file_exists($_backup)) {
 			unlink($_backup);
 		} else {
-			throw new Exception('Impossible de trouver le fichier : ' . $_backup);
+			throw new Exception(__('Impossible de trouver le fichier : ', __FILE__) . $_backup);
 		}
 	}
 	
@@ -747,7 +765,7 @@ class jeedom {
 	public static function stop() {
 		echo "Disable all task";
 		config::save('enableCron', 0);
-		foreach (cron::all() as $cron) {
+		foreach((cron::all()) as $cron) {
 			if ($cron->running()) {
 				try {
 					$cron->halt();
@@ -777,7 +795,7 @@ class jeedom {
 		
 		echo "Disable all scenario";
 		config::save('enableScenario', 0);
-		foreach (scenario::all() as $scenario) {
+		foreach((scenario::all()) as $scenario) {
 			try {
 				$scenario->stop();
 				echo '.';
@@ -846,7 +864,7 @@ class jeedom {
 			self::forceSyncHour();
 			sleep(3);
 			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-				log::add('core', 'error', __('La date du système est incorrect (avant ' . $minDateValue . ' ou après ' . $maxDateValue . ') : ', __FILE__) . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
+				log::add('core', 'error', __('La date du système est incorrect (avant ', __FILE__) . $minDateValue . __(' ou après ', __FILE__) . $maxDateValue . ') : ' . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
 				return false;
 			}
 		}
@@ -868,7 +886,7 @@ class jeedom {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
 					$class::cron5();
@@ -890,7 +908,7 @@ class jeedom {
 	
 	public static function cron10() {
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
 					$class::cron10();
@@ -909,7 +927,7 @@ class jeedom {
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
 			try {
 				log::add('starting', 'debug', __('Arrêt des crons', __FILE__));
-				foreach (cron::all() as $cron) {
+				foreach((cron::all()) as $cron) {
 					if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 						try {
 							$cron->halt();
@@ -967,16 +985,16 @@ class jeedom {
 			try {
 				log::add('starting', 'debug', __('Ecriture du fichier ', __FILE__) . self::getTmpFolder() . '/started');
 				if (file_put_contents(self::getTmpFolder() . '/started', date('Y-m-d H:i:s')) === false) {
-					log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started', __FILE__));
+					log::add('starting', 'error', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . '/started');
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . '/started : ' . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . '/started : ' . log::exception($e));
 			}
 			
 			if (!file_exists(self::getTmpFolder() . '/started')) {
-				log::add('starting', 'critical', __('Impossible d\'écrire ' . self::getTmpFolder() . '/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
+				log::add('starting', 'critical', __('Impossible d\'écrire ', __FILE__) . self::getTmpFolder() . __('/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
 				return;
 			}
 			
@@ -1042,7 +1060,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronDaily') && config::byKey($name . '::enable') == 1) {
 					$class::cronDaily();
@@ -1064,18 +1082,11 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
-			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600))) {
+			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600) || strtotime('now') < strtotime(config::byKey('update::lastCheck')))) {
 				update::checkAllUpdate();
 				$updates = update::byStatus('update');
 				if (count($updates) > 0) {
-					$toUpdate = '';
-					foreach ($updates as $update) {
-						$toUpdate .= $update->getLogicalId() . ',';
-					}
-				}
-				$updates = update::byStatus('update');
-				if (count($updates) > 0) {
-					message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+					message::add('update', __('De nouvelles mises à jour sont disponibles', __FILE__), '', 'newUpdate');
 				}
 			}
 		} catch (Exception $e) {
@@ -1084,7 +1095,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
-			foreach (update::listRepo() as $name => $repo) {
+			foreach((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
 					$class::cronHourly();

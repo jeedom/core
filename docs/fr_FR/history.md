@@ -9,7 +9,7 @@ Ici est décrit le principe d’historisation de Jeedom. Il n’est nécessaire 
 
 ### Archivage
 
-L’archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toutes les mesures, cela fait d’autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d’un nombre trop important de points, cela peut même faire planter l’affichage du graphique.
+L’archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toutes les mesures, cela fait d’autant plus de points à afficher et donc cela peut considérablement allonger les temps pour rendre un graphique. En cas d’un nombre trop important de points, cela peut même faire planter l’affichage du graphique.
 
 L’archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici deux paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d’ancienneté).
 
@@ -117,7 +117,9 @@ Une fois que vous avez activé le suivi dans la timeline des commandes et scéna
 
 ### Affichage
 
-La timeline affiche un tableau des évènements enregistrés sur trois colonnes:
+La timeline affiche les évènements enregistrés, échelonnés jour par jour verticalement.
+
+Pour chaque évènement, vous avez:
 
 - La date et l'heure de l'évènement,
 - Le type d'évènement: Une commande info ou action, ou un scénario, avec pour les commandes le plugin de la commande.
@@ -126,3 +128,4 @@ La timeline affiche un tableau des évènements enregistrés sur trois colonnes:
 - Un évènement de type commande affiche une icône sur la droite pour ouvrir la configuration de la commande.
 - Un évènement de type scénario affiche deux icônes sur la droite pour se rendre sur le scénario, ou ouvrir le log du scénario.
 
+En haut à droite, vous pouvez sélectionné un dossier de timeline. Celui-ci doit être crée avant et doit contenir des évènements.

@@ -19,6 +19,9 @@ Mobile Legacy
 .eqLogic.eqLogic-widget[data-category=light] {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+.eqLogic.eqLogic-widget[data-category=opening] {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 .eqLogic.eqLogic-widget[data-category=multimedia] {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -47,6 +50,9 @@ Mobile Legacy
 }
 .eqLogic.eqLogic-widget[data-category=light] .ui-btn {
   background-color: var(--cat-light-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=opening] .ui-btn {
+  background-color: var(--cat-opening-BtnColor) !important;
 }
 .eqLogic.eqLogic-widget[data-category=multimedia] .ui-btn {
   background-color: var(--cat-multimedia-BtnColor) !important;

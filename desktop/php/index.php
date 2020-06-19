@@ -31,7 +31,7 @@ $title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
-$page = '';
+$page = 'dashboard';
 if (isConnect() && init('p') != '') {
 	$page = secureXSS(init('p'));
 	$title = ucfirst($page) . ' - ' . $title;
@@ -43,6 +43,7 @@ if (init('rescue', 0) == 0) {
 	$eventjs_plugin = array();
 	if (count($plugins_list) > 0) {
 		$categories = array();
+		$panelMenuArray = array();
 		foreach ($plugins_list as $category_name => $category) {
 			$icon = '';
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
@@ -63,7 +64,7 @@ if (init('rescue', 0) == 0) {
 		foreach ($categories as $cat) {
 			$name = $cat[0];
 			$icon = $cat[1];
-			$plugin_menu .= '<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
+			$plugin_menu .= '<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas ' . $icon . '"></i> ' . $name . '</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
@@ -74,7 +75,8 @@ if (init('rescue', 0) == 0) {
 				}
 				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getIndex() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
 				if ($pluginObj->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginObj->getId(), 0) != 0) {
-					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
+					$panelLi = '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
+					array_push($panelMenuArray, array('name' => $pluginObj->getName(), 'menu' => $panelLi));
 				}
 				if ($pluginObj->getEventjs() == 1) {
 					$eventjs_plugin[] = $pluginObj->getId();
@@ -83,6 +85,10 @@ if (init('rescue', 0) == 0) {
 			$plugin_menu .= '</ul>';
 			$plugin_menu .= '</li>';
 		}
+	}
+	array_multisort($panelMenuArray);
+	foreach ($panelMenuArray as $item) {
+		$panel_menu .= $item['menu'];
 	}
 }
 
@@ -93,7 +99,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-
+	
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -144,21 +150,15 @@ function setTheme() {
 	<?php
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
+	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
-	$.ajaxSetup({
-		type: "POST",
-		data: {
-			jeedom_token: '<?php echo ajax::getToken() ?>'
-		}
-	})
+	JEEDOM_AJAX_TOKEN='';
 	</script>
 	<?php
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
@@ -174,7 +174,7 @@ function setTheme() {
 	include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
 	include_file('3rdparty', 'highstock/modules/export-data', 'js');
-	include_file('desktop', 'utils', 'js');
+	include_file('desktop/common', 'utils', 'js');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
 	include_file('3rdparty', 'jwerty/jwerty', 'js');
@@ -210,9 +210,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -229,6 +229,9 @@ function setTheme() {
 </head>
 <body>
 	<div class="backgroundforJeedom"></div>
+	<div id="div_jeedomLoading" style="display:none;">
+		<div class="loadingSpinner"></div>
+	</div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
 	sendVarToJS('jeedom.theme',$jeedom_theme);
@@ -254,7 +257,7 @@ function setTheme() {
 			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" height="30px"></a>
+						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="$.showLoading()" height="30px"></a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
 							<span class="icon-bar"></span>
@@ -268,13 +271,13 @@ function setTheme() {
 							<li class="dropdown cursor">
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-                          			<li><a id="bt_gotoOverview" href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
+									<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
 									<li class="dropdown-submenu">
-										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
-											foreach (jeeObject::buildTree(null, false) as $object_li) {
+											foreach ((jeeObject::buildTree(null, false)) as $object_li) {
 												$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">'.str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')).$object_li->getHumanName(true) . '</a></li>';
 											}
 											echo $echo;
@@ -283,10 +286,10 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
-											foreach (view::all() as $view_menu) {
+											foreach ((view::all()) as $view_menu) {
 												$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon','<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 											}
 											echo $echo;
@@ -295,10 +298,10 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
-											foreach (planHeader::all() as $plan_menu) {
+											foreach ((planHeader::all()) as $plan_menu) {
 												$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon','<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
 											}
 											echo $echo;
@@ -307,10 +310,10 @@ function setTheme() {
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+										<ul class="dropdown-menu scrollable-menu" role="menu">
 											<?php
 											$echo = '';
-											foreach (plan3dHeader::all() as $plan3d_menu) {
+											foreach ((plan3dHeader::all()) as $plan3d_menu) {
 												$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 											}
 											echo $echo;
@@ -352,6 +355,7 @@ function setTheme() {
 										<li><a id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
 										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur expression}}</a></li>
 										<li><a id="bt_showDatastoreVariable"><i class="fas fa-eye"></i> {{Variables}}</a></li>
+										<li><a id="bt_showSearching"><i class="fas fa-search"></i> {{Recherche}}</a></li>
 									</ul>
 								</li>
 							<?php } ?>
@@ -394,7 +398,7 @@ function setTheme() {
 									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 									<li role="separator" class="divider"></li>
 									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
-										<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Thème alternatif}}</a></li>
+										<li><a id="bt_switchTheme"><i class="fas fa-random"></i> {{Thème alternatif}}</a></li>
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li role="separator" class="divider"></li>
@@ -408,7 +412,7 @@ function setTheme() {
 										</li>
 									<?php } ?>
 									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-									<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+									<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -487,7 +491,7 @@ function setTheme() {
 					<?php
 					try {
 						if (!jeedom::isStarted()) {
-							echo '<div class="alert alert-danger">'.config::byKey('product_name').'{{ est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
+							echo '<div class="alert alert-danger">'.config::byKey('product_name').' {{est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
 						}
 						if (isset($plugin) && is_object($plugin)) {
 							include_file('desktop', $page, 'php', $plugin->getId());
@@ -515,5 +519,9 @@ function setTheme() {
 			<?php
 		}
 		?>
+		<?php if(init('report') == 1 && init('delay',-1) != -1){ ?>
+			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
+		<?php } ?>
 	</body>
 	</html>
+	

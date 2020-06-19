@@ -62,7 +62,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('Fichier introuvable : ' . secureXSS($path), 35486);
+		throw new Exception(__('Fichier introuvable : ', __FILE__) . secureXSS($path), 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -939,7 +939,7 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
-	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
+	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or ', ' xor '), array(' && ', ' && ', ' || ', ' || ', ' ^ '), $_string);
 	if (strpos($string, '"') !== false || strpos($string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
 		$r = preg_match_all($regex, $string, $matches);

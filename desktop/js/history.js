@@ -14,10 +14,18 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var chart;
-var noChart = 1;
-var colorChart = 0;
-var lastId = null;
+"use strict"
+
+if (getUrlVars('timeline')) {
+  $('#sel_timelineFolder').value(getUrlVars('timeline'))
+  $('#bt_tabTimeline').click()
+  displayTimeline()
+}
+
+var chart
+var noChart = 1
+var colorChart = 0
+var lastId = null
 delete jeedom.history.chart['div_graph']
 
 $(function() {
@@ -26,10 +34,10 @@ $(function() {
     cmdIds = cmdIds.split('-')
     if (is_numeric(cmdIds[0])) {
       cmdIds.forEach(function(cmd_id) {
-        var li = $('.li_history[data-cmd_id='+cmd_id+']');
-        if(li){
-          li.find('.history').click();
-          li.closest('.cmdList').show();
+        var li = $('.li_history[data-cmd_id='+cmd_id+']')
+        if (li) {
+          li.find('.history').click()
+          li.closest('.cmdList').show()
         }
       })
     }
@@ -39,7 +47,9 @@ $(function() {
 
 $(window).resize(function() {
   if ($('#div_graph').attr('data-highcharts-chart')) {
-    $('#div_graph').highcharts().setSize( $('#div_graph').width(), $('#div_graph').height())
+    var chart = $('#div_graph').highcharts()
+    chart.setSize( $('#div_graph').width(), $('#div_graph').height())
+    chart.pointer.chartPosition = void 0
   }
 })
 
@@ -48,19 +58,21 @@ function setChartOptions() {
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
     lastId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr('data-cmd_id')
     _prop = false
-    var chart = $('#div_graph').highcharts()
+    chart = $('#div_graph').highcharts()
+
+    var grouping, groupingType, type
     $(chart.series).each(function(idx, serie) {
       if (serie.userOptions.id == lastId) {
         if (isset(serie.userOptions.dataGrouping)) {
-          var grouping = serie.userOptions.dataGrouping.enabled
+          grouping = serie.userOptions.dataGrouping.enabled
           if (grouping) {
-            var groupingType = serie.userOptions.dataGrouping.approximation + '::' + serie.userOptions.dataGrouping.units[0][0]
+            groupingType = serie.userOptions.dataGrouping.approximation + '::' + serie.userOptions.dataGrouping.units[0][0]
             $('#sel_groupingType').off().value(groupingType)
           }
         } else {
           $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
         }
-        var type = serie.userOptions.type
+        type = serie.userOptions.type
         if (type == 'areaspline') type = 'area'
         $('#sel_chartType').off().value(type)
         $('#cb_derive').prop('checked', serie.userOptions.derive)
@@ -80,171 +92,165 @@ function setChartOptions() {
   $('#cb_step').prop('disabled', _prop)
 }
 
-$('#bt_findCmdCalculHistory').on('click',function(){
+$('#bt_findCmdCalculHistory').on('click', function() {
   jeedom.cmd.getSelectModal({cmd: {type: 'info',subType : 'numeric',isHistorized : 1}}, function(result) {
-    $('#in_calculHistory').atCaret('insert', result.human);
-  });
-});
+    $('#in_calculHistory').atCaret('insert', result.human)
+  })
+})
 
-$('#bt_displayCalculHistory').on('click',function(){
+$('#bt_displayCalculHistory').on('click', function() {
   addChart($('#in_calculHistory').value(), 1)
-});
+})
 
-$('#bt_configureCalculHistory').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"});
-  $("#md_modal").load('index.php?v=d&modal=history.calcul').dialog('open');
-});
+$('#bt_configureCalculHistory').on('click', function() {
+  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open')
+})
 
-$('#bt_clearGraph').on('click',function(){
-  if (jeedom.history.chart['div_graph'] === undefined) {
-    return
+$('#bt_clearGraph').on('click', function() {
+  if (jeedom.history.chart['div_graph'] === undefined) return
+  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
+    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
-  while(jeedom.history.chart['div_graph'].chart.series.length > 0){
-    jeedom.history.chart['div_graph'].chart.series[0].remove(true);
-  }
-  delete jeedom.history.chart['div_graph'];
-  $('#ul_history').find('.li_history.active').removeClass('active');
+  delete jeedom.history.chart['div_graph']
+  $('#ul_history').find('.li_history.active').removeClass('active')
   setChartOptions()
-});
+})
 
-$(".in_datepicker").datepicker();
+datePickerInit()
 
-$(".li_history .history").on('click', function (event) {
-  $.hideAlert();
+$(".li_history .history").on('click', function(event) {
+  $.hideAlert()
   if ($(this).closest('.li_history').hasClass('active')) {
-    $(this).closest('.li_history').removeClass('active');
-    addChart($(this).closest('.li_history').attr('data-cmd_id'), 0);
+    $(this).closest('.li_history').removeClass('active')
+    addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
   } else {
-    $(this).closest('.li_history').addClass('active');
-    addChart($(this).closest('.li_history').attr('data-cmd_id'), 1);
+    $(this).closest('.li_history').addClass('active')
+    addChart($(this).closest('.li_history').attr('data-cmd_id'), 1)
   }
-  return false;
-});
+  return false
+})
 
-$("body").delegate("ul li input.filter", 'keyup', function () {
+$("body").delegate("ul li input.filter", 'keyup', function() {
   if ($(this).value() == '') {
-    $('.cmdList').hide();
+    $('.cmdList').hide()
   } else {
-    $('.cmdList').show();
+    $('.cmdList').show()
   }
-});
+})
 
-$(".li_history .remove").on('click', function () {
+$(".li_history .remove").on('click', function() {
   var bt_remove = $(this);
   $.hideAlert();
-  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function (result) {
+  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
     if (result !== null) {
-      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result);
+      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result)
     }
-  });
-});
+  })
+})
 
-$('.displayObject').on('click', function () {
-  var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']');
+$('.displayObject').on('click', function() {
+  var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
   if (list.is(':visible')) {
-    $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right');
-    list.hide();
+    $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+    list.hide()
   } else {
-    $(this).find('i.fa').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down');
-    list.show();
+    $(this).find('i.fa').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+    list.show()
   }
-});
+})
 
-$(".li_history .export").on('click', function () {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
-});
+$(".li_history .export").on('click', function() {
+  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
+})
 
-$('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"});
-  $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
-});
+$('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click', function() {
+  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
+})
 
-$('#bt_validChangeDate').on('click',function(){
-  $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-    if(serie.options && !isNaN(serie.options.id)){
-      var cmd_id = serie.options.id;
-      addChart(cmd_id, 0);
-      addChart(cmd_id, 1);
+$('#bt_validChangeDate').on('click',function() {
+  if (jeedom.history.chart['div_graph'] === undefined) return
+  $('.highcharts-plot-band').remove()
+  $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
+    if (serie.options && !isNaN(serie.options.id)) {
+      var cmd_id = serie.options.id
+      addChart(cmd_id, 0)
+      addChart(cmd_id, 1)
     }
-  });
-});
+  })
+})
 
 function initHistoryTrigger() {
-  $('#sel_groupingType').off('change').on('change', function () {
-    if(lastId == null){
-      return;
-    }
+  $('#sel_groupingType').off('change').on('change', function() {
+    if (lastId == null) return
+
     var currentId = lastId
     var groupingType = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
-    addChart(currentId,0);
+    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+    addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {id: currentId, display: {groupingType: groupingType}},
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function () {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click();
+      success: function() {
+        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
       }
-    });
-  });
+    })
+  })
 
-  $('#sel_chartType').off('change').on('change', function () {
-    if(lastId == null){
-      return;
-    }
+  $('#sel_chartType').off('change').on('change', function() {
+    if (lastId == null) return
+
     var currentId = lastId
     var graphType = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
-    addChart(currentId,0);
+    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+    addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {id: currentId, display: {graphType: graphType}},
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function () {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click();
+      success: function() {
+        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
       }
-    });
-  });
+    })
+  })
 
-  $('#cb_derive').off('change').on('change', function () {
-    if(lastId == null){
-      return;
-    }
+  $('#cb_derive').off('change').on('change', function() {
+    if (lastId == null) return
+
     var currentId = lastId
     var graphDerive = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
-    addChart(currentId,0);
+    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+    addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {id: currentId, display: {graphDerive: graphDerive}},
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function () {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click();
+      success: function() {
+        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
       }
-    });
-  });
+    })
+  })
 
-  $('#cb_step').off('change').on('change', function () {
-    if(lastId == null){
-      return;
-    }
+  $('#cb_step').off('change').on('change', function() {
+    if (lastId == null) return
+
     var currentId = lastId
     var graphStep = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
-    addChart(currentId,0);
+    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+    addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {id: currentId, display: {graphStep: graphStep}},
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function () {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click();
+      success: function() {
+        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
       }
-    });
-  });
+    })
+  })
 
   $('.highcharts-legend-item').off('click').on('click',function(event) {
     if (event.ctrlKey || event.altKey) {
@@ -266,7 +272,7 @@ function initHistoryTrigger() {
   })
 }
 
-function emptyHistory(_cmd_id,_date) {
+function emptyHistory(_cmd_id, _date) {
   $.ajax({
     type: "POST",
     url: "core/ajax/cmd.ajax.php",
@@ -276,21 +282,21 @@ function emptyHistory(_cmd_id,_date) {
       date: _date
     },
     dataType: 'json',
-    error: function (request, status, error) {
-      handleAjaxError(request, status, error);
+    error: function(request, status, error) {
+      handleAjaxError(request, status, error)
     },
-    success: function (data) {
+    success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({message: data.result, level: 'danger'});
-        return;
+        $('#div_alert').showAlert({message: data.result, level: 'danger'})
+        return
       }
-      $('#div_alert').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'});
-      li = $('li[data-cmd_id=' + _cmd_id + ']');
+      $('#div_alert').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'})
+      li = $('li[data-cmd_id=' + _cmd_id + ']')
       if (li.hasClass('active')) {
-        li.find('.history').click();
+        li.find('.history').click()
       }
     }
-  });
+  })
 }
 
 function addChart(_cmd_id, _action, _options) {
@@ -302,9 +308,18 @@ function addChart(_cmd_id, _action, _options) {
             serie.remove()
             setChartOptions()
           }
-        } catch(error) {
-        }
+        } catch(error) {}
       })
+      //Reset yAxis scale if only one curve:
+      var isEmpty = $('.cmdList .li_history.active').length
+      if (isEmpty == 1) {
+        try {
+          var chart = jeedom.history.chart['div_graph'].chart
+          var min = chart.series[0].dataMin / 1.1
+          var max = chart.series[0].dataMax * 1.1
+          chart.yAxis[0].setExtremes(min, max, true, true)
+        } catch(error) {}
+      }
     }
     return
   }
@@ -316,7 +331,12 @@ function addChart(_cmd_id, _action, _options) {
     dateEnd :  $('#in_endDate').value(),
     height : $('#div_graph').height(),
     option : _options,
-    success: function (data) {
+    success: function(data) {
+      if (isset(data.error)) {
+        $('.li_history[data-cmd_id='+_cmd_id+']').removeClass('active')
+        return
+      }
+
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
       initHistoryTrigger()
@@ -324,87 +344,152 @@ function addChart(_cmd_id, _action, _options) {
   })
 }
 
+
+
 /**************TIMELINE********************/
+$('#sel_timelineFolder').off('change').on('change', function() {
+  displayTimeline()
+})
 
-$('#sel_timelineFolder').off('change').on('change',function(){
-  displayTimeline();
-});
+$('#bt_tabTimeline').on('click', function() {
+  $.hideAlert()
+  displayTimeline()
+})
 
-$('#bt_tabTimeline').on('click',function(){
-  displayTimeline();
-});
+$('#timelineContainer ul').on('click','.bt_scenarioLog', function() {
+  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open')
+})
 
-$('#table_timeline').on('click','.bt_scenarioLog',function(){
-  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
-});
+$('#timelineContainer ul').on('click','.bt_gotoScenario', function() {
+  loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'))
+})
 
-$('#table_timeline').on('click','.bt_gotoScenario',function(){
-  loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'));
-});
+$('#timelineContainer ul').on('click','.bt_configureCmd', function() {
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
+})
 
-$('#table_timeline').on('click','.bt_configureCmd',function(){
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open');
-});
+$('#bt_refreshTimeline').on('click', function() {
+  displayTimeline()
+})
 
-$('#bt_refreshTimeline').on('click',function(){
-  displayTimeline();
-});
-
-function displayTimeline(){
+//exact same success function desktop/mobile:
+function displayTimeline() {
   jeedom.timeline.byFolder({
     folder : $('#sel_timelineFolder').value(),
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
+      data.sort(sortByDateConsistentASC)
       data = data.reverse()
-      var tr = ''
+      var dataLength = data.length
+      var decayFactor = 130
+
+      var isFirstOfDay, isLastOfDay = false
+      var nextDate, thisDateTs = false
+      var prevDate = moment().format("YYYY-MM-DD")
+      var prevDateTs = moment().unix()
+      var content = '<div class="label-warning day">'+data[0].date.substring(0,10)+'</div>'
+
+      var thisData, date, time, lineClass, style, height, li
       for (var i in data) {
-        tr += '<tr>'
-        tr += '<td>'
-        tr += data[i].date
-        tr += '</td>'
-        tr += '<td>'
-        if (data[i].group && data[i].plugins) {
-          if (data[i].group == 'action') {
-            tr += data[i].type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
-          } else {
-            tr += data[i].type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
+        thisData = data[i]
+        date = thisData.date.substring(0,10)
+        time = thisData.date.substring(11,19)
+        thisDateTs = moment(thisData.date.substring(0,19)).unix()
+        lineClass = ''
+
+        if (prevDate != date) {
+          isFirstOfDay = true
+          prevDateTs = moment(prevDate + ' 00:00:00').unix()
+        } else {
+          if (i < dataLength -1) {
+            nextDate = data[parseInt(i)+1].date.substring(0,10)
+            if (date != nextDate) {
+              isLastOfDay = true
+            }
           }
-          tr += '&#160&#160' + data[i].plugins
         }
-        if (data[i].type == 'scenario') {
-          tr += data[i].type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+
+        //actual time marker:
+        if (i == 0) {
+          li = '<li style="background-color:transparent!important;">'
+          li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
+          li += '<div class="date">' + date + '</div>'
+          li += '</li>'
+          content += li
         }
-        tr += '</td>'
-        tr += '<td>'
-        tr += data[i].html
-        tr += '</td>'
-        tr += '</tr>'
+
+        //time spacing:
+        style = ''
+        height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
+        if (height > 5) {
+          style = 'margin-top:'+height+'px!important;'
+        }
+        if (isLastOfDay && i < dataLength -1) {
+          height = Math.abs((thisDateTs - moment(data[parseInt(i)+1].date.substring(0,19)).unix()) / decayFactor)
+          style += 'margin-bottom:'+height+'px!important;'
+        }
+        li = '<li style="'+style+'">'
+        li += '<div>'
+
+        //scenario or cmd info/action:
+        li += '<div class="type">'
+        if (thisData.group && thisData.plugins) {
+          if (thisData.group == 'action') {
+            li += thisData.type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
+            lineClass = 'typeAction'
+          } else {
+            li += thisData.type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
+            lineClass = 'typeInfo'
+          }
+          li += '&#160&#160' + thisData.plugins
+        }
+        if (thisData.type == 'scenario') {
+          li += thisData.type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+          lineClass = 'typeScenario'
+        }
+        li += '</div>'
+
+        //html:
+        li += '<div class="html">'+thisData.html+'</div>'
+
+        li += '</div>'
+        li += '<span class="vertLine '+lineClass+'"></span>'
+        //time:
+        li += '<div class="time '+lineClass+'">'+time+'</div>'
+
+        //date:
+        li += '<div class="date">'+date+'</div>'
+
+        li += '</li>'
+        content += li
+
+        //newDay ?
+        if (isLastOfDay) {
+          content += '<div class="label-warning day">'+nextDate+'</div>'
+        }
+
+        prevDate = date
+        prevDateTs = thisDateTs
+        isFirstOfDay = isLastOfDay = false
       }
-      $('#table_timeline tbody').empty().append(tr).trigger('update')
-      $('#table_timeline').on('sortEnd', function(){
-        sepDays()
-      })
-      $('#timelinetab #table_timeline').find('th[data-column="0"]').trigger('sort').trigger('sort')
+      $('#timelineContainer ul').empty().append(content)
     }
-  });
-}
-
-function sepDays() {
-  doIt = false
-  if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-
-  prevDate = ''
-  $('#table_timeline tbody tr').each(function() {
-    thisDate = $(this).text().substring(0,10)
-    if (doIt && thisDate != prevDate) {
-      $(this).style('border-top', '1px dotted var(--txt-color)', 'important')
-    } else {
-      $(this).removeAttr('style')
-    }
-    prevDate = thisDate
   })
+}
+function sortByDateConsistentASC(itemA, itemB) {
+  var valueA = itemA.date
+  var valueB = itemB.date
+  var a = moment(valueA)
+  var b = moment(valueB)
+  var r = 0
+  if (a.isValid() && b.isValid()) {
+    r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
+  }
+  if(r === 0){
+    r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined')?
+    itemA.key - itemB.key : 0
+  }
+  return r
 }

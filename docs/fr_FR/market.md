@@ -21,7 +21,7 @@ C’est ici que vous allez pouvoir régler différents paramètres de votre prof
 
 Pour les développeurs :
 - **Nom d’utilisateur sur le forum** : Votre pseudo sur le forum.
-- **Email public** : Votre email pour recevoir des éventuelles communications de notre part.
+- **Email public** : Votre email pour recevoir d'éventuelles communications de notre part.
 - **Compte paypal** : Votre email de compte Paypal (uniquement utilisé pour payer les développeurs).
 
 Pour les pros :
@@ -51,7 +51,7 @@ Pour les pros :
 
 > **Tip**
 >
-> Il est possible que le Market vous demande parfois de remettre à zéro vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il vous demande.
+> Il est possible que le Market vous demande parfois de remettre à zéro vos clefs d’installation, c’est normal, il suffit de suivre ce qui est demandé.
 
 - **Mes Jeedoms** : C’est ici que sont listés tous vos Jeedom
     - **Nom** : Le nom que vous voulez donner à votre Jeedom (se retrouve dans le nom du backup si vous avez l’abonnement de sauvegarde cloud).

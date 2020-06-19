@@ -24,9 +24,8 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 //contextMenu
 $(function(){
   try{
-    if ('undefined' !== typeof Core_noEqContextMenu) {
-      if (Core_noEqContextMenu == 1) return false
-    }
+    if ('undefined' !== typeof Core_noEqContextMenu) return false
+    if ($('.nav.nav-tabs').length == 0) return false
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     pluginId =  $('body').attr('data-page')
     jeedom.eqLogic.byType({
@@ -185,6 +184,8 @@ $(".eqLogicDisplayCard").on('click', function (event) {
           data.timeout = '';
         }
         $('body').setValues(data, '.eqLogicAttr');
+        if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
+        
         if ('function' == typeof (printEqLogic)) {
           printEqLogic(data);
         }
@@ -197,7 +198,7 @@ $(".eqLogicDisplayCard").on('click', function (event) {
         $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
           jeedom.cmd.changeType($(this).closest('.cmd'));
         });
-
+        
         $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
           jeedom.cmd.changeSubType($(this).closest('.cmd'));
         });
@@ -312,8 +313,9 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function () {
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?';
         if(Object.keys(data).length > 0){
           text += ' </br> Il est utilisé par ou utilise : </br>';
+          var complement = null;
           for(var i in data){
-            var complement = '';
+            complement = '';
             if ('sourceName' in data[i]) {
               complement = ' ('+data[i].sourceName+')';
             }
@@ -441,7 +443,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
   } else {
     $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
   }
-
+  
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {

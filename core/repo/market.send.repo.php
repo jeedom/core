@@ -93,7 +93,7 @@ if (init('type') == 'plugin') {
 					<select class="form-control marketAttr" data-l1key="type" disabled>
 						<option value="plugin" data-category='plugin'>{{Plugin}}</option>
 						<option value="widget" data-category='widget'>{{Widget}}</option>
-						<option value="zwave" data-category='input'>{{[Z-Wave] Configuration module}}</option>
+						<option value="zwave" data-category='input'>{{[Z-Wave] Configuration équipement}}</option>
 						<option value="script" data-category='input'>{{Script}}</option>
 						<option value="scenario" data-category='input'>{{Scénario}}</option>
 						<option value="camera" data-category='input'>{{[Caméra] Modèle}}</option>
@@ -258,7 +258,7 @@ $('#bt_sendToMarket').on('click', function () {
 			market.cost = parseInt($(this).attr('data-value'));
 		}
 	});
-	
+
 	if(market.id != ''){
 		$.ajax({
 			type: "POST",
@@ -283,7 +283,7 @@ $('#bt_sendToMarket').on('click', function () {
 				} else {
 					$('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
 				}
-				
+
 			}
 		});
 	}else{
@@ -310,7 +310,7 @@ $('#bt_sendToMarket').on('click', function () {
 				} else {
 					$('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
 				}
-				
+
 			}
 		});
 	}

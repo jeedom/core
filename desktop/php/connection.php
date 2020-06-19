@@ -36,7 +36,7 @@
 						<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt" ></i> {{Connexion}}</button>
 					</div>
 					<div class="resetPassword">
-						<a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+						<a href="https://doc.jeedom.com/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 					</div>
 				</div>
 				<div id="market" tabindex="502" class="form-group" style="display:none;">
@@ -77,7 +77,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="btn_help animated bounceInUp" onclick="window.open('https://jeedom.github.io/documentation/premiers-pas/fr_FR/index#tocAnchor-1-3-1')">
+	<button class="btn_help animated bounceInUp" onclick="window.open('https://doc.jeedom.com/fr_FR/premiers-pas/#tocAnchor-4')">
 		?
 	</button>
 </div>

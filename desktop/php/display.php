@@ -2,6 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+global $JEEDOM_INTERNAL_CONFIG;
 $nbEqlogic = 0;
 $nbCmd = 0;
 $objects = jeeObject::all();
@@ -46,7 +47,7 @@ $plugin_enable = config::getPluginEnable();
 	<li role="presentation"><a href="#historytab" aria-controls="historytab" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
 </ul>
 
-<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="displaytab">
 		<br/>
 		<div>
@@ -69,7 +70,7 @@ $plugin_enable = config::getPluginEnable();
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="panel-group" id="accordionObject">
 			<?php
 			//No parent objects:
@@ -77,17 +78,29 @@ $plugin_enable = config::getPluginEnable();
 				$div = '';
 				$div .= '<div class="panel panel-default objectSortable">';
 				$div .= '<div class="panel-heading" data-id="-1">';
-				$div .= '<h3 class="panel-title">';
+				$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
 				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none"><i class="far fa-circle"></i> {{Aucun}}';
-				$div .= '</a>';
-				$div .= '</div>';
+				$div .= '</a></h3>';
+
+				$div .= '<h3 class="panel-title" style="width:100px;display: inline;">';
+              	$div .= '<span class="pull-right" style="min-width:38px">&nbsp;</span>';
+				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
+				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
+				$div .= '</h3></div>';
+
 				$div .= '<div id="config_none" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-				
+
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[-1] as $eqLogic) {
-					
-					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+					$translate_category = '';
+					foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
+						if ($eqLogic->getCategory($key, 0) == 1) {
+							$translate_category .= __($value['name'],__FILE__).',';
+						}
+					}
+					$translate_category = trim($translate_category,',');
+					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-translate-category="'.$translate_category.'" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
@@ -122,7 +135,7 @@ $plugin_enable = config::getPluginEnable();
 				$div .= '</div>';
 				echo $div;
 			}
-			
+
 			//one panel per parent:
 			$i = 0;
 			$div = '';
@@ -137,24 +150,33 @@ $plugin_enable = config::getPluginEnable();
 				$div .= '<div class="panel-heading" data-id="'.$object->getId().'">';
 				if ($object->getConfiguration('useCustomColor') == 1) {
 					$aStyle = str_replace('style="', 'style="color:'.$object->getDisplay('tagTextColor').'!important;', $aStyle);
-					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 55px);display: inline-block;">';
+					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 100px);display: inline-block;">';
 					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
 				} else {
-					$div .= '<h3 class="panel-title" style="width:calc(100% - 55px);display: inline-block;">';
+					$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
 					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
 				}
 				$div .= '</a></h3>';
-				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:55px;display: inline;">';
+				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a></h3>';
-				$div .= '</div>';
-				
+				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-square-alt"></i></a>';
+				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
+				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
+				$div .= '</h3></div>';
+
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-				
+
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
-					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
+					$translate_category = '';
+					foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
+						if ($eqLogic->getCategory($key, 0) == 1) {
+							$translate_category .= __($value['name'],__FILE__).',';
+						}
+					}
+					$translate_category = trim($translate_category,',');
+					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-translate-category="'.$translate_category.'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
@@ -168,7 +190,7 @@ $plugin_enable = config::getPluginEnable();
 						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 					}
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
-					
+
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
 						$div .= '<input type="checkbox" class="cb_selCmd"> ';
@@ -195,7 +217,7 @@ $plugin_enable = config::getPluginEnable();
 			?>
 		</div>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="historytab">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
@@ -236,7 +258,7 @@ $plugin_enable = config::getPluginEnable();
 			</tbody>
 		</table>
 	</div>
-	
+
 </div>
 
 <?php include_file('desktop', 'display', 'js');?>

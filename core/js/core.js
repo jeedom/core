@@ -36,8 +36,9 @@ function getTemplate(_folder, _version, _filename, _replace) {
     },
     success: function (data) {
       if (isset(_replace) && _replace != null) {
+        var reg = null;
         for (i in _replace) {
-          var reg = new RegExp(i, "g");
+          reg = new RegExp(i, "g");
           data = data.replace(reg, _replace[i]);
         }
       }
@@ -89,6 +90,26 @@ function getUrlVars(_key) {
   return vars;
 }
 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;samesite=Strict";
+}
+
+function getCookie(name) {
+  var cookies = document.cookie.split(';');
+  var csplit = null;
+  for(var i in cookies){
+    csplit = cookies[i].split('=');
+    if(name.trim() == csplit[0].trim()){
+      return csplit[1];
+    }
+  }
+  return '';
+}
+
+
 function getDeviceType() {
   var result = {};
   result.type = 'desktop';
@@ -123,7 +144,7 @@ function getDeviceType() {
     } else { //portrait
       result.bSize = (result.width / 2) - 12
     }
-
+    
   }
   return result;
 }

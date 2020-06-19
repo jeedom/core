@@ -153,7 +153,7 @@ Permet de choisir les commandes à grapher.
 - **Bordure** : Définition CSS d'une bordure de la tuile de l'équipement. Ex : 1px solid black.
 - **Opacité** : Opacité de la tuile de l'équipement, entre 0 et 1. Attention : une couleur de fond doit être définie.
 - **CSS personnalisé** : Règles CSS à appliquer sur l'équipement.
-- **Appliqué le css personnalisé sur** : Sélecteur CSS sur lequel appliquer le CSS personnalisé.
+- **Appliquer le css personnalisé sur** : Sélecteur CSS sur lequel appliquer le CSS personnalisé.
 
 ### Commandes
 
@@ -190,13 +190,11 @@ Affiche la fenêtre de configuration avancée de l’équipement (voir documenta
 
 ### Macro simple
 
-Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
-
-Il vous suffit ici d’indiquer la liste des actions à faire lors du clic sur la zone.
+Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions. Il vous suffit ici d’indiquer la liste des actions à faire lors du clic sur la zone.
 
 ### Macro binaire
 
-Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en fonction de l’état de la commande que vous donnez. Ex : si la commande vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera la ou les actions Off
+Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en fonction de l’état de la commande que vous indiquez. Ex : si la commande vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera la ou les actions Off
 
 - **Information binaire** : Commande donnant l’état à vérifier pour décider de l’action à faire (On ou Off).
 

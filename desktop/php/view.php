@@ -40,7 +40,7 @@ sendVarToJS('view_id', $view->getId());
 			?>
 			<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			<?php
-			foreach (view::all() as $view_info) {
+			foreach ((view::all()) as $view_info) {
 				if ($view->getId() == $view_info->getId()) {
 					echo '<li class="cursor li_view active"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . trim($view_info->getDisplay('icon')) . ' ' . $view_info->getName() . '</a></li>';
 				} else {
@@ -68,8 +68,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 		<?php } ?>
 		<center><h3>
 			<?php
-			echo trim($view->getDisplay('icon')).' ';
-			echo $view->getName();
+				echo trim($view->getDisplay('icon')).' '.$view->getName();
 			?>
 		</h3></center>
 	</legend>
@@ -78,4 +77,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 
 </div>
 
-<?php include_file('desktop', 'view', 'js');?>
+<?php
+	include_file('desktop', 'view', 'js');
+	include_file('desktop/common', 'ui', 'js');
+?>

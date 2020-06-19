@@ -11,7 +11,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
-					<a class="btn btn-warning btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}
+					<a class="btn btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}
 						<?php if (config::byKey('ldap::enable') != '1') {
 							$user = user::byLogin('jeedom_support');
 							if (!is_object($user)) {
@@ -28,7 +28,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		</legend>
 		<table class="table table-condensed table-bordered" id="table_user">
 			<thead>
-				<th>{{Utilisateur}}</th>
+				<th style="min-width: 120px;">{{Utilisateur}}</th>
 				<th style="width: 250px;">{{Actif}}</th>
 				<th>{{Profil}}</th>
 				<th>{{Clef API}}</th>
@@ -65,13 +65,15 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						if (!isset($session['datetime'])) {
 							$session['datetime'] = '';
 						}
-						echo '<tr data-id="' . $id . '">';
-						echo '<td>' . $id . '</td>';
-						echo '<td>' . $session['login'] . '</td>';
-						echo '<td>' . $session['ip'] . '</td>';
-						echo '<td>' . $session['datetime'] . '</td>';
-						echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
-						echo '</tr>';
+						$tr = '';
+						$tr .= '<tr data-id="' . $id . '">';
+						$tr .= '<td>' . $id . '</td>';
+						$tr .= '<td>' . $session['login'] . '</td>';
+						$tr .= '<td>' . $session['ip'] . '</td>';
+						$tr .= '<td>' . $session['datetime'] . '</td>';
+						$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+						$tr .= '</tr>';
+						echo $tr;
 					}
 				}
 				?>
@@ -94,28 +96,30 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</thead>
 			<tbody>
 				<?php
-				foreach (user::all() as $user) {
+				foreach ((user::all()) as $user) {
 					if (!is_array($user->getOptions('registerDevice')) || count($user->getOptions('registerDevice')) == 0) {
 						continue;
 					}
-					foreach ($user->getOptions('registerDevice') as $key => $value) {
-						echo '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
-						echo '<td>';
-						echo substr($key, 0, 10) . '...';
-						echo '</td>';
-						echo '<td>';
-						echo $user->getLogin();
-						echo '</td>';
-						echo '<td>';
-						echo $value['ip'];
-						echo '</td>';
-						echo '<td>';
-						echo $value['datetime'];
-						echo '</td>';
-						echo '<td>';
-						echo '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-						echo '</td>';
-						echo '</tr>';
+					foreach (($user->getOptions('registerDevice')) as $key => $value) {
+						$tr = '';
+						$tr .= '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
+						$tr .= '<td>';
+						$tr .= substr($key, 0, 10) . '...';
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $user->getLogin();
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $value['ip'];
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= $value['datetime'];
+						$tr .= '</td>';
+						$tr .= '<td>';
+						$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+						$tr .= '</td>';
+						$tr .= '</tr>';
+						echo $tr;
 					}
 				}
 				?>
@@ -140,7 +144,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
+				<a class="btn btn-primary bootbox-accept" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>

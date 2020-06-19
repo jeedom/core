@@ -14,34 +14,36 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-positionEqLogic();
+"use strict"
 
-$("#tab_deadCmd").off("click").on("click", function () {
-  displayDeadCmd();
-});
+positionEqLogic()
+$('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
 
-$('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
+$("#tab_deadCmd").off("click").on("click", function() {
+  displayDeadCmd()
+})
+
 $('.batteryListContainer, .alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
   gutter : 2
-});
+})
 
-$('.alerts, .batteries').on('click',function(){
-  setTimeout(function(){
-    positionEqLogic();
+$('.alerts, .batteries').on('click', function() {
+  setTimeout(function() {
+    positionEqLogic()
     $('.batteryListContainer, .alertListContainer').packery({
       itemSelector: ".eqLogic-widget",
       gutter : 2
-    });
-  }, 10);
-});
+    })
+  }, 10)
+})
 
-$('.cmdAction[data-action=configure]').on('click', function () {
-  $('#md_modal').dialog({title: "{{Configuration commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
-});
+$('.cmdAction[data-action=configure]').on('click', function() {
+  $('#md_modal').dialog({title: "{{Configuration commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
+})
 
 //searching
-$('#in_search').off('keyup').on('keyup',function(){
+$('#in_search').off('keyup').on('keyup', function() {
   if ($('.batteryListContainer .eqLogic-widget').length == 0) {
     return
   }
@@ -54,31 +56,29 @@ $('#in_search').off('keyup').on('keyup',function(){
   search = normTextLower(search)
   $('.batteryListContainer .eqLogic-widget').each(function() {
     var match = false
-    text = normTextLower($(this).find('.widget-name').text())
+    var text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
     text = normTextLower($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true
-    if(match) {
+    if (match) {
       $(this).show()
     } else {
       $(this).hide()
     }
-  });
-  $('.batteryListContainer').packery();
-});
-
-$('#bt_resetSearch').on('click', function () {
-  $('#in_search').val('')
-  $('#in_search').keyup();
+  })
+  $('.batteryListContainer').packery()
+})
+$('#bt_resetSearch').on('click', function() {
+  $('#in_search').val('').keyup()
 })
 
-$('.batteryTime').off('click').on('click',function(){
+$('.batteryTime').off('click').on('click', function() {
   $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
 })
 
-$('#bt_massConfigureEqLogic').off('click').on('click',function(){
+$('#bt_massConfigureEqLogic').off('click').on('click', function() {
   $('#md_modal').dialog({title: "{{Configuration en masse}}"}).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
-});
+})
 
 $(function() {
   //tabs icons colors:
@@ -101,30 +101,30 @@ $(function() {
 
 function displayDeadCmd(){
   jeedom.cmd.getDeadCmd({
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
       var tr = '';
-      for(var i in data){
-        for(var j in data[i].cmd){
-          tr += '<tr>';
-          tr += '<td>';
-          tr += data[i].name;
-          tr += '</td>';
-          tr += '<td>';
-          tr += data[i].cmd[j].detail;
-          tr += '</td>';
-          tr += '<td>';
-          tr += data[i].cmd[j].who;
-          tr += '</td>';
-          tr += '<td>';
-          tr += data[i].cmd[j].help;
-          tr += '</td>';
-          tr += '</tr>';
+      for (var i in data) {
+        for (var j in data[i].cmd) {
+          tr += '<tr>'
+          tr += '<td>'
+          tr += data[i].name
+          tr += '</td>'
+          tr += '<td>'
+          tr += data[i].cmd[j].detail
+          tr += '</td>'
+          tr += '<td>'
+          tr += data[i].cmd[j].who
+          tr += '</td>'
+          tr += '<td>'
+          tr += data[i].cmd[j].help
+          tr += '</td>'
+          tr += '</tr>'
         }
       }
-      $('#table_deadCmd tbody').empty().append(tr);
+      $('#table_deadCmd tbody').empty().append(tr)
     }
   })
 }

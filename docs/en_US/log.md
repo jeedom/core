@@ -1,49 +1,31 @@
-Logs 
-====
+# Logs
+**Analysis → Logs**
 
-The Logs menu allows you to follow what is happening on your home. In the
-In most cases the logs will only be used to debug and
-solve problems by the support team.
-
-Pour y accéder il faut aller dans Analyse → Logs :
-
-The Logs page is quite simple, in the top left a drop-down list
-allowing the choice of log to look, in the top right you have 5
-buttons:
-
--   **Search**: allows you to filter the log poster
-
--   **Pause / Resume**: Pause / resume the update
-    real time logs
-
--   **Download**: allows you to download the current log,
-
--   **Empty**: allows to empty the current log,
-
--   **Delete**: deletes the current log, if Jeedom has
-    need it will recreate it automatically,
-
--   **Delete all logs**: delete all the logs present.
+Logs are log files, allowing you to follow what is happening on your home automation. In most cases the logs will only be used for debugging and solving problems by the support team.
 
 > **Tip**
 >
-> Note that the http.error log can not be deleted. It is essential
->! if you delete it (in command line for example) this one does not
-> will not recreate itself, it is necessary to restart the system.
+> When the page opens, the first available log is displayed.
 
-Temps réel 
-==============
+The Logs page is quite simple :
+On the left, a list of available logs, with a search field to filter the name of the logs.
+Top right 5 buttons :
 
-The log "Event" is a bit special. First of all for him
-it works, it must be in level info or debug, then this one
-list all the events or actions that happen on home automation.
-To access it, either go to the log page or in Analysis
-→ Real time
+- **Search** : Allows you to filter the display of the current log.
+- **Pause / Resume** : Pause / resume real-time update of the current log.
+- **Download** : Download the current log.
+- **Empty** : Clear the current log.
+- **Remove** : Delete the current log. If Jeedom needs it it will recreate it automatically.
+- **Delete all logs** : Delete all logs present.
 
-Once you click on it, you get a window that
-update in real time and show you all the events of your
-Automation.
+> **Tip**
+>
+> Note that the http log.error cannot be deleted. It is essential if you delete it (on the command line for example) it will not recreate itself, you must restart the system.
 
-At the top right you have a search field (works only if you
-are not paused) and a button to pause (useful for making
-copy / paste for example).
+## Real time
+
+The &quot;Event&quot; log is a bit special. First of all for it to work, it has to be in info or debug level, then it lists all the events or actions that happen on home automation. To access it, you must either go to the log page or in Analysis → Real time.
+
+Once you click on it, you get a window that updates in real time and shows you all the events of your home automation.
+
+At the top right you have a search field (only works if you are not on pause) and a button to pause (useful for copying / pasting for example).

@@ -1,0 +1,13 @@
+/* Normal */
+@font-face {
+    font-family: "CamingoCode";
+    font-style: normal;
+    font-weight: 400;
+    src: local('CamingoCode Regular'), url("CamingoCode-Regular.ttf") format('truetype');
+}
+@font-face {
+    font-family: "CamingoCode";
+    font-style: italic;
+    font-weight: 400;
+    src: local('CamingoCode Italic'), url("CamingoCode-Italic.ttf") format('truetype');
+}

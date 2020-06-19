@@ -211,7 +211,8 @@ class plan {
 	}
 	
 	public function getHtml($_version = 'dashboard') {
-		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
+		$linkType = $this->getLink_type();
+		if (in_array($linkType, array('eqLogic', 'cmd', 'scenario'))) {
 			$link = $this->getLink();
 			if (!is_object($link)) {
 				return;
@@ -220,7 +221,7 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $link->toHtml($_version),
 			);
-		} else if ($this->getLink_type() == 'plan') {
+		} else if ($linkType == 'plan') {
 			$html = '<span class="cursor plan-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
 			$html .= '<a style="color:' . $this->getCss('color', 'black') . ' !important;text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
@@ -230,7 +231,7 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'view') {
+		} else if ($linkType == 'view') {
 			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
 			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" >';
 			$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', 'black') . ' !important;text-decoration:none;font-size : 1.5em;">';
@@ -241,12 +242,12 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'graph') {
-			$background_color = 'background-color : white;';
+		} else if ($linkType == 'graph') {
+			$background_color = 'background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;';
 			if ($this->getDisplay('transparentBackground', false)) {
 				$background_color = '';
 			}
-			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="' . $background_color . 'border : solid 1px black;min-height:50px;min-width:50px;">';
+			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="' . $background_color . '">';
 			$html .= '<span class="graphOptions" style="display:none;">' . json_encode($this->getDisplay('graph', array())) . '</span>';
 			$html .= '<div class="graph" id="graph' . $this->getLink_id() . '" style="width : 100%;height : 100%;"></div>';
 			$html .= '</div>';
@@ -254,8 +255,8 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'text') {
-			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '" style="color:' . $this->getCss('color', 'black') . ' !important;">';
+		} else if ($linkType == 'text') {
+			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '">';
 			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
 				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('text');
 			} else {
@@ -266,7 +267,7 @@ class plan {
 				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'image') {
+		} else if ($linkType == 'image') {
 			$html = '<div class="image-widget" data-image_id="' . $this->getLink_id() . '" style="min-width:10px;min-height:10px;">';
 			if ($this->getConfiguration('display_mode', 'image') == 'image') {
 				$html .= '<img style="width:100%;height:100%" src="' . $this->getDisplay('path', 'core/img/no_image.gif') . '"/>';
@@ -278,10 +279,10 @@ class plan {
 			}
 			$html .= '</div>';
 			return array(
-				'plan' => utils::o2a($this),
+				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'zone') {
+		} else if ($linkType == 'zone') {
 			if ($this->getConfiguration('zone_mode', 'simple') == 'widget') {
 				$class = '';
 				if ($this->getConfiguration('showOnFly') == 1) {
@@ -295,10 +296,10 @@ class plan {
 				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}
 			return array(
-				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
+				'plan' => utils::o2a($this),
 				'html' => $html,
 			);
-		} else if ($this->getLink_type() == 'summary') {
+		} else if ($linkType == 'summary') {
 			$html = '<div class="summary-widget" data-summary_id="' . $this->getLink_id() . '" style="min-width:10px;min-height:10px;">';
 			$summary = '';
 			if ($this->getLink_id() == 0) {
@@ -316,7 +317,7 @@ class plan {
 			}
 			$html .= '</div>';
 			return array(
-				'plan' => utils::o2a($this),
+				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
 				'html' => $html,
 			);
 		}

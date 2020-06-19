@@ -120,6 +120,15 @@ class history {
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
 		DB::Prepare($sql, array());
+		if (config::byKey('historyArchivePackage') < 1) {
+			config::save('historyArchivePackage', 1);
+		}
+		if (config::byKey('historyArchiveTime') < 2) {
+			config::save('historyArchiveTime', 2);
+		}
+		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
+			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
+		}
 		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
 			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
 		}
@@ -143,74 +152,82 @@ class history {
 		WHERE `datetime`<:archiveDatetime';
 		$list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($list_sensors as $sensors) {
-			$cmd = cmd::byId($sensors['cmd_id']);
-			if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
-				continue;
-			}
-			$purgeTime = false;
-			
-			if ($cmd->getConfiguration('historyPurge', '') != '' ){
-				$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-			}else if (config::byKey('historyPurge') != '') {
-				$purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
-			}
-			if ($purgeTime !== false) {
+			try {
+				$cmd = cmd::byId($sensors['cmd_id']);
+				if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
+					continue;
+				}
+				$purgeTime = false;
+				if ($cmd->getConfiguration('historyPurge', '') != '' ){
+					$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
+				}else if (config::byKey('historyPurge') != '') {
+					$purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
+				}
+				if ($purgeTime !== false) {
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'datetime' => $purgeTime,
+					);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				}
+				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'archiveTime' => $archiveDatetime
+					);
+					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					FROM history
+					WHERE `datetime` <= :archiveTime
+					AND cmd_id=:cmd_id
+					AND `value` IS NOT NULL
+					ORDER BY `datetime` ASC';
+					$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+					$countHistory = count($history);
+					if($countHistory > 0){
+						if($countHistory > 1){
+							for ($i = 1; $i < $countHistory; $i++) {
+								if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
+									$history[$i]->setTableName('historyArch');
+									$history[$i]->save();
+								}
+							}
+						}
+						$history[0]->setTableName('historyArch');
+						$history[0]->save();
+					}
+					$sql = 'DELETE FROM history
+					WHERE `datetime` <= :archiveTime
+					AND cmd_id=:cmd_id';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					continue;
+				}
+				$mode = $cmd->getConfiguration('historizeMode', 'avg');
 				$values = array(
-					'cmd_id' => $cmd->getId(),
-					'datetime' => $purgeTime,
-				);
-				$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
-				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			}
-			if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
-				$values = array(
-					'cmd_id' => $cmd->getId(),
+					'cmd_id' => $sensors['cmd_id'],
+					'archivePackage' => config::byKey('historyArchivePackage')*3600,
 					'archiveTime' => $archiveDatetime
 				);
-				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
 				FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id
 				AND `value` IS NOT NULL
-				ORDER BY `datetime` ASC';
-				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-				$countHistory = count($history);
-				if($countHistory > 0){
-					if($countHistory > 1){
-						for ($i = 1; $i < $countHistory; $i++) {
-							if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
-								$history[$i]->setTableName('historyArch');
-								$history[$i]->save();
-							}
-						}
-					}
-					$history[0]->setTableName('historyArch');
-					$history[0]->save();
+				GROUP BY UNIX_TIMESTAMP(`datetime`) DIV :archivePackage';
+				try {
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				} catch (Exception $e) {
+					log::add('history','error',__('Erreur l\'archivage des historiques :',__FILE__).' '.json_encode($values).'  => '.$e->getMessage());
+					continue;
 				}
+				$values = array('cmd_id' => $sensors['cmd_id'],'archiveTime' => $archiveDatetime);
 				$sql = 'DELETE FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id';
 				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-				continue;
+			} catch (\Exception $e) {
+				
 			}
-			$mode = $cmd->getConfiguration('historizeMode', 'avg');
-			$values = array(
-				'cmd_id' => $sensors['cmd_id'],
-				'archivePackage' => config::byKey('historyArchivePackage')*3600,
-				'archiveTime' => $archiveDatetime
-			);
-			$sql = 'INSERT INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,`datetime`,' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
-			FROM history
-			WHERE `datetime` <= :archiveTime
-			AND cmd_id=:cmd_id
-			AND `value` IS NOT NULL
-			GROUP BY UNIX_TIMESTAMP(`datetime`) DIV :archivePackage';
-			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			$values = array('cmd_id' => $sensors['cmd_id'],'archiveTime' => $archiveDatetime);
-			$sql = 'DELETE FROM history
-			WHERE `datetime` <= :archiveTime
-			AND cmd_id=:cmd_id';
-			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		}
 	}
 	
@@ -241,7 +258,11 @@ class history {
 			}else	if($goupingType[0] == 'sum'){
 				$function = 'SUM';
 			}
-			$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			if($goupingType[1] == 'hour'){
+				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}else{
+				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}
 		}
 		$sql .= ' FROM history
 		WHERE cmd_id=:cmd_id ';
@@ -254,11 +275,11 @@ class history {
 		if($_groupingType != null){
 			if($goupingType[1] == 'week'){
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			}else if($goupingType[1] == 'hour'){
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			}else{
 				$time='DATE';
-				if($goupingType[1] == 'hour'){
-					$time='HOUR';
-				}else if($goupingType[1] == 'month'){
+				if($goupingType[1] == 'month'){
 					$time='MONTH';
 				}else if($goupingType[1] == 'year'){
 					$time='YEAR';
@@ -280,7 +301,11 @@ class history {
 			}else	if($goupingType[0] == 'sum'){
 				$function = 'SUM';
 			}
-			$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			if($goupingType[1] == 'hour'){
+				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}else{
+				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			}
 		}
 		$sql .= ' FROM historyArch
 		WHERE cmd_id=:cmd_id ';
@@ -293,11 +318,11 @@ class history {
 		if($_groupingType != null){
 			if($goupingType[1] == 'week'){
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			}else if($goupingType[1] == 'hour'){
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			}else{
 				$time='DATE';
-				if($goupingType[1] == 'hour'){
-					$time='HOUR';
-				}else if($goupingType[1] == 'month'){
+				if($goupingType[1] == 'month'){
 					$time='MONTH';
 				}else if($goupingType[1] == 'year'){
 					$time='YEAR';

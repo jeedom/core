@@ -1,4 +1,20 @@
 <?php
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -7,11 +23,13 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 $id = init('id');
-if(trim($id) == ''){
+if (trim($id) == '') {
   $id = init('showId');
 }
 sendVarToJs('cmd_id',$id);
 ?>
+
+<div style="display: none;" id="div_alertHistory"></div>
 <div class="md_history">
   <div class="row">
     <div class="col-lg-12">
@@ -25,49 +43,53 @@ sendVarToJs('cmd_id',$id);
       </div>
     </div>
   </div>
-  <center><div id="div_historyChart"></div></center>
+  <center><div id="div_graph"></div></center>
 </div>
 
 <script>
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
-$(".in_datepicker").datepicker()
-$('#ui-datepicker-div').hide()
 
-$('#div_historyChart').css('position', 'relative').css('width', '100%')
+$('#div_graph').css('position', 'relative').css('width', '100%')
 //remove any previously loaded history:
-if (jeedom.history.chart['div_historyChart'] != undefined) {
-  while (jeedom.history.chart['div_historyChart'].chart.series.length > 0) {
-    jeedom.history.chart['div_historyChart'].chart.series[0].remove(true)
+if (jeedom.history.chart['div_graph'] != undefined) {
+  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
+    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
-  delete jeedom.history.chart['div_historyChart']
+  delete jeedom.history.chart['div_graph']
 }
+
+$.hideAlert()
+datePickerInit()
 
 var _showLegend = (cmdIds.length > 1) ? true : false
 var done = cmdIds.length
-cmdIds.forEach(function(cmd_id) {
-  jeedom.history.drawChart({
-    cmd_id: cmd_id,
-    el: 'div_historyChart',
-    dateRange : 'all',
-    dateStart : $('#in_startDate').value(),
-    dateEnd :  $('#in_endDate').value(),
-    newGraph : false,
-    showLegend : _showLegend,
-    height : jQuery(window).height() - 270,
-    success: function (data) {
-      done -= 1
-    }
+var noChart = true
+
+$(function() {
+  cmdIds.forEach(function(cmd_id) {
+    jeedom.history.drawChart({
+      cmd_id: cmd_id,
+      el: 'div_graph',
+      dateRange : 'all',
+      dateStart : $('#in_startDate').value(),
+      dateEnd :  $('#in_endDate').value(),
+      newGraph : false,
+      showLegend : _showLegend,
+      height : jQuery(window).height() - 270,
+      success: function(data) {
+        noChart = false
+        done -= 1
+        setModal()
+      }
+    })
   })
 })
 
-var modalSetter = setInterval(setModal, 100)
 
 function setModal() {
-  if (done == 0) {
-    clearInterval(modalSetter)
-    
+  if (done == 0 || noChart) {
     $('#bt_validChangeDate').on('click', function() {
       var modal = false;
       if ($('#md_modal').is(':visible')) {
@@ -76,19 +98,19 @@ function setModal() {
         modal = $('#md_modal2')
       }
       if (modal !== false) {
-        modal.dialog({title: "{{Historique}}"})
-        modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+        modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
       }
     })
-    
+
     $('#bt_openInHistory').on('click', function() {
       loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
-    
+
     $('.highcharts-legend-item').on('click',function(event) {
       if (!event.ctrlKey && !event.altKey) return
       event.stopImmediatePropagation()
-      var chart = $('#div_historyChart').highcharts()
+      var chart = $('#div_graph').highcharts()
+      if (!chart) return
       if (event.altKey) {
         $(chart.series).each(function(idx, item) {
           item.show()
@@ -101,20 +123,15 @@ function setModal() {
         chart.series[serieId].show()
       }
     })
-    
+
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
-    var divHighChart = $('#div_historyChart')
-    
-    //only one history loaded:
-    if (cmdIds.length == 1) {
-      var chart = $('#div_historyChart').highcharts()
-      modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
-    }
-    
+    var divHighChart = $('#div_graph')
+    var chart = divHighChart.highcharts()
+
     //check previous size/pos:
     var datas = modal.data()
-    if (datas.width && datas.height && datas.top && datas.left) {
+    if (datas && datas.width && datas.height && datas.top && datas.left) {
       modal.width(datas.width).height(datas.height).css('top',datas.top).css('left',datas.left)
       modalContent.width(datas.width-26).height(datas.height-40)
       resizeHighChartModal()
@@ -129,22 +146,47 @@ function setModal() {
       })
       modalContent.width(width-26).height(height-40)
     }
-    
-    resizeHighChartModal()
-    modal.resize(function() {
+
+    //handle resizing:
+    var resizeDone
+    function resizeDn() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
       resizeHighChartModal()
+    }
+    modal.resize(function() {
+      clearTimeout(resizeDone);
+      resizeDone = setTimeout(resizeDn, 100);
     })
+
+    //store size/pos:
     modal.find('.ui-draggable-handle').on('mouseup', function(event) {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
     })
-    
-    function resizeHighChartModal() {
-      if(!divHighChart || !divHighChart.highcharts()){
-        return;
+
+    //highstock v8.0.4 crosshair positionning bug after modal moved:
+    $('#div_graph').on('mouseenter', function(event) {
+      chart.pointer.chartPosition = void 0
+    })
+
+    //only one history loaded:
+    if (cmdIds.length == 1) {
+      if (chart) {
+        modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
       }
-      divHighChart.highcharts().setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
     }
+
+    function resizeHighChartModal() {
+      if (!divHighChart || !chart) {
+        return
+      }
+      chart.setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
+      setTimeout(function() {
+        chart.setSize()
+        chart.pointer.chartPosition = void 0
+      }, 500)
+    }
+
+    resizeHighChartModal()
   }
 }
 </script>

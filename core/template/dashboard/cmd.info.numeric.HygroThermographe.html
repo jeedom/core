@@ -76,7 +76,7 @@
       }
       if('#generic_type#' == 'HUMIDITY'){
         widget.find('.uniteHumidity').show();
-        widget.find('.intNumHumidity').text(Math.floor(_options.display_value)+".").attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+        widget.find('.intNumHumidity').text(Math.floor(_options.display_value)+".").attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
         widget.find('.decNumHumidity').text(Math.round((_options.display_value - Math.floor(_options.display_value)) * 10));
       }
     }

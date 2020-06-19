@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -148,12 +147,31 @@ jeedom.eqLogic.getUseBeforeRemove = function (_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.eqLogic.usedBy = function (_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'usedBy',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.eqLogic.remove = function (_params) {
   var paramsRequired = ['id', 'type'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -179,8 +197,8 @@ jeedom.eqLogic.copy = function (_params) {
   var paramsRequired = ['id', 'name'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -294,7 +312,7 @@ jeedom.eqLogic.byId = function (_params) {
     return;
   }
   if (init(_params.noCache, false) == false && isset(jeedom.eqLogic.cache.byId[_params.id]) && 'function' == typeof (_params.success)) {
-    _params.success(jeedom.eqLogic.cache.byId[_params.eqLogic_id]);
+    _params.success(jeedom.eqLogic.cache.byId[_params.id]);
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
@@ -371,8 +389,9 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsRequired = [];
   var eqLogics = {};
   var sends = {};
+  var eqLogic = null;
   for(var i in _params){
-    var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
+    eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
       continue;
     }
@@ -385,10 +404,13 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsSpecifics = {
     global: false,
     success: function (result) {
+      var html = null;
+      var eqLogic = null;
+      var uid = null;
       for(var i in result){
-        var html = $(result[i].html);
-        var eqLogic = eqLogics[i].eqLogic;
-        var uid = html.attr('data-eqLogic_uid');
+        html = $(result[i].html);
+        eqLogic = eqLogics[i].eqLogic;
+        uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }

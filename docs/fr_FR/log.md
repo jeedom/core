@@ -8,7 +8,7 @@ Les logs sont des fichiers de journaux, permettant de suivre ce qui se passe sur
 > A l'ouverture de la page, le premier log disponible est affiché.
 
 La page de Logs est assez simple :
-Sur la gauche, une liste des logs disponible, avec un champ de recherche pour filtrer le nom des logs.
+Sur la gauche, une liste des logs disponibles, avec un champ de recherche pour filtrer le nom des logs.
 En haut à droite 5 boutons :
 
 - **Rechercher** : Permet de filtrer l’affichage du log actuel.

@@ -4,6 +4,7 @@ if (!isConnect('admin')) {
 }
 sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::all();
+$config_objSummary = config::byKey('object:summary');
 ?>
 
 <div class="row row-overflow">
@@ -37,10 +38,10 @@ $allObject = jeeObject::all();
 					<?php
 					$echo = '';
 					foreach ($allObject as $object) {
-						$echo .= '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
+						$echo .= '<div style="display:none" class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
 						$echo .= $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>');
 						$echo .= "<br/>";
-						$echo .= '<span class="name">' . $object->getName() . '</span><br/>';
+						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">' . $object->getName() . '</span><br/>';
 						$echo .= $object->getHtmlSummary();
 						$echo .= '</div>';
 					}
@@ -66,7 +67,7 @@ $allObject = jeeObject::all();
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 		</ul>
 
-		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+		<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
 				<form class="form-horizontal">
@@ -79,7 +80,7 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{Père}}</label>
+							<label class="col-lg-2 col-xs-4 control-label">{{Objet parent}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-7">
 								<select class="form-control objectAttr" data-l1key="father_id">
 									<option value="">{{Aucun}}</option>
@@ -155,7 +156,7 @@ $allObject = jeeObject::all();
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{Image}}</label>
+							<label class="col-lg-2 col-xs-4 control-label">{{Image de fond}}</label>
 							<div class="col-lg-6 col-xs-6">
 								<span class="btn btn-default btn-file">
 									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
@@ -170,12 +171,21 @@ $allObject = jeeObject::all();
 								<img src="" width="240px" height="auto" />
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Seulement sur la synthèse}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{L'image de fond sera utilisée seulement sur la Synthèse.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-xs-2">
+								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useBackground"/>
+							</div>
+						</div>
 					</fieldset>
 				</form>
+				<br>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="summarytab">
 				<?php
-				if (count(config::byKey('object:summary')) == 0) {
+				if (count($config_objSummary) == 0) {
 					echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 				} else {
 
@@ -189,7 +199,7 @@ $allObject = jeeObject::all();
 										<th></th>
 										<?php
 										$echo = '';
-										foreach (config::byKey('object:summary') as $key => $value) {
+										foreach (($config_objSummary) as $key => $value) {
 											$echo .= '<th style="cursor:default;">' . $value['name'] . '</th>';
 										}
 										echo $echo;
@@ -202,7 +212,7 @@ $allObject = jeeObject::all();
 								$echo .= '<td style="cursor:default;">';
 								$echo .= '{{Remonter dans le résumé global}} <sup><i class="fas fa-question-circle" title="{{Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.}}"></i></sup>';
 								$echo .= '</td>';
-								foreach (config::byKey('object:summary') as $key => $value) {
+								foreach ($config_objSummary as $key => $value) {
 									$echo .= '<td>';
 									$echo .= '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
 									$echo .= '</td>';
@@ -214,7 +224,7 @@ $allObject = jeeObject::all();
 								$echo .= '<td style="cursor:default;">';
 								$echo .= '{{Masquer en desktop}}';
 								$echo .= '</td>';
-								foreach (config::byKey('object:summary') as $key => $value) {
+								foreach ($config_objSummary as $key => $value) {
 									$echo .= '<td>';
 									$echo .= '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
 									$echo .= '</td>';
@@ -226,7 +236,7 @@ $allObject = jeeObject::all();
 								$echo .= '<td>';
 								$echo .= '{{Masquer en mobile}}';
 								$echo .= '</td>';
-								foreach (config::byKey('object:summary') as $key => $value) {
+								foreach ($config_objSummary as $key => $value) {
 									$echo .= '<td>';
 									$echo .= '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
 									$echo .= '</td>';
@@ -248,7 +258,7 @@ $allObject = jeeObject::all();
 								<?php
 								$active = 'active';
 								$echo = '';
-								foreach (config::byKey('object:summary') as $key => $value) {
+								foreach ($config_objSummary as $key => $value) {
 									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
 									$active = '';
 								}
@@ -259,7 +269,7 @@ $allObject = jeeObject::all();
 								<?php
 								$active = ' active';
 								$echo = '';
-								foreach (config::byKey('object:summary') as $key => $value) {
+								foreach ($config_objSummary as $key => $value) {
 									$echo .=  '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
 									$echo .=  '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>';
 									$echo .=  '<br/>';

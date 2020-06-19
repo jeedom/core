@@ -2,38 +2,44 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('SEL_OBJECT_ID', init('object_id'));
+
 sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
+
+$DisplayByObject = true;
 if (init('object_id') == '') {
-	if(init('summary') != ''){
+	if (init('summary') != '') {
 		$object = jeeObject::rootObject();
-	}else{
+		$DisplayByObject = false;
+	} else {
+		sendVarToJs('SHOW_BY_SUMMARY', '');
 		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 	}
 } else {
+	sendVarToJs('SHOW_BY_SUMMARY', '');
 	$object = jeeObject::byId(init('object_id'));
 }
-if (!is_object($object)) {
+if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
 }
-if (!is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
-}
-if (init('childs', 1) == 1) {
-	$allObject = jeeObject::buildTree(null, true);
-} else {
-	$allObject = array();
+if ($DisplayByObject && !is_object($object)) {
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
 
-foreach ($allObject as $value) {
-	if ($value->getId() == $object->getId()) {
-		$child_object = $value->getChilds();
+if ($DisplayByObject) {
+	sendVarToJs('rootObjectId', $object->getId());
+	if (init('childs', 1) == 1) {
+		$allObject = jeeObject::buildTree(null, true);
+	} else {
+		$allObject = array();
 	}
+} else {
+	sendVarToJs('rootObjectId', 'undefined');
+	sendVarToJs('SHOW_BY_SUMMARY', init('summary'));
+	$allObject = jeeObject::all(true);
 }
 
-sendVarToJs('rootObjectId', $object->getId());
 ?>
 <div class="row row-overflow">
 	<?php
@@ -47,11 +53,13 @@ sendVarToJs('rootObjectId', $object->getId());
 		<ul id="ul_object" class="nav nav-list bs-sidenav">
 			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			<?php
-			foreach ($allObject as $object_li) {
-				$margin = 5 * $object_li->getConfiguration('parentNumber');
-				$liobject = '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
-				if ($object_li->getId() == $object->getId()) $liobject = str_replace('class="cursor li_object"', 'class="cursor li_object active"', $liobject);
-				echo $liobject;
+			if ($DisplayByObject) {
+				foreach ($allObject as $object_li) {
+					$margin = 5 * $object_li->getConfiguration('parentNumber');
+					$liobject = '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
+					if ($object_li->getId() == $object->getId()) $liobject = str_replace('class="cursor li_object"', 'class="cursor li_object active"', $liobject);
+					echo $liobject;
+				}
 			}
 			?>
 		</ul>
@@ -68,57 +76,92 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 <div id="dashTopBar" class="input-group">
 	<div class="input-group-btn">
 	<?php
-	if (init('childs', 1) == 1) {?>
-		<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i></a><a id="bt_displaySummaries" class="btn" data-display="0" title="{{Afficher/Masquer les résumés}}"><i class="fas fa-poll-h"></i></a>
-	<?php } else { ?>
-		<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i></a>
-	<?php } ?>
+		if (init('childs', 1) == 1) {?>
+			<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i>
+		<?php } else { ?>
+			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
+		<?php } ?>
+		</a>
 	</div>
 	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
-		<a id="bt_resetDashboardSearch" class="btn"><i class="fas fa-times"></i></a>
+		<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
+		</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
+			<i class="fas fa-filter"></i></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+		</button>
+		<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:28px;left:-110px;">
+			<li>
+				<a id="catFilterAll"> {{Toutes}}</a>
+				<a id="catFilterNone"> {{Aucune}}</a>
+			</li>
+			 <li class="divider"></li>
+			<?php
+				foreach ((jeedom::getConfiguration('eqLogic:category')) as $key => $value) {
+					if ($key=='default') $key = '';
+					echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$key.'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
+				}
+			?>
+			<li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
+		</ul>
 	</div>
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<div class="input-group-btn">
-			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
+			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn enabled roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
 		</div>
 	<?php } ?>
 </div>
 
-<?php include_file('desktop', 'dashboard', 'js'); ?>
-
 <div class="row" >
 	<?php
-	$div =  '<div class="col-md-12">';
-	$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
-	$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
-	$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
-	$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
-	$div .= '</div>';
-	$div .= '</div>';
-	$div .= '</div>';
-	echo $div;
-	foreach ($allObject as $value) {
-		if ($value->getId() != $object->getId()) {
-			continue;
-		}
-		foreach ($value->getChilds() as $child) {
-			if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
+	if ($DisplayByObject) {
+		//show root object and all its childs:
+		$div =  '<div class="col-md-12">';
+		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
+		$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+		$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
+		$div .= '</div>';
+		$div .= '</div>';
+		$div .= '</div>';
+		echo $div;
+		foreach ($allObject as $value) {
+			if ($value->getId() != $object->getId()) {
 				continue;
 			}
-			$div = '<div class="col-md-12">';
-			$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
-			$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
-			$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
-			$div .= '<script>getObjectHtml(' . $child->getId() . ')</script>';
+			foreach (($value->getChilds()) as $child) {
+				if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
+					continue;
+				}
+				$div = '<div class="col-md-12">';
+				$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
+				$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+				$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				echo $div;
+			}
+		}
+	} else {
+		//show all objects for summaries:
+		foreach ($allObject as $object) {
+			$div =  '<div class="col-md-12">';
+			$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object hidden">';
+			$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+			$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
 			$div .= '</div>';
 			$div .= '</div>';
 			$div .= '</div>';
 			echo $div;
 		}
 	}
+
 	?>
 </div>
 </div>
 </div>
+
+<?php
+	include_file('desktop', 'dashboard', 'js');
+	include_file('desktop/common', 'ui', 'js');
+?>

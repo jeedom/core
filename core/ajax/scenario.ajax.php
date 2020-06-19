@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	
-	ajax::init();
+	ajax::init(array('templateupload'));
 	
 	if (init('action') == 'changeState') {
 		$scenario = scenario::byId(init('id'));
@@ -39,7 +39,7 @@ try {
 			if (!$scenario->getIsActive()) {
 				throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 			}
-			$scenario->launch('user', 'Scénario lancé manuellement', 0);
+			$scenario->launch('user', __('Scénario lancé manuellement', __FILE__), 0);
 			break;
 			case 'stop':
 			$scenario->stop();
@@ -58,7 +58,7 @@ try {
 	
 	if (init('action') == 'listScenarioHtml') {
 		$return = array();
-		foreach (scenario::all() as $scenario) {
+		foreach((scenario::all()) as $scenario) {
 			if ($scenario->getIsVisible() == 1) {
 				$return[] = $scenario->toHtml(init('version'));
 			}
@@ -86,7 +86,7 @@ try {
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
-		$return['evaluate'] = scenarioExpression::setTags(jeedom::fromHumanReadable(init('expression')), $scenario);
+		$return['evaluate'] = scenarioExpression::setTags(jeedom::fromHumanReadable(init('expression')), $scenario,true);
 		$return['result'] = evaluate($return['evaluate']);
 		$return['correct'] = 'ok';
 		if (trim($return['result']) == trim($return['evaluate'])) {
@@ -131,10 +131,12 @@ try {
 	if (init('action') == 'loadTemplateDiff') {
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
-			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
+			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $path . '/' . init('template'));
 		}
 		$return = array();
-		foreach (preg_split("/((\r?\n)|(\r\n?))/", file_get_contents($path . '/' . init('template'))) as $line) {
+		$fileContent = file_get_contents($path . '/' . init('template'));
+		$fileLines = preg_split("/((\r?\n)|(\r\n?))/", $fileContent);
+		foreach ($fileLines as $line) {
 			preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
@@ -149,21 +151,23 @@ try {
 						
 					}
 				}
-			}
-			preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
-			if (count($matches) > 0) {
-				foreach ($matches as $match) {
-					$return[$match[0]] = '';
-					try {
-						$eqLogic = eqLogic::byString($match[0]);
-						if(is_object($cmd)){
-							$return[$match[0]] = '#' . $eqLogic->getHumanName() . '#';
+			} else {
+				preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
+				if (count($matches) > 0) {
+					foreach ($matches as $match) {
+						$return[$match[0]] = '';
+						try {
+							$eqLogic = eqLogic::byString($match[0]);
+							if(is_object($cmd)){
+								$return[$match[0]] = '#' . $eqLogic->getHumanName() . '#';
+							}
+						} catch (Exception $e) {
+							
 						}
-					} catch (Exception $e) {
-						
 					}
 				}
 			}
+			
 			preg_match_all("/variable\((.*?)\)/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
@@ -178,7 +182,7 @@ try {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
-			throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
+			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $path . '/' . init('template'));
 		}
 		foreach (json_decode(init('convert'), true) as $value) {
 			if (trim($value['end']) == '') {
@@ -334,7 +338,7 @@ try {
 		$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
 		$return['forecast'] = $scenario->calculateScheduleDate();
 		$return['elements'] = array();
-		foreach ($scenario->getElement() as $element) {
+		foreach(($scenario->getElement()) as $element) {
 			$return['elements'][] = $element->getAjaxElement();
 		}
 		$return['scenario_link'] = array('scenario' => array());
@@ -444,7 +448,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.json'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .json) : ' . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .json) : ', __FILE__) . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 10000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 10Mo)', __FILE__));
@@ -456,7 +460,6 @@ try {
 			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
 		ajax::success();
-		
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

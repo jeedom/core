@@ -2,23 +2,20 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'visjs/vis.min', 'css');
-include_file('3rdparty', 'visjs/vis.min', 'js');
 $date = array(
 	'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),
 	'end' => date('Y-m-d'),
 );
 ?>
 
-<ul class="nav nav-tabs" role="tablist" style="margin-top:4px;">
+<ul class="nav nav-tabs reportModeHidden" role="tablist" style="margin-top:4px;">
 	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-chart-bar"></i> {{Historique}}</a></li>
 	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-clock"></i> {{Timeline}}</a></li>
+	<div id="div_alertHistory" style="display: inline-block;"></div>
 </ul>
 
-<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
-		<br/>
-		
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -35,44 +32,49 @@ $date = array(
 				</ul>
 				<ul id="ul_history" class="nav nav-list bs-sidenav">
 					<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
-						<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top:-5px;padding: 5px 10px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+						<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top:-5px;padding: 5px 10px;margin-right: 3px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 					</li>
 					<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
 					<?php
 					$object_id = -1;
-					foreach (cmd::allHistoryCmd() as $cmd) {
+					$historyAll = cmd::allHistoryCmd();
+					foreach ($historyAll as $cmd) {
 						$eqLogic = $cmd->getEqLogic();
 						if (!$eqLogic->hasRight('r')) {
 							continue;
 						}
+						$_echo = '';
 						if ($object_id != $eqLogic->getObject_id()) {
 							if ($object_id != -1) {
-								echo '</div>';
+								$_echo .= '</div>';
 							}
 							$object = $eqLogic->getObject();
 							if (is_object($object)) {
 								if ($object->getConfiguration('useCustomColor') == 1) {
-									echo '<span class="label cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . ' <i class="fas fa-arrow-circle-right"></i></span>';
+									$_echo .= '<span class="label cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . ' <i class="fas fa-arrow-circle-right"></i></span>';
 								} else {
-									echo '<span class="label cursor displayObject labelObjectHuman" data-object_id="o' . $eqLogic->getObject_id() . '">' . $object->getName() . ' <i class="fas fa-arrow-circle-right"></i></span>';
+									$_echo .= '<span class="label cursor displayObject labelObjectHuman" data-object_id="o' . $eqLogic->getObject_id() . '">' . $object->getName() . ' <i class="fas fa-arrow-circle-right"></i></span>';
 								}
 							} else {
-								echo '<span class="label label-default cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '>' . __('Aucun', __FILE__) . ' <i class="fas fa-arrow-circle-right"></i></span>';
+								$_echo .= '<span class="label label-default cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '>' . __('Aucun', __FILE__) . ' <i class="fas fa-arrow-circle-right"></i></span>';
 							}
-							echo '<br/>';
-							echo '<div class="cmdList" data-object_id="o' . $eqLogic->getObject_id() . '" style="display:none;margin-left : 20px;">';
+							$_echo .= '<br/>';
+							$_echo .= '<div class="cmdList" data-object_id="o' . $eqLogic->getObject_id() . '" style="display:none;margin-left : 20px;">';
 						}
-						echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="far fa-trash-alt remove"></i> ';
+						$class = 'history';
+						if (!$eqLogic->getIsEnable()) $class = 'history disabled';
+						$_echo .= '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="'.$class.'"><i class="far fa-trash-alt remove" title="{{Supprimer tout ou partie de cet historique.}}"></i> ';
 						if ($cmd->getSubType() == 'string') {
-							echo '<i class="fas fa-share export"></i> ';
+							$_echo .= '<i class="fas fa-share export" title="{{Exporter cet historique.}}"></i> ';
 						}
-						echo $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
+						$_echo .= $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
+						echo $_echo;
 						$object_id = $eqLogic->getObject_id();
 					}
 					?>
 				</ul>
 			</div>
-			
+
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-3 col-sm-12 center">
@@ -121,7 +123,7 @@ $date = array(
 						</center>
 					</div>
 					<div class="col-lg-2 col-sm-12">
-						<a class="btn btn-warning pull-right" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
+						<a class="btn btn-warning pull-right" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >
 							<i class="fas fa-times"></i> {{Affichage}}
 						</a>
 					</div>
@@ -131,36 +133,33 @@ $date = array(
 		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
-		<div class="input-group pull-right" style="display:inline-flex">
-			<span class="input-group-btn">
-				<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
-					<?php
-					foreach (timeline::listFolder() as $folder) {
-						if($folder == 'main'){
-							echo '<option value="'.$folder.'">{{Principal}}</option>';
-						}else{
-							echo '<option value="'.$folder.'">'.$folder.'</option>';
+		<div id="timelineOptions" class="reportModeHidden">
+			<div class="input-group pull-right" style="display:inline-flex">
+				<span class="input-group-btn">
+					<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
+						<?php
+						foreach ((timeline::listFolder()) as $folder) {
+							if($folder == 'main'){
+								echo '<option value="'.$folder.'">{{Principal}}</option>';
+							}else{
+								echo '<option value="'.$folder.'">'.$folder.'</option>';
+							}
 						}
-					}
-					?>
-				</select>
-				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
-				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
-			</span>
+						?>
+					</select>
+					<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
+					</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				</span>
+			</div>
 		</div>
-		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
-			<thead>
-				<tr>
-					<th data-sorter="shortDate">{{Date}}</th>
-					<th>{{Type}}</th>
-					<th>{{Visuel}}</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		
+		<div id="timelineContainer">
+			<ul>
+			</ul>
+		</div>
 	</div>
 </div>
 
-<?php include_file("desktop", "history", "js");?>
+<?php
+include_file("desktop", "history", "js");
+include_file('3rdparty', 'moment/lib.moment', 'js');
+?>

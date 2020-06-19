@@ -1,33 +1,33 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class migrate {
-
+	
 	public static function usbTry(){
 		//log::remove('migrate');
 		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			if(phpversion() < 7){
 				exec('sudo add-apt-repository "deb http://ftp.debian.org/debian stretch main contrib non-free"');
 				exec('sudo apt-get update');
-			} 
+			}
 			if (exec('which rsync | wc -l') == 0) {
 				exec('sudo apt-get install -y rsync');
 			}
@@ -59,10 +59,10 @@ class migrate {
 			}elseif($iSDn > 1){
 				$statut = 'sdaNumSup';
 			}else{
-              			exec('sudo umount '.$mediaLink);
-              			exec('sudo mkdir '.$mediaLink);
+				exec('sudo umount '.$mediaLink);
+				exec('sudo mkdir '.$mediaLink);
 				exec('sudo mount -t vfat /dev/'.$usb.' '.$mediaLink);
-              			exec('sudo mkdir '.$mediaLink.'/Backup');
+				exec('sudo mkdir '.$mediaLink.'/Backup');
 				if((migrate::freeSpaceUsb()/1024) > $minSize){
 					$statut = 'ok';
 				}else{
@@ -75,13 +75,13 @@ class migrate {
 		return array('statut' => $statut, 'space' => $space, 'minSpace' => $minSize);
 	}
 	
-	public static function backupToUsb() { 
+	public static function backupToUsb() {
 		$mediaLink = '/media/migrate/Backup';
 		log::remove('migrate');
 		exec('sudo rm '.$mediaLink.'/*');
-	    $backups = jeedom::listBackup();
-	    $lienBackup = reset($backups);
-	    if (substr(config::byKey('backup::path'), 0, 1) != '/') {
+		$backups = jeedom::listBackup();
+		$lienBackup = reset($backups);
+		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
 		} else {
 			$backup_dir = config::byKey('backup::path');
@@ -94,14 +94,14 @@ class migrate {
 		}else{
 			return 'nok';
 		}
-	} 
+	}
 	
-	public static function imageToUsb() { 
+	public static function imageToUsb() {
 		$mediaLink = '/media/migrate';
 		log::remove('migrate');
 		$jsonrpc = repo_market::getJsonRpc();
 		if (!$jsonrpc->sendRequest('box::smart_image_url')) {
-	    	throw new Exception($jsonrpc->getErrorMessage());
+			throw new Exception($jsonrpc->getErrorMessage());
 		}
 		$urlArray = $jsonrpc->getResult();
 		$url = $urlArray['url'];
@@ -121,11 +121,11 @@ class migrate {
 				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/backupJeedom.tar.gz');
 				return 'fileExist';
 			}else{
-				exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+				exec('sudo wget --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
 				return 'telechargement';
 			}
 		}else{
-			exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+			exec('sudo wget --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
 			return 'telechargement';
 		}
 	}
@@ -153,16 +153,16 @@ class migrate {
 	
 	public static function GoBackupInstall(){
 		$backups = jeedom::listBackup();
-	    foreach ($backups as $backup) {
-		    	$lienBackup = $backup;
-	    }
-	    jeedom::restore('backup/'.$lienBackup, true);
-	    return 'ok';
+		foreach ($backups as $backup) {
+			$lienBackup = $backup;
+		}
+		jeedom::restore('backup/'.$lienBackup, true);
+		return 'ok';
 	}
 	
 	public static function freeSpaceUsb(){
 		$mediaLink = '/media/migrate';
 		return disk_free_space($mediaLink)/1024;
 	}
-
+	
 }

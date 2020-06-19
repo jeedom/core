@@ -43,10 +43,11 @@ colors Light
   --cat-heating-color: 60, 115, 165;
   --cat-automatism-color: 135, 135, 135;
   --cat-light-color: 220, 135, 25;
+  --cat-opening-color: 90, 90, 90;
   --cat-multimedia-color: 65, 90, 125;
   --cat-energy-color: 58, 165, 72;
   --cat-other-color: 58, 120, 85;
-  --cat-scenario-color: 80, 80, 84;
+  --cat-scenario-color: 70, 70, 78;
 
   --url-iconsDark: url(../img/ui-icons-white.png);
   --url-iconsLight: url(../img/ui-icons-black.png);
