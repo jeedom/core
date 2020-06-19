@@ -30,7 +30,7 @@ echo "[START CHECK AND FIX DB]\n";
 try {
   DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true),'all',true);
 } catch (\Exception $e) {
-  echo "***ERREUR*** " . $ex->getMessage() . "\n";
+  echo "***ERREUR*** " . $e->getMessage() . "\n";
 }
 echo "[END CHECK AND FIX DB]\n";
 ?>
