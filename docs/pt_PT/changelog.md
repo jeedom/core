@@ -2,6 +2,11 @@
 Registro de Alterações Jeedom V4
 =========
 
+4.0.58
+=====
+
+- Correções de bugs em widgets de tempo
+
 4.0.57
 =====
 
