@@ -88,7 +88,7 @@ function colorizeSummary() {
 function createSummaryObserver() {
   var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if ( mutation.type == 'childList' && mutation.target.className == 'resume') {
+      if (mutation.type == 'childList' && mutation.target.className == 'resume') {
         updateSummary(mutation.addedNodes[0].className)
       }
     })
@@ -128,7 +128,7 @@ $('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function 
   loadPage(url)
 })
 
-$('#objectOverviewContainer .objectSummaryParent').off('click').on('click', function (event) {
+$('body').delegate('#objectOverviewContainer .objectSummaryParent', 'click', function(event) {
   event.stopPropagation()
   event.preventDefault()
   var objectId = $(this).closest('.objectPreview').attr('data-object_id')
