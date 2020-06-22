@@ -233,52 +233,70 @@ $(function() {
 })
 
 function getSummaryHtml(_object_id, _summary, _title) {
-  jeedom.object.toHtml({
+  jeedom.object.getEqLogicsFromSummary({
     id: _object_id,
+    onlyEnable: 1,
+    onlyVisible: 1,
     version: 'dashboard',
-    category : null,
     summary : _summary,
-    tag : null,
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (html) {
+    success: function(data) {
       $summaryContainer.empty().packery('destroy')
-      $summaryContainer.append(html)
-
       _title = $.parseHTML('<span>'+_title+'</span>')
       $('.ui-dialog[aria-describedby="md_overviewSummary"] span.ui-dialog-title').empty().append(_title)
       $('#md_overviewSummary').dialog('open')
 
-      //adapt modal size:
-      var brwSize = {
-        width: window.innerWidth || document.body.clientWidth,
-        height: window.innerHeight || document.body.clientHeight
+      var nbEqs = data.length
+      for (var i=0; i<nbEqs; i++) {
+        jeedom.eqLogic.toHtml({
+          id: data[i].id,
+          version: 'dashboard',
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(html) {
+            if (html.html != '') {
+              $summaryContainer.append(html.html)
+            }
+            nbEqs--
+
+            //is last ajax:
+            if (nbEqs == 0) {
+              //adapt modal size:
+              var brwSize = {
+                width: window.innerWidth || document.body.clientWidth,
+                height: window.innerHeight || document.body.clientHeight
+              }
+              var fullWidth = 0
+              var fullHeight = 0
+              var thisWidth = 0
+              var thisHeight = 0
+              $('.eqLogic-widget').each(function( index ) {
+                thisWidth = $(this).outerWidth(true)
+                thisHeight = $(this).outerHeight(true)
+                if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
+                if ( (fullWidth + thisWidth + 150) < brwSize.width ) {
+                  fullWidth += thisWidth + 5
+                } else {
+                  fullHeight += thisHeight + 5
+                }
+              })
+              if (fullWidth == 0) {
+                fullWidth = 120
+                fullHeight = 120
+              }
+              fullWidth += 5
+              fullHeight += 5
+              modal.width(fullWidth + 26).height(fullHeight + 50)
+              modalContent.width(fullWidth).height(fullHeight)
+              $summaryContainer.packery({gutter: 10})
+              initTooltips($('#md_overviewSummary'))
+            }
+          }
+        })
       }
-      var fullWidth = 0
-      var fullHeight = 0
-      var thisWidth = 0
-      var thisHeight = 0
-      $('.eqLogic-widget').each(function( index ) {
-        thisWidth = $(this).outerWidth(true)
-        thisHeight = $(this).outerHeight(true)
-        if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
-        if ( (fullWidth + thisWidth + 150) < brwSize.width ) {
-          fullWidth += thisWidth + 5
-        } else {
-          fullHeight += thisHeight + 5
-        }
-      })
-      if (fullWidth == 0) {
-        fullWidth = 120
-        fullHeight = 120
-      }
-      fullWidth += 5
-      fullHeight += 5
-      modal.width(fullWidth + 26).height(fullHeight + 50)
-      modalContent.width(fullWidth).height(fullHeight)
-      $summaryContainer.packery({gutter: 10})
-      initTooltips($('#md_overviewSummary'))
     }
   })
 }

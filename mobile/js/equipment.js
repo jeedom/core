@@ -6,13 +6,26 @@ function initEquipment(_object_id) {
   var objects_info = {}
   var objectsAll = {}
 
+  if (isset(_object_id)) {
+    if (_object_id == '') _object_id == 'all'
+    var summary = ''
+    if (_object_id.indexOf(':') != -1) {
+      var temp = _object_id.split(':')
+      _object_id = temp[0]
+      var summary = temp[1]
+    }
+  }
+
   //set hamburger panel:
   jeedom.object.all({
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
-      objectsAll = objects
+      if (_object_id == '') {
+        objectsAll = objects
+      }
+
       var summaries = []
       var li = '<ul data-role="listview" data-inset="false">'
       li += '<li class="li-splitter">'
@@ -24,6 +37,7 @@ function initEquipment(_object_id) {
 
       var icon, decay
       for (var i in objects) {
+        if (_object_id != '' && _object_id == objects[i].id) objectsAll = [objects[i]]
         if (objects[i].isVisible == 1) {
           icon = ''
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
@@ -54,23 +68,13 @@ function initEquipment(_object_id) {
   })
 
   if (isset(_object_id)) {
-    if (_object_id == '') _object_id == 'all'
-
     jeedom.object.getImgPath({
       id : _object_id,
       success : function(_path) {
         setBackgroundImage(_path)
       }
     })
-    var summary = ''
-    var childList = [_object_id]
-    if (_object_id.indexOf(':') != -1) {
-      var temp = _object_id.split(':')
-      _object_id = temp[0]
-      var summary = temp[1]
-    }
-
-    if (_object_id == '' && summary != '') {
+    if (summary != '') {
       displayObjectsBySummary(objectsAll, summary)
     } else {
       displayEqsByObject(objects_info, _object_id, summary)

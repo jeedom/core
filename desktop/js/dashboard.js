@@ -24,7 +24,7 @@ $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 $(function() {
   setTimeout(function() {
-    if (typeof rootObjectId != 'undefined' && SHOW_BY_SUMMARY == '') {
+    if (typeof rootObjectId != 'undefined') {
       jeedom.object.getImgPath({
         id : rootObjectId,
         success : function(_path) {
