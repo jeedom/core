@@ -112,6 +112,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	<?php } ?>
 </div>
 
+<?php include_file('desktop', 'dashboard', 'js'); ?>
 <div class="row" >
 	<?php
 	if ($DisplayByObject) {
@@ -120,6 +121,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
 		$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
 		$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
+		$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
 		$div .= '</div>';
 		$div .= '</div>';
 		$div .= '</div>';
@@ -136,6 +138,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 				$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
 				$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
 				$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
+				$div .= '<script>getObjectHtml(' . $child->getId() . ')</script>';
 				$div .= '</div>';
 				$div .= '</div>';
 				$div .= '</div>';
@@ -149,6 +152,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object hidden">';
 			$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
 			$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
+			$div .= '<script>getObjectHtmlFromSummary(' . $object->getId() . ')</script>';
 			$div .= '</div>';
 			$div .= '</div>';
 			$div .= '</div>';
@@ -162,6 +166,5 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 </div>
 
 <?php
-	include_file('desktop', 'dashboard', 'js');
 	include_file('desktop/common', 'ui', 'js');
 ?>

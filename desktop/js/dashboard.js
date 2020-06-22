@@ -16,21 +16,6 @@
 
 "use strict"
 
-//show each object elements:
-if (SHOW_BY_SUMMARY == '') {
-  Array.from(document.getElementsByClassName('div_object')).forEach(
-    function(element, index, array) {
-      getObjectHtml(element.getAttribute('data-object_id'))
-    }
-  )
-} else {
-  Array.from(document.getElementsByClassName('div_object')).forEach(
-    function(element, index, array) {
-      getObjectHtmlFromSummary(element.getAttribute('data-object_id'))
-    }
-  )
-}
-
 if (SEL_SUMMARY != '') {
   $('#bt_displayObject, #bt_editDashboardWidgetOrder').hide()
 }
