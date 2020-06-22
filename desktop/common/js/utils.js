@@ -59,6 +59,7 @@ var modifyWithoutSave = false
 function checkPageModified() {
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      $.hideLoading()
       return true
     }
     modifyWithoutSave = false
