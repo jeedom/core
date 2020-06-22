@@ -111,14 +111,18 @@ $('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function 
   loadPage(url)
 })
 
-$('body').delegate('#objectOverviewContainer .objectSummaryParent', 'click', function(event) {
-  event.stopPropagation()
-  event.preventDefault()
-  var objectId = $(this).closest('.objectPreview').attr('data-object_id')
-  var summaryType = $(this).attr('data-summary')
-  var title = $(this).get(0).firstChild.outerHTML + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
-  getSummaryHtml(objectId, summaryType, title)
-})
+$('#objectOverviewContainer').on({
+  'click': function(event) {
+    event.stopPropagation()
+    event.preventDefault()
+    var objectId = $(this).closest('.objectPreview').attr('data-object_id')
+    var summaryType = $(this).attr('data-summary')
+    var title = $(this).get(0).firstChild.outerHTML + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
+    getSummaryHtml(objectId, summaryType, title)
+  }
+}, '.objectSummaryParent')
+
+
 
 //Tile click or center-click
 $('.objectPreview').off('click').on('click', function (event) {
@@ -226,9 +230,9 @@ function getSummaryHtml(_object_id, _summary, _title) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      if (!$summaryContainer.is(':empty')) {
+      try {
         $summaryContainer.empty().packery('destroy')
-      }
+      } catch(e) {}
       _title = $.parseHTML('<span>'+_title+'</span>')
       $('.ui-dialog[aria-describedby="md_overviewSummary"] span.ui-dialog-title').empty().append(_title)
       $('#md_overviewSummary').dialog('open')
@@ -276,6 +280,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
               fullHeight += 5
               modal.width(fullWidth + 26).height(fullHeight + 50)
               modalContent.width(fullWidth).height(fullHeight)
+
               $summaryContainer.packery({gutter: 10})
               initTooltips($('#md_overviewSummary'))
             }
