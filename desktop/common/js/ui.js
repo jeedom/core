@@ -195,6 +195,7 @@ jeedomUI.saveWidgetDisplay = function(_params) {
 /*
 @dashboard
 @view
+@overview
 infos/actions tile signals
 */
 jeedomUI.setEqSignals = function() {

@@ -22,25 +22,8 @@ var modal = null
 var modalContent = null
 
 //infos/actions tile signals:
-$('body').off('mouseenter').off('mouseleave')
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-  })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-  })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-  })
+var isEditing = false
+jeedomUI.setEqSignals()
 
 $(function() {
   //move to top summary:
@@ -243,7 +226,9 @@ function getSummaryHtml(_object_id, _summary, _title) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      $summaryContainer.empty().packery('destroy')
+      if (!$summaryContainer.is(':empty')) {
+        $summaryContainer.empty().packery('destroy')
+      }
       _title = $.parseHTML('<span>'+_title+'</span>')
       $('.ui-dialog[aria-describedby="md_overviewSummary"] span.ui-dialog-title').empty().append(_title)
       $('#md_overviewSummary').dialog('open')

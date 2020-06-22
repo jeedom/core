@@ -36,4 +36,7 @@ $allObject = jeeObject::all(true);
 </div>
 
 
-<?php include_file('desktop', 'overview', 'js'); ?>
+<?php
+  include_file('desktop/common', 'ui', 'js');
+  include_file('desktop', 'overview', 'js');
+?>
