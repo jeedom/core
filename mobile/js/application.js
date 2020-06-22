@@ -49,11 +49,13 @@ $(function() {
 
   initApplication()
 
-  $('body').delegate('.link', 'click', function() {
-    modal(false)
-    panel(false)
-    page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
-  })
+  $('body').on({
+    'click': function(event) {
+      modal(false)
+      panel(false)
+      page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
+    }
+  }, '.link')
 
   $('body').on('click','.objectSummaryParent',function() {
     modal(false)

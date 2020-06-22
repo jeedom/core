@@ -25,18 +25,21 @@ function initMessage() {
     getAllMessage($(this).attr('data-plugin'))
   })
 
-  $("#table_message").delegate(".removeMessage", 'click', function (event) {
-    var tr = $(this).closest('tr')
-    jeedom.message.remove({
-      id: tr.attr('data-message_id'),
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function () {
-        tr.remove()
-      }
-    })
-  })
+  $('#table_message').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      jeedom.message.remove({
+        id: tr.attr('data-message_id'),
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function () {
+          tr.remove()
+        }
+      })
+    }
+  }, '.removeMessage')
+
 }
 
 function getAllMessage(_plugin) {

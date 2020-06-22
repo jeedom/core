@@ -185,7 +185,7 @@ $(".eqLogicDisplayCard").on('click', function (event) {
         }
         $('body').setValues(data, '.eqLogicAttr');
         if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
-        
+
         if ('function' == typeof (printEqLogic)) {
           printEqLogic(data);
         }
@@ -195,13 +195,18 @@ $(".eqLogicDisplayCard").on('click', function (event) {
             addCmdToTable(data.cmd[i]);
           }
         }
-        $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
-          jeedom.cmd.changeType($(this).closest('.cmd'));
-        });
-        
-        $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
-          jeedom.cmd.changeSubType($(this).closest('.cmd'));
-        });
+        $('#div_pageContainer').on({
+          'change': function(event) {
+            jeedom.cmd.changeType($(this).closest('.cmd'))
+          }
+        }, '.cmd .cmdAttr[data-l1key=type]')
+
+        $('#div_pageContainer').on({
+          'change': function(event) {
+            jeedom.cmd.changeSubType($(this).closest('.cmd'))
+          }
+        }, '.cmd .cmdAttr[data-l1key=subType]')
+
         addOrUpdateUrl('id',data.id);
         $.hideLoading();
         modifyWithoutSave = false;
@@ -443,7 +448,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
   } else {
     $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
   }
-  
+
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
@@ -537,10 +542,14 @@ $("img.lazy").each(function () {
   }
 });
 
-$('#div_pageContainer').delegate('.cmd .cmdAttr:visible', 'change', function () {
-  modifyWithoutSave = true;
-});
+$('#div_pageContainer').on({
+  'change': function(event) {
+    modifyWithoutSave = true
+  }
+}, '.cmd .cmdAttr:visible')
 
-$('#div_pageContainer').delegate('.eqLogic .eqLogicAttr:visible', 'change', function () {
-  modifyWithoutSave = true;
-});
+$('#div_pageContainer').on({
+  'change': function(event) {
+    modifyWithoutSave = true
+  }
+}, '.eqLogic .eqLogicAttr:visible')

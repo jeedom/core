@@ -73,15 +73,17 @@ function initScenario() {
     }
   })
 
-  $('#div_displayScenario').delegate('.toggleShowGroup', 'click', function() {
-    var toggle = true
-    if ($(this).next(".groupContainer").is(":visible")) toggle = false
-    $('.groupContainer').hide()
-    if (toggle) $(this).next('.groupContainer').show()
-    setTimeout(function() {
-      $('#div_displayScenario').packery({gutter : 0})
-    }, 100)
-  })
+  $('#div_displayScenario').on({
+    'click': function(event) {
+      var toggle = true
+      if ($(this).next(".groupContainer").is(":visible")) toggle = false
+      $('.groupContainer').hide()
+      if (toggle) $(this).next('.groupContainer').show()
+      setTimeout(function() {
+        $('#div_displayScenario').packery({gutter : 0})
+      }, 100)
+    }
+  }, '.toggleShowGroup')
 
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
