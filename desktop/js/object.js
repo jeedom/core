@@ -410,17 +410,21 @@ $('.bt_checkNone').on('click',function() {
 })
 
 //cmd info modal autoselect object:
-$('#div_pageContainer').delegate(".listCmdInfo", 'click', function() {
-  var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({object:{id:$('.objectAttr[data-l1key="id"]').val()},cmd:{type:'info'}}, function(result) {
-    el.value(result.human)
-  })
-  $('body').trigger('mod_insertCmdValue_Visible')
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({object:{id:$('.objectAttr[data-l1key="id"]').val()},cmd:{type:'info'}}, function(result) {
+      el.value(result.human)
+    })
+    $('body').trigger('mod_insertCmdValue_Visible')
+  }
+}, '.listCmdInfo')
 
-$('#div_pageContainer').delegate('.bt_removeSummary', 'click', function() {
-  $(this).closest('.summary').remove()
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    $(this).closest('.summary').remove()
+  }
+}, '.bt_removeSummary')
 
 function addSummaryInfo(_el, _summary) {
   if (!isset(_summary)) {

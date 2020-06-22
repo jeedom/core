@@ -105,11 +105,13 @@ function updateSummary(_className) {
 
 
 //buttons:
-$('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function () {
-  var objectId = $(this).closest('.objectPreview').data('object_id')
-  var url = 'index.php?v=d&p=object&id='+objectId+'#summarytab'
-  loadPage(url)
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var objectId = $(this).closest('.objectPreview').data('object_id')
+    var url = 'index.php?v=d&p=object&id='+objectId+'#summarytab'
+    loadPage(url)
+  }
+}, '.objectPreview .bt_config')
 
 $('#objectOverviewContainer').on({
   'click': function(event) {

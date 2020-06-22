@@ -225,10 +225,12 @@ $('#bt_displayObject').on('click', function () {
   }
 })
 
-$('#div_pageContainer').delegate('.editOptions', 'click', function () {
-  var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
-  $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
+    $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
+  }
+}, '.editOptions')
 
 var _draggingId = false
 var _orders = {}

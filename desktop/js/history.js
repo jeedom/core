@@ -130,13 +130,15 @@ $(".li_history .history").on('click', function(event) {
   return false
 })
 
-$("body").delegate("ul li input.filter", 'keyup', function() {
-  if ($(this).value() == '') {
-    $('.cmdList').hide()
-  } else {
-    $('.cmdList').show()
+$('#historytab').on({
+  'keyup': function(event) {
+    if ($(this).value() == '') {
+      $('.cmdList').hide()
+    } else {
+      $('.cmdList').show()
+    }
   }
-})
+}, 'ul li input.filter')
 
 $(".li_history .remove").on('click', function() {
   var bt_remove = $(this);

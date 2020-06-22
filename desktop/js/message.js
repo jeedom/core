@@ -37,17 +37,19 @@ $('#bt_refreshMessage').on('click', function(event) {
   $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
 })
 
-$("#table_message").delegate(".removeMessage", 'click', function(event) {
-  var tr = $(this).closest('tr')
-  jeedom.message.remove({
-    id: tr.attr('data-message_id'),
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      tr.remove();
-      $("#table_message").trigger("update")
-      refreshMessageNumber()
-    }
-  })
-})
+$('#table_message').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    jeedom.message.remove({
+      id: tr.attr('data-message_id'),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        tr.remove();
+        $("#table_message").trigger("update")
+        refreshMessageNumber()
+      }
+    })
+  }
+}, '.removeMessage')
