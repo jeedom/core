@@ -49,10 +49,12 @@ if (!isConnect()) {
   mod_insertEqLogic.options = {}
   mod_insertEqLogic.options.eqLogic = {}
 
-
-  $("#table_mod_insertEqLogicValue_valueEqLogicToMessage").delegate("td.mod_insertEqLogicValue_object select", 'change', function() {
-    mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options)
-  })
+  $('#table_mod_insertEqLogicValue_valueEqLogicToMessage').on({
+    'change': function(event) {
+      console.log('change')
+      mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options)
+    }
+  }, 'td.mod_insertEqLogicValue_object select')
 
   mod_insertEqLogic.setOptions = function(_options) {
     mod_insertEqLogic.options = _options

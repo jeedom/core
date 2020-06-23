@@ -546,10 +546,5 @@ $('#div_pageContainer').on({
   'change': function(event) {
     modifyWithoutSave = true
   }
-}, '.cmd .cmdAttr:visible')
+}, '.cmd .cmdAttr:visible, .eqLogic .eqLogicAttr:visible')
 
-$('#div_pageContainer').on({
-  'change': function(event) {
-    modifyWithoutSave = true
-  }
-}, '.eqLogic .eqLogicAttr:visible')

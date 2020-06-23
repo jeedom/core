@@ -11,57 +11,58 @@
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
-        jeedom.cmd.execute({id: '#id#', value: {slider:value }});
+        jeedom.cmd.execute({id: '#id#', value: {slider:value }})
       } else {
-        var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
-        jeedom.cmd.execute({id: '#id#', value: {slider: value}});
+        var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       }
     });
-    $("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
-    $("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
-    });
+    $('.cmd[data-cmd_uid=#uid#]').on({
+      'slidestop': function(event, ui) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
+      }
+    }, '.slider')
 
-    jeedom.cmd.update['#id#'] = function(_options){
-      var cmd = $('.cmd[data-cmd_id=#id#]');
-      if('#_time_widget_#' == '1'){
-        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
-      }else{
-        cmd.find('.timeCmd').remove();
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      if ('#_time_widget_#' == '1') {
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'))
+      } else {
+        cmd.find('.timeCmd').remove()
       }
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
-      cmd.find('.slider input').value(stateValue);
+      cmd.find('.slider input').value(stateValue)
       if (stateValue > minValue) {
         cmd.attr('data-state','on')
-        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"));
-      }else {
+        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
+      } else {
         cmd.attr('data-state','off')
-        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"));
+        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
       }
-      var style = '';
-      if(!isNaN('#_mobile_width_#')){
+      var style = ''
+      if (!isNaN('#_mobile_width_#')) {
         style = 'max-width:#_mobile_width_#px !important;'
       }
-      cmd.find('.imgCmd img').attr('style',style);
+      cmd.find('.imgCmd img').attr('style',style)
       cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
-        var cmd = $('.cmd[data-cmd_id=#id#]');
-        if(cmd.attr('data-state') == 'on'){
+        var cmd = $('.cmd[data-cmd_id=#id#]')
+        if (cmd.attr('data-state') == 'on') {
           cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
-        }else{
+        } else {
           cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
         }
-        var style = '';
-        if(!isNaN('#_mobile_width_#')){
+        var style = ''
+        if (!isNaN('#_mobile_width_#')) {
           style = 'max-width:#_mobile_width_#px !important;'
         }
-        cmd.find('.imgCmd img').attr('style',style);
+        cmd.find('.imgCmd img').attr('style',style)
       });
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
     $('body').on('changeThemeEvent', function (event,theme) {
-      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
+      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
     });
   </script>
 </div>

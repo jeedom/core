@@ -72,9 +72,11 @@ mod_insertCmd.setOptions = function(_options) {
     if (mod_insertCmd.options.cmd.type == "action") $('#thCmd').text("{{Commande action}}")
   }
   mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options)
-  $("#table_mod_insertCmdValue_valueEqLogicToMessage").delegate("td.mod_insertCmdValue_object select", 'change', function() {
-    mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options)
-  })
+  $('#table_mod_insertCmdValue_valueEqLogicToMessage').on({
+    'change': function(event) {
+      mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options)
+    }
+  }, 'td.mod_insertCmdValue_object select')
 }
 
 mod_insertCmd.getValue = function() {
