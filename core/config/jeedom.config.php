@@ -75,7 +75,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 	'cmd' => array(
 			'generic_type' => array(
-					'LIGHT_TOGGLE' => array('name' => __('Lumière Toggle',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
+						'LIGHT_TOGGLE' => array('name' => __('Lumière Toggle',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
 		'LIGHT_STATE' => array('name' => __('Lumière Etat',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Info'),
 		'LIGHT_ON' => array('name' => __('Lumière Bouton On',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
 		'LIGHT_OFF' => array('name' => __('Lumière Bouton Off',__FILE__), 'family' => __('Lumière',__FILE__), 'type' => 'Action'),
@@ -184,6 +184,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'SMOKE' => array('name' => __('Détection de fumée',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info'),
 		'FLOOD' => array('name' => __('Inondation',__FILE__), 'family' => __('Sécurité',__FILE__), 'type' => 'Info'),
 		'HUMIDITY' => array('name' => __('Humidité',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info'),
+		'THERMOSTAT_HUMIDITY' => array('name' => __('Thermostat humidité ambiante',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Info', 'noapp' => true),
+		'HUMIDITY_SET_SETPOINT' => array('name' => __('Humidité consigne ',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'HUMIDITY_SETPOINT' => array('name' => __('Humidité consigne',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'UV' => array('name' => __('UV',__FILE__), 'family' => __('Environnement',__FILE__), 'type' => 'Info', 'noapp' => true),
 		'OPENING' => array('name' => __('Porte',__FILE__), 'family' => __('Ouvrant',__FILE__), 'type' => 'Info'),
 		'OPENING_WINDOW' => array('name' => __('Fenêtre',__FILE__), 'family' => __('Ouvrant',__FILE__), 'type' => 'Info'),
