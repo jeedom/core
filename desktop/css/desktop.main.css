@@ -2060,9 +2060,6 @@ input.inputPassword  {
   margin-bottom: 3px;
   vertical-align: middle !important;
 }
-.form-group .form-control {
-  margin-bottom: 1.1px !important;
-}
 
 .form-control {
   color: var(--txt-color);

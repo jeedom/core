@@ -893,9 +893,11 @@ $("#md_cmdConfigureSelectMultiple").dialog({
   }
 })
 
-$('#table_widgetParametersCmd').delegate('.removeWidgetParameter', 'click', function() {
-  $(this).closest('tr').remove()
-})
+$('#table_widgetParametersCmd').on({
+  'click': function(event) {
+    $(this).closest('tr').remove()
+  }
+}, '.removeWidgetParameter')
 
 $('#bt_addWidgetParametersCmd').off().on('click', function() {
   var tr = '<tr>'
@@ -1092,44 +1094,52 @@ function synchModalToCmd() {
   }
 }
 
-$("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function() {
-  var type = $(this).attr('data-type')
-  $(this).closest('.' + type).remove()
-})
+$('#cmd_configuration').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    $(this).closest('.' + type).remove()
+  }
+}, '.bt_removeAction')
 
-$("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function() {
-  var type = $(this).attr('data-type');
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({cmd : {type :'action'}}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+$('#cmd_configuration').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type');
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({cmd : {type :'action'}}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.' + type).find('.actionOptions').html(html)
+        taAutosize()
+      })
+    })
+  }
+}, '.listCmd')
+
+$('#cmd_configuration').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    jeedom.getSelectActionModal({}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.' + type).find('.actionOptions').html(html)
+        taAutosize()
+      })
+    })
+  }
+}, '.listAction')
+
+$('#cmd_configuration').on({
+  'focusout': function(event) {
+    var type = $(this).attr('data-type')
+    var expression = $(this).closest('.' + type).getValues('.expressionAttr')
+    var el = $(this)
+    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
       el.closest('.' + type).find('.actionOptions').html(html)
       taAutosize()
     })
-  })
-})
-
-$("body").off('click',".listAction").on('click', ".listAction", function() {
-  var type = $(this).attr('data-type')
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-  jeedom.getSelectActionModal({}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
-    })
-  })
-})
-
-$('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function(event) {
-  var type = $(this).attr('data-type')
-  var expression = $(this).closest('.' + type).getValues('.expressionAttr')
-  var el = $(this)
-  jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
-    el.closest('.' + type).find('.actionOptions').html(html)
-    taAutosize()
-  })
-})
+  }
+}, '.cmdAction.expressionAttr[data-l1key=cmd]')
 
 function addActionCmd(_action, _type, _name) {
   if (!isset(_action)) {
@@ -1216,9 +1226,11 @@ $('#bt_cmdConfigureChooseIcon').on('click', function() {
   })
 })
 
-$('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function() {
-  $(this).empty()
-})
+$('#cmd_information').on({
+  'click': function(event) {
+    $(this).empty()
+  }
+}, '.cmdAttr[data-l1key=display][data-l2key=icon]')
 
 $('#bt_cmdConfigureLogRealTime').off('click').on('click', function() {
   $('#md_modal3').dialog({title: "{{Logs}}"}).load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open')
