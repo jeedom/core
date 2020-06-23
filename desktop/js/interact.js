@@ -248,11 +248,13 @@ $('#bt_testInteract,#bt_testInteract2').on('click', function() {
   $('#md_modal').dialog({title: "{{Tester les interactions}}"}).load('index.php?v=d&modal=interact.test').dialog('open')
 })
 
-$('#div_pageContainer').delegate('.listEquipementInfoReply', 'click', function() {
-  jeedom.cmd.getSelectModal({cmd : {type : 'info'}}, function(result) {
-    $('.interactAttr[data-l1key=reply]').atCaret('insert',result.human)
-  })
-})
+$('#div_conf').on({
+  'click': function(event) {
+    jeedom.cmd.getSelectModal({cmd : {type : 'info'}}, function(result) {
+      $('.interactAttr[data-l1key=reply]').atCaret('insert',result.human)
+    })
+  }
+}, '.listEquipementInfoReply')
 
 $("#bt_saveInteract").on('click', function() {
   var interact = $('.interact').getValues('.interactAttr')[0]
@@ -356,57 +358,67 @@ $('#bt_addAction').off('click').on('click',function() {
   modifyWithoutSave = true
 })
 
-$('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function(event) {
-  var type = $(this).attr('data-type')
-  var expression = $(this).closest('.' + type).getValues('.expressionAttr')
-  var el = $(this)
-  jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
-    el.closest('.' + type).find('.actionOptions').html(html)
-    taAutosize()
-  })
-})
-
-$("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function() {
-  var type = $(this).attr('data-type')
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+$('#div_conf').on({
+  'focusout': function(event) {
+    var type = $(this).attr('data-type')
+    var expression = $(this).closest('.' + type).getValues('.expressionAttr')
+    var el = $(this)
+    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
       el.closest('.' + type).find('.actionOptions').html(html)
       taAutosize()
     })
-  })
-})
+  }
+}, '.cmdAction.expressionAttr[data-l1key=cmd]')
 
-$("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', function() {
-  var type = $(this).attr('data-type')
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-  jeedom.getSelectActionModal({}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
+$('#div_conf').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.' + type).find('.actionOptions').html(html)
+        taAutosize()
+      })
     })
-  })
-})
+  }
+}, '.listCmd')
 
-$("body").undelegate(".listCmdAction", 'click').delegate(".listCmdAction", 'click', function() {
-  var type = $(this).attr('data-type')
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({cmd:{type:'action'}}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
+$('#div_conf').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    jeedom.getSelectActionModal({}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.' + type).find('.actionOptions').html(html)
+        taAutosize()
+      })
     })
-  })
-})
+  }
+}, '.listAction')
 
-$("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function() {
-  var type = $(this).attr('data-type')
-  $(this).closest('.' + type).remove()
-  modifyWithoutSave = true
-})
+$('#div_conf').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({cmd:{type:'action'}}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.' + type).find('.actionOptions').html(html)
+        taAutosize()
+      })
+    })
+  }
+}, '.listCmdAction')
+
+$('#div_conf').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    $(this).closest('.' + type).remove()
+    modifyWithoutSave = true
+  }
+}, '.bt_removeAction')
 
 function printInteract(_id) {
   $.hideAlert()
