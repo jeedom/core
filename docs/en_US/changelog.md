@@ -72,8 +72,8 @@
 - **WebApp** : Many bug-fix (UI, portrait / landscape iOS, etc.).<br/><br/>
 - **Documentation** : Adaptations in line with v4 and v4.1.
 - **Documentation** : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
-- **Lib** : Update HighStock v7.1.2 to v8.1.0.
+- **Lib** : Update HighStock v7.1.2 to v8.1.2.
 - **Lib** : Update jQuery v3.4.1 to v3.5.1.
-- **Lib** : Update Font Awesome 5.9.0 to 5.13.0.
+- **Lib** : Update Font Awesome 5.9.0 to 5.13.1.
 - Securing Ajax requests.
 - Bug fixes and optimizations.

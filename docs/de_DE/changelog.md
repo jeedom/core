@@ -72,8 +72,8 @@
 - **WebApp** : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).<br/><br/>
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
-- **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.1.0.
+- **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.1.2.
 - **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
-- **Lib** : Update Font Awesome 5.9.0 bis 5.13.0.
+- **Lib** : Update Font Awesome 5.9.0 bis 5.13.1.
 - Sichern von Ajax-Anfragen.
 - Fehlerbehebungen und Optimierungen.
