@@ -353,6 +353,7 @@ function displayPlugin(_pluginId) {
 
 $('#span_right_button').on({
   'click': function(event) {
+    var _el = $(this)
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce plugin ?}}', function(result) {
       if (result) {
         $.hideAlert()
