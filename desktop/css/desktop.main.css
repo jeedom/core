@@ -2872,6 +2872,9 @@ div[id^=__lpform_] { /*lastpass*/
   min-height: 62px;
   overflow: auto !important;
 }
+.element.elementCOM:not(.elementCollapse) textarea[data-l1key="expression"] {
+  display: block !important;
+}
 .element input.expressionAttr {
   font-weight: bold;
 }
