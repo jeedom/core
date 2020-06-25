@@ -1357,7 +1357,7 @@ function printScenario(_id) {
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
       $('#span_lastLaunch').text(data.lastLaunch)
 
-      clearDivContent('div_scenarioElement')
+      $.clearDivContent('div_scenarioElement')
       $('.provokeMode').empty()
       $('.scheduleMode').empty()
       $('.scenarioAttr[data-l1key=mode]').trigger('change')

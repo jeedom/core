@@ -67,14 +67,6 @@ function checkPageModified() {
   }
 }
 
-function clearDivContent(_id='') {
-  if (_id == '') return
-  var contain = document.getElementById(_id)
-  while(contain.firstChild) {
-    contain.removeChild(contain.firstChild)
-  }
-}
-
 //OnePage design PageLoader -------------------------------------
 var PREVIOUS_PAGE = null
 var NO_POPSTAT = false
@@ -141,7 +133,7 @@ function loadPage(_url, _noPushHistory) {
   $('body').off('mouseenter').off('mouseleave')
 
   isEditing = false
-  clearDivContent('div_pageContainer')
+  $.clearDivContent('div_pageContainer')
   $('#div_pageContainer').load(url,function() {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
@@ -558,7 +550,7 @@ function initJeedomModals() {
   function emptyModal(_id='') {
     if (_id == '') return
     $('body').css({overflow: 'inherit'})
-    clearDivContent(_id)
+    $.clearDivContent(_id)
   }
 }
 
