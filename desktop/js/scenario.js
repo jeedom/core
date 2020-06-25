@@ -22,7 +22,6 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-var $divScenario = $('#div_pageContainer')
 var $divScenario = $('#div_editScenario')
 
 //searching
