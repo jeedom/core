@@ -117,6 +117,7 @@ function displayPlugin(_pluginId) {
         $('#span_plugin_install_version').html('')
       }
 
+      //dependencies and daemon divs:
       var $divPluginDependancy = $('#div_plugin_dependancy')
       var $divPluginDeamon = $('#div_plugin_deamon')
       $divPluginDependancy.closest('.panel').parent().addClass('col-md-6')
@@ -135,6 +136,12 @@ function displayPlugin(_pluginId) {
         $divPluginDeamon.load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id).closest('.panel').show()
       }
 
+      if ((data.hasDependency == 0 || data.activate != 1) && (data.hasOwnDeamon == 0 || data.activate != 1)) {
+        $divPluginDependancy.closest('.panel').parent().remove()
+        $divPluginDeamon.closest('.panel').parent().remove()
+      }
+
+      //top right buttons:
       var $spanRightButton = $('#span_right_button')
       $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
       if (isset(data.documentation) && data.documentation != '') {
@@ -177,7 +184,7 @@ function displayPlugin(_pluginId) {
         $('#div_plugin_panel').append(config_panel_html)
       }
 
-      $('#div_plugin_functionality').empty()
+      $.clearDivContent('div_plugin_functionality')
       count = 0
       var config_panel_html = '<div class="row">'
       config_panel_html += '<div class="col-sm-6">'
@@ -277,10 +284,11 @@ function displayPlugin(_pluginId) {
       }
       log_conf += '</div>'
       log_conf += '</form>'
+      $.clearDivContent('div_plugin_log')
+      $('#div_plugin_log').append(log_conf)
 
-      $('#div_plugin_log').empty().append(log_conf)
       var $divPluginConfiguration = $('#div_plugin_configuration')
-      $divPluginConfiguration.empty()
+      $.clearDivContent('div_plugin_configuration')
       if (data.checkVersion != -1) {
         if (data.configurationPath != '' && data.activate == 1) {
           $divPluginConfiguration.load('index.php?v=d&plugin='+data.id+'&configure=1', function() {
