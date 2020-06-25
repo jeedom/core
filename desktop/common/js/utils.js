@@ -104,13 +104,11 @@ function loadPage(_url, _noPushHistory) {
   }
 
   datePickerDestroy()
-
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
-  $('#div_pageContainer').add("#div_pageContainer *").off()
+  //$('#div_pageContainer').add("#div_pageContainer *").off()
   $.hideAlert()
-  $('.bt_pluginTemplateShowSidebar').remove()
   printEqLogic = undefined
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
@@ -130,7 +128,7 @@ function loadPage(_url, _noPushHistory) {
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
 
   //disable Tiles visual feedback:
-  $('body').off('mouseenter').off('mouseleave')
+  $('body').off('mouseenter mouseleave')
 
   isEditing = false
   $.clearDivContent('div_pageContainer')
@@ -138,10 +136,9 @@ function loadPage(_url, _noPushHistory) {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
     }
-    $('body').attr('data-page', getUrlVars('p'))
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
     initPage()
-    $('body').trigger('jeedom_page_load')
+    $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
     if (jeedomBackgroundImg !== null) {
       setBackgroundImg(jeedomBackgroundImg)
     } else {
