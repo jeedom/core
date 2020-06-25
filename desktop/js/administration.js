@@ -17,7 +17,7 @@
 "use strict"
 
 var actionOptions = []
-var $pageContainer = $('#div_pageContainer')
+var $divConfig = $('#config')
 
 jwerty.key('ctrl+s/⌘+s', function(event) {
   event.preventDefault()
@@ -127,21 +127,23 @@ function initPickers() {
   })
 }
 
-$pageContainer.delegate('.configKey[data-l1key="market::allowDNS"],.configKey[data-l1key="network::disableMangement"]', 'change', function() {
-  setTimeout(function() {
-    if ($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0) {
-      $('.configKey[data-l1key=externalProtocol]').attr('disabled',true)
-      $('.configKey[data-l1key=externalAddr]').attr('disabled',true).value('')
-      $('.configKey[data-l1key=externalPort]').attr('disabled',true).value('')
-    } else {
-      $('.configKey[data-l1key=externalProtocol]').attr('disabled',false)
-      $('.configKey[data-l1key=externalAddr]').attr('disabled',false)
-      $('.configKey[data-l1key=externalPort]').attr('disabled',false)
-    }
-  }, 100)
-})
+$divConfig.on({
+  'change': function(event) {
+    setTimeout(function() {
+      if ($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0) {
+        $('.configKey[data-l1key=externalProtocol]').attr('disabled',true)
+        $('.configKey[data-l1key=externalAddr]').attr('disabled',true).value('')
+        $('.configKey[data-l1key=externalPort]').attr('disabled',true).value('')
+      } else {
+        $('.configKey[data-l1key=externalProtocol]').attr('disabled',false)
+        $('.configKey[data-l1key=externalAddr]').attr('disabled',false)
+        $('.configKey[data-l1key=externalPort]').attr('disabled',false)
+      }
+    }, 100)
+  }
+}, '.configKey[data-l1key="market::allowDNS"], .configKey[data-l1key="network::disableMangement"]')
 
-$pageContainer.off('change','.enableRepository').on('change','.enableRepository', function() {
+$divConfig.off('change','.enableRepository').on('change','.enableRepository', function() {
   if ($(this).value() == 1) {
     $('.repositoryConfiguration'+$(this).attr('data-repo')).show()
   } else {
@@ -149,25 +151,31 @@ $pageContainer.off('change','.enableRepository').on('change','.enableRepository'
   }
 })
 
-$pageContainer.delegate('.configKey[data-l1key="ldap:enable"]', 'change', function() {
-  if ($(this).value() == 1) {
-    $('#div_config_ldap').show()
-  } else {
-    $('#div_config_ldap').hide()
+$divConfig.on({
+  'change': function(event) {
+    if ($(this).value() == 1) {
+      $('#div_config_ldap').show()
+    } else {
+      $('#div_config_ldap').hide()
+    }
   }
-})
+}, '.configKey[data-l1key="ldap:enable"]')
 
-$pageContainer.delegate('.configKey[data-l1key="cache::engine"]', 'change', function() {
-  $('.cacheEngine').hide()
-  if ($(this).value() == '') return
-  $('.cacheEngine.'+$(this).value()).show()
-})
+$divConfig.on({
+  'change': function(event) {
+    $('.cacheEngine').hide()
+    if ($(this).value() == '') return
+    $('.cacheEngine.'+$(this).value()).show()
+  }
+}, '.configKey[data-l1key="cache::engine"]')
 
-$pageContainer.delegate('.configKey[data-l1key="log::engine"]', 'change', function() {
-  $('.logEngine').hide()
-  if ($(this).value() == '') return
-  $('.logEngine.'+$(this).value()).show()
-})
+$divConfig.on({
+  'change': function(event) {
+    $('.logEngine').hide()
+    if ($(this).value() == '') return
+    $('.logEngine.'+$(this).value()).show()
+  }
+}, '.configKey[data-l1key="log::engine"]')
 
 $('#bt_networkTab').on('click',function() {
   var tableBody = $('#networkInterfacesTable tbody')
@@ -190,7 +198,6 @@ $('#bt_networkTab').on('click',function() {
     })
   }
 })
-
 
 $(".bt_regenerate_api").on('click', function(event) {
   $.hideAlert()
@@ -445,41 +452,49 @@ function addActionOnMessage(_action) {
   })
 }
 
-$("body").delegate('.bt_removeAction', 'click', function() {
-  $(this).closest('.actionOnMessage').remove()
-})
+$divConfig.on({
+  'click': function(event) {
+    $(this).closest('.actionOnMessage').remove()
+  }
+}, '.bt_removeAction')
 
-$('body').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function(event) {
-  var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr')
-  if (expression[0] && expression[0].options) {
-    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
-      $(this).closest('.actionOnMessage').find('.actionOptions').html(html)
-      taAutosize()
+$divConfig.on({
+  'focusout': function(event) {
+    var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr')
+    if (expression[0] && expression[0].options) {
+      jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
+        $(this).closest('.actionOnMessage').find('.actionOptions').html(html)
+        taAutosize()
+      })
+    }
+  }
+}, '.cmdAction.expressionAttr[data-l1key=cmd]')
+
+$divConfig.on({
+  'click': function(event) {
+    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+        taAutosize()
+      })
     })
   }
-})
+}, '.listCmdAction')
 
-$("body").delegate(".listCmdAction", 'click', function() {
-  var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.actionOnMessage').find('.actionOptions').html(html)
-      taAutosize()
+$divConfig.on({
+  'click': function(event) {
+    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
+    jeedom.getSelectActionModal({}, function(result) {
+      el.value(result.human)
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+        taAutosize()
+      })
     })
-  })
-})
-
-$("body").delegate(".listAction", 'click', function() {
-  var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
-  jeedom.getSelectActionModal({}, function(result) {
-    el.value(result.human)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.actionOnMessage').find('.actionOptions').html(html)
-      taAutosize()
-    })
-  })
-})
+  }
+}, '.listAction')
 
 $('.bt_selectAlertCmd').on('click', function() {
   var type = $(this).attr('data-type')
@@ -509,7 +524,7 @@ jeedom.config.load({
   }
 })
 
-$pageContainer.off('change','.configKey').on('change','.configKey:visible',  function() {
+$divConfig.off('change','.configKey').on('change','.configKey:visible',  function() {
   modifyWithoutSave = true
 })
 
@@ -814,52 +829,57 @@ $('#bt_addObjectSummary').on('click', function() {
   addObjectSummary()
 })
 
-$pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function() {
-  var objectSummary = $(this).closest('.objectSummary')
-  var _icon = false
-  var icon = false
-  var color = false
-  if ( $(this).parent().find('.objectSummaryAttr > i').length ) {
-    var color = ''
-    var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
-    class_icon = class_icon.replace(' ', '.').split(' ')
-    var icon = '.'+class_icon[0]
-    if (class_icon[1]) {
-      color = class_icon[1]
-    }
-
-  }
-  chooseIcon(function(_icon) {
-    objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon)
-  },{icon:icon,color:color})
-})
-
-$pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function() {
-  $(this).closest('.objectSummary').remove()
-})
-
-$pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function() {
-  var objectSummary = $(this).closest('.objectSummary')
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/object.ajax.php",
-    data: {
-      action: "createSummaryVirtual",
-      key: objectSummary.find('.objectSummaryAttr[data-l1key=key]').value()
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $('#div_alert').showAlert({message: data.result, level: 'danger'})
-        return
+$divConfig.on({
+  'click': function(event) {
+    var objectSummary = $(this).closest('.objectSummary')
+    var _icon = false
+    var icon = false
+    var color = false
+    if ( $(this).parent().find('.objectSummaryAttr > i').length ) {
+      var color = ''
+      var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
+      class_icon = class_icon.replace(' ', '.').split(' ')
+      var icon = '.'+class_icon[0]
+      if (class_icon[1]) {
+        color = class_icon[1]
       }
-      $('#div_alert').showAlert({message: '{{Création des commandes virtuel réussies}}', level: 'success'})
     }
-  })
-})
+    chooseIcon(function(_icon) {
+      objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon)
+    },{icon:icon,color:color})
+  }
+}, '.objectSummary .objectSummaryAction[data-l1key=chooseIcon]')
+
+$divConfig.on({
+  'click': function(event) {
+    $(this).closest('.objectSummary').remove()
+  }
+}, '.objectSummary .objectSummaryAction[data-l1key=remove]')
+
+$divConfig.on({
+  'click': function(event) {
+    var objectSummary = $(this).closest('.objectSummary')
+    $.ajax({
+      type: "POST",
+      url: "core/ajax/object.ajax.php",
+      data: {
+        action: "createSummaryVirtual",
+        key: objectSummary.find('.objectSummaryAttr[data-l1key=key]').value()
+      },
+      dataType: 'json',
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error)
+      },
+      success: function(data) {
+        if (data.state != 'ok') {
+          $('#div_alert').showAlert({message: data.result, level: 'danger'})
+          return
+        }
+        $('#div_alert').showAlert({message: '{{Création des commandes virtuel réussies}}', level: 'success'})
+      }
+    })
+  }
+}, '.objectSummary .objectSummaryAction[data-l1key=createVirtual]')
 
 $("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
 
