@@ -73,6 +73,9 @@ if (!isConnect() && init('auth') != '') {
 
 if (init('logout') == 1) {
 	logout();
+	echo '<script type="text/javascript">';
+	echo "window.location.href='index.php';";
+	echo '</script>';
 }
 
 /* * **************************Definition des function************************** */
