@@ -22,7 +22,8 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-var $pageContainer = $('#div_pageContainer')
+var $divScenario = $('#div_pageContainer')
+var $divScenario = $('#div_editScenario')
 
 //searching
 $('#in_searchScenario').keyup(function() {
@@ -404,7 +405,7 @@ $('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',fu
   }
 })
 $('.scenario_link').off('mouseup','.scenario_link').on('mouseup','.scenario_link', function(event) {
-  if( event.which == 2 ) {
+  if (event.which == 2) {
     event.preventDefault()
     var id = $(this).attr('data-scenario_id')
     $('.scenario_link[data-scenario_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
@@ -497,24 +498,24 @@ $('#bt_addSchedule').off('click').on('click', function() {
   checkNoMode()
 })
 
-$pageContainer.off('click','.bt_removeTrigger').on('click','.bt_removeTrigger', function(event) {
+$divScenario.on('click','.bt_removeTrigger', function(event) {
   $(this).closest('.trigger').remove()
   checkNoMode()
 })
 
-$pageContainer.off('click','.bt_removeSchedule').on('click','.bt_removeSchedule', function(event) {
+$divScenario.on('click','.bt_removeSchedule', function(event) {
   $(this).closest('.schedule').remove()
   checkNoMode()
 })
 
-$pageContainer.off('click','.bt_selectTrigger').on('click','.bt_selectTrigger', function(event) {
+$divScenario.on('click','.bt_selectTrigger', function(event) {
   var el = $(this)
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
   })
 })
 
-$pageContainer.off('click','.bt_selectDataStoreTrigger').on( 'click','.bt_selectDataStoreTrigger', function(event) {
+$divScenario.on( 'click','.bt_selectDataStoreTrigger', function(event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function(result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
@@ -524,7 +525,7 @@ $pageContainer.off('click','.bt_selectDataStoreTrigger').on( 'click','.bt_select
 //Scenario bar:
 var SC_CLIPBOARD = null
 
-$pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function(event) {
+$divScenario.on( 'click','.bt_addScenarioElement', function(event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
   var expression = false
   var insertAfter = false
@@ -654,6 +655,7 @@ $("#bt_runScenario").off('click').on('click', function(event) {
     })
   }
 })
+
 $("#bt_stopScenario").off('click').on('click', function() {
   jeedom.scenario.changeState({
     id: $('.scenarioAttr[data-l1key=id]').value(),
@@ -692,9 +694,8 @@ $("#bt_delScenario").off('click').on('click', function(event) {
 })
 
 
-
 /*******************Element***********************/
-$pageContainer.off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function() {
+$divScenario.on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function() {
   var checkbox = $(this)
   var element = checkbox.closest('.element')
   if (checkbox.value() == 1) {
@@ -710,7 +711,7 @@ $pageContainer.off('change','.subElementAttr[data-l1key=options][data-l2key=enab
   }
 })
 
-$pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enable]').on('change','.expressionAttr[data-l1key=options][data-l2key=enable]',function() {
+$divScenario.on('change','.expressionAttr[data-l1key=options][data-l2key=enable]',function() {
   var checkbox = $(this)
   var element = checkbox.closest('.expression')
   if (checkbox.value() == 1) {
@@ -720,7 +721,7 @@ $pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enab
   }
 })
 
-$pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement', function(event) {
+$divScenario.on('click','.bt_removeElement', function(event) {
   var button = $(this)
   if (event.ctrlKey) {
     if (button.closest('.expression').length != 0) {
@@ -747,7 +748,7 @@ $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement', 
   PREV_FOCUS = null
 })
 
-$pageContainer.off('click','.bt_addAction').on( 'click','.bt_addAction', function(event) {
+$divScenario.on( 'click','.bt_addAction', function(event) {
   setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}))
   setAutocomplete()
@@ -755,7 +756,7 @@ $pageContainer.off('click','.bt_addAction').on( 'click','.bt_addAction', functio
   updateTooltips()
 })
 
-$pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function(event) {
+$divScenario.on( 'click','.bt_showElse', function(event) {
   if ($(this).children('i').hasClass('fa-sort-down')) {
     $(this).children('i').removeClass('fa-sort-down').addClass('fa-sort-up')
     $(this).closest('.element').children('.subElementELSE').show()
@@ -769,7 +770,7 @@ $pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function(
   }
 })
 
-$pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function(event) {
+$divScenario.on( 'click', '.bt_collapse', function(event) {
   var changeThis = $(this)
   if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse')
   if ($(this).children('i').hasClass('fa-eye')) {
@@ -793,7 +794,7 @@ $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function(
         txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
         if (!txt) txt = _el.find('.expression input.form-control').val()
       }
-      if (txt) $(this).html(txt.substring(0,200))
+      if (txt) $(this).html(txt.substring(0, 200))
     })
   } else {
     changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
@@ -804,13 +805,13 @@ $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function(
   }
 })
 
-$pageContainer.off('click','.bt_removeExpression').on('click','.bt_removeExpression', function(event) {
+$divScenario.on('click','.bt_removeExpression', function(event) {
   setUndoStack()
   $(this).closest('.expression').remove()
   updateSortable()
 })
 
-$pageContainer.off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdExpression', function(event) {
+$divScenario.on('click','.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
   var type = 'info'
@@ -962,7 +963,7 @@ $pageContainer.off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdE
   })
 })
 
-$pageContainer.off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression', function(event) {
+$divScenario.on('click','.bt_selectOtherActionExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.getSelectActionModal({scenario : true}, function(result) {
     setUndoStack()
@@ -974,7 +975,7 @@ $pageContainer.off('click','.bt_selectOtherActionExpression').on('click','.bt_se
   })
 })
 
-$pageContainer.off('click','.bt_selectScenarioExpression').on('click','.bt_selectScenarioExpression', function(event) {
+$divScenario.on('click','.bt_selectScenarioExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.scenario.getSelectModal({}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -986,7 +987,7 @@ $pageContainer.off('click','.bt_selectScenarioExpression').on('click','.bt_selec
   })
 })
 
-$pageContainer.off('click','.bt_selectEqLogicExpression').on('click','.bt_selectEqLogicExpression', function(event) {
+$divScenario.on('click','.bt_selectEqLogicExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.eqLogic.getSelectModal({}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -998,7 +999,7 @@ $pageContainer.off('click','.bt_selectEqLogicExpression').on('click','.bt_select
   })
 })
 
-$pageContainer.off('focusout','.expression .expressionAttr[data-l1key=expression]').on('focusout','.expression .expressionAttr[data-l1key=expression]', function(event) {
+$divScenario.on('focusout','.expression .expressionAttr[data-l1key=expression]', function(event) {
   var el = $(this)
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr')
@@ -1010,7 +1011,7 @@ $pageContainer.off('focusout','.expression .expressionAttr[data-l1key=expression
   }
 })
 
-$pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement', function(event) {
+$divScenario.on('click','.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   //If element in an expression, copy the entire expression:
   if (!clickedBloc.parent('#div_scenarioElement').length) {
@@ -1035,7 +1036,7 @@ $pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement', func
   modifyWithoutSave = true
 })
 
-$pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement', function(event) {
+$divScenario.on('click','.bt_pasteElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (localStorage.getItem('jeedomScCopy')) {
     SC_CLIPBOARD = $.parseHTML(localStorage.getItem('jeedomScCopy'))
@@ -1079,8 +1080,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement', fu
   modifyWithoutSave = true
 })
 
-
-$pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', function() {
+$divScenario.on('mouseenter','.bt_sortable', function() {
   var expressions = $(this).closest('.expressions')
   $("#div_scenarioElement").sortable({
     cursor: "move",
@@ -1166,15 +1166,15 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
   $("#div_scenarioElement").sortable("enable")
 })
 
-$pageContainer.on('mousedown','.bt_sortable', function() {
+$divScenario.on('mousedown','.bt_sortable', function() {
   setUndoStack()
 })
 
-$pageContainer.off('mouseout','.bt_sortable').on('mouseout','.bt_sortable', function() {
+$divScenario.on('mouseout','.bt_sortable', function() {
   $("#div_scenarioElement").sortable("disable")
 })
 
-$pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function(){
+$divScenario.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function(){
   if ($(this).attr('value') == 0) {
     $(this).attr('value',1).html('<span><i class="fas fa-ban text-danger"></i></span>')
   } else {
@@ -1183,19 +1183,19 @@ $pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowR
 })
 
 /**************** Initialisation **********************/
-$pageContainer.off('change','.scenarioAttr').on('change','.scenarioAttr:visible', function() {
+$divScenario.on('change','.scenarioAttr:visible', function() {
   modifyWithoutSave = true
 })
 
-$pageContainer.off('change','.expressionAttr').on('change','.expressionAttr:visible', function() {
+$divScenario.on('change','.expressionAttr:visible', function() {
   modifyWithoutSave = true
 })
 
-$pageContainer.off('change','.elementAttr').on('change','.elementAttr:visible', function() {
+$divScenario.on('change','.elementAttr:visible', function() {
   modifyWithoutSave = true
 })
 
-$pageContainer.off('change','.subElementAttr').on('change', '.subElementAttr:visible', function() {
+$divScenario.on('change', '.subElementAttr:visible', function() {
   modifyWithoutSave = true
 })
 
@@ -1314,7 +1314,7 @@ function printScenario(_id) {
   $.showLoading()
   $('#emptyModeWarning').hide()
   jeedom.scenario.update[_id] =function(_options){
-    if (_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']) {
+    if (_options.scenario_id =! $divScenario.getValues('.scenarioAttr')[0]['id']) {
       return
     }
     switch(_options.state){
@@ -1354,11 +1354,11 @@ function printScenario(_id) {
       $('.scenarioAttr').value('')
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected', true)
       $('.scenarioAttr[data-l1key=object_id]').val('')
-      $pageContainer.setValues(data, '.scenarioAttr')
+      $divScenario.setValues(data, '.scenarioAttr')
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
       $('#span_lastLaunch').text(data.lastLaunch)
 
-      $('#div_scenarioElement').empty()
+      clearDivContent('div_scenarioElement')
       $('.provokeMode').empty()
       $('.scheduleMode').empty()
       $('.scenarioAttr[data-l1key=mode]').trigger('change')
@@ -1462,7 +1462,7 @@ function printScenario(_id) {
 
 function saveScenario(_callback) {
   $.hideAlert()
-  var scenario = $pageContainer.getValues('.scenarioAttr')[0]
+  var scenario = $divScenario.getValues('.scenarioAttr')[0]
   if (typeof scenario.trigger == 'undefined') {
     scenario.trigger = ''
   }
@@ -2142,7 +2142,7 @@ function getAddButton(_caret) {
   return retour
 }
 
-$pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', function(event) {
+$divScenario.on( 'click','.fromSubElement ', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
 
