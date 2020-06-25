@@ -11,6 +11,7 @@ function initScenario() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(htmls) {
+      $.clearDivContent('div_displayScenario')
       //get groups
       var scenarioGroups = []
       var group
@@ -62,7 +63,7 @@ function initScenario() {
         fullDiv += '\n</div>'
       })
 
-      $('#div_displayScenario').empty().html(fullDiv).trigger('create')
+      $('#div_displayScenario').html(fullDiv).trigger('create')
 
       //size and pack:
       setTimeout(function() {

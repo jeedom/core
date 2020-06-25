@@ -154,7 +154,7 @@ function displayPlugin(_pluginId) {
       }
 
       $('#div_configPanel').hide()
-      $('#div_plugin_panel').empty()
+      $.clearDivContent('div_plugin_panel')
       if (isset(data.display) && data.display != '') {
         var config_panel_html = '<div class="form-group">'
         config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau desktop}}</label>'
@@ -209,7 +209,7 @@ function displayPlugin(_pluginId) {
       config_panel_html += '</div>'
       $('#div_plugin_functionality').append(config_panel_html)
 
-      $('#div_plugin_toggleState').empty()
+      $.clearDivContent('div_plugin_toggleState')
       if (data.checkVersion != -1) {
         var html = '<form class="form-horizontal"><fieldset>'
         html += '<div class="form-group">'

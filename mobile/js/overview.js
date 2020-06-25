@@ -9,7 +9,7 @@ function initOverview() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
-      $('#objectOverviewContainer').empty()
+      $.clearDivContent('objectOverviewContainer')
       var summaries = []
       var _this, icon, _backUrl, div
       for (var i in objects) {

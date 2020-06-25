@@ -385,7 +385,8 @@ function getObjectHtml(_object_id) {
     success: function(html) {
       var $divDisplayEq = $('#div_ob'+_object_id)
       try {
-        $divDisplayEq.empty().html(html)
+        $.clearDivContent('div_ob'+_object_id)
+        $divDisplayEq.html(html)
       } catch(err) {
         console.log(err)
       }
@@ -403,7 +404,7 @@ function getObjectHtml(_object_id) {
         $divDisplayEq.packery('destroy').packery()
       }
       */
-      var itemElems = container.find('.eqLogic-widget, .scenario-widget') //.draggable()
+      var itemElems = container.find('.eqLogic-widget, .scenario-widget')
       container.packery('bindUIDraggableEvents', itemElems)
 
       $(itemElems).each( function(i, itemElem ) {
@@ -412,7 +413,6 @@ function getObjectHtml(_object_id) {
       container.on('dragItemPositioned', function() {
           jeedomUI.orderItems(container)
       })
-      //itemElems.draggable('disable')
     }
   })
 }

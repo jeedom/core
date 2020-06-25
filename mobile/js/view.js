@@ -68,7 +68,8 @@ function displayView(html) {
     setBackgroundImage('')
   }
   try {
-    $('#div_displayView').empty().html(html.html).trigger('create')
+    $.clearDivContent('div_displayView')
+    $('#div_displayView').html(html.html).trigger('create')
   } catch(err) {
     console.log(err)
   }
