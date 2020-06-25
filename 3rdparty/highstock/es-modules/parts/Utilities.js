@@ -181,7 +181,9 @@ import H from './Globals.js';
  */
 /**
  * Generic dictionary in TypeScript notation.
+ * Use the native `Record<string, any>` instead.
  *
+ * @deprecated
  * @interface Highcharts.Dictionary<T>
  */ /**
 * @name Highcharts.Dictionary<T>#[key:string]
@@ -348,15 +350,21 @@ var charts = H.charts, doc = H.doc, win = H.win;
  *
  * @return {void}
  */
-var error = H.error = function (code, stop, chart, params) {
+function error(code, stop, chart, params) {
+    var severity = stop ? 'Highcharts error' : 'Highcharts warning';
+    if (code === 32) {
+        code = severity + ": Deprecated member";
+    }
     var isCode = isNumber(code), message = isCode ?
-        "Highcharts error #" + code + ": www.highcharts.com/errors/" + code + "/" :
+        severity + " #" + code + ": www.highcharts.com/errors/" + code + "/" :
         code.toString(), defaultHandler = function () {
         if (stop) {
             throw new Error(message);
         }
         // else ...
-        if (win.console) {
+        if (win.console &&
+            error.messages.indexOf(message) === -1 // prevent console flooting
+        ) {
             console.log(message); // eslint-disable-line no-console
         }
     };
@@ -366,7 +374,7 @@ var error = H.error = function (code, stop, chart, params) {
             message += '?';
         }
         objectEach(params, function (value, key) {
-            additionalMessages_1 += ('\n' + key + ': ' + value);
+            additionalMessages_1 += "\n - " + key + ": " + value;
             if (isCode) {
                 message += encodeURI(key) + '=' + encodeURI(value);
             }
@@ -379,7 +387,12 @@ var error = H.error = function (code, stop, chart, params) {
     else {
         defaultHandler();
     }
-};
+    error.messages.push(message);
+}
+(function (error) {
+    error.messages = [];
+})(error || (error = {}));
+H.error = error;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * An animator object used internally. One instance applies to one property
@@ -1263,7 +1276,7 @@ var relativeLength = H.relativeLength = function relativeLength(value, base, off
 /**
  * Wrap a method with extended functionality, preserving the original function.
  *
-' * @function Highcharts.wrap
+ * @function Highcharts.wrap
  *
  * @param {*} obj
  *        The context object that the method belongs to. In real cases, this is
@@ -1276,8 +1289,6 @@ var relativeLength = H.relativeLength = function relativeLength(value, base, off
  *        A wrapper function callback. This function is called with the same
  *        arguments as the original function, except that the original function
  *        is unshifted and passed as the first argument.
- *
- * @return {void}
  */
 var wrap = H.wrap = function wrap(obj, method, func) {
     var proceed = obj[method];
@@ -1861,6 +1872,7 @@ var getStyle = H.getStyle = function (el, prop, toInt) {
  *         The index within the array, or -1 if not found.
  */
 var inArray = H.inArray = function (item, arr, fromIndex) {
+    error(32, false, void 0, { 'Highcharts.inArray': 'use Array.indexOf' });
     return arr.indexOf(item, fromIndex);
 };
 /* eslint-disable valid-jsdoc */
@@ -1906,7 +1918,10 @@ var find = H.find = Array.prototype.find ?
  * @return {Array<string>}
  *         An array of strings that represents all the properties.
  */
-H.keys = Object.keys;
+H.keys = function (obj) {
+    error(32, false, void 0, { 'Highcharts.keys': 'use Object.keys' });
+    return Object.keys(obj);
+};
 /**
  * Get the element's offset position, corrected for `overflow: auto`.
  *
@@ -2086,6 +2101,8 @@ objectEach({
     some: 'some'
 }, function (val, key) {
     H[key] = function (arr) {
+        var _a;
+        error(32, false, void 0, (_a = {}, _a["Highcharts." + key] = "use Array." + val, _a));
         return Array.prototype[val].apply(arr, [].slice.call(arguments, 1));
     };
 });
@@ -2204,7 +2221,7 @@ var removeEvent = H.removeEvent = function removeEvent(el, type, fn) {
         else {
             types = eventCollection;
         }
-        objectEach(types, function (val, n) {
+        objectEach(types, function (_val, n) {
             if (eventCollection[n]) {
                 len = eventCollection[n].length;
                 while (len--) {
@@ -2417,7 +2434,7 @@ var animate = H.animate = function (el, params, opt) {
  */
 // docs: add to API + extending Highcharts
 var seriesType = H.seriesType = function (type, parent, options, props, pointProps) {
-    var defaultOptions = H.getOptions(), seriesTypes = H.seriesTypes;
+    var defaultOptions = getOptions(), seriesTypes = H.seriesTypes;
     // Merge the options
     defaultOptions.plotOptions[type] = merge(defaultOptions.plotOptions[parent], options);
     // Create the class
@@ -2430,6 +2447,7 @@ var seriesType = H.seriesType = function (type, parent, options, props, pointPro
     }
     return seriesTypes[type];
 };
+var serialMode;
 /**
  * Get a unique key for using in internal element id's and pointers. The key is
  * composed of a random hash specific to this Highcharts instance, and a
@@ -2441,16 +2459,80 @@ var seriesType = H.seriesType = function (type, parent, options, props, pointPro
  * @function Highcharts.uniqueKey
  *
  * @return {string}
- *         A unique key.
+ * A unique key.
  */
 var uniqueKey = H.uniqueKey = (function () {
-    var uniqueKeyHash = Math.random().toString(36).substring(2, 9), idCounter = 0;
+    var hash = Math.random().toString(36).substring(2, 9) + '-';
+    var id = 0;
     return function () {
-        return 'highcharts-' + uniqueKeyHash + '-' + idCounter++;
+        return 'highcharts-' + (serialMode ? '' : hash) + id++;
     };
 }());
+/**
+ * Activates a serial mode for element IDs provided by
+ * {@link Highcharts.uniqueKey}. This mode can be used in automated tests, where
+ * a simple comparison of two rendered SVG graphics is needed.
+ *
+ * **Note:** This is only for testing purposes and will break functionality in
+ * webpages with multiple charts.
+ *
+ * @example
+ * if (
+ *   process &&
+ *   process.env.NODE_ENV === 'development'
+ * ) {
+ *   Highcharts.useSerialIds(true);
+ * }
+ *
+ * @function Highcharts.useSerialIds
+ *
+ * @param {boolean} [mode]
+ * Changes the state of serial mode.
+ *
+ * @return {boolean|undefined}
+ * State of the serial mode.
+ */
+var useSerialIds = H.useSerialIds = function (mode) {
+    return (serialMode = pick(mode, serialMode));
+};
 var isFunction = H.isFunction = function (obj) {
     return typeof obj === 'function';
+};
+/**
+ * Get the updated default options. Until 3.0.7, merely exposing defaultOptions
+ * for outside modules wasn't enough because the setOptions method created a new
+ * object.
+ *
+ * @function Highcharts.getOptions
+ *
+ * @return {Highcharts.Options}
+ */
+var getOptions = H.getOptions = function () {
+    return H.defaultOptions;
+};
+/**
+ * Merge the default options with custom options and return the new options
+ * structure. Commonly used for defining reusable templates.
+ *
+ * @sample highcharts/global/useutc-false Setting a global option
+ * @sample highcharts/members/setoptions Applying a global theme
+ *
+ * @function Highcharts.setOptions
+ *
+ * @param {Highcharts.Options} options
+ *        The new custom chart options.
+ *
+ * @return {Highcharts.Options}
+ *         Updated options.
+ */
+var setOptions = H.setOptions = function (options) {
+    // Copy in the default options
+    H.defaultOptions = merge(true, H.defaultOptions, options);
+    // Update the time object
+    if (options.time || options.global) {
+        H.time.update(merge(H.defaultOptions.global, H.defaultOptions.time, options.global, options.time));
+    }
+    return H.defaultOptions;
 };
 // Register Highcharts as a plugin in jQuery
 if (win.jQuery) {
@@ -2530,6 +2612,7 @@ var utilitiesModule = {
     format: format,
     getMagnitude: getMagnitude,
     getNestedProperty: getNestedProperty,
+    getOptions: getOptions,
     getStyle: getStyle,
     inArray: inArray,
     isArray: isArray,
@@ -2551,12 +2634,14 @@ var utilitiesModule = {
     removeEvent: removeEvent,
     seriesType: seriesType,
     setAnimation: setAnimation,
+    setOptions: setOptions,
     splat: splat,
     stableSort: stableSort,
     stop: stop,
     syncTimeout: syncTimeout,
     timeUnits: timeUnits,
     uniqueKey: uniqueKey,
+    useSerialIds: useSerialIds,
     wrap: wrap
 };
 export default utilitiesModule;

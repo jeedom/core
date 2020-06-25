@@ -1,5 +1,5 @@
 /*
- Highcharts JS v8.1.0 (2020-05-05)
+ Highcharts JS v8.1.2 (2020-06-16)
 
  Pareto series type for Highcharts
 
