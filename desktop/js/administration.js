@@ -127,6 +127,10 @@ function initPickers() {
   })
 }
 
+$("#bt_resetThemeCookie").on('click', function(event) {
+  document.cookie = "currentTheme= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+})
+
 $divConfig.on({
   'change': function(event) {
     setTimeout(function() {

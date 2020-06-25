@@ -391,6 +391,9 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="theme_end_day_hour"/>
 						</div>
+						<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+							<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control"><i class="fas fa-eraser"></i>&nbsp;&nbsp;{{Cookie}}</a>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Basculer le thème en fonction de l'heure}}
