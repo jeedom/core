@@ -88,6 +88,9 @@ a:hover {
 header a.navbar-brand {
   padding: 7px;
 }
+.nav .open > a {
+  background: none
+}
 
 #div_alert {
   width: 100%;
