@@ -2917,7 +2917,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuração do plugin",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Nom de la copie de l\\'équipement ?": "Nome da cópia do equipamento?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Tem certeza de que deseja excluir equipamentos \\ 's",
         "Veuillez d\\'abord sélectionner un": "Por favor \\ 's primeiro selecionar um",

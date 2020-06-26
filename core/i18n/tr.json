@@ -2917,7 +2917,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Eklentinin ayarları",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Nom de la copie de l\\'équipement ?": "",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
         "Veuillez d\\'abord sélectionner un": "Once bitane seçin",

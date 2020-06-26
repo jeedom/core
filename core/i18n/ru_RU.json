@@ -2917,7 +2917,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Конфигурация плагина",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Предупреждение об оставлении страницы с несохраненными измененными данными. Вы хотите продолжить?",
         "Nom de la copie de l\\'équipement ?": "",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Вы уверены, что хотите удалить оборудование",
         "Veuillez d\\'abord sélectionner un": "Пожалуйста, выберите сначала",

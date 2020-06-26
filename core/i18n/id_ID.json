@@ -2917,7 +2917,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Nom de la copie de l\\'équipement ?": "",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
         "Veuillez d\\'abord sélectionner un": "Silakan \\ 's pertama memilih",
