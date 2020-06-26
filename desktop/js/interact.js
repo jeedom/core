@@ -53,9 +53,9 @@ $('#in_searchInteract').keyup(function() {
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide()
   $('.panel-collapse').attr('data-show',0)
+  var text
   $('.interactDisplayCard .name').each(function() {
-    var text = $(this).text()
-    text = normTextLower(text)
+    text = normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.interactDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show',1)
