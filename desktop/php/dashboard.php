@@ -1,6 +1,6 @@
 <?php
 if (!isConnect()) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception(__('401 - Accès non autorisé',__FILE__));
 }
 
 sendVarToJs('SEL_CATEGORY', init('category', 'all'));
@@ -25,8 +25,14 @@ if (init('object_id') == '') {
 
 if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
+	$object = null;
+
 	if (!is_object($object)) {
-		throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
+		$alert = '{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets}}.<br/>';
+		$alert .= '{{Documentation}} : <a href="https://doc.jeedom.com/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
+		$alert .= ' | <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
+		echo '<div class="alert alert-warning">'.$alert.'</div>';
+		return;
 	}
 }
 
