@@ -975,9 +975,10 @@ function savePlan(_refreshDisplay, _async) {
   if (planHeader_id == -1) return
 
   var plans = []
+  var info, plan, position
   $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function() {
-    var info = getObjectInfo($(this))
-    var plan = {}
+    info = getObjectInfo($(this))
+    plan = {}
     plan.position = {}
     plan.display = {}
     plan.id = $(this).attr('data-plan_id')
@@ -990,10 +991,10 @@ function savePlan(_refreshDisplay, _async) {
       plan.display.graph = json_decode($(this).find('.graphOptions').value())
     }
     if (!$(this).is(':visible')) {
-      var position = $(this).show().position()
+      position = $(this).show().position()
       $(this).hide()
     } else {
-      var position = $(this).position()
+      position = $(this).position()
     }
     plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100
     plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100

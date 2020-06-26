@@ -54,8 +54,7 @@ $('#in_searchObject').keyup(function() {
   $('.objectDisplayCard').hide()
   var text
   $('.objectDisplayCard .name').each(function() {
-    text = $(this).text()
-    text = normTextLower(text)
+    text = normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.objectDisplayCard').show()
     }
@@ -399,13 +398,13 @@ $('.addSummary').on('click',function() {
 
 $('.bt_checkAll').on('click',function() {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop( "checked", true )
+    $(this).prop("checked", true )
   })
 })
 
 $('.bt_checkNone').on('click',function() {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop( "checked", false )
+    $(this).prop("checked", false )
   })
 })
 

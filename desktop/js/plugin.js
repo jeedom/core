@@ -47,8 +47,7 @@ $('#in_searchPlugin').off('keyup').keyup(function() {
   $('.pluginDisplayCard').hide()
   var text
   $('.pluginDisplayCard .name').each(function() {
-    text = $(this).text()
-    text = normTextLower(text)
+    text = normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.pluginDisplayCard').show()
     }
