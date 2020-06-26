@@ -1789,7 +1789,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "",
+        "Documentation": "ドキュメンテーション",
+        "Concepts": "",
+        "Premiers pas": "",
         "Rechercher": "検索する",
         "Afficher\/Masquer les objets": "表示\/非表示のオブジェクト",
         "Retour à la Synthèse": "概要に戻る",
@@ -2241,7 +2244,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "デザインは存在しません。ここをクリック<a id=\"bt_createNewDesign\" class=\"cursor\">し<\/a>て作成してください。"
+        "Aucun design n\\'existe, cliquez": "",
+        "ici": "ここに",
+        "pour en créer un.": ""
     },
     "desktop\/php\/history.php": {
         "Aucun": "何でもありません",
