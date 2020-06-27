@@ -25,9 +25,7 @@ if (init('object_id') == '') {
 
 if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
-	$object = null;
-
-	if (!is_object($object)) {
+        if (!is_object($object)) {
 		$alert = '{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets}}.<br/>';
 		$alert .= '{{Documentation}} : <a href="https://doc.jeedom.com/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
 		$alert .= ' | <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
