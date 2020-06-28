@@ -1789,7 +1789,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "No root object found. To create one, go to Tools -> Objects. <br\/> If you do not know what to do, do not hesitate to consult this <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> and this one if you have a pack: <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "No root object found. To create one, go to Tools -> Objects",
+        "Documentation": "Documentation",
+        "Concepts": "Concepts",
+        "Premiers pas": "First steps",
         "Rechercher": "Search",
         "Afficher\/Masquer les objets": "Display\/Hide objects",
         "Retour à la Synthèse": "Back to Synthesis",
@@ -2241,7 +2244,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "No design exists, click <a id=\"bt_createNewDesign\" class=\"cursor\">here<\/a> to create one"
+        "Aucun design n\\'existe, cliquez": "No design exists, click",
+        "ici": "here",
+        "pour en créer un.": "to create one"
     },
     "desktop\/php\/history.php": {
         "Aucun": "None",
