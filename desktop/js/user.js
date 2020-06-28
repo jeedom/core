@@ -139,8 +139,7 @@ $('#bt_supportAccess').on('click',function() {
     },
     success: function(data) {
       modifyWithoutSave = false
-      url = 'index.php?v=d&p=user'
-      loadPage(url)
+      loadPage('index.php?v=d&p=user')
     }
   })
 })
@@ -238,8 +237,7 @@ $('.bt_deleteSession').on('click',function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      url = 'index.php?v=d&p=user'
-      loadPage(url)
+      loadPage('index.php?v=d&p=user')
     }
   })
 })
@@ -254,9 +252,7 @@ $('.bt_removeRegisterDevice').on('click',function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      modifyWithoutSave = false
-      url = 'index.php?v=d&p=user'
-      loadPage(url)
+      loadPage('index.php?v=d&p=user')
     }
   })
 })
