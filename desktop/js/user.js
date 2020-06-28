@@ -268,8 +268,7 @@ $('#bt_removeAllRegisterDevice').on('click',function() {
     },
     success: function(data) {
       modifyWithoutSave = false
-      url = 'index.php?v=d&p=user'
-      loadPage(url)
+      loadPage('index.php?v=d&p=user')
     }
   })
 })
