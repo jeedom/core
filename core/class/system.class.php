@@ -204,6 +204,9 @@ class system {
 				if(!isset($infos[1])){
 					continue;
 				}
+				if(strpos($infos[1],':') !== false){
+					$infos[1] = explode(':',$infos[1])[0];
+				}
 				self::$_installPackage[$_type][$infos[1]] = array(
 					'version' => $infos[2]
 				);
