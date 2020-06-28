@@ -282,7 +282,8 @@ class system {
 					'needVersion' => isset($info['version']) ? $info['version'] : '',
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
-					'fix' => ($found == 0) ?  self::installPackage($type,$package) : ''
+					'fix' => ($found == 0) ?  self::installPackage($type,$package) : '',
+					'remark' => isset($info['remark']) ? __($info['remark'],'install/packages.json') : '',
 				);
 			}
 		}
