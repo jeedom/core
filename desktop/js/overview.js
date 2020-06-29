@@ -224,7 +224,9 @@ $(function() {
 
 })
 
+var summaryObjEqs = []
 function getSummaryHtml(_object_id, _summary, _title) {
+  summaryObjEqs[_object_id] = []
   jeedom.object.getEqLogicsFromSummary({
     id: _object_id,
     onlyEnable: 1,
@@ -244,6 +246,12 @@ function getSummaryHtml(_object_id, _summary, _title) {
 
       var nbEqs = data.length
       for (var i=0; i<nbEqs; i++) {
+        if (summaryObjEqs[_object_id].includes(data[i].id)) {
+          nbEqs--
+          return
+        }
+        summaryObjEqs[_object_id].push(data[i].id)
+
         jeedom.eqLogic.toHtml({
           id: data[i].id,
           version: 'dashboard',
@@ -267,12 +275,12 @@ function getSummaryHtml(_object_id, _summary, _title) {
               var fullHeight = 0
               var thisWidth = 0
               var thisHeight = 0
-              $('.eqLogic-widget').each(function( index ) {
+              $('#md_overviewSummary .eqLogic-widget').each(function( index ) {
                 thisWidth = $(this).outerWidth(true)
                 thisHeight = $(this).outerHeight(true)
                 if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
                 if ( (fullWidth + thisWidth + 150) < brwSize.width ) {
-                  fullWidth += thisWidth + 5
+                  fullWidth += thisWidth + 7
                 } else {
                   fullHeight += thisHeight + 5
                 }
@@ -281,8 +289,8 @@ function getSummaryHtml(_object_id, _summary, _title) {
                 fullWidth = 120
                 fullHeight = 120
               }
-              fullWidth += 5
-              fullHeight += 5
+              fullWidth += 6
+              fullHeight += 6
               modal.width(fullWidth + 26).height(fullHeight + 50)
               modalContent.width(fullWidth).height(fullHeight)
 

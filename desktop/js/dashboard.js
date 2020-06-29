@@ -323,9 +323,11 @@ function editWidgetMode(_mode,_save) {
   }
 }
 
+var summaryObjEqs = []
 function getObjectHtmlFromSummary(_object_id) {
   if (_object_id == null) return
   var $divDisplayEq = $('#div_ob'+_object_id)
+  summaryObjEqs[_object_id] = []
   jeedom.object.getEqLogicsFromSummary({
     id: _object_id,
     onlyEnable: 1,
@@ -344,6 +346,12 @@ function getObjectHtmlFromSummary(_object_id) {
         $divDisplayEq.closest('.div_object').removeClass('hidden')
       }
       for (var i=0; i<nbEqs; i++) {
+        if (summaryObjEqs[_object_id].includes(data[i].id)) {
+          nbEqs--
+          return
+        }
+        summaryObjEqs[_object_id].push(data[i].id)
+
         jeedom.eqLogic.toHtml({
           id: data[i].id,
           version: 'dashboard',
