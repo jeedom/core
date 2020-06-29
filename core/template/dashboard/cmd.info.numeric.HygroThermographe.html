@@ -1,11 +1,15 @@
 <div class="cmd cmd-widget #history# widget-hygrothermographe" data-type="info" data-subtype="numeric" data-template="HygroThermographe" data-cmd_id="#id#" title="#collectDate#">
   <img class="hygrothermographe-background" width="220px" height="220px" src="core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_Dark.png">
-  <span class="intNumTemp fontDigital value"></span>
-  <span class="decNumTemp fontDigital value"></span>
-  <span class="uniteTemp fontDigital">°C</span>
-  <span class="intNumHumidity fontDigital value"></span>
-  <span class="decNumHumidity fontDigital value"></span>
-  <span class="uniteHumidity fontDigital">%</span>
+  <div class="history" data-type="temperature">
+    <span class="intNumTemp fontDigital value"></span>
+    <span class="decNumTemp fontDigital value"></span>
+    <span class="uniteTemp fontDigital">°C</span>
+  </div>
+  <div class="history" data-type="humidity">
+    <span class="intNumHumidity fontDigital value"></span>
+    <span class="decNumHumidity fontDigital value"></span>
+    <span class="uniteHumidity fontDigital">%</span>
+  </div>
   <style>
     @font-face {
       font-family: "Digital-7";
@@ -65,37 +69,38 @@
     }
   </style>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first');
-      if('#generic_type#' == 'TEMPERATURE'){
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first')
+      if ('#generic_type#' == 'TEMPERATURE') {
         var n = parseFloat(_options.display_value).toFixed(1)
         var _int = n.split('.')[0]
         var _dec = n.split('.')[1]
-        widget.find('.intNumTemp').text(_int+".").attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
-        widget.find('.decNumTemp').text(_dec);
+        widget.find('.intNumTemp').text(_int+".").attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+        widget.find('.decNumTemp').text(_dec)
+        widget.find('[data-type=temperature').attr('data-cmd_id', #id#)
       }
-      if('#generic_type#' == 'HUMIDITY'){
-        widget.find('.uniteHumidity').show();
+      if ('#generic_type#' == 'HUMIDITY') {
+        widget.find('.uniteHumidity').show()
         widget.find('.intNumHumidity').text(Math.floor(_options.display_value)+".").attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-        widget.find('.decNumHumidity').text(Math.round((_options.display_value - Math.floor(_options.display_value)) * 10));
+        widget.find('.decNumHumidity').text(Math.round((_options.display_value - Math.floor(_options.display_value)) * 10))
+        widget.find('[data-type=humidity').attr('data-cmd_id', #id#)
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#', valueDate:'#valueDate#', collectDate:'#collectDate#'})
 
     setTimeout(function(){
-      if($('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').length > 1){
-        $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:not(:first)').hide();
+      if ($('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').length > 1) {
+        $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:not(:first)').hide()
       }
-    },100)
+    }, 100)
 
-    if('#scale#' != '') {
-      let cmd = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').first();
+    if ('#scale#' != '') {
+      let cmd = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').first()
       if (cmd.attr('scaled') != '1' && '#scale#' > 0) {
         cmd.attr('scaled', '1')
-        cmd.width(cmd.width()*'#scale#');
-        cmd.height(cmd.height()*'#scale#');
-        cmd.find('.hygrothermographe-background').width(cmd.find('.hygrothermographe-background').width()*'#scale#');
-        cmd.find('.hygrothermographe-background').height(cmd.find('.hygrothermographe-background').height()*'#scale#');
+        cmd.width(cmd.width()*'#scale#').height(cmd.height()*'#scale#')
+        cmd.find('.hygrothermographe-background').width(cmd.find('.hygrothermographe-background').width()*'#scale#')
+        cmd.find('.hygrothermographe-background').height(cmd.find('.hygrothermographe-background').height()*'#scale#')
         cmd.find('.intNumTemp').css('font-size',(cmd.find('.intNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
         .css('top',(cmd.find('.intNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
         .css('right',(cmd.find('.intNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
@@ -124,7 +129,7 @@
     }
 
     $('body').on('changeThemeEvent', function (event, theme) {
-      var cmd = $('.cmd[data-cmd_id=#id#]');
+      var cmd = $('.cmd[data-cmd_id=#id#]')
       if (theme == 'Light') {
         cmd.find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_Light.png')
       } else {
