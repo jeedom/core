@@ -6,6 +6,7 @@ Changelog
 ======
 
 - Correction d'un souci de calcul de temps d'état sur les widgets si le fuseau horaire de Jeedom n'est pas le même que celui du navigateur
+- Augmentation du nombre de mauvais mot de passe avant bannissement (évite les soucis avec la webapp lors de la rotation des clefs api)
 
 3.3.50
 =====
