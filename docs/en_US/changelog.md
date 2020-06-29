@@ -6,6 +6,7 @@ Changelog
 ======
 
 - Fixed a problem with calculating state time on widgets if the Jeedom time zone is not the same as that of the browser
+- Increase in the number of bad passwords before banishment (avoids problems with the webapp when rotating API keys)
 
 3.3.50
 =====

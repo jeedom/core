@@ -1706,6 +1706,7 @@
     "changelog.md": {
         "3.3.51": "3.3.51",
         "Correction d'un souci de calcul de temps d'état sur les widgets si le fuseau horaire de Jeedom n'est pas le même que celui du navigateur": "Corrigido um problema ao calcular o horário do estado nos widgets se o fuso horário do Jeedom não fosse o mesmo do navegador",
+        "Augmentation du nombre de mauvais mot de passe avant bannissement (évite les soucis avec la webapp lors de la rotation des clefs api": "Aumento do número de senhas ruins antes do banimento (evita problemas com o aplicativo da web ao girar chaves da API",
         "3.3.50": "3.3.50",
         "Correction d'un souci d'arrêt du DNS beta": "Correção de um problema ao parar a versão beta do DNS",
         "Amélioration du calcul des accès interne\/externe (suppression du port si celui-ci est standard pour le protocole": "Melhoria do cálculo de acesso interno \/ externo (remoção da porta, se for padrão para o protocolo",

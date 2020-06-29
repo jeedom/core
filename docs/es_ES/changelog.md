@@ -6,6 +6,7 @@ Changelog
 ======
 
 - Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria de Jeedom no es la misma que la del navegador
+- Aumento de la cantidad de contraseñas incorrectas antes del destierro (evita problemas con la aplicación web al rotar claves API))
 
 3.3.50
 =====
