@@ -229,8 +229,8 @@ function getSummaryHtml(_object_id, _summary, _title) {
   summaryObjEqs[_object_id] = []
   jeedom.object.getEqLogicsFromSummary({
     id: _object_id,
-    onlyEnable: 1,
-    onlyVisible: 1,
+    onlyEnable: '1',
+    onlyVisible: '0',
     version: 'dashboard',
     summary : _summary,
     error: function(error) {
