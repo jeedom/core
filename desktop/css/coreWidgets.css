@@ -202,7 +202,7 @@ div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmplicon
   font-size: 1.2em;
 }
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .buttons {
-  width: 120px;
+  width: 130px;
 }
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .content-sm {
   vertical-align: top !important;

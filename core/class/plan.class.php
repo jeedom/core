@@ -242,7 +242,7 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'graph') {
-			$background_color = 'background-color : white;';
+			$background_color = 'background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;';
 			if ($this->getDisplay('transparentBackground', false)) {
 				$background_color = '';
 			}

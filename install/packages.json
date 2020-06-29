@@ -13,7 +13,7 @@
     "software-properties-common" : {},
     "ssl-cert" : {},
     "apt-transport-https" : {},
-    "chromium" : {},
+    "chromium" : {"optional" : true,"remark":"{{Utilisé pour les rapports}}"},
     "at" : {},
     "mariadb-client" : {"alternative" : ["/mariadb-client-(.*?)/"]},
     "net-tools" : {},

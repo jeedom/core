@@ -45,6 +45,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       <th>{{Obligatoire}}</th>
       <th>{{Voulu par}}</th>
       <th>{{Version}}</th>
+      <th>{{Remarque}}</th>
       <th>{{Commande}}</th>
       <th>{{Action}}</th>
     </tr>
@@ -92,6 +93,10 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       if($info['needUpdate']){
         $_echo .= '/'.$info['needVersion'];
       }
+      $_echo .= '</td>';
+      
+      $_echo .= '<td>';
+      $_echo .= $info['remark'];
       $_echo .= '</td>';
 
       $_echo .= '<td>';
