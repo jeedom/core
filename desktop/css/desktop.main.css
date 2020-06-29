@@ -3207,7 +3207,7 @@ textarea {
 .elementIN.elementCollapse .input-group-btn,
 .elementAT.elementCollapse .input-group-btn,
 .elementFOR.elementCollapse .input-group-btn {
-  z-index: -1;
+  opacity: 0;
 }
 
 .element .blocPreview {
