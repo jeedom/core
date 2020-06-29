@@ -27,8 +27,9 @@ $(function() {
     alert_div_plugin_configuration = $('#div_alert')
   }
 
-  $('.pluginDisplayCard').show()
+
   setTimeout(function() {
+    $('.pluginDisplayCard').removeClass('hidden').show()
     $('.pluginListContainer').packery()
   }, 100)
 })
