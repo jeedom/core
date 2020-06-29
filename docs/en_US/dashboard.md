@@ -12,7 +12,7 @@ It is accessible by clicking on **Home → Dashboard**
 
 -   You have at the top left a small icon to do
     show / hide the tree of objects (this also displays the
-    object summary information)
+    subject summary information)
 
 -   In the middle, you can choose to only filter on certain types
     equipment
@@ -76,7 +76,7 @@ You can also edit the internal layout of the widget controls
         only if you are in a table layout)
 
     -   **Remove column** : remove a column from the table
-        (accessible only if you have a table layout)
+        (accessible only if you are in a table layout)
 
     -   **Delete line** : delete a row in the table (accessible
         only if you are in a table layout)

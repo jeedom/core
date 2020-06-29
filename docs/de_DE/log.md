@@ -23,7 +23,7 @@ Tasten :
 -   **Entfernen** : Löschen Sie das aktuelle Protokoll, falls Jeedom eines hat
     brauche es wird es automatisch neu erstellen,
 
--   **Entfernen tous les logs** : Löschen Sie alle vorhandenen Protokolle.
+-   **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 
 > **Spitze**
 >
@@ -46,4 +46,4 @@ domotique.
 
 Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie
 werden nicht angehalten) und eine Schaltfläche zum Anhalten (nützlich für
-zum Beispiel kopieren / einfügen).
+Kopieren / Einfügen zum Beispiel).

@@ -52,7 +52,7 @@ Allows you to define certain interface behaviors :
 -   **Default object on the dashboard** : default display object
     upon arrival on the dashboard / mobile
 
--   **View par défaut** : view to display by default when arriving on
+-   **Default view** : view to display by default when arriving on
     the dashboard / mobile
 
 -   **Default design** : design to display by default when

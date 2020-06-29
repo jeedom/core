@@ -148,6 +148,6 @@ information in the boxes :
 
 -   **command widget** : the button on the right allows you to choose
     the command to display (beware this displays the widget
-    the command)
+    The command)
 
 

@@ -52,7 +52,7 @@ Le permite definir ciertos comportamientos de interfaz :
 -   **Objeto predeterminado en el tablero** : objeto de visualización predeterminado
     a su llegada en el tablero de instrumentos / móvil
 
--   **Vista par défaut** : ver para mostrar por defecto al llegar
+-   **Vista predeterminada** : ver para mostrar por defecto al llegar
     el tablero de instrumentos / móvil
 
 -   **Diseño por defecto** : diseño para mostrar por defecto cuando
@@ -77,7 +77,7 @@ Seguridad
 -   **Autenticación de 2 pasos** : permite configurar
     Autenticación en 2 pasos (como recordatorio, este es un código cambiante
     aparece cada X segundos en una aplicación móvil, escriba
-    autentificador de google). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, el código no será solicitado.
+    autenticador de google). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, el código no será solicitado.
 
 -   **Contraseña** : le permite cambiar su contraseña (no
     olvide volver a escribirlo a continuación)

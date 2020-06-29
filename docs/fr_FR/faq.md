@@ -65,7 +65,7 @@ Peut-on mettre Jeedom en https ?
 ================================
 
 Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
+suffit d’utiliser le [DNS Jeedom](https://doc.jeedom.com/fr_FR/howto/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
 
 Comment se connecter en SSH ?
 =============================
@@ -179,7 +179,7 @@ Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH
 
 Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
 Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
+voir avec le SAV pour un souci hardware. Voici la [documentation](https://doc.jeedom.com/fr_FR/installation/smart) pour la Smart
 
 Mon scénario ne s’arrête plus/pas 
 =================================

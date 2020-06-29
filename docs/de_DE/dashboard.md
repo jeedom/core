@@ -12,7 +12,7 @@ Sie können darauf zugreifen, indem Sie auf klicken **Home → Dashboard**
 
 -   Oben links haben Sie ein kleines Symbol zu tun
     Ein- / Ausblenden des Baums von Objekten (dies zeigt auch das an
-    Objektzusammenfassungsinformationen)
+    Informationen zur Betreffzusammenfassung)
 
 -   In der Mitte können Sie festlegen, dass nur nach bestimmten Typen gefiltert wird
     Ausrüstung
@@ -30,7 +30,7 @@ Sie können darauf zugreifen, indem Sie auf klicken **Home → Dashboard**
     Themenübersicht.
 
 -   Ein Klick auf einen Befehl vom Typ Information wird angezeigt
-    die Bestellhistorie (falls historisch)
+    die Bestellhistorie (wenn es historisch ist)
 
 > **Spitze**
 >
@@ -70,15 +70,15 @@ Sie können auch das interne Layout der Widget-Steuerelemente bearbeiten
         gewünschte Boxen. Sie können mehrere Bestellungen pro Box aufgeben
 
     -   **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu (zugänglich)
-        nur wenn Sie sich in einem Tabellenlayout befinden)
+        Nur wenn Sie sich in einem Tabellenlayout befinden)
 
     -   **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu (zugänglich)
-        nur wenn Sie sich in einem Tabellenlayout befinden)
+        Nur wenn Sie sich in einem Tabellenlayout befinden)
 
     -   **Säule entfernen** : Entfernen Sie eine Spalte aus der Tabelle
-        (nur zugänglich, wenn Sie ein Tabellenlayout haben)
+        (Zugriff nur, wenn Sie sich in einem Tabellenlayout befinden)
 
     -   **Zeile löschen** : Löschen Sie eine Zeile in der Tabelle (zugänglich
-        nur wenn Sie sich in einem Tabellenlayout befinden)
+        Nur wenn Sie sich in einem Tabellenlayout befinden)
 
 

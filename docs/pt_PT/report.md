@@ -1,4 +1,4 @@
-Esta página permite que você veja todos os relatórios que foram gerados pela ação do relatório (consulte a documentação do cenário).
+Esta página permite ver todos os relatórios que foram gerados pela ação do relatório (consulte a documentação do cenário).
 
 # O que é um relatório ?
 
@@ -6,9 +6,9 @@ Um relatório é uma captura de tela da interface Jeedom em um instante T (a cap
 
 Você pode fazer isso em vistas, design, página do painel....
 
-Ele é acionado a partir de um script com o comando report, você pode optar por enviar esse relatório usando um comando de mensagem (email, telegrama etc.)
+É acionado a partir de um script com o comando report, você pode optar por enviar esse relatório usando um comando de mensagem (email, telegrama....)
 
-# Uso
+# Utilisation
 
 Seu uso é muito simples, você seleciona se deseja ver :
 
@@ -27,7 +27,7 @@ Depois que o relatório selecionado, você pode vê-lo aparecer, faça o downloa
 
 Você também pode excluir todos os backups de um determinado relatório
 
-# Faq
+# FAQ
 
 > **Se você tiver um erro de detalhes : cutycapt: erro ao carregar bibliotecas compartilhadas: libEGL.so: não é possível abrir o arquivo de objeto compartilhado: Esse arquivo ou diretório não existe**
 >

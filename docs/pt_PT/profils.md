@@ -33,7 +33,7 @@ O painel de temas permite ajustar os parâmetros da interface :
     0 e 1) widgets nas visualizações
 
 -   **Opacidade por widgets para celular** : permite dar opacidade
-    (entre 0 e 1) widgets para celular
+    (entre 0 e 1) widgets móveis
 
 Interface 
 ---------
@@ -52,7 +52,7 @@ Permite definir certos comportamentos de interface :
 -   **Painel padrão Assunto** : objeto de exibição padrão
     na chegada no painel / móvel
 
--   **Vista par défaut** : para exibir por padrão ao chegar em
+-   **Modo de exibição padrão** : para exibir por padrão ao chegar em
     o painel / móvel
 
 -   **Projeto padrão** : design para exibir por padrão quando

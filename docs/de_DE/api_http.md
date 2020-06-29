@@ -41,7 +41,7 @@ Hier ist die URL =
 -   **Tags** \ [Optional \] : Wenn die Aktion &quot;Start&quot; ist, können Sie überspringen
     Tags zum Szenario (siehe Dokumentation zu Szenarien) unter
     Die Formular-Tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 a entspricht
-    Leerzeichen und% 3D bis =)
+    Raum und% 3D zu = )
 
 Info / Aktionsbefehl 
 ====================
@@ -106,7 +106,7 @@ Objekt
 =====
 
 Hier ist die URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = Objekt](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Objekt)
 
 Gibt in json die Liste aller Jeedom-Objekte zurück
 
@@ -132,7 +132,7 @@ Vollständige Daten
 =========
 
 Hier ist die URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
 
 Gibt alle Objekte, Geräte, Befehle (und deren Wert, falls dies der Fall ist) zurück
 sind infos) in json
@@ -141,7 +141,7 @@ Variable
 ========
 
 Hier ist die URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#& value =)*Wert*
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)*Wert*
 
 -   **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen von
     der Wert)

@@ -8,14 +8,14 @@ Geral
 
 Nesta guia, encontramos informações gerais sobre o Jeedom :
 
--   **Nome de seu Jeedom** : Identifique seu Jeedom,
+-   **Nome do seu Jeedom** : Identifique seu Jeedom,
     especialmente no mercado. Pode ser reutilizado em cenários
     ou identificar um backup.
 
 -   **Sistema** : Tipo de hardware no qual o sistema está instalado onde
     seu Jeedom está girando.
 
--   **Chave d'installation** : Chave de hardware do seu Jeedom on
+-   **Key instalação** : Chave de hardware do seu Jeedom on
     o mercado. Se o seu Jeedom não aparecer na lista do seu
     Jeedom no mercado, é aconselhável clicar no botão
     **Restabelecer**.
@@ -26,7 +26,7 @@ Nesta guia, encontramos informações gerais sobre o Jeedom :
     tenha cuidado, isso pode tornar seu sistema mais lento. Opção mais útil
     Para desenvolvedores.
 
--   **Sessões vida (tempo)** : Vida útil das sessões
+-   **Duração das sessões (hora)** : Vida útil das sessões
     PHP, não é recomendável tocar nesse parâmetro.
 
 -   **Data e hora** : Escolha o seu fuso horário. Você pode
@@ -35,7 +35,7 @@ Nesta guia, encontramos informações gerais sobre o Jeedom :
 
 -   **Servidor de tempo opcional** : Indica qual servidor de horário deve
     ser usado se você clicar **Forçar sincronização de
-    a hora**. (a ser reservado para especialistas)
+    a hora**. (ser reservado para especialistas)
 
 -   **Ignorar verificar o tempo** : diz a Jeedom para não
     verifique se o tempo é consistente entre si e o sistema em
@@ -110,7 +110,7 @@ LDAP
 
 -   **DN base** : Base DN do seu AD
 
--   **Nome d'utilisateur** : nome de usuário para o Jeedom
+-   **Nome de Usuário** : nome de usuário para o Jeedom
     conectar ao AD
 
 -   **Senha** : senha para o Jeedom se conectar ao AD
@@ -123,12 +123,12 @@ LDAP
     grupos por exemplo)
 
 -   **Permitir REMOTE\_USER** : Ative REMOTE\_USER (usado no SSO
-    por exemplo)
+    Por exemplo)
 
 Logar 
 ---------
 
--   **Número d'échecs tolérés** : define o número de tentativas
+-   **Número de falhas tolerada** : define o número de tentativas
     permitido antes de banir o IP
 
 -   **Tempo máximo entre falhas (em segundos)** : tempo máximo
@@ -152,8 +152,8 @@ Redes
 É absolutamente necessário configurar corretamente essa parte importante do
 Jeedom, caso contrário, muitos plugins podem não funcionar. Ele
 é possível acessar o Jeedom de duas maneiras diferentes : L'**acesso
-Interno** (da mesma rede local que Jeedom) e l'**acesso
-Externo** (de outra rede, em particular da Internet).
+interne** (da mesma rede local que Jeedom) e l'**acesso
+externe** (de outra rede, especialmente da Internet).
 
 > **IMPORTANTE**
 >
@@ -175,7 +175,7 @@ Externo** (de outra rede, em particular da Internet).
 
     -   **Protocolo** : o protocolo a ser usado, geralmente HTTP
 
-    -   **Morada URL  ou IP** : IP Jeedom para entrar
+    -   **URL ou endereço IP** : IP Jeedom para entrar
 
     -   **Porta** : a porta da interface da web Jeedom, geralmente 80.
         Observe que alterar a porta aqui não altera a porta real do
@@ -193,7 +193,7 @@ Externo** (de outra rede, em particular da Internet).
 
     -   **Protocolo** : protocolo usado para acesso ao ar livre
 
-    -   **Morada URL  ou IP** : IP externo, se for fixo. Caso contrário,
+    -   **URL ou endereço IP** : IP externo, se for fixo. Caso contrário,
         forneça o URL apontando para o endereço IP externo da sua rede.
 
     -   **Complemento** : o fragmento de URL adicional (exemplo
@@ -212,7 +212,7 @@ Externo** (de outra rede, em particular da Internet).
 > seu navegador da Internet, se você precisar adicionar / jeedom (ou outro
 > coisa) após o IP.
 
--   **Gestão avancée** : Esta parte pode não aparecer, em
+-   **Gerenciamento avançado** : Esta parte pode não aparecer, em
     dependendo da compatibilidade com o seu hardware. Você encontrará lá
     a lista de suas interfaces de rede. Você pode dizer a Jeedom
     para não monitorar a rede clicando em **desativar o
@@ -234,7 +234,7 @@ Externo** (de outra rede, em particular da Internet).
 >
 > Se você não conseguir que o DNS Jeedom funcione, verifique o
 > configuração do firewall e filtro dos pais da sua caixa da Internet
-> (no livebox você precisa, por exemplo, do firewall no meio).
+> (no livebox você precisa, por exemplo, do firewall em médio).
 
 Cores 
 ========
@@ -249,7 +249,7 @@ versão desktop e móvel. Então podemos mudar :
 -   a cor de fundo dos widgets,
 
 -   a cor do comando quando o widget é do tipo gradual (por
-    luzes, persianas, temperaturas).
+    exemplo luzes, persianas, temperaturas).
 
 Ao clicar na cor, uma janela é aberta, permitindo que você escolha
 cor. A cruz ao lado da cor retorna ao parâmetro
@@ -257,7 +257,7 @@ Por padrão.
 
 Na parte superior da página, você também pode configurar a transparência de
 widgets globalmente (esse será o padrão. Ele é
-possível modificar esse widget de valor por widget). Para não
+então é possível modificar esse widget de valor por widget). Para não
 não coloque transparência, deixe 1.0 .
 
 > **Dica**
@@ -281,21 +281,21 @@ Histórico
     comando digital.
 
 -   **Período de cálculo para min, max, média (em horas)** : Período
-    cálculo de estatísticas (24h por padrão). Não é possível
+    cálculo estatístico (24h por padrão). Não é possível
     colocar menos de uma hora.
 
--   **Período de cálculo para a tendência (em horas)** : Período de
+-   **Período de cálculo da tendência (em horas)** : Período de
     cálculo de tendência (2h por padrão). Não é possível
     colocar menos de uma hora.
 
--   **Atraso antes de arquivamento (em horas)** : Indica o atraso antes
-    Jeedom não arquiva dados (24h por padrão). Ou seja, o
+-   **Atraso antes do arquivamento (em horas)** : Indica o atraso antes
+    O Jeedom não arquiva dados (24h por padrão). Ou seja, o
     dados históricos devem ter mais de 24 horas para serem arquivados
     (como lembrete, o arquivamento será médio ou máximo
     ou o mínimo de dados durante um período que corresponda à
     tamanho do pacote).
 
--   **Arquivo por pacote (horas)** : Este parâmetro fornece
+-   **Arquivar por pacote a partir de (em horas)** : Este parâmetro fornece
     precisamente o tamanho dos pacotes (1 hora por padrão). Significa por
     Por exemplo, o Jeedom levará períodos de 1 hora, média e
     armazene o novo valor calculado excluindo o
@@ -321,17 +321,17 @@ Histórico
 > calcular essas estatísticas. O método de cálculo de tendências é baseado
 > no cálculo dos mínimos quadrados (ver
 > [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> para detalhes).
+> para o detalhe).
 
 Empurrão 
 ----
 
-**URL  de push globale** : permite adicionar um URL para chamar em caso de
+**URL esforço global** : permite adicionar um URL para chamar em caso de
 atualização do pedido. Você pode usar as seguintes tags :
 **\#value\#** para o valor do pedido, **\#cmd\_name\#** para o
 nome do comando, **\#cmd\_id\#** para o identificador exclusivo do
 commande, **\#humanname\#** para o nome completo do pedido (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`para o nome do equipamento
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), ``#eq_name#`para o nome do equipamento
 
 Cobertura 
 =====
@@ -348,7 +348,7 @@ Permite monitorar e agir no cache Jeedom :
 
 -   **Tempo de pausa para o longo polling** : Quantas vezes
     A Jeedom verifica se há algum evento pendente para os clientes
-    (interface da web, aplicativo móvel etc.). Quanto menor o tempo, mais
+    (interface web, aplicação móvel). Quanto menor o tempo, mais
     a interface será atualizada rapidamente, em troca disso
     usa mais recursos e, portanto, pode retardar o Jeedom.
 
@@ -408,7 +408,7 @@ Interação automática, contextual e aviso
 -   O **interações contextuais** permitir que você encadeie
     várias solicitações sem repetir tudo, por exemplo :
 
-    -   *Jeedom gardant le contexte :*
+    -   *Jeedom mantendo o contexto :*
 
         -   *Você* : Quanto ele está na sala ?
 
@@ -431,7 +431,7 @@ Interação automática, contextual e aviso
     -   *Você* : Notifique-me se a temperatura da sala exceder 25 ° C ?
 
     -   *Jeedom* : OK (* Assim que a temperatura da sala exceda 25 ° C,
-        Jeedom lhe dirá apenas uma vez *)
+        Jeedom lhe dirá, apenas uma vez*)
 
 > **NOTA**
 >
@@ -470,7 +470,7 @@ Aqui estão as diferentes opções disponíveis :
     se você programou o alerta pela interface móvel)
 
 -   **Sinônimo de objetos** : Lista de sinônimos para objetos
-    (ex : rdc|térreo|subterrâneo|banheiro baixo|banheiro).
+    (ex : rdc|térreo|subterrâneo|banheiro baixo|Casa de banho).
 
 -   **Sinônimo de equipamento** : Lista de sinônimos para
     Os equipamentos.
@@ -482,7 +482,7 @@ Aqui estão as diferentes opções disponíveis :
 
 -   **Sinônimo máximo controle deslizante** : Sinônimo para colocar um
     comando tipo deslizante máximo (ex abre para abre o obturador
-    o quarto ⇒ 100% persiana).
+    o quarto ⇒ 100% do obturador do quarto).
 
 -   **Sinônimo controle deslizante Mínimo** : Sinônimo para colocar um
     comando do tipo slider no mínimo (ex fecha para fechar o obturador
@@ -505,11 +505,11 @@ Relações
 
 Configurar a geração e gerenciamento de relatórios
 
--   **Tempo de espera após geração da página (em ms)** : Prazo
+-   **Tempo limite após a geração da página (em ms)** : Prazo
     aguarde após carregar o relatório para tirar a "foto", em
     alterar se o seu relatório estiver incompleto, por exemplo.
 
--   **Limpe relatórios mais velhos (dias)** : Define o
+-   **Limpar relatórios mais antigos de (dias)** : Define o
     número de dias antes da exclusão de um relatório (os relatórios levam
     um pouco de espaço, então tome cuidado para não colocar muito
     conservação).
@@ -524,7 +524,7 @@ equipamentos, objetos, etc.
 -   **Profundidade para cenários** : Usado para definir, quando
     exibindo um gráfico de links de um cenário, o número
     número máximo de elementos a serem exibidos (quanto mais elementos, maior a
-    quanto mais lento for gerar e mais difícil será ler).
+    o gráfico demorará a gerar e mais difícil será a leitura).
 
 -   **Profundidade para objetos** : O mesmo para objetos.
 
@@ -557,7 +557,7 @@ Objetos :
     -   **Média** : valores médios,
 
     -   **Texto** : exibir o valor literalmente (especialmente para aqueles
-        tipo de string).
+        do tipo string).
 
 -   **ícone** : Ícone Resumo.
 
@@ -573,7 +573,7 @@ Objetos :
 -   **Mostrar se o valor é 0** : Marque esta caixa para exibir o
     valor, mesmo quando é 0.
 
--   **Lier à un virtuel** : Comece a criar pedidos virtuais
+-   **Link para um virtual** : Comece a criar pedidos virtuais
     tendo como valor os do resumo.
 
 -   **Excluir resumo** : O último botão, na extrema direita, permite
@@ -585,7 +585,7 @@ Toras
 Cronograma 
 --------
 
--   **Número maximum d'évènements** : Define o número máximo para
+-   **O número máximo de eventos** : Define o número máximo para
     mostrar na linha do tempo.
 
 -   **Excluir todos os eventos** : Esvazie a linha do tempo de
@@ -642,12 +642,12 @@ Log
 ---
 
 -   **Log Motor** : Permite alterar o mecanismo de log para, por
-    Por exemplo, envie-os para um daemon syslog (d).
+    Por exemplo, envie-os para um demônio syslog (d).
 
 -   **Logs de formato** : Formato de log a ser usado (Cuidado : ça
     não afeta os logs do daemon).
 
--   **Número de lignes maximum dans un fichier de log** : Define o
+-   **O número máximo de linhas em um arquivo de log** : Define o
     número máximo de linhas em um arquivo de log. É recomendado
     para não tocar nesse valor, porque um valor muito grande poderia
     preencha o sistema de arquivos e / ou torne o Jeedom incapaz
@@ -664,7 +664,7 @@ plugins.
 Instalações 
 ===========
 
--   **Número d'échecs avant désactivation de l'équipement** : Nombre
+-   **Falha Contagem off equipamentos** : Nombre
     falha de comunicação com o equipamento antes da desativação do
     este (uma mensagem avisará se isso acontecer).
 
@@ -704,10 +704,10 @@ Depósito usado para conectar o Jeedom ao Github.
 
 -   **Token** : Token para acesso ao depósito privado.
 
--   **Usuário ou organisation du dépôt para o core Jeedom** : Nom
+-   **Usuário ou organização do repositório principal da Jeedom** : Nom
     o usuário ou a organização no github para o núcleo.
 
--   **Nome du dépôt para o core Jeedom** : Nome do repositório para core.
+-   **Nome do repositório para o núcleo Jeedom** : Nome do repositório para core.
 
 -   **Indústria do núcleo Jeedom** : Ramificação do repositório principal.
 
@@ -719,11 +719,11 @@ recusado se você usar um depósito diferente deste.
 
 -   **Morada** : Endereço do mercado.
 
--   **Nome d'utilisateur** : Seu nome de usuário no mercado.
+-   **Nome de Usuário** : Seu nome de usuário no mercado.
 
 -   **Senha** : Sua senha do Market.
 
--   **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom com risco de travar entre eles)
+-   **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom em risco de colidir entre eles)
 
 -   **Senha da [nuvem de backup]** : Senha de backup na nuvem. IMPORTANTE, você não deve perdê-lo, não há como recuperá-lo. Sem ele, você não poderá restaurar o seu Jeedom
 
@@ -786,12 +786,12 @@ uma participação do Samba (ex : NAS Synology).
 > Jeedom deve ser o único a gravar nesta pasta e deve estar vazio
 > por padrão (ou seja, antes de configurar e enviar o
 > primeiro backup, a pasta não deve conter nenhum arquivo ou
-> pasta).
+> dossier).
 
 ### URL  
 
--   **URL  core Jeedom**
+-   **URL principal do Jeedom**
 
--   **URL  version core Jeedom**
+-   **URL da versão principal do Jeedom**
 
 

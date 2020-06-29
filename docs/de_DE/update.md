@@ -4,13 +4,13 @@ Beschreibung
 Die **Update Center** ermöglicht es Ihnen, alle zu aktualisieren
 Jeedom-Funktionen, einschließlich Kernsoftware,
 Plugins, Widgets usw. Andere Erweiterungsverwaltungsfunktionen
-verfügbar sind (löschen, neu installieren, prüfen usw.)
+verfügbar sind (löschen, neu installieren, prüfen usw.))
 
 Die Update Center-Seite 
 ================================
 
 Es ist über das Menü zugänglich **Administration → Aktualisierungscenter
-Tag**.
+jour**.
 
 Auf der linken Seite finden Sie alle Funktionen von
 Jeedom und auf der rechten Seite **Informationen** wer beschreibt was er
@@ -22,7 +22,7 @@ Funktionen oben auf der Seite.
 Am oberen Rand der Tabelle befinden sich die Steuertasten. Jeedom se
 Stellen Sie regelmäßig eine Verbindung zum Markt her, um festzustellen, ob Aktualisierungen vorliegen
 verfügbar sind (das Datum der letzten Prüfung ist oben angegeben
-links von der Tabelle). Wenn Sie eine manuelle Überprüfung durchführen möchten,
+links vom Tisch). Wenn Sie eine manuelle Überprüfung durchführen möchten,
 Sie können die Taste "Nach Updates suchen" drücken".
 
 Die Schaltfläche **Update** ermöglicht das Aktualisieren des Satzes von
@@ -43,7 +43,7 @@ Optionen :
     das Backup.
 
 -   **Update zur erneuten Anwendung** : Ermöglicht es Ihnen, eine Wette erneut anzuwenden
-    auf dem neuesten Stand. (NB : Nicht alle Updates können erneut angewendet werden.)
+    auf dem neuesten Stand. (NB : Alle Updates können nicht erneut angewendet werden.)
 
 > **Wichtig**
 >
@@ -101,7 +101,7 @@ jedes Element :
 > Update bedeutet, dass die Dokumentation aktualisiert wurde.
 > Es besteht daher keine Notwendigkeit, den Entwickler danach zu fragen
 > Änderungen, da es nicht unbedingt welche gibt. (Es ist oft eine Wette
-> Übersetzung der Dokumentation)
+> der Übersetzung der Dokumentation)
 
 > **Spitze**
 >
@@ -119,7 +119,7 @@ Sobald die Verbindung hergestellt ist, ist dies der auszuführende Befehl :
 Die möglichen Parameter sind :
 
 -   **`Mode`** : `force`, um ein Update im erzwungenen Modus zu starten (nicht
-    ignoriert Fehler).
+    Fehler ignorieren).
 
 -   **`version`** : gefolgt von der Versionsnummer, um die erneut anzuwenden
     Änderungen seit dieser Version.

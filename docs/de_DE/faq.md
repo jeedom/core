@@ -65,7 +65,7 @@ Können wir Jeedom in https setzen? ?
 ================================
 
 Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+benutze einfach die [DNS Jeedom](https://doc.jeedom.com/de_DE/howto/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 So verbinden Sie sich in SSH ?
 =============================
@@ -118,16 +118,16 @@ Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit den Rechten
 root oder ein Docker-System. Es funktioniert daher nicht auf einem
 reine Android-Plattform.
 
-Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte)..." ? 
+Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte))..." ? 
 ====================================================
 
 Dies kann auf verschiedene Dinge zurückzuführen sein, es ist notwendig : 
 
-- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite haben Sie im aktualisierten Teil einen Testknopf)
+- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite, aktualisierter Teil, haben Sie eine Testschaltfläche)
 - Überprüfen Sie, ob das Marktkonto das betreffende Plugin gekauft hat
-- Überprüfen Sie, ob auf Jeedom genügend Speicherplatz vorhanden ist (auf der Gesundheitsseite wird dies angezeigt)
+- Überprüfen Sie, ob auf Jeedom Platz ist (die Gesundheitsseite informiert Sie darüber)
 - Überprüfen Sie, ob Ihre Version von Jeedom mit dem Plugin kompatibel ist
-- Überprüfen Sie, ob Ihr Jeedom noch korrekt mit dem Markt verbunden ist (Registerkarte Jeedom in der Jeedom-Konfiguration)
+- Überprüfen Sie, ob Ihr Jeedom noch korrekt mit dem Markt verbunden ist (Klicken Sie in der Jeedom-Konfiguration auf die Registerkarte Aktualisieren)
 
 Ich habe eine leere Seite 
 =====================
@@ -179,7 +179,7 @@ Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch üb
 
 Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
 Wenn es nach einer Neuinstallation weiterhin besteht, ist es ratsam,
-Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation](https://jeedom.github.io/documentation/howto/de_DE/recovery_mode_jeedom_smart) für Smart
+Informationen zum Hardware-Problem erhalten Sie beim Kundendienst. Hier ist die [Dokumentation](https://doc.jeedom.com/de_DE/installation/smart) für Smart
 
 Mein Szenario hört nicht mehr auf 
 =================================
@@ -207,12 +207,12 @@ Dies liegt an MySQL, das gestoppt hat, es ist nicht normal, die Fälle
 Ströme sind :
 
 -   Platzmangel im Dateisystem (kann von überprüft werden
-    den Befehl &quot;df -h&quot; in SSH ausführen)
+    Führen Sie den Befehl "df -h" in SSH aus)
 
 -   Problem mit der Beschädigung von Dateien, das häufig aufgrund von
-    Jeedoms nicht sauberes Herunterfahren (Stromausfall)
+    Jeedom's nicht sauberes Herunterfahren (Stromausfall)
 
-- 	Speichersorgen, das System hat nicht mehr genügend Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
+- 	Speicherprobleme, das System verfügt nicht über Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank)). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
 
 Leider gibt es nicht viel Lösung, wenn es die zweite ist
 In diesem Fall ist es am besten, ein Backup wiederherzustellen (verfügbar in
@@ -253,7 +253,7 @@ Die Warnungen werden nach Priorität klassifiziert, von der am wenigsten wichtig
 Mein Jeedom zeigt auch nach 1 Stunde permanent &quot;Start&quot; an ? 
 =====================================
 
-Wenn Sie DIY sind und unter Debian 9 oder höher arbeiten, überprüfen Sie, ob Apache nicht aktualisiert wurde und daher privateTmp zurückgegeben wird (sichtbar durch Ausführen von `ls / tmp`), und prüfen Sie, ob dies der Fall ist ein privater \* Apache-Ordner). Wenn das der Fall ist, müssen Sie tun :
+Wenn Sie in DIY und unter Debian 9 oder höher sind, überprüfen Sie, ob es kein Update von Apache und damit die Rückgabe von privateTmp gegeben hat (sichtbar durch Ausführen von `ls / tmp`) und prüfen Sie, ob dies der Fall ist ein privater \* Apache-Ordner). Wenn das der Fall ist, müssen Sie tun :
 
 `` '' 
 mkdir /etc/systemd/system/apache2.service.d
@@ -275,13 +275,13 @@ Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Si
 =========================================
 Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir
 
-- Eine beschädigte Basistabelle =&gt; Sie ist schlecht gestartet. Sie müssen versuchen, sie zu reparieren. Wenn sie nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf SD Guard befinden, ist es der richtige Zeitpunkt, sie zu ändern)
+- Eine beschädigte Basistabelle => Sie ist schlecht gestartet. Sie müssen versuchen, sie zu reparieren. Wenn sie nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf SD Guard befinden, ist es der richtige Zeitpunkt, sie zu ändern)
 - Nicht genügend Speicherplatz im Dateisystem =&gt; Schauen Sie sich die Gesundheitsseite an, die Sie darüber informieren können
 
 
 Ich kann mich nicht mehr mit meinem Jeedom verbinden
 =========================================
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Die Admin / Admin-IDs funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise)
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Die Admin / Admin-IDs funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz alledem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Passworts verwenden (siehe Tutorials / Vorgehensweise))
 
 Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
 =========================================
@@ -301,7 +301,7 @@ rm -rf / root / tmp / core-master
 Du musst :
 
 - Jeedom neu starten
-- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -&gt; System -&gt; Konfiguration in Version 4)
+- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -> System -> Konfiguration in Version 4))
 - Wechseln Sie zur Registerkarte OS / DB
 - Starten Sie die Systemadministration
 - Klicken Sie auf Dpkg konfigurieren

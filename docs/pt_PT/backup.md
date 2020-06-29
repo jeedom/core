@@ -39,10 +39,10 @@ ou restauração), se você lançou um.
     backups mais antigos até ficar abaixo do
     tamanho máximo. No entanto, manterá pelo menos um backup.
 
-**Backups Locales** 
+**Backups locais** 
 -----------------------
 
--   **Backups disponibles** : Lista de backups disponíveis.
+-   **Backups disponíveis** : Lista de backups disponíveis.
 
 -   **Restaurar backup** : Inicia a restauração do backup
     selecionado acima.
@@ -58,7 +58,7 @@ ou restauração), se você lançou um.
 -   **De backup de download** : Permite baixar para o seu
     computador o arquivo de backup selecionado acima.
 
-**Backups Mercado** 
+**Backups de mercado** 
 ----------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
@@ -68,20 +68,20 @@ ou restauração), se você lançou um.
 -   **Enviar cópia de segurança** : Permite enviar um
     arquivo de backup localizado no seu computador.
 
--   **Backups disponibles** : Lista de backups
+-   **Backups disponíveis** : Lista de backups
     nuvem disponível.
 
 -   **Restaurar backup** : Lança a restauração de um
     Backup em nuvem.
 
-**Backups Samba** 
+**Backups do Samba** 
 ---------------------
 
 -   **Envio de backups** : Instrui o Jeedom a enviar o
     backups no compartilhamento samba configurados aqui
     Administração → Configuração → guia Atualizações.
 
--   **Backups disponibles** : Lista de backups
+-   **Backups disponíveis** : Lista de backups
     samba disponível.
 
 -   **Restaurar backup** : Inicia a restauração do backup
@@ -97,7 +97,7 @@ O que é salvo ?
 
 Durante um backup, o Jeedom fará backup de todos os seus arquivos e do
 Banco de dados. Isso, portanto, contém toda a sua configuração
-(equipamentos, pedidos, histórico, cenários, design etc.).
+(equipamentos, controles, histórico, cenários, design etc.).
 
 Em termos de protocolos, apenas o Z-Wave (OpenZwave) é um pouco
 diferente porque não é possível salvar as inclusões.
@@ -107,7 +107,7 @@ mantenha o mesmo controlador para encontrar seus módulos Zwave.
 > **NOTA**
 >
 > O sistema no qual o Jeedom está instalado não é copiado. Se
-> você modificou os parâmetros deste sistema (principalmente via SSH),
+> você modificou os parâmetros deste sistema (em particular via SSH),
 > cabe a você encontrar uma maneira de recuperá-los em caso de problemas.
 
 Backup em nuvem 
@@ -132,6 +132,6 @@ Frequência de backups automáticos
 
 O Jeedom executa um backup automático todos os dias no mesmo
 hora. É possível modificar isso, a partir do "Mecanismo
-tarefas "(a tarefa é denominada **Backup Jeedom**), mas não é
+tarefas "(a tarefa é denominada **Backup Jeedom**), Mas isso não
 recomendado. De fato, é calculado em relação à carga do
 Market.

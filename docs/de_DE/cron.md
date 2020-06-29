@@ -16,7 +16,7 @@ Oben rechts haben Sie :
 
 -   **Cron-System deaktivieren** : eine Taste zum Deaktivieren oder
     Aktivieren Sie alle Aufgaben erneut (wenn Sie alle deaktivieren, mehr
-    nichts wird auf deinem Jeedom funktionieren)
+    Nichts wird an deinem Jeedom funktionieren)
 
 -   **Cool** : eine Schaltfläche zum Aktualisieren der Aufgabentabelle
 
@@ -25,7 +25,7 @@ Oben rechts haben Sie :
 -   **Rekord** : eine Schaltfläche zum Speichern Ihrer Änderungen.
 
 Unten finden Sie die Tabelle aller vorhandenen Aufgaben
-(Seien Sie vorsichtig, einige Aufgaben können Unteraufgaben starten, so ist es
+(Seien Sie vorsichtig, einige Aufgaben können Unteraufgaben starten
 Es wird dringend empfohlen, die Informationen hierzu niemals zu ändern
 Seite). In dieser Tabelle finden wir :
 
@@ -33,7 +33,7 @@ Seite). In dieser Tabelle finden wir :
     Prozess, der läuft und was er wirklich tut
 
 -   **Aktion** : eine Schaltfläche zum Starten oder Stoppen der Funktion
-    seinen Status und eine Schaltfläche, um den Cron im Detail zu sehen (wie in der Datenbank gespeichert)
+    seinen Status und eine Schaltfläche zum detaillierten Anzeigen des Cron (wie in der Datenbank gespeichert))
 
 -   **Aktiva** : Gibt an, ob die Aufgabe aktiv ist (kann gestartet werden
     von Jeedom) oder nicht
@@ -64,14 +64,14 @@ Seite). In dieser Tabelle finden wir :
 
 -   **Letzte Dauer** : letztes Mal, um die Aufgabe abzuschließen (a
     Dämon wird immer bei 0 sein, also mach dir keine Sorgen über andere Aufgaben
-    kann 0s sein)
+    kann bei 0s sein)
 
 -   **Status** : aktueller Status der Aufgabe (zur Erinnerung eine Daemon-Aufgabe
-    ist immer noch "laufen")
+    ist noch bei "run")
 
 -   **Unterdrückung** : Aufgabe löschen
 
 
-# Zuhörer
+# Listener
 
-Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die Funktionen eines Ereignisses anzuzeigen (Aktualisierung einer Bestellung ...)
+Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei einem Ereignis aufgerufenen Funktionen anzuzeigen (Aktualisierung eines Befehls)...)

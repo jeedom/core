@@ -25,7 +25,7 @@ Werkbank für das jeweilige Modul (dargestellt durch eine Hand)
 >
 > Die Alarm- / Warnschwellen für den Batteriestand sind
 > global konfigurierbar in der Jeedom-Konfiguration
-> (Administration → Registerkarte Ausrüstung) oder nach Ausrüstung auf der Seite
+> (Administration → Registerkarte "Ausrüstung") oder nach Ausrüstung auf der Seite
 > Erweiterte Konfiguration dieser auf der Registerkarte Warnungen.
 
 Module auf der Registerkarte &quot;Warnung&quot; 
@@ -34,7 +34,7 @@ Module auf der Registerkarte &quot;Warnung&quot;
 Auf dieser Registerkarte sehen Sie in Echtzeit die Module in Alarmbereitschaft. die
 Es gibt verschiedene Arten von Warnungen :
 
--   Zeitüberschreitung (konfiguriert auf der Registerkarte &quot;Definierte Warnungen&quot;)
+-   Zeitüberschreitung (konfiguriert auf der Registerkarte "Definierte Warnungen"))
 
 -   Batterie in Warnung oder in Gefahr
 
@@ -63,7 +63,7 @@ und synthetisiert mehrere Dinge :
 -   Aktionen auf Status (in erweiterten Parametern gefunden
     info Befehle und verwendet, um einen oder mehrere auszuführen
     Aktionen auf den Wert einer Bestellung - sofort oder danach
-    eine Frist)
+    eine Verzögerung)
 
 -   Aktionsbestätigungen (konfigurierbar an derselben Stelle auf a
     Befehlsinfo und Zulassen einer Bestätigung für

@@ -8,14 +8,14 @@ General
 
 In this tab we find general information about Jeedom :
 
--   **Last name de your Jeedom** : Identify your Jeedom,
+-   **Name of your Jeedom** : Identify your Jeedom,
     especially in the market. It can be reused in scenarios
     or identify a backup.
 
 -   **System** : Type of hardware on which the system is installed where
     your Jeedom is spinning.
 
--   **Key d'installation** : Hardware key of your Jeedom on
+-   **Installation key** : Hardware key of your Jeedom on
     the market. If your Jeedom does not appear in the list of your
     Jeedom on the market, it is advisable to click on the button
     **Reset**.
@@ -62,7 +62,7 @@ TTS, you can define their scope :
 -   **Disabled** : API key cannot be used,
 
 -   **White IP** : only a list of IPs is authorized (see
-    Administration → Settings → Networks),
+    Administration → Configuration → Networks),
 
 -   **Localhost** : only requests from the system on which is
     installed Jeedom are allowed,
@@ -110,7 +110,7 @@ LDAP
 
 -   **DN base** : DN base of your AD
 
--   **Last name d'utilisateur** : username for Jeedom to
+-   **Username** : username for Jeedom to
     connect to AD
 
 -   **Password** : password for Jeedom to connect to AD
@@ -123,12 +123,12 @@ LDAP
     groups for example)
 
 -   **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO
-    for example)
+    For example)
 
 Log in 
 ---------
 
--   **Number d'échecs tolérés** : sets the number of attempts
+-   **Number of failures tolerated** : sets the number of attempts
     allowed before banning the IP
 
 -   **Maximum time between failures (in seconds)** : maximum time
@@ -152,8 +152,8 @@ Networks
 It is absolutely necessary to correctly configure this important part of
 Jeedom, otherwise many plugins may not work. he
 is possible to access Jeedom in two different ways : L'**access
-internal** (from the same local network as Jeedom) and l'**access
-external** (from another network, in particular from the Internet).
+interne** (from the same local network as Jeedom) and l'**access
+externe** (from another network, especially from the Internet).
 
 > **IMPORTANT**
 >
@@ -175,7 +175,7 @@ external** (from another network, in particular from the Internet).
 
     -   **Protocol** : the protocol to use, often HTTP
 
-    -   **Address URLs ou IP** : Jeedom IP to enter
+    -   **URL or IP address** : Jeedom IP to enter
 
     -   **Harbor** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual port of
@@ -193,7 +193,7 @@ external** (from another network, in particular from the Internet).
 
     -   **Protocol** : protocol used for outdoor access
 
-    -   **Address URLs ou IP** : External IP, if it is fixed. If not,
+    -   **URL or IP address** : External IP, if it is fixed. If not,
         give the URL pointing to the external IP address of your network.
 
     -   **Complement** : the fragment of additional URL (example
@@ -212,7 +212,7 @@ external** (from another network, in particular from the Internet).
 > your Internet browser, if you need to add / jeedom (or other
 > thing) after the IP.
 
--   **Management avancée** : This part may not appear, in
+-   **Advanced management** : This part may not appear, in
     depending on compatibility with your hardware. You will find
     the list of your network interfaces. You can tell Jeedom
     not to monitor the network by clicking on **deactivate the
@@ -234,7 +234,7 @@ external** (from another network, in particular from the Internet).
 >
 > If you can&#39;t get Jeedom DNS to work, check the
 > configuration of the firewall and parental filter of your Internet box
-> (on livebox you need for example the firewall on medium).
+> (on livebox you need for example the firewall in medium).
 
 Colors 
 ========
@@ -249,7 +249,7 @@ desktop and mobile version. We can then change :
 -   the background color of the widgets,
 
 -   the color of the command when the widget is of the gradual type (for
-    lights, shutters, temperatures).
+    example lights, shutters, temperatures).
 
 By clicking on the color a window opens, allowing you to choose your
 color. The cross next to the color returns to the parameter
@@ -293,7 +293,7 @@ Historical
     historical data must have more than 24 hours to be archived
     (as a reminder, archiving will either average or take the maximum
     or the minimum of the data over a period which corresponds to the
-    package size).
+    packet size).
 
 -   **Archive by package from (in hours)** : This parameter gives
     precisely the size of the packets (1 hour by default). It means by
@@ -321,17 +321,17 @@ Historical
 > calculate these statistics. The trend calculation method is based
 > on least squares calculation (see
 > [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> for details).
+> for the detail).
 
 Push 
 ----
 
-**URLs de push globale** : allows to add a URL to call in case of
+**Global push URL** : allows to add a URL to call in case of
 order update. You can use the following tags :
 **\#value\#** for the order value, **\#cmd\_name\#** for the
 command name, **\#cmd\_id\#** for the unique identifier of the
 commande, **\#humanname\#** for the full name of the order (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`for the name of the equipment
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), ``#eq_name#`for the name of the equipment
 
 Hidden 
 =====
@@ -348,7 +348,7 @@ Allows monitoring and acting on the Jeedom cache :
 
 -   **Pause time for long polling** : How often
     Jeedom checks if there are any pending events for customers
-    (web interface, mobile application, etc.). The shorter this time, the more
+    (web interface, mobile application…). The shorter this time, the more
     the interface will update quickly, in return this
     uses more resources and can therefore slow Jeedom.
 
@@ -408,7 +408,7 @@ Automatic interaction, contextual &amp; warning
 -   The **contextual interactions** allow you to chain
     multiple requests without repeating everything, for example :
 
-    -   *Jeedom gardant le contexte :*
+    -   *Jeedom keeping the context :*
 
         -   *You* : How much is he in the room ?
 
@@ -431,7 +431,7 @@ Automatic interaction, contextual &amp; warning
     -   *You* : Notify me if the living room temperature exceeds 25 ° C ?
 
     -   *Jeedom* : OK (* As soon as the living room temperature exceeds 25 ° C,
-        Jeedom will tell you, only once *)
+        Jeedom will tell you, only once*)
 
 > **NOTE**
 >
@@ -470,7 +470,7 @@ Here are the different options available :
     if you have programmed the alert via the mobile interface)
 
 -   **Synonym for objects** : List of synonyms for objects
-    (ex : rdc|ground floor|basement|low; sdb|bathroom).
+    (Ex : rdc|ground floor|basement|low; sdb|Bathroom).
 
 -   **Synonym for equipment** : Synonyms list for
     equipment.
@@ -509,7 +509,7 @@ Configure the generation and management of reports
     waiting after loading the report to take the &quot;photo&quot;, at
     change if your report is incomplete for example.
 
--   **Clean older reports from (days)** : Defines the
+-   **Clean up older reports from (days)** : Defines the
     number of days before deleting a report (reports take
     a little space so be careful not to put too much
     conservation).
@@ -524,7 +524,7 @@ equipment, objects, etc.
 -   **Depth for scenarios** : Used to define, when
     displaying a graph of links of a scenario, the number
     maximum number of elements to display (the more elements the greater the
-    the slower it will be to generate and the more difficult it will be to read).
+    graphic will be slow to generate and the more difficult it will be to read).
 
 -   **Depth for objects** : Same for objects.
 
@@ -557,7 +557,7 @@ objects :
     -   **Average** : averages values,
 
     -   **Text** : display the value verbatim (especially for those
-        string type).
+        of string type).
 
 -   **Icon** : Summary icon.
 
@@ -573,7 +573,7 @@ objects :
 -   **Show if value is 0** : Check this box to display the
     value, even when it is 0.
 
--   **Theier at un virtuel** : Start creating virtual orders
+-   **Link to a virtual** : Start creating virtual orders
     having for value those of the summary.
 
 -   **Delete summary** : The last button, on the far right, allows
@@ -585,7 +585,7 @@ Logs
 Timeline 
 --------
 
--   **Number maximum d'évènements** : Sets the maximum number to
+-   **Maximum number of events** : Sets the maximum number to
     show in timeline.
 
 -   **Delete all events** : Empty the timeline of
@@ -642,12 +642,12 @@ Log
 ---
 
 -   **Log engine** : Allows you to change the log engine for, for
-    example, send them to a syslog daemon (d).
+    example, send them to a syslog demon (d).
 
 -   **Log format** : Log format to use (Caution : ça
     does not affect daemon logs).
 
--   **Number de lignes maximum dans un fichier de log** : Defines the
+-   **Maximum number of lines in a log file** : Defines the
     maximum number of lines in a log file. It is recommended
     not to touch this value, because too large a value could
     fill the file system and / or render Jeedom incapable
@@ -664,7 +664,7 @@ plugins.
 Facilities 
 ===========
 
--   **Number d'échecs avant désactivation de l'équipement** : Nombre
+-   **Number of failures before deactivation of the equipment** : Nombre
     communication failure with the equipment before deactivation of
     this one (a message will warn you if this happens).
 
@@ -704,10 +704,10 @@ Deposit used to connect Jeedom to Github.
 
 -   **Token** : Token for access to private deposit.
 
--   **User ou organisation du dépôt for the core Jeedom** : Nom
+-   **Jeedom core repository user or organization** : Nom
     the user or the organization on github for the core.
 
--   **Last name du dépôt for the core Jeedom** : Repository name for core.
+-   **Repository name for the Jeedom core** : Repository name for core.
 
 -   **Jeedom core industry** : Core repository branch.
 
@@ -719,11 +719,11 @@ refused if you use a different deposit than this one.
 
 -   **Address** : Market address.
 
--   **Last name d'utilisateur** : Your Username on the Market.
+-   **Username** : Your Username on the Market.
 
 -   **Password** : Your Market password.
 
--   **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of crashing between them)
+-   **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of it crashing between them)
 
 -   **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will not be able to restore your Jeedom
 
@@ -786,12 +786,12 @@ a Samba share (ex : NAS Synology).
 > Jeedom should be the only one to write to this folder and it should be empty
 > by default (i.e. before configuring and sending the
 > first backup, the folder must not contain any file or
-> folder).
+> dossier).
 
 ### URLs 
 
--   **URLs core Jeedom**
+-   **Jeedom core URL**
 
--   **URLs version core Jeedom**
+-   **Jeedom core version URL**
 
 

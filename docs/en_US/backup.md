@@ -39,10 +39,10 @@ or restoration), if you have launched one.
     oldest backups until falling below the
     maximum size. It will however keep at least one backup.
 
-**Backups Locales** 
+**Local backups** 
 -----------------------
 
--   **Backups disponibles** : List of available backups.
+-   **Available backups** : List of available backups.
 
 -   **Restore backup** : Starts restoring the backup
     selected above.
@@ -58,7 +58,7 @@ or restoration), if you have launched one.
 -   **Download backup** : Lets download to your
     computer the backup archive selected above.
 
-**Backups Market** 
+**Market backups** 
 ----------------------
 
 -   **Sending backups** : Instructs Jeedom to send the
@@ -68,20 +68,20 @@ or restoration), if you have launched one.
 -   **Send a backup** : Allows you to send a
     backup archive located on your computer.
 
--   **Backups disponibles** : List of backups
+-   **Available backups** : List of backups
     cloud available.
 
 -   **Restore backup** : Launches the restoration of a
     cloud backup.
 
-**Backups Samba** 
+**Samba backups** 
 ---------------------
 
 -   **Sending backups** : Instructs Jeedom to send the
     backups on the samba share configured here
     Administration → Configuration → Updates tab.
 
--   **Backups disponibles** : List of backups
+-   **Available backups** : List of backups
     samba available.
 
 -   **Restore backup** : Starts restoring the backup
@@ -97,7 +97,7 @@ What is saved ?
 
 During a backup, Jeedom will backup all of its files and the
 database. This therefore contains all of your configuration
-(equipment, orders, history, scenarios, design, etc.).
+(equipment, controls, history, scenarios, design, etc.).
 
 In terms of protocols, only the Z-Wave (OpenZwave) is a bit
 different because it is not possible to save the inclusions.
@@ -107,7 +107,7 @@ keep the same controller to find its Zwave modules.
 > **NOTE**
 >
 > The system on which Jeedom is installed is not backed up. Yes
-> you have modified parameters of this system (notably via SSH),
+> you have modified parameters of this system (in particular via SSH),
 > it&#39;s up to you to find a way to recover them in case of problems.
 
 Cloud backup 
@@ -132,6 +132,6 @@ Frequency of automatic backups
 
 Jeedom performs an automatic backup every day at the same
 hour. It is possible to modify this, from the &quot;Engine
-tasks &quot;(the task is named **Jeedom backup**), but it&#39;s not
+tasks &quot;(the task is named **Jeedom backup**), but it's not
 recommended. Indeed, it is calculated in relation to the load of the
 Market.

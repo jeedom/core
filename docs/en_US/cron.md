@@ -25,7 +25,7 @@ At the top right, you have :
 -   **Save** : a button to save your changes.
 
 Below you have the table of all existing tasks
-(be careful, some tasks can launch subtasks, so it is
+(be careful, some tasks may launch subtasks, so it's
 strongly recommended never to modify information on this
 page). In this table, we find :
 
@@ -33,7 +33,7 @@ page). In this table, we find :
     process that is running and what it really does
 
 -   **ACTION** : a button to start or stop the task in function
-    its status and a button to see the cron in detail (as stored in the database)
+    its status and a button to view the cron in detail (as stored in the database)
 
 -   **Active** : indicates if the task is active (can be launched
     by Jeedom) or not
@@ -49,7 +49,7 @@ page). In this table, we find :
     then will delete
 
 -   **Class** : PHP class called to execute the task (can
-    be empty)
+    to be empty)
 
 -   **Function** : PHP function called in the called class (or not
     if the class is empty)
@@ -64,14 +64,14 @@ page). In this table, we find :
 
 -   **Last duration** : last time to complete the task (a
     demon will always be at 0s, so don&#39;t worry about other tasks
-    can be 0s)
+    can be at 0s)
 
 -   **Status** : current status of the task (as a reminder, a daemon task
-    is still &quot;run&quot;)
+    is still at "run")
 
 -   **Suppression** : delete task
 
 
 # Listener
 
-The listeners are just visible in reading and allow you to see the functions called on an event (update of an order ...)
+The listeners are just visible in reading and allow you to see the functions called on an event (update of a command...)

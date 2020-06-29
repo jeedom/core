@@ -840,39 +840,71 @@ jeedom.cmd.setOrder = function(_params) {
 
 
 jeedom.cmd.displayDuration = function(_date,_el){
+  var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
   var arrDate = _date.split(/-|\s|:/);
   var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
   _el.attr('data-time',timeInMillis);
   if(_el.attr('data-interval') != undefined){
     clearInterval(_el.attr('data-interval'));
   }
-  if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-    var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+  if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
     var j = Math.floor(d / 86400);
     var h = Math.floor(d % 86400 / 3600);
     var m = Math.floor(d % 3600 / 60);
-    _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+    var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+    if (d > 86399) {
+      var interval = 3600000;
+      _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+    } else if (d > 3599 && d < 86400) {
+      var interval = 60000;
+      _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+    } else {
+      var interval = 10000;
+      _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+    }
     var myinterval = setInterval(function(){
-      var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+      var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
-      _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-    }, 60000);
+      var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+      if (d > 86399) {
+        var interval = 3600000;
+        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+      } else if (d > 3599 && d < 86400) {
+        var interval = 60000;
+        _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+      } else {
+        var interval = 10000;
+        _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+      }
+    }, interval);
     _el.attr('data-interval',myinterval);
   }else{
-    _el.empty().append("0 min");
+    _el.empty().append("0 s");
+    var interval = 10000;
     var myinterval = setInterval(function(){
-      if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-        var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+      if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+        var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
         var j = Math.floor(d / 86400);
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
-        _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+        var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+        if (d > 86399) {
+          interval = 3600000;
+          _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+        } else if (d > 3599 && d < 86400) {
+          interval = 60000;
+          _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+        } else {
+          interval = 10000;
+          _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+        }
       }else{
-        _el.empty().append("0 min");
+        _el.empty().append("0 s");
       }
-    }, 60000);
+    }, interval);
     _el.attr('data-interval',myinterval);
   }
 };

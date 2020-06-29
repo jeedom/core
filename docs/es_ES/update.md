@@ -4,13 +4,13 @@ Descripción
 La **centro de actualizaciones** le permite actualizar todo
 Características de Jeedom, incluido el software central,
 complementos, widgets, etc. Otras funciones de administración de extensiones
-están disponibles (eliminar, reinstalar, verificar, etc.)
+están disponibles (eliminar, reinstalar, verificar, etc)
 
 La página del Centro de actualizaciones 
 ================================
 
 Se puede acceder desde el menú **Administración → Centro de actualización
-día**.
+jour**.
 
 Encontrará, a la izquierda, todas las funcionalidades de
 Jeedom y en la parte correcta **Información** quien describe lo que el
@@ -43,7 +43,7 @@ opciones :
     la salvaguardia.
 
 -   **Actualización para volver a aplicar** : Le permite volver a aplicar una apuesta
-    al día. (NB : No todas las actualizaciones se pueden volver a aplicar)
+    al día. (NB : No se pueden volver a aplicar todas las actualizaciones.)
 
 > **Importante**
 >
@@ -101,7 +101,7 @@ cada elemento :
 > actualización significa que la documentación ha sido actualizada.
 > Por lo tanto, no es necesario pedirle al desarrollador
 > cambios, ya que no necesariamente hay. (a menudo es una apuesta
-> traducción de documentación)
+> de la traducción de la documentación)
 
 > **Punta**
 >
@@ -119,7 +119,7 @@ Una vez conectado, este es el comando para realizar :
 Los posibles parámetros son :
 
 -   **`moda`** : `force`, para iniciar una actualización en modo forzado (no
-    ignora los errores).
+    ignorar errores).
 
 -   **`version`** : seguido del número de versión, para volver a aplicar el
     cambios desde esta versión.

@@ -18,7 +18,7 @@ Unten finden Sie den Zustand für jedes Plugin, klicken Sie auf
 Der Name des Plugins gibt das Gesundheitsdetail an. Richtig du
 Finde die Symbole :
 
--   Zugangsport für Plugin-Hardware (Zwave-Schlüsseltyp)
+-   Zugriffsport für Plugin-Hardware (Zwave-Schlüsseltyp)
 
 -   Dämonenmodus
 

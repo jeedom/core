@@ -23,7 +23,7 @@ botões :
 -   **Remover** : excluir o log atual, se o Jeedom tiver algum
     precisa dele irá recriá-lo automaticamente,
 
--   **Remover tous les logs** : Excluir todos os logs presentes.
+-   **Excluir todos os logs** : Excluir todos os logs presentes.
 
 > **Dica**
 >
@@ -46,4 +46,4 @@ domotique.
 
 No canto superior direito, você tem um campo de pesquisa (só funciona se você
 pausadas) e um botão para pausar (útil para
-copiar / colar, por exemplo).
+copiar / colar por exemplo).

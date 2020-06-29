@@ -33,7 +33,7 @@ página). Nesta tabela, encontramos :
     processo em execução e o que realmente faz
 
 -   **Ação** : um botão para iniciar ou parar a tarefa em função
-    seu status e um botão para ver o cron em detalhes (conforme armazenado no banco de dados)
+    seu status e um botão para visualizar o cron em detalhes (conforme armazenado no banco de dados)
 
 -   **Ativos** : indica se a tarefa está ativa (pode ser iniciada
     por Jeedom) ou não
@@ -64,14 +64,14 @@ página). Nesta tabela, encontramos :
 
 -   **Última duração** : última vez para concluir a tarefa (um
     demon sempre estará no zero, então não se preocupe com outras tarefas
-    pode ser 0s)
+    pode estar em 0s)
 
 -   **Estado** : status atual da tarefa (como lembrete, uma tarefa daemon
-    ainda está "executado")
+    ainda está em "run")
 
 -   **Remoção** : Excluir tarefa
 
 
-# Ouvinte
+# Listener
 
-Os ouvintes são apenas visíveis na leitura e permitem que você veja as funções chamadas em um evento (atualização de um comando ...)
+Os ouvintes são apenas visíveis na leitura e permitem que você veja as funções chamadas em um evento (atualização de um comando...)

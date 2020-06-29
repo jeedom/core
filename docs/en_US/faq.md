@@ -65,7 +65,7 @@ Can we put Jeedom in https ?
 ================================
 
 Yes : Either you have a power pack or more, in this case you
-just use the [DNS Jeedom](https://jeedom.github.io/documentation/howto/en_US/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
+just use the [DNS Jeedom](https://doc.jeedom.com/en_US/howto/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
 
 How to connect in SSH ?
 =============================
@@ -118,14 +118,14 @@ For Jeedom to work, you need a linux platform with the rights
 root or a docker type system. It therefore does not work on a
 pure android platform.
 
-I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes)..." ? 
+I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes))..." ? 
 ====================================================
 
 This can be due to several things, it is necessary : 
 
-- Check that your Jeedom is still connected to the market (in the jeedom administration page, updated part you have a test button)
+- Check that your Jeedom is still connected to the market (in the Jeedom administration page, updated part you have a test button)
 - Check that the market account has purchased the plugin in question
-- Check that you have enough space on Jeedom (the health page will tell you)
+- Check that you have space on Jeedom (the health page will tell you)
 - Check that your version of Jeedom is compatible with the plugin
 - Check that your Jeedom is still correctly connected to the market (In the Jeedom configuration, update tab)
 
@@ -179,7 +179,7 @@ I no longer have access to Jeedom, neither through the web interface nor in cons
 
 This error is not due to Jeedom, but to a problem with the system.
 If it persists following a reinstallation, it is advisable to
-see with the after-sales service for a hardware concern. Here is [Documentation](https://jeedom.github.io/documentation/howto/en_US/recovery_mode_jeedom_smart) for Smart
+see with the after-sales service for a hardware concern. Here is [Documentation](https://doc.jeedom.com/en_US/installation/smart) for Smart
 
 My scenario does not stop any more 
 =================================
@@ -207,12 +207,12 @@ This is due to MySQL which stopped, it is not normal, the cases
 currents are :
 
 -   Lack of space on the file system (can be checked by
-    doing the command &quot;df -h&quot;, in SSH)
+    doing the command "df -h", in SSH)
 
 -   File (s) corruption issue, which often happens due to
-    Jeedom&#39;s non-clean shutdown (power failure)
+    Jeedom's non-clean shutdown (power failure)
 
-- 	Memory worries, the system runs out of memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce the consumption of jeedom by deactivating plugins.
+- 	Memory worries, the system lacks memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce the consumption of jeedom by deactivating plugins.
 
 Unfortunately, there is not much solution if it is the second
 case, the best is to recover a backup (available in
@@ -253,7 +253,7 @@ The alerts are classified by priority, from the least important to the most impo
 My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ? 
 =====================================
 
-If you are DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If it is the case it is necessary to do :
+If you are in DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If it is the case it is necessary to do :
 
 `` '' 
 mkdir /etc/systemd/system/apache2.service.d
@@ -275,7 +275,7 @@ I get the message &quot;Failed to back up the database. Check that mysqldump is 
 =========================================
 It means that Jeedom cannot back up the database, which can suggest a problem with database and filesystem corruption. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have
 
-- a corrupt base table =&gt; it is badly started you have to see to try to repair and if it does not start from the last good backup (if you are on SD guard it is the right time to change it)
+- a corrupt base table => it's badly started you have to see to try to repair and if it does not start from the last good backup (if you are on SD guard it is the right time to change it)
 - not enough space on the filesystem =&gt; look at the health page this can tell you
 
 
@@ -301,7 +301,7 @@ rm -rf / root / tmp / core-master
 It is necessary :
 
 - restart Jeedom
-- go to the administration of it (notched wheel button at the top right then configuration in v3 or Setup -&gt; System -&gt; Configuration in v4)
+- go to the administration of it (notched wheel button at the top right then configuration in v3 or Setup -> System -> Configuration in v4)
 - go to the OS / DB tab
 - launch system administration
 - click on Dpkg configure

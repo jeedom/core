@@ -7,7 +7,7 @@ del menú **Herramientas → Objetos**.
 Para dar libre elección a la personalización, puede nombrar estos
 objetos como quieras. Por lo general, definiremos los diferentes
 partes de su casa, como los nombres de las habitaciones (esto es
-configuración recomendada).
+Configuración recomendada).
 
 Administración 
 =======
@@ -106,7 +106,7 @@ te proponen líneas :
 ### Comandos 
 
 Cada pestaña representa un tipo de resumen definido en la configuración
-de Jeedom. Haga clic en **Añadir une commande** para que sea
+de Jeedom. Haga clic en **Agregar un pedido** para que sea
 tomado en cuenta en el resumen. Tiene la opción de seleccionar el
 ordene cualquier equipo Jeedom, incluso si no es para
 padre este objeto.

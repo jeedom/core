@@ -25,7 +25,7 @@ ambiente de trabalho para o módulo específico (representado por uma mão)
 >
 > Os limites de alerta / aviso nos níveis da bateria são
 > globalmente configurável na configuração Jeedom
-> (Guia Administração → Equipamento) ou por equipamento na página
+> (Administração → guia Equipamento) ou por equipamento na página
 > configuração avançada destes na guia alertas.
 
 Módulos na guia de alerta 
@@ -63,7 +63,7 @@ e sintetiza várias coisas :
 -   ações no estado (encontradas em parâmetros avançados
     comandos info e usados para executar um ou mais
     ações sobre o valor de um pedido - imediatamente ou após
-    prazo)
+    um atraso)
 
 -   confirmações de ação (configuráveis no mesmo local em um
     informações de comando e permitindo solicitar uma confirmação para

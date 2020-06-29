@@ -7,7 +7,7 @@ do menu **Ferramentas → Objetos**.
 Para dar livre escolha à personalização, você pode nomear esses
 objetos como você deseja. Geralmente, definiremos os diferentes
 partes de sua casa, como os nomes dos quartos (isto é
-configuração recomendada).
+Configuração recomendada).
 
 Gestão 
 =======
@@ -59,7 +59,7 @@ Aqui estão as diferentes características para configurar um objeto :
 -   **Cor do texto de resumo** : Permite escolher a cor do
     resultados do resumo do objeto no painel.
 
--   **Tamanho no painel de instrumentos (1 a 12)** : Permite definir a largura
+-   **Tamanho no painel (1 a 12))** : Permite definir a largura
     a exibição desse objeto no painel. Por exemplo : Se você
     coloque `6` em dois objetos consecutivos na lista, então
     estarão lado a lado no painel. Se você colocar 3 a 4
@@ -106,7 +106,7 @@ linhas são propostas para você :
 ### Comandos 
 
 Cada guia representa um tipo de resumo definido na configuração
-de Jeedom. Clique em **Adicionar une commande** para que seja
+de Jeedom. Clique em **Adicionar comando** para que seja
 levado em consideração no resumo. Você tem a opção de selecionar o
 encomendar qualquer equipamento Jeedom, mesmo que não seja para
 pai deste objeto.

@@ -12,7 +12,7 @@ Es ist über Home → Design zugänglich
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken
 > um es gut im Design zu machen. Während der Erstellung ist es daher notwendig,
-> in der Mitte der Seite tun (um sicher zu sein, auf dem Design zu sein).
+> tun Sie in der Mitte der Seite (um sicher zu sein, auf dem Design zu sein).
 
 Im Menü (Rechtsklick also) finden wir die
 folgende Aktionen :
@@ -72,16 +72,16 @@ folgende Aktionen :
     -   **Hervorheben von Elementen ausblenden** : Verstecke es
         um Elemente hervorheben
 
--   **Entfernen le Design** : Design löschen
+-   **Design löschen** : Design löschen
 
 -   **Erstellen Sie ein Design** : ermöglicht das Hinzufügen eines Designs
 
--   **Duplikat le Design** : Dupliziere das aktuelle Design
+-   **Doppeltes Design** : Dupliziere das aktuelle Design
 
 -   **Konfigurieren Sie das Design** : Zugriff auf die Designkonfiguration
 
 -   **Speichern** : ermöglicht das Speichern des Designs (Aufmerksamkeit gibt es
-    auch automatische Sicherungen bei bestimmten Aktionen)
+    auch automatische Sicherungen während bestimmter Aktionen)
 
 > **Wichtig**
 >
@@ -101,10 +101,10 @@ Hier gefunden :
         Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet
 
     -   **Hintergrundfarbe** : Design Hintergrundfarbe (weiß
-        standardmäßig)
+        Standard)
 
     -   **CODE** : Zugriffscode für Ihr Design (falls leer, kein Code
-        wird nicht angefordert)
+        wird nicht gefragt)
 
     -   **Symbol** : Ein Symbol dafür (erscheint im Menü
         Wahl des Designs)
@@ -113,7 +113,7 @@ Hier gefunden :
 
         -   **Send** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design
 
-        -   **Entfernen l'image** : Bild löschen
+        -   **Bild löschen** : Bild löschen
 
 -   **Größen**
 
@@ -169,15 +169,15 @@ Anzeigeeinstellungen
 
 -   **Zeit** : Hier können Sie den Anzeigezeitraum auswählen
 
--   **Anzeige la légende** : Legende zeigen
+-   **Bildunterschrift anzeigen** : Legende zeigen
 
--   **Anzeige le navigateur** : Zeigen Sie den Browser an (zweites Diagramm
+-   **Browser anzeigen** : Zeigen Sie den Browser an (zweites Diagramm
     leichter unter dem ersten)
 
--   **Anzeige le sélecteur de période** : zeigt den Selektor an
+-   **Periodenauswahl anzeigen** : zeigt den Selektor an
     Punkt oben links
 
--   **Anzeige la barre de défilement** : Zeigt die Bildlaufleiste an
+-   **Bildlaufleiste anzeigen** : Zeigt die Bildlaufleiste an
 
 -   **Transparenter Hintergrund** : macht den Hintergrund transparent
 
@@ -199,10 +199,10 @@ Text / html
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
 
 -   **Textfarbe** : Mit dieser Option können Sie die Farbe der Symbole und ändern
-    Texte (achten Sie darauf, Default an No zu übergeben)
+    Texte (achten Sie darauf, Standard auf Nr)
 
 -   **Rund um die Winkel** : ermöglicht es Ihnen, die Winkel abzurunden (nicht
-    vergiss%, ex 50% zu setzen)
+    Vergiss%, ex 50% zu setzen)
 
 -   **Grenze** : Fügen Sie einen Rahmen hinzu, achten Sie auf die Syntax
     HTML (verwenden Sie beispielsweise die CSS-Syntax : solid
@@ -247,12 +247,12 @@ Anzeigeeinstellungen
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
 
 -   **Textfarbe** : Mit dieser Option können Sie die Farbe der Symbole und ändern
-    Texte (achten Sie darauf, Default an No zu übergeben)
+    Texte (achten Sie darauf, Standard auf Nr)
 
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : permet
+-   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
@@ -275,7 +275,7 @@ Erweiterte Konfiguration
 ---------------------
 
 Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe
-Dokumentation Zusammenfassung der Hausautomation (&quot;Anzeige&quot;))
+Zusammenfassung der Hausautomationsdokumentation ("Anzeige""))
 
 Bestellen 
 ========
@@ -289,7 +289,7 @@ Erweiterte Konfiguration
 ---------------------
 
 Zeigt das erweiterte Konfigurationsfenster des Befehls an (siehe
-Dokumentation Zusammenfassung der Hausautomation (&quot;Anzeige&quot;))
+Zusammenfassung der Hausautomationsdokumentation ("Anzeige""))
 
 Bild / Kamera 
 ============
@@ -301,9 +301,9 @@ Anzeigeeinstellungen
     Stream von einer Kamera
 
 -   **Bild** : ermöglicht es Ihnen, das betreffende Bild zu senden (falls vorhanden)
-    wähle ein Bild)
+    Wähle ein Bild)
 
--   **Kamera** : Kamera zum Anzeigen (wenn Sie Kamera gewählt haben)
+-   **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben)
 
 Bereich 
 ====
@@ -329,7 +329,7 @@ ist 0 wert, dann führt Jeedom die Aktion (en) aus. Andernfalls wird sie ausgef�
 die Aktion (en) Aus
 
 -   **Binäre Informationen** : Befehl, der den Status angibt, auf den geprüft werden soll
-    Entscheiden Sie, welche Aktion ausgeführt werden soll (Ein oder Aus)
+    Entscheiden Sie, welche Aktion ausgeführt werden soll (Ein oder Aus))
 
 Sie müssen nur die Aktionen ausführen, die für On und ausgeführt werden sollen
 für das Aus
@@ -341,9 +341,9 @@ Zeigen Sie das betreffende Widget an
 
 -   **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird
 
--   **Anzeige au survol** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
+-   **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt
 
--   **Anzeige sur un klicken** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
+-   **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget unter angezeigt
     clic
 
 -   **Position** : Hier können Sie den Ort auswählen, an dem die
@@ -353,18 +353,18 @@ Zusammenfassung
 ======
 
 -   **Link** : Wird verwendet, um die anzuzeigende Zusammenfassung anzugeben (Allgemein für die
-    global, wenn nicht das Objekt angeben)
+    global sonst das Objekt angeben)
 
 -   **Hintergrundfarbe** : ermöglicht es Ihnen, die Hintergrundfarbe oder zu ändern
     transparent machen, vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu übergeben
 
 -   **Textfarbe** : Mit dieser Option können Sie die Farbe der Symbole und ändern
-    Texte (achten Sie darauf, Default an No zu übergeben)
+    Texte (achten Sie darauf, Standard auf Nr)
 
 -   **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** :
     Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben
 
--   **Grenze (attention syntaxe CSS, ex : festes 1px schwarz)** : permet
+-   **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : permet
     Fügen Sie einen Rahmen hinzu, achten Sie darauf, dass die Syntax HTML ist
 
 -   **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** :
@@ -380,6 +380,6 @@ Faq
 >
 >Wenn Sie ein Widget oder ein Bild eingefügt haben, das fast das gesamte Design einnimmt, müssen Sie außerhalb des Widgets oder Bildes klicken, um mit der rechten Maustaste auf das Menü zuzugreifen.
 
->**Entfernen un Design qui ne marche plus**
+>**Löschen Sie ein Design, das nicht mehr funktioniert**
 >
 >Machen Sie im Administrationsteil und dann in OS / DB "select * from planHeader", stellen Sie die ID des betreffenden Designs wieder her und führen Sie "delete from planHeader where id" aus=#TODO#" und "aus plan löschen wo planHeader_id=#todo#" gut ersetzen #TODO# durch die zuvor gefundene Design-ID.

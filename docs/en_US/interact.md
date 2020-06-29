@@ -12,7 +12,7 @@ These orders can be obtained by :
     launch commands (action) or ask a question (info).
 
 -   D'informations sont indispensables à la bonne compréhension de : launch an HTTP URL containing the text (ex. Tasker, Slack)
-    to launch commands (action) or ask a question (info).
+    To launch commands (action) or ask a question (info).
 
 The interest of interactions lies in the simplified integration in
 other systems like smartphone, tablet, other home automation box, etc.
@@ -76,11 +76,11 @@ General
     request text in the interaction list).
 
 -   **Group** : interaction group, it helps organize them
-    (can be empty, will therefore be in the &quot;none&quot; group).
+    (can be empty, so will be in the group "none").
 
 -   **Active** : allows to activate or deactivate the interaction.
 
--   **Request** : the generating model sentence (required).
+-   **Request** : The generating model sentence (required).
 
 -   **Synonymous** : allows to define synonyms on names
     some orders.
@@ -164,7 +164,7 @@ resulting actions change depending on what is configured
 in the &quot;Action&quot; part, we can therefore already with a simple interaction to
 single sentence imagine combined actions between various commands and
 various scenarios (we can also trigger scenarios in the game
-interaction action).
+action of interactions).
 
 > **Tip**
 >
@@ -210,7 +210,7 @@ allow us to name orders differently in our
 &quot;generated&quot; sentences, here it is &quot;on&quot;, I even have &quot;on2&quot; in the modules
 which can control 2 outputs.
 
-In the synonyms, we will therefore indicate the name of the command and the (s)
+In synonyms, we will therefore indicate the name of the command and the (s)
 synonym (s) to use :
 
 ![interact008](../images/interact008.png)
@@ -219,7 +219,7 @@ We can see here a somewhat new syntax for synonyms. A name
 can have several synonyms, here &quot;on&quot; has as synonym
 "turn on "and" turn on". The syntax is therefore "*Name of the order*"
 ***=*** "*synonym 1*"***,*** "*synonym 2*" (we can put as many
-synonym we want). Then, to add synonyms for another
+synonym that we want). Then, to add synonyms for another
 command name, just add after the last synonym a bar
 vertical "*|*" after which you can again name the
 command which will have synonyms like for the first part, etc.
@@ -238,7 +238,7 @@ are not fair, for our example "on" "entry". so we find
 "Switch on input "," Switch on input "," Switch on input "," Switch on
 the entry &quot;etc. So we have all the possible variants with what we
 added between &quot;\ [\]&quot; and this for each synonym, which generates
-quickly many sentences (here 168).
+quickly a lot of sentences (here 168).
 
 In order to refine and not have improbable things such as
 "turn on the TV ", we can authorize Jeedom to delete requests
@@ -289,7 +289,7 @@ kept that light).
 As you can see here, I have kept almost the same structure
 for demand (it&#39;s voluntary to focus on
 specificities). Of course, I adapted the synonyms to have some
-coherent thing. However, for the answer, it is **impératif** de
+coherent thing. However, for the answer, it is **imperative** de
 put only \#valeur\# which represents the 0 or 1 that Jeedom is going
 replace with the following binary conversion.
 
@@ -388,8 +388,8 @@ already very complicated to understand. It took me a while to grasp it
 the operation. As a slightly more complex example, a regexp for
 verify a URL :
 
-/\^(https?:\\ / \\/)?(\ [\\ da-z \\ .- \] +) \\. (\ [Az \\. \] {2,6}) (\ [\\ / \\ w
-\\ .- \] \*) \*\\ /?\ $ /
+/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w
+\\ .- \] \*)\*\\ /?\ $ /
 
 Once you can write this, you understand the expressions
 regular.
@@ -498,13 +498,13 @@ the humidity, the brightness of the different rooms (object in the Jeedom sense)
 
 -   So we can see that a generic generic sentence &quot;What is the
     living room temperature "or" How bright is the bedroom"
-    can be converted to : "what is the |l \\ '\] \#commande\# Object"
+    can be converted to : "what is the |l \\ '\] \#commande\# objet"
     (the use of \ [word1 | mot2 \] lets say this possibility
     or this one to generate all possible variations of the sentence
     with word1 or word2). When generating Jeedom will generate all
     possible combinations of sentences with all commands
-    existing (depending on filters) by replacing \#commande\# by
-    the name of the command and \#objet\# by le nom of l'objet.
+    existing (depending on filters) by replacing \#commande\# par
+    the name of the command and \#objet\# by the name of the object.
 
 -   The answer will be "21 ° C" or "200 lux". Just put :
     \#valeur\# \#unite\# (the unit is to be completed in the configuration
@@ -537,7 +537,7 @@ temperature / humidity / brightness.
 
 So we can see a regexp :
 
-**(drums|latence|pression|vitesse|consumption)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 This allows you to delete all orders that have one of these
 words in their sentence
@@ -574,7 +574,7 @@ the value we pass our tag *Instructions*.
 > Jeedom, there can be several to drive for example
 > multiple orders. Also note that all tags are passed to
 > scenarios launched by the interaction (however, the scenario
-> either in &quot;Run in foreground&quot;).
+> either in "Run in foreground").
 
 ### Evolution 
 

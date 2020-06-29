@@ -22,7 +22,7 @@ widgets de comando).
 
 Nesta página, existe um botão no canto superior esquerdo para mostrar ou
 ocultar a lista de visualizações e o botão para adicionar uma
-(Jeedom solicitará seu nome e o enviará para a página de edição) :
+(Jeedom solicitará seu nome e enviará para a página de edição) :
 
 > **Dica**
 >
@@ -148,6 +148,6 @@ informações nas caixas :
 
 -   **widget de comando** : o botão à direita permite escolher
     o comando a ser exibido (cuidado, isso exibe o widget
-    a ordem)
+    A ordem)
 
 

@@ -65,7 +65,7 @@ recomienda modificar estos identificadores para mayor seguridad.
 ================================
 
 Sí : O tienes una fuente de alimentación o más, en este caso
-solo usa el [DNS Jeedom](https://jeedom.github.io/documentation/howto/es_ES/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
+solo usa el [DNS Jeedom](https://doc.jeedom.com/es_ES/howto/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 Cómo conectarse en SSH ?
 =============================
@@ -118,14 +118,14 @@ Para que Jeedom funcione, necesita una plataforma Linux con los derechos
 root o un sistema de tipo docker. Por lo tanto, no funciona en un
 plataforma android pura.
 
-No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes)..." ? 
+No puedo actualizar cierto complemento &quot;No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes))..." ? 
 ====================================================
 
 Esto puede deberse a varias cosas, es necesario : 
 
-- Verifique que su Jeedom todavía esté conectado al mercado (en la página de administración de Jeedom, parte actualizada, tiene un botón de prueba)
+- Compruebe que su Jeedom todavía está conectado al mercado (en la página de administración de Jeedom, parte actualizada, tiene un botón de prueba)
 - Verifique que la cuenta de mercado haya comprado el complemento en cuestión
-- Verifique que tenga suficiente espacio en Jeedom (la página de salud le dirá)
+- Comprueba que tienes espacio en Jeedom (la página de salud te dirá)
 - Verifique que su versión de Jeedom sea compatible con el complemento
 - Compruebe que su Jeedom todavía está conectado correctamente al mercado (en la configuración de Jeedom, pestaña de actualización)
 
@@ -179,7 +179,7 @@ Ya no tengo acceso a Jeedom, ni a través de la interfaz web ni en la consola a 
 
 Este error no se debe a Jeedom, sino a un problema con el sistema.
 Si persiste después de una reinstalación, es recomendable
-ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://jeedom.github.io/documentation/howto/es_ES/recovery_mode_jeedom_smart) para inteligente
+ver con el servicio postventa para una inquietud de hardware. Aquí esta el [Documentación](https://doc.jeedom.com/es_ES/installation/smart) para inteligente
 
 Mi escenario ya no se detiene 
 =================================
@@ -207,12 +207,12 @@ Esto se debe a que MySQL se detuvo, no es normal, los casos
 las corrientes son :
 
 -   Falta de espacio en el sistema de archivos (puede ser verificado por
-    haciendo el comando &quot;df -h&quot;, en SSH)
+    haciendo el comando "df -h", en SSH)
 
 -   Problema de corrupción de archivo (s), que a menudo ocurre debido a
     Apagado no limpio de Jeedom (falla de energía)
 
-- 	Problemas de memoria, el sistema se queda sin memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por "oom". Si este es el caso, reduzca el consumo de libertad desactivando los complementos.
+- 	Problemas de memoria, el sistema carece de memoria y mata el proceso que más consume (a menudo la base de datos). Esto se puede ver en la administración del sistema operativo y luego en dmesg, debería ver una muerte por "oom". Si este es el caso, reduzca el consumo de libertad desactivando los complementos.
 
 Desafortunadamente, no hay mucha solución si es el segundo
 caso, lo mejor es recuperar una copia de seguridad (disponible en
@@ -253,7 +253,7 @@ Las alertas se clasifican por prioridad, desde las menos importantes hasta las m
 My Jeedom muestra permanentemente &quot;Iniciando&quot; incluso después de 1 hora ? 
 =====================================
 
-Si es DIY y tiene Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \* Apache). Si es el caso, es necesario hacer :
+Si está en bricolaje y en Debian 9 o más, verifique que no haya habido una actualización de Apache y, por lo tanto, la devolución de privateTmp (visible haciendo `ls / tmp` y vea si hay una carpeta privada \* Apache). Si es el caso, es necesario hacer :
 
 `` '' 
 mkdir /etc/systemd/system/apache2.service.d
@@ -275,13 +275,13 @@ Recibo el mensaje &quot;No se pudo hacer una copia de seguridad de la base de da
 =========================================
 Significa que Jeedom no puede hacer una copia de seguridad de la base de datos, lo que puede sugerir un problema con la corrupción de la base de datos y del sistema de archivos. Desafortunadamente no hay un comando milagroso para corregir. Lo mejor es iniciar una copia de seguridad y analizar el registro de la misma. En casos conocidos de inquietudes tenemos
 
-- una tabla base corrupta =&gt; está mal iniciada, debe ver para intentar repararla y, si no se inicia desde la última copia de seguridad correcta (si está en la protección SD, es el momento adecuado para cambiarla)
+- una tabla base corrupta => está mal iniciada, debe ver para intentar repararla y, si no se inicia desde la última copia de seguridad correcta (si está en la protección SD, es el momento adecuado para cambiarla))
 - no hay suficiente espacio en el sistema de archivos =&gt; mira la página de salud esto puede decirte
 
 
 Ya no puedo conectarme a mi Jeedom
 =========================================
-Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Los identificadores admin / admin solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo ip en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si a pesar de todo lo que aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo hacerlo)
+Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Los identificadores admin / admin solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo ip en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si a pesar de todo lo que aún no puede conectarse, debe utilizar el procedimiento de restablecimiento de contraseña (consulte los tutoriales / cómo)
 
 Tengo errores de tipo &quot;Clase &#39;eqLogic&#39; no encontrada&quot;, parece que faltan archivos o tengo una página en blanco
 =========================================
@@ -301,7 +301,7 @@ rm -rf / root / tmp / core-master
 Hay que :
 
 - reiniciar Jeedom
-- vaya a la administración de la misma (botón de la rueda con muesca en la parte superior derecha y luego configuración en v3 o Configuración -&gt; Sistema -&gt; Configuración en v4)
+- vaya a la administración de la misma (botón de la rueda con muesca en la parte superior derecha y luego configuración en v3 o Configuración -> Sistema -> Configuración en v4)
 - ir a la pestaña OS / DB
 - iniciar la administración del sistema
 - haga clic en configurar Dpkg

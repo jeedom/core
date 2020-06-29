@@ -41,7 +41,7 @@ Here is the URL =
 -   **tags** \[optional\] : if the action is &quot;start&quot;, you can skip
     tags to the scenario (see documentation on scenarios) under
     the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a
-    space and% 3D to =)
+    space and% 3D to = )
 
 Info / Action command 
 ====================
@@ -106,7 +106,7 @@ Object
 =====
 
 Here is the URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
 
 Returns in json the list of all Jeedom objects
 
@@ -132,7 +132,7 @@ Full Data
 =========
 
 Here is the URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
 
 Returns all objects, equipment, commands (and their value if this
 are infos) in json
@@ -141,7 +141,7 @@ Variable
 ========
 
 Here is the URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#& value =)*Value*
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*Value*
 
 -   **name** : name of the variable whose value is wanted (reading of
     the value)

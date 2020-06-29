@@ -42,13 +42,13 @@ At the top right, some buttons :
 
 Below left, there is a status area with :
 
--   **Status** : allows to see the status of the plugin (active / inactive)
+-   **Status** : Allows you to see the status of the plugin (active / inactive)
 
 -   **Version** : the version of the plugin installed
 
 -   **ACTION** : Allows you to enable or disable the plugin
 
--   **Version Jeedom** : Minimum Jeedom version required
+-   **Jeedom version** : Minimum Jeedom version required
     for the operation of the plugin
 
 -   **Licence** : Indicates the license of the plugin which will generally be
@@ -76,7 +76,7 @@ Dependencies :
 
 -   **Setup** : will install or reinstall
     dependencies (if you don&#39;t do it manually and they are
-    KO, Jeedom will take care of itself after a while)
+    KO, Jeedom will take care of himself after a while)
 
 -   **Last installation** : date of last installation of
     Dependencies
@@ -166,7 +166,7 @@ At the top of the window you have filters :
 -   **Search** : allows you to search for a plugin (in the name or
     description of it)
 
--   **Last name d'utilisateur** : displays the username used for the
+-   **Username** : displays the username used for the
     connection to the Market and the status of the connection
 
 > **Tip**
@@ -195,7 +195,7 @@ information about the plugin, including :
         button to delete it
 
 Below, you will find the description of the plugin, the compatibility
-(if Jeedom detects an incompatibility, it will notify you), the reviews
+(if Jeedom detects an incompatibility, it will notify you), the notices
 on the plugin (you can rate it here) and information
 complementary (the author, the person who made the last update
 day, link to doc, number of downloads). On the right

@@ -25,9 +25,9 @@ Unten haben Sie eine Tabelle :
         Er hat keinen Zugriff auf die Konfiguration der Steuerungen / Geräte
         noch auf die Konfiguration von Jeedom.
 
-    -   **Benutzer limité** : Der Benutzer sieht nur die
+    -   **Begrenzter Benutzer** : Der Benutzer sieht nur die
         autorisierte Geräte (konfigurierbar mit der Schaltfläche &quot;Verwalten&quot;
-        Rechte &quot;)
+        Rechte")
 
 -   **API-Schlüssel** : persönlicher API-Schlüssel des Benutzers
 
@@ -48,7 +48,7 @@ Unten haben Sie eine Tabelle :
 
 -   **Rechte verwalten** : ermöglicht es, die Rechte von fein zu verwalten
     der Benutzer (Aufmerksamkeit, in der sich die Profile befinden müssen
-    "eingeschränkter Benutzer ")
+    "Begrenzter Benutzer")
 
 Rechteverwaltung 
 ==================
@@ -70,8 +70,8 @@ Szenario definieren Benutzerrechte :
 -   **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, jedoch nicht
     kann nicht darauf reagieren
 
--   **Visualisierung et exécution** : der Benutzer sieht
+-   **Visualisierung und Ausführung** : der Benutzer sieht
     die Ausrüstung / das Szenario und kann darauf einwirken (eine Lampe anzünden, werfen
-    das Szenario usw.)
+    das Skript usw.)
 
 

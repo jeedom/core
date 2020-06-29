@@ -72,11 +72,11 @@ following actions :
     -   **Hide item highlighting** : Hide it
         highlight around items
 
--   **Remove le Design** : delete design
+-   **Delete design** : delete design
 
 -   **Create a design** : allows to add a design
 
--   **Duplicate le Design** : duplicate the current design
+-   **Duplicate design** : duplicate the current design
 
 -   **Configure the design** : access to design configuration
 
@@ -101,10 +101,10 @@ Found here :
         box is checked, the background color is not used
 
     -   **Background color** : design background color (white
-        by default)
+        By default)
 
     -   **Coded** : Access code to your design (if empty, no code
-        is not requested)
+        is not asked)
 
     -   **Icon** : An icon for it (appears in the menu
         choice of design)
@@ -113,7 +113,7 @@ Found here :
 
         -   **To send** : allows to add a background image to the design
 
-        -   **Remove l'image** : delete image
+        -   **Delete image** : delete image
 
 -   **Sizes**
 
@@ -130,7 +130,7 @@ General configuration of elements
 > **NOTE**
 >
 > The selected item is highlighted in red (instead of green
-> for everyone else).
+> for all the others).
 
 Display setting 
 ---------------------
@@ -169,15 +169,15 @@ Display settings
 
 -   **Period** : allows you to choose the display period
 
--   **Pin up la légende** : show legend
+-   **Show caption** : show legend
 
--   **Pin up le navigateur** : display the browser (second graph
+-   **Show browser** : display the browser (second graph
     lighter below the first)
 
--   **Pin up le sélecteur de période** : displays the selector
+-   **Show period selector** : displays the selector
     period top left
 
--   **Pin up la barre de défilement** : displays the scroll bar
+-   **Show scroll bar** : displays the scroll bar
 
 -   **Transparent background** : makes the background transparent
 
@@ -199,7 +199,7 @@ Text / html
     put transparent, do not forget to pass &quot;Default&quot; on NO
 
 -   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+    texts (be careful to pass Default on No)
 
 -   **Smooth it out** : allows you to round off the angles (do not
     forget to put%, ex 50%)
@@ -247,12 +247,12 @@ Display settings
     put transparent, do not forget to pass &quot;Default&quot; on NO
 
 -   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+    texts (be careful to pass Default on No)
 
--   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
+-   **Round off the angles (don't forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -275,7 +275,7 @@ Advanced configuration
 ---------------------
 
 Displays the advanced equipment configuration window (see
-documentation Home automation summary (&quot;display&quot;))
+home automation summary documentation ("display"))
 
 Ordered 
 ========
@@ -289,7 +289,7 @@ Advanced configuration
 ---------------------
 
 Displays the advanced configuration window of the command (see
-documentation Home automation summary (&quot;display&quot;))
+home automation summary documentation ("display"))
 
 Picture / Camera 
 ============
@@ -303,7 +303,7 @@ Display settings
 -   **Picture** : allows you to send the image in question (if you have
     choose an image)
 
--   **Camera** : camera to display (if you chose camera)
+-   **Camera** : Camera to display (if you chose camera)
 
 Zoned 
 ====
@@ -341,9 +341,9 @@ display the widget in question
 
 -   **Equipment** : widget to display when hovering or clicking
 
--   **Pin up au survol** : if checked, displays the widget on hover
+-   **Show on flyover** : if checked, displays the widget on hover
 
--   **Pin up sur un click** : if checked, then the widget is displayed at
+-   **View on one click** : if checked, then the widget is displayed at
     clic
 
 -   **Position** : allows you to choose the location where the
@@ -353,18 +353,18 @@ Summary
 ======
 
 -   **Link** : Used to indicate the summary to be displayed (General for the
-    global if not indicate the object)
+    global otherwise indicate the object)
 
 -   **Background color** : allows you to change the background color or
     put transparent, do not forget to pass &quot;Default&quot; on NO
 
 -   **Text color** : allows you to change the color of the icons and
-    texts (be careful to pass Default to No)
+    texts (be careful to pass Default on No)
 
--   **Round off the angles (don&#39;t forget to put%, ex 50%)** :
+-   **Round off the angles (don't forget to put%, ex 50%)** :
     allows you to round off the angles, don&#39;t forget to put the%
 
--   **Border (attention syntaxe CSS, ex : solid 1px black)** : permet
+-   **Border (attention CSS syntax, ex : solid 1px black)** : permet
     add a border, beware the syntax is HTML
 
 -   **Font size (ex 50%, you must put the% sign)** :
@@ -380,6 +380,6 @@ Faq
 >
 >If you have put a widget or an image that takes almost the entire design, you must click outside the widget or image to access the menu by right-clicking.
 
->**Remove un Design qui ne marche plus**
+>**Delete a design that no longer works**
 >
 >In the administration part then OS / DB, make "select * from planHeader", recover the id of the design in question and make a "delete from planHeader where id=#TODO#" and "delete from plan where planHeader_id=#todo#" replacing well #TODO# by the design id previously found.

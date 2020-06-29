@@ -7,7 +7,7 @@ aus dem Menü **Werkzeuge → Objekte**.
 Um die Anpassung frei wählen zu können, können Sie diese benennen
 Objekte wie Sie wollen. Normalerweise werden wir die verschiedenen definieren
 Teile seines Hauses, wie die Namen der Zimmer (das ist
-empfohlene Konfiguration).
+Empfohlene Konfiguration).
 
 Management 
 =======
@@ -106,7 +106,7 @@ Linien werden Ihnen vorgeschlagen :
 ### Befehle 
 
 Jede Registerkarte repräsentiert einen in der Konfiguration definierten Zusammenfassungstyp
-von Jeedom. Klicken Sie auf **Hinzufügen une commande** so dass es ist
+von Jeedom. Klicken Sie auf **Bestellung hinzufügen** so dass es ist
 in der Zusammenfassung berücksichtigt. Sie haben die Wahl, die auszuwählen
 Bestellen Sie ein Jeedom-Gerät, auch wenn es nicht für ist
 übergeordnetes Objekt.

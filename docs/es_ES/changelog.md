@@ -2,11 +2,16 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria de Jeedom no es la misma que la del navegador
+
 3.3.50
 =====
 
 - Corrección de un problema al detener la beta de DNS
-- Mejora del cálculo de acceso interno / externo (eliminación del puerto si esto es estándar para el protocolo)
+- Mejora del cálculo de acceso interno / externo (eliminación del puerto si es estándar para el protocolo)
 
 3.3.49
 =====
@@ -16,7 +21,7 @@ Changelog
 3.3.48
 =====
 
-- Corrección de errores (la actualización se realizará absolutamente si está en 3.3.47)
+- Corrección de errores (la actualización debe hacerse absolutamente si está en 3.3.47)
 
 3.3.47
 =====
@@ -36,13 +41,13 @@ Changelog
 - Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
 - Actualización del repositorio en smart
 - Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 1 semana y, si es necesario, puede solicitar la disponibilidad de copias de seguridad antiguas para soportar, pasar este período, el sistema antiguo se eliminará)
-- Migración al nuevo sistema de monitoreo (el sistema antiguo permanecerá activo durante 1 semana, luego de lo cual se eliminará)
+- Migración al nuevo sistema de monitoreo (el sistema anterior permanecerá activo durante 1 semana, luego de lo cual se eliminará)
 
 3.3.39
 =====
 
 - Se cambió el nombre de la variable $ key a $ key2 en el evento de clase
-- Limpiar el plugin / widget / escenario enviando código al mercado (ahorra varios segundos en mostrar los complementos)
+- Limpiar el plugin / widget / escenario enviando código al mercado (ahorra varios segundos en mostrar complementos)
 - Corrección de una advertencia en la función lastBetween
 - Mejor consideración de los widgets de complementos
 - Optimización del cálculo de salud en el intercambio
@@ -54,7 +59,7 @@ Changelog
 3.3.38
 =====
 
-- Adición de compatibilidad global de Jeedom DNS con una conexión a internet 4G. (Importante si usa jeedom DNS es que tiene una conexión 4g, debe marcar la casilla configurar jeedom dns en la casilla correspondiente).
+- Adición de compatibilidad global de Jeedom DNS con una conexión a internet 4G. (Importante si usa el DNS de Jeedom es que tiene una conexión 4g, debe verificar la configuración del Jeedom en la casilla correspondiente).
 - Correcciones ortográficas.
 - Arreglo de seguridad
 
@@ -116,7 +121,7 @@ Changelog
 
 - Corrección de la desaparición de la fecha de la última verificación de actualización
 - Se corrigió un error que podía bloquear las copias de seguridad en la nube
-- Corrección de un error en el cálculo del uso de las variables si están en forma : variable (foo, MyValue)
+- Corrección de un error en el cálculo del uso de las variables si están en forma : variable (toto, mavaleur)
 
 
 3.3.28
@@ -156,7 +161,7 @@ Changelog
 -	Correcciones de errores
 -	Mejora de la ventana de selección de iconos
 -	Actualización automática de la fecha de cambio de batería si la batería es más del 90% y 10% más alta que el valor anterior
--	Adición de un botón en la administración para restablecer los derechos y lanzar una verificación Jeedom (derecha, cron, base de datos ...)
+-	Adición de un botón en la administración para restablecer los derechos y lanzar una verificación de Jeedom (derecha, cron, base de datos...)
 -	Eliminación de opciones de visibilidad avanzadas para equipos en el tablero de instrumentos / vista / diseño / móvil. Ahora, si desea ver o no el equipo en el tablero de instrumentos / móvil, simplemente marque o no la casilla de visibilidad general. Para vistas y diseño, simplemente coloque o no el equipo en él
 
 3.3.22
@@ -164,7 +169,7 @@ Changelog
 
 - Correcciones de errores
 - Reemplazo de pedidos mejorado (en vistas, plan y plan3d)
-- Se corrigió un error que podía evitar abrir ciertos equipos de complemento (alarma o tipo virtual)
+- Se corrigió un error que podía evitar abrir ciertos equipos de complemento (alarma o tipo virtual))
 
 3.3.21
 =====
@@ -175,7 +180,7 @@ Changelog
 - Se corrigió la visualización del equipo deshabilitado en algunos complementos
 - Corrección de un error al indicar el cambio de batería en Jeedom
 - Visualización mejorada de registros al actualizar Jeedom
-- Corrección de errores durante la actualización de la variable (que no siempre iniciaba los escenarios o no activaba una actualización de los comandos en todos los casos)
+- Corrección de errores al actualizar variables (que no siempre iniciaban los escenarios o no activaban una actualización de los comandos en todos los casos)
 - Se corrigió un error en las copias de seguridad de la nube, o la duplicidad no se instalaba correctamente
 - Mejora de TTS interno en Jeedom
 - Mejora del sistema de verificación de sintaxis cron
@@ -206,9 +211,9 @@ Changelog
 =====
 
 -   Posibilidad de eliminar una variable.
--   Adición de una pantalla 3D (beta)
+-   Agregar una pantalla 3D (beta)
 -   Rediseño del sistema de respaldo en la nube (respaldo incremental y encriptado).
--   Agregar un sistema integrado de toma de notas (en Análisis -&gt; Nota).
+-   Agregar un sistema integrado de toma de notas (en Análisis -> Nota).
 -   Adición de la noción de etiqueta en el equipo (se puede encontrar en la configuración avanzada del equipo).
 -   Adición de un sistema de historial sobre la eliminación de pedidos, equipos, objetos, vista, diseño, diseño 3D, escenario y usuario.
 -   Adición de la acción jeedom_reboot para iniciar un reinicio de Jeedom.
@@ -216,7 +221,7 @@ Changelog
 -   Ahora se agrega un mensaje si se encuentra una expresión no válida al ejecutar un escenario.
 -   Agregar un comando en los escenarios : value (orden) permite tener el valor de una orden si no está dada automáticamente por jeedom (caso cuando se almacena el nombre de la orden en una variable).
 -   Adición de un botón para actualizar los mensajes del centro de mensajes.
--   Agregue en la configuración de la acción sobre el valor de un comando un botón para buscar una acción interna (escenario, pausa ...).
+-   Agregue en la configuración de la acción sobre el valor de un comando un botón para buscar una acción interna (escenario, pausa...).
 -   Adición de una acción &quot;Restablecer a cero del IS&quot; en los escenarios
 -   Posibilidad de agregar imágenes en segundo plano en las vistas
 -   Posibilidad de agregar imágenes de fondo en objetos
@@ -232,7 +237,7 @@ Changelog
 -   Adición de una etiqueta de acción en los escenarios (ver documentación)
 -   Posibilidad de tener una vista de pantalla completa agregando &quot;&amp; fullscreen = 1&quot; en la url
 -   Adición de la última comunicación en los escenarios (para tener la última fecha de comunicación de un equipo)
--   Actualización en tiempo real de gráficos (simple, no calculado o líneas de tiempo)
+-   Actualización de gráficos en tiempo real (simple, no calculada o cronogramas))
 -   Posibilidad de eliminar un elemento de la configuración de diseño
 -   Posibilidad de tener un informe sobre el nivel de la batería (informe del equipo)
 -   Los widgets de escenario ahora se muestran por defecto en el tablero
@@ -276,7 +281,7 @@ Changelog
 - Mejora del proceso de actualización en particular en la copia de archivos que ahora comprueba el tamaño del archivo copiado.
 - Corrección de errores en las funciones stateDuration, lastStateDuration y lastChangeStateDuration (gracias @kiboost).
 - Optimización del cálculo del gráfico de enlaces y el uso de variables.
-- Mejora de la ventana de detalles de la tarea cron que ahora muestra el escenario, así como la acción a realizar para las tareas doIn (gracias @kiboost).
+- Mejora de la ventana de detalles de la tarea cron que ahora muestra el escenario, así como la acción que se realizará para las tareas en doin (gracias @kiboost).
 
 3.2.9
 =====
@@ -293,7 +298,7 @@ Changelog
 - Correcciones de errores
 - Adición de una opción en la administración de Jeedom para especificar el rango de ip local (útil en instalaciones de tipo docker)
 - Corrección de un error en el cálculo del uso de variables
-- Adición de un indicador en la página de salud que indica el número de procesos que se matan por falta de memoria (en general indica que la libertad está demasiado cargada)
+- Adición de un indicador en la página de salud que indica la cantidad de procesos que se matan por falta de memoria (en general, indica que la libertad está demasiado cargada)
 - Editor de archivos mejorado
 
 3.2.7
@@ -335,18 +340,18 @@ Changelog
 3.2.2
 =====
 
--   Eliminación del antiguo sistema de actualización de widgets (en desuso desde la versión 3.0). Atención, si su widget no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación del mismo en este caso). Widget de ejemplo [aquí](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Eliminación del antiguo sistema de actualización de widgets (en desuso desde la versión 3.0). Atención, si su widget no utiliza el nuevo sistema, existe el riesgo de mal funcionamiento (duplicación en este caso). Widget de ejemplo [aquí](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Posibilidad de mostrar los gráficos en forma de tabla o exportarlos en csv o xls
 
 -   Los usuarios ahora pueden agregar su propia función php para escenarios. Ver documentación de escenarios para implementación
 
 -   JEED-417 : adición de una función time_diff en los escenarios
 
--   Adición de un retraso configurable antes de la respuesta en las interacciones (permite esperar a que se produzca la retroalimentación de estado, por ejemplo)
+-   Adición de un retraso configurable antes de la respuesta a las interacciones (permite esperar a que se produzca el retorno del estado, por ejemplo)
 
 -   JEED-365 : Eliminación del &quot;comando de información del usuario&quot; para ser reemplazado por acciones en el mensaje. Le permite iniciar varios comandos diferentes, iniciar un escenario ... Atención, si tenía un &quot;comando de información del usuario&quot;, debe reconfigurarse.
 
--   Agregue una opción para abrir fácilmente un acceso al soporte (en la página del usuario y al abrir un ticket)
+-   Agregue una opción para abrir fácilmente un acceso al soporte (en la página del usuario y al abrir un ticket))
 
 -   Corrección de un error de derechos después de la restauración de una copia de seguridad
 
@@ -426,7 +431,7 @@ Changelog
     usuarios experimentados)
 
 -   Adición de los tipos genéricos &quot;Estado de luz&quot; (binario), &quot;Luz
-    Temperatura de color &quot;(Información),&quot; Temperatura de color claro &quot;(Acción)
+    Temperatura de color "(Información)," Temperatura de color de luz "(Acción)
 
 -   Capacidad para hacer que las palabras sean obligatorias en una interacción
 
@@ -475,7 +480,7 @@ Changelog
     en la interfaz Jeedom
 
 -   Posibilidad de tener gráficos de historias de orden en
-    webapp (manteniendo presionado el comando)
+    webapp (presionando prolongadamente el comando)
 
 -   Adición del progreso de la actualización de la aplicación web
 
@@ -549,7 +554,7 @@ Changelog
     elegir para cada pedido la caja o ponerla
 
 -   Capacidad para reorganizar widgets de equipos desde
-    panel de control (en modo de edición, haga clic derecho en el widget)
+    tablero de instrumentos (en modo de edición, haga clic derecho en el widget)
 
 -   Cambiar el tono de los widgets (de 40 \*80 a 10 \*10) Ten cuidado
     impactará el diseño en su tablero / vista / diseño
@@ -612,7 +617,7 @@ Changelog
     texte
 
 -   Cambio del control deslizante bootstraps a control deslizante (corrección de errores
-    evento de doble control deslizante)
+    evento de doble deslizador)
 
 -   Guardado automático de vistas al hacer clic en el botón &quot;ver el
     resultar"
@@ -689,10 +694,10 @@ Changelog
     celle-ci
 
 -   Posibilidad de prohibir ciertos valores para un pedido (en el
-    configuración avanzada)
+    configuración avanzada de la misma)
 
 -   Adición de campos de configuración en retroalimentación de estado automática
-    (por ejemplo, volver a 0 después de 4 min) en la configuración avanzada de un
+    (ex volver a 0 después de 4 min) en la configuración avanzada de un
     commande
 
 -   Agregar una función valueDate en los escenarios (ver
@@ -706,7 +711,7 @@ Changelog
 
 -   Adición de un sistema de alerta en pedidos de 2 niveles :
     alerta y peligro. La configuración está en la configuración
-    comandos avanzados (solo tipo de información, por supuesto). Usted puede
+    comandos avanzados (tipo de información solo por supuesto). Usted puede
     vea los módulos en alerta en la página Análisis → Equipo. Vosotras
     puede configurar las acciones en alerta en la página de
     configuración general de Jeedom
@@ -744,7 +749,7 @@ Changelog
     sin documento local
 
 -   Las interacciones pueden tener en cuenta la noción de contexto (en
-    dependiendo de la solicitud anterior y la anterior)
+    función de la solicitud anterior, así como la de antes)
 
 -   Posibilidad de ponderar palabras según su tamaño para
     análisis de comprensión
@@ -765,7 +770,7 @@ Changelog
     comandos y resúmenes que se usarán en las respuestas
     contextual y resúmenes
 
--   Jeedom sabe cómo gestionar varias interacciones relacionadas (contextualmente)
+-   Jeedom sabe cómo gestionar varias interacciones vinculadas (contextualmente)
     en uno. Deben estar separados por una palabra clave (por defecto y).
     Ejemplo : "¿Cuánto cuesta en el dormitorio y en la sala de estar? "O
     "Enciende la luz de la cocina y del dormitorio."
@@ -783,14 +788,14 @@ Changelog
     con el comando &quot;informar&quot; en un escenario
 
 -   Agregar una página de administración de informes (para volver a descargar o
-    eliminarlos)
+    borra los)
 
 -   Corrección de un error en la fecha de la última escalada de un evento
     para algunos complementos (alarma)
 
 -   Error de pantalla fijo con Chrome 55
 
--   Optimización de la copia de seguridad (en un RPi2 el tiempo se divide por 2)
+-   Optimización de respaldo (en un RPi2 el tiempo se divide por 2)
 
 -   Optimización de catering
 
@@ -805,7 +810,7 @@ Changelog
     función del objeto original
 
 -   Posibilidad de tener registros de escenarios en tiempo real (se ralentiza
-    ejecución de escenarios)
+    la ejecución de los escenarios)
 
 -   Capacidad para pasar etiquetas al iniciar un escenario
 
@@ -840,7 +845,7 @@ Changelog
 
     -   En el 99% de los casos, más solicitudes de escritura en la base en
         funcionamiento nominal (por lo tanto, excepto la configuración de Jeedom,
-        modificaciones, instalación, actualización ...)
+        modificaciones, instalación, actualización)
 
 -   Supresión de fail2ban (porque se omite fácilmente al enviar un
     dirección IP falsa), esto acelera Jeedom
@@ -856,7 +861,7 @@ Changelog
 
 -   Adición de la noción de resumen de automatización del hogar (permite conocer un
     disparo único el número de luces encendidas, las puertas abiertas, el
-    persianas, ventanas, energía, detecciones de movimiento ...).
+    persianas, ventanas, energía, detecciones de movimiento).
     Todo esto está configurado en la página de gestión de objetos
 
 -   Agregar pedidos previos y posteriores a un pedido. Permite disparar
@@ -873,7 +878,7 @@ Changelog
     commande
 
 -   Posibilidad de reemplazar un pedido con otro en todo Jeedom
-    (incluso si el pedido para ser reemplazado ya no existe)
+    (incluso si el comando a reemplazar ya no existe)
 
 2.3
 ---
@@ -927,7 +932,7 @@ Changelog
 -   Preparación para la eliminación de bootstrapswtich en complementos
 
 -   Corrección de un error en el tipo de widget solicitado para los diseños
-    (tablero en lugar de dplan)
+    (tablero de instrumentos en lugar de dplan)
 
 -   corrección de errores en el controlador de eventos
 
@@ -944,7 +949,7 @@ Changelog
     / tmp es demasiado pequeño (tenga cuidado de que la corrección surta efecto en
     actualización n + 1)
 
--   Agregar una etiqueta *Jeedom\_name* en los escenarios (dar el nombre
+-   Agregar una etiqueta *jeedom\_name* en los escenarios (dar el nombre
     jeedom)
 
 -   Correcciones de errores
@@ -952,7 +957,7 @@ Changelog
 -   Mover todos los archivos temporales a / tmp
 
 -   Envío mejorado de complementos (dos2unix automático en
-    archivos \*. sh)
+    \*. sh archivos)
 
 -   Rediseño de la página de registro
 
@@ -969,15 +974,15 @@ Changelog
 -   Diversas optimizaciones del código (gracias @ kwizer15)
 
 -   Pasaje en módulo de la conexión con el mercado (permitirá tener
-    una libertad sin ningún enlace al mercado)
+    una libertad sin vínculo con el mercado)
 
 -   Adición de un &quot;repositorio&quot; (conexión de tipo de módulo de conexión con
-    el mercado) (permite enviar un archivo zip que contiene el complemento)
+    el mercado) archivo (permite enviar un zip que contiene el complemento)
 
 -   Adición de un &quot;repositorio&quot; de github (permite usar github como fuente de
     plugin, con sistema de gestión de actualizaciones)
 
--   Adición de un URL &quot;repositorio&quot; (permite usar URL como fuente del complemento)
+-   Adición de un URL "repositorio" (permite usar URL como fuente de complemento)
 
 -   Adición de un &quot;repositorio&quot; de Samba (utilizable para enviar copias de seguridad en un
     servidor samba y recuperar complementos)
@@ -1018,7 +1023,7 @@ Changelog
 -   Limpieza de terceros de Lib
 
 -   Supresión de voz receptiva (función dicha en los escenarios que
-    trabajó menos y menos bien)
+    trabajó cada vez menos bien)
 
 -   Se corrigieron varias vulnerabilidades de seguridad
 
@@ -1059,7 +1064,7 @@ Changelog
 -   Adición de un icono que indica si el demonio se inicia en depuración o no
 
 -   Adición de una página de configuración del historial global
-    (accesible desde la página del historial)
+    (accesible desde la página de historial)
 
 -   Corrección de errores de Docker
 
@@ -1067,7 +1072,7 @@ Changelog
     desde una estación en la red local
 
 -   Rediseño de la configuración de widgets (tenga cuidado
-    seguramente reanude la configuración de algunos widgets)
+    seguramente reanudará la configuración de algunos widgets)
 
 -   Refuerzo del manejo de errores en widgets
 
@@ -1119,13 +1124,13 @@ Changelog
     batterie
 
 -   Rediseño de Jeedom DNS, uso de openvpn (y por lo tanto de
-    plugin openvpn)
+    Complemento Openvpn)
 
 -   Actualizar todas las bibliotecas
 
 -   Interacción : adición de un sistema de análisis (permite
     eliminar interacciones con errores de sintaxis de tipo grande «
-    le chambre »)
+    la recamara »)
 
 -   Supresión de la actualización de la interfaz por nodejs (cambiar a
     tirando cada segundo en la lista de eventos)
@@ -1165,7 +1170,7 @@ Changelog
 -   Adición de widgets estándar de Jeedom
 
 -   Agregar un sistema beta para encontrar la IP de Jeedom en la red
-    (debe conectar Jeedom en la red, luego ir al mercado y
+    (tienes que conectar Jeedom en la red, luego ir al mercado y
     cliquer sur « Mes Jeedoms » dans votre profil)
 
 -   Adición a la página de escenarios de un probador de expresión
@@ -1216,13 +1221,13 @@ Changelog
     batterie
 
 -   Rediseño de Jeedom DNS, uso de openvpn (y por lo tanto de
-    plugin openvpn)
+    Complemento Openvpn)
 
 -   Actualizar todas las bibliotecas
 
 -   Interacción : adición de un sistema de análisis (permite
     eliminar interacciones con errores de sintaxis de tipo grande «
-    le chambre »)
+    la recamara »)
 
 -   Supresión de la actualización de la interfaz por nodejs (cambiar a
     tirando cada segundo en la lista de eventos)
@@ -1262,7 +1267,7 @@ Changelog
 -   Adición de widgets estándar de Jeedom
 
 -   Agregar un sistema beta para encontrar la IP de Jeedom en la red
-    (debe conectar Jeedom en la red, luego ir al mercado y
+    (tienes que conectar Jeedom en la red, luego ir al mercado y
     cliquer sur « Mes Jeedoms » dans votre profil)
 
 -   Adición a la página de escenarios de un probador de expresión

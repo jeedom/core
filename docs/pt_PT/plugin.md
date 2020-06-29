@@ -33,7 +33,7 @@ No canto superior direito, alguns botões :
 -   **Changelog** : Vamos ver o log de alterações do plugin, se existir
 
 -   **Enviar para o mercado** : permite enviar o plugin no Market
-    (disponível apenas se você for o autor)
+    (disponível apenas se você é o autor)
 
 -   **Detalhes** : Permite encontrar a página do plug-in no mercado
 
@@ -42,7 +42,7 @@ No canto superior direito, alguns botões :
 
 Abaixo à esquerda, há uma área de status com :
 
--   **Estado** : Permite ver o status do plug-in (ativo / inativo)
+-   **Estado** : Permite ver o status do plug-in (ativo / inativo))
 
 -   **Versão** : A versão do plug-in instalado
 
@@ -76,7 +76,7 @@ Dependências :
 
 -   **Instalação** : instalará ou reinstalará
     dependências (se você não fizer isso manualmente e elas forem
-    KO, Jeedom vai se cuidar depois de um tempo)
+    KO, Jeedom vai cuidar de si mesmo depois de um tempo)
 
 -   **última Instalação** : data da última instalação do
     Dependências
@@ -90,7 +90,7 @@ Demônio :
 -   **Configuração** : ficará bem se todos os critérios para o demônio
     voltas são cumpridas ou causam bloqueio
 
--   **(Re) iniciar** : Permite iniciar ou reiniciar o demônio
+-   **(Reiniciar** : Permite iniciar ou reiniciar o demônio
 
 -   **Parar** : permite parar o demônio (apenas no caso
     o gerenciamento automático está desativado)
@@ -98,7 +98,7 @@ Demônio :
 -   **Gerenciamento automático** : permite ativar ou desativar o gerenciamento
     automático (que permite que o Jeedom gerencie o daemon e o
     reviver se necessário. Salvo indicação em contrário, é aconselhável
-    deixar o gerenciamento automático ativo)
+    deixe o gerenciamento automático ativo)
 
 -   **último lançamento** : Data do último lançamento do daemon
 
@@ -164,9 +164,9 @@ No topo da janela você tem filtros :
     certas categorias de plugins
 
 -   **Pesquisa** : permite procurar um plug-in (em nome ou
-    descrição dele)
+    descrição disso)
 
--   **Nome d'utilisateur** : exibe o nome de usuário usado para o
+-   **Nome de Usuário** : exibe o nome de usuário usado para o
     conexão com o mercado e o status da conexão
 
 > **Dica**
@@ -178,7 +178,7 @@ este para trazer o seu cartão. Esta folha oferece muito
 informações sobre o plug-in, incluindo :
 
 -   Se for oficial / recomendado ou se for obsoleto (você realmente precisa
-    evite instalar plugins obsoletos)
+    evite instalar plug-ins obsoletos)
 
 -   4 ações :
 
@@ -195,7 +195,7 @@ informações sobre o plug-in, incluindo :
         para excluí-lo
 
 Abaixo, você encontrará a descrição do plugin, a compatibilidade
-(se o Jeedom detectar uma incompatibilidade, ele será notificado), as revisões
+(se o Jeedom detectar uma incompatibilidade, ele será notificado), os avisos
 no plugin (você pode classificá-lo aqui) e informações
 complementar (o autor, a pessoa que fez a última atualização
 dia, link para o documento, número de downloads). À direita

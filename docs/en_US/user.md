@@ -25,9 +25,9 @@ Below you have a table :
         he will not have access to the configuration of controls / equipment
         nor to the configuration of Jeedom.
 
-    -   **User limité** : the user only sees the
+    -   **Limited user** : the user only sees the
         authorized equipment (configurable with the &quot;Manage&quot; button
-        rights&quot;)
+        rights")
 
 -   **API key** : user&#39;s personal API key
 
@@ -48,7 +48,7 @@ Below you have a table :
 
 -   **Manage rights** : allows to finely manage the rights of
     the user (attention the profiles must be in
-    "limited user ")
+    "Limited user")
 
 Rights management 
 ==================
@@ -70,8 +70,8 @@ scenario, define user rights :
 -   **Visualization** : the user sees the equipment / scenario but does not
     can&#39;t act on it
 
--   **Visualization et exécution** : the user sees
+-   **Visualization and execution** : the user sees
     the equipment / scenario and can act on it (light a lamp, throw
-    the scenario, etc.)
+    the script, etc.)
 
 

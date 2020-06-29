@@ -51,7 +51,7 @@ Viewing a graph
 
 There are several ways to access the history :
 
--   by putting a graph area in a view (see below),
+-   By putting a graph area in a view (see below),
 
 -   by clicking on the desired command in a widget,
 
@@ -66,7 +66,7 @@ the widget, you have access to several display options :
 We find at the top right the display period (here on the last
 week because by default I want it to be only one week - see
 2 paragraphs above), then come the parameters of the curve
-(these parameters are kept from one display to another; you therefore
+(these parameters are kept from one display to another; so you don't
 than configure them once).
 
 -   **Staircase** : displays the curve as a
@@ -93,7 +93,7 @@ Once a data is activated, you can choose :
 
 -   **Color** : the color of the curve.
 
--   **Type** : the type of graph (area, line or column).
+-   **Type** : The type of graph (area, line or column).
 
 -   **Ladder** : since you can put several curves (data)
     on the same graph, it is possible to distinguish the scales
@@ -119,8 +119,8 @@ Calculated history
 Used to display a curve based on a calculation on several
 command (you can pretty much do everything, + - / \* absolute value… see
 PHP documentation for certain functions). Ex :
-abs (*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Space of
-Life \] \ [Humidity \] \ [Temperature \] *)
+abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Space of
+life \] \ [Hygrometry \] \ [Temperature \]*)
 
 You also have access to a management of calculation formulas which allows you
 save them for easier viewing
@@ -182,10 +182,10 @@ desired scenarios, you can see them appear on the timeline.
 
 The cards on the timeline displays :
 
--   **Ordered action** : in red background, an icon on the right allows you
+-   **Action command** : in red background, an icon on the right allows you
     display the advanced configuration window of the command
 
--   **Ordered info** : in blue background, an icon on the right allows you
+-   **Info command** : in blue background, an icon on the right allows you
     display the advanced configuration window of the command
 
 -   **Scenario** : in gray background, you have 2 icons : one to display

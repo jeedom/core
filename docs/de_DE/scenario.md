@@ -25,7 +25,7 @@ funktioniert nur, um sie besser zu verwalten :
 -   **Übersicht** : Ermöglicht Ihnen einen Überblick über alle
     die Szenarien. Sie können die Werte ändern **Aktiva**,
     **sichtbar**, **Multi-Launch**, **synchroner Modus**, **Log** et
-    **Zeitleiste** (Diese Parameter werden im nächsten Kapitel beschrieben.).
+    **Zeitleiste** (Diese Parameter werden im folgenden Kapitel beschrieben).
     Sie können auch auf die Protokolle für jedes Szenario und zugreifen
     einzeln starten.
 
@@ -63,8 +63,8 @@ Oben finden Sie einige nützliche Funktionen zum Verwalten unseres Szenarios
 
 -   **Ausdruck** : Zeigt den Ausdruckstester an.
 
--   **Exécuter** : Ermöglicht das manuelle Starten des Szenarios (Denken Sie daran
-    vorher nicht sparen!). Die Auslöser sind daher nicht
+-   **Ausführen** : Ermöglicht das manuelle Starten des Szenarios (Denken Sie daran
+    nein vorher speichern !). Die Auslöser sind daher nicht
     nicht berücksichtigt.
 
 -   **Entfernen** : Szenario löschen.
@@ -110,7 +110,7 @@ unser Szenario :
     Das Szenario kann mehrmals gleichzeitig gestartet werden.
 >**Wichtig**
 >
->Der Mehrfachstart funktioniert in der Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne dass das Kontrollkästchen aktiviert ist, gibt es immer noch zwei Starts des Szenarios (wenn dies nicht der Fall sein sollte). In ähnlicher Weise ist es bei mehreren Starts in derselben Sekunde möglich, dass einige Starts die Tags verlieren. Fazit Sie MÜSSEN ABSOLUT mehrere Starts in denselben Sekunden vermeiden.
+>Der Mehrfachstart funktioniert im Sekundentakt, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne dass das Kontrollkästchen aktiviert ist, gibt es immer noch zwei Starts des Szenarios (wenn dies der Fall sein sollte)). In ähnlicher Weise ist es bei mehreren Starts in derselben Sekunde möglich, dass einige Starts die Tags verlieren. Fazit Sie MÜSSEN ABSOLUT mehrere Starts in denselben Sekunden vermeiden.
 -   **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Dies erhöht die Startgeschwindigkeit des Szenarios, kann jedoch das System instabil machen.
 
 -   **Log** : Der für das Szenario gewünschte Protokolltyp.
@@ -122,8 +122,8 @@ unser Szenario :
     Ihr Szenario.
 
 -   **Szenariomodus** : Das Szenario kann programmiert, ausgelöst oder
-    beide gleichzeitig. Sie haben dann die Wahl, die (s) anzugeben
-    Trigger (s) (Vorsicht, die Anzahl der möglichen Trigger pro Szenario ist auf 15 begrenzt) und die Programmierung (en).
+    beide gleichzeitig. Sie haben dann die Wahl, die (s) anzugeben)
+    Trigger (s) (Vorsicht, die Anzahl der möglichen Trigger pro Szenario ist auf 15 begrenzt) und die Programmierung (en)).
 
 > **Spitze**
 >
@@ -134,19 +134,19 @@ Registerkarte &quot;Szenario&quot;
 ---------------
 
 Hier erstellen Sie Ihr Szenario. Wir müssen anfangen
-durch **Hinzufügen un Block**, mit dem Knopf rechts. Einmal ein Block
+durch **Fügen Sie einen Block hinzu**, mit dem Knopf rechts. Einmal ein Block
 erstellt, können Sie eine weitere hinzufügen **Block** oder a **Aktion**.
 
 > **Spitze**
 >
-> In Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (&#39;) anstelle von doppelten (&quot;) zu bevorzugen
+> Bei Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (') anstelle von doppelten zu bevorzugen (")
 
-### Die blocs
+### Blöcke
 
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 -   **If / Then / Oder** : Ermöglicht das Ausführen von Aktionen
-    unter Bedingung (en).
+    unter Bedingungen).
 
 -   **Aktion** : Ermöglicht das Starten einfacher Aktionen ohne
     keine Bedingungen.
@@ -166,7 +166,7 @@ Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 -   **CODE** : Ermöglicht das direkte Schreiben in PHP-Code (Anfrage
     etwas Wissen und kann riskant sein, erlaubt aber nicht zu haben
-    keine Einschränkungen).
+    Keine Einschränkungen).
 
 -   **Kommentar** : Ermöglicht das Hinzufügen von Kommentaren zu Ihrem Szenario.
 
@@ -228,13 +228,13 @@ Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche verwenden
 >
 > Bitte beachten Sie, dass Tags in einem Codeblock nicht verfügbar sind.
 
-Bedienelemente (Sensoren und Aktoren):
+Steuerungen (Sensoren und Aktoren):
 -   cmd::byString ($ string); : Gibt das entsprechende Befehlsobjekt zurück.
-  -   $string : Link zur gewünschten Bestellung : #[objund][equipement][commande]# (zB : #[Bisppartement][Bislarme][Aktiva]#)
+  -   $string : Link zur gewünschten Bestellung : #[objet][Gerät][commande]# (ex : #[Appartement][Alarme][Aktiva]#)
 -   cmd::BYID ($ id); : Gibt das entsprechende Befehlsobjekt zurück.
   -   $id : Bestellnummer
 -   $cmd->execCmd($options = null); : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
-  -   $options : Optionen zur Ausführung des Befehls (möglicherweise Plugin-spezifisch), Basisoption (Befehlssubtyp) :
+  -   $options : Optionen für die Befehlsausführung (möglicherweise Plugin-spezifisch), Basisoption (Befehlssubtyp) :
     -   Nachricht : $option = array('title' => 'titre du Nachricht , 'message' => 'Mon message');
     -   Farbe : $option = array('color' => 'couleur en hexadécimal');
     -   Schieber : $option = array('slider' => 'valeur voulue de 0 à 100');
@@ -254,7 +254,7 @@ Szenario :
 -   $scenario->setOnGoing($onGoing); : Sagen wir, ob das Szenario läuft oder nicht.
   -   $onGoing => 1 en cours , 0 arrêté.
 -   $scenario->save(); : Änderungen speichern.
--   $scenario->setData($key, $value); : Daten speichern (Variable).
+-   $scenario->setData($key, $value); : Speichern Sie eine Daten (Variable).
   -   $key : Werteschlüssel (int oder string).
   -   $value : zu speichernder Wert (int, string, array oder object).
 -   $scenario->getData($key); : Daten abrufen (variabel).
@@ -263,11 +263,11 @@ Szenario :
 -   $scenario->setLog($message); : Schreiben Sie eine Nachricht in das Szenario-Protokoll.
 -   $scenario->persistLog(); : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
 
-### Die Actions
+### Aktionen
 
 Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen. In Ordnung :
 
--   Eine Kiste **durchallèle** so dass dieser Befehl parallel gestartet wird
+-   Eine Kiste **parallel** so dass dieser Befehl parallel gestartet wird
     andere Befehle ebenfalls ausgewählt.
 
 -   Eine Kiste **aktiviert** damit dieser Befehl berücksichtigt wird
@@ -295,7 +295,7 @@ Auslöser
 ----------------
 
 Es gibt bestimmte Auslöser (außer denen von
-Befehle) :
+commandes) :
 
 -   #start# : ausgelöst beim (Wieder-) Start von Jeedom,
 
@@ -314,7 +314,7 @@ Befehle) :
 -   #user_connect# : Benutzer Login
 
 Sie können auch ein Szenario auslösen, wenn eine Variable auf gesetzt ist
-Tag setzen : #variable(nom_variable)# oder en utilisant l'API HTTP
+Tag setzen : #variable(nom_variable)# oder über die HTTP-API
 beschrieben
 [hier](https://jeedom.github.io/core/de_DE/api_http).
 
@@ -337,10 +337,10 @@ Vergleiche in Bedingungen :
 -   != : anders als, ist nicht gleich,
 
 -   Streichhölzer : enthält (z :
-    [Badezimmer] [Hydrometrie] [Zustand] entspricht "/ wet /"),
+    [Badezimmer] [Hydrometrie] [Zustand] entspricht "/ nass /" ),
 
 -   nicht (… passt…) : enthält nicht (z :
-    nicht ([Badezimmer] [Hydrometrie] [Zustand] stimmt mit "/ wet /" überein)),
+    nicht ([Badezimmer] [Hydrometrie] [Zustand] entspricht "/ nass /")),
 
 Sie können jeden Vergleich mit Operatoren kombinieren
 folgende :
@@ -376,10 +376,10 @@ kann die folgenden Tags verwenden :
     08:07:06),
 
 -   #jour# : Aktueller Tag (ohne führende Nullen, z : 6 für
-    2017.06.07),
+    07/06/2017),
 
 -   #mois# : Aktueller Monat (ohne führende Nullen, z : 7 für
-    2017.06.07),
+    07/06/2017),
 
 -   #annee# : Laufendes Jahr,
 
@@ -388,13 +388,13 @@ kann die folgenden Tags verwenden :
 -   #timestamp# : Anzahl der Sekunden seit dem 1. Januar 1970,
 
 -   #date# : Tag und Monat. Achtung, die erste Zahl ist der Monat.
-    (zB : 1215 für den 15. Dezember),
+    (ex : 1215 für den 15. Dezember),
 
 -   #semaine# : Wochennummer (z : 51),
 
 -   #sjour# : Name des Wochentags (z : Samedi),
 
--   #njour# : Tagesnummer von 0 (Sonntag) bis 6 (Samstag),
+-   #njour# : Tagesnummer von 0 (Sonntag) bis 6 (Samstag)),
 
 -   #smois# : Name des Monats (z : Janvier),
 
@@ -422,7 +422,7 @@ Berechnungsfunktionen
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
--   Durchschnitt (Reihenfolge, Zeitraum) und Durchschnitt zwischen (Reihenfolge, Start, Ende)
+-   Durchschnitt (Reihenfolge, Periode) und DurchschnittBetween (Reihenfolge, Start, Ende))
     : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an
     (Zeitraum = [Monat, Tag, Stunde, Minute] oder [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
@@ -438,7 +438,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
     [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   max (Reihenfolge, Periode) und maxBetween (Reihenfolge, Start, Ende) :
+-   max (Reihenfolge, Periode) und maxBetween (Reihenfolge, Start, Ende)) :
     Geben Sie das Maximum der Bestellung über den Zeitraum an
     (Zeitraum = [Monat, Tag, Stunde, Minute] oder [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
@@ -447,7 +447,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   Dauer (Reihenfolge, Wert, Zeitraum) und
-    durationbetween (Sollwert, Start, Ende) : Geben Sie die Dauer in an
+    Dauer dazwischen (Befehl, Wert, Start, Ende) : Geben Sie die Dauer in an
     Minuten, in denen das Gerät den auf dem
     Periode (Periode = [Monat, Tag, Stunde, Minute] oder [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
@@ -456,7 +456,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   Statistiken (Reihenfolge, Berechnung, Zeitraum) und
-    statisticsBetween (Kontrolle, Berechnung, Beginn, Ende) : Geben Sie das Ergebnis
+    statisticsBetween (Befehl, Berechnung, Start, Ende) : Geben Sie das Ergebnis
     verschiedene statistische Berechnungen (Summe, Anzahl, Standard,
     Varianz, Durchschnitt, Min, Max) über den Zeitraum
     (Zeitraum = [Monat, Tag, Stunde, Minute] oder [Ausdruck
@@ -465,23 +465,23 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
     [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   Trend (Befehl, Zeitraum, threshold) : Gibt den Trend von
+-   Trend (Reihenfolge, Zeitraum, Schwelle) : Gibt den Trend von
     Bestellung über den Zeitraum (Zeitraum = [Monat, Tag, Stunde, Minute] oder
     [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   stateDuration (Kontrolle) : Gibt die Dauer in Sekunden an
+-   stateDuration (Befehl) : Gibt die Dauer in Sekunden an
     seit der letzten Wertänderung. Gibt -1 zurück, wenn keine vorhanden ist
     Verlauf existiert nicht oder wenn der Wert nicht in der Geschichte existiert.
     Gibt -2 zurück, wenn die Bestellung nicht protokolliert wird.
 
--   lastChangeStateDuration (Sollwert) : Geben Sie die Dauer in an
+-   lastChangeStateDuration (Befehl, Wert) : Geben Sie die Dauer in an
     Sekunden seit der letzten Zustandsänderung auf den übergebenen Wert
     als Parameter. Gibt -1 zurück, wenn keine vorhanden ist
     Verlauf existiert nicht oder wenn der Wert nicht in der Geschichte existiert.
     Gibt -2 zurück, wenn die Bestellung nicht protokolliert wird
 
--   lastStateDuration (Sollwert) : Gibt die Dauer in Sekunden an
+-   lastStateDuration (Befehl, Wert) : Gibt die Dauer in Sekunden an
     währenddessen hat das Gerät kürzlich den gewählten Wert gehabt.
     Gibt -1 zurück, wenn kein Verlauf vorhanden ist oder wenn der Wert nicht im Verlauf vorhanden ist.
     Gibt -2 zurück, wenn die Bestellung nicht protokolliert wird
@@ -496,12 +496,12 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
     [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   lastBetween (command, Beginn, Ende) : Gibt den letzten Wert zurück
+-   lastBetween (Befehl, Start, Ende) : Gibt den letzten Wert zurück
     registriert für das Gerät zwischen den 2 erforderlichen Terminals (unter der
     bilden Ymd H:i:s oder [Ausdruck
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   Variable (Variable, Standard) : Holen Sie sich den Wert von a
+-   Variable (Variable, Standardwert) : Holen Sie sich den Wert von a
     Variable oder der gewünschte Standardwert :
 
 -   Szenario (Szenario) : Gibt den Status des Szenarios zurück. 1 in Bearbeitung, 0
@@ -511,14 +511,14 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 -   lastScenarioExecution (Szenario) : Gibt die Dauer in Sekunden an
     seit dem letzten Start des Szenarios :
 
--   collectDate (cmd [size]) : Gibt das Datum der letzten Daten zurück
+-   collectDate (cmd, [Format]) : Gibt das Datum der letzten Daten zurück
     für den als Parameter angegebenen Befehl der 2. optionale Parameter
     ermöglicht die Angabe des Rückgabeformats (Details
     [hier](http://php.net/manual/fr/function.date.php)). Eine Rückkehr von -1
     bedeutet, dass die Bestellung nicht gefunden werden kann und -2, dass die Bestellung nicht gefunden wird
     kein Infotyp
 
--   valueDate (cmd [size]) : Gibt das Datum der letzten Daten zurück
+-   valueDate (cmd, [Format]) : Gibt das Datum der letzten Daten zurück
     für den als Parameter angegebenen Befehl der 2. optionale Parameter
     ermöglicht die Angabe des Rückgabeformats (Details
     [hier](http://php.net/manual/fr/function.date.php)). Eine Rückkehr von -1
@@ -531,20 +531,20 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 -   Wert (cmd) : Gibt den Wert einer Bestellung zurück, wenn er nicht automatisch von Jeedom angegeben wird (Groß- und Kleinschreibung, wenn der Name der Bestellung in einer Variablen gespeichert wird)    
 
--   Tag (Montag [Standard]) : Wird verwendet, um den Wert eines Tags oder abzurufen
+-   Tag (Montag, [Standard]) : Wird verwendet, um den Wert eines Tags oder abzurufen
     die Standardeinstellung, wenn sie nicht vorhanden ist :
 
--   (Art, Kontrolle) : Wird verwendet, um den Namen des Befehls abzurufen,
+-   Name (Typ, Befehl) : Wird verwendet, um den Namen des Befehls abzurufen,
     Ausrüstung oder Gegenstand. Typ ist entweder cmd, eqLogic oder wert
     Objekt.
 
--   lastCommunication (Ausrüstung, [size]) : Gibt das Datum der letzten Kommunikation zurück
+-   lastCommunication (Ausrüstung, [Format]) : Gibt das Datum der letzten Kommunikation zurück
     für die als Parameter angegebene Ausrüstung der 2. optionale Parameter
     ermöglicht die Angabe des Rückgabeformats (Details
     [hier](http://php.net/manual/fr/function.date.php)). Eine Rückkehr von -1
     bedeutet, dass das Gerät nicht gefunden werden kann
 
--   color_gradient (couleur_debut, couleur_fin, valuer_min, valeur_max, value) : Gibt eine Farbe zurück, die in Bezug auf den Wert im Bereich color_start / color_end berechnet wurde. Der Wert muss zwischen min_value und max_value liegen
+-   color_gradient (start_colour, end_colour, min_value, max_value, value) : Gibt eine Farbe zurück, die in Bezug auf den Wert im Bereich color_start / color_end berechnet wurde. Der Wert muss zwischen min_value und max_value liegen
 
 Die Perioden und Intervalle dieser Funktionen können auch
 Verwenden Sie mit [Ausdrücken
@@ -554,7 +554,7 @@ Beispiel :
 -   Jetzt : maintenant
 
 -   Heute : 00:00 heute (ermöglicht zum Beispiel zu erhalten
-    Ergebnisse des Tages zwischen &#39;Heute&#39; und &#39;Jetzt&#39;)
+    Ergebnisse des Tages zwischen 'Heute' und 'Jetzt'')
 
 -   Letzten Montag : letzten Montag um 00:00
 
@@ -567,35 +567,35 @@ Beispiel :
 Hier finden Sie praktische Beispiele zum Verständnis der von zurückgegebenen Werte
 diese verschiedenen Funktionen :
 
-| Sockel mit Werten :           | 000 (für 10 Minuten) 11 (für 1 Stunde) 000 (für 10 Minuten)    |
+| Sockel mit Werten :           | 000 (für 10 Minuten) 11 (für 1 Stunde) 000 (für 10 Minuten))    |
 |--------------------------------------|--------------------------------------|
-| Durchschnitt (Mitnahmen, Periode)             | Gibt den Durchschnitt von 0 und 1 zurück (can  |
+| Durchschnitt (Fang, Zeitraum)             | Gibt den Durchschnitt von 0 und 1 zurück (can  |
 |                                      | durch Umfragen beeinflusst werden)      |
 | averageBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Gibt die durchschnittliche Bestellung zwischen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
-| min (outlet, Periode)                 | Gibt 0 zurück : Der Stecker wurde während des Zeitraums gelöscht              |
+| min (Fang, Zeitraum)                 | Gibt 0 zurück : Der Stecker wurde während des Zeitraums gelöscht              |
 | minBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Gibt die Mindestbestellmenge zwischen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
-| max (Entscheidung, Periode)                 | Rückgabe 1 : Der Stecker war in der Zeit gut beleuchtet              |
+| max (Fang, Zeitraum)                 | Rückgabe 1 : Der Stecker war in der Zeit gut beleuchtet              |
 | maxBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Gibt das Maximum der Bestellung zwischen dem 1. Januar 2015 und dem 15. Januar 2015 zurück                         |
-| Dauer (Stecker, 1 Periode)          | Gibt 60 zurück : Der Stecker war in diesem Zeitraum 60 Minuten lang eingeschaltet (bei 1)                              |
-| durationBetween(\.#[Salon][Prise][Etat]\.#,0, letzter Montag, jetzt)   | Gibt die Dauer in Minuten zurück, in der die Steckdose seit dem letzten Montag ausgeschaltet war.                |
+| Dauer (genommen, 1, Zeitraum)          | Gibt 60 zurück : Der Stecker war in diesem Zeitraum 60 Minuten lang eingeschaltet (bei 1)                              |
+| durationBetween(\.#[Salon][Prise][Etat]\.#,0, letzten Montag, jetzt)   | Gibt die Dauer in Minuten zurück, in der die Steckdose seit dem letzten Montag ausgeschaltet war.                |
 | Statistiken (Fang, Anzahl, Zeitraum)    | Rückgabe 8 : In diesem Zeitraum gab es 8 Eskalationen               |
 | Trend (Stecker, Periode 0.1)        | Gibt -1 zurück : Abwärtstrend    |
-| stateDuration (Stecker)               | Gibt 600 zurück : Der Stecker befindet sich seit 600 Sekunden (10 Minuten) in seinem aktuellen Zustand                             |
-| lastChangeStateDuration (Fang, 0)   | Gibt 600 zurück : Die Steckdose ist vor 600 Sekunden (10 Minuten) zum letzten Mal ausgefallen (auf 0 geändert)     |
-| lastChangeStateDuration (Fang, 1)   | Gibt 4200 zurück : Die Steckdose wurde vor 4200 Sekunden (1h10) zum letzten Mal eingeschaltet (auf 1 umschalten)                               |
-| lastStateDuration (Fang, 0)         | Gibt 600 zurück : Die Steckdose war 600 Sekunden (10 Minuten) ausgeschaltet     |
-| lastStateDuration (Fang, 1)         | Gibt 3600 zurück : Die Steckdose wurde zuletzt für 3600 Sekunden (1 Stunde) eingeschaltet           |
-| stateChanges (Fang, Periode)        | Rückgabe 3 : Der Stecker hat während des Zeitraums dreimal den Zustand geändert            |
-| stateChanges (Fang, 0, Periode)      | Rückgabe 2 : Die Steckdose ist während des Zeitraums zweimal erloschen (auf 0)                              |
-| stateChanges (Fang, 1 Punkt)      | Rückgabe 1 : Der Stecker leuchtet während des Zeitraums einmal (auf 1 ändern)                              |
-| lastBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,Gestern, heute) | Gibt die zuletzt gestern aufgezeichnete Temperatur zurück.                    |
-| Variable (Plopp, 10)                  | Gibt den Wert der Variablen plop oder 10 zurück, wenn sie leer ist oder nicht existiert                         |
-| scenario(\.#[Salle de bain][Lumière][Bisuto]\.#) | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
-| lastScenarioExecution(\.#[Salle de bain][Lumière][Bisuto]\.#)   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
+| stateDuration (genommen)               | Gibt 600 zurück : Der Stecker befindet sich seit 600 Sekunden (10 Minuten) in seinem aktuellen Zustand)                             |
+| lastChangeStateDuration (genommen, 0)   | Gibt 600 zurück : Die Steckdose ging vor 600 Sekunden (10 Minuten) zum letzten Mal aus (auf 0 ändern))     |
+| lastChangeStateDuration (take, 1)   | Gibt 4200 zurück : Die Steckdose wurde vor 4200 Sekunden (1h10) zum letzten Mal eingeschaltet (auf 1 umgeschaltet))                               |
+| lastStateDuration (genommen, 0)         | Gibt 600 zurück : Die Steckdose war 600 Sekunden (10 Minuten) ausgeschaltet)     |
+| lastStateDuration (genommen, 1)         | Gibt 3600 zurück : Die Steckdose wurde zuletzt für 3600 Sekunden (1 Stunde) eingeschaltet)           |
+| stateChanges (genommen, Punkt)        | Rückgabe 3 : Der Stecker hat während des Zeitraums dreimal den Zustand geändert            |
+| stateChanges (take, 0, period)      | Rückgabe 2 : Die Steckdose ist während des Zeitraums zweimal erloschen (auf 0)                              |
+| stateChanges (take, 1, period)      | Rückgabe 1 : Der Stecker leuchtet während des Zeitraums einmal (auf 1 ändern)                              |
+| lastBetween(\.#[Salle de bain][Hydrometrie][Humidité]\.#,Gestern heute) | Gibt die zuletzt gestern aufgezeichnete Temperatur zurück.                    |
+| variabel (plop, 10)                  | Gibt den Wert der Variablen plop oder 10 zurück, wenn sie leer ist oder nicht existiert                         |
+| scenario(\.#[Salle de bain][Lumière][Auto]\.#) | Gibt 1 in Bearbeitung zurück, 0, wenn gestoppt, und -1, wenn deaktiviert, -2, wenn das Szenario nicht existiert, und -3, wenn der Status nicht konsistent ist                         |
+| lastScenarioExecution(\.#[Salle de bain][Lumière][Auto]\.#)   | Gibt 300 zurück, wenn das Szenario vor 5 Minuten zum letzten Mal gestartet wurde                                  |
 | collectDate(\.#[Salle de bain][Hydrometrie][Humidité]\.#)     | Rückgabe 2015-01-01 17:45:12          |
 | valueDate(\.#[Salle de bain][Hydrometrie][Humidité]\.#) | Rückgabe 2015-01-01 17:50:12          |
-| eqEnable(\.#[Bisucun][Basilique]\.#)       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
-| Tag (Montag toto)                   | Gibt den Wert von "montag" zurück, falls vorhanden, andernfalls wird der Wert "toto" zurückgegeben"                               |
+| eqEnable(\.#[Aucun][Basilique]\.#)       | Gibt -2 zurück, wenn das Gerät nicht gefunden wird, 1, wenn das Gerät aktiv ist, und 0, wenn es inaktiv ist          |
+| tag (montag, toto)                   | Gibt den Wert von "montag" zurück, falls vorhanden, andernfalls wird der Wert "toto" zurückgegeben"                               |
 | Name (eqLogic, \#[Salle de bain][Hydrometrie][Humidité]\.#)     | Gibt Hydrometrie zurück                  |
 
 Mathematische Funktionen
@@ -604,29 +604,29 @@ Mathematische Funktionen
 Eine generische Funktions-Toolbox kann ebenfalls verwendet werden
 Konvertierungen oder Berechnungen durchführen :
 
--   rand (1.10) : Geben Sie eine Zufallszahl von 1 bis 10 an.
+-   rand(1,10) : Geben Sie eine Zufallszahl von 1 bis 10 an.
 
--   randtext (text1, text2, Text ... ..) : Gibt einen von zurück
-    Texte zufällig (Text durch einen trennen;). Es gibt keine
+-   randText (text1; text2; text…..) : Gibt einen von zurück
+    Texte zufällig (trenne die Texte durch eins; ). Es gibt keine
     Begrenzen Sie die Anzahl der Texte.
 
 -   randomColor (min, max) : Gibt eine zufällige Farbe zwischen 2
-    Klemmen (0 =&gt; rot, 50 =&gt; grün, 100 =&gt; blau).
+    Klemmen (0 => rot, 50 => grün, 100 => blau).
 
--   Trigger (Kontrolle) : Wird verwendet, um den Auslöser für das Szenario herauszufinden
+-   Trigger (Befehl) : Wird verwendet, um den Auslöser für das Szenario herauszufinden
     oder um zu wissen, ob es die Reihenfolge ist, die als Parameter aufgegeben wurde
     löste das Szenario aus.
 
--   triggerValue (Kontrolle) : Wird verwendet, um den Wert von herauszufinden
+-   triggerValue (Befehl) : Wird verwendet, um den Wert von herauszufinden
     Szenario-Trigger.
 
--   round (value [dezimal]) : Runde oben [dezimal]
+-   rund (Wert, [dezimal]) : Runde oben [dezimal]
     Anzahl der Dezimalstellen nach dem Dezimalpunkt.
 
 -   ungerade (Wert) : Lässt Sie wissen, ob eine Zahl ungerade ist oder nicht.
     Gibt 1 zurück, wenn sonst ungerade 0.
 
--   Median (command1, command2.BefehlN) : Gibt den Median zurück
+-   Median (command1, command2.commandeN) : Gibt den Median zurück
     Werte.
 
 -   time_op (Zeit, Wert) : Ermöglicht es Ihnen, Vorgänge pünktlich auszuführen,
@@ -638,12 +638,12 @@ Konvertierungen oder Berechnungen durchführen :
     Start- und Endwerte können sich über Mitternacht erstrecken.
 
 -   `time_diff (date1, date1 [, format])` : Wird verwendet, um den Unterschied zwischen zwei Daten zu ermitteln (die Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS).
-    Standardmäßig (wenn Sie nichts für das Format angeben) gibt die Methode die Gesamtzahl der Tage zurück. Sie können es in Sekunden (s), Minuten (m), Stunden (h) fragen. Beispiel in Sekunden `time_diff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)``
+    Standardmäßig (wenn Sie nichts für das Format angeben) gibt die Methode die Gesamtzahl der Tage zurück. Sie können es in Sekunden (s), Minuten (m), Stunden (h) fragen). Beispiel in Sekunden `time_diff (2018-02-02 14:55:00,2018-02-25 14:55:00,s)``
 
 -   `formatTime (Zeit)` : Formatiert die Rückgabe einer Kette
     ``#time#``.
 
--   Boden (Zeit / 60) : Konvertiert von Sekunden in Minuten oder
+-   Etage (Zeit / 60) : Konvertiert von Sekunden in Minuten oder
     Minuten bis Stunden (Boden (Zeit / 3600) für Sekunden
     in Stunden)
 
@@ -653,85 +653,85 @@ Und praktische Beispiele :
 | Funktionsbeispiel                  | Zurückgegebenes Ergebnis                    |
 |--------------------------------------|--------------------------------------|
 | randText (tut es #[salon][oeil][température]#Die Temperatur ist #[salon][oeil][température]#Derzeit haben wir #[salon][oeil][température]#) | Die Funktion gibt bei jeder Ausführung zufällig einen dieser Texte zurück.                           |
-| randomColor (40,60)                 | Gibt eine zufällige Farbe nahe Grün zurück.   
+| randomColor(40,60)                 | Gibt eine zufällige Farbe nahe Grün zurück.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 wenn das gut ist \#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.# Wer hat das Szenario sonst gestartet? 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 wenn die Hydrometrie von \#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.# beträgt 80%.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Gibt 9 zurück, wenn der Feuchtigkeitsprozentsatz und 85                     |
-| ungerade (3)                             | Rückgabe 1                            |
-| Median (15,25,20)                   | Rückgabe 20                           |
-| time_op (#time#, -90)               | Wenn es 16:50 Uhr ist, kehren Sie zurück : 1 650-1 130 = 1520                          |
-| Formattime (1650)                   | Rückgabe 16:50 Uhr                        |
-| Stock (130/60)                      | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
+| odd(3)                             | Rückgabe 1                            |
+| median(15,25,20)                   | Rückgabe 20                           |
+| time_op(#time#, -90)               | Wenn es 16:50 Uhr ist, kehren Sie zurück : 1 650-1 130 = 1520                          |
+| formatTime(1650)                   | Rückgabe 16:50 Uhr                        |
+| floor(130/60)                      | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
 
 Spezifische Bestellungen
 =========================
 
 Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die folgenden Aktionen :
 
--   **Pause** (Sleep) : Pause von x Sekunde (n).
+-   **Pause** (sleep) : Pause von x Sekunden (s).
 
--   **Variable** (Variabel) : Erstellung / Änderung einer Variablen oder eines Wertes
+-   **Variable** (variable) : Erstellung / Änderung einer Variablen oder eines Wertes
     einer Variablen.
 
--   **Entfernen Variable** (Delete_variable) : Ermöglicht das Löschen einer Variablen
+-   **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen
 
--   **Szenario** (Szenario) : Ermöglicht die Steuerung von Szenarien. Der Tag-Teil
+-   **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Der Tag-Teil
     ermöglicht das Senden von Tags an das Szenario, z : montag = 2 (sei dort vorsichtig
     Verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, nein
     Akzente und keine Sonderzeichen). Wir bekommen den Tag in der
-    Zielszenario mit der Tag-Funktion (montag). Mit dem Befehl &quot;SI zurücksetzen&quot; können Sie den Status von &quot;SI&quot; zurücksetzen (dieser Status wird verwendet, um die Aktionen eines &quot;SI&quot; nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben)
+    Zielszenario mit der Tag-Funktion (montag). Mit dem Befehl "Auf SI zurücksetzen" können Sie den Status von "SI" zurücksetzen (dieser Status wird verwendet, um die Aktionen eines "SI" nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben)
 
--   **STOP** (Stop) : Stoppen Sie das Szenario.
+-   **STOP** (stop) : Stoppen Sie das Szenario.
 
--   **Erwarten** (WAIT) : Warten Sie, bis die Bedingung gültig ist
-    (maximal 2h), Timeout ist in Sekunde (n).
+-   **Erwarten** (wait) : Warten Sie, bis die Bedingung gültig ist
+    (maximal 2h), das Timeout ist in Sekunden (s)).
 
--   **Bisller au design** (Gotodesign) : Ändern Sie das auf allen angezeigte Design
+-   **Gehe zum Design** (gotodesign) : Ändern Sie das auf allen angezeigte Design
     Browser nach gewünschtem Design.
 
--   **Hinzufügen un log** (Log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
+-   **Fügen Sie ein Protokoll hinzu** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
 
--   **Nachricht erstellen** (Message) : Fügen Sie eine Nachricht in der Mitte hinzu
+-   **Nachricht erstellen** (message) : Fügen Sie eine Nachricht in der Mitte hinzu
     von Nachrichten.
 
--   **Bisctiver/Désactiver Masquer/afficher un équipement** (Ausstattung) : Ermöglicht
+-   **Geräte ausblenden / deaktivieren** (equipement) : Ermöglicht
     Ändern Sie die Eigenschaften eines Geräts
     sichtbar / unsichtbar, aktiv / inaktiv.
 
--   **Stellen Sie eine Anfrage** (Ask) : Ermöglicht es Ihnen, Jeedom zu bitten, zu fragen
+-   **Stellen Sie eine Anfrage** (ask) : Ermöglicht es Ihnen, Jeedom zu bitten, zu fragen
     eine Frage an den Benutzer. Die Antwort wird in a gespeichert
     Variable, dann testen Sie einfach ihren Wert. Für den Moment,
     Nur SMS und Slack Plugins sind kompatibel. Sei vorsichtig, das
     Funktion blockiert. Solange es keine Antwort gibt oder die
     Timeout wird nicht erreicht, das Szenario wartet.
 
--   **Bisrrêter Jeedom** (Jeedom_poweroff) : Bitten Sie Jeedom, herunterzufahren.
+-   **Stoppen Sie Jeedom** (jeedom_poweroff) : Bitten Sie Jeedom, herunterzufahren.
 
--   **Starten Sie Jeedom neu** (Jeedom_reboot) : Bitten Sie Jeedom, neu zu starten.
+-   **Starten Sie Jeedom neu** (jeedom_reboot) : Bitten Sie Jeedom, neu zu starten.
 
--   **Geben Sie einen Text / Daten zurück** (Scenario_return) : Gibt einen Text oder einen Wert zurück
+-   **Geben Sie einen Text / Daten zurück** (Szenario_return) : Gibt einen Text oder einen Wert zurück
     für eine Interaktion zum Beispiel.
 
--   **Symbol** (Symbol) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
+-   **Symbol** (icon) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
 
--   **Warnung** (Alert) : Ermöglicht das Anzeigen einer kleinen Warnmeldung für alle
+-   **Warnung** (alert) : Ermöglicht das Anzeigen einer kleinen Warnmeldung für alle
     Browser mit geöffneter Jeedom-Seite. Du kannst
     Wählen Sie 4 Alarmstufen.
 
--   **Popup** (Popup) : Ermöglicht die Anzeige eines Popups, das unbedingt angezeigt werden muss
+-   **Popup** (popup) : Ermöglicht die Anzeige eines Popups, das unbedingt angezeigt werden muss
     Validiert in allen Browsern, in denen eine Jeedom-Seite geöffnet ist.
 
--   **Bericht** (Bericht) : Exportieren Sie eine Ansicht im Format (PDF, PNG, JPEG)
+-   **Bericht** (report) : Exportieren Sie eine Ansicht im Format (PDF, PNG, JPEG)
     oder SVG) und senden Sie es über einen Befehl vom Typ Nachricht.
     Bitte beachten Sie, dass Ihr Internetzugang in nicht signiertem HTTPS erfolgt
     Funktionalität wird nicht funktionieren. Signiertes HTTP oder HTTPS ist erforderlich.
 
--   **Entfernen Block DANS/Bis programmé** (Remove_inat) : Ermöglicht das Löschen der
+-   **Programmierten IN / A-Block löschen** (remove_inat) : Ermöglicht das Löschen der
     Programmierung aller Blöcke IN und A des Szenarios.
 
--   **Ereignis** (Ereignis) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information
+-   **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information
 
--   **Etikett** (Tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben)
+-   **Etikett** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben)
 
 Szenariovorlage
 ====================
@@ -750,12 +750,12 @@ Sie sehen dann dieses Fenster :
 Von dort haben Sie die Möglichkeit :
 
 -   Senden Sie vorher eine Vorlage an Jeedom (JSON-Datei)
-    zurückgewonnen),
+    erholt),
 
 -   Konsultieren Sie die Liste der auf dem Markt verfügbaren Szenarien,
 
 -   Erstellen Sie eine Vorlage aus dem aktuellen Szenario (vergessen Sie nicht
-    einen Namen geben),
+    gib einen Namen),
 
 -   Um die Vorlagen zu konsultieren, die derzeit auf Ihrem Jeedom vorhanden sind.
 

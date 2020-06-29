@@ -12,10 +12,10 @@ Esta página é acessível por **Ferramentas → Resumo da automação residenci
 O topo da página 
 ------------------
 
-No topo da página, encontramos : \* **Número d'objets** : Nombre
+No topo da página, encontramos : \* **Número de objetos** : Nombre
 total de objetos configurados em nosso Jeedom, contando os elementos
-inativo. \* **Número equipamentos** : O mesmo vale para o equipamento. \*
-**Número de Comandos** : O mesmo vale para pedidos. \* **Inativo** :
+inativo. \* **Número de equipamentos** : O mesmo vale para o equipamento. \*
+**Número de pedidos** : O mesmo vale para pedidos. \* **Inativo** :
 Marque esta caixa se desejar que os itens inativos estejam bem
 exibido nesta página. \* **Pesquisa** : Procure um
 elemento particular. Pode ser o nome de um equipamento, um pedido
@@ -67,19 +67,19 @@ Em cada equipamento encontramos :
 -   O **Tipo** equipamento : Identificador do plug-in ao qual
     pertence.
 
--   **Inativo** (cruz pequena) : Significa que o equipamento está inativo
+-   **Inativo** (pequena cruz) : Significa que o equipamento está inativo
     (se não estiver lá, o equipamento está ativo).
 
--   **Invisível** (olho riscado) : Significa que o equipamento está invisível
-    (se não houver, o equipamento estará visível).
+-   **Invisível** (olho cruzado) : Significa que o equipamento está invisível
+    (se não estiver lá, o equipamento é visível).
 
--   **Link externo** (quadrado com seta) : Permite abrir em um
+-   **Link externo** (quadrado com flecha) : Permite abrir em um
     nova aba a página de configuração do equipamento.
 
 -   **Configuração avançada** (roda dentada) : abre o
     janela de configuração avançada de equipamentos.
 
--   **Lista de comandos** (seta) : permite expandir a lista de
+-   **Lista de comandos** (a flecha) : permite expandir a lista de
     comandos (em fundo laranja).
 
 Se você expandir a lista de comandos, cada bloco laranja corresponderá a
@@ -98,7 +98,7 @@ Configuração avançada de equipamentos
 > nesta janela da página de configuração do equipamento em
 > clicando no botão de configuração avançada
 
-A janela de **Configuração avancée d'un équipement** permite que o
+A janela de **Configuração avançada de equipamentos** permite que o
 modificar. Primeiro, no canto superior direito, alguns botões
 disponível :
 
@@ -126,10 +126,10 @@ o equipamento e seus controles :
 
 -   **Nome** : Nome de equipamentos.
 
--   **ID logique** : Identificador de equipamento lógico (pode
+-   **ID lógico** : Identificador de equipamento lógico (pode
     estar vazio).
 
--   **ID de l'objet** : Identificador exclusivo do objeto pai (pode
+-   **Object ID** : Identificador exclusivo do objeto pai (pode
     estar vazio).
 
 -   **Data de criação** : Data de criação do equipamento.
@@ -175,7 +175,7 @@ design, bem como móvel.
 
 -   **Cor de fundo** : Marque a caixa para manter a cor de fundo
     por padrão (dependendo do **Categoria** do seu equipamento, consulte
-    **Administração → Configuração → Cores**) Se você desmarcar isso
+    **Administração → Configuração → Cores**). Se você desmarcar isso
     caixa, você pode escolher outra cor. Você também pode
     marque uma nova caixa **Transparente** fazer o
     Fundo transparente.
@@ -214,9 +214,9 @@ comandos (lado a lado no widget) ou no modo de tabela. Existe
 nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 **Mesa** :
 
--   **Número de lignes**
+-   **Número de linhas**
 
--   **Número de colonnes**
+-   **Número de Colunas**
 
 -   **Centro nas caixas** : Marque a caixa para centralizar o
     comandos nas caixas.
@@ -224,16 +224,16 @@ nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
 -   **Estilo geral de caixas (CSS)** : Permite definir o estilo
     geral no código CSS.
 
--   **Estilo mesa (CSS)** : Permite definir o estilo do
+-   **Estilo de tabela (CSS)** : Permite definir o estilo do
     apenas mesa.
 
-Abaixo para cada caixa, o **Configuração détaillée** permite que você
+Abaixo para cada caixa, o **Configuração detalhada** permite que você
 isto :
 
 -   **Caixa de texto** : Adicione texto além do comando (ou
-    sozinho, se não houver pedido na caixa).
+    sozinho, se não houver ordem na caixa).
 
--   **Caixa de estilo (CSS)** : Altere o estilo CSS específico do
+-   **Estilo do caso (CSS)** : Altere o estilo CSS específico do
     caixa (cuidado, este substitui e substitui o CSS geral
     caixas).
 
@@ -241,7 +241,7 @@ isto :
 >
 > Em uma caixa na tabela, se você quiser colocar 2 comandos, um em
 > abaixo do outro, não se esqueça de adicionar um retorno ao
-> linha após a estréia no **Configuração avancée** disso.
+> linha após a estréia no **Configuração avançada** disso.
 
 Guia Alertas 
 --------------
@@ -250,7 +250,7 @@ Esta guia fornece informações sobre a bateria do
 equipamento e definir alertas em relação a ele. Aqui estão os
 tipos de informações que podem ser encontradas :
 
--   **Tipo de piO**,
+-   **Tipo de bateria**,
 
 -   **Comentários mais recentes**,
 
@@ -268,7 +268,7 @@ por 30 minutos, então você deve colocá-lo em alerta.
 > **Dica**
 >
 > Os parâmetros globais estão em **Administração → Configuração → Logs**
-> (ou **Instalações**)
+> (onde **Instalações**)
 
 Guia de comentários 
 ------------------
@@ -315,14 +315,14 @@ Ordem :
 
 -   **ID** : Identificador exclusivo no banco de dados.
 
--   **ID logique** : Identificador lógico do comando (pode
+-   **ID lógico** : Identificador lógico do comando (pode
     estar vazio).
 
 -   **Nome** : Nome do comando.
 
--   **Tipo** : Tipo de pedido (ação ou informação).
+-   **Tipo** : Tipo de comando (ação ou informação).
 
--   **Subtipo** : Subtipo de comando (binário, digital etc.).
+-   **Subtipo** : Subtipo de comando (binário, digital etc.)).
 
 -   **URL direta** : Fornece o URL para acessar este equipamento. (clique
     (copie o endereço do link) A URL iniciará o comando para um
@@ -360,7 +360,7 @@ Você também tem três outros botões laranja embaixo :
 > **NOTA**
 >
 > Esse tipo de ação substitui comandos em todo o Jeedom
-> (cenário, interação, pedido, equipamento ...)
+> (cenário, interação, comando, equipamento.)
 
 Abaixo, você encontrará a lista de diferentes equipamentos,
 comandos, cenários ou interações que usam este comando. Um
@@ -374,17 +374,17 @@ Guia Configuração
 
 -   **Cálculo e arredondamento**
 
-    -   **Fórmula de cálculo (\#value\# PARA la valeur)** : Deixa
+    -   **Fórmula de cálculo (\#value\# por valor)** : Deixa
         faça uma operação sobre o valor do pedido antes
         Tratamento Jeedom, exemplo : ``#value# - 0.2` para entrincheirar
         0,2 (deslocamento em um sensor de temperatura).
 
-    -   **Arredondamento (decimal)** : Permite arredondar o
+    -   **Arredondado (número após ponto decimal)** : Permite arredondar o
         valor do pedido (exemplo : colocar 2 para transformar
-        16,643345 em 16,64).
+        16.643345 em 16,64).
 
--   **Tipo générique** : Permite configurar o tipo genérico do
-    comando (o Jeedom tenta encontrá-lo sozinho no modo automático).
+-   **Tipo genérico** : Permite configurar o tipo genérico do
+    (o Jeedom tenta encontrá-lo sozinho no modo automático).
     Esta informação é usada pelo aplicativo móvel.
 
 -   **Ação em valor, se** : Vamos fazer tipos de
@@ -422,7 +422,7 @@ Guia Configuração
     -   **Valor de feedback estado** : Retorna o comando para
         esse valor depois de um tempo.
 
-    -   **Tempo para indicar realimentação (min)** : Tempo antes de voltar para
+    -   **Duração antes do retorno do status (min)** : Tempo antes de voltar para
         valor acima.
 
 -   **Outro**
@@ -443,8 +443,8 @@ Guia Configuração
 
 ### Para um comando de ação : 
 
--   **Tipo générique** : Permite configurar o tipo genérico do
-    comando (o Jeedom tenta encontrá-lo sozinho no modo automático).
+-   **Tipo genérico** : Permite configurar o tipo genérico do
+    (o Jeedom tenta encontrá-lo sozinho no modo automático).
     Esta informação é usada pelo aplicativo móvel.
 
 -   **Confirmar a ação** : Marque esta caixa para o Jeedom solicitar
@@ -463,7 +463,7 @@ Guia Configuração
 Guia Alertas 
 --------------
 
-Permite definir um nível de alerta (**Aviso** onde **Perigo**) em
+Permite definir um nível de alerta (**Aviso** onde **Perigo**) en
 dependendo de certas condições. Por exemplo, se `valor> 8` para 30
 minutos, então o equipamento pode ficar em alerta **Aviso**.
 
@@ -482,7 +482,7 @@ mobile.
 
 -   **Widget** : Permite escolher o widget no dekstop ou no celular (em
     Observe que você precisa do plug-in do widget e também pode fazer isso
-    dele).
+    a partir dele).
 
 -   **Visivél** : Marque para tornar o comando visível.
 
@@ -492,11 +492,11 @@ mobile.
 -   **Imprimir o nome eo ícone** : Marque para tornar o ícone visível
     além do nome do comando.
 
--   **Envoltório forçado antes Widget** : Tick **antes le
+-   **Envoltório forçado antes Widget** : Tick **antes
     Widget** onde **após o widget** para adicionar uma quebra de linha
     antes ou depois do widget (para forçar, por exemplo, uma exibição em
     coluna de comandos de equipamentos diferentes em vez de linhas
-    por padrão)
+    Por padrão)
 
 Abaixo, encontramos parâmetros opcionais de exibição que
 pode mudar para o widget. Esses parâmetros dependem do widget em questão,
@@ -514,4 +514,4 @@ Permite modificar o código do widget apenas para o comando atual.
 > **NOTA**
 >
 > Se você deseja modificar o código, não esqueça de marcar a caixa
-> **Ativar la personnalisation du Widget**
+> **Ativar personalização do widget**

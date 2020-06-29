@@ -16,7 +16,7 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 
 -   **Sicherungen** : Ermöglicht das manuelle Starten einer Sicherung und
     sofort (nützlich, wenn Sie eine kritische Änderung vornehmen möchten.
-    Dies ermöglicht es Ihnen, zurück zu gehen). Sie haben auch eine
+    Auf diese Weise können Sie zurückkehren). Sie haben auch eine
     Schaltfläche, um eine Sicherung zu starten, ohne das Archiv an das zu senden
     Cloud (erfordert Abonnement siehe unten). Senden eines
     Cloud-Backup kann eine Weile dauern. Diese Option
@@ -39,10 +39,10 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
     älteste Backups bis unter die
     maximale Größe. Es wird jedoch mindestens eine Sicherung gespeichert.
 
-**Sicherungen Locales** 
+**Lokale Backups** 
 -----------------------
 
--   **Sicherungen disponibles** : Liste der verfügbaren Backups.
+-   **Verfügbare Backups** : Liste der verfügbaren Backups.
 
 -   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
     oben ausgewählt.
@@ -53,12 +53,12 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 -   **Senden Sie ein Backup** : Ermöglicht das Senden an die
     Speichern Sie ein Archiv auf dem Computer, den Sie
     Wird derzeit verwendet (ermöglicht beispielsweise das Wiederherstellen eines Archivs
-    zuvor bei einem neuen Jeedom oder einer Neuinstallation wiederhergestellt).
+    zuvor auf einem neuen Jeedom oder Neuinstallation wiederhergestellt).
 
 -   **Backup herunterladen** : Lass uns auf deine herunterladen
     Computer das oben ausgewählte Backup-Archiv.
 
-**Sicherungen Markt** 
+**Marktsicherungen** 
 ----------------------
 
 -   **Senden von Backups** : Weist Jeedom an, das zu senden
@@ -68,20 +68,20 @@ oder Wiederherstellung), wenn Sie eine gestartet haben.
 -   **Senden Sie ein Backup** : Ermöglicht das Senden eines
     Sicherungsarchiv auf Ihrem Computer.
 
--   **Sicherungen disponibles** : Liste der Backups
+-   **Verfügbare Backups** : Liste der Backups
     Cloud verfügbar.
 
 -   **Backup wiederherstellen** : Startet die Wiederherstellung von a
     Cloud-Backup.
 
-**Sicherungen Samba** 
+**Samba-Backups** 
 ---------------------
 
 -   **Senden von Backups** : Weist Jeedom an, das zu senden
     Backups auf der hier konfigurierten Samba-Freigabe
     Administration → Konfiguration → Registerkarte Updates.
 
--   **Sicherungen disponibles** : Liste der Backups
+-   **Verfügbare Backups** : Liste der Backups
     Samba verfügbar.
 
 -   **Backup wiederherstellen** : Startet die Wiederherstellung der Sicherung
@@ -97,7 +97,7 @@ Was ist gespeichert ?
 
 Während einer Sicherung sichert Jeedom alle seine Dateien und die
 Datenbank. Dies enthält daher Ihre gesamte Konfiguration
-(Ausrüstung, Bestellungen, Geschichte, Szenarien, Design usw.).
+(Ausrüstung, Steuerung, Verlauf, Szenarien, Design usw.).
 
 In Bezug auf Protokolle ist nur die Z-Wave (OpenZwave) ein bisschen
 anders, weil es nicht möglich ist, die Einschlüsse zu speichern.

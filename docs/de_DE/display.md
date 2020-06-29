@@ -12,10 +12,10 @@ Diese Seite ist zugänglich von **Extras → Zusammenfassung der Hausautomation*
 Der obere Rand der Seite 
 ------------------
 
-Oben auf der Seite finden wir : \.* **Anzahl d'objets** : Nombre
+Oben auf der Seite finden wir : \.* **Anzahl der Objekte** : Nombre
 Gesamtzahl der in unserem Jeedom konfigurierten Objekte, wobei die Elemente gezählt werden
-Inaktiv. \* **Anzahl Ausrüstungs** : Das Gleiche gilt für die Ausrüstung. \*
-**Anzahl de Befehle** : Das Gleiche gilt für Bestellungen. \* **Inaktiv** :
+Inaktiv. \* **Anzahl der Ausrüstungen** : Das Gleiche gilt für die Ausrüstung. \*
+**Anzahl der Bestellungen** : Das Gleiche gilt für Bestellungen. \* **Inaktiv** :
 Aktivieren Sie dieses Kontrollkästchen, wenn die inaktiven Elemente korrekt sein sollen
 auf dieser Seite angezeigt. \* **Suche** : Suche nach a
 bestimmtes Element. Es kann der Name eines Geräts sein, eine Bestellung
@@ -57,7 +57,7 @@ Die Ausrüstungen
 Auf jeder Ausrüstung finden wir :
 
 -   Ein **Kontrollkästchen** um die Ausrüstung auszuwählen (Sie können
-    mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist
+    Wählen Sie mehrere). Wenn mindestens ein Gerät ausgewählt ist
     Sie haben Aktionsschaltflächen, die oben links angezeigt werden
     für **Entfernen**, make **sichtbar**/.**unsichtbar**,
     **Aktiva**/.**Inaktiv** ausgewählte Ausrüstung.
@@ -68,10 +68,10 @@ Auf jeder Ausrüstung finden wir :
     es gehört.
 
 -   **Inaktiv** (kleines Kreuz) : Bedeutet, dass das Gerät inaktiv ist
-    (Wenn es nicht da ist, ist das Gerät aktiv).
+    (Ist dies nicht der Fall, ist das Gerät aktiv).
 
--   **Unsichtbar** (durchgestrichenes Auge) : Bedeutet, dass das Gerät unsichtbar ist
-    (falls nicht vorhanden, ist das Gerät sichtbar).
+-   **Unsichtbar** (gekreuztes Auge) : Bedeutet, dass das Gerät unsichtbar ist
+    (Ist dies nicht der Fall, ist das Gerät sichtbar).
 
 -   **Externer Link** (Quadrat mit Pfeil) : Lass uns in a öffnen
     Neue Registerkarte der Gerätekonfigurationsseite.
@@ -79,7 +79,7 @@ Auf jeder Ausrüstung finden wir :
 -   **Erweiterte Konfiguration** (Zahnrad) : öffnet die
     Fenster zur erweiterten Gerätekonfiguration.
 
--   **Liste der Befehle** (Pfeil) : ermöglicht es Ihnen, die Liste von zu erweitern
+-   **Liste der Befehle** (der Pfeil) : ermöglicht es Ihnen, die Liste von zu erweitern
     Befehle (auf orangefarbenem Hintergrund).
 
 Wenn Sie die Befehlsliste erweitern, entspricht jeder orangefarbene Block
@@ -98,7 +98,7 @@ Erweiterte Gerätekonfiguration
 > dieses Fenster von der Gerätekonfigurationsseite in
 > Klicken Sie auf die Schaltfläche Erweiterte Konfiguration
 
-Das Fenster von **Konfiguration avancée d'un équipement** ermöglicht die
+Das Fenster von **Erweiterte Gerätekonfiguration** ermöglicht die
 ändern. Zuerst oben rechts einige Schaltflächen
 verfügbar :
 
@@ -126,19 +126,19 @@ die Ausrüstung und ihre Kontrollen :
 
 -   **Name** : Name der Ausrüstung.
 
--   **Identifikation logique** : Kennung der logischen Ausrüstung (can
+-   **Logische ID** : Kennung der logischen Ausrüstung (can
     leer sein).
 
--   **Identifikation de l'objet** : Eindeutige Kennung des übergeordneten Objekts (can
+-   **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (can
     leer sein).
 
 -   **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
 
 -   **Activate** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (nicht vergessen
-    zu speichern).
+    speichern).
 
 -   **Sichtbar** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (ohne
-    vergessen zu speichern).
+    vergiss zu speichern).
 
 -   **Typ** : Kennung des Plugins, mit dem es erstellt wurde.
 
@@ -214,34 +214,34 @@ Befehle (nebeneinander im Widget) oder im Tabellenmodus. Es gibt
 Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
 **Tabelle** :
 
--   **Anzahl de lignes**
+-   **Anzahl der Zeilen**
 
--   **Anzahl de colonnes**
+-   **Anzahl der Spalten**
 
 -   **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen, um das zu zentrieren
     Befehle in den Feldern.
 
--   **Allgemeiner Boxstil (CSS)** : Ermöglicht das Definieren des Stils
+-   **Allgemeiner Boxstil (CSS))** : Ermöglicht das Definieren des Stils
     Allgemein im CSS-Code.
 
 -   **Tabellenstil (CSS)** : Hier können Sie den Stil des definieren
     nur Tisch.
 
-Unten für jede Box die **Konfiguration détaillée** erlaubt dir
+Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
 diese :
 
 -   **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder
-    allein, wenn keine Bestellung in der Box ist).
+    ganz alleine, wenn keine Bestellung in der Box ist).
 
--   **Box-Stil (CSS)** : Ändern Sie den spezifischen CSS-Stil des
+-   **Fallstil (CSS)** : Ändern Sie den spezifischen CSS-Stil des
     box (Vorsicht, dies überschreibt und ersetzt das allgemeine CSS
-    Kisten).
+    Boxen).
 
 > **Spitze**
 >
 > Wenn Sie in einem Feld in der Tabelle zwei Befehle eingeben möchten, geben Sie einen ein
 > Vergessen Sie nicht, unter dem anderen eine Rückgabe hinzuzufügen
-> Linie nach der Premiere in der **Konfiguration avancée** davon.
+> Linie nach der Premiere in der **Erweiterte Konfiguration** davon.
 
 Registerkarte &quot;Warnungen&quot; 
 --------------
@@ -250,12 +250,12 @@ Diese Registerkarte enthält Informationen zur Batterie von
 die Ausrüstung und definieren Warnungen in Bezug darauf. Hier sind die
 Arten von Informationen, die gefunden werden können :
 
--   **Typ de piDie**,
+-   **Batterietyp**,
 
 -   **Neuestes Feedback**,
 
--   **Verbleibendes Niveau**, (wenn natürlich Ihre Ausrüstung funktioniert
-    auf Batterie).
+-   **Verbleibendes Niveau**, (wenn natürlich deine Ausrüstung funktioniert
+    batteriebetrieben).
 
 Im Folgenden können Sie auch bestimmte Alarmschwellenwerte für definieren
 Batterie für dieses Gerät. Wenn Sie die Kästchen leer lassen, sind dies
@@ -274,7 +274,7 @@ Registerkarte &quot;Kommentar&quot;
 ------------------
 
 Ermöglicht das Schreiben eines Kommentars zur Ausrüstung (Datum von
-Batteriewechsel zum Beispiel).
+zum Beispiel die Batterie wechseln).
 
 Erweiterte Konfiguration einer Bestellung 
 ====================================
@@ -315,14 +315,14 @@ bestellen :
 
 -   **Identifikation** : Eindeutiger Bezeichner in der Datenbank.
 
--   **Identifikation logique** : Logische Kennung des Befehls (can
+-   **Logische ID** : Logische Kennung des Befehls (can
     leer sein).
 
 -   **Name** : Name der Bestellung.
 
--   **Typ** : Art der Bestellung (Aktion oder Info).
+-   **Typ** : Art des Befehls (Aktion oder Info).
 
--   **Unterart** : Befehlssubtyp (binär, digital usw.).
+-   **Unterart** : Befehlssubtyp (binär, digital usw.)).
 
 -   **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (klicken
     rechts, kopiere die Linkadresse) Die URL startet den Befehl für a
@@ -360,7 +360,7 @@ Sie haben auch drei andere orangefarbene Knöpfe darunter :
 > **Notiz**
 >
 > Diese Art von Aktion ersetzt Befehle in ganz Jeedom
-> (Szenario, Interaktion, Reihenfolge, Ausrüstung….)
+> (Szenario, Interaktion, Befehl, Ausrüstung….)
 
 Nachfolgend finden Sie die Liste der verschiedenen Geräte,
 Befehle, Szenarien oder Interaktionen, die diesen Befehl verwenden. ein
@@ -374,7 +374,7 @@ Registerkarte Konfiguration
 
 -   **Berechnung und Rundung**
 
-    -   **Berechnungsformel (\#value\.# für la valeur)** : Ermöglicht
+    -   **Berechnungsformel (\#value\.# für Wert)** : Ermöglicht
         Machen Sie eine Operation mit dem Wert der Bestellung vor
         Jeedom Behandlung, Beispiel : ``#value# - 0.2` zu verschanzen
         0,2 (Offset an einem Temperatursensor).
@@ -383,7 +383,7 @@ Registerkarte Konfiguration
         Bestellwert (Beispiel : setze 2 um zu transformieren
         16.643345 in 16.64).
 
--   **Typ générique** : Ermöglicht die Konfiguration des generischen Typs von
+-   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
@@ -422,7 +422,7 @@ Registerkarte Konfiguration
     -   **Statusrückgabewert** : Gibt den Befehl an zurück
         dieser Wert nach einer Weile.
 
-    -   **Dauer vor Statusrückgabe (min)** : Zeit vor der Rückkehr zu
+    -   **Dauer vor Rückkehr des Status (min)** : Zeit vor der Rückkehr zu
         Wert oben.
 
 -   **Andere**
@@ -439,11 +439,11 @@ Registerkarte Konfiguration
         folgende : ``#value#"für den Wert der Bestellung"#cmd_name#``
         für den Namen des Befehls `#cmd_id#`für die eindeutige Kennung
         des Befehls, `#humanname#`für den vollständigen Namen des Befehls
-        (zB : ``#[SalDie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts
+        (ex : ``#[SalDie de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts
 
 ### Für einen Aktionsbefehl : 
 
--   **Typ générique** : Ermöglicht die Konfiguration des generischen Typs von
+-   **Generischer Typ** : Ermöglicht die Konfiguration des generischen Typs von
     Befehl (Jeedom versucht, es im Auto-Modus selbst zu finden).
     Diese Informationen werden von der mobilen Anwendung verwendet.
 
@@ -463,7 +463,7 @@ Registerkarte Konfiguration
 Registerkarte &quot;Warnungen&quot; 
 --------------
 
-Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Gefahr**) in
+Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Gefahr**) en
 abhängig von bestimmten Bedingungen. Zum Beispiel, wenn &quot;Wert&gt; 8&quot; für 30
 Minuten dann kann das Gerät in Alarmbereitschaft gehen **Warnung**.
 
@@ -492,11 +492,11 @@ mobile.
 -   **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol sichtbar zu machen
     zusätzlich zum Namen des Befehls.
 
--   **Umbrochene Zeile vor dem Widget** : Wählen **vor le
+-   **Umbrochene Zeile vor dem Widget** : Wählen **vorher
     Widget** oder **nach dem Widget** Zeilenumbruch hinzufügen
     vor oder nach dem Widget (um beispielsweise eine Anzeige in zu erzwingen
     Spalte mit verschiedenen Gerätebefehlen anstelle von Zeilen
-    standardmäßig)
+    Standard)
 
 Unten finden wir optionale Anzeigeparameter, die wir
 kann zum Widget wechseln. Diese Parameter hängen vom jeweiligen Widget ab,
@@ -514,4 +514,4 @@ Ermöglicht das Ändern des Widget-Codes nur für den aktuellen Befehl.
 > **Notiz**
 >
 > Wenn Sie den Code ändern möchten, vergessen Sie nicht, das Kontrollkästchen zu aktivieren
-> **Activate la personnalisation du Widget**
+> **Aktivieren Sie die Widget-Anpassung**

@@ -8,14 +8,14 @@ General
 
 En esta pestaña encontramos información general sobre Jeedom :
 
--   **Apellido de tu libertad** : Identifica tu Jeedom,
+-   **Nombre de tu Jeedom** : Identifica tu Jeedom,
     especialmente en el mercado. Se puede reutilizar en escenarios
     o identificar una copia de seguridad.
 
 -   **Sistema** : Tipo de hardware en el que está instalado el sistema donde
     tu Jeedom está girando.
 
--   **Clave d'installation** : Llave de hardware de su Jeedom en
+-   **Clave de instalación** : Llave de hardware de su Jeedom en
     el mercado. Si su Jeedom no aparece en la lista de su
     Jeedom en el mercado, es recomendable hacer clic en el botón
     **Restablecer**.
@@ -35,7 +35,7 @@ En esta pestaña encontramos información general sobre Jeedom :
 
 -   **Servidor horario opcional** : Indica qué servidor horario debe
     ser usado si haces clic **Sincronización forzada de
-    tiempo**. (para reservar para expertos)
+    tiempo**. (ser reservado para expertos)
 
 -   **Omitir verificación de tiempo** : le dice a Jeedom que no
     verificar si el tiempo es consistente entre sí mismo y el sistema encendido
@@ -110,7 +110,7 @@ LDAP
 
 -   **DN base** : DN base de su AD
 
--   **Apellido d'utilisateur** : nombre de usuario para que Jeedom
+-   **Nombre del usuario** : nombre de usuario para que Jeedom
     conectarse a AD
 
 -   **Contraseña** : contraseña para que Jeedom se conecte a AD
@@ -123,12 +123,12 @@ LDAP
     grupos por ejemplo)
 
 -   **Permitir REMOTO\_USER** : Active REMOTE\_USER (usado en SSO
-    por ejemplo)
+    Por ejemplo)
 
 Acceder 
 ---------
 
--   **Número d'échecs tolérés** : establece el número de intentos
+-   **Número de fallas toleradas** : establece el número de intentos
     permitido antes de prohibir la IP
 
 -   **Tiempo máximo entre fallas (en segundos)** : tiempo maximo
@@ -152,8 +152,8 @@ Redes
 Es absolutamente necesario configurar correctamente esta parte importante de
 Jeedom, de lo contrario, muchos complementos pueden no funcionar. Él
 Es posible acceder a Jeedom de dos maneras diferentes : L'**acceso
-interna** (de la misma red local que Jeedom) y l'**acceso
-externo** (desde otra red, en particular desde Internet).
+interne** (de la misma red local que Jeedom) y l'**acceso
+externe** (de otra red, especialmente de Internet).
 
 > **Importante**
 >
@@ -175,7 +175,7 @@ externo** (desde otra red, en particular desde Internet).
 
     -   **Protocolo** : el protocolo a usar, a menudo HTTP
 
-    -   **Dirección URL ou IP** : Jeedom IP para entrar
+    -   **URL o dirección IP** : Jeedom IP para entrar
 
     -   **Puerto** : el puerto de la interfaz web de Jeedom, generalmente 80.
         Tenga en cuenta que cambiar el puerto aquí no cambia el puerto real de
@@ -193,7 +193,7 @@ externo** (desde otra red, en particular desde Internet).
 
     -   **Protocolo** : protocolo utilizado para acceso al exterior
 
-    -   **Dirección URL ou IP** : IP externa, si es fija. por lo demás,
+    -   **URL o dirección IP** : IP externa, si es fija. por lo demás,
         proporcione la URL que apunta a la dirección IP externa de su red.
 
     -   **Complementar** : el fragmento de URL adicional (ejemplo
@@ -212,12 +212,12 @@ externo** (desde otra red, en particular desde Internet).
 > su navegador de Internet, si necesita agregar / jeedom (u otro
 > cosa) después de la IP.
 
--   **Administración avancée** : Esta parte puede no aparecer, en
+-   **Gestión avanzada** : Esta parte puede no aparecer, en
     dependiendo de la compatibilidad con su hardware. Encontraras alli
     la lista de sus interfaces de red. Puedes decirle a Jeedom
     no monitorear la red haciendo clic en **desactivar el
-    gestión de red por Jeedom** (compruebe si Jeedom no está conectado a
-    sin red). También puede especificar el rango de ip local en la forma 192.168.1.* (para usarse solo en instalaciones de tipo acoplable)
+    gestión de red por Jeedom** (comprobar si Jeedom no está conectado a
+    sin red). También puede especificar el rango de ip local en la forma 192.168.1.* (para ser utilizado solo en instalaciones de tipo acoplable)
 
 -   **Mercado proxy** : permite el acceso remoto a su Jeedom sin tener
     necesita un DNS, una IP fija o para abrir los puertos de su caja
@@ -249,7 +249,7 @@ versión de escritorio y móvil. Entonces podemos cambiar :
 -   el color de fondo de los widgets,
 
 -   el color del comando cuando el widget es del tipo gradual (para
-    luces, persianas, temperaturas).
+    ejemplo luces, persianas, temperaturas).
 
 Al hacer clic en el color, se abre una ventana que le permite elegir su
 color. La cruz al lado del color vuelve al parámetro
@@ -289,9 +289,9 @@ Histórico
     poner menos de una hora.
 
 -   **Retraso antes de archivar (en horas)** : Indica el retraso antes
-    Jeedom no archiva datos (24h por defecto). Es decir, el
+    Jeedom no archiva datos (24 horas por defecto). Es decir, el
     los datos históricos deben tener más de 24 horas para ser archivados
-    (como recordatorio, el archivo promediará o tomará el máximo
+    (como recordatorio, el archivo será promedio o tomará el máximo
     o el mínimo de los datos durante un período que corresponde a la
     tamaño del paquete).
 
@@ -321,17 +321,17 @@ Histórico
 > calcular estas estadísticas. El método de cálculo de tendencia se basa
 > en el cálculo de mínimos cuadrados (ver
 > [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> para más detalles).
+> para el detalle).
 
 Empuje 
 ----
 
-**URL de push globale** : permite agregar una URL para llamar en caso de
+**URL de inserción global** : permite agregar una URL para llamar en caso de
 orden de actualización. Puedes usar las siguientes etiquetas :
 **\#value\#** por el valor del pedido, **\#cmd\_name\#** para el
 nombre del comando, **\#cmd\_id\#** para el identificador único de la
 commande, **\#humanname\#** para el nombre completo de la orden (ej :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#`para el nombre del equipo
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), ``#eq_name#`para el nombre del equipo
 
 Cubierta 
 =====
@@ -348,7 +348,7 @@ Permite monitorear y actuar en el caché Jeedom :
 
 -   **Tiempo de pausa para encuestas largas** : Con que frecuencia
     Jeedom comprueba si hay eventos pendientes para los clientes
-    (interfaz web, aplicación móvil, etc.). Cuanto más corto esta vez, más
+    (interfaz web, aplicación móvil). Cuanto más corto esta vez, más
     la interfaz se actualizará rápidamente, a cambio esto
     usa más recursos y, por lo tanto, puede ralentizar a Jeedom.
 
@@ -408,7 +408,7 @@ Interacción automática, contextual y advertencia
 -   La **interacciones contextuales** permitirte encadenar
     múltiples solicitudes sin repetir todo, por ejemplo :
 
-    -   *Jeedom gardant le contexte :*
+    -   *Jeedom manteniendo el contexto :*
 
         -   *Vosotras* : Cuanto esta el en el cuarto ?
 
@@ -431,7 +431,7 @@ Interacción automática, contextual y advertencia
     -   *Vosotras* : Notificarme si la temperatura de la sala supera los 25 ° C ?
 
     -   *Jeedom* : OK (* Tan pronto como la temperatura de la sala supere los 25 ° C,
-        Jeedom te lo dirá, solo una vez *)
+        Jeedom te dirá, solo una vez*)
 
 > **Nota**
 >
@@ -462,15 +462,15 @@ Aquí están las diferentes opciones disponibles :
 
 -   **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la
     la oración comienza con esta (s) palabra (s) y luego Jeedom intentará hacer una
-    tipo de interacción **Avísame** (puedes poner múltiples
+    tipo de interacción **Avísame** (puedes poner multiples
     palabras separadas por **;** ).
 
 -   **Comando de retorno predeterminado** : Comando de retorno predeterminado
-    para una interacción tipo **Avísame** (usado, en particular,
+    para una interacción tipo **Avísame** (utilizado, en particular,
     si ha programado la alerta a través de la interfaz móvil)
 
 -   **Sinónimo de objetos** : Lista de sinónimos para objetos
-    (por ejemplo, : rdc|planta baja|bajo tierra|bajo; sdb|cuarto de baño).
+    (ex : rdc|planta baja|bajo tierra|bajo; sdb|Cuarto de baño).
 
 -   **Sinónimo de equipamiento** : Lista de sinónimos para
     los equipos.
@@ -482,7 +482,7 @@ Aquí están las diferentes opciones disponibles :
 
 -   **Sinónimo de comando de control deslizante máximo** : Sinónimo de poner un
     comando de tipo de control deslizante máximo (por ejemplo, se abre para abrir el obturador
-    la habitación ⇒ 100% de la persiana de la habitación).
+    la habitación ⇒ 100% de persiana).
 
 -   **Sinónimo de comando mínimo de control deslizante** : Sinónimo de poner un
     comando de tipo deslizador como mínimo (por ejemplo, se cierra para cerrar el obturador
@@ -524,7 +524,7 @@ equipos, objetos, etc.
 -   **Profundidad para escenarios** : Se usa para definir cuándo
     mostrando un gráfico de enlaces de un escenario, el número
     Número máximo de elementos para mostrar (cuantos más elementos, mayor será
-    cuanto más lento será generar y más difícil será leer).
+    el gráfico será lento de generar y cuanto más difícil será leer).
 
 -   **Profundidad para objetos** : Lo mismo para los objetos.
 
@@ -557,7 +557,7 @@ objetos :
     -   **Promedio** : valores promedio,
 
     -   **Texto** : mostrar el valor literalmente (especialmente para aquellos
-        tipo de cadena).
+        de tipo de cadena).
 
 -   **Icono** : Ícono de resumen.
 
@@ -573,7 +573,7 @@ objetos :
 -   **Mostrar si el valor es 0** : Marque esta casilla para mostrar el
     valor, incluso cuando es 0.
 
--   **Laier para un virtuel** : Comienza a crear pedidos virtuales
+-   **Enlace a un virtual** : Comienza a crear pedidos virtuales
     teniendo por valor los del resumen.
 
 -   **Eliminar resumen** : El último botón, en el extremo derecho, permite
@@ -585,7 +585,7 @@ Troncos
 Línea de tiempo 
 --------
 
--   **Número maximum d'évènements** : Establece el número máximo en
+-   **Numero maximo de eventos** : Establece el número máximo en
     mostrar en la línea de tiempo.
 
 -   **Eliminar todos los eventos** : Vaciar la línea de tiempo de
@@ -642,12 +642,12 @@ Registro
 ---
 
 -   **Motor de registro** : Le permite cambiar el motor de registro para
-    ejemplo, envíelos a un demonio syslog (d).
+    ejemplo, envíalos a un demonio syslog (d).
 
 -   **Formato de registro** : Formato de registro a utilizar (Precaución : ça
-    no afecta los registros de demonios).
+    no afecta los registros de daemon).
 
--   **Número de lignes maximum dans un fichier de log** : Define el
+-   **Número máximo de líneas en un archivo de registro** : Define el
     número máximo de líneas en un archivo de registro. Se recomienda
     no tocar este valor, porque un valor demasiado grande podría
     llenar el sistema de archivos y / o dejar a Jeedom incapaz
@@ -664,7 +664,7 @@ plugins.
 Comodidades 
 ===========
 
--   **Número d'échecs avant désactivation de l'équipement** : Nombre
+-   **Número de fallas antes de la desactivación del equipo** : Nombre
     falla de comunicación con el equipo antes de la desactivación de
     este (un mensaje te avisará si esto sucede).
 
@@ -704,10 +704,10 @@ Depósito utilizado para conectar Jeedom a Github.
 
 -   **Simbólico** : Token para acceder al depósito privado.
 
--   **Usuario ou organisation du dépôt para el core Jeedom** : Nom
+-   **Usuario u organización del repositorio principal de Jeedom** : Nom
     el usuario o la organización en github para el núcleo.
 
--   **Apellido du dépôt para el core Jeedom** : Nombre del repositorio para core.
+-   **Nombre del repositorio para el núcleo Jeedom** : Nombre del repositorio para core.
 
 -   **Industria central de Jeedom** : Rama del repositorio central.
 
@@ -719,11 +719,11 @@ rechazado si utiliza un depósito diferente a este.
 
 -   **Dirección** : Dirección del mercado.
 
--   **Apellido d'utilisateur** : Su nombre de usuario en el mercado.
+-   **Nombre del usuario** : Su nombre de usuario en el mercado.
 
 -   **Contraseña** : Tu contraseña de mercado.
 
--   **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre ellos)
+-   **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de que se estrelle entre ellos))
 
 -   **[Copia de seguridad de la nube] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella no podrás restaurar tu Jeedom
 
@@ -786,12 +786,12 @@ una parte de Samba (ex : NAS Synology).
 > Jeedom debería ser el único en escribir en esta carpeta y debería estar vacío
 > de forma predeterminada (es decir, antes de configurar y enviar el
 > primera copia de seguridad, la carpeta no debe contener ningún archivo o
-> carpetas).
+> dossier).
 
 ### URL 
 
--   **URL core Jeedom**
+-   **URL central de Jeedom**
 
--   **URL version core Jeedom**
+-   **URL de la versión principal de Jeedom**
 
 

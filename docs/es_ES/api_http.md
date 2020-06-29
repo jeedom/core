@@ -41,7 +41,7 @@ Aquí está la URL =
 -   **etiquetas** \ [Opcional \] : si la acción es &quot;inicio&quot;, puede omitir
     etiquetas para el escenario (ver documentación sobre escenarios) en
     las etiquetas de formulario = toto% 3D1% 20tata% 3D2 (tenga en cuenta que% 20 corresponde a un
-    espacio y% 3D a =)
+    espacio y% 3D a = )
 
 Comando de información / acción 
 ====================
@@ -99,14 +99,14 @@ Aquí está la URL =
 -   **categoría** : categoría de mensaje para agregar al centro de mensajes
 
 -   **Mensaje** : mensaje en cuestión, tenga cuidado de pensar en la codificación
-    el mensaje (el espacio se convierte en% 20, =% 3D ...). Puedes usar un
+    el mensaje (el espacio se convierte en% 20, =% 3D). Puedes usar un
     outil, [aquí](https://meyerweb.com/eric/tools/dencoder/)
 
 Objeto 
 =====
 
 Aquí está la URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = objeto)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
 
 Devuelve en json la lista de todos los objetos Jeedom
 
@@ -132,7 +132,7 @@ Datos completos
 =========
 
 Aquí está la URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
 
 Devuelve todos los objetos, equipos, comandos (y su valor si esto
 son informaciones) en json
@@ -141,7 +141,7 @@ Variable
 ========
 
 Aquí está la URL =
-[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#& value =)*Valor*
+[http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*Valor*
 
 -   **nombre** : nombre de la variable cuyo valor se desea (lectura de
     el valor)

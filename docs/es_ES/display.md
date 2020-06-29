@@ -12,10 +12,10 @@ Esta página es accesible por **Herramientas → Resumen de domótica**.
 La parte superior de la página 
 ------------------
 
-En la parte superior de la página, encontramos : \* **Número d'objets** : Nombre
+En la parte superior de la página, encontramos : \* **Numero de objetos** : Nombre
 total de objetos configurados en nuestro Jeedom, contando los elementos
-Inactivo. \* **Número equipos** : Lo mismo para el equipo. \*
-**Número de comandos** : Lo mismo para los pedidos. \* **Inactivo** :
+Inactivo. \* **Numero de equipos** : Lo mismo para el equipo. \*
+**Numero de ordenes** : Lo mismo para los pedidos. \* **Inactivo** :
 Marque esta casilla si desea que los elementos inactivos estén bien
 se muestra en esta página. \* **Buscar** : Busque un
 elemento particular. Puede ser el nombre de un equipo, un pedido
@@ -67,10 +67,10 @@ En cada equipo encontramos :
 -   La **tipo** equipo : Identificador del complemento al que
     pertenece.
 
--   **Inactivo** (cruz pequeña) : Significa que el equipo está inactivo
+-   **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo
     (si no está allí, el equipo está activo).
 
--   **Invisible** (ojo tachado) : Significa que el equipo es invisible
+-   **Invisible** (ojo cruzado) : Significa que el equipo es invisible
     (si no está allí, el equipo es visible).
 
 -   **Enlace externo** (cuadrado con flecha) : Vamos a abrir en un
@@ -98,7 +98,7 @@ Configuración avanzada de equipos
 > esta ventana desde la página de configuración del equipo en
 > haciendo clic en el botón de configuración avanzada
 
-La ventana de **configuración avancée d'un équipement** permite el
+La ventana de **Configuración avanzada de equipos** permite el
 Editar. Primero, arriba a la derecha, algunos botones
 disponible :
 
@@ -126,16 +126,16 @@ el equipo y sus controles :
 
 -   **Apellido** : Nombre del equipo.
 
--   **Identificación logique** : Identificador de equipo lógico (puede
+-   **ID lógica** : Identificador de equipo lógico (puede
     estar vacío).
 
--   **Identificación de l'objet** : Identificador único del objeto padre (puede
+-   **ID de objeto** : Identificador único del objeto padre (puede
     estar vacío).
 
 -   **Fecha de creación** : Fecha de creación del equipo.
 
 -   **Activar** : Marque la casilla para activar el equipo (no olvide
-    para guardar).
+    ahorrar).
 
 -   **Visible** : Marque la casilla para hacer visible el equipo (sin
     olvida guardar).
@@ -214,9 +214,9 @@ comandos (uno al lado del otro) o en modo tabla. No hay
 nada que configurar en modo predeterminado. Aquí están las opciones disponibles en modo
 **Mesa** :
 
--   **Número de lignes**
+-   **Numero de lineas**
 
--   **Número de colonnes**
+-   **Numero de columnas**
 
 -   **Centro en cajas** : Marque la casilla para centrar el
     comandos en las cajas.
@@ -227,13 +227,13 @@ nada que configurar en modo predeterminado. Aquí están las opciones disponible
 -   **Estilo de tabla (CSS)** : Le permite definir el estilo de
     solo mesa.
 
-A continuación para cada cuadro, el **configuración détaillée** te permite
+A continuación para cada cuadro, el **configuración detallada** te permite
 este :
 
 -   **Cuadro de texto** : Agregue texto además del comando (o
     solo, si no hay orden en la caja).
 
--   **Estilo de caja (CSS)** : Cambiar el estilo CSS específico de la
+-   **Estilo de caso (CSS)** : Cambiar el estilo CSS específico de la
     cuadro (cuidado, esto sobrescribe y reemplaza el CSS general
     cajas).
 
@@ -241,7 +241,7 @@ este :
 >
 > En un cuadro en la tabla, si desea poner 2 comandos uno en
 > debajo del otro, no olvide agregar un retorno al
-> línea después del estreno en el **configuración avancée** del mismo.
+> línea después del estreno en el **Configuración avanzada** del mismo.
 
 Pestaña Alertas 
 --------------
@@ -250,12 +250,12 @@ Esta pestaña proporciona información sobre la batería de
 el equipo y definir alertas en relación con él. He aquí los
 tipos de información que se pueden encontrar :
 
--   **Tipo de piLa**,
+-   **Tipo de batería**,
 
 -   **Últimos comentarios**,
 
--   **Nivel restante**, (si, por supuesto, su equipo funciona
-    en batería).
+-   **Nivel restante**, (si por supuesto su equipo funciona
+    en la batería).
 
 A continuación, también puede definir umbrales de alerta específicos para
 batería para este equipo. Si dejas las cajas vacías, esas son
@@ -274,7 +274,7 @@ Pestaña de comentarios
 ------------------
 
 Le permite escribir un comentario sobre el equipo (fecha de
-cambiando la batería, por ejemplo).
+cambiar la batería, por ejemplo).
 
 Configuración avanzada de un pedido 
 ====================================
@@ -315,14 +315,14 @@ orden :
 
 -   **Identificación** : Identificador único en la base de datos.
 
--   **Identificación logique** : Identificador lógico del comando (puede
+-   **ID lógica** : Identificador lógico del comando (puede
     estar vacío).
 
 -   **Apellido** : Nombre de la orden.
 
--   **Tipo** : Tipo de orden (acción o información).
+-   **Tipo** : Tipo de comando (acción o información).
 
--   **Subtipo** : Subtipo de comando (binario, digital, etc.).
+-   **Subtipo** : Subtipo de comando (binario, digital, etc.)).
 
 -   **URL directa** : Proporciona la URL para acceder a este equipo. (haga clic
     derecha, copie la dirección del enlace) La URL iniciará el comando para un
@@ -360,7 +360,7 @@ También tienes otros tres botones naranjas debajo :
 > **Nota**
 >
 > Este tipo de acción reemplaza los comandos en todo Jeedom
-> (escenario, interacción, orden, equipamiento ...)
+> (escenario, interacción, comando, equipamiento.)
 
 A continuación, encontrará la lista de diferentes equipos,
 comandos, escenarios o interacciones que usan este comando. una
@@ -374,7 +374,7 @@ Pestaña de configuración
 
 -   **Cálculo y redondeo**
 
-    -   **Fórmula de cálculo (\#value\# para la valeur)** : Permite
+    -   **Fórmula de cálculo (\#value\# por valor)** : Permite
         realizar una operación sobre el valor del pedido antes
         Tratamiento de Jeedom, ejemplo : ``#value# - 0.2` para afianzar
         0.2 (compensación en un sensor de temperatura).
@@ -383,7 +383,7 @@ Pestaña de configuración
         valor de pedido (Ejemplo : poner 2 para transformar
         16.643345 en 16.64).
 
--   **Tipo générique** : Le permite configurar el tipo genérico de
+-   **Tipo genérico** : Le permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
     Esta información es utilizada por la aplicación móvil.
 
@@ -422,7 +422,7 @@ Pestaña de configuración
     -   **Valor de retorno de estado** : Devuelve el comando a
         este valor después de un tiempo.
 
-    -   **Duración antes del retorno de estado (min)** : Tiempo antes de regresar a
+    -   **Duración antes del retorno del estado (min)** : Tiempo antes de regresar a
         valor por encima.
 
 -   **Otro**
@@ -439,11 +439,11 @@ Pestaña de configuración
         Próximo : ``#value#`por el valor de la orden,`#cmd_name#``
         para el nombre del comando, `#cmd_id#`para el identificador único
         del comando, `#humanname#`para el nombre completo del comando
-        (por ejemplo, : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo
+        (ex : ``#[SalLa de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo
 
 ### Para un comando de acción : 
 
--   **Tipo générique** : Le permite configurar el tipo genérico de
+-   **Tipo genérico** : Le permite configurar el tipo genérico de
     comando (Jeedom intenta encontrarlo solo en modo automático).
     Esta información es utilizada por la aplicación móvil.
 
@@ -482,7 +482,7 @@ mobile.
 
 -   **Reproductor** : Le permite elegir el widget en el escritorio o en el móvil (en
     tenga en cuenta que necesita el complemento del widget y también puede hacerlo
-    de ella).
+    de eso).
 
 -   **Visible** : Marque para hacer visible el comando.
 
@@ -492,11 +492,11 @@ mobile.
 -   **Mostrar nombre e icono** : Marque para hacer visible el ícono
     además del nombre del comando.
 
--   **Línea envuelta antes del widget** : Seleccionar **antes le
+-   **Línea envuelta antes del widget** : Seleccionar **Antes de
     Reproductor** o **después del widget** para agregar un salto de línea
     antes o después del widget (para forzar, por ejemplo, una visualización en
     columna de diferentes comandos de equipo en lugar de líneas
-    por defecto)
+    Por defecto)
 
 A continuación, encontramos parámetros de visualización opcionales que
 puede cambiar a widget. Estos parámetros dependen del widget en cuestión,
@@ -514,4 +514,4 @@ Le permite modificar el código del widget solo para el comando actual.
 > **Nota**
 >
 > Si desea modificar el código, no olvide marcar la casilla
-> **Activar la personnalisation du Reproductor**
+> **Habilitar la personalización del widget**

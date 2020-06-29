@@ -64,14 +64,14 @@ página). En esta tabla, encontramos :
 
 -   **Última duración** : última vez para completar la tarea (un
     demonio siempre estará a 0s, así que no te preocupes por otras tareas
-    puede ser 0s)
+    puede estar a 0s)
 
 -   **Estatus** : estado actual de la tarea (como recordatorio, una tarea de demonio
-    todavía está &quot;ejecutado&quot;)
+    todavía está en "correr")
 
 -   **Supresión** : eliminar tarea
 
 
-# Oyente
+# Listener
 
-Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un pedido ...)
+Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un comando...)

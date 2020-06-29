@@ -50,7 +50,7 @@ Einstellungen :
 
 -   String-Schlüssel : Konfigurationswertschlüssel zum Speichern
 
--   String Plugin : (optional), Plugin des Konfigurationswertes zu
+-   String Plugin : (optional), Konfigurationswert Plugin zu
     enregistrer
 
 JSON-Ereignis-API
@@ -61,7 +61,7 @@ event::changes
 
 Gibt die Liste der Änderungen seit der im Parameter übergebenen Datum / Uhrzeit zurück
 (muss in Mikrosekunden sein). Sie haben auch in der Antwort die
-Jeedom&#39;s aktuelle Datumszeit (zur Wiederverwendung für die nächste Abfrage)
+Jeedom's aktuelle Datumszeit (wird für die nächste Abfrage wiederverwendet)
 
 Einstellungen :
 
@@ -95,7 +95,7 @@ object::full
 
 Gibt die Liste aller Objekte zurück, wobei für jedes Objekt alle seine
 Ausrüstung und für jede Ausrüstung alle ihre Befehle sowie
-Zustände dieser (für Info-Befehle)
+Zustände von diesen (für Befehle vom Typ Info)
 
 object::fullById
 ----------------
@@ -182,7 +182,7 @@ eqLogic::fullById
 -----------------
 
 Gibt Geräte und ihre Befehle sowie deren Status zurück
-(für Info-Bestellungen)
+(für Info-Befehle)
 
 Einstellungen:
 
@@ -222,7 +222,7 @@ Gibt eine Gerätetabelle gemäß den Parametern zurück. Die Rückkehr
 wird vom Formulararray sein (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒
 Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
-Array (....)) ..)
+array(…​.))..)
 
 Einstellungen:
 
@@ -239,7 +239,7 @@ Einstellungen:
 
 -   int id (leer, wenn es sich um eine Kreation handelt)
 
--   Zeichenfolge eqType\_name (Skripttyp, virtuelle Ausrüstung usw.)
+-   Zeichenfolge eqType\_name (Skripttyp, virtuelle Ausrüstung…)
 
 -   Zeichenfolgenname
 
@@ -392,7 +392,7 @@ Einstellungen:
 
 -   Zeichenfolgenwert : valeur
 
--   Zeichenfolge datetime : (optional) Wert datetime
+-   Zeichenfolge datetime : (optional) Datum / Uhrzeit-Wert
 
 JSON-Szenario-API
 =================
@@ -427,7 +427,7 @@ Ermöglicht das Importieren eines Szenarios.
 
 Einstellungen:
 
--   int id : ID des Szenarios, in das importiert werden soll (leer, wenn erstellt)
+-   int id : ID des zu importierenden Szenarios (leer bei Erstellung)
 
 -   Zeichenfolge humanName : menschlicher Name des Szenarios (leer bei Erstellung)
 
@@ -467,7 +467,7 @@ Holen Sie sich die Jeedom-Protokollliste
 
 Einstellungen:
 
--   String-Filter : (optional) Filter nach dem Namen der wiederherzustellenden Protokolle
+-   String-Filter : (optional) Filtern Sie nach dem Namen der abzurufenden Protokolle
 
 log::empty
 ----------
@@ -498,7 +498,7 @@ Ruft den Wert einer im Datenspeicher gespeicherten Variablen ab
 Einstellungen:
 
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
-    es ist Szenario)
+    Es ist ein Szenario)
 
 -   id linkId : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
@@ -513,7 +513,7 @@ Speichert den Wert einer Variablen im Datenspeicher
 Einstellungen:
 
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
-    es ist Szenario)
+    Es ist ein Szenario)
 
 -   id linkId : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
@@ -599,7 +599,7 @@ Installation / Update eines bestimmten Plugins
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::remove
 --------------
@@ -608,7 +608,7 @@ Löschen eines bestimmten Plugins
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::dependancyInfo
 ----------------------
@@ -617,7 +617,7 @@ Gibt Informationen zum Status von Plugin-Abhängigkeiten zurück
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::dependancyInstall
 -------------------------
@@ -626,7 +626,7 @@ Erzwingen Sie die Installation von Plugin-Abhängigkeiten
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::deamonInfo
 ------------------
@@ -635,7 +635,7 @@ Gibt Informationen zum Status des Plugin-Daemons zurück
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::deamonStart
 -------------------
@@ -644,7 +644,7 @@ Zwinge den Dämon zu starten
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::deamonStop
 ------------------
@@ -653,7 +653,7 @@ Dämonenstopp erzwingen
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 plugin::deamonChangeAutoMode
 ----------------------------
@@ -662,7 +662,7 @@ plugin::deamonChangeAutoMode
 
 Einstellungen:
 
--   String-Plugin\_id : Plugin Name (logischer Name)
+-   String-Plugin\_id : Plugin-Name (logischer Name)
 
 -   int-Modus : 1 für automatisch, 0 für manuell
 
@@ -691,7 +691,7 @@ update::doUpdate
 Einstellungen:
 
 -   int plugin\_id (optional) : Plugin ID
--   Zeichenfolge logische ID (optional) : Plugin Name (logischer Name)
+-   Zeichenfolge logische ID (optional) : Plugin-Name (logischer Name)
 
 JSON-Netzwerk-API
 ================
@@ -723,7 +723,7 @@ Abrufen der Objektliste :
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::all &#39;, array ())){
+if ($ jsonrpc-&gt; sendrequest ( ‚Objekt::all ', Array())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
     echo $ jsonrpc-&gt; getError ();
@@ -734,7 +734,7 @@ Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 `` `{.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'Optionen '=> Array (' Titel '=>' Kuckuck ',' Nachricht '=>' Es funktioniert ')))){
+if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' Es funktioniert')))){
     Echo &#39;OK&#39;;
 }else{
     echo $ jsonrpc-&gt; getError ();

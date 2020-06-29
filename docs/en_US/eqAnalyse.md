@@ -34,7 +34,7 @@ Modules on alert tab
 On this tab you will see in real time the modules in alert. The
 alerts can be of different types :
 
--   timeout (configured in the defined alerts tab)
+-   Timeout (configured in the defined alerts tab)
 
 -   battery in warning or in danger
 

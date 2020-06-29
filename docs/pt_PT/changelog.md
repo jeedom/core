@@ -2,11 +2,16 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Corrigido um problema ao calcular o horário do estado nos widgets se o fuso horário do Jeedom não fosse o mesmo do navegador
+
 3.3.50
 =====
 
 - Correção de um problema ao parar a versão beta do DNS
-- Melhoria do cálculo de acesso interno / externo (remoção da porta, se isso for padrão para o protocolo)
+- Melhoria do cálculo de acesso interno / externo (remoção da porta, se for padrão para o protocolo)
 
 3.3.49
 =====
@@ -16,7 +21,7 @@ Changelog
 3.3.48
 =====
 
-- Correção de bug (atualização a ser feita absolutamente se você estiver no 3.3.47)
+- Correção de bug (atualização a ser absolutamente feita se você estiver no 3.3.47)
 
 3.3.47
 =====
@@ -35,14 +40,14 @@ Changelog
 - Rotação automática da chave API de usuários administrativos a cada 3 meses. Posso desativá-lo (mas não é recomendado) no gerenciamento de usuários. Observe que esta atualização lança uma rotação de chaves de API para usuários administradores.
 - Capacidade de inserir informações globais para sua casa na administração Jeedom (posição geográfica, altitude ...) para evitar a necessidade de digitá-las novamente em plug-ins ao criar equipamentos.
 - Atualizando o repositório no smart
-- Migração para o novo sistema de backup em nuvem (o sistema antigo permanecerá ativo por 1 semana e, se necessário, você poderá solicitar a disponibilidade de backups antigos para suporte, passar esse período, o sistema antigo será excluído)
+- Migração para o novo sistema de backup em nuvem (o sistema antigo permanecerá ativo por 1 semana e, se necessário, você poderá solicitar a disponibilidade dos backups antigos para suporte, passar esse período, o sistema antigo será excluído)
 - Migração para o novo sistema de monitoramento (o sistema antigo permanecerá ativo por 1 semana, após o qual será excluído)
 
 3.3.39
 =====
 
 - Nome da variável alterado $ key para $ key2 no evento de classe
-- Limpar o código de plug-in / widget / cenário enviando para o mercado (economiza alguns segundos na exibição de plug-ins)
+- Limpar o código de plug-in / widget / cenário enviando para o mercado (economiza alguns segundos na exibição de plug-ins))
 - Correção de um aviso na função lastBetween
 - Melhor consideração dos widgets de plug-ins
 - Otimização do cálculo de integridade no swap
@@ -54,7 +59,7 @@ Changelog
 3.3.38
 =====
 
-- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G. (Importante se você usa o DNS jeedom é que você tem uma conexão 4G, verifique na caixa correspondente configure dns jeedom).
+- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G. (Importante se você usa o DNS Jeedom é que você tem uma conexão 4G, você deve verificar na configuração do DNS Jeedom a caixa correspondente).
 - Correções ortográficas.
 - Correção de segurança
 
@@ -129,7 +134,7 @@ Changelog
 =====
 
 - Correção de um erro na tradução dos dias em francês
-- Estabilidade aprimorada (reinício automático do serviço MySql e watchdog para verificar o horário na inicialização)
+- Estabilidade aprimorada (reinício automático do serviço MySql e watchdog para verificar a hora de início)
 - Correções de bugs
 - Desativando ações em pedidos ao editar designs, visualizações ou painéis
 
@@ -144,7 +149,7 @@ Changelog
 =====
 
 - Correções de bugs
-- Alternando a linha do tempo para o modo de tabela (devido a erros na lib Jeedom independente)
+- Alternando a linha do tempo para o modo de tabela (devido a erros na biblioteca Jeedom independente)
 - Adição de classes para suporte a cores no plugin mode
 
 
@@ -156,15 +161,15 @@ Changelog
 -	Correções de bugs
 -	Melhoria da janela de seleção de ícones
 -	Atualização automática da data de troca da bateria se a bateria for mais de 90% e 10% maior que o valor anterior
--	Adição de botão na administração para redefinir os direitos e iniciar uma verificação Jeedom (direita, cron, banco de dados ...)
+-	Adição de botão na administração para redefinir os direitos e iniciar uma verificação Jeedom (direita, cron, banco de dados...)
 -	Remoção de opções avançadas de visibilidade para equipamentos no painel / visualização / design / dispositivos móveis. Agora, se você deseja ver ou não o equipamento no painel / dispositivo móvel, marque ou não a caixa de visibilidade geral. Para vistas e design, basta colocar ou não o equipamento nele
 
 3.3.22
 =====
 
 - Correções de bugs
-- Substituição aprimorada de pedidos (em visualizações, plano e plan3d)
-- Corrigido um bug que poderia impedir a abertura de certos equipamentos de plug-ins (alarme ou tipo virtual)
+- Substituição aprimorada de pedidos (em visualizações, plano e plano3d)
+- Corrigido um bug que poderia impedir a abertura de certos equipamentos de plug-ins (alarme ou tipo virtual))
 
 3.3.21
 =====
@@ -175,7 +180,7 @@ Changelog
 - Exibição fixa de equipamento desativado em alguns plugins
 - Correção de um erro ao indicar troca de bateria no Jeedom
 - Exibição aprimorada de logs ao atualizar o Jeedom
-- Correção de bug durante a atualização da variável (que nem sempre iniciava os cenários ou não acionava uma atualização dos comandos em todos os casos)
+- Correção de bug ao atualizar uma variável (que nem sempre iniciava os cenários ou não acionava uma atualização dos comandos em todos os casos)
 - Corrigido um erro nos backups em nuvem ou a duplicidade não estava sendo instalada corretamente
 - Melhoria do TTS interno em Jeedom
 - Melhoria do sistema de verificação de sintaxe cron
@@ -206,17 +211,17 @@ Changelog
 =====
 
 -   Capacidade de excluir uma variável.
--   Adição de uma tela 3D (beta)
--   Redesign do sistema de backup em nuvem (backup incremental e criptografado).
+-   Adicionando uma tela 3D (beta)
+-   Redesenho do sistema de backup em nuvem (backup incremental e criptografado).
 -   Adicionando um sistema integrado de anotações (em Análise -> Nota).
--   Adição da noção de etiqueta no equipamento (pode ser encontrada na configuração avançada do equipamento).
+-   Adição da noção de tag no equipamento (pode ser encontrada na configuração avançada do equipamento).
 -   Adição de um sistema de histórico para exclusão de pedidos, equipamentos, objetos, visualização, design, design 3d, cenário e usuário.
 -   Adição da ação jeedom_reboot para iniciar uma reinicialização do Jeedom.
 -   Adicionar opção na janela de geração do cron.
 -   Uma mensagem é adicionada agora se uma expressão inválida for encontrada ao executar um cenário.
 -   Adicionando um comando nos cenários : value (order) permite ter o valor de um pedido se não for fornecido automaticamente pelo jeedom (caso ao armazenar o nome do pedido em uma variável).
 -   Adição de um botão para atualizar as mensagens do centro de mensagens.
--   Adicione na configuração da ação no valor de um comando um botão para procurar uma ação interna (cenário, pausa ...).
+-   Inclua na configuração da ação no valor de um comando um botão para procurar uma ação interna (cenário, pausa...).
 -   Adição de uma ação "Redefinir para zero do IS" nos cenários
 -   Capacidade de adicionar imagens em segundo plano nas visualizações
 -   Capacidade de adicionar imagens de plano de fundo em objetos
@@ -232,11 +237,11 @@ Changelog
 -   Adição de uma tag de ação nos cenários (consulte a documentação)
 -   Possibilidade de ter uma visualização em tela cheia adicionando "& fullscreen = 1" no URL
 -   Adição de lastCommunication nos cenários (para ter a última data de comunicação de um equipamento)
--   Atualização de gráficos em tempo real (simples, não calculados ou cronogramas)
+-   Atualização em tempo real de gráficos (simples, não calculados ou cronogramas)
 -   Capacidade de excluir um elemento da configuração do design
 -   Possibilidade de ter um relatório sobre o nível da bateria (relatório do equipamento)
 -   Agora, os widgets de cenário são exibidos por padrão no painel
--   Altere a afinação dos widgets pelas horizontais 25 a 40, vertical 5 a 20 e margem 1 a 4 (você pode redefinir os valores antigos na configuração de jeedom, guia widget)
+-   Altere o tom dos widgets pelas horizontais 25 a 40, vertical 5 a 20 e margem 1 a 4 (você pode redefinir os valores antigos na configuração de jeedom, guia widget)
 -   Possibilidade de colocar um ícone nos cenários
 -   Adição de gerenciamento de daemon no mecanismo de tarefas
 -   Adição da função color_gradient nos cenários
@@ -276,7 +281,7 @@ Changelog
 - Melhoria do processo de atualização, em particular na cópia de arquivos, que agora verifica o tamanho do arquivo copiado.
 - Correções de erros nas funções stateDuration, lastStateDuration e lastChangeStateDuration (obrigado @kiboost).
 - Otimização do cálculo do gráfico de links e uso de variáveis.
-- Melhoria da janela de detalhes da tarefa cron, que agora exibe o cenário e a ação a ser executada para tarefas doIn (obrigado @kiboost).
+- Melhoria da janela de detalhes da tarefa cron, que agora exibe o cenário, bem como a ação que será executada para as tarefas em doin (obrigado @kiboost).
 
 3.2.9
 =====
@@ -335,7 +340,7 @@ Changelog
 3.2.2.
 =====
 
--   Remoção do antigo sistema de atualização de widgets (descontinuado desde a versão 3.0). Atenção, se o seu widget não usar o novo sistema, existe o risco de mau funcionamento (duplicação neste caso). Widget de exemplo [aqui](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Remoção do antigo sistema de atualização de widgets (descontinuado desde a versão 3.0). Atenção, se o seu widget não usar o novo sistema, existe o risco de mau funcionamento (duplicação deste neste caso). Widget de exemplo [aqui](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
 -   Possibilidade de exibir os gráficos em forma de tabela ou exportá-los em csv ou xls
 
 -   Os usuários agora podem adicionar sua própria função php para cenários. Consulte a documentação dos cenários para implementação
@@ -364,7 +369,7 @@ Changelog
 -   Adição de um campo de pesquisa do usuário para conexões LDAP / AD
     (torna o Jeedom AD compatível)
 
--   Correções ortográficas (obrigado a dab0u por seu enorme trabalho)
+-   Correções ortográficas (graças a dab0u por seu enorme trabalho)
 
 -   JEED-290 : Não podemos mais nos conectar com identificadores por
     padrão (admin / admin) remotamente, somente a rede local está autorizada
@@ -438,7 +443,7 @@ Changelog
 
 -   Melhoria do sistema de atualização com uma página de notas
     versão (que você deve verificar antes de cada atualização
-    dia !!!!)
+    Dia !!!!)
 
 -   Correção de um bug que recuperou os logs durante restaurações
 
@@ -465,7 +470,7 @@ Changelog
     designs para elementos de texto / visualização / design
 
 -   Adicionando resumos de objetos no painel (lista de objetos
-    esquerda)
+    para a esquerda)
 
 -   Adicionar interações do tipo "notifique-me"
 
@@ -475,7 +480,7 @@ Changelog
     na interface Jeedom
 
 -   Possibilidade de ter gráficos de históricos de pedidos em
-    webapp (pressione e segure o comando)
+    webapp (mantendo pressionado o comando)
 
 -   Adição do andamento da atualização do aplicativo da web
 
@@ -497,7 +502,7 @@ Changelog
 -   Correção de bug no nível da bateria do equipamento
 
 -   Adição de método no núcleo para o gerenciamento de comandos mortos
-    (deve ser implementado no plug-in)
+    (deve então ser implementado no plugin)
 
 -   Possibilidade de registrar comandos de texto
 
@@ -529,7 +534,7 @@ Changelog
 
 -   Adicionando uma linha do tempo na página de histórico (atenção deve ser
     ativado em cada comando e / ou cenário que você deseja
-    veja aparecer)
+    veja apareça)
 
 -   Possibilidade de esvaziar os eventos da linha do tempo
 
@@ -549,7 +554,7 @@ Changelog
     escolhendo para cada pedido a caixa ou colocá-lo
 
 -   Capacidade de reorganizar widgets de equipamentos de
-    painel (no modo de edição, clique com o botão direito no widget)
+    painel (no modo de edição, clique com o botão direito do mouse no widget)
 
 -   Alterar o tom dos widgets (de 40 \*80 a 10 \*10) Tenha cuidado
     impactará o layout em seu painel / visualização / design
@@ -689,10 +694,10 @@ Changelog
     celle-ci
 
 -   Possibilidade de proibir certos valores para um pedido (no
-    configuração avançada)
+    configuração avançada dele)
 
 -   Adição de campos de configuração no feedback automático de status
-    (por exemplo, retorne a 0 após 4 min) na configuração avançada de um
+    (ex retorne a 0 após 4 min) na configuração avançada de um
     commande
 
 -   Adicionando uma função valueDate nos cenários (consulte
@@ -706,7 +711,7 @@ Changelog
 
 -   Adição de um sistema de alerta para pedidos com 2 níveis :
     alerta e perigo. A configuração está na configuração
-    comandos avançados (apenas tipo de informação, é claro). Você pode
+    comandos avançados (apenas o tipo de informação, é claro). Você pode
     veja os módulos em alerta na página Análise → Equipamento. Você
     pode configurar as ações em alerta na página de
     configuração geral do Jeedom
@@ -735,7 +740,7 @@ Changelog
 -   Correção de um bug se houver "nos parâmetros de uma ação
 
 -   Alterne para sha512 para o hash da senha (sha1
-    comprometido)
+    sendo comprometido)
 
 -   Corrigido um erro no gerenciamento de cache que fazia crescer
     indefinidamente
@@ -744,7 +749,7 @@ Changelog
     nenhum documento local
 
 -   As interações podem levar em consideração a noção de contexto (em
-    dependendo da solicitação anterior e da solicitação anterior)
+    função da solicitação anterior e da função anterior)
 
 -   Possibilidade de ponderar palavras de acordo com seu tamanho para
     análise de entendimento
@@ -765,7 +770,7 @@ Changelog
     comandos e resumos que serão usados nas respostas
     contextual e resumos
 
--   Jeedom sabe como gerenciar várias interações relacionadas (contextualmente)
+-   O Jeedom sabe como gerenciar várias interações vinculadas (contextualmente)
     em um. Eles devem ser separados por uma palavra-chave (por padrão e).
     Exemplo : "Quanto custa no quarto e na sala de estar? "Ou
     "Ligue a luz da cozinha e do quarto."
@@ -790,7 +795,7 @@ Changelog
 
 -   Corrigido o erro de exibição com o Chrome 55
 
--   Otimização do backup (em um RPi2, o tempo é dividido por 2)
+-   Otimização de backup (em um RPi2, o tempo é dividido por 2)
 
 -   Otimização de catering
 
@@ -805,7 +810,7 @@ Changelog
     função do objeto original
 
 -   Possibilidade de ter logs de cenário em tempo real (diminui a velocidade
-    execução de cenários)
+    a execução dos cenários)
 
 -   Capacidade de passar tags ao iniciar um cenário
 
@@ -840,7 +845,7 @@ Changelog
 
     -   Em 99% dos casos, mais pedidos de escrita na base em
         operação nominal (portanto, exceto a configuração Jeedom,
-        modificações, instalação, atualização ...)
+        modificações, instalação, atualização)
 
 -   Supressão de fail2ban (porque facilmente ignorado enviando um
     endereço IP falso), isso acelera o Jeedom
@@ -873,7 +878,7 @@ Changelog
     commande
 
 -   Capacidade de substituir um pedido por outro em todos os Jeedom
-    (mesmo que o pedido a ser substituído não exista mais)
+    (mesmo que o comando a ser substituído não exista mais)
 
 2.3
 ---
@@ -944,7 +949,7 @@ Changelog
     / tmp é muito pequeno (cuidado, a correção entra em vigor em
     atualização n + 1)
 
--   Adicionando uma tag *Jeedom\_name* nos cenários (dê o nome
+-   Adicionando uma tag *jeedom\_name* nos cenários (dê o nome
     jeedom)
 
 -   Correções de bugs
@@ -969,7 +974,7 @@ Changelog
 -   Várias otimizações do código (obrigado @ kwizer15)
 
 -   Passagem no módulo de conexão com o mercado (permitirá ter
-    uma jeedom sem nenhum link para o mercado)
+    uma jeedom sem link para o mercado)
 
 -   Adição de um "repo" (conexão do tipo módulo de conexão com
     mercado) (permite enviar um zip contendo o plug-in)
@@ -977,7 +982,7 @@ Changelog
 -   A adição de um "repo" do github (permite usar o github como fonte de
     plugin, com sistema de gerenciamento de atualizações)
 
--   Adição de um "repo" de URL (permite usar o URL como fonte do plug-in)
+-   Adição de um "repo" de URL (permite usar o URL como fonte de plug-in)
 
 -   Adição de um "repositório" do Samba (utilizável para enviar backups em um
     servidor samba e recuperar plugins)
@@ -994,7 +999,7 @@ Changelog
     ou desktop (cuidado agora, por padrão, os painéis estão ocultos)
 
 -   Capacidade de desativar atualizações de plug-ins (bem como
-    verificação)
+    o processo de cheking)
 
 -   Capacidade de forçar a versificação das atualizações de plugins
 
@@ -1018,7 +1023,7 @@ Changelog
 -   Limpeza de terceiros Lib
 
 -   Supressão da voz responsiva (função mencionada nos cenários que
-    funcionou cada vez menos)
+    trabalhou menos e menos bem)
 
 -   Correção de várias vulnerabilidades de segurança
 
@@ -1067,7 +1072,7 @@ Changelog
     de uma estação na rede local
 
 -   Redesenho da configuração de widgets (tenha cuidado
-    certamente retome a configuração de alguns widgets)
+    certamente retomar a configuração de alguns widgets)
 
 -   Reforço do tratamento de erros em widgets
 
@@ -1085,7 +1090,7 @@ Changelog
     bit), está em / tmp, portanto, é recomendável que você
     possui mais de 512 MB de RAM para montar o / tmp em tmpfs (na RAM para
     mais rápido e menos desgaste no cartão SD, eu
-    recomendar um tamanho de 64 MB). Tenha cuidado ao reiniciar
+    recomendar um tamanho de 64MB). Tenha cuidado ao reiniciar
     Como o cache é esvaziado, você precisa aguardar o
     comunicação de todas as informações
 
@@ -1119,16 +1124,16 @@ Changelog
     batterie
 
 -   Redesenho do DNS Jeedom, uso do openvpn (e, portanto, do
-    plugin openvpn)
+    Openvpn plugin)
 
 -   Atualizar todas as bibliotecas
 
 -   Interação : adição de um sistema de análise (permite
     remover interações com erros de sintaxe de tipo grande «
-    le chambre »)
+    o quarto »)
 
 -   Supressão da atualização da interface por nodejs (altere para
-    puxando cada segundo da lista de eventos)
+    puxando cada segundo na lista de eventos)
 
 -   Possibilidade de aplicativos de terceiros solicitarem através da API
     eventos
@@ -1158,7 +1163,7 @@ Changelog
 
 -   Adicionada conexão de autenticação dupla
 
--   Remoção da conexão Hash (por motivos de segurança)
+-   Remoção de conexão hash (por motivos de segurança)
 
 -   Adicionando um sistema de administração de SO
 
@@ -1182,7 +1187,7 @@ Changelog
     bit), está em / tmp, portanto, é recomendável que você
     possui mais de 512 MB de RAM para montar o / tmp em tmpfs (na RAM para
     mais rápido e menos desgaste no cartão SD, eu
-    recomendar um tamanho de 64 MB). Tenha cuidado ao reiniciar
+    recomendar um tamanho de 64MB). Tenha cuidado ao reiniciar
     Como o cache é esvaziado, você precisa aguardar o
     comunicação de todas as informações
 
@@ -1216,16 +1221,16 @@ Changelog
     batterie
 
 -   Redesenho do DNS Jeedom, uso do openvpn (e, portanto, do
-    plugin openvpn)
+    Openvpn plugin)
 
 -   Atualizar todas as bibliotecas
 
 -   Interação : adição de um sistema de análise (permite
     remover interações com erros de sintaxe de tipo grande «
-    le chambre »)
+    o quarto »)
 
 -   Supressão da atualização da interface por nodejs (altere para
-    puxando cada segundo da lista de eventos)
+    puxando cada segundo na lista de eventos)
 
 -   Possibilidade de aplicativos de terceiros solicitarem através da API
     eventos
@@ -1255,7 +1260,7 @@ Changelog
 
 -   Adicionada conexão de autenticação dupla
 
--   Remoção da conexão Hash (por motivos de segurança)
+-   Remoção de conexão hash (por motivos de segurança)
 
 -   Adicionando um sistema de administração de SO
 

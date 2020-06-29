@@ -12,10 +12,10 @@ This page is accessible by **Tools → Home automation summary**.
 The top of the page 
 ------------------
 
-On the top of the page, we find : \* **Number d'objets** : Nombre
+On the top of the page, we find : \* **Number of objects** : Nombre
 total of objects configured in our Jeedom, counting the elements
-Inactive. \* **Number equipments** : Ditto for the equipment. \*
-**Number de orders** : Ditto for orders. \* **Inactive** :
+Inactive. \* **Number of equipments** : Ditto for the equipment. \*
+**Number of orders** : Ditto for orders. \* **Inactive** :
 Check this box if you want the inactive items to be well
 displayed on this page. \* **Search** : Search for a
 particular element. It can be the name of an equipment, an order
@@ -70,8 +70,8 @@ On each equipment we find :
 -   **Inactive** (small cross) : Means that the equipment is inactive
     (if it is not there, the equipment is active).
 
--   **Invisible** (crossed out eye) : Means that the equipment is invisible
-    (if not there, the equipment is visible).
+-   **Invisible** (crossed eye) : Means that the equipment is invisible
+    (if it is not there, the equipment is visible).
 
 -   **External link** (square with arrow) : Lets open in a
     new tab the equipment configuration page.
@@ -98,7 +98,7 @@ Advanced equipment configuration
 > this window from the equipment configuration page in
 > clicking on the advanced configuration button
 
-The window of **d'actualité avancée d'un équipement** allows the
+The window of **Advanced equipment configuration** allows the
 edit. First, at the top right, some buttons
 available :
 
@@ -126,11 +126,11 @@ the equipment and its controls :
 
 -   **Last name** : Name of equipment.
 
--   **Id logique** : Logical equipment identifier (can
-    be empty).
+-   **Logical ID** : Logical equipment identifier (can
+    to be empty).
 
--   **Id de l'objet** : Unique identifier of the parent object (can
-    be empty).
+-   **Object ID** : Unique identifier of the parent object (can
+    to be empty).
 
 -   **Creation date** : Equipment creation date.
 
@@ -214,9 +214,9 @@ commands (side by side in the widget), or in table mode. There is
 nothing to set in default mode. Here are the options available in mode
 **Board** :
 
--   **Number de lignes**
+-   **Number of lines**
 
--   **Number de colonnes**
+-   **Number of columns**
 
 -   **Center in boxes** : Check the box to center the
     commands in the boxes.
@@ -227,13 +227,13 @@ nothing to set in default mode. Here are the options available in mode
 -   **Table style (CSS)** : Allows you to define the style of the
     table only.
 
-Below for each box, the **d'actualité détaillée** It allows you to
+Below for each box, the **detailed configuration** It allows you to
 this :
 
 -   **Box text** : Add text in addition to the command (or
-    alone, if there is no order in the box).
+    all alone, if there is no order in the box).
 
--   **Box style (CSS)** : Change the specific CSS style of the
+-   **Case style (CSS)** : Change the specific CSS style of the
     box (beware this overwrites and replaces the general CSS
     boxes).
 
@@ -241,7 +241,7 @@ this :
 >
 > In a box in the table, if you want to put 2 commands one in
 > below the other, don&#39;t forget to add a return to the
-> line after the premiere in the **d'actualité avancée** of it.
+> line after the premiere in the **Advanced configuration** of it.
 
 Alerts tab 
 --------------
@@ -250,7 +250,7 @@ This tab provides information on the battery of
 the equipment and define alerts in relation to it. Here are the
 types of information that can be found :
 
--   **Type de piThe**,
+-   **Battery type**,
 
 -   **Latest feedback**,
 
@@ -315,14 +315,14 @@ ordered :
 
 -   **Id** : Unique identifier in the database.
 
--   **Id logique** : Logical identifier of the command (can
-    be empty).
+-   **Logical ID** : Logical identifier of the command (can
+    to be empty).
 
 -   **Last name** : Name of the order.
 
--   **Type** : Type of order (action or info).
+-   **Type** : Type of command (action or info).
 
--   **Subtype** : Command subtype (binary, digital, etc.).
+-   **Subtype** : Command subtype (binary, digital, etc.)).
 
 -   **Direct url** : Provides the URL to access this equipment. (click
     right, copy the link address) The URL will launch the command for a
@@ -360,7 +360,7 @@ You also have three other orange buttons underneath :
 > **NOTE**
 >
 > This kind of action replaces commands all over Jeedom
-> (scenario, interaction, order, equipment….)
+> (scenario, interaction, command, equipment….)
 
 Below, you will find the list of different equipment,
 commands, scenarios, or interactions that use this command. A
@@ -374,7 +374,7 @@ Configuration tab
 
 -   **Calculation and rounding**
 
-    -   **Algorithm (\#value\# for la valeur)** : Allows
+    -   **Algorithm (\#value\# for value)** : Allows
         make an operation on the value of the order before
         Jeedom treatment, example : ``#value# - 0.2` to entrench
         0.2 (offset on a temperature sensor).
@@ -383,7 +383,7 @@ Configuration tab
         order value (Example : put 2 to transform
         16.643345 in 16.64).
 
--   **Type générique** : Allows you to configure the generic type of the
+-   **Generic type** : Allows you to configure the generic type of the
     command (Jeedom tries to find it by itself in auto mode).
     This information is used by the mobile application.
 
@@ -422,7 +422,7 @@ Configuration tab
     -   **Status return value** : Returns the command to
         this value after a while.
 
-    -   **Duration before status return (min)** : Time before return to
+    -   **Duration before return of status (min)** : Time before return to
         value above.
 
 -   **Other**
@@ -439,11 +439,11 @@ Configuration tab
         next : ``#value#`for the value of the order,`#cmd_name#``
         for the name of the command, `#cmd_id#`for the unique identifier
         of the command, `#humanname#`for the full name of the command
-        (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment
+        (Ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment
 
 ### For an action command : 
 
--   **Type générique** : Allows you to configure the generic type of the
+-   **Generic type** : Allows you to configure the generic type of the
     command (Jeedom tries to find it by itself in auto mode).
     This information is used by the mobile application.
 
@@ -463,7 +463,7 @@ Configuration tab
 Alerts tab 
 --------------
 
-Allows you to define an alert level (**Warning** or **Danger**) in
+Allows you to define an alert level (**Warning** or **Danger**) en
 depending on certain conditions. For example, if `value&gt; 8` for 30
 minutes then the equipment can go on alert **Warning**.
 
@@ -492,11 +492,11 @@ mobile.
 -   **Display name and icon** : Check to make the icon visible
     in addition to the name of the command.
 
--   **Wrapped line before widget** : Select **before le
+-   **Wrapped line before widget** : Select **before
     widget** or **after the widget** to add a line break
     before or after the widget (to force for example a display in
     column of different equipment commands instead of lines
-    by default)
+    By default)
 
 Below, we find optional display parameters that we
 can switch to widget. These parameters depend on the widget in question,
@@ -514,4 +514,4 @@ Allows you to modify the widget code just for the current command.
 > **NOTE**
 >
 > If you want to modify the code don&#39;t forget to check the box
-> **Activate la personnalisation du widget**
+> **Enable widget customization**

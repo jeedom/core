@@ -2,10 +2,16 @@
 Changelog
 =========
 
+3.3.51
+======
+
+- Correction d'un souci de calcul de temps d'état sur les widgets si le fuseau horaire de Jeedom n'est pas le même que celui du navigateur
+- Augmentation du nombre de mauvais mot de passe avant bannissement (évite les soucis avec la webapp lors de la rotation des clefs api)
+
 3.3.50
 =====
 
-- Correction d'un soucis d'arret du DNS beta
+- Correction d'un souci d'arrêt du DNS beta
 - Amélioration du calcul des accès interne/externe (suppression du port si celui-ci est standard pour le protocole)
 
 3.3.49
@@ -16,13 +22,13 @@ Changelog
 3.3.48
 =====
 
-- Correction de bug (mise à jour à faire absolument si vous etes en 3.3.47)
+- Correction de bug (mise à jour à faire absolument si vous êtes en 3.3.47)
 
 3.3.47
 =====
 
 - Correction de bugs
-- Optimisation du futur systeme de DNS
+- Optimisation du futur système de DNS
 
 3.3.45
 =====
@@ -35,8 +41,8 @@ Changelog
 - Rotation automatique de la clé api des utilisateurs admin tous les 3 mois. I est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs. Attention cette mise à jour lance une rotation des clés api des utilisateurs admins.
 - Possibilité de renseigner des informations globales à votre maison dans l'administration de Jeedom (position géographique, altitude...) pour éviter d'avoir à les resaisir dans les plugins lors de la création d'équipement.
 - Mise à jour du repository sur smart
-- Migration sur le nouveau systeme de backup cloud (l'ancien systeme restera actif 1 semaines et vous pourrait en cas de besoin demander la mise à disposition des anciens backup au support, passer ce délai l'ancien systeme sera supprimé)
-- Migration sur le nouveau systeme de monitoring (l'ancien systeme restera actif 1 semaines, passé se delai il sera supprimé)
+- Migration sur le nouveau système de backup cloud (l'ancien système restera actif 1 semaine et vous pourrez en cas de besoin demander la mise à disposition des anciens backup au support, passer ce délai l'ancien système sera supprimé)
+- Migration sur le nouveau système de monitoring (l'ancien système restera actif 1 semaine, passé se delai il sera supprimé)
 
 3.3.39
 =====
@@ -49,12 +55,12 @@ Changelog
 
 >**IMPORTANT**
 >
->Cette mise à jour corrige un soucis qui pourra empecher tout enregistrement d'historique au 1er janvier 2020, elle est plus que vivement recommandée
+>Cette mise à jour corrige un soucis qui pourra empêcher tout enregistrement d'historique au 1er janvier 2020, elle est plus que vivement recommandée
 
 3.3.38
 =====
 
-- Ajout de la compatibilité global du DNS Jeedom avec une connexion internet 4G. (Important si vous utilisez les DNS jeedom est que vous avez une connexion 4g il faut bien cocher dans la configure des dns jeedom la case correspondante).
+- Ajout de la compatibilité global du DNS Jeedom avec une connexion internet 4G. (Important si vous utilisez les DNS Jeedom est que vous avez une connexion 4g il faut bien cocher dans la configuration des dns Jeedom la case correspondante).
 - Corrections orthographiques.
 - Correction de sécurité
 

@@ -7,7 +7,7 @@ from the menu **Tools → Objects**.
 To give free choice to customization, you can name these
 objects as you want. Usually, we will define the different
 parts of his house, like the names of the rooms (this is
-recommended configuration).
+Recommended configuration).
 
 Management 
 =======
@@ -106,7 +106,7 @@ lines are proposed to you :
 ### Orders 
 
 Each tab represents a type of summary defined in the configuration
-from Jeedom. Click on **Add une commande** so that it is
+from Jeedom. Click on **Add an order** so that it is
 taken into account in the summary. You have the choice to select the
 order any Jeedom equipment, even if it is not for
 parent this object.
