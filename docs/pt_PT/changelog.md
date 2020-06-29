@@ -2,10 +2,11 @@
 Registro de Alterações Jeedom V4
 =========
 
-4.0.58
+4.0.59
 =====
 
 - Correções de bugs em widgets de tempo
+- Aumento do número de senhas ruins antes do banimento (evita problemas com o aplicativo da web ao girar chaves da API)
 
 4.0.57
 =====

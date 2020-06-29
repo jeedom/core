@@ -2,10 +2,11 @@
 Changelog Jeedom V4
 =========
 
-4.0.58
+4.0.59
 =====
 
 - Fehlerbehebungen bei Zeit-Widgets
+- Erhöhen Sie die Anzahl der fehlerhaften Kennwörter vor dem Verbannen (vermeidet Probleme mit der Webanwendung beim Drehen von API-Schlüsseln)
 
 4.0.57
 =====

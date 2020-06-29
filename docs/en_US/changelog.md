@@ -2,10 +2,11 @@
 Changelog Jeedom V4
 =========
 
-4.0.58
+4.0.59
 =====
 
 - Bug fixes on time widgets
+- Increase in the number of bad passwords before banishment (avoids problems with the webapp when rotating API keys)
 
 4.0.57
 =====
